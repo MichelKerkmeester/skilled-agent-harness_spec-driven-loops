@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.1.0
+version: 2.4.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -53,7 +53,8 @@ emits leaf paths, and this router never re-decides the mode.
   packet-id rule, and the quality-control workflow a request to validate, audit,
   or score documentation against sk-doc standards loads. Fired by "documentation
   quality / validate documentation / validate a document / score this document /
-  DQI / document audit / review the docs / audit the docs / pass review"
+  DQI / document audit / review the docs / document for clarity / audit the docs /
+  pass review"
   requests. The scoring phrases mirror `hub-router.json`, so a request that
   reaches the quality mode at stage one also reaches its leaves at stage two.
 - **optimization leaves** — the optimization reference and the llms.txt templates
@@ -166,7 +167,7 @@ dual-reads to a canonical typed pair through `leaf-manifest.json` or the hub's
 
 ```python
 INTENT_SIGNALS = {
-    "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validate a document", "validate this document", "validate markdown", "validation rules", "score this document", "score this doc", "dqi", "document audit", "fail sk-doc standards", "review the docs", "review the documentation", "check the docs", "check the documentation", "audit the docs", "documentation review bar", "quality bar", "flag", "meet our standards", "audit documentation quality", "ai-friendly documentation", "extract structure", "validate", "score", "harden", "audit", "/doc:quality"]},
+    "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validate a document", "validate this document", "validate markdown", "validation rules", "score this document", "score this doc", "dqi", "document audit", "fail sk-doc standards", "review the docs", "review the documentation", "document for clarity", "check the docs", "check the documentation", "audit the docs", "documentation review bar", "quality bar", "flag", "meet our standards", "audit documentation quality", "ai-friendly documentation", "extract structure", "validate", "score", "harden", "audit", "/doc:quality"]},
     "OPTIMIZATION": {"weight": 4, "keywords": ["optimize", "token efficiency", "llms.txt", "llmstxt", "reduce tokens", "fewer tokens", "trim", "compress the doc", "slim down", "model's budget", "machine-readable index", "optimize this doc"]},
     "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "reusable helper", "starter reference docs", "new capability", "capability module", "package a capability", "create skill", "skill scaffold", "opencode skill", "package skill", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "/create:skill"]},
     "PARENT_HUB": {"weight": 4, "keywords": ["parent hub", "parent skill", "mode packet", "mode packets", "nested packet", "nested workflow packet", "mode-registry.json", "hub-router.json", "hub versus standalone skill class", "skill hub", "/create:skill-parent"]},

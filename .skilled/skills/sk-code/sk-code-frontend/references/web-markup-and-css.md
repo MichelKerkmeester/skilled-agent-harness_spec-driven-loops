@@ -7,7 +7,7 @@ trigger_phrases:
   - "web forms and layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Web Markup and CSS Practice
@@ -34,11 +34,11 @@ This file is the web layer of [`frontend-practice.md`](frontend-practice.md). It
 
 This file owns web mechanics. It does not own:
 
-- **Values.** Use the project's installed tokens and report a missing token, as [core principle 7](frontend-practice.md#2-the-eleven-principles) requires. When the tokens or the frame leave a value open, use [sk-design-fundamentals](../../../sk-design/sk-design-fundamentals/SKILL.md) for guidance.
-- **Interaction details.** Form behavior, touch and hit areas, typography implementation, focus and keyboard behavior, motion, performance and feedback are in [`interaction-craft.md`](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) Sections 2–8. This file links to them and does not repeat their detail.
+- **Values.** Use the project's installed tokens and report a missing token, as [core principle 7](frontend-practice.md#2-the-eleven-principles) requires. When the tokens or the frame leave a value open, use [web-visual-values.md](web-visual-values.md) for guidance.
+- **Interaction details.** Form behavior, touch and hit areas, typography implementation, focus and keyboard behavior, motion, performance and feedback are in [`web-motion-and-interaction.md`](web-motion-and-interaction.md) Sections 2–8. This file links to them and does not repeat their detail.
 - **Figma translation.** The shared rules and five-pass check are in [`figma-to-code.md`](figma-to-code.md) and [core Section 4](frontend-practice.md#4-figma-as-reference).
 - **The project's own conventions.** A project or stack mode may replace, extend or disable one core or stack-layer statement for its surface. Follow the core's [overrides rule](frontend-practice.md#5-overrides). The mode declares its choice under a Frontend overrides heading in its own SKILL.md.
-- **Visual direction.** A frame records appearance and states. Resolve values the frame and installed tokens leave open through [sk-design-fundamentals](../../../sk-design/sk-design-fundamentals/SKILL.md).
+- **Visual direction.** A frame records appearance and states. Resolve values the frame and installed tokens leave open through [web-visual-values.md](web-visual-values.md).
 
 ---
 
@@ -61,7 +61,7 @@ This file owns web mechanics. It does not own:
 
 ## 3. FORMS
 
-Form behavior such as label focus, the form wrapper, input `type`, `required`, decorations and double submits is in [`interaction-craft.md`](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) Section 2. The web markup adds these requirements. It expresses [core principles 2 and 3](frontend-practice.md#2-the-eleven-principles):
+Form behavior such as label focus, the form wrapper, input `type`, `required`, decorations and double submits is in [`web-motion-and-interaction.md`](web-motion-and-interaction.md) Section 2. The web markup adds these requirements. It expresses [core principles 2 and 3](frontend-practice.md#2-the-eleven-principles):
 
 - Give every control a visible label with `<label for="id">` or a wrapping `<label>`. A placeholder is not a label.
 - Group related controls in `<fieldset>` with a `<legend>`. Radio and checkbox groups require this context.
@@ -70,7 +70,7 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Link help and error text with `aria-describedby`. Set `aria-invalid="true"` while a control has an error.
 - Use native constraints (`required`, `min`, `max`, `step`, `pattern` and `maxlength`) so the browser validates before the app.
 
-**The `autocomplete` disagreement.** `interaction-craft.md` Section 2 advises disabling `autocomplete` on most inputs.
+**The `autocomplete` disagreement.** [`web-motion-and-interaction.md`](web-motion-and-interaction.md) advises disabling `autocomplete` on inputs where it is noise.
 
 - That holds for free-text fields where browser history adds noise, such as comments, in-app search filters and admin entry of someone else's data.
 - It does not hold for fields about the user. Identity, contact, address, payment and credential fields need the right token so autofill and password managers work and the input purpose is machine-readable:
@@ -111,7 +111,7 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Use container queries when a component's layout depends on its available width. See [L6](web-layout-and-sizing.md#l6-container-queries-and-container-units).
   - Support: Baseline widely available since 2025-08-14 (web-features `container-queries`). Chrome 105 / Firefox 110 / Safari 16.
 - Size type in `rem` so it scales with the root font size, and use the installed typography tokens.
-- Use `clamp()` only between two adjacent steps of the type scale for large display type. [`interaction-craft.md`](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) Section 4 explains the reasoning.
+- Use `clamp()` only between two adjacent steps of the type scale for large display type. [`web-motion-and-interaction.md`](web-motion-and-interaction.md) Section 4 explains the reasoning.
 - On mobile, use `100dvh` or `100svh` instead of `100vh`, which ignores the browser toolbar.
 - Respect the core safe-area principle with `env(safe-area-inset-*)` padding and `viewport-fit=cover` in the viewport meta tag.
 - Never set `user-scalable=no` or `maximum-scale=1`. People must be able to zoom.
@@ -140,7 +140,7 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Scope styles to a component through the framework's scoping mechanism or the project's CSS convention, and keep specificity low. See [CS4](web-cascade-and-selectors.md#cs4-zero-specificity-and-maximum-argument-selectors). Do not use IDs in selectors.
 - Do not use `!important` outside utility classes that exist to win.
 - Express state with pseudo-classes and attributes: `:hover`, `:focus-visible`, `:disabled`, `[aria-expanded="true"]`, `[aria-current="page"]` and `[aria-invalid="true"]`. A duplicated `.is-open` class can drift from the state screen readers read. This expresses [core principle 2](frontend-practice.md#2-the-eleven-principles).
-- Never remove a focus indicator without a `:focus-visible` replacement. [`interaction-craft.md`](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) Section 5 describes the focus ring.
+- Never remove a focus indicator without a `:focus-visible` replacement. [`web-motion-and-interaction.md`](web-motion-and-interaction.md) Section 5 describes the focus ring.
 - Animate `transform` and `opacity`. Animating `width`, `height`, `top` or `left` forces layout on every frame.
 
 **Deeper:** [Cascade and selectors](web-cascade-and-selectors.md) and [accessibility patterns](web-accessibility-patterns.md).

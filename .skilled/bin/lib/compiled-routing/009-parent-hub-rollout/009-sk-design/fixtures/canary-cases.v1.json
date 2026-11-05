@@ -4,46 +4,6 @@
   "certificates": {},
   "cases": [
     {
-      "id": "values-spacing-single",
-      "prompt": "what spacing scale should the pricing page use",
-      "riskSlice": "actor:mutating:single",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-design-fundamentals"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-design-fundamentals"
-        ],
-        "expectedResources": [
-          "sk-design-fundamentals/references/hierarchy.md",
-          "sk-design-fundamentals/references/color-system.md",
-          "sk-design-fundamentals/assets/token-starter-set.md"
-        ]
-      }
-    },
-    {
-      "id": "review-critique-single",
-      "prompt": "design review of this pricing page, does this look right",
-      "riskSlice": "actor:mutating:single",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-design-fundamentals"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-design-fundamentals"
-        ],
-        "expectedResources": [
-          "sk-design-fundamentals/references/review-checklist.md",
-          "sk-design-fundamentals/references/ux-laws.md",
-          "sk-design-fundamentals/references/diagnosis-table.md"
-        ]
-      }
-    },
-    {
       "id": "flowchart-approval-loop",
       "prompt": "create a flowchart for the approval loop",
       "riskSlice": "actor:mutating:single",
@@ -59,6 +19,26 @@
         "expectedResources": [
           "sk-design-diagram/assets/ascii-patterns/simple-workflow.md",
           "sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md"
+        ]
+      }
+    },
+    {
+      "id": "chart-choice",
+      "prompt": "which chart should i use for this comparison",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-design-chart"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-design-chart"
+        ],
+        "expectedResources": [
+          "sk-design-chart/references/catalog.md",
+          "sk-design-chart/references/color-system.md",
+          "sk-design-chart/references/template-contract.md"
         ]
       }
     },
@@ -107,17 +87,12 @@
       }
     },
     {
-      "id": "out-of-domain-default",
+      "id": "out-of-domain-defer",
       "prompt": "run the deployment pipeline",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-design-fundamentals"
-      ],
+      "expectedAction": "defer",
+      "expectedReason": "no-match",
       "gold": {
-        "expectedIntents": [
-          "sk-design-fundamentals"
-        ],
+        "expectedIntents": [],
         "expectedResources": []
       }
     },

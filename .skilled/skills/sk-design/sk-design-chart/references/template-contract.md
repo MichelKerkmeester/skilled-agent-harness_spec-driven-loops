@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 0.23.1.0
+version: 0.23.2.0
 ---
 
 # Chart Template Contract
@@ -751,11 +751,10 @@ templates.
 
 A card takes every colour from the palette custom properties and never from a literal. `--chart-surface` for its fill, `--chart-rule` for its border, `--chart-ink` for a name and a value, `--chart-muted` for a label. Each template redefines those under `prefers-color-scheme: dark`, so a card built this way inverts with the page and needs no theme code of its own. A literal colour looks right in whichever theme its author was using and disappears in the other, and only the theme nobody checks breaks.
 
-This `stacked-area` row overrides an earlier figure from the research (`all four band values plus
-the total`), which assumed per-x hit targets that were never built. Build a one-row card: the
-band's series name plus its period total, per the `Card name` and `Rows` cells above. Not a
-five-row card, and not a name-only card either, since a per-x reading is not buildable without
-machinery this packet excludes.
+The `stacked-area` card is one row: the band's series name plus its period total, per the
+`Card name` and `Rows` cells above. It is not a five-row card listing every band value plus the
+total, because that needs per-x hit targets the template does not have. It is not a name-only card
+either, since a per-x reading is not buildable without machinery this packet excludes.
 
 ### A key takes the shape of its mark
 

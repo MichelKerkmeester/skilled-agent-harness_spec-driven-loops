@@ -8,7 +8,7 @@ trigger_phrases:
   - "specialist agent structure"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Agent Template - Specialist Agent Structure
@@ -749,7 +749,7 @@ Verify every path exists before shipping. A resource list full of dead paths is 
 | `@prompt-improver` | `prompt-improver.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
 | `@ai-council` | `ai-council.md` | LEAF planning subagent, `mode: subagent` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
 | `@markdown` | `markdown.md` | LEAF write-capable documentation executor | Template-first `/create:*`, spec-doc, and scoped markdown authoring |
-| `@design` | `design.md` | LEAF write-capable design subagent | routes between `sk-design` (decide values) and `sk-design-md-generator` (measure a surface), applies the path, then verifies |
+| `@design` | `design.md` | LEAF write-capable design subagent | decides values and behavior through the `sk-code-frontend` visual references, measures surfaces with `sk-design-md-generator`, applies the path, then verifies |
 | `@orchestrate` | `orchestrate.md` | Primary orchestrator | Task decomposition, specialist routing, integration synthesis, delegation governance |
 | `@review` | `review.md` | LEAF review subagent | Findings-first code review, quality rubric, read-only target discipline |
 

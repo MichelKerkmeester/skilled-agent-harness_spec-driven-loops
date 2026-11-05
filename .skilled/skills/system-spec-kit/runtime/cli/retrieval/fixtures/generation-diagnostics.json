@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7314,
-    "ok": 17036,
+    "missing-frontmatter": 7300,
+    "ok": 17052,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27898,
+  "documentsScanned": 27900,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c906505765505e33cd6332ba2acfa5875044b9da3ec1d6c827e8e2ecd93f1470",
+  "manifestHash": "6820024ede1c88fe0308b92588d77f99a3fa5be68abe29dbc1bb502c3a44614a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40914,
+      "ok": 40960,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -10962,6 +10962,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -12368,96 +12374,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/implementation-defers-to-sk-code.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/project-system-precedence.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/profile-load/unknown-project.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/diagnose-entry.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/motion-entry.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/procedure-entry.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/review-entry.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/no-runtime-shades.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/on-scale-values.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/unit-discipline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/value-names-its-source.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -72453,6 +72369,30 @@
     },
     {
       "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/021-deprecate-fundamentals/001-frontend-upgrade/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/021-deprecate-fundamentals/002-retire-fundamentals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/021-deprecate-fundamentals/003-chart-research-cleanup/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/021-deprecate-fundamentals/004-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/021-deprecate-fundamentals/review/lineages",
       "reason": "excluded directory"
     },
     {

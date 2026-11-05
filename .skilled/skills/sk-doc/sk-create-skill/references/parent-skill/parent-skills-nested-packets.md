@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.12.0
+version: 1.2.13.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -195,7 +195,7 @@ A hub with no extensions is the pure two-tier core. Add only the extension neede
 | Hub | Packet axis | Runtime loop | Advisor projection | Transform verbs | Deprecated modes | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | `sk-code` | Declares the surface axis: workflow modes resolve code lifecycle steps and surface packets provide read-only evidence (`sk-code-ci`, `sk-code-frontend`, `sk-code-skilled`). | No runtime-loop extension; workflows are direct code modes, not convergence loops. | None; each mode uses `metadata` and the advisor routes the single `sk-code` identity. | None. | None. | Canonical live example for `mode-registry.json` plus `hub-router.json`; every packet, surface included, has its own router signal entry. |
-| `sk-design` | Four workflow modes (`sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart`, `sk-design-diagram`); no surface packets. This row is an illustrative snapshot; consult the live registry for current mode names. The hub was decommissioned into two standalone skills in August 2026 and reinstated with four modes in September; `sk-prompt`, which briefly held this row, is a standalone root. | No runtime-loop extension; fundamentals uses the shared reference base, the md-generator mode runs its extraction backend, and the chart and diagram modes generate self-contained artefacts. | None; all modes use `metadata` under the single `sk-design` identity, so their vocabulary reaches the advisor only through the hub's `graph-metadata.json` `intent_signals`. | None. | None; the retired design modes stay retired. | No-extension workflow-only example. |
+| `sk-design` | Three workflow modes (`sk-design-md-generator`, `sk-design-chart`, `sk-design-diagram`); no surface packets. This row is an illustrative snapshot; consult the live registry for current mode names. The hub was decommissioned into two standalone skills in August 2026 and reinstated with four modes in September; `sk-prompt`, which briefly held this row, is a standalone root. | No runtime-loop extension; the md-generator mode runs its extraction backend, and the chart and diagram modes generate self-contained artefacts. | None; all modes use `metadata` under the single `sk-design` identity, so their vocabulary reaches the advisor only through the hub's `graph-metadata.json` `intent_signals`. | None. | None; the retired design modes stay retired. | No-extension workflow-only example. |
 | `system-deep-loop` | Workflow-only active modes; no surface packets. | Declares runtime-loop semantics for research, review, and council modes. | Required for lexical and alias-fold modes; hardcoded advisor projection maps stay drift-guarded against the registry. | None. | None declared (`deprecatedModes: []`); the retired standalone context loop survives only as an advisor comment, not a registry deprecation. | Extension-heavy example: runtime-loop and advisor-projection semantics. |
 | `sk-doc` | Workflow-only; no surface axis, zero named extensions. Several workflowModes may multiplex onto one packet (N modes → 1 packet) when that packet's `SKILL.md` declares each mode. | No runtime-loop extension. | None; all modes use `metadata` under the single `sk-doc` identity. | None. | None. | Workflow-only, zero-extension example — the pure two-tier core scaffolded by this doctrine. |
 

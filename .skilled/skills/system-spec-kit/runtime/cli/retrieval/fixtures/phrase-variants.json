@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c906505765505e33cd6332ba2acfa5875044b9da3ec1d6c827e8e2ecd93f1470",
+  "manifestHash": "6820024ede1c88fe0308b92588d77f99a3fa5be68abe29dbc1bb502c3a44614a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7799,9 +7799,6 @@
     "access telemetry split": [
       "access telemetry split"
     ],
-    "accessibility audit checklist": [
-      "accessibility audit checklist"
-    ],
     "accessibility contract checklist": [
       "accessibility contract checklist"
     ],
@@ -9081,6 +9078,24 @@
     ],
     "advisor name mention scoring tasks": [
       "advisor name mention scoring tasks"
+    ],
+    "advisor negated write": [
+      "advisor negated write"
+    ],
+    "advisor negation and routing": [
+      "advisor negation and routing"
+    ],
+    "advisor negation and routing acceptance criteria": [
+      "advisor negation and routing acceptance criteria"
+    ],
+    "advisor negation and routing implementation summary": [
+      "advisor negation and routing implementation summary"
+    ],
+    "advisor negation and routing plan": [
+      "advisor negation and routing plan"
+    ],
+    "advisor negation and routing tasks": [
+      "advisor negation and routing tasks"
     ],
     "advisor no match diagnostic": [
       "advisor no match diagnostic"
@@ -11559,9 +11574,6 @@
     ],
     "angle driven review tasks": [
       "angle driven review tasks"
-    ],
-    "animation duration for ui": [
-      "animation duration for ui"
     ],
     "animation performance test": [
       "animation performance test"
@@ -14838,6 +14850,18 @@
     "bootstrap restart required removed": [
       "bootstrap restart required removed"
     ],
+    "borderline route criteria": [
+      "borderline route criteria"
+    ],
+    "borderline route fix": [
+      "borderline route fix"
+    ],
+    "borderline route plan": [
+      "borderline route plan"
+    ],
+    "borderline route tasks": [
+      "borderline route tasks"
+    ],
     "born findable changelog entries": [
       "born findable changelog entries"
     ],
@@ -15194,9 +15218,6 @@
     ],
     "bug surface remediation backlog": [
       "bug surface remediation backlog"
-    ],
-    "build a color palette": [
-      "build a color palette"
     ],
     "build artifact cleanup": [
       "build artifact cleanup"
@@ -17421,6 +17442,18 @@
     "chart chrome rollout tasks": [
       "chart chrome rollout tasks"
     ],
+    "chart citation removal criteria": [
+      "chart citation removal criteria"
+    ],
+    "chart citation removal plan": [
+      "chart citation removal plan"
+    ],
+    "chart citation removal tasks": [
+      "chart citation removal tasks"
+    ],
+    "chart citations removed": [
+      "chart citations removed"
+    ],
     "chart closeout checklist": [
       "chart closeout checklist"
     ],
@@ -17438,6 +17471,9 @@
     ],
     "chart colors wording corrected": [
       "chart colors wording corrected"
+    ],
+    "chart colour route": [
+      "chart colour route"
     ],
     "chart colour system": [
       "chart colour system"
@@ -17799,6 +17835,9 @@
     "chart reduce motion": [
       "chart reduce motion"
     ],
+    "chart reference research cleanup": [
+      "chart reference research cleanup"
+    ],
     "chart reference research results": [
       "chart reference research results"
     ],
@@ -17810,6 +17849,9 @@
     ],
     "chart references readme count": [
       "chart references readme count"
+    ],
+    "chart references state their own rules": [
+      "chart references state their own rules"
     ],
     "chart remediation criteria": [
       "chart remediation criteria"
@@ -17825,6 +17867,21 @@
     ],
     "chart renumber approach": [
       "chart renumber approach"
+    ],
+    "chart research cleanup": [
+      "chart research cleanup"
+    ],
+    "chart research cleanup acceptance criteria": [
+      "chart research cleanup acceptance criteria"
+    ],
+    "chart research cleanup implementation summary": [
+      "chart research cleanup implementation summary"
+    ],
+    "chart research cleanup plan": [
+      "chart research cleanup plan"
+    ],
+    "chart research cleanup tasks": [
+      "chart research cleanup tasks"
     ],
     "chart research decisions": [
       "chart research decisions"
@@ -18664,12 +18721,6 @@
     "chokidar narrow scope": [
       "chokidar narrow scope"
     ],
-    "choose a typeface for ui": [
-      "choose a typeface for ui"
-    ],
-    "choose a value by elimination": [
-      "choose a value by elimination"
-    ],
     "choose executor for research iterations": [
       "choose executor for research iterations"
     ],
@@ -18759,9 +18810,6 @@
     ],
     "chunk fingerprints": [
       "chunk fingerprints"
-    ],
-    "chunk information into groups": [
-      "chunk information into groups"
     ],
     "chunk overlap env override": [
       "chunk overlap env override"
@@ -19533,6 +19581,9 @@
     ],
     "clarify suggested default": [
       "clarify suggested default"
+    ],
+    "clarity review routing": [
+      "clarity review routing"
     ],
     "class floor keep rule": [
       "class floor keep rule"
@@ -26444,6 +26495,9 @@
     "colour naming format": [
       "colour naming format"
     ],
+    "colour ramp construction": [
+      "colour ramp construction"
+    ],
     "column chart comparison": [
       "column chart comparison"
     ],
@@ -27579,6 +27633,9 @@
     "compiled routing shapes": [
       "compiled-routing shapes"
     ],
+    "compiled routing sk design": [
+      "compiled routing sk-design"
+    ],
     "compiled routing testing strategy": [
       "compiled routing testing strategy"
     ],
@@ -27848,9 +27905,6 @@
     ],
     "component header codemod": [
       "component header codemod"
-    ],
-    "component quality check": [
-      "component quality check"
     ],
     "component readme voice": [
       "component readme voice"
@@ -32544,9 +32598,6 @@
     "dark ledger projection tasks": [
       "dark ledger projection tasks"
     ],
-    "dark mode color ramp": [
-      "dark mode color ramp"
-    ],
     "dark mode detection": [
       "dark mode detection"
     ],
@@ -36820,11 +36871,24 @@
     "deep review finding reproducing case": [
       "deep-review finding reproducing case"
     ],
+    "deep review findings closed": [
+      "deep review findings closed"
+    ],
+    "deep review findings criteria": [
+      "deep review findings criteria"
+    ],
+    "deep review findings fix plan": [
+      "deep review findings fix plan"
+    ],
     "deep review findings registry json": [
       "deep-review-findings-registry.json"
     ],
     "deep review findings remediation": [
+      "deep review findings remediation",
       "deep-review findings remediation"
+    ],
+    "deep review findings task list": [
+      "deep review findings task list"
     ],
     "deep review fix closure gate": [
       "deep review fix closure gate"
@@ -38081,6 +38145,9 @@
     "deprecate deep alignment tasks": [
       "deprecate deep alignment tasks"
     ],
+    "deprecate fundamentals phase parent spec": [
+      "deprecate fundamentals phase parent spec"
+    ],
     "deprecate improvement modes phase parent spec": [
       "deprecate improvement modes phase parent spec"
     ],
@@ -38427,8 +38494,8 @@
     "descriptions json z guard": [
       "descriptions json z guard"
     ],
-    "design a new screen": [
-      "design a new screen"
+    "design agent decide path": [
+      "design agent decide path"
     ],
     "design authored remediation": [
       "design authored remediation"
@@ -38438,6 +38505,9 @@
     ],
     "design diagram": [
       "/design:diagram"
+    ],
+    "design document route": [
+      "design document route"
     ],
     "design extraction failed": [
       "design extraction failed"
@@ -38450,6 +38520,9 @@
     ],
     "design extractor backend": [
       "design extractor backend"
+    ],
+    "design fundamentals retired": [
+      "design fundamentals retired"
     ],
     "design gen tool keyword removed": [
       "design_gen tool keyword removed"
@@ -38648,12 +38721,6 @@
     "design serves the product": [
       "design serves the product"
     ],
-    "design skill first release": [
-      "design skill first release"
-    ],
-    "design skill operator scenarios": [
-      "design skill operator scenarios"
-    ],
     "design slop test": [
       "design slop test"
     ],
@@ -38668,6 +38735,12 @@
     ],
     "design thresholds": [
       "design thresholds"
+    ],
+    "design token move to sk code": [
+      "design token move to sk-code"
+    ],
+    "design token roles": [
+      "design token roles"
     ],
     "design token vocabulary": [
       "design token vocabulary"
@@ -39223,9 +39296,6 @@
     ],
     "diagnose before fixing suite failures": [
       "diagnose before fixing suite failures"
-    ],
-    "diagnose existing ui": [
-      "diagnose existing ui"
     ],
     "diagnose five advisor failures": [
       "diagnose five advisor failures"
@@ -43956,9 +44026,6 @@
     "empty trigger phrases": [
       "empty trigger phrases"
     ],
-    "emulate a light source css": [
-      "emulate a light source css"
-    ],
     "enable debug logging": [
       "enable debug logging"
     ],
@@ -44876,9 +44943,6 @@
     ],
     "every turn injection": [
       "every-turn injection"
-    ],
-    "everything competes for attention": [
-      "everything competes for attention"
     ],
     "evidence boundary fix": [
       "evidence boundary fix"
@@ -48357,9 +48421,6 @@
     "first time auto scan code graph": [
       "first-time auto scan code graph"
     ],
-    "fitts law target size": [
-      "fitts law target size"
-    ],
     "fitts s law": [
       "Fitts's law"
     ],
@@ -49035,8 +49096,8 @@
     "focus dimension dispatch": [
       "focus dimension dispatch"
     ],
-    "focus ring and keyboard navigation": [
-      "focus ring and keyboard navigation"
+    "focus ring and keyboard behavior": [
+      "focus ring and keyboard behavior"
     ],
     "focuses on git workflows": [
       "focuses on git workflows"
@@ -49967,8 +50028,23 @@
     "frontend surface playbook": [
       "frontend surface playbook"
     ],
+    "frontend upgrade acceptance criteria": [
+      "frontend upgrade acceptance criteria"
+    ],
+    "frontend upgrade implementation summary": [
+      "frontend upgrade implementation summary"
+    ],
+    "frontend upgrade plan": [
+      "frontend upgrade plan"
+    ],
+    "frontend upgrade tasks": [
+      "frontend upgrade tasks"
+    ],
     "frontend upstream proposals phase parent spec": [
       "frontend upstream proposals phase parent spec"
+    ],
+    "frontend visual values upgrade": [
+      "frontend visual values upgrade"
     ],
     "frontend web surface routing": [
       "frontend web surface routing"
@@ -50586,8 +50662,11 @@
     "fundamentals beyond ui tasks": [
       "fundamentals beyond ui tasks"
     ],
-    "fundamentals routing canon": [
-      "fundamentals routing canon"
+    "fundamentals folder removed": [
+      "fundamentals folder removed"
+    ],
+    "fundamentals mode retired": [
+      "fundamentals mode retired"
     ],
     "funnel conversion": [
       "funnel conversion"
@@ -53892,9 +53971,6 @@
     "graphqualitysummary startup": [
       "graphQualitySummary startup"
     ],
-    "grayscale first": [
-      "grayscale first"
-    ],
     "grep convention": [
       "grep convention"
     ],
@@ -55436,9 +55512,6 @@
     "hick s law": [
       "Hick's law"
     ],
-    "hicks law too many choices": [
-      "hicks law too many choices"
-    ],
     "hidden section markers": [
       "hidden section markers"
     ],
@@ -56087,9 +56160,6 @@
     "how is the version field derived": [
       "how is the version field derived"
     ],
-    "how much white space": [
-      "how much white space"
-    ],
     "how to author a behavior benchmark": [
       "how to author a behavior benchmark"
     ],
@@ -56098,12 +56168,6 @@
     ],
     "how to phrase a jev question": [
       "how to phrase a jev question"
-    ],
-    "how to style a destructive button": [
-      "how to style a destructive button"
-    ],
-    "hsl shade ramp": [
-      "hsl shade ramp"
     ],
     "html dialog and popover behavior": [
       "html dialog and popover behavior"
@@ -56470,9 +56534,6 @@
     ],
     "hub vocabulary source": [
       "hub vocabulary source"
-    ],
-    "hue rotation for contrast": [
-      "hue rotation for contrast"
     ],
     "huggingface gated repo": [
       "huggingface gated repo"
@@ -57782,9 +57843,6 @@
     "innovation gap remediation substrate identity fail closed changelog": [
       "innovation gap remediation substrate identity fail closed changelog"
     ],
-    "input and form details": [
-      "input and form details"
-    ],
     "input data was truncated": [
       "Input data was truncated"
     ],
@@ -58150,12 +58208,6 @@
     ],
     "interconnected mcps review tasks": [
       "interconnected mcps review tasks"
-    ],
-    "interface feels cheap": [
-      "interface feels cheap"
-    ],
-    "interface feels janky": [
-      "interface feels janky"
     ],
     "interface vs type decision": [
       "interface vs type decision"
@@ -59365,9 +59417,6 @@
     ],
     "keep rules as docs": [
       "keep rules as docs"
-    ],
-    "keep saturation from washing out": [
-      "keep saturation from washing out"
     ],
     "keep sk git as a single skill": [
       "keep sk-git as a single skill"
@@ -62781,12 +62830,6 @@
     "make the three shadcn chart decisions worth keeping": [
       "make the three shadcn chart decisions worth keeping"
     ],
-    "make this look better": [
-      "make this look better"
-    ],
-    "make this look less amateur": [
-      "make this look less amateur"
-    ],
     "make this presentable": [
       "make this presentable"
     ],
@@ -64268,6 +64311,9 @@
     "mcp figma 1 2 1 0": [
       "mcp-figma 1.2.1.0"
     ],
+    "mcp figma 1 2 2 0": [
+      "mcp-figma 1.2.2.0"
+    ],
     "mcp figma implementation summary": [
       "mcp figma implementation summary"
     ],
@@ -64330,6 +64376,9 @@
     ],
     "mcp figma v1 2 1 0": [
       "mcp-figma v1.2.1.0"
+    ],
+    "mcp figma v1 2 2 0": [
+      "mcp-figma v1.2.2.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -69873,6 +69922,9 @@
     "move containment primitive": [
       "move containment primitive"
     ],
+    "move design tokens into sk code": [
+      "move design tokens into sk-code"
+    ],
     "move frontmatter templates into mode": [
       "move frontmatter templates into mode"
     ],
@@ -70436,6 +70488,24 @@
     ],
     "needs rebuild sentinel source constant tasks": [
       "needs-rebuild sentinel source constant tasks"
+    ],
+    "negated write criteria": [
+      "negated write criteria"
+    ],
+    "negated write fix": [
+      "negated write fix"
+    ],
+    "negated write is not a request": [
+      "negated write is not a request"
+    ],
+    "negated write routing": [
+      "negated write routing"
+    ],
+    "negated write scorer plan": [
+      "negated write scorer plan"
+    ],
+    "negated write scorer tasks": [
+      "negated write scorer tasks"
     ],
     "negative and positive goal examples": [
       "negative and positive goal examples"
@@ -71604,6 +71674,9 @@
     "numeric design laws": [
       "numeric design laws"
     ],
+    "numeric design laws handoff": [
+      "numeric design laws handoff"
+    ],
     "numerical accuracy validation": [
       "numerical accuracy validation"
     ],
@@ -72715,6 +72788,9 @@
     ],
     "open url in browser cli": [
       "open url in browser cli"
+    ],
+    "open value owner": [
+      "open value owner"
     ],
     "open visual decision handoff": [
       "open visual decision handoff"
@@ -76928,6 +77004,9 @@
     "phase 1 clone path and messages": [
       "phase 1 clone path and messages"
     ],
+    "phase 1 closure gate": [
+      "phase 1 closure gate"
+    ],
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
     ],
@@ -76996,6 +77075,9 @@
     ],
     "phase 1 router orphan docs": [
       "phase 1 router orphan docs"
+    ],
+    "phase 1 routing checklist": [
+      "phase 1 routing checklist"
     ],
     "phase 1 scaffold surface placement": [
       "phase 1 scaffold surface placement"
@@ -77492,6 +77574,9 @@
     "phase 2 cli opencode": [
       "phase 2 cli opencode"
     ],
+    "phase 2 closure gate": [
+      "phase 2 closure gate"
+    ],
     "phase 2 consume locked withdraw": [
       "phase 2 consume locked withdraw"
     ],
@@ -77593,6 +77678,9 @@
     ],
     "phase 2 router file tooling": [
       "phase 2 router file tooling"
+    ],
+    "phase 2 routing checklist": [
+      "phase 2 routing checklist"
     ],
     "phase 2 sk code ci": [
       "phase 2 sk code ci"
@@ -77822,6 +77910,9 @@
     "phase 3 cli orca": [
       "phase 3 cli orca"
     ],
+    "phase 3 closure gate": [
+      "phase 3 closure gate"
+    ],
     "phase 3 codex and pi capture": [
       "phase 3 codex and pi capture"
     ],
@@ -78011,6 +78102,9 @@
     "phase 4 cli cursor": [
       "phase 4 cli cursor"
     ],
+    "phase 4 closure gate": [
+      "phase 4 closure gate"
+    ],
     "phase 4 command contract and readme": [
       "phase 4 command contract and readme"
     ],
@@ -78178,6 +78272,9 @@
     ],
     "phase 5 advisor linked project workspace": [
       "phase 5 advisor linked project workspace"
+    ],
+    "phase 5 advisor negation and routing": [
+      "phase 5 advisor negation and routing"
     ],
     "phase 5 central doctor playbook": [
       "phase 5 central doctor playbook"
@@ -82421,9 +82518,6 @@
     "primary reconcile disjoint fast forward": [
       "primary reconcile disjoint fast forward"
     ],
-    "primary secondary tertiary content": [
-      "primary secondary tertiary content"
-    ],
     "primitive variants": [
       "Primitive variants"
     ],
@@ -82777,9 +82871,6 @@
     ],
     "progressive design brief": [
       "progressive design brief"
-    ],
-    "progressive disclosure": [
-      "progressive disclosure"
     ],
     "progressive disclosure cursor": [
       "progressive disclosure cursor"
@@ -84423,9 +84514,6 @@
     ],
     "raise the retrieval floor": [
       "raise the retrieval floor"
-    ],
-    "raised and inset elements": [
-      "raised and inset elements"
     ],
     "ramp interiors even steps": [
       "ramp interiors even steps"
@@ -88312,6 +88400,9 @@
     "remove folder suggestion scorer": [
       "remove folder suggestion scorer"
     ],
+    "remove fundamentals routing": [
+      "remove fundamentals routing"
+    ],
     "remove gallery": [
       "remove gallery"
     ],
@@ -88380,6 +88471,9 @@
     ],
     "remove repo parent skill": [
       "remove repo parent skill"
+    ],
+    "remove research citations from chart": [
+      "remove research citations from chart"
     ],
     "remove scorer deem arm": [
       "remove scorer deem arm"
@@ -89103,6 +89197,9 @@
     "repoint frontmatter consumers": [
       "repoint frontmatter consumers"
     ],
+    "repoint fundamentals links": [
+      "repoint fundamentals links"
+    ],
     "repoint the clickup official code mode manual": [
       "repoint the clickup official code mode manual"
     ],
@@ -89677,6 +89774,9 @@
     ],
     "research circling recovery": [
       "research circling recovery"
+    ],
+    "research citations removed": [
+      "research citations removed"
     ],
     "research codebase pointers": [
       "research codebase pointers"
@@ -90852,6 +90952,18 @@
     "retire detect changes tasks": [
       "retire detect_changes tasks"
     ],
+    "retire fundamentals acceptance criteria": [
+      "retire fundamentals acceptance criteria"
+    ],
+    "retire fundamentals implementation summary": [
+      "retire fundamentals implementation summary"
+    ],
+    "retire fundamentals plan": [
+      "retire fundamentals plan"
+    ],
+    "retire fundamentals tasks": [
+      "retire fundamentals tasks"
+    ],
     "retire governor and proof directives acceptance criteria": [
       "retire governor and proof directives acceptance criteria"
     ],
@@ -90890,6 +91002,9 @@
     ],
     "retire sidecar tasks": [
       "retire sidecar tasks"
+    ],
+    "retire sk design fundamentals": [
+      "retire sk-design-fundamentals"
     ],
     "retire standalone checklist": [
       "retire standalone checklist"
@@ -91355,9 +91470,6 @@
     ],
     "retry utilities": [
       "retry utilities"
-    ],
-    "retune the token file": [
-      "retune the token file"
     ],
     "reunification with deep loop runtime": [
       "Reunification with deep-loop-runtime"
@@ -92235,9 +92347,6 @@
     ],
     "review synthesis tasks": [
       "review synthesis tasks"
-    ],
-    "review this ui code": [
-      "review this ui code"
     ],
     "review traceability checks": [
       "review traceability checks"
@@ -96176,6 +96285,9 @@
     "scratch folder usage": [
       "scratch folder usage"
     ],
+    "screen design routing for sk code": [
+      "screen design routing for sk-code"
+    ],
     "screen detail refero": [
       "screen detail refero"
     ],
@@ -97009,9 +97121,6 @@
     ],
     "semantic relation inference decision": [
       "semantic relation inference decision"
-    ],
-    "semantic role layer tokens": [
-      "semantic role layer tokens"
     ],
     "semantic routing lane strategy": [
       "semantic routing lane strategy"
@@ -97886,6 +97995,9 @@
     ],
     "shadow deltas": [
       "shadow deltas"
+    ],
+    "shadow elevation scale": [
+      "shadow elevation scale"
     ],
     "shadow eval promotion gate": [
       "shadow eval promotion gate"
@@ -99464,6 +99576,9 @@
     "sk code 3 10 2 0": [
       "sk-code 3.10.2.0"
     ],
+    "sk code 3 11 0 0": [
+      "sk-code 3.11.0.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -100038,6 +100153,9 @@
     "sk code frontend 1 0 4 0": [
       "sk-code-frontend 1.0.4.0"
     ],
+    "sk code frontend 1 1 0 0": [
+      "sk-code-frontend 1.1.0.0"
+    ],
     "sk code frontend build plan": [
       "sk-code-frontend build plan"
     ],
@@ -100070,6 +100188,27 @@
     ],
     "sk code frontend v1 0 4 0": [
       "sk-code-frontend v1.0.4.0"
+    ],
+    "sk code frontend v1 1 0 0": [
+      "sk-code-frontend v1.1.0.0"
+    ],
+    "sk code frontend value references": [
+      "sk-code-frontend value references"
+    ],
+    "sk code frontend visual reference criteria": [
+      "sk-code-frontend visual reference criteria"
+    ],
+    "sk code frontend visual reference tasks": [
+      "sk-code-frontend visual reference tasks"
+    ],
+    "sk code frontend visual references": [
+      "sk-code-frontend visual references"
+    ],
+    "sk code frontend visual references delivered": [
+      "sk-code-frontend visual references delivered"
+    ],
+    "sk code frontend visual values": [
+      "sk-code frontend visual values"
     ],
     "sk code frontmatter alignment": [
       "sk-code frontmatter alignment"
@@ -101003,11 +101142,17 @@
     "sk code routing benchmark tasks": [
       "sk-code routing benchmark tasks"
     ],
+    "sk code routing fix checklist": [
+      "sk-code routing fix checklist"
+    ],
     "sk code routing gap closure": [
       "sk-code routing gap closure"
     ],
     "sk code routing parity fixtures": [
       "sk-code routing parity fixtures"
+    ],
+    "sk code routing vocabulary plan": [
+      "sk-code routing vocabulary plan"
     ],
     "sk code rust language support": [
       "sk-code rust language support"
@@ -101495,6 +101640,9 @@
     "sk code v3 10 2 0": [
       "sk-code v3.10.2.0"
     ],
+    "sk code v3 11 0 0": [
+      "sk-code v3.11.0.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -101593,6 +101741,12 @@
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
+    ],
+    "sk code visual review routing": [
+      "sk-code visual review routing"
+    ],
+    "sk code visual review routing fix": [
+      "sk-code visual review routing fix"
     ],
     "sk code workflow and surface axis": [
       "sk-code workflow and surface axis"
@@ -102973,6 +103127,9 @@
     "sk create skill 1 11 1 0": [
       "sk-create-skill 1.11.1.0"
     ],
+    "sk create skill 1 11 2 0": [
+      "sk-create-skill 1.11.2.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -103095,6 +103252,9 @@
     ],
     "sk create skill v1 11 1 0": [
       "sk-create-skill v1.11.1.0"
+    ],
+    "sk create skill v1 11 2 0": [
+      "sk-create-skill v1.11.2.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -103282,6 +103442,9 @@
     "sk design 2 0 9 0": [
       "sk-design 2.0.9.0"
     ],
+    "sk design 3 0 0 0": [
+      "sk-design 3.0.0.0"
+    ],
     "sk design advisor identity": [
       "sk-design advisor identity"
     ],
@@ -103302,15 +103465,6 @@
     ],
     "sk design benchmark": [
       "sk-design benchmark"
-    ],
-    "sk design benchmark artifacts": [
-      "sk-design benchmark artifacts"
-    ],
-    "sk design benchmark index": [
-      "sk-design benchmark index"
-    ],
-    "sk design benchmark reports": [
-      "sk-design benchmark reports"
     ],
     "sk design benchmark tasks": [
       "sk-design benchmark tasks"
@@ -103414,6 +103568,9 @@
     "sk design chart 0 23 6 0": [
       "sk-design-chart 0.23.6.0"
     ],
+    "sk design chart 0 23 7 0": [
+      "sk-design-chart 0.23.7.0"
+    ],
     "sk design chart 0 3 0 0": [
       "sk-design-chart 0.3.0.0"
     ],
@@ -103435,11 +103592,20 @@
     "sk design chart 0 9 0 0": [
       "sk-design-chart 0.9.0.0"
     ],
+    "sk design chart cleanup checklist": [
+      "sk-design-chart cleanup checklist"
+    ],
+    "sk design chart cleanup steps": [
+      "sk-design-chart cleanup steps"
+    ],
     "sk design chart implementation summary": [
       "sk design chart implementation summary"
     ],
     "sk design chart plan": [
       "sk design chart plan"
+    ],
+    "sk design chart reference citations": [
+      "sk-design-chart reference citations"
     ],
     "sk design chart review verdict": [
       "sk-design-chart review verdict"
@@ -103518,6 +103684,9 @@
     ],
     "sk design chart v0 23 6 0": [
       "sk-design-chart v0.23.6.0"
+    ],
+    "sk design chart v0 23 7 0": [
+      "sk-design-chart v0.23.7.0"
     ],
     "sk design chart v0 3 0 0": [
       "sk-design-chart v0.3.0.0"
@@ -103676,32 +103845,14 @@
     "sk design doc and routing check tasks": [
       "sk design doc and routing check tasks"
     ],
+    "sk design example mode count": [
+      "sk-design example mode count"
+    ],
     "sk design executed summary": [
       "sk-design executed summary"
     ],
     "sk design fundamentals": [
       "sk design fundamentals"
-    ],
-    "sk design fundamentals 1 0 0 0": [
-      "sk-design-fundamentals 1.0.0.0"
-    ],
-    "sk design fundamentals 1 0 1 0": [
-      "sk-design-fundamentals 1.0.1.0"
-    ],
-    "sk design fundamentals 1 0 2 0": [
-      "sk-design-fundamentals 1.0.2.0"
-    ],
-    "sk design fundamentals 1 0 3 0": [
-      "sk-design-fundamentals 1.0.3.0"
-    ],
-    "sk design fundamentals 1 0 4 0": [
-      "sk-design-fundamentals 1.0.4.0"
-    ],
-    "sk design fundamentals 1 1 0 0": [
-      "sk-design-fundamentals 1.1.0.0"
-    ],
-    "sk design fundamentals 1 1 1 0": [
-      "sk-design-fundamentals 1.1.1.0"
     ],
     "sk design fundamentals implementation summary": [
       "sk design fundamentals implementation summary"
@@ -103712,35 +103863,8 @@
     "sk design fundamentals reads as a ui skill": [
       "sk design fundamentals reads as a ui skill"
     ],
-    "sk design fundamentals router": [
-      "sk-design-fundamentals router"
-    ],
-    "sk design fundamentals routing": [
-      "sk-design-fundamentals routing"
-    ],
     "sk design fundamentals tasks": [
       "sk design fundamentals tasks"
-    ],
-    "sk design fundamentals v1 0 0 0": [
-      "sk-design-fundamentals v1.0.0.0"
-    ],
-    "sk design fundamentals v1 0 1 0": [
-      "sk-design-fundamentals v1.0.1.0"
-    ],
-    "sk design fundamentals v1 0 2 0": [
-      "sk-design-fundamentals v1.0.2.0"
-    ],
-    "sk design fundamentals v1 0 3 0": [
-      "sk-design-fundamentals v1.0.3.0"
-    ],
-    "sk design fundamentals v1 0 4 0": [
-      "sk-design-fundamentals v1.0.4.0"
-    ],
-    "sk design fundamentals v1 1 0 0": [
-      "sk-design-fundamentals v1.1.0.0"
-    ],
-    "sk design fundamentals v1 1 1 0": [
-      "sk-design-fundamentals v1.1.1.0"
     ],
     "sk design hub conversation plan": [
       "sk design hub conversation plan"
@@ -103750,6 +103874,9 @@
     ],
     "sk design hub conversation tasks": [
       "sk design hub conversation tasks"
+    ],
+    "sk design hub rebuild tasks": [
+      "sk-design hub rebuild tasks"
     ],
     "sk design hub routing replay": [
       "sk-design hub routing replay"
@@ -103762,9 +103889,6 @@
     ],
     "sk design lane c baseline": [
       "sk-design Lane-C baseline"
-    ],
-    "sk design manual testing": [
-      "sk-design manual testing"
     ],
     "sk design md generator": [
       "sk design md generator"
@@ -103783,6 +103907,9 @@
     ],
     "sk design md generator 1 1 11 0": [
       "sk-design-md-generator 1.1.11.0"
+    ],
+    "sk design md generator 1 1 12 0": [
+      "sk-design-md-generator 1.1.12.0"
     ],
     "sk design md generator 1 1 2 0": [
       "sk-design-md-generator 1.1.2.0"
@@ -103835,6 +103962,9 @@
     "sk design md generator v1 1 11 0": [
       "sk-design-md-generator v1.1.11.0"
     ],
+    "sk design md generator v1 1 12 0": [
+      "sk-design-md-generator v1.1.12.0"
+    ],
     "sk design md generator v1 1 2 0": [
       "sk-design-md-generator v1.1.2.0"
     ],
@@ -103856,6 +103986,9 @@
     "sk design md generator v1 1 9 0": [
       "sk-design-md-generator v1.1.9.0"
     ],
+    "sk design metadata cleanup": [
+      "sk-design metadata cleanup"
+    ],
     "sk design mode rename": [
       "sk-design mode rename"
     ],
@@ -103864,9 +103997,6 @@
     ],
     "sk design parent hub benchmark": [
       "sk-design parent hub benchmark"
-    ],
-    "sk design playbook": [
-      "sk-design playbook"
     ],
     "sk design playbook routing replay": [
       "sk-design playbook routing replay"
@@ -103922,6 +104052,18 @@
     "sk design surface router": [
       "sk-design surface router"
     ],
+    "sk design three mode criteria": [
+      "sk-design three mode criteria"
+    ],
+    "sk design three mode hub": [
+      "sk-design three mode hub"
+    ],
+    "sk design three modes": [
+      "sk-design three modes"
+    ],
+    "sk design three modes delivered": [
+      "sk-design three modes delivered"
+    ],
     "sk design transform verbs": [
       "sk-design transform verbs"
     ],
@@ -103930,9 +104072,6 @@
     ],
     "sk design unknown option": [
       "sk-design unknown option"
-    ],
-    "sk design v1 0 0 0": [
-      "sk-design v1.0.0.0"
     ],
     "sk design v2 0 0 0": [
       "sk-design v2.0.0.0"
@@ -103969,6 +104108,9 @@
     ],
     "sk design v2 0 9 0": [
       "sk-design v2.0.9.0"
+    ],
+    "sk design v3 0 0 0": [
+      "sk-design v3.0.0.0"
     ],
     "sk doc": [
       "sk doc"
@@ -104131,6 +104273,9 @@
     ],
     "sk doc 2 4 1 0": [
       "sk-doc 2.4.1.0"
+    ],
+    "sk doc 2 4 2 0": [
+      "sk-doc 2.4.2.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -104566,6 +104711,9 @@
     ],
     "sk doc v2 4 1 0": [
       "sk-doc v2.4.1.0"
+    ],
+    "sk doc v2 4 2 0": [
+      "sk-doc v2.4.2.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -111021,9 +111169,6 @@
     "staged trio publication": [
       "staged trio publication"
     ],
-    "stagger and overshoot": [
-      "stagger and overshoot"
-    ],
     "stale advisor references sweep": [
       "stale advisor references sweep"
     ],
@@ -111510,9 +111655,6 @@
     ],
     "start timer mcp": [
       "start timer mcp"
-    ],
-    "starter design tokens css": [
-      "starter design tokens css"
     ],
     "starter guides setup": [
       "starter guides setup"
@@ -113253,9 +113395,6 @@
     "symmetric damping invariant future reducer": [
       "symmetric damping invariant future reducer"
     ],
-    "symptom to fix table": [
-      "symptom to fix table"
-    ],
     "sync derived block": [
       "sync derived block"
     ],
@@ -113907,6 +114046,9 @@
     "system skill advisor 0 18 2 0": [
       "system-skill-advisor 0.18.2.0"
     ],
+    "system skill advisor 0 18 3 0": [
+      "system-skill-advisor 0.18.3.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -114212,6 +114354,9 @@
     ],
     "system skill advisor v0 18 2 0": [
       "system-skill-advisor v0.18.2.0"
+    ],
+    "system skill advisor v0 18 3 0": [
+      "system-skill-advisor v0.18.3.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -116504,9 +116649,6 @@
     "text extraction fidelity tiers": [
       "text extraction fidelity tiers"
     ],
-    "text over photos readable": [
-      "text over photos readable"
-    ],
     "the 028 dedup fix half landed the changed": [
       "the 028 dedup fix half landed the changed"
     ],
@@ -117449,8 +117591,8 @@
     "torn tail recovery marker ordering runtime": [
       "torn-tail recovery marker ordering runtime"
     ],
-    "touch device interface rules": [
-      "touch device interface rules"
+    "touch target size": [
+      "touch target size"
     ],
     "touched language set rust typescript": [
       "touched language set rust typescript"
@@ -118426,9 +118568,6 @@
     "twelve patterns check level match": [
       "twelve patterns check-level-match"
     ],
-    "twelve principles of animation": [
-      "twelve principles of animation"
-    ],
     "twenty one templates carry figures labelled demo": [
       "twenty one templates carry figures labelled demo"
     ],
@@ -118555,9 +118694,6 @@
     "two parallel five iteration deep research lineages gpt": [
       "two parallel five iteration deep research lineages gpt"
     ],
-    "two part box shadow": [
-      "two part box shadow"
-    ],
     "two pass extraction research": [
       "two-pass extraction research"
     ],
@@ -118584,6 +118720,9 @@
     ],
     "two stage routing evidence": [
       "two stage routing evidence"
+    ],
+    "two stage routing for visual values": [
+      "two stage routing for visual values"
     ],
     "two stage routing proof": [
       "two stage routing proof"
@@ -118893,6 +119032,9 @@
     ],
     "typography font stack": [
       "typography font stack"
+    ],
+    "ui animation duration": [
+      "ui animation duration"
     ],
     "ui component classification": [
       "ui component classification"
@@ -121550,6 +121692,9 @@
     "visual direction reference": [
       "visual direction reference"
     ],
+    "visual hierarchy": [
+      "visual hierarchy"
+    ],
     "visual polish": [
       "visual polish"
     ],
@@ -121594,6 +121739,12 @@
     ],
     "visual upgrade research tasks": [
       "visual upgrade research tasks"
+    ],
+    "visual value references": [
+      "visual value references"
+    ],
+    "visual value routing": [
+      "visual value routing"
     ],
     "visual verification": [
       "visual verification"
@@ -122050,9 +122201,6 @@
     "wave transitions hotspot scoring": [
       "wave transitions hotspot scoring"
     ],
-    "wcag design review": [
-      "wcag design review"
-    ],
     "weak model authoring baseline": [
       "weak model authoring baseline"
     ],
@@ -122191,9 +122339,6 @@
     "web frontend surface": [
       "web frontend surface"
     ],
-    "web interface guidelines": [
-      "web interface guidelines"
-    ],
     "web only frontend": [
       "web only frontend"
     ],
@@ -122214,6 +122359,9 @@
     ],
     "web search": [
       "web search"
+    ],
+    "web visual values": [
+      "web visual values"
     ],
     "web vitals loading strategy": [
       "web vitals loading strategy"
@@ -122485,9 +122633,6 @@
     "where did 027 phase go": [
       "where did 027 phase go"
     ],
-    "where do i start designing": [
-      "where do i start designing"
-    ],
     "where do the colours come from": [
       "where do the colours come from"
     ],
@@ -122541,9 +122686,6 @@
     ],
     "which frontmatter reference to load": [
       "which frontmatter reference to load"
-    ],
-    "which grey for which text": [
-      "which grey for which text"
     ],
     "which json files does a skill need": [
       "which json files does a skill need"
@@ -122664,9 +122806,6 @@
     ],
     "why does only opencode have this hook": [
       "why does only opencode have this hook"
-    ],
-    "why does this feel overwhelming": [
-      "why does this feel overwhelming"
     ],
     "why doesnt this runtime have this hook": [
       "why doesnt this runtime have this hook"

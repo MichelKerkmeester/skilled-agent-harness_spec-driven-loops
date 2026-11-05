@@ -6,7 +6,7 @@ trigger_phrases:
   - "design system extraction card"
   - "design-md-generator private card"
   - "measured extraction card"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Md-Generator Procedure Card Inventory
@@ -25,7 +25,7 @@ The card adapts measured source design data into a faithful Style Reference work
 
 ### Tool Boundary
 
-The card grants no additional permission beyond the mode's existing extraction pipeline; it does not grant Write, Edit, or Bash to the read-only sibling `sk-design` mode. When no measurable source exists and the user wants values decided from a brief instead, the card routes to the sibling authoring skill `sk-design`.
+The card grants no additional permission beyond the mode's existing extraction pipeline. When no measurable source exists and the user wants values decided from a brief instead, the card routes to `sk-code-frontend` through the `sk-code` hub.
 
 ---
 

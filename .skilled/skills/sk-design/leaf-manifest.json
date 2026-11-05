@@ -155,23 +155,6 @@
     },
     {
       "leaves": [
-        "assets/token-starter-set.md",
-        "assets/tokens.css",
-        "references/build-procedure.md",
-        "references/color-system.md",
-        "references/depth-and-detail.md",
-        "references/diagnosis-table.md",
-        "references/hierarchy.md",
-        "references/interaction-craft.md",
-        "references/motion-principles.md",
-        "references/review-checklist.md",
-        "references/ux-laws.md"
-      ],
-      "packet": "sk-design-fundamentals",
-      "workflowMode": "sk-design-fundamentals"
-    },
-    {
-      "leaves": [
         "assets/cardinal-rules-card.md",
         "assets/design-md-prompt-template.md",
         "assets/source-of-truth-router-card.md",

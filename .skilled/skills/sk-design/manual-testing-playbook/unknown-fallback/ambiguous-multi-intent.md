@@ -13,7 +13,7 @@ expected_leaf_resources:
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
   - workflow_mode: sk-design-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # SD-007: Ambiguous Multi-Intent Disambiguation
@@ -63,7 +63,7 @@ Ambiguous prompts should surface a tie or combined route instead of silently dis
 
 ```text
 DO NOT execute the work below. INSTEAD describe (in your response):
-1. Which sk-design intent the router would select for the input (pick from the hub's RESOURCE_MAP: VALUES, REVIEW, CHART, FLOWCHART, EXTRACT; or UNKNOWN_FALLBACK if no keywords match)
+1. Which sk-design intent the router would select for the input (pick from the hub's RESOURCE_MAP: CHART, FLOWCHART, EXTRACT; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
 3. The response shape sk-doc would return (~3-5 lines describing structure, not actual content)
 

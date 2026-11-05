@@ -1,6 +1,6 @@
 {
   "skill": "sk-doc",
-  "version": "2.4.1.0",
+  "version": "2.4.2.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -373,6 +373,7 @@
         "validate markdown",
         "validation rules",
         "score this document",
+        "document for clarity",
         "optimize this doc",
         "DQI",
         "AI-friendly documentation",

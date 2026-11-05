@@ -1,12 +1,11 @@
 {
   "skill": "sk-design",
-  "version": "2.0.11.0",
+  "version": "3.0.0.0",
   "routerPolicy": {
-    "defaultMode": "sk-design-fundamentals",
+    "defaultMode": null,
     "ambiguityDelta": 1,
     "tieBreak": [
       "sk-design-md-generator",
-      "sk-design-fundamentals",
       "sk-design-chart",
       "sk-design-diagram"
     ],
@@ -14,20 +13,10 @@
       "single": "one dominant design intent, load that mode",
       "orderedBundle": "separate design intents route to an ordered mode list, the decision that must be made first leading",
       "defer": "scores within the delta, ask which decision is wanted",
-      "none": "no signal, fall to the default mode"
+      "none": "no signal, defer and ask which artifact is wanted"
     }
   },
   "routerSignals": {
-    "sk-design-fundamentals": {
-      "weight": 4,
-      "classes": [
-        "design-decisions",
-        "design-review"
-      ],
-      "resources": [
-        "sk-design-fundamentals/SKILL.md"
-      ]
-    },
     "sk-design-md-generator": {
       "weight": 4,
       "classes": [
@@ -57,38 +46,6 @@
     }
   },
   "vocabularyClasses": {
-    "design-decisions": {
-      "keywords": [
-        "padding",
-        "spacing",
-        "margin",
-        "type scale",
-        "typography",
-        "colour",
-        "color",
-        "contrast",
-        "radius",
-        "elevation",
-        "hierarchy",
-        "design fundamentals",
-        "what padding should this have",
-        "spacing scale",
-        "contrast ratio",
-        "colour decision",
-        "color decision",
-        "visual hierarchy"
-      ]
-    },
-    "design-review": {
-      "keywords": [
-        "design review",
-        "does this look right",
-        "ux laws",
-        "critique",
-        "visual audit",
-        "accessibility contrast"
-      ]
-    },
     "surface-extraction": {
       "keywords": [
         "extract",
@@ -126,6 +83,7 @@
         "high-level diagram",
         "medallion diagram",
         "data flow diagram",
+        "flow diagram",
         "draw.io",
         "drawio",
         "mermaid diagram",
@@ -163,6 +121,21 @@
         "standalone html chart",
         "chart catalog",
         "which chart type",
+        "bar chart",
+        "line chart",
+        "pie chart",
+        "area chart",
+        "scatter plot",
+        "chart palette",
+        "chart's palette",
+        "restyle this chart",
+        "restyle the chart",
+        "which chart should i use",
+        "which chart fits",
+        "what chart fits",
+        "pick a chart",
+        "choose a chart",
+        "best chart for",
         "chart template",
         "chart color system",
         "chart colour system",

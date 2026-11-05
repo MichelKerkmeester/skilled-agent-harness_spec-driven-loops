@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.41.0
+version: 2.2.42.0
 ---
 
 # sk-code
@@ -57,7 +57,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 | Surface | Carries | Pointer |
 |---|---|---|
 | `sk-code-ci` | GitHub Actions workflow standards: trigger and filter rules, job shape, the protected set and the scaffold templates | [`README.md`](./sk-code-ci/README.md) |
-| `sk-code-frontend` | Stack-agnostic web practice, topic references, and Figma-to-code checks | [`README.md`](./sk-code-frontend/README.md) |
+| `sk-code-frontend` | Stack-agnostic web practice, topic references, visual values, visual hierarchy and review, motion and interaction, the `tokens.css` starter tokens and Figma-to-code checks | [`README.md`](./sk-code-frontend/README.md) |
 | `sk-code-skilled` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists | [`README.md`](./sk-code-skilled/README.md) |
 
 ---
@@ -107,7 +107,6 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 | Skill | Relationship |
 |---|---|
 | `sk-design-md-generator` | Extracts a measured Style Reference (design tokens from a live source) that sk-code may implement |
-| `sk-design-fundamentals` | When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-design-fundamentals` and decide it there. |
 | `sk-doc` | Owns markdown and documentation quality |
 | `sk-git` | Owns branches, commits, PRs and the finish workflow |
 | `system-spec-kit` | Owns spec folders, memory, continuity and packet validation |
@@ -120,7 +119,7 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 sk-code ships three surfaces:
 
 - **CI** (`.skilled/skills/sk-code/sk-code-ci/`): the GitHub Actions workflow rules and their evidence. Its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`.
-- **Frontend** (`.skilled/skills/sk-code/sk-code-frontend/`): stack-agnostic web practice, topic references and Figma-to-code checks.
+- **Frontend** (`.skilled/skills/sk-code/sk-code-frontend/`): stack-agnostic web practice, topic references, visual values, visual hierarchy and review, motion and interaction, the `tokens.css` starter tokens and Figma-to-code checks.
 - **Skilled** (`.skilled/skills/sk-code/sk-code-skilled/`): the native standards for this framework's own code, so keep it.
 
 A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.

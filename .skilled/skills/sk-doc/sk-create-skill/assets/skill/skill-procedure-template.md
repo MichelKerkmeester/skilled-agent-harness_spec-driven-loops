@@ -8,7 +8,7 @@ trigger_phrases:
   - "when to use a procedure card"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Procedure Card Templates - Creation Guidelines
@@ -227,7 +227,7 @@ Placement:
 
 ### Real-World Implementation
 
-`sk-design` (`.skilled/skills/sk-design/`) is an illustrative hub-scale example: its current registry has four workflow modes, and the `sk-design-md-generator` packet keeps its procedure cards under `procedures/`. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
+`sk-design` (`.skilled/skills/sk-design/`) is an illustrative hub-scale example: its current registry has three workflow modes, and the `sk-design-md-generator` packet keeps its procedure cards under `procedures/`. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
 
 ### Templates
 - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates (use when no trigger-based selection is needed)

@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill update triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Skill Examples and Maintenance
@@ -147,7 +147,7 @@ pdf-editor/
 - `references/procedures/digital-signature-verification.md` - private card
 - `references/procedures/batch-annotation-cleanup.md` - private card
 
-**Real-world precedent**: `sk-design` is an illustrative hub-scale example. Its current registry has four workflow modes and no transport packet; consult `sk-design/mode-registry.json` before copying its procedure-card topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
+**Real-world precedent**: `sk-design` is an illustrative hub-scale example. Its current registry has three workflow modes and no transport packet; consult `sk-design/mode-registry.json` before copying its procedure-card topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
 
 ---
 

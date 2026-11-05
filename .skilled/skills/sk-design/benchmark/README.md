@@ -30,11 +30,10 @@ tree as a passing score.
 
 ## 2. WHAT ALREADY EXISTS, AND WHERE
 
-Two modes carry their own baselines, measured before the hub existed:
+One mode carries its own baseline, measured before the hub existed:
 
 | Baseline | Path |
 |----------|------|
-| Fundamentals | `sk-design-fundamentals/benchmark/` |
 | Diagram | `sk-design-diagram/benchmark/` |
 | Hub routing replay, 2026-09-27: the 4 hub scenarios through the admission harness and the 49 mode scenarios through the compiled front door | `benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/` |
 

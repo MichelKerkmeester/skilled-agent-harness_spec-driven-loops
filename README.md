@@ -830,7 +830,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
 - Unsupported stacks (Go, React/Next.js server code, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- Three surfaces. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The CI surface holds GitHub Actions workflow standards for triggers, filters, permissions, timeouts, concurrency and caching, with scaffold templates. The Frontend surface holds stack-agnostic web frontend practice (markup, CSS, accessibility, i18n, performance, and the five-pass Figma check). A declared specific surface, including an operator-private surface skill, ranks ahead of Skilled
+- Three surfaces. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The CI surface holds GitHub Actions workflow standards for triggers, filters, permissions, timeouts, concurrency and caching, with scaffold templates. The Frontend surface holds stack-agnostic web frontend practice (markup, CSS, accessibility, i18n, performance, and the five-pass Figma check) plus the visual references that decide a value: spacing, type, colour and elevation scales, the hierarchy method and visual review pass, and motion and interaction rules. A declared specific surface, including an operator-private surface skill, ranks ahead of Skilled
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
 - A quality runner, `.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs`, gives one verdict for a change in any repository. A committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` runs its commands only after `git config --local skilled.trustRepoChecks true`. Without it each configured check reads `SKIPPED_UNTRUSTED`
 - A fixed hard floor and rules your repository can change. Secrets, conflict markers, parse failures, input validation and a few more stay on everywhere. Any other rule can be dropped or replaced in a `## Rule overrides` section of a checklist your repository declares, and `commentHygiene.disableRules` switches off named comment-hygiene rules. A quality run applies those sections and records each accepted row, and a refused section stops it. This framework's own house style lives in the Skilled surface, so another repository does not inherit it
@@ -899,16 +899,15 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 - **`mcp-obsidian`:** manage Obsidian notes through `notesmd-cli`, the official `obsidian` CLI or an Obsidian MCP server
 - **`mcp-aside-devtools`:** drive the Aside AI browser through its CLI or its MCP
 - **`mcp-notion`:** work in a Notion workspace through the official Notion MCP, with direct API calls where the MCP falls short
-- **`mcp-figma` _(transport)_:** read, author and export Figma designs through Figma Desktop and the `figma-ds-cli`. Reads and exports run freely, while authoring and destructive commands are gated. A read that feeds code ends at the five-pass check in `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`, and when the frame leaves a visual value open, or a value sits off every token and scale, that value goes to `sk-design-fundamentals`
+- **`mcp-figma` _(transport)_:** read, author and export Figma designs through Figma Desktop and the `figma-ds-cli`. Reads and exports run freely, while authoring and destructive commands are gated. A read that feeds code ends at the five-pass check in `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`, and when the frame leaves a visual value open, or a value sits off every token and scale, that value goes to `sk-code-frontend`'s `web-visual-values.md`
 - **`mcp-refero` and `mcp-mobbin` _(transports)_:** read-only search of UI references and app screens and flows
 
 &nbsp;
 #### DESIGN
 
-**`sk-design`** - parent hub for design work over four modes
+**`sk-design`** - parent hub for design work over three modes
 
 - The hub carries no procedure of its own. It decides which mode owns the question in front of you and hands over
-- **`sk-design-fundamentals`**, the default and the only mode without a command. Designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. Covers screen UI, slide decks, printed pages and document layouts, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen. Decides a visual value that `sk-code` or `mcp-figma` leaves open, or one that sits off every token and scale, in a fixed order: the repository's mode, the tokens the app installs, the design scales, then an optional `references/<project>-profile.md` that loads only when a request names that project's UI. Motion honours `prefers-reduced-motion: reduce` on web and the platform setting on native, and nothing auto-plays
 - **`sk-design-md-generator`** behind `/design:extract`. Crawls a live URL across five viewports and writes a Style Reference `DESIGN.md` of named tokens, type scale, components and surfaces. Every value is copied from the running page and checked by script
 - **`sk-design-chart`** behind `/design:chart`. Turns the comparison a reader needs into one of 29 chart forms and ships it as a standalone HTML file with no build step and no remote dependency
 - **`sk-design-diagram`** behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws
@@ -989,9 +988,9 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 - Picks the best `sk-prompt` framework, applies DEPTH at the right energy and validates with CLEAR
 - Returns a structured package (`FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, `ESCALATION_NOTES`). Used by the CLI mirror-card pipeline and by `/prompt:improve --agent` (`/prompt-improve` on Codex, Cursor, Pi and Hermes) when inline prompting is too weak
 
-**Design** - owns design decisions and artifacts across four modes
+**Design** - owns design decisions and artifacts
 
-- Decides values and behavior through `sk-design-fundamentals`
+- Decides values and behavior through the visual references in `sk-code-frontend`
 - Measures an existing surface into a Style Reference through `sk-design-md-generator`
 - Authors charts and diagrams through `sk-design-chart` and `sk-design-diagram`
 
@@ -1530,7 +1529,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`sk-design`** - ✅ codebase-agnostic
 
-- Parent hub for design work over four modes: values and review (`sk-design-fundamentals`), design-reference extraction from a live URL into a v3 Style Reference `DESIGN.md` (`sk-design-md-generator`), standalone HTML charts across 29 forms (`sk-design-chart`), and HTML/SVG diagrams across 27 types (`sk-design-diagram`)
+- Parent hub for design work over three modes: design-reference extraction from a live URL into a v3 Style Reference `DESIGN.md` (`sk-design-md-generator`), standalone HTML charts across 29 forms (`sk-design-chart`), and HTML/SVG diagrams across 27 types (`sk-design-diagram`)
 - Pairs with `sk-code` for the build. Works for any project
 
 **`system-spec-kit`** - ✅ codebase-agnostic
@@ -1575,7 +1574,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-`sk-code` ships three surfaces. The Skilled surface holds the standards for this framework's own code, so keep it. The CI surface holds the GitHub Actions workflow standards. The Frontend surface holds stack-agnostic web frontend practice (markup, CSS, accessibility, i18n, performance, and the five-pass Figma check). Add a surface of your own when you want the hub to carry another stack.
+`sk-code` ships three surfaces. The Skilled surface holds the standards for this framework's own code, so keep it. The CI surface holds the GitHub Actions workflow standards. The Frontend surface holds stack-agnostic web frontend practice (markup, CSS, accessibility, i18n, performance, and the five-pass Figma check) plus the visual references that decide a value: spacing, type, colour and elevation scales, the hierarchy method and visual review pass, and motion and interaction rules. Add a surface of your own when you want the hub to carry another stack.
 
 - **Remove a surface you do not use** by following [Remove A Surface](.skilled/skills/sk-code/README.md#remove-a-surface) in the sk-code README
 - **Add your own surface** with `/create:skill-parent update --surfaces <name>`, which scaffolds and registers it ahead of the Skilled surface

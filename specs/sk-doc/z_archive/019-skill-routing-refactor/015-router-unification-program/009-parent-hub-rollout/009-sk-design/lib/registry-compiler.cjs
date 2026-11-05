@@ -31,14 +31,10 @@ const PACKET_AUTHORITY = Object.freeze({
 });
 
 // The root router's intent table, restated from its prose section: which intent
-// is owned by which workflow mode. VALUES and REVIEW share a mode on purpose,
-// because they share its references; they stay separate intents because they
-// load different ones. Keeping the ownership here (validated against both the
-// registry and the leaf manifest) means a root-router row that points at a
-// retired or renamed mode fails the build instead of silently routing there.
+// is owned by which workflow mode. Keeping the ownership here (validated against
+// both the registry and the leaf manifest) means a root-router row that points at
+// a retired or renamed mode fails the build instead of silently routing there.
 const INTENT_MODE_OWNERS = Object.freeze({
-  VALUES: 'sk-design-fundamentals',
-  REVIEW: 'sk-design-fundamentals',
   CHART: 'sk-design-chart',
   FLOWCHART: 'sk-design-diagram',
   EXTRACT: 'sk-design-md-generator',

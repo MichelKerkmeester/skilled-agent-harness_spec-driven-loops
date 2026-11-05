@@ -1,8 +1,8 @@
 ---
 name: sk-code-frontend
-description: Read-only frontend evidence for stack-agnostic web practice, topic references, and Figma checks.
+description: Read-only frontend evidence for stack-agnostic web practice, visual values, topic references, and Figma checks.
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.4.0
+version: 1.1.0.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -21,7 +21,7 @@ Read-only frontend evidence for web work across project stacks.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
-The sk-code hub bundles this surface beside `sk-code-quality` for authoring or `sk-code-review` for review when a request needs shared web frontend practice, or a Figma-to-code check, and it routes this surface alone when no workflow mode scores.
+The sk-code hub bundles this surface beside `sk-code-quality` for authoring or `sk-code-review` for review when a request needs shared web frontend practice, a visual value or visual review, or a Figma-to-code check, and it routes this surface alone when no workflow mode scores.
 
 This packet writes nothing. When the hub bundles it beside a workflow mode, that mode applies the guidance it loads. When no workflow mode scores, the hub routes this packet alone, and the acting agent applies the guidance and hands the author gates to `sk-code-quality` before it claims completion.
 
@@ -32,6 +32,8 @@ This packet writes nothing. When the hub bundles it beside a workflow mode, that
 - [`references/frontend-practice.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md) holds the shared principles and the Frontend overrides contract.
 - [`references/web-markup-and-css.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md) is the web layer.
 - The six web topic files cover focused implementation details for web work: [`references/web-elements-and-attributes.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md), [`references/web-cascade-and-selectors.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md), [`references/web-layout-and-sizing.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md), [`references/web-accessibility-patterns.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md), [`references/web-performance-and-loading.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md) and [`references/web-internationalization.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md).
+- Three visual topic files decide what a surface looks like and how it behaves: [`references/web-visual-values.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md) holds the value scales, colour ramps, elevation, tokens and hard rules, [`references/web-visual-hierarchy.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md) holds the build procedure, symptom-to-fix tables, hierarchy method, UX laws and visual review pass, and [`references/web-motion-and-interaction.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md) holds motion, input, touch, focus, performance and feedback rules.
+- [`assets/tokens.css`](../../../.skilled/skills/sk-code/sk-code-frontend/assets/tokens.css) is a contrast-verified starter token file for a project with no token layer.
 - [`references/figma-to-code.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md) holds the five-pass check for comparing a built screen with its Figma frame.
 - [`references/workflow-implement.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-implement.md), [`references/workflow-debug.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-debug.md), and [`references/workflow-verify.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-verify.md) provide the shared workflow doctrine.
 

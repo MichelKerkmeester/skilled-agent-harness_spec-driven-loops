@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 769,
+  "derived_count": 766,
   "directories": [
     ".",
     ".claude/hooks",
@@ -425,9 +425,6 @@
     ".skilled/skills/sk-design/sk-design-diagram/references/types",
     ".skilled/skills/sk-design/sk-design-diagram/scripts",
     ".skilled/skills/sk-design/sk-design-diagram/scripts/families",
-    ".skilled/skills/sk-design/sk-design-fundamentals",
-    ".skilled/skills/sk-design/sk-design-fundamentals/benchmark",
-    ".skilled/skills/sk-design/sk-design-fundamentals/benchmark/reports",
     ".skilled/skills/sk-design/sk-design-md-generator",
     ".skilled/skills/sk-design/sk-design-md-generator/backend",
     ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts",

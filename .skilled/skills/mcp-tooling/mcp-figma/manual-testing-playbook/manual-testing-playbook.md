@@ -1,7 +1,7 @@
 ---
 title: "mcp-figma: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-figma skill. Covers binary detection, the Figma Desktop requirement, safe connect, daemon health, read-only inspect and export, the destructive-verb refusal gate, and optional Framelink MCP discovery via Code Mode."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # mcp-figma: Manual Testing Playbook
@@ -418,20 +418,20 @@ Prompt: `"Build the summary card from this Figma frame using the tokens our app 
 ### F2C-002 | Off-Token Frame Values Are Reported As Drift
 
 #### Description
-Verify a frame value that matches no installed token and no scale step is reported as drift, with its nearest installed token and nearest scale step, and the decision is handed to `sk-design-fundamentals`. Rounding the value or pasting it into code is a failure.
+Verify a frame value that matches no installed token and no scale step is reported as drift, with its nearest installed token and nearest scale step, and the decision is handed to `sk-code-frontend` (`web-visual-values.md`). Rounding the value or pasting it into code is a failure.
 
 #### Scenario Contract
 Prompt: `"This frame uses 18px padding and a 44px gap, which match nothing in our tokens. Implement it in the app."`
 
-- Objective: confirm an off-token frame value is reported as drift and handed to `sk-design-fundamentals`
-- Expected execution process: read the node without changing it and record W; compare each value against the installed tokens first and the design scales second; report every unmatched value as drift; hand the decision to `sk-design-fundamentals`; record the five-pass evidence
-- Expected signals: the `18px` padding and `44px` gap are listed as drift with their nearest token and scale step; the reply names `sk-design-fundamentals` as the owner of the decision; nothing is rounded into code; any pass that cannot run is `NOT RUN` with a reason and the verdict is `INCOMPLETE`
-- Desired user-visible outcome: the agent reports each drift value with its nearest installed equivalent and explains that the value decision is handed to `sk-design-fundamentals`
+- Objective: confirm an off-token frame value is reported as drift and handed to `sk-code-frontend` (`web-visual-values.md`)
+- Expected execution process: read the node without changing it and record W; compare each value against the installed tokens first and the design scales second; report every unmatched value as drift; hand the decision to `sk-code-frontend` (`web-visual-values.md`); record the five-pass evidence
+- Expected signals: the `18px` padding and `44px` gap are listed as drift with their nearest token and scale step; the reply names `sk-code-frontend` (`web-visual-values.md`) as the owner of the decision; nothing is rounded into code; any pass that cannot run is `NOT RUN` with a reason and the verdict is `INCOMPLETE`
+- Desired user-visible outcome: the agent reports each drift value with its nearest installed equivalent and explains that the value decision is handed to `sk-code-frontend` (`web-visual-values.md`)
 
 #### Test Execution
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| F2C-002 | Off-token frame values are reported as drift | Confirm a frame value with no installed token and no scale step is reported as drift, not rounded into code | `This frame uses 18px padding and a 44px gap, which match nothing in our tokens. Implement it in the app.` | 1. Read the frame and record W -> 2. `bash: rg -n '"design-tokens"' package.json` -> 3. `bash: rg -n "^4  8  12  16  24  32  48" .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md` -> 4. compare each value with tokens then the scales -> 5. hand each drift value to `sk-design-fundamentals` and record the five-pass evidence | W and the state matrix are recorded. Pass 3a records resolved values and Pass 3b records the source search. Pass 4 lists each Figma variable and its installed-token result. Pass 5 records range and access verdicts. The `18px` padding and `44px` gap are listed as drift with a nearest token and scale step. Any `NOT RUN` pass gives an `INCOMPLETE` verdict. | Read-only transcript, W and captures, state matrix, render and source checks, variable-to-token table, range and access results, and the drift list with nearest values | PASS if every unmatched value is reported as drift with a nearest token and scale step, and the decision is handed to `sk-design-fundamentals`. The verdict is `PASS` when all passes pass and `INCOMPLETE` when any pass is `NOT RUN` with a reason. FAIL if a value is rounded or written into code without being reported, or if `PASS` is reported despite a `NOT RUN` pass. | Confirm the drift list names each frame value, its nearest installed token and its nearest scale step. Check that no rounded value appears in code. Require `INCOMPLETE` if any pass is `NOT RUN`. |
+| F2C-002 | Off-token frame values are reported as drift | Confirm a frame value with no installed token and no scale step is reported as drift, not rounded into code | `This frame uses 18px padding and a 44px gap, which match nothing in our tokens. Implement it in the app.` | 1. Read the frame and record W -> 2. `bash: rg -n '"design-tokens"' package.json` -> 3. `bash: rg -n "^4  8  12  16  24  32  48" .skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md` -> 4. compare each value with tokens then the scales -> 5. hand each drift value to `sk-code-frontend` (`web-visual-values.md`) and record the five-pass evidence | W and the state matrix are recorded. Pass 3a records resolved values and Pass 3b records the source search. Pass 4 lists each Figma variable and its installed-token result. Pass 5 records range and access verdicts. The `18px` padding and `44px` gap are listed as drift with a nearest token and scale step. Any `NOT RUN` pass gives an `INCOMPLETE` verdict. | Read-only transcript, W and captures, state matrix, render and source checks, variable-to-token table, range and access results, and the drift list with nearest values | PASS if every unmatched value is reported as drift with a nearest token and scale step, and the decision is handed to `sk-code-frontend` (`web-visual-values.md`). The verdict is `PASS` when all passes pass and `INCOMPLETE` when any pass is `NOT RUN` with a reason. FAIL if a value is rounded or written into code without being reported, or if `PASS` is reported despite a `NOT RUN` pass. | Confirm the drift list names each frame value, its nearest installed token and its nearest scale step. Check that no rounded value appears in code. Require `INCOMPLETE` if any pass is `NOT RUN`. |
 
 > **Feature File:** [figma-to-code/token-drift.md](figma-to-code/token-drift.md)
 > **Catalog:** [inspect/inspect.md](../feature-catalog/inspect/inspect.md)

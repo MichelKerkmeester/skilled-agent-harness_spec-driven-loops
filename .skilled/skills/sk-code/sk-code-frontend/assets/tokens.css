@@ -1,7 +1,7 @@
-/* Refactoring UI — starter tokens.
+/* Starter design tokens.
    Copy into a project and rename/retune. The point is to decide once, up front.
-   Ramps follow the book's rules: HSL, saturation rises as lightness leaves 50%,
-   greys are tinted (cool here — swap hue to ~39 for warm). */
+   Ramps are written in HSL, saturation rises as lightness leaves 50%,
+   and greys are tinted (cool here, swap hue to ~39 for warm). */
 
 :root {
   /* ---- Spacing & sizing: base 16, no two neighbours closer than ~25% ---- */

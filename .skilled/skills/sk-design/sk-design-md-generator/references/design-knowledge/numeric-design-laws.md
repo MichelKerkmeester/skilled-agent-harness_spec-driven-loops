@@ -7,7 +7,7 @@ trigger_phrases:
   - "contrast motion spacing type thresholds"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Numeric Design Laws
@@ -36,7 +36,7 @@ Every row here describes a surface that **already exists**. None of them tells a
 | `spacing-scale` | Note whether a captured value resolves to a baseline step | Use the full 16-step scale, where no two neighbours sit closer than about 25% |
 | The three `motion-*` bands | Describe the timing a captured surface uses | Bands split by kind: 120-180ms direct feedback, 180-260ms state change, up to 500ms layout transition |
 
-A measured ratio is an observation, never an instruction to generate the next size by multiplication. When both skills are in play, this document reports and `sk-design` decides; where a surface has already been measured, its measured values outrank `sk-design`'s defaults. The authoring side states the same reconciliation from its own direction in `sk-design/sk-design-fundamentals/references/motion-principles.md` Section 5 and `sk-design/sk-design-fundamentals/SKILL.md` Section 7. Do not cite a row as a reason to change a design. That is the authoring direction, and it belongs to `sk-design`.
+A measured ratio is an observation, never an instruction to generate the next size by multiplication. When both sides are in play, this document reports and the authoring side decides. Where a surface has already been measured, its measured values outrank the authoring defaults. The authoring side states the same reconciliation from its own direction in `sk-code/sk-code-frontend/references/web-motion-and-interaction.md` and `sk-code/sk-code-frontend/references/web-visual-values.md`. Do not cite a row as a reason to change a design. That is the authoring direction, and it belongs to `sk-code-frontend`.
 
 ---
 

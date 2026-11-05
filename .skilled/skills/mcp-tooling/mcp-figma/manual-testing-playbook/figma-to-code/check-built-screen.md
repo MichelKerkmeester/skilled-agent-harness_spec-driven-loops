@@ -1,7 +1,7 @@
 ---
 title: "F2C-003 -- Built screen checked against its frame"
 description: "This scenario validates the five-pass Figma check for `F2C-003`. It focuses on comparing a built web screen with its authored frame and preserving an honest `INCOMPLETE` verdict when a pass cannot run."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # F2C-003 -- Built screen checked against its frame
@@ -69,7 +69,7 @@ PRE: Requires INSPECT-001 PASS (or MCP-001 PASS for the Framelink path), Figma D
 
 ### Optional Supplemental Checks
 
-Repeat Pass 5 contrast reads against the background each control actually sits on, not the page background, and compare them with the target `sk-design-fundamentals` sets.
+Repeat Pass 5 contrast reads against the background each control actually sits on, not the page background, and compare them with the target `sk-code-frontend` (`web-visual-values.md`) sets.
 
 ---
 
