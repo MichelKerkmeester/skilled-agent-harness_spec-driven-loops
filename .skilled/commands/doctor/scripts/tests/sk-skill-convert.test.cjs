@@ -351,6 +351,11 @@ function writeRouterMdSkill(skillRoot, name = path.basename(skillRoot), options 
 function copyPreMoveFixture(destination) {
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.cpSync(path.join(FIXTURE_ROOT, 'source', 'sk-git'), destination, { recursive: true });
+  // The frozen fixture's docs predate the render canon and cannot change, so the
+  // strict package check reads their findings from a fixture ledger keyed to this
+  // copy's skills root. A skill outside that root matches no entry.
+  process.env.RENDER_DEBT_FILE = path.join(FIXTURE_ROOT, 'source-render-debt.json');
+  process.env.RENDER_SKILLS_ROOT = path.dirname(destination);
 }
 
 function hashTree(root) {
@@ -532,7 +537,7 @@ test('golden fixture conversion preserves routing bytes, passes strict validatio
   assert.equal(plan.exitCode, 0, plan.stderr);
   assert.match(plan.stdout, /Overwrite: .*SKILL\.md/);
   assert.match(plan.stdout, /Create: .*ROUTER\.md/);
-  assert.match(plan.stdout, /\[TODO: Name the request signals/);
+  assert.match(plan.stdout, /\[TODO: Name the families of request signals/);
   assert.match(plan.stdout, /\[TODO: Write one bullet per/);
   assert.match(plan.stdout, /\[TODO: Keep this section and the machine block/);
   assert.match(plan.stdout, /pseudocode sit in the final `MACHINE ROUTER` section of this file/);
@@ -862,7 +867,9 @@ test('plain resource transforms harvest links in order, add metadata, and rewrit
   assert.match(rewritten, /references\/second-guide\.md/);
   const resource = transforms.addResourceFrontmatter('# Field Notes\nA useful field note.\n', 'references/field-notes.md', PLAIN_PHRASES);
   assert.match(resource, /^title: "Field Notes"$/m);
-  assert.match(resource, /^description: "A useful field note\."$/m);
+  assert.match(resource, /^description: "Reference notes for Field Notes\."$/m);
+  const sectioned = transforms.addResourceFrontmatter('# Field Notes\nA useful field note.\n\n## 1. OVERVIEW\n\n## 2. Marks\n\n## 3. Light\n', 'references/field-notes.md', PLAIN_PHRASES);
+  assert.match(sectioned, /^description: "Reference notes for Field Notes, covering marks and light\."$/m);
   assert.match(resource, /^contextType: reference$/m);
   assert.match(resource, /^version: 1\.0\.0\.0$/m);
 });

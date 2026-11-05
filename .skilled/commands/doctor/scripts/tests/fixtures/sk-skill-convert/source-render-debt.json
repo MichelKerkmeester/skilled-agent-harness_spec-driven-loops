@@ -1,0 +1,16 @@
+{
+  "description": "Render findings the frozen pre-move sk-git fixture carries. The fixture must stay byte-identical to the Git tree it snapshots, so its pre-canon docs cannot be fixed; the convert tests record them as known debt instead.",
+  "debt": {
+    "sk-git": {
+      "findings": 26,
+      "codes": [
+        "render_bold_label_join",
+        "render_h2_numbering",
+        "render_intro_missing",
+        "render_intro_sentence_restates",
+        "render_overview_subsections",
+        "render_section_order"
+      ]
+    }
+  }
+}

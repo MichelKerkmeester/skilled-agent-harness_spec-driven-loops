@@ -724,10 +724,19 @@ function describeResource(relativePath, text) {
     .split('-')
     .map((part) => part ? `${part[0].toUpperCase()}${part.slice(1)}` : '')
     .join(' ');
-  const prose = body.split(/\r?\n/)
-    .map((line) => line.trim())
-    .find((line) => line && !/^#{1,6}\s/.test(line));
-  const stripped = (prose || `Reference notes for ${title}.`)
+  // The description names the sections rather than quoting the opening prose:
+  // the intro is that prose, and an intro that repeats the description fails
+  // the strict render check the conversion ends with.
+  const sections = body.split(/\r?\n/)
+    .map((line) => /^##\s+(?:\d+\.\s+)?(.+?)\s*$/.exec(line.trim())?.[1])
+    .filter((name) => name && name.toLowerCase() !== 'overview')
+    .slice(0, 3)
+    .map((name) => name.toLowerCase());
+  const list = sections.length > 1
+    ? `${sections.slice(0, -1).join(', ')} and ${sections[sections.length - 1]}`
+    : sections[0];
+  const summary = list ? `Reference notes for ${title}, covering ${list}.` : `Reference notes for ${title}.`;
+  const stripped = summary
     .replace(/[`*_]/g, '')
     .replace(/\[[^\]]+\]\(([^)]+)\)/g, '$1')
     .trim();

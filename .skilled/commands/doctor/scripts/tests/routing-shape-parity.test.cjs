@@ -68,6 +68,12 @@ const CANON_PROSE = [
 const ROUTER_DOCUMENT = [
   '# Case Router',
   '',
+  'Routes demo requests to the resources they need.',
+  '',
+  '## OVERVIEW',
+  '',
+  'The machine router below picks the resources for each intent.',
+  '',
   '## MACHINE ROUTER',
   '',
   '```python',
