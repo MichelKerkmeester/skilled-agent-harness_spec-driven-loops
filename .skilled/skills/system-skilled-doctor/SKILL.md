@@ -24,6 +24,11 @@ Use this skill when:
 - A project's runtime folders, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration need checking against what Skilled ships.
 - A problem is described and the right doctor command is not known yet.
 
+**Keyword Triggers**:
+- "put Skilled into my project", "install Skilled", "link the Skilled checkout"
+- "update Skilled", "runtime mirrors", "environment switches", "doctor setup"
+- "which doctor command", "AGENTS.md sections", "trigger index fresh", "Code Mode install"
+
 ### When NOT to Use
 
 Do not use this skill for:
@@ -55,7 +60,7 @@ The machine router, its intent signals and resource map live in [`ROUTER.md`](./
 
 ### Output Contract
 
-The chosen doctor command's own result: a check report, a plan waiting for approval, or the change it applied after that approval.
+The chosen doctor command's own result: a check report, or a plan that changes nothing until the user approves it.
 
 ### Verification
 
@@ -99,7 +104,8 @@ The task is complete when:
 
 ### Inputs
 
-- A project repository, a Skilled checkout or release, and the user's description of what to set up or check.
+- A project repository with the Skilled checkout or release it uses.
+- The user's description of what to set up or check.
 
 ### Outputs
 

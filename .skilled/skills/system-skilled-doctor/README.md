@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # system-skilled-doctor
@@ -23,7 +23,7 @@ version: 1.0.0.0
 | **Use it for** | Installing, linking, updating and checking Skilled in a project repository |
 | **Invoke with** | The doctor commands below, or a request such as "put Skilled into my project repo" |
 | **Works on** | A project repository and the Skilled checkout or release it uses |
-| **Produces** | Check reports, plans waiting for your approval, and the changes they apply |
+| **Produces** | Check reports and plans that change nothing until you approve them |
 
 ### What It Does
 
@@ -54,7 +54,7 @@ Doctor commands about a single skill's own checks stay with that skill, such as 
 
 **Step 2: Run the command.**
 
-```bash
+```text
 /doctor:install
 ```
 
@@ -62,7 +62,7 @@ It prints the ordered steps for your project and writes nothing itself.
 
 **Step 3: Check the result.**
 
-```bash
+```text
 /doctor:setup
 ```
 
@@ -72,34 +72,64 @@ Each failing check names the command that repairs it.
 
 ## 3. HOW IT WORKS
 
-A request reaches this skill when it is about Skilled inside a project. The skill matches it to one command from the table. That command runs its own workflow and shows its result. A command that writes shows its plan first and changes nothing until you approve it.
+A request reaches this skill when it is about Skilled inside a project. The skill matches it to one command from the table, and when nothing matches clearly, `/doctor:helper` ranks the commands that fit. That command runs its own workflow and shows its result. A command that writes shows its plan first and changes nothing until you approve it.
 
-The scripts some commands call stay with the skill that owns them. `/doctor:speckit` runs `system-spec-kit`'s trigger-index lookup, and `/doctor:env` reads its `ENV-REFERENCE.md`.
+```mermaid
+flowchart TD
+  Request["Request about Skilled in a project"] --> Match["Match one owned command"]
+  Match -->|"no clear match"| Helper["/doctor:helper ranks the fitting commands"]
+  Helper --> Run
+  Match --> Run["Run the command's own workflow"]
+  Run -->|"read-only"| Report["Check report"]
+  Run -->|"writes"| Plan["Plan shown first"]
+  Plan -->|"you approve"| Apply["Change applied"]
+```
+
+### Where the Scripts Live
+
+The scripts some commands call stay with the skill that owns them. `/doctor:speckit` runs `system-spec-kit`'s trigger-index lookup, and `/doctor:env` reads its `ENV-REFERENCE.md`. Moving a command's owner did not move the code it runs.
 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
 
+### When To Use This Skill
+
+Reach for it when you add Skilled to a project, link a local checkout into another repository, move a project to a newer release or embed the shipped `AGENTS.md` sections. It also fits when something about Skilled in a project looks wrong and you want the check that names the repair.
+
+A check of one skill's own surface belongs to that skill. `/doctor:git` stays with `sk-git`, `/doctor:sk-code` and `/doctor:ci` with `sk-code`, `/doctor:sk-skill` with `sk-doc`, `/doctor:skill-advisor` with `system-skill-advisor` and `/doctor:deep-loop` with `system-deep-loop`.
+
 ### Related Skills
 
-| Skill | Relationship |
-|---|---|
-| `system-spec-kit` | Owns the trigger index, the runtime-mirror generators and the environment reference these commands check |
-| `mcp-code-mode` | Owns Code Mode itself, which `/doctor:mcp` installs and debugs in a project |
-| `sk-git`, `sk-code`, `sk-doc`, `system-skill-advisor`, `system-deep-loop` | Each keeps the doctor command for its own checks |
+`system-spec-kit` owns the trigger index, its retrieval recipes, the runtime-mirror generators and the environment reference, and a doctor command here checks each of them. `mcp-code-mode` owns Code Mode itself, which `/doctor:mcp` installs and debugs in a project.
 
 ---
 
-## 5. VERIFICATION
+## 5. FAQ
 
-| Check | Result |
-|---|---|
-| Doctor contract tests | `node --test .skilled/commands/doctor/scripts/tests/*.test.cjs` passes every test |
-| Command bridges | `command-bridges-drift-guard.vitest.ts` passes, and each owned command's bridge names `system-skilled-doctor` |
+**Q: Did any `/doctor:*` command change when it moved to this skill?**
+
+A: No. Each command file stayed in `.skilled/commands/doctor/` and changed one line, the tag that names its owner. It runs exactly what it ran before.
+
+**Q: Why does `/doctor:git` not live here?**
+
+A: It switches `sk-git`'s own hook gates and rules, so it belongs with the skill whose settings it changes. This skill owns the commands about Skilled in a project as a whole.
 
 ---
 
-## 6. RELATED DOCUMENTS
+## 6. VERIFICATION
+
+Run the doctor contract tests from the repository root:
+
+```bash
+node --test .skilled/commands/doctor/scripts/tests/*.test.cjs
+```
+
+A pass prints `fail 0` in the summary. Then confirm the advisor credits each owned command to this skill by running `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check`, which prints `"changed": []` when the bridges are current.
+
+---
+
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

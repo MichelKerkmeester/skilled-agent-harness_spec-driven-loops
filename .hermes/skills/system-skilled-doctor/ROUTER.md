@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -14,7 +14,7 @@ skill_pointer: SKILL.md
 # System Skilled Doctor Router
 
 The machine router for [`SKILL.md`](../../../.skilled/skills/system-skilled-doctor/SKILL.md). `SKILL.md` keeps the short routing prose and the
-link that points here; this file holds the declaration a reader parses to decide what loads.
+link that points here. This file holds the declaration a reader parses to decide what loads.
 
 ---
 
@@ -39,8 +39,8 @@ other than `DEFAULT_RESOURCE` loads before an intent selects it.
 ## 2. INTENT MODEL
 
 A skill may name its intent map `INTENT_MODEL` instead of `INTENT_SIGNALS`, the name this template and the replay
-reader both accept. Declaring both is legal only when they mirror each other exactly, in keys and in keywords;
-otherwise keep one. A router may also route by pseudocode alone with no map at all, which suits a skill that loads
+reader both accept. Declaring both is legal only when they mirror each other exactly, in keys and in keywords.
+Otherwise keep one. A router may also route by pseudocode alone with no map at all, which suits a skill that loads
 its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
 
 - **`DOCTOR_COMMANDS`** fires on `put skilled into my project`, `install skilled`, `link the skilled checkout`, `update skilled`, `runtime mirrors`, `environment switches`, `doctor setup`, `which doctor command`, `agents md sections`, `trigger index fresh` and `code mode install` at weight 4. It loads `README.md`, the owned-command table, which is also the default resource.
@@ -73,7 +73,7 @@ RESOURCE_MAP = {
 
 # Every key above must appear in both maps, and every path must resolve inside this folder.
 # An intent that deliberately loads nothing may be listed in NO_LOAD_INTENTS, which is the only way a key may sit
-# outside RESOURCE_MAP or map to an empty list; that list is checked, so an intent that loses its resources by
+# outside RESOURCE_MAP or map to an empty list. That list is checked, so an intent that loses its resources by
 # accident still fails. A markdown file at this router's own root, which no leaf manifest lists, may be routed by
 # declaring it in ROOT_RESOURCES and referencing it from a RESOURCE_MAP entry.
 # None of these three patterns is available to a hub router.
