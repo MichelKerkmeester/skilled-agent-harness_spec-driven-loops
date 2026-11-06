@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f9b8d0ee08862800c42f8318b2173a83a6abab4707654a178648f6591080a211",
+  "corpusHash": "d5ce39b65b58bceffd235928b06d23885d21aa733e8fb3e2e441e8ee2fb53138",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28120,
+  "includedPathCount": 28123,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2053,6 +2053,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.9.5.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.6.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.7.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.8.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2163,6 +2164,7 @@
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.20.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.21.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.22.0.md",
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.23.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.8.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md",
@@ -2249,6 +2251,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.13.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.14.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.15.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.16.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
@@ -28151,7 +28154,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f261175b9e4d05d1138d8b7ad6b006d72ba79ed853091735c370fb0e0b617402",
+  "manifestHash": "951b91f17d030c445a493e7bfb402888c5519201df7b17ac0a726f161769ef9b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
