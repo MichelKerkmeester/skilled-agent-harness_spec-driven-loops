@@ -1,9 +1,14 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 768,
+  "derived_count": 779,
   "directories": [
     ".",
     ".claude/hooks",
+    ".dsh",
+    ".dsh/agents",
+    ".dsh/patches",
+    ".dsh/plugins/repo-guards",
+    ".dsh/plugins/repo-guards/adapters",
     ".github/workflows",
     ".pi",
     ".pi/extensions",
@@ -51,6 +56,7 @@
     ".skilled/hooks/goal",
     ".skilled/hooks/hook-install",
     ".skilled/hooks/mcp-route-guard",
+    ".skilled/hooks/overlay-guard",
     ".skilled/hooks/permission-policy",
     ".skilled/hooks/post-edit-quality",
     ".skilled/hooks/session-cleanup",
@@ -185,6 +191,7 @@
     ".skilled/skills/cli-external-orchestration/cli-cursor/benchmark/reports/2026-08-08--manual-testing-playbook--execution-modes",
     ".skilled/skills/cli-external-orchestration/cli-cursor/benchmark/reports/2026-08-08--manual-testing-playbook--git-preflight-advisory",
     ".skilled/skills/cli-external-orchestration/cli-cursor/benchmark/reports/2026-08-08--manual-testing-playbook--mcp-integration",
+    ".skilled/skills/cli-external-orchestration/cli-deepseek-harness",
     ".skilled/skills/cli-external-orchestration/cli-devin",
     ".skilled/skills/cli-external-orchestration/cli-devin/benchmark/reports",
     ".skilled/skills/cli-external-orchestration/cli-devin/benchmark/reports/2026-08-08--manual-testing-playbook--commands-and-skills",
@@ -632,6 +639,9 @@
     ".skilled/skills/system-skill-advisor/runtime/tools",
     ".skilled/skills/system-skill-advisor/runtime/types",
     ".skilled/skills/system-skill-advisor/scripts",
+    ".skilled/skills/system-skilled-doctor",
+    ".skilled/skills/system-skilled-doctor/benchmark",
+    ".skilled/skills/system-skilled-doctor/benchmark/reports",
     ".skilled/skills/system-spec-kit",
     ".skilled/skills/system-spec-kit/benchmark/reports",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--claude-adapter",
@@ -684,6 +694,7 @@
     ".skilled/skills/system-spec-kit/runtime/cli/config",
     ".skilled/skills/system-spec-kit/runtime/cli/continuity",
     ".skilled/skills/system-spec-kit/runtime/cli/core",
+    ".skilled/skills/system-spec-kit/runtime/cli/dsh",
     ".skilled/skills/system-spec-kit/runtime/cli/evals",
     ".skilled/skills/system-spec-kit/runtime/cli/extractors",
     ".skilled/skills/system-spec-kit/runtime/cli/graph",
@@ -784,7 +795,8 @@
     ".claude",
     ".pi",
     ".github",
-    "scripts"
+    "scripts",
+    ".dsh"
   ],
   "schema": 1
 }

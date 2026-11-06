@@ -91,7 +91,7 @@ Configured by `SPECKIT_LIVE_BRANCH`, `SPECKIT_AUTOSYNC`, the `post-commit` publi
 - It prints the matching rule as typed, advising and never blocking.
 - The pre-commit, commit-msg and pre-push hooks enforce.
 
-Seven runtimes share it, and `SKGIT_ADVISORY=0`, `SKGIT_ADVISORY_SKIP=<rule-id>` or a
+The seven repository runtimes and the dsh run surface share it. `SKGIT_ADVISORY=0`, `SKGIT_ADVISORY_SKIP=<rule-id>` or a
 `SKGIT_ADVISORY_SKIP=commit`-style prefix silences it. Delivery and fail-open:
 [scripts/hooks/README.md](scripts/hooks/README.md). Rule engine and tests:
 [scripts/lib/README.md](scripts/lib/README.md). Operator scenario:

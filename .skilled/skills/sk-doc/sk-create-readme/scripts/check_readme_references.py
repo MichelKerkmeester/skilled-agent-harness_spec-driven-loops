@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: README REFERENCE CHECKER (SK-DOC)
+# ───────────────────────────────────────────────────────────────
+
 """Check local README links, file references, inventories and command paths.
 
 Usage: python3 check_readme_references.py [--self-test] README.md [...]
@@ -165,7 +169,7 @@ KNOWN_SUFFIXES = {
 }
 REPOSITORY_ROOT_PREFIXES = (
     ".github/",
-    ".skilled/", ".opencode/",
+    ".dsh/", ".skilled/", ".opencode/",
     ".claude/", ".codex/", ".cursor/", ".devin/", ".hermes/", ".pi/",
     "specs/",
     "opencode.json",

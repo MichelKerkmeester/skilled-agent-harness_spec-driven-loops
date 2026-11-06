@@ -43,7 +43,7 @@ from urllib.parse import unquote
 
 EXCLUDE_SEGMENTS = {"z_archive", "context", "vendored", "node_modules"}
 SKIP_COVERAGE_SEGMENTS = {"templates", "examples"}
-DURABLE_ROOT_NAMES = (".", ".skilled", ".claude", ".pi", ".github", "scripts")
+DURABLE_ROOT_NAMES = (".", ".skilled", ".claude", ".pi", ".github", "scripts", ".dsh")
 DURABLE_FILE_EXTENSIONS = {
     ".bash", ".cjs", ".css", ".go", ".html", ".js", ".json", ".mjs", ".ps1",
     ".py", ".rs", ".scss", ".sh", ".sql", ".swift", ".toml", ".ts", ".tsx",

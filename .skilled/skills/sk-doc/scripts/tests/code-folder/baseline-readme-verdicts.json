@@ -1,5 +1,5 @@
 {
-  "count": 979,
+  "count": 988,
   "mode": "readme",
   "results": [
     {
@@ -37,6 +37,26 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".devin/hooks/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".dsh/plugins/repo-guards/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -341,8 +361,8 @@
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 253,
-          "line_number": 253,
+          "line": 261,
+          "line_number": 261,
           "message": "\"RELATED\" must be the last H2; it is followed by \"COVERAGE MATRIX\".",
           "severity": "warning",
           "type": "render_section_order"
@@ -504,6 +524,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/hooks/mcp-route-guard/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/overlay-guard/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -1861,6 +1891,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-external-orchestration/cli-cursor/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -5338,6 +5378,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-changelog/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/sk-doc/sk-create-command/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7316,6 +7366,36 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/system-skilled-doctor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-skilled-doctor/benchmark/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-skilled-doctor/benchmark/reports/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7814,6 +7894,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/runtime/cli/core/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/dsh/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
