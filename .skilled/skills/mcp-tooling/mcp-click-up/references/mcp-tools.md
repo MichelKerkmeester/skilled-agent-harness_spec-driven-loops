@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -311,7 +311,7 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
    When no browser tool is available, or a page opens on ClickUp's login screen (`login: true`), stop and tell the user the gap count per page and which browser needs the ClickUp login. Run the program again once they confirm.
 4. **Report per page:** import diff lines, gaps before, gaps left and whether the text is unchanged. A page with gaps left or changed text is not delivered. Say which, and why.
 
-**Aside program.** It runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. The read-backs run in Code Mode and the editor pass runs in one `aside.aside_repl` call per page. That tool needs a `title`, and its REPL keeps one shared scope between calls, so the pass runs inside its own function. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change. Verified on 2026-11-06 on four scratch pages: every gap removed, text unchanged, no login prompt, the user's view unchanged.
+**Aside program.** It runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. The read-backs run in Code Mode and the editor pass runs in one `aside.aside_repl` call per page. That tool needs a `title`, and its REPL keeps one shared scope between calls, so the pass runs inside its own function. Each call stops after about 12 seconds of work, under Code Mode's 30-second limit per tool call, and keeps its tab for the next call, so a page with many dividers takes several calls. Give the `call_tool_chain` call a `timeout` of about 60 seconds per page. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change. Verified on 2026-11-06 on eleven scratch pages, including two with 74 dividers and runs with Aside minimized: every gap removed, text unchanged, no login prompt, the user's active tabs unchanged. A long page that needed two calls finished on the same tab and left no tab open.
 
 ```javascript
 (async () => {
@@ -336,31 +336,38 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
     const range = document.createRange(); range.setStart(empty[0], 0); range.collapse(true); sel.addRange(range);
     return empty.length;
   }`;
+  // One call works for about 12 seconds, under Code Mode's 30-second tool limit, and keeps its tab
+  // in the REPL between calls, so a long page takes several calls on the same tab.
   const editorPass = (url) => `await (async () => {
-    const p = await openTab(${JSON.stringify(url)});
+    const U = ${JSON.stringify(url)};
     const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-    const pick = () => p.evaluate(${JSON.stringify("(" + PICK + ")()")});
-    let presses = 0, left = 0, login = false, editor = false;
-    for (let attempt = 0; attempt < 3; attempt++) {
-      if (attempt) { await p.goto(${JSON.stringify(url)}); }
-      await sleep(6000 + attempt * 2000);
-      let n = await pick(), stall = 0;
-      if (n === -2) { login = true; break; }
-      if (n === -1) continue;
-      editor = true;
-      while (n > 0 && stall < 3 && presses < 300) {
-        await p.keyboard.press("Delete"); presses++;
-        const m = await pick();
-        if (m >= n) { stall++; await sleep(2000); } else { stall = 0; }
-        n = m;
+    const all = (globalThis.__clickupGapPass ||= {});
+    const st = (all[U] ||= { p: await openTab(U), attempt: 0, loaded: false, stall: 0, presses: 0, editor: false });
+    const pick = () => st.p.evaluate(${JSON.stringify("(" + PICK + ")()")});
+    const t0 = Date.now();
+    let n = 0, login = false, done = false;
+    while (Date.now() - t0 < 12000) {
+      if (!st.loaded) {
+        if (st.attempt) await st.p.goto(U);
+        await sleep(6000 + st.attempt * 2000); st.loaded = true;
       }
-      left = Math.max(n, 0);
-      if (left === 0) break;
+      n = await pick();
+      if (n === -2) { login = true; done = true; break; }
+      if (n === -1) { st.attempt++; st.loaded = false; if (st.attempt >= 3) { done = true; break; } continue; }
+      st.editor = true;
+      if (n === 0 || st.presses >= 300) { done = true; break; }
+      await st.p.keyboard.press("Delete"); st.presses++;
+      const m = await pick();
+      if (m < n) { st.stall = 0; continue; }
+      if (++st.stall < 3) { await sleep(2000); continue; }
+      st.stall = 0; st.attempt++; st.loaded = false;
+      if (st.attempt >= 3) { done = true; break; }
     }
-    if (!editor && !login) login = (await pick()) === -2;
-    await sleep(3500);
-    await closeTab(p);
-    console.log("RESULT " + JSON.stringify({ presses, left, login, editor }));
+    if (done) {
+      if (!st.editor && !login) login = (await pick()) === -2;
+      await sleep(3500); await closeTab(st.p); delete all[U];
+    }
+    console.log("RESULT " + JSON.stringify({ done, presses: st.presses, left: Math.max(n, 0), login, editor: st.editor }));
   })();`;
   const report = [];
   for (const page of PAGES) {
@@ -368,16 +375,19 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
     const got = new Set(norm(md));
     const importDiff = norm(page.sent).filter((line) => !got.has(line));
     const gapsBefore = gaps(await read(page.id, "text/plain"));
-    let browser = { presses: 0, login: false, editor: true };
-    if (gapsBefore > 0) {
+    let browser = { presses: 0, login: false, editor: true }, calls = 0;
+    while (gapsBefore > 0 && calls < 30) {
       const raw = JSON.stringify(await aside.aside_repl({ title: "clickup divider gaps",
         code: editorPass(`https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${page.id}`) }));
       const m = /RESULT (\{[^}]*\})/.exec(raw.replace(/\\"/g, '"'));
-      browser = m ? JSON.parse(m[1]) : { error: raw.slice(0, 300) };
+      browser = m ? JSON.parse(m[1]) : { error: raw.slice(0, 300) }; calls++;
+      if (!m || browser.done) break;
     }
     const after = await read(page.id, "text/md");
-    report.push({ page: page.id, importDiff, gapsBefore, ...browser,
-      gapsLeft: gaps(await read(page.id, "text/plain")),
+    const plainHits = gaps(await read(page.id, "text/plain"));
+    // The editor counts only dividers. The plain-text count also catches an image at the end of a block.
+    const gapsLeft = browser.editor && !browser.login && browser.done !== false ? (browser.left ?? plainHits) : plainHits;
+    report.push({ page: page.id, importDiff, gapsBefore, ...browser, calls, gapsLeft, plainHits,
       textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
   }
   console.log(JSON.stringify(report));
@@ -446,8 +456,10 @@ A report with an `error` field means the Aside call failed before the editor pas
       if (opened && !editor && !login) login = number(await B.chrome_devtools_live_evaluate_script({ function: PICK })) === -2;
       await sleep(3500);
       const after = await read(page.id, "text/md");
-      report.push({ page: page.id, login, editor, importDiff, gapsBefore, presses,
-        gapsLeft: gaps(await read(page.id, "text/plain")),
+      const plainHits = gaps(await read(page.id, "text/plain"));
+      // The editor counts only dividers. The plain-text count also catches an image at the end of a block.
+      const gapsLeft = editor && !login ? left : plainHits;
+      report.push({ page: page.id, login, editor, importDiff, gapsBefore, presses, gapsLeft, plainHits,
         textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
     }
   } finally {
@@ -465,7 +477,7 @@ A report with an `error` field means the Aside call failed before the editor pas
 
 `editor: false` means the page never showed the ClickUp editor in three tries. Check `login`, then the page ID.
 
-`gapsLeft` counts every `" \n"` line, and an image at the end of a page reads that way too. When `gapsLeft` is 1 and the page ends in an image, check the text around the hit before calling it a divider.
+`gapsLeft` comes from the editor whenever the pass reached it, and the editor counts only dividers. `plainHits` is the plain-text count after the pass, which also counts an image at the end of a block, so `gapsLeft: 0` with `plainHits: 1` on a page with an image is a clean page. When the pass never reached the editor, `gapsLeft` falls back to `plainHits`.
 
 **Prefer `replace` on an existing page.** A page that already has editor-made dividers keeps them tight under `replace`, so the routine finds nothing to remove.
 
