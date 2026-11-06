@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f9b0b211e474d1d84900df709c5c4294227155d5304275813ae089548fa18993",
+  "manifestHash": "1fbabc63ccd8a2895e57e6247f7d61bca58b5f5d777a26ce01a4c06146ea9825",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -23663,6 +23663,9 @@
     ],
     "clickup find member by name": [
       "clickup_find_member_by_name"
+    ],
+    "clickup first use readiness": [
+      "clickup first use readiness"
     ],
     "clickup gap pass aside": [
       "clickup gap pass aside"
@@ -63949,6 +63952,9 @@
     "mcp click up 1 2 13 0": [
       "mcp-click-up 1.2.13.0"
     ],
+    "mcp click up 1 2 14 0": [
+      "mcp-click-up 1.2.14.0"
+    ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
     ],
@@ -64032,6 +64038,9 @@
     ],
     "mcp click up v1 2 13 0": [
       "mcp-click-up v1.2.13.0"
+    ],
+    "mcp click up v1 2 14 0": [
+      "mcp-click-up v1.2.14.0"
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
