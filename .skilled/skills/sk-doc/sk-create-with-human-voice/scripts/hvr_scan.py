@@ -225,6 +225,7 @@ CODE_FENCE_LANGUAGES = {
     "json", "jsonc",
     "python", "py",
     "javascript", "js", "typescript", "ts",
+    "go", "golang",
     "gitignore",
 }
 

@@ -63,6 +63,19 @@ call_tool_chain({
 Prose below the fence.
 """
 
+GO_PAYLOAD = """# Sample
+
+Prose above the fence.
+
+```go
+for i := 0; i < n; i++ {
+    total += values[i]
+}
+```
+
+Prose below the fence.
+"""
+
 PROSE_PAYLOAD = """# Sample
 
 Copy the block below.
@@ -177,6 +190,12 @@ def run() -> int:
         check(
             'a code-tagged fence inside a template payload is masked',
             code_report['templatePayload'] and code_report['hardBlockers'] == 0,
+        )
+
+        go_report = _scan(_template(tmp, GO_PAYLOAD))
+        check(
+            'a go fence inside a template payload is masked, semicolons and all',
+            go_report['templatePayload'] and go_report['hardBlockers'] == 0,
         )
 
         prose_report = _scan(_template(tmp, PROSE_PAYLOAD.replace('score, not apply', 'score — not apply')))
