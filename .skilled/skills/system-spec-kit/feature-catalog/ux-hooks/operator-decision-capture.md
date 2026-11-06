@@ -7,7 +7,7 @@ trigger_phrases:
   - "operator decisions"
   - "capture askuserquestion answers"
   - "verbatim operator answers"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Operator decision capture
@@ -26,11 +26,11 @@ This feature is cataloged under UX hooks because its live half is a hook. The sa
 
 ### Capture
 
-On Claude, a PostToolUse hook on `AskUserQuestion` hands each answered question to the runtime-neutral core, which appends one record per answer to a per-session queue under the gitignored `.skilled/skills/.state/decision-capture/` folder, inside a subfolder named by a hash of the project's real root, so projects linked to one Skilled checkout keep separate queues. Each record carries a source key built from the runtime, the session, the tool-use id and the question's position, and a key is queued at most once. Questions about Gate 3, spec folders, worktrees, branches and commit or push permission are dropped before they reach the queue. On Pi, an extension on the `tool_result` event does the same for `ask_user_question` and for pi-plan-build's `question` tool, using the Pi sweep's own mapping so both produce the same key. On OpenCode, the `decision-capture.js` plugin does the same on `tool.execute.after` for the `question` tool, with the key the OpenCode sweep builds. On Devin, a PostToolUse adapter on `ask_user_question` reuses the Devin sweep's mapping. `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns every live capture off.
+On Claude, a PostToolUse hook on `AskUserQuestion` hands each answered question to the runtime-neutral core, which appends one record per answer to a per-session queue under the gitignored `.skilled/skills/.state/decision-capture/` folder, inside a subfolder named by a hash of the project's real root, so projects linked to one Skilled checkout keep separate queues. Each record carries a source key built from the runtime, the session, the tool-use id and the question's position, and a key is queued at most once. Questions about Gate 3, spec folders, worktrees, branches and commit or push permission are dropped before they reach the queue. On Pi, an extension on the `tool_result` event does the same for `ask_user_question` and for pi-plan-build's `question` tool, using the Pi sweep's own mapping so both produce the same key. On OpenCode, the `decision-capture.js` plugin does the same on `tool.execute.after` for the `question` tool, with the key the OpenCode sweep builds. On Devin, a PostToolUse adapter on `ask_user_question` reuses the Devin sweep's mapping. On DSH, the `repo-guards` adapter queues `ask_user_question` answers on `tools/result` and a late reply to a timed question on `session/event`, through the DSH sweep's own mapping. The adapter also loads in a fan-out leaf, but a headless run has no question tool to answer. `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns every live capture off.
 
 ### Sweeps
 
-`/speckit:save` runs a sweep for the current runtime before it writes. On Claude, `sweep-transcript.mjs` copies any answered `AskUserQuestion` call the hook missed from the session transcript, and lists plain chat questions that closed an assistant turn together with the typed reply. On OpenCode, `sweep-opencode.mjs` reads answered question calls from OpenCode's SQLite store, opened read-only. On Devin, `sweep-devin.mjs` reads them from Devin's stored transcripts. On Codex, `sweep-codex.mjs` reads answered `request_user_input` calls from the stored rollout, and on Pi, `sweep-pi.mjs` reads answered `ask_user_question` and `question` results from the session file. Both skip a cancelled or interrupted question. Every sweep also lists plain chat questions answered by the next typed prompt, through the shared detector in `lib/chat-questions.mjs`. Each sweep maps its own store into assistant, tool-call and typed-prompt turns, and the OpenCode sweep reads them from `session_message` rows only. Each sweep prints the pending records and the chat candidates, each with its `key`, and every sweep prints an `error` and exits 1 when the session file it reads cannot be read.
+`/speckit:save` runs a sweep for the current runtime before it writes. On Claude, `sweep-transcript.mjs` copies any answered `AskUserQuestion` call the hook missed from the session transcript, and lists plain chat questions that closed an assistant turn together with the typed reply. On OpenCode, `sweep-opencode.mjs` reads answered question calls from OpenCode's SQLite store, opened read-only. On Devin, `sweep-devin.mjs` reads them from Devin's stored transcripts. On Codex, `sweep-codex.mjs` reads answered `request_user_input` calls from the stored rollout, and on Pi, `sweep-pi.mjs` reads answered `ask_user_question` and `question` results from the session file. Both skip a cancelled or interrupted question. On DSH, `sweep-dsh.mjs` reads the session log under `$DSH_HOME/sessions`, or `~/.dsh/sessions`, walking every Zstandard frame because Node decodes only the first, and records a late reply under the same key as the timed question it answers. Every sweep also lists plain chat questions answered by the next typed prompt, through the shared detector in `lib/chat-questions.mjs`. Each sweep maps its own store into assistant, tool-call and typed-prompt turns, and the OpenCode sweep reads them from `session_message` rows only. Each sweep prints the pending records and the chat candidates, each with its `key`, and every sweep prints an `error` and exits 1 when the session file it reads cannot be read.
 
 ### Save
 
@@ -44,7 +44,7 @@ The writer can create `decision-record.md` at any level. When it does so in a pa
 
 ### Nudge
 
-The Claude Stop hook counts the answers still waiting for a record and reports a rising count once. On OpenCode the plugin puts the same count into the next request's system text, and on Pi the extension shows it through `ctx.ui.notify` at the end of a turn. Devin computes the count but discards Stop-hook output, so no reminder reaches a Devin operator. A save that consumes only part of the queue lowers the count it last reported, so the next new answer is reported again.
+The Claude Stop hook counts the answers still waiting for a record and reports a rising count once. On OpenCode the plugin puts the same count into the next request's system text, and on Pi the extension shows it through `ctx.ui.notify` at the end of a turn. Devin computes the count but discards Stop-hook output, so no reminder reaches a Devin operator. On DSH the adapter injects the count at idle as a `repo-guards` message that rides with the operator's next prompt, because DSH has no notice a plugin can raise. A save that consumes only part of the queue lowers the count it last reported, so the next new answer is reported again.
 
 ---
 
@@ -59,12 +59,14 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | `.skilled/hooks/decision-capture/pi/decision-capture.ts` | Pi extension | `tool_result` entry point for `ask_user_question` and `question`, linked from `.pi/extensions/`. |
 | `.opencode/plugins/decision-capture.js` | OpenCode plugin | `tool.execute.after` capture and the pending-answer system line. |
 | `.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs` | Devin adapter | PostToolUse entry point for `ask_user_question`. |
+| `.skilled/hooks/decision-capture/dsh/decision-capture.mjs` | DSH adapter | `tools/result`, late-reply and idle-nudge entry points, linked from `.dsh/plugins/repo-guards/adapters/`. |
 | `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` | Save-time sweep | Claude transcript reader. |
 | `.skilled/hooks/decision-capture/lib/chat-questions.mjs` | Shared detector | Chat-candidate pairing from ordered turns and each candidate's evidence object, used by every sweep. |
 | `.skilled/hooks/decision-capture/bin/sweep-opencode.mjs` | Save-time sweep | OpenCode SQLite store reader. |
 | `.skilled/hooks/decision-capture/bin/sweep-devin.mjs` | Save-time sweep | Devin transcript reader. |
 | `.skilled/hooks/decision-capture/bin/sweep-codex.mjs` | Save-time sweep | Codex rollout reader. |
 | `.skilled/hooks/decision-capture/bin/sweep-pi.mjs` | Save-time sweep | Pi session reader. |
+| `.skilled/hooks/decision-capture/bin/sweep-dsh.mjs` | Save-time sweep | DSH session-log reader with a Zstandard frame walker. |
 | `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` | Runtime library | Row and appendix upsert, level guard and consumed-key log. |
 | `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts` | Runtime library | Hand-written table parse, answer-gated scoring and refusals. |
 | `.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts` | Save-time CLI | Matches a session's pending answers to table rows; `--apply`, `--scan-orphans` and `--release`. |
@@ -87,6 +89,8 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | `.skilled/hooks/decision-capture/bin/sweep-devin.test.mjs` | Automated test | Devin transcript reader. |
 | `.skilled/hooks/decision-capture/bin/sweep-codex.test.mjs` | Automated test | Codex rollout reader on a redacted live sample. |
 | `.skilled/hooks/decision-capture/bin/sweep-pi.test.mjs` | Automated test | Pi session reader on a redacted live sample. |
+| `.skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs` | Automated test | DSH session-log reader, late replies and multi-frame logs. |
+| `.dsh/plugins/repo-guards/tests/decision-capture.test.mjs` | Automated test | DSH adapter capture, late reply, nudge and kill switch. |
 | `.skilled/hooks/decision-capture/pi/decision-capture.test.ts` | Automated test | Pi extension, kill switch and same-key dedup with the sweep. |
 | `.opencode/plugins/tests/decision-capture.test.cjs` | Automated test | OpenCode plugin capture, kill switch, dedup with the sweep and the nudge line. |
 | `.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.test.mjs` | Automated test | Devin adapter on a redacted live payload, both producer orders, kill switch and refusals. |

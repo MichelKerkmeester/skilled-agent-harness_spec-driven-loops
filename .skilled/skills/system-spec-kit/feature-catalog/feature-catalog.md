@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-01"
-version: 2.1.18.0
+version: 2.1.19.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1073,7 +1073,7 @@ Queues each operator answer to an AI question and lets a full-auto `/speckit:sav
 
 #### Current Reality
 
-Claude answers are queued live by a PostToolUse hook on `AskUserQuestion`. At save time a sweep recovers missed answers from the Claude or Devin transcript or the OpenCode store. The writer keeps one `Q` id per exchange across saves, matching a hand-written row by its question and answer text, and stamps a missing level marker before it creates a record.
+Answers are queued live on Claude, Pi, OpenCode, Devin and DSH. At save time a runtime sweep recovers missed answers from the Claude or Devin transcript, the OpenCode store, the Codex rollout, the Pi session file or the DSH session log. The writer keeps one `Q` id per exchange across saves, matching a hand-written row by its question and answer text, and stamps a missing level marker before it creates a record.
 
 #### Source Files
 

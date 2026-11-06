@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -259,7 +259,7 @@ The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself
 ### Operator Decisions
 
 - **Save-mode behavior:** A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisions`) into the target packet's `decision-record.md`. A plan-only save lists the entries and writes nothing.
-- **Sweep commands by runtime:** On Claude, `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` prints the answers waiting for a record, each with its `sourceKey`. On OpenCode, Devin, Codex and Pi, `sweep-opencode.mjs`, `sweep-devin.mjs`, `sweep-codex.mjs` and `sweep-pi.mjs` in the same folder do the same from the runtime's stored session. Every sweep also prints chat candidates, through the shared detector in `lib/chat-questions.mjs`.
+- **Sweep commands by runtime:** On Claude, `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` prints the answers waiting for a record, each with its `sourceKey`. On OpenCode, Devin, Codex, Pi and DSH, `sweep-opencode.mjs`, `sweep-devin.mjs`, `sweep-codex.mjs`, `sweep-pi.mjs` and `sweep-dsh.mjs` in the same folder do the same from the runtime's stored session. The DSH sweep reads the session log under `$DSH_HOME/sessions`, or `~/.dsh/sessions` when `DSH_HOME` is unset, and also recovers a late reply to a timed question. Every sweep also prints chat candidates, through the shared detector in `lib/chat-questions.mjs`.
 - **Evidence fields and their use:** Each candidate carries a deterministic `evidence` object: `questionType`, `optionMatch`, `contentOverlap`, `imperativeOpening` and `topicShift`. Read it before judging whether the reply answers the question; it informs the judgment and never replaces it, and `optionMatch: not_applicable` is no evidence against an answer.
 
 | Field        | Type   | Required | Description |
