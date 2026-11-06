@@ -1,0 +1,59 @@
+# Follow-up drift fixes, 2026-11-06: red runs written before each fix, then the green runs
+
+## 1. spec-gate classifier, red: node --test --test-name-pattern='spec classification reads only' .dsh/plugins/repo-guards/tests/repo-guards.test.mjs
+✖ spec classification reads only what the operator typed, never an injected notice (1.826166ms)
+    expected: 1 (the spec-gate notice for the operator prompt), actual: 0
+exit 1
+
+## 2. advisor runtime, red: node --test .dsh/plugins/repo-guards/tests/session-role.test.mjs
+SyntaxError: The requested module '../adapters/prompt-advisor.mjs' does not provide an export named 'ADVISOR_RUNTIME'
+exit 1
+
+## 3. leaf goal tools, red after the advisor fix: node --test .dsh/plugins/repo-guards/tests/session-role.test.mjs
+✖ the lineage patch also turns off the native goal tools a leaf cannot use (0.347416ms)
+ℹ pass 8
+ℹ fail 1
+
+## 4. orphan sweeper, red: vitest run tests/orphan-sweeper-session-runtimes.vitest.ts (system-spec-kit runtime)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  runtime/tests/orphan-sweeper-session-runtimes.vitest.ts > orphan sweeper session runtimes > treats a DSH session, headless or web, as a live operator session
+received only ["103"]: no dsh row matched
+
+## 5. /doctor:git DSH row, red: node --test --test-name-pattern='dsh passes|round trip' git-setup-check.test.cjs
+✖ dsh passes only when the bundle registers the linked advisory adapter (44.762708ms)
+✖ round trip: registering the advisory as README section 3 shows turns ai-tool-hooks PASS for every runtime (9536.820125ms)
+
+## green
+bundle: ℹ tests 78 ℹ pass 78 ℹ fail 0 
+advisor runtime suite (system-skill-advisor/runtime, vitest run): Test Files  160 passed (160), Tests  1373 passed | 8 skipped (1381), exit 0
+advisor typecheck (npm run typecheck): exit 0
+orphan sweeper suites (session-runtimes, temp-path, ipc-preserve, launcher-stop-hook): Test Files 4 passed (4), Tests 30 passed (30)
+git-setup-check.test.cjs: ℹ tests 78 ℹ pass 78 ℹ fail 0 (77 of 77 before)
+
+## live: the DSH advisor core from the checkout (scratchpad advisor-probe.mjs)
+runtime=dsh
+Advisor: live; use sk-git 0.87/0.12 pass.
+
+## live: node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool dsh --json, row ai-tool-hooks
+PASS eight adapter files, active dsh via --tool
+claude: registered (.claude/settings.json)
+codex: registered (.codex/hooks.json)
+devin: registered (.devin/hooks.v1.json)
+cursor: registered (.cursor/hooks.json)
+opencode: registered (.opencode/plugins/sk-git-preflight-advisory.js)
+pi: registered (.pi/extensions/git-preflight-advisory.ts)
+hermes: registered (.hermes/plugins/repo-guards/__init__.py)
+dsh (active): registered (.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs)
+
+## why the classifier fix matters: message order in the keyless interactive boot
+user/message source=repo-guards :: ## Session Context Session context received. Current state: - Continuity: r
+user/message source=repo-guards :: git-worktree-guard: [worktree-guard] This top-level session is running on t
+user/message source=user :: Review the python script in this folder for code quality and suggest a refactor.
+user/message source=runtime-context :: Current runtime context. This snapshot supersedes earlier runtime-conte
+user/message source=repo-guards :: Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor
+user/message source=repo-guards :: SPEC GATE: this session needs a spec-folder decision, but only at the first
+A runtime-context snapshot and guard notices follow the operator prompt, so the latest user-role message was never the prompt.
+
+## routing unaffected by the hard-rules message edit: node .skilled/bin/compiled-route-sync.cjs --check
+all 7 hubs resolve
+all 55 served copies match their authored files

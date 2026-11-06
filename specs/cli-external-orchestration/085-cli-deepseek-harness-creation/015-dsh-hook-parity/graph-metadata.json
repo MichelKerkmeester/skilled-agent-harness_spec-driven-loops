@@ -54,10 +54,10 @@
       ".dsh/plugins/repo-guards/README.md",
       ".dsh/SYNC.md",
       ".skilled/commands/speckit/save.md",
-      "evidence/tests-red.txt",
-      "evidence/gates-2026-11-06.txt",
-      "evidence/validate-strict-recursive.txt",
-      "evidence/keyless-boot-interactive.txt"
+      ".skilled/skills/system-spec-kit/runtime/hooks/dsh/spec-gate-classify.mjs",
+      ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
+      ".skilled/scripts/orphan-mcp-sweeper.sh",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs"
     ],
     "entities": [
       {
@@ -151,27 +151,27 @@
         "source": "derived"
       },
       {
-        "name": "tests-red.txt",
+        "name": "spec-gate-classify.mjs",
         "kind": "file",
-        "path": "evidence/tests-red.txt",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/dsh/spec-gate-classify.mjs",
         "source": "derived"
       },
       {
-        "name": "gates-2026-11-06.txt",
+        "name": "prompt-advisor.mjs",
         "kind": "file",
-        "path": "evidence/gates-2026-11-06.txt",
+        "path": ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs",
         "source": "derived"
       },
       {
-        "name": "validate-strict-recursive.txt",
-        "kind": "file",
-        "path": "evidence/validate-strict-recursive.txt",
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/orphan-mcp-sweeper.sh",
         "source": "derived"
       },
       {
-        "name": "keyless-boot-interactive.txt",
+        "name": "git-setup-check.cjs",
         "kind": "file",
-        "path": "evidence/keyless-boot-interactive.txt",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "An operator running `dsh web` with the guards patch got no skill-advisor brief, no way to bind or log a goal, no session-start warnings and no capture of the answers they gave, because the guards patch set `promptAdvisor: false` and four Pi concerns stayed deferred",
     "created_at": "2026-11-06T20:30:28Z",
-    "last_save_at": "2026-11-06T21:25:26.442Z",
+    "last_save_at": "2026-11-06T21:56:17.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:969a0859a1a99037541b06713aa8e7c240d33ae4bb434c37cb0073e53f5f7ed0",
+    "source_fingerprint": "sha256:a1e8241afdd4a64a51769fa6ef7f3a294625053a7373d7c142ed6f5c70bf98ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b567c47edef616eb300c025473249a809d359cb01cb475cbce14e53c446adb2f",
-      "plan.md": "080e6af04032d553b2ab0e35a434cc200245748ad255c2168746541435c346be",
-      "tasks.md": "2f00f2f86e71d5f27cdd26fcf1d058635cfbb3d6c296afe8197a5000dd796003",
-      "decision-record.md": "0eaf2caa00de23300dfb4b77d29cb6550a6780dbf3f663187b222fa38dbd79d7",
-      "implementation-summary.md": "10b936d37df57d0f0dd12d8cfae70d66395a71136cdfe96f51ed5070c9a1478c"
+      "spec.md": "49d1a57fd4a7206323decf74a4cf4f62dcddc9fc782ad9562fdcdba6115d0e5c",
+      "plan.md": "ee3770a8d86f528c9a42078f62f9d9358d57e59cc27aab91bd76e1570bb268cf",
+      "tasks.md": "ad6f055392015b436453aac8075b1ff4cbd4d92ad863a565dbf217d36be1e4aa",
+      "decision-record.md": "766ecb7481ea54d4936e38454417bace88b4b79ba977a2098cd3bb072d1ec718",
+      "implementation-summary.md": "21463ddfa0cf95f167bc7841b5cf27e55ee0bb174bfed2680a97c53b6e8e2fb8"
     },
     "last_active_at": null
   }

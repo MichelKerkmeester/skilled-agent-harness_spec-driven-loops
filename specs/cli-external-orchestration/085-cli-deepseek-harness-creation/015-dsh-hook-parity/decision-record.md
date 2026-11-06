@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 15: dsh-hook-parity"
-description: "Four decisions behind DSH hook parity: a lineage leaf marker read at event time, the goal surface over the shared manage CLI, interactive-only writer adapters and the hook library link layout."
+description: "Five decisions behind DSH hook parity: a lineage leaf marker read at event time, the goal surface over the shared manage CLI, interactive-only writer adapters, the hook library link layout and the leaf goal tools and runtime lists."
 trigger_phrases:
   - "dsh hook parity decision record"
 importance_tier: "normal"
@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity"
     last_updated_at: "2026-11-06T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Recorded four accepted decisions for DSH hook parity"
+    recent_action: "Recorded five accepted decisions for DSH hook parity"
     next_safe_action: "Verify a keyed interactive run before revisiting ADR-002"
     blockers: []
     key_files: []
@@ -415,6 +415,104 @@ The operator required DSH to use the same layout as the other runtimes. Every Pi
 **How to roll back**: Revert the docs commit that names the new paths, then the code commit. The code revert also removes the six new adapters, because they import the moved helpers from their new folders.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: Close the leaf goal tools in the lineage patch and keep the hook-flags runtime list as it is
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-06 |
+| **Deciders** | Implementing agent, under the operator's follow-up brief |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+A keyless lineage boot still listed `create_goal`, `get_goal` and `update_goal`, the model-facing half of DSH's native goal service. The lineage patch already disabled `goal-round-driver` and `command-goal`, but the tools come from a separate row, `tool-goal` (`@deepseek-ai/dsh-tool-goal`). Its README says create, edit, pause and resume need a direct human message in a runtime-root agent's turn, which a fan-out leaf never has. The same follow-up asked whether every runtime allowlist accepts `dsh`. Two lists matter: the advisor's `ADVISOR_RUNTIME_VALUES`, which its metrics and outcome records validate against, and `RUNTIMES` in `.skilled/hooks/shared/hook-flags.cjs`.
+
+### Constraints
+
+- The lineage patch applies before the guards patch, so it can only touch rows the base bundle already mounts. `tool-goal` is one of them.
+- `RUNTIMES` in hook-flags decides two things only: which runtimes get a per-runtime enable switch for a default-off concern, and which runtimes `session-relaunch` accepts as a loop runtime.
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: disable `tool-goal` in the lineage patch, add `dsh` to `ADVISOR_RUNTIME_VALUES`, and leave hook-flags `RUNTIMES` without `dsh`.
+
+**How it works**: the lineage patch carries `- id: tool-goal` with `disabled: true` beside the goal round driver and command rows, so a leaf's request lists 20 tools instead of 23. The advisor adapter passes `runtime: 'dsh'`, and the advisor's own list now holds it, so its records keep the right label instead of borrowing `pi`. DSH adapters call the hook flags without a runtime, so only the global switches apply to them, and `session-relaunch` stays closed to DSH because `skilled-loop` launches no DSH session.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Disable `tool-goal` in the lineage patch** | One row, visible in `--dump-config`, matches the other goal rows | None found: the tools refuse a leaf's calls anyway | 9/10 |
+| Leave the tools and rely on their authority check | No patch change | A leaf model still sees three tools it cannot use and may spend a step on them | 4/10 |
+| Disable the `goal` service too | Removes the whole surface | `goal-context` and the interactive goal surface do not need it gone, and nothing calls it in a leaf | 5/10 |
+| Add `dsh` to hook-flags `RUNTIMES` as well | Every list names DSH | It would let `skilled-loop` accept `dsh` and add enable switches for a relaunch path DSH does not have | 2/10 |
+
+**Why this one**: each change closes a gap a test or a boot showed, and the one list left alone governs behavior DSH deliberately lacks.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**:
+- A leaf's tool list matches what it may do, and the advisor's metrics and outcome records carry `dsh`.
+
+**What it costs**:
+- One more lineage row, and the advisor's dist must be rebuilt before a DSH session picks up the new label.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A future dsh release renames `tool-goal` | L | The patch would print `patch: entry "tool-goal" not found`, and `session-role.test.mjs` pins the row |
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+<!-- ANCHOR:adr-005-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | `evidence/keyless-boot-lineage.txt` line 13 listed the three native goal tools |
+| 2 | **Beyond Local Maxima?** | PASS | Four options compared above |
+| 3 | **Sufficient?** | PASS | One patch row and one tuple entry |
+| 4 | **Fits Goal?** | PASS | REQ-010 and REQ-011 |
+| 5 | **Open Horizons?** | PASS | A DSH relaunch path would add `dsh` to `RUNTIMES` then, with its own switches |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-005-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-005-impl -->
+### Implementation
+
+**What changes**:
+- `.dsh/patches/lineage.patch.yml` disables `tool-goal`.
+- `advisor-runtime-values.ts` gains `dsh`, and `prompt-advisor.mjs` exports `ADVISOR_RUNTIME = 'dsh'`.
+
+**How to roll back**: remove the `tool-goal` row from the lineage patch, or drop `dsh` from the tuple and pass `pi` again, then rebuild the advisor dist.
+<!-- /ANCHOR:adr-005-impl -->
+<!-- /ANCHOR:adr-005 -->
 
 ---
 

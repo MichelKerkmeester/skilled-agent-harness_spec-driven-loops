@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity"
     last_updated_at: "2026-11-06T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Shipped DSH hook parity, the leaf split and the hook library layout"
+    recent_action: "Shipped DSH hook parity and the five follow-up drift fixes"
     next_safe_action: "Verify a keyed interactive run shows the goal brief and advisor"
     blockers: []
     key_files:
@@ -59,6 +59,10 @@ The bundle grew from 14 adapters to 20. The guards patch turns the advisor on, a
 
 Every adapter's real file now lives in the hook library, `.skilled/hooks/<concern>/dsh/` or its owning skill's `hooks/dsh/` folder, and `.dsh/plugins/repo-guards/adapters/` holds one relative link per adapter, the layout Pi uses. `/doctor:runtime-mirrors` checks those links.
 
+### Follow-up: remaining drift
+
+A second pass closed five gaps the first one reported. The spec gate now classifies only what you typed, because a runtime-context snapshot and guard notices arrive after your prompt as user-role messages. The advisor reports its runtime as `dsh`, and the advisor's runtime list accepts it. A fan-out leaf no longer sees the native `get_goal`, `create_goal` and `update_goal` tools. The orphan MCP sweeper keeps the helpers of a running DSH session, and `/doctor:git setup` checks the DSH git-preflight registration and accepts `--tool dsh`.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -77,6 +81,12 @@ Every adapter's real file now lives in the hook library, `.skilled/hooks/<concer
 | `.skilled/hooks/README.md`, `coverage-rationale.md`, `decision-capture/bin/runtime-refusal.test.mjs` | Modified | DSH column, seven-runtime matrix contract, rationale |
 | `.dsh/plugins/repo-guards/README.md`, `.dsh/SYNC.md`, `guards-and-hooks.md`, GRD-001 | Modified | Layout, adapter table, both compositions |
 | `.skilled/commands/speckit/save.md`, the doctor runtime-mirrors step and the runtime-mirrors README | Modified | DSH sweep in the save flow, `.dsh` coverage in the mirror check |
+| `.skilled/skills/system-spec-kit/runtime/hooks/dsh/spec-gate-classify.mjs` | Modified | Follow-up: classifies only operator messages |
+| `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs`, `runtime/lib/advisor-runtime-values.ts` and its observability test | Modified | Follow-up: runtime label `dsh`, accepted by the advisor |
+| `.dsh/patches/lineage.patch.yml` and `session-role.test.mjs` | Modified | Follow-up: `tool-goal` disabled in a leaf |
+| `.skilled/scripts/orphan-mcp-sweeper.sh`, `orphan-sweeper-session-runtimes.vitest.ts` | Modified, Created | Follow-up: DSH sessions are live session roots |
+| `.skilled/commands/doctor/scripts/git-setup-check.cjs` and its test, `/doctor:git` docs, sk-git hooks README | Modified | Follow-up: the DSH row in `/doctor:git setup` |
+| `.dsh/SYNC.md`, `.dsh/README.md`, `hard-rules.json`, `guards-and-hooks.md`, `coverage-rationale.md` | Modified | Follow-up: name `tool-goal` among the lineage rows |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -101,6 +111,7 @@ Keyless boots of both compositions ran in a `mktemp -d` cwd and `DSH_HOME` with 
 | Four writer adapters stay off in a leaf (ADR-003) | A leaf keeps every guard but never writes the operator's goal, advisor state or continuity, and starts no Git work |
 | Pi's layout with imports written for the real folder (ADR-004) | The operator asked for one layout across runtimes, and Node resolves a link before it resolves the file's imports |
 | One commit for the move and the new adapters | Each moved adapter also carries its new behavior, so a move-only commit would not build. `git log --follow` still traces each file through the move |
+| `tool-goal` off in leaves, `dsh` in the advisor list, hook-flags `RUNTIMES` unchanged (ADR-005) | The lineage patch can reach the tool row, and the hook-flags list only gates per-runtime switches and the relaunch loop DSH does not have |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -124,6 +135,10 @@ Keyless boots of both compositions ran in a `mktemp -d` cwd and `DSH_HOME` with 
 | `/goal-dsh` against the real manage CLI | `bind`, `show`, `resent`, `pause`, `resume`, `complete` and `clear` return `STATUS=OK` with `runtime=dsh` |
 | `validate.sh <packet> --strict --recursive` | `RESULT: PASSED` for all 16 folders after metadata regeneration, recorded in `evidence/validate-strict-recursive.txt` |
 | Trigger index `generate-trigger-index.mjs --check` | exit 0, 0 stale documents after the rebuild |
+| Follow-up red runs, one per fix | Each failed before its fix, recorded in `evidence/followup-fixes-2026-11-06.txt` |
+| Follow-up suites | Bundle 78 of 78, advisor runtime 1373 pass and 8 skipped, sweeper 30 of 30, `git-setup-check.test.cjs` 78 of 78 (77 before) |
+| Leaf goal tools | `tool-goal` disabled in `--dump-config` with no stderr, and the lineage boot lists 20 tools (`evidence/leaf-goal-tools-off.txt`) |
+| Live advisor and `/doctor:git` | `runtime=dsh` with `Advisor: live`, and `dsh (active): registered` on the ai-tool-hooks row |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -133,6 +148,6 @@ Keyless boots of both compositions ran in a `mktemp -d` cwd and `DSH_HOME` with 
 
 1. **No keyed interactive run yet.** The keyless boots prove registration and delivery up to the first model call, not the goal brief or advisor on a live operator turn. Run `dsh web` with the guards patch and a key to see both.
 2. **Nested dispatch is read from code, not observed.** A `subagent` call inside a `workflow` run goes through the same `tools/pre-execute` pipeline call in the installed `dsh-tools`, but no live nested dispatch was captured.
-3. **The README manifest test reports drift.** `test_readme_manifest.py` now lists `.dsh/plugins/repo-guards/adapters` as removed, because the folder holds only links, beside a `.claude` addition from parallel work. Its owner refreshes it with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write` once both land.
-4. **Adjacent gaps left for their owners.** `spec-gate-classify` reads the latest user-role message without a source filter, the advisor adapter passes `runtime: 'pi'` to the shared chain, a headless leaf still exposes the native `create_goal`, `get_goal` and `update_goal` tools and `/doctor:git`'s registration map has no DSH row.
+3. **The advisor dist is a local build.** `prompt-advisor.mjs` loads the advisor from `runtime/dist`, which git ignores, so a checkout picks up the `dsh` label only after `npm run build` in `.skilled/skills/system-skill-advisor/runtime`. Until then the built list lacks `dsh`, and the advisor's record validators, such as `validateAdvisorHookDiagnosticRecord` in `runtime/lib/metrics.ts`, reject a record labelled `dsh`.
+4. **Hook-flags `RUNTIMES` has no `dsh` on purpose.** DSH adapters read only the global switches, so a per-runtime enable switch such as `SYSTEM_SESSION_RELAUNCH_DSH_ENABLED` does nothing (ADR-005).
 <!-- /ANCHOR:limitations -->

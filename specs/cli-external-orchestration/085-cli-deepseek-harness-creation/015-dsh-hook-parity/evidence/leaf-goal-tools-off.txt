@@ -1,0 +1,20 @@
+# Native goal tools off in a fan-out leaf: keyless isolated runs, mktemp cwd and DSH_HOME, model keys unset
+# patches: route-llmgateway-deepseek, lineage, guards
+
+## dsh --profile headless ... --dump-config
+exit=0, stderr lines: 0
+345:- id: tool-goal
+346-  name: '@deepseek-ai/dsh-tool-goal'
+347-  disabled: true
+
+## keyless lineage boot (AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_DISABLED=1)
+exit=1 (expected: MISSING_CREDENTIAL before any model call)
+stderr: dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "llmgateway"; its pro...
+request/header tools(20): bash, edit, glob, grep, interrupt_agent, job_kill, job_list, job_output, list_agents, read, read_image, send_message, skill, subagent, subagent_fork, todo_write, web_fetch, workflow, working_directory, write
+
+## before this change: evidence/keyless-boot-lineage.txt line 13
+request/header tools(23): bash, create_goal, edit, get_goal, glob, grep, interrupt_agent, job_kill, job_list, job_output, list_agents, read, read_image, send_message, skill, subagent, subagent_fork, todo_write, update_goal, web_fetch, workflow, working_directory, write
+
+## interactive boot, guards patch only, after this change
+exit=1
+request/header tools(24): bash, create_goal, dsh_goal, edit, get_goal, glob, grep, interrupt_agent, job_kill, job_list, job_output, list_agents, read, read_image, send_message, skill, subagent, subagent_fork, todo_write, update_goal, web_fetch, workflow, working_directory, write

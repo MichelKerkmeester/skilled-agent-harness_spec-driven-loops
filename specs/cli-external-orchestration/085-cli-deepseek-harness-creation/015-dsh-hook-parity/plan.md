@@ -69,7 +69,7 @@ A harness event reaches `index.mjs`, which dispatches to each adapter through it
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`. Setup inventories the concerns and records the red tests, Implementation writes the adapters and moves them, and Verification runs every suite, the keyless boots and recursive strict validation.
+Follow the ordered tasks in `tasks.md`. Setup inventories the concerns and records the red tests, Implementation writes the adapters and moves them, and Verification runs every suite, the keyless boots and recursive strict validation. A follow-up phase closes the five drift items the first pass reported, each test first.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -178,7 +178,7 @@ dsh-llm.mjs (dsh-llm, dsh-tools)
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-The four decisions are recorded in full in `decision-record.md`: ADR-001 the lineage leaf marker, ADR-002 the goal surface, ADR-003 interactive-only writer adapters and ADR-004 the hook library layout.
+The five decisions are recorded in full in `decision-record.md`: ADR-001 the lineage leaf marker, ADR-002 the goal surface, ADR-003 interactive-only writer adapters, ADR-004 the hook library layout and ADR-005 the leaf goal tools and runtime lists.
 
 ---
 

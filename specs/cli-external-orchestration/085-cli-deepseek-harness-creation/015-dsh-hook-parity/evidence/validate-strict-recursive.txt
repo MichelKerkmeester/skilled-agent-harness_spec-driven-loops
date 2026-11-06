@@ -18,3 +18,22 @@ specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-
 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
 # warnings: SOURCE_TAGS in 001-deep-research (267 of 415) and 013-dsh-live-contract-pin (4 of 894), research citations that do not resolve, both reported by the run before this phase's metadata regeneration
+
+# rerun after the follow-up drift fixes, metadata re-derived and the trigger index rebuilt last
+exit=0
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research :: Summary: Errors: 0 Warnings: 1 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/003-cli-deepseek-harness-skill-packet :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/005-dsh-mirror-generators :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/006-deep-loop-executor-kind :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/011-hub-registration-and-routing :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/012-deep-loop-modes-and-commands :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin :: Summary: Errors: 0 Warnings: 1 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED
+specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity :: Summary: Errors: 0 Warnings: 0 :: RESULT: PASSED

@@ -33,7 +33,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Inventory every hook concern from the hooks README, the coverage matrix, the additional hooks table, `.opencode/plugins/`, `.pi/extensions/` and the Hermes plugin (`spec.md` section 12). Verify: the parity table has 30 rows.
+- [x] T001 Inventory every hook concern from the hooks README, the coverage matrix, the additional hooks table, `.opencode/plugins/`, `.pi/extensions/` and the Hermes plugin (`spec.md` section 12). Verify: the parity table has 30 rows, 31 once the follow-up adds the orphan sweep row.
 - [x] T002 Probe patch order with a lineage patch that overrides the `repo-guards` row (scratchpad probe). Verify: stderr prints `patch: entry "repo-guards" not found`.
 - [x] T003 Probe the agent context: a per-agent tool registers at `agent/created`, `agent.ctx.commands` needs `inject`, `agent/disposed` fires at headless exit (scratchpad probe). Verify: the probe log prints `tool=ok`, `cannot get property "commands" without inject` and `agent-disposed`.
 - [x] T004 Capture baselines. Verify: bundle 37 pass, dispatch rules 50 pass, hooks vitest 481 pass and 2 fail, mirrors 221 over 9 trees, hook registrations 4 files and 20 Pi links.
@@ -76,6 +76,21 @@ contextType: "implementation"
 - [x] T027 Validate the packet. Verify: `validate.sh <packet> --strict --recursive` prints `RESULT: PASSED` for every folder.
 - [x] T028 Register 015 in the parent: phase map, phase pointers, regenerated parent metadata and the goal LOG row. Verify: parent `children_ids` lists 015.
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Follow-up Drift Fixes
+
+- [x] T029 Write failing tests for the five drift items (`$T/repo-guards.test.mjs`, `$T/session-role.test.mjs`, `orphan-sweeper-session-runtimes.vitest.ts`, `git-setup-check.test.cjs`). Verify: `evidence/followup-fixes-2026-11-06.txt` records each red run.
+- [x] T030 Classify only operator messages in `spec-gate-classify.mjs`. Verify: the bundle suite passes 78 of 78.
+- [x] T031 Report the advisor runtime as `dsh` and add `dsh` to `advisor-runtime-values.ts`. Verify: the advisor suite passes 1373 with 8 skipped, and a live run prints `Advisor: live` under `runtime=dsh`.
+- [x] T032 Disable `tool-goal` in `.dsh/patches/lineage.patch.yml`. Verify: `evidence/leaf-goal-tools-off.txt` shows the row disabled and a 20-tool lineage boot.
+- [x] T033 Add `dsh` to the orphan sweeper's session pattern. Verify: the four sweeper suites pass 30 of 30.
+- [x] T034 Add the DSH row to `git-setup-check.cjs`, its tests and the `/doctor:git` docs. Verify: `git-setup-check.test.cjs` passes 78 of 78 and the live check prints `dsh (active): registered`.
+- [x] T035 Name `tool-goal` wherever the lineage patch rows are listed and add the DSH rows to the sk-git hooks README. Verify: every prose line that `rg -n "command-goal" .dsh .skilled/skills/cli-external-orchestration/cli-deepseek-harness` prints also names `tool-goal`.
+- [x] T036 Rerun every gate, re-derive the packet metadata and rebuild the trigger index last. Verify: recursive strict validation prints `RESULT: PASSED` for every folder.
+<!-- /ANCHOR:phase-4 -->
 
 ---
 
@@ -143,7 +158,7 @@ A blocked task stays `[B]` with its failing command and output recorded in `impl
 
 - [x] CHK-020 [P0] All acceptance criteria met (`acceptance-criteria.md`)
 - [x] CHK-021 [P0] Manual testing complete: GRD-001 run and recorded in `evidence/gates-2026-11-06.txt`, and `/goal-dsh` run against the real manage CLI in `evidence/goal-command-live.txt`
-- [x] CHK-022 [P1] Edge cases tested: pending, failed and late answers, a skippable frame, a leaf and a resumed session
+- [x] CHK-022 [P1] Edge cases tested: pending, failed and late answers, a skippable frame, a leaf, a resumed session, a notice spliced after the operator prompt and a dangling DSH adapter link
 - [x] CHK-023 [P1] Error scenarios validated: one throw-policy test per new adapter
 <!-- /ANCHOR:testing -->
 

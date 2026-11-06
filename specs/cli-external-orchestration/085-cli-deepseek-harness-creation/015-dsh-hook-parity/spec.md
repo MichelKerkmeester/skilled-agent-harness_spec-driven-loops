@@ -112,7 +112,6 @@ zlib.zstdDecompressSync alone lines: 1
 
 ### Out of Scope
 - A Hermes column in the coverage matrix - each cell needs its own probe of the Hermes plugin's events, which this phase did not run.
-- A DSH row in `/doctor:git`'s git-preflight registration map - that command is outside this phase's scope, so it is reported as a follow-up.
 - `injection-contract.md`, `save-workflow.md`, the decision-capture feature catalog entry and the runtime READMEs - the parallel docs work owns them.
 
 ### Files to Change
@@ -129,6 +128,9 @@ zlib.zstdDecompressSync alone lines: 1
 | `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` | Modify | `dsh-adapters` tree |
 | `.dsh/plugins/repo-guards/tests/*.mjs` and sweep, mirror and matrix tests | Create, Modify | Fixture tests written before the code |
 | Hooks README, coverage rationale, bundle README, `SYNC.md`, `guards-and-hooks.md`, GRD-001, save command, doctor step | Modify | Layout, matrix column and composition docs |
+| `spec-gate-classify.mjs`, `prompt-advisor.mjs`, `advisor-runtime-values.ts` | Modify | Follow-up: classify only operator messages, report the advisor runtime as `dsh` |
+| `.skilled/scripts/orphan-mcp-sweeper.sh`, `.skilled/commands/doctor/scripts/git-setup-check.cjs` and their tests | Modify, Create | Follow-up: DSH sessions count as live, `/doctor:git setup` checks the DSH advisory registration |
+| `/doctor:git` command docs, sk-git hooks README | Modify | Follow-up: the `dsh` tool name and the DSH registration entry |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -154,6 +156,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | Keyless isolated boots and `--dump-config` for the interactive and lineage compositions are saved under `evidence/`. |
 | REQ-007 | `sync-runtime-mirrors.cjs --check` reports a missing, stale or real-file adapter link, so `/doctor:runtime-mirrors` covers `.dsh`. |
 | REQ-008 | The coverage matrix carries a DSH column, and the rationale, bundle README and harness reference describe the layout and both compositions. |
+| REQ-009 | The spec-gate classifier reads only a message the operator typed, never an injected notice or runtime-context snapshot. |
+| REQ-010 | The prompt advisor reports its runtime as `dsh`, and the advisor's runtime list accepts it. |
+| REQ-011 | A fan-out leaf exposes no native `get_goal`, `create_goal` or `update_goal` tool. |
+| REQ-012 | The orphan MCP sweeper treats a running DSH session as a live operator session. |
+| REQ-013 | `/doctor:git setup` checks the DSH git-preflight registration and accepts `--tool dsh`. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -252,9 +259,9 @@ Evidence paths are relative to this folder unless they start with a dot. "Tests"
 
 | Concern | OpenCode | Pi | DSH before | DSH after | Evidence |
 |---|---|---|---|---|---|
-| `skill-advisor` | `system-skill-advisor.js` | `prompt-advisor.ts` | registered, off by `promptAdvisor: false` | on for interactive, off in a leaf by the marker | `evidence/keyless-boot-interactive.txt`, `evidence/keyless-boot-lineage.txt`, Tests `session-role.test.mjs` |
+| `skill-advisor` | `system-skill-advisor.js` | `prompt-advisor.ts` | registered, off by `promptAdvisor: false` | on for interactive, off in a leaf by the marker, reported to the advisor as runtime `dsh` | `evidence/keyless-boot-interactive.txt`, `evidence/keyless-boot-lineage.txt`, `evidence/followup-fixes-2026-11-06.txt`, Tests `session-role.test.mjs` |
 | `directive-lifecycle` | plugin lifecycle state | `prompt-advisor.ts` de-dup | none | full block once per start or compaction, head alone on repeat | Tests `session-role.test.mjs` |
-| `goal` | `opencode-goal.js`, `/goal-opencode` | `goal-context.ts`, `/goal-pi` | packet slice only (`goal-context`) | `/goal-dsh`, `dsh_goal`, brief with resend reminder, verify note, interactive | Tests `goal-manage.test.mjs`, `evidence/keyless-boot-interactive.txt` |
+| `goal` | `opencode-goal.js`, `/goal-opencode` | `goal-context.ts`, `/goal-pi` | packet slice only (`goal-context`) | `/goal-dsh`, `dsh_goal`, brief with resend reminder, verify note, interactive. A leaf has no native goal tools | Tests `goal-manage.test.mjs`, `evidence/keyless-boot-interactive.txt`, `evidence/leaf-goal-tools-off.txt` |
 | `decision-capture` | `decision-capture.js` | `decision-capture.ts`, `sweep-pi.mjs` | none | `decision-capture.mjs`, `sweep-dsh.mjs`, `/speckit:save` | Tests `decision-capture.test.mjs`, `.skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs`, `evidence/sweep-frame-walker.txt` |
 | `overlay-guard` | by-design: none | `overlay-guard.ts` | none | `overlay-guard.mjs` | Tests `overlay-guard.test.mjs` |
 | `session-lifecycle` start | concern plugins | `session-start-context.ts` | `session-start-context` | unchanged | Tests `repo-guards.test.mjs` |
@@ -266,14 +273,14 @@ Evidence paths are relative to this folder unless they start with a dot. "Tests"
 | `hook-install` | `codex-hooks-watchdog.js` | `session-start-advisories.ts` | deferred | same adapter, `--check` | Tests `session-lifecycle.test.mjs` |
 | `live-follow` | `session-cleanup.js` | `session-start-advisories.ts` | deferred | same adapter, interactive | Tests `session-lifecycle.test.mjs` |
 | `primary-reconcile` | `session-cleanup.js` | `session-start-advisories.ts` | deferred | same adapter, detached, interactive | Tests `session-lifecycle.test.mjs` |
-| `spec-gate` | `system-spec-gate.js` | `spec-gate-*.ts` | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
+| `spec-gate` | `system-spec-gate.js` | `spec-gate-*.ts` | covered, but classified any user-role message | moved, classifies only what the operator typed | Tests `repo-guards.test.mjs` |
 | `completion` | `system-completion-sentinel.js` | `completion-evidence.ts` | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
 | `dispatch` | `cli-dispatch-audit.js` | `dispatch-*.ts` | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
 | `task-dispatch` | `system-deep-loop-guard.js` | `task-dispatch-guard.ts` (partial) | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
 | `mcp-route-guard` | `mcp-route-guard.js` | `mcp-route-guard.ts` | covered | moved, unchanged | Tests `mcp-route-guard.test.mjs` |
 | `post-edit-quality` | `sk-code-post-edit-quality.js` | `post-edit-quality.ts` | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
 | `injection-screen` | `classifier-injection-screen.js` | `classifier-injection-screen.ts` | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
-| `git-preflight` | `sk-git-preflight-advisory.js` | `git-preflight-advisory.ts` | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
+| `git-preflight` | `sk-git-preflight-advisory.js` | `git-preflight-advisory.ts` | covered, no `/doctor:git` row | moved, and `/doctor:git setup` checks its registration | Tests `repo-guards.test.mjs`, `git-setup-check.test.cjs` |
 | `git-message-gate` | `sk-git-message-gate.js` | `git-message-gate.ts` | covered | moved, unchanged | Tests `repo-guards.test.mjs` |
 | `codex-watchdog` | `codex-hooks-watchdog.js` | by-design | none | by-design: only a long-lived OpenCode process can poll, and DSH runs `install-codex-hooks.mjs --check` once at start | `.skilled/hooks/coverage-rationale.md` |
 | `permission-policy` | by-design | by-design | none | by-design: `tools/pre-execute` already carries the decision, and `approval/request` carries no tool arguments | `ApprovalRequestEvent` in `@deepseek-ai/dsh-user-approval` types |
@@ -282,6 +289,7 @@ Evidence paths are relative to this folder unless they start with a dot. "Tests"
 | speckit completion tool | `system-speckit-completion.js` | none | none | by-design: the same core runs as `.skilled/bin/speckit-completion.cjs` over bash | `.skilled/bin/speckit-completion.cjs` |
 | `git-commit-hooks` | git | git | git | by-design: fires from git, no runtime axis | `.skilled/hooks/git/README.md` |
 | Pi cache and fast-mode extensions | none | `pi-cache-optimizer/`, `pi-fast-mode-w-subagent-support/` | none | n/a: they tune Pi's own provider requests and appear in no hook concern table or kill-switch index | `.skilled/hooks/README.md` section 1 |
+| orphan MCP sweep | session-tree pattern | session-tree pattern | not a session root | a DSH session is a live root, so its MCP helpers are kept | `orphan-sweeper-session-runtimes.vitest.ts` |
 
 ---
 
