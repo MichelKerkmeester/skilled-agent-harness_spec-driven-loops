@@ -2,7 +2,7 @@
 name: cli-jev
 description: "TypeSafe Jev CLI transport for typed judgments: noul probabilities, choice selections, ordered scores, and batched run requests."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 0.1.10.0
+version: 0.1.11.0
 ---
 
 # TypeSafe Jev CLI Transport - Typed Judgments for Dispatch
