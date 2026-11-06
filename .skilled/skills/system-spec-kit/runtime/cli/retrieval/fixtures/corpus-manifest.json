@@ -1,5 +1,5 @@
 {
-  "corpusHash": "235539e918ca9cf2ba17ae8165d96720e199b6c0c5f2ad2446e09ba97c8fb07a",
+  "corpusHash": "90f2caf36e67907a5c3f8497283044a29fff3d62880ef3a34b59a866b9f1bf04",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28106,
+  "includedPathCount": 28107,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8758,6 +8758,7 @@
     ".skilled/skills/system-spec-kit/runtime/cli/config/README.md",
     ".skilled/skills/system-spec-kit/runtime/cli/continuity/README.md",
     ".skilled/skills/system-spec-kit/runtime/cli/core/README.md",
+    ".skilled/skills/system-spec-kit/runtime/cli/dsh/README.md",
     ".skilled/skills/system-spec-kit/runtime/cli/evals/README.md",
     ".skilled/skills/system-spec-kit/runtime/cli/extractors/README.md",
     ".skilled/skills/system-spec-kit/runtime/cli/graph/README.md",
@@ -28137,7 +28138,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b686f42740d41468fbfc6a8f01ed5ca2957f0169d903e5f5c0e4ae713fb8a22b",
+  "manifestHash": "6f52d067a74d9a172701de65d1bf310fb93d2ec2f193a3eed7c4a52b1ec74efb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
