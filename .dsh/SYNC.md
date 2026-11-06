@@ -23,7 +23,7 @@ This folder holds the `--patch` layers the repository owns. Model selection belo
 |---|---|---|---|
 | `patches/route-llmgateway-deepseek.patch.yml` | **hand-authored** route patch | none | Yes. `--dump-config` shows the composed `llm-pi-ai` provider and the `agent-default-model` row |
 | `patches/route-opencode-go-deepseek.patch.yml` | **hand-authored** route patch | none | Yes, same check. Its endpoint is unverified until a keyed run proves it |
-| `patches/lineage.patch.yml` | **hand-authored** lineage patch | none | Yes. `--dump-config` shows telemetry `DISABLED`, the four disabled rows and the `repo-guards-lineage-leaf` marker row |
+| `patches/lineage.patch.yml` | **hand-authored** lineage patch | none | Yes. `--dump-config` shows telemetry `DISABLED`, the five disabled rows and the `repo-guards-lineage-leaf` marker row |
 | `patches/guards.patch.yml` | **hand-authored** patch that inserts the `repo-guards` row | none | Yes. A keyless boot with it must print no `did not activate` line |
 | `patches/mcp-code-mode.patch.yml` | **hand-authored**, opt-in patch that mounts one `code_mode` stdio server | `.pi/mcp.json` | Yes. A keyless boot with it must leave no new `mcp-code-mode-launcher` process |
 | `plugins/repo-guards/` | **hand-authored** bundle entry, leaf marker plugin and tests | `.skilled/hooks/`, `.skilled/skills/*/runtime/hooks/` | Yes. `node --test .dsh/plugins/repo-guards/tests/` |
@@ -53,7 +53,7 @@ The guards patch inserts `plugins/repo-guards/index.mjs` by a path relative to t
 
 The MCP patch is never part of a default dispatch. A caller adds it, and the deep-loop runner adds it only for a lineage that names `code_mode` in `liveTools.mcpServers`. dsh starts the server eagerly and strips ambient variables whose names hold `KEY`, `PASSWORD`, `SECRET` or `TOKEN`, so the row names `UTCP_CONFIG_FILE` in its `env` and resolves the checkout root from its own `--patch` path. The launcher picks a Node 24 interpreter through `NVM_DIR` or `$HOME/.nvm`, so a dispatch that also replaces `HOME` must pass `NVM_DIR`. A Code Mode manual whose token variable was stripped does not register; the server still starts.
 
-The lineage patch sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal` and `plan-mode`. The base bundle mounts all five. A headless dispatch has no feedback channel, a goal round driver keeps an idle agent running, and plan mode's exit tool fails closed without an interactive review. It also inserts `repo-guards-lineage-leaf`, a marker plugin. The runner applies the lineage patch before the guards patch inserts `repo-guards`, so the lineage patch cannot override that row, and the bundle reads the marker when an event fires instead.
+The lineage patch sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal`, `tool-goal` and `plan-mode`. The base bundle mounts all six. A headless dispatch has no feedback channel, a goal round driver keeps an idle agent running, the native `get_goal`, `create_goal` and `update_goal` tools need a direct human turn a leaf never has, and plan mode's exit tool fails closed without an interactive review. It also inserts `repo-guards-lineage-leaf`, a marker plugin. The runner applies the lineage patch before the guards patch inserts `repo-guards`, so the lineage patch cannot override that row, and the bundle reads the marker when an event fires instead.
 
 ---
 

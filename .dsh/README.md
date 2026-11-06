@@ -28,7 +28,7 @@ The `cli-deepseek-harness` mode packet under `.skilled/skills/cli-external-orche
 |---|---|
 | `patches/route-llmgateway-deepseek.patch.yml` | Routes to LLM Gateway, model `deepseek-v4.1-flash-1017`, key variable `LLMGATEWAY_API_KEY` |
 | `patches/route-opencode-go-deepseek.patch.yml` | Routes to OpenCode Go, model `deepseek-v4.1-flash`, key variable `OPENCODE_API_KEY`. Endpoint unverified |
-| `patches/lineage.patch.yml` | Disables telemetry export, `session-log-deepseek`, `goal-round-driver`, `command-goal` and `plan-mode`, and inserts the `repo-guards-lineage-leaf` marker row |
+| `patches/lineage.patch.yml` | Disables telemetry export, `session-log-deepseek`, `goal-round-driver`, `command-goal`, `tool-goal` and `plan-mode`, and inserts the `repo-guards-lineage-leaf` marker row |
 | `patches/guards.patch.yml` | Loads the required repo-guards bundle for every run and turns its skill advisor on |
 | `patches/mcp-code-mode.patch.yml` | Mounts the `code_mode` MCP server over stdio. MCP is opt-in, so a run sees it only when it adds this patch |
 | `plugins/repo-guards/` | The bundle the guards patch loads: 20 adapters as links into the hook library, the leaf marker plugin and the tests. See its [README](./plugins/repo-guards/README.md) |

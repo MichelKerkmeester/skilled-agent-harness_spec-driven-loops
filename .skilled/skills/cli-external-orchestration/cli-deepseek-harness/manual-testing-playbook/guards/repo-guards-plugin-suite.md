@@ -1,7 +1,7 @@
 ---
 title: "GRD-001 -- Repo-guards plugin suite"
 description: "This scenario validates that the repo-guards plugin test suite passes with no adapter, policy or loader failure for `GRD-001`."
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # GRD-001 -- Repo-guards plugin suite
@@ -50,13 +50,13 @@ node --test .dsh/plugins/repo-guards/tests/
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Observed: exit `0`, 75 tests, 75 pass, 0 fail, 0 skipped, 0 todo.
-- The bundle README and this run both report 75 tests. Grade on `fail 0`, not on a fixed number.
+- Observed: exit `0`, 78 tests, 78 pass, 0 fail, 0 skipped, 0 todo.
+- The bundle README and this run both report 78 tests. Grade on `fail 0`, not on a fixed number.
 - The suite holds seven test files: the main adapter suite, `mcp-route-guard`, `overlay-guard`, `decision-capture`, `goal-manage`, `session-lifecycle` and `session-role`, with `harness.mjs` as their shared fixture.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GRD-001 | Repo-guards plugin suite | Prove every adapter test passes | `Run the repo-guards plugin test suite and tell me whether every adapter test passes. Do not change the plugin.` | 1. `node --test .dsh/plugins/repo-guards/tests/` -> 2. read the summary block -> 3. record the pass, fail and skipped counts with the exit code | Step 1: exit `0`. Step 2: 75 tests, 75 pass, 0 fail, 0 skipped | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0`. FAIL if any test fails or the runner cannot load the tests | 1. Read the first failing test name and its assertion. 2. Check whether a shared guard core export changed. 3. For `ERR_MODULE_NOT_FOUND`, run `sync-runtime-mirrors.cjs --check` to find a missing or stale adapter link. 4. Run the suite from the repository root so the anchored loader resolves |
+| GRD-001 | Repo-guards plugin suite | Prove every adapter test passes | `Run the repo-guards plugin test suite and tell me whether every adapter test passes. Do not change the plugin.` | 1. `node --test .dsh/plugins/repo-guards/tests/` -> 2. read the summary block -> 3. record the pass, fail and skipped counts with the exit code | Step 1: exit `0`. Step 2: 78 tests, 78 pass, 0 fail, 0 skipped | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0`. FAIL if any test fails or the runner cannot load the tests | 1. Read the first failing test name and its assertion. 2. Check whether a shared guard core export changed. 3. For `ERR_MODULE_NOT_FOUND`, run `sync-runtime-mirrors.cjs --check` to find a missing or stale adapter link. 4. Run the suite from the repository root so the anchored loader resolves |
 
 ---
 

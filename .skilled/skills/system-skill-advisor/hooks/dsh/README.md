@@ -4,7 +4,7 @@ description: "DeepSeek Harness adapter that adds the skill-advisor brief to each
 trigger_phrases:
   - "dsh prompt advisor"
   - "dsh skill advisor hook"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DSH Hooks: Skill-Advisor Prompt Bridge
@@ -19,7 +19,7 @@ version: 1.0.0.0
 
 ## 2. WHAT IT DOES AND INJECTS
 
-`prompt-advisor.mjs` runs on `agent/pre-step` and proxies the latest prompt the operator typed through the compiled Claude `user-prompt-submit.js` chain into this skill's advisor. Guard notices and runtime-context snapshots are user-role messages too, so only a message whose source is `user` counts as the prompt. The brief comes back as `additionalContext` and joins the step as one notice. It fails open.
+`prompt-advisor.mjs` runs on `agent/pre-step` and proxies the latest prompt the operator typed through the compiled Claude `user-prompt-submit.js` chain into this skill's advisor. Guard notices and runtime-context snapshots are user-role messages too, so only a message whose source is `user` counts as the prompt. The adapter passes the runtime label `dsh`, which the advisor's runtime list in `runtime/lib/advisor-runtime-values.ts` accepts, so its metrics and outcome records carry the right runtime. The brief comes back as `additionalContext` and joins the step as one notice. It fails open.
 
 The guards patch turns the adapter on with `promptAdvisor: true`. A fan-out leaf gets no brief: the lineage patch inserts a marker row, and the adapter checks it at event time, because the lineage patch applies before the guards row exists.
 

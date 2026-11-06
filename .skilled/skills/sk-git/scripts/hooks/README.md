@@ -6,7 +6,7 @@ trigger_phrases:
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # hooks: Git Preflight Advisory Runtime Adapters
@@ -81,6 +81,7 @@ Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `r
 | **OpenCode** | `.opencode/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`. Advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir). OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform. Never stdout/stderr. The command is never delayed or blocked |
 | **Pi** | `pi/git-preflight-advisory.ts` (real file, and `.pi/extensions/` symlinks here) | `tool_call` for `bash`. Advisory keyed by call id and delivered on the matching `tool_result` | Pi's agent core reads a `tool_call` handler's return only for `.block`: a bare `reason` is discarded before the model sees it, so the advisory is buffered and appended to the `tool_result` content instead | Appended to `tool_result` content. Warn-only, never `block: true` |
 | **Hermes** | `.hermes/plugins/repo-guards/__init__.py` | `transform_tool_result` for `terminal` | Sends the Devin `exec` payload shape with `cwd` | Appended to the tool result as guidance. Never a block |
+| **DSH** | `dsh/git-preflight-advisory.mjs` (real file, and `.dsh/plugins/repo-guards/adapters/` symlinks here) | `tools/post-execute` for `bash`, registered by the `repo-guards` bundle the guards patch loads | A DSH session can run outside the checkout, so the rules come from the adapter's own location rather than the session cwd | Added to the tool result as an additional context. Never a deny |
 
 OpenCode discovers plugins solely from `.opencode/plugins/`, so `sk-git-preflight-advisory.js` must live there. `scripts/hooks/opencode/sk-git-preflight-advisory.js` is a relative symlink back into that folder for browsability: nothing loads through it. Pi loads in the other direction: the real `pi/git-preflight-advisory.ts` lives here, and `.pi/extensions/git-preflight-advisory.ts` is the symlink Pi discovers.
 
@@ -186,6 +187,16 @@ File: .pi/extensions/git-preflight-advisory.ts
 Symlink target: pi/git-preflight-advisory.ts
 ```
 
+**DSH**: `.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs`
+
+```text
+File: .dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs
+Symlink target: dsh/git-preflight-advisory.mjs (sync-runtime-mirrors.cjs writes the link)
+Bundle entry: .dsh/plugins/repo-guards/index.mjs imports registerGitPreflightAdvisory and calls it with ctx
+Hook: tools/post-execute
+Import: ../../lib/git-rule-checks.mjs, resolved from the real file because Node follows the link first
+```
+
 **Hermes**: `.hermes/plugins/repo-guards/__init__.py`
 
 ```text
@@ -206,6 +217,7 @@ Loads only when HERMES_ENABLE_PROJECT_PLUGINS is set
 | **OpenCode** | `.opencode/plugins/sk-git-message-gate.js` (mirrored at `opencode/`) | `tool.execute.before` for `bash` | Throws an error prefixed `sk-git-message-gate:`, which OpenCode returns as the tool result |
 | **Pi** | `pi/git-message-gate.ts` (real file, and `.pi/extensions/` symlinks here) | `tool_call` for `bash` | Returns `{ block: true, reason }` |
 | **Hermes** | `.hermes/plugins/repo-guards/__init__.py` | `pre_tool_call` for `terminal`, after the dispatch preflight | Returns `{ "action": "block", "message": reason }` from the core's deny |
+| **DSH** | `dsh/git-message-gate.mjs` (real file, and `.dsh/plugins/repo-guards/adapters/` symlinks here) | `tools/pre-execute` for `bash` | Returns `{ kind: 'deny', reason }` |
 
 ---
 
@@ -216,6 +228,10 @@ hooks/  (sk-git/scripts/hooks/)
 +-- git-message-gate.mjs              # blocking message-contract gate (Bash/exec/Shell), exports evaluateCommand
 +-- git-preflight-advisory.mjs        # shared stdin hook (Bash/exec/Shell)
 +-- git-preflight-advisory.test.mjs   # node --test suite
++-- dsh/
+|   +-- README.md
+|   +-- git-message-gate.mjs          # real file; .dsh/plugins/repo-guards/adapters/ symlinks here
+|   `-- git-preflight-advisory.mjs    # real file; .dsh/plugins/repo-guards/adapters/ symlinks here
 +-- opencode/
 |   +-- README.md
 |   +-- sk-git-message-gate.js        # symlink -> .opencode/plugins/sk-git-message-gate.js
@@ -231,7 +247,7 @@ hooks/  (sk-git/scripts/hooks/)
 `-- git-context.mjs                   # lazy repository-state collector (1.5s timeout per git call)
 ```
 
-The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/git-preflight-advisory.mjs` (symlink to the shared hook), `opencode/sk-git-preflight-advisory.js` (symlink to the plugin), `pi/git-preflight-advisory.ts` (symlink to the Pi extension), and `README.md` (symlink to this file). `.skilled/hooks/git-message-gate/` does the same for the message gate: `shared/git-message-gate.mjs`, `opencode/sk-git-message-gate.js`, `pi/git-message-gate.ts` and `README.md`.
+The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/git-preflight-advisory.mjs` (symlink to the shared hook), `opencode/sk-git-preflight-advisory.js` (symlink to the plugin), `pi/git-preflight-advisory.ts` (symlink to the Pi extension), `dsh/git-preflight-advisory.mjs` (symlink to the DSH adapter) and `README.md` (symlink to this file). `.skilled/hooks/git-message-gate/` does the same for the message gate: `shared/git-message-gate.mjs`, `opencode/sk-git-message-gate.js`, `pi/git-message-gate.ts`, `dsh/git-message-gate.mjs` and `README.md`.
 
 ---
 

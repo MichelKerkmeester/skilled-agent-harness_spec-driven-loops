@@ -38,7 +38,7 @@
   {
     "id": "lineage-patch-required",
     "check": "lineage-patch-required",
-    "message": "A dsh headless dispatch MUST pass `.dsh/patches/lineage.patch.yml`. It sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal` and `plan-mode`, all of which the base bundle mounts.",
+    "message": "A dsh headless dispatch MUST pass `.dsh/patches/lineage.patch.yml`. It sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal`, `tool-goal` and `plan-mode`, all of which the base bundle mounts.",
     "severity": "error"
   },
   {

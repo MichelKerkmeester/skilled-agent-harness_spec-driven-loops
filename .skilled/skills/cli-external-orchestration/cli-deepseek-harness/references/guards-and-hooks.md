@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh hook bridge"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # DeepSeek Harness - Guards and Hooks
@@ -90,7 +90,7 @@ Every adapter below is registered by `index.mjs`. `.dsh/plugins/repo-guards/READ
 |---|---|---|---|
 | `dispatch-audit` | `tools/post-execute` | `bash` | Log and continue |
 | `dispatch-preflight-lint` | `tools/pre-execute` | `bash` | Log and deny on core failure |
-| `spec-gate-classify` | `agent/pre-step` | Latest user message | Log and continue |
+| `spec-gate-classify` | `agent/pre-step` | Latest operator prompt | Log and continue |
 | `spec-gate-enforce` | `tools/pre-execute` | `write`, `edit`, `apply_patch`, `bash` | Log and deny on core failure |
 | `completion-evidence` | `agent/turn-stopping` | Current assistant turn | Log and continue |
 | `task-dispatch-guard` | `tools/pre-execute` | `subagent`, `subagent_fork` | Log and continue |
@@ -134,11 +134,11 @@ The leaf keeps every guard and context adapter. The runner's `SYSTEM_SPEC_GATE_D
 
 ## 5. NATIVE SURFACES THAT STAY OFF
 
-- **Goal.** The native goal service holds one goal per session and reads no `goal.md`. Its round driver keeps an active goal running while the agent is idle. The lineage patch disables `goal-round-driver` and `command-goal`, and a packet goal reaches the child through the `goal-context` guard or the prompt.
+- **Goal.** The native goal service holds one goal per session and reads no `goal.md`. Its round driver keeps an active goal running while the agent is idle. The lineage patch disables `goal-round-driver`, `command-goal` and `tool-goal`, so a leaf has no `get_goal`, `create_goal` or `update_goal` tool, and a packet goal reaches the child through the `goal-context` guard or the prompt.
 - **Plan mode.** Its exit tool fails closed when no review channel exists, and headless has none. The lineage patch disables `plan-mode`.
 - **Ask-user tools.** Headless has no answer channel, so a question to the user cannot be answered. Write prompts that need no answer. In an interactive session, `decision-capture` queues each answer for the next `/speckit:save`.
 
-The composed config shows `goal-round-driver`, `command-goal` and `plan-mode` disabled under the lineage patch (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt`).
+The composed config shows `goal-round-driver`, `command-goal` and `plan-mode` disabled under the lineage patch (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt`), and `tool-goal` disabled with a 20-tool lineage boot (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/leaf-goal-tools-off.txt`).
 
 ---
 

@@ -79,7 +79,7 @@ repo-guards/
 | --- | --- | --- | --- | --- |
 | `dispatch-audit` | `tools/post-execute` | `bash` | runs | Log and continue |
 | `dispatch-preflight-lint` | `tools/pre-execute` | `bash` | runs | Log and deny on core failure |
-| `spec-gate-classify` | `agent/pre-step` | Latest user message | runs, off by the runner's `SYSTEM_SPEC_GATE_DISABLED=1` | Log and continue |
+| `spec-gate-classify` | `agent/pre-step` | Latest operator prompt | runs, off by the runner's `SYSTEM_SPEC_GATE_DISABLED=1` | Log and continue |
 | `spec-gate-enforce` | `tools/pre-execute` | `write`, `edit`, `apply_patch`, `bash` | runs, off by the runner's `SYSTEM_SPEC_GATE_DISABLED=1` | Log and deny on core failure |
 | `completion-evidence` | `agent/turn-stopping` | Current assistant turn | runs | Log and continue |
 | `task-dispatch-guard` | `tools/pre-execute` | `subagent`, `subagent_fork` | runs | Log and continue |
@@ -134,7 +134,7 @@ Run these commands from the repository root.
 node --test .dsh/plugins/repo-guards/tests/
 ```
 
-Expected result: 75 tests pass.
+Expected result: 78 tests pass.
 
 ```sh
 node --test .skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs
