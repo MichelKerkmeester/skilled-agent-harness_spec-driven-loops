@@ -9,7 +9,7 @@ trigger_phrases:
   - "launchagent mcp template"
   - "sweep temp path orphans"
   - "orphan temp process cleanup"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Orphan MCP Sweeper and LaunchAgent Template
@@ -34,7 +34,7 @@ Dry-run is the expected first operator path:
 bash .skilled/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log
 ```
 
-The sweeper preserves Ollama, the descendants of live sessions across all seven CLI runtimes the repo drives (claude, opencode, codex, pi, hermes, devin and cursor-agent), `/tmp/opencode-browser-use`, and cache-like paths. A temp-path orphan that still has a live session among its descendants is preserved with reason `drives-live-session`, so a detached fan-out driver script running from a scratch folder survives while the sessions it started are still working. `ORPHAN_AGE_MIN_SEC` (default 300) is now a floor for every candidate, reason `younger-than-age-min`, so a younger duplicate helper of a class is no longer swept just because a fresher sibling exists. It also preserves the shared skill-advisor launcher, which retires itself on its own 30-minute idle timeout, together with that launcher's advisor server and `hf-model-server` while the launcher is their parent. A server whose launcher died stays sweepable. Active non-MCP TCP listeners are preserved for MCP helper classes only, because a listener held by a temp-path orphan belongs to the leftover. Real mode sends SIGTERM to selected PIDs, waits 5 seconds, then sends SIGKILL to survivors.
+The sweeper preserves Ollama, the descendants of live sessions across all eight CLI runtimes the repo drives (claude, opencode, codex, pi, hermes, devin, cursor-agent and dsh), `/tmp/opencode-browser-use`, and cache-like paths. A temp-path orphan that still has a live session among its descendants is preserved with reason `drives-live-session`, so a detached fan-out driver script running from a scratch folder survives while the sessions it started are still working. `ORPHAN_AGE_MIN_SEC` (default 300) is now a floor for every candidate, reason `younger-than-age-min`, so a younger duplicate helper of a class is no longer swept just because a fresher sibling exists. It also preserves the shared skill-advisor launcher, which retires itself on its own 30-minute idle timeout, together with that launcher's advisor server and `hf-model-server` while the launcher is their parent. A server whose launcher died stays sweepable. Active non-MCP TCP listeners are preserved for MCP helper classes only, because a listener held by a temp-path orphan belongs to the leftover. Real mode sends SIGTERM to selected PIDs, waits 5 seconds, then sends SIGKILL to survivors.
 
 On macOS the sweeper builds the session tree from `pgrep -a`, because macOS `pgrep` otherwise hides its own ancestors and a sweep started inside a session, such as from the Stop hook, would reap that session's MCP helpers. The tree matches sessions of all seven runtimes, so a pi, hermes, devin or cursor-agent session protects its helpers the same way a claude, opencode or codex session does. Linux omits the flag and reads the same process list.
 
