@@ -1,16 +1,16 @@
 ---
 title: "chrome-devtools-mcp"
-description: "The Chrome DevTools MCP server behind the chrome_devtools_1 and chrome_devtools_2 Code Mode manuals. A manual registration, not a vendored server."
+description: "The Chrome DevTools MCP server behind the chrome_devtools_1, chrome_devtools_2 and chrome_devtools_live Code Mode manuals. A manual registration, not a vendored server."
 trigger_phrases:
   - "chrome devtools mcp server"
   - "chrome_devtools_1 server"
   - "chrome devtools code mode"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # chrome-devtools-mcp
 
-> Nothing to install here. The Chrome DevTools MCP server runs on demand via `npx`, configured entirely in `.utcp_config.json` behind the `chrome_devtools_1` and `chrome_devtools_2` manuals.
+> Nothing to install here. The Chrome DevTools MCP server runs on demand via `npx`, configured entirely in `.utcp_config.json` behind the `chrome_devtools_1`, `chrome_devtools_2` and `chrome_devtools_live` manuals.
 
 ---
 
@@ -22,7 +22,7 @@ version: 1.0.2.0
 |---|---|
 | **Use it for** | Confirming how the Chrome DevTools MCP fallback is configured. There is no local package to install. |
 | **Invoke with** | Code Mode `call_tool_chain()` with `chrome_devtools_N.chrome_devtools_N_<tool_name>`. |
-| **Works on** | `npx chrome-devtools-mcp` over stdio with `--isolated=true`, launched by Code Mode on demand. |
+| **Works on** | `npx chrome-devtools-mcp` over stdio, launched by Code Mode on demand: with `--isolated=true` for the two isolated manuals, and with `--autoConnect` for the live one. |
 | **Produces** | 26 exposed browser tools (navigation, screenshots, console, viewport, clicks, page management) per registered instance. |
 
 ### Why This Package Exists
@@ -31,7 +31,7 @@ mcp-chrome-devtools routes multi-tool and parallel-browser work, the surfaces th
 
 ### What It Does
 
-Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) each launch the server over stdio via `npx` with `--isolated=true`, so each instance owns an independent browser process with isolated cookie/storage state. That is what enables parallel browser testing (e.g. production vs staging simultaneously) with no session conflicts. Your AI client sees only the 4 Code Mode tools instead of the 26 Chrome DevTools tools natively (~78k tokens avoided).
+Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) each launch the server over stdio via `npx` with `--isolated=true`, so each instance owns an independent browser process with isolated cookie/storage state. That is what enables parallel browser testing (e.g. production vs staging simultaneously) with no session conflicts. A third manual, `chrome_devtools_live`, launches the same server with `--autoConnect` and attaches to the user's own Chrome for signed-in work, as `../../feature-catalog/mcp-parallel-instances/live-instance.md` describes. Your AI client sees only the 4 Code Mode tools instead of the 26 Chrome DevTools tools natively (~78k tokens avoided).
 
 ---
 
@@ -43,7 +43,7 @@ Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) ea
 cat .utcp_config.json | jq '.manual_call_templates[] | select(.name | startswith("chrome_devtools"))'
 ```
 
-Expected: both entries, matching the snapshot in [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md). Verify, don't re-add.
+Expected: all three entries, matching the snapshot in [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md). Verify, don't re-add.
 
 **Step 2: Confirm tools through Code Mode.**
 
@@ -85,6 +85,6 @@ Close pages in a `finally` block so no browser instance leaks.
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Runtime instructions and the CLI/MCP safety invariants |
 | [`../../ROUTER.md`](../../ROUTER.md) | Machine router: intent map, operation table and loading levels |
-| [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md) | Byte-true registered-state snapshot of both manuals |
+| [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md) | Byte-true registered-state snapshot of all three manuals |
 | [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md) | §4 Code Mode configuration and §10 MCP tools reference |
 | [`../bdg-cli/README.md`](../bdg-cli/README.md) | The primary CLI this MCP is a fallback to |

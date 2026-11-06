@@ -1,7 +1,7 @@
 ---
 title: "mcp-chrome-devtools: Feature Catalog"
-description: "Unified feature inventory for the mcp-chrome-devtools skill — the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 26 exposed tools, dual isolated instances)."
-version: 1.0.2.0
+description: "Unified feature inventory for the mcp-chrome-devtools skill: the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 26 exposed tools, dual isolated instances plus a live instance in the user's own Chrome)."
+version: 1.0.3.0
 ---
 
 # mcp-chrome-devtools: Feature Catalog
@@ -15,7 +15,7 @@ Complete feature inventory for both approaches in the mcp-chrome-devtools skill.
 The mcp-chrome-devtools skill routes browser debugging between two complementary approaches:
 
 - **bdg CLI** (`npm install -g browser-debugger-cli@alpha`) — the primary surface. Direct, fast, token-efficient terminal access to the Chrome DevTools Protocol: 300+ CDP methods across 53 domains, self-documenting via `--list` / `--describe` / `--search`, Unix-pipe composable. One global session lifecycle (`bdg <url>` / `bdg status` / `bdg stop`) with no session selector, so sessions run sequentially.
-- **Chrome DevTools MCP via Code Mode** — the fallback for multi-tool integration and parallel browsers. Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) are registered in `.utcp_config.json`, each launching `chrome-devtools-mcp` over stdio via `npx` with `--isolated=true`, invoked through `call_tool_chain()` with the naming `{instance}.{instance}_{tool_name}`.
+- **Chrome DevTools MCP via Code Mode**: the fallback for multi-tool integration and parallel browsers. Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) are registered in `.utcp_config.json`, each launching `chrome-devtools-mcp` over stdio via `npx` with `--isolated=true`, invoked through `call_tool_chain()` with the naming `{instance}.{instance}_{tool_name}`. A third manual, `chrome_devtools_live`, runs with `--autoConnect` and attaches to the user's own Chrome for signed-in work.
 
 > **Verification note.** MCP tool names are a subset of CDP (26 exposed tools per `../INSTALL-GUIDE.md` §10) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of all three manuals lives in `../assets/utcp-chrome-devtools-manuals.md`.
 

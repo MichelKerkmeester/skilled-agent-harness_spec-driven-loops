@@ -2,7 +2,7 @@
 name: mcp-chrome-devtools
 description: "Chrome DevTools orchestrator: routes between bdg CLI (fast, token-efficient) and Code Mode MCP (multi-tool integration)."
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.22.0
+version: 1.0.23.0
 ---
 
 # Chrome DevTools Orchestrator - CLI + MCP Integration

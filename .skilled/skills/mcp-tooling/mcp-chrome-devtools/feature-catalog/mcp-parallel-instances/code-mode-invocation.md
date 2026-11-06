@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools code mode"
   - "call_tool_chain chrome"
   - "mcp tool naming chrome_devtools_1"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Code Mode Invocation
@@ -32,7 +32,7 @@ The AI client sees only the 4 Code Mode tools rather than the 26 Chrome DevTools
 |------|-------|------|
 | `SKILL.md` §3 | MCP | Invocation pattern and available tools |
 | `INSTALL-GUIDE.md` §4, §10 | Guide | Code Mode provider model and tools reference |
-| `assets/utcp-chrome-devtools-manuals.md` | Asset | Registered-state snapshot of both manuals |
+| `assets/utcp-chrome-devtools-manuals.md` | Asset | Registered-state snapshot of all three manuals |
 
 ### Validation And Tests
 

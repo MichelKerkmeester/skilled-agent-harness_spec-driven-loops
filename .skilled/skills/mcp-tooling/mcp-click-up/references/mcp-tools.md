@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.10.0
+version: 1.1.11.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -58,7 +58,7 @@ OAuth 2.1 with PKCE, through the hosted server, with one browser approval on the
 
 ### First-Use Readiness Check
 
-Two logins sit outside the agent's reach, and the agent never performs either one. The ClickUp MCP needs one OAuth approval in the user's browser. A doc page push also needs ClickUp logged in, in the browser the divider gap pass runs in. Run this check once per session, after the user approves the first ClickUp write and before that write. Task writes need only the MCP part, and doc page writes need both.
+Two logins sit outside the agent's reach, and the agent never performs either one. The ClickUp MCP needs one OAuth approval in the user's browser. A doc page push also needs ClickUp logged in, in the browser the divider gap pass runs in. Run this check once per session, after the user approves the first ClickUp MCP write and before that write. Task writes need only the MCP part, and doc page writes need both.
 
 What the agent sees, measured on 2026-11-06 with an empty login store:
 - **Before the approval, the manual has no tools.** Registering `clickup_official` waits about a minute, ends with `MCP error -32001: Request timed out` and lists 0 tools, so a call fails because the tool is not defined. It never returns a 401.
@@ -472,7 +472,7 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
 
 A report with an `error` field means the Aside call failed before the editor pass, for example because Aside is closed. Open Aside and run the program again.
 
-**Chrome program.** The same routine through `chrome_devtools_live`. It opens the first page with `new_page` in the background, so the user's view does not change and their selected tab is never navigated away, reuses that tab for the rest of the batch and closes it at the end. `chrome_devtools_live` is the name in this repository's Code Mode, so use the name your `list_tools()` shows. Verified on 2026-11-06 on two scratch pages: every gap removed, text unchanged, no login prompt, only its own tab closed.
+**Chrome program.** The same routine through `chrome_devtools_live`. It opens the first page with `new_page` in the background, so the user's view does not change and their selected tab is never navigated away, reuses that tab for the rest of the batch and closes it at the end. `chrome_devtools_live` is the name in this repository's Code Mode, so use the name your `list_tools()` shows. An earlier version, which found its tab by URL, was verified on 2026-11-06 on two scratch pages: every gap removed, text unchanged, no login prompt. The page-ID tracking in this version has not run on a gapped page yet. It matches `chrome-devtools-mcp` 0.26.0, where `new_page` selects the page it opens, `select_page` and `close_page` take a numeric `pageId` and `list_pages` prints one `ID: url` line per page, and the readiness check's Chrome branch ran the same ID diff live.
 
 ```javascript
 (async () => {

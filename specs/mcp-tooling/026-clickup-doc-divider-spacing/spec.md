@@ -75,10 +75,11 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 - Check both ClickUp logins once per session before the first write, and ask the user for any that is missing (`mcp-click-up` 1.2.14.0)
 - Run the gap pass in a browser already logged in to ClickUp, in a background tab: an Aside program first, and a Chrome program through a new `chrome_devtools_live` manual (`--autoConnect`) as the fallback (`mcp-click-up` 1.2.12.0, `mcp-chrome-devtools` 1.0.21.0), plus a note in `mcp-aside-devtools` that `openTab` leaves the user's view alone (1.1.8.0)
 - Fix what an alignment review of those releases found: tabs closed by page ID in `finally` blocks, routing phrases for the readiness check and the live manual in both stages, the six new MCP tools catalogued, two playbook scenarios, and docs that still described two manuals, 61 tools or the old approval order (`mcp-click-up` 1.2.15.0, `mcp-chrome-devtools` 1.0.22.0, `mcp-aside-devtools` 1.1.9.0, `mcp-tooling` 1.9.7.0)
+- Fix what a second review found: a live-run claim the Chrome gap pass's page-ID tracking never had, approval steps without their timing, a readiness scenario that could not open its approval tab, three Chrome docs that still named two manuals, eighteen hub changelog spec lines with a level label, and packet docs that no longer matched what shipped (`mcp-click-up` 1.2.16.0, `mcp-chrome-devtools` 1.0.23.0, `mcp-tooling` 1.9.8.0)
 
 ### Out of Scope
 - A script file for the editor pass - Code Mode takes the program as inline code, so it lives as a copyable block in the reference
-- Router keyword changes - "doc page" and "document" already route to `references/mcp-tools.md`
+- Router keywords for the divider gap - "doc page" and "document" already route to `references/mcp-tools.md`. The readiness and live-Chrome phrases are a separate need and are in scope above
 - The Product Owner vendored copy - its own packet pulls this change
 
 ### Files to Change
@@ -100,6 +101,9 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 | `.hermes/skills/` copies of the three modes | Modify | Regenerated copies |
 | `.skilled/skills/mcp-tooling/ROUTER.md`, `.skilled/skills/mcp-tooling/hub-router.json`, `.skilled/skills/mcp-tooling/graph-metadata.json`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, the compiled `mcp-tooling` manifest | Modify | Readiness and live-Chrome phrases in both routing stages, hub 1.9.7.0 |
 | `.skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/`, `.skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/`, `README.md` | Modify and Create | Six tool cards, MCP-M019 and MCP-M020, 14 Code Mode manuals in the root README |
+| `mcp-click-up` `references/mcp-tools.md`, `INSTALL-GUIDE.md`, `mcp-servers/clickup-mcp/README.md`, `manual-testing-playbook/mcp-documents/readiness-check.md`, `SKILL.md`, `changelog/v1.2.16.0.md` | Modify and Create | Chrome verification note, MCP-write wording, approval timing, readiness scenario setup, mode 1.2.16.0 |
+| `mcp-chrome-devtools` `mcp-servers/chrome-devtools-mcp/README.md`, `feature-catalog/feature-catalog.md`, `feature-catalog/mcp-parallel-instances/code-mode-invocation.md`, `SKILL.md`, `changelog/v1.0.23.0.md` | Modify and Create | All three manuals named, mode 1.0.23.0 |
+| `mcp-tooling` `changelog/` (18 entries), `SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json`, `changelog/v1.9.8.0.md`, the compiled manifest and `skill-graph.json` | Modify and Create | Spec lines with paths only, hub 1.9.8.0 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,7 +116,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | `references/mcp-tools.md` explains the gap, the plain-text check and the editor fix | `rg -n 'Divider spacing on pages the server writes' references/mcp-tools.md` prints one heading line |
-| REQ-002 | `SKILL.md` section 0 warns before any doc page write | `rg -n 'Doc page dividers' SKILL.md` prints one line |
+| REQ-002 | `SKILL.md` section 1 warns before any doc page write | `rg -n 'After every doc page write' SKILL.md` prints one line |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -124,6 +128,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 | REQ-007 | The gap pass runs in a browser already logged in to ClickUp without changing the user's view | Both section 8 programs, run as written on a gapped scratch page, report `login: false`, `gapsLeft: 0` and `textUnchanged: true`, and the user's active tabs are the same before and after an Aside run |
 | REQ-008 | A missing ClickUp login is found and fixed with the user before the first write | The readiness program reports `not-connected`, `login`, `none` and the logged-in states correctly, and each has a written question, recheck and stop rule |
 | REQ-009 | The browser programs close only the tab they opened, and every doc this work touched agrees with the live server | The readiness program run as written closes its own Chrome page by ID and its Aside tab, the readiness and live-Chrome probes route to their modes, the catalog and inventory count 67 tools, and the review's literal findings no longer match |
+| REQ-010 | Each doc says only what its evidence shows, and the four skills agree with each other and with this packet | The Chrome gap pass note names the version that ran live, no Chrome doc counts two manuals, every changelog in the four skills passes `check_changelog_shape.py`, and `validate.sh --strict` on this packet prints `RESULT: PASSED` |
 | REQ-005 | Both hubs and the mode meet the sk-create-skill package contract | `validate_skill_package.py` passes all three legs on `mcp-tooling` and `sk-doc`, and `package_skill.py --check --strict` passes on both hubs and on `mcp-click-up` |
 <!-- /ANCHOR:requirements -->
 

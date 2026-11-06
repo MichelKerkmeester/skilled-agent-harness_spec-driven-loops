@@ -1,7 +1,7 @@
 ---
 title: "MCP-M019 -- First-Use Readiness Check"
 description: "This scenario validates First-Use Readiness Check for `MCP-M019`. Objective: Verify the readiness check finds a missing ClickUp approval or browser login, asks for it, rechecks and only then writes."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # MCP-M019 -- First-Use Readiness Check
@@ -33,18 +33,18 @@ A first-time user has to approve the ClickUp MCP once, and a doc page push also 
 
 ### Recommended Orchestration Process
 
-PRE: MCP configured. A scratch document DOC_ID. Aside or Chrome open with ClickUp logged in.
+PRE: MCP configured. A scratch document DOC_ID. Aside or Chrome open with ClickUp logged in. Rename `~/.mcp-auth` before step 1, because mcp-remote reconnects from a stored token and opens no approval tab. The approval in step 3 saves a new token.
 1. Code Mode: `deregister_manual` for `clickup_official`, so the MCP reads as not connected
 2. Send the prompt and confirm the agent runs the readiness program before any write
 3. Pick **Ready** and approve the ClickUp tab within about a minute while `register_manual` waits
 4. Confirm the recheck reads `mcp: "ok"` and a browser value, then that the page is created
-5. Repeat once with **Skip the gap removal** and confirm the report names the gaps left
+5. Repeat once with Aside and Chrome closed, pick **Skip the gap removal** and confirm the report names the gaps left
 
 Each Code Mode step runs inside an async function passed to `mcp__code_mode__call_tool_chain`, with the result printed through `console.log`.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MCP-M019 | First-Use Readiness Check | Verify the readiness check finds a missing ClickUp approval or browser login, asks for it, rechecks and only then writes | `Add a page named 'Readiness test' to document DOC_ID.` | 1. Code Mode: `deregister_manual` for `clickup_official`, so the MCP reads as not connected 2. Send the prompt and confirm the agent runs the readiness program before any write 3. Pick **Ready** and approve the ClickUp tab within about a minute while `register_manual` waits 4. Confirm the recheck reads `mcp: "ok"` and a browser value, then that the page is created 5. Repeat once with **Skip the gap removal** and confirm the report names the gaps left | Before any write the agent runs the readiness program from `references/mcp-tools.md` section 3 and prints `mcp` and `browser`. With the manual deregistered it reports `mcp: "not-connected"` and asks the Ready or Skip question. After approval it rechecks and reads `mcp: "ok"`. | Code Mode logs plus the questions the agent asked | PASS if no write happens before the check reads ready and every skip is named in the report; FAIL if a write runs first, the agent asks in free prose where a question tool exists, or it rechecks more than twice | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
+| MCP-M019 | First-Use Readiness Check | Verify the readiness check finds a missing ClickUp approval or browser login, asks for it, rechecks and only then writes | `Add a page named 'Readiness test' to document DOC_ID.` | 1. Code Mode: `deregister_manual` for `clickup_official`, so the MCP reads as not connected 2. Send the prompt and confirm the agent runs the readiness program before any write 3. Pick **Ready** and approve the ClickUp tab within about a minute while `register_manual` waits 4. Confirm the recheck reads `mcp: "ok"` and a browser value, then that the page is created 5. Repeat once with Aside and Chrome closed, pick **Skip the gap removal** and confirm the report names the gaps left | Before any write the agent runs the readiness program from `references/mcp-tools.md` section 3 and prints `mcp` and `browser`. With the manual deregistered it reports `mcp: "not-connected"` and asks the Ready or Skip question. After approval it rechecks and reads `mcp: "ok"`. | Code Mode logs plus the questions the agent asked | PASS if no write happens before the check reads ready and every skip is named in the report; FAIL if a write runs first, the agent asks in free prose where a question tool exists, or it rechecks more than twice | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 

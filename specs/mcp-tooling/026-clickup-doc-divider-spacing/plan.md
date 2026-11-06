@@ -91,7 +91,7 @@ None beyond the repository's own validators.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert the commit that carries the five changed files. No other surface reads the new text.
+Revert the packet's commits, newest first. Product Owner vendors `mcp-click-up`, so pull it again after a revert.
 <!-- /ANCHOR:rollback -->
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up Installation Guide"
 description: "Installation and configuration for ClickUp task management through the cupt CLI and the ClickUp MCP path."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # mcp-click-up Installation Guide
@@ -142,7 +142,7 @@ cupt config --show                    # Review current config
 
 ## 4. MCP CONFIGURATION (OPTIONAL)
 
-The official server is launched over stdio by the `clickup_official` manual with `npx -y mcp-remote https://mcp.clickup.com/mcp`. The first launch opens a browser window for one OAuth approval. No API key is needed.
+The official server is launched over stdio by the `clickup_official` manual with `npx -y mcp-remote https://mcp.clickup.com/mcp`. The first launch opens a browser window for one OAuth approval. No API key is needed. The approval counts only while a registration waits for it, about a minute, so run the first-use readiness check in `references/mcp-tools.md` section 3, which tells the user first and then registers the manual.
 
 **Code Mode (`.utcp_config.json`, the path this skill uses):**
 
@@ -199,7 +199,7 @@ Run every check above end to end when an install misbehaves or when validating a
 | `AuthError: No credentials` | Not authenticated | `cupt auth` or `cupt config --api-token pk_xxx` |
 | `cupt status` shows 401 | Expired or revoked token | `cupt logout && cupt auth` |
 | `cupt list --team X` slow (>20s) | Client-side team filter | Add `--tag Y` to narrow the result set |
-| MCP: connection fails | Manual missing, stdio launch fails, or the OAuth approval has lapsed | Add/fix the `clickup_official` manual, verify `npx -y mcp-remote https://mcp.clickup.com/mcp`, approve OAuth again |
+| MCP: connection fails | Manual missing, stdio launch fails, or the OAuth approval has lapsed | Add/fix the `clickup_official` manual, verify `npx -y mcp-remote https://mcp.clickup.com/mcp`, then run the first-use readiness check in `references/mcp-tools.md` section 3, which has the user approve while the registration waits |
 | MCP: tool not found | Wrong tool name | Use `clickup_official.clickup_official_{tool_name}` (all lowercase, underscores) |
 | Python version error | Python < 3.8 | Install Python 3.8+ via Homebrew or python.org |
 

@@ -50,7 +50,8 @@
       ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md",
       ".skilled/skills/mcp-tooling/hub-router.json",
       ".skilled/skills/mcp-tooling/graph-metadata.json",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      "feature-catalog/feature-catalog.md"
     ],
     "entities": [
       {
@@ -200,7 +201,7 @@
     ],
     "causal_summary": "Every divider the hosted ClickUp MCP writes into a doc page gets an empty line under it, so a page built from markdown shows a double gap under each `  `",
     "created_at": "2026-11-05T17:14:27Z",
-    "last_save_at": "2026-11-06T14:24:34.342Z",
+    "last_save_at": "2026-11-06T15:18:44.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5aaf52bb1a50110dab746d9f675cf386f0cf2241593f1e2fada1d7eb1eaba1ea",
+    "source_fingerprint": "sha256:645c48f839217c17031e58cbee62efc9bbd51a9e1aef5522afdb72cf8cee7975",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9dd0dcce7f8efcb28c28956abcfb39e553674920e4adbf1ad85986dbfcdbfe58",
-      "plan.md": "0937b1c53a464907f86cf6480735760ae4440c90b916272afd35aa6a83b1d752",
-      "tasks.md": "c3f2ba577854f63ec1e2943a2fe0efe64ba72f17a1776cc7ef2a85105a290f0b",
-      "implementation-summary.md": "c598a2793f217c0cf5ae34a1d4b7a8d65e54194745d461e69e5a9a27081b83bb"
+      "spec.md": "68441494772e1b92b8f96e421870df4dd2218f47d32939de4c867d29a0774a2b",
+      "plan.md": "51a4791dd721b31c387888a0d960e8e5595b979bd3b866c978585467d49c0cb6",
+      "tasks.md": "eff215c5d660c29395d9d5c875ed958e5ea3c21b3e52f698a9c9664e135cc97b",
+      "implementation-summary.md": "2b431c4b4c6c6fd5713837dabc06effa113bc4599a78b13df11727d17d4ac803"
     },
     "last_active_at": null
   }
