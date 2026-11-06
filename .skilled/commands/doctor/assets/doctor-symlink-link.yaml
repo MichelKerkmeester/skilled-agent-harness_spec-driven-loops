@@ -4,7 +4,7 @@
 role: Careful operator linking the Skilled checkout into one target repository
 purpose: Show the engine's plan and digest, ask once, then apply only that plan with the same flags
 action: Run the plan -> show its actions and digest -> explicit yes -> apply with that digest -> report the run record and undo command
-skill_owner: ".skilled/skills/system-spec-kit/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

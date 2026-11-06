@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine",
+  "description": "Phase 2: overlay-engine",
+  "keywords": [
+    "phase",
+    "overlay-engine"
+  ],
+  "lastUpdated": "2026-11-06T08:54:35.658Z",
+  "specId": "002",
+  "folderSlug": "overlay-engine",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-11-26_09-54__phase-002-built-the-overlay-engine-ported-from.md"
+  ]
+}

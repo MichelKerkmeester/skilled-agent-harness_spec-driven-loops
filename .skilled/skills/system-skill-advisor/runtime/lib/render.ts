@@ -126,6 +126,8 @@ const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({
   'command-doctor-install': '/doctor:install',
   'command-doctor-mcp-debug': '/doctor:mcp debug',
   'command-doctor-mcp-install': '/doctor:mcp install',
+  'command-doctor-overlay-apply': '/doctor:overlay apply',
+  'command-doctor-overlay-status': '/doctor:overlay status',
   'command-doctor-runtime-mirrors': '/doctor:runtime-mirrors',
   'command-doctor-setup': '/doctor:setup',
   'command-doctor-sk-code-quality': '/doctor:sk-code quality',

@@ -1,0 +1,272 @@
+# /doctor:overlay Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:overlay <target>`. It owns every line the operator reads, from the argument failure to the next-step text. The command router owns target resolution and asset loading. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+Every argument failure happens before any workflow YAML loads. It prints the wording below with the bracketed parts filled in, then ends with the status line. Nothing is read and nothing is changed.
+
+| Situation | Wording |
+|-----------|---------|
+| The first token is not a target | `Unknown target: [target]` then `/doctor:overlay runs status. Try: /doctor:overlay menu` then `STATUS=FAIL ERROR="unknown_target"` |
+| A flag no target accepts | `Unknown argument: [argument]` then one line per target naming the flags it accepts, in the order of the route manifest display below, then `STATUS=FAIL ERROR="unknown_argument"` |
+| A flag another target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:overlay [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
+| A value flag given without its value, such as `--root` or `--capture` at the end of the line | `Missing value: [argument] needs [a directory for --root, the destination path a status line named for --capture]` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="missing_argument"` |
+| A target bound with a second positional, such as `status foo` | `Only one target may be bound.` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="too_many_arguments"` |
+| The engine prints its usage block and exits 2 | `USAGE: [the engine's first usage line]` then the rest of the block. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
+
+The flags each target accepts, for the unknown-argument wording:
+
+| Target | Accepts |
+|--------|---------|
+| `status` | `--json` and `--root <dir>` |
+| `apply` | `--root <dir>` and `--capture <path>` |
+
+The accepted invocation for each target, for the `Try:` lines:
+
+| Target | Invocation |
+|--------|------------|
+| `status` | `/doctor:overlay status [--json] [--root <dir>]` |
+| `apply` | `/doctor:overlay apply [--root <dir>] [--capture <path>]` |
+
+## 2. Startup Presentation
+
+This command is always interactive and has no `:auto` mode. With no target, `status` runs because it only reads, so a bare invocation needs no answer. The menu below appears for any menu word in the router's argument table. Ask it once, then wait.
+
+```text
+What do you want to do?
+
+1) status
+2) apply
+X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result | Meaning |
+|--------|--------|---------|
+| `1` | target = `status` | Report every overlay destination that is not in sync, and change nothing |
+| `2` | target = `apply` | Show the status report as the plan, then apply the overlays only on yes |
+| `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
+
+Valid targets: status, apply
+
+### Route Manifest Display
+
+Render this table for any menu word. Values mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `status` | `doctor-overlay-status.yaml` | read-only | Name each overlay destination that is not in sync, with the engine's fix for it |
+| `apply` | `doctor-overlay-apply.yaml` | mutates | Put the overlays back into the vendored tree, or capture one live edit, after one yes |
+
+## 3. Status Report
+
+The engine prints one line per destination that is not in sync. Each line names the state and the destination. It then names the overlay source and the fix the engine suggests. Quote the lines rather than paraphrasing them.
+
+```text
+Overlay status: [the root the engine read]
+
+[state] [destination]  ([overlay: <folder>/<source> | layout link | remove-root row: <id>])  fix: [the engine's fix]
+...
+in-sync=[n] overlay-edited=[n] live-edited=[n] both-changed=[n] upstream-moved=[n]
+MISS     [one line per check that failed, when any did]
+checked=[n] ok=[n] miss=[n]
+RESULT: [PASSED|FAILED]
+```
+
+What each state means, and who acts on it:
+
+| State | Meaning | Fix |
+|-------|---------|-----|
+| `in-sync` | The destination holds what its overlay would write | None, and the engine prints no line for it |
+| `overlay-edited` | The overlay source changed, or a layout link is missing, so the destination is behind | `/doctor:overlay apply` |
+| `live-edited` | Someone edited the destination itself, and the overlay source does not have that edit yet | `/doctor:overlay apply --capture <path>` |
+| `both-changed` | The overlay source and the destination both changed since the last apply | A person resolves the two, then reruns `/doctor:overlay status` |
+| `upstream-moved` | A re-pin brought in an upstream change to a file an overlay owns | A person resolves the overlay against the new upstream, then reruns `/doctor:overlay status` |
+
+The `fix:` text the engine prints names the engine command itself. Show it as printed, and name the matching `/doctor:overlay` form from the table beside it.
+
+With `--json`, print the engine's JSON and nothing around it. The JSON carries the state counts and one entry per destination not in sync, beside the full check.
+
+### Status Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: status
+Status: [OK|FINDINGS|ERROR]
+Mutation class: read-only
+Scope: [the root the engine read]
+Evidence: [the engine's state counts line] / [the engine's checked line]
+Recommendation: [the fix for each line not in sync, or none]
+STATUS=[status]
+```
+
+Statuses this route prints, each on its own line so a workflow never has to compose one:
+
+```text
+STATUS=OK
+STATUS=FINDINGS
+STATUS=ERROR ERROR="[message]"
+```
+
+## 4. Apply Plan and Approval
+
+### Setup
+
+Render this compact panel after target resolution and before the plan, when the target or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: apply
+Workflow: .skilled/commands/doctor/assets/doctor-overlay-apply.yaml
+Mutation class: mutates
+Execution mode: INTERACTIVE
+Root: [the vendored tree the run reads and writes]
+Capture: [the --capture path, or none]
+Presentation: .skilled/commands/doctor/assets/doctor-overlay-presentation.txt
+Next: run the status report, which writes nothing
+```
+
+### The Plan The Operator Approves
+
+The engine has no plan mode, so the plan is the status report the same run just printed. Every `overlay-edited` line is a destination the apply rewrites or a layout link it restores. After those writes, the manifest's regenerate steps rebuild what they own and its verify steps check the result.
+
+```text
+OVERLAY APPLY PLAN
+Root: [the vendored tree]
+Overlay folder: [the folder the engine reads, from .skilled-overlays.json or the default skilled-overlays/]
+Will apply: [one line per overlay-edited line the report printed, in its order]
+Checks that failed: [one line per MISS line, or none]
+Then: the manifest's regenerate steps run, then its verify steps
+Lock: the engine holds [overlay folder]/.build-lock for the whole run
+
+Apply these overlays now? [yes/no]
+```
+
+The report on screen is the report the question covers. The engine classifies every destination again under its own lock before the first write. A destination that became a conflict since the report makes the engine refuse, and in that case it writes nothing.
+
+### When The Run Asks Nothing
+
+| Report | What the run shows | Status |
+|--------|--------------------|--------|
+| `RESULT: PASSED` | The unchanged result. Nothing is out of sync, so there is nothing to apply | `STATUS=OK` |
+| Any `live-edited` line | Each such line with its capture command. A plain apply refuses while one is there, so capture each one first | `STATUS=FAIL ERROR="live_edit_first"` |
+| Any `both-changed` or `upstream-moved` line | Each such line with the engine's fix. A person resolves it, and the engine writes nothing until then | `STATUS=FAIL ERROR="needs_resolution"` |
+| No line at all, but `RESULT: FAILED` | Each `MISS` line. No destination is behind, so an apply has nothing to write | `STATUS=FAIL ERROR="check_failed"` |
+
+### The Apply Question
+
+`Apply these overlays now? [yes/no]` covers the whole write: every line under `Will apply:` plus the regenerate and verify steps. Any answer other than yes counts as no. Print the cancelled result and write nothing.
+
+## 5. Capture Plan and Approval
+
+With `--capture <path>`, the plan is the one report line whose destination is that path.
+
+```text
+OVERLAY CAPTURE PLAN
+Root: [the vendored tree]
+Destination: [the path]
+Report line: [the live-edited line the status report printed for it]
+Will write: the overlay source that line names, and the engine's record of what it last applied
+
+Capture this live edit now? [yes/no]
+```
+
+| Report line for the path | What the run shows | Status |
+|--------------------------|--------------------|--------|
+| `live-edited` | The capture plan and the capture question | asks |
+| No line names the path | `Nothing to capture: [path] has no line in the status report.` The path is either in sync or not an overlay destination, and nothing is written | `STATUS=OK` |
+| Any other state | The line with the engine's fix. Capture moves only a live edit | `STATUS=FAIL ERROR="not_live_edited"` |
+
+`Capture this live edit now? [yes/no]` covers the one overlay source and the engine's record. Any answer other than yes counts as no. Print the cancelled result and write nothing.
+
+## 6. Result Templates
+
+### Applied
+
+```text
+OVERLAYS APPLIED
+Root: [the vendored tree]
+Engine: [each line the apply printed, such as its linked lines and its changed count]
+Re-read: [the status report's RESULT line and its state counts]
+STATUS=OK
+```
+
+### Captured
+
+```text
+LIVE EDIT CAPTURED
+Root: [the vendored tree]
+Engine: [the captured line the engine printed]
+Re-read: [the status report's RESULT line and its state counts]
+Next: /doctor:overlay apply, so the other overlays and the generated files catch up
+STATUS=OK
+```
+
+### Unchanged
+
+```text
+OVERLAYS UNCHANGED
+Root: [the vendored tree]
+Report: RESULT: PASSED
+Changed: none
+STATUS=OK
+```
+
+### Cancelled
+
+```text
+OVERLAY RUN CANCELLED
+Declined: [the apply | the capture of the path]
+Changed: none
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: [status|apply]
+Step: [the phase that stopped the run]
+Error: [the engine's exit code and its message lines]
+Changed: [what the engine reported writing before it stopped, or none]
+Next: [the repair, or the accepted invocation]
+STATUS=FAIL ERROR="[code]"
+```
+
+What each engine exit means for `Changed:`:
+
+| Engine result | Changed |
+|---------------|---------|
+| Exit 2: a refusal or a failed precondition, such as a held lock | none |
+| Exit 1 with `BLOCKED` lines or `changed=0` | none |
+| Exit 1 after `regeneration failed` | The overlays were written and the tree is only partly rebuilt. Name each failed step |
+| Exit 1 with `MISS     generated:` lines after the changed count | The overlays were written and recorded, and a generator check still fails. Name each check |
+
+## 7. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| `no overlay manifest at ...` | The tree has no overlay folder yet, or `.skilled-overlays.json` names another one. Check the setting file at the tree root, then rerun `/doctor:overlay status` |
+| `.skilled-overlays.json` is refused | The setting must name a relative folder inside the tree with forward slashes. Fix the file, then rerun `/doctor:overlay status` |
+| `refuse: the overlay lock is held` | Another run holds the lock. Wait for it to end, then remove the lock file the message names by hand. The engine never clears a held lock itself |
+| A `live-edited` line | Run `/doctor:overlay apply --capture <path>` for that path, then `/doctor:overlay apply` |
+| A `both-changed` line | Compare the overlay source with the destination and settle the content in the overlay source. Then rerun `/doctor:overlay status` |
+| An `upstream-moved` line | A re-pin changed a file an overlay owns. Rebase the overlay source onto the new upstream bytes, then rerun `/doctor:overlay status` |
+| `regeneration failed` after an apply | The overlays landed but a generator failed. Read the failed step's output, fix it, then rerun `/doctor:overlay apply` |
+| The apply question was answered no | Nothing was written. Rerun `/doctor:overlay apply` when the report is acceptable |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+## 8. Next Step
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| The status report shows `overlay-edited` lines | `/doctor:overlay apply` | Those destinations are behind their overlays, and the apply puts them back |
+| The status report shows a `live-edited` line | `/doctor:overlay apply --capture <path>` | The edit belongs in the overlay source, or the next re-pin loses it |
+| A capture just ran | `/doctor:overlay apply` | The captured source is now canonical, and the generated files catch up on apply |
+| An apply or a capture just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
+
+End interactive presentations with: `What would you like to do next?`

@@ -1,6 +1,6 @@
 ---
 title: "Doctor Commands: Manual Testing Playbook"
-description: "Operator-facing manual validation for the /doctor command surface: shared test environments, execution and evidence policy, review protocol and one index row per scenario file across the sixteen doctor routers."
+description: "Operator-facing manual validation for the /doctor command surface: shared test environments, execution and evidence policy, review protocol and one index row per scenario file across the seventeen doctor routers."
 version: 1.0.0.0
 ---
 
@@ -26,11 +26,11 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome, its
 
 ## 1. OVERVIEW
 
-This playbook covers every `/doctor` command. Sixteen routers under `.skilled/commands/doctor/` each own a command: the router binds a target from `.skilled/commands/doctor/_routes.yaml`, loads that target's workflow YAML and renders through the command's presentation contract. A scenario tests what an operator sees when a target runs against a real repository: the plan a plan-first route prints, the table a report route renders, the refusal an unknown flag gets, and the state a writing route leaves behind.
+This playbook covers every `/doctor` command. Seventeen routers under `.skilled/commands/doctor/` each own a command: the router binds a target from `.skilled/commands/doctor/_routes.yaml`, loads that target's workflow YAML and renders through the command's presentation contract. A scenario tests what an operator sees when a target runs against a real repository: the plan a plan-first route prints, the table a report route renders, the refusal an unknown flag gets, and the state a writing route leaves behind.
 
 The corpus holds 62 scenario files in the one category folder. Section 8 lists every file once, under the command it exercises. Four commands hold the widest sets: `/doctor:update` because each verb is its own risky operation, `/doctor:git` because it switches gates and edits rules, `/doctor:skill-advisor` because each audit reads a different graph fact, and `/doctor:agents-md` because two of its rows need a live session on another runtime.
 
-Coverage note: every router has at least one scenario. The `/doctor:sk-skill` rows and the `/doctor:agents-md` check and embed rows are the newest additions, and each names its own precondition in its file. Scenario counts are derived from the folder at validation time, so this document is not the census.
+Coverage note: every router except `/doctor:overlay` has at least one scenario here. Its first scenario lives in the `system-skilled-doctor` playbook, as noted in its section below. The `/doctor:sk-skill` rows and the `/doctor:agents-md` check and embed rows are the newest additions, and each names its own precondition in its file. Scenario counts are derived from the folder at validation time, so this document is not the census.
 
 ### Realistic Test Model
 
@@ -310,7 +310,15 @@ Installs or debugs Code Mode, its UTCP configuration and runtime registration. T
 | DOC-378 | Doctor mcp target menu | [DOC-378](doctor-commands/doctor-mcp-target-menu.md) |
 | DOC-380 | Doctor mcp unknown flag | [DOC-380](doctor-commands/doctor-mcp-unknown-flag.md) |
 
-### 8.9 `/doctor:runtime-mirrors`
+### 8.9 `/doctor:overlay`
+
+Checks whether a vendored Skilled tree still carries its overlays, and puts them back after one yes. No `DOC` scenario covers it yet. The `system-skilled-doctor` playbook holds its first scenario, `SKD-003`, which runs `status` on a tree with no overlays and confirms nothing is written.
+
+| ID | Scenario | Scenario File |
+|---|---|---|
+| SKD-003 | Overlay status on a tree with no overlays names the missing manifest | [SKD-003](../skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md) |
+
+### 8.10 `/doctor:runtime-mirrors`
 
 Checks that the agent, command, prompt and hook mirrors in each runtime directory match `.skilled`. One row is a tree in sync and one is a single drifted mirror.
 
@@ -319,7 +327,7 @@ Checks that the agent, command, prompt and hook mirrors in each runtime director
 | DOC-352 | Doctor runtime mirrors in sync | [DOC-352](doctor-commands/doctor-runtime-mirrors-in-sync.md) |
 | DOC-353 | Doctor runtime mirrors drift | [DOC-353](doctor-commands/doctor-runtime-mirrors-drift.md) |
 
-### 8.10 `/doctor:setup`
+### 8.11 `/doctor:setup`
 
 The umbrella: lists every doctor target and runs the read-only setup checks, naming the repair command for each failing leg.
 
@@ -327,7 +335,7 @@ The umbrella: lists every doctor target and runs the read-only setup checks, nam
 |---|---|---|
 | DOC-391 | Doctor setup umbrella run | [DOC-391](doctor-commands/doctor-setup-run.md) |
 
-### 8.11 `/doctor:sk-code`
+### 8.12 `/doctor:sk-code`
 
 Runs the sk-code setup battery, or checks and creates the repository quality config. One row runs the battery on a pre-v4 checkout, where no leg runs and provisioning fails with the v4-layout repair.
 
@@ -337,7 +345,7 @@ Runs the sk-code setup battery, or checks and creates the repository quality con
 | DOC-383 | Doctor sk-code on a pre-v4 checkout | [DOC-383](doctor-commands/doctor-sk-code-pre-v4-checkout.md) |
 | DOC-395 | Doctor sk-code quality | [DOC-395](doctor-commands/doctor-sk-code-quality.md) |
 
-### 8.12 `/doctor:sk-skill`
+### 8.13 `/doctor:sk-skill`
 
 Checks a skill against the Skilled format, or converts one to it, plan first. The check route reads and writes nothing; the convert route prints a plan and writes only after an explicit yes.
 
@@ -346,7 +354,7 @@ Checks a skill against the Skilled format, or converts one to it, plan first. Th
 | DOC-402 | Doctor sk-skill check | [DOC-402](doctor-commands/doctor-sk-skill-check.md) |
 | DOC-403 | Doctor sk-skill convert | [DOC-403](doctor-commands/doctor-sk-skill-convert.md) |
 
-### 8.13 `/doctor:skill-advisor`
+### 8.14 `/doctor:skill-advisor`
 
 Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, budgets and parent hubs. The seven routing probes also live here, because each runs the advisor hook and reads the doctor line it prints. DOC-367 now replays the target menu's cancel, invalid, help and numeric-answer path.
 
@@ -367,7 +375,7 @@ Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, 
 | DOC-390 | Doctor routing no hint on an unrelated prompt | [DOC-390](doctor-commands/doctor-routing-no-hint-unrelated.md) |
 | DOC-406 | Doctor routing hands a reworded problem to /doctor:helper | [DOC-406](doctor-commands/doctor-routing-helper-handoff.md) |
 
-### 8.14 `/doctor:speckit`
+### 8.15 `/doctor:speckit`
 
 Diagnoses spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes.
 
@@ -377,7 +385,7 @@ Diagnoses spec-kit retrieval: the generated trigger index, its lookup and the ri
 | DOC-350 | Doctor speckit stale index | [DOC-350](doctor-commands/doctor-speckit-stale-index.md) |
 | DOC-351 | Doctor speckit legacy target | [DOC-351](doctor-commands/doctor-speckit-legacy-target.md) |
 
-### 8.15 `/doctor:symlink`
+### 8.16 `/doctor:symlink`
 
 Checks, links or unlinks the Skilled checkout in a project repo, plan first. The row covers the plan and its digest, a merged folder that keeps the repo's own file, and the printed undo.
 
@@ -385,7 +393,7 @@ Checks, links or unlinks the Skilled checkout in a project repo, plan first. The
 |---|---|---|
 | DOC-398 | Doctor symlink | [DOC-398](doctor-commands/doctor-symlink.md) |
 
-### 8.16 `/doctor:update`
+### 8.17 `/doctor:update`
 
 Routes `check`, `align`, `apply`, `rollback`, `record-base` and `compat` for a spec-kit release. Seven rows run against the update fixture in section 7.2; one builds and resets that fixture. DOC-409 replays the declined and approved apply path and restores its scratch clone.
 
@@ -432,7 +440,7 @@ The script tests cover the engine contracts. A scenario covers what the operator
 
 ### Routers
 
-- Sixteen router sources, one per command, under `.skilled/commands/doctor/`.
+- Seventeen router sources, one per command, under `.skilled/commands/doctor/`.
 - Route manifest: `.skilled/commands/doctor/_routes.yaml`
 - Route assertion: `.skilled/commands/doctor/scripts/route-validate.sh`
 - Category notes and per-command ID lists: `doctor-commands/README.md`

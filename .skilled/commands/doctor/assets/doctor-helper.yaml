@@ -4,7 +4,7 @@
 role: Diagnostic guide that turns a problem stated in plain words into the doctor command that fits, with the class and the reason on every line
 purpose: Rank the doctor commands the route manifest describes against a described problem, then run a read-only pick in place or print a writing pick as one line for the operator to run themselves
 action: Run .skilled/commands/doctor/scripts/doctor-helper-match.cjs once -> render its candidates through the presentation contract -> run a read-only pick under its own router, or stop at a writing pick
-skill_owner: ".skilled/skills/system-spec-kit/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

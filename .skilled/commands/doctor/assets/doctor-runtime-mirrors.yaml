@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
 purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor, .devin, .pi and .hermes derive from .skilled, plus adapter-path resolution drift in the Claude, Codex, Cursor and Devin hook fallback chains
 action: Run every upstream-assets checker plus the hook-adapter fallback health checks -> aggregate their verdicts -> report per-surface drift
-skill_owner: ".skilled/skills/system-spec-kit/runtime/cli/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

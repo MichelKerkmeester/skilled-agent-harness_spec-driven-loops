@@ -1,0 +1,66 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: OVERLAY STATUS (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting whether a vendored Skilled tree still carries its overlays, without changing a byte of it
+purpose: Name every overlay destination that is not in sync, with the engine's own fix for it, by running the overlay engine's status mode once
+action: Run .skilled/commands/doctor/scripts/overlay-engine.cjs status once -> render its lines through the presentation contract
+skill_owner: ".skilled/skills/system-skilled-doctor/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This route prints and never writes. It runs the engine's status mode only, never apply or apply --capture, and status takes no lock. The verify steps status starts are the read-only check modes the overlay manifest names. A repair is an explicit action the operator runs through /doctor:overlay apply."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  overlay_engine: ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+  overlay_setting: ".skilled-overlays.json at the tree root, naming the overlay folder; skilled-overlays/ when the file is absent"
+  overlay_manifest: "<overlay folder>/overlay-manifest.json, read by the engine and never by this workflow"
+  presentation: ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target: "status is the route's default target: /doctor:overlay and /doctor:overlay status both run it. Any other positional fails before this YAML loads."
+  root: "The vendored tree to read when --root <dir> is passed (default none, so the engine reads the tree it is vendored in)."
+  json_output: "true when --json is passed: the route prints the engine's JSON and nothing else (default false)."
+  execution_mode: "INTERACTIVE"
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Run node .skilled/commands/doctor/scripts/overlay-engine.cjs status once, adding --root \"{root}\" only when the operator passed one, and --json when the operator asked for JSON. Pass no other flag: the engine's status mode accepts these two and nothing else."
+    - "The engine prints one line per destination that is not in sync, in the form <state> <key>  (<origin>)  fix: <fix>. The state is overlay-edited, live-edited, both-changed or upstream-moved, and an in-sync destination prints no line."
+    - "After those lines the engine prints its state counts, one MISS line per failed check, its checked line and RESULT: PASSED or RESULT: FAILED. Keep every line as printed, because the counts and the fix text are the engine's answer and not this workflow's."
+    - "Render the output through .skilled/commands/doctor/assets/doctor-overlay-presentation.txt: the lines as printed, the meaning and fix of each state from the state table, then the DOCTOR DIAGNOSTIC RESULT summary. Name the /doctor:overlay form beside each fix the engine printed."
+    - "With --json, print the engine's JSON exactly and nothing around it."
+    - "Map the engine's exit to the route status: exit 0 is in sync, exit 1 is a finding, and exit 2 is a precondition that failed, such as a missing overlay manifest or an invalid .skilled-overlays.json."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when the engine exits 0 and prints RESULT: PASSED; show the counts and the checked line.
+  STATUS=FINDINGS when the engine exits 1; show each line not in sync first with its fix, then each MISS line, then the DOCTOR DIAGNOSTIC RESULT summary.
+  STATUS=ERROR when the engine exits 2 or crashes; quote its message and name the accepted invocation (/doctor:overlay status [--json] [--root <dir>]).

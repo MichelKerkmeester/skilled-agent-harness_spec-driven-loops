@@ -24,7 +24,7 @@ Commands are organized into six groups:
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 3 | Deep research, review and AI council loops |
-| **doctor** | `commands/doctor/` | 16 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, root instruction-file check and embed, and environment-switch diagnostics |
+| **doctor** | `commands/doctor/` | 17 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, vendored-tree overlay status and apply, root instruction-file check and embed, and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
@@ -126,7 +126,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Sixteen command files cover the diagnostic surface, one per owner, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Seventeen command files cover the diagnostic surface, one per owner, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -147,6 +147,7 @@ Sixteen command files cover the diagnostic surface, one per owner, with one entr
 | Agents Instruction File | `/doctor:agents-md [check\|embed\|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>]` | Report what the root `AGENTS.md` holds against the shipped template row by row, embed the template plus the repository block after a plan and its digest, and restore one recorded run |
 | Symlink | `/doctor:symlink [check\|link\|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--ignore <where>] [--plan-digest <digest>] [--run <dir>] [--yes] [--dry-run]` | Report, create or remove the links that put `.skilled` and the chosen runtime folders into another project repo, as a whole-folder link or a real folder holding one link per entry, and write only against the plan digest the operator approved |
 | Install Guide | `/doctor:install [--root <dir>] [--runtimes <list>] [--json]` | Check the two builds, ask for the target repo, runtimes, link shape and instruction choice in one prompt, run the symlink check and print the ordered setup commands, naming each writing command without ever running one |
+| Overlay | `/doctor:overlay [status\|apply] [--json] [--root <dir>] [--capture <path>]` | Report which overlay destinations in a vendored Skilled tree are out of sync and why, then put the overlays back or capture one live edit into its overlay source after one yes |
 
 ### Deep Commands
 

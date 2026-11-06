@@ -4,7 +4,7 @@
 role: Careful operator undoing one recorded symlink run in its target repository
 purpose: Show the unlink plan from the run record, ask once and remove or restore only the recorded paths after that yes
 action: Read the run record -> run the unlink dry-run plan -> show the plan -> explicit yes -> run unlink with --yes -> report
-skill_owner: ".skilled/skills/system-spec-kit/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

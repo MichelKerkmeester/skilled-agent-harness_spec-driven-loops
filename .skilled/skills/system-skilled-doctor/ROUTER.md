@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.1.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -22,7 +22,7 @@ link that points here. This file holds the declaration a reader parses to decide
 
 ### Purpose
 
-Requests reach this skill when they are about Skilled inside a project: installing it, linking a checkout, updating to a newer release, checking the runtime mirrors, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration, or finding which doctor command fits a problem. Every one of them is answered by the owned-command table in the root `README.md`, which names the one doctor command to run.
+Requests reach this skill when they are about Skilled inside a project: installing it, linking a checkout, updating to a newer release, checking the runtime mirrors, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration, or finding which doctor command fits a problem. Every one of them is answered by the owned-command table in the root `README.md`, which names the one doctor command to run. A request about a vendored copy's own changes, its overlays or a re-pin also loads `references/overlays.md`, which says what each sync state means and what resolves it.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -44,6 +44,7 @@ Otherwise keep one. A router may also route by pseudocode alone with no map at a
 its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
 
 - **`DOCTOR_COMMANDS`** fires on `put skilled into my project`, `install skilled`, `link the skilled checkout`, `update skilled`, `runtime mirrors`, `environment switches`, `doctor setup`, `which doctor command`, `agents md sections`, `trigger index fresh` and `code mode install` at weight 4. It loads `README.md`, the owned-command table, which is also the default resource.
+- **`OVERLAYS`** fires on `vendored skilled`, `skilled overlays`, `overlay status`, `apply the overlays`, `capture a live edit`, `re-pin`, `repin` and `overlay-edited` at weight 4. It loads `references/overlays.md`, the sync states and what resolves each one.
 
 ---
 
@@ -65,10 +66,12 @@ DEFAULT_RESOURCE = "README.md"
 
 INTENT_SIGNALS = {
     "DOCTOR_COMMANDS": {"weight": 4, "keywords": ["put skilled into my project", "install skilled", "link the skilled checkout", "update skilled", "runtime mirrors", "environment switches", "doctor setup", "which doctor command", "agents md sections", "trigger index fresh", "code mode install"]},
+    "OVERLAYS": {"weight": 4, "keywords": ["vendored skilled", "skilled overlays", "overlay status", "apply the overlays", "capture a live edit", "re-pin", "repin", "overlay-edited"]},
 }
 
 RESOURCE_MAP = {
     "DOCTOR_COMMANDS": ["README.md"],
+    "OVERLAYS": ["references/overlays.md"],
 }
 
 # Every key above must appear in both maps, and every path must resolve inside this folder.

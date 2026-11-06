@@ -4,7 +4,7 @@
 role: Diagnostic guide that checks install prerequisites, inspects a target repository and prints the writing commands for the operator
 purpose: Check both required builds -> gather the target and install choices -> inspect the target repo once -> print the ordered install checklist and caveat
 action: Check the builds -> ask for missing target details -> run the symlink engine check once -> render the result through the presentation contract
-skill_owner: ".skilled/skills/system-spec-kit/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

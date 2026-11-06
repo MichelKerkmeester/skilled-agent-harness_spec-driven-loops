@@ -4,7 +4,7 @@
 role: Careful operator putting one repository back exactly as the recorded run found it
 purpose: Show the restore plan the engine derives from one run's own record and its copies, ask once, and put the recorded paths back only after that yes
 action: Read the record -> run the engine's restore dry run -> show the plan -> explicit yes -> run the restore with --yes -> re-read the restored repository through the check engine -> report
-skill_owner: ".skilled/skills/sk-doc/sk-create-repo-rule/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
 # system-skilled-doctor
@@ -20,14 +20,14 @@ version: 1.0.1.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Installing, linking, updating and checking Skilled in a project repository |
+| **Use it for** | Installing, linking, updating and checking Skilled in a project repository, including a vendored copy |
 | **Invoke with** | The doctor commands below, or a request such as "put Skilled into my project repo" |
 | **Works on** | A project repository and the Skilled checkout or release it uses |
 | **Produces** | Check reports and plans that change nothing until you approve them |
 
 ### What It Does
 
-This skill owns ten doctor commands about supporting and integrating Skilled into a project. Each command keeps its own workflow in `.skilled/commands/doctor/`, so the skill's job is to say which command fits and to run it. When you are not sure which one, `/doctor:helper` takes the problem in your words and ranks the commands that fit.
+This skill owns eleven doctor commands about supporting and integrating Skilled into a project. Each command keeps its own workflow in `.skilled/commands/doctor/`, so the skill's job is to say which command fits and to run it. When you are not sure which one, `/doctor:helper` takes the problem in your words and ranks the commands that fit.
 
 Doctor commands about a single skill's own checks stay with that skill, such as `/doctor:git` with `sk-git`.
 
@@ -45,6 +45,7 @@ Doctor commands about a single skill's own checks stay with that skill, such as 
 | `/doctor:helper` | Takes a described problem and ranks the doctor commands that fit, with why, ready to run |
 | `/doctor:speckit` | Checks that the trigger index is fresh, its lookup runs and the ripgrep recipes return results |
 | `/doctor:mcp` | Installs or debugs Code Mode, its UTCP configuration and its runtime registration |
+| `/doctor:overlay` | Keeps a vendored Skilled copy's own changes: `status` reports every overlay that is out of sync and the fix, and `apply` puts the overlays back after showing what will change |
 
 ---
 
@@ -95,7 +96,7 @@ The scripts some commands call stay with the skill that owns them. `/doctor:spec
 
 ### When To Use This Skill
 
-Reach for it when you add Skilled to a project, link a local checkout into another repository, move a project to a newer release or embed the shipped `AGENTS.md` sections. It also fits when something about Skilled in a project looks wrong and you want the check that names the repair.
+Reach for it when you add Skilled to a project, link a local checkout into another repository, move a project to a newer release, embed the shipped `AGENTS.md` sections or keep a vendored copy's own changes across a new copy. It also fits when something about Skilled in a project looks wrong and you want the check that names the repair.
 
 A check of one skill's own surface belongs to that skill. `/doctor:git` stays with `sk-git`, `/doctor:sk-code` and `/doctor:ci` with `sk-code`, `/doctor:sk-skill` with `sk-doc`, `/doctor:skill-advisor` with `system-skill-advisor` and `/doctor:deep-loop` with `system-deep-loop`.
 
@@ -135,3 +136,4 @@ A pass prints `fail 0` in the summary. Then confirm the advisor credits each own
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+| [`references/overlays.md`](./references/overlays.md) | The overlay sync states, the overlay folder setting and what the engine refuses |

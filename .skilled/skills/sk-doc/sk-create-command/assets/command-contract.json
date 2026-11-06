@@ -5,7 +5,7 @@
     "purpose": "Single machine-readable source of behavioral truth for the six router-shaped OpenCode command families. Templates, validators, benchmark adapters, and generated routers consume this instead of restating it as prose.",
     "confirm_auto_relationship": "The observed 'confirm == auto + checkpoints' relationship holds only for light single-pass mode-pair families (verified on design; inferred for create and speckit:plan). For autonomy-heavy commands (speckit:complete, all deep:*) the :auto workflow carries orchestration machinery the :confirm variant lacks, so the two are divergent siblings and must be modeled independently rather than derived. Downstream checks must not assume the invariant universally.",
     "granularity": "One entry per family; router_path is a directory glob for families whose per-operation routers share one uniform pattern (create, design, deep) and an explicit list for families whose routers differ (speckit, memory, doctor).",
-    "coverage": "Covers the six router-shaped families only. The prompt group, the root-level utility /goal-opencode and two plain workflow commands inside routed families (/speckit:handoff and /doctor:setup, which take no arguments and no modes) ship no family router and carry no entry here; a consumer that walks this file is walking 37 of the 41 shipped commands, not all of them.",
+    "coverage": "Covers the six router-shaped families only. The prompt group, the root-level utility /goal-opencode and two plain workflow commands inside routed families (/speckit:handoff and /doctor:setup, which take no arguments and no modes) ship no family router and carry no entry here; a consumer that walks this file is walking 38 of the 42 shipped commands, not all of them.",
     "asset_naming": "Owned assets are hyphen-joined: <family>-<command>-<kind> for create, speckit, doctor and deep. A family whose commands already read unambiguously drops the family prefix and names assets <command>-<kind> — the memory family (save.md/search.md, now hosted under the speckit command folder as /speckit:save and /speckit:search; save-presentation.txt) and design (extract-auto.yaml) both do. The kind suffixes are -presentation.txt, -auto.yaml and -confirm.yaml. Underscores are not used; the shipped prompt group is the tree's lone underscore holdout and is out of scope here.",
     "path_templates": "A per-command asset path carries exactly one <placeholder>, which expands to the router's command name. generate-command-routers.cjs special-cases the memory family key (the internal contract identifier for the save/search direct-dispatch commands) when the placeholder opens the basename; a prefix-dropping family it does not special-case must therefore spell its assets literally rather than as a template, which is why design carries concrete filenames."
   },
@@ -209,15 +209,16 @@
         ".skilled/commands/doctor/agents-md.md",
         ".skilled/commands/doctor/symlink.md",
         ".skilled/commands/doctor/install.md",
+        ".skilled/commands/doctor/overlay.md",
         ".skilled/commands/doctor/setup.md"
       ],
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env); [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run] (sk-skill); [<problem in plain words>] [--json] | list | ? (helper); [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes] (agents-md); [check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags] (symlink); [--root <dir>] [--runtimes <list>] [--json] | list | ? (install)"
+        "argument_hint": "per-command: [speckit-retrieval] | list | ? (speckit); <tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ? (skill-advisor); [--scope=research|review|council|both|all] (deep-loop); no arguments (runtime-mirrors); [setup] [--prompt=<text>] (sk-code); <hooks|standards> [--dry-run] | list | ? (git); [report|scaffold|toggle] [flags] | list | ? (ci); <install [--runtime <name>]|debug [--fix]> (mcp); [check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env); [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run] (sk-skill); [<problem in plain words>] [--json] | list | ? (helper); [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes] (agents-md); [check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags] (symlink); [--root <dir>] [--runtimes <list>] [--json] | list | ? (install); [status|apply] [--json] [--root <dir>] [--capture <path>] | list | ? (overlay)"
       },
       "execution_targets": [
-        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, ci, sk-skill, helper, agents-md, symlink and install", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
+        { "selector": "<target> resolved via _routes.yaml for speckit, skill-advisor, deep-loop, runtime-mirrors, sk-code, git, ci, sk-skill, helper, agents-md, symlink, install and overlay", "target": ".skilled/commands/doctor/assets/<the route's yaml>, named per route in _routes.yaml" },
         { "selector": "install | debug", "target": ".skilled/commands/doctor/assets/doctor-mcp-<sub>.yaml" },
         { "selector": "check", "target": ".skilled/commands/doctor/assets/doctor-update-check.yaml" },
         { "selector": "align", "target": ".skilled/commands/doctor/assets/doctor-update-align.yaml" },
@@ -235,7 +236,9 @@
         { "selector": "check [--json] [--root <dir>] [--runtimes <list>] [--include <list>] [--link-instructions] (symlink)", "target": ".skilled/commands/doctor/assets/doctor-symlink-check.yaml" },
         { "selector": "link [--root <dir>] [--runtimes <list>] [--mode <shape>] [--include <list>] [--link-instructions] [--ignore <where>] [--dry-run] [--plan-digest <digest>] (symlink)", "target": ".skilled/commands/doctor/assets/doctor-symlink-link.yaml" },
         { "selector": "unlink --run <dir> [--yes] [--dry-run] (symlink)", "target": ".skilled/commands/doctor/assets/doctor-symlink-unlink.yaml" },
-        { "selector": "[--root <dir>] [--runtimes <list>] [--json] | list | ? (install)", "target": ".skilled/commands/doctor/assets/doctor-install.yaml" }
+        { "selector": "[--root <dir>] [--runtimes <list>] [--json] | list | ? (install)", "target": ".skilled/commands/doctor/assets/doctor-install.yaml" },
+        { "selector": "status [--json] [--root <dir>] (overlay)", "target": ".skilled/commands/doctor/assets/doctor-overlay-status.yaml" },
+        { "selector": "apply [--root <dir>] [--capture <path>] (overlay)", "target": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml" }
       ],
       "mode_matrix": {
         "default_policy": "confirm-only",
@@ -274,6 +277,10 @@
         { "purpose": "script", "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs (check, plan, digest-confirmed apply and recorded unlink)" },
         { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-install.yaml" },
+        { "purpose": "presentation", "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-overlay-status.yaml" },
+        { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-overlay-apply.yaml" },
+        { "purpose": "script", "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs (read-only status, locked apply and capture)" },
         { "purpose": "other", "path": ".skilled/commands/doctor/assets/doctor-<target>.yaml (per-route target workflows, named by each route's yaml field)" },
         { "purpose": "script", "path": ".skilled/commands/doctor/scripts/route-validate.sh (validates _routes.yaml)" }
       ],
@@ -298,7 +305,9 @@
         "/doctor:symlink check is the read-only default target: it reports one status per framework entry in a target repository and changes nothing, so a bare /doctor:symlink runs it and never reaches a target that writes",
         "/doctor:symlink link prints every action, every refusal and the plan digest, and writes only after an explicit yes to that plan: the apply repeats the plan digest, refuses a digest that no longer matches and writes nothing in that case, never overwrites a real file or folder, and records the run before its first action",
         "/doctor:symlink unlink shows what one recorded run would remove or restore, asks once, and passes the engine's --yes only after that yes; a path changed since the apply is skipped and reported, and a no ends the run with STATUS=CANCELLED and nothing written",
-        "/doctor:install is read-only: it checks the two builds, runs the symlink engine's check once and prints the ordered setup commands with each one's mutation class, and it never runs a writing target or adds an argument the operator did not give"
+        "/doctor:install is read-only: it checks the two builds, runs the symlink engine's check once and prints the ordered setup commands with each one's mutation class, and it never runs a writing target or adds an argument the operator did not give",
+        "/doctor:overlay status is the read-only default target: it names every overlay destination that is not in sync with the engine's fix and changes nothing, so a bare /doctor:overlay runs it and never reaches a target that writes",
+        "/doctor:overlay apply shows the engine's status report as its plan, because the engine has no plan mode, stops before asking while a destination is live-edited, both-changed or upstream-moved, and runs the engine's apply or apply --capture <path> only after an explicit yes to that report; a no ends the run with STATUS=CANCELLED and nothing written"
       ],
       "presentation": { "owner": "presentation-asset", "exceptions": [] },
       "destructive_policy": {
@@ -309,11 +318,13 @@
         "agents-md embed writes only the six paths its engine allowlists, after one approval of a plan whose digest the apply repeats: AGENTS.md, a folded and removed CLAUDE.md and .codex/AGENTS.md, the generated .cursor/rules/repo-local.md, the .cursor/rules/skill-routing.md the pointer generator owns, and the missing shipped rows of REPO RULES.md, with every touched path copied to a backup under .skilled/output/doctor-agents-md/ first and the proof run against the bytes on disk",
         "agents-md restore puts back only the paths one run's manifest.json records, after one approval: a recorded file is copied back from its copy and a path that run created is removed, each recorded hash is checked before the first write, and the backup directory is kept",
         "symlink link creates framework links, merge folders and ignore lines inside one target repository after one approval of a plan whose digest the apply repeats, replaces or removes only broken links that point into the Skilled checkout, never overwrites a real file or folder, and records the run under the checkout's .skilled/output/doctor-symlink/",
-        "symlink unlink removes only the links, empty folders and ignore lines one run's manifest.json records, after one approval, and skips any path changed since that apply"]
+        "symlink unlink removes only the links, empty folders and ignore lines one run's manifest.json records, after one approval, and skips any path changed since that apply",
+        "overlay apply rewrites only the destinations and layout links the overlay manifest names, after one approval of the status report the run printed, under the engine's own lock: it writes nothing while a destination is live-edited, both-changed or upstream-moved, then runs the manifest's regenerate and verify steps and records what it applied in sync-state.json",
+        "overlay apply --capture <path> moves one live edit into the overlay source that path maps to, after one approval, and refuses a path that is not live-edited"]
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]", "/doctor:sk-skill [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]", "/doctor:helper [<problem in plain words>] [--json]", "/doctor:agents-md [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes]", "/doctor:symlink [check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags]", "/doctor:install [--root <dir>] [--runtimes <list>] [--json]"],
+      "invocation_aliases": ["/doctor:speckit", "/doctor:speckit list", "/doctor:skill-advisor <target>", "/doctor:skill-advisor list", "/doctor:deep-loop [--scope=<scope>]", "/doctor:runtime-mirrors", "/doctor:sk-code [setup] [--prompt=<text>]", "/doctor:git <hooks|standards|setup>", "/doctor:git list", "/doctor:ci [report|scaffold|toggle]", "/doctor:ci list", "/doctor:mcp <install|debug>", "/doctor:update [check|align|apply|rollback|record-base|compat] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]", "/doctor:sk-skill [check|convert] [<name-or-path>] [--json] [--into-hub <hub>] [--dry-run]", "/doctor:helper [<problem in plain words>] [--json]", "/doctor:agents-md [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes]", "/doctor:symlink [check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags]", "/doctor:install [--root <dir>] [--runtimes <list>] [--json]", "/doctor:overlay [status|apply] [--json] [--root <dir>] [--capture <path>]"],
       "workflow_schema_ref": null
     },
     "deep": {

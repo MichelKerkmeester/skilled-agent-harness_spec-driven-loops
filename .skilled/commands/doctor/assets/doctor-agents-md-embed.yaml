@@ -4,7 +4,7 @@
 role: Careful operator bringing one repository's root instruction file up to the shipped template without losing a line the repository wrote
 purpose: Compose in memory, print the plan with its digest, ask once, write only after that yes and only against the digest the plan printed, then prove on disk that nothing was dropped and hand back the engine's own undo block
 action: Read the engine and the target -> run the plan -> show the plan, the diff, the budget and the digest -> explicit yes -> apply with that digest -> re-read the written files through the check engine -> print the engine's undo block
-skill_owner: ".skilled/skills/sk-doc/sk-create-repo-rule/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

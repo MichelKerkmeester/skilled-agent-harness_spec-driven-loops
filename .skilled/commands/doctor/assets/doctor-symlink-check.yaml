@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting the link state of one target repository against the Skilled manifest
 purpose: Report the status of the core link, selected runtimes and extras by running the check engine once, then render its report through the presentation contract
 action: Run the check engine once -> render its report through the presentation contract
-skill_owner: ".skilled/skills/system-spec-kit/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

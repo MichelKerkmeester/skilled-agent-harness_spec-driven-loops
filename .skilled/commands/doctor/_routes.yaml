@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 # Source of truth for the routed doctor commands. Each route names the command
 # that owns it, so one manifest serves every router. The list below is every one of
-# the 16 router files in this folder, in no particular order:
+# the 17 router files in this folder, in no particular order:
 #   /doctor:speckit         .skilled/commands/doctor/speckit.md
 #   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
 #   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
@@ -20,6 +20,7 @@
 #   /doctor:mcp             .skilled/commands/doctor/mcp.md
 #   /doctor:symlink         .skilled/commands/doctor/symlink.md
 #   /doctor:install         .skilled/commands/doctor/install.md
+#   /doctor:overlay         .skilled/commands/doctor/overlay.md
 # A command that owns one route needs no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs
@@ -607,6 +608,42 @@ routes:
       - "guide me through installing skilled"
       - "skilled in my other repository"
       - "skilled in another repository"
+
+  - command: /doctor:overlay
+    target: status
+    default_target: true
+    yaml: doctor-overlay-status.yaml
+    setup_vars: [execution_mode, root, json_output]
+    allowed_flags: ["--json", "--root <dir>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; the engine classifies every overlay destination in the vendored tree, runs the overlay manifest's read-only verify checks and writes nothing)"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir> and --json only when the operator passed them'
+    trigger_phrases:
+      - "check my vendored skilled overlays"
+      - "re-pin my vendored Skilled"
+      - "are my skilled overlays in sync"
+      - "which overlay destinations are out of sync"
+      - "vendored skilled overlay status"
+
+  - command: /doctor:overlay
+    target: apply
+    yaml: doctor-overlay-apply.yaml
+    setup_vars: [execution_mode, root, capture_path]
+    allowed_flags: ["--root <dir>", "--capture <path>"]
+    mutating: mutates
+    gate3_location: "the overlay destinations and layout links the overlay manifest names inside the vendored tree, the outputs of the manifest's regenerate steps, and <overlay folder>/sync-state.json, all under the engine's own <overlay folder>/.build-lock; with --capture <path>, only the one overlay source that path maps to plus sync-state.json; the write runs only after the operator approved the status report this run printed"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # read-only: the report the run shows as its plan before the question, and the re-read after the write'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply  # applies every overlay under the engine lock, then regenerates and verifies; writes nothing while a destination is live-edited, both-changed or upstream-moved; run only after the apply yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs apply --capture <path>  # moves one live edit into its overlay source; run only after the capture yes'
+    trigger_phrases:
+      - "apply the skilled overlays"
+      - "put my overlays back into vendored skilled"
+      - "capture a live edit into its overlay"
+      - "reapply overlays after copying skilled"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

@@ -1,0 +1,2503 @@
+#!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Doctor Overlay Engine
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
+// Keeps a project's own divergences from a vendored Skilled tree ("overlays")
+// and puts them back after the tree is re-copied from upstream.
+//
+// WHY this exists: a vendored tree is replaced wholesale whenever a new upstream
+// release is copied in, and there is no update base that would carry local
+// edits forward. Every divergence therefore lives twice: once as a canonical
+// copy in the overlay folder, and once as the applied file in the tree. This
+// engine keeps the two equal, records the bytes it last applied to each
+// destination, and tells a live edit apart from an overlay edit.
+//
+// The two rules the whole design rests on:
+//   1. A vendor file is never overwritten when upstream has changed it. The
+//      engine stops and names the path instead, because guessing which hunks to
+//      keep is how a silent regression starts.
+//   2. Applying twice writes nothing the second time.
+//
+// Usage:
+//   node overlay-engine.cjs status [--root <tree>] [--json]
+//     Read-only. One line per destination not in sync, then the full check.
+//     Exit 0 when everything is in sync, 1 when anything is not, 2 on error.
+//   node overlay-engine.cjs apply [--root <tree>]
+//     Apply overlay edits, regenerate, verify. Exit 0, 1 on conflict, 2 on error.
+//   node overlay-engine.cjs apply --capture <path> [--root <tree>]
+//     Save a live edit back into its overlay source. Exit 0, 1 when the path is
+//     not live-edited, 2 on refusal or error.
+//   node overlay-engine.cjs --guard <path> [--root <tree>]
+//     Exit 0 when the path is not owned by an overlay, 1 when it is, 2 on error.
+//
+// --root defaults to the tree this script is vendored in.
+//
+// Standard library only: this must run on a bare checkout with no install step.
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
+const { spawnSync } = require('node:child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const DEFAULT_ROOT = path.resolve(__dirname, '..', '..', '..', '..');
+const SETTING_FILE = '.skilled-overlays.json';
+const DEFAULT_OVERLAY_FOLDER = 'skilled-overlays';
+const MANIFEST_FILE = 'overlay-manifest.json';
+const STATE_FILE = 'sync-state.json';
+const LOCK_FILE = '.build-lock';
+const STATE_SCHEMA_VERSION = 1;
+const STATUS_NAMES = ['in-sync', 'overlay-edited', 'live-edited', 'both-changed', 'upstream-moved'];
+const BLOCKING_STATES = new Set(['live-edited', 'both-changed', 'upstream-moved']);
+const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs';
+const EXIT_OK = 0;
+const EXIT_CONFLICT = 1;
+const EXIT_ERROR = 2;
+
+const USAGE = [
+  'usage: node overlay-engine.cjs status [--root <tree>] [--json]',
+  '       node overlay-engine.cjs apply [--capture <path>] [--root <tree>]',
+  '       node overlay-engine.cjs --guard <path> [--root <tree>]',
+].join('\n');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. FILE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Return the hexadecimal SHA-256 digest for a byte buffer.
+ * @param {Buffer} buffer Bytes to hash.
+ * @returns {string} The lowercase hexadecimal digest.
+ */
+function sha256(buffer) {
+  return crypto.createHash('sha256').update(buffer).digest('hex');
+}
+
+function toPosix(filePath) {
+  return filePath.split(path.sep).join('/');
+}
+
+function readBufferOrNull(filePath) {
+  try {
+    return fs.readFileSync(filePath);
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return null;
+    throw error;
+  }
+}
+
+function pathExists(filePath) {
+  try {
+    fs.lstatSync(filePath);
+    return true;
+  } catch (error) {
+    if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return false;
+    throw error;
+  }
+}
+
+function isFile(filePath) {
+  try {
+    return fs.lstatSync(filePath).isFile();
+  } catch {
+    return false;
+  }
+}
+
+function isDirectory(filePath) {
+  try {
+    return fs.lstatSync(filePath).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+function isWithin(basePath, candidatePath) {
+  const relative = path.relative(basePath, candidatePath);
+  return relative === '' || (!path.isAbsolute(relative) && relative !== '..' && !relative.startsWith('..' + path.sep));
+}
+
+function relativeKey(root, filePath) {
+  const absoluteRoot = path.resolve(root);
+  const absoluteFile = path.resolve(filePath);
+  if (!isWithin(absoluteRoot, absoluteFile) || absoluteFile === absoluteRoot) {
+    throw new Error('destination escapes the sync root: ' + filePath);
+  }
+  return toPosix(path.relative(absoluteRoot, absoluteFile));
+}
+
+/**
+ * Resolve one remove-root path, refusing any that leaves the tree.
+ * @param {string} root Destination tree root.
+ * @param {string} relativePath Path as the manifest names it.
+ * @returns {string} The absolute path to remove.
+ */
+function resolveRemoveRootPath(root, relativePath) {
+  if (typeof relativePath !== 'string' || relativePath.length === 0) {
+    throw new Error('removal path must be a non-empty relative path');
+  }
+  if (relativePath.includes('\0')) throw new Error('removal path contains a null byte');
+  if (path.isAbsolute(relativePath) || path.win32.isAbsolute(relativePath)) {
+    throw new Error(`removal path must be relative: ${relativePath}`);
+  }
+  if (relativePath.includes('\\')) throw new Error(`removal path must use forward slashes: ${relativePath}`);
+  if (relativePath.split('/').includes('..')) throw new Error(`removal path contains a '..' segment: ${relativePath}`);
+
+  const absoluteRoot = path.resolve(root);
+  const absolutePath = path.resolve(absoluteRoot, relativePath);
+  if (absolutePath === absoluteRoot || !isWithin(absoluteRoot, absolutePath)) {
+    throw new Error(`removal path resolves outside the tree root: ${relativePath}`);
+  }
+
+  // A symlinked parent is safe only when it resolves back inside the tree. The
+  // leaf itself may be a symlink, because the plan deletes that link unopened.
+  let realRoot;
+  try {
+    realRoot = fs.realpathSync.native(absoluteRoot);
+  } catch (error) {
+    if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+    realRoot = absoluteRoot;
+  }
+  let parentPath = absoluteRoot;
+  for (const part of path.relative(absoluteRoot, absolutePath).split(path.sep).slice(0, -1)) {
+    parentPath = path.join(parentPath, part);
+    let stats;
+    try {
+      stats = fs.lstatSync(parentPath);
+    } catch (error) {
+      if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) break;
+      throw error;
+    }
+    if (stats.isSymbolicLink()) {
+      let resolvedParent;
+      try {
+        resolvedParent = fs.realpathSync.native(parentPath);
+      } catch {
+        throw new Error(`removal path has an unresolved symlink parent: ${relativePath}`);
+      }
+      if (!isWithin(realRoot, resolvedParent)) {
+        throw new Error(`removal path traverses outside the tree through a symlink parent: ${relativePath}`);
+      }
+    }
+    if (!stats.isDirectory()) break;
+  }
+  return absolutePath;
+}
+
+/**
+ * List a path and everything below it, deepest entries first.
+ * @param {string} filePath Path to remove.
+ * @returns {string[]} Absolute paths, children before their folder.
+ */
+function collectRemovalPaths(filePath) {
+  let stats;
+  try {
+    stats = fs.lstatSync(filePath);
+  } catch (error) {
+    if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return [];
+    throw error;
+  }
+  if (!stats.isDirectory()) return [filePath];
+
+  const paths = [];
+  for (const name of fs.readdirSync(filePath)) {
+    paths.push(...collectRemovalPaths(path.join(filePath, name)));
+  }
+  paths.push(filePath);
+  return paths;
+}
+
+function writeFile(filePath, buffer, mode) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, buffer, { mode: mode || 0o644 });
+}
+
+function ensureSymlink(filePath, target) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  try {
+    fs.unlinkSync(filePath);
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') throw error;
+  }
+  fs.symlinkSync(target, filePath);
+}
+
+function removePath(filePath) {
+  let stats;
+  try {
+    stats = fs.lstatSync(filePath);
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return false;
+    throw error;
+  }
+  if (stats.isDirectory()) fs.rmSync(filePath, { recursive: true, force: true });
+  else fs.unlinkSync(filePath);
+  return true;
+}
+
+// A vendor folder whose every file was removed would otherwise stay behind as an
+// empty directory, which reads as "still part of the skill" to a human and to a
+// directory listing in a check.
+function pruneEmptyDirs(dir) {
+  if (!isDirectory(dir)) return;
+  for (const dirent of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (dirent.isDirectory()) pruneEmptyDirs(path.join(dir, dirent.name));
+  }
+  if (fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+}
+
+/**
+ * Every entry below `dir`, keyed by its path relative to `dir`. Symlinks are
+ * returned as links with their target string, never followed, because the
+ * vendored tree keeps its shape with relative links.
+ * @param {string} dir Folder to walk.
+ * @returns {Map<string, object>} Entries keyed by posix path relative to `dir`.
+ */
+function walkTree(dir) {
+  const entries = new Map();
+  if (!isDirectory(dir)) return entries;
+  const stack = [''];
+  while (stack.length > 0) {
+    const rel = stack.pop();
+    const abs = rel ? path.join(dir, rel) : dir;
+    for (const dirent of fs.readdirSync(abs, { withFileTypes: true })) {
+      const childRel = rel ? path.posix.join(rel, dirent.name) : dirent.name;
+      const childAbs = path.join(dir, childRel);
+      const stats = fs.lstatSync(childAbs);
+      if (stats.isSymbolicLink()) {
+        entries.set(childRel, { kind: 'symlink', target: fs.readlinkSync(childAbs) });
+      } else if (stats.isDirectory()) {
+        stack.push(childRel);
+      } else {
+        entries.set(childRel, {
+          kind: 'file',
+          buffer: fs.readFileSync(childAbs),
+          mode: stats.mode & 0o777,
+        });
+      }
+    }
+  }
+  return entries;
+}
+
+/**
+ * Absolute paths of every non-directory entry below a folder, symlinks included.
+ * @param {string} directoryPath Folder to list.
+ * @returns {string[]} Absolute paths.
+ */
+function listTreePaths(directoryPath) {
+  const paths = [];
+  if (!isDirectory(directoryPath)) return paths;
+  const pending = [directoryPath];
+  while (pending.length > 0) {
+    const current = pending.pop();
+    for (const item of fs.readdirSync(current, { withFileTypes: true })) {
+      const absolute = path.join(current, item.name);
+      const stats = fs.lstatSync(absolute);
+      if (stats.isDirectory()) pending.push(absolute);
+      else paths.push(absolute);
+    }
+  }
+  return paths;
+}
+
+/**
+ * Resolve symlinks in the longest existing prefix of a path.
+ * @param {string} filePath Path that may not exist yet.
+ * @returns {string} The path with its existing part resolved.
+ */
+function canonicalPath(filePath) {
+  const absolute = path.resolve(filePath);
+  const remaining = [];
+  let current = absolute;
+  while (true) {
+    try {
+      const resolved = fs.realpathSync.native(current);
+      return path.join(resolved, ...remaining.reverse());
+    } catch (error) {
+      if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+      const parent = path.dirname(current);
+      if (parent === current) return absolute;
+      remaining.push(path.basename(current));
+      current = parent;
+    }
+  }
+}
+
+function canonicalPathWithoutLeaf(filePath) {
+  const absolute = path.resolve(filePath);
+  return path.join(canonicalPath(path.dirname(absolute)), path.basename(absolute));
+}
+
+function describe(value) {
+  return JSON.stringify(value);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. OVERLAY FOLDER, MANIFEST AND STATE
+//
+// The overlay folder is named by one setting file at the tree root. It cannot
+// live inside `.skilled`, because a re-pin overwrites that folder, and it cannot
+// live in the manifest, because the manifest sits inside the folder it would
+// locate. Everything else in the engine asks the context built here.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Read the overlay folder from the tree's setting file.
+ * This is the only reader of the setting; every caller goes through it.
+ * @param {string} root Vendored tree root.
+ * @returns {string} The overlay folder, relative to the root, with forward slashes.
+ */
+function resolveOverlayDir(root) {
+  const settingPath = path.join(path.resolve(root), SETTING_FILE);
+  const buffer = readBufferOrNull(settingPath);
+  if (!buffer) return DEFAULT_OVERLAY_FOLDER;
+  let parsed;
+  try {
+    parsed = JSON.parse(buffer.toString('utf8'));
+  } catch (error) {
+    throw new Error(`${SETTING_FILE} is not valid JSON: ${error.message}`);
+  }
+  const value = parsed && typeof parsed === 'object' ? parsed.overlayDir : undefined;
+  if (typeof value !== 'string' || value.trim() === '') {
+    throw new Error(`${SETTING_FILE} must name the overlay folder as a non-empty string`);
+  }
+  if (value.includes('\0') || value.includes('\\') || path.isAbsolute(value) || path.win32.isAbsolute(value)) {
+    throw new Error(`${SETTING_FILE} must name a relative folder with forward slashes: ${value}`);
+  }
+  const normalized = path.posix.normalize(value).replace(/\/+$/, '');
+  if (normalized === '.' || normalized === '' || normalized === '..' || normalized.startsWith('../')) {
+    throw new Error(`${SETTING_FILE} names a folder outside the tree root: ${value}`);
+  }
+  return normalized;
+}
+
+/**
+ * Build the paths one engine run works against.
+ * @param {string} root Vendored tree root.
+ * @returns {{root: string, overlayLabel: string, overlayRoot: string,
+ *   manifestPath: string, statePath: string, lockPath: string}}
+ */
+function createContext(root) {
+  const absoluteRoot = path.resolve(root);
+  const overlayLabel = resolveOverlayDir(absoluteRoot);
+  const overlayRoot = path.join(absoluteRoot, ...overlayLabel.split('/'));
+  return {
+    root: absoluteRoot,
+    overlayLabel,
+    overlayRoot,
+    manifestPath: path.join(overlayRoot, MANIFEST_FILE),
+    statePath: path.join(overlayRoot, STATE_FILE),
+    lockPath: path.join(overlayRoot, LOCK_FILE),
+  };
+}
+
+/**
+ * Load the overlay manifest from the overlay folder.
+ * @param {object} ctx Engine context.
+ * @returns {object} Parsed overlay manifest.
+ */
+function loadManifest(ctx) {
+  const buffer = readBufferOrNull(ctx.manifestPath);
+  if (!buffer) throw new Error('no overlay manifest at ' + toPosix(path.relative(ctx.root, ctx.manifestPath)));
+  const manifest = JSON.parse(buffer.toString('utf8'));
+  if (!manifest || !Array.isArray(manifest.overlays)) throw new Error('overlay manifest has no overlays array');
+  return manifest;
+}
+
+function emptyState(pin) {
+  return { schemaVersion: STATE_SCHEMA_VERSION, pin, files: {}, exists: false };
+}
+
+/**
+ * Load the hashes of what each destination last received from its overlay.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{schemaVersion: number, pin: string, files: Record<string, string>, exists: boolean}}
+ */
+function loadState(ctx, manifest) {
+  const buffer = readBufferOrNull(ctx.statePath);
+  if (!buffer) return emptyState(manifest.pin.commit);
+  let parsed;
+  try {
+    parsed = JSON.parse(buffer.toString('utf8'));
+  } catch (error) {
+    throw new Error(STATE_FILE + ' is not valid JSON: ' + error.message);
+  }
+  if (parsed.schemaVersion !== STATE_SCHEMA_VERSION || typeof parsed.pin !== 'string' ||
+      !parsed.files || typeof parsed.files !== 'object' || Array.isArray(parsed.files)) {
+    throw new Error(STATE_FILE + ' has an unsupported shape');
+  }
+  for (const [destination, hash] of Object.entries(parsed.files)) {
+    if (path.isAbsolute(destination) || destination.includes('\\') ||
+        destination.split('/').some((part) => part === '..' || part === '.' || part === '') ||
+        !/^[a-f0-9]{64}$/i.test(hash)) {
+      throw new Error(STATE_FILE + ' has an invalid file entry: ' + destination);
+    }
+  }
+  return {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    pin: parsed.pin,
+    files: parsed.files,
+    exists: true,
+  };
+}
+
+/**
+ * Write the applied-hash state, sorted, only when its bytes would change.
+ * @param {object} ctx Engine context.
+ * @param {{pin: string, files: Record<string, string>}} state State to record.
+ * @returns {boolean} Whether the file was written.
+ */
+function writeStateIfChanged(ctx, state) {
+  const sortedFiles = {};
+  for (const key of Object.keys(state.files).sort()) sortedFiles[key] = state.files[key];
+  const content = JSON.stringify({
+    schemaVersion: STATE_SCHEMA_VERSION,
+    pin: state.pin,
+    files: sortedFiles,
+  }, null, 2) + '\n';
+  const current = readBufferOrNull(ctx.statePath);
+  if (current && current.toString('utf8') === content) return false;
+  fs.writeFileSync(ctx.statePath, content, 'utf8');
+  return true;
+}
+
+function sourceRelative(ctx, sourcePath) {
+  const absolute = path.resolve(sourcePath);
+  if (!isWithin(ctx.overlayRoot, absolute) || absolute === ctx.overlayRoot) {
+    throw new Error('overlay source escapes ' + ctx.overlayLabel + ': ' + sourcePath);
+  }
+  return toPosix(path.relative(ctx.overlayRoot, absolute));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. JSON SOURCE MAP
+//
+// The vendored routing files are hand-formatted: some keep short string arrays
+// on one line, others put one string per line. Parsing and re-serialising the
+// whole document would rewrite every untouched line and turn a one-entry edit
+// into a whole-file diff, so the edits are applied to the original text and
+// only the touched range changes. This parser records the character span of
+// every value and member; nothing else about the document is altered.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Parse JSON text into nodes that keep their character spans.
+ * @param {string} text Document text.
+ * @returns {object} Root node with `start`, `end` and children.
+ */
+function parseJsonSource(text) {
+  let index = 0;
+  const length = text.length;
+
+  function fail(message) {
+    throw new Error(`invalid JSON at offset ${index}: ${message}`);
+  }
+
+  function skipWhitespace() {
+    while (index < length) {
+      const ch = text[index];
+      if (ch === ' ' || ch === '\t' || ch === '\n' || ch === '\r') index += 1;
+      else break;
+    }
+  }
+
+  function parseString() {
+    const start = index;
+    if (text[index] !== '"') fail('expected a string');
+    index += 1;
+    let raw = '';
+    while (index < length) {
+      const ch = text[index];
+      if (ch === '\\') {
+        raw += text.slice(index, index + 2);
+        index += 2;
+        continue;
+      }
+      if (ch === '"') {
+        index += 1;
+        return { value: JSON.parse(`"${raw}"`), start, end: index };
+      }
+      raw += ch;
+      index += 1;
+    }
+    fail('unterminated string');
+    return null;
+  }
+
+  function parseValue() {
+    skipWhitespace();
+    const start = index;
+    const ch = text[index];
+    if (ch === '{') return parseObject();
+    if (ch === '[') return parseArray();
+    if (ch === '"') {
+      const parsed = parseString();
+      return { type: 'string', start, end: index, value: parsed.value };
+    }
+    if (text.startsWith('true', index)) {
+      index += 4;
+      return { type: 'boolean', start, end: index, value: true };
+    }
+    if (text.startsWith('false', index)) {
+      index += 5;
+      return { type: 'boolean', start, end: index, value: false };
+    }
+    if (text.startsWith('null', index)) {
+      index += 4;
+      return { type: 'null', start, end: index, value: null };
+    }
+    const match = /^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?/.exec(text.slice(index));
+    if (!match) fail('expected a value');
+    index += match[0].length;
+    return { type: 'number', start, end: index, value: Number(match[0]) };
+  }
+
+  function parseObject() {
+    const start = index;
+    index += 1;
+    const members = [];
+    skipWhitespace();
+    if (text[index] === '}') {
+      index += 1;
+      return { type: 'object', start, end: index, members };
+    }
+    while (true) {
+      skipWhitespace();
+      const keyStart = index;
+      const key = parseString().value;
+      skipWhitespace();
+      if (text[index] !== ':') fail('expected ":"');
+      index += 1;
+      const value = parseValue();
+      members.push({ key, keyStart, value });
+      skipWhitespace();
+      if (text[index] === ',') {
+        index += 1;
+        continue;
+      }
+      if (text[index] === '}') {
+        index += 1;
+        break;
+      }
+      fail('expected "," or "}"');
+    }
+    return { type: 'object', start, end: index, members };
+  }
+
+  function parseArray() {
+    const start = index;
+    index += 1;
+    const items = [];
+    skipWhitespace();
+    if (text[index] === ']') {
+      index += 1;
+      return { type: 'array', start, end: index, items };
+    }
+    while (true) {
+      const value = parseValue();
+      items.push(value);
+      skipWhitespace();
+      if (text[index] === ',') {
+        index += 1;
+        continue;
+      }
+      if (text[index] === ']') {
+        index += 1;
+        break;
+      }
+      fail('expected "," or "]"');
+    }
+    return { type: 'array', start, end: index, items };
+  }
+
+  const root = parseValue();
+  skipWhitespace();
+  if (index !== length) fail('trailing content after the document');
+  return root;
+}
+
+/**
+ * Find the node at a key path in a parsed document.
+ * @param {object} root Root node from parseJsonSource.
+ * @param {Array<string|number>} keys Object keys and array indexes.
+ * @returns {object} The node at that path.
+ */
+function nodeAtPath(root, keys) {
+  let node = root;
+  for (const key of keys) {
+    if (node.type === 'object') {
+      const member = node.members.find((entry) => entry.key === key);
+      if (!member) throw new Error(`missing key "${keys.join('.')}"`);
+      node = member.value;
+    } else if (node.type === 'array') {
+      const item = node.items[key];
+      if (!item) throw new Error(`missing index ${key} on "${keys.join('.')}"`);
+      node = item;
+    } else {
+      throw new Error(`cannot descend into a ${node.type} at "${keys.join('.')}"`);
+    }
+  }
+  return node;
+}
+
+function indentBefore(text, offset) {
+  const lineStart = text.lastIndexOf('\n', offset - 1) + 1;
+  let cursor = lineStart;
+  while (cursor < offset && (text[cursor] === ' ' || text[cursor] === '\t')) cursor += 1;
+  return cursor === offset ? text.slice(lineStart, cursor) : null;
+}
+
+function isPrimitive(value) {
+  return value === null || typeof value !== 'object';
+}
+
+/**
+ * Serialises a value the way the surrounding document is written: objects and
+ * object arrays on their own lines, and short string arrays either inline or
+ * expanded according to the document's own habit.
+ * @param {*} value Value to serialise.
+ * @param {string} indent Indent of the line the value starts on.
+ * @param {{primitiveArrays?: string}} style Entry-set style.
+ * @returns {string} The serialised text.
+ */
+function serializeValue(value, indent, style) {
+  if (isPrimitive(value)) return JSON.stringify(value);
+  const inner = indent + '  ';
+  if (Array.isArray(value)) {
+    if (value.length === 0) return '[]';
+    const isInline = style.primitiveArrays !== 'multiline' && value.every(isPrimitive);
+    if (isInline) return `[${value.map((item) => JSON.stringify(item)).join(', ')}]`;
+    return `[\n${value.map((item) => inner + serializeValue(item, inner, style)).join(',\n')}\n${indent}]`;
+  }
+  const keys = Object.keys(value);
+  if (keys.length === 0) return '{}';
+  const members = keys.map((key) => `${inner}${JSON.stringify(key)}: ${serializeValue(value[key], inner, style)}`);
+  return `{\n${members.join(',\n')}\n${indent}}`;
+}
+
+function deepEqual(left, right) {
+  if (isPrimitive(left) || isPrimitive(right)) return left === right;
+  if (Array.isArray(left) !== Array.isArray(right)) return false;
+  if (Array.isArray(left)) {
+    if (left.length !== right.length) return false;
+    return left.every((item, index) => deepEqual(item, right[index]));
+  }
+  const leftKeys = Object.keys(left).sort();
+  const rightKeys = Object.keys(right).sort();
+  if (leftKeys.length !== rightKeys.length) return false;
+  if (!leftKeys.every((key, index) => key === rightKeys[index])) return false;
+  return leftKeys.every((key) => deepEqual(left[key], right[key]));
+}
+
+function findMember(node, key) {
+  return node.members.find((member) => member.key === key);
+}
+
+function matchIndex(arrayNode, match, identityKey) {
+  const wanted = match[identityKey];
+  const found = [];
+  arrayNode.items.forEach((item, index) => {
+    if (item.type !== 'object') return;
+    const member = findMember(item, identityKey);
+    if (member && member.value.value === wanted) found.push(index);
+  });
+  if (found.length > 1) throw new Error(`anchor "${wanted}" appears ${found.length} times`);
+  return found.length === 1 ? found[0] : -1;
+}
+
+/**
+ * Applies one operation to the parsed document and records the text edit that
+ * realises it. Nothing is written here; the caller decides whether to keep it.
+ * @param {object} operation One entry-set operation.
+ * @param {object} root Root node of the parsed document.
+ * @param {string} text Document text the nodes point into.
+ * @param {object} style Entry-set style.
+ * @param {object[]} edits Collects the text edits.
+ * @param {{canReplaceExisting: boolean}} options Whether a differing entry may be rewritten.
+ * @returns {string} 'changed' or 'unchanged'.
+ */
+function planOperation(operation, root, text, style, edits, options) {
+  if (operation.op === 'set') {
+    const target = nodeAtPath(root, operation.path);
+    const current = JSON.parse(text.slice(target.start, target.end));
+    if (deepEqual(current, operation.value)) return 'unchanged';
+    const indent = indentBefore(text, target.start);
+    edits.push({
+      start: target.start,
+      end: target.end,
+      text: serializeValue(operation.value, indent === null ? '' : indent, style),
+    });
+    return 'changed';
+  }
+
+  if (operation.op === 'setKeyOnItem') {
+    const arrayNode = nodeAtPath(root, operation.path);
+    const index = matchIndex(arrayNode, operation.match, operation.identityKey);
+    if (index < 0) throw new Error(`anchor ${describe(operation.match)} not found under ${operation.path.join('.')}`);
+    const item = arrayNode.items[index];
+    const member = findMember(item, operation.key);
+    if (member) {
+      const current = JSON.parse(text.slice(member.value.start, member.value.end));
+      if (deepEqual(current, operation.value)) return 'unchanged';
+      const indent = indentBefore(text, member.value.start);
+      edits.push({
+        start: member.value.start,
+        end: member.value.end,
+        text: serializeValue(operation.value, indent === null ? '' : indent, style),
+      });
+      return 'changed';
+    }
+    const last = item.members[item.members.length - 1];
+    const indent = indentBefore(text, last.keyStart) || '';
+    edits.push({
+      start: last.value.end,
+      end: last.value.end,
+      text: `,\n${indent}${JSON.stringify(operation.key)}: ${serializeValue(operation.value, indent, style)}`,
+    });
+    return 'changed';
+  }
+
+  if (operation.op === 'insertItems' || operation.op === 'appendItems') {
+    const arrayNode = nodeAtPath(root, operation.path);
+    const identityKey = operation.identityKey;
+    const pending = [];
+    let hasChanged = false;
+    for (const item of operation.items) {
+      if (!identityKey) {
+        // A scalar list carries its own identity, so an existing value counts as
+        // already applied. Without this, a second apply would append a duplicate.
+        if (isPrimitive(item) && arrayNode.items.some((node) => node.value === item)) continue;
+        if (!isPrimitive(item)) throw new Error('an item list without an identity key cannot hold objects');
+      }
+      if (identityKey) {
+        const existing = matchIndex(arrayNode, item, identityKey);
+        if (existing >= 0) {
+          const node = arrayNode.items[existing];
+          const parsed = JSON.parse(text.slice(node.start, node.end));
+          if (!deepEqual(parsed, item)) {
+            // A differing entry is rewritten only when the live file still holds the
+            // bytes this overlay last wrote: the entry set is then the one thing that
+            // changed, so replacing the entry in place keeps every other line of the
+            // document as it was. Any other difference may be someone's hand edit.
+            if (!options.canReplaceExisting) {
+              throw new Error(`existing entry ${describe(item[identityKey])} differs from the canonical copy`);
+            }
+            const indent = indentBefore(text, node.start);
+            edits.push({
+              start: node.start,
+              end: node.end,
+              text: serializeValue(item, indent === null ? '' : indent, style),
+            });
+            hasChanged = true;
+          }
+          continue;
+        }
+      }
+      pending.push(item);
+      hasChanged = true;
+    }
+    if (!hasChanged) return 'unchanged';
+    // A pass that only rewrote existing entries has nothing left to append.
+    if (pending.length === 0) return 'changed';
+    const anchor = operation.before && identityKey ? matchIndex(arrayNode, operation.before, identityKey) : -1;
+    const reference = anchor >= 0 ? arrayNode.items[anchor] : arrayNode.items[arrayNode.items.length - 1];
+    if (!reference) throw new Error(`cannot append to the empty array at ${operation.path.join('.')}`);
+    const indent = indentBefore(text, reference.start) || '';
+    if (anchor >= 0) {
+      const block = pending.map((item) => `${serializeValue(item, indent, style)},\n${indent}`).join('');
+      edits.push({ start: reference.start, end: reference.start, text: block });
+    } else {
+      const block = pending.map((item) => `,\n${indent}${serializeValue(item, indent, style)}`).join('');
+      edits.push({ start: reference.end, end: reference.end, text: block });
+    }
+    return 'changed';
+  }
+
+  if (operation.op === 'insertObjectKeys') {
+    const objectNode = nodeAtPath(root, operation.path);
+    const pending = [];
+    let hasRewritten = false;
+    for (const entry of operation.entries) {
+      const existing = findMember(objectNode, entry.key);
+      if (existing) {
+        const parsed = JSON.parse(text.slice(existing.value.start, existing.value.end));
+        if (!deepEqual(parsed, entry.value)) {
+          // Same rule as a keyed array item: rewrite the value in place only while the
+          // live file still holds this overlay's last applied bytes.
+          if (!options.canReplaceExisting) {
+            throw new Error(`existing entry "${entry.key}" differs from the canonical copy`);
+          }
+          const indent = indentBefore(text, existing.keyStart);
+          edits.push({
+            start: existing.value.start,
+            end: existing.value.end,
+            text: serializeValue(entry.value, indent === null ? '' : indent, style),
+          });
+          hasRewritten = true;
+        }
+        continue;
+      }
+      pending.push(entry);
+    }
+    if (pending.length === 0) return hasRewritten ? 'changed' : 'unchanged';
+    const anchor = operation.beforeKey ? findMember(objectNode, operation.beforeKey) : null;
+    const reference = anchor || objectNode.members[objectNode.members.length - 1];
+    if (!reference) throw new Error(`cannot insert into the empty object at ${operation.path.join('.')}`);
+    const indent = indentBefore(text, reference.keyStart) || '';
+    const render = (entry) => `${JSON.stringify(entry.key)}: ${serializeValue(entry.value, indent, style)}`;
+    if (anchor) {
+      edits.push({
+        start: reference.keyStart,
+        end: reference.keyStart,
+        text: `${pending.map((entry) => `${render(entry)},\n${indent}`).join('')}`,
+      });
+    } else {
+      edits.push({
+        start: reference.value.end,
+        end: reference.value.end,
+        text: pending.map((entry) => `,\n${indent}${render(entry)}`).join(''),
+      });
+    }
+    return 'changed';
+  }
+
+  throw new Error(`unknown operation "${operation.op}"`);
+}
+
+function applyEdits(text, edits) {
+  const ordered = [...edits].sort((left, right) => right.start - left.start);
+  let output = text;
+  for (const edit of ordered) {
+    output = output.slice(0, edit.start) + edit.text + output.slice(edit.end);
+  }
+  return output;
+}
+
+/**
+ * Fold each later setKeyOnItem into the item an earlier insert in the same set
+ * adds. Without this, a second apply compares the live item, which already
+ * carries the later key, with the bare inserted item and reads a hand edit.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @returns {object[]} Operations whose inserted items carry their final keys.
+ */
+function withLaterKeysMerged(operations) {
+  return operations.map((operation, index) => {
+    if ((operation.op !== 'insertItems' && operation.op !== 'appendItems') || !operation.identityKey) return operation;
+    const identityKey = operation.identityKey;
+    const items = operation.items.map((item) => {
+      let merged = item;
+      for (const later of operations.slice(index + 1)) {
+        if (later.op !== 'setKeyOnItem' || later.identityKey !== identityKey) continue;
+        if (!deepEqual(later.path, operation.path) || later.match[identityKey] !== item[identityKey]) continue;
+        merged = { ...merged, [later.key]: later.value };
+      }
+      return merged;
+    });
+    return { ...operation, items };
+  });
+}
+
+/**
+ * Return the document text with every declared entry in place.
+ * @param {string} text Live document text.
+ * @param {{style?: object, operations: object[]}} spec Entry set.
+ * @param {{canReplaceExisting: boolean}} options Whether a differing entry may be rewritten.
+ * @returns {string} The edited document text.
+ */
+function applyJsonOperations(text, spec, options) {
+  const style = spec.style || { indent: 2, primitiveArrays: 'inline' };
+  let output = text;
+  // Each operation sees the document the operations before it produced, so a
+  // later operation can address an item an earlier one in the same set added.
+  for (const operation of withLaterKeysMerged(spec.operations)) {
+    const edits = [];
+    planOperation(operation, parseJsonSource(output), output, style, edits, options);
+    if (edits.length > 0) output = applyEdits(output, edits);
+  }
+  if (output === text) return text;
+  // Guard the writer: a text edit that produced unparseable JSON must never be
+  // written, because the failure would surface later as a routing break.
+  JSON.parse(output);
+  return output;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. PLANS
+//
+// A plan is a list of file writes and deletions for one overlay, computed
+// against the tree on disk. Nothing is written while planning, so status and
+// apply share one definition of "what this overlay should look like".
+// ─────────────────────────────────────────────────────────────────────────────
+
+function acceptedHashFor(acceptedSha256, destination) {
+  if (acceptedSha256 instanceof Map) return acceptedSha256.get(destination);
+  if (!acceptedSha256 || typeof acceptedSha256 !== 'object') return undefined;
+  return acceptedSha256[destination];
+}
+
+/**
+ * Plan a whole-file overlay, guarded by its pin when it has one.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} ctx Engine context.
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @returns {{writes: object[], deletes: string[], outputs: object[]}}
+ */
+function planFileOverlay(entry, ctx, problems, acceptedSha256) {
+  const sourcePath = path.join(ctx.overlayRoot, entry.source);
+  const destinationPath = path.join(ctx.root, entry.destination);
+  const desired = readBufferOrNull(sourcePath);
+  if (!desired) {
+    problems.push(`canonical copy is missing: ${entry.source}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  const output = { filePath: destinationPath, buffer: desired, mode: entry.mode, sourcePath };
+  const current = readBufferOrNull(destinationPath);
+  if (!current) {
+    if (entry.pinnedSha256 && acceptedHashFor(acceptedSha256, entry.destination) === undefined) {
+      problems.push(`upstream removed ${entry.destination}; rebase the overlay`);
+      return { writes: [], deletes: [], outputs: [] };
+    }
+    // Guarded paths need a recorded applied hash before restoration after removal.
+    return { writes: [output], deletes: [], outputs: [output] };
+  }
+  if (Buffer.compare(current, desired) === 0) return { writes: [], deletes: [], outputs: [output] };
+  if (!entry.pinnedSha256) {
+    return { writes: [output], deletes: [], outputs: [output] };
+  }
+  const currentSha = sha256(current);
+  if (currentSha === entry.pinnedSha256 || currentSha === acceptedHashFor(acceptedSha256, entry.destination)) {
+    return { writes: [output], deletes: [], outputs: [output] };
+  }
+  problems.push(`upstream changed ${entry.destination}; rebase the overlay`);
+  return { writes: [], deletes: [], outputs: [output] };
+}
+
+/**
+ * Plan a folder mirrored from its overlay source.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} ctx Engine context.
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @returns {{writes: object[], deletes: string[], outputs: object[]}}
+ */
+function planDirectoryOverlay(entry, ctx, problems) {
+  const sourceDir = path.join(ctx.overlayRoot, entry.source);
+  const destinationDir = path.join(ctx.root, entry.destination);
+  if (!isDirectory(sourceDir)) {
+    problems.push(`canonical folder is missing: ${entry.source}`);
+    return { writes: [], deletes: [] };
+  }
+  const desired = walkTree(sourceDir);
+  const current = walkTree(destinationDir);
+  const writes = [];
+  const deletes = [];
+  const outputs = [];
+  for (const [rel, wanted] of desired) {
+    const destinationPath = path.join(destinationDir, rel);
+    const existing = current.get(rel);
+    if (wanted.kind === 'symlink') {
+      if (!existing || existing.kind !== 'symlink' || existing.target !== wanted.target) {
+        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target });
+      }
+      continue;
+    }
+    outputs.push({
+      filePath: destinationPath,
+      buffer: wanted.buffer,
+      mode: wanted.mode,
+      sourcePath: path.join(sourceDir, rel),
+    });
+    if (!existing || existing.kind !== 'file' || Buffer.compare(existing.buffer, wanted.buffer) !== 0) {
+      writes.push(outputs[outputs.length - 1]);
+    }
+  }
+  for (const rel of current.keys()) {
+    if (!desired.has(rel)) {
+      const destinationPath = path.join(destinationDir, rel);
+      deletes.push(destinationPath);
+      if (current.get(rel).kind === 'file') {
+        outputs.push({ filePath: destinationPath, buffer: null, sourcePath: path.join(sourceDir, rel) });
+      }
+    }
+  }
+  // Deepest first, so a removed folder is empty by the time its own delete runs.
+  deletes.sort((left, right) => right.length - left.length);
+  return { writes, deletes, outputs };
+}
+
+/**
+ * Plan a block appended to, or rewritten inside, an upstream file.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} ctx Engine context.
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @returns {{writes: object[], deletes: string[], outputs: object[]}}
+ */
+function planMarkedSectionOverlay(entry, ctx, problems, acceptedSha256) {
+  const fragmentPath = path.join(ctx.overlayRoot, entry.fragment);
+  const basePath = path.join(ctx.overlayRoot, entry.base);
+  const destinationPath = path.join(ctx.root, entry.destination);
+  const fragment = readBufferOrNull(fragmentPath);
+  const base = readBufferOrNull(basePath);
+  if (!fragment || !base) {
+    problems.push(`canonical fragment or base copy is missing for ${entry.destination}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  const current = readBufferOrNull(destinationPath);
+  const baseText = base.toString('utf8');
+  const fragmentText = fragment.toString('utf8');
+  const currentText = current ? current.toString('utf8') : null;
+  let expected;
+  if (currentText === null) {
+    if (acceptedHashFor(acceptedSha256, entry.destination) === undefined) {
+      problems.push(`upstream removed ${entry.destination}; rebase the overlay`);
+      return { writes: [], deletes: [], outputs: [] };
+    }
+    expected = `${baseText}${fragmentText}`;
+  } else if (currentText.includes(entry.beginMarker)) {
+    const begin = currentText.indexOf(entry.beginMarker);
+    const endMarkerIndex = currentText.indexOf(entry.endMarker);
+    if (endMarkerIndex < 0) {
+      problems.push(`${entry.destination} has the begin marker but no end marker; rebase the overlay`);
+      return { writes: [], deletes: [], outputs: [] };
+    }
+    // Our own block is rewritten in place; the separator that carries it is
+    // part of the fragment, so the text before the marker is kept as it is.
+    const head = currentText.slice(0, begin);
+    expected = `${head}${fragmentText.slice(fragmentText.indexOf(entry.beginMarker))}`;
+  } else if (currentText === baseText) {
+    expected = `${baseText}${fragmentText}`;
+  } else {
+    problems.push(`upstream changed ${entry.destination}; rebase the overlay`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  const output = { filePath: destinationPath, buffer: Buffer.from(expected, 'utf8'), mode: entry.mode, sourcePath: fragmentPath };
+  if (expected === currentText) return { writes: [], deletes: [], outputs: [output] };
+  return { writes: [output], deletes: [], outputs: [output] };
+}
+
+/**
+ * Plan an entry set applied in place to an upstream JSON file.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} ctx Engine context.
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @returns {{writes: object[], deletes: string[], outputs: object[]}}
+ */
+function planJsonOverlay(entry, ctx, problems, acceptedSha256) {
+  const specPath = path.join(ctx.overlayRoot, entry.source);
+  const destinationPath = path.join(ctx.root, entry.destination);
+  const specBuffer = readBufferOrNull(specPath);
+  if (!specBuffer) {
+    problems.push(`entry set is missing: ${entry.source}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  const current = readBufferOrNull(destinationPath);
+  if (!current) {
+    problems.push(`upstream removed ${entry.destination}; rebase the overlay`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  const spec = JSON.parse(specBuffer.toString('utf8'));
+  const currentText = current.toString('utf8');
+  // The recorded applied hash is the only proof that the live bytes are this
+  // overlay's own work. Without it a differing entry may be a hand edit.
+  const appliedHash = acceptedHashFor(acceptedSha256, entry.destination);
+  const canReplaceExisting = appliedHash !== undefined && sha256(current) === appliedHash;
+  let expected;
+  try {
+    expected = applyJsonOperations(currentText, spec, { canReplaceExisting });
+  } catch (error) {
+    problems.push(`cannot apply the entry set to ${entry.destination}: ${error.message}`);
+    // The destination is still reported, with no desired bytes, so the conflict is
+    // raised against the entry set that has to be reconciled instead of vanishing
+    // into a hard error that names only the live file.
+    return {
+      writes: [],
+      deletes: [],
+      outputs: [{ filePath: destinationPath, buffer: null, mode: entry.mode, sourcePath: specPath }],
+    };
+  }
+  const output = { filePath: destinationPath, buffer: Buffer.from(expected, 'utf8'), mode: entry.mode, sourcePath: specPath };
+  if (expected === currentText) return { writes: [], deletes: [], outputs: [output] };
+  return { writes: [output], deletes: [], outputs: [output] };
+}
+
+/**
+ * Retained paths whose live bytes the skill-root plan keeps, because they sit
+ * inside a replaced folder. A retained path the entry replaces directly is
+ * written from the overlay source, so it is an overlay output like any other.
+ * @param {object} entry A skill-root manifest entry.
+ * @param {string} sourceDir The entry's source folder.
+ * @returns {Set<string>} Kept paths, relative to the skill root.
+ */
+function keptRetainedPaths(entry, sourceDir) {
+  const replacedFolders = (entry.replace || []).filter((rel) => isDirectory(path.join(sourceDir, rel)));
+  const kept = new Set();
+  for (const item of entry.retained || []) {
+    if (replacedFolders.some((prefix) => item.path === prefix || item.path.startsWith(prefix + '/'))) kept.add(item.path);
+  }
+  return kept;
+}
+
+/**
+ * A whole skill root replaced by the project's own: the source folder wins every
+ * path it carries, the named vendor paths are removed, and the vendor files the
+ * framework resolves by name are restored byte for byte from their pre-apply
+ * state. Restoring from the live tree rather than from a stored copy keeps a
+ * newer upstream template in place instead of reverting it to the pin.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} ctx Engine context.
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @returns {{writes: object[], deletes: string[], outputs: object[]}}
+ */
+function planSkillRootOverlay(entry, ctx, problems) {
+  const sourceDir = path.join(ctx.overlayRoot, entry.source);
+  const destinationDir = path.join(ctx.root, entry.destination);
+  if (!isDirectory(sourceDir)) {
+    problems.push(`canonical folder is missing: ${entry.source}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+  const retained = entry.retained || [];
+  const missingRetained = retained
+    .map((item) => item.path)
+    .filter((rel) => !isFile(path.join(destinationDir, rel)));
+  if (missingRetained.length > 0) {
+    for (const rel of missingRetained) problems.push(`retained path is missing before apply: ${entry.destination}/${rel}`);
+    return { writes: [], deletes: [], outputs: [] };
+  }
+
+  const replacedSubtrees = new Set(entry.replace.filter((rel) => isDirectory(path.join(sourceDir, rel))));
+  const snapshot = new Map();
+  for (const item of retained) {
+    const isUnderReplaced = [...replacedSubtrees].some((prefix) => item.path === prefix || item.path.startsWith(`${prefix}/`));
+    if (!isUnderReplaced) continue;
+    const absolute = path.join(destinationDir, item.path);
+    if (isFile(absolute)) snapshot.set(item.path, fs.readFileSync(absolute));
+  }
+
+  const writes = [];
+  const deletes = [];
+  const desired = new Map();
+  for (const rel of entry.replace) {
+    const sourcePath = path.join(sourceDir, rel);
+    if (isDirectory(sourcePath)) {
+      for (const [childRel, item] of walkTree(sourcePath)) desired.set(path.posix.join(rel, childRel), item);
+    } else if (isFile(sourcePath)) {
+      desired.set(rel, { kind: 'file', buffer: fs.readFileSync(sourcePath), mode: fs.statSync(sourcePath).mode & 0o777 });
+    } else {
+      problems.push(`canonical path is missing: ${entry.source}/${rel}`);
+      return { writes: [], deletes: [], outputs: [] };
+    }
+  }
+  const outputs = [];
+  const keptPaths = keptRetainedPaths(entry, sourceDir);
+  for (const [rel, wanted] of desired) {
+    if (wanted.kind !== 'file' || keptPaths.has(rel)) continue;
+    outputs.push({
+      filePath: path.join(destinationDir, rel),
+      buffer: wanted.buffer,
+      mode: wanted.mode,
+      sourcePath: path.join(sourceDir, rel),
+    });
+  }
+
+  // A retained path that sits inside a replaced subtree survives the mirror,
+  // so it is written back from the snapshot and never deleted in the first
+  // place. That keeps the second apply a no-op instead of a delete-and-restore.
+  for (const [rel, buffer] of snapshot) {
+    desired.set(rel, { kind: 'file', buffer, mode: 0o644 });
+  }
+
+  const current = walkTree(destinationDir);
+  const removedPrefixes = [...entry.remove, ...replacedSubtrees];
+  const isRemoved = (rel) => removedPrefixes.some((prefix) => rel === prefix || rel.startsWith(`${prefix}/`));
+
+  for (const [rel, wanted] of desired) {
+    const destinationPath = path.join(destinationDir, rel);
+    const existing = current.get(rel);
+    if (wanted.kind === 'symlink') {
+      if (!existing || existing.kind !== 'symlink' || existing.target !== wanted.target) {
+        writes.push({ filePath: destinationPath, symlinkTarget: wanted.target });
+      }
+      continue;
+    }
+    if (!existing || existing.kind !== 'file' || Buffer.compare(existing.buffer, wanted.buffer) !== 0) {
+      writes.push({ filePath: destinationPath, buffer: wanted.buffer, mode: wanted.mode });
+    }
+  }
+
+  for (const rel of current.keys()) {
+    if (desired.has(rel)) continue;
+    if (!isRemoved(rel)) continue;
+    const destinationPath = path.join(destinationDir, rel);
+    deletes.push(destinationPath);
+    if (current.get(rel).kind === 'file') {
+      outputs.push({ filePath: destinationPath, buffer: null, sourcePath: path.join(sourceDir, rel) });
+    }
+  }
+  // Deepest first, so a removed folder is empty by the time its own delete runs.
+  deletes.sort((left, right) => right.length - left.length);
+
+  return { writes, deletes, outputs };
+}
+
+/**
+ * Plan the removal of named paths from the tree.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} ctx Engine context.
+ * @param {string[]} problems Collects reasons the overlay cannot be applied.
+ * @param {Record<string, string>} [acceptedSha256] Hashes the engine last applied.
+ * @returns {{writes: object[], deletes: string[], outputs: object[]}}
+ */
+function planRemoveRootOverlay(entry, ctx, problems) {
+  const root = ctx.root;
+  if (!Array.isArray(entry.paths) || entry.paths.length === 0) {
+    problems.push('paths must be a non-empty array');
+    return { writes: [], deletes: [], outputs: [] };
+  }
+
+  const targets = [];
+  const seenTargets = new Set();
+  for (const relativePath of entry.paths) {
+    try {
+      const target = resolveRemoveRootPath(root, relativePath);
+      if (seenTargets.has(target)) {
+        problems.push(`removal path is repeated: ${relativePath}`);
+        continue;
+      }
+      seenTargets.add(target);
+      targets.push({ relativePath, target });
+    } catch (error) {
+      problems.push(error.message);
+    }
+  }
+  if (problems.length > 0) return { writes: [], deletes: [], outputs: [] };
+
+  const deletions = new Set();
+  for (const { target } of targets) {
+    for (const removalPath of collectRemovalPaths(target)) deletions.add(removalPath);
+  }
+  const deletes = [...deletions].sort((left, right) => {
+    const leftDepth = path.relative(root, left).split(path.sep).length;
+    const rightDepth = path.relative(root, right).split(path.sep).length;
+    return rightDepth - leftDepth || right.length - left.length || left.localeCompare(right);
+  });
+  const outputs = targets.map(({ target }) => ({ filePath: target, buffer: null }));
+  return { writes: [], deletes, outputs };
+}
+
+const PLANNERS = {
+  file: planFileOverlay,
+  directory: planDirectoryOverlay,
+  'marked-section': planMarkedSectionOverlay,
+  'json-entry': planJsonOverlay,
+  'skill-root': planSkillRootOverlay,
+  'remove-root': planRemoveRootOverlay,
+};
+
+/**
+ * Build a read-only plan for one manifest overlay.
+ * @param {object} entry Manifest overlay entry.
+ * @param {object} ctx Engine context.
+ * @param {{acceptedSha256?: Map<string, string>|Record<string, string>}} [options]
+ *   Hashes of what this overlay wrote last, which authorize rewriting a destination
+ *   that changed only because the canonical copy did.
+ * @returns {{entry: object, problems: string[], writes: object[], deletes: string[], outputs: object[]}}
+ */
+function planOverlay(entry, ctx, { acceptedSha256 } = {}) {
+  const problems = [];
+  const planner = PLANNERS[entry.scope];
+  if (!planner) {
+    return { entry, problems: [`unknown scope "${entry.scope}"`], writes: [], deletes: [], outputs: [] };
+  }
+  const plan = planner(entry, ctx, problems, acceptedSha256);
+  return { entry, problems, writes: plan.writes, deletes: plan.deletes, outputs: plan.outputs || [] };
+}
+
+/**
+ * Apply one overlay plan's writes and removals.
+ * @param {object} plan Result from planOverlay.
+ * @param {string} root Destination tree root.
+ * @returns {number} Number of write and delete operations applied.
+ */
+function applyOnePlan(plan, root) {
+  for (const deletion of plan.deletes) removePath(deletion);
+  for (const write of plan.writes) {
+    if (write.symlinkTarget !== undefined) ensureSymlink(write.filePath, write.symlinkTarget);
+    else writeFile(write.filePath, write.buffer, write.mode);
+  }
+  if (plan.deletes.length > 0 && plan.entry.destination) {
+    pruneEmptyDirs(path.join(root, plan.entry.destination));
+  }
+  return plan.writes.length + plan.deletes.length;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. LAYOUT LINKS
+//
+// The routing engine reads each hub through relative links that sit outside
+// the vendored `.skilled` tree. A fresh copy of the pin does not carry them, so
+// regeneration fails until they exist. The manifest names each such link; a
+// path that already holds something else is never replaced.
+//
+// The one exception is an entry that names, in `replaces`, a single upstream
+// link and the target the pin ships it with. Upstream sometimes ships a link
+// where the project needs a folder or a different target, and a re-copy brings
+// that link back. The named link is removed only while it still points at the
+// pinned target: any other target means upstream or a person changed it, and
+// replacing it then would hide that change, so the entry is refused instead.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Decide what a layout link's `replaces` entry allows right now.
+ * @param {string} root Destination tree root.
+ * @param {object} link Layout link entry from the manifest.
+ * @returns {{state: string, reason?: string, replacedPath?: string}}
+ */
+function replacedLinkState(root, link) {
+  const replaced = link.replaces;
+  if (replaced === undefined) return { state: 'none' };
+  if (!replaced || typeof replaced.path !== 'string' || typeof replaced.target !== 'string') {
+    return { state: 'refused', reason: `${link.path} has a replaces entry without a path and a target` };
+  }
+  const own = path.posix.normalize(link.path);
+  const named = path.posix.normalize(replaced.path);
+  if (own !== named && !own.startsWith(named + '/')) {
+    return { state: 'refused', reason: `${link.path} may replace only itself or a folder above it, not ${replaced.path}` };
+  }
+  const replacedPath = path.join(root, replaced.path);
+  let stats = null;
+  try {
+    stats = fs.lstatSync(replacedPath);
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') throw error;
+    return { state: 'none' };
+  }
+  if (stats.isSymbolicLink()) {
+    const current = fs.readlinkSync(replacedPath);
+    if (own === named && current === link.target) return { state: 'none' };
+    if (current === replaced.target) return { state: 'pinned', replacedPath };
+    return { state: 'refused', reason: `${replaced.path} links to ${current}, not the pinned ${replaced.target}; refusing to replace it` };
+  }
+  if (own !== named && stats.isDirectory()) return { state: 'none' };
+  return { state: 'refused', reason: `${replaced.path} is not the pinned link to ${replaced.target}; refusing to replace it` };
+}
+
+/**
+ * Find the manifest's layout links that are missing or refused.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} root Destination tree root.
+ * @returns {{missing: object[], problems: string[]}}
+ */
+function planLayoutLinks(manifest, root) {
+  const missing = [];
+  const problems = [];
+  for (const link of manifest.layoutLinks || []) {
+    const linkPath = path.join(root, link.path);
+    const replacement = replacedLinkState(root, link);
+    if (replacement.state === 'refused') {
+      problems.push(replacement.reason);
+      continue;
+    }
+    if (replacement.state === 'pinned') {
+      // The pinned link still stands, so the entry's own path would be read
+      // through it; it is missing by definition until the link is removed.
+      missing.push({ link, linkPath });
+      continue;
+    }
+    let stats = null;
+    try {
+      stats = fs.lstatSync(linkPath);
+    } catch (error) {
+      if (!error || error.code !== 'ENOENT') throw error;
+    }
+    if (!stats) {
+      missing.push({ link, linkPath });
+    } else if (!stats.isSymbolicLink() || fs.readlinkSync(linkPath) !== link.target) {
+      problems.push(`${link.path} exists but is not the link to ${link.target}`);
+    }
+  }
+  return { missing, problems };
+}
+
+/**
+ * Create one layout link, first removing the upstream link it replaces.
+ * The replaced link is checked again here, because another entry may already
+ * have removed it, and a link that changed since planning must not be deleted.
+ * @param {string} root Destination tree root.
+ * @param {object} link Layout link entry from the manifest.
+ */
+function applyLayoutLink(root, link) {
+  const replacement = replacedLinkState(root, link);
+  if (replacement.state === 'refused') throw new Error(replacement.reason);
+  if (replacement.state === 'pinned') fs.unlinkSync(replacement.replacedPath);
+  ensureSymlink(path.join(root, link.path), link.target);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. REGENERATION AND VERIFICATION
+//
+// Routing projections are generated from the files above, so they are never
+// stored as overlays: storing them would make the copy the source of truth for
+// data a generator owns. They are rebuilt after the overlays land, and checked
+// through the generators' own read-only modes.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function runCommand(root, argv) {
+  const [bin, ...args] = argv;
+  const executable = bin === 'node' ? process.execPath : bin;
+  return spawnSync(executable, args, { cwd: root, encoding: 'utf8' });
+}
+
+/**
+ * Run the manifest's read-only generator checks.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} root Destination tree root.
+ * @returns {string[]} One problem per failed check.
+ */
+function verifyGenerated(manifest, root) {
+  const problems = [];
+  for (const check of manifest.verifyGenerated || []) {
+    const result = runCommand(root, check.argv);
+    const output = `${result.stdout || ''}${result.stderr || ''}`.trim();
+    if (check.expect === 'fresh-true' || check.expect === 'zero-changed') {
+      let parsed = null;
+      try {
+        parsed = JSON.parse(result.stdout);
+      } catch {
+        parsed = null;
+      }
+      if (check.expect === 'fresh-true' && (result.status !== 0 || !parsed || parsed.fresh !== true)) {
+        problems.push(`${check.id}: freshness is not fresh (${output.split('\n').slice(-1)[0] || 'no output'})`);
+      }
+      if (check.expect === 'zero-changed' && (result.status !== 0 || !parsed || parsed.changed !== 0)) {
+        problems.push(`${check.id}: derived content would change`);
+      }
+      continue;
+    }
+    if (result.status !== 0) {
+      problems.push(`${check.id}: check failed (${output.split('\n').slice(-1)[0] || 'no output'})`);
+    }
+  }
+  return problems;
+}
+
+function snapshotOutputs(manifest, root) {
+  const snapshot = new Map();
+  for (const step of manifest.regenerate || []) {
+    for (const output of step.outputs || []) {
+      const buffer = readBufferOrNull(path.join(root, output));
+      snapshot.set(output, buffer ? sha256(buffer) : null);
+    }
+  }
+  return snapshot;
+}
+
+/**
+ * Run the manifest regeneration steps and report failed steps and changed outputs.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} root Destination tree root.
+ * @returns {{results: object[], failed: object[], changedOutputs: string[]}}
+ */
+function regenerate(manifest, root) {
+  const before = snapshotOutputs(manifest, root);
+  const results = [];
+  for (const step of manifest.regenerate || []) results.push({ step, result: runCommand(root, step.argv) });
+  const failed = results.filter(({ result }) => result.status !== 0);
+  const after = snapshotOutputs(manifest, root);
+  const changedOutputs = [];
+  for (const [output, digest] of after) {
+    if (before.get(output) !== digest) changedOutputs.push(output);
+  }
+  return { results, failed, changedOutputs };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. PROTECTED PATHS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A `.env` file is never read, even when a manifest entry names it. A
+// token-named path is read only when a manifest entry names that exact path:
+// met while walking a directory or skill-root entry it is refused, because a
+// walk would otherwise read any credential file that sits beside an overlay.
+const EXACT_CAPTURE_SCOPES = new Set(['file', 'marked-section']);
+const NO_EXACT_PATHS = new Set();
+
+function isEnvName(filePath) {
+  return path.basename(filePath).toLowerCase().startsWith('.env');
+}
+
+function isTokenName(filePath) {
+  return path.basename(filePath).toLowerCase().includes('token');
+}
+
+/**
+ * Collect every absolute path a manifest entry names exactly.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {Set<string>} Named sources, bases, fragments, destinations and removal paths.
+ */
+function exactManifestPaths(ctx, manifest) {
+  const exact = new Set();
+  for (const entry of manifest.overlays) {
+    for (const key of ['source', 'base', 'fragment']) {
+      if (typeof entry[key] === 'string') exact.add(path.resolve(ctx.overlayRoot, entry[key]));
+    }
+    if (typeof entry.destination === 'string') exact.add(path.resolve(ctx.root, entry.destination));
+    for (const relativePath of Array.isArray(entry.paths) ? entry.paths : []) {
+      if (typeof relativePath === 'string') exact.add(path.resolve(ctx.root, relativePath));
+    }
+    for (const relativePath of protectedPathsFor(entry)) {
+      exact.add(path.resolve(ctx.overlayRoot, entry.source, relativePath));
+      exact.add(path.resolve(ctx.root, entry.destination, relativePath));
+    }
+  }
+  return exact;
+}
+
+/**
+ * Read the token-named paths a directory or skill-root entry lets its walk
+ * read. Each value names one path relative to the entry, so a walk still
+ * refuses every token-named file the entry does not list by exact path.
+ * @param {object} entry Manifest overlay entry.
+ * @returns {string[]} The entry's validated relative paths.
+ * @throws {Error} When a value is not a relative path inside the entry or names a .env file.
+ */
+function protectedPathsFor(entry) {
+  if (entry.protectedPaths === undefined) return [];
+  if (!(entry.scope === 'directory' || entry.scope === 'skill-root') || !Array.isArray(entry.protectedPaths)) {
+    throw new Error(entry.id + ': protectedPaths is a list, allowed only on a directory or skill-root entry');
+  }
+  return entry.protectedPaths.map((value) => {
+    const normalized = typeof value === 'string' ? path.posix.normalize(value) : '';
+    const isInside = normalized !== '' && normalized !== '.' && !path.isAbsolute(value) &&
+      normalized !== '..' && !normalized.startsWith('../');
+    if (!isInside) {
+      throw new Error(entry.id + ': protectedPaths value is not a path inside the entry: ' + String(value));
+    }
+    if (isEnvName(normalized)) {
+      throw new Error(entry.id + ': protectedPaths value names a .env file, which is never read: ' + normalized);
+    }
+    return normalized;
+  });
+}
+
+/**
+ * Whether the engine must refuse to read a path because its name marks a secret.
+ * @param {string} filePath Path to test.
+ * @param {Set<string>} [exact] Absolute paths a manifest entry names exactly.
+ * @returns {boolean} True when the path is refused.
+ */
+function isProtectedReadPath(filePath, exact = NO_EXACT_PATHS) {
+  if (isEnvName(filePath)) return true;
+  return isTokenName(filePath) && !exact.has(path.resolve(filePath));
+}
+
+/**
+ * Whether a capture record's destination is one its entry lists in protectedPaths.
+ * @param {object} ctx Engine context.
+ * @param {{key: string, entry?: object}} record Capture record.
+ * @returns {boolean} True when the entry names this destination exactly.
+ */
+function isListedProtectedPath(ctx, record) {
+  if (!record.entry || typeof record.entry.destination !== 'string') return false;
+  const destination = path.resolve(ctx.root, record.entry.destination);
+  const relativePath = toPosix(path.relative(destination, path.resolve(ctx.root, record.key)));
+  return protectedPathsFor(record.entry).includes(relativePath);
+}
+
+/**
+ * Whether a capture must refuse to copy a live file into the overlay folder.
+ * A file or marked-section entry names its destination exactly, and a
+ * directory or skill-root entry names one through protectedPaths, so only
+ * those may capture a token-named path.
+ * @param {object} ctx Engine context.
+ * @param {{key: string, sourcePath: string, entry?: object}} record Capture record.
+ * @param {string} inputPath Path as the caller named it.
+ * @returns {boolean} True when the capture is refused.
+ */
+function isCaptureRestricted(ctx, record, inputPath) {
+  const isExactRecord = Boolean(record.entry && EXACT_CAPTURE_SCOPES.has(record.entry.scope)) ||
+    isListedProtectedPath(ctx, record);
+  const paths = [inputPath, record.key, sourceRelative(ctx, record.sourcePath)];
+  return paths.some((value) => {
+    if (isEnvName(value)) return true;
+    return value.toLowerCase().includes('token') && !isExactRecord;
+  });
+}
+
+/**
+ * Refuse a manifest whose paths escape their roots or would read a secret.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {Set<string>} The exact manifest paths, for the per-output check.
+ */
+function assertSafeToPlan(ctx, manifest) {
+  const root = ctx.root;
+  const exact = exactManifestPaths(ctx, manifest);
+  for (const entry of manifest.overlays) {
+    const candidates = [];
+    for (const key of ['source', 'base', 'fragment', 'destination']) {
+      if (!entry[key]) continue;
+      const base = key === 'destination' ? root : ctx.overlayRoot;
+      const absolute = path.resolve(base, entry[key]);
+      if (!isWithin(base, absolute)) {
+        throw new Error(entry.id + ': path escapes its root: ' + entry[key]);
+      }
+      candidates.push(absolute);
+    }
+    if (entry.scope === 'remove-root' && Array.isArray(entry.paths)) {
+      // A removal path the planner rejects is reported as a blocked overlay, the
+      // way a check reports it, rather than as an error that hides the others.
+      for (const relativePath of entry.paths) {
+        try {
+          candidates.push(resolveRemoveRootPath(root, relativePath));
+        } catch {
+          continue;
+        }
+      }
+    }
+    for (const candidate of candidates) {
+      if (isProtectedReadPath(candidate, exact)) {
+        throw new Error(entry.id + ': refusing to inspect a protected path: ' + toPosix(path.relative(ctx.overlayRoot, candidate)));
+      }
+    }
+    if (entry.scope === 'directory' || entry.scope === 'skill-root') {
+      const sourceDirectory = path.resolve(ctx.overlayRoot, entry.source);
+      const destinationDirectory = path.resolve(root, entry.destination);
+      for (const filePath of [...listTreePaths(sourceDirectory), ...listTreePaths(destinationDirectory)]) {
+        if (isProtectedReadPath(filePath, exact)) {
+          throw new Error(entry.id + ': refusing to inspect a protected path: ' + toPosix(path.relative(root, filePath)));
+        }
+      }
+    }
+  }
+  return exact;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. CLASSIFICATION
+//
+// Each destination is classified against three byte sets: the live file, the
+// bytes the overlay would write now, and the hash recorded the last time the
+// engine applied it. That is what tells an overlay edit (apply it) from a live
+// edit (capture it) from a conflict (a person resolves it).
+// ─────────────────────────────────────────────────────────────────────────────
+
+function buffersEqual(left, right) {
+  if (left === null || right === null) return left === right;
+  return Buffer.compare(left, right) === 0;
+}
+
+function hashMatches(buffer, hash) {
+  return buffer !== null && hash !== undefined && sha256(buffer) === hash;
+}
+
+function planWouldWrite(plan, filePath) {
+  return plan.writes.some((write) => path.resolve(write.filePath) === path.resolve(filePath)) ||
+    plan.deletes.some((deletion) => path.resolve(deletion) === path.resolve(filePath));
+}
+
+/**
+ * Name the sync state of one destination.
+ * @param {{output: object, plan: object, key: string, live: Buffer|null, state: object, manifest: object}} input
+ * @returns {string} One of STATUS_NAMES.
+ */
+function classifyDestination({ output, plan, key, live, state, manifest }) {
+  const desired = output.buffer;
+  const hasState = Object.prototype.hasOwnProperty.call(state.files, key);
+  const appliedHash = hasState ? state.files[key] : undefined;
+  if (buffersEqual(live, desired)) return 'in-sync';
+
+  if (!hasState) {
+    if (desired === null && live !== null) return 'live-edited';
+    return planWouldWrite(plan, output.filePath) ? 'overlay-edited' : 'both-changed';
+  }
+
+  const desiredHash = desired === null ? null : sha256(desired);
+  if (state.exists && state.pin !== manifest.pin.commit &&
+      !hashMatches(live, appliedHash) && !buffersEqual(live, desired)) {
+    return 'upstream-moved';
+  }
+  if (live === null || hashMatches(live, appliedHash) ||
+      (plan.entry.pinnedSha256 && hashMatches(live, plan.entry.pinnedSha256))) {
+    return 'overlay-edited';
+  }
+  if (desiredHash === appliedHash && !hashMatches(live, appliedHash)) return 'live-edited';
+  return 'both-changed';
+}
+
+// A layout link the manifest names is part of the delivered tree, not of the pin,
+// so a tree that lost one cannot be repaired by copying anything: the report has
+// to carry it as outstanding work or the link stays missing silently.
+function layoutLinkRecords(layout, root) {
+  return layout.missing.map(({ link, linkPath }) => ({
+    state: 'overlay-edited',
+    key: relativeKey(root, linkPath),
+    target: link.target,
+    link,
+    layout: true,
+  }));
+}
+
+/**
+ * Plan every overlay against the accepted hashes and classify each destination.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object} state Loaded applied-hash state.
+ * @returns {{plans: object[], records: object[], blocked: object[], layout: object}}
+ *   `blocked` holds plans whose problems left no destination to classify.
+ */
+function analyze(ctx, manifest, state) {
+  const root = ctx.root;
+  const exact = assertSafeToPlan(ctx, manifest);
+  const plans = manifest.overlays.map((entry) => planOverlay(entry, ctx, { acceptedSha256: state.files }));
+  const records = [];
+  const blocked = [];
+  const seen = new Set();
+
+  for (const plan of plans) {
+    if (plan.problems.length > 0 && plan.outputs.length === 0) {
+      blocked.push(plan);
+      continue;
+    }
+    for (const output of plan.outputs) {
+      const key = relativeKey(root, output.filePath);
+      if (seen.has(key)) throw new Error('multiple overlays own the same destination: ' + key);
+      seen.add(key);
+      if (isProtectedReadPath(output.filePath, exact) ||
+          (output.sourcePath && isProtectedReadPath(output.sourcePath, exact))) {
+        throw new Error(plan.entry.id + ': refusing to inspect a protected path: ' + key);
+      }
+      let stateName = plan.entry.scope === 'remove-root'
+        ? (pathExists(output.filePath) ? 'overlay-edited' : 'in-sync')
+        : classifyDestination({
+          output,
+          plan,
+          key,
+          live: readBufferOrNull(output.filePath),
+          state,
+          manifest,
+        });
+      if (plan.problems.length > 0 && stateName === 'overlay-edited') stateName = 'both-changed';
+      records.push({
+        state: stateName,
+        key,
+        output,
+        plan,
+        source: plan.entry.scope === 'remove-root' ? null : sourceRelative(ctx, output.sourcePath),
+        removal: plan.entry.scope === 'remove-root',
+      });
+    }
+  }
+  const layout = planLayoutLinks(manifest, root);
+  for (const record of layoutLinkRecords(layout, root)) records.push(record);
+  return { plans, records, blocked, layout };
+}
+
+function fixFor(ctx, record) {
+  if (record.state === 'overlay-edited') return ENGINE_COMMAND + ' apply';
+  if (record.state === 'live-edited') return ENGINE_COMMAND + ' apply --capture ' + record.key;
+  return 'resolve ' + ctx.overlayLabel + '/' + record.source + ' and ' + record.key +
+    ', then run ' + ENGINE_COMMAND + ' status';
+}
+
+function stateLine(ctx, record) {
+  if (record.layout) return record.state + ' ' + record.key + '  (layout link)';
+  if (record.removal) return record.state + ' ' + record.key + '  (remove-root row: ' + record.plan.entry.id + ')';
+  return record.state + ' ' + record.key + '  (overlay: ' + ctx.overlayLabel + '/' + record.source + ')';
+}
+
+function problemLine(ctx, record) {
+  return stateLine(ctx, record) + '  fix: ' + fixFor(ctx, record);
+}
+
+function printProblems(ctx, records) {
+  for (const record of records) {
+    if (record.state !== 'in-sync') console.log(problemLine(ctx, record));
+  }
+}
+
+function stateCounts(records) {
+  const counts = Object.fromEntries(STATUS_NAMES.map((name) => [name, 0]));
+  for (const record of records) counts[record.state] += 1;
+  return counts;
+}
+
+function stateSummary(records) {
+  const counts = stateCounts(records);
+  return STATUS_NAMES.map((name) => name + '=' + counts[name]).join(' ');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. LOCK
+//
+// Every command that writes the tree or the overlay folder takes the lock
+// itself, so no wrapper is needed to keep two runs apart. A held lock is never
+// cleared automatically: the refusal names the owner line and the file, and a
+// person removes it once they know that run has ended.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Try to take the overlay lock.
+ * @param {object} ctx Engine context.
+ * @param {string} owner Who takes it, written at the start of the owner line.
+ * @returns {{isHeld: boolean, lockPath: string, ownerLine: string, release?: function}}
+ */
+function acquireLock(ctx, owner) {
+  const ownerLine = `${owner} pid=${process.pid} ${new Date().toISOString()}`;
+  let fd;
+  try {
+    fd = fs.openSync(ctx.lockPath, 'wx');
+  } catch (error) {
+    if (!error || error.code !== 'EEXIST') throw error;
+    const current = readBufferOrNull(ctx.lockPath);
+    return { isHeld: false, lockPath: ctx.lockPath, ownerLine: current ? current.toString('utf8').trim() : '(empty lock file)' };
+  }
+  try {
+    fs.writeSync(fd, ownerLine + '\n');
+  } finally {
+    fs.closeSync(fd);
+  }
+  const lock = { isHeld: true, lockPath: ctx.lockPath, ownerLine };
+  lock.release = () => {
+    // Remove only our own lock: a file someone replaced by hand is theirs.
+    const current = readBufferOrNull(ctx.lockPath);
+    if (current && current.toString('utf8').trim() === ownerLine) fs.unlinkSync(ctx.lockPath);
+  };
+  return lock;
+}
+
+function lockStillOurs(ctx, lock) {
+  if (!lock || !lock.isHeld || lock.lockPath !== ctx.lockPath) return false;
+  const current = readBufferOrNull(ctx.lockPath);
+  return current !== null && current.toString('utf8').trim() === lock.ownerLine;
+}
+
+/**
+ * Run a step while holding the overlay lock, refusing when another run holds it.
+ * A caller that already holds the lock across several steps passes it in
+ * `options.lock`, and the step then runs without taking it a second time.
+ * @param {object} ctx Engine context.
+ * @param {string} owner Owner label for a newly taken lock.
+ * @param {function} run Step to run; receives the lock and returns an exit code.
+ * @param {{lock?: object}} [options]
+ * @returns {number} The step's exit code, or 2 when the lock is held elsewhere.
+ */
+function withLock(ctx, owner, run, options = {}) {
+  if (lockStillOurs(ctx, options.lock)) return run(options.lock);
+  const lock = acquireLock(ctx, owner);
+  if (!lock.isHeld) {
+    console.log('refuse: the overlay lock is held: ' + lock.ownerLine);
+    console.log('  remove ' + lock.lockPath + ' by hand once that run has ended');
+    return EXIT_ERROR;
+  }
+  try {
+    return run(lock);
+  } finally {
+    lock.release();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. STATUS AND THE FULL CHECK
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Run the full read-only check: every overlay plan, the layout links and the
+ * generators' own check modes.
+ * The plans come from the same analysis apply uses, so the check reads the same
+ * accepted hashes: a destination that holds the last applied copy of a changed
+ * overlay is pending work, not a rebase.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object[]} plans Plans from analyze(), made with the accepted hashes.
+ * @returns {{checked: number, ok: number, miss: number, problems: string[]}}
+ */
+function runCheck(ctx, manifest, plans) {
+  const root = ctx.root;
+  const problems = [];
+  let misses = 0;
+  const layout = planLayoutLinks(manifest, root);
+  const layoutCount = (manifest.layoutLinks || []).length > 0 ? 1 : 0;
+  for (const problem of layout.problems) problems.push(`layout: ${problem}`);
+  for (const { link } of layout.missing) problems.push(`layout: ${link.path} is missing (link to ${link.target})`);
+  if (layout.problems.length + layout.missing.length > 0) misses += 1;
+  const rowsFor = (plan) => (plan.entry.scope === 'remove-root'
+    ? Math.max(1, Array.isArray(plan.entry.paths) ? plan.entry.paths.length : 0)
+    : 1);
+  for (const plan of plans) {
+    if (plan.problems.length > 0) {
+      misses += rowsFor(plan);
+      for (const problem of plan.problems) problems.push(`${plan.entry.id}: ${problem}`);
+      continue;
+    }
+    if (plan.entry.scope === 'remove-root') {
+      for (let index = 0; index < plan.outputs.length; index += 1) {
+        if (!pathExists(plan.outputs[index].filePath)) continue;
+        misses += 1;
+        problems.push(`${plan.entry.id}: ${plan.entry.paths[index]} is still present`);
+      }
+      continue;
+    }
+    const changed = plan.writes.length + plan.deletes.length;
+    if (changed > 0) {
+      misses += 1;
+      const sample = [...plan.writes.map((write) => path.relative(root, write.filePath)), ...plan.deletes.map((target) => path.relative(root, target))];
+      problems.push(`${plan.entry.id}: ${changed} path(s) out of sync (${sample.slice(0, 3).join(', ')}${sample.length > 3 ? ', …' : ''})`);
+    }
+  }
+
+  const generatedProblems = verifyGenerated(manifest, root);
+  for (const problem of generatedProblems) problems.push(`generated: ${problem}`);
+
+  const overlayChecks = plans.reduce((count, plan) => count + rowsFor(plan), 0);
+  const checked = overlayChecks + 1 + layoutCount;
+  const miss = misses + (generatedProblems.length > 0 ? 1 : 0);
+  return { checked, ok: checked - miss, miss, problems };
+}
+
+/**
+ * Report every destination not in sync, then run the full check.
+ * @param {object} ctx Engine context.
+ * @param {{isJson?: boolean}} [options]
+ * @returns {number} 0 when everything is in sync, 1 otherwise.
+ */
+function commandStatus(ctx, options = {}) {
+  const manifest = loadManifest(ctx);
+  const state = loadState(ctx, manifest);
+  const analysis = analyze(ctx, manifest, state);
+  const check = runCheck(ctx, manifest, analysis.plans);
+  const outOfSync = analysis.records.filter((record) => record.state !== 'in-sync');
+  const isInSync = outOfSync.length === 0 && analysis.blocked.length === 0 && check.miss === 0;
+
+  if (options.isJson) {
+    const report = {
+      result: isInSync ? 'PASSED' : 'FAILED',
+      root: ctx.root,
+      overlayFolder: ctx.overlayLabel,
+      counts: stateCounts(analysis.records),
+      destinations: outOfSync.map((record) => ({
+        state: record.state,
+        key: record.key,
+        kind: record.layout ? 'layout-link' : (record.removal ? 'remove-root' : 'overlay'),
+        overlay: record.layout ? null : record.plan.entry.id,
+        source: record.source ? ctx.overlayLabel + '/' + record.source : null,
+        fix: fixFor(ctx, record),
+      })),
+      check,
+    };
+    console.log(JSON.stringify(report, null, 2));
+    return isInSync ? EXIT_OK : EXIT_CONFLICT;
+  }
+
+  for (const record of outOfSync) console.log(problemLine(ctx, record));
+  console.log(stateSummary(analysis.records));
+  for (const problem of check.problems) console.log(`MISS     ${problem}`);
+  console.log(`checked=${check.checked} ok=${check.ok} miss=${check.miss}`);
+  console.log(isInSync ? 'RESULT: PASSED' : 'RESULT: FAILED');
+  return isInSync ? EXIT_OK : EXIT_CONFLICT;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 13. APPLY
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Apply every overlay edit; the caller holds the lock.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {number} 0 when applied, 1 on conflict or a failed step.
+ */
+function applyUnderLock(ctx, manifest) {
+  const root = ctx.root;
+  const state = loadState(ctx, manifest);
+  const analysis = analyze(ctx, manifest, state);
+  const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
+  const layoutProblems = analysis.layout.problems;
+  if (blockers.length > 0 || analysis.blocked.length > 0 || layoutProblems.length > 0) {
+    // Nothing is written when one overlay cannot be applied on its own: a
+    // half-applied set is worse than an untouched tree.
+    if (blockers.length > 0) printProblems(ctx, analysis.records);
+    for (const plan of analysis.blocked) {
+      for (const problem of plan.problems) console.log(`BLOCKED  ${plan.entry.id}: ${problem}`);
+    }
+    for (const problem of layoutProblems) console.log(`BLOCKED  layout: ${problem}`);
+    if (analysis.blocked.length > 0 || layoutProblems.length > 0) {
+      console.log(`blocked=${analysis.blocked.length + (layoutProblems.length > 0 ? 1 : 0)} changed=0`);
+    }
+    return EXIT_CONFLICT;
+  }
+
+  const changedRecords = analysis.records.filter((record) => record.state === 'overlay-edited' && !record.layout);
+  const layoutRecords = analysis.records.filter((record) => record.layout);
+  const plansToApply = new Set(changedRecords.map((record) => record.plan));
+  let written = 0;
+  for (const plan of plansToApply) written += applyOnePlan(plan, root);
+
+  // The links are restored before the regeneration steps run: a route resolving
+  // skills through one of them reads nothing until the link exists.
+  for (const record of layoutRecords) {
+    applyLayoutLink(root, record.link);
+    console.log('linked ' + record.key + ' -> ' + record.target);
+  }
+
+  if (written > 0) {
+    const regeneration = regenerate(manifest, root);
+    for (const { step, result } of regeneration.failed) {
+      const output = ((result.stdout || '') + (result.stderr || '')).trim().split('\n').slice(-3).join(' | ');
+      console.log('regen ' + step.id + ': FAILED exit=' + result.status + ' ' + output);
+    }
+    if (regeneration.failed.length > 0) {
+      console.log('regeneration failed for ' + regeneration.failed.length + ' step(s); the tree is only partly rebuilt');
+      return EXIT_CONFLICT;
+    }
+  }
+
+  const updated = analyze(ctx, manifest, state);
+  const unresolved = updated.records.filter((record) => record.state !== 'in-sync');
+  if (unresolved.length > 0) {
+    printProblems(ctx, unresolved);
+    return EXIT_CONFLICT;
+  }
+  const files = {};
+  for (const record of updated.records) {
+    if (record.output.buffer !== null) files[record.key] = sha256(record.output.buffer);
+  }
+  writeStateIfChanged(ctx, { pin: manifest.pin.commit, files });
+
+  // The applied hashes are recorded first: they describe the destinations, which
+  // are in sync, whatever the generators' own checks say next.
+  const generatedProblems = written > 0 ? verifyGenerated(manifest, root) : [];
+  for (const problem of generatedProblems) console.log(`MISS     generated: ${problem}`);
+  console.log((changedRecords.length + layoutRecords.length) + ' changed');
+  return generatedProblems.length > 0 ? EXIT_CONFLICT : EXIT_OK;
+}
+
+/**
+ * Apply every overlay edit under the lock, then regenerate and verify.
+ * @param {object} ctx Engine context.
+ * @param {{lock?: object}} [options] A lock the caller already holds.
+ * @returns {number} 0 when applied, 1 on conflict, 2 when the lock is held.
+ */
+function commandApply(ctx, options = {}) {
+  const manifest = loadManifest(ctx);
+  return withLock(ctx, 'overlay-engine apply', () => applyUnderLock(ctx, manifest), options);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 14. CAPTURE
+// ─────────────────────────────────────────────────────────────────────────────
+
+function directoryRelative(rootDirectory, filePath) {
+  const relative = path.relative(rootDirectory, filePath);
+  if (relative === '' || !isWithin(rootDirectory, filePath)) return null;
+  return toPosix(relative);
+}
+
+function captureCandidates(root, inputPath) {
+  if (path.isAbsolute(inputPath)) return [path.resolve(inputPath)];
+  return [path.resolve(root, inputPath), path.resolve(process.cwd(), inputPath)];
+}
+
+/**
+ * Find the overlay that owns a capture candidate.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} candidate Absolute path inside the tree.
+ * @returns {object|null} The capture record, or null when no overlay owns it.
+ */
+function captureRecordForPath(ctx, manifest, candidate) {
+  const root = ctx.root;
+  if (!isWithin(root, candidate) || candidate === root) return null;
+  const key = toPosix(path.relative(root, candidate));
+  for (const entry of manifest.overlays) {
+    if (entry.scope === 'remove-root') {
+      for (const relativePath of entry.paths || []) {
+        const removalPath = resolveRemoveRootPath(root, relativePath);
+        if (!isWithin(removalPath, candidate)) continue;
+        return { entry, key, destinationPath: candidate, removal: true };
+      }
+      continue;
+    }
+    const destinationPath = path.resolve(root, entry.destination);
+    if (entry.scope === 'file' && candidate === destinationPath) {
+      return { entry, key, destinationPath, sourcePath: path.resolve(ctx.overlayRoot, entry.source) };
+    }
+    if (entry.scope === 'marked-section' && candidate === destinationPath) {
+      return { entry, key, destinationPath, sourcePath: path.resolve(ctx.overlayRoot, entry.fragment) };
+    }
+    if (entry.scope === 'json-entry' && candidate === destinationPath) {
+      return { entry, key, destinationPath, sourcePath: path.resolve(ctx.overlayRoot, entry.source) };
+    }
+    if (entry.scope === 'directory') {
+      const relative = directoryRelative(destinationPath, candidate);
+      if (relative === null) continue;
+      const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
+      return { entry, key, destinationPath: candidate, sourcePath };
+    }
+    if (entry.scope === 'skill-root') {
+      const relative = directoryRelative(destinationPath, candidate);
+      if (relative === null) continue;
+      const isReplacement = (entry.replace || []).some((replacement) =>
+        relative === replacement || relative.startsWith(replacement + '/'));
+      const sourcePath = path.resolve(ctx.overlayRoot, entry.source, relative);
+      const isKept = [...keptRetainedPaths(entry, path.resolve(ctx.overlayRoot, entry.source))].some((kept) =>
+        relative === kept || relative.startsWith(kept + '/'));
+      if (isReplacement && !isKept) {
+        return { entry, key, destinationPath: candidate, sourcePath };
+      }
+    }
+  }
+  return null;
+}
+
+function extractMarkedSection(entry, live) {
+  const text = live.toString('utf8');
+  const begin = text.indexOf(entry.beginMarker);
+  if (begin < 0) throw new Error('live file is missing the begin marker');
+  const endMarker = text.indexOf(entry.endMarker, begin);
+  if (endMarker < 0) throw new Error('live file is missing the end marker');
+  let end = endMarker + entry.endMarker.length;
+  if (text.slice(end, end + 2) === '\r\n') end += 2;
+  else if (text[end] === '\n') end += 1;
+  return Buffer.from(text.slice(begin, end), 'utf8');
+}
+
+/**
+ * Capture one live edit; the caller holds the lock.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {string} inputPath Destination path as the caller named it.
+ * @returns {number} 0 when captured, 1 when not live-edited, 2 on refusal.
+ */
+function captureUnderLock(ctx, manifest, inputPath) {
+  const root = ctx.root;
+  let record = null;
+  for (const candidate of captureCandidates(root, inputPath)) {
+    record = captureRecordForPath(ctx, manifest, candidate);
+    if (record) break;
+  }
+  if (!record) {
+    console.log('refuse: path is not an overlay destination: ' + inputPath);
+    return EXIT_ERROR;
+  }
+  if (record.removal) {
+    console.log('refuse: ' + record.key + ' is scheduled for removal by remove-root row ' + record.entry.id + '; capture is not supported');
+    return EXIT_ERROR;
+  }
+  if (isCaptureRestricted(ctx, record, inputPath)) {
+    console.log('refuse: protected capture path: ' + record.key);
+    return EXIT_ERROR;
+  }
+  if (record.entry.scope === 'json-entry') {
+    console.log('refuse: edit ' + ctx.overlayLabel + '/' + sourceRelative(ctx, record.sourcePath) + ' instead');
+    return EXIT_ERROR;
+  }
+  if (!['directory', 'skill-root'].includes(record.entry.scope) && !isFile(record.sourcePath)) {
+    console.log(record.entry.id + ': canonical source is missing: ' + sourceRelative(ctx, record.sourcePath));
+    return EXIT_ERROR;
+  }
+  if (!isFile(record.destinationPath)) {
+    console.log('refuse: live destination is not a regular file: ' + record.key);
+    return EXIT_ERROR;
+  }
+  const livePath = canonicalPath(record.destinationPath);
+  if (isCaptureRestricted(ctx, record, livePath)) {
+    console.log('refuse: protected capture path: ' + record.key);
+    return EXIT_ERROR;
+  }
+  const state = loadState(ctx, manifest);
+  const analysis = analyze(ctx, manifest, state);
+  const classified = analysis.records.find((item) => item.key === record.key);
+  if (!classified) {
+    console.log('refuse: path is not an overlay destination: ' + inputPath);
+    return EXIT_ERROR;
+  }
+  if (classified.state === 'in-sync') {
+    console.log('nothing to capture');
+    return EXIT_OK;
+  }
+  if (classified.state !== 'live-edited') {
+    printProblems(ctx, [classified]);
+    return EXIT_CONFLICT;
+  }
+  const live = fs.readFileSync(record.destinationPath);
+  const source = record.entry.scope === 'marked-section'
+    ? extractMarkedSection(record.entry, live)
+    : live;
+  fs.mkdirSync(path.dirname(record.sourcePath), { recursive: true });
+  fs.writeFileSync(record.sourcePath, source);
+
+  const files = { ...state.files, [record.key]: sha256(live) };
+  writeStateIfChanged(ctx, { pin: state.exists ? state.pin : manifest.pin.commit, files });
+  console.log('captured ' + record.key);
+  return EXIT_OK;
+}
+
+/**
+ * Copy a live edit to an overlay destination back into its overlay source.
+ * @param {object} ctx Engine context.
+ * @param {string} inputPath Destination path, relative to the root or the cwd.
+ * @param {{lock?: object}} [options] A lock the caller already holds.
+ * @returns {number} 0 when captured, 1 when not live-edited, 2 on refusal.
+ */
+function commandCapture(ctx, inputPath, options = {}) {
+  const manifest = loadManifest(ctx);
+  return withLock(ctx, 'overlay-engine capture', () => captureUnderLock(ctx, manifest, inputPath), options);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 15. GUARD
+//
+// Answers one question, whether a path is owned by an overlay, and writes
+// nothing: a live edit to an owned path is lost at the next re-copy, so the
+// caller is told to edit the overlay instead.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * List every live path an overlay owns, for the guard.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {object[]} Records with the entry, destination and source path.
+ */
+function destinationCandidates(ctx, manifest) {
+  const root = ctx.root;
+  const records = [];
+  for (const entry of manifest.overlays) {
+    if (entry.scope === 'remove-root') {
+      for (const relativePath of entry.paths || []) {
+        records.push({ entry, destinationPath: resolveRemoveRootPath(root, relativePath), removal: true });
+      }
+      continue;
+    }
+    const destinationPath = path.resolve(root, entry.destination);
+    if (!isWithin(root, destinationPath)) throw new Error(entry.id + ': destination escapes the sync root');
+    if (entry.scope === 'file' || entry.scope === 'json-entry') {
+      records.push({ entry, destinationPath, sourcePath: path.resolve(ctx.overlayRoot, entry.source) });
+      continue;
+    }
+    if (entry.scope === 'marked-section') {
+      records.push({ entry, destinationPath, sourcePath: path.resolve(ctx.overlayRoot, entry.fragment) });
+      continue;
+    }
+    if (entry.scope === 'directory') {
+      const sourceDirectory = path.resolve(ctx.overlayRoot, entry.source);
+      for (const sourcePath of listTreePaths(sourceDirectory)) {
+        if (!isFile(sourcePath)) continue;
+        const relative = path.relative(sourceDirectory, sourcePath);
+        records.push({ entry, destinationPath: path.join(destinationPath, relative), sourcePath });
+      }
+      for (const livePath of listTreePaths(destinationPath)) {
+        const relative = path.relative(destinationPath, livePath);
+        if (records.some((record) => record.entry === entry && path.resolve(record.destinationPath) === path.resolve(livePath))) continue;
+        records.push({ entry, destinationPath: livePath, sourcePath: path.join(sourceDirectory, relative) });
+      }
+      continue;
+    }
+    if (entry.scope === 'skill-root') {
+      const sourceDirectory = path.resolve(ctx.overlayRoot, entry.source);
+      const retained = new Set((entry.retained || []).map((item) => item.path));
+      const kept = keptRetainedPaths(entry, sourceDirectory);
+      const owned = new Set();
+      for (const replacement of entry.replace || []) {
+        const sourcePath = path.join(sourceDirectory, replacement);
+        const destinationReplacement = path.join(destinationPath, replacement);
+        const relativePaths = isDirectory(sourcePath)
+          ? listTreePaths(sourcePath).filter(isFile).map((item) => path.relative(sourceDirectory, item))
+          : (isFile(sourcePath) ? [replacement] : []);
+        for (const relative of relativePaths) {
+          if (kept.has(relative)) continue;
+          owned.add(relative);
+          records.push({ entry, destinationPath: path.join(destinationPath, relative), sourcePath: path.join(sourceDirectory, relative) });
+        }
+        const livePaths = isDirectory(destinationReplacement)
+          ? listTreePaths(destinationReplacement)
+          : (pathExists(destinationReplacement) ? [destinationReplacement] : []);
+        for (const livePath of livePaths) {
+          if (!isFile(livePath)) continue;
+          const relative = path.relative(destinationPath, livePath);
+          if (kept.has(relative) || owned.has(relative)) continue;
+          owned.add(relative);
+          records.push({ entry, destinationPath: livePath, sourcePath: path.join(sourceDirectory, relative) });
+        }
+      }
+      for (const removed of entry.remove || []) {
+        const removedPath = path.join(destinationPath, removed);
+        const livePaths = isDirectory(removedPath)
+          ? listTreePaths(removedPath)
+          : (pathExists(removedPath) ? [removedPath] : []);
+        for (const livePath of livePaths) {
+          if (!isFile(livePath)) continue;
+          const relative = path.relative(destinationPath, livePath);
+          if (retained.has(relative) || owned.has(relative)) continue;
+          owned.add(relative);
+          records.push({ entry, destinationPath: livePath, sourcePath: path.join(sourceDirectory, relative) });
+        }
+      }
+    }
+  }
+  return records;
+}
+
+/**
+ * Answer whether a path is owned by an overlay. Never writes.
+ * @param {object} ctx Engine context.
+ * @param {string} inputPath Path to test, relative to the cwd or absolute.
+ * @returns {number} 0 to allow, 1 to refuse.
+ */
+function commandGuard(ctx, inputPath) {
+  const root = ctx.root;
+  const manifest = loadManifest(ctx);
+  const candidate = canonicalPath(path.resolve(process.cwd(), inputPath));
+  const removalCandidate = canonicalPathWithoutLeaf(path.resolve(process.cwd(), inputPath));
+  const lexicalCandidate = path.resolve(process.cwd(), inputPath);
+  for (const record of destinationCandidates(ctx, manifest)) {
+    if (record.removal) {
+      const removalPath = canonicalPathWithoutLeaf(record.destinationPath);
+      const isLexicalMatch = isWithin(record.destinationPath, lexicalCandidate);
+      const isCanonicalMatch = isWithin(removalPath, removalCandidate);
+      if (!isLexicalMatch && !isCanonicalMatch) continue;
+      const destination = isWithin(root, lexicalCandidate)
+        ? relativeKey(root, lexicalCandidate)
+        : relativeKey(canonicalPath(root), removalCandidate);
+      console.log('refuse: ' + destination + ' is scheduled for removal by remove-root row ' + record.entry.id);
+      return EXIT_CONFLICT;
+    }
+    if (!pathExists(record.destinationPath)) continue;
+    if (canonicalPath(record.destinationPath) !== candidate) continue;
+    const destination = relativeKey(root, record.destinationPath);
+    const source = sourceRelative(ctx, record.sourcePath);
+    console.log('refuse: ' + destination + ' is owned by ' + ctx.overlayLabel + '/' + source +
+      '; edit the overlay, then run ' + ENGINE_COMMAND + ' apply');
+    return EXIT_CONFLICT;
+  }
+  console.log('allow');
+  return EXIT_OK;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 16. COMMAND ENTRY POINT
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Parse the command line into one command and its options.
+ * @param {string[]} argv Arguments after the script path.
+ * @returns {object|null} Parsed options, or null for a misused command line.
+ */
+function parseArguments(argv) {
+  const options = { command: null, root: null, isJson: false, capture: null, guard: null };
+  for (let index = 0; index < argv.length; index += 1) {
+    const value = argv[index];
+    if (value === '--help' || value === '-h') return { command: 'help' };
+    if (value === 'status' || value === 'apply') {
+      if (options.command) return null;
+      options.command = value;
+      continue;
+    }
+    if (value === '--root' || value === '--capture' || value === '--guard') {
+      const next = argv[index + 1];
+      const field = value.slice(2);
+      if (options[field] !== null || !next || next.startsWith('-')) return null;
+      options[field] = next;
+      index += 1;
+      continue;
+    }
+    if (value === '--json') {
+      options.isJson = true;
+      continue;
+    }
+    return null;
+  }
+  if (options.guard !== null) {
+    if (options.command || options.capture !== null || options.isJson) return null;
+    options.command = 'guard';
+  }
+  if (!options.command) return null;
+  if (options.capture !== null && options.command !== 'apply') return null;
+  if (options.isJson && options.command !== 'status') return null;
+  return options;
+}
+
+/**
+ * Run the engine from command-line arguments.
+ * @param {string[]} argv Arguments after the script path.
+ * @returns {number} Exit code.
+ */
+function main(argv) {
+  const options = parseArguments(argv);
+  if (!options) {
+    console.log(USAGE);
+    return EXIT_ERROR;
+  }
+  if (options.command === 'help') {
+    console.log(USAGE);
+    return EXIT_OK;
+  }
+  const root = path.resolve(options.root || DEFAULT_ROOT);
+  if (!isDirectory(root)) {
+    console.log('root is not a directory: ' + root);
+    return EXIT_ERROR;
+  }
+  try {
+    const ctx = createContext(root);
+    if (options.command === 'guard') return commandGuard(ctx, options.guard);
+    if (options.command === 'status') return commandStatus(ctx, { isJson: options.isJson });
+    if (options.capture !== null) return commandCapture(ctx, options.capture);
+    return commandApply(ctx);
+  } catch (error) {
+    // A JSON caller parses stdout, so the error has to arrive there as JSON too.
+    if (options.isJson) console.log(JSON.stringify({ result: 'ERROR', error: error.message }, null, 2));
+    else console.error('[overlay-engine] ' + error.message);
+    return EXIT_ERROR;
+  }
+}
+
+if (require.main === module) {
+  process.exitCode = main(process.argv.slice(2));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 17. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+module.exports = {
+  acquireLock,
+  analyze,
+  applyJsonOperations,
+  applyLayoutLink,
+  applyOnePlan,
+  commandApply,
+  commandCapture,
+  commandGuard,
+  commandStatus,
+  createContext,
+  isCaptureRestricted,
+  isProtectedReadPath,
+  loadManifest,
+  loadState,
+  main,
+  planLayoutLinks,
+  planOverlay,
+  regenerate,
+  resolveOverlayDir,
+  resolveRemoveRootPath,
+  runCheck,
+  sha256,
+  verifyGenerated,
+  withLock,
+  writeStateIfChanged,
+};

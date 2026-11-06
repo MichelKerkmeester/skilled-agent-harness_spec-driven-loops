@@ -1,6 +1,11 @@
 [
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/status-without-overlays.md",
+    "diskPath": "manual-testing-playbook/overlays/status-without-overlays.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/routing/integration-request-routing.md",
     "diskPath": "manual-testing-playbook/routing/integration-request-routing.md"
   },
@@ -8,5 +13,10 @@
     "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/routing/moved-command-contract.md",
     "diskPath": "manual-testing-playbook/routing/moved-command-contract.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "references/overlays.md",
+    "diskPath": "references/overlays.md"
   }
 ]

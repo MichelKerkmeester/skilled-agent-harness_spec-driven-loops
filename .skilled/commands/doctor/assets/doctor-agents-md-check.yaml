@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting what one repository's root instruction file holds against the shipped template, without changing a byte of it
 purpose: Report rows A1 to A12 for the root AGENTS.md, its repo-local block, its runtime copies and its REPO RULES.md router, by running the shipped check engine once and naming the repair for each finding
 action: Run .skilled/commands/doctor/scripts/agents-md-check.cjs once -> render its row table through the presentation contract
-skill_owner: ".skilled/skills/sk-doc/sk-create-repo-rule/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

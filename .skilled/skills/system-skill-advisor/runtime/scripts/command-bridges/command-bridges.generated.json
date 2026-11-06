@@ -4,10 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 32,
-    "generated": 59,
-    "typescriptActive": 37,
-    "pythonActive": 47
+    "doctorRoutes": 34,
+    "generated": 61,
+    "typescriptActive": 39,
+    "pythonActive": 49
   },
   "entries": [
     {
@@ -1047,6 +1047,90 @@
           "description": "",
           "slashMarkers": [
             "/doctor:mcp install"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-overlay-apply",
+      "command": "/doctor:overlay",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-overlay-apply",
+          "order": 38,
+          "id": "command-doctor-overlay-apply",
+          "description": "",
+          "name": "/doctor:overlay apply",
+          "keywords": [
+            "apply the skilled overlays",
+            "put my overlays back into vendored skilled",
+            "capture a live edit into its overlay",
+            "reapply overlays after copying skilled"
+          ],
+          "intentSignals": [
+            "/doctor:overlay apply"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-overlay-apply",
+          "order": 49,
+          "id": "command-doctor-overlay-apply",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:overlay apply"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-overlay-status",
+      "command": "/doctor:overlay",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-overlay-status",
+          "order": 37,
+          "id": "command-doctor-overlay-status",
+          "description": "",
+          "name": "/doctor:overlay status",
+          "keywords": [
+            "check my vendored skilled overlays",
+            "re-pin my vendored Skilled",
+            "are my skilled overlays in sync",
+            "which overlay destinations are out of sync",
+            "vendored skilled overlay status",
+            "/doctor:overlay"
+          ],
+          "intentSignals": [
+            "/doctor:overlay status"
+          ],
+          "readOnly": true,
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-overlay-status",
+          "order": 48,
+          "id": "command-doctor-overlay-status",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:overlay status",
+            "/doctor:overlay"
           ]
         }
       }

@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -20,7 +20,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds 2 deterministic scenarios in 1 category, covering advisor routing for Skilled integration requests and the behavior of the doctor commands this skill owns. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
+The walked tree holds 3 deterministic scenarios in 2 categories, covering advisor routing for Skilled integration requests, the behavior of the doctor commands this skill owns and the overlay engine on a tree with no overlays. The doctor contract tests remain authoritative for each command's full behavior. These scenarios check what an operator sees.
 
 ### Realistic Test Model
 
@@ -89,6 +89,7 @@ Record each verdict under the skill's `benchmark/reports/` directory with the tr
 | Wave | Category | Scenario IDs | Purpose |
 |---|---|---|---|
 | 1 | Routing | `SKD-001`, `SKD-002` | Confirm integration requests route here and the owned commands kept their behavior. |
+| 2 | Overlays | `SKD-003` | Confirm the overlay check names a missing manifest and writes nothing. |
 
 ---
 
@@ -112,9 +113,22 @@ Prompt: `check that the doctor commands still work after the ownership move`
 
 ---
 
-## 8. AUTOMATED TEST CROSS-REFERENCE
+## 8. OVERLAYS
+
+### SKD-003 | Overlay status on a tree with no overlays names the missing manifest
+
+Verify `status` on an empty tree exits 2, names the default manifest path and writes nothing.
+
+Prompt: `check my vendored skilled overlays in a folder that has none`
+
+> **Feature File:** [SKD-003](overlays/status-without-overlays.md)
+
+---
+
+## 9. AUTOMATED TEST CROSS-REFERENCE
 
 | Coverage Area | Automated Or Structural Anchor | Scenario IDs |
 |---|---|---|
 | Advisor routing | [Skill graph metadata](../graph-metadata.json) | `SKD-001` |
 | Doctor command contracts | `.skilled/commands/doctor/scripts/tests/` | `SKD-002` |
+| Overlay engine | `.skilled/commands/doctor/scripts/tests/overlay-engine-*.test.cjs` | `SKD-003` |

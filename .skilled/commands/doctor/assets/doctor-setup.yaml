@@ -4,7 +4,7 @@
 role: Diagnostic Operator giving a first-run overview of every doctor command and running the existing read-only setup checks once
 purpose: List every doctor target with what it checks, run five read-only legs, and name the runnable doctor command that repairs each failing leg
 action: Print the doctor target list -> run the five read-only legs once -> render the per-leg verdict and repair lines through the presentation contract
-skill_owner: ".skilled/commands/doctor/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

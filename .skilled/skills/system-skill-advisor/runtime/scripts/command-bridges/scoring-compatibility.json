@@ -310,6 +310,18 @@
       "order": 36,
       "id": "command-doctor-install",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-overlay-status",
+      "order": 37,
+      "id": "command-doctor-overlay-status",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-overlay-apply",
+      "order": 38,
+      "id": "command-doctor-overlay-apply",
+      "description": ""
     }
   ],
   "python": [
@@ -662,6 +674,18 @@
       "inventoryId": "command-doctor-install",
       "order": 47,
       "id": "command-doctor-install",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-overlay-status",
+      "order": 48,
+      "id": "command-doctor-overlay-status",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-overlay-apply",
+      "order": 49,
+      "id": "command-doctor-overlay-apply",
       "description": ""
     }
   ],

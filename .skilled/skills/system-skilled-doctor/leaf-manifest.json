@@ -2,8 +2,10 @@
   "modes": [
     {
       "leaves": [
+        "manual-testing-playbook/overlays/status-without-overlays.md",
         "manual-testing-playbook/routing/integration-request-routing.md",
-        "manual-testing-playbook/routing/moved-command-contract.md"
+        "manual-testing-playbook/routing/moved-command-contract.md",
+        "references/overlays.md"
       ],
       "packet": ".",
       "workflowMode": "system-skilled-doctor"

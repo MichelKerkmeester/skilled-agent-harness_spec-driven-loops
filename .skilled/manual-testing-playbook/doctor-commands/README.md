@@ -41,6 +41,7 @@ A scenario is run as written. Its verdict is `PASS`, `FAIL` or `SKIP`, and a `SK
 | `/doctor:helper` | 2 | DOC-400, DOC-401 | A read-only pick run in place, and a writing pick handed back with the fallback |
 | `/doctor:install` | 1 | DOC-399 | The five ordered steps from `list`, and a guided run that prints the checklist without writing |
 | `/doctor:mcp` | 5 | DOC-375 to DOC-378, DOC-380 | Install with an approval per write, a read-only debug, a debug with `--fix`, the menu, and flag refusals |
+| `/doctor:overlay` | 0 | none yet | No scenario in this folder. The `system-skilled-doctor` playbook's `SKD-003` runs `status` on a tree with no overlays |
 | `/doctor:runtime-mirrors` | 2 | DOC-352, DOC-353 | Every mirror in sync, and one drifted mirror |
 | `/doctor:setup` | 1 | DOC-391 | The target table, the five read-only legs, and the repair command per failing leg |
 | `/doctor:sk-code` | 3 | DOC-382, DOC-383, DOC-395 | The setup battery, the battery on a pre-v4 checkout, and the quality config |

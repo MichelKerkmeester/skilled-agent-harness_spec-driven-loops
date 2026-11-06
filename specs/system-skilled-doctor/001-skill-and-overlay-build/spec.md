@@ -99,7 +99,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-skill-and-tag-move/ | The skill and the ten tag moves (REQ-008) | Complete |
-| 2 | 002-overlay-engine/ | The engine, `status` and `apply` (REQ-003, 004, 005, 009, 011, 012) | Pending |
+| 2 | 002-overlay-engine/ | The engine, `status` and `apply` (REQ-003, 004, 005, 009, 011, 012) | Complete |
 | 3 | 003-repin/ | The `repin` target (REQ-006, 007, 010) | Pending |
 | 4 | 004-guard-hook/ | The pre-write guard hook (REQ-013) | Pending |
 

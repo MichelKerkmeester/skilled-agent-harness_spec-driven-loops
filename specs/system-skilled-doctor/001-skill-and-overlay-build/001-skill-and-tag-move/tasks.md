@@ -177,9 +177,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 13/13 |
-| P1 Items | 20 | 20/20 |
-| P2 Items | 7 | 7/7 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 22 | 22/22 |
+| P2 Items | 9 | 9/9 |
 
 **Verification Date**: 2026-11-06
 <!-- /ANCHOR:summary -->
