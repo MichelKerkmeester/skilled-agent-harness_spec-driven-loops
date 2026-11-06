@@ -38,6 +38,12 @@ const packetSkillDocs = () =>
       .filter((md) => fs.existsSync(md)));
 const CO = path.join(CLI_ORCHESTRATION, 'cli-opencode/SKILL.md');
 const CC = path.join(CLI_ORCHESTRATION, 'cli-claude-code/SKILL.md');
+const DSH = path.join(CLI_ORCHESTRATION, 'cli-deepseek-harness/SKILL.md');
+const DSH_REPO_ROOT = path.resolve(HERE, '../../../..');
+// dsh starts in `.dsh/plugins`, a checkout folder without a `.env`, so the relative patch paths
+// resolve to the repository's own patch files whatever directory the test runner uses.
+const DSH_START = `cd ${path.join(DSH_REPO_ROOT, '.dsh', 'plugins')} && `;
+const DSH_FULL_DISPATCH = `${DSH_START}printf prompt | DSH_HOME=/tmp/dsh-home dsh --profile headless --patch ../patches/route-llmgateway-deepseek.patch.yml --patch ../patches/lineage.patch.yml --patch ../patches/guards.patch.yml --approval-policy never --json -`;
 const VERSION_CORPUS = JSON.parse(
   fs.readFileSync(path.join(HERE, 'opencode-version-corpus.json'), 'utf8'),
 );
@@ -612,6 +618,14 @@ test('hermes headless shapes need stdin handled: --query-file counts, a bare -q 
   assert.equal(stdin('hermes skills list'), true); // not a dispatch shape
 });
 
+test('dsh prompt text does not hide another headless runtime missing stdin handling', () => {
+  const stdin = CHECKS['stdin-redirect-required'];
+  assert.equal(stdin('opencode run "explain dsh --profile headless"'), false);
+  assert.equal(stdin('claude -p "explain dsh --profile headless"'), false);
+  assert.equal(stdin('npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -'), false);
+  assert.equal(stdin('cat prompt.md | npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -'), true);
+});
+
 test('hermes rules discriminate on the flags the packet contract pins', () => {
   const CH = path.join(CLI_ORCHESTRATION, 'cli-hermes/SKILL.md');
   const rules = readHardRules(CH).filter((r) => r.check !== 'command-v-hermes-required');
@@ -636,6 +650,140 @@ test('hermes rules discriminate on the flags the packet contract pins', () => {
   assert.deepEqual(ids(`${good} --accept-hooks`), ['hooks-user-level']);
   assert.deepEqual(ids('hermes mcp add code_mode --command node'), ['mcp-config-operator-required']);
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
+});
+
+test('dsh hard rules accept a complete isolated, pipe-fed dispatch', () => {
+  const rules = readHardRules(DSH);
+  assert.equal(resolveDispatchPacket(DSH_FULL_DISPATCH)?.skill, 'cli-deepseek-harness');
+  assert.deepEqual(evaluate(DSH_FULL_DISPATCH, rules), []);
+  assert.equal(CHECKS['stdin-redirect-required'](DSH_FULL_DISPATCH), true);
+  assert.equal(CHECKS['stdin-redirect-required']('dsh --profile headless --json -'), false);
+  assert.equal(CHECKS['no-repo-root-dotenv'](DSH_FULL_DISPATCH), true);
+  // A separator glued to the previous word still puts the scratch `cd` in command position.
+  assert.equal(CHECKS['no-repo-root-dotenv'](
+    'W=$(mktemp -d); T=$(mktemp -d); cd "$W" && printf x | DSH_HOME="$T" dsh --profile headless --json -',
+    { cwd: DSH_REPO_ROOT, repoRoot: DSH_REPO_ROOT },
+  ), true);
+});
+
+test('each dsh hard rule refuses its own violating command', () => {
+  const insideCheckout = path.join(DSH_REPO_ROOT, '.dsh', 'home');
+  const failingCases = [
+    ['headless-only', DSH_FULL_DISPATCH.replace('--profile headless', '--profile web')],
+    ['stdin-dash-required', DSH_FULL_DISPATCH.replace(/ -$/, '')],
+    ['route-patch-required', DSH_FULL_DISPATCH.replace(' --patch ../patches/route-llmgateway-deepseek.patch.yml', '')],
+    ['closed-roster', DSH_FULL_DISPATCH.replace(' --approval-policy never', ' --patch ../patches/route-unapproved.patch.yml --approval-policy never')],
+    ['approval-never-required', DSH_FULL_DISPATCH.replace('--approval-policy never', '--approval-policy ask')],
+    ['approval-never-required', DSH_FULL_DISPATCH.replace('--approval-policy never', '--approval-policy never --approval-policy ask')],
+    ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', insideCheckout)],
+    ['lineage-patch-required', DSH_FULL_DISPATCH.replace(' --patch ../patches/lineage.patch.yml', '')],
+    ['json-final-and-exit-required', DSH_FULL_DISPATCH.replace(' --json', '')],
+    ['pinned-version-required', 'npx @deepseek-ai/dsh@0.2.2 --profile headless --json -'],
+    ['no-repo-root-dotenv', DSH_FULL_DISPATCH.replace(DSH_START, ''), { cwd: DSH_REPO_ROOT, repoRoot: DSH_REPO_ROOT }],
+    ['no-repo-root-dotenv', DSH_FULL_DISPATCH.replace(DSH_START, `cd ${DSH_REPO_ROOT} && `), { cwd: os.tmpdir() }],
+    ['no-repo-root-dotenv', DSH_FULL_DISPATCH.replace(DSH_START, 'echo cd && '), { cwd: DSH_REPO_ROOT, repoRoot: DSH_REPO_ROOT }],
+    ['guards-patch-required', DSH_FULL_DISPATCH.replace(' --patch ../patches/guards.patch.yml', '')],
+    ['closed-roster', DSH_FULL_DISPATCH.replace('../patches/route-llmgateway', '/tmp/x/route-llmgateway')],
+    ['closed-roster', DSH_FULL_DISPATCH.replace(' --json -', ' --patch /tmp/x/anything.patch.yml --json -')],
+    ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', path.join(os.homedir(), '.dsh'))],
+    ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$PWD')],
+    ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$(pwd)')],
+    ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$HOME/./.dsh')],
+    ['mcp-opt-in-only', DSH_FULL_DISPATCH.replace(' --json -', ' --patch ../patches/mcp-extra.patch.yml --json -')],
+  ];
+
+  for (const [id, command, context] of failingCases) {
+    assert.equal(CHECKS[id](command, context), false, `${id} accepted its violating command`);
+  }
+});
+
+test('dsh profile, stdin and home rules reject invalid variants', () => {
+  const noHome = DSH_FULL_DISPATCH.replace('DSH_HOME=/tmp/dsh-home ', '');
+  const defaultHome = DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$HOME/.dsh');
+  const clearedHome = DSH_FULL_DISPATCH.replace('DSH_HOME=/tmp/dsh-home ', 'env -i ');
+  const mixedTaskArgument = DSH_FULL_DISPATCH.replace('--json -', '--json task -');
+
+  assert.equal(CHECKS['dsh-home-isolated'](noHome), false);
+  assert.equal(CHECKS['dsh-home-isolated'](defaultHome), false);
+  assert.equal(CHECKS['dsh-home-isolated'](clearedHome), false);
+  assert.equal(CHECKS['stdin-dash-required'](mixedTaskArgument), false);
+  assert.equal(CHECKS['headless-only']('dsh --profile web --json -'), false);
+});
+
+test('expanded dsh patch values fail the roster checks through evaluateDispatch', () => {
+  const skillsRoot = path.resolve(HERE, '../../../skills');
+  const commands = [
+    'DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch "$ROUTE_PATCH" '
+      + '--patch "$LINEAGE_PATCH" --json --approval-policy never -',
+    'dsh --profile web --patch "$P" -',
+  ];
+  const requiredChecks = ['route-patch-required', 'lineage-patch-required', 'closed-roster'];
+
+  for (const command of commands) {
+    const dsh = evaluateDispatch(command, skillsRoot).find(({ skill }) => skill === 'cli-deepseek-harness');
+    assert.ok(dsh, `dsh dispatch did not resolve: ${command}`);
+    for (const check of requiredChecks) {
+      const violation = dsh.violations.find((item) => item.check === check);
+      assert.ok(violation, `${check} accepted an expanded patch value: ${command}`);
+      assert.match(violation.message, /literal .*\.dsh\/patches\//);
+    }
+  }
+
+  assert.equal(
+    CHECKS['dsh-home-isolated']('DSH_HOME=/tmp/dsh dsh --profile headless --json -'),
+    true,
+  );
+});
+
+test('launch wrappers, a variable binary and an invented dump flag still meet the dsh rules', () => {
+  for (const command of [
+    'exec dsh --profile headless --json -',
+    'echo x | xargs dsh --profile headless --json -',
+    'echo x | xargs -n 1 dsh --profile headless --json -',
+    'sudo -u root dsh --profile headless --json -',
+    'nice -n 10 dsh --profile headless --json -',
+    'D=dsh; $D --profile headless --json -',
+    'dsh --profile headless --dump-trace -',
+  ]) {
+    assert.equal(resolveDispatchPacket(command)?.skill, 'cli-deepseek-harness', `not governed: ${command}`);
+    assert.equal(CHECKS['route-patch-required'](command), false, `unpatched dispatch passed: ${command}`);
+  }
+  assert.equal(resolveDispatchPacket('dsh --profile headless --dump-config'), null);
+});
+
+test('a variable directory with a literal patch file name and a variable DSH_HOME pass every dsh rule', () => {
+  const skillsRoot = path.resolve(HERE, '../../../skills');
+  const command = 'cd "$W" && printf \'x\' | env -i PATH="$PATH" HOME="$T" DSH_HOME="$T" dsh --profile headless '
+    + '--patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" '
+    + '--patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" '
+    + '--json --approval-policy never -';
+  // evaluateDispatch reports only dispatches with violations, so a clean dsh dispatch is absent.
+  const dsh = evaluateDispatch(command, skillsRoot).find(({ skill }) => skill === 'cli-deepseek-harness');
+  assert.deepEqual((dsh?.violations ?? []).map(({ check }) => check), []);
+  assert.ok(evaluateDispatch(command.replace('--approval-policy never ', ''), skillsRoot)
+    .some(({ skill }) => skill === 'cli-deepseek-harness'), 'the same dispatch did not resolve as dsh');
+
+  assert.equal(CHECKS['dsh-home-isolated']('DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --json -'), true);
+  assert.equal(CHECKS['dsh-home-isolated']('DSH_HOME="$HOME/.dsh" dsh --profile headless --json -'), false);
+  assert.equal(
+    CHECKS['closed-roster']('DSH_HOME=/tmp/h dsh --profile headless --patch "$REPO/.dsh/patches/route-other.patch.yml" --json -'),
+    false,
+  );
+});
+
+test('pinned-version-required evaluates npx DSH dispatches and rejects other versions', () => {
+  const skillsRoot = path.resolve(HERE, '../../../skills');
+  const pinned = 'npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -';
+  const violations = (command) => evaluateDispatch(command, skillsRoot)
+    .flatMap(({ violations: dispatchViolations }) => dispatchViolations)
+    .filter(({ check }) => check === 'pinned-version-required');
+
+  assert.deepEqual(violations(pinned), []);
+  for (const version of ['0.2.2', '0.2.2-rc.2', 'latest']) {
+    const command = `npx -y @deepseek-ai/dsh@${version} --profile headless --json -`;
+    assert.equal(violations(command).length, 1, version);
+  }
+  assert.equal(violations('npx -y @deepseek-ai/dsh --profile headless --json -').length, 1);
 });
 
 // The marker arrives inside the command, which a model writes, so it must not disarm a rule by
@@ -873,6 +1021,56 @@ const CHECK_FIXTURES = {
     satisfied: 'jev noul -q "Is it urgent?" -s @state.txt',
     violated: 'jev-mcp < request.jsonl',
   },
+  'headless-only': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace('--profile headless', '--profile web'),
+  },
+  'stdin-dash-required': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace(/ -$/, ''),
+  },
+  'route-patch-required': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace(' --patch ../patches/route-llmgateway-deepseek.patch.yml', ''),
+  },
+  'closed-roster': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace(' --approval-policy never', ' --patch ../patches/route-unapproved.patch.yml --approval-policy never'),
+  },
+  'approval-never-required': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace('--approval-policy never', '--approval-policy ask'),
+  },
+  'dsh-home-isolated': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace('/tmp/dsh-home', path.join(DSH_REPO_ROOT, '.dsh', 'home')),
+  },
+  'lineage-patch-required': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace(' --patch ../patches/lineage.patch.yml', ''),
+  },
+  'json-final-and-exit-required': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace(' --json', ''),
+  },
+  'pinned-version-required': {
+    satisfied: 'npx @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -',
+    violated: 'npx @deepseek-ai/dsh@0.2.2 --profile headless --json -',
+  },
+  'guards-patch-required': {
+    satisfied: DSH_FULL_DISPATCH,
+    violated: DSH_FULL_DISPATCH.replace(' --patch ../patches/guards.patch.yml', ''),
+  },
+  'no-repo-root-dotenv': {
+    satisfied: DSH_FULL_DISPATCH,
+    satisfiedContext: undefined,
+    violated: DSH_FULL_DISPATCH.replace(DSH_START, ''),
+    violatedContext: { cwd: DSH_REPO_ROOT, repoRoot: DSH_REPO_ROOT },
+  },
+  'mcp-opt-in-only': {
+    satisfied: DSH_FULL_DISPATCH.replace(' --json -', ' --patch ../patches/mcp-code-mode.patch.yml --json -'),
+    violated: DSH_FULL_DISPATCH.replace(' --json -', ' --patch ../patches/mcp-extra.patch.yml --json -'),
+  },
 };
 
 // The shape list matches its pattern anywhere in the command string, so a command that
@@ -950,11 +1148,15 @@ test('ENFORCEMENT GUARD: every check names a command it accepts and one it refus
     for (const [id, fixture] of Object.entries(CHECK_FIXTURES)) {
       const check = CHECKS[id];
       assert.equal(typeof check, 'function', `${id} is not implemented`);
-      assert.notEqual(fixture.satisfied, fixture.violated, `${id} fixture pair is the same command`);
+      assert.notDeepEqual(
+        { command: fixture.satisfied, context: fixture.satisfiedContext },
+        { command: fixture.violated, context: fixture.violatedContext },
+        `${id} fixture pair is the same input`,
+      );
       if (fixture.emptyPath) process.env.PATH = '/nonexistent-dir-for-this-guard';
       else process.env.PATH = savedPath;
-      assert.equal(check(fixture.satisfied), true, `${id} refused its satisfying command`);
-      assert.equal(check(fixture.violated), false, `${id} accepted its violating command`);
+      assert.equal(check(fixture.satisfied, fixture.satisfiedContext), true, `${id} refused its satisfying command`);
+      assert.equal(check(fixture.violated, fixture.violatedContext), false, `${id} accepted its violating command`);
     }
   } finally {
     process.env.PATH = savedPath;

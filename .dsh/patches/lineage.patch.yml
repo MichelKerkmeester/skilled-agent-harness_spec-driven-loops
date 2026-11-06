@@ -1,0 +1,12 @@
+# Disables telemetry, session logging and goal or plan workflows to keep harness runs local and focused.
+- id: session-telemetry-otel
+  config:
+    mode: DISABLED
+- id: session-log-deepseek
+  disabled: true
+- id: goal-round-driver
+  disabled: true
+- id: command-goal
+  disabled: true
+- id: plan-mode
+  disabled: true

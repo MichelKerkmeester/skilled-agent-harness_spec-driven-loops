@@ -7,7 +7,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "nous hermes"
   - "hermes chat"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # cli-hermes
@@ -220,9 +220,10 @@ Result: a lineage whose iterations run through `buildHermesLineageCommand`. Give
 
 | Skill | Relationship | Use when |
 |---|---|---|
-| [`cli-external-orchestration`](../README.md) | Parent hub | Picking between the seven external CLI runtimes |
+| [`cli-external-orchestration`](../README.md) | Parent hub | Picking between the eight external CLI runtimes |
 | [`cli-pi`](../cli-pi/README.md) | Sibling mode | The task wants Pi's guarded headless print or RPC surface |
 | [`cli-codex`](../cli-codex/README.md) | Sibling mode | The task wants an OpenAI-backed review or research pass |
+| [`cli-deepseek-harness`](../cli-deepseek-harness/README.md) | Sibling mode | The task wants a pinned headless DeepSeek Harness run rather than DeepSeek through the LLM Gateway on Hermes |
 | [`sk-prompt`](../../sk-prompt/SKILL.md) | Dependency | Composing the dispatch prompt against the canonical quality card |
 | [`sk-code`](../../sk-code/SKILL.md) | Dependency | Verifying the code a Hermes dispatch returned |
 | [`system-deep-loop`](../../system-deep-loop/SKILL.md) | Execution owner | Running a `cli-hermes` lineage or any fan-out dispatch |

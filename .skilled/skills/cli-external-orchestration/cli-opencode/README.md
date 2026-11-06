@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.22.0
+version: 1.4.23.0
 ---
 
 # cli-opencode
@@ -229,6 +229,7 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | `cli-devin` | Cognition | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
 | `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
 | `cli-hermes` | Hermes Agent | Quiet oneshot dispatch through the LLM Gateway roster, prompt on stdin |
+| `cli-deepseek-harness` | DeepSeek Harness | Pinned headless one-task dispatch over a closed DeepSeek V4.1 Flash roster, prompt on stdin. Experimental, no route proven live yet |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 

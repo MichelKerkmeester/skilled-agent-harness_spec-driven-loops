@@ -1,0 +1,35 @@
+# Mounts one code_mode MCP server over stdio; MCP is opt-in, so a dispatch sees it only when it adds this patch.
+- insert:
+    - id: mcp-code-mode
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: code_mode
+        transport: stdio
+        command: node
+        args:
+          - .skilled/bin/mcp-code-mode-launcher.cjs
+        # A dispatch runs outside the checkout, so the root comes from this patch file's own --patch path.
+        cwd: !!js >-
+          (() => {
+            const fs = process.getBuiltinModule('node:fs');
+            const path = process.getBuiltinModule('node:path');
+            const launcher = (root) => fs.existsSync(path.join(root, '.skilled', 'bin', 'mcp-code-mode-launcher.cjs'));
+            const argv = process.argv;
+            for (let i = 0; i < argv.length; i += 1) {
+              const value = argv[i] === '--patch' ? argv[i + 1] : argv[i].startsWith('--patch=') ? argv[i].slice(8) : '';
+              if (!value || path.basename(value) !== 'mcp-code-mode.patch.yml') continue;
+              const root = path.resolve(path.dirname(value), '..', '..');
+              if (launcher(root)) return root;
+            }
+            let dir = process.cwd();
+            for (;;) {
+              if (launcher(dir)) return dir;
+              const parent = path.dirname(dir);
+              if (parent === dir) return process.cwd();
+              dir = parent;
+            }
+          })()
+        env:
+          UTCP_CONFIG_FILE: .utcp_config.json
+        # Bounds eager startup and the first tool sync so a hung launcher cannot stall the dispatch.
+        startupTimeoutMs: 60000

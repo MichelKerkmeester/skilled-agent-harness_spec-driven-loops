@@ -231,6 +231,7 @@ sweep-reports/
 /.hermes/skills/local-*
 /.codex/skills/local-*
 /.cursor/skills/local-*
+/.dsh/skills/local-*
 
 # ───────────────────────────────────────────
 # Private commands (operator-local only)

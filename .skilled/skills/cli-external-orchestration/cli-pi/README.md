@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # cli-pi
@@ -149,6 +149,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
 | cli-codex | OpenAI-backed coding, review and web research |
 | cli-cursor | Cursor Composer, plan/ask modes and shared editor configuration |
 | cli-devin | Devin models, subagents and cloud handoff |
+| cli-deepseek-harness | DeepSeek Harness pinned headless one-task dispatch over a closed DeepSeek V4.1 Flash roster. Experimental, no route proven live yet |
 
 ### Resource Map
 

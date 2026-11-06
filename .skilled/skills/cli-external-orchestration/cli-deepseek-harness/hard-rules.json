@@ -1,0 +1,74 @@
+[
+  {
+    "id": "headless-only",
+    "check": "headless-only",
+    "message": "A dsh dispatch MUST run the headless profile, `dsh --profile headless ... -`. It answers one task and exits. Any other profile (web, tui, acp, sdk) is interactive or long-lived and has no place in an unattended dispatch.",
+    "severity": "error"
+  },
+  {
+    "id": "stdin-dash-required",
+    "check": "stdin-dash-required",
+    "message": "A dsh headless dispatch MUST end with a lone `-` and receive the prompt on stdin, then close stdin. Positional task words mixed with `-` are a usage error, and a prompt in argv is exposed in the process list.",
+    "severity": "error"
+  },
+  {
+    "id": "route-patch-required",
+    "check": "route-patch-required",
+    "message": "A dsh headless dispatch MUST pass exactly one roster route patch (`.dsh/patches/route-llmgateway-deepseek.patch.yml` or `.dsh/patches/route-opencode-go-deepseek.patch.yml`) with `--patch` before the app flags. Without it the base `agent-default-model` row selects the official DeepSeek route, which this repository never dispatches.",
+    "severity": "error"
+  },
+  {
+    "id": "closed-roster",
+    "check": "closed-roster",
+    "message": "Only two routes may be dispatched: LLM Gateway `deepseek-v4.1-flash-1017` and OpenCode Go `deepseek-v4.1-flash`, and every `--patch` must be one of this checkout's `.dsh/patches/` or `.dsh/agents/` files. dsh does not validate catalog membership, so any other provider, model or hand-written patch is refused before launch.",
+    "severity": "error"
+  },
+  {
+    "id": "approval-never-required",
+    "check": "approval-never-required",
+    "message": "An unattended dsh headless dispatch MUST pass `--approval-policy never`. Every permission preset except danger-full-access defaults to `ask`, and a headless run has no human to answer. `never` rejects those calls. It is not confinement, so never pair it with danger-full-access.",
+    "severity": "error"
+  },
+  {
+    "id": "dsh-home-isolated",
+    "check": "dsh-home-isolated",
+    "message": "Every dsh dispatch MUST set `DSH_HOME` to a disposable directory outside the checkout. An unset `DSH_HOME` falls back to `~/.dsh`, and a profile-scoped command initializes profile files there on first boot.",
+    "severity": "error"
+  },
+  {
+    "id": "lineage-patch-required",
+    "check": "lineage-patch-required",
+    "message": "A dsh headless dispatch MUST pass `.dsh/patches/lineage.patch.yml`. It sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal` and `plan-mode`, all of which the base bundle mounts.",
+    "severity": "error"
+  },
+  {
+    "id": "guards-patch-required",
+    "check": "guards-patch-required",
+    "message": "Every dispatch carries `--patch .dsh/patches/guards.patch.yml` before the app flags. Without it the repository guards never load and the run executes unguarded.",
+    "severity": "error"
+  },
+  {
+    "id": "json-final-and-exit-required",
+    "check": "json-final-and-exit-required",
+    "message": "A dsh headless dispatch MUST pass `--json`, and its caller counts it complete only on exit 0 AND a last `final` event whose `reason.kind` is `completed`. A keyless run exits 1 with a well-formed `final` event whose reason is `error`, so a parseable stream alone proves nothing.",
+    "severity": "error"
+  },
+  {
+    "id": "pinned-version-required",
+    "check": "pinned-version-required",
+    "message": "Run `command -v dsh` and `dsh --version </dev/null` before every dispatch, and refuse anything but the pinned 0.2.2-rc.1. The npm dist-tags moved during research, so a tag is never a pin. A new release is re-pinned offline first.",
+    "severity": "error"
+  },
+  {
+    "id": "no-repo-root-dotenv",
+    "check": "no-repo-root-dotenv",
+    "message": "Never start dsh with the repository root as its working directory. Headless reads API keys from the environment, then `<cwd>/.env`, then `$DSH_HOME/.env`, and the repository root holds a `.env`, so a root-cwd dispatch loads keys outside the env allowlist.",
+    "severity": "error"
+  },
+  {
+    "id": "mcp-opt-in-only",
+    "check": "mcp-opt-in-only",
+    "message": "MCP stays off unless the dispatch passes the dedicated `.dsh/patches/mcp-code-mode.patch.yml`. No base bundle mounts an MCP client, there is no `--mcp` flag, and an MCP row starts its server eagerly and widens the leaf's tool surface, so it is opt-in per dispatch.",
+    "severity": "error"
+  }
+]

@@ -1,0 +1,6 @@
+- insert:
+    - id: repo-guards
+      name: ../plugins/repo-guards/index.mjs
+      config:
+        adapters:
+          promptAdvisor: false

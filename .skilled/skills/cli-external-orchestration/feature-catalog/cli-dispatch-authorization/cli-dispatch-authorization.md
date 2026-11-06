@@ -1,12 +1,13 @@
 ---
 title: "Shared Dispatch Inspector And Pi Authorization Gate"
-description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`, or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. The inspector is shared across the Claude, Codex, Devin, and Pi dispatch hooks and feeds both the observational audit trail and the Pi gate. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms."
+description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all eight executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms and the `dsh` headless forms."
 trigger_phrases:
   - "cli dispatch authorization"
   - "dispatch inspector classification"
   - "quote-safe executor normalization"
   - "shouldDenyPiDispatch pi authorization gate"
-version: 1.4.2.0
+  - "dsh headless dispatch inspection"
+version: 1.5.0.0
 ---
 
 # CLI Dispatch Authorization And Inspection (cli-external-orchestration)
@@ -19,11 +20,13 @@ The dispatch hooks share one runtime-neutral inspector that decides whether a Ba
 - `ambiguous`: an executor-shaped candidate that cannot be pinned to a single direct executor, such as a variable (`$CLI -p x`), an alias, a command substitution, an unknown wrapper, a variable prompt, or two dispatch segments.
 - `none`: no dispatch evidence.
 
+A DeepSeek Harness command is `direct cli-deepseek-harness` only in its headless forms, `dsh --profile headless ...` or `dsh headless ...`. `dsh plugin`, `--help`, `--version` and any `--dump-*` run are management commands and stay `none`. A leading `DSH_HOME=` assignment does not make the command ambiguous even when its value expands a variable, because every dsh dispatch must set that home first.
+
 The OpenCode executor name is a version family rather than a fixed binary. `OPENCODE_EXECUTOR_RE` in the same module admits any `opencode<digits>` basename, and the `DISPATCH_SHAPES` row `\bopencode\d*\s+run\b` maps that shape to `cli-opencode`, so `opencode run x` is `direct cli-opencode` exactly as `opencode run x` is. The name decides only which packet owns the dispatch. Which OpenCode generation the run reaches is a separate question, answered by the rule checks from the binary's own `--version` output (see Version-Aware Rule Checks).
 
 A shell `-c` wrapper (`bash -c`, `sh -c`, `zsh -c` or `dash -c`) is not an unknown wrapper: the inspector classifies the quoted command it runs, so `bash -c 'devin -p task'` is `direct cli-devin`. A variable counts as an executor only in command position, so `mkdir -p "$DIR"` and `node -p "$EXPR"` are `none`.
 
-The same classification feeds two consumers: the observational audit trail (`matchDispatchShape` / `recordDispatch`, which records only `direct` dispatches) and the Pi authorization gate (`shouldDenyPiDispatch`). Because the inspector is a shared library, its classification governs all four inspector runtimes: Claude, Codex, Devin, and Pi. A separate rule engine evaluates a dispatch skill's hard rules against the same command before it is spawned.
+The same classification feeds two consumers: the observational audit trail (`matchDispatchShape` / `recordDispatch`, which records only `direct` dispatches) and the Pi authorization gate (`shouldDenyPiDispatch`). Claude, Codex, Devin and Pi call the shared cores directly. Cursor translates its hook events through the Claude adapters, while the DeepSeek Harness preflight and audit adapters call the same rule and audit cores from the repo-guards plugin. A separate rule engine evaluates a dispatch skill's hard rules against the same command before it is spawned.
 
 **Quote-safe executor normalization.** A quoted command-position token still names the binary the shell will run, so `"devin" -p x` invokes `devin` exactly as the bare form does. The inspector classifies such a quote-safe executor as `direct` by exact basename membership, identical to its unquoted twin, and also resolves quoted executors behind a transparent `env KEY=v` wrapper. Exact basename membership admits only a real executor name, so multi-word quoted prose (`"devin -p task"` as a single token) and a quoted token used as an argument (`echo "devin" -p "hi"`) correctly remain `none`. A quoted executor therefore can no longer classify as `none` and thereby evade both the Pi authorization gate and the audit trail.
 
@@ -47,11 +50,13 @@ The Claude, Codex, and Devin dispatch hooks consume the same shared inspector fo
 
 ### Version-Aware Rule Checks
 
-A second authorization surface evaluates hard rules against the composed command before it is spawned. `evaluate` in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` reads the `hard-rules.json` sidecar beside a dispatch skill's `SKILL.md` through `readHardRules`, which fails open to an empty list on any read, parse, or shape error, and runs each declared check against the command text. The Claude, Codex, Devin, and Pi preflight lints call this engine, so an ad-hoc dispatch is judged before the process starts.
+A second authorization surface evaluates hard rules against the composed command before it is spawned. `evaluate` in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` reads the `hard-rules.json` sidecar beside a dispatch skill's `SKILL.md` through `readHardRules`, which fails open to an empty list on any read, parse, or shape error, and runs each declared check against the command text. The Claude, Codex, Devin and Pi preflight lints and the DeepSeek Harness preflight adapter call this engine, so an ad-hoc dispatch is judged before the process starts. Cursor translates its event into a Claude-shaped preflight call.
 
 Rules are version-scoped. Each rule declares an `appliesTo` list of version families, and when the command invokes an OpenCode binary the engine resolves that binary's family through `.skilled/hooks/dispatch/lib/opencode-version.mjs`. That resolver parses the first supported version token in the binary's `--version` output under a three-second probe timeout, maps major 1 to `v1` and major 2 to `v2`, and caches the answer by canonical path, size, and modification time. A rule whose `appliesTo` list excludes the resolved family is skipped. When the family stays `unknown`, rules that cover both families keep their declared severity and version-specific rules are downgraded to `warn`, so a failed probe cannot block a dispatch over advice that may not apply. A check that throws is treated as passing, because a rule bug must never block the dispatch it observes.
 
 The `cli-opencode` sidecar at `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` carries the OpenCode rules. `stdin-redirect-required` and `explicit-model-required` are blocking errors on both families. `no-bare-agent-general` (warn) and `command-flag-for-slash-prompt` (error) are OpenCode 1 only. `v2-slash-prompt-route` (warn) is OpenCode 2 only, where `run` does not expand a slash-command prompt and the dispatch has to use the server API route instead. `share-requires-confirmation` advises on both families.
+
+The `cli-deepseek-harness` sidecar at `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` carries twelve rules, every one a blocking error: `headless-only`, `stdin-dash-required`, `route-patch-required`, `closed-roster`, `guards-patch-required`, `approval-never-required`, `dsh-home-isolated`, `lineage-patch-required`, `json-final-and-exit-required`, `pinned-version-required`, `no-repo-root-dotenv` and `mcp-opt-in-only`. They take no `appliesTo` version filter. Each dsh invocation in a command is parsed and judged on its own, so a pipe-fed dispatch is checked for its route patch, lineage patch, guards patch, isolated `DSH_HOME` and pinned version.
 
 ---
 
@@ -67,16 +72,19 @@ The `cli-opencode` sidecar at `.skilled/skills/cli-external-orchestration/cli-op
 | `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs` | Codex | Preflight twin consuming the shared inspector. |
 | `.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs` | Devin | Preflight twin consuming the shared inspector. |
 | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | Reads a skill's `hard-rules.json` sidecar and evaluates each declared rule against the composed command before it is spawned, filtering by the resolved OpenCode family and downgrading version-specific rules when the family is unknown. |
+| `.dsh/plugins/repo-guards/adapters/dispatch-preflight-lint.mjs` | DeepSeek Harness | Calls the shared rule engine on `tools/pre-execute` and denies blocked or failed-closed dispatches. |
+| `.dsh/plugins/repo-guards/adapters/dispatch-audit.mjs` | DeepSeek Harness | Calls the shared audit core on `tools/post-execute` with `runtime: 'dsh'`. |
 | `.skilled/hooks/dispatch/lib/opencode-version.mjs` | Shared | Version resolver for the rule filter: parses a binary's `--version` output into `v1`, `v2`, or `unknown` under a bounded probe and caches by canonical path, size, and modification time. |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` | Shared | The `cli-opencode` rule sidecar: rule id, check id, message, severity, and the `appliesTo` version list for each rule. |
+| `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` | Shared | The `cli-deepseek-harness` rule sidecar: the twelve blocking dsh dispatch rules the engine evaluates before a dsh run spawns. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | Inspector classification table, including the quote-safe executor rows and prose/argument controls, plus the OpenCode version-resolution rows and the `DISPATCH_SHAPES` registry test. |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` | Automated test | Inspector classification table, including the quote-safe executor rows and prose/argument controls, the dsh headless and management rows, plus the OpenCode version-resolution rows and the `DISPATCH_SHAPES` registry test. |
 | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts` | Automated test | `shouldDenyPiDispatch` authorization contract and the `tool_call` gate. |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | Sidecar reading, the check-registry bijection, the `appliesTo` version filter, the unknown-version severity downgrade, and `opencode run` evaluation. |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Automated test | Sidecar reading, the check-registry bijection, the `appliesTo` version filter, the unknown-version severity downgrade, `opencode run` evaluation and one violating command per dsh rule. |
 
 ---
 

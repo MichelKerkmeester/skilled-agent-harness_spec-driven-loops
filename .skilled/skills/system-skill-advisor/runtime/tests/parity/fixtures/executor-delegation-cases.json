@@ -57,6 +57,12 @@
       "branch": "direct-alias"
     },
     {
+      "id": "direct-alias-dsh-headless",
+      "prompt": "run this task through dsh headless",
+      "expectedTop": "cli-external-orchestration",
+      "branch": "direct-alias"
+    },
+    {
       "id": "split-handoff-delegate-object-to-codex",
       "prompt": "delegate this refactor to codex using gpt-6.1 terra",
       "expectedTop": "cli-external-orchestration",

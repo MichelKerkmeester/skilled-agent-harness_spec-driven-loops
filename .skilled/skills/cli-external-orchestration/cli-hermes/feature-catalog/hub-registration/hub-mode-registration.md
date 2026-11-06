@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-hermes mode registry entry"
   - "hermes hub routing"
   - "cli-hermes workflowMode"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hub Mode Registration (cli-hermes)
@@ -46,7 +46,7 @@ The packet holds the Hermes workflow contract only. It adds no advisor identity 
 | `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | The `cli-hermes` mode entry: packet kind, tool surface, aliases, advisor routing class. |
 | `.skilled/skills/cli-external-orchestration/hub-router.json` | Shared | Stage-one scoring: mode weight, vocabulary classes, and the resource to load. |
 | `.skilled/skills/cli-external-orchestration/ROUTER.md` | Shared | Stage-two leaf-intent model, including the `HERMES` intent and its resource map. |
-| `.skilled/skills/cli-external-orchestration/SKILL.md` | Shared | Hub mode table and the workflow-packet classification for all seven modes. |
+| `.skilled/skills/cli-external-orchestration/SKILL.md` | Shared | Hub mode table and the workflow-packet classification for all eight modes. |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The packet contract: activation triggers, self-invocation guard, dispatch shape, hard rules. |
 
 ### Validation And Tests

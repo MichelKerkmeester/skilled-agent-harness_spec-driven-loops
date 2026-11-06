@@ -43,7 +43,7 @@ const AGENT_DIRS = ['.skilled/agents', '.claude/agents', '.codex/agents'];
 // A runtime-directory reference is valid only if it names a runtime that actually
 // ships an agents tree. The point is to catch a phantom dir, not a runtime the repo
 // grew later, so this lists every runtime with agents/ on disk.
-const RUNTIME_DIR_ALLOWLIST = new Set(['.skilled', '.opencode', '.claude', '.codex', '.cursor', '.devin', '.pi']);
+const RUNTIME_DIR_ALLOWLIST = new Set(['.skilled', '.opencode', '.claude', '.codex', '.cursor', '.devin', '.pi', '.dsh']);
 const COMMAND_INVENTORY_EXCLUDES = new Set(['assets', 'scripts', 'fixtures']);
 
 // Command families are derived from the real command tree so a new family directory

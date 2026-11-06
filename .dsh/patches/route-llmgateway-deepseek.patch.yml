@@ -1,0 +1,24 @@
+# Pins dispatch to LLM Gateway's DeepSeek V4.1 Flash instead of the base default route.
+- id: llm-pi-ai
+  config:
+    providers:
+      llmgateway:
+        displayName: LLM Gateway
+        apiKeyEnv: LLMGATEWAY_API_KEY
+        api: openai-completions
+        baseURL: https://api.llmgateway.io/v1
+        compat:
+          thinkingFormat: deepseek
+          supportsDeveloperRole: false
+        models:
+          - id: deepseek-v4.1-flash-1017
+            name: DeepSeek V4.1 Flash
+            reasoningEfforts:
+              off:
+              high: high
+              max: max
+- id: agent-default-model
+  config:
+    provider: llmgateway
+    model: deepseek-v4.1-flash-1017
+    reasoningEffort: max

@@ -81,6 +81,36 @@
       }
     },
     {
+      "id": "dsh-headless-single",
+      "prompt": "run this task through dsh headless",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-deepseek-harness"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-deepseek-harness"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "opencode-deepseek-model-remains-opencode",
+      "prompt": "use cli-opencode with deepseek-v4.1-flash",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-opencode"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-opencode"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "cursor-single",
       "prompt": "delegate to cursor",
       "expectedAction": "route",

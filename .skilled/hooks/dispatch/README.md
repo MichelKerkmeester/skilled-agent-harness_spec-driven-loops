@@ -1,6 +1,6 @@
 ---
 title: "Dispatch Hooks: CLI Dispatch Preflight + Audit"
-description: "Hard-rule preflight lint and JSONL audit trail for composed CLI dispatch commands, shared by Claude, Devin, Codex, Cursor, Pi and OpenCode adapters."
+description: "Hard-rule preflight lint and JSONL audit trail for composed CLI dispatch commands, shared by Claude, Devin, Codex, Cursor, Pi, OpenCode and DeepSeek Harness adapters. The DSH adapters at `.dsh/plugins/repo-guards/adapters/dispatch-preflight-lint.mjs` and `dispatch-audit.mjs` call the same cores."
 trigger_phrases:
   - "dispatch preflight lint"
   - "dispatch audit trail"
@@ -37,7 +37,7 @@ Dispatch blocked by <skill> hard-rule(s):
   • [<rule-id>] <rule message>
 ```
 
-The 28 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`), with the messages the declaring skill's sidecar carries:
+The 40 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`), with the messages the declaring skill's sidecar carries:
 
 | Check id | Satisfied when |
 |---|---|
@@ -69,13 +69,25 @@ The 28 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 | `jev-mcp-host-only` | No `jev-mcp` server is started from a shell |
 | `command-v-jev-required` | A command invoking `jev` resolves a `jev` executable on `PATH` |
 | `non-interactive-permission-mode-risk` | A `claude -p`/`--print` command runs with `--dangerously-skip-permissions` or `--permission-mode bypassPermissions` |
+| `headless-only` | A dsh dispatch uses the headless profile and one task |
+| `stdin-dash-required` | A dsh dispatch ends with a lone `-` and closes stdin after sending the prompt |
+| `route-patch-required` | A dsh dispatch passes exactly one of the two approved route patches before app flags |
+| `closed-roster` | Every dsh route and patch belongs to the closed roster of approved route and checkout patch files |
+| `approval-never-required` | An unattended dsh dispatch passes `--approval-policy never` |
+| `dsh-home-isolated` | `DSH_HOME` points to a disposable directory outside the checkout |
+| `lineage-patch-required` | A dsh dispatch passes `.dsh/patches/lineage.patch.yml` |
+| `guards-patch-required` | Every dsh dispatch passes `.dsh/patches/guards.patch.yml` before app flags |
+| `json-final-and-exit-required` | A dsh caller requires `--json`, exit 0 and a final event with `reason.kind` `completed` |
+| `pinned-version-required` | The dsh binary is checked and matches version `0.2.2-rc.1` before dispatch |
+| `no-repo-root-dotenv` | A dsh dispatch does not use the repository root as its working directory |
+| `mcp-opt-in-only` | MCP remains disabled unless the dispatch explicitly passes its dedicated patch |
 
 A check returns `true` when the command *satisfies* the rule; `false` means violated. An unknown check id is skipped (the CI validator catches typos, not this hot path), and a throwing check resolves to satisfied so it can never block a dispatch.
 
 **Audit** injects nothing into the model. After each completed dispatch it appends one scrubbed, truncated JSONL line to the size-rotated log at `.skilled/logs/cli-dispatch-audit.log` (512 KB cap, rotated to a `.1` backup):
 
 ```json
-{"schema_version":1,"ts":"<ISO>","runtime":"<claude|codex|devin|opencode|pi>","sessionID":"...","callID":"...","skill":"...","command":"<scrubbed>","commandTruncated":false,"model":"...","target":"...","durationMs":1234,"exitCode":0,"outputBytes":5678}
+{"schema_version":1,"ts":"<ISO>","runtime":"<claude|codex|devin|opencode|pi|dsh>","sessionID":"...","callID":"...","skill":"...","command":"<scrubbed>","commandTruncated":false,"model":"...","target":"...","durationMs":1234,"exitCode":0,"outputBytes":5678}
 ```
 
 The command is scrubbed before it lands on disk: secret-bearing flags (`--api-key`/`--token`/`--secret`/`--password`), env assignments whose name contains token/key/secret/password, `Authorization: Bearer|Basic` headers, header-style credentials, bare provider key prefixes (`sk-...`, `ghp_...`, `xox...`, `AKIA...`), PEM key/certificate blocks, and bare JWTs are each replaced with `[REDACTED]`. The command is then truncated to 500 chars; `model` and `target` run through the same scrub+truncate pipeline. The full pipeline (`recordDispatch`) is fail-open throughout: any internal error resolves to `false`, never a thrown exception.
@@ -84,7 +96,7 @@ The command is scrubbed before it lands on disk: secret-bearing flags (`--api-ke
 
 ## 3. PER-RUNTIME DELIVERY
 
-Every runtime evaluates the **same** `lib/` cores. What differs is the event each runtime fires, the payload shape that event carries, and how the result is handed back. Claude, Codex, Devin, and Cursor each carry a preflight + audit pair; OpenCode preflights in-process from its plugin's `tool.execute.before` and audits from `tool.execute.after`; Pi carries a richer preflight (with its own authorization layer) plus audit. Only the post-execution halves are observe-only.
+Every runtime evaluates the **same** `lib/` cores. What differs is the event each runtime fires, the payload shape that event carries, and how the result is handed back. Claude, Codex, Devin and Cursor each carry a preflight + audit pair; OpenCode preflights in-process from its plugin's `tool.execute.before` and audits from `tool.execute.after`; Pi carries a richer preflight (with its own authorization layer) plus audit; DeepSeek Harness calls the same cores from its repo-guards plugin adapters. Only the post-execution halves are observe-only.
 
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
@@ -94,8 +106,9 @@ Every runtime evaluates the **same** `lib/` cores. What differs is the event eac
 | **Cursor** | `cursor/dispatch-preflight-lint.mjs`, `cursor/post-tool-use.mjs` | `preToolUse` and `postToolUse` events, both on the `Shell` matcher (`.cursor/hooks.json`) | Preflight spawns the Claude preflight with a Claude-shaped `Bash` payload and translates its envelope. PostToolUse is a multiplexed proxy: `Shell` tool_name → normalizes to `Bash` and `spawnSync`s `claude/dispatch-audit-posttooluse.mjs`; `Write` → post-edit-quality (separate concern). Cursor's `tool_output` is a JSON-stringified string, parsed back into `{stdout, exitCode}`. | Preflight: `{permission: 'deny'}` with `agent_message`/`user_message` and exit 2 on block, `agent_message` on warn, `{permission: 'allow'}` otherwise. Audit: proxy emits `{permission: 'allow'}` and never blocks. |
 | **Pi** | `pi/dispatch-preflight-lint.ts`, `pi/dispatch-audit.ts` | `tool_call` / `tool_result` events, discovered via `.pi/extensions/` | `toolName: 'bash'`. Preflight is richer: captures raw user input on the `input` event, then runs `shouldDenyPiDispatch` authorization (ambiguous denied; direct-but-unnamed denied unless the user text explicitly names the executor or a `/deep:... --executor cli-*` carries it) *before* evaluating hard rules. | Preflight: `{block: true, reason}` on deny/block; `{reason}` on warn. Audit: `recordDispatch` tagged `runtime: 'pi'`. |
 | **OpenCode** | `.opencode/plugins/cli-dispatch-audit.js` (mirrored at `opencode/`) | Plugin, `tool.execute.before` and `tool.execute.after` events | `input.tool: 'bash'`; anchors the log path to the repo root via `findRepoRoot` so a nested working directory cannot plant a stray `.opencode` tree; resolves the declaring skill under the checkout's source root | Preflight in-process: `tool.execute.before` throws with the block reason to deny. Audit: `tool.execute.after` records only, tagged `runtime: 'opencode'`. |
+| **DeepSeek Harness** | `.dsh/plugins/repo-guards/adapters/dispatch-preflight-lint.mjs`, `.dsh/plugins/repo-guards/adapters/dispatch-audit.mjs` | `tools/pre-execute` and `tools/post-execute` on `bash` | Reads `exec.arguments.command`; audit receives result content, session id and call id from the DSH event | Preflight calls `evaluateDispatch`, denies blocked rules and fails closed if the shared core errors. Audit calls `recordDispatch` with `runtime: 'dsh'`, logs errors and continues. |
 
-The three hosted CommonJS/ESM preflight-and-audit pairs (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-dispatch tool name or non-matching command, evaluate the core, emit the result. Cursor deliberately does not reimplement either half: its preflight shapes a Claude payload and shells out to the Claude preflight adapter, and its postToolUse proxy does the same for the audit, so a future change to the rules or the audit logic lands in both without a second edit. OpenCode keeps both halves in-process in its plugin, the one surface where `tool.execute.before` can still stop a command. Pi is the only runtime that adds an authorization layer on top of the hard-rule lint, because a direct dispatch must be authorized by the operator's own request.
+The three hosted CommonJS/ESM preflight-and-audit pairs (Claude, Codex, Devin) share the same structure: read stdin JSON, fast-exit on a non-dispatch tool name or non-matching command, evaluate the core, emit the result. Cursor deliberately does not reimplement either half: its preflight shapes a Claude payload and shells out to the Claude preflight adapter, and its postToolUse proxy does the same for the audit. DeepSeek Harness calls `evaluateDispatch` and `recordDispatch` directly from its two repo-guards adapters. OpenCode keeps both halves in-process in its plugin, the one surface where `tool.execute.before` can still stop a command. Pi is the only runtime that adds an authorization layer on top of the hard-rule lint, because a direct dispatch must be authorized by the operator's own request.
 
 Two runtimes are mirrored rather than hosted here. OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/cli-dispatch-audit.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/*.ts` files live here, and `.pi/extensions/` holds the relative symlinks Pi discovers. The `sk-git`-owned `sk-git-preflight-advisory.js` plugin reuses this concern's `lib/dispatch-rule-checks.mjs` engine but mirrors under `sk-git/scripts/hooks/opencode/`.
 
@@ -124,13 +137,15 @@ dispatch/
 
 | File | Responsibility |
 |---|---|
-| `lib/dispatch-rule-checks.mjs` | The hard-rule engine. `readHardRules` reads the `hard-rules.json` sidecar beside a SKILL.md (a JSON array of rule objects, no library). `CHECKS` holds the 28 pure check functions, enumerated as `KNOWN_CHECKS`. `evaluate` runs the rules against a command and returns only the violated ones, mapping `block`/`error` severity to `block` and everything else to `warn`; `evaluateDispatch` holds every dispatch in a chain to its own packet's rules. Imports Node builtins only. |
+| `lib/dispatch-rule-checks.mjs` | The hard-rule engine. `readHardRules` reads the `hard-rules.json` sidecar beside a SKILL.md (a JSON array of rule objects, no library). `CHECKS` holds the 40 pure check functions, enumerated as `KNOWN_CHECKS`. `evaluate` runs the rules against a command and returns only the violated ones, mapping `block`/`error` severity to `block` and everything else to `warn`; `evaluateDispatch` holds every dispatch in a chain to its own packet's rules. Imports Node builtins only. |
 | `lib/dispatch-audit.mjs` | Runtime-neutral audit core. `DISPATCH_SHAPES` is the shared dispatch registry. `inspectDispatch` classifies a dispatch (tokenizing the shell command, distinguishing `direct`/`ambiguous`/`none`). `resolveDispatchPackets` returns every packet a command dispatches to, in order, and `resolveDispatchCommands` every dispatch with its unwrapped text; `matchDispatchShape` records the first packet the resolver names. `extractDispatchMeta` pulls model/target/duration/exit/size hints. `buildAuditLine` scrubs secrets, truncates, and formats one JSONL line. `appendAuditLog` does the size-rotated append. `recordDispatch` runs the whole pipeline. Never writes stdout/stderr, never throws past its boundary. |
 | `claude/dispatch-preflight-lint.mjs`, `codex/` and `devin/` siblings | PreToolUse adapters. Through `evaluateDispatch`, each dispatch in a chain is evaluated against its own packet's rules. A `block` denies with the rule's reason; `warn` attaches an advisory. Fast-exit on non-dispatch commands, fail open on any internal error. |
 | `claude/dispatch-audit-posttooluse.mjs`, `codex/` and `devin/` siblings | PostToolUse adapters feeding the audit core after a Bash/exec call completes. Observe-only, never emit a permission decision. |
 | `cursor/post-tool-use.mjs` | Multiplexed Cursor proxy. For `Shell`, normalizes the tool name to `Bash`, parses the JSON-stringified `tool_output`, and `spawnSync`s the Claude audit adapter. Real home is under `system-spec-kit`; indexed here as a symlink. |
 | `pi/dispatch-preflight-lint.ts` | Pi `tool_call` extension. Captures raw user input on the `input` event, resolves a wrapped or shell-run dispatch before running `shouldDenyPiDispatch` authorization (unnamed-direct denial), then evaluates every resolved packet's hard rules. A sentence that names the executor authorizes only when it carries no negation or refusal word (the two `not <other>, use <executor>` / `not <other> but <executor>` forms excepted), so an odd double negative such as `use cli-devin, it is not forbidden` is a fail-closed deny accepted by policy, and the operator writes the request as its own sentence. A mention authorizes only outside every quote, backtick, `$(` and `${` span, read the way a POSIX shell quotes the text, with and without comments and with curly quotes read as quotes and as literals. Text whose quoting never closes, nests past 32 levels or puts a `case` inside a substitution is denied, and only listed English contractions count as prose apostrophes. |
 | `pi/dispatch-audit.ts` | Pi `tool_result` extension. Calls `recordDispatch` tagged `runtime: 'pi'`. |
+| `.dsh/plugins/repo-guards/adapters/dispatch-preflight-lint.mjs` | DeepSeek Harness `tools/pre-execute` adapter. Calls `evaluateDispatch` and denies a blocked dispatch or a shared-core failure. |
+| `.dsh/plugins/repo-guards/adapters/dispatch-audit.mjs` | DeepSeek Harness `tools/post-execute` adapter. Calls `recordDispatch` tagged `runtime: 'dsh'` and continues if audit logging fails. |
 
 `.opencode/plugins/cli-dispatch-audit.js` is the OpenCode adapter; it imports this concern's `lib/dispatch-audit.mjs` core and the shared `hook-flags.cjs` resolver.
 
@@ -193,6 +208,4 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
 - [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.
 
-<!-- readme-check
-allow-ref ../../.skilled/hooks/shared/hook-flags.mjs | the Pi adapters' specifier, written for their .pi/extensions/ symlink
--->
+<!-- The Pi adapters' specifier is written for their .pi/extensions/ symlink. -->

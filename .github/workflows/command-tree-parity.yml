@@ -17,6 +17,7 @@ on:
       - '.skilled/skills/**/SKILL.md'
       - '.opencode/skills/**/SKILL.md'
       - '.hermes/**'
+      - '.dsh/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.opencode/skills/system-spec-kit/**'
       - '.claude/settings.json'
@@ -43,6 +44,7 @@ on:
       - '.skilled/skills/**/SKILL.md'
       - '.opencode/skills/**/SKILL.md'
       - '.hermes/**'
+      - '.dsh/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.opencode/skills/system-spec-kit/**'
       - '.claude/settings.json'
@@ -120,3 +122,26 @@ jobs:
           set -euo pipefail
           node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
           node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
+
+  dsh-mirror:
+    # The DSH runtime reads generated skill, agent and prompt copies. Its source and
+    # output paths are filtered above so changes to either side run these checks.
+    name: DSH skill, agent and prompt mirrors match their sources
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '20'
+      - name: Install the spec-kit workspace
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+      - name: Compare the DSH mirrors with their sources
+        run: |
+          set -euo pipefail
+          node .opencode/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check

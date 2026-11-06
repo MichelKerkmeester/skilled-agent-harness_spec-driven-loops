@@ -1,6 +1,6 @@
 {
   "skill": "cli-external-orchestration",
-  "version": "1.7.14.0",
+  "version": "1.8.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -11,7 +11,8 @@
       "cli-cursor",
       "cli-devin",
       "cli-pi",
-      "cli-hermes"
+      "cli-hermes",
+      "cli-deepseek-harness"
     ],
     "outcomes": {
       "single": "one dominant executor signal routes to one mode",
@@ -98,6 +99,16 @@
       ],
       "resources": [
         "cli-hermes/SKILL.md"
+      ]
+    },
+    "cli-deepseek-harness": {
+      "weight": 4,
+      "classes": [
+        "cli-deepseek-harness-aliases",
+        "deepseek-harness-dispatch"
+      ],
+      "resources": [
+        "cli-deepseek-harness/SKILL.md"
       ]
     }
   },
@@ -263,6 +274,20 @@
         "hermes yolo dispatch",
         "hermes second opinion",
         "nous research agent dispatch"
+      ]
+    },
+    "cli-deepseek-harness-aliases": {
+      "keywords": [
+        "dsh",
+        "dsh headless",
+        "deepseek harness",
+        "delegate to dsh"
+      ]
+    },
+    "deepseek-harness-dispatch": {
+      "keywords": [
+        "dsh headless dispatch",
+        "deepseek harness dispatch"
       ]
     }
   }

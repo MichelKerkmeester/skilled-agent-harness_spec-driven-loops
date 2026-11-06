@@ -1,6 +1,6 @@
 ---
 title: "cli-external-orchestration: Feature Catalog"
-description: "Current-state inventory for CLI executor routing, compiled dispatch, Cursor hooks, authorization, and session-isolated goal bindings."
+description: "Current-state inventory for CLI executor routing, compiled dispatch, Cursor hooks, authorization, session-isolated goal bindings and the experimental DeepSeek Harness mode."
 trigger_phrases:
   - "cli-external-orchestration feature catalog"
   - "cli-external-orchestration hub capabilities"
@@ -10,13 +10,14 @@ trigger_phrases:
   - "Cursor CLI spec-gate integration"
   - "cross-runtime goal isolation"
   - "cli-hermes dispatch"
-last_updated: "2026-09-20"
-version: 1.6.2.0
+  - "DeepSeek Harness Dispatch Mode"
+last_updated: "2026-11-06"
+version: 1.7.0.0
 ---
 
 # cli-external-orchestration: Feature Catalog
 
-This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of seven CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
+This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of eight CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`, `cli-deepseek-harness`), each independently classifying intent, choosing or confirming a provider and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -32,11 +33,11 @@ Use this catalog as the current-state inventory for the `cli-external-orchestrat
 
 #### Description
 
-`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's seven modes.
+`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's eight modes.
 
 #### Current Reality
 
-The seven workflow packets are `packetKind: "workflow"`. Each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
+The eight workflow packets are `packetKind: "workflow"`. Each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
 
 #### Source Files
 
@@ -86,7 +87,7 @@ See [`cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md`](cursor-hooks-an
 
 #### Description
 
-One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`, or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. The inspector is shared across the Claude, Codex, Devin, and Pi dispatch hooks and feeds both the observational audit trail and the Pi gate. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms.
+One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all eight executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms and the `dsh` headless forms.
 
 #### Current Reality
 
@@ -131,3 +132,21 @@ The runtime resolves the binary, probes its `--version` output, and composes the
 #### Source Files
 
 See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencode-dual-version-dispatch/opencode-dual-version-dispatch.md) for the resolution and probe contract, the per-family argv, and the durable test anchors.
+
+---
+
+## 8. DEEPSEEK HARNESS DISPATCH MODE
+
+### DeepSeek Harness Dispatch Mode
+
+#### Description
+
+`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it is experimental because no route is proven live yet.
+
+#### Current Reality
+
+The mode routes on harness vocabulary only: `dsh`, `dsh headless`, `deepseek harness` and `delegate to dsh`. A DeepSeek model named with another runtime, such as "use cli-opencode with deepseek-v4.1-flash", stays on that runtime. The shared dispatch inspector classifies a `dsh --profile headless` or `dsh headless` command as `direct cli-deepseek-harness`, and the rule engine judges it against the packet's twelve hard rules before it spawns. Only offline composition and a keyless `MISSING_CREDENTIAL` failure have been observed. No keyed run has answered on either route, and the OpenCode Go endpoint is UNKNOWN.
+
+#### Source Files
+
+See [`deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md`](deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md) for the routing vocabulary, the dispatch shape the rules enforce and what stays unconfirmed.

@@ -136,6 +136,13 @@ describe('executor-delegation resolver (pure detector)', () => {
     expect(decision?.executorSkillId).toBe('cli-opencode');
   });
 
+  it('routes the dsh headless alias to cli-deepseek-harness', () => {
+    const decision = resolveExecutorDelegation('run this task through dsh headless', table);
+    expect(decision).not.toBeNull();
+    expect(decision?.action).toBe('route');
+    expect(decision?.executorSkillId).toBe('cli-deepseek-harness');
+  });
+
   it('routes an orchestrator noun co-occurring with a delegation cue', () => {
     const decision = resolveExecutorDelegation(
       'ask opencode with a small-model executor to sweep the architecture and report what this repo is missing.',

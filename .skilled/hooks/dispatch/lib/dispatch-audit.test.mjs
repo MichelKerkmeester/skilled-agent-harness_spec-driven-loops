@@ -484,6 +484,38 @@ describe('resolveDispatchPacket', () => {
     expect(commands[0].text).toBe("opencode run -m p/m 'x' </dev/null");
   });
 
+  it('recognizes dsh headless tasks through env, shell and pipe wrappers', () => {
+    const commands = [
+      ['headless shorthand', 'dsh headless -'],
+      ['profile form', 'dsh --profile headless --json -'],
+      ['profile form with task text', 'dsh --profile headless --json "task" -'],
+      ['environment prefix', 'DSH_HOME=/tmp/dsh-home dsh --profile headless --json -'],
+      ['expanded home prefix', 'DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --json -'],
+      ['env with a cleared environment', 'env -i DSH_HOME=/tmp/dsh-home dsh --profile headless --json -'],
+      ['npm package', 'npx -y @deepseek-ai/dsh@0.2.2 --profile headless --json -'],
+      ['bash wrapper', "bash -c 'dsh --profile headless --json -'"],
+      ['sh wrapper', 'sh -c "dsh headless --json -"'],
+      ['stdin pipe', 'printf prompt | dsh --profile headless --json -'],
+    ];
+    for (const [label, command] of commands) {
+      expect(resolveDispatchPacket(command)?.skill, `dsh dispatch not resolved (${label})`).toBe('cli-deepseek-harness');
+    }
+  });
+
+  it('does not recognize dsh management, help, version or config-dump commands', () => {
+    const commands = [
+      'dsh plugin --profile x add y',
+      'dsh --profile headless --help',
+      'dsh --profile headless -h',
+      'dsh --profile headless --version',
+      'dsh --profile headless -V',
+      'dsh --profile headless --dump-config',
+      'dsh --profile headless --dump-default-config',
+      'dsh --profile headless --dump-config-schema',
+    ];
+    for (const command of commands) expect(resolveDispatchPacket(command)).toBeNull();
+  });
+
   it('reads a heredoc operator inside a quoted prompt as text', () => {
     const quoted = `echo "<<'ENDMARK'"
 codex exec task </dev/null
@@ -515,7 +547,7 @@ ENDMARK`;
 describe('DISPATCH_SHAPES', () => {
   it('exposes the skill + packetPath pairs the preflight lint twin resolves SKILL.md from', () => {
     expect(DISPATCH_SHAPES.map((shape) => shape.skill)).toEqual([
-      'cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-devin', 'cli-cursor', 'cli-pi', 'cli-hermes',
+      'cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-devin', 'cli-cursor', 'cli-pi', 'cli-hermes', 'cli-deepseek-harness',
       'cli-classifier',
     ]);
     expect(DISPATCH_SHAPES.every((shape) => typeof shape.packetPath === 'string' && shape.test instanceof RegExp)).toBe(true);

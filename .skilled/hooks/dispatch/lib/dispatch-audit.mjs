@@ -38,6 +38,14 @@ export function isAuditDisabled(env = process.env) {
 // 3. DISPATCH CLASSIFICATION
 // ─────────────────────────────────────────────────────────────────────────────
 
+const DSH_BINARY_HEADLESS_SHAPE = /\bdsh\b(?=[^\n;&|]*(?:--profile(?:=|\s|$)|\sheadless\b))/;
+const DSH_NPX_HEADLESS_SHAPE = /\bnpx\s+-y\s+@deepseek-ai\/dsh(?:@\S+)?[^\n;&|]*(?:--profile(?:=|\s)|\sheadless\b)/;
+// `D=dsh; $D --profile headless ...` hides the binary name, but the headless profile is dsh's alone.
+const DSH_VARIABLE_HEADLESS_SHAPE = /(?:^|[\s;&|(])\$\{?[A-Za-z_]\w*\}?(?=[^\n;&|]*--profile(?:=|\s+)headless\b)/;
+const DSH_HEADLESS_SHAPE = new RegExp(
+  `(?:${DSH_BINARY_HEADLESS_SHAPE.source}|${DSH_NPX_HEADLESS_SHAPE.source}|${DSH_VARIABLE_HEADLESS_SHAPE.source})`,
+);
+
 // Dispatch-shape registry (kept for adapter compatibility)
 export const DISPATCH_SHAPES = [
   {
@@ -59,6 +67,12 @@ export const DISPATCH_SHAPES = [
   // (`-q`, `--query`, `--query-file`, or the non-TTY `--oneshot`) and the top-level `-z`
   // oneshot. A bare `hermes chat` or a management subcommand is not a dispatch.
   { test: /\bhermes\s+chat\b[^\n;&|]*\s(-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s(-z)\b/, skill: 'cli-hermes', packetPath: 'cli-external-orchestration/cli-hermes' },
+  // Expanded DSH arguments obscure direct parsing, so the profile shape still routes them to its hard rules.
+  {
+    test: DSH_HEADLESS_SHAPE,
+    skill: 'cli-deepseek-harness',
+    packetPath: 'cli-external-orchestration/cli-deepseek-harness',
+  },
   // Jev has no print flag: the judgment subcommand IS the dispatch, exactly as `codex exec` is for
   // codex. `jev-mcp` is a stdio server rather than a judgment, and it is matched here so the
   // packet's host-only rule can refuse a shell start instead of leaving it unclassified.
@@ -74,6 +88,7 @@ const EXECUTOR_BASENAMES = new Set([
   'cursor-agent',
   'pi',
   'hermes',
+  'dsh',
   'jev',
   'jev-mcp',
 ]);
@@ -92,6 +107,7 @@ const EXECUTOR_SKILLS = new Map([
   ['cursor', 'cli-cursor'],
   ['pi', 'cli-pi'],
   ['hermes', 'cli-hermes'],
+  ['dsh', 'cli-deepseek-harness'],
   ['jev', 'cli-classifier'],
   ['jev-mcp', 'cli-classifier'],
 ]);
@@ -272,9 +288,61 @@ function commandStart(tokens) {
   return { index, opaque: false };
 }
 
+function dshHomeAssignmentTokens(tokens) {
+  // DSH_HOME may use a runtime path without changing which executable the shell launches.
+  return tokens.map((token) => (
+    token.expanded && token.value.startsWith('DSH_HOME=')
+      ? { ...token, quoted: false, expanded: false }
+      : token
+  ));
+}
+
+// Only flags dsh itself prints and exits on. A prefix match would let an invented
+// `--dump-anything` hide a task run from every dsh rule.
+const DSH_MANAGEMENT_FLAGS = new Set([
+  '--help', '-h', '--version', '-V', '--dump-config', '--dump-config-schema', '--dump-default-config',
+]);
+// Launch wrappers that run the next word as the command, so `exec dsh ...` is still dsh.
+const DSH_LAUNCH_WRAPPERS = new Set(['exec', 'nohup', 'command', 'time', 'xargs', 'sudo', 'nice', 'stdbuf']);
+// Per wrapper, the options that take a separate value word, such as `sudo -u root` or `nice -n 10`.
+const DSH_WRAPPER_VALUE_OPTIONS = {
+  sudo: new Set(['-u', '-g', '-C', '-D', '-U', '-p', '-h', '-r', '-t', '-T']),
+  nice: new Set(['-n']),
+  stdbuf: new Set(['-i', '-o', '-e']),
+  xargs: new Set(['-n', '-I', '-L', '-P', '-s', '-E', '-d', '-a']),
+};
+
+function isDshManagementInvocation(tokens) {
+  return tokens[0]?.value === 'plugin' || tokens.some((token) => (
+    !token.quoted && DSH_MANAGEMENT_FLAGS.has(token.value)
+  ));
+}
+
+/** Step past launch wrappers and their options to the word the shell actually runs. */
+function skipDshLaunchWrappers(tokens, index) {
+  let cursor = index;
+  while (cursor < tokens.length && !tokens[cursor].quoted && DSH_LAUNCH_WRAPPERS.has(tokens[cursor].value)) {
+    const valueOptions = DSH_WRAPPER_VALUE_OPTIONS[tokens[cursor].value];
+    cursor += 1;
+    while (cursor < tokens.length && tokens[cursor].value.startsWith('-')) {
+      cursor += valueOptions?.has(tokens[cursor].value) ? 2 : 1;
+    }
+  }
+  return cursor;
+}
+
+/** A variable in command position followed by a dsh task profile still launches a task. */
+function isVariableDshProfile(tokens, index) {
+  const rest = tokens.slice(index + 1);
+  return Boolean(tokens[index]?.expanded) && !isDshManagementInvocation(rest)
+    && rest.some((token) => !token.quoted && (token.value === '--profile' || token.value.startsWith('--profile=')))
+    && rest.some((token) => token.value === 'headless' || token.value === '--profile=headless');
+}
+
 function directExecutor(tokens) {
-  if (tokens.length === 0 || tokens.some((token) => token.expanded)) return null;
-  const start = commandStart(tokens);
+  if (tokens.length === 0) return null;
+  const startTokens = dshHomeAssignmentTokens(tokens);
+  const start = commandStart(startTokens);
   if (start.opaque || start.index >= tokens.length) return null;
   const executable = tokens[start.index];
   // A quoted command-position token still names the binary the shell will run, so
@@ -282,8 +350,28 @@ function directExecutor(tokens) {
   // admits a recognized executor basename, so a multi-word quoted payload (e.g. "devin -p task")
   // stays out on its own — dropping quoted executors here instead let them evade both the
   // authorization gate and the audit trail.
+  const wrappedIndex = skipDshLaunchWrappers(tokens, start.index);
+  if (wrappedIndex !== start.index && basename(tokens[wrappedIndex]?.value || '') === 'dsh') {
+    const rest = tokens.slice(wrappedIndex + 1);
+    if (isDshManagementInvocation(rest)) return null;
+    const hasProfile = rest.some((token) => token.value === '--profile' || token.value.startsWith('--profile='));
+    return hasProfile || rest[0]?.value === 'headless' ? EXECUTOR_SKILLS.get('dsh') : null;
+  }
   const binary = basename(executable.value);
+  if (binary === 'npx') {
+    let packageIndex = start.index + 1;
+    while (['--yes', '-y'].includes(tokens[packageIndex]?.value)) packageIndex += 1;
+    const packageSpec = tokens[packageIndex]?.value || '';
+    if (!/^@deepseek-ai\/dsh(?:@[^/\s]+)?$/.test(packageSpec)) return null;
+    const args = tokens.slice(packageIndex + 1);
+    if (isDshManagementInvocation(args)) return null;
+    const hasProfile = args.some((token) => token.value === '--profile' || token.value.startsWith('--profile='));
+    return hasProfile || args[0]?.value === 'headless' ? EXECUTOR_SKILLS.get('dsh') : null;
+  }
   if (!isExecutorBasename(binary)) return null;
+  if (tokens.some((token) => token.expanded)
+    && (binary !== 'dsh' || tokens.some((token, index) => token.expanded
+      && (index >= start.index || !token.value.startsWith('DSH_HOME='))))) return null;
 
   if (OPENCODE_EXECUTOR_RE.test(binary) && tokens[start.index + 1]?.value === 'run') {
     return OPENCODE_SKILL;
@@ -304,6 +392,14 @@ function directExecutor(tokens) {
     // `hermes chat`, `hermes status` or `hermes skills list` does not.
     if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return EXECUTOR_SKILLS.get(binary);
     return null;
+  }
+  if (binary === 'dsh') {
+    // DSH task profiles carry dispatch intent without the print flags other runtimes use.
+    const rest = tokens.slice(start.index + 1);
+    if (isDshManagementInvocation(rest)) return null;
+    const hasProfile = rest.some((token) => token.value === '--profile' || token.value.startsWith('--profile='));
+    const usesHeadlessShorthand = rest[0]?.value === 'headless';
+    return hasProfile || usesHeadlessShorthand ? EXECUTOR_SKILLS.get(binary) : null;
   }
   // Jev's judgment subcommands are its headless forms. `jev --version`, `jev auth status` and
   // `jev install-skills` are management commands, not dispatches; `jev-mcp` is classified so the
@@ -329,6 +425,7 @@ function hasDispatchText(value) {
     || /\bcodex\s+exec\b/.test(value)
     || /\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b/.test(value)
     || /\bhermes\b[^\n;&|]*\s-z\b/.test(value)
+    || DSH_HEADLESS_SHAPE.test(value)
     || /\bjev\s+(?:noul|choice|score|run)\b/.test(value)
   );
 }
@@ -368,6 +465,17 @@ function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   // carries a print-shaped flag and a variable but runs mkdir, not a dispatch.
   const start = commandStart(tokens);
   const variableExecutor = hasPrintFlag && !start.opaque && Boolean(tokens[start.index]?.expanded);
+  const dshTokens = dshHomeAssignmentTokens(tokens);
+  const dshStart = commandStart(dshTokens);
+  const dshIndex = dshStart.opaque ? dshStart.index : skipDshLaunchWrappers(dshTokens, dshStart.index);
+  const dshCommand = dshTokens[dshIndex];
+  const dshArguments = dshTokens.slice(dshIndex + 1);
+  const dshProfileDispatch = !dshStart.opaque
+    && basename(dshCommand?.value || '') === 'dsh'
+    && !isDshManagementInvocation(dshArguments)
+    && (dshArguments[0]?.value === 'headless'
+      || dshArguments.some((token) => !token.quoted
+        && (token.value === '--profile' || token.value.startsWith('--profile='))));
   // An unquoted expansion is split on its spaces, so the token carries only its first word
   // (`$(codex`); read that substitution through its closing token with it, or a bare
   // `$(codex exec task)` stays invisible while its quoted form is caught. Stop at the close
@@ -375,7 +483,9 @@ function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   // and the words after it are ordinary arguments (`echo $X codex exec` dispatches nothing).
   const expandedDispatch = tokens.some((token, index) => token.expanded
     && hasDispatchText(expansionText(tokens, index)));
-  return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor || expandedDispatch;
+  const variableDsh = !dshStart.opaque && isVariableDshProfile(dshTokens, dshIndex);
+  return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor
+    || dshProfileDispatch || variableDsh || expandedDispatch;
 }
 
 /**

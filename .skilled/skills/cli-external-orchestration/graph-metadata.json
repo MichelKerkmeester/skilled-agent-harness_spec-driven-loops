@@ -156,7 +156,21 @@
     "cli hermes",
     "hermes coding agent",
     "hermes yolo dispatch",
-    "nous research agent dispatch"
+    "nous research agent dispatch",
+    "dsh headless",
+    "deepseek harness",
+    "delegate to dsh",
+    "dsh headless dispatch",
+    "deepseek harness dispatch",
+    "cli deepseek harness",
+    "dsh cli",
+    "deepseek harness cli",
+    "dsh dispatch",
+    "dsh one-task run",
+    "dsh json event stream",
+    "dsh second opinion",
+    "dsh review",
+    "deepseek harness headless"
   ],
   "derived": {
     "trigger_phrases": [
@@ -246,7 +260,15 @@
       "cli-hermes",
       "cli hermes",
       "hermes-cli",
-      "hermes-agent"
+      "hermes-agent",
+      "deepseek harness",
+      "dsh headless",
+      "delegate to dsh",
+      "deepseek harness cli",
+      "cli-deepseek-harness router",
+      "cli-deepseek-harness routing",
+      "dsh headless dispatch",
+      "deepseek harness dispatch"
     ],
     "key_topics": [
       "cli",
@@ -312,7 +334,11 @@
       "hermes-chat",
       "llmgateway",
       "hermes-project-skills",
-      "hermes-plugins"
+      "hermes-plugins",
+      "cli-deepseek-harness",
+      "deepseek-harness",
+      "dsh-headless",
+      "one-task-headless-dispatch"
     ],
     "intent_signals": [
       "delegate to opencode",
@@ -350,7 +376,12 @@
       "hermes chat",
       "hermes oneshot",
       "hermes headless dispatch",
-      "hermes second opinion"
+      "hermes second opinion",
+      "dsh headless",
+      "deepseek harness",
+      "delegate to dsh",
+      "dsh headless dispatch",
+      "deepseek harness dispatch"
     ],
     "key_files": [
       ".skilled/skills/cli-external-orchestration/SKILL.md",
@@ -418,7 +449,20 @@
       ".skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md",
       ".skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md",
       ".skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md",
-      ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md"
+      ".skilled/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/runtime-folder-and-sync.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/mcp.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/fanout-executor.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.0.0.md"
     ],
     "entities": [
       {
@@ -468,9 +512,15 @@
         "kind": "skill",
         "path": ".skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md",
         "source": "derived"
+      },
+      {
+        "name": "cli-deepseek-harness",
+        "kind": "skill",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "cli-external-orchestration is the single public advisor identity for seven CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. cli-devin enables Cognition-backed coding, cloud handoff via /handoff, subagent delegation through run_subagent, and MCP host integration through the Devin CLI; it fails closed when devin is absent and authenticates through Devin account OAuth only. cli-pi enables Pi CLI (pi.dev, open-source multi-provider agent) dispatch for headless coding sessions; it fails closed when pi is absent, and several of its behaviors (skill-discovery flattening, prompt-template discovery, model roster) remain documented-but-unconfirmed pending live verification with a working provider. cli-hermes enables Hermes Agent (Nous Research, Python, installed at ~/.hermes) dispatch through its quiet oneshot chat with the prompt on stdin, a five-model roster on the operator's LLM Gateway provider, an explicit toolset list and --ignore-rules on every run; it fails closed when hermes is absent or no provider is configured, and its config, hooks and MCP servers stay user-level operator steps. It matters because it gives all seven dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and recursion bounds (cli-pi being the one mode a session of its own runtime may dispatch); the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
+    "causal_summary": "cli-external-orchestration is the single public advisor identity for eight CLI dispatch orchestrators, folded into one parent hub. cli-opencode enables external AI runtimes and in-OpenCode operators to invoke opencode run for full plugin, skill, and MCP runtime dispatch, plus parallel detached sessions for ablation, worker farms, and cross-AI handback, defaulting to the direct deepseek provider. cli-claude-code enables external AI assistants to invoke Anthropic's Claude Code CLI for deep reasoning, surgical code editing, structured JSON-schema output, code review, and agent delegation. cli-codex enables OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation through the Codex CLI, and fails closed when codex is absent. cli-cursor enables Cursor CLI (cursor-agent) dispatch for sandboxed coding, Composer-model-specific opinions, and read-only plan/ask exploration; it fails closed when cursor-agent is absent and shares its entire config surface (hooks, MCP, rules) with the Cursor editor, unlike every sibling's tool-private config directory. cli-devin enables Cognition-backed coding, cloud handoff via /handoff, subagent delegation through run_subagent, and MCP host integration through the Devin CLI; it fails closed when devin is absent and authenticates through Devin account OAuth only. cli-pi enables Pi CLI (pi.dev, open-source multi-provider agent) dispatch for headless coding sessions; it fails closed when pi is absent, and several of its behaviors (skill-discovery flattening, prompt-template discovery, model roster) remain documented-but-unconfirmed pending live verification with a working provider. cli-hermes enables Hermes Agent (Nous Research, Python, installed at ~/.hermes) dispatch through its quiet oneshot chat with the prompt on stdin, a five-model roster on the operator's LLM Gateway provider, an explicit toolset list and --ignore-rules on every run; it fails closed when hermes is absent or no provider is configured, and its config, hooks and MCP servers stay user-level operator steps. cli-deepseek-harness provides bounded one-task headless dispatch through DSH with model selection owned by the harness and task composition owned by the caller. It matters because it gives all eight dispatch paths one coherent advisor identity while each mode keeps its own dispatch contract, hard rules, and recursion bounds (cli-pi being the one mode a session of its own runtime may dispatch); the executor-delegation scorer sources its executor alias table from this hub's mode-registry.json rather than a top-level family filter, so delegation prompts keep resolving to the correct executor-kind string.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -489,7 +539,9 @@
       "cli-pi/SKILL.md",
       "cli-pi/README.md",
       "cli-hermes/SKILL.md",
-      "cli-hermes/README.md"
+      "cli-hermes/README.md",
+      "cli-deepseek-harness/SKILL.md",
+      "cli-deepseek-harness/README.md"
     ],
     "created_at": "2026-07-10T12:00:00Z",
     "last_updated_at": "2026-09-14T00:00:00Z",
@@ -584,6 +636,15 @@
     "cli hermes",
     "hermes coding agent",
     "hermes yolo dispatch",
-    "nous research agent dispatch"
+    "nous research agent dispatch",
+    "cli deepseek harness",
+    "dsh cli",
+    "deepseek harness cli",
+    "dsh dispatch",
+    "dsh one-task run",
+    "dsh json event stream",
+    "dsh second opinion",
+    "dsh review",
+    "deepseek harness headless"
   ]
 }

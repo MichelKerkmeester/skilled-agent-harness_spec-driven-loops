@@ -46,6 +46,21 @@
       "leaves": [
         "assets/prompt-quality-card.md",
         "assets/prompt-templates.md",
+        "references/cli-reference.md",
+        "references/fanout-executor.md",
+        "references/guards-and-hooks.md",
+        "references/mcp.md",
+        "references/providers-and-models.md",
+        "references/repin-runbook.md",
+        "references/runtime-folder-and-sync.md"
+      ],
+      "packet": "cli-deepseek-harness",
+      "workflowMode": "cli-deepseek-harness"
+    },
+    {
+      "leaves": [
+        "assets/prompt-quality-card.md",
+        "assets/prompt-templates.md",
         "references/agent-delegation.md",
         "references/cli-reference.md",
         "references/cloud-handoff.md",

@@ -15,7 +15,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
 import { resolveDispatchCommands, resolveDispatchPackets } from './dispatch-audit.mjs';
@@ -25,6 +27,19 @@ import { resolveDispatchCommands, resolveDispatchPackets } from './dispatch-audi
 // ─────────────────────────────────────────────────────────────────────────────
 
 const HARD_RULES_FILENAME = 'hard-rules.json';
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
+const DSH_SKILL = 'cli-deepseek-harness';
+const DSH_PINNED_VERSION = '0.2.2-rc.1';
+const DSH_HEADLESS_SHAPE = /\bdsh\s+(?:[^|;&]*\s)?(?:--profile(?:=|\s)|headless\b)/;
+const DSH_NPX_HEADLESS_SHAPE = /\bnpx\s+-y\s+@deepseek-ai\/dsh(?:@\S+)?[^\n;&|]*(?:--profile(?:=|\s)|\sheadless\b)/;
+const DSH_UNEXPANDED_PATCH_VALUE = /(?:\$(?:[A-Za-z_][A-Za-z0-9_]*|\{[^}]*\}|\()|`)/;
+const DSH_PATCH_ROSTER_CHECKS = new Set([
+  'route-patch-required',
+  'lineage-patch-required',
+  'closed-roster',
+]);
+const DSH_PATCH_LITERAL_MESSAGE = 'Pass a literal `.dsh/patches/...` path to `--patch`; '
+  + 'an unexpanded shell variable cannot prove the approved patch roster.';
 const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode\d*)["']\s+run\b/;
 const OPENCODE_RUN_BINARY = /(?:^|[\s;&|'" ])((?:[^\s"';&|]*[\\/])?opencode\d*|\$OPENCODE_BIN|\$\{OPENCODE_BIN\})["']?\s+run\b/;
 
@@ -54,7 +69,11 @@ const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; //
 // commands that are not dispatches (`pi --version`), so a match counts only when the command
 // it feeds is itself a headless dispatch: one pipe closes stdin for one run, so each run that
 // closes no stdin of its own must be covered by one.
-const PIPE_FED_DISPATCH = /\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/g;
+const PIPE_FED_DISPATCH = new RegExp(
+  String.raw`\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|`
+    + String.raw`cursor-agent|hermes|dsh|npx)\b`,
+  'g',
+);
 
 // A prompt is an argument, not syntax: a quoted span is text the CLI receives, so a flag or
 // redirect spelled inside one is not evidence the dispatch passes it. Blank the span contents
@@ -165,7 +184,301 @@ const HEADLESS_DISPATCH_SHAPES = [
   // the top-level `-z` oneshot.
   /\bhermes\s+chat\b(?:[^|;&]*\s)?(?:-q|--query|--query-file|--oneshot)\b/,
   /\bhermes\s+(?:[^|;&]*\s)?-z\b/,
+  DSH_HEADLESS_SHAPE,
+  DSH_NPX_HEADLESS_SHAPE,
 ];
+
+const DSH_APP_FLAGS = new Set(['--json', '--session-id', '--permission-mode', '--approval-policy', '--add-dir']);
+const DSH_APP_VALUE_FLAGS = new Set(['--session-id', '--permission-mode', '--approval-policy', '--add-dir']);
+const DSH_ROUTE_PATCHES = new Set([
+  'route-llmgateway-deepseek.patch.yml',
+  'route-opencode-go-deepseek.patch.yml',
+]);
+const DSH_LINEAGE_PATCH = 'lineage.patch.yml';
+const DSH_MCP_PATCH = 'mcp-code-mode.patch.yml';
+const DSH_GUARDS_PATCH = 'guards.patch.yml';
+const DSH_PATCH_FOLDERS = ['patches', 'agents'];
+// Command text cannot resolve a variable, so a variable path is accepted only in the documented
+// `$REPO/.dsh/patches/<file>` shape. Pointing that variable at another tree is the residual gap.
+const DSH_VARIABLE_PATCH_PATH = /^(?:\$[A-Za-z_][A-Za-z0-9_]*|\$\{[A-Za-z_][A-Za-z0-9_]*\})\/\.dsh\/(?:patches|agents)\/[^/$`]+$/;
+
+/** Split a resolved shell command into words while keeping quoted values together. */
+function shellWords(command) {
+  const words = [];
+  let word = '';
+  let quote = null;
+  let escaped = false;
+  let started = false;
+
+  for (const character of command) {
+    if (escaped) {
+      word += character;
+      escaped = false;
+      started = true;
+      continue;
+    }
+    if (quote === "'") {
+      if (character === "'") quote = null;
+      else word += character;
+      continue;
+    }
+    if (quote === '"') {
+      if (character === '"') quote = null;
+      else if (character === '\\') escaped = true;
+      else word += character;
+      continue;
+    }
+    if (character === '\\') {
+      escaped = true;
+      started = true;
+      continue;
+    }
+    if (character === "'" || character === '"') {
+      quote = character;
+      started = true;
+      continue;
+    }
+    if (/\s/.test(character)) {
+      if (started) words.push(word);
+      word = '';
+      started = false;
+      continue;
+    }
+    word += character;
+    started = true;
+  }
+  if (started) words.push(word);
+  return words;
+}
+
+/** Remove shell redirections from the argument list the executable receives. */
+function commandArguments(words, startIndex) {
+  const args = [];
+  for (let index = startIndex; index < words.length; index += 1) {
+    const word = words[index];
+    if (/^\d*(?:<<|>>|<|>)/.test(word) || ['<', '>', '<<', '>>', '<<<'].includes(word)) {
+      if (!/[<>].+/.test(word)) index += 1;
+      continue;
+    }
+    if (['|', '||', '&&', ';', '&'].includes(word)) break;
+    args.push(word);
+  }
+  return args;
+}
+
+/** Parse dsh launcher and app flags from one resolved invocation. */
+function parseDshInvocation(text) {
+  const words = shellWords(text);
+  let commandIndex = words.findIndex((word) => (
+    !/^[A-Za-z_][A-Za-z0-9_]*=/.test(word) && path.basename(word) === 'dsh'
+  ));
+  if (commandIndex === -1) {
+    const npxIndex = words.findIndex((word) => word === 'npx');
+    if (npxIndex !== -1) {
+      commandIndex = npxIndex + 1;
+      while (['--yes', '-y'].includes(words[commandIndex])) commandIndex += 1;
+      if (!/^@deepseek-ai\/dsh(?:@|$)/.test(words[commandIndex] || '')) return null;
+    }
+  }
+  if (commandIndex === -1) {
+    // A variable in command position followed by a headless profile is a dsh launch whose
+    // binary name is hidden; parse it so every rule still applies.
+    commandIndex = words.findIndex((word, index) => /^\$\{?[A-Za-z_][A-Za-z0-9_]*\}?$/.test(word)
+      && commandArguments(words, index + 1).some((argument) => argument === '--profile' || argument.startsWith('--profile=')));
+  }
+  if (commandIndex === -1) return null;
+
+  const args = commandArguments(words, commandIndex + 1);
+  const profileValues = [];
+  const patches = [];
+  const approvalPolicies = [];
+  const permissionModes = [];
+  const positionalArgs = [];
+  let hasJson = false;
+  let appStart = Number.POSITIVE_INFINITY;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index];
+    const next = args[index + 1];
+    if (index === 0 && argument === 'headless') continue;
+    if (argument === '--profile') {
+      profileValues.push(next && !next.startsWith('-') ? next : '');
+      if (next && !next.startsWith('-')) index += 1;
+      continue;
+    }
+    if (argument.startsWith('--profile=')) {
+      profileValues.push(argument.slice('--profile='.length));
+      continue;
+    }
+    if (argument === '--patch') {
+      patches.push({ value: next && !next.startsWith('-') ? next : '', index });
+      if (next && !next.startsWith('-')) index += 1;
+      continue;
+    }
+    if (argument.startsWith('--patch=')) {
+      patches.push({ value: argument.slice('--patch='.length), index });
+      continue;
+    }
+    const equalsIndex = argument.indexOf('=');
+    const optionName = equalsIndex === -1 ? argument : argument.slice(0, equalsIndex);
+    const inlineValue = equalsIndex === -1 ? null : argument.slice(equalsIndex + 1);
+    if (DSH_APP_FLAGS.has(optionName)) {
+      appStart = Math.min(appStart, index);
+      if (argument === '--json') hasJson = true;
+      if (optionName === '--approval-policy') approvalPolicies.push(inlineValue ?? next ?? '');
+      if (optionName === '--permission-mode') permissionModes.push(inlineValue ?? next ?? '');
+      if (inlineValue === null && DSH_APP_VALUE_FLAGS.has(optionName) && next && !next.startsWith('-')) index += 1;
+      continue;
+    }
+    if (argument === '-') continue;
+    if (argument.startsWith('-')) {
+      appStart = Math.min(appStart, index);
+      continue;
+    }
+    appStart = Math.min(appStart, index);
+    positionalArgs.push(argument);
+  }
+
+  return {
+    text,
+    words,
+    commandIndex,
+    args,
+    profileValues,
+    patches,
+    approvalPolicies,
+    permissionModes,
+    positionalArgs,
+    hasJson,
+    appStart,
+    hasTrailingDash: args.at(-1) === '-',
+  };
+}
+
+/** Return each dsh task candidate with its independently parsed flags. */
+function dshDispatches(command) {
+  return resolveDispatchCommands(String(command || ''))
+    .filter(({ entry }) => entry.skill === DSH_SKILL)
+    .map(({ text }) => parseDshInvocation(text))
+    .filter(Boolean);
+}
+
+/** The roster is proven by the patch file name, so only a variable in the name itself is unprovable. */
+function hasUnexpandedPatchValue(dispatch) {
+  return dispatch.patches.some(({ value }) => DSH_UNEXPANDED_PATCH_VALUE.test(path.basename(value)));
+}
+
+/** Read DSH_HOME only from assignments before the executable, honoring env resets. */
+function dshHomePrefix(invocation) {
+  let isSet = false;
+  let value = '';
+  let inEnv = false;
+  const before = invocation.words.slice(0, invocation.commandIndex);
+  const segmentStart = before.reduce((start, word, index) => (
+    ['|', '||', '&&', ';', '&'].includes(word) ? index + 1 : start
+  ), 0);
+  const prefix = before.slice(segmentStart);
+
+  for (let index = 0; index < prefix.length; index += 1) {
+    const word = prefix[index];
+    if (word === 'env') {
+      inEnv = true;
+      continue;
+    }
+    if (inEnv && (word === '-i' || word === '--ignore-environment')) {
+      isSet = false;
+      value = '';
+      continue;
+    }
+    if (inEnv && (word === '-u' || word === '--unset')) {
+      if (prefix[index + 1] === 'DSH_HOME') {
+        isSet = false;
+        value = '';
+      }
+      index += 1;
+      continue;
+    }
+    if (inEnv && (word === '-uDSH_HOME' || word === '--unset=DSH_HOME')) {
+      isSet = false;
+      value = '';
+      continue;
+    }
+    if (word.startsWith('DSH_HOME=')) {
+      isSet = true;
+      value = word.slice('DSH_HOME='.length);
+    }
+  }
+  return { isSet, value };
+}
+
+/** The checkout the rules protect: the caller's repoRoot, else the one holding this file. */
+function contextRepoRoot(context) {
+  return typeof context?.repoRoot === 'string' && context.repoRoot ? path.resolve(context.repoRoot) : REPO_ROOT;
+}
+
+/**
+ * The directory dsh will start in: the caller's cwd, else this process's, moved by every `cd`
+ * before the executable. Returns null when a `cd` names a variable, which text cannot resolve.
+ */
+function dshWorkingDirectory(command, context) {
+  // The resolver hands each check only the dsh segment, so a `cd` before it is read from the full text.
+  const dispatch = parseDshInvocation(String(command || ''));
+  let directory = typeof context?.cwd === 'string' && context.cwd ? path.resolve(context.cwd) : process.cwd();
+  const before = dispatch ? dispatch.words.slice(0, dispatch.commandIndex) : [];
+  for (let index = 0; index < before.length; index += 1) {
+    // Only a `cd` in command position changes directory; `echo cd` merely prints the word.
+    // The word splitter leaves a separator glued to the word before it (`W=1;`), so the
+    // previous word counts as a boundary when it ends in one.
+    const atCommandStart = index === 0 || /(?:^|[^\\])(?:;|&&|\|\||\||&)$/.test(before[index - 1]);
+    if (!atCommandStart || before[index].replace(/^\(+/, '') !== 'cd') continue;
+    const target = before[index + 1];
+    if (!target || ['|', '||', '&&', ';', '&'].includes(target)) {
+      directory = os.homedir();
+      continue;
+    }
+    if (DSH_UNEXPANDED_PATCH_VALUE.test(target)) return null;
+    directory = path.resolve(directory, target.replace(/^~(?=\/|$)/, os.homedir()));
+  }
+  return directory;
+}
+
+/** True when a `--patch` value is one of this checkout's own patch or persona files. */
+function isCheckoutPatch(value, repoRoot, workingDirectory) {
+  if (!value) return false;
+  if (DSH_UNEXPANDED_PATCH_VALUE.test(value)) return DSH_VARIABLE_PATCH_PATH.test(value);
+  let resolved = path.resolve(workingDirectory || repoRoot, value);
+  try {
+    resolved = fs.realpathSync(resolved);
+  } catch {
+    // A missing file still has to name a path inside the checkout.
+  }
+  return DSH_PATCH_FOLDERS.some((folder) => isPathInside(path.join(repoRoot, '.dsh', folder), resolved));
+}
+
+/** Return true when target is equal to or inside parent. */
+function isPathInside(parent, target) {
+  const relative = path.relative(path.resolve(parent), path.resolve(target));
+  return relative === '' || (relative !== '..' && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative));
+}
+
+/** Identify npm package references that make a dsh version explicit in command text. */
+function dshPackageVersions(command) {
+  const words = shellWords(String(command || ''));
+  const versions = [];
+  for (let index = 0; index < words.length; index += 1) {
+    if (words[index] !== 'npx') continue;
+    let packageIndex = index + 1;
+    while (['--yes', '-y'].includes(words[packageIndex])) packageIndex += 1;
+    const packageSpec = words[packageIndex] || '';
+    if (!/^@deepseek-ai\/dsh(?:@|$)/.test(packageSpec)) continue;
+    const args = words.slice(packageIndex + 1);
+    if (!args.some((argument) => argument === 'headless' || argument === '--profile' || argument.startsWith('--profile='))) continue;
+    versions.push(packageSpec.startsWith('@deepseek-ai/dsh@')
+      ? packageSpec.slice('@deepseek-ai/dsh@'.length)
+      : '');
+  }
+  return versions;
+}
 
 const HERMES_CHAT = /\bhermes\s+chat\b/;
 // Pi's headless shape, reused by the two pi-specific checks below.
@@ -256,6 +569,14 @@ export const CHECKS = {
   // and hang at 0% CPU, emitting nothing at all.
   'stdin-redirect-required': (cmd) => {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
+    const otherHeadlessShape = HEADLESS_DISPATCH_SHAPES.some((shape) => (
+      shape !== DSH_HEADLESS_SHAPE
+      && shape !== DSH_NPX_HEADLESS_SHAPE
+      && shape.test(cmd)
+    ));
+    if (!otherHeadlessShape
+      && (DSH_HEADLESS_SHAPE.test(cmd) || DSH_NPX_HEADLESS_SHAPE.test(cmd))
+      && dshDispatches(cmd).length === 0) return true;
     // The pipe count is the budget of runs whose stdin the shell closes for them; it is counted
     // on the whole blanked command because the pipe is syntax around the dispatch, not part of it.
     // Only a pipe whose fed command is itself a headless dispatch closes stdin: `| pi --version`
@@ -404,6 +725,125 @@ export const CHECKS = {
   // and answers nothing; only a host that speaks the protocol should own the process.
   'jev-mcp-host-only': (cmd) => !JEV_MCP.test(cmd),
   'command-v-jev-required': binaryOnPathCheck('jev', /\bjev\s+/),
+  'headless-only': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => dispatch.profileValues.length > 0
+      ? dispatch.profileValues.every((profile) => profile === 'headless')
+      : dispatch.args[0] === 'headless');
+  },
+  'stdin-dash-required': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => dispatch.hasTrailingDash && dispatch.positionalArgs.length === 0);
+  },
+  'route-patch-required': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => {
+      if (hasUnexpandedPatchValue(dispatch)) return false;
+      const routePatches = dispatch.patches.filter(({ value }) => DSH_ROUTE_PATCHES.has(path.basename(value)));
+      return routePatches.length === 1 && routePatches[0].index < dispatch.appStart;
+    });
+  },
+  'closed-roster': (cmd, context) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    const repoRoot = contextRepoRoot(context);
+    // A patch from outside the checkout can redefine a provider or disable a guard row, so only
+    // the repository's own patch files may compose a dispatch.
+    return dispatches.every((dispatch) => {
+      const workingDirectory = dshWorkingDirectory(cmd, context);
+      return !hasUnexpandedPatchValue(dispatch)
+        && dispatch.patches.every(({ value }) => {
+          const name = path.basename(value);
+          return (!name.startsWith('route-') || DSH_ROUTE_PATCHES.has(name))
+            && isCheckoutPatch(value, repoRoot, workingDirectory);
+        });
+    });
+  },
+  'guards-patch-required': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => !hasUnexpandedPatchValue(dispatch)
+      && dispatch.patches.some(({ value, index }) =>
+        path.basename(value) === DSH_GUARDS_PATCH && index < dispatch.appStart));
+  },
+  'approval-never-required': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    // Every occurrence must say never: a repeated flag resolves last-wins in dsh, so one
+    // never next to a later ask would otherwise pass while the run asks.
+    return dispatches.every((dispatch) => dispatch.approvalPolicies.length > 0
+      && dispatch.approvalPolicies.every((policy) => policy === 'never')
+      && !dispatch.permissionModes.includes('danger-full-access'));
+  },
+  'dsh-home-isolated': (cmd, context) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    const repoRoot = contextRepoRoot(context);
+    const operatorHome = path.join(os.homedir(), '.dsh');
+    // The dispatch resolver strips an `env` wrapper, so read the assignment from the original text too.
+    const original = parseDshInvocation(String(cmd || ''));
+    return dispatches.every((dispatch) => {
+      const resolved = dshHomePrefix(dispatch);
+      const { isSet, value } = resolved.isSet || !original ? resolved : dshHomePrefix(original);
+      if (!isSet || !value) return false;
+      // The current directory, a command substitution and the operator's own home can each land
+      // on the checkout or on ~/.dsh, so none of them counts as a disposable home.
+      if (/\$\{?PWD\b|\$\(|`|^~|^\$\{?HOME\b/.test(value)) return false;
+      // Any other variable resolves only at run time; the dispatcher owns making it disposable.
+      if (DSH_UNEXPANDED_PATCH_VALUE.test(value)) return true;
+      const workingDirectory = dshWorkingDirectory(cmd, context);
+      if (!workingDirectory && !path.isAbsolute(value)) return false;
+      const home = path.resolve(workingDirectory || '/', value);
+      return !isPathInside(repoRoot, home) && !isPathInside(operatorHome, home);
+    });
+  },
+  'lineage-patch-required': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => !hasUnexpandedPatchValue(dispatch)
+      && dispatch.patches.some(({ value, index }) =>
+        path.basename(value) === DSH_LINEAGE_PATCH && index < dispatch.appStart));
+  },
+  'json-final-and-exit-required': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    return dispatches.length === 0 || dispatches.every((dispatch) => dispatch.hasJson);
+  },
+  'pinned-version-required': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    const packageVersions = dshPackageVersions(cmd);
+    if (dispatches.length === 0 && packageVersions.length === 0) return true;
+    // Command text can reject an explicit wrong npm pin but cannot inspect an installed binary.
+    return packageVersions.every((version) => version === DSH_PINNED_VERSION);
+  },
+  // Headless reads `<cwd>/.env`, so the folder dsh starts in must hold none. With no caller cwd
+  // the hook's own working directory is the session's, which is where the command runs.
+  'no-repo-root-dotenv': (cmd, context) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    const repoRoot = contextRepoRoot(context);
+    return dispatches.every((dispatch) => {
+      const workingDirectory = dshWorkingDirectory(cmd, context);
+      // A `cd` to a variable is the documented scratch-folder pattern; text cannot resolve it.
+      if (!workingDirectory) return true;
+      if (workingDirectory === repoRoot) return false;
+      try {
+        return !fs.existsSync(path.join(workingDirectory, '.env'));
+      } catch {
+        return false;
+      }
+    });
+  },
+  'mcp-opt-in-only': (cmd) => {
+    const dispatches = dshDispatches(cmd);
+    if (dispatches.length === 0) return true;
+    return dispatches.every((dispatch) => dispatch.patches.every(({ value }) => {
+      const name = path.basename(value).toLowerCase();
+      return !name.includes('mcp') || name === DSH_MCP_PATCH;
+    }));
+  },
   // Non-interactive claude -p with a Bash-heavy prompt and no permission bypass can deadlock.
   'non-interactive-permission-mode-risk': (cmd) => {
     if (!CLAUDE_PRINT.test(cmd)) return true;
@@ -466,6 +906,8 @@ export function evaluate(command, rules, options = {}) {
       passed = true; // a check that throws must never block a dispatch (fail-open)
     }
     if (!passed) {
+      const hasUnexpandedPatch = DSH_PATCH_ROSTER_CHECKS.has(rule.check)
+        && dshDispatches(commandText).some(hasUnexpandedPatchValue);
       // A rule that declares itself blocking (`block` or the stronger `error`
       // the availability/self-invocation guards use) denies the dispatch;
       // everything else is advisory. A skill's own SKILL.md severity is the
@@ -477,7 +919,7 @@ export function evaluate(command, rules, options = {}) {
       violations.push({
         id: rule.id,
         severity: blocking ? 'block' : 'warn',
-        message: rule.message || rule.id,
+        message: hasUnexpandedPatch ? DSH_PATCH_LITERAL_MESSAGE : (rule.message || rule.id),
         check: rule.check,
         passed: false,
       });

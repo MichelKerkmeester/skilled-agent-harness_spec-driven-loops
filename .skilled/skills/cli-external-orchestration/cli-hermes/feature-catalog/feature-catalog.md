@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes dispatch guards"
   - "hermes runtime folder"
 last_updated: "2026-09-14"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # cli-hermes: Feature Catalog
@@ -34,7 +34,7 @@ The hub registers `cli-hermes` as a workflow mode, so a Hermes-naming request re
 
 #### Current Reality
 
-`cli-hermes` is one of the hub's seven workflow modes, with `packetKind: "workflow"`, `mutatesWorkspace: true`, a `metadata` advisor routing class, and an alias set the executor-delegation scorer sources from the registry. Two vocabulary classes score it in stage one, and `ROUTER.md` maps its `HERMES` intent onto packet-qualified leaf resources in stage two. The packet adds no `description.json` and no `graph-metadata.json`; advisor identity stays at the hub root.
+`cli-hermes` is one of the hub's eight workflow modes, with `packetKind: "workflow"`, `mutatesWorkspace: true`, a `metadata` advisor routing class, and an alias set the executor-delegation scorer sources from the registry. Two vocabulary classes score it in stage one, and `ROUTER.md` maps its `HERMES` intent onto packet-qualified leaf resources in stage two. The packet adds no `description.json` and no `graph-metadata.json`; advisor identity stays at the hub root.
 
 #### Source Files
 

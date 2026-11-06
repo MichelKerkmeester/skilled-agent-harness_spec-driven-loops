@@ -31,7 +31,7 @@ A real file is therefore not automatically authored content — most of them are
 
 ## 2. THE MAP
 
-| Runtime | Reads from here | Symlinked | Generated | Authored only here |
+| Surface | Reads from here | Symlinked | Generated | Authored only here |
 |---|---|---|---|---|
 | `.opencode/` | skills, commands, agents, plugins, hooks, bin, scripts, repo-rules | everything except the plugins: `skills`, `commands`, `agents`, `hooks`, `bin`, `scripts`, `repo-rules`, playbook | — | **`plugins/` (16)**, `package.json`, `package-lock.json`, `README.md` |
 | `.claude/` | skills, commands, agents, hooks | `skills`, 38 commands, 27 hooks, `repo-rules`, playbook, `.utcp_config.json` | — | **`agents/` (11 forked)**, `agents/Explore.md`, `agents/README.txt`, `mcp.json`, `settings.json`, `statusline-command.sh` |
@@ -40,8 +40,9 @@ A real file is therefore not automatically authored content — most of them are
 | `.devin/` | agents, skills, hooks | `agents/*/AGENT.md` (11), `skills`, 25 hooks, `repo-rules`, playbook | — | `config.json`, `hooks.v1.json`, `mcp_config.json` |
 | `.hermes/` | skills, plugins | `agents`, `repo-rules`, playbook | `skills/` (65 copies), `prompts/` (38) | `plugins/` (1: `repo-guards`) |
 | `.pi/` | agents, prompts, skills, extensions | `skills`, 18 extensions plus one shared adapter under `extensions/lib/`, `repo-rules`, playbook | `agents/` (11), `prompts/` (38) | `models.json`, `settings.json`, `mcp.json`, `PLUGINS.md`, `custom-providers.md`, `statusline.sh`, `prompts/goal-pi.md`, `extensions/README.md`, `extensions/lib/README.md`, `pi-blackhole-config.json`, `pi-cache-optimizer-config.json`, `types/`, `npm/`, `git/`, 2 authored extension directories (pi-cache-optimizer, pi-fast-mode-w-subagent-support) |
+| `.dsh/` | Skills, prompt stubs, agent patches and repo-guard plugin for the external DeepSeek Harness target | None | skills, prompts and agents from three DSH generators | `patches/`, `plugins/repo-guards/`, `README.md`, `SYNC.md` |
 
-Every runtime also authors its own `SYNC.md`, and every `hooks/` directory authors its own `README.md`. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
+The seven repository-opening runtimes author their own `SYNC.md`. Every `hooks/` directory authors its own `README.md`. `.dsh/` is an external run surface, not another directory for opening the repository in. Its `SYNC.md` records the separate contract: run from a scratch working directory outside the checkout, set a disposable `DSH_HOME`, choose `read-only` or `workspace-write` deliberately and treat `--approval-policy never` as approval handling rather than filesystem confinement. The documented scratch-cwd launch path keeps the repository-root `.env` out of dsh's search path. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
 
 ---
 
@@ -75,11 +76,12 @@ Each generator rebuilds its tree and takes `--check` to assert freshness without
 | `sync-agents.cjs`, `sync-prompts.cjs` | `.codex/agents/`, `.codex/prompts/` |
 | `sync-agents-pi.cjs`, `sync-prompts-pi.cjs` | `.pi/agents/`, `.pi/prompts/` |
 | `sync-skills-hermes.cjs`, `sync-prompts-hermes.cjs` | `.hermes/skills/`, `.hermes/prompts/` |
+| `sync-skills-dsh.cjs`, `sync-prompts-dsh.cjs`, `sync-agents-dsh.cjs` | `.dsh/skills/`, `.dsh/prompts/`, `.dsh/agents/` |
 | `generate-command-routers.cjs` | the command router tables |
 
 The counts here and in section 2 drift as surfaces are added. Each generator's `--check` prints the live count, so trust its output over these numbers.
 
-They live under `.skilled/skills/system-spec-kit/runtime/cli/`, in `runtime-mirrors/`, `codex/`, `pi/` and `hermes/`.
+They live under `.skilled/skills/system-spec-kit/runtime/cli/`, in `runtime-mirrors/`, `codex/`, `pi/`, `hermes/` and `dsh/`.
 
 ```bash
 # every generator, freshness only
@@ -100,12 +102,12 @@ node .skilled/bin/check-agent-mirror-sync.cjs
 - **A skill, command or hook body** — edit it in `.skilled/`. Runtimes that link it are already current; run the generators for the ones that copy.
 - **An agent** — edit `.skilled/agents/<name>.md`, then carry the same change into `.claude/agents/<name>.md`. The pre-commit gate blocks the commit until the pair matches, and Cursor and Devin follow their links from the Claude copy.
 - **A runtime's own configuration** — edit it in that runtime's directory. Nothing else reads it.
-- **Anything a generator owns** — edit the canonical source and re-run the generator. A hand-edit there is discarded on the next run.
+- **Anything a generator owns**: edit the canonical source and re-run the generator. For DSH, use the three generators in `.skilled/skills/system-spec-kit/runtime/cli/dsh/`. A hand-edit to generated output is discarded on the next run.
 
 ---
 
 ## 6. RELATED
 
-- Each runtime's own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.hermes/SYNC.md`, `.opencode/SYNC.md`, `.pi/SYNC.md`
+- Each repository runtime has its own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.hermes/SYNC.md`, `.opencode/SYNC.md` and `.pi/SYNC.md`. The external DSH run-surface contract is in `.dsh/SYNC.md`.
 - [`AGENTS.md`](../AGENTS.md) — the runtime instruction file
 - [`README.md`](../README.md) — repository overview

@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.7.7.0
+version: 1.7.8.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -28,7 +28,7 @@ This is cli-external-orchestration's second-layer (surface) router, first-class 
 as `ROUTER.md`. The hub
 selects a workflow mode in [`hub-router.json`](../../../.skilled/skills/cli-external-orchestration/hub-router.json)
 (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
-`cli-pi`, or `cli-hermes`); this doc maps a request's CLI-dispatch intent to the exact
+`cli-pi`, `cli-hermes` or `cli-deepseek-harness`); this doc maps a request's CLI-dispatch intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where
 `<packet>` is the mode's `mode-registry.json` `packet` field) and converts to
@@ -78,6 +78,18 @@ per-mode references, it is not part of the first slice.
   chat, LLM Gateway model routing, exit codes, and the safe dispatch shape) and the
   integration-pattern guide a request to dispatch a Hermes conductor or headless
   executor session loads.
+- **cli-deepseek-harness leaves** - the DeepSeek Harness CLI command reference (the
+  version pin, the headless option set, the dispatch shape and the exit contract)
+  and the packet's prompt-quality card a request to dispatch a one-task `dsh`
+  headless run loads. The packet carries no integration-pattern guide, and it loads
+  this card on every run, so the card takes that slot. The mode is experimental:
+  no route is proven live until a keyed run answers.
+
+A DeepSeek model named on another runtime is a request for that runtime, not
+for the harness. "Use cli-opencode with deepseek-v4.1-flash" routes to
+`cli-opencode`. The harness
+intent fires only on harness vocabulary (`dsh`, `dsh headless`, `deepseek harness`,
+`delegate to dsh`), and no keyword in it is a bare model word such as `deepseek`.
 
 A bare CLI-dispatch phrase that names no executor (e.g. "dispatch this to a CLI
 executor") names no mode, so it fires no intent and falls back to the hub default
@@ -108,6 +120,7 @@ INTENT_SIGNALS = {
     "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-2 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch", "grok 4.6 devin dispatch", "cognition cli", "cognition cli second opinion", "devin handoff", "cognition-cli", "devin subagent", "devin cloud handoff", "swe-1.7 dispatch"]},
     "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider", "pi agent", "pi.dev cli", "pi coding agent", "cli pi", "pi json event stream", "pi rpc integration", "pi community package", "pi headless dispatch"]},
     "HERMES":      {"weight": 4, "keywords": ["hermes cli", "cli-hermes", "hermes agent", "nous hermes", "delegate to hermes", "hermes chat", "hermes oneshot", "hermes dispatch", "hermes headless", "hermes query-file", "cli hermes", "hermes coding agent", "hermes yolo dispatch", "hermes second opinion", "nous research agent dispatch"]},
+    "DEEPSEEK_HARNESS": {"weight": 4, "keywords": ["dsh", "dsh headless", "deepseek harness", "delegate to dsh", "cli-deepseek-harness", "cli deepseek harness", "dsh cli", "deepseek harness cli", "dsh dispatch", "dsh headless dispatch", "dsh one-task run", "dsh json event stream", "dsh second opinion", "dsh review", "deepseek harness dispatch", "deepseek harness headless"]},
 }
 
 RESOURCE_MAP = {
@@ -139,6 +152,10 @@ RESOURCE_MAP = {
         "cli-hermes/references/cli-reference.md",
         "cli-hermes/references/integration-patterns.md"
     ],
+    "DEEPSEEK_HARNESS": [
+        "cli-deepseek-harness/references/cli-reference.md",
+        "cli-deepseek-harness/assets/prompt-quality-card.md"
+    ],
 }
 ```
 
@@ -151,13 +168,16 @@ RESOURCE_MAP = {
   union is deduped by canonical pair and capped at the selected-map union limit —
   the `orderedBundle` outcome `hub-router.json` declares.
 - Each mode's first-slice leaves are its own CLI command reference plus its
-  integration-pattern guide; the deeper per-mode references (its
+  integration-pattern guide (`cli-deepseek-harness` has no such guide and loads
+  its prompt-quality card in that slot); the deeper per-mode references (its
   `providers-and-models.md` provider/model catalog, tool catalogs, permission
   matrices, recursion guards) load on demand inside the packet, not on the
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target executor
   (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
-  `cli-pi`, `cli-hermes`) before loading anything.
+  `cli-pi`, `cli-hermes`, `cli-deepseek-harness`) before loading anything.
+- A DeepSeek model named next to another runtime's name loads that runtime's
+  leaves. Only harness vocabulary loads the `cli-deepseek-harness` leaves.
 
 ---
 
@@ -174,11 +194,11 @@ The hub's detailed routing prose lives here so the skill body can keep a short r
 ### Two-Axis Model
 
 - `packetKind: "workflow"`:
-  - `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` orchestrate a CLI binary.
+  - `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness` orchestrate a CLI binary.
   - Their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`).
   - None is a transport packet. All classify intent, choose/confirm a provider, and conduct the dispatched session.
   - `cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.
-- No extension is declared: the `transport-axis` left with the `cli-jev` transport, no mode here is read-only evidence, and none converges on a loop. The seven workflows stay primary, independently-routable dispatch modes.
+- No extension is declared: the `transport-axis` left with the `cli-jev` transport, no mode here is read-only evidence, and none converges on a loop. The eight workflows stay primary, independently-routable dispatch modes.
 
 ### Routing Rule
 
@@ -211,9 +231,9 @@ This router stays a separate document on purpose; [the parent-skill reference](.
 
 A specific-executor prompt is resolved by the system-skill-advisor's executor-delegation scorer. Examples include:
 - "use cli-opencode", "delegate to opencode", and "get a claude code second opinion".
-- "delegate to codex", "delegate to cursor", "delegate to devin", and "delegate to pi".
-- A small model that dispatches through one.
+- "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi" and "delegate to dsh".
+- A small model that dispatches through one. A DeepSeek model named with a runtime resolves to that runtime, so "use cli-opencode with deepseek-v4.1-flash" is `cli-opencode`, never `cli-deepseek-harness`.
 
 The scorer sources its alias table from THIS hub's `mode-registry.json`, keyed by each mode's `packetSkillName`.
-It resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`.
+It resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` or `cli-deepseek-harness`.
 See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
