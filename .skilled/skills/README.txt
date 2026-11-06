@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 13 top-level skill identities across four catalog families, with routing guidance and creation workflow."
+description: "Catalog and front door to 14 top-level skill identities across four catalog families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,14 +21,14 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Four prefix families: `cli-*` (3), `mcp-*` (2), `sk-*` (5), `system-*` (3) |
+| **Families** | Four prefix families: `cli-*` (3), `mcp-*` (2), `sk-*` (5), `system-*` (4) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
 
 ## 2. OVERVIEW
 
-Thirteen top-level skill identities live under `.skilled/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
+Fourteen top-level skill identities live under `.skilled/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
 
 New skills are discovered automatically from a valid `SKILL.md` frontmatter plus `graph-metadata.json`; no manual registration step exists.
 
@@ -68,6 +68,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 | Skill | What it does |
 |---|---|
 | [`system-deep-loop`](system-deep-loop/README.md) | Routes research, review, and AI Council modes through registry-selected packets over nested `runtime/` infrastructure |
+| [`system-skilled-doctor`](system-skilled-doctor/README.md) | Owns the doctor commands that put Skilled into a project repo and keep it current there, including `/doctor:overlay` for a vendored copy's own changes |
 | [`system-skill-advisor`](system-skill-advisor/README.md) | Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids, with the daemon-backed `skill-advisor` CLI as fallback |
 | [`system-spec-kit`](system-spec-kit/README.md) | Unified spec-folder workflow plus context preservation: Levels 1-3+, strict validation, and packet continuity with lexical retrieval. Required for file modifications |
 

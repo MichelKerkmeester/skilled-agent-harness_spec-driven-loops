@@ -1142,7 +1142,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
 
-- `goal`, `dispatch`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen`
+- `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen`
 - `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard`, `hook-install`
 - `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, plus `shared` for the helpers they all use
 
@@ -1602,6 +1602,10 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 **`mcp-tooling`** - ✅ codebase-agnostic
 
 - Parent hub for eight MCP tool bridges, each described under [MCP Integration](#mcp-integration). Stack-independent
+
+**`cli-orca`** - ✅ codebase-agnostic
+
+- Drives the Orca app's worktrees, terminals, browser and automations from a dispatch. Works for any project that runs Orca
 
 &nbsp;
 #### Adding Your Own Skills
