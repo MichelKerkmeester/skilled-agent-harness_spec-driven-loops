@@ -37,6 +37,8 @@ const INSTALL_PHRASES = [
   'use skilled in my own project',
   'onboard a project repo to skilled',
   'guide me through installing skilled',
+  'walk me through a first install of skilled',
+  'first install of skilled in my project',
   'skilled in my other repository',
   'skilled in another repository',
 ];
