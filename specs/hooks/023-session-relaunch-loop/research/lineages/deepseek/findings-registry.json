@@ -1,0 +1,709 @@
+{
+  "sessionId": "fanout-deepseek-1792429886029-no7lpl",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 4,
+    "totalQuestions": 5,
+    "timestamp": "2026-10-19T17:28:48.667Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-behaviors-in-skilled-hooks-session-relaunch-lib-and-skilled-bin-skilled-lo",
+      "inboxId": null,
+      "text": "Which behaviors in `.skilled/hooks/session-relaunch/lib` and `.skilled/bin/skilled-loop` diverge from the phase 001-008 spec records, and which concrete fixes restore alignment?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-latent-bugs-and-edge-cases-remain-in-the-core-relaunch-decision-path-conte",
+      "inboxId": null,
+      "text": "Which latent bugs and edge cases remain in the core relaunch decision path (context threshold, nudge, killer, handoff) and which tests expose them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-do-the-runtime-adapters-claude-opencode-plugin-pi-codex-hermes-implement-the-sam",
+      "inboxId": null,
+      "text": "Do the runtime adapters (Claude, OpenCode plugin, Pi, Codex, Hermes) implement the same trigger, arm and nudge semantics as the core, and where do they drift?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-speckit-handoff-its-command-documentation-and-the-gate-3-exemption-match-th",
+      "inboxId": null,
+      "text": "Does `/speckit:handoff`, its command documentation and the Gate 3 exemption match the implemented contract and the sk-doc standards?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-the-ideal-core-and-adapter-architecture-and-which-sk-code-skilled-surfac",
+      "inboxId": null,
+      "text": "What is the ideal core-and-adapter architecture, and which sk-code-skilled surface checklist items and sk-doc standards remain unmet?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-which-latent-bugs-and-edge-cases-remain-in-the-core-relaunch-decision-path-conte",
+      "inboxId": null,
+      "text": "Which latent bugs and edge cases remain in the core relaunch decision path (context threshold, nudge, killer, handoff) and which tests expose them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-behaviors-in-skilled-hooks-session-relaunch-lib-and-skilled-bin-skilled-lo",
+      "inboxId": null,
+      "text": "Which behaviors in `.skilled/hooks/session-relaunch/lib` and `.skilled/bin/skilled-loop` diverge from the phase 001-008 spec records, and which concrete fixes restore alignment?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-3-do-the-runtime-adapters-claude-opencode-plugin-pi-codex-hermes-implement-the-sam",
+      "inboxId": null,
+      "text": "Do the runtime adapters (Claude, OpenCode plugin, Pi, Codex, Hermes) implement the same trigger, arm and nudge semantics as the core, and where do they drift?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-does-speckit-handoff-its-command-documentation-and-the-gate-3-exemption-match-th",
+      "inboxId": null,
+      "text": "Does `/speckit:handoff`, its command documentation and the Gate 3 exemption match the implemented contract and the sk-doc standards?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-what-is-the-ideal-core-and-adapter-architecture-and-which-sk-code-skilled-surfac",
+      "inboxId": null,
+      "text": "What is the ideal core-and-adapter architecture, and which sk-code-skilled surface checklist items and sk-doc standards remain unmet?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "Which latent bugs and edge cases remain in the core relaunch decision path (context threshold, nudge, killer, handoff) and which tests expose them?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-p1-the-claude-stop-hook-supervises-the-bash-c-wrapper-when-claude-pid-is-unset-s",
+      "text": "**P1 — The Claude stop hook supervises the `bash -c` wrapper when `CLAUDE_PID` is unset.** `stop-arm.mjs` resolves the killer target as `process.env.CLAUDE_PID || String(process.ppid)` [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:131]. The generated Claude hook command runs through `bash -c 'cd ... && node ...'` [SOURCE: .claude/settings.json:192], so the Node hook's parent is the transient shell, not the Claude process. No producer of `CLAUDE_PID` exists in the repository; only tests set it [SOURCE: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:315]. The core already carries the correct resolution — climb from the hook process to the direct child of `SKILLED_LOOP_ID` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:757] — and the CLI uses it for the same purpose [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:238]. The killer does not signal itself (it only handles `ESRCH`), so the result is a silent no-op: the shell exits, the record stays armed, and the original session keeps waiting for input instead of ending. Fix: in `stop-arm.mjs`, resolve `targetPid` with `findLoopChildPid(loopId)` before falling back to `process.ppid`, reject a non-integer result, and add a test that runs the hook through a shell with `CLAUDE_PID` removed.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/bin/skilled-loop",
+        ".claude/settings.json"
+      ]
+    },
+    {
+      "id": "finding-1-3-p2-shouldrelaunch-approves-an-armed-record-without-a-usable-handoff-or-cwd-and-t",
+      "text": "**P2 — `shouldRelaunch` approves an armed record without a usable handoff or cwd, and the wrapper turns that into exit 1.** The predicate checks only `status`, `armedAt` and `hops` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:404]. `should-relaunch` then copies `record?.handoff` and `record?.cwd` straight into its JSON [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:461]. When either is missing, `skilled-loop` prints \"warning: could not read the relaunch record\", consumes the record and exits 1 [SOURCE: .skilled/bin/skilled-loop:430], discarding the runtime's real exit code. A record can reach this state through a partial atomic write (impossible by design) or a hand-edited state file, but the documented decline contract says invalid relaunch state returns 1 only after a declined decision, not after an approved one. Fix: validate `typeof record.handoff === 'string' && record.handoff` and `typeof record.cwd === 'string' && record.cwd` inside `shouldRelaunch` and return `{relaunch:false, reason:'incomplete-record'}`; the wrapper then preserves the runtime exit and prints the manual claim only when a path is present.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/bin/skilled-loop",
+        ".claude/settings.json"
+      ]
+    },
+    {
+      "id": "finding-1-4-p2-updatefrontmatter-and-parsehandoff-disagree-about-whitespace-before-the-colon",
+      "text": "**P2 — `updateFrontmatter` and `parseHandoff` disagree about whitespace before the colon, so a claim can create a duplicate key and fail.** `parseHandoff` trims the key and accepts `status : open` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:198]. `updateFrontmatter` looks for `line.startsWith(`${key}:`)` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:119], misses the spaced form, and appends a second `status:` line. The next `parseHandoff` then throws `duplicate frontmatter key`, so `claim` fails on a note the validator accepted. Fix: match `/^\\s*${escapedKey}\\s*:/` (or reuse the parse spans) and replace the original line in place, preserving indentation and spacing; add a claim test with `status : open`.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/bin/skilled-loop",
+        ".claude/settings.json"
+      ]
+    },
+    {
+      "id": "finding-1-5-p2-a-malformed-note-fallback-misreads-spec-folder-none-as-invalid-and-drops-the-",
+      "text": "**P2 — A malformed-note fallback misreads `spec_folder: none` as invalid and drops the carried Gate 3 answer.** In `consume`, after `parseHandoff` throws, the fallback marks any non-empty `spec_folder` value invalid [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:530]. The literal `none` is a valid Gate 3 D) Skip answer [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:520], so a note with `spec_folder: none` plus any unrelated frontmatter defect loses the skip answer and logs `spec-folder-dropped`. Fix: treat the candidate as valid when it equals `none` or passes `validSpecFolder`, and only flag the invalid case otherwise; add a fallback test.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/bin/skilled-loop",
+        ".claude/settings.json"
+      ]
+    },
+    {
+      "id": "finding-1-2-p2-context-window-resolution-silently-doubles-the-fill-ratio-for-sessions-starte",
+      "text": "**P2 — Context-window resolution silently doubles the fill ratio for sessions started in a repo subdirectory.** `resolveWindow` only checks `.claude/settings.local.json` and `.claude/settings.json` under the session `cwd` [SOURCE: .skilled/hooks/session-relaunch/lib/context-usage.cjs:173], and the Claude nudge passes the hook payload `cwd` unchanged [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:88]. This repository configures a 500000-token window [SOURCE: .claude/settings.json:25]. A session whose `cwd` is a package or skill subdirectory therefore misses that setting and falls through to the 200000-token model default [SOURCE: .skilled/hooks/session-relaunch/lib/context-usage.cjs:183], so a 35% real fill reads as 87.5% and nudges early. The same contract already resolves handoff paths from the repo root explicitly [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:203]. Fix: walk ancestors from `cwd` until a `.claude/settings.local.json` or `.claude/settings.json` is found (stopping at the repository boundary), then consult the home setting, and add a nested-cwd test to `context-usage.test.cjs`.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/bin/skilled-loop",
+        ".claude/settings.json"
+      ]
+    },
+    {
+      "id": "finding-2-1-p2-handofftext-interpolates-the-spec-folder-value-into-note-frontmatter-without-",
+      "text": "**P2 — `handoffText` interpolates the spec-folder value into note frontmatter without validation, so an adapter-supplied newline can inject frontmatter keys.** `specValue` is copied verbatim into `spec_folder: ${specValue}` [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:93]. The Pi extension and OpenCode plugin take that value straight from `SYSTEM_SPEC_FOLDER` [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:338] [SOURCE: .opencode/plugins/session-relaunch.js:159]; Claude, Codex and Hermes take it from the hook payload [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:123] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:106]. The core already validates packet paths and rejects line breaks in `validSpecFolder` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:36], but the nudge never calls it. A value such as `specs/x/001-y\\nstatus: claimed` becomes a second frontmatter key, and `prepare` then either rejects the note or accepts a forged status. Fix: normalize the value in `handoffText` (`'none'` or `validSpecFolder`, otherwise `undefined`) and log the dropped value; add a test that passes a newline-bearing spec folder to every adapter.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".opencode/plugins/session-relaunch.js",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs",
+        ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
+        ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-p2-killer-target-resolution-is-reimplemented-five-ways-only-codex-and-hermes-use",
+      "text": "**P2 — Killer target resolution is reimplemented five ways; only Codex and Hermes use the core ancestor walk.** Claude uses `CLAUDE_PID || process.ppid` [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:131], Codex uses `findLoopChildPid` [SOURCE: .skilled/hooks/session-relaunch/codex/stop-arm.mjs:118], Hermes uses `findLoopChildPid` with an injected-pid seam for tests [SOURCE: .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:79], and Pi and the OpenCode plugin pass `process.pid` [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:244] [SOURCE: .opencode/plugins/session-relaunch.js:190]. The five paths disagree about which layer is the \"runtime process\", which is how the Claude bug in iteration 1 arose. Fix: add `resolveKillerTarget(loopId, { env, pid })` to `relaunch-core.cjs` with a documented preference order (runtime-exported pid, then ancestor walk, then `process.pid`), and make every adapter call it; the helper gets one test per resolution branch.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".opencode/plugins/session-relaunch.js",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs",
+        ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
+        ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-p2-malformed-claim-seeds-are-refused-by-hermes-but-silently-converted-into-instr",
+      "text": "**P2 — Malformed claim seeds are refused by Hermes but silently converted into instructions naming a placeholder path by the other four adapters.** Hermes returns no context when `notePathFromSeed` is null [SOURCE: .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:65]. Claude, Codex and the OpenCode plugin instead pass `notePath ?? '<handoff-path>'` into `seedText` [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:73] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:67] [SOURCE: .opencode/plugins/session-relaunch.js:284], producing a claim command for a literal placeholder file. A malformed seed (relative path, trailing whitespace, injected newline) is therefore not a no-op in four runtimes and an error message in the fifth. Fix: make `notePathFromSeed === null` end seed handling in every adapter, matching Hermes, and add one parity test per adapter.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".opencode/plugins/session-relaunch.js",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs",
+        ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
+        ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ]
+    },
+    {
+      "id": "finding-2-5-p2-the-environment-reference-says-claude-and-codex-take-spec-folder-from-the-hoo",
+      "text": "**P2 — The environment reference says Claude and Codex take `spec_folder` from the hook payload, but no repository hook or host configuration produces that field.** The reference row states the value comes from the payload [SOURCE: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:113], and the adapters read `payload.spec_folder` [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:106] [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:123]. Only test fixtures set it [SOURCE: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:156]. No generated settings row, hook, or spec-gate writes it, so real Claude and Codex runs pass `undefined` and the hop loses the Gate 3 answer that the parent AGENTS.md says persists for the session. Fix: either document the empty fallback as expected and remove the \"from the hook payload\" claim, or read the bound packet from the repo-owned spec-gate state (for example the same `SYSTEM_SPEC_FOLDER` channel Pi and OpenCode use) and test that real producer.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".opencode/plugins/session-relaunch.js",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs",
+        ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
+        ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ]
+    },
+    {
+      "id": "finding-2-4-p2-the-opencode-plugin-treats-a-note-file-s-existence-as-handoff-done-but-treats",
+      "text": "**P2 — The OpenCode plugin treats a note file's existence as \"handoff done\" but treats its readability as \"not claimed\", so a corrupt note permanently suppresses the nudge.** Outside a loop, `shouldPushActiveNudge` returns `!fs.existsSync(activeNudge.notePath)` [SOURCE: .opencode/plugins/session-relaunch.js:64]. The seed path in the same file deliberately treats a read or parse failure as `open` so a failed read is not mistaken for a claim [SOURCE: .opencode/plugins/session-relaunch.js:72]. A zero-byte or half-written note therefore silences the nudge while the session still cannot prepare, and only a manual retry recovers. Fix: use one note-state helper for both paths (open when missing, unreadable or invalid; stop only on `claimed`/`done`), and add a corrupt-note test.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".opencode/plugins/session-relaunch.js",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs",
+        ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
+        ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ]
+    },
+    {
+      "id": "finding-3-3-p2-the-environment-reference-has-no-claude-pid-row-although-three-shipped-docume",
+      "text": "**P2 — The environment reference has no `CLAUDE_PID` row although three shipped documents rely on the variable.** `ENV-REFERENCE.md` lists `SYSTEM_SPEC_FOLDER`, `HERMES_SPEC_FOLDER` and the `SESSION_RELAUNCH_*` switches but not `CLAUDE_PID` [SOURCE: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:109]. The README treats it as a supplied runtime variable [SOURCE: .skilled/hooks/session-relaunch/README.md:81], and the command doc repeats it [SOURCE: .skilled/commands/speckit/handoff.md:21]. An operator cannot tell whether to export it or whether the host provides it. Fix: add a row naming the source (host-provided, wrapper-exported, or operator-set), or remove the dependency in the same change that removes the docs' claim.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "AGENTS.md",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ]
+    },
+    {
+      "id": "finding-3-1-p2-the-handoff-command-says-prepare-leaves-open-notes-unchanged-phase-008-change",
+      "text": "**P2 — The handoff command says `prepare` leaves open notes unchanged; phase 008 changed it to complete this session's own open notes.** The command's receiving section states that `prepare` marks every note this session claimed as `done` and \"leaves open notes ... unchanged\" [SOURCE: .skilled/commands/speckit/handoff.md:133]. `supersedeClaimed` also completes an `open` note whose `session_id` is this session [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:515]. The README repeats only the claimed-note half [SOURCE: .skilled/hooks/session-relaunch/README.md:139] [SOURCE: .skilled/hooks/session-relaunch/README.md:141]. A reader following the command doc will assume an abandoned open note survives and may write a second note unnecessarily. Fix: state both classes in all three places (claimed by this session, or written by this session and still open), matching the phase 008 implementation summary.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "AGENTS.md",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ]
+    },
+    {
+      "id": "finding-3-2-p2-three-documents-say-claude-pid-is-used-only-for-the-shell-child-check-but-the",
+      "text": "**P2 — Three documents say `CLAUDE_PID` is used \"only\" for the shell-child check, but the Claude stop hook also uses it as the killer target.** The README [SOURCE: .skilled/hooks/session-relaunch/README.md:25], the feature catalog [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md:43] and the command doc [SOURCE: .skilled/commands/speckit/handoff.md:21] all scope the variable to the shell-child check. `stop-arm.mjs` reads it first when choosing the target pid [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:131]. Either the fallback is a bug to remove (iteration 1's finding) or the docs are wrong; they cannot both hold. Fix: after choosing the target-resolution design in iteration 1, make the three docs state exactly where the variable is read.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "AGENTS.md",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ]
+    },
+    {
+      "id": "finding-3-5-p3-the-command-orders-continuity-save-before-the-note-while-the-nudge-the-automa",
+      "text": "**P3 — The command orders continuity save before the note, while the nudge the automatic runtimes receive orders the note first.** The command's Outputs and Step 2 say to save continuity before the note is written [SOURCE: .skilled/commands/speckit/handoff.md:27] [SOURCE: .skilled/commands/speckit/handoff.md:61]. The nudge text starts with \"Write the handoff note\" and only then adds the save step [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:87] [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:112]. Both orders reach a saved packet before `prepare`, so the outcome is the same, but two contracts for one workflow invite a future edit that depends on order. Fix: choose one order and use it in the command and `handoffText`, with a one-line reason for the choice.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "AGENTS.md",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ]
+    },
+    {
+      "id": "finding-3-4-p3-the-record-status-table-describes-every-arm-event-as-a-stop-event-the-readme-",
+      "text": "**P3 — The record-status table describes every arm event as a Stop event.** The README says `pending` means \"Stop has not armed the record yet\" and `armed` means \"A matching Stop event ...\" [SOURCE: .skilled/hooks/session-relaunch/README.md:127]. Only Claude and Codex arm on `Stop`; Pi arms on `agent_end` [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:375], OpenCode on `session.idle` [SOURCE: .opencode/plugins/session-relaunch.js:294], and Hermes on `on_session_end` [SOURCE: .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:126]. Fix: say \"the runtime's arm event\" and list the five events once.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "AGENTS.md",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ]
+    },
+    {
+      "id": "finding-4-1-p2-phase-003-fixed-the-transient-process-ppid-killer-target-for-codex-but-the-sa",
+      "text": "**P2 — Phase 003 fixed the transient-`process.ppid` killer target for Codex, but the same fallback remains in the Claude stop hook and phase 001 records it as a safe choice.** Phase 003's D77 review found that the Codex stop-arm targeted the transient `process.ppid` and changed it [SOURCE: specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/implementation-summary.md:86]. The Claude stop hook still resolves `CLAUDE_PID || process.ppid` [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:131], and the phase 001 decision record presents that fallback as safe [SOURCE: specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md:95]. `CLAUDE_PID` is present in the recorded live environment, so the live path works, but the fallback is the same defect D77 removed from Codex. Fix: use `findLoopChildPid` in the Claude fallback (the Codex implementation at `.skilled/hooks/session-relaunch/codex/stop-arm.mjs:118` is the template), then add a test that removes `CLAUDE_PID`.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks/023-session-relaunch-loop/goal.md",
+        "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs"
+      ]
+    },
+    {
+      "id": "finding-4-2-p2-the-background-task-guard-runs-only-for-a-pending-record-so-an-armed-record-w",
+      "text": "**P2 — The background-task guard runs only for a pending record, so an armed record whose killer died can be re-armed while live background tasks run.** Phase 001 says the `Stop` payload carries `background_tasks` and that the design refuses an active shell child or pending background task [SOURCE: specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md:80] [SOURCE: specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md:96]. The adapter checks background tasks only when `record.status === 'pending'` [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:109]; for an armed record with no live killer, the same Stop arms it and spawns a killer, which can kill the running tasks. Fix: apply the background-task guard to every path that will call `arm()`, not only the pending branch, and add a test with an armed record, no live killer, and one background task.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks/023-session-relaunch-loop/goal.md",
+        "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs"
+      ]
+    },
+    {
+      "id": "finding-4-3-p2-the-recorded-mitigation-for-the-fallback-the-loop-id-ancestry-check-remains-c",
+      "text": "**P2 — The recorded mitigation for the fallback, \"the loop-id ancestry check remains\", cannot catch the wrong target because the transient shell is a legitimate descendant of the loop.** The phase 001 decision record cites the ancestry check as the remaining safety net for the parent-pid fallback [SOURCE: specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md:95]. The killer's check only asks whether the loop is an ancestor of the target [SOURCE: .skilled/hooks/session-relaunch/lib/killer.cjs:586]; every process between the runtime and the loop, including the `bash -c` hook wrapper, satisfies it. The check therefore confirms the target belongs to the loop but not that it is the runtime. Fix: validate that the target is the loop's direct child (the existing `findLoopChildPid` contract) rather than any descendant, or document that only the direct child is acceptable and enforce it.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks/023-session-relaunch-loop/goal.md",
+        "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs"
+      ]
+    },
+    {
+      "id": "finding-4-4-p3-phase-002-s-opencode-limitation-is-stale-after-the-later-opencode-runs-and-ph",
+      "text": "**P3 — Phase 002's OpenCode limitation is stale after the later OpenCode runs and phase 004's evidence.** The phase 002 record says OpenCode `session.idle` on TUI quit and the wrapper-specific `process.ppid` were not directly captured [SOURCE: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:65] [SOURCE: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:156]. Later runs D, E and F record prepare, `killer-signal` and relaunch through the OpenCode plugin, and phase 004 closed the live checks, so the limitation no longer describes the evidence. Fix: rewrite the limitation to name what remains genuinely unverified (for example TUI prompt auto-submit) or mark it retired by the later runs.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/hooks/023-session-relaunch-loop/goal.md",
+        "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md",
+        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs"
+      ]
+    },
+    {
+      "id": "finding-5-1-p2-one-fact-is-written-in-several-places-across-the-core-adapters-and-wrapper-so",
+      "text": "**P2 — One fact is written in several places across the core, adapters and wrapper, so a path or constant change needs synchronized edits.** The CLI invocation string is repeated in all five adapters [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:20] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:28] [SOURCE: .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:15] [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:99] [SOURCE: .opencode/plugins/session-relaunch.js:26]. The four handoff section names are declared twice [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:22] [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:29]. The seed phrase is built independently in the core, the nudge and the wrapper [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:567] [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:12] [SOURCE: .skilled/bin/skilled-loop:461]. The default hop cap of ten appears in `nudge.cjs`, both CLI switch reads, and `shouldRelaunch`'s default [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:27] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:401] [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:404]. Fix: export one `SESSION_RELAUNCH_CONSTANTS` object (CLI path, sections, seed prefix, default hop cap) from the core, import it in every adapter and the nudge, and have the wrapper ask the CLI to render the manual command instead of keeping its own case table.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/tests/README.md",
+        ".opencode/plugins/session-relaunch.js"
+      ]
+    },
+    {
+      "id": "finding-5-2-p2-there-is-no-shared-adapter-conformance-suite-so-each-adapter-can-diverge-on-t",
+      "text": "**P2 — There is no shared adapter conformance suite, so each adapter can diverge on the same core contract.** Each runtime has its own test file [SOURCE: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1] [SOURCE: .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs:1] [SOURCE: .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:1] [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1] [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:1], and iteration 2 found three places where the same fixture would produce different behavior: malformed seeds, unvalidated spec folders and corrupt note files. Fix: add a table-driven `adapter-conformance.test.cjs` that runs every exported adapter entry through one fixture set for seed detection, seed refusal, spec-folder normalization, pending and armed suppression, hop-cap silence and corrupt-note recovery; keep the per-runtime suites for host-specific payload shapes.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/tests/README.md",
+        ".opencode/plugins/session-relaunch.js"
+      ]
+    },
+    {
+      "id": "finding-5-3-p2-two-pieces-of-logic-that-every-adapter-needs-still-live-in-the-adapters-rathe",
+      "text": "**P2 — Two pieces of logic that every adapter needs still live in the adapters rather than the core: killer target resolution and note-state classification.** Target resolution exists in five forms [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:131] [SOURCE: .skilled/hooks/session-relaunch/codex/stop-arm.mjs:118] [SOURCE: .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:79] [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:244] [SOURCE: .opencode/plugins/session-relaunch.js:190]. Note-state classification exists twice inside one file: existence outside a loop [SOURCE: .opencode/plugins/session-relaunch.js:64] and readability inside the seed path [SOURCE: .opencode/plugins/session-relaunch.js:72]. Fix: add `resolveKillerTarget(loopId, { env, pid })` and `noteState(notePath)` to `relaunch-core.cjs`, make every adapter call them, and delete the per-adapter variants. The core then owns the one rule that decides whether a PID or a note is trustworthy.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/tests/README.md",
+        ".opencode/plugins/session-relaunch.js"
+      ]
+    },
+    {
+      "id": "finding-5-4-p3-the-nudge-s-exactly-this-shape-note-block-shows-a-placeholder-in-the-spec-fol",
+      "text": "**P3 — The nudge's \"exactly this shape\" note block shows a placeholder in the `spec_folder` value slot, which invites copying an invalid value into the note.** The frontmatter example prints `spec_folder: <repo-relative packet path, \"none\" for Gate 3 D) Skip, or empty if unanswered>` [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:94] inside a block introduced as the exact shape to write [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:87]. `prepare` rejects that literal string because it is neither `none` nor a valid packet path [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:372]. Fix: print an empty `spec_folder:` value in the example and keep the three allowed forms in the guidance line below it, so the only copyable value is a valid one; add a nudge test asserting the placeholder never appears after `spec_folder:`.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/tests/README.md",
+        ".opencode/plugins/session-relaunch.js"
+      ]
+    },
+    {
+      "id": "finding-5-5-p3-the-tests-readme-omits-the-opencode-plugin-suite-from-the-folder-inventory-so",
+      "text": "**P3 — The tests README omits the OpenCode plugin suite from the folder inventory, so a reader cannot find one fifth of the regression coverage.** The README says the suite covers Claude, Codex, Hermes and Pi [SOURCE: .skilled/hooks/session-relaunch/tests/README.md:15], and its directory tree lists only the files under `tests/` [SOURCE: .skilled/hooks/session-relaunch/tests/README.md:21]. The OpenCode plugin and its tests live in `.opencode/plugins/` [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:1]. Fix: name the OpenCode suite and its path in the Overview and Key Files, and say why it lives beside the plugin.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/tests/README.md",
+        ".opencode/plugins/session-relaunch.js"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-2ffa1b98dfda",
+      "text": "Looking for direct writes to `deep-research-state.jsonl` in the hook code: the relaunch hooks never touch the deep-research packet, so none exist.",
+      "contentHash": "2ffa1b98dfda",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-fabdf0e91447",
+      "text": "Re-deriving the hop-cap logic: the wrapper, `prepare`, the killer and every adapter share one resolution path, and phase 008 tests cover zero, non-integer and over-cap values. No drift found.",
+      "contentHash": "fabdf0e91447",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-492ca6d2115d",
+      "text": "Rewriting the lock takeover algorithm: expiry, inode-checked release, and the 30 s/10 min sweeps match the README line for line.",
+      "contentHash": "492ca6d2115d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-140c4f86728f",
+      "text": "Treating `targetIsRunning`'s `EPERM` handling as a bug: for a target pid, `EPERM` means the pid was reused by another user, so \"gone\" is the correct reading.",
+      "contentHash": "140c4f86728f",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-606371133cad",
+      "text": "Flagging Codex's separate `prompt-seed.mjs` and `context-nudge.mjs` entry points: the installer allows one script per event, and both route through `shared.mjs`.",
+      "contentHash": "606371133cad",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3ce85403fa88",
+      "text": "Re-checking the threshold math per adapter: every adapter calls the shared `relaunchThreshold`, `nextLevel` and `handoffPending` helpers, and the per-runtime windows are intentional.",
+      "contentHash": "3ce85403fa88",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-cba71c81e825",
+      "text": "Searching for a runtime that resolves the window from a different source than documented: Pi uses `ctx.getContextUsage()`, OpenCode uses `model.limit.context`, Codex the transcript's `model_context_window`, Hermes the payload or model metadata, all with the same env override.",
+      "contentHash": "cba71c81e825",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-241e0a1a87d1",
+      "text": "Treating OpenCode's `process.pid` target as a bug: the plugin is hosted in the OpenCode process the wrapper starts, and the plugin tests assert that pid is passed to the killer [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:916].",
+      "contentHash": "241e0a1a87d1",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-6541f62b76a8",
+      "text": "A command-standard defect: the frontmatter description is one line and within the 110-character budget, `argument-hint` is present, `allowed-tools` is limited to Read, Write and Bash, and the sections match the command template's purpose/contract/steps/report shape [SOURCE: .skilled/skills/sk-doc/sk-create-command/assets/command-template.md:1].",
+      "contentHash": "6541f62b76a8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c8c2fc438438",
+      "text": "A Gate 3 exemption gap: the AGENTS.md sentence exempts runtime state under `.skilled/skills/.state/` [SOURCE: AGENTS.md:75], the spec-gate test covers the path, and the handoff note lives there.",
+      "contentHash": "c8c2fc438438",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-393d95dd0618",
+      "text": "A playbook exit-code drift: the playbook's wrapper exit table matches `skilled-loop` lines 430-504, including the 130 path and the decode-failure warnings.",
+      "contentHash": "393d95dd0618",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-303a3f7abd03",
+      "text": "Looking for a command-contract entry for `/speckit:handoff`: the contract covers router-shaped families only, and this command is direct-dispatch, so its absence is expected.",
+      "contentHash": "303a3f7abd03",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c4654b6b9d8e",
+      "text": "A parent-goal D3 violation: the claim seed takes `spec_folder` from the note at consume time [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:509], so the note-written value does reach the seed on every runtime even when the adapter's payload field is absent. The earlier doc-accuracy concern is about the ENV-REFERENCE wording, not the goal.",
+      "contentHash": "c4654b6b9d8e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-bb1e7a73f873",
+      "text": "A phase 001 usage-accounting drift: the record says fill uses input, cache creation and cache read, and `readClaudeFill` sums exactly those three [SOURCE: .skilled/hooks/session-relaunch/lib/context-usage.cjs:112].",
+      "contentHash": "bb1e7a73f873",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-62a65ed3d8a0",
+      "text": "A phase 008 limitation drift: \"No live rerun\" is accurate; the phase closed unit-level edge cases after the live runs.",
+      "contentHash": "62a65ed3d8a0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d4102fe09642",
+      "text": "Looking for a phase record that claims `CLAUDE_PID` is absent: every record that mentions it says it is recorded in the live hook environment, so the docs' \"only for the shell-child check\" wording is the sole contradiction.",
+      "contentHash": "d4102fe09642",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9ddc158d500d",
+      "text": "A JavaScript or shell checklist violation in the shipped code: module headers, `'use strict'`, camelCase, bracketed log prefixes, quoted expansions, `set -euo pipefail`, documented exit codes and named constants are all present in the reviewed files.",
+      "contentHash": "9ddc158d500d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-bf5faea07a24",
+      "text": "A README structure or sk-doc standards violation: the README has numbered ALL CAPS H2 sections, a directory tree, a switches table, troubleshooting and related links, and no anchor navigation.",
+      "contentHash": "bf5faea07a24",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ee869daf3c59",
+      "text": "Looking for a shared conformance runner outside the per-runtime suites: none exists, and the deep-loop stress adapters are not wired to this hook.",
+      "contentHash": "ee869daf3c59",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7bfb2a47fdbe",
+      "text": "Treating the TypeScript `as string` import specifiers as a defect: the comment explains the dual-base module resolution the Pi loader needs, and the dynamic imports have a fallback.",
+      "contentHash": "7bfb2a47fdbe",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 1,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 24,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "other": 36
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review/specs/hooks/023-session-relaunch-loop/research/lineages/deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
