@@ -1,0 +1,13 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "manual-testing-playbook/routing/integration-request-routing.md",
+        "manual-testing-playbook/routing/moved-command-contract.md"
+      ],
+      "packet": ".",
+      "workflowMode": "system-skilled-doctor"
+    }
+  ],
+  "resourceContractVersion": 1
+}

@@ -3,7 +3,7 @@ description: "Get the ordered steps that put Skilled into your own project repo,
 argument-hint: "[--root <dir>] [--runtimes <list>] [--json] | list | ?"
 allowed-tools: Read, Bash
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:install Router
 

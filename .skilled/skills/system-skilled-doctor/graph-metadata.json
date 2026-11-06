@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "skill_id": "system-skilled-doctor",
+  "family": "system",
+  "category": "system",
+  "deprecated": false,
+  "edges": {
+    "depends_on": [],
+    "enhances": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.4,
+        "context": "its speckit, runtime-mirrors and env doctor commands check the trigger index, runtime-mirror generators and ENV-REFERENCE.md that system-spec-kit owns"
+      },
+      {
+        "target": "mcp-code-mode",
+        "weight": 0.3,
+        "context": "its mcp doctor command installs and debugs Code Mode in a project"
+      }
+    ],
+    "siblings": [],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "domains": [
+    "skilled project integration",
+    "doctor commands",
+    "install skilled",
+    "skilled release update",
+    "runtime mirrors",
+    "environment switches"
+  ],
+  "intent_signals": [
+    "put skilled into my project repo",
+    "install skilled in my project",
+    "link the skilled checkout into my project",
+    "update skilled to a newer release",
+    "check the runtime mirrors match .skilled",
+    "show the environment switches skilled reads",
+    "which doctor command fits my problem",
+    "embed the agents md sections",
+    "check the trigger index is fresh",
+    "install code mode in my project"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "system-skilled-doctor",
+      "skilled doctor commands",
+      "put skilled into my project",
+      "install skilled",
+      "update skilled release"
+    ],
+    "key_topics": [
+      "doctor-commands",
+      "skilled-install",
+      "skilled-update",
+      "runtime-mirrors",
+      "environment-switches"
+    ],
+    "key_files": [
+      ".skilled/skills/system-skilled-doctor/SKILL.md",
+      ".skilled/skills/system-skilled-doctor/README.md",
+      ".skilled/commands/doctor/install.md",
+      ".skilled/commands/doctor/helper.md"
+    ],
+    "entities": [
+      {
+        "name": "system-skilled-doctor",
+        "kind": "skill",
+        "path": ".skilled/skills/system-skilled-doctor/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "leaf-manifest.config.json"
+    ],
+    "causal_summary": "Standalone skill that owns the doctor commands for putting Skilled into a project, checking it there and keeping it current; each command keeps its own workflow under .skilled/commands/doctor and is credited to this skill through its skill_agent tag.",
+    "created_at": "2026-11-06T07:28:03.454659+00:00",
+    "last_updated_at": "2026-11-06T07:30:00.221Z"
+  }
+}

@@ -1,0 +1,118 @@
+---
+title: "System Skilled Doctor Router"
+description: "Sibling router for system-skilled-doctor: the intent signals, the resource map and the no-match checklist a reader parses first."
+trigger_phrases:
+  - "system-skilled-doctor router"
+  - "system-skilled-doctor routing"
+importance_tier: normal
+contextType: general
+version: 1.0.0.0
+router_state: active
+skill_pointer: SKILL.md
+---
+
+# System Skilled Doctor Router
+
+The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the
+link that points here; this file holds the declaration a reader parses to decide what loads.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Requests reach this skill when they are about Skilled inside a project: installing it, linking a checkout, updating to a newer release, checking the runtime mirrors, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration, or finding which doctor command fits a problem. Every one of them is answered by the owned-command table in the root `README.md`, which names the one doctor command to run.
+
+The router answers one question: given a request, which skill-local resources load, in what order, and
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+other than `DEFAULT_RESOURCE` loads before an intent selects it.
+
+### Usage
+
+- Scaffolding the sibling router that `SKILL.md` links to.
+- Deciding which skill-local resources a request loads, and in what order.
+- Checking what happens when no intent matches.
+
+---
+
+## 2. INTENT MODEL
+
+A skill may name its intent map `INTENT_MODEL` instead of `INTENT_SIGNALS`, the name this template and the replay
+reader both accept. Declaring both is legal only when they mirror each other exactly, in keys and in keywords;
+otherwise keep one. A router may also route by pseudocode alone with no map at all, which suits a skill that loads
+its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
+
+- **`DOCTOR_COMMANDS`** fires on `put skilled into my project`, `install skilled`, `link the skilled checkout`, `update skilled`, `runtime mirrors`, `environment switches`, `doctor setup`, `which doctor command`, `agents md sections`, `trigger index fresh` and `code mode install` at weight 4. It loads `README.md`, the owned-command table, which is also the default resource.
+
+---
+
+## 3. MACHINE ROUTER
+
+The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
+reader finds it. This section is the last in the file, and it holds the only pseudocode.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+# The owned-command table lives at the skill root, outside both bases.
+ROOT_RESOURCES = ("README.md",)
+
+# The document every run loads before intent scoring: the owned-command table.
+DEFAULT_RESOURCE = "README.md"
+
+INTENT_SIGNALS = {
+    "DOCTOR_COMMANDS": {"weight": 4, "keywords": ["put skilled into my project", "install skilled", "link the skilled checkout", "update skilled", "runtime mirrors", "environment switches", "doctor setup", "which doctor command", "agents md sections", "trigger index fresh", "code mode install"]},
+}
+
+RESOURCE_MAP = {
+    "DOCTOR_COMMANDS": ["README.md"],
+}
+
+# Every key above must appear in both maps, and every path must resolve inside this folder.
+# An intent that deliberately loads nothing may be listed in NO_LOAD_INTENTS, which is the only way a key may sit
+# outside RESOURCE_MAP or map to an empty list; that list is checked, so an intent that loses its resources by
+# accident still fails. A markdown file at this router's own root, which no leaf manifest lists, may be routed by
+# declaring it in ROOT_RESOURCES and referencing it from a RESOURCE_MAP entry.
+# None of these three patterns is available to a hub router.
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the task intent",
+    "Provide one concrete input or expected output",
+    "Confirm the verification command set before completion",
+]
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    docs.extend(SKILL_ROOT / name for name in ROOT_RESOURCES if (SKILL_ROOT / name).is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only skill-local markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def route_resources(request):
+    inventory = discover_markdown_resources()
+    selected = select_resources_for_request(request, inventory)
+    if not selected:
+        return {"load_level": "UNKNOWN_FALLBACK", "needs_disambiguation": True, "resources": [], "checklist": UNKNOWN_FALLBACK_CHECKLIST}
+
+    loaded = []
+    for relative_path in selected:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in loaded:
+            load(guarded)
+            loaded.append(guarded)
+    return {"resources": loaded}
+```
+
+A request that matches no intent returns `UNKNOWN_FALLBACK` with that checklist, never a silent default
+and never an empty result. Replace `select_resources_for_request` with the domain-specific selection
+logic, and keep the guarded load: the guard is what keeps a path inside this skill folder.

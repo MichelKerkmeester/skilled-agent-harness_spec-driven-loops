@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.25.0
+version: 2.7.26.0
 ---
 
 # System Spec Kit
@@ -561,17 +561,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
 
-Seven doctor commands wrap the checks this skill owns:
-
-| Command | What it does |
-|---|---|
-| `/doctor:speckit` | Checks that the trigger index is fresh, its lookup runs and the ripgrep recipes return results |
-| `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
-| `/doctor:env` | Shows the switches documented in [ENV-REFERENCE.md](./runtime/ENV-REFERENCE.md), plus every other setting in the root `.env.example`, and where each is set, and saves a preference after you approve the exact line |
-| `/doctor:update` | Moves a checkout to a newer spec-kit release: `check`, `align`, a gated `apply`, `rollback`, `record-base` and `compat`, which moves a v3 spec layout to v4 behind two approvals |
-| `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks, names the repair command for each failing one and shows the last session hop, any unclaimed handoff note and the orphaned processes still running |
-| `/doctor:symlink` | Checks, links or unlinks `.skilled` and the chosen runtime folders in another project repo, as a whole-folder link or a real folder holding one link per entry, writing only after you approve the printed plan and its digest |
-| `/doctor:install` | Walks a first install into your own project repo: checks the builds, runs the symlink check and prints the ordered setup commands for you to run, writing nothing itself |
+`/doctor:speckit` and `/doctor:env` check this skill's trigger index and environment switches, and they are documented with the other Skilled integration commands in [`system-skilled-doctor`](../system-skilled-doctor/README.md).
 
 ---
 

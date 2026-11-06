@@ -260,7 +260,7 @@ test('the router frontmatter stays within budget and grants only the tools it us
 
   const tools = ROUTER.match(/^allowed-tools:\s*(.+)$/mu)[1].split(',').map((tool) => tool.trim());
   assert.deepEqual(tools, ['Read', 'Bash']);
-  assert.equal(ROUTER.split('<!-- skill_agent: system-spec-kit -->').length - 1, 1);
+  assert.equal(ROUTER.split('<!-- skill_agent: system-skilled-doctor -->').length - 1, 1);
 });
 
 test('the router binds each target to the workflow asset its route names', () => {

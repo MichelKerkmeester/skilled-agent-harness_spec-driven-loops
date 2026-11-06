@@ -221,7 +221,7 @@ test('the router frontmatter stays within budget and grants only the tools it us
   const tools = ROUTER.match(/^allowed-tools:\s*(.+)$/m)[1].split(',').map((tool) => tool.trim());
   assert.deepEqual(tools, ['Read', 'Bash']);
   // Instruction-document authoring is sk-doc's, so that is the one skill tag here.
-  assert.equal(ROUTER.split('<!-- skill_agent: sk-doc -->').length - 1, 1);
+  assert.equal(ROUTER.split('<!-- skill_agent: system-skilled-doctor -->').length - 1, 1);
 });
 
 test('the router binds each target to the workflow asset its route names', () => {

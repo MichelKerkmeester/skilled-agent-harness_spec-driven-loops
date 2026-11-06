@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move",
+  "description": "Phase 1: skill-and-tag-move",
+  "keywords": [
+    "phase",
+    "skill-and-tag-move"
+  ],
+  "lastUpdated": "2026-11-06T07:49:16.527Z",
+  "specId": "001",
+  "folderSlug": "skill-and-tag-move",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-11-26_08-49__built-system-skilled-doctor-and-moved-ten-doctor.md"
+  ]
+}

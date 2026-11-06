@@ -3,7 +3,7 @@ description: "List every doctor target and run the read-only setup checks, namin
 argument-hint: "(no arguments)"
 allowed-tools: Read, Bash, Grep, Glob
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:setup Router
 

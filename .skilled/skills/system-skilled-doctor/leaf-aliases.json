@@ -1,0 +1,12 @@
+[
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/routing/integration-request-routing.md",
+    "diskPath": "manual-testing-playbook/routing/integration-request-routing.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/routing/moved-command-contract.md",
+    "diskPath": "manual-testing-playbook/routing/moved-command-contract.md"
+  }
+]

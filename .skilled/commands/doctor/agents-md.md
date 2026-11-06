@@ -3,7 +3,7 @@ description: "Check, embed or restore the shipped AGENTS.md sections, plan first
 argument-hint: "[check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes]"
 allowed-tools: Read, Bash
 ---
-<!-- skill_agent: sk-doc -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:agents-md Router
 

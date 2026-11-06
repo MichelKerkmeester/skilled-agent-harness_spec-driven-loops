@@ -3,7 +3,7 @@ description: "Check, link or unlink the Skilled checkout in a project repo, plan
 argument-hint: "[check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags]"
 allowed-tools: Read, Bash
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:symlink Router
 

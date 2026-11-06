@@ -3,7 +3,7 @@ description: Inspect documented environment switches and confirm preference chan
 argument-hint: "[list | <section> | <VARIABLE>] [--dry-run]"
 allowed-tools: Read, Bash
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # Doctor Environment Switches
 

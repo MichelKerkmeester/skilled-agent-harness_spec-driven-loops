@@ -3,7 +3,7 @@ description: "Diagnose spec-kit retrieval: the generated trigger index, its look
 argument-hint: "[speckit-retrieval] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:speckit Router
 

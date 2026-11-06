@@ -3,7 +3,7 @@ description: Route /doctor:update check, align, apply, rollback, record-base or 
 argument-hint: "[check|align|apply|rollback|record-base|compat] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags]"
 allowed-tools: Read, Bash
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:update Router
 

@@ -3,7 +3,7 @@ description: "Check that the agent, command, prompt and hook mirrors in each run
 argument-hint: "(no arguments)"
 allowed-tools: Read, Bash, Grep, Glob
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:runtime-mirrors Router
 

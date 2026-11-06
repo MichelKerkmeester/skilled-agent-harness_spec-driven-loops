@@ -412,8 +412,8 @@
     {
       "id": "command-doctor-agents-md-check",
       "command": "/doctor:agents-md",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-doc",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -456,8 +456,8 @@
     {
       "id": "command-doctor-agents-md-embed",
       "command": "/doctor:agents-md",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-doc",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -498,8 +498,8 @@
     {
       "id": "command-doctor-agents-md-restore",
       "command": "/doctor:agents-md",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-doc",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -714,8 +714,8 @@
     {
       "id": "command-doctor-env",
       "command": "/doctor:env",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -890,8 +890,8 @@
     {
       "id": "command-doctor-helper",
       "command": "/doctor:helper",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -930,8 +930,8 @@
     {
       "id": "command-doctor-install",
       "command": "/doctor:install",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -974,8 +974,8 @@
     {
       "id": "command-doctor-mcp-debug",
       "command": "/doctor:mcp",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1015,8 +1015,8 @@
     {
       "id": "command-doctor-mcp-install",
       "command": "/doctor:mcp",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1054,8 +1054,8 @@
     {
       "id": "command-doctor-runtime-mirrors",
       "command": "/doctor:runtime-mirrors",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1099,8 +1099,8 @@
     {
       "id": "command-doctor-setup",
       "command": "/doctor:setup",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1561,8 +1561,8 @@
     {
       "id": "command-doctor-speckit",
       "command": "/doctor:speckit",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1602,8 +1602,8 @@
     {
       "id": "command-doctor-symlink-check",
       "command": "/doctor:symlink",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1648,8 +1648,8 @@
     {
       "id": "command-doctor-symlink-link",
       "command": "/doctor:symlink",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1690,8 +1690,8 @@
     {
       "id": "command-doctor-symlink-unlink",
       "command": "/doctor:symlink",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1729,8 +1729,8 @@
     {
       "id": "command-doctor-update",
       "command": "/doctor:update",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {

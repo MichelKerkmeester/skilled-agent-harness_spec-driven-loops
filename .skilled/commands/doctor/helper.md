@@ -3,7 +3,7 @@ description: "Describe a problem and get the doctor command that fits, with why,
 argument-hint: "[<problem in plain words>] [--json] | list | ?"
 allowed-tools: Read, Bash
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:helper Router
 

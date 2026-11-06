@@ -3,7 +3,7 @@ description: "Install or debug Code Mode, its UTCP configuration, and runtime re
 argument-hint: "<install [--runtime <name>]|debug [--fix]>"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
-<!-- skill_agent: system-spec-kit -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:mcp Router
 

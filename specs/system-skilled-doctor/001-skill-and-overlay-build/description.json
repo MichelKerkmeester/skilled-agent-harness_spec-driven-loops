@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build",
+  "description": "Build system-skilled-doctor and the doctor overlay command",
+  "keywords": [
+    "system-skilled-doctor",
+    "doctor",
+    "overlay",
+    "command"
+  ],
+  "lastUpdated": "2026-11-06T07:23:07.720Z",
+  "specId": "001",
+  "folderSlug": "skill-and-overlay-build",
+  "parentChain": [
+    "system-skilled-doctor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

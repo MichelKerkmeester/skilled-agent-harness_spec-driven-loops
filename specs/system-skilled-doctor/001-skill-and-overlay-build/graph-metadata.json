@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build",
+  "parent_id": null,
+  "children_ids": [
+    "system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move",
+    "system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine",
+    "system-skilled-doctor/001-skill-and-overlay-build/003-repin",
+    "system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill and overlay build phase parent spec",
+      "system skilled doctor build",
+      "doctor overlay build",
+      "barter overlay mechanics research",
+      "overlay sync repin failure modes"
+    ],
+    "key_topics": [
+      "skill",
+      "overlay",
+      "phase",
+      "parent",
+      "spec",
+      "system",
+      "skilled",
+      "doctor",
+      "barter",
+      "mechanics",
+      "research",
+      "sync"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/design-decisions.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-decisions.md",
+        "kind": "doc",
+        "path": "research/design-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Skilled",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "noclobber",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A project that vendors Skilled by archive, as Barter does, keeps its local changes across a new pin only through a private overlay engine, guard adapters in each runtime, a manual runbook and scratch scripts written for each re-pin",
+    "created_at": "2026-11-06T07:23:07Z",
+    "last_save_at": "2026-11-06T07:49:16.558Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2e44b0d29d8e332bd6d90257802551e900a792b0eb19fc8996183bdb9da2c990",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5f722234fb45d236354696558ff1b5df3253728cc5e3bd1d37849b0ea3c563a1",
+      "research/research.md": "b0650e10ec6e394fc1bd35c7d7dca9abc4e629f88b8512927b5d085859dd24c8"
+    },
+    "last_active_at": "2026-11-06T07:49:16.558Z",
+    "last_active_child_id": "system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move"
+  }
+}

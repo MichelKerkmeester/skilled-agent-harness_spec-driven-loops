@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-skilled-doctor",
+  "description": "Track folder for system-skilled-doctor packets: the standalone skill that owns the doctor commands for putting Skilled into a project, checking it and keeping it current, including the /doctor:overlay command that keeps a vendored copy's local overlays across a re-pin.",
+  "keywords": [
+    "system-skilled-doctor",
+    "doctor-commands",
+    "doctor-overlay",
+    "vendored-overlays",
+    "repin",
+    "track"
+  ],
+  "lastUpdated": "2026-11-06T12:00:00.000Z",
+  "specId": "system-skilled-doctor",
+  "folderSlug": "system-skilled-doctor",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}
