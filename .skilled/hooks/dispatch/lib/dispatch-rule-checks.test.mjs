@@ -653,7 +653,8 @@ test('hermes rules discriminate on the flags the packet contract pins', () => {
 });
 
 test('dsh hard rules accept a complete isolated, pipe-fed dispatch', () => {
-  const rules = readHardRules(DSH);
+  // The availability rule reads this machine's PATH, so it is exercised by the fixture table instead.
+  const rules = readHardRules(DSH).filter((r) => r.check !== 'command-v-dsh-required');
   assert.equal(resolveDispatchPacket(DSH_FULL_DISPATCH)?.skill, 'cli-deepseek-harness');
   assert.deepEqual(evaluate(DSH_FULL_DISPATCH, rules), []);
   assert.equal(CHECKS['stdin-redirect-required'](DSH_FULL_DISPATCH), true);
@@ -689,6 +690,10 @@ test('each dsh hard rule refuses its own violating command', () => {
     ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$PWD')],
     ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$(pwd)')],
     ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$HOME/./.dsh')],
+    // The packet defines REPO as the checkout, so a home or start folder built on it is the checkout.
+    ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '$REPO/.dsh-home'), { repoRoot: DSH_REPO_ROOT }],
+    ['dsh-home-isolated', DSH_FULL_DISPATCH.replace('/tmp/dsh-home', '"${REPO}/x"'), { repoRoot: DSH_REPO_ROOT }],
+    ['no-repo-root-dotenv', DSH_FULL_DISPATCH.replace(DSH_START, 'cd "$REPO" && '), { cwd: os.tmpdir(), repoRoot: DSH_REPO_ROOT }],
     ['mcp-opt-in-only', DSH_FULL_DISPATCH.replace(' --json -', ' --patch ../patches/mcp-extra.patch.yml --json -')],
   ];
 
@@ -990,6 +995,7 @@ const CHECK_FIXTURES = {
   'command-v-devin-required': { satisfied: 'npm test', violated: 'devin -p "task"', emptyPath: true },
   'command-v-pi-required': { satisfied: 'npm test', violated: 'pi -p "task"', emptyPath: true },
   'command-v-hermes-required': { satisfied: 'npm test', violated: 'hermes chat -q "task"', emptyPath: true },
+  'command-v-dsh-required': { satisfied: 'ls .dsh/patches', violated: 'printf x | dsh --profile headless --json -', emptyPath: true },
   'command-v-jev-required': { satisfied: 'npm test', violated: 'jev noul -q "Is it urgent?" -s @state.txt', emptyPath: true },
   // Jev reads stdin when the state flag carries no inline value, so the satisfied case is the one
   // that passes its state explicitly and the violated case is the one that leaves stdin open.

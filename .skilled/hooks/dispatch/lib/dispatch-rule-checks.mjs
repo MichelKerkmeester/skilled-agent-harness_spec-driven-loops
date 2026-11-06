@@ -417,8 +417,19 @@ function contextRepoRoot(context) {
 }
 
 /**
+ * Replaces a leading `$REPO` or `${REPO}`, quoted or not, with the checkout root. The dsh packet
+ * defines REPO as the checkout, so a path built on it is the checkout and not an unknown value.
+ */
+function expandRepoAlias(value, repoRoot) {
+  const unquoted = String(value).replace(/^(["'])(.*)\1$/, '$2');
+  const match = unquoted.match(/^\$(?:REPO|\{REPO\})(?=\/|$)/);
+  return match ? repoRoot + unquoted.slice(match[0].length) : value;
+}
+
+/**
  * The directory dsh will start in: the caller's cwd, else this process's, moved by every `cd`
- * before the executable. Returns null when a `cd` names a variable, which text cannot resolve.
+ * before the executable. Returns null when a `cd` names a variable, which text cannot resolve,
+ * except `$REPO`, which names the checkout.
  */
 function dshWorkingDirectory(command, context) {
   // The resolver hands each check only the dsh segment, so a `cd` before it is read from the full text.
@@ -431,7 +442,7 @@ function dshWorkingDirectory(command, context) {
     // previous word counts as a boundary when it ends in one.
     const atCommandStart = index === 0 || /(?:^|[^\\])(?:;|&&|\|\||\||&)$/.test(before[index - 1]);
     if (!atCommandStart || before[index].replace(/^\(+/, '') !== 'cd') continue;
-    const target = before[index + 1];
+    const target = before[index + 1] && expandRepoAlias(before[index + 1], contextRepoRoot(context));
     if (!target || ['|', '||', '&&', ';', '&'].includes(target)) {
       directory = os.homedir();
       continue;
@@ -648,6 +659,7 @@ export const CHECKS = {
   'command-v-devin-required': binaryOnPathCheck('devin', /\bdevin\s+/),
   'command-v-pi-required': binaryOnPathCheck('pi', /\bpi\s+/),
   'command-v-hermes-required': binaryOnPathCheck('hermes', /\bhermes\s+/),
+  'command-v-dsh-required': binaryOnPathCheck('dsh', /(?:^|[\s;&|(])dsh\s+/),
   // A headless `hermes chat` without --yolo blocks any tool call Hermes flags as dangerous
   // (nobody is present to approve it), so a run given a write-capable toolset could fail a
   // flagged step mid-task. Ordinary writes run either way; read-only runs (no write toolset
@@ -787,8 +799,9 @@ export const CHECKS = {
     const original = parseDshInvocation(String(cmd || ''));
     return dispatches.every((dispatch) => {
       const resolved = dshHomePrefix(dispatch);
-      const { isSet, value } = resolved.isSet || !original ? resolved : dshHomePrefix(original);
-      if (!isSet || !value) return false;
+      const { isSet, value: rawValue } = resolved.isSet || !original ? resolved : dshHomePrefix(original);
+      if (!isSet || !rawValue) return false;
+      const value = expandRepoAlias(rawValue, repoRoot);
       // The current directory, a command substitution and the operator's own home can each land
       // on the checkout or on ~/.dsh, so none of them counts as a disposable home.
       if (/\$\{?PWD\b|\$\(|`|^~|^\$\{?HOME\b/.test(value)) return false;

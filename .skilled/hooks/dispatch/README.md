@@ -37,7 +37,7 @@ Dispatch blocked by <skill> hard-rule(s):
   • [<rule-id>] <rule message>
 ```
 
-The 40 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`), with the messages the declaring skill's sidecar carries:
+The 41 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`), with the messages the declaring skill's sidecar carries:
 
 | Check id | Satisfied when |
 |---|---|
@@ -74,12 +74,13 @@ The 40 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 | `route-patch-required` | A dsh dispatch passes exactly one of the two approved route patches before app flags |
 | `closed-roster` | Every dsh route and patch belongs to the closed roster of approved route and checkout patch files |
 | `approval-never-required` | An unattended dsh dispatch passes `--approval-policy never` |
-| `dsh-home-isolated` | `DSH_HOME` points to a disposable directory outside the checkout |
+| `dsh-home-isolated` | `DSH_HOME` points to a disposable directory outside the checkout. A `$REPO` path counts as the checkout |
 | `lineage-patch-required` | A dsh dispatch passes `.dsh/patches/lineage.patch.yml` |
 | `guards-patch-required` | Every dsh dispatch passes `.dsh/patches/guards.patch.yml` before app flags |
 | `json-final-and-exit-required` | A dsh caller requires `--json`, exit 0 and a final event with `reason.kind` `completed` |
-| `pinned-version-required` | The dsh binary is checked and matches version `0.2.2-rc.1` before dispatch |
-| `no-repo-root-dotenv` | A dsh dispatch does not use the repository root as its working directory |
+| `pinned-version-required` | An explicit `npx @deepseek-ai/dsh@<version>` names `0.2.2-rc.1`; command text cannot read an installed binary's version |
+| `command-v-dsh-required` | A command invoking `dsh` resolves a `dsh` executable on `PATH` |
+| `no-repo-root-dotenv` | A dsh dispatch does not use the repository root as its working directory, including through `cd "$REPO"` |
 | `mcp-opt-in-only` | MCP remains disabled unless the dispatch explicitly passes its dedicated patch |
 
 A check returns `true` when the command *satisfies* the rule; `false` means violated. An unknown check id is skipped (the CI validator catches typos, not this hot path), and a throwing check resolves to satisfied so it can never block a dispatch.
@@ -137,7 +138,7 @@ dispatch/
 
 | File | Responsibility |
 |---|---|
-| `lib/dispatch-rule-checks.mjs` | The hard-rule engine. `readHardRules` reads the `hard-rules.json` sidecar beside a SKILL.md (a JSON array of rule objects, no library). `CHECKS` holds the 40 pure check functions, enumerated as `KNOWN_CHECKS`. `evaluate` runs the rules against a command and returns only the violated ones, mapping `block`/`error` severity to `block` and everything else to `warn`; `evaluateDispatch` holds every dispatch in a chain to its own packet's rules. Imports Node builtins only. |
+| `lib/dispatch-rule-checks.mjs` | The hard-rule engine. `readHardRules` reads the `hard-rules.json` sidecar beside a SKILL.md (a JSON array of rule objects, no library). `CHECKS` holds the 41 pure check functions, enumerated as `KNOWN_CHECKS`. `evaluate` runs the rules against a command and returns only the violated ones, mapping `block`/`error` severity to `block` and everything else to `warn`; `evaluateDispatch` holds every dispatch in a chain to its own packet's rules. Imports Node builtins only. |
 | `lib/dispatch-audit.mjs` | Runtime-neutral audit core. `DISPATCH_SHAPES` is the shared dispatch registry. `inspectDispatch` classifies a dispatch (tokenizing the shell command, distinguishing `direct`/`ambiguous`/`none`). `resolveDispatchPackets` returns every packet a command dispatches to, in order, and `resolveDispatchCommands` every dispatch with its unwrapped text; `matchDispatchShape` records the first packet the resolver names. `extractDispatchMeta` pulls model/target/duration/exit/size hints. `buildAuditLine` scrubs secrets, truncates, and formats one JSONL line. `appendAuditLog` does the size-rotated append. `recordDispatch` runs the whole pipeline. Never writes stdout/stderr, never throws past its boundary. |
 | `claude/dispatch-preflight-lint.mjs`, `codex/` and `devin/` siblings | PreToolUse adapters. Through `evaluateDispatch`, each dispatch in a chain is evaluated against its own packet's rules. A `block` denies with the rule's reason; `warn` attaches an advisory. Fast-exit on non-dispatch commands, fail open on any internal error. |
 | `claude/dispatch-audit-posttooluse.mjs`, `codex/` and `devin/` siblings | PostToolUse adapters feeding the audit core after a Bash/exec call completes. Observe-only, never emit a permission decision. |

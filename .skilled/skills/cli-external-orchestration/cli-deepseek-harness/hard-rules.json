@@ -60,6 +60,12 @@
     "severity": "error"
   },
   {
+    "id": "dsh-availability-required",
+    "check": "command-v-dsh-required",
+    "message": "A command that invokes `dsh` MUST find a `dsh` executable on PATH; when `command -v dsh` fails, refuse the route without constructing or launching a command. This check cannot read the installed version, so the `dsh --version` step above stays the operator's.",
+    "severity": "error"
+  },
+  {
     "id": "no-repo-root-dotenv",
     "check": "no-repo-root-dotenv",
     "message": "Never start dsh with the repository root as its working directory. Headless reads API keys from the environment, then `<cwd>/.env`, then `$DSH_HOME/.env`, and the repository root holds a `.env`, so a root-cwd dispatch loads keys outside the env allowlist.",
