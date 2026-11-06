@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # system-skilled-doctor

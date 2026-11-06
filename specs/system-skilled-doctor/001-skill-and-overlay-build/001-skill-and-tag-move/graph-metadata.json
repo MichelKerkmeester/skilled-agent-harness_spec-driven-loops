@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`install`, `symlink`, `update`, `setup`, `helper`, `runtime-mirrors`, `env`, `speckit` and `mcp` carry `skillagent: system-spec-kit`, and `agents-md` carries `skillagent: sk-doc`",
     "created_at": "2026-11-06T07:23:07Z",
-    "last_save_at": "2026-11-06T08:55:23.765Z",
+    "last_save_at": "2026-11-06T17:46:06.340Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bef39131d391d0556a8354ec383b1c86ce7c5181ac323442461f352f6006e1a",
+    "source_fingerprint": "sha256:b2362376421dfe325c7c16f57de6ab993226f65662cc223f36f45c5bacad822d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8612fedd2dbe30cb1f2f0d0324ff3a643cae57b3c89e1951907f5116d69c8f81",
       "plan.md": "23f6a1b7171beac153236620caa8bdcd3121d7326072daaced3d809c32409bdd",
       "tasks.md": "6062244ab301a7add0e94217b69dda1a5e41d1729ecbf1e612b187f6a233ee5c",
       "decision-record.md": "401f29e035e4846f5c7e02e6fa6d9b6259ac85693bf365fd66292467ddebf7c9",
-      "implementation-summary.md": "c032d057e5ba9b150cf9ef23e81a61eadf8dc4694d0785e978b9bc59e22aa3b8"
+      "implementation-summary.md": "f26c8aaf94f4d69c167ece0e567691b59eb084d7707c987d4f9dbf5723955a55"
     },
     "last_active_at": null
   }

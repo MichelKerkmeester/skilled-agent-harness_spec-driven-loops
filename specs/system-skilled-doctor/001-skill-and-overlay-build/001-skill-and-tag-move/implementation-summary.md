@@ -98,6 +98,9 @@ The baseline came first: 1005 doctor tests, 5 drift-guard tests and 12 advisor p
 | Skill graph validator | PASS |
 | Hermes and runtime mirrors | PASS, 66 Hermes copies and 213 mirrors in sync |
 | Advisor routing | `system-skilled-doctor` first on 8 of 12 prompts, up from 0 |
+| Doctor routing slice, after the follow-up | PASS, 2 of 2. It had failed 8 rows on `main` |
+
+**Follow-up, v1.3.1.0.** The intent signals and keywords this phase gave the skill copied each command's own phrasing, so the skill outranked the command bridges. The doctor routing slice, which this phase never ran, failed 8 rows on `main`. The skill's routing words now describe Skilled in a project and vendored copies, and the routes gained the phrasings people use. The slice's one bare "doctor" control row now expects this skill, by the operator's decision.
 <!-- /ANCHOR:verification -->
 
 ---

@@ -24,38 +24,37 @@
   },
   "domains": [
     "skilled project integration",
-    "doctor commands",
-    "install skilled",
-    "skilled release update",
-    "runtime mirrors",
-    "environment switches"
+    "vendored skilled overlays",
+    "skilled in a project repository"
   ],
   "intent_signals": [
     "put skilled into my project repo",
-    "install skilled in my project",
-    "link the skilled checkout into my project",
-    "update skilled to a newer release",
-    "check the runtime mirrors match .skilled",
-    "show the environment switches skilled reads",
-    "which doctor command fits my problem",
-    "embed the agents md sections",
-    "check the trigger index is fresh",
-    "install code mode in my project"
+    "keep skilled working in my project",
+    "keep the skilled copy in my project current",
+    "vendored skilled copy",
+    "re-pin my vendored skilled",
+    "keep my changes to vendored skilled",
+    "skilled overlays in a vendored copy",
+    "link my local skilled checkout into a project",
+    "move my vendored skilled copy forward"
   ],
   "derived": {
     "trigger_phrases": [
       "system-skilled-doctor",
-      "skilled doctor commands",
       "put skilled into my project",
-      "install skilled",
-      "update skilled release"
+      "skilled in my project",
+      "vendored skilled",
+      "re-pin vendored skilled",
+      "skilled overlays",
+      "link the skilled checkout into my project",
+      "keep my changes to vendored skilled"
     ],
     "key_topics": [
-      "doctor-commands",
-      "skilled-install",
-      "skilled-update",
-      "runtime-mirrors",
-      "environment-switches"
+      "skilled-project-integration",
+      "vendored-skilled",
+      "skilled-overlays",
+      "skilled-repin",
+      "skilled-checkout-link"
     ],
     "key_files": [
       ".skilled/skills/system-skilled-doctor/SKILL.md",

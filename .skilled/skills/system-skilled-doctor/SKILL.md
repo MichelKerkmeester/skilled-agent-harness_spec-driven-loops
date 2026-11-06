@@ -2,10 +2,10 @@
 name: "system-skilled-doctor"
 description: "Doctor commands that put Skilled into a project repo and keep it current there, including a vendored copy's own overlays."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
-<!-- Keywords: put skilled into my project, install skilled, link skilled checkout, symlink skilled, update skilled release, runtime mirrors, environment switches, doctor setup, which doctor command, agents md sections, trigger index fresh, code mode install, vendored skilled overlays, overlay status, apply the overlays, re-pin vendored skilled -->
+<!-- Keywords: put skilled into my project, skilled in my project repo, keep skilled current in my project, vendored skilled copy, vendored skilled overlays, keep my changes to vendored skilled, re-pin vendored skilled, link a local skilled checkout into a project -->
 <!-- Owns: /doctor:install, /doctor:symlink, /doctor:update, /doctor:agents-md, /doctor:runtime-mirrors, /doctor:env, /doctor:setup, /doctor:helper, /doctor:speckit, /doctor:mcp, /doctor:overlay. Does NOT own: /doctor:sk-code and /doctor:ci (sk-code), /doctor:git (sk-git), /doctor:sk-skill (sk-doc), /doctor:skill-advisor (system-skill-advisor), /doctor:deep-loop (system-deep-loop). -->
 
 # System Skilled Doctor

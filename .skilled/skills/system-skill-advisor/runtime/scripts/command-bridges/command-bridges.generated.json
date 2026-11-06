@@ -473,7 +473,9 @@
             "fold claude md into agents md",
             "write the agents md repository block",
             "replace agents md with the shipped template",
-            "update agents md from the shipped template"
+            "update agents md from the shipped template",
+            "embed the shipped agents md sections",
+            "embed the shipped AGENTS.md sections"
           ],
           "intentSignals": [
             "/doctor:agents-md embed"
@@ -729,7 +731,8 @@
             "check my environment variables",
             "which environment variable switches are set",
             "skilled environment switch values",
-            "environment switch inventory"
+            "environment switch inventory",
+            "which environment switches are set and where"
           ],
           "intentSignals": [
             "/doctor:env list"
@@ -904,7 +907,8 @@
           "keywords": [
             "which doctor command should I run",
             "find the right doctor command",
-            "what doctor command fixes this"
+            "what doctor command fixes this",
+            "which doctor command fits my problem"
           ],
           "intentSignals": [
             "/doctor:helper"
@@ -947,6 +951,8 @@
             "use skilled in my own project",
             "onboard a project repo to skilled",
             "guide me through installing skilled",
+            "walk me through a first install of skilled",
+            "first install of skilled in my project",
             "skilled in my other repository",
             "skilled in another repository"
           ],
@@ -990,6 +996,7 @@
             "debug an MCP connection",
             "MCP connection failure",
             "utcp config is broken",
+            "debug the code mode utcp config",
             "mcp-doctor.sh diagnostic script"
           ],
           "intentSignals": [
@@ -1029,7 +1036,8 @@
           "keywords": [
             "install the MCP servers",
             "Code Mode fresh install",
-            "reinstall Code Mode MCP"
+            "reinstall Code Mode MCP",
+            "install code mode in my project"
           ],
           "intentSignals": [
             "/doctor:mcp install"
@@ -1069,7 +1077,9 @@
             "apply the skilled overlays",
             "put my overlays back into vendored skilled",
             "capture a live edit into its overlay",
-            "reapply overlays after copying skilled"
+            "reapply overlays after copying skilled",
+            "apply the overlays back onto the vendored copy",
+            "put the overlays back on vendored skilled"
           ],
           "intentSignals": [
             "/doctor:overlay apply"
@@ -1150,6 +1160,9 @@
             "are my skilled overlays in sync",
             "which overlay destinations are out of sync",
             "vendored skilled overlay status",
+            "does my vendored skilled tree still carry its overlays",
+            "vendored skilled overlays out of sync",
+            "does my vendored skilled copy still carry its overlays",
             "/doctor:overlay"
           ],
           "intentSignals": [
@@ -1196,7 +1209,9 @@
             "discovery mirror out of sync",
             "hermes prompt copy drift",
             "runtime copies drift from source",
-            "runtime prompts out of date after a pull"
+            "runtime prompts out of date after a pull",
+            "check the runtime mirrors match skilled",
+            "runtime mirrors match .skilled"
           ],
           "intentSignals": [
             "/doctor:runtime-mirrors"
@@ -1238,6 +1253,7 @@
             "help me set up skilled",
             "is my skilled install healthy",
             "skilled setup check",
+            "run the doctor setup checks",
             "getting started with skilled",
             "overview of every doctor command",
             "model server or helper process still running after the session closed"
@@ -1700,7 +1716,8 @@
             "trigger index lookup fails",
             "retrieval conventions doctor",
             "ripgrep recipe check",
-            "citation drift summary"
+            "citation drift summary",
+            "is the trigger index fresh"
           ],
           "intentSignals": [
             "/doctor:speckit"
@@ -1788,7 +1805,8 @@
             "repair broken skilled symlinks",
             "create the skilled links in a repo",
             "link skilled into my repo",
-            "link skilled into another project"
+            "link skilled into another project",
+            "link my skilled checkout into another project"
           ],
           "intentSignals": [
             "/doctor:symlink link"
@@ -1869,7 +1887,9 @@
             "skilled release update",
             "update skilled to the latest release",
             "check for skilled updates",
-            "is there a newer skilled release"
+            "is there a newer skilled release",
+            "update my project to a newer skilled release",
+            "move my project to the newer spec-kit release"
           ],
           "intentSignals": [
             "/doctor:update"
