@@ -1,7 +1,7 @@
 ---
 title: "PAT-002 -- Guards patch boot"
 description: "This scenario validates that the guards patch loads the repo-guards bundle with no failed plugin entry and reaches the provider call for `PAT-002`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # PAT-002 -- Guards patch boot
@@ -60,6 +60,7 @@ tail -n 1 stdout.jsonl
 - Observed: exit `1`, stderr names `LLMGATEWAY_API_KEY` with `MISSING_CREDENTIAL`, `grep -c "did not activate"` returns `0`, and the last event is a `final` event with `reason.kind` `error`.
 - The same capture records the plugin suite run in that packet, but this scenario grades the boot only. The current suite count lives in `GRD-001`.
 - Note: the saved capture omits `--permission-mode`. The command above adds the read-only preset for a dispatch that could reach a tool.
+- Rerun after hook parity, 2026-11-06: both compositions exit `1` with `MISSING_CREDENTIAL` and print no `did not activate` line. The interactive boot, with the route and guards patches only, also carried the skill-advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context. Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -75,7 +76,7 @@ tail -n 1 stdout.jsonl
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Isolation policy and verdict rules |
 | `../../SKILL.md` | Guard bundle delivery and the failed-entry escalation |
-| `../../references/guards-and-hooks.md` | Fourteen adapters, error policies and the keyless boot evidence |
+| `../../references/guards-and-hooks.md` | The twenty adapters, both compositions, error policies and the keyless boot evidence |
 | `../../references/runtime-folder-and-sync.md` | Guards patch inventory |
 | `../../hard-rules.json` | `no-repo-root-dotenv` and `dsh-home-isolated` for the boot shape |
 
@@ -83,8 +84,9 @@ tail -n 1 stdout.jsonl
 
 | File | Role |
 |---|---|
-| `.dsh/patches/guards.patch.yml` | Inserts the repo-guards row by relative path |
-| `.dsh/plugins/repo-guards/index.mjs` | Registers the adapter set |
+| `.dsh/patches/guards.patch.yml` | Inserts the repo-guards row by relative path and turns the skill advisor on |
+| `.dsh/plugins/repo-guards/index.mjs` | Registers the 20 adapters |
+| `.dsh/plugins/repo-guards/lineage-leaf.mjs` | The marker row the lineage patch inserts, which keeps the four interactive-only adapters off |
 | `.dsh/plugins/repo-guards/README.md` | Adapter policies and the failed-entry behavior |
 | `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt` | Recorded guards boot with a zero failed-entry count |
 
