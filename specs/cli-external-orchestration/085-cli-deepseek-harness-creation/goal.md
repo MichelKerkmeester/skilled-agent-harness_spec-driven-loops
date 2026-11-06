@@ -134,6 +134,8 @@ and findings belong here.
 | Phase status audit | Reconciled | Phases 006-012 remain In Progress because their own acceptance criteria or required checklist rows remain open; 013 remains Planned without keyed evidence. Parent map now mirrors the child spec statuses. Evidence: phase folders 006 through 013, each child's spec.md, acceptance-criteria.md and tasks.md |
 | Operator decisions 2026-11-06 | Applied | `$REPO` resolves to the checkout in the start-folder and home rules; thirteenth rule `dsh-availability-required`; six `DSH_*_DIR` overrides in `.env.example`; research `.dsh-home` deleted; no council seat yet; no commit. Final gate r4 green, recursive strict 15/15. Evidence: 014-playbook-docs-and-closeout/evidence/final-gate-2026-11-06-r4.txt |
 | Codex quota | Reset | The operator reported the quota reset; later workers ran on cli-codex |
+| Release closeout 2026-11-06 | Committed | DSH handover items committed (dispatch fix, 13th rule, $REPO fixes, .env.example, changelogs, runtime READMEs, root README). Criteria 1-3 are met: keyed LLM Gateway run exit 0 completed (013 evidence/route-llmgateway.*), OpenCode Go explicit-only and not default (DSH_DEFAULT_MODEL), clean fan-out lineage dsh-live-2 (013 evidence/fanout-lineage.md), dsh generators and test suites green in final... |
+| Final gate r6 | Green on HEAD | 15 mirror checks exit 0, rule tests 50/50, dispatch audit 128/128, runtime 534 pass 9 skip, tsc 0, routing 48/48, repo-guards 37/37 and strict 15/15 from a HEAD export. Evidence: 014-playbook-docs-and-closeout/evidence/final-gate-2026-11-06-r6.txt |
 
 ### Deviations and findings
 
