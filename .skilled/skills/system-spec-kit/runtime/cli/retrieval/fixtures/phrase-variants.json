@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3740b9d73fe36fa6bcd5255112e1bf363e44ffbed5b143100bafaceb6916da24",
+  "manifestHash": "5aec6cc40b5ff0e677e75b134908ba2c037b6f220455ee9ef23103259751637f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12459,6 +12459,9 @@
     "aside attach browser tab": [
       "aside attach browser tab"
     ],
+    "aside background tab": [
+      "aside background tab"
+    ],
     "aside binary": [
       "aside binary"
     ],
@@ -18796,6 +18799,9 @@
     "chrome devtools 2 manual": [
       "chrome_devtools_2 manual"
     ],
+    "chrome devtools autoconnect": [
+      "chrome devtools autoconnect"
+    ],
     "chrome devtools code mode": [
       "chrome devtools code mode"
     ],
@@ -23654,6 +23660,9 @@
     ],
     "clickup find member by name": [
       "clickup_find_member_by_name"
+    ],
+    "clickup gap pass aside": [
+      "clickup gap pass aside"
     ],
     "clickup get bulk tasks time in status": [
       "clickup_get_bulk_tasks_time_in_status"
@@ -63667,6 +63676,9 @@
     "mcp aside devtools 1 1 7 0": [
       "mcp-aside-devtools 1.1.7.0"
     ],
+    "mcp aside devtools 1 1 8 0": [
+      "mcp-aside-devtools 1.1.8.0"
+    ],
     "mcp aside devtools implementation summary": [
       "mcp aside devtools implementation summary"
     ],
@@ -63711,6 +63723,9 @@
     ],
     "mcp aside devtools v1 1 7 0": [
       "mcp-aside-devtools v1.1.7.0"
+    ],
+    "mcp aside devtools v1 1 8 0": [
+      "mcp-aside-devtools v1.1.8.0"
     ],
     "mcp aside devtools workflow mode": [
       "mcp-aside-devtools workflow mode"
@@ -63780,6 +63795,9 @@
     ],
     "mcp chrome devtools 1 0 20 0": [
       "mcp-chrome-devtools 1.0.20.0"
+    ],
+    "mcp chrome devtools 1 0 21 0": [
+      "mcp-chrome-devtools 1.0.21.0"
     ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
@@ -63862,6 +63880,9 @@
     "mcp chrome devtools v1 0 20 0": [
       "mcp-chrome-devtools v1.0.20.0"
     ],
+    "mcp chrome devtools v1 0 21 0": [
+      "mcp-chrome-devtools v1.0.21.0"
+    ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
     ],
@@ -63918,6 +63939,9 @@
     ],
     "mcp click up 1 2 11 0": [
       "mcp-click-up 1.2.11.0"
+    ],
+    "mcp click up 1 2 12 0": [
+      "mcp-click-up 1.2.12.0"
     ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
@@ -63996,6 +64020,9 @@
     ],
     "mcp click up v1 2 11 0": [
       "mcp-click-up v1.2.11.0"
+    ],
+    "mcp click up v1 2 12 0": [
+      "mcp-click-up v1.2.12.0"
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"

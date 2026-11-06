@@ -1,5 +1,5 @@
 {
-  "corpusHash": "14cfe598d7f361bdf6f9808a59e6b3a9de5e8bd71eb07fbec066520362fb9433",
+  "corpusHash": "8c06832a1f7dcefb6f5a58f1e066b0f3aa64cf61364aad98fec1dfd7a9fcbe60",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28053,
+  "includedPathCount": 28056,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2086,6 +2086,7 @@
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.5.1.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.6.0.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.7.0.md",
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.8.0.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/console-and-network-capture.md",
     ".skilled/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/devtools-parity/cookies-and-storage.md",
@@ -2157,6 +2158,7 @@
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.19.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.20.0.md",
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.21.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.8.0.md",
     ".skilled/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md",
@@ -2238,6 +2240,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.11.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.12.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
@@ -28084,7 +28087,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3740b9d73fe36fa6bcd5255112e1bf363e44ffbed5b143100bafaceb6916da24",
+  "manifestHash": "5aec6cc40b5ff0e677e75b134908ba2c037b6f220455ee9ef23103259751637f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
