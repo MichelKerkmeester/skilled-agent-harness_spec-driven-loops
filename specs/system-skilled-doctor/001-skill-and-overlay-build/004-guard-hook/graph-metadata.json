@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "overlay guard hook",
+      "phase 4 guard hook",
+      "pre write overlay guard",
+      "guard hook plan",
+      "guard hook tasks",
+      "guard hook acceptance criteria",
+      "guard hook goal",
+      "guard hook decision record",
+      "guard hook implementation summary"
+    ],
+    "key_topics": [
+      "overlay",
+      "guard",
+      "hook",
+      "phase",
+      "pre",
+      "write",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Port Source Barter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Barter's rule says a file an overlay owns is edited in its overlay, but only Barter's private hooks enforce that, and they find the overlay folder by the hard-coded name `barter-overlays`",
+    "created_at": "2026-11-06T07:23:11Z",
+    "last_save_at": "2026-11-06T09:57:52.928Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d58179bba5ec57a36498e730c05eeadd1b40d5fd45c72920986ea1db67e5e7c2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "458dbe7777d6730e9e5a4edaf7c895a5ce56885e9afaa4d74e55668a1dde0970",
+      "plan.md": "075cd6e9f84158be28d71f3d9190edd95c3c0cb38322b378393b8f6cbaaf430d",
+      "tasks.md": "4e99220df0ea77bc46f390add00fd221312d17dfeaccb411aba2bc4a612df6ed",
+      "decision-record.md": "494b2ae2a7e1d9fa28165794fcf19e887cd9cc42ba36f66086552122190029e6",
+      "implementation-summary.md": "6c0b13ec814054784b001775be6d589315b5cb4c137ff10a35d2c54ad1902049"
+    },
+    "last_active_at": null
+  }
+}

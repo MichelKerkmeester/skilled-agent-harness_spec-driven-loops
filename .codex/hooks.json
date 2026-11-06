@@ -109,6 +109,16 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "apply_patch|edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/overlay-guard/codex/overlay-guard.cjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=PreToolUse adapter=overlay-guard.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}}\"; }'",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "PostToolUse": [

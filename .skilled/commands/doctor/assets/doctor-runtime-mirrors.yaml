@@ -62,6 +62,7 @@ hook_adapter_fallback_health_checks:
   - { host: claude, event: PreToolUse, path: ".skilled/hooks/task-dispatch/claude/task-dispatch-guard.cjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs", type: file_exists }
   - { host: claude, event: PreToolUse, path: ".skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs", type: file_exists }
+  - { host: claude, event: PreToolUse, path: ".skilled/hooks/overlay-guard/claude/overlay-guard.cjs", type: file_exists }
   - { host: claude, event: UserPromptSubmit, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js", type: file_exists }
   - { host: claude, event: UserPromptSubmit, path: ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs", type: file_exists }
   - { host: claude, event: SessionStart, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js", type: file_exists }
@@ -106,6 +107,7 @@ hook_adapter_fallback_health_checks:
   - { host: codex, event: PreToolUse, path: ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs", type: file_exists }
   - { host: codex, event: PreToolUse, path: ".skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs", type: file_exists }
   - { host: codex, event: PreToolUse, path: ".skilled/hooks/mcp-route-guard/codex/mcp-route-guard.cjs", type: file_exists }
+  - { host: codex, event: PreToolUse, path: ".skilled/hooks/overlay-guard/codex/overlay-guard.cjs", type: file_exists }
   - { host: codex, event: PostToolUse, path: ".skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs", type: file_exists }
   - { host: codex, event: PostToolUse, path: ".skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs", type: file_exists }
   - { host: codex, event: Stop, path: ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-stop.js", type: file_exists }

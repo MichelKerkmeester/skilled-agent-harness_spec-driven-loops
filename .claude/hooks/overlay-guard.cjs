@@ -1,0 +1,1 @@
+../../.skilled/hooks/overlay-guard/claude/overlay-guard.cjs

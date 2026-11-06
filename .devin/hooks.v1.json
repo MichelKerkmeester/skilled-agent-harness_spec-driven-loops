@@ -101,6 +101,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-enforce.mjs'",
           "timeout": 5
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/overlay-guard/devin/overlay-guard.cjs'",
+          "timeout": 10
         }
       ]
     },

@@ -11,7 +11,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Vendored Skilled Overlays
@@ -102,6 +102,10 @@ The engine never reads a `.env` file, even one a manifest entry names. A file wh
 ```
 
 A `protectedPaths` value that points outside the entry, an absolute path, an empty value or a `.env` name is refused before anything is read.
+
+### An Edit to an Owned File
+
+The `overlay-guard` hook refuses an agent's edit to a file an overlay owns, before it is written, and names the overlay file to edit instead. It asks the engine for each path, so it follows the same manifest. In a repository with no overlay folder it allows every edit at once. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off.
 
 ---
 

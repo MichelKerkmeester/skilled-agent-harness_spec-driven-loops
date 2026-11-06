@@ -2,7 +2,7 @@
 name: "system-skilled-doctor"
 description: "Doctor commands that put Skilled into a project repo and keep it current there, including a vendored copy's own overlays."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: put skilled into my project, install skilled, link skilled checkout, symlink skilled, update skilled release, runtime mirrors, environment switches, doctor setup, which doctor command, agents md sections, trigger index fresh, code mode install, vendored skilled overlays, overlay status, apply the overlays, re-pin vendored skilled -->

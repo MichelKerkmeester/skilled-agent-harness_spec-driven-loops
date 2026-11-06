@@ -89,6 +89,12 @@
         "type": "command",
         "matcher": "Shell",
         "timeout": 10
+      },
+      {
+        "command": "node .skilled/hooks/overlay-guard/cursor/overlay-guard.mjs",
+        "type": "command",
+        "matcher": "Write",
+        "timeout": 10
       }
     ],
     "postToolUse": [

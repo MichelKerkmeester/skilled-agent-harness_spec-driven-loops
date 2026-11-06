@@ -53,6 +53,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `post-edit-quality` | `SK_CODE_POST_EDIT_QUALITY_DISABLED` | none | enabled | warn | wired |
 | `task-dispatch` | `SYSTEM_TASK_DISPATCH_DISABLED` | none | enabled | warn / deny | wired |
 | `mcp-route-guard` | `MCP_ROUTE_GUARD_DISABLED` | none | enabled | warn / audit | wired |
+| `overlay-guard` | `SYSTEM_OVERLAY_GUARD_DISABLED` | none | enabled | deny | wired |
 | `goal` | `OPENCODE_GOAL_DISABLED` | `OPENCODE_GOAL_PLUGIN_DISABLED` | enabled | inject / tool | wired |
 | `git-preflight` | `SK_GIT_PREFLIGHT_DISABLED` | none | enabled | warn | wired |
 | `session-lifecycle` | `SYSTEM_SESSION_LIFECYCLE_DISABLED` | none | enabled | inject / teardown | wired |
@@ -92,6 +93,7 @@ A core only qualifies to keep its **real code** in this tree when it imports not
 |---|---|---|
 | `dispatch` | Node builtins only | Portable |
 | `mcp-route-guard` | Node builtins only | Portable |
+| `overlay-guard` | Node builtins, plus the overlay engine loaded only when the tree has an overlay folder | Portable |
 | `post-edit-quality` | Node builtins + `spawnSync` to unmoved checker scripts (invoked by path, never imported) | Portable |
 | `task-dispatch` | Node builtins only | Portable |
 
@@ -136,6 +138,11 @@ hooks/
 |   +-- cursor/   mcp-route-guard.mjs
 |   +-- pi/       mcp-route-guard.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ mcp-route-guard.js (browsability symlink -> .opencode/plugins/)
++-- overlay-guard/                   # refuse an edit to a file a vendored copy's overlay owns
+|   +-- lib/overlay-guard.cjs, overlay-guard.test.cjs
+|   +-- claude/, devin/, codex/      overlay-guard.cjs
+|   +-- cursor/   overlay-guard.mjs
+|   `-- pi/       overlay-guard.ts (real file; `.pi/extensions/` symlinks to it)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs
@@ -188,6 +195,7 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 |---|---|---|
 | `dispatch` | claude, devin, codex, cursor (indexed proxy), pi (symlinked from `.pi/extensions/`) | `cli-dispatch-audit.js` |
 | `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked) | `mcp-route-guard.js` |
+| `overlay-guard` | claude, cursor, devin, codex, pi (symlinked) | none: no OpenCode adapter |
 | `post-edit-quality` | claude, devin, codex, cursor (indexed proxy), pi (symlinked) | `sk-code-post-edit-quality.js` |
 | `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`) | `classifier-injection-screen.js` |
 | `task-dispatch` | claude, cursor, devin, pi (symlinked) | `system-deep-loop-guard.js` |
@@ -253,7 +261,7 @@ Expected result: a `COMMENT_CHECKER=${SOURCE_ROOT}/skills/sk-code/sk-code-qualit
 ## 6. RELATED
 
 - [`injection-contract.md`](./injection-contract.md): what every hook (including the ones that stayed in their skill) actually injects.
-- Per-concern READMEs: [`dispatch/`](./dispatch/README.md), [`mcp-route-guard/`](./mcp-route-guard/README.md), [`post-edit-quality/`](./post-edit-quality/README.md), [`classifier-injection-screen/`](./classifier-injection-screen/README.md), [`task-dispatch/`](./task-dispatch/README.md), [`shared/`](./shared/README.md).
+- Per-concern READMEs: [`dispatch/`](./dispatch/README.md), [`mcp-route-guard/`](./mcp-route-guard/README.md), [`overlay-guard/`](./overlay-guard/README.md), [`post-edit-quality/`](./post-edit-quality/README.md), [`classifier-injection-screen/`](./classifier-injection-screen/README.md), [`task-dispatch/`](./task-dispatch/README.md), [`shared/`](./shared/README.md).
 - [`git/README.md`](./git/README.md): the git commit-hooks installer nested in this tree.
 - [`../scripts/git-hooks/README.md`](../scripts/git-hooks/README.md): the primary git-hooks installer, whose `pre-commit` carries its own comment-hygiene gate.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors pointing back into this tree.
@@ -281,6 +289,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 | `goal` | by-design: native host goal command, and the packet goal reaches it through the speckit workflows | by-design: native host goal command, as for Claude | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered |
 | `injection-screen` | ✓ covered | n/a: only web tool is the provider-hosted `web_search`, so no local hook ever sees a fetched page | n/a: the `Fetch` postToolUse payload carries only `url`, `status_code` and `content_length` | ✓ covered | ✓ covered | ✓ covered |
 | `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `overlay-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: no adapter, and `/doctor:overlay status` reports an edit made there | ✓ covered |
 | `permission-policy` | by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists | by-design: no dedicated permission-request adapter | ✓ covered | by-design: no dedicated permission-request adapter | by-design: no separate approval event beyond `tool_call` |
 | `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered |

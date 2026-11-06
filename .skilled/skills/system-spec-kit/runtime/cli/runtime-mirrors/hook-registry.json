@@ -852,6 +852,63 @@
       }
     },
     {
+      "id": "overlay-guard",
+      "concern": "Refuse a write to a file a vendored tree's overlay owns, naming the overlay file to edit",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 5,
+            "slot": 0,
+            "matcher": "Write|Edit|MultiEdit",
+            "runner": "node",
+            "script": ".skilled/hooks/overlay-guard/claude/overlay-guard.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreToolUse",
+            "group": 3,
+            "slot": 0,
+            "matcher": "apply_patch|edit",
+            "runner": "node",
+            "script": ".skilled/hooks/overlay-guard/codex/overlay-guard.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "preToolUse",
+            "group": 0,
+            "slot": 5,
+            "matcher": "Write",
+            "runner": "node",
+            "script": ".skilled/hooks/overlay-guard/cursor/overlay-guard.mjs",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 1,
+            "slot": 1,
+            "matcher": "^(edit|write)$",
+            "runner": "node",
+            "script": ".skilled/hooks/overlay-guard/devin/overlay-guard.cjs",
+            "timeout": 10,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "overlay-guard.ts"
+      }
+    },
+    {
       "id": "permission-request-policy",
       "concern": "Answer a permission request from the spec gate and dispatch rules",
       "bindings": {
