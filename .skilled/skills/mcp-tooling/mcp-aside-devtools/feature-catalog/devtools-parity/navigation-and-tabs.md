@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside multi tab"
   - "aside attach browser tab"
 last_updated: "2026-07-17"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Navigation and Multi-Tab Management (DevTools parity)
@@ -29,11 +29,11 @@ A fresh repl starts neutral — `page` may be null. Bind first: attach the user'
 const open = await listBrowserTabs();
 console.log(JSON.stringify(open));
 
-// Attach the user's current tab (preferred for "the page I'm on" requests)
+// Attach the user's current tab (preferred for read-only "the page I'm on" requests)
 const p1 = await attachActiveBrowserTab();
 console.log(p1.url());
 
-// Or open a fresh tab (only when no relevant tab exists)
+// Or open a fresh tab: when no relevant tab exists, and for every step that clicks, types or presses keys
 const p2 = await openTab('https://example.com'); // waits until interactive; mutates page + tabs
 console.log(p2.url());
 
@@ -53,7 +53,7 @@ await closeTab(p2); // if you close the last tab, page becomes null
 
 Viewport emulation is INFERRED from the Playwright `page` API (fixture proves `page` is a real `Page`), not from a per-method online enumeration — confirm the result shape on first bound-session run.
 
-Constraints: `attachBrowserTab`/`attachActiveBrowserTab` require a bound browser profile — a fresh `aside mcp` process is unbound (`listBrowserTabs()` throws "not bound to a browser profile"); that is a binding state, not auth. Only `openTab()` when no relevant tab exists or the operator asks for a new page.
+Constraints: `attachBrowserTab`/`attachActiveBrowserTab` require a bound browser profile — a fresh `aside mcp` process is unbound (`listBrowserTabs()` throws "not bound to a browser profile"); that is a binding state, not auth. Use `openTab()` when no relevant tab exists, when the operator asks for a new page, and for every mutating step. `openTab()` opens a background tab the user never sees, while that tab still reports itself visible and focused, so key presses land in it and the user's own tabs stay as they were. `chrome.tabs.create` is refused. Never attach to the user's active tab for a mutating step, and close only the tab you opened. Measured behavior: `../../references/session-management.md`, "Working beside the user".
 
 ---
 

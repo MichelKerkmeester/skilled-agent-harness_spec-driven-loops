@@ -2,7 +2,7 @@
 name: mcp-chrome-devtools
 description: "Chrome DevTools orchestrator: routes between bdg CLI (fast, token-efficient) and Code Mode MCP (multi-tool integration)."
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.21.0
+version: 1.0.22.0
 ---
 
 # Chrome DevTools Orchestrator - CLI + MCP Integration
@@ -86,7 +86,7 @@ Configure one or more Chrome DevTools MCP entries in `.utcp_config.json` with `-
 `chrome_devtools_live` runs `chrome-devtools-mcp --autoConnect` and attaches to the Chrome the user already has open, with its logins. Use it only for signed-in work that an isolated browser cannot do, such as the ClickUp editor pass, because an isolated instance starts logged out on every run.
 
 - **Setup, once:** the user turns on remote debugging at `chrome://inspect/#remote-debugging`. Chrome must be open, and it may ask the user to allow each new connection.
-- **Stay out of the user's way:** open pages with `new_page({ url, background: true })`, which keeps the user's view as it is and selects the new tab for later calls. Close only the tab you opened, found by its URL in `list_pages`. Never navigate, press keys in or close a tab you did not open.
+- **Stay out of the user's way:** open pages with `new_page({ url, background: true })`, which keeps the user's view as it is and selects the new tab for later calls. Close only the tab you opened, found by the page ID that appeared in `list_pages` after your `new_page`, never by URL, since the user may have the same page open. Never navigate, press keys in or close a tab you did not open.
 - **Fallback, not default:** the isolated instances stay the default for every other MCP task.
 
 #### Configuration Check
@@ -221,7 +221,7 @@ Scripts: `scripts/install.sh` and `scripts/doctor.sh`, both documented in `scrip
 
 Examples: [`examples/README.md`](examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
 
-Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — the full CLI + MCP capability inventory (29 features across 7 domains), with per-feature files per domain.
+Feature catalog: [`feature-catalog/feature-catalog.md`](feature-catalog/feature-catalog.md) — the full CLI + MCP capability inventory (30 features across 7 domains), with per-feature files per domain.
 
 Server pointers: [`mcp-servers/bdg-cli/README.md`](mcp-servers/bdg-cli/README.md) (CLI install pointer) and [`mcp-servers/chrome-devtools-mcp/README.md`](mcp-servers/chrome-devtools-mcp/README.md) (the Code Mode server behind the manuals) — nothing vendored.
 

@@ -894,7 +894,7 @@ When a decision needs a number rather than prose, this hub asks the hosted Jev c
 
 One advisor identity routing to eight modes through `mode-registry.json`: five workflow modes (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`) and three design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`).
 
-- **`mcp-chrome-devtools`:** drive a real Chrome browser, through the `bdg` CLI in the terminal or through MCP for multi-tool flows
+- **`mcp-chrome-devtools`:** drive a real Chrome browser, through the `bdg` CLI in the terminal, through MCP for multi-tool flows, or through the `chrome_devtools_live` manual in the user's own signed-in Chrome
 - **`mcp-click-up`:** manage ClickUp tasks through the `cupt` CLI for daily work and the official MCP for documents, search and chat
 - **`mcp-obsidian`:** manage Obsidian notes through `notesmd-cli`, the official `obsidian` CLI or an Obsidian MCP server
 - **`mcp-aside-devtools`:** drive the Aside AI browser through its CLI or its MCP
@@ -1464,12 +1464,13 @@ The Skill Advisor is deliberately not one. It runs as a resident daemon behind `
 
 #### External Integrations (via `.utcp_config.json`)
 
-13 templates are registered. Six carry a description here. The rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
+14 templates are registered. Seven carry a description here. The rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
 
 Code Mode reads each key under its manual's name: the manual name with every underscore doubled, an underscore, then the variable the config references. `.env.example` lists every key in that form, and `get_required_keys_for_tool` names the keys a tool expects.
 
 - **`chrome_devtools_1`** (MCP/stdio) - browser automation (instance 1). No env var needed
 - **`chrome_devtools_2`** (MCP/stdio) - browser automation (instance 2). No env var needed
+- **`chrome_devtools_live`** (MCP/stdio) - attaches to the user's own running Chrome with `--autoConnect`, for work that needs their signed-in sessions. Opens background pages and closes only its own. Needs remote debugging switched on at `chrome://inspect/#remote-debugging`. No env var needed
 - **`clickup_official`** (MCP/stdio) - official hosted ClickUp MCP via `mcp-remote`. No env var needed, the first launch asks for one OAuth approval in the browser. Used by `mcp-click-up` skill
 - **`figma`** (MCP/stdio) - design files, components, exports. Requires `figma_FIGMA_API_KEY`. This is the optional Code Mode MCP. The primary Figma surface is the `mcp-figma` skill via `figma-ds-cli`
 - **`github`** (MCP/stdio) - issues, pull requests, commits. Requires `github_GITHUB_PERSONAL_ACCESS_TOKEN`

@@ -1,6 +1,6 @@
 ---
 title: "Official ClickUp MCP Tools Reference"
-description: "Reference for the hosted ClickUp MCP server (clickup_official): the 61 live tools, how to call them through Code Mode, the markdown contract, document operations and what the server cannot do."
+description: "Reference for the hosted ClickUp MCP server (clickup_official): the 67 live tools, how to call them through Code Mode, the markdown contract, document operations and what the server cannot do."
 trigger_phrases:
   - "clickup mcp"
   - "clickup documents"
@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.9.0
+version: 1.1.10.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -22,7 +22,7 @@ version: 1.1.9.0
 - **Auth:** OAuth 2.1 with PKCE. The first launch opens one browser approval, and the manual reads no API key.
 - **Tool naming:** Code Mode names each tool `clickup_official.clickup_official_<server tool name>`. Every server tool name already starts with `clickup_`, so the full name repeats it: `clickup_official.clickup_official_clickup_create_task`. A name without the inner `clickup_`, such as `clickup_official.clickup_official_create_task`, does not exist.
 
-> **Verification status (2026-10-08):** the hosted server registered 61 tools on 2026-10-08. The inventory in section 5 and every parameter named in this document come from that registration's schema. Confirm a name with `tool_info()` if a call reports that the tool is missing, because the server can add or rename tools.
+> **Verification status (2026-11-06):** the hosted server registered 61 tools on 2026-10-08 and 67 on 2026-11-06. The inventory in section 5 and every parameter named in this document come from those registrations' schemas. Confirm a name with `tool_info()` if a call reports that the tool is missing, because the server can add or rename tools.
 
 ---
 
@@ -87,10 +87,10 @@ Run the program below as the `code` of one `mcp__code_mode__call_tool_chain` cal
     try {
       const raw = JSON.stringify(await aside.aside_repl({ title: "clickup readiness", code: `await (async () => {
         const t = await openTab("https://app.clickup.com/");
-        await new Promise((r) => setTimeout(r, 7000));
-        const path = await t.evaluate("location.pathname");
-        await closeTab(t);
-        console.log("PROBE " + path);
+        try {
+          await new Promise((r) => setTimeout(r, 7000));
+          console.log("PROBE " + await t.evaluate("location.pathname"));
+        } finally { await closeTab(t); }
       })();` }));
       const m = /PROBE (\/[^\s"\\]*)/.exec(raw);
       if (m) out.browser = m[1].includes("/login") ? "aside-login" : "aside";
@@ -98,16 +98,18 @@ Run the program below as the `code` of one `mcp__code_mode__call_tool_chain` cal
     } catch (e) { out.asideError = String(e).slice(0, 200); }
     if (out.browser === "unknown" && typeof chrome_devtools_live !== "undefined") {
       const B = chrome_devtools_live;
+      const ids = async () => String(await B.chrome_devtools_live_list_pages({})).match(/^\d+(?=: )/gm) || [];
+      let mine;
       try {
-        const ids = async () => String(await B.chrome_devtools_live_list_pages({})).match(/^\d+(?=: )/gm) || [];
         const before = await ids();
         await B.chrome_devtools_live_new_page({ url: "https://app.clickup.com/", background: true });
+        // The page that appeared is this program's own, so a ClickUp tab the user has open stays open.
+        mine = (await ids()).find((id) => !before.includes(id));
         const path = String(await B.chrome_devtools_live_evaluate_script(
           { function: "() => new Promise((r) => setTimeout(() => r(location.pathname), 7000))" }));
-        const mine = (await ids()).find((id) => !before.includes(id));
-        if (mine) await B.chrome_devtools_live_close_page({ pageId: Number(mine) });
         out.browser = path.includes("/login") ? "chrome-login" : "chrome";
       } catch (e) { out.chromeError = String(e).slice(0, 200); }
+      finally { if (mine) { try { await B.chrome_devtools_live_close_page({ pageId: Number(mine) }); } catch (e) {} } }
     }
     if (out.browser === "unknown") out.browser = "none";
   }
@@ -138,13 +140,13 @@ Use the **official MCP** for:
 
 Use **cupt** for daily task work: listing your queue, showing a task, completing it with a dry run, notes, timers and tags (see `cupt-commands.md`).
 
-**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, space-tag definitions, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. No tool deletes a document or a page, so a page the API creates stays until someone deletes it in the ClickUp app (checked 2026-11-05). Run trial writes in one scratch doc and tell the user what to delete. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `90151466006` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
+**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, editing or deleting space tags, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. No tool deletes a document or a page, so a page the API creates stays until someone deletes it in the ClickUp app (checked 2026-11-05). Run trial writes in one scratch doc and tell the user what to delete. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `90151466006` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
 
 Two reads survive for things that cannot be edited: `clickup_get_task` with `include: ["checklists"]` returns a task's checklists, and `include: ["dependencies"]` returns its dependencies.
 
 ---
 
-## 5. TOOL INVENTORY (61 TOOLS, LIVE 2026-10-08)
+## 5. TOOL INVENTORY (67 TOOLS, LIVE 2026-11-06)
 
 Each tool has a feature card under `feature-catalog/` with its full parameter table. "Required" lists the parameters the schema marks as required. Most tools also accept `workspace_id`, which is needed only when the signed-in user belongs to several workspaces.
 
@@ -179,7 +181,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | `clickup_delete_comment` | Delete a comment by comment_id | `comment_id` |
 | `clickup_create_task_comment` | [DEPRECATED to clickup_create_comment] Legacy name for creating a task comment, kept for clients with stale tool listings | `task_id`, `comment_text` |
 
-### Task relations and tags (7)
+### Task relations and tags (8)
 
 | Tool | What it does | Required |
 |------|--------------|----------|
@@ -189,6 +191,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | `clickup_remove_task_link` | Remove a link between two tasks | `task_id`, `links_to` |
 | `clickup_add_tag_to_task` | Add existing tag to task | `task_id`, `tag_name` |
 | `clickup_remove_tag_from_task` | Remove tag from task | `task_id`, `tag_name` |
+| `clickup_create_space_tag` | Create a tag in a space so tasks can carry it; an existing tag of that name comes back unchanged with `created: false` | `space_id`, `name` |
 | `clickup_get_custom_fields` | Get custom field definitions at any hierarchy level (list, folder, space, or workspace) | none |
 
 ### Documents (7)
@@ -203,7 +206,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | `clickup_list_document_page_attachments` | List metadata for files attached to a ClickUp doc page (images and files embedded in the page content) | `page_id` |
 | `clickup_download_document_page_attachment` | Download a ClickUp doc page attachment (get attachment IDs from clickup_list_document_page_attachments) | `page_id`, `attachment_id` |
 
-### Workspace structure (8)
+### Workspace structure (9)
 
 | Tool | What it does | Required |
 |------|--------------|----------|
@@ -211,6 +214,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | `clickup_create_list` | Create a list in a ClickUp space | `name` |
 | `clickup_create_list_in_folder` | Create a list in a ClickUp folder | `name`, `folder_id` |
 | `clickup_get_list` | Get list details by list_id or list_name | none |
+| `clickup_get_list_location` | Get the names and links of the space and folders that contain a list | `list_id` |
 | `clickup_update_list` | Update a ClickUp list | `list_id` |
 | `clickup_create_folder` | Create folder in ClickUp space | `name` |
 | `clickup_get_folder` | Get folder details by folder_id or folder_name (+ space info) | none |
@@ -236,7 +240,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | `clickup_get_task_time_in_status` | Get the time a task has spent in each status | `task_id` |
 | `clickup_get_bulk_tasks_time_in_status` | Get the time multiple tasks have spent in each status (bulk operation, up to 100 tasks) | `task_ids` |
 
-### Chat (4)
+### Chat (7)
 
 | Tool | What it does | Required |
 |------|--------------|----------|
@@ -244,6 +248,9 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | `clickup_get_chat_channel_messages` | Get messages for a chat channel | `channel_id` |
 | `clickup_get_chat_message_replies` | Get threaded replies for a chat message by message_id | `message_id` |
 | `clickup_send_chat_message` | Send a message or threaded reply to a chat channel | `channel_id`, `content` |
+| `clickup_update_chat_message` | Edit a message or reply you posted, or resolve or reassign it; `content` replaces the whole message | `message_id` |
+| `clickup_react_to_chat_message` | Add or remove your emoji reaction on a message or reply | `message_id`, `action`, `reaction` |
+| `clickup_delete_chat_message` | Delete a message, reply or post, which cannot be undone; a top-level message takes its replies with it | `message_id` |
 
 ### Reminders (3)
 
@@ -253,13 +260,14 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | `clickup_search_reminders` | Search and list your reminders | none |
 | `clickup_update_reminder` | Update a reminder by reminder_id | `reminder_id` |
 
-### Members (3)
+### Members (4)
 
 | Tool | What it does | Required |
 |------|--------------|----------|
 | `clickup_get_workspace_members` | List all members in the workspace | none |
 | `clickup_find_member_by_name` | Get a member in the ClickUp workspace by name or email | `name_or_email` |
 | `clickup_resolve_assignees` | Convert names, emails, or "me" to numeric ClickUp user IDs | `assignees` |
+| `clickup_get_user` | Get the signed-in user with their timezone and current time; call it before working out a relative date | none |
 
 ### Operator catalog (3)
 
@@ -493,8 +501,9 @@ A report with an `error` field means the Aside call failed before the editor pas
     const range = document.createRange(); range.setStart(empty[0], 0); range.collapse(true); sel.addRange(range);
     return empty.length;
   }`;
+  const ids = async () => String(await B.chrome_devtools_live_list_pages({})).match(/^\d+(?=: )/gm) || [];
   const report = [];
-  let opened = null;
+  let opened = null, mine = null;
   try {
     for (const page of PAGES) {
       const url = `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${page.id}`;
@@ -504,8 +513,15 @@ A report with an `error` field means the Aside call failed before the editor pas
       const gapsBefore = gaps(await read(page.id, "text/plain"));
       let left = gapsBefore, presses = 0, login = false, editor = gapsBefore === 0;
       for (let attempt = 0; left > 0 && attempt < 3; attempt++) {
-        if (!opened) await B.chrome_devtools_live_new_page({ url, background: true });
-        else await B.chrome_devtools_live_navigate_page({ type: "url", url });
+        if (!mine) {
+          // The page that appears is this program's own. A tab the user has open on the same page is not.
+          const before = await ids();
+          await B.chrome_devtools_live_new_page({ url, background: true });
+          mine = (await ids()).find((id) => !before.includes(id)) || null;
+        } else {
+          await B.chrome_devtools_live_select_page({ pageId: Number(mine) });
+          await B.chrome_devtools_live_navigate_page({ type: "url", url });
+        }
         opened = url;
         await sleep(6000 + attempt * 2000);
         let n = number(await B.chrome_devtools_live_evaluate_script({ function: PICK })), stall = 0;
@@ -531,13 +547,8 @@ A report with an `error` field means the Aside call failed before the editor pas
         textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
     }
   } finally {
-    // Close only the tab this program opened, found by the page it last loaded.
-    if (opened) {
-      const line = String(await B.chrome_devtools_live_list_pages({})).split("\n")
-        .find((l) => l.includes(opened));
-      const m = line && /^(\d+): /.exec(line);
-      if (m) await B.chrome_devtools_live_close_page({ pageId: Number(m[1]) });
-    }
+    // Close only the tab this program opened, by the page ID that appeared when it opened.
+    if (mine) { try { await B.chrome_devtools_live_close_page({ pageId: Number(mine) }); } catch (e) {} }
   }
   console.log(JSON.stringify(report));
 })();

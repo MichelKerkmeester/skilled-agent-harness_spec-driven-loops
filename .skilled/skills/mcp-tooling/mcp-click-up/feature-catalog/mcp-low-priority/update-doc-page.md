@@ -6,7 +6,7 @@ trigger_phrases:
   - "update doc page"
   - "append to page"
   - "rename page"
-version: 1.1.0.0
+version: 1.1.1.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -39,6 +39,8 @@ Update a page in a ClickUp document. Use content_edit_mode to control how conten
 ## 2. HOW IT WORKS
 
 The default `content_edit_mode` is `replace`, which overwrites the whole page. Read the page before a replace when it may hold content. `append` and `prepend` keep what is there. Content cannot be empty. ClickUp's markdown import has traps worth knowing: file names ending in `.md` become links unless they are in backticks, and a numbered list after a heading restarts at 1.
+
+The first-use readiness check in `../../references/mcp-tools.md` section 3 runs before the first MCP write of a session. A `replace` keeps dividers the editor already made tight, while new dividers from the import leave an empty block under them, which the divider gap pass in section 8 removes in a background tab, Aside first and `chrome_devtools_live` as the fallback.
 
 ---
 

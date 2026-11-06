@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp tool bridge resource map"
 importance_tier: important
 contextType: general
-version: 1.8.11.0
+version: 1.8.12.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -91,8 +91,8 @@ a canonical typed pair.
 DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
-    "CHROME_DEVTOOLS": {"weight": 4, "keywords": ["chrome devtools", "browser debug", "inspect the dom", "lighthouse", "bdg", "cdp", "cdp domain", "screenshot capture", "network requests", "har export", "performance trace", "chrome-devtools", "mcp-chrome-devtools", "console errors", "capture browser screenshots"]},
-    "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks", "mcp-click-up", "click-up", "process queue", "clickup goals", "complete task", "add note to task", "tag task", "start timer", "stop timer", "mark task done"]},
+    "CHROME_DEVTOOLS": {"weight": 4, "keywords": ["chrome devtools", "browser debug", "inspect the dom", "lighthouse", "bdg", "cdp", "cdp domain", "screenshot capture", "network requests", "har export", "performance trace", "chrome-devtools", "mcp-chrome-devtools", "console errors", "capture browser screenshots", "chrome_devtools_live", "chrome devtools live", "chrome live manual", "remote debugging", "chrome autoconnect", "my own chrome", "signed-in chrome", "logged in chrome"]},
+    "CLICK_UP":        {"weight": 4, "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking", "project tracker", "clickup task", "log time", "clickup documents", "bulk tasks", "mcp-click-up", "click-up", "process queue", "clickup goals", "complete task", "add note to task", "tag task", "start timer", "stop timer", "mark task done", "clickup login", "log in to clickup", "logged in to clickup", "clickup oauth", "clickup approval", "approve clickup", "clickup readiness check", "clickup mcp"]},
     "OBSIDIAN":        {"weight": 4, "keywords": ["obsidian", "mcp-obsidian", "obsidian vault", "notesmd-cli", "obsidian mcp", "note management", "markdown notes", "create note", "vault search", "backlinks", "daily note", "knowledge base", "note crud", "health", "health-md", "health md", "health.md", "health data", "apple health", "health chart", "health visualization", "iconic", "iconic rulebook", "icon rules", "icon automation", "file icons", "folder icons", "icon color", "iconic data json", "iconic ruleset", "excalidraw", "excalidraw.md", "drawing note", "embedded drawing", "whiteboard", "drawing script", "minimal theme", "css theme", "theme snippet", "style settings", "appearance", "snippets"]},
     "ASIDE_DEVTOOLS":  {"weight": 4, "keywords": ["aside", "aside browser", "aside cli", "aside mcp", "aside repl", "ai browser automation", "agentic browser", "agentic browser task", "browser agent", "aside daemon", "click through", "natural language browser", "aside account", "repl evidence capture"]},
     "NOTION":          {"weight": 4, "keywords": ["notion", "notion mcp", "notion api", "notion page", "notion token", "ntn_", "notion database", "notion data source", "query notion", "notion property", "notion relation", "notion rollup", "notion formula", "notion markdown", "notion search"]},

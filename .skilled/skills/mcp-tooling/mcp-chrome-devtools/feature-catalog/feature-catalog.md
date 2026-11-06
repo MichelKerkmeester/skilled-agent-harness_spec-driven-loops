@@ -1,7 +1,7 @@
 ---
 title: "mcp-chrome-devtools: Feature Catalog"
 description: "Unified feature inventory for the mcp-chrome-devtools skill — the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 26 exposed tools, dual isolated instances)."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # mcp-chrome-devtools: Feature Catalog
@@ -17,7 +17,7 @@ The mcp-chrome-devtools skill routes browser debugging between two complementary
 - **bdg CLI** (`npm install -g browser-debugger-cli@alpha`) — the primary surface. Direct, fast, token-efficient terminal access to the Chrome DevTools Protocol: 300+ CDP methods across 53 domains, self-documenting via `--list` / `--describe` / `--search`, Unix-pipe composable. One global session lifecycle (`bdg <url>` / `bdg status` / `bdg stop`) with no session selector, so sessions run sequentially.
 - **Chrome DevTools MCP via Code Mode** — the fallback for multi-tool integration and parallel browsers. Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) are registered in `.utcp_config.json`, each launching `chrome-devtools-mcp` over stdio via `npx` with `--isolated=true`, invoked through `call_tool_chain()` with the naming `{instance}.{instance}_{tool_name}`.
 
-> **Verification note.** MCP tool names are a subset of CDP (26 exposed tools per `../INSTALL-GUIDE.md` §10) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of both manuals lives in `../assets/utcp-chrome-devtools-manuals.md`.
+> **Verification note.** MCP tool names are a subset of CDP (26 exposed tools per `../INSTALL-GUIDE.md` §10) and must be confirmed with Code Mode discovery (`list_tools()` / `tool_info()`) before invocation — never guess a tool name. The registered-state snapshot of all three manuals lives in `../assets/utcp-chrome-devtools-manuals.md`.
 
 Routing is **capability-based**: prefer the CLI when it fits (SKILL.md Rule "Check CLI availability first"), and use MCP when browser work must chain with other Code Mode tools or run in parallel isolated instances.
 
@@ -133,7 +133,7 @@ See [`console-and-network/har-export.md`](console-and-network/har-export.md)
 
 ## 6. MCP PARALLEL INSTANCES
 
-5 features covering the Code Mode fallback: invocation contract, parallel isolated browsers, page management, isolation, and cleanup.
+6 features covering the Code Mode fallback: invocation contract, parallel isolated browsers, page management, isolation, cleanup, and the live instance in the user's own Chrome.
 
 ### Code Mode invocation
 `chrome_devtools_1.chrome_devtools_1_<tool>({ ... })` inside `call_tool_chain()` — the manual-namespace contract for all MCP browser operations.
@@ -159,6 +159,11 @@ See [`mcp-parallel-instances/context-isolation.md`](mcp-parallel-instances/conte
 `try/finally` around Code Mode browser operations — close pages even on errors so no browser leaks.
 
 See [`mcp-parallel-instances/session-cleanup.md`](mcp-parallel-instances/session-cleanup.md)
+
+### Live instance
+`chrome_devtools_live` with `--autoConnect`: attaches to the user's own signed-in Chrome, opens background pages and closes only the page ID it opened.
+
+See [`mcp-parallel-instances/live-instance.md`](mcp-parallel-instances/live-instance.md)
 
 ---
 
@@ -227,7 +232,7 @@ See [`recovery-and-troubleshooting/cleanup-leak.md`](recovery-and-troubleshootin
 | Protocol Discovery | 4 |
 | DOM and Screenshot | 4 |
 | Console and Network | 3 |
-| MCP Parallel Instances | 5 |
+| MCP Parallel Instances | 6 |
 | Automation and Performance | 4 |
 | Recovery and Troubleshooting | 5 |
-| **TOTAL** | **29** |
+| **TOTAL** | **30** |

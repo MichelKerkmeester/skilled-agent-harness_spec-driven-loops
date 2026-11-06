@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # mcp-click-up
@@ -193,7 +193,7 @@ This skill uses only ClickUp's official MCP server (the hosted server at `https:
 | `cupt status` shows 401 | Expired or revoked token | Run `cupt logout && cupt auth` to refresh credentials |
 | `cupt done` wrote the wrong status | The list's closed status differs from the default | Run `cupt statuses <id>` before every completion to discover the schema |
 | `cupt list --team X` is slow (>20s) | Team filter is client-side on large workspaces | Add `--tag Y` to narrow the result set with a server-side filter |
-| MCP: connection fails | `clickup_official` manual in `.utcp_config.json` missing or not launched via `npx -y mcp-remote https://mcp.clickup.com/mcp` | Fix the manual, approve the OAuth prompt and reconnect |
+| MCP: connection fails | `clickup_official` manual in `.utcp_config.json` missing or not launched via `npx -y mcp-remote https://mcp.clickup.com/mcp` | Fix the manual, then run the first-use readiness check in `references/mcp-tools.md` section 3. It registers the manual again and has you approve the ClickUp tab while the registration waits, because an approval after its one-minute timeout saves no token |
 | MCP: tool not found | Wrong tool name | Confirm with `tool_info()` first, the callable form is `clickup_official.clickup_official_{tool_name}` |
 
 ---
@@ -210,7 +210,7 @@ A: Every ClickUp list defines its own status schema. "Done" in one list may not 
 
 **Q: How do I set up the MCP for ClickUp tasks and documents?**
 
-A: Run `bash scripts/install.sh` from the mcp-click-up folder. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y mcp-remote https://mcp.clickup.com/mcp` with OAuth. Paste the snippet in, approve the OAuth prompt and restart your AI client. Full instructions are in `INSTALL-GUIDE.md`.
+A: Run `bash scripts/install.sh` from the mcp-click-up folder. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y mcp-remote https://mcp.clickup.com/mcp` with OAuth. Paste the snippet in and restart your AI client. Approve the ClickUp tab while the first registration waits, within about a minute. The first-use readiness check in `references/mcp-tools.md` section 3 walks through it. Full instructions are in `INSTALL-GUIDE.md`.
 
 **Q: What is the difference between `@krodak/clickup-cli` (`cu`) and cupt?**
 
@@ -243,7 +243,7 @@ The skill ships a manual testing playbook and two example scripts that double as
 | [`ROUTER.md#3-machine-router`](./ROUTER.md#3-machine-router) | Machine router: intent map, operation-to-tool table and loading levels |
 | [`INSTALL-GUIDE.md`](./INSTALL-GUIDE.md) | Step-by-step install for cupt and the official MCP server with validation checkpoints |
 | [`references/cupt-commands.md`](./references/cupt-commands.md) | Complete cupt command reference with `--json` variants and agent patterns |
-| [`references/mcp-tools.md`](./references/mcp-tools.md) | The 61 live ClickUp MCP tools grouped by area, with `call_tool_chain()` invocation |
+| [`references/mcp-tools.md`](./references/mcp-tools.md) | The 67 live ClickUp MCP tools grouped by area, with `call_tool_chain()` invocation |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference, diagnostic sequence and recovery steps for auth, status and MCP issues |
 | [`feature-catalog/FEATURE-CATALOG.md`](./feature-catalog/FEATURE-CATALOG.md) | Current-state inventory of every CLI and MCP capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |

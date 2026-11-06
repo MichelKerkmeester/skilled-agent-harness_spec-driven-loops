@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Feature Catalog"
-description: "Unified reference combining the complete feature inventory and current-reality reference for the mcp-click-up skill: cupt CLI (v0.7.1+) and the official hosted ClickUp MCP (61 live tools)."
-version: 1.1.3.0
+description: "Unified reference combining the complete feature inventory and current-reality reference for the mcp-click-up skill: cupt CLI (v0.7.1+) and the official hosted ClickUp MCP (67 live tools)."
+version: 1.1.4.0
 ---
 
 # mcp-click-up: Feature Catalog
@@ -17,15 +17,15 @@ The mcp-click-up skill routes ClickUp work between two complementary tools:
 - **cupt CLI** (`pipx install cupt`), with 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache and `--json` output on the commands [`cupt-global-flags/json-flag.md`](cupt-global-flags/json-flag.md) lists.
 - **Official ClickUp MCP** (the `clickup_official` manual: the hosted server at `https://mcp.clickup.com/mcp`, launched over stdio via `npx -y mcp-remote`, signed in with OAuth, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers what cupt cannot do: task creation with a markdown description, documents and pages, search, lists and folders, task relations, chat and reminders.
 
-> **Verification status (2026-10-08):** the `clickup_official` manual runs ClickUp's hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08, and every MCP card below was generated from that tool list, one card per tool, with each parameter table taken from the server's own schema. The server has no tools for goals, bulk create, webhooks, checklist edits, spaces, views, space tags, task templates, guests, user groups or audit logs. Its operator catalog had no operators enabled, so those features have no MCP route.
+> **Verification status (2026-11-06):** the `clickup_official` manual runs ClickUp's hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08, and every MCP card below was generated from a server tool list, one card per tool, with each parameter table taken from the server's own schema. A registration on 2026-11-06 listed 67: the six new ones (`clickup_create_space_tag`, `clickup_get_list_location`, `clickup_get_user`, `clickup_update_chat_message`, `clickup_react_to_chat_message` and `clickup_delete_chat_message`) have cards from that date. The server has no tools for goals, bulk create, webhooks, checklist edits, spaces, views, task templates, guests, user groups or audit logs. Its operator catalog had no operators enabled on 2026-10-08, so those features have no MCP route.
 
 Routing is **operation-based**: each feature belongs to exactly one tool. See `../ROUTER.md` §3 MACHINE ROUTER for the routing pseudocode.
 
 | Metric | Value |
 |--------|-------|
 | cupt features | 50 |
-| Official MCP tools | 61, one card each, live-verified 2026-10-08 |
-| Total catalog entries | 111 |
+| Official MCP tools | 67, one card each, live-verified 2026-11-06 |
+| Total catalog entries | 117 |
 | cupt install | `pipx install cupt` |
 | MCP server | `clickup_official`, the hosted ClickUp server via `npx -y mcp-remote`, OAuth sign-in, registered in `.utcp_config.json` |
 | MCP invocation | `clickup_official.clickup_official_<tool_name>`, where every server tool name already starts with `clickup_`, for example `clickup_official.clickup_official_clickup_create_task` |
@@ -400,7 +400,7 @@ See [`mcp-high-priority/move-task.md`](../feature-catalog/mcp-high-priority/move
 
 ---
 
-## 13. OFFICIAL CLICKUP MCP: MEDIUM PRIORITY (25 TOOLS)
+## 13. OFFICIAL CLICKUP MCP: MEDIUM PRIORITY (27 TOOLS)
 
 Documents, tags, comment upkeep, task relations, lists and folders, and time tracking.
 
@@ -408,6 +408,11 @@ Documents, tags, comment upkeep, task relations, lists and folders, and time tra
 Create a ClickUp document in a space, folder, list, everything view or workspace.
 
 See [`mcp-medium-priority/create-document.md`](../feature-catalog/mcp-medium-priority/create-document.md)
+
+### clickup_create_space_tag
+Create a tag in a space so tasks can carry it.
+
+See [`mcp-medium-priority/create-space-tag.md`](../feature-catalog/mcp-medium-priority/create-space-tag.md)
 
 ### clickup_add_tag_to_task
 Add an existing space tag to a task.
@@ -484,6 +489,11 @@ Read a list by ID or name, including its configured statuses.
 
 See [`mcp-medium-priority/get-list.md`](../feature-catalog/mcp-medium-priority/get-list.md)
 
+### clickup_get_list_location
+Name and link the space and folders that contain a list.
+
+See [`mcp-medium-priority/get-list-location.md`](../feature-catalog/mcp-medium-priority/get-list-location.md)
+
 ### clickup_update_list
 Change a list's name, content or status.
 
@@ -531,7 +541,7 @@ See [`mcp-medium-priority/get-time-entries.md`](../feature-catalog/mcp-medium-pr
 
 ---
 
-## 14. OFFICIAL CLICKUP MCP: LOW PRIORITY (26 TOOLS)
+## 14. OFFICIAL CLICKUP MCP: LOW PRIORITY (30 TOOLS)
 
 Document pages and their attachments, task attachments, chat, reminders, members, time in status, and the operator catalog.
 
@@ -600,6 +610,16 @@ Post a chat message or threaded reply, with markdown support.
 
 See [`mcp-low-priority/send-chat-message.md`](../feature-catalog/mcp-low-priority/send-chat-message.md)
 
+### clickup_update_chat_message
+Edit a chat message or reply you posted, or resolve or reassign it.
+
+See [`mcp-low-priority/update-chat-message.md`](../feature-catalog/mcp-low-priority/update-chat-message.md)
+
+### clickup_react_to_chat_message
+Add or remove your emoji reaction on a chat message.
+
+See [`mcp-low-priority/react-to-chat-message.md`](../feature-catalog/mcp-low-priority/react-to-chat-message.md)
+
 ### clickup_get_chat_channel_messages
 Read a chat channel's messages.
 
@@ -609,6 +629,11 @@ See [`mcp-low-priority/get-chat-channel-messages.md`](../feature-catalog/mcp-low
 Read the replies in a chat thread.
 
 See [`mcp-low-priority/get-chat-message-replies.md`](../feature-catalog/mcp-low-priority/get-chat-message-replies.md)
+
+### clickup_delete_chat_message
+Delete a chat message, thread reply or post. It cannot be undone.
+
+See [`mcp-low-priority/delete-chat-message.md`](../feature-catalog/mcp-low-priority/delete-chat-message.md)
 
 ### clickup_create_reminder
 Create a personal reminder with a due date.
@@ -639,6 +664,11 @@ See [`mcp-low-priority/find-member-by-name.md`](../feature-catalog/mcp-low-prior
 Turn names, emails or `me` into numeric user IDs.
 
 See [`mcp-low-priority/resolve-assignees.md`](../feature-catalog/mcp-low-priority/resolve-assignees.md)
+
+### clickup_get_user
+Read the signed-in user, with their timezone and current time.
+
+See [`mcp-low-priority/get-user.md`](../feature-catalog/mcp-low-priority/get-user.md)
 
 ### clickup_get_task_time_in_status
 Show how long a task has spent in each status.
@@ -683,7 +713,7 @@ See [`mcp-low-priority/get-schema.md`](../feature-catalog/mcp-low-priority/get-s
 | cupt Global Flags | 4 |
 | **cupt subtotal** | **50** |
 | MCP HIGH Priority | 10 |
-| MCP MEDIUM Priority | 25 |
-| MCP LOW Priority | 26 |
-| **MCP subtotal** | **61** |
-| **TOTAL** | **111** |
+| MCP MEDIUM Priority | 27 |
+| MCP LOW Priority | 30 |
+| **MCP subtotal** | **67** |
+| **TOTAL** | **117** |

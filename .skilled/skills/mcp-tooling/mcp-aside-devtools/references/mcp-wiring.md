@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside mcp handshake"
 importance_tier: normal
 contextType: reference
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Aside MCP Wiring
@@ -65,7 +65,7 @@ Live `tools/list` returned exactly **one tool: `repl`** — re-confirmed through
   - Tab helpers: `listBrowserTabs()`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `openTab(url)`, `closeTab(tab)`
   - Evidence: `snapshot(page, options?)` (primary read method), `page.screenshot(options?)`, `locator.screenshot(options?)` (default type `webp`, `margin` default 8), `page.pdf(options?)`, `annotatedScreenshot(page)`
   - Node and utilities: `fs` (`node:fs/promises`), `pwd`, `path`, `Buffer`, `sleep(ms)`, `fetch(url)` (user's cookies)
-- Fixture-documented rules: `console.log` is the only way to return data (no last-expression return); the REPL starts as a neutral session — call `listBrowserTabs()` first and prefer `attachActiveBrowserTab()`/`attachBrowserTab(targetId)` over `openTab()` when a relevant tab may already be open.
+- Fixture-documented rules: `console.log` is the only way to return data (no last-expression return); the REPL starts as a neutral session — call `listBrowserTabs()` first and, for a read-only step, prefer `attachActiveBrowserTab()`/`attachBrowserTab(targetId)` over `openTab()` when a relevant tab may already be open. A step that clicks, types or presses keys opens its own tab with `openTab()` and never attaches to the user's tab, as `session-management.md` sets out.
 
 There are **no** first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools in this version.
 

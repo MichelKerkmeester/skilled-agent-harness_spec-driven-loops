@@ -5,7 +5,7 @@ trigger_phrases:
   - "clickup_create_document_page"
   - "create doc page"
   - "add page to document"
-version: 1.1.0.0
+version: 1.1.1.0
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -37,6 +37,8 @@ Create a new page in a ClickUp document.
 ## 2. HOW IT WORKS
 
 `document_id`, `name` and `content` are required. Use `content_format: "text/md"` for markdown and `parent_page_id` for a sub-page.
+
+Before the first MCP write of a session, run the first-use readiness check in `../../references/mcp-tools.md` section 3: it confirms the MCP approval and, for a page push, a browser logged in to ClickUp, and asks the user for whatever is missing. After the write, ClickUp's import leaves an empty block under each divider. Run the divider gap pass in section 8, in Aside first and the `chrome_devtools_live` manual as the fallback, in a background tab, and report any gaps left. A page with gaps left is not reported as delivered without saying so.
 
 ---
 

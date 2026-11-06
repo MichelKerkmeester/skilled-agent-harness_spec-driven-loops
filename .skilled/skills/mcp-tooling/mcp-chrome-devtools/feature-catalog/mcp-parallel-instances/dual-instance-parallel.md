@@ -5,7 +5,7 @@ trigger_phrases:
   - "parallel browser testing"
   - "chrome_devtools_2"
   - "compare production staging browsers"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Dual-Instance Parallel
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Two registered manuals (`chrome_devtools_1`, `chrome_devtools_2`) each run their own browser process, so a single `call_tool_chain()` can navigate both and capture both screenshots via `Promise.all` — e.g. production vs staging side by side. This is the capability the sequential-only `bdg` CLI cannot provide.
+Two isolated manuals (`chrome_devtools_1`, `chrome_devtools_2`) each run their own browser process, so a single `call_tool_chain()` can navigate both and capture both screenshots via `Promise.all` — e.g. production vs staging side by side. This is the capability the sequential-only `bdg` CLI cannot provide. The third manual, `chrome_devtools_live`, attaches to the user's own Chrome instead and is not part of this pattern (see `live-instance.md`).
 
 ---
 

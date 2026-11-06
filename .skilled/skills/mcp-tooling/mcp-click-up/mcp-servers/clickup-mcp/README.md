@@ -6,7 +6,7 @@ trigger_phrases:
   - "clickup official mcp"
   - "clickup_official manual"
   - "official clickup mcp install"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # clickup-mcp
@@ -46,7 +46,7 @@ The `clickup_official` manual registered in `.utcp_config.json` launches the hos
 list_tools()
 ```
 
-Expected: entries prefixed `clickup_official.clickup_official_*`. On 2026-10-08 the hosted server registered 61 tools, see Section 3.
+Expected: entries prefixed `clickup_official.clickup_official_*`. On 2026-11-06 the hosted server registered 67 tools, see Section 3.
 
 **Step 3: Confirm a callable name before using it.**
 
@@ -60,7 +60,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
 
 ## 3. VERIFICATION
 
-> **Verification status (2026-10-08):** the `clickup_official` manual runs the hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08.
+> **Verification status (2026-10-08):** the `clickup_official` manual runs the hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08 and 67 on 2026-11-06.
 
 | Check | Result |
 |---|---|

@@ -1,6 +1,6 @@
 {
   "skill": "mcp-tooling",
-  "version": "1.9.6.0",
+  "version": "1.9.7.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -141,7 +141,16 @@
         "bdg",
         "cdp",
         "chrome-devtools",
-        "mcp-chrome-devtools"
+        "mcp-chrome-devtools",
+        "chrome_devtools_live",
+        "chrome devtools live",
+        "chrome live manual",
+        "remote debugging",
+        "chrome autoconnect",
+        "my own chrome",
+        "signed-in chrome",
+        "logged in chrome",
+        "isolated chrome"
       ]
     },
     "browser-debug": {
@@ -165,7 +174,15 @@
         "time tracking",
         "project tracker",
         "mcp-click-up",
-        "click-up"
+        "click-up",
+        "clickup login",
+        "log in to clickup",
+        "logged in to clickup",
+        "clickup oauth",
+        "clickup approval",
+        "approve clickup",
+        "clickup readiness check",
+        "clickup mcp"
       ]
     },
     "obsidian-aliases": {

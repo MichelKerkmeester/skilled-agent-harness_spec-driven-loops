@@ -67,6 +67,7 @@ The hosted server writes every divider with an empty block under it, whatever ma
 | `mcp-tooling` 1.9.5.0 and `sk-doc` 2.4.3.0 release files | Modified and Created | Hub version fields and changelogs |
 | `.utcp_config.json` | Modified | New `chrome_devtools_live` manual with `--autoConnect` |
 | `mcp-click-up` 1.2.12.0, `mcp-chrome-devtools` 1.0.21.0, `mcp-aside-devtools` 1.1.8.0 files and their Hermes copies | Modified and Created | Gap pass in the user's own browser, in a background tab |
+| `mcp-click-up` 1.2.15.0, `mcp-chrome-devtools` 1.0.22.0, `mcp-aside-devtools` 1.1.9.0, `mcp-tooling` 1.9.7.0 files, the advisor skill graph and the root README | Modified and Created | Alignment review fixes: own-tab closing, routing phrases, 67-tool catalog, two playbook scenarios |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -110,6 +111,8 @@ The behavior was measured live first: 13 markdown variants, two edit modes and a
 | Aside and Chrome live programs as written, on gapped scratch pages | Every gap removed, text unchanged, `login: false`, the user's active tabs unchanged |
 | Fixed program on a logged-out browser | `login: true`, `editor: false`, nothing touched |
 | sk-create-skill fleet checks | Leaf manifest, derived freshness, root metadata and playbook topology all exit 0 |
+| Readiness program after the alignment fixes, as written | `mcp: ok`. Chrome closed only its own page (`[4]` before and after). Aside read the workspace and left 0 tabs |
+| Worktree advisor on the review's probes | 13 of 14 route to the expected mode. The held probe P14 names no browser and stays unrouted on purpose |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -118,7 +121,8 @@ The behavior was measured live first: 13 markdown variants, two edit modes and a
 ## Known Limitations
 
 1. **The Chrome fallback needs the user's Chrome open with remote debugging on**, and Chrome may ask the user to allow each new connection. Aside needs no setup.
-2. **The automated pass depends on ClickUp's editor DOM.** If ClickUp renames `.ql-editor` or `hr.ql-divider`, the selector step finds nothing. The manual Delete-key fix and the plain-text check still work.
+2. **The Chrome gap pass's page-ID selection was not run live.** The ID diff ran live in the readiness check, and `select_page({ pageId })` is in the pinned server's source, but no gapped page was written to test the full pass.
+3. **The automated pass depends on ClickUp's editor DOM.** If ClickUp renames `.ql-editor` or `hr.ql-divider`, the selector step finds nothing. The manual Delete-key fix and the plain-text check still work.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -74,6 +74,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 - Move the compiled-routing directive in the `mcp-tooling` and `sk-doc` hub `ROUTER.md` files back into `## 5. MACHINE ROUTER`, where `validate_skill_package.py` reads it, and release each hub one patch step
 - Check both ClickUp logins once per session before the first write, and ask the user for any that is missing (`mcp-click-up` 1.2.14.0)
 - Run the gap pass in a browser already logged in to ClickUp, in a background tab: an Aside program first, and a Chrome program through a new `chrome_devtools_live` manual (`--autoConnect`) as the fallback (`mcp-click-up` 1.2.12.0, `mcp-chrome-devtools` 1.0.21.0), plus a note in `mcp-aside-devtools` that `openTab` leaves the user's view alone (1.1.8.0)
+- Fix what an alignment review of those releases found: tabs closed by page ID in `finally` blocks, routing phrases for the readiness check and the live manual in both stages, the six new MCP tools catalogued, two playbook scenarios, and docs that still described two manuals, 61 tools or the old approval order (`mcp-click-up` 1.2.15.0, `mcp-chrome-devtools` 1.0.22.0, `mcp-aside-devtools` 1.1.9.0, `mcp-tooling` 1.9.7.0)
 
 ### Out of Scope
 - A script file for the editor pass - Code Mode takes the program as inline code, so it lives as a copyable block in the reference
@@ -93,10 +94,12 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 | `mcp-tooling` and `sk-doc` `SKILL.md`, `description.json`, `hub-router.json`, `mode-registry.json`, `changelog/` | Modify and Create | Hub releases 1.9.5.0 and 2.4.3.0 |
 | `.hermes/skills/mcp-tooling/ROUTER.md`, `.hermes/skills/sk-doc/ROUTER.md` | Modify | Regenerated copies |
 | `.utcp_config.json` | Modify | New `chrome_devtools_live` manual with `--autoConnect` |
-| `mcp-chrome-devtools` `SKILL.md`, `INSTALL-GUIDE.md`, `README.md`, manuals asset, `feature-catalog/feature-catalog.md`, `changelog/v1.0.21.0.md` | Modify and Create | The live manual and how to use it beside the user, mode 1.0.21.0 |
+| `mcp-chrome-devtools` `SKILL.md`, `INSTALL-GUIDE.md`, `README.md`, manuals asset, `.skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/feature-catalog.md`, `changelog/v1.0.21.0.md` | Modify and Create | The live manual and how to use it beside the user, mode 1.0.21.0 |
 | `mcp-click-up` `references/mcp-tools.md`, `references/troubleshooting.md`, `SKILL.md`, `changelog/v1.2.12.0.md` | Modify and Create | Aside and Chrome live programs, mode 1.2.12.0 |
 | `mcp-aside-devtools` `references/session-management.md`, `SKILL.md`, `changelog/v1.1.8.0.md` | Modify and Create | Background-tab behavior, mode 1.1.8.0 |
 | `.hermes/skills/` copies of the three modes | Modify | Regenerated copies |
+| `.skilled/skills/mcp-tooling/ROUTER.md`, `.skilled/skills/mcp-tooling/hub-router.json`, `.skilled/skills/mcp-tooling/graph-metadata.json`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, the compiled `mcp-tooling` manifest | Modify | Readiness and live-Chrome phrases in both routing stages, hub 1.9.7.0 |
+| `.skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/`, `.skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/`, `README.md` | Modify and Create | Six tool cards, MCP-M019 and MCP-M020, 14 Code Mode manuals in the root README |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -120,6 +123,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 | REQ-006 | Every page write runs the import check and gap removal without a second question | `rg -n 'Required after every page write' references/mcp-tools.md` prints one heading, and the program run on a gapped scratch page reports `gapsLeft: 0` and `textUnchanged: true` |
 | REQ-007 | The gap pass runs in a browser already logged in to ClickUp without changing the user's view | Both section 8 programs, run as written on a gapped scratch page, report `login: false`, `gapsLeft: 0` and `textUnchanged: true`, and the user's active tabs are the same before and after an Aside run |
 | REQ-008 | A missing ClickUp login is found and fixed with the user before the first write | The readiness program reports `not-connected`, `login`, `none` and the logged-in states correctly, and each has a written question, recheck and stop rule |
+| REQ-009 | The browser programs close only the tab they opened, and every doc this work touched agrees with the live server | The readiness program run as written closes its own Chrome page by ID and its Aside tab, the readiness and live-Chrome probes route to their modes, the catalog and inventory count 67 tools, and the review's literal findings no longer match |
 | REQ-005 | Both hubs and the mode meet the sk-create-skill package contract | `validate_skill_package.py` passes all three legs on `mcp-tooling` and `sk-doc`, and `package_skill.py --check --strict` passes on both hubs and on `mcp-click-up` |
 <!-- /ANCHOR:requirements -->
 

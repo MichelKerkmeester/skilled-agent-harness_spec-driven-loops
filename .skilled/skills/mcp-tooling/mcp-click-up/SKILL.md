@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.14.0
+version: 1.2.15.0
 ---
 
 # mcp-click-up Skill
@@ -29,7 +29,7 @@ On the raw ClickUp v2 REST API, `markdown_content` is also accepted on task upda
 
 **After every doc page write, check the import and remove the divider gaps.** A page the server creates or rewrites shows an empty line under every divider, and no MCP call removes it. Compare the `"text/md"` read-back with what you sent, count the gaps in the `"text/plain"` read-back, then remove them in the ClickUp editor with the program in `references/mcp-tools.md` section 8, "Required after every page write". The approved push covers this, so it needs no second yes. Never report a page delivered while it has gaps or an import diff.
 
-**Before the first ClickUp write of a session, run the first-use readiness check.** A new user has to approve the ClickUp MCP once in the browser, and a doc page push also needs ClickUp logged in, in the browser the gap pass uses. The agent cannot do either. The check in `references/mcp-tools.md` section 3, "First-Use Readiness Check", finds what is missing, asks the user with the runtime's structured question tool, waits, rechecks and only then writes. Task writes need only the MCP part.
+**Before the first ClickUp MCP write of a session, run the first-use readiness check.** A new user has to approve the ClickUp MCP once in the browser, and a doc page push also needs ClickUp logged in, in the browser the gap pass uses. The agent cannot do either. The check in `references/mcp-tools.md` section 3, "First-Use Readiness Check", finds what is missing, asks the user with the runtime's structured question tool, waits, rechecks and only then writes. MCP task writes need only the MCP part. A `cupt` write needs neither, because `cupt` signs in with its own API token.
 
 Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invocation patterns).
 
@@ -293,7 +293,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 
 **Reference Files (load on demand via router):**
 - `references/cupt-commands.md` — Full cupt command reference with agent patterns
-- `references/mcp-tools.md`: the 61 live MCP tools, invocation, markdown contract and what the server cannot do
+- `references/mcp-tools.md`: the 67 live MCP tools, invocation, markdown contract and what the server cannot do
 - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
 - [INSTALL-GUIDE.md](INSTALL-GUIDE.md): the condensed top-level install front door at the packet root, with step-by-step install and validation checkpoints, and the router's INSTALL-intent target
 

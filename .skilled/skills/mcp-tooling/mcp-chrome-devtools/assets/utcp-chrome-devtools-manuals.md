@@ -5,10 +5,11 @@ trigger_phrases:
   - "chrome devtools utcp config"
   - "chrome_devtools_1 manual"
   - "chrome_devtools_2 manual"
+  - "chrome_devtools_live manual"
   - "chrome devtools code mode snapshot"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Chrome DevTools Code Mode Manuals - registered-state snapshot
@@ -21,7 +22,7 @@ Registered-state snapshot of all three Chrome DevTools manual entries in this re
 
 ### Purpose
 
-The MCP fallback path of mcp-chrome-devtools runs through Code Mode: two manuals, `chrome_devtools_1` and `chrome_devtools_2`, each launching the `chrome-devtools-mcp` server over stdio via `npx`. This asset captures the exact registered entries so agents can verify the live config against a known-good snapshot instead of re-deriving (or worse, duplicating) them.
+The MCP fallback path of mcp-chrome-devtools runs through Code Mode: three manuals, `chrome_devtools_1`, `chrome_devtools_2` and `chrome_devtools_live`, each launching the `chrome-devtools-mcp` server over stdio via `npx`. This asset captures the exact registered entries so agents can verify the live config against a known-good snapshot instead of re-deriving (or worse, duplicating) them.
 
 ### Usage
 
@@ -41,7 +42,7 @@ cat .utcp_config.json | jq '.manual_call_templates[] | select(.name | startswith
 
 ### Why two manuals (dual-manual-for-parallelism)
 
-Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own browser process: multiple parallel browser sessions become possible with no session conflicts between instances, and registering multiple instances (`chrome_devtools_1`, `chrome_devtools_2`) enables parallel testing — e.g. comparing production and staging simultaneously (INSTALL-GUIDE.md Pattern 6). The `bdg` CLI cannot provide this: it exposes one global session lifecycle with no session selector (references/cdp-patterns.md §8), so genuine parallel browser control is exactly what the second manual exists for.
+Per SKILL.md §3, the isolated instances use `--isolated=true` so each runs in its own browser process: multiple parallel browser sessions become possible with no session conflicts between instances, and registering multiple instances (`chrome_devtools_1`, `chrome_devtools_2`) enables parallel testing — e.g. comparing production and staging simultaneously (INSTALL-GUIDE.md Pattern 6). The `bdg` CLI cannot provide this: it exposes one global session lifecycle with no session selector (references/cdp-patterns.md §8), so genuine parallel browser control is exactly what the second manual exists for.
 
 ---
 

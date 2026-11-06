@@ -1,7 +1,7 @@
 ---
 title: "mcp-click-up: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-click-up skill. Covers all 111 features across cupt CLI and the official ClickUp MCP."
-version: 1.1.2.0
+description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the mcp-click-up skill. Covers all 117 features across cupt CLI and the official ClickUp MCP."
+version: 1.1.3.0
 ---
 
 # mcp-click-up: Manual Testing Playbook
@@ -39,12 +39,12 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 | cupt Offline & Cache | (prefetch, offline, clear-cache) | 2 |
 | MCP Task CRUD | HIGH: create, get, update, delete, filter, search | 6 |
 | MCP Comments & Smoke Test | HIGH: comments, workspace hierarchy | 2 |
-| MCP Documents | create, read pages, add page, append to page | 4 |
+| MCP Documents | create, read pages, add page, append to page, readiness check, divider gap pass | 6 |
 | MCP Structure | lists, custom field values | 2 |
 | Recovery and Failure | auth fail, empty queue, status errors, MCP fail | 3 |
-| **TOTAL** | **111 features** | **35 scenarios** |
+| **TOTAL** | **117 features** | **37 scenarios** |
 
-Scenario count verified by direct file count against the 9 scenario category folders (35 files, 35 distinct IDs). The MCP scenarios for bulk create, goals, webhooks and checklist edits were retired on 2026-10-08 because the hosted server has no tools for them. The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
+Scenario count verified by direct file count against the 9 scenario category folders (37 files, 37 distinct IDs). The MCP scenarios for bulk create, goals, webhooks and checklist edits were retired on 2026-10-08 because the hosted server has no tools for them. The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
 
 ### Realistic Test Model
 
@@ -141,7 +141,7 @@ A **release is ready** when all critical-path scenarios are PASS and no P0 featu
 | Wave 2 — Read-Only cupt | CU-012–CU-020, CU-028, CU-029 | Yes (no writes) | Requires Wave 1 PASS |
 | Wave 3 — Write cupt | CU-021–CU-027, CU-030–CU-034 | Sequential | Use dry-run before each write; requires Wave 2 PASS |
 | Wave 4 — MCP Read | MCP-H006, MCP-H005, MCP-H002, MCP-M016 | Yes | Requires MCP configured; independent of cupt waves |
-| Wave 5 — MCP Write | MCP-H001, MCP-H009, MCP-H003, MCP-H007, MCP-M015, MCP-M017, MCP-M018, MCP-M007, MCP-L019 | Sequential | Requires Wave 4 PASS |
+| Wave 5 — MCP Write | MCP-M019, MCP-H001, MCP-H009, MCP-H003, MCP-H007, MCP-M015, MCP-M017, MCP-M018, MCP-M020, MCP-M007, MCP-L019 | Sequential | Requires Wave 4 PASS |
 | Wave 6 — Destructive | CU-008 (logout), MCP-H004 (delete), failure scenarios | Sequential, last | Run last; against throwaway tasks only |
 
 ### What Belongs in Per-Feature Files
@@ -668,7 +668,7 @@ Expected: Results include the test task; no `error` field.
 
 ---
 
-## 13. MCP DOCUMENTS (`MCP-M015, MCP-M016, MCP-M017, MCP-M018`)
+## 13. MCP DOCUMENTS (`MCP-M015, MCP-M016, MCP-M017, MCP-M018, MCP-M019, MCP-M020`)
 
 ### MCP-M015 | Create Document (CRITICAL PATH)
 
@@ -715,6 +715,30 @@ Expected: The page keeps its earlier content and ends with 'Appended line'.
 
 > **Feature File:** [mcp-documents/update-document-page.md](../manual-testing-playbook/mcp-documents/update-document-page.md)
 > **Catalog:** [mcp-low-priority/update-doc-page.md](../feature-catalog/mcp-low-priority/update-doc-page.md)
+
+---
+
+### MCP-M019 | First-Use Readiness Check
+
+Verify the readiness check finds a missing ClickUp approval or browser login, asks for it, rechecks and only then writes.
+
+Prompt: `"Add a page named 'Readiness test' to document DOC_ID."`
+Expected: No write before the check reads ready. One structured question per missing piece, at most two rechecks, and every skip named in the report.
+
+> **Feature File:** [mcp-documents/readiness-check.md](../manual-testing-playbook/mcp-documents/readiness-check.md)
+> **Catalog:** [mcp-low-priority/create-doc-page.md](../feature-catalog/mcp-low-priority/create-doc-page.md)
+
+---
+
+### MCP-M020 | Remove Divider Gaps in a Background Tab
+
+Verify the divider gap pass empties every block under a divider in a background tab and closes only its own tab.
+
+Prompt: `"Run the divider gap pass on page PAGE_ID of document DOC_ID."`
+Expected: `gapsLeft: 0`, `textUnchanged: true`, and the user's active tab unchanged.
+
+> **Feature File:** [mcp-documents/divider-gap-pass.md](../manual-testing-playbook/mcp-documents/divider-gap-pass.md)
+> **Catalog:** [mcp-low-priority/create-doc-page.md](../feature-catalog/mcp-low-priority/create-doc-page.md)
 
 ---
 
@@ -875,5 +899,7 @@ These test modules live under `cupt/` in the upstream [cupt repository](https://
 | MCP-M016 | Read Document Pages | MCP Documents | `../feature-catalog/mcp-low-priority/list-document-pages.md` |
 | MCP-M017 | Create Document Page | MCP Documents | `../feature-catalog/mcp-low-priority/create-doc-page.md` |
 | MCP-M018 | Append to a Document Page | MCP Documents | `../feature-catalog/mcp-low-priority/update-doc-page.md` |
+| MCP-M019 | First-Use Readiness Check | MCP Documents | `../feature-catalog/mcp-low-priority/create-doc-page.md` |
+| MCP-M020 | Remove Divider Gaps in a Background Tab | MCP Documents | `../feature-catalog/mcp-low-priority/create-doc-page.md` |
 | MCP-M007 | Create a List | MCP Structure | `../feature-catalog/mcp-medium-priority/create-list.md` |
 | MCP-L019 | Set a Custom Field Value | MCP Structure | `../feature-catalog/mcp-low-priority/get-custom-fields.md` |
