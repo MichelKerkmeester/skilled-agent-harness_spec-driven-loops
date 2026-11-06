@@ -27,7 +27,7 @@ contextType: "general"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 12 of 14 |
+| **Phase** | 12 of 15 |
 | **Predecessor** | 011-hub-registration-and-routing |
 | **Successor** | 013-dsh-live-contract-pin |
 | **Handoff Criteria** | `rg -l cli-deepseek-harness` matches every research and review file in Section 3, regenerated contracts leave `git diff --exit-code` clean on `compiled/` and the council seat decision is recorded in this phase folder |

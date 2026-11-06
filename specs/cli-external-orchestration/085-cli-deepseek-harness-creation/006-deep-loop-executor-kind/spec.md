@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 14 |
+| **Phase** | 6 of 15 |
 | **Predecessor** | 005-dsh-mirror-generators |
 | **Successor** | 007-dispatch-recognition-and-stress-adapter |
 | **Handoff Criteria** | The four named unit suites pass, the full unit directory shows no new failure against the recorded baseline and `cli-deepseek-harness` is absent from every default allowlist |

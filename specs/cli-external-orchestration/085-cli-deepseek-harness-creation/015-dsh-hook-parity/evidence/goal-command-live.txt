@@ -1,0 +1,11 @@
+# /goal-dsh handler from goal-manage.mjs, real goal.cjs, runtime dsh, OPENCODE_GOAL_STATE_DIR set to a scratch dir
+# log is left out: it appends a row to the bound packet's goal.md
+/goal-dsh bind specs/cli-external-orchestration/085-cli-deepseek-harness-creation -> kind=success :: STATUS=OK ACTION=bind | status=active | runtime=dsh | packet_path="specs/cli-external-orchestration/085-cli-deepseek-harness-creation"
+/goal-dsh show -> kind=success :: STATUS=OK ACTION=show | status=active | runtime=dsh | packet_path="specs/cli-external-orchestration/085-cli-deepseek-harness-creation"
+/goal-dsh resent -> kind=success :: STATUS=OK ACTION=resent | status=active | runtime=dsh | packet_path="specs/cli-external-orchestration/085-cli-deepseek-harness-creation"
+/goal-dsh pause probe pause -> kind=success :: STATUS=OK ACTION=pause | status=paused | runtime=dsh | packet_path="specs/cli-external-orchestration/085-cli-deepseek-harness-creation"
+/goal-dsh resume -> kind=success :: STATUS=OK ACTION=resume | status=active | runtime=dsh | packet_path="specs/cli-external-orchestration/085-cli-deepseek-harness-creation"
+/goal-dsh complete -> kind=success :: STATUS=OK ACTION=complete | status=complete | runtime=dsh | packet_path="specs/cli-external-orchestration/085-cli-deepseek-harness-creation"
+/goal-dsh clear -> kind=success :: STATUS=OK ACTION=clear
+/goal-dsh show -> kind=success :: STATUS=OK ACTION=show
+exit=0

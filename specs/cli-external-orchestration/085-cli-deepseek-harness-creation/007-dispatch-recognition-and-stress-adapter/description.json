@@ -1,18 +1,19 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter",
-  "description": "Teaches the dispatch-audit hook to recognize dsh task shapes and check the cli-deepseek-harness hard rules, and adds a dsh shim and stress suite to the cli-adapter matrix.",
+  "description": "The dispatch-audit hook matches task shapes per binary and has no `dsh` shape",
   "keywords": [
-    "dsh",
-    "dispatch",
-    "audit",
+    "dispatch-audit",
     "hook",
-    "rule",
-    "checks",
-    "stress",
-    "adapter",
-    "shim"
+    "matches",
+    "task",
+    "shapes",
+    "per",
+    "binary",
+    "dsh",
+    "shape"
   ],
-  "lastUpdated": "2026-11-05T23:21:56.553Z",
+  "lastUpdated": "2026-11-06T21:07:30.543Z",
   "specId": "007",
   "folderSlug": "dispatch-recognition-and-stress-adapter",
   "parentChain": [
@@ -20,6 +21,5 @@
     "085-cli-deepseek-harness-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

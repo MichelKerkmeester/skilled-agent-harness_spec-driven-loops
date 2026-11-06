@@ -1,0 +1,25 @@
+# dump-interactive-headless: dsh --dump-config, keyless, mktemp cwd and DSH_HOME
+exit=0, stderr lines: 0
+## checkout patch markers
+413:# == <repo>/.dsh/patches/guards.patch.yml
+## repo-guards rows
+414:- id: repo-guards
+415-  name: >-
+416:    file://<repo>/.dsh/plugins/repo-guards/index.mjs
+417-  config:
+418-    adapters:
+419-      promptAdvisor: true
+## lineage-disabled rows
+23:- id: session-log-deepseek
+24-  name: '@deepseek-ai/dsh-session-log-deepseek'
+25-- id: typert
+140:- id: session-telemetry-otel
+141-  name: '@deepseek-ai/dsh-session-telemetry-otel'
+142-  config:
+235:- id: goal-round-driver
+236-  name: '@deepseek-ai/dsh-goal-round-driver'
+237:- id: command-goal
+238-  name: '@deepseek-ai/dsh-command-goal'
+239:- id: plan-mode
+240-  name: '@deepseek-ai/dsh-plan-mode'
+241-  config:

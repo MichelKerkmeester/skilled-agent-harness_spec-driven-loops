@@ -1,0 +1,17 @@
+# boot-interactive: keyless headless boot, mktemp cwd and DSH_HOME, model keys unset, live-follow and primary-reconcile switched off
+# patches: route-llmgateway-deepseek, guards
+exit=1 (expected: MISSING_CREDENTIAL before any model call)
+## stderr (the dash in dsh's own message is rewritten as a hyphen)
+dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "llmgateway"; its profile resolves LLMGATEWAY_API_KEY, which is not set - store LLMGATEWAY_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery
+## session log: inbox, user messages and request tools
+inbox/spliced source=repo-guards :: ## Session Context Session context received. Current state: - Continuity: recover on demand from the packet docs What would you like to work on? ## Recovery Too
+inbox/spliced source=repo-guards :: git-worktree-guard: [worktree-guard] This top-level session is running on the shared 'main' checkout, not an isolated worktree. Concurrent AI sessions here can 
+inbox/spliced source=user :: Review the python script in this folder for code quality and suggest a refactor.
+user/message source=repo-guards :: ## Session Context Session context received. Current state: - Continuity: recover on demand from the packet docs What would you like to work on? ## Recovery Too
+user/message source=repo-guards :: git-worktree-guard: [worktree-guard] This top-level session is running on the shared 'main' checkout, not an isolated worktree. Concurrent AI sessions here can 
+user/message source=user :: Review the python script in this folder for code quality and suggest a refactor.
+user/message source=runtime-context :: Current runtime context. This snapshot supersedes earlier runtime-context snapshots. Current working directory: "<tmp>
+user/message source=repo-guards :: Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json Directives: - Co
+user/message source=repo-guards :: SPEC GATE: this session needs a spec-folder decision, but only at the first file mutation. Do not stop to ask it now; ask it once when you are about to write, t
+request/header tools(24): bash, create_goal, dsh_goal, edit, get_goal, glob, grep, interrupt_agent, job_kill, job_list, job_output, list_agents, read, read_image, send_message, skill, subagent, subagent_fork, todo_write, update_goal, web_fetch, workflow, working_directory, write
+## temp cwd after the run: .skilled 

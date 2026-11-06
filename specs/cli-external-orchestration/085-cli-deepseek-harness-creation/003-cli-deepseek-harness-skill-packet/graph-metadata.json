@@ -198,7 +198,7 @@
     ],
     "causal_summary": "No skill packet tells a caller how to compose a dsh dispatch or which rules a dispatch must obey",
     "created_at": "2026-11-05T23:21:52Z",
-    "last_save_at": "2026-11-06T04:28:33.801Z",
+    "last_save_at": "2026-11-06T21:23:58.287Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b300dca1b713771056e6c3d9fec44ea7854d72f1477f8e96411ba7d064f5e0a6",
+    "source_fingerprint": "sha256:14628d3e386b04b1d1d1e796fcc3e2859524d39a6ee41942fbdf859a51ac0dde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6d0894af4c3910fb23c8fb50342242015c8e264930bc0b3de8069dc7c4c459f",
+      "spec.md": "e07c375463e7a40104f3278d0c362b49a7eb328988c302e52a230b4c41e88186",
       "plan.md": "02524d2c6a2faae32260c1b021a3071cf3d4766b27034dcd60d6e5d4e8303a6f",
       "tasks.md": "6a8a37da6a758dbeaa7fdc63562c1aa8fd02cc146c1315b517d1a0576115cd55",
       "implementation-summary.md": "da37d14f7a61b90d825fac05f20f1c104cfc93c4d9dc4c219fbd727175c8450d"

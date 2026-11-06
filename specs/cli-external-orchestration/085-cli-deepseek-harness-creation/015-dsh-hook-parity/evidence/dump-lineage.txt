@@ -1,0 +1,32 @@
+# dump-lineage: dsh --dump-config, keyless, mktemp cwd and DSH_HOME
+exit=0, stderr lines: 0
+## checkout patch markers
+410:# == <repo>/.dsh/patches/lineage.patch.yml
+414:# == <repo>/.dsh/patches/guards.patch.yml
+## repo-guards rows
+411:- id: repo-guards-lineage-leaf
+412-  name: >-
+413:    file://<repo>/.dsh/plugins/repo-guards/lineage-leaf.mjs
+414-# == <repo>/.dsh/patches/guards.patch.yml
+415:- id: repo-guards
+416-  name: >-
+417:    file://<repo>/.dsh/plugins/repo-guards/index.mjs
+418-  config:
+419-    adapters:
+420-      promptAdvisor: true
+## lineage-disabled rows
+24:- id: session-log-deepseek
+25-  name: '@deepseek-ai/dsh-session-log-deepseek'
+26-  disabled: true
+144:- id: session-telemetry-otel
+145-  name: '@deepseek-ai/dsh-session-telemetry-otel'
+146-  config:
+228:- id: goal-round-driver
+229-  name: '@deepseek-ai/dsh-goal-round-driver'
+230-  disabled: true
+231:- id: command-goal
+232-  name: '@deepseek-ai/dsh-command-goal'
+233-  disabled: true
+234:- id: plan-mode
+235-  name: '@deepseek-ai/dsh-plan-mode'
+236-  config:

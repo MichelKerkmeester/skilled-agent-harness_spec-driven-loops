@@ -27,7 +27,7 @@ contextType: "general"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 13 of 14 |
+| **Phase** | 13 of 15 |
 | **Predecessor** | 012-deep-loop-modes-and-commands |
 | **Successor** | 014-playbook-docs-and-closeout |
 | **Handoff Criteria** | Every keyed route has a saved exit 0 run with `final.reason.kind` `completed`, each route has a route-specific status in the packet and default, and unresolved questions have evidence-based reasons |

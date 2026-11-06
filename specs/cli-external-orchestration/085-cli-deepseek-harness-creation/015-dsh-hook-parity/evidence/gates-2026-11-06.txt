@@ -1,0 +1,103 @@
+# Verification gates, run from the repository root on 2026-11-06 after the adapter move
+# Each block: the command, its exit status, then its summary lines
+
+## node --test .dsh/plugins/repo-guards/tests/
+exit=0
+ℹ tests 75
+ℹ pass 75
+ℹ fail 0
+
+## node --test .skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs
+exit=0
+ℹ tests 8
+ℹ pass 8
+ℹ fail 0
+
+## node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+exit=0
+ℹ tests 50
+ℹ pass 50
+ℹ fail 0
+
+## node --test .skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs
+exit=0
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0
+
+## node --test .skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs
+exit=0
+ℹ tests 6
+ℹ pass 6
+ℹ fail 0
+
+## node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs
+exit=0
+ℹ tests 38
+ℹ pass 38
+ℹ fail 0
+
+## node --test .skilled/bin/tests/compiled-route-manifest.test.cjs
+exit=0
+ℹ tests 48
+ℹ pass 48
+ℹ fail 0
+
+## vitest run --config .skilled/hooks/vitest.config.ts --exclude '**/containment/baseline/**' (binary: .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest)
+exit=1
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs > Codex dispatch preflight lint > lints a dispatch sent through the exec tool
+ FAIL  .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs > Codex dispatch preflight lint > lints a dispatch sent through the Bash tool
+ Test Files  1 failed | 7 passed (8)
+      Tests  2 failed | 481 passed (483)
+note: both failures predate this phase; the baseline run recorded the same two codex-shell-tool cases
+
+## node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
+exit=0
+[runtime-mirror-sync] PASS: 243 mirrors across 10 trees are in sync.
+
+## node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
+exit=0
+[hook-registration-sync] PASS: 4 registration files match the 33-hook registry; 20 Pi extensions resolve.
+
+## node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
+exit=0
+[dsh-skill-sync] PASS: 56 skill links are in sync.
+
+## node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
+exit=0
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+
+## node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+exit=0
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+
+## node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+exit=0
+PASS: 67 Hermes skill copies in sync
+
+## node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
+exit=0
+[hermes-prompt-sync] PASS: 45 prompts are in sync.
+
+## dsh --version (cwd: mktemp -d, DSH_HOME: mktemp -d, model keys unset)
+exit=0
+0.2.2-rc.1
+
+## find .dsh/plugins/repo-guards/adapters -type f | wc -l   (real files)
+0
+
+## find .dsh/plugins/repo-guards/adapters -type l | wc -l   (links)
+22
+
+## links whose target does not exist (find -L ... -type l)
+0
+
+## grep -n promptAdvisor .dsh/patches/guards.patch.yml
+6:          promptAdvisor: true
+
+## grep -n repo-guards-lineage-leaf .dsh/patches/lineage.patch.yml
+17:    - id: repo-guards-lineage-leaf
+
+## grep -n '| Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi | DSH |' .skilled/hooks/README.md
+298:| Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi | DSH |

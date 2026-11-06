@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a0596772d5d4a84a88d4acf50a2fbd8c407be19f19bcadb52363341893efea1d",
+  "corpusHash": "76c9f9720219b9550d6fe8ce42e3592b7f2d27695fc5572871b60d4954012c8d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28299,
+  "includedPathCount": 28309,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7219,6 +7219,7 @@
     ".skilled/skills/sk-git/references/worktree-workflows.md",
     ".skilled/skills/sk-git/scripts/README.md",
     ".skilled/skills/sk-git/scripts/hooks/README.md",
+    ".skilled/skills/sk-git/scripts/hooks/dsh/README.md",
     ".skilled/skills/sk-git/scripts/hooks/opencode/README.md",
     ".skilled/skills/sk-git/scripts/hooks/pi/README.md",
     ".skilled/skills/sk-git/scripts/lib/README.md",
@@ -8156,6 +8157,7 @@
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/projection.md",
     ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/weights-config.md",
     ".skilled/skills/system-skill-advisor/hooks/claude/README.md",
+    ".skilled/skills/system-skill-advisor/hooks/dsh/README.md",
     ".skilled/skills/system-skill-advisor/hooks/lib/README.md",
     ".skilled/skills/system-skill-advisor/hooks/pi/README.md",
     ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md",
@@ -8859,6 +8861,7 @@
     ".skilled/skills/system-spec-kit/runtime/hooks/codex/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/devin/README.md",
+    ".skilled/skills/system-spec-kit/runtime/hooks/dsh/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md",
@@ -10493,6 +10496,13 @@
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/plan.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/spec.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/tasks.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/acceptance-criteria.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/decision-record.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/implementation-summary.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/plan.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/spec.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/tasks.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/timeline.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/spec.md",
@@ -28330,7 +28340,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "99341bf39a79e32d84170c2684b0048545251a6852b101aa24af5cbbab252c64",
+  "manifestHash": "d4ce37591a0c871ce645848bbc14f194e53eb410ac990d04e8b926a4fb99798d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28362,6 +28372,10 @@
     },
     {
       "path": ".skilled/hooks/completion/devin/completion-evidence-stop.cjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/completion/dsh/completion-evidence.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -28457,12 +28471,20 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/git-live-follow/dsh/git-live-follow.sh",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/git-live-follow/pi/git-live-follow.sh",
       "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/git-message-gate/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/git-message-gate/dsh/git-message-gate.mjs",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/git-message-gate/opencode/sk-git-message-gate.js",
@@ -28479,6 +28501,10 @@
     {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/git-preflight/dsh/git-preflight-advisory.mjs",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/git-preflight/opencode/sk-git-preflight-advisory.js",
@@ -28506,6 +28532,10 @@
     },
     {
       "path": ".skilled/hooks/git-primary-reconcile/devin/git-primary-reconcile.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-primary-reconcile/dsh/git-primary-reconcile.sh",
       "reason": "symlink not followed"
     },
     {
@@ -28673,6 +28703,22 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-compact-context.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-start-advisories.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-start-context.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-stop-context.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/session-lifecycle/pi/session-compact-context.ts",
       "reason": "symlink not followed"
     },
@@ -28737,6 +28783,10 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/skill-advisor/dsh/prompt-advisor.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js",
       "reason": "symlink not followed"
     },
@@ -28782,6 +28832,14 @@
     },
     {
       "path": ".skilled/hooks/spec-gate/devin/spec-gate-enforce.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/dsh/spec-gate-classify.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/dsh/spec-gate-enforce.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -30126,6 +30184,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31718,6 +31780,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

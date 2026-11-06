@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 14 |
+| **Phase** | 7 of 15 |
 | **Predecessor** | 006-deep-loop-executor-kind |
 | **Successor** | 008-dsh-repo-guards-safety-wave |
 | **Handoff Criteria** | The dispatch-audit suite passes under Vitest, the rule-check suite passes under `node --test`, the dsh stress suite passes and the Pi and Hermes suites pass unchanged |

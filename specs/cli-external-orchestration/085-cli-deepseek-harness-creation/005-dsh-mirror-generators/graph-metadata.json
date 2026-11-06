@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The harness discovers skills only at `<root>/<name>/SKILL.md` and never walks nested `/SKILL.md`, so a whole-tree link would expose the 16 hub folders and hide the nested mode packets",
     "created_at": "2026-11-05T23:21:54Z",
-    "last_save_at": "2026-11-06T05:01:39.340Z",
+    "last_save_at": "2026-11-06T21:23:58.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c7cf979ffee9e9cb37dc86eba8929978a20eeb1213d166bfb9b47d936505091",
+    "source_fingerprint": "sha256:e4a1603f5399ee2d9b61891ae4e64ae9a8c443b3711a1ec5a1844f4123bae2ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a9c8bdf78de3005be17ab2c9d5d4e7ff344bdc56ee40f797188804f9b0946642",
+      "spec.md": "48425fb45456838fededecc4fa81a54c482c0bf3d518fb4ca462a6d3fe6698e7",
       "plan.md": "46cf839eca256fbd1bcbb03264a0e10784fa873001b261aa44355e09a18675f9",
       "tasks.md": "f1dc1ba32628b5396039226bb6bdaad8f413460110c62d0a77fba45c086a9fe6",
       "implementation-summary.md": "feaf19c1ca4acd8681051daaa90985245f473cab07a27d7dda03693778e4651b"

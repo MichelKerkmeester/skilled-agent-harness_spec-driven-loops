@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Eleven files across the repo root and the hub still match a \"seven\" runtime count, the `cli-deepseek-harness` packet has no playbook, and the trigger index returns no result for \"deepseek harness\"",
     "created_at": "2026-11-05T23:22:01Z",
-    "last_save_at": "2026-11-06T20:49:28.142Z",
+    "last_save_at": "2026-11-06T21:23:58.394Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b66449acd8b6f50448acd5d8d05ad1a1b05d58ceaded17cf24123c481679b1b",
+    "source_fingerprint": "sha256:5bc9a663ee0cb2cfe4dc6d8dbcacf6f694240c67d7f6d5850c2c9fea7b0e9d09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72e9783f6b732659fe26c46bd792b685dcd5355927bfb0ff33248e0a91fb5f94",
+      "spec.md": "1d910b9a8a961d91498eff06a9400cb39e712543fdee0ea2d8659991924fd0c6",
       "plan.md": "1b9bb9100f71164d08e40c27c206a524dd72ea9d9cdee2f211bb72becbb6ad72",
       "tasks.md": "474c996fa59a34b34ec18262f84ae22e23bd0f1ca04f2ec7bb3380dce562e991",
       "implementation-summary.md": "d8ffd2783cb849c0c2291affb612570c503c2bddb130e5a23b2f98ce8ef2d444"

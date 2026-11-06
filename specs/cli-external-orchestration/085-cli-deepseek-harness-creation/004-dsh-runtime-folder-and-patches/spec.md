@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 14 |
+| **Phase** | 4 of 15 |
 | **Predecessor** | 003-cli-deepseek-harness-skill-packet |
 | **Successor** | 005-dsh-mirror-generators |
 | **Handoff Criteria** | Both route patches compose with the lineage patch under a disposable `DSH_HOME` with the expected provider and model and no unmatched-target warning, and `SYNC.md` names every top-level `.dsh/` entry |

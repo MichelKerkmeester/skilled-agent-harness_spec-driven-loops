@@ -27,9 +27,9 @@ contextType: "general"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 14 |
+| **Phase** | 14 of 15 |
 | **Predecessor** | 013-dsh-live-contract-pin |
-| **Successor** | None |
+| **Successor** | 015-dsh-hook-parity |
 | **Handoff Criteria** | Every playbook scenario has a recorded result, the trigger index returns the packet for "deepseek harness", no governance doc carries a stale "seven" count and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 

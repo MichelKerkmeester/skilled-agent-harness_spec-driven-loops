@@ -1,0 +1,5 @@
+# decodeSessionLog from .skilled/hooks/decision-capture/bin/sweep-dsh.mjs against one real DSH session.v4.jsonl.zstd (5 frames), compared with zstd -dc. Content not stored here.
+compressed bytes: 20919 zstd magic occurrences: 5
+zstd -dc lines: 19 bytes: 55939
+frame walker lines: 19 bytes: 55939 identical to zstd -dc: true
+zlib.zstdDecompressSync alone lines: 1

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "No checked-in patch selects a roster route for dsh today",
     "created_at": "2026-11-05T23:21:53Z",
-    "last_save_at": "2026-11-06T04:30:46.982Z",
+    "last_save_at": "2026-11-06T21:23:58.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca6cc48c2bb8f0b4ad3fd975b9ec7258967a7805b47340c0f93a4e8cce1e8142",
+    "source_fingerprint": "sha256:05f6212cdde25b4bf7fa51060246efe1759bb5cd6dc30ca19e73ffb927a6dadd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9911cc365103d77d90ae17ed9eee6004fe18533e8ffe62f6ebe03d4deb31c338",
+      "spec.md": "78df5e1c8afcdfc42f1e40f667cf6c7ebcb6a57b47d2c41d85cbb856ece8c3a2",
       "plan.md": "223212de8a0800ca62ce11e3ad8032ab84bf641464b3ec2f7586b939be8b1a32",
       "tasks.md": "d1626cea88d20915e64fb24a52f60dc7f408f4d5a7c22721a590d2982c81e571",
       "implementation-summary.md": "c40b7bb1f0e948b204b30235acebfbeac3fe258f3bb176c2fff1dc2138fe4688"

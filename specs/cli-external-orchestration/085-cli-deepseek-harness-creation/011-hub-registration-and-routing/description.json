@@ -1,16 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/011-hub-registration-and-routing",
-  "description": "Register cli-deepseek-harness as the eighth cli-external-orchestration mode on the hub, skill advisor, compiled routing, sk-prompt card and agent tables, keeping the seven existing modes routing as before.",
+  "description": "After phase 003 the `cli-deepseek-harness` packet exists on disk, but `mode-registry.json` lists only seven modes and no advisor",
   "keywords": [
     "phase",
-    "hub-registration-and-routing",
     "cli-deepseek-harness",
-    "dsh",
+    "packet",
+    "exists",
+    "disk",
     "mode-registry",
-    "skill-advisor",
-    "compiled-routing"
+    "json",
+    "lists",
+    "only",
+    "seven",
+    "modes",
+    "advisor"
   ],
-  "lastUpdated": "2026-11-05T23:21:59.536Z",
+  "lastUpdated": "2026-11-06T21:07:30.644Z",
   "specId": "011",
   "folderSlug": "hub-registration-and-routing",
   "parentChain": [
@@ -18,6 +24,5 @@
     "085-cli-deepseek-harness-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

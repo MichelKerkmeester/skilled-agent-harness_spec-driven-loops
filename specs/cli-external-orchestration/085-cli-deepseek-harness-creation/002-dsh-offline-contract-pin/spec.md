@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 14 |
+| **Phase** | 2 of 15 |
 | **Predecessor** | 001-deep-research |
 | **Successor** | 003-cli-deepseek-harness-skill-packet |
 | **Handoff Criteria** | `evidence/` holds the version, integrity, help text, one `--dump-config` capture per route, the keyless JSON failure and the plugin-boot marker, and the `~/.dsh` listing diff is empty |

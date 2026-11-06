@@ -1,18 +1,19 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/006-deep-loop-executor-kind",
-  "description": "Adds cli-deepseek-harness as a closed deep-loop executor kind with an exact dsh argv, env allowlist, recursion guard, version probe and JSON-final validation, unit-tested and kept experimental.",
+  "description": "Fan-out has no `cli-deepseek-harness` executor kind, so a deep-loop lineage cannot dispatch dsh at all",
   "keywords": [
-    "dsh",
+    "fan-out",
+    "cli-deepseek-harness",
     "executor",
     "kind",
-    "fanout",
-    "builder",
-    "allowlist",
-    "recursion",
-    "vitest",
-    "deep-loop"
+    "deep-loop",
+    "lineage",
+    "cannot",
+    "dispatch",
+    "dsh"
   ],
-  "lastUpdated": "2026-11-05T23:21:55.776Z",
+  "lastUpdated": "2026-11-06T21:07:30.518Z",
   "specId": "006",
   "folderSlug": "deep-loop-executor-kind",
   "parentChain": [
@@ -20,6 +21,5 @@
     "085-cli-deepseek-harness-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

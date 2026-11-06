@@ -26,7 +26,7 @@ contextType: "research"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 14 |
+| **Phase** | 1 of 15 |
 | **Predecessor** | None |
 | **Successor** | 002-dsh-offline-contract-pin |
 | **Handoff Criteria** | `research/research.md` and `research/phase-plan.md` exist, both lineages succeeded with ten iterations each and the research config status is `complete` |

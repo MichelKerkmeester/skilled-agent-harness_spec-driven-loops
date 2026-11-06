@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 14 |
+| **Phase** | 9 of 15 |
 | **Predecessor** | 008-dsh-repo-guards-safety-wave |
 | **Successor** | 010-dsh-mcp-code-mode |
 | **Handoff Criteria** | The goal-context test shows the injected context equals the `chat_slice` from `goal.cjs packet` with no frontmatter, each optional adapter is shipped or recorded as deferred with its reason and the phase 008 keyless boot still holds with the extended guards patch |

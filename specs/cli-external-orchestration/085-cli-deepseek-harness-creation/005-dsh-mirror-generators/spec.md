@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 14 |
+| **Phase** | 5 of 15 |
 | **Predecessor** | 004-dsh-runtime-folder-and-patches |
 | **Successor** | 006-deep-loop-executor-kind |
 | **Handoff Criteria** | All three `sync-*-dsh.cjs --check` runs exit 0, `node --test` on the three generator tests passes and `command-tree-parity.yml` carries a `dsh-mirror` job |

@@ -1,0 +1,45 @@
+# dump-interactive-web: dsh --dump-config, keyless, mktemp cwd and DSH_HOME
+exit=0, stderr lines: 0
+## checkout patch markers
+1244:# == <repo>/.dsh/patches/guards.patch.yml
+## repo-guards rows
+1245:- id: repo-guards
+1246-  name: >-
+1247:    file://<repo>/.dsh/plugins/repo-guards/index.mjs
+1248-  config:
+1249-    adapters:
+1250-      promptAdvisor: true
+## lineage-disabled rows
+21:- id: session-log-deepseek
+22-  name: '@deepseek-ai/dsh-session-log-deepseek'
+23-- id: typert
+112:- id: session-telemetry-otel
+113-  name: '@deepseek-ai/dsh-session-telemetry-otel'
+114-  config:
+214:- id: goal-round-driver
+215-  name: '@deepseek-ai/dsh-goal-round-driver'
+216-# == @deepseek-ai/dsh-base, patched by @deepseek-ai/dsh-web-app
+217:- id: command-goal
+218-  name: '@deepseek-ai/dsh-command-goal'
+219-  disabled: true
+220:- id: plan-mode
+221-  name: '@deepseek-ai/dsh-plan-mode'
+222-  config:
+679:      - id: command-goal
+680-        name: '@deepseek-ai/dsh-command-goal'
+681-      - id: tool-goal
+689:          - id: plan-mode
+690-            name: '@deepseek-ai/dsh-plan-mode'
+691-            config:
+844:      - id: command-goal
+845-        name: '@deepseek-ai/dsh-command-goal'
+846-      - id: tool-goal
+854:          - id: plan-mode
+855-            name: '@deepseek-ai/dsh-plan-mode'
+856-            config:
+1106:      - id: command-goal
+1107-        name: '@deepseek-ai/dsh-command-goal'
+1108-      - id: tool-goal
+1116:          - id: plan-mode
+1117-            name: '@deepseek-ai/dsh-plan-mode'
+1118-            config:

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7421,
-    "ok": 17329,
+    "ok": 17339,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28299,
+  "documentsScanned": 28309,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "99341bf39a79e32d84170c2684b0048545251a6852b101aa24af5cbbab252c64",
+  "manifestHash": "d4ce37591a0c871ce645848bbc14f194e53eb410ac990d04e8b926a4fb99798d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41492,
+      "ok": 41509,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -69449,6 +69449,10 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/completion/dsh/completion-evidence.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/completion/opencode/system-completion-sentinel.js",
       "reason": "symlink not followed"
     },
@@ -69541,12 +69545,20 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/git-live-follow/dsh/git-live-follow.sh",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/git-live-follow/pi/git-live-follow.sh",
       "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/git-message-gate/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/git-message-gate/dsh/git-message-gate.mjs",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/git-message-gate/opencode/sk-git-message-gate.js",
@@ -69563,6 +69575,10 @@
     {
       "path": ".skilled/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/hooks/git-preflight/dsh/git-preflight-advisory.mjs",
+      "reason": "symlink not followed"
     },
     {
       "path": ".skilled/hooks/git-preflight/opencode/sk-git-preflight-advisory.js",
@@ -69590,6 +69606,10 @@
     },
     {
       "path": ".skilled/hooks/git-primary-reconcile/devin/git-primary-reconcile.sh",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/git-primary-reconcile/dsh/git-primary-reconcile.sh",
       "reason": "symlink not followed"
     },
     {
@@ -69757,6 +69777,22 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-compact-context.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-start-advisories.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-start-context.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-lifecycle/dsh/session-stop-context.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/session-lifecycle/pi/session-compact-context.ts",
       "reason": "symlink not followed"
     },
@@ -69821,6 +69857,10 @@
       "reason": "symlink not followed"
     },
     {
+      "path": ".skilled/hooks/skill-advisor/dsh/prompt-advisor.mjs",
+      "reason": "symlink not followed"
+    },
+    {
       "path": ".skilled/hooks/skill-advisor/opencode/system-skill-advisor.js",
       "reason": "symlink not followed"
     },
@@ -69866,6 +69906,14 @@
     },
     {
       "path": ".skilled/hooks/spec-gate/devin/spec-gate-enforce.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/dsh/spec-gate-classify.mjs",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/spec-gate/dsh/spec-gate-enforce.mjs",
       "reason": "symlink not followed"
     },
     {
@@ -71210,6 +71258,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/scratch",
       "reason": "excluded directory"
     },
     {
@@ -72802,6 +72854,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

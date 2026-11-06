@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Pi mounts Code Mode from `.pi/mcp.json` with `lifecycle: lazy`, but dsh reads MCP only from patch rows, starts servers eagerly and strips ambient names matching `KEY`, `PASSWORD`, `SECRET` or `TOKEN` from the child env",
     "created_at": "2026-11-05T23:21:58Z",
-    "last_save_at": "2026-11-06T20:49:23.860Z",
+    "last_save_at": "2026-11-06T21:23:58.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9a0db210298fa347c93e0b7ceb3a79a7a07bd63b84a60daf0fd30c972537cc8",
+    "source_fingerprint": "sha256:b886eb4f4a631f4b3a14850ff77817f60605bfce2fa13cdc8714816359d01b2e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9b22a39b086ebc93abe2311d6646a6b1c34c395a4ee4e1752c23894062cdc6aa",
+      "spec.md": "5a9952d169fb173de1daed934841592e61d30945a7dba079256f596eeb2e8aea",
       "plan.md": "4659cd086b7168b7b4dda840ad93759d1af34642a03a0e0f371eae20a27ee3a9",
       "tasks.md": "50f2e18f282e1f56d96d94b97d13f484767705dc21919f7a6e8f0b2c2e0bf56b",
       "implementation-summary.md": "23fc4e0ae95adf7be7c015de1052a8549d96beb6f6785774f1694460233f4015"

@@ -1,0 +1,30 @@
+### .dsh/plugins/repo-guards/tests/session-role.test.mjs
+    throw new ERR_MODULE_NOT_FOUND(
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<repo>/.dsh/plugins/repo-guards/adapters/session-role.mjs' imported from <repo>/.dsh/plugins/repo-guards/tests/session-role.test.mjs
+  code: 'ERR_MODULE_NOT_FOUND',
+ℹ tests 1
+### .dsh/plugins/repo-guards/tests/overlay-guard.test.mjs
+    throw new ERR_MODULE_NOT_FOUND(
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<repo>/.dsh/plugins/repo-guards/adapters/overlay-guard.mjs' imported from <repo>/.dsh/plugins/repo-guards/tests/overlay-guard.test.mjs
+  code: 'ERR_MODULE_NOT_FOUND',
+ℹ tests 1
+### .dsh/plugins/repo-guards/tests/session-lifecycle.test.mjs
+    throw new ERR_MODULE_NOT_FOUND(
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<repo>/.dsh/plugins/repo-guards/adapters/session-start-advisories.mjs' imported from <repo>/.dsh/plugins/repo-guards/tests/session-lifecycle.test.mjs
+  code: 'ERR_MODULE_NOT_FOUND',
+ℹ tests 1
+### .dsh/plugins/repo-guards/tests/decision-capture.test.mjs
+    throw new ERR_MODULE_NOT_FOUND(
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<repo>/.skilled/hooks/decision-capture/bin/sweep-dsh.mjs' imported from <repo>/.dsh/plugins/repo-guards/tests/decision-capture.test.mjs
+  code: 'ERR_MODULE_NOT_FOUND',
+ℹ tests 1
+### .dsh/plugins/repo-guards/tests/goal-manage.test.mjs
+    throw new ERR_MODULE_NOT_FOUND(
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<repo>/.dsh/plugins/repo-guards/adapters/goal-manage.mjs' imported from <repo>/.dsh/plugins/repo-guards/tests/goal-manage.test.mjs
+  code: 'ERR_MODULE_NOT_FOUND',
+ℹ tests 1
+### .skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs
+    throw new ERR_MODULE_NOT_FOUND(
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<repo>/.skilled/hooks/decision-capture/bin/sweep-dsh.mjs' imported from <repo>/.skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs
+  code: 'ERR_MODULE_NOT_FOUND',
+ℹ tests 1

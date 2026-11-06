@@ -1,17 +1,17 @@
 {
   "level": "2",
   "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin",
-  "description": "Gated on the operator's provider key: run each cli-deepseek-harness roster route through dsh headless with verbatim evidence, answer the key-gated unknowns and promote the executor kind for proven routes only.",
+  "description": "The LLM Gateway route now has a saved completed turn",
   "keywords": [
-    "phase",
-    "dsh-live-contract-pin",
-    "cli-deepseek-harness",
-    "dsh",
-    "live-contract",
-    "llm-gateway",
-    "opencode-go"
+    "llm",
+    "gateway",
+    "route",
+    "now",
+    "saved",
+    "completed",
+    "turn"
   ],
-  "lastUpdated": "2026-11-06T14:40:53.697Z",
+  "lastUpdated": "2026-11-06T21:07:30.693Z",
   "specId": "013",
   "folderSlug": "dsh-live-contract-pin",
   "parentChain": [

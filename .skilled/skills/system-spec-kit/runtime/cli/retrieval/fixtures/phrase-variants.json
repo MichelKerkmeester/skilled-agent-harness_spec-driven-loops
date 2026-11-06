@@ -1,5 +1,5 @@
 {
-  "manifestHash": "99341bf39a79e32d84170c2684b0048545251a6852b101aa24af5cbbab252c64",
+  "manifestHash": "d4ce37591a0c871ce645848bbc14f194e53eb410ac990d04e8b926a4fb99798d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43083,6 +43083,9 @@
     "dry run trigger migration decision": [
       "dry run trigger migration decision"
     ],
+    "dsh adapter layout": [
+      "dsh adapter layout"
+    ],
     "dsh advisor routing": [
       "dsh advisor routing"
     ],
@@ -43094,6 +43097,9 @@
     ],
     "dsh code mode": [
       "dsh code mode"
+    ],
+    "dsh completion evidence": [
+      "dsh completion evidence"
     ],
     "dsh constraints versus other runtimes": [
       "dsh constraints versus other runtimes"
@@ -43152,6 +43158,12 @@
     "dsh folder": [
       ".dsh folder"
     ],
+    "dsh git message gate": [
+      "dsh git message gate"
+    ],
+    "dsh git preflight": [
+      "dsh git preflight"
+    ],
     "dsh goal context adapter": [
       "dsh goal-context adapter"
     ],
@@ -43182,6 +43194,27 @@
     "dsh hook bridge": [
       "dsh hook bridge"
     ],
+    "dsh hook parity": [
+      "dsh hook parity"
+    ],
+    "dsh hook parity acceptance criteria": [
+      "dsh hook parity acceptance criteria"
+    ],
+    "dsh hook parity decision record": [
+      "dsh hook parity decision record"
+    ],
+    "dsh hook parity implementation summary": [
+      "dsh hook parity implementation summary"
+    ],
+    "dsh hook parity plan": [
+      "dsh hook parity plan"
+    ],
+    "dsh hook parity tasks": [
+      "dsh hook parity tasks"
+    ],
+    "dsh hook parity timeline": [
+      "dsh hook parity timeline"
+    ],
     "dsh hooks": [
       "dsh hooks"
     ],
@@ -43199,6 +43232,9 @@
     ],
     "dsh lineage command": [
       "dsh lineage command"
+    ],
+    "dsh lineage leaf marker": [
+      "dsh lineage leaf marker"
     ],
     "dsh lineage patch": [
       "dsh lineage patch"
@@ -43305,6 +43341,9 @@
     "dsh patches folder": [
       "dsh patches folder"
     ],
+    "dsh prompt advisor": [
+      "dsh prompt advisor"
+    ],
     "dsh prompt framework selection": [
       "dsh prompt framework selection"
     ],
@@ -43383,11 +43422,20 @@
     "dsh runtime integration findings": [
       "dsh runtime integration findings"
     ],
+    "dsh session lifecycle": [
+      "dsh session lifecycle"
+    ],
+    "dsh skill advisor hook": [
+      "dsh skill advisor hook"
+    ],
     "dsh skill packet references": [
       "dsh skill packet references"
     ],
     "dsh skills symlink farm": [
       "dsh skills symlink farm"
+    ],
+    "dsh spec gate": [
+      "dsh spec gate"
     ],
     "dsh sync manifest": [
       "dsh sync manifest"
@@ -78404,6 +78452,9 @@
     ],
     "phase 15 closure gate": [
       "phase 15 closure gate"
+    ],
+    "phase 15 dsh hook parity": [
+      "phase 15 dsh hook parity"
     ],
     "phase 15 freshness strict content": [
       "phase 15 freshness strict content"

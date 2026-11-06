@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After phase 006 the fan-out runtime accepts `cli-deepseek-harness`, but none of the files `/deep:research` and `/deep:review` read name it, so an operator cannot pick it and a loop never dispatches through it",
     "created_at": "2026-11-05T23:21:59Z",
-    "last_save_at": "2026-11-06T20:49:26.707Z",
+    "last_save_at": "2026-11-06T21:23:58.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +222,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:480026746877a2d9927b0cd5e44825e6bf4194e4e349568014527cbed4a92930",
+    "source_fingerprint": "sha256:a77702fd3f5bc0337314aa8fb8aeb98252883c1a6262324a0a572cf39869a492",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec7301dc0f2ff3b22ff64a621adf6fa84fbd44a9f7453d2dda7a22f7332a836c",
+      "spec.md": "3af3a1a3bcffa99b892b9b73b9fca088cf9bad239a3f5d5a6b5e1b1b70085af4",
       "plan.md": "7e615fe86a76600c2113a220e37619ee775a4e218b9251587aa36e3bc7aa6694",
       "tasks.md": "1ba872d7e4e18366112786f397b49ade62b80546a1534059211d27ef4016c5c8",
       "decision-record.md": "d12cc990fcb256b6e8443be4c63eaff230c98962db6e704c3d1ff77e413d592e",

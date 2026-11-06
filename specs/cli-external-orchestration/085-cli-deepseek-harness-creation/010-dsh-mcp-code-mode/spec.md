@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 14 |
+| **Phase** | 10 of 15 |
 | **Predecessor** | 009-dsh-context-guards-and-goal-bridge |
 | **Successor** | 011-hub-registration-and-routing |
 | **Handoff Criteria** | `--dump-config` shows exactly one `code_mode` row with the MCP patch and none without it, the keyless MCP run leaves no new launcher process and the route-guard and executor-config tests pass |

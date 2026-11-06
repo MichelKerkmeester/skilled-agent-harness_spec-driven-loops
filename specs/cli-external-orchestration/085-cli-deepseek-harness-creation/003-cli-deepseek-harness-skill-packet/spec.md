@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 14 |
+| **Phase** | 3 of 15 |
 | **Predecessor** | 002-dsh-offline-contract-pin |
 | **Successor** | 004-dsh-runtime-folder-and-patches |
 | **Handoff Criteria** | `sk-skill-check.cjs` reports no errors for the packet, `hard-rules.json` carries all eleven rule ids and every flag in `references/cli-reference.md` appears in the phase 002 help capture |

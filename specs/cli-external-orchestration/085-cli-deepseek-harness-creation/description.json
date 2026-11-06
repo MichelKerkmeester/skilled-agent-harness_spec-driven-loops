@@ -1,18 +1,19 @@
 {
   "level": "2",
   "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation",
-  "description": "DeepSeek Harness (dsh) as a cli-external-orchestration runtime mode mirroring cli-pi",
+  "description": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
   "keywords": [
     "deepseek",
     "harness",
+    "installed",
+    "machine",
     "dsh",
-    "cli-external-orchestration",
-    "runtime",
-    "mode",
-    "mirroring",
-    "cli-pi"
+    "2-rc",
+    "repository",
+    "cannot",
+    "dispatch"
   ],
-  "lastUpdated": "2026-11-06T15:56:47.235Z",
+  "lastUpdated": "2026-11-06T21:07:37.437Z",
   "specId": "085",
   "folderSlug": "cli-deepseek-harness-creation",
   "parentChain": [

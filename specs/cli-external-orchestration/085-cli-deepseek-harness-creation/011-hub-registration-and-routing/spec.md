@@ -27,7 +27,7 @@ contextType: "general"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 14 |
+| **Phase** | 11 of 15 |
 | **Predecessor** | 010-dsh-mcp-code-mode |
 | **Successor** | 012-deep-loop-modes-and-commands |
 | **Handoff Criteria** | `mode-registry.json` lists eight modes including `cli-deepseek-harness`, the advisor names `cli-external-orchestration` for a dsh prompt, the compiled-routing build shows no drift and `check-agent-mirror-sync.cjs` exits 0 |

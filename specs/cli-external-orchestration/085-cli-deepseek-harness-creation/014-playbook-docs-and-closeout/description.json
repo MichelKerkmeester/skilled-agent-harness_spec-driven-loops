@@ -1,16 +1,24 @@
 {
   "level": "2",
   "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout",
-  "description": "Add the cli-deepseek-harness manual testing playbook, reconcile governance docs, changelogs and generated indexes to eight runtimes and close the packet with a recursive strict validation.",
+  "description": "Eleven files across the repo root and the hub still match a \"seven\" runtime count, the `cli-deepseek-harness` packet has no playbook",
   "keywords": [
-    "phase",
-    "playbook-docs-and-closeout",
+    "eleven",
+    "files",
+    "across",
+    "repo",
+    "root",
+    "hub",
+    "still",
+    "match",
+    "seven",
+    "runtime",
+    "count",
     "cli-deepseek-harness",
-    "manual-testing-playbook",
-    "trigger-index",
-    "closeout"
+    "packet",
+    "playbook"
   ],
-  "lastUpdated": "2026-11-06T14:32:02.532Z",
+  "lastUpdated": "2026-11-06T21:07:30.718Z",
   "specId": "014",
   "folderSlug": "playbook-docs-and-closeout",
   "parentChain": [

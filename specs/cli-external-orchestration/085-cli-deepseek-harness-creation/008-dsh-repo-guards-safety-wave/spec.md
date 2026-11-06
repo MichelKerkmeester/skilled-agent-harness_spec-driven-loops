@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-11-05 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 14 |
+| **Phase** | 8 of 15 |
 | **Predecessor** | 007-dispatch-recognition-and-stress-adapter |
 | **Successor** | 009-dsh-context-guards-and-goal-bridge |
 | **Handoff Criteria** | A keyless run with `--patch .dsh/patches/guards.patch.yml` fails only with `MISSING_CREDENTIAL` and names no failed plugin, the eight adapter suites pass and the decision record names the chosen mechanism |

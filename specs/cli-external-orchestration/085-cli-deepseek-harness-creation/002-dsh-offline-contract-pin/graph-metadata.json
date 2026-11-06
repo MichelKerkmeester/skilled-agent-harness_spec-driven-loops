@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Later phases write dsh patches, hard rules and an executor builder against a headless contract that no run has observed yet",
     "created_at": "2026-11-05T23:21:52Z",
-    "last_save_at": "2026-11-06T04:17:22.245Z",
+    "last_save_at": "2026-11-06T21:23:58.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,10 +218,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:284fc81371d8a7a578caab256c4d8e78accfef744f308af6e154cd47e9c39d00",
+    "source_fingerprint": "sha256:8398a03e1bc7967f6dbefc7a3c689eae17b7f3f0c21cf72ab31918d16b14d7c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68bf25578fd89aba6266a3fa9278ceb9dac22d1842673e83a4482e8302a6bd14",
+      "spec.md": "1286817d5c430457b6b8b1386ab8b10f962402f5014f1db2466e211b63b74db0",
       "plan.md": "115c1c864929515ab44e83ae0c88b3e38e543e2fbb0313bc82e1619135aeea6a",
       "tasks.md": "c60069a8fed9bfdc1f1141f7edf89648ecf96d69d2726fda3b56face154dd7af",
       "implementation-summary.md": "0140848d953801efca1f695cd4fc02a799910767d77887c34ff494cfed786711"
