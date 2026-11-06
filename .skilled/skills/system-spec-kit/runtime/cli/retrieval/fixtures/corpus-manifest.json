@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8c06832a1f7dcefb6f5a58f1e066b0f3aa64cf61364aad98fec1dfd7a9fcbe60",
+  "corpusHash": "9cd616fb8e8b8e174991519988a92949e7c91dbc41562710ae516deb3a94bc2d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28056,
+  "includedPathCount": 28057,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2241,6 +2241,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.11.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.12.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.13.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
@@ -28087,7 +28088,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5aec6cc40b5ff0e677e75b134908ba2c037b6f220455ee9ef23103259751637f",
+  "manifestHash": "f9b0b211e474d1d84900df709c5c4294227155d5304275813ae089548fa18993",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
