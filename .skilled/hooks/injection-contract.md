@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 # Hook & Plugin Injection Contract
 
-Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
+Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi, Hermes and DeepSeek Harness) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
 **Kill-switches.** Every concern honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships off: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, and `SYSTEM_SESSION_RELAUNCH_ENABLED` decides otherwise. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index); this contract does not duplicate it.
 
@@ -254,6 +254,31 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 - **Channel:** `[LOG]`-equivalent. Visible to a human watching the terminal interactively, or in a runtime's own startup log, but never delivered to the assistant. Pi's bridge (`session-start-advisories.ts`) calls `ctx.ui.notify()`, which is a confirmed no-op in print/headless mode, so even the human-terminal visibility disappears for non-interactive dispatches.
 
+### DeepSeek Harness Channels
+
+The `repo-guards` bundle in `.dsh/plugins/repo-guards/` carries the shared cores into DeepSeek Harness (`dsh`) sessions. DSH has no `additionalContext` envelope. A context adapter calls `agent.inject` with a user-role message whose source is `repo-guards`, appends that message to the step at `agent/pre-step` or returns `additionalContexts` on a tool result. Each of these reaches the model. Whether `dsh web` shows them to the operator is not verified in this repo.
+
+A fan-out leaf, marked by the lineage patch, keeps every guard and skips the four adapters marked interactive only.
+
+| Concern | DSH event | Channel |
+|---|---|---|
+| Skill advisor brief | `agent/pre-step` | Appended `repo-guards` message, interactive only |
+| Spec-gate classification | `agent/pre-step` | Appended `repo-guards` message |
+| Spec-gate enforcement, dispatch preflight lint, MCP route guard, overlay guard and the sk-git message gate | `tools/pre-execute` | `[BLOCK]`, a `deny` with its reason |
+| Task dispatch guard | `tools/pre-execute` | `[LOG]`. Warnings and audits go to the guard's state folder, and the call is never denied |
+| Dispatch audit | `tools/post-execute` | `[LOG]` |
+| Injection screen, post-edit quality and the sk-git preflight advisory | `tools/post-execute` | `additionalContexts` on the tool result |
+| Packet goal slice | `agent/created` | `agent.inject` of the `DSH_SPEC_FOLDER` chat slice |
+| Goal surface: `/goal-dsh`, the `dsh_goal` tool, the goal brief and the verify note | `agent/created`, `agent/pre-step`, `agent/turn-stopping` and `agent/status` | `agent.inject`, interactive only |
+| Session start context | `agent/created` | `agent.inject` of the session-prime output |
+| Session-start advisories, the six warn-only checks | `agent/created` | `agent.inject` of the warnings, interactive only |
+| Post-compaction recovery | `session/event` on `compaction/end` | `agent.inject` of the session-prime `compact` output |
+| Session stop autosave | `agent/disposed` | `[NONE]`. It runs `session-stop.js`, interactive only |
+| Completion evidence | `agent/turn-stopping` | `agent.inject` of the sentinel's advice |
+| Decision capture | `tools/result`, `session/event` and `agent/status` | `[LOG]` queue of answers, plus one `agent.inject` reminder at idle while answers wait |
+
+The bundle README, [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugins/repo-guards/README.md), holds each adapter's scope and error policy.
+
 ---
 
 ## 5. RUNTIME QUICK REFERENCE: HOW TO ACTUALLY SEE THIS
@@ -265,6 +290,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 | **Codex** | Same mirror scripts as Claude. Inspect via the same JSONL-transcript method if Codex persists one, otherwise the standalone-replay method above. |
 | **OpenCode** | `opencode --log-level DEBUG --print-logs` writes to `~/.local/share/opencode/log/`. `opencode export <sessionID>` exists as an export-to-JSON path, but its exact content shape (whether it includes the assembled `system` array) is not verified in this repo. Treat it as unconfirmed until checked live. |
 | **Pi** | The one runtime where `[MSG]`-tagged content (skill-advisor brief, Gate-3 deferral instruction) is visible directly in the normal chat, because the `input`-event transform rewrites the visible prompt itself. `[SYS]`-tagged content (session-start/compact context via `pi.sendMessage`) is not visible even here. |
+| **DeepSeek Harness** | `dsh --dump-config` with the dispatch's patches prints the resolved plugin rows, so it shows whether the `repo-guards-lineage-leaf` marker row is present. The session log under `$DSH_HOME/sessions` records each injected notice as a `user/message` whose source is `repo-guards`. An adapter failure reaches the plugin logger as a `repo-guards <adapter>:` warning. |
 
 ---
 
