@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9a538be933d39fe37fc47a254774b654271c70b5d7dc0636a16a1296ca2505ae",
+  "corpusHash": "2790496446f5634641d463286285428de28ee9e79eba6f022058d0a67913eced",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28298,
+  "includedPathCount": 28295,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8097,6 +8097,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.18.2.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.18.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.18.4.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.18.5.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8274,10 +8275,6 @@
     ".skilled/skills/system-skilled-doctor/benchmark/README.md",
     ".skilled/skills/system-skilled-doctor/benchmark/reports/README.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.0.0.0.md",
-    ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
-    ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md",
-    ".skilled/skills/system-skilled-doctor/changelog/v1.3.0.0.md",
-    ".skilled/skills/system-skilled-doctor/changelog/v1.3.1.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/integration-request-routing.md",
@@ -28329,7 +28326,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3c2ce1662e154cb6557a33eb0f558e6aa3538d7e04de95a55ba160d59808908f",
+  "manifestHash": "473a3edb3245d05aab9aa8761b6416eb65e74f438af09ace18409980d3dbca3c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
