@@ -1,6 +1,6 @@
 ---
 title: SPECKIT Environment Variable Reference
-description: Environment variables read by the surviving spec-kit engine (validation orchestrator, generated metadata, level contracts, continuity writer and runtime hook adapters), plus the shared and advisor-owned variables that the package's operators still meet, with defaults, types and verified source file references.
+description: Environment variables read by the surviving spec-kit engine (validation orchestrator, generated metadata, level contracts, continuity writer and runtime hook adapters), plus shared, advisor-owned and external run-surface names documented for adjacent operator setup.
 ---
 
 # SPECKIT Environment Variable Reference
@@ -17,7 +17,7 @@ All variables are optional. The engine runs with sensible defaults when none are
 
 **What this package still is.** The memory engine was removed. The MCP transport (`context-server`), the memory tools and handlers, the memory database and its launcher, sqlite vector search, the in-package embedders, the evals and migrations, and the spec-memory CLI shim and plugin bridge are all gone. What remains is the spec-kit engine: the validation orchestrator, the graph and description metadata generators, the documentation level contracts, the continuity writer's imports, and the runtime hook adapters under `hooks/` for Claude, Codex, Cursor, Devin and Pi.
 
-**What is documented elsewhere but kept here.** The skill advisor, the shared HF model server and its `hf-embed` socket, and the shared embeddings and IPC code under `.skilled/skills/system-spec-kit/shared` and `.skilled/bin` were not touched by the removal. Their variables keep rows below, and each row's Source column names the file that reads it so ownership is unambiguous.
+**What is documented elsewhere but kept here.** The skill advisor, the shared HF model server and its `hf-embed` socket, and the shared embeddings and IPC code under `.skilled/skills/system-spec-kit/shared` and `.skilled/bin` were not touched by the removal. Their variables keep rows below, and each row's Source column names the file that reads it so ownership is unambiguous. The DeepSeek Harness run surface is documented by name only for adjacent setup. Its runtime owns those settings.
 
 **Flag convention:**
 
@@ -33,7 +33,7 @@ All variables are optional. The engine runs with sensible defaults when none are
 **There is no longer a feature-flag registry to tabulate.** `lib/search/search-flags.ts` was deleted with the memory engine, taking about ninety retrieval, ranking, graph, cognitive and feedback gates with it. `lib/config/capability-flags.ts` survives but now declares six gates, all of them in [Section 3](#3-spec-validation-and-generated-metadata): `SPECKIT_GENERATOR_HARDENING`, `SPECKIT_GENERATED_METADATA_GRANDFATHER`, `SPECKIT_GENERATED_METADATA_DRIFT_GATE`, `SPECKIT_IDENTITY_MERGE_SAFETY`, `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` and `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE`.
 
 Every variable below now lives in the section that owns its reader, and each row's Source column names that file. If you are looking for a flag that used to be in this table and cannot find it, it was retired: nothing reads it, and setting it does nothing.
-Total unique variables documented: 197, counted as unique backticked names in the `Variable` column of every table below. Recount with that method when adding rows. Multi-variable cells count once per name. The flag tables name their variables in a `governing env var` column instead, so the four names that appear only there (`SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP`, `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, `SPECKIT_ENTITY_CONFIG_PATH`, `SPECKIT_PI_DIRECTIVE_DEDUP`) sit outside this count. With them the document names 201. Every documented name must have a verified reader in source. A name with no reader is removed rather than kept as history.
+Total unique variables documented: 207, counted as unique backticked names in the `Variable` column of every table below. Recount with that method when adding rows. Multi-variable cells count once per name. The flag tables name their variables in a `governing env var` column instead, so the four names that appear only there (`SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP`, `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR`, `SPECKIT_ENTITY_CONFIG_PATH`, `SPECKIT_PI_DIRECTIVE_DEDUP`) sit outside this count. With them the document names 211. Every spec-kit-owned name must have a verified reader in its source. The DeepSeek Harness names are listed for adjacent setup and are verified against its external run-surface documentation.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -463,6 +463,27 @@ Detection and enforcement for Task-tool dispatches to deep-loop sub-agents (Deep
 | `SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS` | `2` | number (positive int, days) | Age threshold before an untouched per-session loop-guard state file is swept and archived. | `.opencode/plugins/system-deep-loop-guard.js` |
 | `SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS` | `90` | number (positive int, days) | Retention window before an archived loop-guard state file (or a dormant `guard-warnings.log`) is pruned. | `.opencode/plugins/system-deep-loop-guard.js` |
 | `SYSTEM_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | number (positive int, ms) | Minimum interval between orphaned-loop-guard-state sweep passes, triggered on `session.created`. | `.opencode/plugins/system-deep-loop-guard.js` |
+
+---
+
+## DEEPSEEK HARNESS RUN SURFACE
+
+DeepSeek Harness configuration names are listed here without values. The dispatch uses a scratch working directory and disposable `DSH_HOME`. It does not read a repository-root `.env`.
+
+| Variable |
+|----------|
+| `DSH_HOME` |
+| `LLMGATEWAY_API_KEY` |
+| `OPENCODE_API_KEY` |
+| `DSH_SPEC_FOLDER` |
+| `DSH_SKILLS_SOURCE_DIR` |
+| `DSH_SKILLS_OUTPUT_DIR` |
+| `DSH_COMMANDS_SOURCE_DIR` |
+| `DSH_PROMPTS_OUTPUT_DIR` |
+| `DSH_AGENTS_SOURCE_DIR` |
+| `DSH_AGENTS_OUTPUT_DIR` |
+
+The six `DSH_*_DIR` names are mirror-sync overrides documented in `.skilled/skills/system-spec-kit/runtime/cli/dsh/README.md`. `DSH_SPEC_FOLDER` accepts a packet path relative to the DSH workspace or an absolute path inside it.
 
 ---
 
