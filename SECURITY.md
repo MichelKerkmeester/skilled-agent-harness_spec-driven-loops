@@ -30,7 +30,7 @@ Report it through GitHub's private vulnerability reporting: open the repository'
 Include what you can of the following:
 
 - The affected file, hook, command or skill, with the commit SHA you tested against
-- The runtime and its version: Claude Code, Codex, OpenCode, Pi, Devin, Cursor or Hermes
+- The runtime or run surface and its version: Claude Code, Codex, OpenCode, Pi, Devin, Cursor, Hermes or DeepSeek Harness (dsh)
 - Every setting you changed from the shipped defaults: the permission mode, any dispatch flag and any hook switch set in your shell or in `.skilled/hooks/hook-flags.env`
 - Steps to reproduce, or a proof of concept
 - The impact you expect, such as code execution, credential exposure or a sandbox escape
@@ -55,7 +55,7 @@ Only the latest release on `main` receives security fixes.
 
 ## 5. SCOPE
 
-In scope is everything this repository ships: `.skilled/` skills, commands, agents, hooks and scripts, and the runtime configuration under `.claude/`, `.codex/`, `.opencode/` and the other runtime folders.
+This repository ships `.skilled/` skills, commands, agents, hooks and scripts plus runtime configuration under `.claude/`, `.codex/`, `.opencode/` and the other runtime folders. The external DeepSeek Harness run surface under `.dsh/` is also in scope.
 
 Out of scope are the AI assistants themselves and third-party MCP servers, which should be reported to their own maintainers.
 
@@ -64,6 +64,7 @@ The in-scope surfaces live here:
 | Surface | Where it lives |
 |---|---|
 | AI runtime hooks | `.skilled/hooks/`. `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json` register them. OpenCode loads `.opencode/plugins/` and Pi loads `.pi/extensions/` |
+| DeepSeek Harness run surface | `.dsh/` and `.dsh/plugins/repo-guards/`. Its per-run permission mode is separate from the repository-opening runtimes |
 | Git hooks | `.skilled/scripts/git-hooks/`, installed by `.skilled/scripts/install-git-hooks.sh` |
 | Skills and their scripts | `.skilled/skills/` |
 | Commands and agents | `.skilled/commands/`, `.skilled/agents/` and the agent folder inside each runtime folder |
@@ -80,7 +81,7 @@ Each risk below names the file that sets the behavior, so you can check it yours
 
 ### Hooks Run As You
 
-`.claude/settings.json` registers hook commands on seven events, and each other runtime config registers its own. Every hook runs with your account and your environment. Most guards fail open: when one crashes or reads input it cannot parse, the tool call goes through and your session keeps working. The Devin permission policy is the exception and denies on any error. An edited hook script changes what runs on your machine at the next session, so review hook changes the way you review code you execute.
+`.claude/settings.json` registers hook commands on seven events, and each other runtime config registers its own. Every hook runs with your account and your environment. Most guards fail open: when one crashes or reads input it cannot parse, the tool call goes through and your session keeps working. The Devin permission policy denies on any error. The DeepSeek Harness `dispatch-preflight-lint`, `spec-gate-enforce` and `mcp-route-guard` adapters also deny when their core checks fail. Its `git-message-gate` denies `ContractError` and logs unexpected errors before allowing the command through. An edited hook script changes what runs on your machine at the next session, so review hook changes the way you review code you execute.
 
 ### The Shipped Permission Defaults Skip Approval
 
@@ -88,7 +89,7 @@ Each risk below names the file that sets the behavior, so you can check it yours
 
 ### Dispatched CLIs Auto-Approve
 
-The `cli-*` skills start other AI CLIs without a terminal, and a lane that may write runs with approval switched off. The deep-loop fan-out runner in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` passes `--permission-mode dangerous` to Devin and `--yolo` to Hermes for any lane that may write. An OpenCode lane with full access gets `--dangerously-skip-permissions`. `cli-devin` uses `--permission-mode dangerous` for a single dispatch too, unless you name another mode. A dispatched lane learns from its prompt which paths it may write, and nothing in its sandbox enforces that list. In one recorded incident, a review dispatch running with `--dangerously-skip-permissions` deleted 44 files across two phase folders.
+The `cli-*` skills start other AI CLIs without a terminal. A lane that may write runs with approval switched off. The deep-loop fan-out runner in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` passes `--permission-mode dangerous` to Devin and `--yolo` to Hermes for any lane that may write. An OpenCode lane with full access gets `--dangerously-skip-permissions`. `cli-devin` uses `--permission-mode dangerous` for a single dispatch too, unless you name another mode. The DeepSeek Harness route also disables approval for dispatch, but its `--approval-policy never` flag does not confine filesystem access. Select `read-only` or `workspace-write` deliberately, use a disposable `DSH_HOME` and scratch working directory outside the checkout and do not run a dsh dispatch from the repository root. The documented scratch-cwd launch path keeps the repository-root `.env` out of its search path. A dispatched lane learns from its prompt which paths it may write, and nothing in its sandbox enforces that list. In one recorded incident, a review dispatch running with `--dangerously-skip-permissions` deleted 44 files across two phase folders.
 
 ### Installs Run Without A Separate Prompt
 
@@ -167,6 +168,7 @@ bash .skilled/scripts/install-git-hooks.sh --uninstall
 | Message contract | `commit-msg` blocks a message that breaks the sk-git commit rules. There is no bypass, and `pre-push` re-checks every pushed commit, so `--no-verify` does not let one through | `.skilled/scripts/git-hooks/commit-msg` |
 | Dispatch preflight | Reads the `hard-rules.json` file beside each CLI skill's `SKILL.md` and denies a dispatch that breaks a blocking rule, such as an `opencode run` that leaves stdin open | `.skilled/hooks/dispatch/` |
 | Git preflight advisory | Warns before a git command with a surprising result, such as `reset --hard` over uncommitted changes or a force push without a lease | `.skilled/skills/sk-git/hard-rules.json` |
+| dsh git preflight advisory | Evaluates dsh git commands against the shared sk-git hard rules and warns before a risky operation | `.dsh/plugins/repo-guards/` |
 | Devin permission policy | Answers each Devin permission request and denies on malformed input, a missing field, an unknown tool or any internal error | `.skilled/hooks/permission-policy/` |
 | Fan-out write containment | Diffs the tree after each dispatch, quarantines a copy of every write outside the lane's directory and reports it | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` |
 | Dispatch audit log | Writes one line per dispatch, with API keys, tokens, passwords and authorization headers redacted. Git ignores the log | `.skilled/logs/cli-dispatch-audit.log` |

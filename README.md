@@ -64,11 +64,11 @@ Type a prompt and the matching expertise loads before any tool runs. No memorizi
 
 ### 🤖 Agent Library
 
-Eleven specialized agents own focused roles, and seven CLI bridges let a runtime dispatch other AI CLIs as sub-tools.
+Eleven specialized agents own focused roles. Eight CLI bridges let a runtime dispatch other AI CLIs as sub-tools, including the experimental DeepSeek Harness target.
 
 - A review can fan out across several models at once, with the safest verdict winning
 - The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
-- Every bridge but `cli-pi` refuses to dispatch the runtime it runs in, and fan-out lineages and dispatch stacks are bounded, so delegation never loops
+- The seven bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh target is a separate headless run surface. Fan-out lineages and dispatch stacks are bounded, so delegation never loops
 
 ### 🧩 Plugin & Extension Library
 
@@ -651,10 +651,10 @@ Every loop keeps its progress in files, not in the chat, and those files are the
 
 A loop can spread its iterations across several AI models at once, then merge what they find. Bind executors on the command and each one becomes its own lineage.
 
-- **Many models, one loop:** run the same review or research across native agents and CLI bridges (Codex, Claude Code, OpenCode, Cursor, Devin, Pi, Hermes) in parallel, each lineage on its own state, with a pool that caps how many run at once
+- **Many models, one loop:** run the same review or research across native agents and CLI bridges (Codex, Claude Code, OpenCode, Cursor, Devin, Pi, Hermes and DeepSeek Harness) in parallel, each lineage on its own state, with a pool that caps how many run at once
 - **Strongest-restriction merge:** for a review, any lineage that reports an active P0 pulls the merged verdict to FAIL, so the safest reading wins rather than the average one
 - **Supervised, not unattended:** a stall watchdog aborts a lineage that stops emitting progress, a per-lineage cost cap bounds spend, and a dead or rate-limited lineage is tolerated without failing the whole run
-- **One adapter:** every executor kind dispatches through the same shared runner, selected per lineage, so adding a model is a list edit rather than new plumbing. A Cursor, Pi or Devin model must be on the runner's allowlist
+- **One adapter:** every executor kind dispatches through the same shared runner, selected per lineage, so adding a model is a list edit rather than new plumbing. A Cursor, Pi or Devin model must be on the runner's allowlist. DeepSeek Harness accepts only models in its two-route roster
 
 &nbsp;
 #### Deep Research
@@ -868,7 +868,7 @@ Run **cross-CLI agent teams from supported runtimes**. Claude Code, OpenCode or 
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill with seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes`. Describe the job and it hands the dispatch to the right one.
+One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`. The DeepSeek Harness bridge is experimental and configured, but not verified: no keyed run exists.
 
 &nbsp;
 
@@ -1556,7 +1556,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`cli-external-orchestration`** - ✅ codebase-agnostic
 
-- Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent
+- Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`. Stack-independent
 
 **`cli-classifier`** - ✅ codebase-agnostic
 
