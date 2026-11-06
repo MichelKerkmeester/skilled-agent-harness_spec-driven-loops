@@ -7,7 +7,7 @@ trigger_phrases:
   - "run doctor subsystem diagnostic"
   - "skill advisor rebuild doctor"
   - "how do I diagnose and repair a spec-kit subsystem"
-version: 1.7.9.0
+version: 1.7.10.0
 ---
 
 # Doctor commands
@@ -48,7 +48,7 @@ The playbook peer at `.skilled/manual-testing-playbook/doctor-commands/` holds t
 | `.skilled/commands/doctor/agents-md.md` | Router | `/doctor:agents-md <check\|embed\|restore>` three targets over one shipped manifest, with `check` as the bare-command target |
 | `.skilled/commands/doctor/symlink.md` | Router | `/doctor:symlink <check\|link\|unlink>` framework links into another project repo, with the read-only `check` as the bare-command target |
 | `.skilled/commands/doctor/install.md` | Router | `/doctor:install` read-only guide that checks the two builds, runs the symlink check and prints the ordered setup commands |
-| `.skilled/commands/doctor/overlay.md` | Router | `/doctor:overlay <status\|apply>` overlay check and apply for a vendored Skilled tree, with the read-only `status` as the bare-command target |
+| `.skilled/commands/doctor/overlay.md` | Router | `/doctor:overlay <status\|apply\|repin>` overlay check, apply and re-pin to a newer upstream commit for a vendored Skilled tree, with the read-only `status` as the bare-command target |
 | `.skilled/commands/doctor/assets/agents-md-manifest.json` | Manifest | The shipped sections, pins, runtime copies, delivery budget and router rows, plus the generated `derived` key that carries each body's hash |
 | `.skilled/commands/doctor/scripts/agents-md-check.cjs` | Engine | The read-only check: twelve rows A1 to A12, `--root` and `--json`, and exit 0, 1 or 2 |
 | `.skilled/commands/doctor/scripts/agents-md-embed.cjs` | Engine | `plan`, `apply --plan-digest` and `restore --run`, with the backup, the write allowlist and the post-write preservation proof |

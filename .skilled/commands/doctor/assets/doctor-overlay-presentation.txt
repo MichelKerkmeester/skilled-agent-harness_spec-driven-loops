@@ -11,7 +11,9 @@ Every argument failure happens before any workflow YAML loads. It prints the wor
 | The first token is not a target | `Unknown target: [target]` then `/doctor:overlay runs status. Try: /doctor:overlay menu` then `STATUS=FAIL ERROR="unknown_target"` |
 | A flag no target accepts | `Unknown argument: [argument]` then one line per target naming the flags it accepts, in the order of the route manifest display below, then `STATUS=FAIL ERROR="unknown_argument"` |
 | A flag another target owns | `Argument '[argument]' is not valid for target '[target]'. Did you mean /doctor:overlay [suggested-target] [argument]?` then `STATUS=FAIL ERROR="cross_target_flag"` |
-| A value flag given without its value, such as `--root` or `--capture` at the end of the line | `Missing value: [argument] needs [a directory for --root, the destination path a status line named for --capture]` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="missing_argument"` |
+| A value flag given without its value, such as `--root` or `--capture` at the end of the line | `Missing value: [argument] needs [a directory for --root, the destination path a status line named for --capture, the upstream checkout for --upstream, a commit for --to, a run id for --rollback]` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="missing_argument"` |
+| `repin` without `--rollback`, and without `--upstream` or `--to` | `A re-pin needs both --upstream <dir> and --to <commit>.` then `Try: /doctor:overlay repin --upstream <dir> --to <commit> [--root <dir>]` then `STATUS=FAIL ERROR="missing_argument"` |
+| `--rollback` given with `--upstream` or `--to` | `--rollback restores one earlier run and takes no --upstream or --to.` then `Try: /doctor:overlay repin --rollback <run-id> [--root <dir>]` then `STATUS=FAIL ERROR="conflicting_arguments"` |
 | A target bound with a second positional, such as `status foo` | `Only one target may be bound.` then `Try: [the accepted invocation for the bound target]` then `STATUS=FAIL ERROR="too_many_arguments"` |
 | The engine prints its usage block and exits 2 | `USAGE: [the engine's first usage line]` then the rest of the block. The workflow only ever runs the documented calls, so this is the engine's own contract rather than a route the operator reaches |
 
@@ -21,6 +23,7 @@ The flags each target accepts, for the unknown-argument wording:
 |--------|---------|
 | `status` | `--json` and `--root <dir>` |
 | `apply` | `--root <dir>` and `--capture <path>` |
+| `repin` | `--root <dir>`, `--upstream <dir>`, `--to <commit>` and `--rollback <run-id>` |
 
 The accepted invocation for each target, for the `Try:` lines:
 
@@ -28,6 +31,7 @@ The accepted invocation for each target, for the `Try:` lines:
 |--------|------------|
 | `status` | `/doctor:overlay status [--json] [--root <dir>]` |
 | `apply` | `/doctor:overlay apply [--root <dir>] [--capture <path>]` |
+| `repin` | `/doctor:overlay repin --upstream <dir> --to <commit> [--root <dir>]`, or `/doctor:overlay repin --rollback <run-id> [--root <dir>]` |
 
 ## 2. Startup Presentation
 
@@ -38,6 +42,7 @@ What do you want to do?
 
 1) status
 2) apply
+3) repin
 X) Cancel
 ```
 
@@ -47,11 +52,14 @@ Accepted answers:
 |--------|--------|---------|
 | `1` | target = `status` | Report every overlay destination that is not in sync, and change nothing |
 | `2` | target = `apply` | Show the status report as the plan, then apply the overlays only on yes |
+| `3` | target = `repin` | Ask once for the upstream checkout and the commit, stage the re-pin as the plan, then re-pin only on yes |
 | `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` | Stop. Nothing changes |
 
 On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
 
-Valid targets: status, apply
+Answer `3` asks one question before the workflow loads: `Upstream checkout and commit? [<dir> <commit>]`. The two values are the ones `--upstream` and `--to` carry. An empty answer or `cancel` ends with `STATUS=CANCELLED ACTION=cancelled`, and an answer without both values gets the missing-argument wording above.
+
+Valid targets: status, apply, repin
 
 ### Route Manifest Display
 
@@ -61,6 +69,7 @@ Render this table for any menu word. Values mirror `_routes.yaml`.
 |--------|----------|----------------|------------------|
 | `status` | `doctor-overlay-status.yaml` | read-only | Name each overlay destination that is not in sync, with the engine's fix for it |
 | `apply` | `doctor-overlay-apply.yaml` | mutates | Put the overlays back into the vendored tree, or capture one live edit, after one yes |
+| `repin` | `doctor-overlay-repin.yaml` | mutates | Move the vendored tree to a newer upstream commit over a staged plan after one yes, or roll one re-pin back |
 
 ## 3. Status Report
 
@@ -183,7 +192,102 @@ Capture this live edit now? [yes/no]
 
 `Capture this live edit now? [yes/no]` covers the one overlay source and the engine's record. Any answer other than yes counts as no. Print the cancelled result and write nothing.
 
-## 6. Result Templates
+## 6. Repin Plan and Approval
+
+### Setup
+
+Render this compact panel after target resolution and before the plan.
+
+```text
+DOCTOR ROUTE SETUP
+Target: repin
+Workflow: .skilled/commands/doctor/assets/doctor-overlay-repin.yaml
+Mutation class: mutates
+Execution mode: INTERACTIVE
+Root: [the vendored tree the run reads and writes]
+Upstream: [the --upstream checkout, or none for a rollback]
+To: [the --to commit, or none for a rollback]
+Rollback: [the --rollback run id, or none]
+Presentation: .skilled/commands/doctor/assets/doctor-overlay-presentation.txt
+Next: [stage the re-pin in a temporary folder, which leaves the live tree untouched | read the run folder, which writes nothing]
+```
+
+### The Plan The Operator Approves
+
+The plan is the stage report. The engine runs every re-pin step on a copy in a fresh temporary folder, and the live tree is not touched. Quote the engine's lines rather than paraphrasing them.
+
+```text
+OVERLAY REPIN PLAN
+Root: [the vendored tree]
+Upstream: [the --upstream checkout]
+To: [the --to commit]
+Stage: [the temporary folder the plan ran in]
+Copy: [the engine's copy <n> paths, delete <n> paths line]
+Now equal to upstream: [one equals-upstream <overlay-id> line per overlay, or none]
+Stage result: RESULT: STAGED
+Then: the live run backs up every path it touches into [overlay folder]/repin-runs/<run-id>/, copies, sets the pin, applies the overlays and runs the full check
+Lock: the engine holds [overlay folder]/.build-lock for the whole run
+
+Re-pin this tree to [commit] now? [yes/no]
+```
+
+An overlay that now equals upstream needs no change to re-pin. Its entry can be dropped from the overlay manifest after the run, and the plan names it so the operator knows.
+
+### When The Run Asks Nothing
+
+| Stage report | What the run shows | Status |
+|--------------|--------------------|--------|
+| Exit 1 with any `blocked <overlay-id>: <state> <path>` line | Each blocked line. Rebase each blocked overlay onto the new upstream file, then rerun `/doctor:overlay repin --upstream <dir> --to <commit>` | `STATUS=FAIL ERROR="blocked_overlays"` |
+| Exit 1 with no `blocked` line, and `RESULT: FAILED` | Each `MISS` line. The full check fails on the staged copy, so the live run would end the same way | `STATUS=FAIL ERROR="stage_check_failed"` |
+| Exit 2 | The engine's refusal, with its fix from the refusal table below. Nothing was written | `STATUS=FAIL ERROR="refused"` |
+
+### Refusals Before Any Write
+
+| The engine refuses because | Fix |
+|----------------------------|-----|
+| The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. The engine never clears a held lock itself |
+| A destination is `live-edited`, `both-changed` or `upstream-moved` | Settle it first: `/doctor:overlay apply --capture <path>` for a live edit, or resolve the overlay by hand for the other two, then rerun `/doctor:overlay status` |
+| An unowned file in the copied roots differs from the old pin, at the path the engine names | That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream, then rerun |
+| A commit is missing from `--upstream` | Fetch both the pinned commit and the `--to` commit into that checkout, then rerun |
+
+### The Repin Question
+
+`Re-pin this tree to [commit] now? [yes/no]` covers the whole live run: the backup, the copy and delete counts, the new pin, the apply and the full check. Any answer other than yes counts as no. Print the cancelled result and write nothing.
+
+### The Rollback Question
+
+After a live run fails behind its backup, the engine prints `rollback: node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-id>`. Show that line, then ask a separate question. Nothing is rolled back without its own yes.
+
+```text
+REPIN FAILED AFTER ITS BACKUP
+Root: [the vendored tree]
+Engine: [each line the live run printed, as printed]
+Run folder: [overlay folder]/repin-runs/[run-id]/
+Rollback: [the rollback line the engine printed]
+
+Roll this re-pin back now? [yes/no]
+```
+
+With `--rollback <run-id>` given directly, the plan is what that run folder holds.
+
+```text
+OVERLAY REPIN ROLLBACK PLAN
+Root: [the vendored tree]
+Run folder: [overlay folder]/repin-runs/[run-id]/
+Holds: [one line per file the run folder holds]
+Will restore: every path that run backed up, byte for byte, and remove the files that run created
+
+Roll this re-pin back now? [yes/no]
+```
+
+| Run folder | What the run shows | Status |
+|------------|--------------------|--------|
+| Present | The rollback plan and the rollback question | asks |
+| Missing | `No re-pin run: [overlay folder]/repin-runs/[run-id]/ does not exist.` Nothing is written | `STATUS=FAIL ERROR="unknown_run"` |
+
+`Roll this re-pin back now? [yes/no]` covers only the paths that one run backed up and the files it created. Any answer other than yes counts as no. After a failed re-pin, print the left-in-place result. On the direct path, print the cancelled result. Neither writes anything.
+
+## 7. Result Templates
 
 ### Applied
 
@@ -216,11 +320,46 @@ Changed: none
 STATUS=OK
 ```
 
+### Repinned
+
+```text
+OVERLAY TREE REPINNED
+Root: [the vendored tree]
+To: [the --to commit]
+Engine: [each line the live run printed, ending with RESULT: PASSED]
+Run folder: [overlay folder]/repin-runs/[run-id]/, kept for a later rollback
+Now equal to upstream: [one equals-upstream line per overlay, or none]
+Re-read: [the status report's RESULT line and its state counts]
+STATUS=OK
+```
+
+### Rolled Back
+
+```text
+REPIN ROLLED BACK
+Root: [the vendored tree]
+Run: [run-id]
+Engine: [each line the rollback printed]
+Re-read: [the status report's RESULT line and its state counts]
+STATUS=[OK on the direct path | FAIL ERROR="repin_rolled_back" after a failed re-pin]
+```
+
+### Left In Place
+
+```text
+REPIN FAILED, NOT ROLLED BACK
+Root: [the vendored tree]
+Engine: [each line the live run printed]
+Changed: the tree is partly moved to [commit], and the run folder keeps its backup
+Next: [the rollback line the engine printed]
+STATUS=FAIL ERROR="repin_failed"
+```
+
 ### Cancelled
 
 ```text
 OVERLAY RUN CANCELLED
-Declined: [the apply | the capture of the path]
+Declined: [the apply | the capture of the path | the re-pin to the commit | the rollback of the run]
 Changed: none
 STATUS=CANCELLED ACTION=cancelled
 ```
@@ -229,7 +368,7 @@ STATUS=CANCELLED ACTION=cancelled
 
 ```text
 DOCTOR TARGET FAILED
-Target: [status|apply]
+Target: [status|apply|repin]
 Step: [the phase that stopped the run]
 Error: [the engine's exit code and its message lines]
 Changed: [what the engine reported writing before it stopped, or none]
@@ -245,8 +384,11 @@ What each engine exit means for `Changed:`:
 | Exit 1 with `BLOCKED` lines or `changed=0` | none |
 | Exit 1 after `regeneration failed` | The overlays were written and the tree is only partly rebuilt. Name each failed step |
 | Exit 1 with `MISS     generated:` lines after the changed count | The overlays were written and recorded, and a generator check still fails. Name each check |
+| A re-pin stage, any exit | none. The stage writes only its temporary folder |
+| A live re-pin, exit 2 with no `rollback:` line | none |
+| A live re-pin, exit 1, or exit 2 with a `rollback:` line | The tree is partly moved and the run folder keeps the backup. Name the rollback line |
 
-## 7. Troubleshooting Display
+## 8. Troubleshooting Display
 
 | Situation | Suggested Action |
 |-----------|------------------|
@@ -258,9 +400,13 @@ What each engine exit means for `Changed:`:
 | An `upstream-moved` line | A re-pin changed a file an overlay owns. Rebase the overlay source onto the new upstream bytes, then rerun `/doctor:overlay status` |
 | `regeneration failed` after an apply | The overlays landed but a generator failed. Read the failed step's output, fix it, then rerun `/doctor:overlay apply` |
 | The apply question was answered no | Nothing was written. Rerun `/doctor:overlay apply` when the report is acceptable |
+| A re-pin stage lists `blocked` overlays | Rebase each one onto the new upstream file, then rerun `/doctor:overlay repin --upstream <dir> --to <commit>` |
+| A re-pin refuses on an unowned file | The named file holds an edit made in place. Move it into an overlay or upstream, then rerun |
+| A re-pin refuses on a missing commit | Fetch both commits into the `--upstream` checkout, then rerun |
+| A live re-pin failed after its backup | Run `/doctor:overlay repin --rollback <run-id>` with the run id the rollback line names, then `/doctor:overlay status` |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
-## 8. Next Step
+## 9. Next Step
 
 | Condition | Suggested Command | Reason |
 |-----------|-------------------|--------|
@@ -268,5 +414,9 @@ What each engine exit means for `Changed:`:
 | The status report shows a `live-edited` line | `/doctor:overlay apply --capture <path>` | The edit belongs in the overlay source, or the next re-pin loses it |
 | A capture just ran | `/doctor:overlay apply` | The captured source is now canonical, and the generated files catch up on apply |
 | An apply or a capture just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
+| A re-pin stage listed blocked overlays | `/doctor:overlay repin --upstream <dir> --to <commit>` | Rerun once each blocked overlay is rebased onto the new upstream file |
+| A re-pin finished and listed overlays that now equal upstream | Drop those entries from the overlay manifest, then `/doctor:overlay status` | Those overlays no longer change anything |
+| A live re-pin failed and was not rolled back | `/doctor:overlay repin --rollback <run-id>` | The run folder still holds the backup |
+| A re-pin or a rollback just ran | `/doctor:overlay status` | The re-read confirms the tree is in sync |
 
 End interactive presentations with: `What would you like to do next?`

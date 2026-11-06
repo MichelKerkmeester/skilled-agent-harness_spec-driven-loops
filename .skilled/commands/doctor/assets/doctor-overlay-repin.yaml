@@ -1,0 +1,128 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: OVERLAY REPIN (INTERACTIVE, ONE VENDORED TREE)
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator moving a vendored Skilled tree to a newer upstream commit, or rolling one re-pin back, without reverting an edit nobody moved into an overlay
+purpose: Stage the re-pin in a temporary folder as the plan, ask once, run the live re-pin only after that yes, offer the rollback when a run fails after its backup, and re-read the tree through status
+action: Read the engine -> stage the re-pin as the plan -> explicit yes -> run the live re-pin -> rollback question on a failure after the backup -> re-read through status
+skill_owner: ".skilled/skills/system-skilled-doctor/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_stage_plan_confirmed_repin
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes
+  tracking: one_vendored_tree
+  validation: re_read_the_tree_through_status
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "the paths the live re-pin copies inside the vendored tree: the .skilled paths upstream added, changed or deleted between the pin the overlay manifest records and --to, and each runtime folder whole, less the manifest's repin.exclude list"
+    - "the pin the overlay manifest records, which the live re-pin sets to --to"
+    - "the overlay destinations, layout links, regenerate outputs and <overlay folder>/sync-state.json the live re-pin's apply writes after the copy"
+    - "<overlay folder>/repin-runs/<run-id>/, the backup the engine writes before its first copy and keeps for a rollback"
+    - "<overlay folder>/.build-lock, which the engine creates for the run and removes when its own run ends"
+    - "with --rollback <run-id>, only the paths that run's backup records, restored byte for byte, and the files that run created, removed"
+    - "the fresh temporary folder this run creates for the stage plan, outside the vendored tree, removed when the run ends"
+  forbidden_targets:
+    - "any path the engine does not compute from the two commits and the overlay manifest, because the engine plans every copy and this workflow composes none"
+    - "root files such as AGENTS.md, which a re-pin never copies"
+    - "the upstream checkout given with --upstream, which the engine only reads through git"
+    - ".skilled/commands/doctor/scripts/overlay-engine.cjs itself"
+    - "the git index, history and remotes"
+  invariant: "Nothing in the vendored tree is written until the operator has read this run's stage report and answered yes to it. The stage runs every step on a copy and leaves the live tree untouched. A stage report with any blocked overlay ends the run before the question. A rollback runs only after its own yes. A no at either question writes nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  overlay_engine: ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+  overlay_setting: ".skilled-overlays.json at the tree root, naming the overlay folder, or skilled-overlays/ when the file is absent"
+  overlay_manifest: "<overlay folder>/overlay-manifest.json, read by the engine and never by this workflow"
+  run_folders: "<overlay folder>/repin-runs/<run-id>/, one per live re-pin, holding its backup"
+  presentation: ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  root: "The vendored tree to read and write when --root <dir> is passed (default none, so the engine works on the tree it is vendored in)."
+  upstream: "The local Skilled checkout given with --upstream <dir>, which must hold both the pinned commit and --to. Required for a re-pin, and never given with --rollback."
+  to_commit: "The upstream commit given with --to <commit>. Required for a re-pin, and never given with --rollback."
+  rollback_run_id: "The run id given with --rollback <run-id> (default none, so the run is a re-pin). Given alone, or with --root only, it selects the rollback path in phase 2."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_read:
+    purpose: "Load what the run is built from before anything is asked"
+    activities:
+      - "Check that .skilled/commands/doctor/scripts/overlay-engine.cjs exists. If it is missing, report the missing path and stop with STATUS=FAIL."
+      - "Read the engine's interface before driving it: node .skilled/commands/doctor/scripts/overlay-engine.cjs --help prints its usage block and exits 0. Its repin target runs live, its --stage <dir> form runs the same steps on a copy, and its --rollback <run-id> form restores one run's backup. A usage block without the repin target means this engine cannot re-pin: quote it and stop with STATUS=FAIL."
+      - "Read .skilled/commands/doctor/assets/doctor-overlay-presentation.txt for the plan, the two questions, the refusals and the result wording. Every visible line comes from there."
+
+  phase_2_plan:
+    purpose: "Stage the re-pin on a copy and decide whether there is anything to ask, or read the run folder a rollback would restore"
+    activities:
+      - "With rollback_run_id, skip the stage. Read .skilled-overlays.json at the tree root for the overlay folder, skilled-overlays/ when it is absent, and list the files under <overlay folder>/repin-runs/{rollback_run_id}/ with find, which writes nothing. With no such folder, render the unknown-run failure and stop with STATUS=FAIL. Otherwise render the rollback plan from the presentation contract and go to phase 5. Phases 3 and 4 do not run on this path."
+      - "Create a fresh, empty temporary folder with mktemp -d and keep the exact path it printed as stage_dir. It is outside the vendored tree."
+      - "Run node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream \"{upstream}\" --to \"{to_commit}\" --stage \"{stage_dir}\", adding --root \"{root}\" when the operator passed one. The live tree is not touched. Keep every line it prints: the copy <n> paths, delete <n> paths line, each blocked line, each equals-upstream line, each MISS line and the final RESULT line."
+      - "Exit 2 means the engine refused before any write: a held lock, a destination in live-edited, both-changed or upstream-moved state, an unowned file in the copied roots that differs from the old pin, which the engine names, or a commit missing from --upstream. Quote the engine's lines, name the presentation contract's fix for the refusal and end with STATUS=FAIL. Nothing was written."
+      - "Exit 1 with any blocked <overlay-id>: <state> <path> line stops the run before the question. The operator rebases each blocked overlay onto the new upstream file, then reruns this command. Show each blocked line with the presentation contract's rebase step and end with STATUS=FAIL. Nothing was written."
+      - "Exit 1 with no blocked line means the full check failed on the staged copy, so the live run would end the same way. Show each MISS line and end with STATUS=FAIL. Nothing was written."
+      - "Exit 0 with RESULT: STAGED means the copy re-pinned clean. Go to phase 3 with the report on screen."
+      - "On every path that ends the run, and once phase 3 has its answer, remove stage_dir with rm -rf on the exact path mktemp printed. Never remove any other path, and never build that path from a value that could be empty."
+
+  phase_3_approval:
+    purpose: "Ask the re-pin question once against the stage report on screen, and write only after its yes"
+    activities:
+      - "Render the repin plan from the presentation contract: the copy and delete counts, each equals-upstream line, the backup the live run takes, the steps it runs and the lock the engine holds. Then ask the repin question once."
+      - "Any answer other than yes is a no: print the cancelled result naming the re-pin that was declined, state Changed: none, and end with STATUS=CANCELLED ACTION=cancelled. Nothing is written."
+      - "Never default an answer, never carry an approval from an earlier run, and never ask against a report the operator has not seen. Phase 4 runs only after this phase's yes."
+
+  phase_4_write:
+    purpose: "Run the one live re-pin the operator approved, and nothing else"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream \"{upstream}\" --to \"{to_commit}\", adding --root \"{root}\" when the plan ran with it. Run it only after the repin yes. The engine takes its own lock and checks every refusal again before its first write."
+      - "Keep exactly the lines it printed, including any rollback: line, and take the run id from that line."
+      - "Exit 0 with RESULT: PASSED means the re-pin finished clean. Go to phase 6."
+      - "Exit 2 with no rollback: line means the engine refused before any write, because the tree changed since the plan. Quote the lines and end with STATUS=FAIL. Nothing was written. Never retry the re-pin here."
+      - "Exit 1, or exit 2 with a rollback: line, means the run failed after its backup: an apply was blocked, the check failed or an error stopped it. The tree is partly moved and the run folder stays. Show the lines and the rollback line, then go to phase 5."
+      - "Never remove the overlay lock inside this route. A held lock is the operator's to clear once the other run has ended, as the engine's message says."
+
+  phase_5_rollback:
+    purpose: "Ask the separate rollback question, and restore a run's backup only after its yes"
+    activities:
+      - "Reached from phase 4 after a failure that printed a rollback line, or from phase 2 when the operator gave --rollback <run-id>. Render the matching rollback plan from the presentation contract, then ask the rollback question once."
+      - "Any answer other than yes is a no. After a failed re-pin, print the left-in-place result with the rollback line as the next step and end with STATUS=FAIL. On the direct path, print the cancelled result and end with STATUS=CANCELLED ACTION=cancelled. Neither writes anything."
+      - "After the rollback yes, run node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback \"{run_id}\", adding --root \"{root}\" when this run used it. run_id is rollback_run_id on the direct path, or the run id phase 4 took from the rollback line."
+      - "Exit 0 means the backup was restored byte for byte and the files the run created were removed. Any other exit means the restore did not finish: quote the engine's lines, keep the run folder, end with STATUS=FAIL and never retry the rollback here."
+
+  phase_6_reread:
+    purpose: "Prove the tree reads back through the read-only status mode"
+    activities:
+      - "After any engine write, run node .skilled/commands/doctor/scripts/overlay-engine.cjs status once more, with --root \"{root}\" when this run used it, and read its RESULT line and counts against the engine's own result lines."
+      - "When the re-read cannot run at all, report its message, keep the write result and name the missing re-read as the next step. Never report a write as verified when the re-read never answered."
+
+  phase_7_report:
+    purpose: "Summarize the run and hand the next step back to the operator"
+    activities:
+      - "Render the repinned, rolled-back, left-in-place, cancelled or failure result from the presentation contract, with the engine's lines as printed and the re-read verdict."
+      - "Name each equals-upstream overlay as an entry the operator can drop, and name the next command from the presentation contract's next-step table."
+      - "End by saying the operator commits the changed files themselves, because this route stages and commits nothing."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

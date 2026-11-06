@@ -1,12 +1,12 @@
 ---
 title: "System Skilled Doctor Router"
-description: "Sibling router for system-skilled-doctor: the intent signals, the resource map and the no-match checklist a reader parses first."
+description: "Sibling router for system-skilled-doctor: the intent signals and resource map a reader parses first, with the no-match checklist."
 trigger_phrases:
   - "system-skilled-doctor router"
   - "system-skilled-doctor routing"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.2.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -22,7 +22,7 @@ link that points here. This file holds the declaration a reader parses to decide
 
 ### Purpose
 
-Requests reach this skill when they are about Skilled inside a project: installing it, linking a checkout, updating to a newer release, checking the runtime mirrors, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration, or finding which doctor command fits a problem. Every one of them is answered by the owned-command table in the root `README.md`, which names the one doctor command to run. A request about a vendored copy's own changes, its overlays or a re-pin also loads `references/overlays.md`, which says what each sync state means and what resolves it.
+Requests reach this skill when they are about Skilled inside a project: installing it, linking a checkout, updating to a newer release, checking the runtime mirrors, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration, or finding which doctor command fits a problem. Every one of them is answered by the owned-command table in the root `README.md`, which names the one doctor command to run. A request about a vendored copy's overlays or a re-pin also loads `references/overlays.md`, which says what each sync state means and what resolves it.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

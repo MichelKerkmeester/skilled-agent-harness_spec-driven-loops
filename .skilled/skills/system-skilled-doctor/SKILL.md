@@ -2,7 +2,7 @@
 name: "system-skilled-doctor"
 description: "Doctor commands that put Skilled into a project repo and keep it current there, including a vendored copy's own overlays."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 <!-- Keywords: put skilled into my project, install skilled, link skilled checkout, symlink skilled, update skilled release, runtime mirrors, environment switches, doctor setup, which doctor command, agents md sections, trigger index fresh, code mode install, vendored skilled overlays, overlay status, apply the overlays, re-pin vendored skilled -->
@@ -48,7 +48,7 @@ The owned-command table in [`README.md`](./README.md) loads first. It names what
 
 A request about one skill's own checks looks related but belongs to that skill's doctor command, listed under When NOT to Use. The router refuses it rather than loading this table.
 
-The machine router, its intent signals and resource map live in [`ROUTER.md`](./ROUTER.md), which calls `discover_markdown_resources()` and `_guard_in_skill()` and returns `UNKNOWN_FALLBACK` on no match. Read it before loading a skill-local resource.
+The machine router and its resource map live in [`ROUTER.md`](./ROUTER.md), which calls `discover_markdown_resources()` and `_guard_in_skill()` and returns `UNKNOWN_FALLBACK` on no match. Read it before loading a skill-local resource.
 
 ---
 
@@ -80,7 +80,7 @@ The command's own checks, read with their exit status. For a change to this skil
 
 ### ❌ NEVER
 
-- Move a command file out of `.skilled/commands/doctor/`. The bridge deriver, `_routes.yaml` and the runtime mirrors read that folder.
+- Move a command file out of `.skilled/commands/doctor/`. The bridge deriver and the runtime mirrors read that folder, and so does `_routes.yaml`.
 - Claim a check passed from its exit status alone.
 - Answer another skill's doctor question from this skill.
 
@@ -126,8 +126,8 @@ The task is complete when:
 ### Core References
 
 - [`README.md`](./README.md): the owned-command table.
-- [`references/overlays.md`](./references/overlays.md): the overlay sync states, the overlay folder setting and what the engine refuses.
-- `.skilled/commands/doctor/`: each command's router, workflow YAML and presentation asset.
+- [`references/overlays.md`](./references/overlays.md): the overlay sync states and the overlay folder setting, what the engine refuses and how to re-pin.
+- `.skilled/commands/doctor/`: each command's router with its workflow YAML and presentation asset.
 
 ### Loading Notes
 

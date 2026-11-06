@@ -1,16 +1,16 @@
 ---
 title: "system-skilled-doctor"
-description: "Puts Skilled into a project, checks it there and keeps it current, through the doctor commands this skill owns."
+description: "Puts Skilled into a project and keeps it working and current there, through the doctor commands this skill owns."
 trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # system-skilled-doctor
 
-> Get Skilled into your own project, check that it works there and keep it current.
+> Get Skilled into your own project and keep it working and current there.
 
 ---
 
@@ -35,17 +35,17 @@ Doctor commands about a single skill's own checks stay with that skill, such as 
 
 | Command | What it does |
 |---|---|
-| `/doctor:install` | Walks a first install into your own project repo: checks the builds, runs the symlink check and prints the ordered setup commands for you to run, writing nothing itself |
-| `/doctor:symlink` | Checks, links or unlinks `.skilled` and the chosen runtime folders in another project repo, as a whole-folder link or a real folder holding one link per entry, writing only after you approve the printed plan and its digest |
+| `/doctor:install` | Walks a first install into your own project repo. It checks the builds and runs the symlink check, then prints the ordered setup commands for you to run, writing nothing itself |
+| `/doctor:symlink` | Checks, links or unlinks the `.skilled` folder and the chosen runtime folders in another project repo, as a whole-folder link or a real folder holding one link per entry, writing only after you approve the printed plan and its digest |
 | `/doctor:update` | Moves a checkout to a newer spec-kit release: `check`, `align`, a gated `apply`, `rollback`, `record-base` and `compat`, which moves a v3 spec layout to v4 behind two approvals |
-| `/doctor:agents-md` | Checks, embeds or restores the sections Skilled ships in a project's `AGENTS.md`, showing the plan first |
+| `/doctor:agents-md` | Checks the sections Skilled ships in a project's `AGENTS.md`, and embeds or restores them after showing the plan |
 | `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
-| `/doctor:env` | Shows the switches documented in `system-spec-kit`'s `runtime/ENV-REFERENCE.md`, plus every other setting in the root `.env.example`, and where each is set, and saves a preference after you approve the exact line |
+| `/doctor:env` | Shows the switches documented in `system-spec-kit`'s `runtime/ENV-REFERENCE.md` and every other setting in the root `.env.example`, with where each is set. It saves a preference after you approve the exact line |
 | `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks, names the repair command for each failing one and shows the last session hop, any unclaimed handoff note and the orphaned processes still running |
 | `/doctor:helper` | Takes a described problem and ranks the doctor commands that fit, with why, ready to run |
-| `/doctor:speckit` | Checks that the trigger index is fresh, its lookup runs and the ripgrep recipes return results |
-| `/doctor:mcp` | Installs or debugs Code Mode, its UTCP configuration and its runtime registration |
-| `/doctor:overlay` | Keeps a vendored Skilled copy's own changes: `status` reports every overlay that is out of sync and the fix, and `apply` puts the overlays back after showing what will change |
+| `/doctor:speckit` | Checks that the trigger index is fresh and that its lookup and the ripgrep recipes return results |
+| `/doctor:mcp` | Installs or debugs Code Mode with its UTCP configuration and runtime registration |
+| `/doctor:overlay` | Keeps a vendored Skilled copy's own changes. `status` reports every overlay that is out of sync and the fix. `apply` puts the overlays back after showing what will change. `repin` moves the copy to a newer upstream commit with a backup it can roll back |
 
 ---
 
@@ -116,6 +116,10 @@ A: No. Each command file stayed in `.skilled/commands/doctor/` and changed one l
 
 A: It switches `sk-git`'s own hook gates and rules, so it belongs with the skill whose settings it changes. This skill owns the commands about Skilled in a project as a whole.
 
+**Q: What happens when a re-pin goes wrong?**
+
+A: The live run backs up every path it touches before its first write. When it fails after that, it prints a `repin --rollback <run-id>` line that puts those bytes back. `references/overlays.md` has the full steps.
+
 ---
 
 ## 6. VERIFICATION
@@ -135,5 +139,5 @@ A pass prints `fail 0` in the summary. Then confirm the advisor credits each own
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions |
-| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`references/overlays.md`](./references/overlays.md) | The overlay sync states, the overlay folder setting and what the engine refuses |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: the intent map and the resource map |
+| [`references/overlays.md`](./references/overlays.md) | The overlay sync states and what the engine refuses, plus the re-pin and rollback steps |

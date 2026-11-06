@@ -1,13 +1,13 @@
 ---
-description: "Check whether a vendored Skilled tree still carries its overlays, and put them back after one yes."
-argument-hint: "[status|apply] [--json] [--root <dir>] [--capture <path>] | list | ?"
+description: "Check whether a vendored Skilled tree still carries its overlays, put them back, or re-pin it, after one yes."
+argument-hint: "[status|apply|repin] [--json] [--root <dir>] [--capture <path>] [--upstream <dir>] [--to <commit>] [--rollback <run-id>] | list | ?"
 allowed-tools: Read, Bash
 ---
 <!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:overlay Router
 
-This command is a thin router. It binds the read-only `status` target or the writing `apply` target from `_routes.yaml`, then loads that target's workflow YAML and the presentation contract.
+This command is a thin router. It binds the read-only `status` target or one of the writing `apply` and `repin` targets from `_routes.yaml`, then loads that target's workflow YAML and the presentation contract.
 
 ## 1. ROUTER CONTRACT
 
@@ -31,15 +31,18 @@ Load the presentation contract before showing anything the operator reads. That 
 
 - `_routes.yaml` is the canonical routing and mutation-class manifest, and this command owns the routes whose `command` is `/doctor:overlay`.
 - `execution_mode` is always `INTERACTIVE`. No `:auto` or `:confirm` suffix is supported.
-- The first positional token of `$ARGUMENTS` is the target. With no token the target is `status`, the route marked `default_target` because it only reads, so `/doctor:overlay` and `/doctor:overlay status` both run it. A bare `/doctor:overlay` never reaches `apply`, which writes. A menu word from the argument table shows the presentation contract's startup menu instead of binding a target.
-- `--json` and `--root <dir>` belong to `status`. `--root <dir>` and `--capture <path>` belong to `apply`.
-- The engine has no plan mode, so `apply` shows the engine's own `status` report as its plan. The workflow never runs `apply` before the operator has read that report, and never runs a writing target without its yes.
+- The first positional token of `$ARGUMENTS` is the target. With no token the target is `status`, the route marked `default_target` because it only reads, so `/doctor:overlay` and `/doctor:overlay status` both run it. A bare `/doctor:overlay` never reaches `apply`, which writes, or `repin`, which writes too. A menu word from the argument table shows the presentation contract's startup menu instead of binding a target.
+- `--json` and `--root <dir>` belong to `status`. `--root <dir>` and `--capture <path>` belong to `apply`. `--root <dir>`, `--upstream <dir>`, `--to <commit>` and `--rollback <run-id>` belong to `repin`.
+- A `repin` needs both `--upstream <dir>` and `--to <commit>`. `--rollback <run-id>` selects the rollback path and is given alone, or with `--root <dir>` only.
+- The engine has no plan mode for `apply`, so `apply` shows the engine's own `status` report as its plan. `repin` stages the re-pin on a copy in a temporary folder and shows that report as its plan. The workflow never runs `apply` before the operator has read that report, and never runs a writing target without its yes.
 - `--capture <path>` is part of `apply`: it moves one live edit into its overlay source, and it is asked the same way.
 - An argument failure stops the run before YAML load, with the presentation contract's wording for each case:
   - an unknown target or an unknown flag
   - a flag another target owns
   - a value flag without its value
   - a second positional
+  - a `repin` without `--upstream` or `--to`
+  - `--rollback` given with `--upstream` or `--to`
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior. The presentation text owns visible wording and layout.
 
@@ -51,12 +54,16 @@ Load the presentation contract before showing anything the operator reads. That 
 |--------|----------|
 | `status` | `.skilled/commands/doctor/assets/doctor-overlay-status.yaml` |
 | `apply` | `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml` |
+| `repin` | `.skilled/commands/doctor/assets/doctor-overlay-repin.yaml` |
 
 | Argument | Applies to | Effect |
 |----------|------------|--------|
 | `--json` | `status` | Print the engine's JSON report and nothing else |
-| `--root <dir>` | `status`, `apply` | Read or write that vendored tree instead of the one this command ships in |
+| `--root <dir>` | `status`, `apply`, `repin` | Read or write that vendored tree instead of the one this command ships in |
 | `--capture <path>` | `apply` | Move the live edit at that path into its overlay source, instead of applying every overlay |
+| `--upstream <dir>` | `repin` | The local Skilled checkout that holds both the pinned commit and the new one |
+| `--to <commit>` | `repin` | The upstream commit to move the vendored tree to |
+| `--rollback <run-id>` | `repin` | Restore the backup one re-pin run kept, instead of re-pinning |
 | `list`, `?`, `menu` | the command | Show the startup menu and the route manifest, and load no workflow |
 
 1. Read `.skilled/commands/doctor/assets/doctor-overlay-presentation.txt`.
@@ -88,4 +95,10 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-over
 6. After the yes, `apply` runs `overlay-engine.cjs apply` with the same `--root`. The engine takes its own lock and classifies every destination again. When a conflict appeared since the report it refuses rather than writes. Otherwise it writes the overlays, then runs the manifest's regenerate and verify steps.
 7. With `--capture <path>`, the plan is the one report line for that path. The run asks the capture question only when that line is `live-edited`, and only after its yes runs `overlay-engine.cjs apply --capture <path>`.
 8. Either write is re-read through `overlay-engine.cjs status`, and that verdict is shown beside the engine's own result lines.
-9. Render the result through the presentation contract, name the next command for the operator, and end with the result template's status line. The route stages nothing and commits nothing, so whoever ran it commits the change themselves.
+9. `repin` first runs `overlay-engine.cjs repin --stage <dir>` with the same `--upstream`, `--to` and `--root` into a fresh temporary folder, and that report is the plan. The live tree is not touched.
+10. A stage report that lists a blocked overlay stops the run before the question, because the operator rebases those overlays first and then reruns. A refusal or a failed check on the copy stops it the same way, and nothing is written.
+11. `repin` asks the repin question once, against the stage report on screen. Any answer other than yes is a no, so the run ends as cancelled and nothing is written.
+12. After the yes, `repin` runs `overlay-engine.cjs repin` with the same flags. The engine backs up every path it touches before its first write. When the run fails after that backup, the route shows the engine's rollback line, asks a separate rollback question and runs `overlay-engine.cjs repin --rollback <run-id>` only after that yes.
+13. With `--rollback <run-id>` given directly, the plan is what that run's folder holds. The route asks the rollback question once and restores only after its yes.
+14. A re-pin or a rollback is re-read through `overlay-engine.cjs status`, and that verdict is shown beside the engine's own result lines.
+15. Render the result through the presentation contract, name the next command for the operator, and end with the result template's status line. The route stages nothing and commits nothing, so whoever ran it commits the change themselves.

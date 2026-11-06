@@ -322,6 +322,12 @@
       "order": 38,
       "id": "command-doctor-overlay-apply",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-overlay-repin",
+      "order": 39,
+      "id": "command-doctor-overlay-repin",
+      "description": ""
     }
   ],
   "python": [
@@ -686,6 +692,12 @@
       "inventoryId": "command-doctor-overlay-apply",
       "order": 49,
       "id": "command-doctor-overlay-apply",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-overlay-repin",
+      "order": 50,
+      "id": "command-doctor-overlay-repin",
       "description": ""
     }
   ],

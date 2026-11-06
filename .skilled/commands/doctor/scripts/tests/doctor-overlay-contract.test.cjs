@@ -9,8 +9,8 @@
 // targets, the default target, the flags each target owns and the assets they name.
 //
 // The engine's own suites prove what the engine writes. What only this suite can see
-// is the promise around it: that a bare command never reaches the writing target,
-// that every flag a route allows is a flag the engine parses, and that the writing
+// is the promise around it: that a bare command never reaches a writing target,
+// that every flag a route allows is a flag the engine parses, and that each writing
 // workflow asks before it runs the engine.
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -42,6 +42,12 @@ const SETUP_PRESENTATION = read(path.join(ASSETS, 'doctor-setup-presentation.txt
 const DOCTOR_CONTRACT = JSON.parse(read(path.join(CONTRACT_ASSETS, 'command-contract.json'))).families.doctor;
 
 const MISSING_TREE = path.join(os.tmpdir(), `doctor-overlay-no-such-tree-${process.pid}`);
+const MISSING_STAGE = path.join(os.tmpdir(), `doctor-overlay-no-such-stage-${process.pid}`);
+
+// The repin target lands in the engine separately from its route. Until the engine's
+// usage block names it, the repin probes have no parser to ask and are skipped.
+const ENGINE_USAGE = spawnSync(process.execPath, [ENGINE, '--help'], { encoding: 'utf8' }).stdout;
+const ENGINE_HAS_REPIN = /\brepin\b/.test(ENGINE_USAGE);
 
 // A flag declared as "--root <dir>" takes one value, and a bare "--json" takes none.
 // --root always points at a folder that does not exist, so no probe can reach a tree.
@@ -60,22 +66,43 @@ function argvFor(flags) {
 // prints its usage block when the parser refused them, so the two outputs tell a flag
 // the engine takes apart from one it lacks without touching any tree.
 function engineParses(target, flags) {
-  const result = spawnSync(process.execPath, [ENGINE, target, ...argvFor(flags)], { encoding: 'utf8' });
+  return engineAccepts([target, ...argvFor(flags)]);
+}
+
+function engineAccepts(argv) {
+  const result = spawnSync(process.execPath, [ENGINE, ...argv], { encoding: 'utf8' });
   return { status: result.status, accepted: /root is not a directory/.test(result.stdout) };
+}
+
+// A workflow names a route's invocation with each <placeholder> filled by one of its
+// own {variables}, such as --capture "{capture_path}".
+function invocationPattern(invocation) {
+  const command = invocation.split('#')[0].trim();
+  const escaped = command.split(/ <[^>]+>/).map((part) => part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  return new RegExp(escaped.join(' "?\\{[a-z_]+\\}"?'));
+}
+
+function yamlStrings(node, out = []) {
+  if (typeof node === 'string') out.push(node);
+  else if (Array.isArray(node)) node.forEach((value) => yamlStrings(value, out));
+  else if (node && typeof node === 'object') Object.values(node).forEach((value) => yamlStrings(value, out));
+  return out;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. THE ROUTES
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the manifest holds a status and an apply route, and only status answers the bare command', () => {
-  assert.deepEqual(ROUTES.map((route) => route.target), ['status', 'apply']);
+test('the manifest holds status, apply and repin routes, and only status answers the bare command', () => {
+  assert.deepEqual(ROUTES.map((route) => route.target), ['status', 'apply', 'repin']);
   assert.equal(routeFor('status').default_target, true);
   assert.equal(routeFor('status').mutating, 'read-only');
   assert.match(routeFor('status').gate3_location, /^n\/a/);
   // A bare invocation must never reach a route that writes.
-  assert.equal(routeFor('apply').default_target, undefined);
-  assert.equal(routeFor('apply').mutating, 'mutates');
+  for (const target of ['apply', 'repin']) {
+    assert.equal(routeFor(target).default_target, undefined, target);
+    assert.equal(routeFor(target).mutating, 'mutates', target);
+  }
   for (const route of ROUTES) {
     assert.equal(route.yaml, `doctor-overlay-${route.target}.yaml`);
     assert.ok(fs.existsSync(path.join(ASSETS, route.yaml)), route.yaml);
@@ -83,16 +110,40 @@ test('the manifest holds a status and an apply route, and only status answers th
   }
   assert.deepEqual(routeFor('status').allowed_flags, ['--json', '--root <dir>']);
   assert.deepEqual(routeFor('apply').allowed_flags, ['--root <dir>', '--capture <path>']);
+  assert.deepEqual(routeFor('repin').allowed_flags, ['--root <dir>', '--upstream <dir>', '--to <commit>', '--rollback <run-id>']);
+  // The phrase moved off the read-only route, so a re-pin request reaches the target that re-pins.
+  assert.ok(routeFor('repin').trigger_phrases.includes('re-pin my vendored Skilled'));
+  assert.ok(!routeFor('status').trigger_phrases.includes('re-pin my vendored Skilled'));
 });
 
 test('the engine parses every flag each route allows and refuses a flag the other target owns', () => {
-  for (const route of ROUTES) {
+  for (const route of ROUTES.filter((entry) => entry.target !== 'repin')) {
     const { status, accepted } = engineParses(route.target, route.allowed_flags);
     assert.equal(status, 2, route.target);
     assert.ok(accepted, `the engine refused a flag ${route.target} allows: ${route.allowed_flags.join(' ')}`);
   }
   assert.equal(engineParses('apply', ['--json']).accepted, false, 'apply must not take --json');
   assert.equal(engineParses('status', ['--capture <path>']).accepted, false, 'status must not take --capture');
+  assert.equal(engineParses('status', ['--upstream <dir>']).accepted, false, 'status must not take --upstream');
+  assert.equal(engineParses('apply', ['--to <commit>']).accepted, false, 'apply must not take --to');
+});
+
+test('the engine parses the three repin forms the workflow runs and refuses a mixed one', { skip: !ENGINE_HAS_REPIN && 'the engine usage block does not name repin yet' }, () => {
+  // --upstream names a real folder that is no checkout, and --root a missing one, so
+  // the engine stops at the root check and no probe can reach a tree.
+  const live = ['repin', '--upstream', os.tmpdir(), '--to', 'HEAD', '--root', MISSING_TREE];
+  try {
+    for (const argv of [live, [...live, '--stage', MISSING_STAGE], ['repin', '--rollback', 'some-run', '--root', MISSING_TREE]]) {
+      const { status, accepted } = engineAccepts(argv);
+      assert.equal(status, 2, argv.join(' '));
+      assert.ok(accepted, `the engine refused a form the repin workflow runs: ${argv.join(' ')}`);
+    }
+    assert.equal(engineAccepts([...live, '--capture', 'some/path.md']).accepted, false, 'repin must not take --capture');
+    assert.equal(engineAccepts(['repin', '--rollback', 'some-run', '--to', 'HEAD', '--root', MISSING_TREE]).accepted, false,
+      '--rollback must not combine with --to');
+  } finally {
+    fs.rmSync(MISSING_STAGE, { recursive: true, force: true });
+  }
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -106,7 +157,7 @@ test('the router carries the owner tag on line 6, the template sections and one 
   assert.deepEqual(tools, ['Read', 'Bash']);
   const hint = ROUTER.match(/^argument-hint:\s*"(.*)"$/m)[1];
   assert.ok(hint.length <= 140, `argument-hint is ${hint.length} chars`);
-  assert.ok(hint.startsWith('[status|apply]'), hint);
+  assert.ok(hint.startsWith('[status|apply|repin]'), hint);
 
   const headings = [...ROUTER.matchAll(/^## \d+\. ([A-Z ]+)$/gm)].map((match) => match[1]);
   assert.deepEqual(headings, [
@@ -122,7 +173,7 @@ test('the router carries the owner tag on line 6, the template sections and one 
     const row = `| \`${route.target}\` | \`.skilled/commands/doctor/assets/${route.yaml}\` |`;
     assert.ok(ROUTER.includes(row), row);
   }
-  assert.match(ROUTER, /A bare `\/doctor:overlay` never reaches `apply`, which writes/);
+  assert.match(ROUTER, /A bare `\/doctor:overlay` never reaches `apply`, which writes, or `repin`, which writes too/);
 });
 
 test('the presentation menu and the target list name exactly the manifest targets, in order', () => {
@@ -141,7 +192,7 @@ test('the presentation menu and the target list name exactly the manifest target
 // 4. THE WORKFLOWS
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('status writes nothing, and apply asks before the one phase that runs a writing engine call', () => {
+test('status writes nothing, and each writing target asks before the phases that run a writing engine call', () => {
   const status = parseYaml(read(path.join(ASSETS, routeFor('status').yaml)));
   assert.equal(status.mutation_boundaries.read_only, true);
   assert.deepEqual(status.mutation_boundaries.allowed_targets, []);
@@ -156,17 +207,48 @@ test('status writes nothing, and apply asks before the one phase that runs a wri
   assert.ok(phases.indexOf('phase_3_approval') < phases.indexOf('phase_4_write'));
 
   for (const route of ROUTES) {
-    const text = read(path.join(ASSETS, route.yaml));
+    const workflow = parseYaml(read(path.join(ASSETS, route.yaml)));
+    const text = yamlStrings(workflow).join('\n');
     for (const invocation of route.script_invocations) {
-      const command = invocation.split('#')[0].trim().replace(' <path>', '');
-      assert.ok(text.includes(command), `${route.yaml} never runs ${command}`);
+      assert.match(text, invocationPattern(invocation), `${route.yaml} never runs ${invocation.split('#')[0].trim()}`);
     }
     for (const key of route.setup_vars) {
-      assert.ok(key in parseYaml(text).inputs, `${route.yaml} inputs.${key} is missing`);
+      assert.ok(key in workflow.inputs, `${route.yaml} inputs.${key} is missing`);
     }
   }
   // The engine has no plan, digest or dry-run mode, so no such flag may reach it.
   assert.doesNotMatch(applyText, /--plan-digest|--dry-run|--yes/);
+});
+
+test('repin stages first, writes only after its yes, and rolls back only after a second yes', () => {
+  const repinText = read(path.join(ASSETS, routeFor('repin').yaml));
+  const repin = parseYaml(repinText);
+  assert.equal(repin.operating_mode.approvals, 'explicit_yes');
+  const phases = Object.keys(repin.workflow);
+  const activitiesOf = (phase) => repin.workflow[phase].activities;
+  const runs = (line) => /overlay-engine\.cjs repin /.test(line);
+
+  // The stage is the plan and runs only in the plan phase, before any question.
+  const stagePhases = phases.filter((phase) => activitiesOf(phase).some((line) => runs(line) && /--stage/.test(line)));
+  assert.deepEqual(stagePhases, ['phase_2_plan']);
+  assert.ok(activitiesOf('phase_2_plan').some((line) => /blocked/.test(line) && /before the question/.test(line)));
+
+  const writingPhases = phases.filter((phase) => activitiesOf(phase).some((line) => runs(line) && !/--stage/.test(line)));
+  assert.deepEqual(writingPhases, ['phase_4_write', 'phase_5_rollback']);
+  assert.ok(phases.indexOf('phase_2_plan') < phases.indexOf('phase_3_approval'));
+  assert.ok(phases.indexOf('phase_3_approval') < phases.indexOf('phase_4_write'));
+
+  // The rollback phase asks its own question before the line that restores.
+  const rollback = activitiesOf('phase_5_rollback');
+  const asks = rollback.findIndex((line) => /ask the rollback question/.test(line));
+  const restores = rollback.findIndex((line) => /repin --rollback/.test(line));
+  assert.ok(asks !== -1 && asks < restores, 'phase_5_rollback must ask before it restores');
+  assert.ok(rollback[restores].startsWith('After the rollback yes'), rollback[restores]);
+
+  // The presentation carries both questions the workflow asks.
+  assert.match(PRESENTATION, /^Re-pin this tree to \[commit\] now\? \[yes\/no\]$/m);
+  assert.match(PRESENTATION, /^Roll this re-pin back now\? \[yes\/no\]$/m);
+  assert.doesNotMatch(repinText, /--plan-digest|--dry-run|--yes/);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -183,5 +265,7 @@ test('the doctor contract names the overlay router, its workflows, presentation,
   const hint = ROUTER.match(/^argument-hint:\s*"(.*)"$/m)[1];
   assert.ok(DOCTOR_CONTRACT.input.argument_hint.includes(`${hint} (overlay)`));
   assert.ok(DOCTOR_CONTRACT.invocation_aliases.includes(`/doctor:overlay ${hint.replace(/ \| list \| \?$/, '')}`));
-  assert.ok(DOCTOR_CONTRACT.loader_requirements.some((line) => line.startsWith('/doctor:overlay apply')));
+  for (const target of ['apply', 'repin']) {
+    assert.ok(DOCTOR_CONTRACT.loader_requirements.some((line) => line.startsWith(`/doctor:overlay ${target}`)), target);
+  }
 });

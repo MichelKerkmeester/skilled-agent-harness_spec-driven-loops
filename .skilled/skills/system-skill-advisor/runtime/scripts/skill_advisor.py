@@ -2853,6 +2853,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
+    "command-doctor-overlay-repin": {
+        "description": "",
+        "slash_markers": ["/doctor:overlay repin"],
+        "inventory_id": "command-doctor-overlay-repin",
+        "command": "/doctor:overlay",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
+        "routing_enabled": True,
+    },
     "command-create-benchmark": {
         "description": "",
         "slash_markers": ["/create:benchmark"],

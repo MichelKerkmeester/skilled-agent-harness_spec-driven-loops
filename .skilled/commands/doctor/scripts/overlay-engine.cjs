@@ -31,6 +31,13 @@
 //     not live-edited, 2 on refusal or error.
 //   node overlay-engine.cjs --guard <path> [--root <tree>]
 //     Exit 0 when the path is not owned by an overlay, 1 when it is, 2 on error.
+//   node overlay-engine.cjs repin --upstream <dir> --to <commit> [--stage <dir>] [--root <tree>] [--json]
+//     Move the tree to a new upstream commit and apply the overlays again. With
+//     --stage, do it on a copy of the tree in <dir> and leave the tree alone.
+//     Exit 0 when clean, 1 when apply was blocked or the check failed (the run
+//     folder stays for --rollback), 2 on a refusal before any write or an error.
+//   node overlay-engine.cjs repin --rollback <run-id> [--root <tree>] [--json]
+//     Put back the bytes a re-pin run backed up. Exit 0, 2 on refusal or error.
 //
 // --root defaults to the tree this script is vendored in.
 //
@@ -42,6 +49,7 @@
 
 const crypto = require('node:crypto');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
@@ -62,11 +70,19 @@ const ENGINE_COMMAND = 'node .skilled/commands/doctor/scripts/overlay-engine.cjs
 const EXIT_OK = 0;
 const EXIT_CONFLICT = 1;
 const EXIT_ERROR = 2;
+const VENDOR_ROOT = '.skilled';
+const DEFAULT_RUNTIME_FOLDERS = ['.claude', '.codex', '.cursor', '.devin', '.hermes', '.opencode', '.pi'];
+const RUNS_FOLDER = 'repin-runs';
+const RUN_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+const GIT_MAX_BUFFER = 512 * 1024 * 1024;
+const REPIN_VALUE_FLAGS = ['upstream', 'to', 'stage', 'rollback'];
 
 const USAGE = [
   'usage: node overlay-engine.cjs status [--root <tree>] [--json]',
   '       node overlay-engine.cjs apply [--capture <path>] [--root <tree>]',
   '       node overlay-engine.cjs --guard <path> [--root <tree>]',
+  '       node overlay-engine.cjs repin --upstream <dir> --to <commit> [--stage <dir>] [--root <tree>] [--json]',
+  '       node overlay-engine.cjs repin --rollback <run-id> [--root <tree>] [--json]',
 ].join('\n');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1728,6 +1744,10 @@ function classifyDestination({ output, plan, key, live, state, manifest }) {
   }
 
   const desiredHash = desired === null ? null : sha256(desired);
+  // An overlay names the upstream bytes it was written against. A destination
+  // holding exactly those bytes, as it does right after a re-copy, is waiting for
+  // the overlay, so a moved pin alone does not make it an upstream move.
+  if (plan.entry.pinnedSha256 && hashMatches(live, plan.entry.pinnedSha256)) return 'overlay-edited';
   if (state.exists && state.pin !== manifest.pin.commit &&
       !hashMatches(live, appliedHash) && !buffersEqual(live, desired)) {
     return 'upstream-moved';
@@ -2020,9 +2040,12 @@ function commandStatus(ctx, options = {}) {
  * Apply every overlay edit; the caller holds the lock.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
+ * @param {{isRegenerateForced?: boolean, outcome?: object}} [options] A re-pin
+ *   regenerates even when no overlay wrote, because the copy changed the inputs;
+ *   `outcome.changed` receives the count printed on the last line.
  * @returns {number} 0 when applied, 1 on conflict or a failed step.
  */
-function applyUnderLock(ctx, manifest) {
+function applyUnderLock(ctx, manifest, options = {}) {
   const root = ctx.root;
   const state = loadState(ctx, manifest);
   const analysis = analyze(ctx, manifest, state);
@@ -2055,7 +2078,8 @@ function applyUnderLock(ctx, manifest) {
     console.log('linked ' + record.key + ' -> ' + record.target);
   }
 
-  if (written > 0) {
+  const isRegenerated = written > 0 || options.isRegenerateForced === true;
+  if (isRegenerated) {
     const regeneration = regenerate(manifest, root);
     for (const { step, result } of regeneration.failed) {
       const output = ((result.stdout || '') + (result.stderr || '')).trim().split('\n').slice(-3).join(' | ');
@@ -2081,9 +2105,11 @@ function applyUnderLock(ctx, manifest) {
 
   // The applied hashes are recorded first: they describe the destinations, which
   // are in sync, whatever the generators' own checks say next.
-  const generatedProblems = written > 0 ? verifyGenerated(manifest, root) : [];
+  const generatedProblems = isRegenerated ? verifyGenerated(manifest, root) : [];
   for (const problem of generatedProblems) console.log(`MISS     generated: ${problem}`);
-  console.log((changedRecords.length + layoutRecords.length) + ' changed');
+  const changed = changedRecords.length + layoutRecords.length;
+  if (options.outcome) options.outcome.changed = changed;
+  console.log(changed + ' changed');
   return generatedProblems.length > 0 ? EXIT_CONFLICT : EXIT_OK;
 }
 
@@ -2390,7 +2416,832 @@ function commandGuard(ctx, inputPath) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 16. COMMAND ENTRY POINT
+// 16. REPIN
+//
+// A re-pin replaces the tree's upstream files with a newer commit and puts the
+// overlays back on top. It copies the `.skilled` paths upstream changed, so the
+// files the project regenerates stay put unless upstream changed them, and the
+// runtime folders whole, because no generator restores a drifted runtime file.
+// Three rules keep it reversible:
+//   1. The paths it touches are computed once, and that one list drives both
+//      the backup and the copy, so nothing is written that was not backed up.
+//   2. An unowned file that differs from the old pin stops the run before any
+//      write: the copy would silently revert an edit someone made in place.
+//   3. Every failure after the backup names the run that --rollback restores.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function runGit(upstream, args) {
+  const result = spawnSync('git', ['-C', upstream, ...args], { encoding: 'buffer', maxBuffer: GIT_MAX_BUFFER });
+  if (result.error) throw result.error;
+  return result;
+}
+
+function gitText(upstream, args) {
+  const result = runGit(upstream, args);
+  if (result.status !== 0) {
+    throw new Error('git ' + args[0] + ' failed in ' + upstream + ': ' + result.stderr.toString('utf8').trim());
+  }
+  return result.stdout.toString('utf8');
+}
+
+function resolveCommit(upstream, commit) {
+  const result = runGit(upstream, ['rev-parse', '--verify', '--quiet', '--end-of-options', commit + '^{commit}']);
+  return result.status === 0 ? result.stdout.toString('utf8').trim() : null;
+}
+
+function objectFormat(upstream) {
+  const result = runGit(upstream, ['rev-parse', '--show-object-format']);
+  return result.status === 0 && result.stdout.toString('utf8').trim() === 'sha256' ? 'sha256' : 'sha1';
+}
+
+// The object id git gives these bytes, so a live file can be compared with a
+// pinned one without reading the pinned bytes out of the repository.
+function gitBlobId(format, buffer) {
+  return crypto.createHash(format).update(`blob ${buffer.length}\0`).update(buffer).digest('hex');
+}
+
+/**
+ * List the blobs below the given roots at one commit.
+ * Submodule entries are left out: an archive carries no bytes for them.
+ * @param {string} upstream Upstream checkout.
+ * @param {string} commit Full commit id.
+ * @param {string[]} roots Root folders, relative to the repository root.
+ * @returns {Map<string, {mode: string, object: string}>} Blobs keyed by path.
+ */
+function listBlobs(upstream, commit, roots) {
+  const entries = new Map();
+  const output = gitText(upstream, ['ls-tree', '-r', '-z', '--full-tree', commit, '--', ...roots]);
+  for (const record of output.split('\0')) {
+    if (!record) continue;
+    const tab = record.indexOf('\t');
+    const [mode, type, object] = record.slice(0, tab).split(' ');
+    if (type === 'blob') entries.set(record.slice(tab + 1), { mode, object });
+  }
+  return entries;
+}
+
+function diffNames(upstream, oldCommit, newCommit, filter, roots) {
+  const output = gitText(upstream, ['diff', '--no-ext-diff', '--name-only', '-z', '--no-renames',
+    '--diff-filter=' + filter, oldCommit, newCommit, '--', ...roots]);
+  return output.split('\0').filter(Boolean);
+}
+
+function normalizedRelative(value, label) {
+  const normalized = typeof value === 'string' ? path.posix.normalize(value).replace(/\/+$/, '') : '';
+  if (normalized === '' || normalized === '.' || normalized === '..' || normalized.startsWith('../') ||
+      path.isAbsolute(value) || value.includes('\\') || value.includes('\0')) {
+    throw new Error(`${label} must name a relative path inside the tree: ${String(value)}`);
+  }
+  return normalized;
+}
+
+function isUnderAny(relativePath, prefixes) {
+  return prefixes.some((prefix) => relativePath === prefix || relativePath.startsWith(prefix + '/'));
+}
+
+/**
+ * Read the manifest's optional `repin` block.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {{roots: string[], runtimeFolders: string[], exclude: string[]}}
+ */
+function repinSettings(manifest) {
+  const settings = manifest.repin === undefined ? {} : manifest.repin;
+  if (!settings || typeof settings !== 'object' || Array.isArray(settings)) {
+    throw new Error('the manifest repin block must be an object');
+  }
+  const listOf = (key, fallback) => {
+    const value = settings[key] === undefined ? fallback : settings[key];
+    if (!Array.isArray(value)) throw new Error(`repin.${key} must be a list of paths`);
+    return value.map((item) => normalizedRelative(item, 'repin.' + key));
+  };
+  const runtimeFolders = listOf('runtimeFolders', DEFAULT_RUNTIME_FOLDERS);
+  return {
+    roots: [...new Set([VENDOR_ROOT, ...runtimeFolders])],
+    runtimeFolders,
+    exclude: listOf('exclude', []),
+  };
+}
+
+/**
+ * Compute the one set of paths the copy will write and delete.
+ * @param {object} job Re-pin job with upstream, commits and settings.
+ * @returns {{copy: string[], delete: string[]}} Sorted paths, relative to the tree.
+ */
+function touchedPaths(job) {
+  const { upstream, oldCommit, newCommit, settings } = job;
+  const isKept = (relativePath) => !isUnderAny(relativePath, settings.exclude);
+  const copy = new Set();
+  for (const relativePath of diffNames(upstream, oldCommit, newCommit, 'AMT', [VENDOR_ROOT])) {
+    if (job.newBlobs.has(relativePath)) copy.add(relativePath);
+  }
+  for (const relativePath of job.newBlobs.keys()) {
+    if (isUnderAny(relativePath, settings.runtimeFolders)) copy.add(relativePath);
+  }
+  const deleted = diffNames(upstream, oldCommit, newCommit, 'D', settings.roots)
+    .filter((relativePath) => job.oldBlobs.has(relativePath) && !job.newBlobs.has(relativePath));
+  return {
+    copy: [...copy].filter(isKept).sort(),
+    delete: deleted.filter(isKept).sort(),
+  };
+}
+
+/**
+ * Build a test for whether a path is managed by the overlay folder: an overlay
+ * destination, a layout link, or a regenerated output. The copy may overwrite
+ * those, because apply and the regenerate steps write them back.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @returns {(relativePath: string) => boolean}
+ */
+function managedPathTest(ctx, manifest) {
+  const exact = new Set();
+  const prefixes = [];
+  const vendorKept = new Set();
+  for (const entry of manifest.overlays) {
+    if (entry.scope === 'remove-root') {
+      for (const relativePath of entry.paths || []) prefixes.push(path.posix.normalize(relativePath));
+      continue;
+    }
+    const destination = path.posix.normalize(entry.destination);
+    if (entry.scope === 'directory') {
+      prefixes.push(destination);
+    } else if (entry.scope === 'skill-root') {
+      for (const relativePath of [...(entry.replace || []), ...(entry.remove || [])]) {
+        prefixes.push(path.posix.join(destination, relativePath));
+      }
+      // A retained file inside a replaced folder is the vendor's own, kept as found.
+      for (const relativePath of keptRetainedPaths(entry, path.join(ctx.overlayRoot, entry.source))) {
+        vendorKept.add(path.posix.join(destination, relativePath));
+      }
+    } else {
+      exact.add(destination);
+    }
+  }
+  for (const link of manifest.layoutLinks || []) {
+    exact.add(path.posix.normalize(link.path));
+    if (link.replaces && typeof link.replaces.path === 'string') exact.add(path.posix.normalize(link.replaces.path));
+  }
+  for (const step of manifest.regenerate || []) {
+    for (const output of step.outputs || []) exact.add(path.posix.normalize(output));
+  }
+  return (relativePath) => !vendorKept.has(relativePath) &&
+    (exact.has(relativePath) || isUnderAny(relativePath, prefixes));
+}
+
+// Why a live path is not the given blob, or null when it is.
+function blobDifference(filePath, blob, format) {
+  let stats;
+  try {
+    stats = fs.lstatSync(filePath);
+  } catch (error) {
+    if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return 'missing from the tree';
+    throw error;
+  }
+  if (stats.isDirectory()) return 'a folder in the tree';
+  const isLink = blob.mode === '120000';
+  if (isLink !== stats.isSymbolicLink()) return isLink ? 'not a link in the tree' : 'a link in the tree';
+  const bytes = isLink ? Buffer.from(fs.readlinkSync(filePath)) : fs.readFileSync(filePath);
+  return gitBlobId(format, bytes) === blob.object ? null : (isLink ? 'a different link target' : 'different bytes');
+}
+
+/**
+ * Find unowned paths the copy would overwrite or delete that differ from the old
+ * pin, and project files at paths upstream ships for the first time.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object} job Re-pin job.
+ * @param {{copy: string[], delete: string[]}} touched The one set of touched paths.
+ * @returns {string[]} One refusal line per path.
+ */
+function unownedDrift(ctx, manifest, job, touched) {
+  const isManaged = managedPathTest(ctx, manifest);
+  const format = objectFormat(job.upstream);
+  const lines = [];
+  for (const relativePath of [...touched.copy, ...touched.delete].sort()) {
+    if (isManaged(relativePath)) continue;
+    const filePath = path.join(ctx.root, relativePath);
+    const oldBlob = job.oldBlobs.get(relativePath);
+    if (oldBlob) {
+      const reason = blobDifference(filePath, oldBlob, format);
+      if (reason) lines.push(`refuse: unowned ${relativePath} differs from the old pin (${reason})`);
+      continue;
+    }
+    if (!pathExists(filePath)) continue;
+    if (blobDifference(filePath, job.newBlobs.get(relativePath), format)) {
+      lines.push(`refuse: unowned ${relativePath} is not in the old pin, and the tree holds its own copy there`);
+    }
+  }
+  return lines;
+}
+
+/**
+ * Find touched paths the copy cannot write safely: a folder where upstream ships
+ * a file, or a path below a link or file that is not deleted first. Writing
+ * through a link would land outside the path the backup recorded.
+ * @param {string} root Destination tree root.
+ * @param {{copy: string[], delete: string[]}} touched The one set of touched paths.
+ * @returns {string[]} One refusal line per path.
+ */
+function treeShapeProblems(root, touched) {
+  const deletedFirst = new Set(touched.delete);
+  const lines = [];
+  for (const relativePath of [...touched.copy, ...touched.delete]) {
+    if (isEnvName(relativePath)) {
+      lines.push(`refuse: ${relativePath} is a .env path, which is never read; list it in repin.exclude`);
+      continue;
+    }
+    const parts = relativePath.split('/');
+    let blockedBy = null;
+    for (let depth = 1; depth < parts.length && !blockedBy; depth += 1) {
+      const ancestor = parts.slice(0, depth).join('/');
+      let stats;
+      try {
+        stats = fs.lstatSync(path.join(root, ancestor));
+      } catch (error) {
+        if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) break;
+        throw error;
+      }
+      if (stats.isDirectory()) continue;
+      if (deletedFirst.has(ancestor)) break;
+      blockedBy = `${ancestor}, which the tree holds as a ${stats.isSymbolicLink() ? 'link' : 'file'}`;
+    }
+    if (blockedBy) {
+      lines.push(`refuse: ${relativePath} sits below ${blockedBy}`);
+    } else if (isDirectory(path.join(root, relativePath))) {
+      lines.push(`refuse: ${relativePath} is a folder in the tree where upstream ships a file; list it in repin.exclude to keep it`);
+    }
+  }
+  return lines;
+}
+
+/**
+ * Extract the copied roots at the new commit with git archive.
+ * @param {object} job Re-pin job.
+ * @param {string} scratch Temporary folder for this run.
+ * @param {{copy: string[]}} touched The one set of touched paths.
+ * @returns {string} Folder holding the new commit's roots.
+ */
+function extractNewCommit(job, scratch, touched) {
+  const target = path.join(scratch, 'new');
+  fs.mkdirSync(target);
+  const presentRoots = job.settings.roots.filter((root) => {
+    for (const relativePath of job.newBlobs.keys()) if (isUnderAny(relativePath, [root])) return true;
+    return false;
+  });
+  if (presentRoots.length > 0) {
+    const archive = path.join(scratch, 'new.tar');
+    gitText(job.upstream, ['archive', '--format=tar', '-o', archive, job.newCommit, '--', ...presentRoots]);
+    const result = spawnSync('tar', ['-xf', archive, '-C', target], { encoding: 'utf8' });
+    if (result.error) throw result.error;
+    if (result.status !== 0) throw new Error('tar could not extract the archive: ' + (result.stderr || '').trim());
+    fs.rmSync(archive, { force: true });
+  }
+  const missing = touched.copy.filter((relativePath) => !pathExists(path.join(target, relativePath)));
+  if (missing.length > 0) {
+    throw new Error(`the archive of ${job.newCommit} lacks ${missing.length} path(s) the copy needs, first ${missing[0]}; ` +
+      'an export-ignore attribute upstream would explain it');
+  }
+  return target;
+}
+
+function makeRunId() {
+  const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+  return stamp + '-' + crypto.randomBytes(3).toString('hex');
+}
+
+function rollbackCommand(ctx, runId) {
+  const root = ctx.root === DEFAULT_ROOT ? '' : ' --root ' + (/\s/.test(ctx.root) ? `'${ctx.root}'` : ctx.root);
+  return `rollback: ${ENGINE_COMMAND} repin --rollback ${runId}${root}`;
+}
+
+// Whether a path is reached through a link. Such a path is never read or deleted
+// by the backup or the rollback: its bytes live at the link's target, and the
+// link itself is the entry that gets restored.
+function hasLinkedAncestor(root, relativePath) {
+  const parts = relativePath.split('/');
+  for (let depth = 1; depth < parts.length; depth += 1) {
+    const ancestor = path.join(root, ...parts.slice(0, depth));
+    let stats;
+    try {
+      stats = fs.lstatSync(ancestor);
+    } catch (error) {
+      if (error && (error.code === 'ENOENT' || error.code === 'ENOTDIR')) return false;
+      throw error;
+    }
+    if (!stats.isDirectory()) return true;
+  }
+  return false;
+}
+
+// Every file and link below a path, for a path apply or a regenerate step writes
+// as a whole folder.
+function backupLeaves(root, relativePath) {
+  const filePath = path.join(root, relativePath);
+  if (!isDirectory(filePath)) return [relativePath];
+  return listTreePaths(filePath).map((leaf) => relativeKey(root, leaf));
+}
+
+/**
+ * Back up every path the run may write, before its first write.
+ * The touched set is the copy's own list. The engine group adds what apply and
+ * the regenerate steps write afterwards, so a rollback also restores those.
+ * @param {object} ctx Engine context.
+ * @param {object} manifest Loaded overlay manifest.
+ * @param {object} analysis Analysis of the tree before the copy.
+ * @param {{copy: string[], delete: string[]}} touched The one set of touched paths.
+ * @param {string} runDir The run folder.
+ * @param {object} meta Run facts recorded beside the entries.
+ * @returns {object} The backup record written to backup.json.
+ */
+function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
+  const root = ctx.root;
+  const groups = new Map();
+  for (const relativePath of touched.copy) groups.set(relativePath, 'copy');
+  for (const relativePath of touched.delete) if (!groups.has(relativePath)) groups.set(relativePath, 'delete');
+  const enginePaths = [
+    relativeKey(root, ctx.manifestPath),
+    relativeKey(root, ctx.statePath),
+    ...analysis.records.map((record) => record.key),
+    ...(manifest.layoutLinks || []).flatMap((link) => [link.path, link.replaces && link.replaces.path]),
+    ...(manifest.regenerate || []).flatMap((step) => step.outputs || []),
+  ].filter((value) => typeof value === 'string').map((value) => path.posix.normalize(value));
+  for (const relativePath of enginePaths) {
+    for (const leaf of backupLeaves(root, relativePath)) if (!groups.has(leaf)) groups.set(leaf, 'engine');
+  }
+
+  const backupDir = path.join(runDir, 'backup');
+  const entries = [];
+  const createdDirs = new Set();
+  for (const relativePath of [...groups.keys()].sort()) {
+    const filePath = path.join(root, relativePath);
+    relativeKey(root, filePath);
+    let stats = null;
+    if (!hasLinkedAncestor(root, relativePath)) {
+      try {
+        stats = fs.lstatSync(filePath);
+      } catch (error) {
+        if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+      }
+    }
+    const group = groups.get(relativePath);
+    if (!stats) {
+      entries.push({ path: relativePath, group, existed: false });
+      for (let dir = path.dirname(filePath); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
+        if (pathExists(dir)) break;
+        createdDirs.add(relativeKey(root, dir));
+      }
+      continue;
+    }
+    if (stats.isSymbolicLink()) {
+      const target = fs.readlinkSync(filePath);
+      entries.push({ path: relativePath, group, existed: true, kind: 'symlink', target, sha256: sha256(Buffer.from(target)) });
+      continue;
+    }
+    if (isEnvName(relativePath) || !stats.isFile()) {
+      throw new Error('refusing to back up ' + relativePath + (stats.isFile() ? ', a .env path' : ', which is not a file or a link'));
+    }
+    const buffer = fs.readFileSync(filePath);
+    writeFile(path.join(backupDir, relativePath), buffer, 0o600);
+    entries.push({ path: relativePath, group, existed: true, kind: 'file', mode: stats.mode & 0o777, sha256: sha256(buffer) });
+  }
+  const backup = {
+    schemaVersion: 1,
+    ...meta,
+    entries,
+    createdDirs: [...createdDirs].sort((left, right) => right.length - left.length),
+  };
+  fs.writeFileSync(path.join(runDir, 'backup.json'), JSON.stringify(backup, null, 2) + '\n');
+  return backup;
+}
+
+function pruneEmptyParents(root, filePath) {
+  for (let dir = path.dirname(filePath); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
+    if (!isDirectory(dir) || fs.readdirSync(dir).length > 0) return;
+    fs.rmdirSync(dir);
+  }
+}
+
+function copyUpstreamEntry(fromPath, toPath) {
+  const stats = fs.lstatSync(fromPath);
+  fs.mkdirSync(path.dirname(toPath), { recursive: true });
+  if (stats.isSymbolicLink()) {
+    ensureSymlink(toPath, fs.readlinkSync(fromPath));
+    return;
+  }
+  // Unlink first, so a link standing at the path is replaced, never written through.
+  try {
+    fs.unlinkSync(toPath);
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') throw error;
+  }
+  fs.writeFileSync(toPath, fs.readFileSync(fromPath));
+  fs.chmodSync(toPath, stats.mode & 0o777);
+}
+
+/**
+ * Point the manifest's pin at the new commit, changing only that value's text.
+ * @param {object} ctx Engine context.
+ * @param {string} commit The new pin.
+ */
+function writePin(ctx, commit) {
+  const text = fs.readFileSync(ctx.manifestPath, 'utf8');
+  const node = nodeAtPath(parseJsonSource(text), ['pin', 'commit']);
+  if (node.type !== 'string') throw new Error('the manifest pin.commit is not a string');
+  fs.writeFileSync(ctx.manifestPath, text.slice(0, node.start) + JSON.stringify(commit) + text.slice(node.end));
+}
+
+/**
+ * Name the overlays whose every output now equals the new commit's bytes, which
+ * makes them dead weight a person can drop.
+ * @param {object} ctx Engine context.
+ * @param {object} analysis Analysis of the tree after the copy.
+ * @param {string} newTree Folder holding the new commit's roots.
+ * @param {string[]} roots Copied roots.
+ * @returns {string[]} Overlay ids.
+ */
+function overlaysEqualToUpstream(ctx, analysis, newTree, roots) {
+  const ids = [];
+  for (const plan of analysis.plans) {
+    if (plan.problems.length > 0 || plan.outputs.length === 0) continue;
+    const isEqual = plan.outputs.every((output) => {
+      const key = relativeKey(ctx.root, output.filePath);
+      if (!isUnderAny(key, roots)) return false;
+      const upstreamPath = path.join(newTree, key);
+      if (output.buffer === null) return !pathExists(upstreamPath);
+      return isFile(upstreamPath) && buffersEqual(fs.readFileSync(upstreamPath), output.buffer);
+    });
+    if (isEqual) ids.push(plan.entry.id);
+  }
+  return ids;
+}
+
+function reportBlocked(analysis, report) {
+  for (const record of analysis.records) {
+    if (!BLOCKING_STATES.has(record.state)) continue;
+    const overlay = record.layout ? 'layout' : record.plan.entry.id;
+    report.blocked.push({ overlay, state: record.state, path: record.key });
+    console.log(`blocked ${overlay}: ${record.state} ${record.key}`);
+  }
+  for (const plan of analysis.blocked) {
+    for (const problem of plan.problems) {
+      report.blocked.push({ overlay: plan.entry.id, state: 'refused', path: plan.entry.destination || null, problem });
+      console.log(`blocked ${plan.entry.id}: refused ${problem}`);
+    }
+  }
+  for (const problem of analysis.layout.problems) {
+    report.blocked.push({ overlay: 'layout', state: 'refused', path: null, problem });
+    console.log(`blocked layout: refused ${problem}`);
+  }
+}
+
+/**
+ * Copy, set the pin, apply twice and check; the caller holds the lock and has
+ * taken the backup.
+ * @returns {boolean} Whether every step finished clean.
+ */
+function repinWrites(ctx, job, touched, newTree, report) {
+  const root = ctx.root;
+  for (const relativePath of [...touched.delete].reverse()) {
+    const filePath = path.join(root, relativePath);
+    if (removePath(filePath)) pruneEmptyParents(root, filePath);
+  }
+  for (const relativePath of touched.copy) {
+    copyUpstreamEntry(path.join(newTree, relativePath), path.join(root, relativePath));
+  }
+  writePin(ctx, job.newPin);
+
+  const loaded = loadManifest(ctx);
+  // A stage has no project install behind it, so it skips the regenerate and
+  // verify steps and reports only what the overlays do.
+  const manifest = job.isStage ? { ...loaded, regenerate: [], verifyGenerated: [] } : loaded;
+  const afterCopy = analyze(ctx, manifest, loadState(ctx, manifest));
+  reportBlocked(afterCopy, report);
+  report.equalsUpstream = overlaysEqualToUpstream(ctx, afterCopy, newTree, job.settings.roots);
+  for (const id of report.equalsUpstream) console.log('equals-upstream ' + id);
+
+  const first = {};
+  if (applyUnderLock(ctx, manifest, { isRegenerateForced: true, outcome: first }) !== EXIT_OK) return false;
+  const second = {};
+  if (applyUnderLock(ctx, manifest, { outcome: second }) !== EXIT_OK) return false;
+  if (second.changed !== 0) {
+    console.log(`MISS     a second apply changed ${second.changed} destination(s)`);
+    return false;
+  }
+  const finalAnalysis = analyze(ctx, manifest, loadState(ctx, manifest));
+  const check = runCheck(ctx, manifest, finalAnalysis.plans);
+  for (const problem of check.problems) console.log(`MISS     ${problem}`);
+  const outOfSync = finalAnalysis.records.filter((record) => record.state !== 'in-sync');
+  printProblems(ctx, outOfSync);
+  console.log(`checked=${check.checked} ok=${check.ok} miss=${check.miss}`);
+  return outOfSync.length === 0 && finalAnalysis.blocked.length === 0 && check.miss === 0;
+}
+
+function refuseRepin(lines) {
+  for (const line of lines) console.log(line);
+  console.log('RESULT: FAILED');
+  return EXIT_ERROR;
+}
+
+/**
+ * Run one re-pin while holding the tree's lock.
+ * @param {object} ctx Engine context of the tree being written.
+ * @param {object} job Re-pin job.
+ * @param {object} report Report collected for --json and report.json.
+ * @returns {number} Exit code.
+ */
+function repinUnderLock(ctx, job, report) {
+  const manifest = loadManifest(ctx);
+  const analysis = analyze(ctx, manifest, loadState(ctx, manifest));
+  const blockers = analysis.records.filter((record) => BLOCKING_STATES.has(record.state));
+  if (blockers.length > 0) {
+    for (const record of blockers) console.log(problemLine(ctx, record));
+    return refuseRepin([`refuse: status shows ${blockers.length} live or conflicting destination(s); resolve them before a re-pin`]);
+  }
+  if (isUnderAny(ctx.overlayLabel, job.settings.roots)) {
+    return refuseRepin([`refuse: the overlay folder ${ctx.overlayLabel} sits inside a folder the re-pin copies`]);
+  }
+
+  job.oldBlobs = listBlobs(job.upstream, job.oldCommit, job.settings.roots);
+  job.newBlobs = listBlobs(job.upstream, job.newCommit, job.settings.roots);
+  const touched = touchedPaths(job);
+  const drift = unownedDrift(ctx, manifest, job, touched);
+  if (drift.length > 0) {
+    drift.push(`  move each edit into an overlay, list the path in repin.exclude, or restore it from ${job.oldPin}`);
+    return refuseRepin(drift);
+  }
+  const shape = treeShapeProblems(ctx.root, touched);
+  if (shape.length > 0) return refuseRepin(shape);
+
+  const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-repin-'));
+  try {
+    const newTree = extractNewCommit(job, scratch, touched);
+    let runId = makeRunId();
+    while (pathExists(path.join(ctx.overlayRoot, RUNS_FOLDER, runId))) runId = makeRunId();
+    const runDir = path.join(ctx.overlayRoot, RUNS_FOLDER, runId);
+    fs.mkdirSync(runDir, { recursive: true });
+    report.runId = runId;
+    report.copy = touched.copy.length;
+    report.delete = touched.delete.length;
+    let isClean = false;
+    let failure = null;
+    try {
+      const backup = writeBackup(ctx, manifest, analysis, touched, runDir, {
+        runId,
+        upstream: job.upstream,
+        from: job.oldCommit,
+        to: job.newCommit,
+      });
+      console.log(`backup of ${backup.entries.filter((entry) => entry.existed).length} paths in ${ctx.overlayLabel}/${RUNS_FOLDER}/${runId}`);
+      console.log(`copy ${touched.copy.length} paths, delete ${touched.delete.length} paths`);
+      isClean = repinWrites(ctx, job, touched, newTree, report);
+    } catch (error) {
+      failure = error;
+      console.log('error: ' + error.message);
+    }
+    if (!job.isStage && !isClean) console.log(rollbackCommand(ctx, runId));
+    report.result = job.isStage ? 'STAGED' : (isClean ? 'PASSED' : 'FAILED');
+    console.log('RESULT: ' + report.result);
+    fs.writeFileSync(path.join(runDir, 'report.json'), JSON.stringify(report, null, 2) + '\n');
+    if (failure) return EXIT_ERROR;
+    return isClean ? EXIT_OK : EXIT_CONFLICT;
+  } finally {
+    fs.rmSync(scratch, { recursive: true, force: true });
+  }
+}
+
+/**
+ * Why a stage folder cannot be used, or null when it can.
+ * @param {string} root Live tree root.
+ * @param {string} stageDir Requested stage folder.
+ * @returns {string|null}
+ */
+function stageFolderProblem(root, stageDir) {
+  if (isWithin(root, stageDir) || isWithin(canonicalPath(root), canonicalPath(stageDir))) {
+    return 'refuse: the stage folder sits inside the tree: ' + stageDir;
+  }
+  if (!pathExists(stageDir)) return null;
+  if (!isDirectory(stageDir)) return 'refuse: the stage folder is not a folder: ' + stageDir;
+  if (fs.readdirSync(stageDir).length > 0) return 'refuse: the stage folder is not empty: ' + stageDir;
+  return null;
+}
+
+/**
+ * Copy a tree byte for byte, links kept as links. The lock file and .env files
+ * are left out: the copy takes its own lock, and a .env file is never read.
+ * @param {string} source Live tree root.
+ * @param {string} destination Empty stage folder.
+ * @param {string} lockPath The live lock file.
+ * @returns {number} Number of .env files left out.
+ */
+function copyTreeForStage(source, destination, lockPath) {
+  let skipped = 0;
+  fs.mkdirSync(destination, { recursive: true });
+  const pending = [''];
+  while (pending.length > 0) {
+    const relativePath = pending.pop();
+    for (const dirent of fs.readdirSync(path.join(source, relativePath), { withFileTypes: true })) {
+      const childPath = path.join(relativePath, dirent.name);
+      const fromPath = path.join(source, childPath);
+      const toPath = path.join(destination, childPath);
+      if (path.resolve(fromPath) === path.resolve(lockPath)) continue;
+      const stats = fs.lstatSync(fromPath);
+      if (stats.isSymbolicLink()) {
+        fs.symlinkSync(fs.readlinkSync(fromPath), toPath);
+      } else if (stats.isDirectory()) {
+        fs.mkdirSync(toPath);
+        pending.push(childPath);
+      } else if (stats.isFile()) {
+        if (isEnvName(fromPath)) {
+          skipped += 1;
+          continue;
+        }
+        fs.copyFileSync(fromPath, toPath);
+        fs.chmodSync(toPath, stats.mode & 0o7777);
+      }
+    }
+  }
+  return skipped;
+}
+
+/**
+ * Re-pin the tree, or a staged copy of it, to a new upstream commit.
+ * @param {object} liveCtx Engine context of the live tree.
+ * @param {{upstream: string, to: string, stage?: string|null}} options
+ * @param {object} report Report collected for --json and report.json.
+ * @returns {number} Exit code.
+ */
+function repinRun(liveCtx, options, report) {
+  const upstream = path.resolve(options.upstream);
+  if (!isDirectory(upstream)) return refuseRepin(['refuse: the upstream is not a folder: ' + upstream]);
+  const manifest = loadManifest(liveCtx);
+  const oldPin = manifest.pin && typeof manifest.pin.commit === 'string' ? manifest.pin.commit : '';
+  if (!oldPin) return refuseRepin(['refuse: the overlay manifest has no pin.commit']);
+  const settings = repinSettings(manifest);
+  const oldCommit = resolveCommit(upstream, oldPin);
+  if (!oldCommit) return refuseRepin([`refuse: the pinned ${oldPin} is not a commit in ${upstream}`]);
+  const newCommit = resolveCommit(upstream, options.to);
+  if (!newCommit) return refuseRepin([`refuse: ${options.to} is not a commit in ${upstream}`]);
+  report.from = oldCommit;
+  report.to = newCommit;
+  if (newCommit === oldCommit) {
+    report.result = 'PASSED';
+    console.log('nothing to copy');
+    console.log('RESULT: PASSED');
+    return EXIT_OK;
+  }
+  // Keep the short form the operator typed, the way the manifest records pins.
+  const typed = options.to.toLowerCase();
+  const newPin = /^[0-9a-f]{7,}$/.test(typed) && newCommit.startsWith(typed) ? typed : newCommit;
+  const job = { upstream, oldPin, oldCommit, newCommit, newPin, settings, isStage: Boolean(options.stage) };
+
+  let ctx = liveCtx;
+  if (job.isStage) {
+    const stageDir = path.resolve(options.stage);
+    const problem = stageFolderProblem(liveCtx.root, stageDir);
+    if (problem) return refuseRepin([problem]);
+    // Reading the tree while another run writes it would stage a torn copy. The
+    // live lock is only read here: a stage writes nothing in the live tree.
+    if (pathExists(liveCtx.lockPath)) {
+      const owner = (readBufferOrNull(liveCtx.lockPath) || Buffer.from('(empty lock file)')).toString('utf8').trim();
+      return refuseRepin(['refuse: the overlay lock is held: ' + owner, '  remove ' + liveCtx.lockPath + ' by hand once that run has ended']);
+    }
+    const skipped = copyTreeForStage(liveCtx.root, stageDir, liveCtx.lockPath);
+    console.log('staged a copy of the tree in ' + stageDir + (skipped > 0 ? ` (${skipped} .env file(s) left out)` : ''));
+    ctx = createContext(stageDir);
+    report.stage = stageDir;
+  }
+  return withLock(ctx, 'overlay-engine repin', () => repinUnderLock(ctx, job, report));
+}
+
+/**
+ * Restore every path a run backed up and remove what the run created.
+ * Every backed-up file is checked against its recorded hash before anything is
+ * written, so a damaged backup restores nothing.
+ * @param {object} ctx Engine context.
+ * @param {string} runDir The run folder.
+ * @param {object} backup Parsed backup.json.
+ * @returns {number} Exit code.
+ */
+function rollbackUnderLock(ctx, runDir, backup) {
+  const root = ctx.root;
+  const restored = [];
+  const problems = [];
+  for (const entry of backup.entries) {
+    const relativePath = normalizedRelative(entry.path, 'backup entry');
+    relativeKey(root, path.join(root, relativePath));
+    if (!entry.existed) continue;
+    if (entry.kind === 'symlink') {
+      if (typeof entry.target !== 'string' || sha256(Buffer.from(entry.target)) !== entry.sha256) {
+        problems.push(`refuse: the backed-up link ${relativePath} does not match its recorded sha256`);
+      }
+      restored.push({ entry, relativePath });
+      continue;
+    }
+    const buffer = readBufferOrNull(path.join(runDir, 'backup', relativePath));
+    if (!buffer || sha256(buffer) !== entry.sha256) {
+      problems.push(`refuse: the backup of ${relativePath} does not match its recorded sha256`);
+      continue;
+    }
+    restored.push({ entry, relativePath, buffer });
+  }
+  if (problems.length > 0) return refuseRepin(problems);
+
+  let removed = 0;
+  const created = backup.entries.filter((entry) => !entry.existed)
+    .map((entry) => normalizedRelative(entry.path, 'backup entry'))
+    .sort((left, right) => right.split('/').length - left.split('/').length || right.localeCompare(left));
+  for (const relativePath of created) {
+    if (hasLinkedAncestor(root, relativePath)) continue;
+    if (removePath(path.join(root, relativePath))) removed += 1;
+  }
+  for (const relativePath of backup.createdDirs || []) {
+    const dir = path.join(root, normalizedRelative(relativePath, 'backup folder'));
+    if (isDirectory(dir) && fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+  }
+
+  restored.sort((left, right) => left.relativePath.split('/').length - right.relativePath.split('/').length);
+  for (const { entry, relativePath, buffer } of restored) {
+    const filePath = path.join(root, relativePath);
+    // A parent the run turned into a file or link is cleared, never written through.
+    const parts = relativePath.split('/');
+    for (let depth = 1; depth < parts.length; depth += 1) {
+      const ancestor = path.join(root, ...parts.slice(0, depth));
+      if (pathExists(ancestor) && !isDirectory(ancestor)) fs.unlinkSync(ancestor);
+    }
+    if (isDirectory(filePath)) fs.rmSync(filePath, { recursive: true, force: true });
+    if (entry.kind === 'symlink') {
+      ensureSymlink(filePath, entry.target);
+      if (fs.readlinkSync(filePath) !== entry.target) problems.push(`restored link ${relativePath} has the wrong target`);
+      continue;
+    }
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    removePath(filePath);
+    fs.writeFileSync(filePath, buffer);
+    fs.chmodSync(filePath, entry.mode);
+    const written = readBufferOrNull(filePath);
+    if (!written || sha256(written) !== entry.sha256) problems.push(`restored ${relativePath} does not match its recorded sha256`);
+  }
+  for (const problem of problems) console.log('MISS     ' + problem);
+  console.log(`restored ${restored.length} paths, removed ${removed} paths`);
+  console.log(problems.length > 0 ? 'RESULT: FAILED' : 'RESULT: PASSED');
+  return problems.length > 0 ? EXIT_ERROR : EXIT_OK;
+}
+
+function rollbackRun(ctx, runId) {
+  if (!RUN_ID_PATTERN.test(runId)) return refuseRepin(['refuse: not a run id: ' + runId]);
+  const runDir = path.join(ctx.overlayRoot, RUNS_FOLDER, runId);
+  const buffer = readBufferOrNull(path.join(runDir, 'backup.json'));
+  if (!buffer) return refuseRepin([`refuse: no backup for run ${runId} in ${ctx.overlayLabel}/${RUNS_FOLDER}`]);
+  const backup = JSON.parse(buffer.toString('utf8'));
+  if (backup.schemaVersion !== 1 || !Array.isArray(backup.entries)) {
+    return refuseRepin([`refuse: the backup for run ${runId} has an unsupported shape`]);
+  }
+  return withLock(ctx, 'overlay-engine repin rollback', () => rollbackUnderLock(ctx, runDir, backup));
+}
+
+/**
+ * Run a re-pin or a rollback, collecting every printed line for the report.
+ * With --json the lines go into the report instead of the terminal.
+ * @param {object} ctx Engine context of the live tree.
+ * @param {{upstream?: string, to?: string, stage?: string|null, rollback?: string|null, isJson?: boolean}} options
+ * @returns {number} Exit code.
+ */
+function commandRepin(ctx, options) {
+  const report = {
+    result: null,
+    mode: options.rollback ? 'rollback' : (options.stage ? 'stage' : 'live'),
+    runId: options.rollback || null,
+    copy: 0,
+    delete: 0,
+    blocked: [],
+    equalsUpstream: [],
+    lines: [],
+  };
+  const original = console.log;
+  console.log = (...args) => {
+    const line = args.join(' ');
+    report.lines.push(line);
+    if (!options.isJson) original(line);
+  };
+  let code;
+  try {
+    code = options.rollback ? rollbackRun(ctx, options.rollback) : repinRun(ctx, options, report);
+    // A lock refusal comes from withLock, which prints no result line of its own.
+    const last = report.lines[report.lines.length - 1];
+    if (!last || !last.startsWith('RESULT: ')) console.log('RESULT: ' + (code === EXIT_OK ? 'PASSED' : 'FAILED'));
+  } finally {
+    console.log = original;
+  }
+  if (report.result === null) {
+    const last = report.lines.filter((line) => line.startsWith('RESULT: ')).pop();
+    report.result = last ? last.slice('RESULT: '.length) : (code === EXIT_OK ? 'PASSED' : 'FAILED');
+  }
+  if (options.isJson) console.log(JSON.stringify(report, null, 2));
+  return code;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 17. COMMAND ENTRY POINT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -2399,16 +3250,20 @@ function commandGuard(ctx, inputPath) {
  * @returns {object|null} Parsed options, or null for a misused command line.
  */
 function parseArguments(argv) {
-  const options = { command: null, root: null, isJson: false, capture: null, guard: null };
+  const options = {
+    command: null, root: null, isJson: false, capture: null, guard: null,
+    upstream: null, to: null, stage: null, rollback: null,
+  };
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
     if (value === '--help' || value === '-h') return { command: 'help' };
-    if (value === 'status' || value === 'apply') {
+    if (value === 'status' || value === 'apply' || value === 'repin') {
       if (options.command) return null;
       options.command = value;
       continue;
     }
-    if (value === '--root' || value === '--capture' || value === '--guard') {
+    if (value === '--root' || value === '--capture' || value === '--guard' ||
+        REPIN_VALUE_FLAGS.includes(value.slice(2))) {
       const next = argv[index + 1];
       const field = value.slice(2);
       if (options[field] !== null || !next || next.startsWith('-')) return null;
@@ -2428,8 +3283,11 @@ function parseArguments(argv) {
   }
   if (!options.command) return null;
   if (options.capture !== null && options.command !== 'apply') return null;
-  if (options.isJson && options.command !== 'status') return null;
-  return options;
+  if (options.isJson && options.command !== 'status' && options.command !== 'repin') return null;
+  const repinFlags = REPIN_VALUE_FLAGS.filter((field) => options[field] !== null);
+  if (options.command !== 'repin') return repinFlags.length === 0 ? options : null;
+  if (options.rollback !== null) return repinFlags.length === 1 ? options : null;
+  return options.upstream !== null && options.to !== null ? options : null;
 }
 
 /**
@@ -2456,6 +3314,7 @@ function main(argv) {
     const ctx = createContext(root);
     if (options.command === 'guard') return commandGuard(ctx, options.guard);
     if (options.command === 'status') return commandStatus(ctx, { isJson: options.isJson });
+    if (options.command === 'repin') return commandRepin(ctx, options);
     if (options.capture !== null) return commandCapture(ctx, options.capture);
     return commandApply(ctx);
   } catch (error) {
@@ -2471,7 +3330,7 @@ if (require.main === module) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 17. EXPORTS
+// 18. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -2483,6 +3342,7 @@ module.exports = {
   commandApply,
   commandCapture,
   commandGuard,
+  commandRepin,
   commandStatus,
   createContext,
   isCaptureRestricted,

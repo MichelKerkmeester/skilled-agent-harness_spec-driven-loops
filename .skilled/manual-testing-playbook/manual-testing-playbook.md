@@ -312,7 +312,7 @@ Installs or debugs Code Mode, its UTCP configuration and runtime registration. T
 
 ### 8.9 `/doctor:overlay`
 
-Checks whether a vendored Skilled tree still carries its overlays, and puts them back after one yes. No `DOC` scenario covers it yet. The `system-skilled-doctor` playbook holds its first scenario, `SKD-003`, which runs `status` on a tree with no overlays and confirms nothing is written.
+Checks whether a vendored Skilled tree still carries its overlays, puts them back, or re-pins the tree to a newer upstream commit, after one yes. No `DOC` scenario covers it yet. The `system-skilled-doctor` playbook holds its first scenario, `SKD-003`, which runs `status` on a tree with no overlays and confirms nothing is written.
 
 | ID | Scenario | Scenario File |
 |---|---|---|

@@ -1,15 +1,17 @@
 ---
 title: "Vendored Skilled Overlays"
-description: "What each overlay sync state means, which file to edit for an owned path, how the overlay folder and its manifest are found, and what the engine's lock and secret guard refuse."
+description: "What each overlay sync state means, how the overlay folder is found, what the engine refuses and how to re-pin a vendored copy or roll a re-pin back."
 trigger_phrases:
   - "vendored skilled overlays"
   - "overlay sync state"
   - "doctor overlay status"
   - "edit the overlay not the live file"
   - "overlay folder setting"
+  - "re-pin vendored skilled"
+  - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Vendored Skilled Overlays
@@ -29,6 +31,7 @@ A project that vendors Skilled replaces its whole copy when it moves to a new up
 - `/doctor:overlay status` printed a line that is not `in-sync`.
 - An edit to a vendored file was refused because an overlay owns it.
 - A project is setting up overlays for the first time.
+- A project is moving its vendored copy to a newer upstream commit.
 
 ### Core Principle
 
@@ -79,7 +82,7 @@ The common mistake is running `apply` over a `live-edited` destination. It block
 
 ### A Held Lock
 
-`apply` and a capture take `<overlayDir>/.build-lock` themselves and remove it when they finish, also on failure. While another run holds it, they refuse and print the owner line and the lock file path. No run clears a lock on its own: when the owner process is gone, remove the file by hand and run again.
+`apply` and a capture take `<overlayDir>/.build-lock` themselves and remove it when they finish, also on failure. While another run holds it, they refuse and print both the owner line and the lock file path. No run clears a lock on its own: when the owner process is gone, remove the file by hand and run again.
 
 ### Secret Files
 
@@ -102,7 +105,39 @@ A `protectedPaths` value that points outside the entry, an absolute path, an emp
 
 ---
 
-## 5. RELATED RESOURCES
+## 5. MOVING TO A NEW UPSTREAM COMMIT
+
+A re-pin replaces the vendored copy with a newer upstream commit and puts the overlays back on top. It needs a local Skilled checkout that holds both the pinned commit and the new one.
+
+### What a Re-Pin Copies
+
+- **`.skilled`:** only the paths upstream added or changed between the two commits. Files the project regenerates, such as the trigger index, stay untouched unless upstream changed them.
+- **The runtime folders:** each one whole, so an upstream runtime file that drifted comes back. A project's own files in those folders stay, because upstream never ships them.
+- **Deleted paths:** whatever upstream removed between the two commits is removed here too.
+
+A path in the manifest's `repin.exclude` list is never copied over, which keeps a project's real folder where upstream ships a link. Root files such as `AGENTS.md` are never copied.
+
+### The Two Runs
+
+1. Run `/doctor:overlay repin --upstream <checkout> --to <commit>`. It first builds the re-pinned tree in a temporary copy and reports how many paths it will copy and delete. The report also lists the blocked overlays and the overlays that now equal upstream.
+2. Rebase each blocked overlay onto the new upstream file, and drop each entry that now equals upstream. Then run the command again.
+3. When the report lists nothing blocked, approve it. The live run backs up every path it will touch, copies, sets the pin, applies the overlays twice and runs the full check.
+
+The run refuses before any write when a file no overlay owns differs from the pinned commit. That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream first.
+
+### Rolling Back
+
+Every live run keeps its backup in `<overlayDir>/repin-runs/<run-id>/`. When a run fails after its backup, it prints the rollback line:
+
+```bash
+node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-id>
+```
+
+Rollback restores each backed-up file byte for byte and removes the files the run created. Run `/doctor:overlay status` afterwards to confirm the tree is back in sync.
+
+---
+
+## 6. RELATED RESOURCES
 
 - `.skilled/commands/doctor/overlay.md`: the command router.
 - `.skilled/commands/doctor/scripts/overlay-engine.cjs`: the engine, whose header lists every target and exit code.

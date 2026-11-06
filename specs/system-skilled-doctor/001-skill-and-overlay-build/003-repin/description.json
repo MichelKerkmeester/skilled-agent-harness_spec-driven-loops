@@ -1,0 +1,20 @@
+{
+  "level": "3",
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/003-repin",
+  "description": "Phase 3: repin",
+  "keywords": [
+    "phase",
+    "repin"
+  ],
+  "lastUpdated": "2026-11-06T09:30:27.838Z",
+  "specId": "003",
+  "folderSlug": "repin",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-11-26_10-30__phase-003-built-doctor-overlay-repin-with-a.md"
+  ]
+}

@@ -622,7 +622,6 @@ routes:
       - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # exit 0 = in sync, 1 = something out of sync, 2 = a failed precondition; the workflow adds --root <dir> and --json only when the operator passed them'
     trigger_phrases:
       - "check my vendored skilled overlays"
-      - "re-pin my vendored Skilled"
       - "are my skilled overlays in sync"
       - "which overlay destinations are out of sync"
       - "vendored skilled overlay status"
@@ -644,6 +643,25 @@ routes:
       - "put my overlays back into vendored skilled"
       - "capture a live edit into its overlay"
       - "reapply overlays after copying skilled"
+
+  - command: /doctor:overlay
+    target: repin
+    yaml: doctor-overlay-repin.yaml
+    setup_vars: [execution_mode, root, upstream, to_commit, rollback_run_id]
+    allowed_flags: ["--root <dir>", "--upstream <dir>", "--to <commit>", "--rollback <run-id>"]
+    mutating: mutates
+    gate3_location: "inside the vendored tree, the .skilled paths upstream added, changed or deleted between the pin the overlay manifest records and --to, plus each runtime folder whole, less the manifest's repin.exclude list and never a root file such as AGENTS.md; the manifest's pin, set to --to; the overlay destinations, layout links, regenerate outputs and <overlay folder>/sync-state.json the apply that follows writes; and the backup in <overlay folder>/repin-runs/<run-id>/, written before the first copy; all under the engine's own <overlay folder>/.build-lock; with --rollback <run-id>, only the paths that run's backup records, restored byte for byte, and the files that run created, removed; the --stage plan writes only a fresh temporary folder outside the tree, and the live write runs only after the operator approved the stage report this run printed"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream <dir> --to <commit> --stage <dir>  # the plan: the same steps on a copy in a fresh temporary folder, live tree untouched; exit 0 = RESULT: STAGED, 1 = blocked overlays or a failed check, 2 = a refusal before any write'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --upstream <dir> --to <commit>  # the live run under the engine lock: backs up every path it touches, copies, sets the pin, applies and checks; run only after the repin yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-id>  # restores the backup of one run byte for byte; run only after the rollback yes'
+      - 'node .skilled/commands/doctor/scripts/overlay-engine.cjs status  # read-only: the re-read after the re-pin or the rollback'
+    trigger_phrases:
+      - "re-pin my vendored Skilled"
+      - "repin vendored skilled to a new commit"
+      - "move my vendored skilled copy to a newer upstream commit"
+      - "roll back a vendored skilled re-pin"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

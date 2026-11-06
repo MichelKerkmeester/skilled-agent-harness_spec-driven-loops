@@ -4,10 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 34,
-    "generated": 61,
-    "typescriptActive": 39,
-    "pythonActive": 49
+    "doctorRoutes": 35,
+    "generated": 62,
+    "typescriptActive": 40,
+    "pythonActive": 50
   },
   "entries": [
     {
@@ -1092,6 +1092,46 @@
       }
     },
     {
+      "id": "command-doctor-overlay-repin",
+      "command": "/doctor:overlay",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-overlay-repin",
+          "order": 39,
+          "id": "command-doctor-overlay-repin",
+          "description": "",
+          "name": "/doctor:overlay repin",
+          "keywords": [
+            "re-pin my vendored Skilled",
+            "repin vendored skilled to a new commit",
+            "move my vendored skilled copy to a newer upstream commit",
+            "roll back a vendored skilled re-pin"
+          ],
+          "intentSignals": [
+            "/doctor:overlay repin"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-overlay-repin",
+          "order": 50,
+          "id": "command-doctor-overlay-repin",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:overlay repin"
+          ]
+        }
+      }
+    },
+    {
       "id": "command-doctor-overlay-status",
       "command": "/doctor:overlay",
       "skillId": "system-skilled-doctor",
@@ -1107,7 +1147,6 @@
           "name": "/doctor:overlay status",
           "keywords": [
             "check my vendored skilled overlays",
-            "re-pin my vendored Skilled",
             "are my skilled overlays in sync",
             "which overlay destinations are out of sync",
             "vendored skilled overlay status",
