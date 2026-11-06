@@ -35,7 +35,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 | **cli-devin** | workflow | Devin CLI orchestration: Cognition-backed coding, cloud handoff, subagent delegation, MCP host integration; fails closed when `devin` is absent | `cli-external-orchestration/cli-devin/` |
 | **cli-pi** | workflow | Pi CLI orchestration: guarded headless print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when `pi` is absent | `cli-external-orchestration/cli-pi/` |
 | **cli-hermes** | workflow | Hermes Agent CLI orchestration: quiet oneshot chat dispatch, LLM Gateway model routing, project skills and plugins, cross-AI validation; fails closed when `hermes` is absent or when no provider is configured | `cli-external-orchestration/cli-hermes/` |
-| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: no route is proven live yet, because no keyed run has answered. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
+| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: LLM Gateway is verified. OpenCode Go is configured but not verified. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
 
 ### When NOT to Use
 

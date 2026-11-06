@@ -46,7 +46,7 @@ Each live result applies only to the route and behavior the saved probe exercise
 
 ## 2. SMART ROUTING
 
-The `cli-external-orchestration` hub routes a dsh dispatch here when the request names DeepSeek Harness, `dsh` or `dsh headless`, or asks for a one-task headless DeepSeek run. LLM Gateway is verified. OpenCode Go remains configured, not verified.
+The `cli-external-orchestration` hub routes a dsh dispatch here when the request names DeepSeek Harness, `dsh`, `dsh headless` or says "delegate to dsh". LLM Gateway is verified. OpenCode Go remains configured, not verified.
 `command -v dsh` and the pinned `dsh --version` decide whether a local dispatch can run, and both run before every dispatch.
 Every run loads `references/cli-reference.md` and `assets/prompt-quality-card.md` first, before any intent selection.
 Read [`ROUTER.md`](../../../.skilled/skills/cli-external-orchestration/cli-deepseek-harness/ROUTER.md) before selecting skill-local resources, and open only the matched files.
@@ -100,7 +100,7 @@ A missing key fails fast and cheaply: the keyless offline run exited 1 with `MIS
 
 ## 4. RULES
 
-The twelve fail-closed rules live in [hard-rules.json](../../../.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json): `headless-only`, `stdin-dash-required`, `route-patch-required`, `closed-roster`, `approval-never-required`, `dsh-home-isolated`, `lineage-patch-required`, `guards-patch-required`, `json-final-and-exit-required`, `pinned-version-required`, `no-repo-root-dotenv` and `mcp-opt-in-only`.
+The thirteen fail-closed rules live in [hard-rules.json](../../../.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json): `headless-only`, `stdin-dash-required`, `route-patch-required`, `closed-roster`, `approval-never-required`, `dsh-home-isolated`, `lineage-patch-required`, `guards-patch-required`, `json-final-and-exit-required`, `pinned-version-required`, `dsh-availability-required`, `no-repo-root-dotenv` and `mcp-opt-in-only`.
 
 ### ✅ ALWAYS
 
