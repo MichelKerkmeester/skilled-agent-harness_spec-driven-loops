@@ -1,7 +1,7 @@
 ---
 title: "GRD-002 -- Dispatch rule-check suite"
 description: "This scenario validates that the dispatch rule-check suite passes and keeps every declared dsh hard rule paired with an implemented check for `GRD-002`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GRD-002 -- Dispatch rule-check suite
@@ -67,7 +67,7 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
 | File | Role |
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Verdict rules and evidence policy |
-| `../../SKILL.md` | The twelve hard rules and the dispatch boundary |
+| `../../SKILL.md` | The thirteen hard rules and the dispatch boundary |
 | `../../hard-rules.json` | Declared dsh rules and their messages |
 | `../../references/fanout-executor.md` | Recursion, state environment and refusal behavior |
 

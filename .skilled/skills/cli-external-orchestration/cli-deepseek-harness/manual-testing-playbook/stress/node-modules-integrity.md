@@ -6,7 +6,7 @@ test_file: "tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts"
 test_name: "preserves independent worktree node_modules boundaries during cli-deepseek-harness dispatch"
 playbook_path: "cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/stress/node-modules-integrity.md"
 id: "cli-deepseek-harness-EC-013"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # EC-013 -- cli-deepseek-harness node modules integrity
@@ -28,7 +28,7 @@ This scenario runs the manifest-indexed hermetic stress test for `cli-deepseek-h
 - Expected execution process: run the exact Vitest invocation in §3 from the repository root, then capture stdout, stderr and the exit code.
 - Expected signals: the verbose Vitest reporter names the exact test as passed, and the final file and test summary is green.
 - Pass/fail: PASS when the command exits 0 and the named test is reported passed; FAIL when the test starts and exits non-zero or an assertion fails; SKIP only when Node or the checked-in Vitest dependency cannot start.
-- Key-gated live confirmation: **SKIP pending phase 013**. This stress cell has no live provider step.
+- Live provider step: none. This stress cell is hermetic and needs no live provider step.
 
 ---
 
@@ -67,7 +67,7 @@ The command exits 0 and the verbose reporter names `preserves independent worktr
 - **PASS**: The command exits 0 and the exact manifest-indexed test is reported as passed.
 - **FAIL**: The command exits non-zero after the test starts, an assertion fails, or the command exceeds its test bound.
 - **SKIP**: Only Node or the checked-in Vitest dependency cannot start; record the exact missing prerequisite. Provider credentials are not required for this hermetic cell.
-- **Key-gated follow-up**: **SKIP pending phase 013**. No keyed live DSH run has been verified.
+- Live provider step: none. This stress cell is hermetic and needs no live provider step.
 
 ### Triage
 

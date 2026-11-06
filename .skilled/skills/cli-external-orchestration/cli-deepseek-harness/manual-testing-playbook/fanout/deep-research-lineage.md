@@ -1,7 +1,7 @@
 ---
 title: "FAN-001 -- Deep-research lineage"
 description: "This scenario validates a research lineage on the cli-deepseek-harness executor kind, including its lineage command, isolated home and completion check for `FAN-001`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # FAN-001 -- Deep-research lineage
@@ -52,16 +52,14 @@ bash: read the lineage result and confirm exit 0, a last final event with reason
 
 ### Recorded Result
 
-- Verdict: `SKIP`.
-- Blocker: no provider key is available in this environment, so no keyed lineage can run.
-- Key gate: blocked until a provider key exists for the selected route. That is separate setup work, not a defect in the lineage command.
-- What is already known: the fan-out reference records the kind in `EXECUTOR_KINDS`, `buildDshLineageCommand` builds the documented argv and both routes are configured. The packet's opening notice records the kind as an explicit, experimental choice. A completed lineage is `documented, unconfirmed`, because no keyed lineage has run.
-- Re-run condition: the route key variable is set in the runner's allowlisted environment, and the caller names the kind explicitly.
-- Basis: `references/fanout-executor.md` records the registered kind and the built command. The keyless route captures under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/` prove the route layer only. No lineage capture exists.
+- Verdict: `PASS`.
+- Observed: the clean LLM Gateway deep-research lineage completed on 2026-11-06 with exit 0 and a `completed` final event. Its containment scan reported zero advisory events and no quarantine.
+- Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage.md`, `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.exit.txt` and `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.stdout.txt`.
+- OpenCode Go remains configured, not verified, and stays out of default allowlists while its key is unset.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FAN-001 | Deep-research lineage | Prove the runner builds and completes a dsh research lineage | `Run a deep-research lineage on the cli-deepseek-harness executor kind with the LLM Gateway route and read-only permissions. Return the lineage status and the final reason, and do not mount MCP.` | 1. `agent:` start the lineage with the kind, model and route named -> 2. `agent:` confirm the runner builds the route, lineage and guards patches and sets the lineage home -> 3. `bash:` read the result, the last event and the containment scan | Step 1: cwd is the lineage directory and `DSH_HOME` points to disposable `dsh-home-*` under the OS temp directory, outside the checkout and lineage. Step 2: argv carries the mapped route patch, lineage and guards. Step 3: exit `0`, `final` reason `completed`, no `did not activate`, clean containment and the home removed after the run | The lineage result record with the executable version, invocation fingerprint, attempt outcome, last event and containment result. Re-run after a key is available | PASS if the command shape matches and the run ends on exit `0` with `completed`. FAIL if a required patch is missing, the cwd is the checkout, `DSH_HOME` is inherited or a non-zero exit is graded complete. SKIP while the route key is absent | 1. Confirm the kind is not in a default allowlist and was named explicitly. 2. Check the model-to-route mapping. 3. Confirm `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR` and `DSH_HOME` were unset before the spawn |
+| FAN-001 | Deep-research lineage | Prove the runner builds and completes a dsh research lineage | `Run a deep-research lineage on the cli-deepseek-harness executor kind with the LLM Gateway route and read-only permissions. Return the lineage status and the final reason, and do not mount MCP.` | 1. `agent:` start the lineage with the kind, model and route named -> 2. `agent:` confirm the runner builds the route, lineage and guards patches and sets the lineage home -> 3. `bash:` read the result, the last event and the containment scan | Step 1: cwd is the lineage directory and `DSH_HOME` points to disposable `dsh-home-*` under the OS temp directory, outside the checkout and lineage. Step 2: argv carries the mapped route patch, lineage and guards. Step 3: exit `0`, `final` reason `completed`, no `did not activate`, clean containment and the home removed after the run | `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage.md`; `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.exit.txt`; `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.stdout.txt` | PASS if the command shape matches and the run ends on exit `0` with `completed`. FAIL if a required patch is missing, the cwd is the checkout, `DSH_HOME` is inherited or a non-zero exit is graded complete. SKIP while the route key is absent | 1. Confirm the kind is not in a default allowlist and was named explicitly. 2. Check the model-to-route mapping. 3. Confirm `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR` and `DSH_HOME` were unset before the spawn |
 
 ---
 

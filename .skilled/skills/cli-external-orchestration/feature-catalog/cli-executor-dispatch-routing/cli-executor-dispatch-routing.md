@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-external-orchestration hub-router scoring"
   - "cli-opencode cli-claude-code cli-codex cli-cursor dispatch"
   - "cli-external-orchestration smart routing"
-version: 1.7.0.0
+version: 1.7.1.0
 ---
 
 # CLI Executor Two-Axis Dispatch Routing (cli-external-orchestration)
@@ -15,7 +15,7 @@ version: 1.7.0.0
 
 `cli-external-orchestration` is registry-driven: `mode-registry.json` lists all eight modes in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
 
-The eight executor packets, `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`, are `packetKind: "workflow"`. Each one classifies dispatch intent, chooses or confirms a provider and conducts the dispatched session. `cli-deepseek-harness` is experimental, because no keyed run has proven either of its routes. The transport this hub used to declare, `cli-jev`, now lives in the `cli-classifier` hub (`.skilled/skills/cli-classifier/`) as mode `cli-jev` over the `cli-jev` packet: it returns one typed judgment from a state and runs nothing, and that hub's `transport-axis` extension names it.
+The eight executor packets, `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`, are `packetKind: "workflow"`. Each one classifies dispatch intent, chooses or confirms a provider and conducts the dispatched session. `cli-deepseek-harness` stays experimental: its LLM Gateway route passed a keyed run, and its OpenCode Go route is configured, not verified. The transport this hub used to declare, `cli-jev`, now lives in the `cli-classifier` hub (`.skilled/skills/cli-classifier/`) as mode `cli-jev` over the `cli-jev` packet: it returns one typed judgment from a state and runs nothing, and that hub's `transport-axis` extension names it.
 
 ---
 

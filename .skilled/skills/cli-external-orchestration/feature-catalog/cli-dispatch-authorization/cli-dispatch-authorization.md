@@ -7,7 +7,7 @@ trigger_phrases:
   - "quote-safe executor normalization"
   - "shouldDenyPiDispatch pi authorization gate"
   - "dsh headless dispatch inspection"
-version: 1.5.0.0
+version: 1.5.1.0
 ---
 
 # CLI Dispatch Authorization And Inspection (cli-external-orchestration)
@@ -56,7 +56,7 @@ Rules are version-scoped. Each rule declares an `appliesTo` list of version fami
 
 The `cli-opencode` sidecar at `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` carries the OpenCode rules. `stdin-redirect-required` and `explicit-model-required` are blocking errors on both families. `no-bare-agent-general` (warn) and `command-flag-for-slash-prompt` (error) are OpenCode 1 only. `v2-slash-prompt-route` (warn) is OpenCode 2 only, where `run` does not expand a slash-command prompt and the dispatch has to use the server API route instead. `share-requires-confirmation` advises on both families.
 
-The `cli-deepseek-harness` sidecar at `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` carries twelve rules, every one a blocking error: `headless-only`, `stdin-dash-required`, `route-patch-required`, `closed-roster`, `guards-patch-required`, `approval-never-required`, `dsh-home-isolated`, `lineage-patch-required`, `json-final-and-exit-required`, `pinned-version-required`, `no-repo-root-dotenv` and `mcp-opt-in-only`. They take no `appliesTo` version filter. Each dsh invocation in a command is parsed and judged on its own, so a pipe-fed dispatch is checked for its route patch, lineage patch, guards patch, isolated `DSH_HOME` and pinned version.
+The `cli-deepseek-harness` sidecar at `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` carries thirteen rules, every one a blocking error: `headless-only`, `stdin-dash-required`, `route-patch-required`, `closed-roster`, `guards-patch-required`, `approval-never-required`, `dsh-home-isolated`, `lineage-patch-required`, `json-final-and-exit-required`, `pinned-version-required`, `dsh-availability-required`, `no-repo-root-dotenv` and `mcp-opt-in-only`. They take no `appliesTo` version filter. Each dsh invocation in a command is parsed and judged on its own, so a pipe-fed dispatch is checked for its route patch, lineage patch, guards patch, isolated `DSH_HOME` and pinned version.
 
 ---
 
@@ -76,7 +76,7 @@ The `cli-deepseek-harness` sidecar at `.skilled/skills/cli-external-orchestratio
 | `.dsh/plugins/repo-guards/adapters/dispatch-audit.mjs` | DeepSeek Harness | Calls the shared audit core on `tools/post-execute` with `runtime: 'dsh'`. |
 | `.skilled/hooks/dispatch/lib/opencode-version.mjs` | Shared | Version resolver for the rule filter: parses a binary's `--version` output into `v1`, `v2`, or `unknown` under a bounded probe and caches by canonical path, size, and modification time. |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/hard-rules.json` | Shared | The `cli-opencode` rule sidecar: rule id, check id, message, severity, and the `appliesTo` version list for each rule. |
-| `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` | Shared | The `cli-deepseek-harness` rule sidecar: the twelve blocking dsh dispatch rules the engine evaluates before a dsh run spawns. |
+| `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` | Shared | The `cli-deepseek-harness` rule sidecar: the thirteen blocking dsh dispatch rules the engine evaluates before a dsh run spawns. |
 
 ### Validation And Tests
 

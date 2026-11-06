@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek Harness - Fan-Out Executor"
-description: "The cli-deepseek-harness executor kind in the shared deep-loop runner: its lineage command, env allowlist, per-lineage DSH_HOME, recursion refusal, result validation and why it stays experimental until a keyed run."
+description: "The cli-deepseek-harness executor kind in the shared deep-loop runner: its lineage command, env allowlist, per-lineage DSH_HOME, recursion refusal, result validation and why it remains experimental while OpenCode Go is unverified."
 trigger_phrases:
   - "dsh fan-out executor"
   - "dsh lineage command"

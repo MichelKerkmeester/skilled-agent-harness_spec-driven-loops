@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh launcher patch flag"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DeepSeek Harness CLI - Headless Command Reference
@@ -198,4 +198,4 @@ Headless takes provider keys from the launch environment, then `<cwd>/.env`, the
 - [providers-and-models.md](./providers-and-models.md) - the closed roster and the route patches.
 - [runtime-folder-and-sync.md](./runtime-folder-and-sync.md) - where the patches live and how `DSH_HOME` is kept disposable.
 - [fanout-executor.md](./fanout-executor.md) - the same shape built by the shared runner for lineages.
-- [../hard-rules.json](../hard-rules.json) - the twelve rules this shape satisfies.
+- [../hard-rules.json](../hard-rules.json) - the thirteen rules this shape satisfies.

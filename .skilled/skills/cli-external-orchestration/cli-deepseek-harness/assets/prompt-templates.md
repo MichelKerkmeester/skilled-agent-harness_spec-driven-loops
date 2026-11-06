@@ -8,12 +8,12 @@ trigger_phrases:
   - "dsh dispatch template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DeepSeek Harness CLI Prompt Templates
 
-Copy a template, replace each `[placeholder]` and apply the prompt-quality card before sending anything. Every template keeps the twelve hard rules.
+Copy a template, replace each `[placeholder]` and apply the prompt-quality card before sending anything. Every template keeps the thirteen hard rules.
 
 ---
 
@@ -32,7 +32,7 @@ Gives each common dsh dispatch one tested shape, so a caller never improvises th
 
 ### Status
 
-The `.dsh/patches/` files these templates name exist in the checkout. A completed run on either route is `documented, unconfirmed`, because no keyed run has happened yet.
+The `.dsh/patches/` files these templates name exist in the checkout. The LLM Gateway `deepseek-v4.1-flash-1017` run completed on 2026-11-06. OpenCode Go remains unverified because its key is not set.
 
 ---
 
@@ -160,4 +160,4 @@ Ask every child for this shape, and check each claim against the diff and the st
 
 ## 8. SOURCE AND CONFIDENCE
 
-The argv, the option set, the stream order and the keyless failure come from the offline contract pin under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/`. The completed-run path, the route answers and the sandbox boundary are `documented, unconfirmed` until a keyed run.
+The argv, the option set, the stream order and the keyless failure come from the offline contract pin under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/`. The LLM Gateway `deepseek-v4.1-flash-1017` answer and completed-run path are observed from 2026-11-06. OpenCode Go remains unverified because its key is not set. The sandbox boundary remains documented, unconfirmed.

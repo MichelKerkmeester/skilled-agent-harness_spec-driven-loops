@@ -1,22 +1,22 @@
 ---
 title: "DeepSeek Harness Dispatch Mode"
-description: "`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it is experimental because no route is proven live yet."
+description: "`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental while OpenCode Go is configured but not verified."
 trigger_phrases:
   - "DeepSeek Harness Dispatch Mode"
   - "deepseek harness"
   - "dsh headless"
   - "delegate to dsh"
   - "cli-deepseek-harness"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DeepSeek Harness Dispatch Mode (dsh)
 
 ## 1. OVERVIEW
 
-`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it is experimental because no route is proven live yet.
+`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental while OpenCode Go is configured but not verified.
 
-DeepSeek Harness picks its own model. Its headless mode has no model, provider, timeout or working-directory option, so the packet fixes the model through a checked-in route patch and fixes the rest through the argv shape. A caller reaches the mode through the hub like any sibling. What a caller cannot do yet is count on a run answering: the only observed runs are offline composition checks and a keyless run that failed with `MISSING_CREDENTIAL`.
+DeepSeek Harness picks its own model. Its headless mode has no model, provider, timeout or working-directory option, so the packet fixes the model through a checked-in route patch and fixes the rest through the argv shape. A caller reaches the mode through the hub like any sibling. The LLM Gateway route has answered a keyed run; the OpenCode Go route has not been run with a key.
 
 ---
 
@@ -32,11 +32,11 @@ A dispatch starts from a fresh scratch directory with `DSH_HOME` inside it and p
 
 ### Enforcement
 
-The shared dispatch inspector classifies the headless forms as `direct cli-deepseek-harness` and leaves `dsh plugin`, help, version and config-dump commands as `none`. The rule engine then judges the command against twelve blocking hard rules before it spawns: `headless-only`, `stdin-dash-required`, `route-patch-required`, `closed-roster`, `approval-never-required`, `dsh-home-isolated`, `lineage-patch-required`, `guards-patch-required`, `json-final-and-exit-required`, `pinned-version-required`, `no-repo-root-dotenv` and `mcp-opt-in-only`.
+The shared dispatch inspector classifies the headless forms as `direct cli-deepseek-harness` and leaves `dsh plugin`, help, version and config-dump commands as `none`. The rule engine then judges the command against thirteen blocking hard rules before it spawns: `headless-only`, `stdin-dash-required`, `route-patch-required`, `closed-roster`, `approval-never-required`, `dsh-home-isolated`, `lineage-patch-required`, `guards-patch-required`, `json-final-and-exit-required`, `pinned-version-required`, `dsh-availability-required`, `no-repo-root-dotenv` and `mcp-opt-in-only`.
 
 ### What Stays Unconfirmed
 
-No keyed run has answered on either route. The LLM Gateway route composes offline and was the route the keyless run selected. The OpenCode Go route composes offline, but its endpoint is UNKNOWN because two documented endpoints disagree. Any claim that only a keyed run can prove is marked `documented, unconfirmed` in the packet, and neither route belongs in a default allowlist yet.
+The LLM Gateway route answered a keyed run on 2026-11-06 with exit 0 and a `completed` final event, and one deep-research fan-out lineage completed on it. The OpenCode Go route composes offline but is configured, not verified: no keyed request has been sent, so its endpoint is unconfirmed and it stays out of default allowlists.
 
 ---
 
@@ -47,7 +47,7 @@ No keyed run has answered on either route. The LLM Gateway route composes offlin
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md` | Shared | The dispatch contract: activation, the dispatch shape, the lifecycle and the ALWAYS, NEVER and ESCALATE rules. |
-| `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` | Shared | The twelve blocking dsh dispatch rules the rule engine evaluates. |
+| `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` | Shared | The thirteen blocking dsh dispatch rules the rule engine evaluates. |
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/cli-reference.md` | Shared | The version pin, the headless option set, the launcher flags and the exit contract. |
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md` | Shared | The closed two-route roster, the route patch shape and what stays unconfirmed. |
 | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | Classifies the dsh headless forms as `direct cli-deepseek-harness`. |

@@ -19,7 +19,7 @@ trigger_phrases:
   - "delegate to dsh"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.8.0.0
+version: 1.8.1.0
 ---
 
 # cli-external-orchestration
@@ -62,7 +62,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of eigh
 | **`cli-devin`** ([README](./cli-devin/README.md), [SKILL.md](./cli-devin/SKILL.md)) | Devin CLI dispatch: Cognition-backed cloud coding via `devin -p`, subagent delegation via `run_subagent`, cloud handoff via `/handoff`, MCP host integration and multi-model dispatch. Availability-gated on `command -v devin` |
 | **`cli-pi`** ([README](./cli-pi/README.md), [SKILL.md](./cli-pi/SKILL.md)) | Pi CLI dispatch: guarded headless print, JSON-event and RPC dispatch, native skills and extensions plus community packages. Availability-gated on `command -v pi`, with failure exit codes that are unreliable so callers inspect output |
 | **`cli-hermes`** ([README](./cli-hermes/README.md), [SKILL.md](./cli-hermes/SKILL.md)) | Hermes Agent dispatch: quiet oneshot `hermes chat -Q --oneshot`, LLM Gateway routing over a closed five-id model roster, project skills and plugins under `.hermes/`, and read-only review. Availability-gated on `command -v hermes` plus a configured provider |
-| **`cli-deepseek-harness`** ([README](./cli-deepseek-harness/README.md), [SKILL.md](./cli-deepseek-harness/SKILL.md)) | DeepSeek Harness dispatch: pinned `dsh --profile headless` one-task runs with the prompt on stdin, a closed two-route DeepSeek V4.1 Flash roster chosen by route patch, a scratch cwd with a disposable `DSH_HOME` and a JSON event stream judged by exit code and final event. Experimental: no route is proven live yet, because no keyed run has answered. Availability-gated on `command -v dsh` plus the pinned version |
+| **`cli-deepseek-harness`** ([README](./cli-deepseek-harness/README.md), [SKILL.md](./cli-deepseek-harness/SKILL.md)) | DeepSeek Harness dispatch: pinned `dsh --profile headless` one-task runs with the prompt on stdin, a closed two-route DeepSeek V4.1 Flash roster chosen by route patch, a scratch cwd with a disposable `DSH_HOME` and a JSON event stream judged by exit code and final event. Experimental: LLM Gateway is verified. OpenCode Go is configured but not verified. Availability-gated on `command -v dsh` plus the pinned version |
 
 ---
 

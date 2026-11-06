@@ -1,12 +1,12 @@
 ---
 title: cli-deepseek-harness
-description: Cross-AI dispatcher for DeepSeek Harness (dsh) headless runs, with a pinned version, a closed two-route roster and twelve fail-closed dispatch rules.
+description: Cross-AI dispatcher for DeepSeek Harness (dsh) headless runs, with a pinned version, a closed two-route roster and thirteen fail-closed dispatch rules.
 trigger_phrases:
   - "deepseek harness"
   - "dsh headless"
   - "delegate to dsh"
   - "deepseek harness cli"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-deepseek-harness
@@ -26,15 +26,17 @@ version: 1.0.0.0
 | **Works on** | A runtime that can reach the pinned `dsh` binary, from a scratch cwd with a disposable `DSH_HOME` |
 | **Produces** | A newline-delimited JSON event stream, a final answer text and any workspace changes |
 
-### Why This Skill Exists
-
-DeepSeek Harness picks its own model. Its headless mode has no model, provider, timeout or working-directory option, and its built-in default route is the official DeepSeek API, which this repository never uses. A hand-built dispatch that forgets the route patch reaches that default. One started from the repository root reads the root `.env`. One that trusts a parseable stream can miss a failure, because a keyless run prints a valid final event and still exits 1.
-
-This packet makes those mistakes hard to make. It fixes the argv shape, names the two routes that may run and states twelve rules the dispatch preflight checks. Every flag it names was captured from the installed binary.
-
 ### What It Does
 
 The packet tells a caller how to compose a dsh dispatch, which route patch selects which model, where dsh state may and may not land, and how to judge the result. It keeps the runtime folder, the guards, MCP and the fan-out executor in separate references, with route status tied to the evidence for that route.
+
+### Why This Skill Exists
+
+DeepSeek Harness picks its own model. Headless mode has no model, provider, timeout or working-directory option. Its default route is the official DeepSeek API, which this repository never uses.
+
+A dispatch that omits the route patch reaches that default. A dispatch started from the repository root can read the root `.env`. A keyless run can produce a parseable `final` event and still exit 1.
+
+This packet fixes the argv shape, names the two routes that may run and states thirteen rules the dispatch preflight checks. Every flag it names was captured from the installed binary.
 
 ### Status
 
@@ -88,7 +90,7 @@ dsh builds its runtime from layered YAML patches, and the last layer wins per ro
 
 ### Fail-Closed Rules
 
-[hard-rules.json](./hard-rules.json) carries twelve rules at severity `error`, from `headless-only` to `mcp-opt-in-only`. The shared dispatch preflight evaluates them before every shell command in each runtime that loads it, and inside dsh through the repo-guards bundle.
+[hard-rules.json](./hard-rules.json) carries thirteen rules at severity `error`, from `headless-only` to `mcp-opt-in-only`. The shared dispatch preflight evaluates them before every shell command in each runtime that loads it, and inside dsh through the repo-guards bundle.
 
 ---
 
@@ -99,7 +101,7 @@ cli-deepseek-harness/
   SKILL.md                                  # Runtime instructions and rules
   ROUTER.md                                 # Machine router: intent map, resource map and loading levels
   README.md                                 # Folder orientation and navigation for the packet
-  hard-rules.json                           # The twelve fail-closed dispatch rules
+  hard-rules.json                           # The thirteen fail-closed dispatch rules
   assets/
     prompt-quality-card.md                  # Thin prompt-quality delegator plus dsh addenda
     prompt-templates.md                     # Preflight, composition check, review, implementation, validation, handback
@@ -120,7 +122,7 @@ cli-deepseek-harness/
 
 ### When To Use This Skill
 
-Use cli-deepseek-harness when the request names DeepSeek Harness or `dsh`, or needs a one-task headless DeepSeek V4.1 Flash run with a machine-readable result. Use a sibling packet when the request names another CLI, or when it wants DeepSeek through cli-pi or cli-opencode rather than through the harness.
+Use cli-deepseek-harness when the request names DeepSeek Harness, `dsh`, `dsh headless` or says "delegate to dsh" for a one-task headless run with a machine-readable result. Use a sibling packet when the request names another CLI, or when it wants DeepSeek through cli-pi or cli-opencode rather than through the harness.
 
 ### Sibling Boundaries
 
@@ -184,7 +186,7 @@ A: It is configured, not verified. No request was sent because its key was unset
 | Availability | `command -v dsh` prints a path and `dsh --version` prints the pin |
 | Composition | `--dump-config` with the route and lineage patches exits 0 with empty stderr |
 | Completion | Exit 0 and a last `final` event with `reason.kind` `completed` |
-| Rules | `hard-rules.json` parses and carries all twelve rule ids |
+| Rules | `hard-rules.json` parses and carries all thirteen rule ids |
 | Flags | Every double-dash token in `references/cli-reference.md` is in the captured help text, except the four launcher flags that file grounds separately |
 | Packet shape | `node .skilled/commands/doctor/scripts/sk-skill-check.cjs .skilled/skills/cli-external-orchestration/cli-deepseek-harness` |
 
@@ -196,7 +198,7 @@ A: It is configured, not verified. No request was sent because its key was unset
 |---|---|
 | [SKILL.md](./SKILL.md) | Runtime instructions and rules |
 | [ROUTER.md](./ROUTER.md#3-machine-router) | Machine router: intent map, resource map and loading levels |
-| [hard-rules.json](./hard-rules.json) | The twelve fail-closed dispatch rules |
+| [hard-rules.json](./hard-rules.json) | The thirteen fail-closed dispatch rules |
 | [references/cli-reference.md](./references/cli-reference.md) | Flags, dispatch shape and exit contract |
 | [references/providers-and-models.md](./references/providers-and-models.md) | The closed roster |
 | [assets/prompt-quality-card.md](./assets/prompt-quality-card.md) | Thin prompt-quality delegator |

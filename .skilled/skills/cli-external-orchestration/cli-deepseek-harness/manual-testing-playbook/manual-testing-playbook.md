@@ -1,14 +1,14 @@
 ---
 title: "cli-deepseek-harness: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-deepseek-harness skill."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-deepseek-harness: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Live dsh scenarios use the real binary and never a mock. The CLI adapter stress matrix runs checked-in Vitest tests against shims and fixtures; those cells do not start dsh or contact a provider. A scenario that already holds a saved capture cites and records that basis. The only allowed verdicts are `PASS`, `FAIL` and `SKIP`. A keyed live follow-up records `SKIP pending phase 013` until a keyed run is available.
+> **EXECUTION POLICY**: Live dsh scenarios use the real binary and never a mock. The CLI adapter stress matrix runs checked-in Vitest tests against shims and fixtures; those cells do not start dsh or contact a provider. A scenario that already holds a saved capture cites and records that basis. The only allowed verdicts are `PASS`, `FAIL` and `SKIP`. The OpenCode Go follow-up records `SKIP` while `OPENCODE_API_KEY` is unset.
 
-> **RECURSION BOUNDS**: A dsh dispatch is refused inside a dsh child and inside a fan-out lineage. The fan-out scenario also needs a runtime that carries the `cli-deepseek-harness` executor kind. Until a keyed lineage runs, that executor is configured and unverified.
+> **RECURSION BOUNDS**: A dsh dispatch is refused inside a dsh child and inside a fan-out lineage. The fan-out scenario also needs a runtime that carries the `cli-deepseek-harness` executor kind. The LLM Gateway lineage is verified. The executor kind remains experimental while OpenCode Go is configured but not verified.
 
 This document is the operator directory and package-level validation contract for the `cli-deepseek-harness` skill. It defines the realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors and links to the 25 canonical scenario files.
 
@@ -62,7 +62,7 @@ This playbook provides 25 deterministic scenarios across seven categories valida
 - The desired user-visible outcome.
 - The source files that justify the contract.
 
-Coverage note: this package covers the keyless boot contract on both roster routes, the repo-root refusal, the route and lineage composition, the guards and MCP patch additions, the three generated mirrors, the two guard suites, the research lineage, the two keyed roster routes and fourteen hermetic CLI adapter stress cells. Key-gated live follow-ups record `SKIP pending phase 013`; stress cells use checked-in shims and fixtures without contacting a provider.
+Coverage note: this package covers the keyless boot contract on both roster routes, the repo-root refusal, the route and lineage composition, the guards and MCP patch additions, the three generated mirrors, the two guard suites, the research lineage, the two keyed roster routes and fourteen hermetic CLI adapter stress cells. The only remaining key-gated live scenario is OpenCode Go, which records `SKIP` while `OPENCODE_API_KEY` is unset. All fourteen stress cells are hermetic and need no live provider step.
 
 ---
 
@@ -146,7 +146,7 @@ A release passes only when:
 1. No scenario has an unresolved `FAIL`.
 2. The keyless baseline `CLI-001`, the refusal check `CLI-002` and the three patch scenarios `PAT-001` to `PAT-003` have evidence.
 3. The mirror and guard suites `MIR-001`, `GRD-001` and `GRD-002` pass on the current tree.
-4. The keyed scenarios `MDL-001`, `MDL-002` and `FAN-001` carry a specific `SKIP` blocker and a re-run condition.
+4. The remaining key-gated scenario, `MDL-002`, carries a specific `SKIP` blocker and a re-run condition.
 5. All 25 root-index IDs map to exactly one scenario file.
 6. The root document and every scenario file pass the required document checks.
 
@@ -243,9 +243,11 @@ This category covers one keyed request per roster route. Each run must exit 0 an
 
 ## 13. CURRENT EXECUTION BOUNDARIES
 
-The keyless contract is observed. Both roster routes exit 1 with `MISSING_CREDENTIAL` and name their own key variable. A completed keyed request remains `documented, unconfirmed`, because no keyed run has happened. The OpenCode Go endpoint is UNKNOWN, so that route stays out of every default allowlist until a keyed request answers on one endpoint. The three key-gated scenarios in this package record `SKIP` with the missing credential as the blocker. The patch scenario verdicts may be judged from saved captures. Their `dsh` command blocks are the reproduction steps for creating new captures.
+The keyless contract is observed. Both roster routes exit 1 with `MISSING_CREDENTIAL` and name their own key variable. The LLM Gateway `deepseek-v4.1-flash-1017` keyed run completed on 2026-11-06 with exit 0, a `completed` final reason and empty stderr.
 
-The mode is registered and routed in the hub, the shared runtime carries its executor kind and `.dsh/` contains all five patches. The keyless baseline is observed, but no keyed model run or lineage has completed. This playbook makes no claim about keyed route or endpoint behavior until a run produces exit 0 and `final.reason.kind` `completed`.
+OpenCode Go `deepseek-v4.1-flash` remains configured, not verified, because `OPENCODE_API_KEY` is unset. Its endpoint is UNKNOWN, so it stays out of every default allowlist. `MDL-002` is the only key-gated scenario still recorded as `SKIP`. The patch scenario verdicts may be judged from saved captures. Their command blocks reproduce the runs.
+
+The hub routes to this mode only on harness vocabulary. The shared runtime carries its executor kind, and `.dsh/` contains all five patches. One LLM Gateway research lineage also completed with a clean containment scan.
 
 ---
 
@@ -259,7 +261,7 @@ The `cli-deepseek-harness` packet owns the dispatch contract around the `dsh` bi
 | `.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs` | Generated prompt stubs, `--check` drift mode | `MIR-001` |
 | `.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs` | Generated persona patches, `--check` drift mode | `MIR-001` |
 | `.dsh/plugins/repo-guards/tests/` | Fourteen adapter contracts, error policies and the anchored message loader | `GRD-001` |
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Twelve dsh hard rules, repo-root refusal, roster and home checks | `CLI-002`, `GRD-002` |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Thirteen dsh hard rules, repo-root refusal, roster and home checks | `CLI-002`, `GRD-002` |
 | `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts` | Fourteen manifest-indexed hermetic adapter stress cells | `EC-001` to `EC-014` |
 | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | LLM Gateway provider row and default model row | `PAT-001`, `MDL-001` |
 | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | OpenCode Go provider row and default model row | `PAT-001`, `MDL-002` |

@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-deepseek-harness routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,18 +20,19 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name DeepSeek Harness, `dsh` or `dsh headless`, ask for a one-task headless DeepSeek V4.1 Flash run or a second opinion from one, or concern the dsh route patches, runtime folder, guards, MCP patch or fan-out executor.
+Requests reach this skill when they use harness vocabulary: "DeepSeek Harness", "`dsh`", "`dsh headless`" or "delegate to dsh". After the hub selects it, the router matches requests about route patches, the runtime folder, guards, MCP or fan-out to their packet resources.
 
 It routes to two skill-local families:
 
 - The six `references/` documents that carry the CLI contract, the closed roster, the runtime folder, the guard plan, the MCP policy and the fan-out executor.
 - The two `assets/` scaffolds that carry the prompt-quality card and the dispatch templates.
 
-The ALWAYS level loads `references/cli-reference.md` and `assets/prompt-quality-card.md` before an intent selects anything else, and `command -v dsh` plus the pinned version probe decide whether the route exists at all.
+`command -v dsh` plus the pinned version probe decide whether the route exists at all.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
-loads before an intent selects it.
+what happens when nothing matches. Every path stays inside this skill folder. The `DEFAULT_RESOURCE` is
+`references/cli-reference.md`. The ALWAYS level also loads `assets/prompt-quality-card.md` before intent
+selection. A matched intent then adds its mapped resources.
 
 ---
 

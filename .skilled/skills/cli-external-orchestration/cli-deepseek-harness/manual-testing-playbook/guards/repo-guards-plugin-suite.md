@@ -1,7 +1,7 @@
 ---
 title: "GRD-001 -- Repo-guards plugin suite"
 description: "This scenario validates that the repo-guards plugin test suite passes with no adapter, policy or loader failure for `GRD-001`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GRD-001 -- Repo-guards plugin suite
@@ -16,7 +16,7 @@ This scenario validates the bundle that carries the shared guard cores into a ds
 
 ### Why This Matters
 
-The guards patch can load the bundle and still leave a broken adapter. The suite exercises each adapter against fixtures, including the deny and fail-open paths. A passing suite is the evidence that a guard verdict has a tested core behind it. It does not prove a live model tool call, because no keyed run has happened.
+The guards patch can load the bundle and still leave a broken adapter. The suite exercises each adapter against fixtures, including the deny and fail-open paths. A passing suite is the evidence that a guard verdict has a tested core behind it. It does not prove live model tool-call behavior, because this suite runs against fixtures and makes no live tool call.
 
 ---
 

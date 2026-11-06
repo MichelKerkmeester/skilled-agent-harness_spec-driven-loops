@@ -12,7 +12,7 @@ trigger_phrases:
   - "cli-hermes dispatch"
   - "DeepSeek Harness Dispatch Mode"
 last_updated: "2026-11-06"
-version: 1.7.0.0
+version: 1.7.1.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -141,11 +141,11 @@ See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencod
 
 #### Description
 
-`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it is experimental because no route is proven live yet.
+`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental while OpenCode Go is configured but not verified.
 
 #### Current Reality
 
-The mode routes on harness vocabulary only: `dsh`, `dsh headless`, `deepseek harness` and `delegate to dsh`. A DeepSeek model named with another runtime, such as "use cli-opencode with deepseek-v4.1-flash", stays on that runtime. The shared dispatch inspector classifies a `dsh --profile headless` or `dsh headless` command as `direct cli-deepseek-harness`, and the rule engine judges it against the packet's twelve hard rules before it spawns. Only offline composition and a keyless `MISSING_CREDENTIAL` failure have been observed. No keyed run has answered on either route, and the OpenCode Go endpoint is UNKNOWN.
+The mode routes on harness vocabulary only: `dsh`, `dsh headless`, `deepseek harness` and `delegate to dsh`. A DeepSeek model named with another runtime, such as "use cli-opencode with deepseek-v4.1-flash", stays on that runtime. The shared dispatch inspector classifies a `dsh --profile headless` or `dsh headless` command as `direct cli-deepseek-harness`, and the rule engine judges it against the packet's thirteen hard rules before it spawns. The LLM Gateway route answered a keyed run on 2026-11-06. The OpenCode Go route is configured, not verified, because no keyed request has been sent.
 
 #### Source Files
 
