@@ -1,0 +1,1 @@
+../../../bin/git-primary-reconcile.sh

@@ -1,0 +1,1 @@
+../../../skills/sk-git/scripts/hooks/dsh/git-preflight-advisory.mjs

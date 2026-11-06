@@ -1,0 +1,1 @@
+../../../../.skilled/hooks/goal/dsh/goal-manage.mjs

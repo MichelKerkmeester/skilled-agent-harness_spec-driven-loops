@@ -1,0 +1,1 @@
+../../../skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs

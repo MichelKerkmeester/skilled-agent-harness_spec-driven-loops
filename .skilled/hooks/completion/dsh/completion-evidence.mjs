@@ -1,0 +1,1 @@
+../../../skills/system-spec-kit/runtime/hooks/dsh/completion-evidence.mjs

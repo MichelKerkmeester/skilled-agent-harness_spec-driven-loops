@@ -3,4 +3,4 @@
       name: ../plugins/repo-guards/index.mjs
       config:
         adapters:
-          promptAdvisor: false
+          promptAdvisor: true

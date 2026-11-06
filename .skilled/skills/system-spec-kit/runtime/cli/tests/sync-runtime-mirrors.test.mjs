@@ -9,6 +9,7 @@ import {
   mkdirSync,
   mkdtempSync,
   rmdirSync,
+  rmSync,
   symlinkSync,
   unlinkSync,
   writeFileSync,
@@ -28,6 +29,7 @@ const fixtureRoot = join(resolve(scratchRoot), 'sync-runtime-mirrors-fixtures');
 const {
   buildExpectedLinks,
   checkMirrors,
+  dshAdapterLinks,
   findOrphans,
   writeMirrors,
 } = require(join(dirname(fileURLToPath(import.meta.url)), '..', 'runtime-mirrors', 'sync-runtime-mirrors.cjs'));
@@ -225,4 +227,34 @@ test('keeps the OpenCode native goal command and a mirrored README, but flags a 
     { mirror: '.opencode/commands/README.txt', source: '.skilled/commands/README.txt' },
   ];
   assert.deepEqual(findOrphans(expected, root), ['.opencode/commands/stray.md']);
+});
+
+test('derives each DSH adapter link from the hook library and flags a real file or a missing link', () => {
+  const root = mkdtempSync(join(tmpdir(), 'sync-runtime-mirrors-dsh-'));
+  try {
+    const write = (relativePath, text = 'export {};\n') => {
+      mkdirSync(dirname(join(root, relativePath)), { recursive: true });
+      writeFileSync(join(root, relativePath), text);
+    };
+    write('.dsh/plugins/repo-guards/index.mjs');
+    write('.skilled/hooks/overlay-guard/dsh/overlay-guard.mjs');
+    write('.skilled/hooks/overlay-guard/dsh/overlay-guard.test.mjs');
+    write('.skilled/skills/owner/hooks/dsh/owned.mjs');
+    mkdirSync(join(root, '.skilled/hooks/owned/dsh'), { recursive: true });
+    symlinkSync(join('..', '..', '..', 'skills', 'owner', 'hooks', 'dsh', 'owned.mjs'), join(root, '.skilled/hooks/owned/dsh/owned.mjs'));
+
+    const links = dshAdapterLinks(root);
+    assert.deepEqual(links.map(({ mirror, source }) => ({ mirror, source })), [
+      { mirror: '.dsh/plugins/repo-guards/adapters/overlay-guard.mjs', source: '.skilled/hooks/overlay-guard/dsh/overlay-guard.mjs' },
+      { mirror: '.dsh/plugins/repo-guards/adapters/owned.mjs', source: '.skilled/skills/owner/hooks/dsh/owned.mjs' },
+    ]);
+
+    write('.dsh/plugins/repo-guards/adapters/overlay-guard.mjs');
+    const result = captureConsole('error', () => checkMirrors(links, root));
+    assert.equal(result.value, false);
+    assert.equal(result.messages.some((line) => line.includes('STALE .dsh/plugins/repo-guards/adapters/overlay-guard.mjs')), true);
+    assert.equal(result.messages.some((line) => line.includes('MISSING .dsh/plugins/repo-guards/adapters/owned.mjs')), true);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });

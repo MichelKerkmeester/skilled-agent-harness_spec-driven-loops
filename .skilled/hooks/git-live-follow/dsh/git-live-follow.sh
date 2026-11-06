@@ -1,0 +1,1 @@
+../../../bin/git-live-follow.sh

@@ -541,21 +541,17 @@ test('session-start context logs and continues when session-prime throws', async
   assert.equal(logs.length, 1);
 });
 
-test('prompt advisor stays disabled by default and registers when its row flag is true', () => {
-  const patchText = readFileSync(fileURLToPath(new URL('../../../patches/guards.patch.yml', import.meta.url)), 'utf8');
-  assert.match(patchText, /promptAdvisor:\s*false/);
-
-  const registrations = [];
-  const ctx = {
-    on(name) { registrations.push(name); },
-    logger: { warn() {}, error() {} },
+test('prompt advisor stays off unless its row flag is true', () => {
+  const preStepCount = (config) => {
+    const registrations = [];
+    const ctx = {
+      on(name) { registrations.push(name); },
+      logger: { warn() {}, error() {} },
+    };
+    apply(ctx, config);
+    return registrations.filter((name) => name === 'agent/pre-step').length;
   };
-  apply(ctx);
-  assert.equal(registrations.filter((name) => name === 'agent/pre-step').length, 1);
-
-  registrations.length = 0;
-  apply(ctx, { adapters: { promptAdvisor: true } });
-  assert.equal(registrations.filter((name) => name === 'agent/pre-step').length, 2);
+  assert.equal(preStepCount({ adapters: { promptAdvisor: true } }) - preStepCount(), 1);
 });
 
 test('prompt advisor appends returned context on the pre-step waterfall', async () => {
@@ -567,7 +563,7 @@ test('prompt advisor appends returned context on the pre-step waterfall', async 
   });
   const result = await handlers.get('agent/pre-step')({
     agent: { session: { id: 'advisor-fixture', header: { cwd: '/fixture/workspace' } } },
-    messages: [{ role: 'user', content: [{ type: 'text', text: 'Help me choose.' }] }],
+    messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: 'Help me choose.' }] }],
   }, async () => ({ kind: 'enter', messages: [] }));
   assert.equal(result.kind, 'enter');
   assert.equal(result.messages[0].content[0].text, 'Advisor fixture');
@@ -583,7 +579,7 @@ test('prompt advisor logs and continues when its core throws', async () => {
   const downstream = { kind: 'enter', messages: [] };
   const result = await handlers.get('agent/pre-step')({
     agent: { session: { id: 'advisor-throw' } },
-    messages: [{ role: 'user', content: [{ type: 'text', text: 'Continue.' }] }],
+    messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: 'Continue.' }] }],
   }, async () => downstream);
   assert.equal(result, downstream);
   assert.equal(logs.length, 1);
@@ -706,10 +702,12 @@ test('the dsh-llm loader resolves from the dsh binary, and a bad anchor does not
     return;
   }
   // A query string gives this test its own module instance, so no other test has filled the cache.
-  const { loadDshLlm } = await import('../adapters/dsh-llm.mjs?isolated');
+  const { loadDshLlm, loadDshTools } = await import('../adapters/dsh-llm.mjs?isolated');
   await assert.rejects(loadDshLlm(path.join(os.tmpdir(), 'no-such-dsh-entry.js')));
   const llm = await loadDshLlm(which.stdout.trim());
   assert.equal(typeof llm.createUserMessage, 'function');
+  const tools = await loadDshTools(which.stdout.trim());
+  assert.equal(typeof tools.defineTool, 'function');
 });
 
 test('every adapter loads the harness message helpers through the anchored loader', () => {

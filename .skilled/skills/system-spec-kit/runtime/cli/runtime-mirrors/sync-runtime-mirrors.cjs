@@ -137,6 +137,41 @@ function toFlatName(relativePath) {
 // Every path the runtime's own config actually invokes is a path its discovery
 // mirror should expose. Reading the raw text keeps this indifferent to the four
 // mutually incompatible config shapes.
+// DSH loads one plugin bundle whose adapters folder holds a relative link per
+// adapter, the shape .pi/extensions has. Each real adapter lives in the hook
+// library's <concern>/dsh/ folder, or in its owning skill with an index link
+// there, so the expectations derive from those folders and a new adapter needs
+// no list edit. A checkout without the bundle expects no links.
+const DSH_BUNDLE_ENTRY = '.dsh/plugins/repo-guards/index.mjs';
+const DSH_ADAPTERS = '.dsh/plugins/repo-guards/adapters';
+const HOOK_LIBRARY = '.skilled/hooks';
+
+/** The DSH adapter links a checkout's hook library implies, each aimed at its real file. */
+function dshAdapterLinks(repoRoot = REPO_ROOT) {
+  if (!fs.existsSync(path.join(repoRoot, DSH_BUNDLE_ENTRY))) return [];
+  const realRoot = fs.realpathSync(repoRoot);
+  const links = [];
+  for (const concern of fs.readdirSync(path.join(repoRoot, HOOK_LIBRARY), { withFileTypes: true })) {
+    if (!concern.isDirectory()) continue;
+    const dir = path.join(repoRoot, HOOK_LIBRARY, concern.name, 'dsh');
+    if (!fs.existsSync(dir)) continue;
+    for (const name of fs.readdirSync(dir).sort()) {
+      if (!name.endsWith('.mjs') || name.endsWith('.test.mjs')) continue;
+      const entry = path.join(dir, name);
+      // An index link names the skill-owned file; the adapter link aims straight at it.
+      let real;
+      try {
+        real = fs.realpathSync(entry);
+      } catch {
+        real = entry;
+      }
+      const source = path.relative(real.startsWith(realRoot) ? realRoot : repoRoot, real).split(path.sep).join('/');
+      links.push({ tree: 'dsh-adapters', mirror: `${DSH_ADAPTERS}/${name}`, source });
+    }
+  }
+  return links.sort((left, right) => left.mirror.localeCompare(right.mirror));
+}
+
 function hookSourcesFromConfig(configRelative, repoRoot = REPO_ROOT) {
   const absolute = path.join(repoRoot, configRelative);
   if (!fs.existsSync(absolute)) return [];
@@ -177,6 +212,8 @@ function buildExpectedLinks(repoRoot = REPO_ROOT) {
       links.push({ tree: `${runtime}-hooks`, mirror: `${mirror}/${path.posix.basename(source)}`, source });
     }
   }
+
+  links.push(...dshAdapterLinks(repoRoot));
 
   if (links.length === 0) throw new Error('No expected mirrors were derived');
   return links;
@@ -373,4 +410,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { buildExpectedLinks, checkMirrors, findOrphans, writeMirrors };
+module.exports = { buildExpectedLinks, checkMirrors, dshAdapterLinks, findOrphans, writeMirrors };

@@ -10,3 +10,9 @@
   disabled: true
 - id: plan-mode
   disabled: true
+# Marks the run as a fan-out leaf. The guards patch inserts repo-guards after this one
+# applies, so the marker is a row of its own; the bundle reads it to keep its
+# interactive-only adapters off.
+- insert:
+    - id: repo-guards-lineage-leaf
+      name: ../plugins/repo-guards/lineage-leaf.mjs
