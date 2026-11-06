@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter",
+  "spec_folder": "cli-external-orchestration/085-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter",
+  "parent_id": "cli-external-orchestration/085-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch recognition and stress adapter",
+      "phase 7 dispatch recognition and stress adapter",
+      "dispatch recognition and stress adapter plan",
+      "dispatch recognition and stress adapter tasks",
+      "dispatch recognition and stress adapter acceptance criteria",
+      "dispatch recognition and stress adapter goal",
+      "dispatch recognition and stress adapter implementation summary"
+    ],
+    "key_topics": [
+      "dispatch",
+      "recognition",
+      "stress",
+      "adapter",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "evidence/dependencies-landed.txt",
+      "evidence/rule-checks-after.txt",
+      "evidence/rule-checks-tap.txt",
+      "evidence/dispatch-audit-after.txt",
+      "evidence/node-test-dispatch-audit.txt",
+      "evidence/stress-cli-adapter-after.txt",
+      "evidence/stress-dsh-pi-hermes-verbose.txt",
+      "evidence/sibling-diff.txt",
+      "evidence/task-verify-outputs.txt",
+      "evidence/closeout-validation.txt",
+      "evidence/part-one-checks.txt",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependencies-landed.txt",
+        "kind": "file",
+        "path": "evidence/dependencies-landed.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rule-checks-after.txt",
+        "kind": "file",
+        "path": "evidence/rule-checks-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rule-checks-tap.txt",
+        "kind": "file",
+        "path": "evidence/rule-checks-tap.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit-after.txt",
+        "kind": "file",
+        "path": "evidence/dispatch-audit-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "node-test-dispatch-audit.txt",
+        "kind": "file",
+        "path": "evidence/node-test-dispatch-audit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stress-cli-adapter-after.txt",
+        "kind": "file",
+        "path": "evidence/stress-cli-adapter-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stress-dsh-pi-hermes-verbose.txt",
+        "kind": "file",
+        "path": "evidence/stress-dsh-pi-hermes-verbose.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sibling-diff.txt",
+        "kind": "file",
+        "path": "evidence/sibling-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "task-verify-outputs.txt",
+        "kind": "file",
+        "path": "evidence/task-verify-outputs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "closeout-validation.txt",
+        "kind": "file",
+        "path": "evidence/closeout-validation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "part-one-checks.txt",
+        "kind": "file",
+        "path": "evidence/part-one-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The dispatch-audit hook matches task shapes per binary and has no `dsh` shape, so a dsh dispatch runs with no preflight and none of the packet's hard rules checked",
+    "created_at": "2026-11-05T23:21:55Z",
+    "last_save_at": "2026-11-06T08:02:36.237Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30818aa3e0f1a76240753dd577835c8e8837bf7ac446a6c306491c5ad5093fa8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "29e82dba942b4bc95ac47f83bf7392b8fc7570b52345a847f3f1590ec8a4c700",
+      "plan.md": "19ef7fbe154211464a5ae0f8883b3d7d37225260ca36bb0657e1711b05cfaa84",
+      "tasks.md": "1909d8fcc3504b9d63b39e9874e5cd16280a4e91336bdf3d08c51e70a8d7c2ca",
+      "implementation-summary.md": "649ecde4fba940f1a2690d0bb12ed003963921a430de3c439ecd0b6e0a94eeb7"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/005-dsh-mirror-generators",
+  "spec_folder": "cli-external-orchestration/085-cli-deepseek-harness-creation/005-dsh-mirror-generators",
+  "parent_id": "cli-external-orchestration/085-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh mirror generators",
+      "phase 5 dsh mirror generators",
+      "dsh mirror generators plan",
+      "dsh mirror generators tasks",
+      "dsh mirror generators acceptance criteria",
+      "dsh mirror generators goal",
+      "dsh mirror generators implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "mirror",
+      "generators",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "harness"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/dsh/README.md",
+      ".github/workflows/command-tree-parity.yml",
+      ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".dsh/SYNC.md",
+      ".dsh/README.md",
+      "evidence/checks.txt",
+      "evidence/closeout-checks.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-dsh.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-dsh.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-dsh.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/dsh/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "checks.txt",
+        "kind": "file",
+        "path": "evidence/checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "closeout-checks.txt",
+        "kind": "file",
+        "path": "evidence/closeout-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-dsh.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-prompts-dsh.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The harness discovers skills only at `<root>/<name>/SKILL.md` and never walks nested `/SKILL.md`, so a whole-tree link would expose the 16 hub folders and hide the nested mode packets",
+    "created_at": "2026-11-05T23:21:54Z",
+    "last_save_at": "2026-11-06T05:01:39.340Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5c7cf979ffee9e9cb37dc86eba8929978a20eeb1213d166bfb9b47d936505091",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a9c8bdf78de3005be17ab2c9d5d4e7ff344bdc56ee40f797188804f9b0946642",
+      "plan.md": "46cf839eca256fbd1bcbb03264a0e10784fa873001b261aa44355e09a18675f9",
+      "tasks.md": "f1dc1ba32628b5396039226bb6bdaad8f413460110c62d0a77fba45c086a9fe6",
+      "implementation-summary.md": "feaf19c1ca4acd8681051daaa90985245f473cab07a27d7dda03693778e4651b"
+    },
+    "last_active_at": null
+  }
+}

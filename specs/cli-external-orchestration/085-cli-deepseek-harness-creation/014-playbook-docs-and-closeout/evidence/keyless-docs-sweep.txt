@@ -1,0 +1,64 @@
+Phase 014 keyless documentation sweep evidence
+Observed: 2026-11-06
+
+Scope and limits
+- dsh is an external headless run surface and the eighth CLI bridge. It is not one of the seven runtimes opened in the repository.
+- No .env or .env.example file was opened. No dsh command was run. No commit was made.
+- Phase 013 evidence directory is absent, so route claims remain experimental/configured/not verified. There is no keyed run.
+
+Seven-count decisions
+- README.md:71 keeps “seven bridges for repository-opening runtimes”; this counts the seven repo-opening bridges, while dsh is described separately as an external run surface.
+- README.md:178 keeps “seven runtimes”; this sentence tells a reader which repository-opening runtime to use and intentionally does not list dsh.
+- .skilled/CROSS-CLI.md:3 keeps “seven CLI runtime directories”; that is a count of host runtime directories, not external delegation targets.
+- .skilled/CROSS-CLI.md:18 keeps “Seven runtime directories”; this sentence describes the seven runtime directories beside .skilled/.
+- .skilled/skills/cli-external-orchestration/changelog/v1.7.0.0.md:19 is historical release text about seven modes; retained as history.
+- .skilled/skills/cli-external-orchestration/changelog/v1.7.13.0.md:3 is historical release text about seven modes; retained as history.
+- The requested scan over README.md, AGENTS.md, SECURITY.md, .skilled/CROSS-CLI.md and .skilled/skills/README.txt returned four lines only: the README and CROSS-CLI lines above. Exit 0.
+- The scan across the CLI external orchestration hub returned only the two historical changelog entries above. Exit 0.
+
+Surface and contract checks
+- .dsh/manual-testing-playbook is a relative symlink to ../.skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook; ls -L showed the link and test -e returned true. The hub README's manual playbook pointer is present at .skilled/skills/cli-external-orchestration/README.md:147.
+- .skilled/skills/sk-git/SKILL.md: the dsh repo-guards adapter imports shared dispatch and sk-git rule cores, resolves the checkout's SKILL.md, calls core.readHardRules(), filters with shared checks, and evaluates the command. The adapter is registered for tools/post-execute. Its test includes “preflight reads the hard rules of this checkout even when the session runs outside it”.
+- .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md lists names only: DSH_HOME, LLMGATEWAY_API_KEY, OPENCODE_API_KEY and six DSH_*_DIR mirror overrides. No values were recorded.
+- Cross-CLI now describes the .dsh/ external target, its three generators under runtime/cli/dsh/, and the per-run contract. Host runtime directory counts remain seven.
+- The .dsh feature remains explicitly Experimental/configured, not verified. The packet and hub changelogs describe the same status; no keyed run exists.
+
+Changelogs and version carriers
+- Root Skilled release note: .skilled/changelog/skilled/v4.0.2.0.md; prior local newest v4.0.1.0.
+- System Deep Loop runtime: v1.9.15.0; prior newest v1.9.14.0.
+- System Deep Loop parent: v1.6.23.0; prior newest v1.6.22.0.
+- System Spec Kit: v2.12.34.0; prior newest v2.12.33.0.
+- sk-prompt: v4.0.4.0; prior newest v4.0.3.0. This sweep changed its SKILL.md version line only. A separate shared-workspace diff also adds a DSH row, which this sweep left untouched.
+- The existing CLI external hub changelog v1.8.0.0.md was retained; no second hub entry was created.
+- System Deep Loop parent-skill-check exited 0: all hard invariants passed, 0 warnings.
+
+Generated manifests and audit evidence
+- agents-md-manifest.cjs --write: wrote 44 sections, 30 pins and 13 history bodies. agents-md-check.cjs: STATUS=OK rows=12 findings=0 unknown=0; A1-A12 PASS; exit 0.
+- sk-doc manifest generation used a disposable alternate Git index/object directory so the untracked .dsh and phase packet files were included without changing the actual Git index or objects.
+- test_readme_manifest.py --write: durable manifest count 779. Manifest test: derived/frozen 779/779, baseline 501, gaps 25, exclusions 2, reproduced true; discovery 750 READMEs; 21 exclusions passed.
+- test_readme_verdict_parity.py --write: 988 baseline README files, 0 diff entries, PASS.
+- test_code_folder_readme.py: 13 expected negative fixtures, 3 table passes, positive control; failures=0; exit 0.
+- test_audit_readmes_accuracy.py: exit 0. audit_readmes.py full audit included .dsh/README.md and returned it VALID with no blocking errors or warnings. Full audit summary: 750 READMEs, 748 template-valid, 2 template-invalid, 42 P1, 37 P2; manifest 779/779 reproduced true; exit 0.
+- Python AST parsing passed for audit_readmes.py. JSON parsing passed for agents-md-manifest.json, durable-directory-manifest.json, baseline-readme-verdicts.json and system-deep-loop description.json, hub-router.json and mode-registry.json.
+
+Document validation
+- validate_document.py returned VALID for all 16 touched Markdown files. It reported 5 warnings total: README.md had two (bare URL and first H2 section order), CROSS-CLI.md had one document-type fallback warning, and ENV-REFERENCE.md had two (document-type fallback and a non-sequential heading number). The two phase spec docs required `--type spec` because auto-detection applies README rules to their paths.
+- Alignment drift checks passed for .dsh, .skilled/changelog/skilled, .skilled/commands/doctor/assets (2 scanned, 0 findings), .skilled/skills/sk-git, .skilled/skills/sk-doc/scripts/tests/code-folder (28 scanned, 0 findings), system-spec-kit, the changelog folders, and the phase folder (0 files scanned, 0 findings). Broad roots also ran: `.` scanned 17,104 files with 228 findings (218 errors, 10 warnings), `.skilled` scanned 5,966 with 161 errors, `.skilled/skills` scanned 5,494 with 104 errors. The scoped failing roots reported exact-header errors in sibling files outside this task: check_derived_readme_counts.py and check_readme_references.py under sk-doc, one shell file under sk-prompt and 23 files under system-deep-loop. Git status confirmed those finding files were not modified. No findings named the changed audit_readmes.py or changelog/version files.
+- Python and config checklist review: audit_readmes.py has its portable shebang, COMPONENT header, module docstring, typed public functions, valid AST, and the added DURABLE_ROOT_NAMES value follows UPPER_SNAKE naming. Twenty-two existing public functions lack docstrings; this is a pre-existing checklist gap outside the one-line change. The six JSON files parse. Their generated/contract-owned keys include snake_case and kebab-case names, so the generic camelCase item was not applied; changing keys would desync the canonical generators. No JavaScript, TypeScript or shell source was changed by this sweep.
+- HVR review: all five new changelogs scan with 0 hard blockers and 100/100 mechanical ceilings. The phase tasks and acceptance criteria each scan with 0 hard blockers and 99/100 ceilings. Full scans of modified long references report inherited punctuation and “Harness” terms. The changed “Harness” spans name the product as a noun, which the HVR scope rule accepts. Findings in inline path/identifier lists and unchanged prose remain unedited.
+
+Trigger index
+- `export PATH="$HOME/.local/bin:$PATH"` preceded every Node invocation.
+- Final `generate-trigger-index.mjs` run after checklist and derived-metadata updates: published successfully; 28,246 documents scanned, 41,694 unique phrases, 17,351 indexed paths, 0 malformed documents, exit 0. Index SHA-256: 2b95334a8f2a9f4a68037ab68884ab90e104eba8e673789ef9601e5dadf74017.
+- Final `generate-trigger-index.mjs --check`: corpus matched, 0 stale documents, 0 obsolete paths, 0 untrusted documents, exit 0.
+- Final `lookup-trigger-index.mjs --json --scoring-only -- "deepseek harness"`: exit 0. Results include paths inside the 085 packet tree, including its research and skill-packet children. The result is truncated at the normal result limit.
+
+Phase strict validation
+- First strict run identified stale generated metadata in `description.json` and `graph-metadata.json`. `repair-derived.cjs --apply` read and refreshed those derived files: inspected=1, repaired=1, failed=0.
+- The final `validate.sh <phase-folder> --strict` run printed `Summary: Errors: 0 Warnings: 0` and `RESULT: PASSED`. It reported the status cross-document check as not applicable because `implementation-summary.md` has no Status field; this was informational and did not affect the strict result.
+- Final alignment check on the phase folder: PASS, 0 files scanned, 0 findings, exit 0. All nine edited/generated JSON files parsed successfully after metadata repair.
+
+Open items
+- Keyed execution and playbook scenarios remain unrun by this worker.
+- Phase 013 evidence is absent. The task and acceptance wording that demands only historical “seven” matches conflicts with the required four active host-runtime mentions; those four are retained and individually justified above.
+- .env.example remains operator-gated and was not inspected.

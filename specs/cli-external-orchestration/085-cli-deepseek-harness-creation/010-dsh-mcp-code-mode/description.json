@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode",
+  "description": "Optional dsh patch that mounts one guarded code_mode MCP server with explicit env, cwd and timeout, opt-in per dispatch.",
+  "keywords": [
+    "optional",
+    "dsh",
+    "patch",
+    "mounts",
+    "one",
+    "guarded",
+    "mcp",
+    "server",
+    "explicit",
+    "env",
+    "cwd",
+    "timeout",
+    "opt-in",
+    "per",
+    "dispatch"
+  ],
+  "lastUpdated": "2026-11-05T23:32:28.450Z",
+  "specId": "010",
+  "folderSlug": "dsh-mcp-code-mode",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

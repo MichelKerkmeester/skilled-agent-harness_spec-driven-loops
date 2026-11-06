@@ -1,0 +1,12 @@
+# Draft lineage: no telemetry export, no DeepSeek session log, no goal driver, no plan mode.
+- id: session-telemetry-otel
+  config:
+    mode: DISABLED
+- id: session-log-deepseek
+  disabled: true
+- id: goal-round-driver
+  disabled: true
+- id: command-goal
+  disabled: true
+- id: plan-mode
+  disabled: true

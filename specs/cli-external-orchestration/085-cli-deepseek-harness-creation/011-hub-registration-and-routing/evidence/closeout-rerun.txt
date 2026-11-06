@@ -1,0 +1,14 @@
+# Phase 11 closeout reruns and dispositions (2026-11-06)
+
+- Registry: `closeout-mode-registry.txt` records `modeCount=8`, the dsh aliases and exit 0.
+- Hub integrity: `closeout-parent-skill-check.txt` ends with all hard invariants passed, 0 warnings and exit 0.
+- Compiled routing: `closeout-compiled-route-manifest-rerun.txt` records 48 tests, 48 pass, 0 fail and exit 0.
+- Advisor first hop: `closeout-advisor-opencode-deepseek.json` selects `cli-external-orchestration` as the top recommendation for the DeepSeek model prompt, exit 0. The hub's compiled route in `closeout-compiled-route-opencode-deepseek.txt` selects `cli-opencode`, exit 0.
+- Advisor suites: `closeout-advisor-parity-scorer.txt` records 43 files passed, 393 tests passed, 4 skipped, exit 0. The recaptured scorer ratchet is 7/7 in `scorer-baseline-recapture.txt`.
+- Card and mirror checks: `card-sync.txt` reports GUARD PASS; `agent-mirror-sync.txt` reports 11 agents in sync.
+- Route canaries: `canary-in-memory-output.txt` reports 16/16 passed, including the DeepSeek model prompt on `cli-opencode` and all seven existing single-mode routes.
+- The sweep in `checks.txt` found one stale 'seven' count in `cli-hermes/feature-catalog/hub-registration/hub-mode-registration.md`; that sibling packet is outside the write scope.
+- The archived `validate-canary.cjs` run returned ENOENT for the missing untracked `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs`. The script is pre-existing and outside the write scope.
+- `scratch/` contains only `.gitkeep`. The manifest test's temporary `.sandboxes` entries were cleaned by the test runner.
+
+The earlier manifest run and scorer ratchet failures in `checks.txt` were superseded by the remint, scorer recapture and reruns cited above.

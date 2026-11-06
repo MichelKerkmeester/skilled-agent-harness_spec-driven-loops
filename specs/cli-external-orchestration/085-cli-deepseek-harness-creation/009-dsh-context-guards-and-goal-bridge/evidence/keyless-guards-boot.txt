@@ -1,0 +1,11 @@
+$ cd "$W" && printf "Say ok." | env -i PATH=... HOME="$T" DSH_HOME="$T" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --json --approval-policy never -
+# W is a disposable scratch folder, T a disposable DSH_HOME inside it
+exit=1
+# stderr
+dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "llmgateway"; its profile resolves LLMGATEWAY_API_KEY, which is not set — store LLMGATEWAY_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery
+# grep -c 'did not activate' stderr: 0
+# final event
+{"type":"final","sessionId":"session-c7b223f6-e161-4608-aa2b-faedd37f2933","reason":{"kind":"error","error":{"message":"llm-pi-ai: no credential for provider route \"llmgateway\"; its profile resolves LLMGATEWAY_API_KEY, which is not set — store LLMGATEWAY_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery","code":"MISSING_CREDENTIAL"}},"text":""}
+
+$ node --test .dsh/plugins/repo-guards/tests/repo-guards.test.mjs
+pass 28, fail 0, skipped 0

@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Skilled",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "cli-external-orchestration",
+        "score": 0.804165,
+        "confidence": 0.95,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active"
+      },
+      {
+        "skillId": "mcp-code-mode",
+        "score": 0.144573,
+        "confidence": 0.82,
+        "uncertainty": 0.26,
+        "dominantLane": "lexical",
+        "status": "active"
+      },
+      {
+        "skillId": "mcp-tooling",
+        "score": 0.140432,
+        "confidence": 0.82,
+        "uncertainty": 0.26,
+        "dominantLane": "lexical",
+        "status": "active",
+        "compiledRoute": {
+          "hubId": "mcp-tooling",
+          "action": "defer",
+          "selectionKind": null,
+          "targets": [],
+          "effectivePolicyHash": "4f9de0bd0a328b0a49bf5e1e59d7f72c69ebddc48a402bd54632c5ec89be9f3f",
+          "generation": 4
+        }
+      }
+    ],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 2289,
+      "checkedAt": "2026-11-06T07:19:28.915Z",
+      "lastLiveAt": "2026-11-06T07:17:12.088Z"
+    },
+    "generatedAt": "2026-11-06T07:19:28.931Z",
+    "cache": {
+      "hit": true,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "cli-external-orchestration",
+          "liveScore": 0.804165,
+          "shadowScore": 0.754129,
+          "delta": -0.050036,
+          "dominantShadowLane": "explicit_author"
+        },
+        {
+          "skillId": "mcp-code-mode",
+          "liveScore": 0.144573,
+          "shadowScore": 0.143186,
+          "delta": -0.001387,
+          "dominantShadowLane": "lexical"
+        },
+        {
+          "skillId": "mcp-tooling",
+          "liveScore": 0.140432,
+          "shadowScore": 0.138452,
+          "delta": -0.00198,
+          "dominantShadowLane": "lexical"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# sk-code-skilled checklist audit
+
+Scope: `executor-config.ts`, `executor-config.vitest.ts`, `live-contracts.json` and the Bash command examples in `references/repin-runbook.md`.
+
+## TypeScript and Universal
+
+- `executor-config.ts`: module header present. No exported `any` types, commented-out code, new public function signatures, new interfaces, new catch blocks, non-null assertions or generic parameters were introduced. Existing strict mode and module settings were used. The capability comment explains the observed boundary and has no ephemeral phase or task pointer. The immutable model roster and function structure stay unchanged. Runtime typecheck exits 0.
+- `executor-config.vitest.ts`: module header present. The capability expectation changed to `true` and the false-capability grouping no longer includes this kind. No new comments, public types, functions, TODOs, magic values, filesystem mutations or error messages were added. Unit folder alignment passes.
+- Universal naming, documentation, type safety, code organization, line length, KISS, DRY and SOLID checks were reviewed for both TypeScript files. The changed lines meet these checks. No file mutation or spec-folder operation was added.
+
+## Config
+
+- `live-contracts.json` parses as JSON. Double quotes, bracket matching, camelCase key naming and two-space indentation are valid. The new `deepseekHarness` entry follows its sibling shape and groups the Gateway status, OpenCode Go status and temp-directory exception. No JSONC comments or schema were available or applicable. The contract text makes the non-obvious boundary explicit.
+
+## JavaScript
+
+- No JavaScript source file changed. The JavaScript checklist items for module headers, strict mode, exports, function behavior, console output, async handling and JSDoc are not applicable. The runbook's Node invocation is a command example, not JavaScript source.
+
+## Shell
+
+- No standalone shell file changed. The Bash examples use strict mode, quote variable expansions, capture command exit status and separate stdout from stderr. They contain no functions, TODOs or comments. All four Bash code blocks pass `bash -n`. Shebang, COMPONENT header, function naming, color and standalone ShellCheck requirements are not applicable to Markdown command examples.
+
+## Checks that could not run cleanly
+
+- `check-comment-hygiene.sh` exited 2 on its own shell syntax error at line 169 before it inspected either TypeScript file. Direct review found no ephemeral comment label in the changed lines.
+- Alignment drift on the runtime library folder reports one exact-header error in the untouched `iteration-findings.cjs`. The edited TypeScript file's header matches the convention. The unit test folder and adapter folder pass.
+- ShellCheck was not run because no shell source file changed. The four documented commands passed Bash syntax checks.

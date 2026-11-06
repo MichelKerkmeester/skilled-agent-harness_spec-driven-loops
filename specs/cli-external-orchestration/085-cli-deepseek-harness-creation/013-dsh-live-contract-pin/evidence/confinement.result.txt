@@ -1,0 +1,4 @@
+exit 0
+workspace=<W> outside_dir=<O>
+inside.txt exists: yes: hi
+outside.txt exists: yes

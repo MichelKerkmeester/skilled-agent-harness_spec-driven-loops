@@ -1,0 +1,26 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "runId": "fanout-luna-1793915913100-enoz0j",
+  "sessionId": "fanout-luna-1793915913100-enoz0j",
+  "lineageId": "fanout-luna-1793915913100-enoz0j",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.95,
+  "noveltyJustification": "The DSH tool and lifecycle seams map onto the repo’s Pi bridges, but have a different approval model and no automatic project extension scan.",
+  "status": "complete",
+  "focus": "Angle 6: plugins, hooks, and guards",
+  "answeredQuestions": [],
+  "findingsCount": 6,
+  "timestamp": "2026-11-05T22:33:36Z",
+  "generation": 1,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  }
+}

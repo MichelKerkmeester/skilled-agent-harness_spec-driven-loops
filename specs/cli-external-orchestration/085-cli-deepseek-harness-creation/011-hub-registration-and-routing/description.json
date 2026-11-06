@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/011-hub-registration-and-routing",
+  "description": "Register cli-deepseek-harness as the eighth cli-external-orchestration mode on the hub, skill advisor, compiled routing, sk-prompt card and agent tables, keeping the seven existing modes routing as before.",
+  "keywords": [
+    "phase",
+    "hub-registration-and-routing",
+    "cli-deepseek-harness",
+    "dsh",
+    "mode-registry",
+    "skill-advisor",
+    "compiled-routing"
+  ],
+  "lastUpdated": "2026-11-05T23:21:59.536Z",
+  "specId": "011",
+  "folderSlug": "hub-registration-and-routing",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

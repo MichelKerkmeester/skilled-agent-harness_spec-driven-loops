@@ -1,0 +1,21 @@
+# Literal probe commands, rerun 2026-11-06 from a temp cwd with a disposable DSH_HOME
+$ dsh --version </dev/null
+0.2.2-rc.1
+exit=0
+$ npm view @deepseek-ai/dsh@0.2.2-rc.1 dist.integrity --json
+"sha512-ijR9UEVYkG15Q/Q79JzvzLBzQOQfc63VLr9n6flpwHPhr5IKn2UxthnSoto/P9l7qGd7pPvI1Ra6TW7LH3oKpg=="
+exit=0
+$ npm view @deepseek-ai/dsh dist-tags --json
+{
+  "latest": "0.2.2-rc.1",
+  "alpha": "0.2.2-alpha.3",
+  "next": "0.2.2-rc.1"
+}
+exit=0
+$ DSH_HOME=<tmp> dsh --profile headless --help </dev/null  (output in headless-help.txt)
+exit=0
+$ printf "Reply with the single word OK" | env -i PATH="$PATH" HOME=<tmp> DSH_HOME=<tmp> DSH_STUB_MARKER=<tmpcwd>/stub-marker.txt dsh --profile headless --patch scratch/route-llmgateway-deepseek.patch.yml --patch scratch/lineage.patch.yml --patch scratch/stub-boot.patch.yml --json -  (exit in exit.txt)
+$ DSH_HOME=<tmp> dsh --profile headless --patch scratch/route-llmgateway-deepseek.patch.yml --patch scratch/lineage.patch.yml --dump-config </dev/null  (output in dump-config-llmgateway.txt)
+exit=0 stderr_bytes=0
+$ DSH_HOME=<tmp> dsh --profile headless --patch scratch/route-opencode-go-deepseek.patch.yml --patch scratch/lineage.patch.yml --dump-config </dev/null  (output in dump-config-opencode-go.txt)
+exit=0 stderr_bytes=0

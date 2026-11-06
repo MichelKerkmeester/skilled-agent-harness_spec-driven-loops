@@ -1,0 +1,48 @@
+# command: node --test .dsh/plugins/repo-guards/tests/
+# snapshot taken: 2026-11-06 08:19:26; newest bundle file mtime at run: 2026-11-06 08:18:55
+✔ allow: an allowlisted code_mode tool reaches the next pre-execute handler (0.701667ms)
+✔ deny: a code_mode tool outside the allowlist is denied (0.13925ms)
+✔ kill switch: the core disable flag turns the mount allowlist into a no-op (0.053125ms)
+✔ ignore: a non-MCP tool is not evaluated (0.050166ms)
+✔ throw policy: fails closed and logs when the core throws (0.0985ms)
+✔ parity: a routable external tool is denied with the Pi extension reason text (1.030875ms)
+✔ parity: dispatch audit observes the shared core verdict without blocking bash (1.473375ms)
+✔ parity: dispatch preflight allows a command with no shared-core violations (0.497ms)
+✔ preflight reads the hard rules of this checkout even when the session runs outside it (6.192375ms)
+✔ parity: spec classification defers an open gate without stopping the model step (3.384208ms)
+✔ parity: spec enforcement allows a child-session mutation under the shared core (0.360333ms)
+✔ parity: completion stop does not inject context when the shared core sees no claim (0.47575ms)
+✔ parity: task dispatch guard allows an unknown hand-off identity (0.450208ms)
+✔ parity: post-edit quality preserves an ordinary file result with no core findings (3.870875ms)
+✔ parity: injection screen preserves a fetched result with no text to screen (0.163833ms)
+✔ throw policy: dispatch audit fails open and logs when its core throws (0.117417ms)
+✔ throw policy: dispatch preflight fails closed and logs when its core throws (0.075166ms)
+✔ throw policy: spec classification fails open and logs when its core throws (0.097958ms)
+✔ throw policy: spec enforcement fails closed and logs when its core throws (0.064709ms)
+✔ spec enforcement records the notice it delivers through ask, and only then (0.068833ms)
+✔ throw policy: completion evidence fails open and logs when its core throws (0.044583ms)
+✔ throw policy: task dispatch guard fails open and logs when its core throws (0.0435ms)
+✔ throw policy: post-edit quality fails open and logs when its core throws (0.273167ms)
+✔ throw policy: injection screening fails open and logs when its core throws (0.052459ms)
+✔ goal context injects the exact CLI chat slice without frontmatter (71.062666ms)
+✔ goal context logs and continues when its core throws (0.126708ms)
+✔ session-start context injects the session-prime output on agent creation (0.104125ms)
+✔ session-start context logs and continues when session-prime throws (0.049333ms)
+✔ prompt advisor stays disabled by default and registers when its row flag is true (0.301334ms)
+✔ prompt advisor appends returned context on the pre-step waterfall (0.097959ms)
+✔ prompt advisor logs and continues when its core throws (0.063375ms)
+✔ git preflight attaches advisory context without changing the tool result (0.190375ms)
+✔ git preflight logs and continues when its core throws (0.077792ms)
+✔ git message gate applies the shared contract to fixture repositories (85.543333ms)
+✔ git message gate logs unexpected core errors and fails closed on contract errors (0.171875ms)
+✔ the dsh-llm loader resolves from the dsh binary, and a bad anchor does not poison the cache (9.484708ms)
+✔ every adapter loads the harness message helpers through the anchored loader (0.37725ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 239.173917
+# exit=0

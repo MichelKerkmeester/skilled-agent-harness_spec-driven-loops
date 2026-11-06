@@ -1,0 +1,641 @@
+{
+  "sessionId": "fanout-luna-1793915913100-enoz0j",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 1,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-05T23:02:53.923Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-dispatch-contract-does-deepseek-harness-expose-for-headless-execution-and-h",
+      "inboxId": null,
+      "text": "What dispatch contract does DeepSeek Harness expose for headless execution, and how does it compare with the existing cli-pi contract?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-should-the-two-provider-routes-repo-local-runtime-folder-skills-agents-comma",
+      "inboxId": null,
+      "text": "How should the two provider routes, repo-local runtime folder, skills, agents, commands, plugins, hooks, and MCP be represented for this mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-pi-extensions-and-third-party-plugins-should-be-ported-deferred-replaced-b",
+      "inboxId": null,
+      "text": "Which Pi extensions and third-party plugins should be ported, deferred, replaced by native features, or dropped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-fan-out-executor-support-and-cross-repository-touch-points-are-required-to-",
+      "inboxId": null,
+      "text": "What fan-out executor support and cross-repository touch points are required to integrate the mode safely?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-constraints-unknowns-and-dependency-ordered-phases-should-guide-implementat",
+      "inboxId": null,
+      "text": "What constraints, unknowns, and dependency-ordered phases should guide implementation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-how-should-the-two-provider-routes-repo-local-runtime-folder-skills-agents-comma",
+      "inboxId": null,
+      "text": "How should the two provider routes, repo-local runtime folder, skills, agents, commands, plugins, hooks, and MCP be represented for this mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-pi-extensions-and-third-party-plugins-should-be-ported-deferred-replaced-b",
+      "inboxId": null,
+      "text": "Which Pi extensions and third-party plugins should be ported, deferred, replaced by native features, or dropped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-what-fan-out-executor-support-and-cross-repository-touch-points-are-required-to-",
+      "inboxId": null,
+      "text": "What fan-out executor support and cross-repository touch points are required to integrate the mode safely?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-constraints-unknowns-and-dependency-ordered-phases-should-guide-implementat",
+      "inboxId": null,
+      "text": "What constraints, unknowns, and dependency-ordered phases should guide implementation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-dispatch-contract-does-deepseek-harness-expose-for-headless-execution-and-h",
+      "inboxId": null,
+      "text": "What dispatch contract does DeepSeek Harness expose for headless execution, and how does it compare with the existing cli-pi contract?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which Pi community plugins have a suitable DSH native replacement or market package?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What fan-out executor changes and complete cross-repository touch points are required?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What constraints, unknowns, and ordered phases should guide implementation?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should the provider routes, repo-local runtime folder, skills, agents, commands, plugins, hooks, and MCP be integrated as one sync contract?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should the provider routes, repo-local runtime folder, skills, agents, commands, plugins, hooks, and MCP form one sync contract?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which optional MCP memory and tool packages are appropriate for this repository?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "How should the two provider routes, repo-local runtime folder, skills, agents, commands, plugins, hooks, and MCP be represented for this mode?",
+    "Which Pi extensions and third-party plugins should be ported, deferred, replaced by native features, or dropped?",
+    "What fan-out executor support and cross-repository touch points are required to integrate the mode safely?",
+    "What constraints, unknowns, and dependency-ordered phases should guide implementation?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-default-output-is-the-final-assistant-text-on-stdout-with-reasoning-diagnostics-",
+      "text": "Default output is the final assistant text on stdout, with reasoning/diagnostics on stderr. JSON mode emits a session event and structured turn, step, thinking, text, tool-call, tool-result, and final events; a supplied session ID adopts the persisted session, while a default ID is generated. [SOURCE: dsh-src/packages/bundle/headless/src/json-stream.ts:230-237,244-327] [SOURCE: https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/headless/README.md (fetched 2026-11-05)]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-headless-mode-accepts-the-task-as-positional-text-or-reads-stdin-when-the-task-i",
+      "text": "Headless mode accepts the task as positional text, or reads stdin when the task is omitted or the sole argument is -; when positional text is supplied, stdin is not consumed. Empty tasks are rejected. [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:117-155] [SOURCE: https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/headless/README.md (fetched 2026-11-05)]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-pi-overlaps-on-one-shot-text-and-json-output-but-also-defines-persistent-jsonl-r",
+      "text": "Pi overlaps on one-shot text and JSON output but also defines persistent JSONL RPC and direct provider/model/session controls. Codex, OpenCode, Claude Code, Cursor, Devin, and Hermes each expose distinct invocation and permission/model/output flags, so a DeepSeek mode needs its own adapter contract rather than reusing cli-pi’s flag assumptions. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:38-44,90-110] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md:92-106,153-162] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:95-123] [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md:102-110,126-146,152-154] [SOURCE: .skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md:95-112] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md:146-186] [SOURCE: .skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md:36-66,74-83]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-process-success-follows-the-terminal-turn-reason-completed-exits-0-aborted-or-er",
+      "text": "Process success follows the terminal turn reason: completed exits 0; aborted or error exits 1. JSON tool-result events expose completed/error status, but the checked contract defines no separate process exit specifically for a denied tool; that case remains UNKNOWN without an observed run. Provider or driver failures are surfaced through stderr and an error event. [SOURCE: dsh-src/packages/bundle/headless/src/index.ts:400-443] [SOURCE: dsh-src/packages/bundle/headless/src/json-stream.ts:301-327] [SOURCE: dsh-src/packages/bundle/headless/tests/headless.spec.ts:698-707]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-the-cli-s-profile-bootstrap-prepares-missing-profile-files-during-first-use-and-",
+      "text": "The CLI’s profile bootstrap prepares missing profile files during first use, and the CLI reference warns that configuration dumping can initialize those files. This makes even seemingly informational profile-scoped commands capable of writes unless a profile is already provisioned. [SOURCE: dsh-src/apps/cli/reference/README.md:17,55,60] [SOURCE: dsh-src/apps/cli/src/profile-boot.ts:224-235,271-295]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-the-visible-headless-controls-include-json-session-id-permission-mode-approval-p",
+      "text": "The visible headless controls include --json, --session-id, --permission-mode, --approval-policy, and repeatable --add-dir. The headless parser exposes no model, provider, reasoning-effort, or timeout option; provider/model selection therefore belongs to profile configuration, while a caller that needs a hard time bound must supervise the process externally. [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:53-75,84-92,117-155] [SOURCE: dsh-src/apps/cli/reference/README.md:41-46]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-headless-exposes-no-per-dispatch-provider-or-model-selector-route-choice-must-th",
+      "text": "Headless exposes no per-dispatch provider or model selector. Route choice must therefore come from the selected profile’s configured/default model or an already-persisted session; using separate profiles is the clearest operator-controlled way to keep these routes distinct, but the exact launch selection should be checked against the chosen headless profile contract before implementation. [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:53-75,117-155] [SOURCE: dsh-src/docs/user/guide/providers.md:41-56] [SOURCE: dsh-src/apps/cli/reference/README.md:13-17]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-opencode-go-is-a-separate-pi-ai-catalog-route-provider-id-opencode-go-using-open",
+      "text": "OpenCode Go is a separate pi-ai catalog route, provider id opencode-go, using OPENCODE_API_KEY. The current Models.dev catalog lists DeepSeek V4.1 Flash as deepseek-v4.1-flash at https://opencode.ai/inference/go/openai/v1, with OpenAI-compatible chat completions, 1,000,000 context, 384,000 output, reasoning and tool-call support. [SOURCE: dsh-src/packages/llm/llm-pi-ai/src/provider-data.generated.ts:35-36] [SOURCE: https://models.opencode.ai/providers/opencode-go/ (fetched 2026-11-05)] [SOURCE: https://pi.dev/models/opencode-go/deepseek-v4-1-flash?name=pi-open-agents (fetched 2026-11-05)]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-the-built-in-deepseek-adapter-is-for-the-official-deepseek-api-and-messages-prot",
+      "text": "The built-in DeepSeek adapter is for the official DeepSeek API and Messages protocol. It registers provider deepseek-official, defaults reasoning effort to high, and advertises deepseek-flash plus deepseek-v4-pro; use it for the official API, not as the generic OpenAI-compatible gateway adapter. [SOURCE: dsh-src/packages/llm/llm-deepseek/README.md:34-63] [SOURCE: dsh-src/packages/llm/llm-deepseek/src/models.ts:7-21]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-the-endpoint-evidence-diverges-the-supplied-route-inventory-and-current-models-d",
+      "text": "The endpoint evidence diverges: the supplied route inventory and current Models.dev catalog list /inference/go/openai/v1, while OpenCode’s current Go docs list https://opencode.ai/zen/go/v1/chat/completions. These may describe separate catalog and service routes or a migration; the exact endpoint that will authenticate and serve this harness configuration is UNKNOWN without an authorized request. [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:52-54] [SOURCE: https://models.opencode.ai/providers/opencode-go/ (fetched 2026-11-05)] [SOURCE: https://docs.opencode.ai/docs/go/ (fetched 2026-11-05)]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-the-llm-gateway-route-is-a-hand-declared-pi-ai-provider-configure-apikeyenv-api-",
+      "text": "The LLM Gateway route is a hand-declared pi-ai provider: configure apiKeyEnv, api=openai-completions, baseURL=https://api.llmgateway.io/v1, and an explicit model list containing deepseek-v4.1-flash-1017 (optionally the route’s glm-5.3-flash). The harness stores this provider shape in the selected profile’s cordis.patch.yml and resolves credentials through references rather than a literal secret. [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:48-51] [SOURCE: dsh-src/docs/user/guide/providers.md:27-39,49-56,67-80] [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:36-75]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-the-two-operator-routes-are-not-interchangeable-aliases-the-llm-gateway-model-is",
+      "text": "The two operator routes are not interchangeable aliases: the LLM Gateway model is deepseek-v4.1-flash-1017, while OpenCode Go is deepseek-v4.1-flash, and each route has its own key reference. Keep separate pi-ai provider ids and model entries so sessions and defaults cannot silently cross providers. [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:48-55] [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:28-38,77-85]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-a-repository-local-dsh-cordis-patch-yml-is-a-workable-tracked-overlay-only-when-",
+      "text": "A repository-local .dsh/cordis.patch.yml is a workable tracked overlay only when the launch path passes it with --patch; it is not a replacement DSH_HOME or an auto-discovered profile. Keeping DSH_HOME outside the checkout avoids mixing operator credentials, sessions, and profile bootstrap files with portable repo assets. [SOURCE: dsh-src/apps/cli/reference/README.md:45-56] [SOURCE: dsh-src/apps/cli/src/profile-boot.ts:224-235,271-295]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-dsh-home-is-process-wide-state-defaulting-to-dsh-unless-the-environment-override",
+      "text": "DSH_HOME is process-wide state, defaulting to ~/.dsh unless the environment overrides it. DSH’s agent-instruction plugin reads global AGENTS.md from DSH_HOME and the shared agents root from DSH_AGENTS_HOME (default ~/.agents); these are not per-project config fields. [SOURCE: dsh-src/packages/context/agent-instructions/README.md:34-42]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-existing-runtime-manifests-show-the-repo-specific-sync-pattern-pi-uses-generated",
+      "text": "Existing runtime manifests show the repo-specific sync pattern: .pi uses generated agent/prompt trees, shared-skill links, and hand-authored extensions/settings/MCP; .hermes has generated prompt and skill outputs plus a hand-authored repo plugin and SYNC.md, while provider and MCP configuration remains user-level. A future .dsh folder can state its generated/hand-authored/linked surfaces in SYNC.md, with its launcher overlay separate from DSH_HOME. [SOURCE: .pi/SYNC.md:1-45] [SOURCE: .hermes/SYNC.md:1-45]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-profile-configuration-lives-under-dsh-home-profiles-profile-the-composed-config-",
+      "text": "Profile configuration lives under $DSH_HOME/profiles/<profile>. The composed config includes the bundle, profile cordis.patch.yml, home-level $DSH_HOME/cordis.patch.yml, and explicit --patch overlays; --patch is repeatable and overlay-relative plugin names resolve beside their patch file. [SOURCE: dsh-src/apps/cli/reference/README.md:45-55,60] [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:33-44]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-provider-credentials-are-kept-in-the-dsh-home-credential-store-while-profile-con",
+      "text": "Provider credentials are kept in the DSH_HOME credential store while profile configuration carries credential references such as apiKeyEnv. A tracked project overlay should therefore contain route/model metadata and references only; DSH_HOME and credential files should stay outside the repository. [SOURCE: dsh-src/docs/user/guide/providers.md:13,27-39,49-56] [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:36-38]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-the-documented-project-auto-discovery-is-an-instruction-chain-from-the-git-marke",
+      "text": "The documented project auto-discovery is an instruction chain: from the .git-marked project root through the working directory, DSH reads AGENTS.md and CLAUDE.md plus additive AGENTS.local.md and CLAUDE.local.md. No automatic .dsh profile/config-folder loader is documented; treat that absence as documented, unconfirmed, and use explicit overlays. [SOURCE: dsh-src/packages/context/agent-instructions/README.md:28-42] [SOURCE: dsh-src/apps/cli/reference/README.md:30-33]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-dsh-accepts-a-top-level-directory-bundle-name-skill-md-or-flat-name-md-not-recur",
+      "text": "DSH accepts a top-level directory bundle name/SKILL.md or flat name.md, not recursive **/SKILL.md. Required frontmatter is name and description; supported optional fields include whenToUse, metadata, disable-model-invocation and user-invocable. Existing shared SKILL.md files carry allowed-tools and version, which DSH does not translate into model-tool permissions; retain instruction text but map permission behavior in the runtime/tool configuration. [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:34-42] [SOURCE: dsh-src/packages/skill/skill-filesystem/src/index.ts:811-852,1014-1055] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:1-5]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-dsh-caps-normalized-skill-descriptions-shown-in-the-session-catalog-at-500-chara",
+      "text": "DSH caps normalized skill descriptions shown in the session catalog at 500 characters, but loaded instruction bodies have no size cap. Prefer concise skill summaries and load references/assets only when relevant rather than injecting whole shared resources into every skill body. [SOURCE: dsh-src/packages/skill/tool-skill/README.md:38-54,261-266] [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:81]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-dsh-s-filesystem-provider-searches-project-dsh-skills-first-then-project-agents-",
+      "text": "DSH’s filesystem provider searches project .dsh/skills first, then project .agents/skills, configured custom roots, DSH_HOME/skills, DSH_AGENTS_HOME/skills, and an optional bundled root. The project root is the nearest .git ancestor; skill summaries are discovered on demand and bodies load only when requested. [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:28-56,67-77]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-linking-the-whole-skilled-skills-tree-into-the-dsh-root-exposes-only-the-root-s-",
+      "text": "Linking the whole .skilled/skills tree into the DSH root exposes only the root’s direct children; it cannot load every nested cli mode. This repository has a cli-external-orchestration parent SKILL.md and seven nested runtime SKILL.md files. To expose each mode, generate flattened skill bundles or add one direct bundle link per desired mode under .dsh/skills; the parent hub remains a separate, optional skill. [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:34-40] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:1-5] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:1-5] [SOURCE: .pi/SYNC.md:8-31]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-the-filesystem-provider-follows-symlinked-skill-entries-and-preserves-their-disc",
+      "text": "The filesystem provider follows symlinked skill entries and preserves their discovered paths; watcher follow-symlinks defaults to true. Unlike the Hermes security scanner, this provider documents invalid frontmatter as a per-skill warning and skip, with no quarantine. [SOURCE: dsh-src/packages/skill/skill-filesystem/src/index.ts:86,913-930] [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:40,79-85] [SOURCE: .hermes/SYNC.md:14-29]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-the-shipped-base-composition-already-mounts-the-skill-registry-local-filesystem-",
+      "text": "The shipped base composition already mounts the skill registry, local filesystem provider and model-facing skill tool, so headless mode has a native path for local skills without importing Pi’s extension loader. [SOURCE: dsh-src/packages/bundle/base/cordis.patch.yml:312-319] [SOURCE: dsh-src/packages/skill/skill/README.md:28-55]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-dsh-ships-in-process-spawn-fork-subagent-providers-and-a-model-facing-tool-a-sep",
+      "text": "DSH ships in-process spawn/fork subagent providers and a model-facing tool; a separate DSH SDK backend can launch a full child runtime with its own profile, ordered patches, and required isolated DSH_HOME. That SDK backend accepts route options but rejects independent child presets, structured output, and numeric depth caps, so do not assume every shared persona can be selected on an external child. [SOURCE: dsh-src/packages/bundle/base/cordis.patch.yml:363-403] [SOURCE: dsh-src/packages/subagent/README.md:25-35] [SOURCE: dsh-src/packages/subagent/subagent-dsh-sdk/README.md:28-55]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-dsh-slash-commands-are-code-registrations-through-ctx-commands-register-and-inte",
+      "text": "DSH slash commands are code registrations through ctx.commands.register(), and interactive adapters dispatch them directly without a model message. Markdown files under .skilled/commands are not a native command source; the headless, ACP, and JSON-RPC entry points have no slash-command adapter. Port selected commands as plugin handlers, prompt/skill templates, or wrapper behavior according to their existing semantics. [SOURCE: dsh-src/packages/interaction/commands/README.md:28-64] [SOURCE: dsh-src/packages/feedback/command-feedback/README.md:12,25-28] [SOURCE: .pi/SYNC.md:26-37]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-dsh-s-agent-preset-registry-accepts-declared-composition-rows-it-does-not-scan-d",
+      "text": "DSH’s agent-preset registry accepts declared composition rows; it does not scan directories or accept preset paths. A preset can mount dsh-persona with a prefix/suffix, so .skilled/agents/*.md requires generated Cordis preset rows or an explicit skill/prompt route; the file alone is not a DSH agent. [SOURCE: dsh-src/packages/preset/agent-preset-registry/README.md:44-48] [SOURCE: dsh-src/packages/preset/agent-preset/README.md:28-48,84-85] [SOURCE: dsh-src/packages/preset/persona/README.md:28-53]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-dsh-s-workflow-tool-accepts-a-plain-javascript-script-with-metadata-and-argument",
+      "text": "DSH’s workflow tool accepts a plain JavaScript script with metadata and arguments, then coordinates subagents through agent(), parallel(), pipeline(), phase(), and log(); the shipped base composes workflow-ptc and tool-workflow. A Markdown command template would need a generator or wrapper that supplies the task as data or renders it into a workflow script. [SOURCE: dsh-src/packages/workflow/workflow/README.md:28-53] [SOURCE: dsh-src/packages/bundle/base/cordis.patch.yml:408-414]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-pi-and-hermes-demonstrate-runtime-specific-generated-mirrors-but-their-outputs-h",
+      "text": "Pi and Hermes demonstrate runtime-specific generated mirrors, but their outputs have different consumers: Pi’s agent and prompt files are generated in Pi’s dialect, while Hermes builds prompt stubs and skills plus a project plugin. For DSH, generate preset declarations and any flattened skill mirrors, then hand-author or generate command/goal plugins; a DSH SYNC.md should name each source and generated surface. [SOURCE: .pi/SYNC.md:8-45,64-87] [SOURCE: .hermes/SYNC.md:20-33] [SOURCE: dsh-src/packages/preset/agent-preset-registry/README.md:46-48] [SOURCE: dsh-src/packages/interaction/commands/README.md:30-64]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-the-native-dsh-goal-service-persists-one-current-goal-per-session-across-restart",
+      "text": "The native DSH goal service persists one current goal per session across restarts and the base composes the goal tool, driver, and command. Plan mode is a separate interactive approval flow. Neither package reference describes binding the repository’s shared spec goal.md; Pi and Hermes use explicit runtime bridges to the shared goal core, so DSH needs its own binding if packet goal semantics must carry across runtimes. [SOURCE: dsh-src/packages/goal/goal/README.md:28-56] [SOURCE: dsh-src/packages/goal/command-goal/README.md:28-64] [SOURCE: dsh-src/packages/plan/plan-mode/README.md:28-63] [SOURCE: .pi/prompts/goal-pi.md:1-34] [SOURCE: .hermes/SYNC.md:84-85]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-dsh-plugins-are-cordis-functions-or-service-classes-registered-through-a-profile",
+      "text": "DSH plugins are Cordis functions or Service classes registered through a profile's Cordis composition; typed service events and reversible effects provide plugin lifecycle. For repo-local code, the source supports an explicit .dsh/cordis.patch.yml passed through --patch and relative plugin rows resolved beside the patch. The dsh plugin command instead installs dependencies into a DSH_HOME profile. There is no documented scan of a project .dsh/extensions directory. [SOURCE: dsh-src/docs/cordis-primer.md:5-13,29-45; dsh-src/apps/cli/reference/README.md:11-17,83-87; https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cordis-primer.md (fetched 2026-11-05)]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-one-repo-local-bundle-package-is-the-smaller-unit-than-one-installable-package-p",
+      "text": "One repo-local bundle package is the smaller unit than one installable package per guard, provided it exports individually mountable Cordis plugin factories and keeps policy implementations owned by their existing shared cores. A .dsh/cordis.patch.yml can list the needed factories, while the sync manifest maps shared source to DSH adapters. This follows Hermes's repo-guards packaging precedent without combining policy code or forcing every profile to load every guard. The plugin market is a catalog feature, not the runtime event bridge. [SOURCE: .hermes/SYNC.md:20-33; dsh-src/docs/cordis-primer.md:9-13,37-45; dsh-src/apps/cli/reference/README.md:13-17,83-87; dsh-src/docs/user/guide/plugin-market.md:16-24]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-preserve-each-guard-s-error-policy-explicitly-pi-s-current-adapter-contract-wrap",
+      "text": "Preserve each guard's error policy explicitly. Pi's current adapter contract wraps handlers and fails open on an adapter exception, while DSH's monotonic guard can deny but cannot grant permission; moving a shared decision into that final guard without an adapter layer could change failure behavior. The documentation establishes callable seams, not that this repo's guards have been loaded and exercised in DSH headless. A live plugin pin must test denied mutations, observer failures, prompt injection, and teardown before claiming parity. [SOURCE: .pi/extensions/README.md:99-120; dsh-src/docs/subsystems/tools.md:458-468,531-563,818-840; https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/tools.md (fetched 2026-11-05)]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-prompt-and-agent-lifecycle-work-has-a-different-shape-from-pi-s-named-events-age",
+      "text": "Prompt and agent lifecycle work has a different shape from Pi's named events: agent/pre-step is the sole waterfall before request derivation and carries the claimed user messages; agent/created and agent/disposed bracket an Agent's lifetime; and agent/turn-stopping is a serial end-of-turn seam. DSH compaction is native and records compaction/start, summary, and end markers while replacing the conversation surface. Those seams can host context injection and cleanup, but adapters must bind to DSH events rather than expect Pi input/session_start/session_compact names. [SOURCE: dsh-src/docs/subsystems/core.md:382-405,874-940,1013-1032,1091-1116; dsh-src/packages/compaction/compaction/README.md:12-51,73-82; .pi/extensions/README.md:65-80]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-recommended-per-extension-disposition-for-this-headless-mode-port-means-preserve",
+      "text": "Recommended per-extension disposition for this headless mode (Port means preserve the shared guard core and write a DSH adapter; Port later means wait for the relevant runtime contract or baseline plugin; Not relevant means keep the responsibility with the outer executor):",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-the-shipped-guard-package-covers-loop-hygiene-repeat-tool-reminders-and-declared",
+      "text": "The shipped guard package covers loop hygiene (repeat-tool reminders and declared per-tool timeouts), not this repository's spec, dispatch, or git policies. DSH's tool API has the needed native seams: pre-execute can allow, deny, cancel, or ask; execute wraps dispatch for timeout/metrics; post-execute can replace or block a result; result is an observer; and monotonic guards can add a final denial after pre-execute. Tool arguments cannot be rewritten because they are already logged and presented. [SOURCE: dsh-src/packages/guard/README.md:8-32; dsh-src/docs/subsystems/tools.md:458-468,531-563,769-881; https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/tools.md (fetched 2026-11-05)]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-blackhole-bundles-compaction-with-durable-observations-reflections-so-dsh-s-nati",
+      "text": "Blackhole bundles compaction with durable observations/reflections, so DSH's native compaction only replaces half the feature. DSH base already mounts dsh-compaction-basic, which condenses conversation history. DSH does not ship an observational memory service in that composition; its guide instead documents default-off third-party MCP memory servers, whose persistence, retrieval, model, and installation remain external. The reference graph server is simple substring search and explicitly lacks automatic summarization, conflict resolution, and forgetting, so do not label it a behavioral equivalent to Blackhole. [SOURCE: .pi/PLUGINS.md:30-34; dsh-src/packages/compaction/README.md:10-33; dsh-src/docs/user/guide/mcp-memory.md:5-33,46-55,66-72; https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/compaction/compaction-basic/README.md (fetched 2026-11-05)]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-cache-optimization-is-not-safe-to-copy-verbatim-pi-s-cache-extension-rearranges-",
+      "text": "Cache optimization is not safe to copy verbatim. Pi's cache extension rearranges prompt content, may add prompt_cache_key, warns about proxy affinity, and explicitly leaves long cache retention disabled until the endpoint supports it. DSH's base includes repeat-tool-reminder, but the inspected DSH references do not establish that either requested route accepts the Pi cache parameters or has an equivalent cache-control hook. Keep those behaviors UNKNOWN until provider-specific requests are pinned; the OpenAI priority service_tier toggle is out of scope for the requested DeepSeek providers, while DSH already supplies child execution. [SOURCE: .pi/extensions/pi-cache-optimizer/README.md:37-50,58-64; .pi/extensions/pi-fast-mode-w-subagent-support/README.md:9-24,59-96; .pi/PLUGINS.md:81-85; dsh-src/packages/guard/README.md:8-32; resource-map.md:18-25]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-dsh-already-has-a-structured-question-schema-and-a-question-answer-service-plus-",
+      "text": "DSH already has a structured question schema and a question-answer service, plus a model-facing ask_user_question tool. The package authenticates the exact calling Agent, stores the question projection through Session events, and returns NO_PROVIDER when no answerer accepts the request. That is a direct capability replacement for the Pi questionnaire, but a headless run cannot assume a human UI; the DSH mode must either wire an answer source or stop cleanly on unanswered questions. DSH todo_write provides a persistent per-session task list, so rpiv-todo does not need a port. [SOURCE: dsh-src/packages/interaction/user-questions/README.md:12-45; dsh-src/packages/interaction/README.md:27-33; dsh-src/packages/todo/README.md:10-35; https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/interaction/user-questions/README.md (fetched 2026-11-05); https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/todo/README.md (fetched 2026-11-05)]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-package-by-package-recommendation-replace-use-dsh-s-native-feature-port-build-a-",
+      "text": "Package-by-package recommendation (Replace = use DSH's native feature; Port = build a DSH adapter; Defer = wait for its contract or a need; Drop = omit from the headless mode):",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-pi-s-side-conversation-package-and-plan-build-workflow-do-not-map-one-for-one-to",
+      "text": "Pi's side-conversation package and plan-build workflow do not map one-for-one to DSH's subagent model. DSH subagents and JavaScript workflow scripts support isolated or parallel delegated work; plan-mode provides a native explore, plan, approve flow. Recommend dropping /btw from a one-shot executor, using plan-mode where a human approval answerer exists, and keeping any clean-session execution boundary in the fan-out wrapper instead of imitating a Pi slash command. [SOURCE: .pi/PLUGINS.md:37-41,88-92; dsh-src/packages/subagent/README.md:10-12; dsh-src/packages/workflow/workflow/README.md:28-51; dsh-src/packages/plan/README.md:10-29; dsh-src/packages/bundle/base/cordis.patch.yml:336-350; https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/plan/README.md (fetched 2026-11-05)]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-the-core-search-fetch-part-of-pi-web-access-has-an-in-box-counterpart-dsh-tool-w",
+      "text": "The core search/fetch part of pi-web-access has an in-box counterpart: dsh-tool-web registers web_search/web_fetch with provider-backed readiness and bounded outputs. Pi's listed package also advertises repository cloning, PDF extraction, YouTube understanding, and local-video analysis; the DSH web docs do not claim those tools, so defer them rather than mark full parity. The DSH Plugin Market is a catalog of installable DSH bundles behind user-configured indexes, ships with no index source, and installs only after confirmation; it is not an import path for Pi extensions or a ready-made Pi-compatible marketplace. [SOURCE: .pi/PLUGINS.md:102-106; dsh-src/packages/web/tool-web/README.md:10-55; dsh-src/docs/user/guide/plugin-market.md:5-34; dsh-src/packages/bundle/base/cordis.patch.yml:499-503; https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/web/tool-web/README.md (fetched 2026-11-05); https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/plugin-market.md (fetched 2026-11-05)]",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-a-repo-local-patch-can-be-the-per-dispatch-opt-in-the-cli-accepts-ordered-patch-",
+      "text": "**A repo-local patch can be the per-dispatch opt-in.** The CLI accepts ordered `--patch` overlays before the app-argument boundary, so a checked-in `.dsh/cordis.patch.yml` (name is a recommendation, not an existing DSH convention) can add only approved MCP registrations and the dispatch wrapper can pass it explicitly. Without that patch, the current headless bundle set does not mount the MCP client. The reviewed CLI docs do not establish a dedicated `--no-mcp` or per-call MCP enable flag; treat the overlay choice as the concrete enable/disable control. [SOURCES: dsh-src/apps/cli/src/args.ts:73-74; dsh-src/apps/cli/reference/README.md:28-34; dsh-src/packages/bundle/headless/cordis.patch.yml:1-7; dsh-src/packages/mcp/mcp-client/README.md:12]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-dsh-s-mcp-client-is-opt-in-and-server-scoped-each-deepseek-ai-dsh-mcp-client-reg",
+      "text": "**DSH's MCP client is opt-in and server-scoped.** Each `@deepseek-ai/dsh-mcp-client` registration describes one server, and no server is enabled by default. The client documents stdio and Streamable HTTP transports, names tools `mcp__<serverName>__<tool>`, and uses the shared resource service shipped in profiles. The DSH headless profile is a one-shot composition over dsh-base; its bundle list includes `mcp-resources` but not `mcp-client`, so MCP tools require an explicit composition overlay. [SOURCES: dsh-src/packages/mcp/mcp-client/README.md:12,28-32,55-65,74-78; dsh-src/packages/bundle/base/cordis.patch.yml:505-506; dsh-src/packages/bundle/headless/cordis.patch.yml:1-7; https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/mcp/mcp-client/README.md (fetched 2026-11-05)]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-mcp-process-startup-and-environment-need-explicit-bounds-stdio-negotiation-start",
+      "text": "**MCP process startup and environment need explicit bounds.** Stdio negotiation starts a temporary probe process before the serving process; DSH offers startup timeout, per-call timeout, startup-failure policy, reconnect controls, and credential template expansion. Its MCP child environment drops inherited names matching `KEY|PASSWORD|SECRET|TOKEN` and inherited `DSH_*`, then merges configured env values. Configure `UTCP_CONFIG_FILE` explicitly and choose startup/failure policy deliberately; do not assume arbitrary secrets from the parent environment reach the child. [SOURCES: dsh-src/packages/mcp/mcp-client/README.md:28,55-70,94-103,161; https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/mcp-memory.md (fetched 2026-11-05)]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-per-tool-restriction-belongs-in-the-adapter-s-tool-policy-dsh-tool-names-are-ser",
+      "text": "**Per-tool restriction belongs in the adapter's tool policy.** DSH tool names are server-qualified, and the core tool registry exposes `ctx.tools.restrict(filter)` as an allow/deny mask over inherited tools. The docs reviewed do not show an MCP-specific per-tool allowlist field in the client config. The planned adapter should mount the server composition only when requested and apply a closed allowlist of `mcp__code_mode__*` names for a dispatch; the exact filter behavior and permission boundary should be verified against a harmless server before enabling it. [SOURCES: dsh-src/packages/mcp/mcp-client/README.md:74-84; dsh-src/packages/core/tools/README.md:88-92,108-112]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-the-current-code-mode-server-is-portable-through-stdio-but-its-pi-json-is-not-a-",
+      "text": "**The current Code Mode server is portable through stdio, but its Pi JSON is not a DSH config.** `.pi/mcp.json` launches `node .skilled/bin/mcp-code-mode-launcher.cjs` and sets `UTCP_CONFIG_FILE=.utcp_config.json`; the launcher resolves the server entrypoint from the shared `.skilled` source tree. DSH's adapter must translate these values into a `dsh-mcp-client` YAML entry (`transport: stdio`, command/args/env/cwd), preserving the repository working directory. Pi's advisor is an in-process extension and is not an MCP server to port. No live DSH connection was run, so successful handshake through that launcher remains unconfirmed. [SOURCES: .pi/mcp.json:1-12; .pi/SYNC.md:26-30; .skilled/bin/mcp-code-mode-launcher.cjs:22-34,67-80; dsh-src/packages/mcp/mcp-client/README.md:34-60; https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/mcp.md (fetched 2026-11-05)]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-keep-dsh-inside-the-normal-recursion-guard-and-fail-closed-adapter-path-the-shar",
+      "text": "**Keep DSH inside the normal recursion guard and fail-closed adapter path.** The shared audit layer blocks nested same-runtime dispatch by checking executor presence/ancestry, and only Pi is exempt because it cannot delegate in-process; DSH should not receive that exemption. The builder needs a binary-availability check, a closed supported-model/provider mapping, explicit erroring for unsupported reasoning or sandbox fields, and no fallback to native on failure. DSH's native sandbox is documented as subprocess file-effect confinement, not a host/container boundary; expose it as preventive only after testing the native file, shell, and MCP tools under `workspace-write` and `read-only`. [SOURCES: executor-audit.ts:93-127,151-224,965-1010; executor-config.ts:11-15,68-82,93-148; dsh-src/packages/sandbox/README.md:10-32; dsh-src/packages/bundle/headless/README.md:92-100,132]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-lineage-isolation-needs-both-a-real-dsh-home-and-a-credential-plan-the-fan-out-r",
+      "text": "**Lineage isolation needs both a real DSH home and a credential plan.** The fan-out runner allocates `{lineageDir}/.executor-state` and sets a per-kind `SPECKIT_*_STATE_DIR`, but those markers are detection hints unless a native home override is also set. DSH's `$DSH_HOME` owns profiles and persistent Sessions, and the new executor env allowlist must explicitly admit `DSH_HOME` plus only the provider credential variables approved for the two routes. A unique `--session-id` per lineage/run can separate session history; a fresh per-lineage `$DSH_HOME` avoids shared profile/session state but will not contain credentials unless they are inherited through the approved env or deliberately provisioned. Do not broadly pass `DSH_*` or all parent secrets. [SOURCES: fanout-run.cjs:504-513,3579-3585,3648-3675; executor-audit.ts:93-120,129-180,994-1010; dsh-src/apps/cli/README.md:11,38-47; iteration-003.md:17-24]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-the-executor-change-spans-several-explicit-consumers-update-the-source-of-each-r",
+      "text": "**The executor change spans several explicit consumers; update the source of each registry and its generated/test mirrors.** The following inventory is grounded in current literal executor lists and existing per-runtime tests; entries marked “new” are proposed DSH-specific counterparts.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-the-fan-out-adapter-should-use-a-dsh-native-headless-command-not-pi-flags-a-plau",
+      "text": "**The fan-out adapter should use a DSH-native headless command, not Pi flags.** A plausible dispatch is `dsh --profile headless --patch <repo-local-overlay> --json --permission-mode workspace-write --approval-policy never -`, with the task delivered on stdin and the child working directory set to that lineage's artifact directory. DSH documents `-` as the stdin task marker and supports `--json`, `--permission-mode`, `--approval-policy`, and repeatable `--add-dir`; the DSH CLI's top-level profile/patch options must precede app arguments. Its `workspace-write` process sandbox is a potential preventive boundary, but a lineage cwd, tool writes, and subprocess writes all need a harmless effect test before marking the executor as confined. The existing post-dispatch containment scan should remain a second boundary. [SOURCES: dsh-src/packages/bundle/headless/src/startup.ts:53-74; dsh-src/packages/bundle/headless/README.md:87-100,128-136; dsh-src/packages/sandbox/README.md:10-32; dsh-src/apps/cli/reference/README.md:28-34; fanout-run.cjs:3579-3585,4038-4057]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-timeouts-are-supervisor-owned-while-dsh-s-process-status-is-a-usable-success-sig",
+      "text": "**Timeouts are supervisor-owned, while DSH's process status is a usable success signal.** The headless parser has no per-call timeout flag, so `timeoutSeconds` must be applied by the shared runner, which already closes unused stdin and supervises the child. DSH exits 0 only for a completed final turn and 1 for aborted/error/no-final-turn outcomes; under `--json`, also require a `final` record with a successful reason rather than treating any parseable output as task success. This differs from Pi's explicitly documented nondeterministic exit status, so DSH should use the normal nonzero-is-failure rule. [SOURCES: iteration-001.md:17-20; dsh-src/packages/bundle/headless/README.md:104,134-136; fanout-run.cjs:1815-1829,2104-2118,4043-4049]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-headless-is-suitable-for-a-one-shot-process-while-telemetry-and-request-cost-req",
+      "text": "**Headless is suitable for a one-shot process, while telemetry and request cost require explicit policy.** The DSH headless process serves one task, opens no listening port, and exits when the run ends; no comparable startup-latency measurement against Pi or cost-per-run evidence exists. The shipped base enables OTLP telemetry in `FEEDBACK_ONLY` mode and documents `DSH_TELEMETRY_MODE=DISABLED`; the base also mounts DeepSeek session-log upload, which adds a session suffix to official DeepSeek API requests. For this third-party provider mode, make telemetry disabled by default and ensure the official-API session-log extension is not accidentally enabled; actual token price, cache behavior, and endpoint billing stay UNKNOWN until a provider-authorized probe. [SOURCES: dsh-src/packages/bundle/headless/README.md:110,128-136; dsh-src/packages/bundle/base/cordis.patch.yml:218-226; dsh-src/packages/session/session-log-deepseek/README.md:10-13; dsh-src/docs/user/guide/network-proxy.md:68-71; iteration-002.md:17-24]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-put-these-rules-in-the-future-cli-dsh-skill-packet-use-only-the-headless-profile",
+      "text": "**Put these rules in the future `cli-dsh` skill packet.** Use only the headless profile; send prompts over stdin with `-`, close the pipe after the task, and supervise with the shared timeout. Require JSON final status plus exit code 0. Use a lineage-owned cwd and DSH home, an explicit repo-local patch, `workspace-write` with `approval-policy never`, and the shared write-containment scan; do not add writable roots casually. Gate the mode on availability of any required subprocess/sandbox backend. Keep `DSH_TELEMETRY_MODE=DISABLED`, secrets out of prompts/logs, the two route/model entries allowlisted separately, MCP absent unless the explicit patch mounts it, and plugin-market Pi package claims unsupported. Avoid first-use help/dump-config/profile operations under the operator's normal home because profile bootstrap can create files. [SOURCES: iteration-001.md:17-20; iteration-002.md:17-24; iteration-003.md:17-25; iteration-008.md:10-26; iteration-009.md:10-22; specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:27-55; dsh-src/apps/cli/reference/README.md:45-60; dsh-src/packages/bundle/headless/README.md:87-114; dsh-src/packages/mcp/mcp-client/README.md:12]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-the-implementation-should-proceed-in-dependency-order-with-provider-probes-and-o",
+      "text": "**The implementation should proceed in dependency order, with provider probes and optional feature parity separated from the smallest usable runtime.** Suggested phase children and the workflow mode that fits each are below. “Required” means needed for a usable, governed `cli-dsh` mode; optional phases can follow after a reviewed capability demand.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-the-install-and-sandbox-dependency-surface-is-a-real-startup-risk-but-headless-n",
+      "text": "**The install and sandbox dependency surface is a real startup risk, but headless need is unknown.** npm 11 skipped install scripts for `@deepseek-ai/dsh-subprocess-local`, `koffi`, `node-pty`, `@google/genai`, and `protobufjs`; whether headless needs each is UNKNOWN. DSH documents a subprocess file-effect sandbox, but the local install has not proved the native backend works. Require a preflight that fails closed if required sandbox support is unavailable, and test only in a disposable lineage after the package/runtime contract is pinned. Startup latency has not been measured. [SOURCES: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:27-32; dsh-src/packages/sandbox/README.md:10-32; dsh-src/packages/bundle/headless/README.md:128-136]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-treat-0-2-2-rc-1-as-a-moving-prerelease-pin-not-an-assumed-stable-latest-release",
+      "text": "**Treat `0.2.2-rc.1` as a moving prerelease pin, not an assumed stable/latest release.** The installed CLI reports `0.2.2-rc.1`, and the local source clone is pinned at `fcc0ad462172522aaf5c93a7b2e01f6b9f0b0159` from 2026-11-04. The official release list labels v0.2.2-rc.1 a prerelease; the npm versions page fetched 2026-11-05 lists 0.2.1-rc.5 under `latest` and 0.2.2-rc.1 under `next`. Exact package-tarball-to-source-commit identity has not been proven, so implementation should pin the package version and integrity plus the inspected source revision and recheck registry tags before installation. [SOURCES: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:18-21,27-31; https://github.com/DeepSeek-ai/DeepSeek-Harness/releases (fetched 2026-11-05); https://www.npmjs.com/package/%40deepseek-ai/dsh?activeTab=versions (fetched 2026-11-05)]",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-1ce2c29bcf34",
+      "text": "Reusing Pi event names directly; DSH exposes its own typed Cordis and Session seams.",
+      "contentHash": "1ce2c29bcf34",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-c6621507b6e2",
+      "text": "Treating DSH's loop-hygiene guard group as a replacement for repository policy guards; its documented scope is repeat calls and timeouts.",
+      "contentHash": "c6621507b6e2",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-d320b24b3bc5",
+      "text": "Treating DSH's profile package manager or plugin catalog as project-local extension auto-discovery.",
+      "contentHash": "d320b24b3bc5",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-67dd7d4b4dd8",
+      "text": "Importing Pi-specific provider cache parameters before both DSH routes are pinned.",
+      "contentHash": "67dd7d4b4dd8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-603e4a837c1f",
+      "text": "Treating DSH conversation compaction as an equivalent for observational memory.",
+      "contentHash": "603e4a837c1f",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-ddec2a69198b",
+      "text": "Treating DSH subagents as the same interaction as Pi's parallel /btw sidebar.",
+      "contentHash": "ddec2a69198b",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-9e43b265e638",
+      "text": "Claiming a dedicated MCP toggle or live Code Mode connectivity before a credential-free handshake probe confirms it.",
+      "contentHash": "9e43b265e638",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-5348ffd803e0",
+      "text": "Passing every inherited environment variable to a local MCP child; the DSH transport intentionally scrubs sensitive-name patterns and `DSH_*`.",
+      "contentHash": "5348ffd803e0",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-797092a40b36",
+      "text": "Treating `.pi/mcp.json` as a config file DSH can load directly; DSH requires its own plugin-entry schema.",
+      "contentHash": "797092a40b36",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-32e573de8ed0",
+      "text": "Treating `--approval-policy never` as a confinement mechanism; it only prevents waiting for human approval.",
+      "contentHash": "32e573de8ed0",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-3b279ec17cbd",
+      "text": "Treating `SPECKIT_DSH_STATE_DIR` by itself as a DSH home override; current runner comments define such markers as detection-only unless a native home environment variable is passed.",
+      "contentHash": "3b279ec17cbd",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-e2a6fe2e9810",
+      "text": "Treating DSH's nonzero exit like Pi's nondeterministic exit without new counterevidence.",
+      "contentHash": "e2a6fe2e9810",
+      "addedAtIteration": 9
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 4,
+    "resolvedQuestions": 1,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 57,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

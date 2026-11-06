@@ -1,0 +1,16 @@
+Scenario: MDL-002, OpenCode Go route
+Category: model-dispatch
+
+Command: REPO="$(pwd -P)"; grep -n "baseURL" "$REPO/.dsh/patches/route-opencode-go-deepseek.patch.yml"
+Exit code: 0
+Output (last 40 lines):
+10:        baseURL: https://opencode.ai/zen/go/v1
+
+Keyed request command: cd "$RUN_DIR" && printf '%s' "Reply with the single word OK and nothing else." | DSH_HOME="$DSH_HOME" NVM_DIR="$NVM_DIR" dsh --profile headless --patch "$REPO/.dsh/patches/route-opencode-go-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --json --permission-mode read-only --approval-policy never -
+Exit code: N/A, SKIP.
+Output: not executed; no keyed output.
+Reason: OPENCODE_API_KEY is absent, confirmed by the keyless MISSING_CREDENTIAL result in CLI-001.
+
+Verdict: SKIP
+Reason: keyed endpoint confirmation pending phase 013 keys.
+

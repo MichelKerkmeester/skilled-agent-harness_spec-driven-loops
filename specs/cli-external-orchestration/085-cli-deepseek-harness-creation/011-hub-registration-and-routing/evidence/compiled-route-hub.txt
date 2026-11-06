@@ -1,0 +1,6 @@
+{"servingAuthority":"legacy","hubId":"cli-external-orchestration"}
+EXIT=
+{"servingAuthority":"legacy","hubId":"cli-external-orchestration"}
+EXIT=
+{"servingAuthority":"legacy","hubId":"cli-external-orchestration"}
+EXIT=

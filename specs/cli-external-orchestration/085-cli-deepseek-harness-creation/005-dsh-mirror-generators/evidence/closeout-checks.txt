@@ -1,0 +1,192 @@
+# Closeout rerun on 2026-11-06 by the doc-closeout worker. Every block is the literal command, its output and its exit status.
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
+[dsh-skill-sync] LINKS: 55
+[dsh-skill-sync] EXCLUDED .skilled/skills/.state: excluded directory name: .state
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-classifier/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-classifier/cli-jev/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/cli-claude-code/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/cli-codex/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/cli-cursor/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/cli-devin/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/cli-hermes/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/cli-opencode/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-external-orchestration/cli-pi/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/cli-orca/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/local-obsidian: top-level operator-private local-* entry
+[dsh-skill-sync] EXCLUDED .skilled/skills/local-webflow: top-level operator-private local-* entry
+[dsh-skill-sync] EXCLUDED .skilled/skills/mcp-code-mode/mcp-server/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/mcp-code-mode/mcp-server/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/mcp-tooling/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-code/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-code/sk-code-quality/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-code/sk-code-review/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-code/sk-code-review/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-code/sk-code-skilled/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-communication/cli-communication-projection/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-communication/cli-communication-projection/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-design/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-design/sk-design-chart/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-design/sk-design-diagram/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-design/sk-design-diagram/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-design/sk-design-md-generator/backend/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-design/sk-design-md-generator/backend/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-design/sk-design-md-generator/backend/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-diff/assets/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-frontmatter/assets/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-git/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-prompt/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/deep-ai-council/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/deep-ai-council/scripts/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/runtime/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/runtime/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/scripts/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/tests/scorer/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/050-with-scratch/scratch: excluded directory name: scratch
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/tests/test-fixtures/050-with-scratch/scratch: excluded directory name: scratch
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/relative-repo/.skilled/skills/.state: excluded directory name: .state
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/description/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/embedders/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/validation/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/shared/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/templates/scratch: excluded directory name: scratch
+[dsh-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
+[dsh-prompt-sync] PASS: 44 prompt stubs are in sync.
+exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+exit=0
+$ node --check .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs
+exit=0
+$ node --check .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs
+exit=0
+$ node --check .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs
+exit=0
+$ node --test .skilled/skills/system-spec-kit/runtime/cli/tests/sync-*-dsh.test.mjs (summary lines)
+✔ writes a single system-prompt patch with a YAML block scalar and the full agent body (59.39875ms)
+✔ --check reports missing, stale, and extra agent patches without repairing them (107.312334ms)
+✔ writes flat prompt stubs that point to canonical commands and end at User request (64.830125ms)
+✔ --check reports missing, stale, and extra prompts without writing (107.233166ms)
+✔ writes relative skill links, follows source directory symlinks, and preserves local entries (88.28ms)
+✔ skips missing metadata with warnings and warns without failing for long descriptions (32.709416ms)
+✔ --check reports missing, stale, and extra links without repairing them (124.273333ms)
+✔ exits with code one and names both paths when frontmatter names collide (31.319417ms)
+ℹ tests 8
+ℹ pass 8
+ℹ fail 0
+exit=0
+$ node --test .skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs (summary lines)
+✔ the route declares all Hermes and DSH checks in their check-only form (11.439625ms)
+✔ the workflow names all mirror checks and reports n/a when a runtime tree is absent (4.114917ms)
+✔ the output block carries a generator repair line for every mirror check (2.490917ms)
+✔ the route stays read-only and never runs a mirror generator in write mode (6.512167ms)
+✔ the contract fails when a mirror line is removed from the route (15.552375ms)
+✔ the contract fails when a mirror asset, step or repair line leaves the workflow (22.232125ms)
+✔ the contract fails when a step loses its n/a rule or names no surface (8.202417ms)
+ℹ tests 7
+ℹ pass 7
+ℹ fail 0
+exit=0
+$ rg -n dsh-mirror .github/workflows/command-tree-parity.yml
+130:  dsh-mirror:
+exit=0
+$ ls -d .dsh/skills/*/ | wc -l
+      55
+exit=0
+$ ls .dsh/skills/*/SKILL.md | wc -l
+      55
+exit=0
+$ find .skilled/skills -name SKILL.md -not -path '*/node_modules/*' | wc -l
+      55
+exit=0
+$ for l in .dsh/skills/*; do readlink $l; done | grep -vc '^\.\./\.\./\.skilled/'
+0
+exit=1
+$ readlink .dsh/skills/cli-pi
+../../.skilled/skills/cli-external-orchestration/cli-pi
+exit=0
+$ rg -n -e 'specs/' -e 'packet [0-9]' -e 'phase [0-9]' .skilled/skills/system-spec-kit/runtime/cli/dsh
+exit=1
+$ rg -n -e '\.env' -e 'DSH_HOME' -e 'API_KEY' .skilled/skills/system-spec-kit/runtime/cli/dsh
+.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs:25:  process.env.DSH_COMMANDS_SOURCE_DIR || path.join(REPO_ROOT, '.skilled', 'commands'),
+.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs:28:  process.env.DSH_PROMPTS_OUTPUT_DIR || path.join(REPO_ROOT, '.dsh', 'prompts'),
+.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs:21:  process.env.DSH_AGENTS_SOURCE_DIR || path.join(REPO_ROOT, '.skilled', 'agents'),
+.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs:24:  process.env.DSH_AGENTS_OUTPUT_DIR || path.join(REPO_ROOT, '.dsh', 'agents'),
+.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:22:  process.env.DSH_SKILLS_SOURCE_DIR || path.join(REPO_ROOT, '.skilled', 'skills'),
+.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:25:  process.env.DSH_SKILLS_OUTPUT_DIR || path.join(REPO_ROOT, '.dsh', 'skills'),
+exit=0
+$ ls .dsh/prompts | wc -l
+      44
+exit=0
+$ ls .dsh/agents | wc -l
+      11
+exit=0
+$ git status --porcelain .dsh | head -5
+?? .dsh/
+exit=0
+$ doctor tests that read _routes.yaml, one node --test process per file
+doctor-ci-contract: ℹ pass 15 ℹ fail 0 exit=0
+doctor-helper-match: ℹ pass 23 ℹ fail 0 exit=0
+doctor-helper-contract: ℹ pass 20 ℹ fail 0 exit=0
+doctor-phrase-reach: ℹ pass 3 ℹ fail 0 exit=0
+doctor-runtime-mirrors-contract: ℹ pass 7 ℹ fail 0 exit=0
+doctor-sk-skill-contract: ℹ pass 34 ℹ fail 0 exit=0
+doctor-symlink-contract: ℹ pass 34 ℹ fail 0 exit=0
+doctor-agents-md-contract: ℹ pass 37 ℹ fail 0 exit=0
+doctor-install-contract: ℹ pass 16 ℹ fail 0 exit=0
+skill-advisor-route-contract: ℹ pass 7 ℹ fail 0 exit=0
+$ the same 10 files in one node --test process
+ℹ tests 196
+ℹ pass 196
+ℹ fail 0
+exit=0
+$ --check writes nothing: hash of 'find .dsh -exec stat' before and after the three --check runs
+before=a9ef18defa72 after=a9ef18defa72
+$ narrow credential scan: rg -n -e "'\.env'" -e 'DSH_HOME' -e 'API_KEY' -e 'apiKey' .skilled/skills/system-spec-kit/runtime/cli/dsh
+exit=1
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/dsh/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/cli/dsh/README.md
+Document type: readme
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .dsh/SYNC.md
+
+✅ VALID: .dsh/SYNC.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .dsh/SYNC.md, so README rules were applied. Pass --type to choose the rule set.
+exit=0
+$ ls .dsh/SYNC.md; git check-ignore -q .dsh/skills/local-probe
+.dsh/SYNC.md
+exit=0

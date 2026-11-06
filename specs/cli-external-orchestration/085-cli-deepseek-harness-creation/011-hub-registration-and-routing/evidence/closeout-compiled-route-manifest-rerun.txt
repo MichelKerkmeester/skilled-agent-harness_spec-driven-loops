@@ -1,0 +1,149 @@
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-test-7Zvk8S/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-test-7Zvk8S/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-test-7Zvk8S/compiled-routing.rollback-68662-1793953975317
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-test-7Zvk8S/compiled-routing.rollback-68662-1793953975317
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-test-7Zvk8S/compiled-routing.rollback-68662-1793953975317
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-check-cPdDT2/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-staging-fail-pGDZAn/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-postpublish-fail-NhWkFf/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-EsTgIc/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-EsTgIc/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-EsTgIc/compiled-routing.rollback-68662-1793953977754
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-EsTgIc/compiled-routing.rollback-68662-1793953977754
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-concurrent-EsTgIc/compiled-routing.rollback-68662-1793953977754
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-kjhYva/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-kjhYva/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-revert-kjhYva/compiled-routing.rollback-68662-1793953978379
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-kjhYva/compiled-routing.rollback-68662-1793953978379
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-revert-kjhYva/compiled-routing.rollback-68662-1793953978379
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-JZlBcv/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-JZlBcv/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-JZlBcv/compiled-routing.rollback-68662-1793953979129
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-JZlBcv/compiled-routing.rollback-68662-1793953979129
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-path-safety-JZlBcv/compiled-routing.rollback-68662-1793953979129
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-rgcTqc/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-rgcTqc/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-rgcTqc/compiled-routing.rollback-68662-1793953979749
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-rgcTqc/compiled-routing.rollback-68662-1793953979749
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-serving-update-rgcTqc/compiled-routing.rollback-68662-1793953979749
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing.rollback-68662-1793953980410
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing.rollback-68662-1793953980410
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing.rollback-68662-1793953980410
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing.rollback-68662-1793953980797
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing.rollback-68662-1793953980797
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-verify-fail-ZBtYWm/compiled-routing.rollback-68662-1793953980797
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-aQlqiC/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-aQlqiC/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-aQlqiC/compiled-routing.rollback-68662-1793953981506
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-aQlqiC/compiled-routing.rollback-68662-1793953981506
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-content-drift-aQlqiC/compiled-routing.rollback-68662-1793953981506
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing.rollback-68662-1793953982180
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing.rollback-68662-1793953982180
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing.rollback-68662-1793953982180
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing.rollback-68662-1793953982556
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing.rollback-68662-1793953982556
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-cleanup-resume-MzrL11/compiled-routing.rollback-68662-1793953982556
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953983290
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953983290
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953983290
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953983656
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953983656
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953983656
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953984011
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953984011
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-terminal-resume-GhUgTb/compiled-routing.rollback-68662-1793953984011
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-f8p827/compiled-routing
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-f8p827/post-publish-runtime
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-f8p827/revert-runtime
+no prior closure to roll back
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-f8p827/revert-runtime
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-f8p827/revert-runtime.rollback-68662-1793953986065
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-f8p827/revert-runtime.rollback-68662-1793953986065
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-sync-rename-recovery-f8p827/revert-runtime.rollback-68662-1793953986065
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-nGWzDp/compiled-routing
+rollback retained at .skilled/bin/tests/.sandboxes/compiled-route-status-rebind-nGWzDp/compiled-routing.rollback-68662-1793953986639
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-nGWzDp/compiled-routing.rollback-68662-1793953986639
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/.sandboxes/compiled-route-status-rebind-nGWzDp/compiled-routing.rollback-68662-1793953986639
+▶ canonical compiled-route manifest
+  ✔ rejects unsafe identities and reports a missing safe manifest (1.376542ms)
+  ✔ fails closed on root, registry, source-link, and compiler errors (37.412416ms)
+  ✔ mints one inert generation-one manifest through the CLI (54.95275ms)
+  ✔ keeps routing byte-identical across mint and rejects duplicate mint (82.980583ms)
+  ✔ returns fresh in compact and pretty form, then detects all input drift axes (299.39475ms)
+  ✔ reports malformed manifests without compiling or rewriting them (2.240792ms)
+  ✔ keeps serving cause separate from manifest freshness in status (7.865625ms)
+  ✔ preserves the external manifest across the sync capture/restore round trip (330.008375ms)
+  ✔ publishes the current authored topology atomically into an isolated runtime (740.993458ms)
+  ✔ check fails when a served file is missing or differs from its authored file (492.912834ms)
+  ✔ leaves an existing runtime untouched when the authored source is unavailable (1.114208ms)
+  ✔ sync --check names the authored folder to restore when it is missing, with no stack (142.301208ms)
+  ✔ guard authored-drift names the runtime manifest, its authored twin and the copy (1.522333ms)
+  ✔ guard reports a missing authored manifest by path instead of passing (0.48025ms)
+  ✔ guard stale fix names the refresh command, the skill root and both manifest paths (0.313125ms)
+  ✔ guard stale fix gives a second hub its own skill root and manifest (0.182084ms)
+  ✔ refuses to replace an existing root that is not a verified closure (67.451458ms)
+  ✔ aborts at staging-verify failure without touching the serving root (464.166ms)
+  ✔ restores the exact prior closure when post-publish verification fails (551.376583ms)
+  ✔ a concurrent external manifest created during publication survives finalize (678.507875ms)
+  ✔ revert swaps the retained rollback back into the serving root (735.636375ms)
+  ✔ rejects arbitrary, symlinked, and stale rollback paths without mutation (612.40025ms)
+  ✔ three-way reconciliation preserves a serving-only external update (635.056542ms)
+  ✔ failed finalize and revert verification retain both recoverable roots (1118.130666ms)
+  ✔ closure fingerprints reject code-byte drift in the retained rollback (628.344458ms)
+  ✔ finalize and revert cleanup resume after individual removal failures (1142.665708ms)
+  ✔ terminal cleanup resumes lock failure without deleting newer publication state (1406.494833ms)
+  ✔ rename failures retain a serving root and recoverable publication state (2134.650417ms)
+  ✔ long-lived status rebinding follows an atomic generation replacement (1369.777959ms)
+  ✔ canonical manifest writers refuse mutation while publication is locked (2.733583ms)
+  ✔ canonical manifest writers hold the shared lock through their atomic write (10.08825ms)
+  ✔ fails sync capture and restore closed on invalid or conflicting entries (3.049041ms)
+  ✔ uses atomic create-if-absent under concurrent writers (92.920583ms)
+  ✔ refuses an existing committed manifest before reading source inputs (1.026958ms)
+  ✔ keeps fixed routing maps unchanged and reports only authorized pre-publication drift (57.2205ms)
+  ✔ refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults (75.967541ms)
+  ✔ a concurrent serving-authority flip during refresh is preserved, not reverted (17.693791ms)
+  ✔ refuses to refresh unsafe hub identities and a missing manifest without writing anything (46.61775ms)
+  ✔ preserves a non-default shadowOnly value through refresh rather than hardcoding it (12.205375ms)
+  ✔ keeps the CLI thin, machine-readable, and usage-safe (118.027042ms)
+  ✔ binds an explicit runtime root before the library loads (421.261583ms)
+  ✔ rejects malformed --runtime-root syntax with usage exit 2 (108.371917ms)
+  ✔ fails closed when the override root lacks a coherent compiled-routing layout (189.302375ms)
+  ✔ sequential same-process explicit-root calls each bind their own runtime root (204.82775ms)
+  ✔ a preloaded private binding cannot capture an explicit or a default operation (161.613709ms)
+  ✔ a default operation after an explicit-root operation targets the promoted root (116.758375ms)
+  ✔ symlink aliases of one runtime root share one lock and one closure (484.837333ms)
+  ✔ keeps parse and coherence failures closed through the isolated path (47.153542ms)
+✔ canonical compiled-route manifest (15972.344292ms)
+ℹ tests 48
+ℹ suites 1
+ℹ pass 48
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16059.550667
+EXIT=0

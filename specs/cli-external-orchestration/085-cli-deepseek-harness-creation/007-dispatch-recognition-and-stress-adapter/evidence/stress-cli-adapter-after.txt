@@ -1,0 +1,21 @@
+# 007 stress cli-adapter directory
+# started 2026-11-06T07:27:30Z UTC; newest watched code mtime before the run: 2026-11-06T07:23:15Z UTC
+$ cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/stress/cli-adapter/
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime
+
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+
+ Test Files  9 passed (9)
+      Tests  169 passed | 9 skipped (178)
+   Start at  08:27:31
+   Duration  132.05s (transform 239ms, setup 67ms, import 695ms, tests 130.64s, environment 0ms)
+
+exit=0
+# finished 2026-11-06T07:29:43Z UTC; newest watched code mtime after the run: 2026-11-06T07:23:15Z UTC; watched code changed during the run: no

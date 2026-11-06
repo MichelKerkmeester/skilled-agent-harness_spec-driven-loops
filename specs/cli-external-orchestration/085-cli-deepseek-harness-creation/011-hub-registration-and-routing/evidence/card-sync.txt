@@ -1,0 +1,19 @@
+CHECK 1 — framework / CLEAR table inlining
+  PASS  cli-opencode/assets/prompt-quality-card.md
+  PASS  cli-claude-code/assets/prompt-quality-card.md
+  PASS  cli-cursor/assets/prompt-quality-card.md
+  PASS  cli-pi/assets/prompt-quality-card.md
+  PASS  cli-codex/assets/prompt-quality-card.md
+  PASS  cli-devin/assets/prompt-quality-card.md
+  PASS  cli-hermes/assets/prompt-quality-card.md
+  PASS  cli-deepseek-harness/assets/prompt-quality-card.md
+CHECK 2 — Deep-path pointer-only (no inlined escalation triggers)
+  PASS  cli-external-orchestration/cli-opencode/SKILL.md
+  PASS  cli-external-orchestration/cli-claude-code/SKILL.md
+  PASS  cli-external-orchestration/cli-cursor/SKILL.md
+  PASS  cli-external-orchestration/cli-pi/SKILL.md
+  PASS  cli-external-orchestration/cli-codex/SKILL.md
+  PASS  cli-external-orchestration/cli-devin/SKILL.md
+  PASS  cli-external-orchestration/cli-hermes/SKILL.md
+  PASS  cli-external-orchestration/cli-deepseek-harness/SKILL.md
+GUARD PASS — tables not inlined, deep-path pointer-only

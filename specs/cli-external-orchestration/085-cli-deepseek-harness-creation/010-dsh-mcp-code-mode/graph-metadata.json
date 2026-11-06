@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode",
+  "spec_folder": "cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode",
+  "parent_id": "cli-external-orchestration/085-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh mcp code mode",
+      "phase 10 dsh mcp code mode",
+      "dsh mcp patch",
+      "dsh mcp-route-guard",
+      "dsh mcp code mode plan",
+      "dsh mcp code mode tasks",
+      "dsh mcp code mode acceptance criteria",
+      "dsh mcp code mode goal",
+      "dsh mcp code mode implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "mcp",
+      "code",
+      "mode",
+      "phase",
+      "patch",
+      "mcp-route-guard",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".dsh/patches/mcp-code-mode.patch.yml",
+      ".skilled/bin/mcp-code-mode-launcher.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".dsh/SYNC.md",
+      ".dsh/plugins/repo-guards/adapters/mcp-route-guard.mjs",
+      ".dsh/plugins/repo-guards/tests/mcp-route-guard.test.mjs",
+      ".dsh/plugins/repo-guards/index.mjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/mcp.md",
+      "evidence/dump-config-mcp.txt",
+      "evidence/keyless-mcp-boot.txt",
+      "evidence/executor-config-vitest.txt",
+      ".pi/mcp.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/mcp-code-mode.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/adapters/mcp-route-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.test.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/tests/mcp-route-guard.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "dump-config-mcp.txt",
+        "kind": "file",
+        "path": "evidence/dump-config-mcp.txt",
+        "source": "derived"
+      },
+      {
+        "name": "keyless-mcp-boot.txt",
+        "kind": "file",
+        "path": "evidence/keyless-mcp-boot.txt",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config-vitest.txt",
+        "kind": "file",
+        "path": "evidence/executor-config-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".pi/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi mounts Code Mode from `.pi/mcp.json` with `lifecycle: lazy`, but dsh reads MCP only from patch rows, starts servers eagerly and strips ambient names matching `KEY`, `PASSWORD`, `SECRET` or `TOKEN` from the child env",
+    "created_at": "2026-11-05T23:21:58Z",
+    "last_save_at": "2026-11-06T07:58:27.919Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79f25f08bef566d6ee363d1005a2897d37b39a41fa2b9b15c48df69f264b92b8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9b22a39b086ebc93abe2311d6646a6b1c34c395a4ee4e1752c23894062cdc6aa",
+      "plan.md": "4659cd086b7168b7b4dda840ad93759d1af34642a03a0e0f371eae20a27ee3a9",
+      "tasks.md": "50f2e18f282e1f56d96d94b97d13f484767705dc21919f7a6e8f0b2c2e0bf56b",
+      "implementation-summary.md": "fc33f7bdac835d90192f85fd0ca9cee27813b6c183037a0242f876eea02b46ae"
+    },
+    "last_active_at": null
+  }
+}

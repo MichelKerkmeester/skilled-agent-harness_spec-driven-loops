@@ -1,0 +1,9 @@
+The synthesis artifact and terminal record are present, but the Luna lineage **failed its write-scope requirement**. I did not print `FANOUT_LINEAGE_COMPLETE:luna`.
+
+The [research synthesis](</Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md>) covers all ten angles and the required 17 sections. It recommends a DSH-specific adapter using explicit profile patches and the shared fan-out runner. The OpenCode Go endpoint and DSH sandbox behavior remain unresolved pending authorized probes.
+
+The gateway accepted the terminal `maxIterationsReached` record at sequence 12. The requested reducer exited 0 and reported 10 iterations with zero projection corruption. Those results confirm the lineage artifacts and state projection, but they do not undo the scope breaches.
+
+The [iteration 10 record](</Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-010.md>) records both breaches. The scoped status check also showed packet-level files outside Luna: `research/deep-research-state.jsonl`, `research/observability-events.jsonl` and `research/resource-map.md`. I left them untouched. The lineage files are untracked; nothing was committed or pushed. I did not run tests or validation.
+
+Treat Luna as failed. If clean provenance is required, use a fresh lineage after correcting the gateway run directory and resource-map output destination.

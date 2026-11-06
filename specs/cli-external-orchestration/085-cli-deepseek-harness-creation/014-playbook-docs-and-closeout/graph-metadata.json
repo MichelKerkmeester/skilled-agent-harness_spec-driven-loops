@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout",
+  "spec_folder": "cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout",
+  "parent_id": "cli-external-orchestration/085-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook docs and closeout",
+      "phase 14 playbook docs and closeout",
+      "dsh manual testing playbook",
+      "deepseek harness closeout",
+      "eight runtime docs reconciliation",
+      "playbook docs and closeout plan",
+      "playbook docs and closeout tasks",
+      "playbook docs and closeout acceptance criteria",
+      "playbook docs and closeout goal",
+      "playbook docs and closeout implementation summary"
+    ],
+    "key_topics": [
+      "playbook",
+      "docs",
+      "closeout",
+      "phase",
+      "dsh",
+      "manual",
+      "testing",
+      "deepseek",
+      "harness",
+      "eight",
+      "runtime",
+      "reconciliation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "evidence/keyless-docs-sweep.txt",
+      "evidence/playbook-run/summary.md",
+      "evidence/playbook-run/mirrors__MIR-001-rerun.txt",
+      "evidence/recursive-strict-final-2026-11-06.txt",
+      ".skilled/skills/README.txt",
+      ".skilled/CROSS-CLI.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "keyless-docs-sweep.txt",
+        "kind": "file",
+        "path": "evidence/keyless-docs-sweep.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary.md",
+        "kind": "doc",
+        "path": "evidence/playbook-run/summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirrors__MIR-001-rerun.txt",
+        "kind": "file",
+        "path": "evidence/playbook-run/mirrors__MIR-001-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "recursive-strict-final-2026-11-06.txt",
+        "kind": "file",
+        "path": "evidence/recursive-strict-final-2026-11-06.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eleven files across the repo root and the hub still match a \"seven\" runtime count, the `cli-deepseek-harness` packet has no playbook, and the trigger index returns no result for \"deepseek harness\"",
+    "created_at": "2026-11-05T23:22:01Z",
+    "last_save_at": "2026-11-06T14:49:58.630Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7008fabe621bfd670a5d4df2d9a5d9f0fa83858230978f877d8c88ad9a8ef72c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "72e9783f6b732659fe26c46bd792b685dcd5355927bfb0ff33248e0a91fb5f94",
+      "plan.md": "1b9bb9100f71164d08e40c27c206a524dd72ea9d9cdee2f211bb72becbb6ad72",
+      "tasks.md": "21defef4ccce9238ed26a7baf9cd145964a79dd29e34c93c3ecd9ea9f7487c51",
+      "implementation-summary.md": "fde8f3e51376e6df0102bdc56728dde687e62587a5823a374bdde1e0cefdcb6e"
+    },
+    "last_active_at": null
+  }
+}

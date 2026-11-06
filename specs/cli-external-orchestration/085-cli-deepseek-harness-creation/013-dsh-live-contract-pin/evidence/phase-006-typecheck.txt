@@ -1,0 +1,4 @@
+COMMAND: cd .skilled/skills/system-deep-loop/runtime && ../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json
+
+
+EXIT_CODE=0

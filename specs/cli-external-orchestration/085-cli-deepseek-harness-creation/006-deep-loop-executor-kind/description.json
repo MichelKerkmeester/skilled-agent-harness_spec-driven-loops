@@ -1,0 +1,25 @@
+{
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/006-deep-loop-executor-kind",
+  "description": "Adds cli-deepseek-harness as a closed deep-loop executor kind with an exact dsh argv, env allowlist, recursion guard, version probe and JSON-final validation, unit-tested and kept experimental.",
+  "keywords": [
+    "dsh",
+    "executor",
+    "kind",
+    "fanout",
+    "builder",
+    "allowlist",
+    "recursion",
+    "vitest",
+    "deep-loop"
+  ],
+  "lastUpdated": "2026-11-05T23:21:55.776Z",
+  "specId": "006",
+  "folderSlug": "deep-loop-executor-kind",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

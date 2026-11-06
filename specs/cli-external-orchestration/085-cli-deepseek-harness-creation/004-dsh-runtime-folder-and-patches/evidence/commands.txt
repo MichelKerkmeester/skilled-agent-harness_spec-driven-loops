@@ -1,0 +1,12 @@
+# Literal commands the orchestrating session ran, 2026-11-06, from the repo root.
+# <tmp> is a fresh `mktemp -d` per run, removed afterwards. Every dsh run sat in a temp cwd.
+R=$PWD/.dsh/patches; W=$(mktemp -d)
+# Per route r in llmgateway, opencode-go:
+T=$(mktemp -d); (cd $W && DSH_HOME=$T dsh --profile headless --patch $R/route-$r-deepseek.patch.yml --patch $R/lineage.patch.yml --dump-config </dev/null > evidence/dump-config-$r.txt 2> evidence/dump-config-$r.stderr.txt)
+T2=$(mktemp -d); (cd $W && printf 'Reply with the single word OK' | env -i PATH="$PATH" HOME=$T2 DSH_HOME=$T2 dsh --profile headless --patch $R/route-$r-deepseek.patch.yml --patch $R/lineage.patch.yml --json --approval-policy never - > evidence/keyless-$r.stdout.jsonl 2> evidence/keyless-$r.stderr.txt)
+rm -rf $T $T2
+# After both routes:
+rm -rf $W
+rg -n -i 'api_?key|secret|token' .dsh/patches
+git check-ignore -q .dsh/skills/local-probe
+for e in $(ls .dsh); do grep -q "$e" .dsh/SYNC.md || false; done

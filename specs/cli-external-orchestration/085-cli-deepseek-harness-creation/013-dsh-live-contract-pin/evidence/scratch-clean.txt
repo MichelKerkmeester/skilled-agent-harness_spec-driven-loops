@@ -1,0 +1,3 @@
+Scope: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/scratch
+Entries: .gitkeep only
+Result: no probe scratch artifacts remain

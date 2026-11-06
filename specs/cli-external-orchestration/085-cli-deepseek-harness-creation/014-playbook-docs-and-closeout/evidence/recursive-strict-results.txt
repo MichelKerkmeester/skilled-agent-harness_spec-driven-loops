@@ -1,0 +1,20 @@
+Recursive strict validation result index
+Command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/085-cli-deepseek-harness-creation --strict --recursive
+Observed exit code: 0
+All 15 folders below reported RESULT: PASSED in the full transcript at recursive-strict-final-2026-11-06.txt.
+
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/003-cli-deepseek-harness-skill-packet — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/005-dsh-mirror-generators — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/006-deep-loop-executor-kind — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/011-hub-registration-and-routing — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/012-deep-loop-modes-and-commands — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin — RESULT: PASSED
+- /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout — RESULT: PASSED

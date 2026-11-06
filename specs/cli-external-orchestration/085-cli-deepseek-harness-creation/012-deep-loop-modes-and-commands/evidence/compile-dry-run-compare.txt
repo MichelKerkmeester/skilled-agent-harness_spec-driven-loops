@@ -1,0 +1,6 @@
+deep/research dry-run exit=0
+deep/research: stdout compile is byte-identical to compiled/deep-research.contract.markdown
+deep/review dry-run exit=0
+deep/review: stdout compile is byte-identical to compiled/deep-review.contract.markdown
+yaml ok docs=1 .skilled/commands/deep/assets/deep-research-auto.yaml
+yaml ok docs=1 .skilled/commands/deep/assets/deep-review-auto.yaml

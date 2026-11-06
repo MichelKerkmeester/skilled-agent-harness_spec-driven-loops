@@ -1,0 +1,71 @@
+# 007 dsh, pi and hermes stress suites, verbose
+# started 2026-11-06T07:29:43Z UTC; newest watched code mtime before the run: 2026-11-06T07:23:15Z UTC
+$ cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts tests/stress/cli-adapter/cli-pi.vitest.ts tests/stress/cli-adapter/cli-hermes.vitest.ts --reporter=verbose
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime
+
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness manifest integrity > binds exactly fourteen implemented adapter cells without forbidden overclaims 1ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > completes a hermetic lineage through the shipped builder and fan-out runtime 828ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > emits dsh JSON events and keeps each process exit code independent 305ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > retains cli-deepseek-harness authentication diagnostics in bounded lineage output 801ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > retains cli-deepseek-harness model-or-balance diagnostics in bounded lineage output 828ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > retains cli-deepseek-harness rate-limit diagnostics without retry delay 877ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > times out and terminates the captured cli-deepseek-harness process 2789ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > closes stdin for the headless cli-deepseek-harness process 826ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > passes child gate variables through the full cli-deepseek-harness runtime 806ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > forwards the asserted cli-deepseek-harness sandbox and permission flags 76ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > fails before cli-deepseek-harness execution when its transport is unavailable 229ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > rejects an over-budget cli-deepseek-harness lineage before process spawn 267ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > reports a signal-killed cli-deepseek-harness lineage as failed 820ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > terminates the captured detached cli-deepseek-harness process group after timeout 2784ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > runs cli-deepseek-harness from each isolated worktree cwd 248ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > preserves independent worktree node_modules boundaries during cli-deepseek-harness dispatch 243ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > blocks recursive cli-deepseek-harness fan-out before process spawn 299ms
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness fixture integrity > enforces exclusive ownership without counting the check as an adapter cell 115ms
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > live cli-deepseek-harness transport probe (dependency SKIP: dsh stress coverage uses the hermetic shim only)
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi manifest integrity > binds exactly fourteen implemented adapter cells without forbidden overclaims 1ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > completes a hermetic lineage through the shipped builder and fan-out runtime 902ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > retains cli-pi authentication diagnostics in bounded lineage output 841ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > retains cli-pi model-or-balance diagnostics in bounded lineage output 816ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > retains cli-pi rate-limit diagnostics without retry delay 976ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > times out and terminates the captured cli-pi process 2742ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > closes stdin for the headless cli-pi process 784ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > passes child gate variables through the full cli-pi runtime 811ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > forwards the asserted cli-pi sandbox and permission flags 52ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > fails before cli-pi execution when its transport is unavailable 300ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > rejects an over-budget cli-pi lineage before process spawn 224ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > reports a signal-killed cli-pi lineage as failed 805ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > terminates the captured detached cli-pi process group after timeout 2832ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > runs cli-pi from each isolated worktree cwd 196ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > preserves independent worktree node_modules boundaries during cli-pi dispatch 203ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > blocks recursive cli-pi fan-out before process spawn 238ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > accepts a non-zero pi exit only when artifacts exist and retains provider output 853ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi adapter contracts > rejects a zero-exit pi run when the required artifact is absent 791ms
+ ✓ tests/stress/cli-adapter/cli-pi.vitest.ts > cli-pi fixture integrity > enforces exclusive ownership without counting the check as an adapter cell 112ms
+ ↓ tests/stress/cli-adapter/cli-pi.vitest.ts > live cli-pi transport probe (dependency SKIP: live probe disabled: set DEEP_LOOP_CLI_PI_LIVE=1)
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes manifest integrity > binds exactly fourteen implemented adapter cells without forbidden overclaims 1ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > completes a hermetic lineage through the shipped builder and fan-out runtime 777ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > retains cli-hermes authentication diagnostics in bounded lineage output 787ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > retains cli-hermes model-or-balance diagnostics in bounded lineage output 792ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > retains cli-hermes rate-limit diagnostics without retry delay 859ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > times out and terminates the captured cli-hermes process 2764ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > closes stdin for the headless cli-hermes process 774ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > passes child gate variables through the full cli-hermes runtime 814ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > forwards the asserted cli-hermes sandbox and permission flags 53ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > fails before cli-hermes execution when its transport is unavailable 283ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > rejects an over-budget cli-hermes lineage before process spawn 294ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > reports a signal-killed cli-hermes lineage as failed 879ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > terminates the captured detached cli-hermes process group after timeout 2853ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > runs cli-hermes from each isolated worktree cwd 198ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > preserves independent worktree node_modules boundaries during cli-hermes dispatch 194ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes adapter contracts > blocks recursive cli-hermes fan-out before process spawn 232ms
+ ✓ tests/stress/cli-adapter/cli-hermes.vitest.ts > cli-hermes fixture integrity > enforces exclusive ownership without counting the check as an adapter cell 126ms
+ ↓ tests/stress/cli-adapter/cli-hermes.vitest.ts > live cli-hermes transport probe (dependency SKIP: live probe disabled: set DEEP_LOOP_CLI_HERMES_LIVE=1)
+
+ Test Files  3 passed (3)
+      Tests  54 passed | 3 skipped (57)
+   Start at  08:29:44
+   Duration  40.66s (transform 57ms, setup 23ms, import 159ms, tests 40.31s, environment 0ms)
+
+exit=0
+# finished 2026-11-06T07:30:24Z UTC; newest watched code mtime after the run: 2026-11-06T07:23:15Z UTC; watched code changed during the run: no

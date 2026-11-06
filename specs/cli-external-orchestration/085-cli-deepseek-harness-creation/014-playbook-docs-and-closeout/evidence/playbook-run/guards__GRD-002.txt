@@ -1,0 +1,59 @@
+Scenario: GRD-002, dispatch rule-check suite
+Category: guards
+
+### Dispatch rule-check suite
+
+Command:
+```sh
+export PATH="$HOME/.local/bin:$PATH"; node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+```
+
+Exit code: 0
+
+Output (last 40 lines, redacted):
+```text
+✔ OPENCODE_BIN makes a path-qualified executable trusted (24.016084ms)
+✔ a path-qualified missing file stays unknown (0.293209ms)
+✔ the async resolver times out a probe that never exits (3002.862ms)
+✔ the shared version corpus pins the parser to each expected family (0.177375ms)
+✔ SUPPORTED_FAMILIES is the frozen list of supported families (0.040666ms)
+✔ opencode2 run is evaluated by the hard-rule engine (0.096208ms)
+✔ every runtime with a preflight adapter has it registered (0.337625ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.334875ms)
+✔ evaluateDispatch holds every dispatch in a chain to its own packet (34.45975ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.198834ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.136625ms)
+✔ dsh prompt text does not hide another headless runtime missing stdin handling (0.335667ms)
+✔ hermes rules discriminate on the flags the packet contract pins (0.893416ms)
+✔ dsh hard rules accept a complete isolated, pipe-fed dispatch (1.530625ms)
+✔ each dsh hard rule refuses its own violating command (1.186042ms)
+✔ dsh profile, stdin and home rules reject invalid variants (0.35475ms)
+✔ expanded dsh patch values fail the roster checks through evaluateDispatch (1.047875ms)
+✔ launch wrappers, a variable binary and an invented dump flag still meet the dsh rules (0.313417ms)
+✔ a variable directory with a literal patch file name and a variable DSH_HOME pass every dsh rule (1.526916ms)
+✔ pinned-version-required evaluates npx DSH dispatches and rejects other versions (1.084375ms)
+✔ the negative-control marker only counts when the guard process allows it (0.160041ms)
+✔ fail-open: a check that throws never produces a violation (0.057792ms)
+✔ readHardRules reads the sibling sidecar and fails open on malformed input (3.024292ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.07775ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (0.174875ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (0.851667ms)
+✔ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (1.700833ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.182083ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (0.762209ms)
+✔ ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list (0.3385ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (0.280083ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3311.144375
+
+```
+
+Verdict: PASS
+Reason: the suite exited 0 with 50 passing tests and 0 failures.
+

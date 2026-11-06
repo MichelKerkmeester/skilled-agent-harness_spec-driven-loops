@@ -1,0 +1,8 @@
+{"type":"session","sessionId":"session-129108d2-5482-4677-8e45-1249f4d52fc1","cwd":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.ECEPPDFuLY"}
+{"type":"status","phase":"turn_start","turn":1}
+{"type":"status","phase":"step_start","turn":1,"step":1}
+{"type":"thinking","text":"The user just wants me to reply with the single word OK. No tool use needed."}
+{"type":"text","text":"OK"}
+{"type":"status","phase":"step_end","turn":1,"step":1,"usage":{"inputTokens":5574,"outputTokens":20,"totalTokens":5594}}
+{"type":"status","phase":"turn_end","turn":1,"reason":{"kind":"completed"}}
+{"type":"final","sessionId":"session-129108d2-5482-4677-8e45-1249f4d52fc1","reason":{"kind":"completed"},"text":"OK"}

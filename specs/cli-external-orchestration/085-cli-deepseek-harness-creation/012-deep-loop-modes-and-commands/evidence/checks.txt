@@ -1,0 +1,25 @@
+$ rg -l cli-deepseek-harness <the nine files in spec section 3>
+.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+.skilled/commands/deep/assets/deep-review-presentation.txt
+.skilled/commands/deep/assets/compiled/deep-research.contract.markdown
+.skilled/commands/deep/assets/deep-research-presentation.txt
+.skilled/commands/deep/assets/deep-review-auto.yaml
+.skilled/skills/system-deep-loop/deep-review/SKILL.md
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
+.skilled/commands/deep/assets/deep-research-auto.yaml
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md
+# deep-research/SKILL.md lists no executors, so it needed no edit
+
+$ node compile-command-contracts.cjs --command deep/research --write; ... deep/review --write  (run twice, outputs copied between runs)
+$ diff -r <copy after first run> .skilled/commands/deep/assets/compiled
+(no output) exit=0
+
+$ js-yaml load of deep-research-auto.yaml and deep-review-auto.yaml
+yaml parse ok
+
+$ vitest run executor-audit executor-config fanout-run combo-matrix
+Test Files 4 passed (4); Tests 356 passed (356). Baseline before this session's fixes: 352 passed; the four new cases cover the guards requirement, the inactive-plugin stderr line, the MCP patch and the code_mode-only roster
+$ tsc --noEmit --composite false -p tsconfig.json  (runtime package typecheck)
+exit=0
+
+# council: decision-record.md ADR-001 admits no seat, so no council file changed

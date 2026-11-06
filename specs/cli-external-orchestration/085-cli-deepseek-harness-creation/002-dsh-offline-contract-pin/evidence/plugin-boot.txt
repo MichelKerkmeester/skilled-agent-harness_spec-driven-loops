@@ -1,0 +1,7 @@
+$ ls -la <tmp cwd> after keyless run
+total 8
+drwx------@     3 michelkerkmeester  staff      96 Nov  6 05:10 .
+drwx------@ 30164 michelkerkmeester  staff  965248 Nov  6 05:10 ..
+-rw-r--r--@     1 michelkerkmeester  staff      33 Nov  6 05:10 stub-marker.txt
+$ cat stub-marker.txt
+applied 2026-11-06T04:10:23.687Z

@@ -1,0 +1,4 @@
+$ node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs --write   (from system-skill-advisor/runtime; the ratchet named this fix)
+# diff: capturedAtSha 10474a9567 -> c06b7cfc14; buckets.delegation correct/total 17/17 -> 18/18 (the new direct-alias-dsh-headless fixture case). No other bucket moved.
+$ npx vitest run tests/parity/scorer-eval-baseline-ratchet.vitest.ts
+Tests 7 passed (7)

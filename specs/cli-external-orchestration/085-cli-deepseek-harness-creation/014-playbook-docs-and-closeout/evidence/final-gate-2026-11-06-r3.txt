@@ -1,0 +1,44 @@
+# Final gate, run 3 (2026-11-06T17:35:34Z), after the phase 013 closeout and remint 6
+== dsh generators
+[dsh-skill-sync] PASS: 56 skill links are in sync.
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+== hermes
+PASS: 67 Hermes skill copies in sync
+== contract drift
+[CONTRACT DRIFT] OK commands=3
+== trigger index
+  duration ms       : 3254.0
+trigger index --check exit 0
+== rule tests
+ℹ pass 50
+ℹ fail 0
+== repo-guards
+ℹ pass 37
+ℹ fail 0
+== dispatch audit
+ Test Files  4 failed | 23 passed (27)
+      Tests  2854 passed (2854)
+== runtime units + stress (package vitest)
+ Test Files  13 passed (13)
+      Tests  526 passed | 9 skipped (535)
+tsc exit 0
+== mode registry
+modes 8 cli-opencode,cli-claude-code,cli-codex,cli-cursor,cli-devin,cli-pi,cli-hermes,cli-deepseek-harness
+== advisor canary
+top cli-external-orchestration confidence 0.95 packet {"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-opencode","packetKind":"workflow","skillId":"cli-external-orche
+== compiled routing
+ℹ pass 48
+ℹ fail 0
+== recursive strict
+  15 RESULT: PASSED
+== dispatch audit, rerun with lineage snapshots excluded (exit 0)
+ Test Files  7 passed (7)
+      Tests  870 passed (870)
+Note: the 4 failed files above are snapshot copies of dispatch-audit.test.mjs inside the two phase 013 live
+lineages' containment/baseline folders (gitignored, .gitignore:404). Vitest treats the positional path as a
+substring filter, so it also collected those copies, whose sibling imports are absent. Earlier runs' 23 files /
+2854 tests likewise counted passing snapshot copies from other packets; 7 / 870 is the real suite.
+== compiled routing remint 6
+cli-external-orchestration effectivePolicyHash 2bee8b9c88c322d2b7de87599e27c6b4c6f6be3a044168c394f685edfa97fce1 (after the phase 013 SKILL.md edit); manifest tests 48/48; scorer ratchet 7/7
+== recursive strict after LOG edit and metadata repair: 15 RESULT: PASSED

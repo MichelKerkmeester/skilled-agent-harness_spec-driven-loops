@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge",
+  "spec_folder": "cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge",
+  "parent_id": "cli-external-orchestration/085-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh context guards and goal bridge",
+      "phase 9 dsh context guards and goal bridge",
+      "dsh goal-context adapter",
+      "dsh packet goal bridge",
+      "dsh context guards and goal bridge plan",
+      "dsh context guards and goal bridge tasks",
+      "dsh context guards and goal bridge acceptance criteria",
+      "dsh context guards and goal bridge goal",
+      "dsh context guards and goal bridge implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "context",
+      "guards",
+      "goal",
+      "bridge",
+      "phase",
+      "goal-context",
+      "adapter",
+      "packet",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/goal/lib/goal-core.cjs",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js",
+      ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
+      ".skilled/skills/sk-git/scripts/lib/git-context.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      ".dsh/plugins/repo-guards/README.md",
+      ".dsh/plugins/repo-guards/adapters/goal-context.mjs",
+      ".dsh/plugins/repo-guards/adapters/dsh-llm.mjs",
+      ".dsh/plugins/repo-guards/index.mjs",
+      ".dsh/patches/guards.patch.yml",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+      ".dsh/SYNC.md",
+      "evidence/keyless-guards-boot.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/session-prime.js",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "git-context.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/git-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-message-gate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".dsh/plugins/repo-guards/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/adapters/goal-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-llm.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/adapters/dsh-llm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "guards.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/guards.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "guards-and-hooks.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "keyless-guards-boot.txt",
+        "kind": "file",
+        "path": "evidence/keyless-guards-boot.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The dsh native goal service holds one goal per session and reads no `goal.md`, so a dsh dispatch never sees the bound packet goal",
+    "created_at": "2026-11-05T23:21:57Z",
+    "last_save_at": "2026-11-06T14:31:13.534Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c50e207e269f00d7a5000a99006920664de925c13f39a3e8043a793d0101e29",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9a8dd0b3b8d54bdc04815053c6c5927da782f994c690f23a46dd3b2ca737fe4e",
+      "plan.md": "e968d0fe8347689fbd38e0867fc6f0e0b498e9ec8be4246ddda0afed11d18530",
+      "tasks.md": "cb6a16797e11d38760b7254a98e3f64a941b0196218315ae46f3b403f738019f",
+      "implementation-summary.md": "bff4891cc7fca723fda257bfd842f617bbb3c5f57b45b72c53b974be47673ae2"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+# 006 four named unit suites
+# started 2026-11-06T07:30:24Z UTC; newest watched code mtime before the run: 2026-11-06T07:23:15Z UTC
+$ cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/executor-audit.vitest.ts tests/unit/executor-config.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/combo-matrix.vitest.ts
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime
+
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+
+ Test Files  4 passed (4)
+      Tests  356 passed (356)
+   Start at  08:30:25
+   Duration  156.57s (transform 98ms, setup 24ms, import 205ms, tests 156.05s, environment 0ms)
+
+exit=0
+# finished 2026-11-06T07:33:01Z UTC; newest watched code mtime after the run: 2026-11-06T07:23:15Z UTC; watched code changed during the run: no

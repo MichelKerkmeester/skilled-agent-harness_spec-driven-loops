@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge",
+  "description": "Adapters that give dsh sessions the bound packet goal slice and session-start context, plus the later-wave guards shipped or deferred.",
+  "keywords": [
+    "adapters",
+    "give",
+    "dsh",
+    "sessions",
+    "bound",
+    "packet",
+    "goal",
+    "slice",
+    "session-start",
+    "context",
+    "plus",
+    "later-wave",
+    "guards",
+    "shipped",
+    "deferred"
+  ],
+  "lastUpdated": "2026-11-06T14:31:13.534Z",
+  "specId": "009",
+  "folderSlug": "dsh-context-guards-and-goal-bridge",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-11-26_15-31__phase-009-reconciliation-evidence.md"
+  ]
+}

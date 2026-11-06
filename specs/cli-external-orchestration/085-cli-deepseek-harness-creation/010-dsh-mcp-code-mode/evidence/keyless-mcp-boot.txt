@@ -1,0 +1,18 @@
+$ pgrep -f mcp-code-mode-launcher | sort > before.txt
+$ cd "$W" && printf "Say ok." | env -i PATH=... HOME="$T" DSH_HOME="$T" NVM_DIR="$HOME/.nvm" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --patch "$REPO/.dsh/patches/mcp-code-mode.patch.yml" --json --approval-policy never -
+# W is a scratch folder outside the checkout; T a disposable DSH_HOME. NVM_DIR stands in for the real HOME a lineage keeps, which the launcher uses to find Node 24
+exit=1
+$ comm -13 before.txt after.txt
+(no output)
+# stderr lines:      317; lines matching error|fail|timeout|did not activate, excluding info-level JSON:
+Error during batch registration for manual 'webflow': Variable 'webflow_WEBFLOW_TOKEN' referenced in call template configuration not found. Please ensure it's defined in client.config.variables, environment variables, or a configured variable loader.
+# that one line is a Code Mode manual whose token variable is absent in the scrubbed env, not a dsh MCP startup failure
+# last dsh line
+dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "llmgateway"; its profile resolves LLMGATEWAY_API_KEY, which is not set
+# server shutdown
+{"level":30,"time":1793948323654,"env":"development","version":"3.8.0","pid":97200,"operation":"ServerShutdown","requestId":"F03LG-R8H2Z","timestamp":"2026-11-06T06:58:43.653Z","triggerEvent":"STDIN_E
+CodeMode-MCP shutting down: stdin closed
+
+# probe history: the first walk-up cwd fell back to the scratch folder (MODULE_NOT_FOUND on the launcher); the patch now resolves the root from its own --patch path
+$ node --test .dsh/plugins/repo-guards/tests/
+pass 34, fail 0

@@ -1,0 +1,9 @@
+✔ resolves the same route from stdin as from argv (153.313792ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 203.690125

@@ -1,0 +1,15 @@
+effectivePolicyHash=b768e51370324096f20e98e00e7b3560c434660f20f8b2e66827b441d9e2924f
+graphHash=58b88c242a57493c6f4f1285f89021ec16c16e0d3b8d26e41c8bc3831cb43bd8
+MISSING compiled/PolicyCardV1.md
+MISSING compiled/advisor-projection.json
+MISSING compiled/blast-radius.json
+MISSING compiled/destination-graph.json
+MISSING compiled/policy.json
+MISSING compiled/route-gold.typed.json
+MISSING activation/acceptance.json
+MISSING activation/fence-state.json
+MISSING activation/manifest.candidate.json
+MISSING activation/manifest.json
+MISSING activation/manifest.prior.json
+DIFF promoted 013 manifest vs activation/manifest.json
+mismatches=12

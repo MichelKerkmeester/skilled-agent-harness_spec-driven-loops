@@ -1,0 +1,245 @@
+▶ canonical compiled-route manifest
+  ✔ rejects unsafe identities and reports a missing safe manifest (1.040083ms)
+  ✔ fails closed on root, registry, source-link, and compiler errors (58.878208ms)
+  ✔ mints one inert generation-one manifest through the CLI (43.451167ms)
+  ✔ keeps routing byte-identical across mint and rejects duplicate mint (64.177333ms)
+  ✔ returns fresh in compact and pretty form, then detects all input drift axes (277.589416ms)
+  ✔ reports malformed manifests without compiling or rewriting them (4.806ms)
+  ✔ keeps serving cause separate from manifest freshness in status (7.206666ms)
+  ✔ preserves the external manifest across the sync capture/restore round trip (276.974708ms)
+  ✖ publishes the current authored topology atomically into an isolated runtime (259.824ms)
+  ✖ check fails when a served file is missing or differs from its authored file (239.263375ms)
+  ✔ leaves an existing runtime untouched when the authored source is unavailable (7.79325ms)
+  ✔ sync --check names the authored folder to restore when it is missing, with no stack (135.009625ms)
+  ✔ guard authored-drift names the runtime manifest, its authored twin and the copy (7.084084ms)
+  ✔ guard reports a missing authored manifest by path instead of passing (0.484667ms)
+  ✔ guard stale fix names the refresh command, the skill root and both manifest paths (0.104417ms)
+  ✔ guard stale fix gives a second hub its own skill root and manifest (0.04825ms)
+  ✔ refuses to replace an existing root that is not a verified closure (50.447166ms)
+  ✖ aborts at staging-verify failure without touching the serving root (210.305417ms)
+  ✖ restores the exact prior closure when post-publish verification fails (211.81675ms)
+  ✖ a concurrent external manifest created during publication survives finalize (234.960792ms)
+  ✖ revert swaps the retained rollback back into the serving root (205.335833ms)
+  ✖ rejects arbitrary, symlinked, and stale rollback paths without mutation (204.647125ms)
+  ✖ three-way reconciliation preserves a serving-only external update (210.522667ms)
+  ✖ failed finalize and revert verification retain both recoverable roots (191.628958ms)
+  ✖ closure fingerprints reject code-byte drift in the retained rollback (242.823083ms)
+  ✖ finalize and revert cleanup resume after individual removal failures (206.223542ms)
+  ✖ terminal cleanup resumes lock failure without deleting newer publication state (264.481ms)
+  ✖ rename failures retain a serving root and recoverable publication state (224.784083ms)
+  ✖ long-lived status rebinding follows an atomic generation replacement (435.515458ms)
+  ✔ canonical manifest writers refuse mutation while publication is locked (12.717583ms)
+  ✔ canonical manifest writers hold the shared lock through their atomic write (20.574958ms)
+  ✔ fails sync capture and restore closed on invalid or conflicting entries (2.619208ms)
+  ✔ uses atomic create-if-absent under concurrent writers (92.169792ms)
+  ✔ refuses an existing committed manifest before reading source inputs (1.202ms)
+  ✔ keeps fixed routing maps unchanged and reports only authorized pre-publication drift (33.710833ms)
+  ✔ refreshes a stale manifest to fresh through the CLI, bumping generation and preserving defaults (56.700083ms)
+  ✔ a concurrent serving-authority flip during refresh is preserved, not reverted (24.25225ms)
+  ✔ refuses to refresh unsafe hub identities and a missing manifest without writing anything (46.343291ms)
+  ✔ preserves a non-default shadowOnly value through refresh rather than hardcoding it (7.418333ms)
+  ✔ keeps the CLI thin, machine-readable, and usage-safe (78.652625ms)
+  ✔ binds an explicit runtime root before the library loads (375.814667ms)
+  ✔ rejects malformed --runtime-root syntax with usage exit 2 (76.064584ms)
+  ✔ fails closed when the override root lacks a coherent compiled-routing layout (117.871083ms)
+  ✔ sequential same-process explicit-root calls each bind their own runtime root (270.617042ms)
+  ✔ a preloaded private binding cannot capture an explicit or a default operation (298.782917ms)
+  ✔ a default operation after an explicit-root operation targets the promoted root (164.518292ms)
+  ✔ symlink aliases of one runtime root share one lock and one closure (475.733417ms)
+  ✔ keeps parse and coherence failures closed through the isolated path (28.770791ms)
+✖ canonical compiled-route manifest (6539.854334ms)
+ℹ tests 48
+ℹ suites 1
+ℹ pass 34
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6588.62225
+
+✖ failing tests:
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:487:3
+✖ publishes the current authored topology atomically into an isolated runtime (259.824ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:491:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:525:3
+✖ check fails when a served file is missing or differs from its authored file (239.263375ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:528:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:673:3
+✖ aborts at staging-verify failure without touching the serving root (210.305417ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:677:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:693:3
+✖ restores the exact prior closure when post-publish verification fails (211.81675ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:698:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:716:3
+✖ a concurrent external manifest created during publication survives finalize (234.960792ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:719:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:747:3
+✖ revert swaps the retained rollback back into the serving root (205.335833ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:753:26)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:778:3
+✖ rejects arbitrary, symlinked, and stale rollback paths without mutation (204.647125ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:175:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:782:32)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:811:3
+✖ three-way reconciliation preserves a serving-only external update (210.522667ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:816:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:832:3
+✖ failed finalize and revert verification retain both recoverable roots (191.628958ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:175:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:836:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:858:3
+✖ closure fingerprints reject code-byte drift in the retained rollback (242.823083ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:175:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:862:27)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:877:3
+✖ finalize and revert cleanup resume after individual removal failures (206.223542ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:175:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:882:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:933:3
+✖ terminal cleanup resumes lock failure without deleting newer publication state (264.481ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at buildRetainedPublication (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:175:3)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:940:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:985:3
+✖ rename failures retain a serving root and recoverable publication state (224.784083ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at buildFreshRuntime (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:166:22)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:992:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/bin/tests/compiled-route-manifest.test.cjs:1036:3
+✖ long-lived status rebinding follows an atomic generation replacement (435.515458ms)
+  Error: MOVE-SIMULATION FAILED:
+  promoted closure failed to resolve hubs: cli-external-orchestration
+      at verifyRoot (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:732:11)
+      at verifyPhase (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:749:10)
+      at Object.build (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route-sync.cjs:853:5)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/tests/compiled-route-manifest.test.cjs:1048:32)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7)

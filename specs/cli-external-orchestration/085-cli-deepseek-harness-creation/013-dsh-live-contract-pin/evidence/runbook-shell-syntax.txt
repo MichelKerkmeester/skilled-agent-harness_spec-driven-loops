@@ -1,0 +1,5 @@
+Command: extract each bash code fence and run bash -n via stdin. No command was executed.
+block 1: PASS exit=0
+block 2: PASS exit=0
+block 3: PASS exit=0
+block 4: PASS exit=0

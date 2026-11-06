@@ -1,0 +1,28 @@
+{
+  "status": "ok",
+  "degraded": true,
+  "source": "local-scorer",
+  "data": {
+    "recommendations": [
+      {
+        "skillId": "cli-external-orchestration",
+        "confidence": 0.95,
+        "uncertainty": 0.2,
+        "reason": "Matched: !cli-opencode(keyword), !cli-opencode(signal), !graph:sibling(sk-code,0.4), cli(name) [disambiguation: explicit executor delegation]"
+      },
+      {
+        "skillId": "sk-code",
+        "confidence": 0.88,
+        "uncertainty": 0.3,
+        "reason": "Matched: !opencode, opencode~ [disambiguation: explicit executor delegation]"
+      }
+    ],
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    }
+  }
+}
+
+EXIT=0

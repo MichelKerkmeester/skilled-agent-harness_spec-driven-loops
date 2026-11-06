@@ -1,0 +1,33 @@
+012 deep-loop modes and commands: rerun checks, 2026-11-06 between 08:08 and 08:23 (local time)
+
+Scope note: this file adds to checks.txt, which records the earlier run and is kept as written. Where the two differ, this file is the later record.
+
+REFERENCE LISTING
+- rg -l cli-deepseek-harness over the nine Section 3 files: 9 files listed (rg-l-nine-files.txt). Exit 0.
+- rg -n lines per file: rg-deepseek-lines.txt.
+- Wording found per file:
+  - deep-research/references/protocol/loop-protocol.md line 278 and deep-review/references/protocol/loop-protocol.md line 282: "cli-deepseek-harness (experimental)". Neither file says "never a default" or "explicit choice".
+  - deep-review/SKILL.md line 47: the kind appears once, inside the NEVER list of executors that must not be looped. No experimental or never-default wording. The file has no other executor roster.
+  - deep-research-auto.yaml line 1580 and deep-review-auto.yaml line 2048: "experimental, never a default".
+  - deep-research-presentation.txt line 165 and deep-review-presentation.txt line 206: "I) cli-deepseek-harness (experimental, explicit choice only)". The hermes entry on the line above has the same shape.
+- deep-research/SKILL.md: rg -n cli-hermes gives no match (exit 1), which is the literal T003 check. The file is not changed. It does contain a prose executor list at lines 92 to 94 and the phrase "The seven executor kinds". EXECUTOR_KINDS in runtime/lib/deep-loop/executor-config.ts has nine entries, so the count is stale. That file is outside this phase's write scope, so the stale wording is recorded as an open follow-up and not edited.
+- Confirm YAMLs (deep-research-confirm.yaml, deep-review-confirm.yaml): no cli-hermes and no cli-deepseek-harness match, so they have no executor enumeration to mirror.
+- compiled/README.markdown: lists the generated contract files and no executor list.
+- rg -o -i "api_?key" over .skilled/commands/deep/assets: no match (exit 1).
+
+COMPILED CONTRACTS
+- node compile-command-contracts.cjs --command deep/research, and deep/review, with stdout and no --write: output byte-identical to compiled/deep-research.contract.markdown and compiled/deep-review.contract.markdown (compile-dry-run-compare.txt). A second compile reproduces the on-disk bytes. git diff against HEAD cannot exit 0 before the phase is committed, so this byte comparison stands in for the git diff check.
+- Auto YAML parse with js-yaml from system-spec-kit node_modules: deep-research-auto.yaml and deep-review-auto.yaml each load as one document (compile-dry-run-compare.txt).
+
+UNIT SUITES AND TYPECHECK
+- Four deep-loop unit suites (executor-config, fanout-run, combo-matrix, executor-audit), run from the runtime folder: 4 test files, 356 of 356 tests pass, exit 0 (vitest-deep-loop-4-suites.txt, run 08:13).
+- Runtime typecheck with the repo TypeScript 5.9.3 and the runtime tsconfig.json: exit 0, no diagnostics (typecheck-runtime-ts-5.9.3.txt).
+- The global tsc on PATH is TypeScript 6.0.3. With the runtime tsconfig it exits 2 with TS5107, "moduleResolution=node10 is deprecated" (typecheck-runtime-global-ts-6.0.3.txt). That is a configuration deprecation, not a type error. The earlier checks.txt does not name the binary it used.
+
+COUNCIL
+- git status over system-deep-loop/deep-ai-council: no change.
+- Resolver code, deep-ai-council/scripts/orchestrate-session.cjs: lines 193 to 197 reject cli-codex with a RangeError. Line 198 accepts native, cli-opencode, cli-cursor, cli-devin, cli-pi, cli-hermes and the opencode alias. Line 199 throws "unsupported council executor kind" for every other kind, including cli-deepseek-harness.
+- SKILL.md line 98 lists the accepted kinds without cli-hermes. ADR-001 repeats that listing. The ADR text is corrected in decision-record.md.
+- orchestrate-session-cli.vitest.ts: not required, because no seat was admitted.
+
+T001 kind in runtime: rg -c cli-deepseek-harness runtime/lib/deep-loop/executor-config.ts = 9 (EXECUTOR_KINDS entry at line 20, EXPERIMENTAL_EXECUTOR_KINDS at line 26).

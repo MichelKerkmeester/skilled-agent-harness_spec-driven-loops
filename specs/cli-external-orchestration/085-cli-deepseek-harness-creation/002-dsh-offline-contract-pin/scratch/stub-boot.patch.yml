@@ -1,0 +1,6 @@
+# Stub relative plugin: proves a plugin named by a relative path boots before the provider call.
+- insert:
+    - id: stub-boot-marker
+      name: ./stub-plugin.mjs
+      config:
+        marker: !!js process.env.DSH_STUB_MARKER

@@ -1,0 +1,35 @@
+# Phase 006 kind-table inventory after the edit (stands in for T003, which ran after T004)
+$ rg -n "'cli-hermes'" lib scripts   (from the runtime folder)
+scripts/fanout-run.cjs:512:  'cli-hermes': 'SPECKIT_HERMES_STATE_DIR',
+scripts/fanout-run.cjs:3233:  'cli-hermes': buildHermesLineageCommand,
+scripts/fanout-run.cjs:3830:        ...(lineage.kind === 'cli-hermes' ? {
+lib/deep-loop/executor-audit.ts:74:  'cli-hermes': 'hermes',
+lib/deep-loop/executor-audit.ts:91:  'cli-hermes': 'HERMES_SESSION_ID',
+lib/deep-loop/executor-audit.ts:110:  'cli-hermes': ['SPECKIT_HERMES_STATE_DIR', 'HERMES_HOME'],
+lib/deep-loop/executor-audit.ts:121:  'cli-hermes': '.hermes',
+lib/deep-loop/executor-audit.ts:178:  'cli-hermes': ['HERMES_', 'LLMGATEWAY_'],
+lib/deep-loop/executor-config.ts:19:  'cli-hermes',
+lib/deep-loop/executor-config.ts:136:  'cli-hermes': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
+lib/deep-loop/executor-config.ts:165:  'cli-hermes': false, // no confinement flag exists; a read-only leaf narrows the toolset and omits --yolo (Hermes then blocks flagged actions), neither of which is an OS boundary
+lib/deep-loop/executor-config.ts:221:  'cli-hermes': {
+lib/deep-loop/executor-config.ts:738:  'cli-hermes': true,
+exit=0
+$ rg -n "'cli-deepseek-harness'" lib scripts
+scripts/fanout-run.cjs:513:  'cli-deepseek-harness': 'SPECKIT_DEEPSEEK_HARNESS_STATE_DIR',
+scripts/fanout-run.cjs:3234:  'cli-deepseek-harness': buildDshLineageCommand,
+scripts/fanout-run.cjs:3728:      const dshHome = lineage.kind === 'cli-deepseek-harness'
+scripts/fanout-run.cjs:4177:      const dshCompletionFailure = lineage.kind === 'cli-deepseek-harness'
+lib/deep-loop/executor-audit.ts:75:  'cli-deepseek-harness': 'dsh',
+lib/deep-loop/executor-audit.ts:111:  'cli-deepseek-harness': ['SPECKIT_DEEPSEEK_HARNESS_STATE_DIR', 'DSH_HOME'],
+lib/deep-loop/executor-audit.ts:122:  'cli-deepseek-harness': '.dsh',
+lib/deep-loop/executor-audit.ts:179:  'cli-deepseek-harness': ['LLMGATEWAY_'],
+lib/deep-loop/executor-audit.ts:192:  'cli-deepseek-harness': ['OPENCODE_API_KEY'],
+lib/deep-loop/executor-audit.ts:963:    kind === 'cli-deepseek-harness'
+lib/deep-loop/executor-config.ts:20:  'cli-deepseek-harness',
+lib/deep-loop/executor-config.ts:26:export const EXPERIMENTAL_EXECUTOR_KINDS: ReadonlySet<ExecutorKind> = new Set(['cli-deepseek-harness']);
+lib/deep-loop/executor-config.ts:139:  'cli-deepseek-harness': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
+lib/deep-loop/executor-config.ts:166:  'cli-deepseek-harness': false, // permission mode controls approval; it is not an OS-level boundary
+lib/deep-loop/executor-config.ts:228:  'cli-deepseek-harness': {
+lib/deep-loop/executor-config.ts:739:  'cli-deepseek-harness': true,
+lib/deep-loop/executor-config.ts:747:  'cli-deepseek-harness': ['code_mode'],
+exit=0

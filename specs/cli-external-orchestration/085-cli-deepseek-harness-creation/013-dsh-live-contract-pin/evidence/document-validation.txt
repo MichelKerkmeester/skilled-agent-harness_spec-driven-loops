@@ -1,0 +1,19 @@
+Command: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type <detected-type>
+
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/cli-reference.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/fanout-executor.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/mcp.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/runtime-folder-and-sync.md (Total issues: 0)
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/repin-runbook.md (Total issues: 0)
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/spec.md (Total issues: 1)
+  - [non_sequential_numbering] Non-sequential section number: expected 7, found 10
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/plan.md (Total issues: 0)
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/tasks.md (Total issues: 0)
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/acceptance-criteria.md (Total issues: 0)
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/implementation-summary.md (Total issues: 0)
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/goal.md (Total issues: 1)
+  - [non_sequential_numbering] Non-sequential section number: expected 2, found 3

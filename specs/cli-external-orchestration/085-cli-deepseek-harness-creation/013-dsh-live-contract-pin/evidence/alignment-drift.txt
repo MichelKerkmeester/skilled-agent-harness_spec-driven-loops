@@ -1,0 +1,26 @@
+Command: python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <changed-folder> --fail-on-warn --check-exact-headers
+
+FAIL exit=1 .skilled/skills/system-deep-loop/runtime/lib/deep-loop
+Scanned files: 30. Findings: 1. Errors: 1. Warnings: 0.
+Finding: untouched iteration-findings.cjs:1 lacks the required COMPONENT or MODULE header. `git status` shows no change for this file.
+
+PASS exit=0 .skilled/skills/system-deep-loop/runtime/tests/unit
+Scanned files: 140. Findings: 0. Errors: 0. Warnings: 0. Violations: 0.
+
+PASS exit=0 .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter
+Scanned files: 25. Findings: 0. Errors: 0. Warnings: 0. Violations: 0.
+
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness
+Scanned files: 0. Findings: 0. Errors: 0. Warnings: 0. Violations: 0.
+
+PASS exit=0 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references
+Scanned files: 0. Findings: 0. Errors: 0. Warnings: 0. Violations: 0.
+
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin
+Scanned files: 0. Findings: 0. Errors: 0. Warnings: 0. Violations: 0.
+
+PASS exit=0 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence
+Scanned files: 0. Findings: 0. Errors: 0. Warnings: 0. Violations: 0.
+
+Comment-hygiene command: bash .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <changed-TypeScript-file>
+Both file checks exited 2 before inspection. The helper has a shell syntax error at line 169. Manual review found the changed capability comment explains the observed boundary and contains no phase, task, requirement, acceptance or ticket id. The unit test received no new comment.

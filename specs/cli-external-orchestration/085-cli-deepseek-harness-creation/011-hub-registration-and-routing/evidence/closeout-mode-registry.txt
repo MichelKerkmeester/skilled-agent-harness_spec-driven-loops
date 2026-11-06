@@ -1,0 +1,32 @@
+COMMAND: node -e registry mode count and dsh row
+modeCount=8
+{
+  "workflowMode": "cli-deepseek-harness",
+  "packetKind": "workflow",
+  "backendKind": "cli-dispatch",
+  "toolSurface": {
+    "allowed": [
+      "Bash",
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "forbidden": [],
+    "mutatesWorkspace": true,
+    "bashAllowlist": []
+  },
+  "packet": "cli-deepseek-harness",
+  "packetSkillName": "cli-deepseek-harness",
+  "grandfatheredFolderMismatch": false,
+  "command": null,
+  "aliases": [
+    "dsh",
+    "dsh headless",
+    "deepseek harness",
+    "delegate to dsh"
+  ],
+  "advisorRouting": {
+    "routingClass": "metadata"
+  }
+}
+EXIT=0

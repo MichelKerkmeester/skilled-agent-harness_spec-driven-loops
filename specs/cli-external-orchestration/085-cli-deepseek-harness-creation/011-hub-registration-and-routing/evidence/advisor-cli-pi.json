@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Skilled",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "cli-external-orchestration",
+        "score": 0.713173,
+        "confidence": 0.95,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active"
+      },
+      {
+        "skillId": "cli-classifier",
+        "score": 0.19461,
+        "confidence": 0.82,
+        "uncertainty": 0.22,
+        "dominantLane": "lexical",
+        "status": "active",
+        "compiledRoute": {
+          "hubId": "cli-classifier",
+          "action": "defer",
+          "selectionKind": null,
+          "targets": [],
+          "effectivePolicyHash": "8456a91035caf1960ac1db46f54900284aec8ca42f7480980184fff11eae55d6",
+          "generation": 1
+        }
+      },
+      {
+        "skillId": "mcp-code-mode",
+        "score": 0.141843,
+        "confidence": 0.82,
+        "uncertainty": 0.26,
+        "dominantLane": "lexical",
+        "status": "active"
+      }
+    ],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 2289,
+      "checkedAt": "2026-11-06T07:19:29.300Z",
+      "lastLiveAt": "2026-11-06T07:17:12.088Z"
+    },
+    "generatedAt": "2026-11-06T07:19:29.312Z",
+    "cache": {
+      "hit": true,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "cli-external-orchestration",
+          "liveScore": 0.713173,
+          "shadowScore": 0.686449,
+          "delta": -0.026724,
+          "dominantShadowLane": "explicit_author"
+        },
+        {
+          "skillId": "cli-classifier",
+          "liveScore": 0.19461,
+          "shadowScore": 0.185009,
+          "delta": -0.009601,
+          "dominantShadowLane": "lexical"
+        },
+        {
+          "skillId": "mcp-code-mode",
+          "liveScore": 0.141843,
+          "shadowScore": 0.138986,
+          "delta": -0.002857,
+          "dominantShadowLane": "lexical"
+        }
+      ]
+    }
+  }
+}

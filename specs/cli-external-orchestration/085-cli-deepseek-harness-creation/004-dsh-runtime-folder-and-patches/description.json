@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches",
+  "description": "No checked-in patch selects a roster route for dsh today",
+  "keywords": [
+    "checked-in",
+    "patch",
+    "selects",
+    "roster",
+    "route",
+    "dsh",
+    "today"
+  ],
+  "lastUpdated": "2026-11-05T23:30:27.745Z",
+  "specId": "004",
+  "folderSlug": "dsh-runtime-folder-and-patches",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

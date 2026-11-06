@@ -1,0 +1,315 @@
+# 007 rule checks, node --test TAP reporter
+# started 2026-11-06T07:27:26Z UTC; newest watched code mtime before the run: 2026-11-06T07:23:15Z UTC
+$ cd /Users/michelkerkmeester/MEGA/Development/Skilled && node --test --test-reporter=tap .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+TAP version 13
+# Subtest: reads the real hard rules from the sidecar beside each SKILL.md
+ok 1 - reads the real hard rules from the sidecar beside each SKILL.md
+  ---
+  duration_ms: 1.685459
+  type: 'test'
+  ...
+# Subtest: CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+ok 2 - CI GUARD: every declared check id maps to a known check (a typo fails loudly)
+  ---
+  duration_ms: 1.092708
+  type: 'test'
+  ...
+# Subtest: stdin-redirect-required covers every headless CLI shape, not just opencode run
+ok 3 - stdin-redirect-required covers every headless CLI shape, not just opencode run
+  ---
+  duration_ms: 2.42975
+  type: 'test'
+  ...
+# Subtest: stdin and model checks ignore flags and redirects inside a quoted prompt
+ok 4 - stdin and model checks ignore flags and redirects inside a quoted prompt
+  ---
+  duration_ms: 2.971083
+  type: 'test'
+  ...
+# Subtest: each repeated dispatch is held to the stdin and model checks on its own
+ok 5 - each repeated dispatch is held to the stdin and model checks on its own
+  ---
+  duration_ms: 0.466833
+  type: 'test'
+  ...
+# Subtest: availability checks pass for a resolvable binary and never refuse without PATH
+ok 6 - availability checks pass for a resolvable binary and never refuse without PATH
+  ---
+  duration_ms: 0.200042
+  type: 'test'
+  ...
+# Subtest: AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+ok 7 - AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)
+  ---
+  duration_ms: 1.124666
+  type: 'test'
+  ...
+# Subtest: other checks discriminate correctly
+ok 8 - other checks discriminate correctly
+  ---
+  duration_ms: 0.543958
+  type: 'test'
+  ...
+# Subtest: permission-mode check sees claude print mode behind other flags
+ok 9 - permission-mode check sees claude print mode behind other flags
+  ---
+  duration_ms: 0.3295
+  type: 'test'
+  ...
+# Subtest: appliesTo evaluates only rules for the resolved version
+ok 10 - appliesTo evaluates only rules for the resolved version
+  ---
+  duration_ms: 0.24325
+  type: 'test'
+  ...
+# Subtest: rules without appliesTo apply to both versions
+ok 11 - rules without appliesTo apply to both versions
+  ---
+  duration_ms: 0.103875
+  type: 'test'
+  ...
+# Subtest: a rule without appliesTo stays blocking when the version is unknown
+ok 12 - a rule without appliesTo stays blocking when the version is unknown
+  ---
+  duration_ms: 0.100125
+  type: 'test'
+  ...
+# Subtest: unknown evaluation preserves shared severity and warns version-specific rules
+ok 13 - unknown evaluation preserves shared severity and warns version-specific rules
+  ---
+  duration_ms: 0.059917
+  type: 'test'
+  ...
+# Subtest: v2 slash-command fixture warns with session.command and never blocks
+ok 14 - v2 slash-command fixture warns with session.command and never blocks
+  ---
+  duration_ms: 0.262167
+  type: 'test'
+  ...
+# Subtest: evaluate resolves quoted, wrapped, and path-qualified OpenCode executors
+ok 15 - evaluate resolves quoted, wrapped, and path-qualified OpenCode executors
+  ---
+  duration_ms: 3.583458
+  type: 'test'
+  ...
+# Subtest: evaluate probes one fake binary once across two evaluations
+ok 16 - evaluate probes one fake binary once across two evaluations
+  ---
+  duration_ms: 22.192291
+  type: 'test'
+  ...
+# Subtest: a path-qualified executable outside PATH stays unknown and never runs
+ok 17 - a path-qualified executable outside PATH stays unknown and never runs
+  ---
+  duration_ms: 2.288041
+  type: 'test'
+  ...
+# Subtest: a path-qualified executable on PATH resolves its version
+ok 18 - a path-qualified executable on PATH resolves its version
+  ---
+  duration_ms: 28.75175
+  type: 'test'
+  ...
+# Subtest: a symlinked path-qualified executable spawns the trusted path, not the symlink
+ok 19 - a symlinked path-qualified executable spawns the trusted path, not the symlink
+  ---
+  duration_ms: 206.498542
+  type: 'test'
+  ...
+# Subtest: OPENCODE_BIN makes a path-qualified executable trusted
+ok 20 - OPENCODE_BIN makes a path-qualified executable trusted
+  ---
+  duration_ms: 28.009042
+  type: 'test'
+  ...
+# Subtest: a path-qualified missing file stays unknown
+ok 21 - a path-qualified missing file stays unknown
+  ---
+  duration_ms: 3.719666
+  type: 'test'
+  ...
+# Subtest: the async resolver times out a probe that never exits
+ok 22 - the async resolver times out a probe that never exits
+  ---
+  duration_ms: 3006.170917
+  type: 'test'
+  ...
+# Subtest: the shared version corpus pins the parser to each expected family
+ok 23 - the shared version corpus pins the parser to each expected family
+  ---
+  duration_ms: 0.232042
+  type: 'test'
+  ...
+# Subtest: SUPPORTED_FAMILIES is the frozen list of supported families
+ok 24 - SUPPORTED_FAMILIES is the frozen list of supported families
+  ---
+  duration_ms: 0.1025
+  type: 'test'
+  ...
+# Subtest: opencode2 run is evaluated by the hard-rule engine
+ok 25 - opencode2 run is evaluated by the hard-rule engine
+  ---
+  duration_ms: 0.126958
+  type: 'test'
+  ...
+# Subtest: every runtime with a preflight adapter has it registered
+ok 26 - every runtime with a preflight adapter has it registered
+  ---
+  duration_ms: 0.434041
+  type: 'test'
+  ...
+# Subtest: pi dispatches need --offline and a provider-qualified model
+ok 27 - pi dispatches need --offline and a provider-qualified model
+  ---
+  duration_ms: 0.609917
+  type: 'test'
+  ...
+# Subtest: evaluateDispatch holds every dispatch in a chain to its own packet
+ok 28 - evaluateDispatch holds every dispatch in a chain to its own packet
+  ---
+  duration_ms: 62.47925
+  type: 'test'
+  ...
+# Subtest: predicate bypasses: equals-form flags and unquoted slash prompts are caught
+ok 29 - predicate bypasses: equals-form flags and unquoted slash prompts are caught
+  ---
+  duration_ms: 0.408375
+  type: 'test'
+  ...
+# Subtest: hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+ok 30 - hermes headless shapes need stdin handled: --query-file counts, a bare -q does not
+  ---
+  duration_ms: 0.254916
+  type: 'test'
+  ...
+# Subtest: dsh prompt text does not hide another headless runtime missing stdin handling
+ok 31 - dsh prompt text does not hide another headless runtime missing stdin handling
+  ---
+  duration_ms: 0.802875
+  type: 'test'
+  ...
+# Subtest: hermes rules discriminate on the flags the packet contract pins
+ok 32 - hermes rules discriminate on the flags the packet contract pins
+  ---
+  duration_ms: 1.074625
+  type: 'test'
+  ...
+# Subtest: dsh hard rules accept a complete isolated, pipe-fed dispatch
+ok 33 - dsh hard rules accept a complete isolated, pipe-fed dispatch
+  ---
+  duration_ms: 3.670458
+  type: 'test'
+  ...
+# Subtest: each dsh hard rule refuses its own violating command
+ok 34 - each dsh hard rule refuses its own violating command
+  ---
+  duration_ms: 3.541916
+  type: 'test'
+  ...
+# Subtest: dsh profile, stdin and home rules reject invalid variants
+ok 35 - dsh profile, stdin and home rules reject invalid variants
+  ---
+  duration_ms: 0.777417
+  type: 'test'
+  ...
+# Subtest: expanded dsh patch values fail the roster checks through evaluateDispatch
+ok 36 - expanded dsh patch values fail the roster checks through evaluateDispatch
+  ---
+  duration_ms: 1.946666
+  type: 'test'
+  ...
+# Subtest: launch wrappers, a variable binary and an invented dump flag still meet the dsh rules
+ok 37 - launch wrappers, a variable binary and an invented dump flag still meet the dsh rules
+  ---
+  duration_ms: 0.363958
+  type: 'test'
+  ...
+# Subtest: a variable directory with a literal patch file name and a variable DSH_HOME pass every dsh rule
+ok 38 - a variable directory with a literal patch file name and a variable DSH_HOME pass every dsh rule
+  ---
+  duration_ms: 2.30775
+  type: 'test'
+  ...
+# Subtest: pinned-version-required evaluates npx DSH dispatches and rejects other versions
+ok 39 - pinned-version-required evaluates npx DSH dispatches and rejects other versions
+  ---
+  duration_ms: 1.985834
+  type: 'test'
+  ...
+# Subtest: the negative-control marker only counts when the guard process allows it
+ok 40 - the negative-control marker only counts when the guard process allows it
+  ---
+  duration_ms: 0.315375
+  type: 'test'
+  ...
+# Subtest: fail-open: a check that throws never produces a violation
+ok 41 - fail-open: a check that throws never produces a violation
+  ---
+  duration_ms: 0.248542
+  type: 'test'
+  ...
+# Subtest: readHardRules reads the sibling sidecar and fails open on malformed input
+ok 42 - readHardRules reads the sibling sidecar and fails open on malformed input
+  ---
+  duration_ms: 123.074459
+  type: 'test'
+  ...
+# Subtest: severity maps error and block to a blocking violation; anything else advises
+ok 43 - severity maps error and block to a blocking violation; anything else advises
+  ---
+  duration_ms: 0.177834
+  type: 'test'
+  ...
+# Subtest: every runtime dispatch shape resolves to its skill (mutation-proof)
+ok 44 - every runtime dispatch shape resolves to its skill (mutation-proof)
+  ---
+  duration_ms: 0.398625
+  type: 'test'
+  ...
+# Subtest: a dispatch is resolved from the command, not from text that merely contains one
+ok 45 - a dispatch is resolved from the command, not from text that merely contains one
+  ---
+  duration_ms: 1.322458
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+ok 46 - ENFORCEMENT GUARD: every check names a command it accepts and one it refuses
+  ---
+  duration_ms: 3.411791
+  type: 'test'
+  ...
+# Subtest: a jev dispatch is governed from the command, and mentions of it are not
+ok 47 - a jev dispatch is governed from the command, and mentions of it are not
+  ---
+  duration_ms: 0.263792
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every cli packet declares at least one rule
+ok 48 - ENFORCEMENT GUARD: every cli packet declares at least one rule
+  ---
+  duration_ms: 0.806458
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list
+ok 49 - ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list
+  ---
+  duration_ms: 0.867625
+  type: 'test'
+  ...
+# Subtest: ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+ok 50 - ENFORCEMENT GUARD: declared checks and implemented checks are a bijection
+  ---
+  duration_ms: 0.962208
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3585.393916
+exit=0
+# finished 2026-11-06T07:27:30Z UTC; newest watched code mtime after the run: 2026-11-06T07:23:15Z UTC; watched code changed during the run: no

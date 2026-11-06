@@ -1,0 +1,26 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "runId": "fanout-luna-1793915913100-enoz0j",
+  "sessionId": "fanout-luna-1793915913100-enoz0j",
+  "lineageId": "fanout-luna-1793915913100-enoz0j",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.9,
+  "noveltyJustification": "The live npm tags and default telemetry expose upgrade and egress risks that the static integration map did not; the phase ordering keeps those gates ahead of repository/runtime and fan-out work.",
+  "status": "complete",
+  "focus": "Angle 10: constraints, differences, and the phase plan",
+  "answeredQuestions": [],
+  "findingsCount": 5,
+  "timestamp": "2026-11-05T22:53:07Z",
+  "generation": 1,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  }
+}

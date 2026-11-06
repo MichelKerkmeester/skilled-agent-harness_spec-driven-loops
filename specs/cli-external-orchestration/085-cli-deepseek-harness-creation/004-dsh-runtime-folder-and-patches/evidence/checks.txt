@@ -1,0 +1,49 @@
+# Checks rerun 2026-11-06 from the repo root, read-only
+
+$ rg -n -i 'api_?key|secret|token' .dsh/patches
+.dsh/patches/route-opencode-go-deepseek.patch.yml:7:        apiKeyEnv: OPENCODE_API_KEY
+.dsh/patches/route-llmgateway-deepseek.patch.yml:7:        apiKeyEnv: LLMGATEWAY_API_KEY
+exit=0
+
+$ git check-ignore -q .dsh/skills/local-probe
+exit=0
+
+$ git check-ignore -v .dsh/skills/local-probe
+.gitignore:234:/.dsh/skills/local-*	.dsh/skills/local-probe
+exit=0
+
+$ ls .dsh
+patches
+README.md
+SYNC.md
+exit=0
+
+$ for e in $(ls .dsh); do rg -q -F "$e" .dsh/SYNC.md || { echo "missing: $e"; exit 1; }; echo "found: $e"; done
+found: patches
+found: README.md
+found: SYNC.md
+exit=0
+
+$ rg -n -e 'specs/' -e 'packet [0-9]' -e 'phase [0-9]' .dsh/patches
+exit=1
+
+$ rg -n -i 'sk-[A-Za-z0-9]{8,}|api_?key=' specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence --glob '!checks.txt'
+exit=1
+
+$ python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .dsh/README.md
+
+✅ VALID: .dsh/README.md
+Document type: readme
+Total issues: 0
+exit=0
+
+$ python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .dsh/SYNC.md
+
+✅ VALID: .dsh/SYNC.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .dsh/SYNC.md, so README rules were applied. Pass --type to choose the rule set.
+exit=0
+

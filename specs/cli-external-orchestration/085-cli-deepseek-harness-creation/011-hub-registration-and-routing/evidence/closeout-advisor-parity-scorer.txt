@@ -1,0 +1,11 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-skill-advisor/runtime
+
+
+ Test Files  43 passed (43)
+      Tests  393 passed | 4 skipped (397)
+   Start at  09:33:39
+   Duration  54.06s (transform 540ms, setup 207ms, import 2.59s, tests 48.26s, environment 2ms)
+
+
+EXIT=0

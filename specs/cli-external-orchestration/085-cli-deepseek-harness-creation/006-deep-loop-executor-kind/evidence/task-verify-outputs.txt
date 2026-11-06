@@ -1,0 +1,54 @@
+# Phase 006 task verify outputs (static checks), 2026-11-06T07:20:06Z
+## T001 dependencies landed
+-rw-r--r--@ 1 michelkerkmeester  staff   317 Nov  6 05:18 .dsh/patches/lineage.patch.yml
+-rw-r--r--@ 1 michelkerkmeester  staff  1541 Nov  6 05:09 specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/headless-help.txt
+exit=0
+## T004 rg -c on executor-config.ts
+9
+exit=0
+## T004/T014 rg -n on executor-config.ts (default-table check as written)
+20:  'cli-deepseek-harness',
+26:export const EXPERIMENTAL_EXECUTOR_KINDS: ReadonlySet<ExecutorKind> = new Set(['cli-deepseek-harness']);
+139:  'cli-deepseek-harness': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
+166:  'cli-deepseek-harness': false, // permission mode controls approval; it is not an OS-level boundary
+228:  'cli-deepseek-harness': {
+329: * and cli-deepseek-harness, and provider-prefixed on cli-opencode
+739:  'cli-deepseek-harness': true,
+747:  'cli-deepseek-harness': ['code_mode'],
+777:        message: `liveTools.mcpServers is not supported by executor kind '${config.kind}'; only cli-hermes and cli-deepseek-harness name MCP servers per lineage`,
+exit=0
+## T005 binary map line
+75:  'cli-deepseek-harness': 'dsh',
+exit=0
+## T006 buildDshLineageCommand definition and map entry
+3099:function buildDshLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+3234:  'cli-deepseek-harness': buildDshLineageCommand,
+exit=0
+## T011 feature catalog
+40:Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`, and `cli-deepseek-harness` (experimental).
+46:A `cli-deepseek-harness` lineage is built by `buildDshLineageCommand`. It first checks that
+exit=0
+## CHK-011 node --check fanout-run.cjs
+exit=0
+## Deviation anchors: DSH_HOME pass-through (D1) and MCP capability (D4)
+179:  'cli-deepseek-harness': ['LLMGATEWAY_'],
+190:  // DSH_HOME is absent on purpose: the runner gives every lineage a fresh home, and an
+192:  'cli-deepseek-harness': ['OPENCODE_API_KEY'],
+exit=0
+739:  'cli-deepseek-harness': true,
+747:  'cli-deepseek-harness': ['code_mode'],
+exit=0
+1007:      DSH_HOME: 'must-drop',
+1024:    expect(nextEnv).not.toHaveProperty('DSH_HOME');
+exit=0
+## CHK-013 added lines in changed runtime files that match spec-path, packet, phase, REQ, AC or CHK labels (006 and 007 code)
+1406:+      '--spec-folder', 'specs/test-fanout-dsh-home',
+1414:+    const lineageDir = join(hermetic.tmpDir, 'specs/test-fanout-dsh-home/research/fanout-test-artifacts/lineages/dsh-home');
+exit=0 (0 = matches found)
+## CHK-042 comments naming the reason dsh has no recursion exemption
+130:const SELF_PRESENCE_EXEMPT_KINDS: ReadonlySet<ExecutorKind> = new Set<ExecutorKind>(['cli-pi']);
+941:  const selfPresenceExempt = SELF_PRESENCE_EXEMPT_KINDS.has(kind);
+exit=0
+## CHK-051 scratch folder contents
+.gitkeep
+exit=0

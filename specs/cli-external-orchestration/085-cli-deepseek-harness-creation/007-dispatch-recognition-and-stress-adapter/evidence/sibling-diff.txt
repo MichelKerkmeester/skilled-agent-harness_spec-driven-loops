@@ -1,0 +1,7 @@
+# Part two sibling suites unchanged against HEAD, 2026-11-06T07:20:06Z
+$ git diff --exit-code HEAD -- cli-pi.vitest.ts cli-hermes.vitest.ts shims/adapter-shim-core.cjs
+cli-pi exit=0
+cli-hermes exit=0
+adapter-shim-core exit=0
+$ git status --short on the sibling files
+exit=0 (empty output = unchanged)

@@ -1,0 +1,51 @@
+{
+  "topic": "DeepSeek Harness (dsh, github.com/deepseek-ai/deepseek-harness, installed 0.2.2-rc.1) as a new cli-external-orchestration runtime mode that mirrors cli-pi: headless dispatch contract, providers (LLM Gateway and OpenCode Go DeepSeek V4.1 Flash), repo-local runtime folder, skills, agents, commands, plugins and hooks to port, third-party Pi plugins to migrate or drop, MCP, deep-loop fan-out executor support, every cross-repo touch point, and the phase plan. FIRST read specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research-angles.md (ten angles, rules of engagement) and resource-map.md (known context, do not rediscover). One angle per iteration.",
+  "specFolder": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research",
+  "maxIterations": 20,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "executionMode": "auto",
+  "stop_policy": "max-iterations",
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "xhigh",
+        "serviceTier": "fast",
+        "label": "luna",
+        "iterations": 10,
+        "timeoutSeconds": 2400
+      },
+      {
+        "kind": "cli-opencode",
+        "model": "llmgateway/deepseek-v4.1-flash-1017",
+        "reasoningEffort": "max",
+        "label": "deepseek",
+        "iterations": 10,
+        "timeoutSeconds": 2400
+      }
+    ],
+    "concurrency": 2
+  },
+  "lineage": {
+    "sessionId": "dr-085-001-fanout-20261105",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "createdAt": "2026-11-05T00:00:00Z",
+  "status": "complete"
+}

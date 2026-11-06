@@ -1,0 +1,34 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-skill-advisor/runtime
+
+ ❯ tests/parity/scorer-eval-baseline-ratchet.vitest.ts (7 tests | 1 failed) 3830ms
+     × named buckets hold exactly and satisfy minN 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/parity/scorer-eval-baseline-ratchet.vitest.ts > scorer eval baseline ratchet (accuracy non-regression gate) > named buckets hold exactly and satisfy minN
+AssertionError: buckets.delegation.correct: live=18 baseline=17. improvement detected — re-capture the baseline (capture-scorer-eval-baseline.mjs --write).: expected 18 to be 17 // Object.is equality
+
+- Expected
++ Received
+
+- 17
++ 18
+
+ ❯ tests/parity/scorer-eval-baseline-ratchet.vitest.ts:301:7
+    299|       LIVE.delegationCorrect,
+    300|       ratchetMessage('buckets.delegation.correct', LIVE.delegationCorr…
+    301|     ).toBe(BASELINE.metrics.buckets.delegation.correct);
+       |       ^
+    302|   });
+    303| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 42 passed (43)
+      Tests  1 failed | 392 passed | 4 skipped (397)
+   Start at  08:18:00
+   Duration  44.10s (transform 608ms, setup 199ms, import 2.09s, tests 39.45s, environment 1ms)
+
+EXIT=1

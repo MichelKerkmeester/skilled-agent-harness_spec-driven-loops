@@ -1,0 +1,2006 @@
+{
+  "sessionId": "fanout-deepseek-1793915913100-enoz0j",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 10,
+    "totalQuestions": 10,
+    "timestamp": "2026-11-05T22:15:19.802Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-exactly-does-dsh-headless-accept-emit-and-return-and-how-does-it-compare-wi",
+      "inboxId": null,
+      "text": "What exactly does `dsh headless` accept, emit and return, and how does it compare with `pi -p` and the other seven runtimes' headless contracts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-are-providers-models-and-reasoning-levels-configured-and-can-llm-gateway-and",
+      "inboxId": null,
+      "text": "How are providers, models and reasoning levels configured, and can LLM Gateway and OpenCode Go be added as closed, fail-closed routes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-does-the-harness-read-from-the-working-directory-and-dsh-home-and-what-shou",
+      "inboxId": null,
+      "text": "What does the harness read from the working directory and `$DSH_HOME`, and what should a repo-local runtime folder contain?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-what-skill-format-does-the-harness-load-and-should-this-repo-use-generated-copie",
+      "inboxId": null,
+      "text": "What skill format does the harness load, and should this repo use generated copies or symlinks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-how-can-this-repo-s-agents-subagents-commands-and-goal-binding-be-reached-by-the",
+      "inboxId": null,
+      "text": "How can this repo's agents, subagents, commands and goal binding be reached by the harness?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-which-lifecycle-seams-exist-for-plugins-and-hooks-and-which-pi-extensions-must-b",
+      "inboxId": null,
+      "text": "Which lifecycle seams exist for plugins and hooks, and which Pi extensions must be ported, deferred or dropped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-7-for-each-third-party-pi-plugin-does-the-harness-ship-the-capability-natively-off",
+      "inboxId": null,
+      "text": "For each third-party Pi plugin, does the harness ship the capability natively, offer a market equivalent, or is it irrelevant to dispatch?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-8-how-are-mcp-servers-configured-and-can-this-repo-s-servers-and-code-mode-connect",
+      "inboxId": null,
+      "text": "How are MCP servers configured, and can this repo's servers and code-mode connect?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-9-what-does-a-deep-loop-fan-out-lineage-builder-need-and-which-consumers-must-lear",
+      "inboxId": null,
+      "text": "What does a deep-loop fan-out lineage builder need, and which consumers must learn the new executor kind?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-10-where-does-the-harness-cost-more-or-less-than-pi-what-hard-rules-follow-and-what",
+      "inboxId": null,
+      "text": "Where does the harness cost more or less than Pi, what hard rules follow, and what is the phase plan?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-exactly-does-dsh-headless-accept-emit-and-return-and-how-does-it-compare-wi",
+      "inboxId": null,
+      "text": "What exactly does `dsh headless` accept, emit and return, and how does it compare with `pi -p` and the other seven runtimes' headless contracts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-how-are-providers-models-and-reasoning-levels-configured-and-can-llm-gateway-and",
+      "inboxId": null,
+      "text": "How are providers, models and reasoning levels configured, and can LLM Gateway and OpenCode Go be added as closed, fail-closed routes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-what-does-the-harness-read-from-the-working-directory-and-dsh-home-and-what-shou",
+      "inboxId": null,
+      "text": "What does the harness read from the working directory and `$DSH_HOME`, and what should a repo-local runtime folder contain?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-what-skill-format-does-the-harness-load-and-should-this-repo-use-generated-copie",
+      "inboxId": null,
+      "text": "What skill format does the harness load, and should this repo use generated copies or symlinks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-how-can-this-repo-s-agents-subagents-commands-and-goal-binding-be-reached-by-the",
+      "inboxId": null,
+      "text": "How can this repo's agents, subagents, commands and goal binding be reached by the harness?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-which-lifecycle-seams-exist-for-plugins-and-hooks-and-which-pi-extensions-must-b",
+      "inboxId": null,
+      "text": "Which lifecycle seams exist for plugins and hooks, and which Pi extensions must be ported, deferred or dropped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-7-for-each-third-party-pi-plugin-does-the-harness-ship-the-capability-natively-off",
+      "inboxId": null,
+      "text": "For each third-party Pi plugin, does the harness ship the capability natively, offer a market equivalent, or is it irrelevant to dispatch?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-8-how-are-mcp-servers-configured-and-can-this-repo-s-servers-and-code-mode-connect",
+      "inboxId": null,
+      "text": "How are MCP servers configured, and can this repo's servers and code-mode connect?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-9-what-does-a-deep-loop-fan-out-lineage-builder-need-and-which-consumers-must-lear",
+      "inboxId": null,
+      "text": "What does a deep-loop fan-out lineage builder need, and which consumers must learn the new executor kind?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-10-where-does-the-harness-cost-more-or-less-than-pi-what-hard-rules-follow-and-what",
+      "inboxId": null,
+      "text": "Where does the harness cost more or less than Pi, what hard rules follow, and what is the phase plan?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-dsh-headless-takes-the-task-as-the-positional-argument-multiple-words-joined-rea",
+      "text": "`dsh headless` takes the task as the positional argument (multiple words joined, `-` reads",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-1-8-compared-with-pi-p-the-harness-moves-every-per-dispatch-lever-into-configuration",
+      "text": "Compared with `pi -p`, the harness moves every per-dispatch lever into configuration: Pi takes",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-1-5-exit-status-is-a-two-value-contract-0-only-when-the-last-turn-ends-completed-1-f",
+      "text": "Exit status is a two-value contract: `0` only when the last turn ends `completed`; `1` for",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-1-7-headless-disables-the-managed-credential-store-authorization-and-deepseek-accoun",
+      "text": "Headless disables the managed credential store, `authorization` and `deepseek-account` rows.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-1-6-live-smoke-on-the-installed-package-confirms-the-failure-shape-exit-1-empty-stdo",
+      "text": "Live smoke on the installed package confirms the failure shape: exit 1, empty stdout, stderr",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-1-4-stdout-carries-only-the-final-assistant-answer-or-the-ndjson-json-stream-stderr-",
+      "text": "stdout carries only the final assistant answer (or the NDJSON `--json` stream); stderr carries",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-route-model-and-reasoning-level-are-profile-configuration-not-dispatch-flags",
+      "text": "The route, model and reasoning level are profile configuration, not dispatch flags: the runner",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-1-3-working-directory-is-the-process-cwd-the-headless-sandbox-row-sets",
+      "text": "Working directory is the process cwd: the headless sandbox row sets",
+      "addedAtIteration": 1,
+      "sources": [
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,36,46,56,94,104,128,136,190`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:27-33`",
+        "`dsh-src/packages/core/agent-default-model/README.md:53-54`",
+        "`dsh-src/docs/config-catalog.md:2102-2108`",
+        "Live `dsh headless --help` on 0.2.2-rc.1, exit 0",
+        "Live `dsh headless \"Reply with the single word OK\"` smoke, exit 1, stderr quoted above",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md:94-134`"
+      ]
+    },
+    {
+      "id": "finding-2-6-apikeyenv-is-a-credential-reference-resolved-per-request-through-the-credential-",
+      "text": "`apiKeyEnv` is a credential reference resolved per request through the credential seam, so no",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-2-1-a-custom-openai-compatible-route-is-a-llm-pi-ai-row-in",
+      "text": "A custom OpenAI-compatible route is a `llm-pi-ai` row in",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-2-5-deepseek-v4-behind-an-openai-compatible-gateway-needs-compat-thinkingformat-deep",
+      "text": "DeepSeek V4 behind an OpenAI-compatible gateway needs `compat.thinkingFormat: deepseek` so that",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-2-8-fail-closed-is-only-partly-native-the-adapter-refuses-an-unconfigured-model-id-b",
+      "text": "Fail-closed is only partly native: the adapter refuses an unconfigured model id, but",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-2-4-reasoning-levels-are-declared-per-model-as-reasoningefforts-a-map-from-level-to-",
+      "text": "Reasoning levels are declared per model as `reasoningEfforts`, a map from level to the wire",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-llm-gateway-route-is-expressible-with-no-harness-change",
+      "text": "The LLM Gateway route is expressible with no harness change:",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-opencode-go-route-is-expressible-the-same-way-id-opencode-go-base-url",
+      "text": "The OpenCode Go route is expressible the same way: id `opencode-go`, base URL",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-shipped-default-route-is-agent-default-model-with-provider-deepseek-official",
+      "text": "The shipped default route is `agent-default-model` with `provider: deepseek-official` and",
+      "addedAtIteration": 2,
+      "sources": [
+        "`dsh-src/docs/user/guide/providers.md:27-33,134-166`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:38,123`",
+        "`dsh-src/packages/core/agent-default-model/README.md:22-33`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:90-94`",
+        "`dsh-src/docs/config-catalog.md:2225`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:89,99`",
+        "`.skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/resource-map.md:46-55`"
+      ]
+    },
+    {
+      "id": "finding-3-5-patch-path-is-the-only-repo-local-configuration-lever-a-repeatable-overlay-list-",
+      "text": "`--patch <path>` is the only repo-local configuration lever: a repeatable overlay list applied",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-3-6-dsh-home-can-be-relocated-per-lineage-pointing-it-at-a-lineage-subdirectory-prod",
+      "text": "`$DSH_HOME` can be relocated per lineage; pointing it at a lineage subdirectory produced a",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-3-7-a-dsh-repo-folder-therefore-has-a-smaller-configuration-surface-than-pi-or-herme",
+      "text": "A `.dsh/` repo folder therefore has a smaller configuration surface than `.pi/` or `.hermes/`:",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-3-2-a-profile-is-a-directory-at-dsh-home-profiles-name-containing-cordis-yml",
+      "text": "A profile is a directory at `$DSH_HOME/profiles/<name>` containing `cordis.yml`,",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-3-4-each-instruction-chain-gets-its-own-maxbytes-budget-65-536-bytes-in-dsh-base-bro",
+      "text": "Each instruction chain gets its own `maxBytes` budget, 65,536 bytes in `dsh-base`; broader files",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-pi-precedent-splits-generated-from-authored-exactly-where-the-harness-forces",
+      "text": "The `.pi/` precedent splits generated from authored exactly where the harness forces it: agents",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-harness-home-resolves-explicit-configuration-first-then-dsh-home-then-dsh-an",
+      "text": "The harness home resolves explicit configuration first, then `$DSH_HOME`, then `~/.dsh`; an",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-3-3-workspace-instructions-are-the-one-project-surface-the-harness-reads-natively-th",
+      "text": "Workspace instructions are the one project-surface the harness reads natively. The first request",
+      "addedAtIteration": 3,
+      "sources": [
+        "`dsh-src/packages/util/home-paths/README.md:34-52`",
+        "`dsh-src/packages/boot/app-boot/README.md:52`",
+        "`dsh-src/packages/context/agent-instructions/README.md:30-76`",
+        "`dsh-src/packages/settings/settings/README.md:12-24`",
+        "`dsh-src/docs/cli-help.md:41-42`",
+        "`dsh-src/apps/cli/config/examples/ptc.yml`, `team-mode.yml`",
+        "`AGENTS.md:1` (27,891 bytes)",
+        "`.pi/SYNC.md:18-40`, `.hermes/SYNC.md:20-40`, `.pi/settings.json:1-40`",
+        "Lineage-local `.dsh-home` profile and session tree"
+      ]
+    },
+    {
+      "id": "finding-4-1-discovery-is-exactly-one-level-deep-a-skill-is-root-name-skill-md-or-root-name-m",
+      "text": "Discovery is exactly one level deep: a skill is `<root>/<name>/SKILL.md` or `<root>/<name>.md`,",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-4-7-duplicate-names-resolve-by-layer-first-then-root-rank-then-provider-order-with-t",
+      "text": "Duplicate names resolve by layer first, then root rank, then provider order, with the loser hidden",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-4-4-frontmatter-requires-a-kebab-case-name-and-a-description-optional-keys-are-whent",
+      "text": "Frontmatter requires a kebab-case `name` and a `description`; optional keys are `whenToUse`,",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-4-3-roots-are-ranked-projectroot-dsh-skills-100-projectroot-agents-skills-200",
+      "text": "Roots are ranked: `<projectRoot>/.dsh/skills` (100), `<projectRoot>/.agents/skills` (200),",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-4-6-symlinked-directories-are-explicitly-supported-catalog-entries-and-loaded-skills",
+      "text": "Symlinked directories are explicitly supported: catalog entries and loaded skills expose the",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-consequence-is-decisive-for-this-repo-skilled-skills-has-16-top-level-hub-di",
+      "text": "The consequence is decisive for this repo: `.skilled/skills` has 16 top-level hub directories but",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-smallest-correct-move-is-a-generated-per-skill-symlink-farm-not-a-whole-tree",
+      "text": "The smallest correct move is a generated per-skill symlink farm, not a whole-tree symlink and not",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-4-5-there-is-no-content-scanner-quarantine-or-skill-size-limit-an-invalid-file-is-sk",
+      "text": "There is no content scanner, quarantine or skill size limit. An invalid file is skipped with a",
+      "addedAtIteration": 4,
+      "sources": [
+        "`dsh-src/packages/skill/skill-filesystem/README.md:36-56,85,147`",
+        "`dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850`",
+        "`dsh-src/packages/skill/skill/src/index.ts:21-36,84`",
+        "`dsh-src/packages/skill/skill/README.md:140`",
+        "`dsh-src/packages/skill/tool-skill/README.md:48`",
+        "`.pi/SYNC.md:32-34`, `.hermes/SYNC.md:20-26`",
+        "Repo skill tree counts: 16 top-level directories, 57 `SKILL.md` files"
+      ]
+    },
+    {
+      "id": "finding-5-2-agent-identity-in-a-headless-dispatch-is-the-system-prompt-row-s-personaprefix-h",
+      "text": "Agent identity in a headless dispatch is the `system-prompt` row's `personaPrefix`. Headless",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-5-human-commands-are-plugin-registrations-on-ctx-commands-that-dispatch-without-a-",
+      "text": "Human commands are plugin registrations on `ctx.commands` that dispatch without a model turn;",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-8-plan-mode-is-mounted-in-base-but-exit-plan-mode-presents-the-plan-over-the-user-",
+      "text": "Plan mode is mounted in base, but `exit_plan_mode` presents the plan over the user-questions seam",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-3-presets-are-the-declarative-multi-composition-mechanism-an-deepseek-ai-dsh-agent",
+      "text": "Presets are the declarative multi-composition mechanism: an `@deepseek-ai/dsh-agent-preset` row",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-subagent-tool-takes-description-prompt-optional-name-and-cwd-a-child-preset-",
+      "text": "The `subagent` tool takes `description`, `prompt`, optional `name` and `cwd`; a child preset is",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-base-bundle-already-mounts-the-goal-service-the-goal-round-driver-command-go",
+      "text": "The base bundle already mounts the goal service, the goal round driver, `command-goal`,",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-goal-round-driver-automatically-continues-an-active-goal-while-the-agent-is-",
+      "text": "The goal round driver automatically continues an active goal while the agent is idle and the round",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-goal-service-stores-at-most-one-goal-per-session-with-compare-and-set-update",
+      "text": "The goal service stores at most one goal per session, with compare-and-set updates keyed by id and",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-5-9-the-pi-and-hermes-precedents-both-expose-commands-as-prompt-templates",
+      "text": "The Pi and Hermes precedents both expose commands as prompt templates",
+      "addedAtIteration": 5,
+      "sources": [
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:315-453,521-526`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:9-12,35-46`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:598-599`",
+        "`dsh-src/packages/preset/agent-preset-registry/README.md:26-41`",
+        "`dsh-src/packages/preset/persona/README.md:24-35`",
+        "`dsh-src/packages/subagent/tool-subagent/README.md:47-53`",
+        "`dsh-src/docs/tool-catalog.md:2064-2110`",
+        "`dsh-src/packages/goal/{goal,tool-goal,goal-round-driver,command-goal}/README.md`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63,93`",
+        "`dsh-src/docs/architecture.md:155`",
+        "`.pi/SYNC.md:26-34`, `.hermes/SYNC.md:22-26`"
+      ]
+    },
+    {
+      "id": "finding-6-1-a-harness-plugin-is-a-cordis-object-a-function-with-optional-inject-and-an-apply",
+      "text": "A harness plugin is a Cordis object: a function with optional `inject` and an `apply(ctx)` field,",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-7-a-single-repo-bundle-is-the-smaller-move-only-for-the-residual-guards-the-bulk-a",
+      "text": "A single repo bundle is the smaller move only for the residual guards: the bulk arrives through",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-4-claude-literal-matchers-are-exact-case-sensitive-pipe-alternatives-only-non-word",
+      "text": "Claude literal matchers are exact, case-sensitive pipe alternatives; only non-word patterns are",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-9-headless-disables-hmr-so-a-plugin-change-cannot-hot-reload-in-a-dispatch-the-pro",
+      "text": "Headless disables HMR, so a plugin change cannot hot-reload in a dispatch: the profile reports",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-8-hooks-run-in-the-agent-s-current-session-directory-with-claude-project-dir-set-p",
+      "text": "Hooks run in the agent's current session directory, with `CLAUDE_PROJECT_DIR` set per run, so the",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-5-the-repo-already-carries-the-hook-implementations-this-angle-would-otherwise-por",
+      "text": "The repo already carries the hook implementations this angle would otherwise port:",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-shipped-claude-code-hook-bridge-maps-sessionstart-userpromptsubmit-pretoolus",
+      "text": "The shipped Claude Code hook bridge maps `SessionStart`, `UserPromptSubmit`, `PreToolUse`,",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-usable-lifecycle-seams-are-broader-than-the-pi-extension-api-tools-pre-execu",
+      "text": "The usable lifecycle seams are broader than the Pi extension API: `tools/pre-execute` (waterfall,",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-6-6-verdict-per-pi-extension-16-of-the-19-top-level-ts-extensions-are-bridge-served-",
+      "text": "Verdict per Pi extension: 16 of the 19 top-level `.ts` extensions are bridge-served by a",
+      "addedAtIteration": 6,
+      "sources": [
+        "`dsh-src/docs/cordis-primer.md:9`",
+        "`dsh-src/packages/boot/plugin-manager/README.md:31,46,54,126`",
+        "`dsh-src/docs/event-producer-consumer.md:30-91`",
+        "`dsh-src/packages/experimental/hooks-claude-code/README.md:56-102`",
+        "`dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68`",
+        "`dsh-src/docs/tool-catalog.md:26-52`",
+        "`dsh-src/packages/bundle/headless/cordis.patch.yml:35-36`",
+        "`.claude/settings.json` hook inventory",
+        "`.pi/extensions/README.md`",
+        "`.hermes/SYNC.md:26-40`"
+      ]
+    },
+    {
+      "id": "finding-7-2-juicesharp-rpiv-ask-user-question-native-user-questions-exists-but-a-headless-di",
+      "text": "`@juicesharp/rpiv-ask-user-question`: native user-questions exists, but a headless dispatch has",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-3-juicesharp-rpiv-todo-todo-write-is-mounted-in-base-and-persists-across-turns-and",
+      "text": "`@juicesharp/rpiv-todo`: `todo_write` is mounted in base and persists across turns and reopened",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-4-pi-blackhole-the-compaction-half-maps-to-compaction-basic-plus-the-tool-result-p",
+      "text": "`pi-blackhole`: the compaction half maps to `compaction-basic` plus the tool-result pruner and",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-5-pi-btw-parallel-side-conversations-map-to-subagent-subagent-fork-plus-the-team-t",
+      "text": "`pi-btw`: parallel side conversations map to `subagent`/`subagent_fork` plus the team task board,",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-6-pi-cache-optimizer-cache-behavior-is-route-configuration-not-a-plugin-cachecontr",
+      "text": "`pi-cache-optimizer`: cache behavior is route configuration, not a plugin — `cacheControlFormat`,",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-9-pi-claude-code-ui-and-pi-statusline-rendering-only-packages-with-no-headless-sur",
+      "text": "`pi-claude-code-ui` and `pi-statusline`: rendering-only packages with no headless surface.",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-7-pi-fast-mode-w-subagent-support-the-config-catalog-has-no-servicetier-or-service",
+      "text": "`pi-fast-mode-w-subagent-support`: the config catalog has no `serviceTier` or `service_tier`",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-8-pi-plan-build-native-plan-mode-covers-plan-then-approve-in-interactive-profiles-",
+      "text": "`pi-plan-build`: native plan mode covers plan-then-approve in interactive profiles, but",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-10-pi-web-access-web-fetch-and-web-search-are-native-and-the-shipped-headless-profi",
+      "text": "`pi-web-access`: `web_fetch` and `web_search` are native, and the shipped headless profile routes",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-1-six-of-the-ten-packages-have-a-native-equivalent-already-mounted-by-dsh-base-tod",
+      "text": "Six of the ten packages have a native equivalent already mounted by `dsh-base`: `todo_write`",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-7-11-the-plugin-market-is-not-a-pi-compatibility-layer-dsh-ships-no-index-source-inde",
+      "text": "The plugin market is not a Pi compatibility layer: dsh ships no index source, indexes list",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.pi/PLUGINS.md:16-102`",
+        "`.pi/settings.json` package list",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:79-80,355-359,363-403,434-446,499-500`",
+        "`dsh-src/packages/todo/tool-todo/README.md:12`",
+        "`dsh-src/packages/team/agent-team/README.md:12`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`dsh-src/packages/bundle/headless/README.md:56,100`",
+        "`dsh-src/docs/config-catalog.md:2031-2108,2194-2199`",
+        "`dsh-src/packages/llm/llm-pi-ai/README.md:150`",
+        "`dsh-src/docs/user/guide/plugin-market.md:12`"
+      ]
+    },
+    {
+      "id": "finding-8-8-dsh-mcp-client-is-bundled-inside-the-installed-deepseek-ai-dsh-0-2-2-rc-1-packag",
+      "text": "`dsh-mcp-client` is bundled inside the installed `@deepseek-ai/dsh@0.2.2-rc.1` package (319",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-9-base-mounts-mcp-resources-but-not-mcp-client-so-a-headless-dispatch-has-no-mcp-t",
+      "text": "Base mounts `mcp-resources` but not `mcp-client`, so a headless dispatch has no MCP tool until a",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-4-mcp-configuration-lives-only-in-the-active-profile-s-cordis-patch-yml-or-a-patch",
+      "text": "MCP configuration lives only in the active profile's `cordis.patch.yml` or a `--patch` overlay;",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-1-one-deepseek-ai-dsh-mcp-client-row-per-server-with-required-servername-and-trans",
+      "text": "One `@deepseek-ai/dsh-mcp-client` row per server, with required `serverName` and `transport`",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-7-per-dispatch-enable-deny-has-no-cli-flag-the-lever-is-the-patch-file-a-dispatch-",
+      "text": "Per-dispatch enable/deny has no CLI flag: the lever is the patch file. A dispatch that omits the",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-3-server-instructions-join-the-logged-system-prompt-as-literal-text-up-to-32-768-b",
+      "text": "Server instructions join the logged system prompt as literal text, up to 32,768 bytes, and MCP",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-6-the-repo-s-code-mode-entry-translates-directly-command-node-args-skilled-bin-mcp",
+      "text": "The repo's code-mode entry translates directly: `command: node`, `args: [.skilled/bin/mcp-code-mode-launcher.cjs]`,",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-5-the-stdio-bridge-scrubs-ambient-variables-whose-names-usually-identify-credentia",
+      "text": "The stdio bridge scrubs ambient variables whose names usually identify credentials and every",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-8-2-tools-are-exposed-as-mcp-servername-rawname-with-the-server-namespace-taken-from",
+      "text": "Tools are exposed as `mcp__<serverName>__<rawName>`, with the server namespace taken from local",
+      "addedAtIteration": 8,
+      "sources": [
+        "`dsh-src/packages/mcp/mcp-client/README.md:12-101`",
+        "`dsh-src/packages/mcp/mcp-manager/README.md:12`",
+        "`dsh-src/docs/user/guide/mcp-memory.md:9-33`",
+        "`.pi/mcp.json`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:505-506`",
+        "`dsh-src/packages/bundle/web-app/cordis.patch.yml:153-154`",
+        "Installed package inventory at `~/.local/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai`",
+        "`dsh-src/packages/experimental/hooks-claude-code/package.json:1`"
+      ]
+    },
+    {
+      "id": "finding-9-8-exit-status-is-trustworthy-in-a-way-pi-s-is-not-0-only-on-a-completed-final-turn",
+      "text": "Exit status is trustworthy in a way Pi's is not: `0` only on a completed final turn, `1` on",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-5-per-lineage-state-isolation-is-dsh-home-lineage-dsh-home-in-the-child-environmen",
+      "text": "Per-lineage state isolation is `DSH_HOME=<lineage>/.dsh-home` in the child environment. The",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-1-registering-a-kind-means-touching-seven-tables-in-executor-config-ts-executor-ki",
+      "text": "Registering a kind means touching seven tables in `executor-config.ts`: `EXECUTOR_KINDS`,",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-builder-s-command-shape-is-dsh-profile-headless-json-permission-mode-mode",
+      "text": "The builder's command shape is `dsh --profile headless --json --permission-mode <mode>",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-9-the-complete-consumer-list-one-row-per-file-and-the-change-each-needs",
+      "text": "The complete consumer list, one row per file and the change each needs:",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-6-the-dispatch-env-filter-is-a-strict-allowlist-path-home-lang-tmpdir-node-path-te",
+      "text": "The dispatch-env filter is a strict allowlist: PATH, HOME, LANG, TMPDIR, NODE_PATH, TERM, USER,",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-7-the-recursion-guard-needs-two-signals-speckit-fanout-lineage-id-and-the-executor",
+      "text": "The recursion guard needs two signals: `SPECKIT_FANOUT_LINEAGE_ID` and the executor kind present",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-4-there-is-no-turn-or-time-budget-in-the-headless-contract-the-runner-s-timeoutsec",
+      "text": "There is no turn or time budget in the headless contract. The runner's `timeoutSeconds`, signal",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-9-3-write-permission-is-explicit-workspace-write-confines-writes-to-the-spawn-cwd-pl",
+      "text": "Write permission is explicit: `workspace-write` confines writes to the spawn cwd plus",
+      "addedAtIteration": 9,
+      "sources": [
+        "`runtime/lib/deep-loop/executor-config.ts:11-276`",
+        "`runtime/scripts/fanout-run.cjs:2884-3120,3620-3730,4045-4056`",
+        "`runtime/lib/deep-loop/executor-audit.ts:129-186,994-1010`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`dsh-src/packages/bundle/headless/README.md:12,46,92,104`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12,58-60,134`",
+        "`dsh-src/packages/util/home-paths/README.md:34-40`",
+        "`dsh-src/packages/goal/goal-round-driver/README.md:12-30`",
+        "`dsh-src/packages/plan/plan-mode/README.md:63`",
+        "`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:61-94`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh:69-100`",
+        "`.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:198-381`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:5-12`",
+        "`README.md:867-871`"
+      ]
+    },
+    {
+      "id": "finding-10-3-base-mounts-session-telemetry-otel-in-feedback-only-mode-with-a-default-collecto",
+      "text": "Base mounts `session-telemetry-otel` in `FEEDBACK_ONLY` mode with a default collector URL",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-4-base-mounts-subprocess-local-which-declares-both-node-pty-and-koffi-and-npm-skip",
+      "text": "Base mounts `subprocess-local`, which declares both `node-pty` and `koffi`, and npm skipped the",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-5-on-cost-the-harness-adds-no-billing-layer-token-accounting-is-local-and-the-rout",
+      "text": "On cost, the harness adds no billing layer: token accounting is local, and the route bills at the",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-2-startup-is-cheap-for-the-launcher-and-moderate-for-a-profile-dsh-version-measure",
+      "text": "Startup is cheap for the launcher and moderate for a profile: `dsh --version` measured 0.07 s and",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-6-the-harness-is-ahead-of-pi-on-four-dispatch-relevant-contracts-a-deterministic-t",
+      "text": "The harness is ahead of Pi on four dispatch-relevant contracts: a deterministic two-value exit",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-1-the-installed-package-requires-node-24-9-0-declares-90-dependencies-and-ships-31",
+      "text": "The installed package requires Node `>=24.9.0`, declares 90 dependencies and ships 319",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-7-the-packet-needs-these-hard-rules-headless-dash-stdin-required-route-patch-requi",
+      "text": "The packet needs these hard rules: `headless-dash-stdin-required`, `route-patch-required`",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-8-the-recommended-phase-plan-ranked-by-dependency",
+      "text": "The recommended phase plan, ranked by dependency:",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    },
+    {
+      "id": "finding-10-9-what-stays-unknown-until-a-configured-key-whether-a-patch-overlay-actually-repoi",
+      "text": "What stays `UNKNOWN` until a configured key: whether a `--patch` overlay actually repoints",
+      "addedAtIteration": 10,
+      "sources": [
+        "`/Users/michelkerkmeester/.local/lib/node_modules/@deepseek-ai/dsh/package.json:1`",
+        "`dsh-src/packages/bundle/base/cordis.patch.yml:218-235`",
+        "`dsh-src/packages/session/session-telemetry-otel/README.md:12-26`",
+        "`dsh-src/packages/subprocess/subprocess-local/package.json:1`",
+        "`dsh-src/packages/sandbox/sandbox/README.md:12`",
+        "`dsh-src/packages/bundle/headless/README.md:92,136`",
+        "`dsh-src/packages/llm/token-meter/README.md:12`",
+        "`dsh-src/docs/cli-help.md:100-132`",
+        "`resource-map.md:27-32`",
+        "Live `dsh --version` (0.07 s) and `dsh headless --help` (1.16 s) timings",
+        "The smoke stderr recorded in iteration 1"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-5af762c01d70",
+      "text": "Adding a `--model` flag to a hoped-for dispatch builder: the installed help has no such option.",
+      "contentHash": "5af762c01d70",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1ddae660dfb0",
+      "text": "Probing a successful dispatch: no provider key exists on this machine, and creating one is out of",
+      "contentHash": "1ddae660dfb0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-787de22d0a64",
+      "text": "Treating exit `1` as a provider-auth signal: the contract collapses aborts, denials, timeouts and",
+      "contentHash": "787de22d0a64",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-976b7e13f8cd",
+      "text": "A `--model`/`--provider` dispatch flag: headless exposes none.",
+      "contentHash": "976b7e13f8cd",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-22d55f30c5f5",
+      "text": "Live verifying either gateway through `dsh`: requires writing a real key into a profile, which is",
+      "contentHash": "22d55f30c5f5",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-05a7db199401",
+      "text": "Relying on the harness catalog to enforce a model allowlist: it validates only what the profile",
+      "contentHash": "05a7db199401",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-91be0f7d5ab3",
+      "text": "A `.dsh/settings.json` analogue: settings persist through the active profile's Cordis patch, and",
+      "contentHash": "91be0f7d5ab3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-bab705df04d6",
+      "text": "A repo-local profile directory: profile lookup is `$DSH_HOME`-only, and a checked-in profile would",
+      "contentHash": "bab705df04d6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0e136f728310",
+      "text": "Trying to discover a project config folder: none is documented in `settings`, `boot` or the",
+      "contentHash": "0e136f728310",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-08d96b9039b3",
+      "text": "A whole-directory symlink `.dsh/skills -> .skilled/skills`: one-level discovery would expose only",
+      "contentHash": "08d96b9039b3",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-02925e942b06",
+      "text": "Editing canonical `SKILL.md` files to add `whenToUse` or invocation keys: extra keys are optional,",
+      "contentHash": "02925e942b06",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f095c76b6ad9",
+      "text": "Looking for a quarantine or scan path: none exists in the filesystem provider; the only failure",
+      "contentHash": "f095c76b6ad9",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e8650fe5c369",
+      "text": "Markdown-only generated copies: they would lose `references/`, `assets/` and `scripts/` unless",
+      "contentHash": "e8650fe5c369",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-2d99e765b9f2",
+      "text": "An agent-file loader or an `--agent` flag: none exists; personas come from the system-prompt row,",
+      "contentHash": "2d99e765b9f2",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a18310446840",
+      "text": "Looking for a generic prompt-template loader: `tool-workflow` runs model-written JavaScript, not",
+      "contentHash": "a18310446840",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-a1e47d08818a",
+      "text": "Native slash commands from `.skilled/commands/**`: the command plane is plugin-registered and",
+      "contentHash": "a1e47d08818a",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7e8c9051a6de",
+      "text": "Plan mode as an unattended gate: its exit path fails closed without an interactive review.",
+      "contentHash": "7e8c9051a6de",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d67d02477b47",
+      "text": "A project-local plugin folder: plugin resolution is profile-package based, so a repo bundle must",
+      "contentHash": "d67d02477b47",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-db65b1e5255c",
+      "text": "Looking for a `PreCompact` equivalent in the bridge: the supported-event table stops at Stop and",
+      "contentHash": "db65b1e5255c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-9a0b4dac8d58",
+      "text": "Mounting `.claude/settings.json` unchanged: its capitalized tool matchers never match the",
+      "contentHash": "9a0b4dac8d58",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-d2956e99ce4f",
+      "text": "Porting all eighteen Pi extensions to native plugins: the scripts already exist and most hook",
+      "contentHash": "d2956e99ce4f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-b05f6c47fbba",
+      "text": "A service-tier plugin for `pi-fast-mode`: no request field exists to carry it.",
+      "contentHash": "b05f6c47fbba",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-504a3a033fb2",
+      "text": "Installing from the plugin market as a migration shortcut: Pi packages are not listed as dsh",
+      "contentHash": "504a3a033fb2",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-47fac4ec7988",
+      "text": "Porting any Pi package as a dsh plugin: none is a dsh bundle, and six capabilities already exist.",
+      "contentHash": "47fac4ec7988",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-88ace5d67f8c",
+      "text": "Searching for a `serviceTier` model-route field: the catalog exposes only executor-side service",
+      "contentHash": "88ace5d67f8c",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-673e8c6b827d",
+      "text": "Lazy MCP startup: no `lifecycle` field on the harness client.",
+      "contentHash": "673e8c6b827d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-1a4f1fedd675",
+      "text": "Looking for an MCP manager in base or headless: only the web bundle mounts it, so a headless",
+      "contentHash": "1a4f1fedd675",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-553fabdda3b5",
+      "text": "Per-dispatch `--mcp` or tool-allowlist flags: none exist; composition is the control.",
+      "contentHash": "553fabdda3b5",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-04a7385131f7",
+      "text": "Reading `.pi/mcp.json` directly: no project MCP config is scanned.",
+      "contentHash": "04a7385131f7",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-884564eb4b07",
+      "text": "A `--model` or `--effort` flag in the builder: headless exposes neither, so the route must be a",
+      "contentHash": "884564eb4b07",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-3655eb34d610",
+      "text": "Looking for a harness-side per-run budget: none exists; the runner owns the timeout, and the",
+      "contentHash": "3655eb34d610",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-9c4af382ebbd",
+      "text": "Passing all `DSH_*` variables to the child: only `DSH_HOME` and `DSH_PERMISSION_MODE` are needed.",
+      "contentHash": "9c4af382ebbd",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-abd5d18f4c5e",
+      "text": "Reusing the Pi exit-code exception: dsh's exit status is deterministic, so a non-zero exit is a",
+      "contentHash": "abd5d18f4c5e",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-a98ea04532b7",
+      "text": "Building the executor kind before the keyed contract pin: the patch and stdin behavior are the",
+      "contentHash": "a98ea04532b7",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-b18ac1c41d83",
+      "text": "Looking for a harness-side billing or cost table: token accounting is local and route pricing stays",
+      "contentHash": "b18ac1c41d83",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-2242af195d32",
+      "text": "Relying on `FEEDBACK_ONLY` as a telemetry hard rule: only `DISABLED` guarantees no export.",
+      "contentHash": "2242af195d32",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-a6c23e1924d0",
+      "text": "Treating the harness as cheaper than Pi per run: same gateway rate, larger footprint.",
+      "contentHash": "a6c23e1924d0",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 88,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "code": 158,
+      "other": 25
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

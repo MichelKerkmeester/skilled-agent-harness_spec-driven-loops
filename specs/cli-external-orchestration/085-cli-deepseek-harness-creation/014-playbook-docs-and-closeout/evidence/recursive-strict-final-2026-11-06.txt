@@ -1,0 +1,1054 @@
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation
+  Level:  phase
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Phase parent lean document set accepted
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; spec.md or implementation-summary.md is absent
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ FOLDER_NAMING: Folder name '085-cli-deepseek-harness-creation' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Not applicable: spec.md is not stamped from spec-core
++ GREP_CONVENTION: Grep convention: 2 document(s) conform
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Live packet root exposes a canonical spec.md surface
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Live packet root graph metadata has non-empty derived.source_docs
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory: 5/5 ACs have evidence; floor 5/5
++ AC_CLOSURE: AC_CLOSURE: 5/5 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=34, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '001-deep-research' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
+! SOURCE_TAGS: 267 of 415 [SOURCE:] citation(s) do not resolve to an existing path and line
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:26 [SOURCE: dsh-src/docs/cli-help.md:100-132] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:32 [SOURCE: dsh-src/packages/bundle/headless/README.md:128] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:33 [SOURCE: dsh-src/packages/core/agent-default-model/README.md:53-54] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:34 [SOURCE: dsh-src/docs/config-catalog.md:2102-2108] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:43 [SOURCE: dsh-src/packages/bundle/headless/README.md:36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:44 [SOURCE: dsh-src/packages/bundle/headless/README.md:104] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:50 [SOURCE: dsh-src/packages/bundle/headless/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:51 [SOURCE: dsh-src/packages/bundle/headless/README.md:94] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:52 [SOURCE: dsh-src/packages/bundle/headless/README.md:136] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-001.md:63 [SOURCE: dsh-src/packages/bundle/headless/README.md:56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:25 [SOURCE: dsh-src/docs/user/guide/providers.md:27-33] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:26 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:123] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:47 [SOURCE: dsh-src/docs/user/guide/providers.md:134-166] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:48 [SOURCE: dsh-src/docs/config-catalog.md:2225] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:53 [SOURCE: dsh-src/docs/user/guide/providers.md:155-166] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:58 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:38] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:59 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:123] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:65 [SOURCE: dsh-src/packages/core/agent-default-model/README.md:22-33] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:66 [SOURCE: dsh-src/docs/cli-help.md:41-42] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:72 [SOURCE: dsh-src/packages/core/agent-default-model/README.md:33] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:73 [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/hard-rules.json:28-35] past end: the file exists but is shorter than the cited line
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-003.md:23 [SOURCE: dsh-src/packages/util/home-paths/README.md:34-52] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-003.md:28 [SOURCE: dsh-src/packages/boot/app-boot/README.md:52] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-003.md:48 [SOURCE: dsh-src/docs/cli-help.md:41-42] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-003.md:61 [SOURCE: dsh-src/packages/settings/settings/README.md:12-24] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:20 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:21 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:147] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:30 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:46-56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:35 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:36 [SOURCE: dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:37 [SOURCE: dsh-src/packages/skill/skill/src/index.ts:21-36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:42 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:85] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:43 [SOURCE: dsh-src/packages/skill/tool-skill/README.md:48] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:48 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:40] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:52 [SOURCE: dsh-src/packages/skill/skill/src/index.ts:84] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:53 [SOURCE: dsh-src/packages/skill/skill/README.md:140] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:35 [SOURCE: dsh-src/packages/preset/agent-preset-registry/README.md:26-41] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:36 [SOURCE: dsh-src/packages/preset/persona/README.md:24-35] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:42 [SOURCE: dsh-src/docs/tool-catalog.md:2064-2110] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:43 [SOURCE: dsh-src/packages/subagent/tool-subagent/README.md:47-53] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:48 [SOURCE: dsh-src/docs/architecture.md:155] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:49 [SOURCE: dsh-src/packages/goal/command-goal/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:55 [SOURCE: dsh-src/packages/goal/goal/README.md:12-34] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:56 [SOURCE: dsh-src/packages/goal/tool-goal/README.md:12-18] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:60 [SOURCE: dsh-src/packages/goal/goal-round-driver/README.md:12-30] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:65 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:63] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:66 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:93] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-005.md:67 [SOURCE: dsh-src/packages/bundle/headless/README.md:100] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:24 [SOURCE: dsh-src/docs/cordis-primer.md:9] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:25 [SOURCE: dsh-src/packages/boot/plugin-manager/README.md:31] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:26 [SOURCE: dsh-src/packages/boot/plugin-manager/README.md:46] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:33 [SOURCE: dsh-src/docs/event-producer-consumer.md:30] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:34 [SOURCE: dsh-src/docs/event-producer-consumer.md:32-54] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:35 [SOURCE: dsh-src/docs/event-producer-consumer.md:76] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:36 [SOURCE: dsh-src/docs/event-producer-consumer.md:86-91] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:41 [SOURCE: dsh-src/packages/experimental/hooks-claude-code/README.md:56-70] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:48 [SOURCE: dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:49 [SOURCE: dsh-src/docs/tool-catalog.md:26-52] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:66 [SOURCE: dsh-src/packages/experimental/hooks-claude-code/README.md:94-102] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:72 [SOURCE: dsh-src/packages/boot/plugin-manager/README.md:54] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:76 [SOURCE: dsh-src/packages/experimental/hooks-claude-code/README.md:72-80] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-006.md:81 [SOURCE: dsh-src/packages/boot/plugin-manager/README.md:126] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:30 [SOURCE: dsh-src/packages/bundle/headless/README.md:100] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:34 [SOURCE: dsh-src/packages/todo/tool-todo/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:44 [SOURCE: dsh-src/packages/team/agent-team/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:49 [SOURCE: dsh-src/docs/config-catalog.md:2194-2199] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:50 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:150] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:55 [SOURCE: dsh-src/docs/config-catalog.md:2031-2108] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:60 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:63] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:67 [SOURCE: dsh-src/packages/bundle/headless/README.md:56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-007.md:72 [SOURCE: dsh-src/docs/user/guide/plugin-market.md:12] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:21 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:32-66] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:25 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:78-86] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:30 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:31 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:65] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:34 [SOURCE: dsh-src/docs/user/guide/mcp-memory.md:23-33] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:39 [SOURCE: dsh-src/docs/user/guide/mcp-memory.md:13] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:40 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:101] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:46 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:32] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:50 [SOURCE: dsh-src/packages/mcp/mcp-manager/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-008.md:57 [SOURCE: dsh-src/packages/experimental/hooks-claude-code/package.json:1] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:32 [SOURCE: dsh-src/docs/cli-help.md:100-132] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:33 [SOURCE: dsh-src/packages/bundle/headless/README.md:36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:34 [SOURCE: dsh-src/packages/bundle/headless/README.md:46] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:39 [SOURCE: dsh-src/packages/sandbox/sandbox/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:40 [SOURCE: dsh-src/packages/sandbox/sandbox/README.md:58-60] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:41 [SOURCE: dsh-src/packages/sandbox/sandbox/README.md:134] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:42 [SOURCE: dsh-src/packages/bundle/headless/README.md:92] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:46 [SOURCE: dsh-src/packages/goal/goal-round-driver/README.md:12-30] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:47 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:63] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:51 [SOURCE: dsh-src/packages/util/home-paths/README.md:34-40] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:68 [SOURCE: dsh-src/packages/bundle/headless/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-009.md:69 [SOURCE: dsh-src/packages/bundle/headless/README.md:104] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:35 [SOURCE: dsh-src/packages/session/session-telemetry-otel/README.md:12-26] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:40 [SOURCE: dsh-src/packages/subprocess/subprocess-local/package.json:1] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:44 [SOURCE: dsh-src/packages/llm/token-meter/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:49 [SOURCE: dsh-src/packages/sandbox/sandbox/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:50 [SOURCE: dsh-src/packages/bundle/headless/README.md:136] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:56 [SOURCE: dsh-src/docs/cli-help.md:100-132] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:57 [SOURCE: dsh-src/packages/bundle/headless/README.md:92] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:64 [SOURCE: dsh-src/docs/cli-help.md:100-132] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:69 [SOURCE: dsh-src/packages/bundle/headless/README.md:128] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:79 [SOURCE: dsh-src/packages/bundle/headless/README.md:36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:80 [SOURCE: dsh-src/packages/bundle/headless/README.md:104] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:84 [SOURCE: dsh-src/packages/bundle/headless/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:85 [SOURCE: dsh-src/packages/bundle/headless/README.md:136] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:89 [SOURCE: dsh-src/packages/bundle/headless/README.md:56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:107 [SOURCE: dsh-src/docs/user/guide/providers.md:27-33] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:108 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:123] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:124 [SOURCE: dsh-src/docs/user/guide/providers.md:134-166] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:125 [SOURCE: dsh-src/docs/config-catalog.md:2225] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:130 [SOURCE: dsh-src/docs/user/guide/providers.md:155-166] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:137 [SOURCE: dsh-src/packages/core/agent-default-model/README.md:22-33] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:138 [SOURCE: dsh-src/docs/cli-help.md:41-42] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:142 [SOURCE: dsh-src/packages/core/agent-default-model/README.md:33] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:150 [SOURCE: dsh-src/packages/util/home-paths/README.md:34-52] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:154 [SOURCE: dsh-src/packages/boot/app-boot/README.md:52] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:166 [SOURCE: dsh-src/docs/cli-help.md:41-42] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:192 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:193 [SOURCE: dsh-src/packages/skill/skill-filesystem/src/index.ts:811-850] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:194 [SOURCE: dsh-src/packages/skill/skill/src/index.ts:21-36] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:199 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:46-56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:209 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:40] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:215 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:85] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:216 [SOURCE: dsh-src/packages/skill/tool-skill/README.md:48] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:217 [SOURCE: dsh-src/packages/skill/skill/src/index.ts:84] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:237 [SOURCE: dsh-src/packages/preset/agent-preset-registry/README.md:26-41] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:238 [SOURCE: dsh-src/packages/preset/persona/README.md:24-35] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:244 [SOURCE: dsh-src/docs/tool-catalog.md:2064-2110] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:245 [SOURCE: dsh-src/packages/subagent/tool-subagent/README.md:47-53] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:249 [SOURCE: dsh-src/docs/architecture.md:155] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:250 [SOURCE: dsh-src/packages/goal/command-goal/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:255 [SOURCE: dsh-src/packages/goal/goal/README.md:12-34] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:256 [SOURCE: dsh-src/packages/goal/goal-round-driver/README.md:12-30] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:260 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:63] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:261 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:93] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:270 [SOURCE: dsh-src/docs/cordis-primer.md:9] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:271 [SOURCE: dsh-src/packages/boot/plugin-manager/README.md:31] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:277 [SOURCE: dsh-src/docs/event-producer-consumer.md:30-91] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:281 [SOURCE: dsh-src/packages/experimental/hooks-claude-code/README.md:56-70] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:287 [SOURCE: dsh-src/packages/experimental/hook-protocol/src/matcher.ts:60-68] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:288 [SOURCE: dsh-src/docs/tool-catalog.md:26-52] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:301 [SOURCE: dsh-src/packages/experimental/hooks-claude-code/package.json:1] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:325 [SOURCE: dsh-src/docs/user/guide/plugin-market.md:12] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:335 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:32-86] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:338 [SOURCE: dsh-src/docs/user/guide/mcp-memory.md:23-33] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:342 [SOURCE: dsh-src/docs/user/guide/mcp-memory.md:13] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:351 [SOURCE: dsh-src/packages/mcp/mcp-manager/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:356 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:368 [SOURCE: dsh-src/docs/cli-help.md:100-132] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:369 [SOURCE: dsh-src/packages/bundle/headless/README.md:46] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:374 [SOURCE: dsh-src/packages/sandbox/sandbox/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:375 [SOURCE: dsh-src/packages/sandbox/sandbox/README.md:58-60] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/research.md:379 [SOURCE: dsh-src/packages/goal/goal-round-driver/README.md:12-30] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:21 [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:117-155] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:22 [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:53-75] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:22 [SOURCE: dsh-src/apps/cli/reference/README.md:41-46] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:23 [SOURCE: dsh-src/packages/bundle/headless/src/json-stream.ts:230-237] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:24 [SOURCE: dsh-src/packages/bundle/headless/src/index.ts:400-443] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:24 [SOURCE: dsh-src/packages/bundle/headless/src/json-stream.ts:301-327] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:24 [SOURCE: dsh-src/packages/bundle/headless/tests/headless.spec.ts:698-707] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:26 [SOURCE: dsh-src/apps/cli/reference/README.md:17] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-001.md:26 [SOURCE: dsh-src/apps/cli/src/profile-boot.ts:224-235] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:20 [SOURCE: dsh-src/packages/llm/llm-deepseek/README.md:34-63] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:20 [SOURCE: dsh-src/packages/llm/llm-deepseek/src/models.ts:7-21] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:21 [SOURCE: dsh-src/docs/user/guide/providers.md:27-39] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:21 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:36-75] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:22 [SOURCE: dsh-src/packages/llm/llm-pi-ai/src/provider-data.generated.ts:35-36] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:23 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:28-38] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:25 [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:53-75] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:25 [SOURCE: dsh-src/docs/user/guide/providers.md:41-56] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-002.md:25 [SOURCE: dsh-src/apps/cli/reference/README.md:13-17] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-003.md:20 [SOURCE: dsh-src/apps/cli/reference/README.md:45-55] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-003.md:21 [SOURCE: dsh-src/docs/user/guide/providers.md:13] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-003.md:21 [SOURCE: dsh-src/packages/llm/llm-pi-ai/README.md:36-38] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-003.md:22 [SOURCE: dsh-src/apps/cli/reference/README.md:30-33] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-003.md:23 [SOURCE: dsh-src/apps/cli/reference/README.md:45-56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-003.md:23 [SOURCE: dsh-src/apps/cli/src/profile-boot.ts:224-235] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:19 [SOURCE: dsh-src/packages/skill/skill/README.md:28-55] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:20 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:28-56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:21 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:34-42] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:21 [SOURCE: dsh-src/packages/skill/skill-filesystem/src/index.ts:811-852] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:22 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:34-40] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:23 [SOURCE: dsh-src/packages/skill/skill-filesystem/src/index.ts:86] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:23 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:40] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:24 [SOURCE: dsh-src/packages/skill/tool-skill/README.md:38-54] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-004.md:24 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:81] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:19 [SOURCE: dsh-src/packages/preset/agent-preset-registry/README.md:44-48] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:19 [SOURCE: dsh-src/packages/preset/agent-preset/README.md:28-48] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:19 [SOURCE: dsh-src/packages/preset/persona/README.md:28-53] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:20 [SOURCE: dsh-src/packages/subagent/README.md:25-35] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:20 [SOURCE: dsh-src/packages/subagent/subagent-dsh-sdk/README.md:28-55] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:21 [SOURCE: dsh-src/packages/interaction/commands/README.md:28-64] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:21 [SOURCE: dsh-src/packages/feedback/command-feedback/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:22 [SOURCE: dsh-src/packages/workflow/workflow/README.md:28-53] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:23 [SOURCE: dsh-src/packages/goal/goal/README.md:28-56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:23 [SOURCE: dsh-src/packages/goal/command-goal/README.md:28-64] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:23 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:28-63] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:24 [SOURCE: dsh-src/packages/preset/agent-preset-registry/README.md:46-48] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-005.md:24 [SOURCE: dsh-src/packages/interaction/commands/README.md:30-64] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:20 [SOURCE: dsh-src/docs/cordis-primer.md:5-13] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:20 [SOURCE: dsh-src/apps/cli/reference/README.md:11-17] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:22 [SOURCE: dsh-src/packages/guard/README.md:8-32] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:22 [SOURCE: dsh-src/docs/subsystems/tools.md:458-468] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:24 [SOURCE: dsh-src/docs/subsystems/core.md:382-405] guessed: no file at that path; only .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/core.md shares its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:24 [SOURCE: dsh-src/packages/compaction/compaction/README.md:12-51] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:49 [SOURCE: dsh-src/docs/subsystems/tools.md:531-563] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:49 [SOURCE: dsh-src/docs/subsystems/core.md:874-940] guessed: no file at that path; only .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/core.md shares its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:51 [SOURCE: dsh-src/docs/cordis-primer.md:9-13] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:51 [SOURCE: dsh-src/apps/cli/reference/README.md:13-17] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:51 [SOURCE: dsh-src/docs/user/guide/plugin-market.md:16-24] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-006.md:53 [SOURCE: dsh-src/docs/subsystems/tools.md:458-468] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:35 [SOURCE: dsh-src/packages/interaction/user-questions/README.md:12-45] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:35 [SOURCE: dsh-src/packages/interaction/README.md:27-33] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:35 [SOURCE: dsh-src/packages/todo/README.md:10-35] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:37 [SOURCE: dsh-src/packages/compaction/README.md:10-33] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:37 [SOURCE: dsh-src/docs/user/guide/mcp-memory.md:5-33] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:39 [SOURCE: dsh-src/packages/subagent/README.md:10-12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:39 [SOURCE: dsh-src/packages/workflow/workflow/README.md:28-51] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:39 [SOURCE: dsh-src/packages/plan/README.md:10-29] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:41 [SOURCE: dsh-src/packages/guard/README.md:8-32] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:43 [SOURCE: dsh-src/packages/web/tool-web/README.md:10-55] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/iterations/iteration-007.md:43 [SOURCE: dsh-src/docs/user/guide/plugin-market.md:5-34] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:10 [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:53-75] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:10 [SOURCE: dsh-src/packages/bundle/headless/src/json-stream.ts:230-327] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:10 [SOURCE: dsh-src/packages/bundle/headless/src/index.ts:400-443] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:12 [SOURCE: dsh-src/apps/cli/reference/README.md:11-17] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:12 [SOURCE: dsh-src/docs/user/guide/providers.md:27-39] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:16 [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:53-75] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:16 [SOURCE: dsh-src/packages/sandbox/README.md:10-32] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:16 [SOURCE: executor-audit.ts:93-127] guessed: no file at that path; only .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts shares its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:16 [SOURCE: fanout-run.cjs:1815-1829] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:80 [SOURCE: executor-config.ts:11-15] guessed: no file at that path; only .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts shares its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:80 [SOURCE: executor-audit.ts:70-127] guessed: no file at that path; only .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts shares its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:80 [SOURCE: fanout-run.cjs:3579-3689] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:100 [SOURCE: dsh-src/apps/cli/reference/README.md:11-17] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:104 [SOURCE: dsh-src/packages/skill/skill-filesystem/README.md:28-56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:104 [SOURCE: dsh-src/packages/skill/skill-filesystem/src/index.ts:86] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:104 [SOURCE: dsh-src/packages/skill/tool-skill/README.md:38-54] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:110 [SOURCE: dsh-src/packages/sandbox/README.md:10-32] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:112 [SOURCE: dsh-src/apps/cli/reference/README.md:17] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:112 [SOURCE: dsh-src/apps/cli/src/profile-boot.ts:224-235] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:116 [SOURCE: dsh-src/packages/bundle/headless/README.md:87-114] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:116 [SOURCE: dsh-src/packages/sandbox/README.md:10-32] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:130 [SOURCE: dsh-src/packages/session/session-log-deepseek/README.md:10-13] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:130 [SOURCE: dsh-src/packages/bundle/headless/README.md:110] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:145 [SOURCE: dsh-src/packages/bundle/headless/src/startup.ts:53-92] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:145 [SOURCE: dsh-src/packages/bundle/headless/src/json-stream.ts:230-327] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:145 [SOURCE: dsh-src/packages/bundle/headless/src/index.ts:400-443] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:149 [SOURCE: dsh-src/docs/cordis-primer.md:5-45] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:149 [SOURCE: dsh-src/docs/subsystems/tools.md:458-468] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:149 [SOURCE: dsh-src/docs/subsystems/core.md:382-405] guessed: no file at that path; only .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/intra-routing-recall/core.md shares its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:151 [SOURCE: dsh-src/packages/guard/README.md:8-32] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:151 [SOURCE: dsh-src/docs/subsystems/tools.md:458-468] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:155 [SOURCE: dsh-src/packages/preset/agent-preset-registry/README.md:44-48] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:155 [SOURCE: dsh-src/packages/preset/agent-preset/README.md:28-48] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:155 [SOURCE: dsh-src/packages/subagent/README.md:25-35] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:155 [SOURCE: dsh-src/packages/subagent/subagent-dsh-sdk/README.md:28-55] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:157 [SOURCE: dsh-src/packages/interaction/commands/README.md:28-64] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:157 [SOURCE: dsh-src/packages/workflow/workflow/README.md:28-53] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:157 [SOURCE: dsh-src/packages/goal/goal/README.md:28-56] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:157 [SOURCE: dsh-src/packages/plan/plan-mode/README.md:28-63] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:178 [SOURCE: dsh-src/packages/mcp/mcp-client/README.md:12] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:178 [SOURCE: dsh-src/packages/core/tools/README.md:88-112] guessed: no file at that path; several tracked files share its name
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:184 [SOURCE: dsh-src/packages/llm/llm-pi-ai/src/provider-data.generated.ts:35-36] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/luna/research.md:184 [SOURCE: dsh-src/docs/user/guide/providers.md:27-80] gone: no tracked file at that path and no recorded rename
+    - specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/research.md:582 [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/iterations/iteration-010.md:143-149] past end: the file exists but is shorter than the cited line
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 8 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory: 6/6 ACs have evidence; floor 6/6
++ AC_CLOSURE: AC_CLOSURE: 6/6 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=34, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '002-dsh-offline-contract-pin' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/003-cli-deepseek-harness-skill-packet
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory (under floor): 0/5 ACs have evidence; floor 5/5. Cite file:line in the Verification cell, or retire the criterion through a decision record.
+    - Malformed evidence citation(s): AC-001, AC-002, AC-003, AC-004, AC-005
++ AC_CLOSURE: AC_CLOSURE: 5/5 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=36, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '003-cli-deepseek-harness-skill-packet' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/003-cli-deepseek-harness-skill-packet
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory: 5/5 ACs have evidence; floor 5/5
++ AC_CLOSURE: AC_CLOSURE: 5/5 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=34, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '004-dsh-runtime-folder-and-patches' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/005-dsh-mirror-generators
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Complete' and implementation-summary.md Status 'Complete' both classify as complete
++ AC_COVERAGE: AC_COVERAGE advisory: 5/5 ACs have evidence; floor 5/5
++ AC_CLOSURE: AC_CLOSURE: 5/5 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=37, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '005-dsh-mirror-generators' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/005-dsh-mirror-generators
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/006-deep-loop-executor-kind
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 5/5 ACs have evidence; floor 5/5
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=38, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '006-deep-loop-executor-kind' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/006-deep-loop-executor-kind
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 4/4 ACs have evidence; floor 4/4
++ AC_CLOSURE: AC_CLOSURE: 4/4 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=37, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '007-dispatch-recognition-and-stress-adapter' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/007-dispatch-recognition-and-stress-adapter
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress: built, verification open' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 7/7 ACs have evidence; floor 7/7
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=38, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '008-dsh-repo-guards-safety-wave' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress: built, verification open' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 7/7 ACs have evidence; floor 7/7
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=36, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '009-dsh-context-guards-and-goal-bridge' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress: built, verification open' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 6/6 ACs have evidence; floor 6/6
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=33, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '010-dsh-mcp-code-mode' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/011-hub-registration-and-routing
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 6/6 ACs have evidence; floor 6/6
++ AC_CLOSURE: AC_CLOSURE: 6/6 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=41, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '011-hub-registration-and-routing' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/011-hub-registration-and-routing
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/012-deep-loop-modes-and-commands
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 7 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 4/4 ACs have evidence; floor 4/4
++ AC_CLOSURE: AC_CLOSURE: 4/4 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=37, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '012-deep-loop-modes-and-commands' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 7 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/012-deep-loop-modes-and-commands
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'Planned', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'Planned' and implementation-summary.md Status 'Planned' both classify as planned
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=38, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '013-dsh-live-contract-pin' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 6 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: spec.md Status 'In Progress' and implementation-summary.md Status 'In Progress' both classify as in-progress
++ AC_COVERAGE: AC_COVERAGE advisory: 5/5 ACs have evidence; floor 5/5
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 2
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=38, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '014-playbook-docs-and-closeout' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 6 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED

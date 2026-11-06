@@ -1,0 +1,108 @@
+Scenario: MIR-001, generated mirror checks
+Category: mirrors
+
+### Skill mirror
+
+Command:
+```sh
+export PATH="$HOME/.local/bin:$PATH"; node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
+```
+
+Exit code: 1
+
+Output (last 40 lines, redacted):
+```text
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-git/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/sk-prompt/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/deep-ai-council/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/deep-ai-council/scripts/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/deep-review/scripts/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/runtime/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/runtime/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/scripts/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skill-advisor/runtime/tests/scorer/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-skilled-doctor/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/benchmark: excluded directory name: benchmark
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/050-with-scratch/scratch: excluded directory name: scratch
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/cli/tests/test-fixtures/050-with-scratch/scratch: excluded directory name: scratch
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/node_modules: excluded directory name: node_modules
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/relative-repo/.skilled/skills/.state: excluded directory name: .state
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/description/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/embedders/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/runtime/tests/validation/fixtures: excluded directory name: fixtures
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/shared/dist: excluded directory name: dist
+[dsh-skill-sync] EXCLUDED .skilled/skills/system-spec-kit/templates/scratch: excluded directory name: scratch
+[dsh-skill-sync] Drift detected:
+[dsh-skill-sync] MISSING .dsh/skills/system-skilled-doctor
+[dsh-skill-sync] FAIL: 1 drift item(s); run without --check to regenerate
+
+```
+
+### Prompt mirror
+
+Command:
+```sh
+export PATH="$HOME/.local/bin:$PATH"; node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
+```
+
+Exit code: 1
+
+Output (last 40 lines, redacted):
+```text
+[dsh-prompt-sync] Drift detected:
+[dsh-prompt-sync] MISSING .dsh/prompts/doctor-overlay.md
+[dsh-prompt-sync] FAIL: 1 drift item(s); run without --check to regenerate
+
+```
+
+### Agent mirror
+
+Command:
+```sh
+export PATH="$HOME/.local/bin:$PATH"; node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+```
+
+Exit code: 0
+
+Output (last 40 lines, redacted):
+```text
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+
+```
+
+Verdict: FAIL
+Reason: skill sync reports missing `.dsh/skills/system-skilled-doctor` and prompt sync reports missing `.dsh/prompts/doctor-overlay.md`; agent sync passes.
+
+Cause and classification: the source skill and prompt files are present, but their generated `.dsh` mirror outputs are absent. The scenario is correct; the current generated mirror state is incomplete (code/worktree-side state). This run does not establish a defect in the sync generator. No regeneration was performed because the task limits writes to this evidence directory.
+
+Read-only source/target presence check:
+```sh
+for path in .skilled/skills/system-skilled-doctor .skilled/commands/doctor/overlay.md .dsh/skills/system-skilled-doctor .dsh/prompts/doctor-overlay.md; do if test -e "$path"; then printf 'PRESENT %s\n' "$path"; else printf 'MISSING %s\n' "$path"; fi; done
+```
+
+Exit code: 0
+
+Output:
+```text
+PRESENT .skilled/skills/system-skilled-doctor
+PRESENT .skilled/commands/doctor/overlay.md
+MISSING .dsh/skills/system-skilled-doctor
+MISSING .dsh/prompts/doctor-overlay.md
+```
+

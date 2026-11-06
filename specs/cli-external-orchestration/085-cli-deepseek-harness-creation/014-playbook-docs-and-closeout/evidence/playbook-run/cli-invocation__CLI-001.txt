@@ -1,0 +1,85 @@
+Scenario: CLI-001, keyless boot per route
+Category: cli-invocation
+
+The first transcript wrapper used zsh's read-only special variable `status`, so its wrapper reported an error after each dsh process wrote its JSONL and stderr. I recovered those files, then repeated both probes from fresh temporary working and home directories using bash and recorded the dsh exit status directly. One later wrapper attempt was blocked by the dispatch pre-tool check before it ran; it produced no shell exit code or dsh result.
+
+### Preflight
+
+Command:
+```sh
+command -v dsh
+```
+
+Exit code: 0
+
+Output (last 40 lines):
+```text
+/Users/michelkerkmeester/.local/bin/dsh
+```
+
+Command:
+```sh
+env -i PATH="$PATH" HOME="$RUN_DIR" TMPDIR="$TMPDIR" DSH_HOME="$DSH_HOME" NVM_DIR="${NVM_DIR-}" dsh --version </dev/null
+```
+
+Working directory: fresh LLM Gateway scratch directory under $TMPDIR.
+Exit code: 0
+
+Output (last 40 lines):
+```text
+0.2.2-rc.1
+```
+
+The OpenCode Go version probe used the same command in its own fresh scratch directory and exited 0 with `0.2.2-rc.1`.
+
+### LLM Gateway
+
+Command:
+```sh
+printf '%s' "Reply with the single word OK" | env -i PATH="$PATH" HOME="$RUN_DIR" TMPDIR="$TMPDIR" DSH_HOME="$DSH_HOME" NVM_DIR="${NVM_DIR-}" dsh --profile headless --patch "/Users/michelkerkmeester/MEGA/Development/Skilled/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "/Users/michelkerkmeester/MEGA/Development/Skilled/.dsh/patches/lineage.patch.yml" --patch "/Users/michelkerkme/MEGA/Development/Skilled/.dsh/patches/guards.patch.yml" --json --permission-mode read-only --approval-policy never -
+```
+
+Working directory: fresh folder under $TMPDIR. DSH_HOME: separate fresh folder under $TMPDIR. The command passed NVM_DIR through and sent the prompt on stdin.
+Exit code: 1
+
+Output (last 40 lines, redacted):
+```text
+exit=1
+--- stdout last 40 lines ---
+{"type":"session","sessionId":"session-01ab47cd-0dab-41a8-9a9a-d6c0fb16af9d","cwd":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/dsh-cli001-llmgateway-verified.EF7UuV"}
+{"type":"status","phase":"turn_start","turn":1}
+{"type":"status","phase":"step_start","turn":1,"step":1}
+{"type":"status","phase":"step_end","turn":1,"step":1}
+{"type":"status","phase":"turn_end","turn":1,"reason":{"kind":"error","error":{"message":"llm-pi-ai: no credential for provider route \"llmgateway\"; its profile resolves LLMGATEWAY_API_KEY, which is not set — store LLMGATEWAY_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery","code":"MISSING_CREDENTIAL"}}}
+{"type":"final","sessionId":"session-01ab47cd-0dab-41a8-9a9a-d6c0fb16af9d","reason":{"kind":"error","error":{"message":"llm-pi-ai: no credential for provider route \"llmgateway\"; its profile resolves LLMGATEWAY_API_KEY, which is not set — store LLMGATEWAY_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery","code":"MISSING_CREDENTIAL"}},"text":""}
+--- stderr last 40 lines ---
+dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "llmgateway"; its profile resolves LLMGATEWAY_API_KEY, which is not set — store LLMGATEWAY_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery
+```
+
+### OpenCode Go
+
+Command:
+```sh
+printf '%s' "Reply with the single word OK" | env -i PATH="$PATH" HOME="$RUN_DIR" TMPDIR="$TMPDIR" DSH_HOME="$DSH_HOME" NVM_DIR="${NVM_DIR-}" dsh --profile headless --patch "/Users/michelkerkmeester/MEGA/Development/Skilled/.dsh/patches/route-opencode-go-deepseek.patch.yml" --patch "/Users/michelkerkmeester/MEGA/Development/Skilled/.dsh/patches/lineage.patch.yml" --patch "/Users/michelkerkme/MEGA/Development/Skilled/.dsh/patches/guards.patch.yml" --json --permission-mode read-only --approval-policy never -
+```
+
+Working directory: fresh folder under $TMPDIR. DSH_HOME: separate fresh folder under $TMPDIR. The command passed NVM_DIR through and sent the prompt on stdin.
+Exit code: 1
+
+Output (last 40 lines, redacted):
+```text
+exit=1
+--- stdout last 40 lines ---
+{"type":"session","sessionId":"session-3fafd27d-f9bb-4a2e-98f2-4f969a5b3cda","cwd":"/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/dsh-cli001-opencode-go-verified.9sssKQ"}
+{"type":"status","phase":"turn_start","turn":1}
+{"type":"status","phase":"step_start","turn":1,"step":1}
+{"type":"status","phase":"step_end","turn":1,"step":1}
+{"type":"status","phase":"turn_end","turn":1,"reason":{"kind":"error","error":{"message":"llm-pi-ai: no credential for provider route \"opencode-go\"; its profile resolves OPENCODE_API_KEY, which is not set — store OPENCODE_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery","code":"MISSING_CREDENTIAL"}}}
+{"type":"final","sessionId":"session-3fafd27d-f9bb-4a2e-98f2-4f969a5b3cda","reason":{"kind":"error","error":{"message":"llm-pi-ai: no credential for provider route \"opencode-go\"; its profile resolves OPENCODE_API_KEY, which is not set — store OPENCODE_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery","code":"MISSING_CREDENTIAL"}},"text":""}
+--- stderr last 40 lines ---
+dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "opencode-go"; its profile resolves OPENCODE_API_KEY, which is not set — store OPENCODE_API_KEY through the credentials service (the web Models page writes it) or export it, and remove apiKeyEnv only if this provider should authenticate from pi-ai's own environment discovery
+```
+
+Verdict: PASS
+Reason: each route exited 1, named its own unset route key, and ended with a final MISSING_CREDENTIAL event. Neither returned a completed event.
+

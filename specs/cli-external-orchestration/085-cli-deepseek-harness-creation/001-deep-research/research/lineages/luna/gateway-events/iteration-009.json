@@ -1,0 +1,26 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "runId": "fanout-luna-1793915913100-enoz0j",
+  "sessionId": "fanout-luna-1793915913100-enoz0j",
+  "lineageId": "fanout-luna-1793915913100-enoz0j",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.94,
+  "noveltyJustification": "The runner needs more than a new enum: DSH has a structured JSON completion signal and subprocess sandbox, but the executor environment policy and credential-preserving home strategy define whether lineage isolation is actually safe.",
+  "status": "complete",
+  "focus": "Angle 9: deep-loop fan-out executor fitness and complete cross-repo integration surface",
+  "answeredQuestions": [],
+  "findingsCount": 5,
+  "timestamp": "2026-11-05T22:48:29Z",
+  "generation": 1,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  }
+}

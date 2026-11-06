@@ -1,0 +1,18 @@
+# 007 dispatch-audit hook tests under the vitest runner the file uses
+# started 2026-11-06T07:27:15Z UTC; newest watched code mtime before the run: 2026-11-06T07:23:15Z UTC
+$ cd /Users/michelkerkmeester/MEGA/Development/Skilled && .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Skilled
+
+
+ Test Files  23 passed (23)
+      Tests  2854 passed (2854)
+   Start at  08:27:22
+   Duration  672ms (transform 54%, tests 39%, import 7%, worker 1%)
+
+  Transform  transforming modules took 3.69s · 54% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+
+exit=0
+# finished 2026-11-06T07:27:22Z UTC; newest watched code mtime after the run: 2026-11-06T07:23:15Z UTC; watched code changed during the run: no

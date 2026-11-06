@@ -1,0 +1,42 @@
+Scenario: PAT-001, route and lineage composition
+Category: patches
+
+The root playbook policy says patch scenarios use saved captures and do not launch dsh. The scenario command section lists two --dump-config invocations. They were not executed because they conflict with that package policy and the operator's allowed dsh shape.
+
+Documented LLM Gateway command: cd "$RUN_DIR" && DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --dump-config </dev/null >dump-llmgateway.txt 2>stderr-llmgateway.txt
+Exit code: N/A, not executed.
+Reason: package policy requires saved-capture review for patch scenarios.
+Output: none.
+
+Documented OpenCode Go command: cd "$RUN_DIR" && DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch "$REPO/.dsh/patches/route-opencode-go-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --dump-config </dev/null >dump-opencode-go.txt 2>stderr-opencode-go.txt
+Exit code: N/A, not executed.
+Reason: package policy requires saved-capture review for patch scenarios.
+Output: none.
+
+Command: grep -A5 -n "id: agent-default-model" specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt
+Exit code: 0
+Output (last 40 lines):
+dump-config-llmgateway.txt:57:- id: agent-default-model
+dump-config-llmgateway.txt-60-    provider: llmgateway
+dump-config-llmgateway.txt-61-    model: deepseek-v4.1-flash-1017
+dump-config-opencode-go.txt:57:- id: agent-default-model
+dump-config-opencode-go.txt-60-    provider: opencode-go
+dump-config-opencode-go.txt-61-    model: deepseek-v4.1-flash
+
+Command: grep -A3 -n "id: session-telemetry-otel" specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt
+Exit code: 0
+Output (last 40 lines):
+dump-config-llmgateway.txt:144:- id: session-telemetry-otel
+dump-config-llmgateway.txt-147-    mode: DISABLED
+dump-config-opencode-go.txt:144:- id: session-telemetry-otel
+dump-config-opencode-go.txt-147-    mode: DISABLED
+
+Command: cat specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.stderr.txt specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.stderr.txt
+Exit code: 0
+Output (last 40 lines):
+exit=0
+exit=0
+
+Verdict: PASS
+Reason: saved captures show both provider/model rows, telemetry disabled on both routes and successful dump exit markers. The stderr captures contain only the recorded exit marker, with no loader warning.
+

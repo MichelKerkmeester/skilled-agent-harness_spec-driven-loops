@@ -1,0 +1,6 @@
+# Phase 007 dependencies landed
+-rw-r--r--@ 1 michelkerkmeester  staff  4093 Nov  6 05:17 .skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json
+exit=0
+3099:function buildDshLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+3234:  'cli-deepseek-harness': buildDshLineageCommand,
+exit=0

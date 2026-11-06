@@ -1,0 +1,5 @@
+Command: rg -c cli-deepseek-harness .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/live-contracts.json
+Output: 1
+JSON parse: OK
+Entry: deepseekHarness present
+Contract fields: verified Gateway route, OpenCode Go configured not verified, writable OS temp caveat

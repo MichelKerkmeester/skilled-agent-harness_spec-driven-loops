@@ -1,0 +1,55 @@
+011 hub registration and routing: check outputs, rerun 2026-11-06 between 08:12 and 08:23 (local time)
+
+Tree note: other writers changed the cli-deepseek-harness packet (08:15 to 08:21) and the dispatch hook files (08:22) while these checks ran. Each result below is as of its own run time. No file under the 011 or 012 folders was written by another writer during these checks.
+
+REGISTRY AND HUB
+- node -e registry count over mode-registry.json: 8 modes. The cli-deepseek-harness entry has aliases dsh, dsh headless, deepseek harness, delegate to dsh (exit 0).
+- The same count over the committed HEAD version (git show HEAD:...mode-registry.json): 7 modes, the seven-mode baseline for T002.
+- Bare "deepseek" alias count across all modes: 0.
+- Key set of cli-deepseek-harness entry against the cli-hermes entry: identical, 10 keys each.
+- rg -c cli-deepseek-harness leaf-manifest.json: 2.
+- rg -n -i seven over hub SKILL.md, ROUTER.md, README.md: no match (exit 1).
+- rg --files-without-match cli-deepseek-harness over cli-*/README.md: no file lacks the kind (exit 1).
+- rg -l cli-deepseek-harness over feature-catalog/: 4 files, the index feature-catalog.md plus three entries (cli-dispatch-authorization, cli-executor-dispatch-routing, deepseek-harness-dispatch-mode).
+- rg -l cli-deepseek-harness over sk-prompt/SKILL.md, sk-prompt/assets/cli-prompt-quality-card.md, .skilled/agents/orchestrate.md, .skilled/agents/prompt-improver.md: all four.
+- changelog/v1.8.0.0.md names the kind (2 matches).
+- rg -o -i "api_?key|secret" over mode-registry.json and hub-router.json: no match (exit 1).
+- rg -n -i "seven (cli|runtime|mode)" over the hub folder, changelog excluded: one match outside the changelog, cli-hermes/feature-catalog/hub-registration/hub-mode-registration.md line 49 ("all seven modes"). That file is a sibling packet's catalog and is outside this phase's file list. Changelog history lines also match and are expected.
+- JSON.parse on the nine edited JSON files (mode-registry, hub-router, leaf-manifest, description, graph-metadata, skill-graph.json, executor-delegation-cases.json, canary-cases.v1.json, 013 cli-external-orchestration manifest.json): all parse.
+
+PARENT SKILL CHECK
+- node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration: "OK: parent-skill-check, all hard invariants passed, 0 warnings" (exit 0). Includes 6b (8 modes in the SKILL table), 10b (leaf-manifest.json matches a fresh regeneration byte for byte), 13a/13b (version 1.8.0.0 matches the changelog). Saved: parent-skill-check-hub.txt
+
+ADVISOR
+- advisor_recommend "run this task through dsh headless": top recommendation cli-external-orchestration, score 0.804, confidence 0.95, exit 0. Saved: advisor-dsh-headless.json. The saved run is a cache hit and attaches no compiledRoute to the hub.
+- advisor_recommend "use cli-opencode with deepseek-v4.1-flash": top recommendation cli-external-orchestration, ambiguous true (sk-code also listed), exit 0. Saved: advisor-cli-opencode-deepseek.json (cache hit, no hub compiledRoute).
+- advisor_recommend "use cli-pi to run this refactor": top recommendation cli-external-orchestration, exit 0. Saved: advisor-cli-pi.json (cache hit).
+- An earlier live advisor call in this session, before the cache was warm, attached a compiled route to cli-deepseek-harness for the dsh prompt and to cli-opencode for the DeepSeek-model prompt. That output was not saved to a file, and no saved output reproduces it.
+- node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt ...: returns servingAuthority legacy with no route, for all three prompts. SPECKIT_COMPILED_ROUTING_DEBUG=1 prints no error. Saved: compiled-route-hub.txt (the three prompts, one run each; the EXIT lines in that file are blank because of a pipe).
+- node .skilled/bin/compiled-route-status.cjs --hub cli-external-orchestration --no-probe: servingAuthority legacy, causeCode stale-manifest, manifestFreshness.fresh false, currentPolicyHash 046167a0... against the manifest effectivePolicyHash b768e513... Saved: compiled-route-status-hub.txt
+
+CANARY (IN MEMORY, READ ONLY)
+- canary-in-memory-run.cjs evaluates the 16 cases of canary-cases.v1.json with lib/router.cjs evaluateRoute over the harness snapshot. Nothing is written. Result: 16 of 16 pass (canary-in-memory-output.txt). Relevant rows: opencode-deepseek-model-remains-opencode -> cli-opencode; dsh-headless-single -> cli-deepseek-harness; the seven single-mode canaries each route to their own mode.
+- validate-canary.cjs is not in the live hub harness. Copies exist only under specs/sk-doc/z_archive/ and .worktrees/, so the failure the dispatch named could not be reproduced for the live tree. Not run.
+
+COMPILED ROUTING BUILD (READ ONLY)
+- drift-check-in-memory.cjs calls the build's exported compute functions (loadSnapshot, compiledArtifacts, activationArtifacts) and never calls writeBytes. Policy hash b768e513... and graph hash 58b88c24... are recomputed (drift-check-in-memory-output.txt).
+- The build's output folders compiled/ and activation/ under 009-parent-hub-rollout/004-cli-external-orchestration/ are not in the tree. They are neither tracked nor git-ignored, so the byte comparison has nothing on disk to compare with.
+- The promoted 013 manifest (cli-external-orchestration/activation/manifest.json, 195 bytes, four keys) carries selectedPolicy.effectivePolicyHash b768e513..., generation 5. Only this one 013 manifest carries that hash. The system-deep-loop manifest carries f6c4d247.
+- build-artifacts.cjs was not run: it writes into the 004 folder, which is outside this phase's writable scope. git diff --exit-code cannot verify drift before commit, because the outputs are untracked.
+
+TESTS
+- compiled-route node tests, seven files named in the dispatch and the sibling set (admission, finished-run, fold-dedupe, hyphen-parity, manifest, sk-design-tie, surface-hint): 100 tests, 100 pass, 0 fail, exit 0 (run 08:13). Saved: compiled-route-tests.txt
+- compiled-route-front-door.test.cjs: 1 of 1 pass, exit 0 (run 08:23). Saved: compiled-route-front-door.txt
+- compiled-route-manifest.test.cjs alone: 48 tests, 34 pass, 14 fail, exit 1 (run 08:22). Failures all show "MOVE-SIMULATION FAILED: promoted closure failed to resolve hubs: cli-external-orchestration" from compiled-route-sync.cjs verifyRoot. The dispatch recorded 48 passing. The same file passed inside the seven-file run at 08:13. The failure follows the dsh packet edits at 08:15 to 08:21 by another writer. Saved: compiled-route-manifest-only.txt
+- Advisor parity and scorer suites, tests/parity plus tests/scorer: 43 test files, 1 failed file, 397 tests, 392 pass, 4 skipped, 1 fail, exit 1 (run 08:18). The failure is parity/scorer-eval-baseline-ratchet: "buckets.delegation.correct: live=18 baseline=17. improvement detected, re-capture the baseline". The live count rose by one because of the new fixture case direct-alias-dsh-headless (6 lines added to executor-delegation-cases.json). Re-capturing the baseline needs capture-scorer-eval-baseline.mjs --write, which writes outside this phase's scope, so it was not run. Saved: advisor-parity-scorer-vitest.txt
+- Scorer file tests/scorer/executor-delegation.vitest.ts alone: 32 of 32 pass, exit 0. Saved: scorer-executor-delegation.txt
+
+CARD AND MIRROR SYNC
+- bash .skilled/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh: exit 0, "GUARD PASS". Saved: card-sync.txt
+- node .skilled/bin/check-agent-mirror-sync.cjs --all: "11 agent(s) checked, all mirrors in sync", exit 0. Saved: agent-mirror-sync.txt
+
+SPEC FOLDER
+- validate.sh <011 folder> --strict before the doc edits: RESULT: PASSED, 0 errors, 0 warnings.
+
+T001 packet present: ls .skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md printed the path (exit 0).

@@ -1,0 +1,5 @@
+# Inside a codex exec sandbox the four runtime suites gave 354/356: the process-ancestry assertion (executor-audit.vitest.ts) and the future-checkpoint resume assertion (fanout-run.vitest.ts) failed.
+# The same two files outside that sandbox, from the orchestrator shell at 2026-11-06 ~09:10:
+$ npx vitest run tests/unit/executor-audit.vitest.ts tests/unit/fanout-run.vitest.ts
+Test Files 2 passed (2); Tests 242 passed (242)
+# Disposition: environment-dependent inside a nested CLI sandbox (the ancestry guard sees codex exec as a parent), not a regression.

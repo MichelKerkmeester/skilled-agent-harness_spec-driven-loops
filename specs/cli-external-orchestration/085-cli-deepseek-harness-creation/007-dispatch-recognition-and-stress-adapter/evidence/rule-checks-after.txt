@@ -1,0 +1,63 @@
+# 007 rule checks, node --test default reporter
+# started 2026-11-06T07:27:22Z UTC; newest watched code mtime before the run: 2026-11-06T07:23:15Z UTC
+$ cd /Users/michelkerkmeester/MEGA/Development/Skilled && node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+✔ reads the real hard rules from the sidecar beside each SKILL.md (1.583833ms)
+✔ CI GUARD: every declared check id maps to a known check (a typo fails loudly) (1.017292ms)
+✔ stdin-redirect-required covers every headless CLI shape, not just opencode run (1.438542ms)
+✔ stdin and model checks ignore flags and redirects inside a quoted prompt (2.016625ms)
+✔ each repeated dispatch is held to the stdin and model checks on its own (0.303958ms)
+✔ availability checks pass for a resolvable binary and never refuse without PATH (0.123584ms)
+✔ AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof) (0.609834ms)
+✔ other checks discriminate correctly (0.209ms)
+✔ permission-mode check sees claude print mode behind other flags (0.084708ms)
+✔ appliesTo evaluates only rules for the resolved version (0.18475ms)
+✔ rules without appliesTo apply to both versions (0.084542ms)
+✔ a rule without appliesTo stays blocking when the version is unknown (0.11375ms)
+✔ unknown evaluation preserves shared severity and warns version-specific rules (0.060542ms)
+✔ v2 slash-command fixture warns with session.command and never blocks (0.141125ms)
+✔ evaluate resolves quoted, wrapped, and path-qualified OpenCode executors (11.18775ms)
+✔ evaluate probes one fake binary once across two evaluations (40.042167ms)
+✔ a path-qualified executable outside PATH stays unknown and never runs (9.79175ms)
+✔ a path-qualified executable on PATH resolves its version (36.944625ms)
+✔ a symlinked path-qualified executable spawns the trusted path, not the symlink (138.900917ms)
+✔ OPENCODE_BIN makes a path-qualified executable trusted (38.14275ms)
+✔ a path-qualified missing file stays unknown (2.069292ms)
+✔ the async resolver times out a probe that never exits (3008.933916ms)
+✔ the shared version corpus pins the parser to each expected family (0.340291ms)
+✔ SUPPORTED_FAMILIES is the frozen list of supported families (0.094416ms)
+✔ opencode2 run is evaluated by the hard-rule engine (0.238875ms)
+✔ every runtime with a preflight adapter has it registered (2.228208ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.570667ms)
+✔ evaluateDispatch holds every dispatch in a chain to its own packet (63.078542ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.322667ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.301334ms)
+✔ dsh prompt text does not hide another headless runtime missing stdin handling (0.478542ms)
+✔ hermes rules discriminate on the flags the packet contract pins (1.609417ms)
+✔ dsh hard rules accept a complete isolated, pipe-fed dispatch (2.550834ms)
+✔ each dsh hard rule refuses its own violating command (2.0365ms)
+✔ dsh profile, stdin and home rules reject invalid variants (0.697917ms)
+✔ expanded dsh patch values fail the roster checks through evaluateDispatch (1.556417ms)
+✔ launch wrappers, a variable binary and an invented dump flag still meet the dsh rules (0.171083ms)
+✔ a variable directory with a literal patch file name and a variable DSH_HOME pass every dsh rule (1.667083ms)
+✔ pinned-version-required evaluates npx DSH dispatches and rejects other versions (1.728792ms)
+✔ the negative-control marker only counts when the guard process allows it (0.288625ms)
+✔ fail-open: a check that throws never produces a violation (0.084541ms)
+✔ readHardRules reads the sibling sidecar and fails open on malformed input (4.312125ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.141666ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (0.246125ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (1.200083ms)
+✔ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (3.030375ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.207875ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (0.533584ms)
+✔ ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list (0.699625ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (0.63375ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3437.393333
+exit=0
+# finished 2026-11-06T07:27:26Z UTC; newest watched code mtime after the run: 2026-11-06T07:23:15Z UTC; watched code changed during the run: no

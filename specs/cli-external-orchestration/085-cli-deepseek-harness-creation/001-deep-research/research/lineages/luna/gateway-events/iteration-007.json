@@ -1,0 +1,26 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "runId": "fanout-luna-1793915913100-enoz0j",
+  "sessionId": "fanout-luna-1793915913100-enoz0j",
+  "lineageId": "fanout-luna-1793915913100-enoz0j",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.94,
+  "noveltyJustification": "The package roster separates clean native replacements from memory and cache behaviors that need additional contracts, while the plugin catalog is DSH-bundle-specific.",
+  "status": "complete",
+  "focus": "Angle 7: third-party Pi plugin migration and dropping",
+  "answeredQuestions": [],
+  "findingsCount": 6,
+  "timestamp": "2026-11-05T22:36:57Z",
+  "generation": 1,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  }
+}

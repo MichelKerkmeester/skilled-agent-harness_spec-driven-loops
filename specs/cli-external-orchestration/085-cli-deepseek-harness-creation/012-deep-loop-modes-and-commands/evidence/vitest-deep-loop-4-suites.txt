@@ -1,0 +1,15 @@
+== vitest: four deep-loop unit suites ==
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+
+ Test Files  4 passed (4)
+      Tests  356 passed (356)
+   Start at  08:13:49
+   Duration  163.43s (transform 96ms, setup 24ms, import 191ms, tests 162.99s, environment 0ms)
+
+EXIT=0
+
+[exited with code 0]

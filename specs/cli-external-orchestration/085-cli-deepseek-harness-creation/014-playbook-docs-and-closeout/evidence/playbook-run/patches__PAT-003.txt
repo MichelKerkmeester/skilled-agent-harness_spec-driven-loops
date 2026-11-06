@@ -1,0 +1,46 @@
+Scenario: PAT-003, MCP Code Mode row
+Category: patches
+
+The root playbook policy says patch scenarios use saved captures and do not launch dsh. The scenario command section lists two --dump-config invocations. They were not executed; the saved dump and boot captures were inspected.
+
+Documented baseline dump command: cd "$RUN_DIR" && DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --dump-config </dev/null
+Exit code: N/A, not executed.
+Reason: root policy requires saved-capture review for patch scenarios.
+Output: none.
+
+Documented MCP dump command: cd "$RUN_DIR" && DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --patch "$REPO/.dsh/patches/mcp-code-mode.patch.yml" --dump-config </dev/null
+Exit code: N/A, not executed.
+Reason: root policy requires saved-capture review for patch scenarios.
+Output: none.
+
+Command: rg -n -C 2 "dsh-mcp-client|serverName: code_mode|transport: stdio|command: node|startupTimeoutMs" specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt
+Exit code: 0
+Output (last 40 lines):
+2:without: exit=0, rows naming dsh-mcp-client: 0, serverName code_mode: 0, stderr bytes: 0
+3:with: exit=0, rows naming dsh-mcp-client: 1, serverName code_mode: 1, stderr bytes: 0
+5:419-  name: '@deepseek-ai/dsh-mcp-client'
+7:421: serverName: code_mode
+8:422: transport: stdio
+9:423: command: node
+
+Command: rg -n "startupTimeoutMs" specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt
+Exit code: 1
+Output (last 40 lines):
+[no output]
+
+Command: rg -n -C 2 "startupTimeoutMs" .dsh/patches/mcp-code-mode.patch.yml
+Exit code: 0
+Output (last 40 lines):
+33-          UTCP_CONFIG_FILE: .utcp_config.json
+34-        # Bounds eager startup and the first tool sync so a hung launcher cannot stall the dispatch.
+35:        startupTimeoutMs: 60000
+
+Command: rg -n "MISSING_CREDENTIAL|code_mode|exit=" specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/keyless-mcp-boot.txt
+Exit code: 0
+Output (last 40 lines):
+4:exit=1
+11: dsh: MISSING_CREDENTIAL on LLM Gateway
+Verdict: PASS
+Reason: the formal pass criteria are met by the saved captures: row counts move from 0 to 1, the row names stdio/node and stderr is recorded as empty. The patch contains startupTimeoutMs: 60000, but the saved composed-config excerpt does not show that field.
+Finding: the scenario expects the timeout value in the composed row while its cited dump capture stops before that field. Its pass criteria do not require the timeout value, so this is an evidence completeness gap.
+

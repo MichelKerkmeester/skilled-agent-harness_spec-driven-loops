@@ -1,0 +1,13 @@
+# Part one: dispatch recognition and the eleven hard-rule checks, 2026-11-06
+# Baselines before the edit (codex dispatch, brief scratchpad/d007a/prompt.md): rule checks 40 pass, 2 fail, 42 total, exit 1 (eleven ids declared, none implemented)
+$ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+ℹ tests 45
+ℹ pass 45
+ℹ fail 0
+exit=0
+$ .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+ Test Files  23 passed (23)
+      Tests  2854 passed (2854)
+exit=0
+# The same vitest run with the HEAD test file and the new hook code: 1 failed (the DISPATCH_SHAPES list test, which now lists cli-deepseek-harness), 2851 passed
+# Codex converted dispatch-audit.test.mjs to node:test with a local expect shim; the orchestrator reverted that and kept only the two new dsh tests plus the shape-list entry, so the file still runs under the pinned vitest binary its header names

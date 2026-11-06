@@ -1,0 +1,59 @@
+Scenario: GRD-001, repo-guards plugin suite
+Category: guards
+
+### Repo-guards test suite
+
+Command:
+```sh
+export PATH="$HOME/.local/bin:$PATH"; node --test .dsh/plugins/repo-guards/tests/
+```
+
+Exit code: 0
+
+Output (last 40 lines, redacted):
+```text
+✔ parity: dispatch audit observes the shared core verdict without blocking bash (1.930542ms)
+✔ parity: dispatch preflight allows a command with no shared-core violations (0.632208ms)
+✔ preflight reads the hard rules of this checkout even when the session runs outside it (1.651375ms)
+✔ parity: spec classification defers an open gate without stopping the model step (3.619708ms)
+✔ parity: spec enforcement allows a child-session mutation under the shared core (0.401625ms)
+✔ parity: completion stop does not inject context when the shared core sees no claim (0.520084ms)
+✔ parity: task dispatch guard allows an unknown hand-off identity (0.462583ms)
+✔ parity: post-edit quality preserves an ordinary file result with no core findings (0.611125ms)
+✔ parity: injection screen preserves a fetched result with no text to screen (0.147667ms)
+✔ throw policy: dispatch audit fails open and logs when its core throws (0.123917ms)
+✔ throw policy: dispatch preflight fails closed and logs when its core throws (0.072916ms)
+✔ throw policy: spec classification fails open and logs when its core throws (0.096291ms)
+✔ throw policy: spec enforcement fails closed and logs when its core throws (0.085625ms)
+✔ spec enforcement records the notice it delivers through ask, and only then (0.069792ms)
+✔ throw policy: completion evidence fails open and logs when its core throws (0.045667ms)
+✔ throw policy: task dispatch guard fails open and logs when its core throws (0.04425ms)
+✔ throw policy: post-edit quality fails open and logs when its core throws (0.301416ms)
+✔ throw policy: injection screening fails open and logs when its core throws (0.043458ms)
+✔ goal context injects the exact CLI chat slice without frontmatter (47.328583ms)
+✔ goal context logs and continues when its core throws (0.105584ms)
+✔ session-start context injects the session-prime output on agent creation (0.106458ms)
+✔ session-start context logs and continues when session-prime throws (0.061667ms)
+✔ prompt advisor stays disabled by default and registers when its row flag is true (0.355209ms)
+✔ prompt advisor appends returned context on the pre-step waterfall (0.10075ms)
+✔ prompt advisor logs and continues when its core throws (0.051291ms)
+✔ git preflight attaches advisory context without changing the tool result (0.182458ms)
+✔ git preflight logs and continues when its core throws (0.084042ms)
+✔ git message gate applies the shared contract to fixture repositories (69.652166ms)
+✔ git message gate logs unexpected core errors and fails closed on contract errors (0.17775ms)
+✔ the dsh-llm loader resolves from the dsh binary, and a bad anchor does not poison the cache (11.218ms)
+✔ every adapter loads the harness message helpers through the anchored loader (0.574459ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 207.899333
+
+```
+
+Verdict: PASS
+Reason: the suite exited 0 with 37 passing tests and 0 failures.
+

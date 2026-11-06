@@ -1,0 +1,26 @@
+# Final gate, run 2 (2026-11-06T15:09:53Z), after the second-pass alignment fixes
+== dsh generators
+[dsh-skill-sync] PASS: 56 skill links are in sync.
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+== rule tests
+ℹ pass 50
+ℹ fail 0
+== repo-guards
+ℹ pass 37
+ℹ fail 0
+== dispatch audit
+ Test Files  23 passed (23)
+      Tests  2854 passed (2854)
+== runtime units + stress (package vitest)
+ Test Files  12 passed (12)
+      Tests  524 passed | 9 skipped (533)
+tsc exit 0
+== mode registry
+modes 8 cli-opencode,cli-claude-code,cli-codex,cli-cursor,cli-devin,cli-pi,cli-hermes,cli-deepseek-harness
+== advisor canary
+advisor_recommend "use cli-opencode with deepseek-v4.1-flash" -> skill cli-external-orchestration (confidence 0.95), compiledRoute packet cli-opencode
+== compiled routing remint 5
+cli-external-orchestration effectivePolicyHash 3ee5f52a81c0a5988f6034a74c89fafa96bb8a01d221aeeb6a96c2d82a9437be; manifest tests 48/48; scorer ratchet 7/7; trigger index --check exit 0 (0 stale, 0 obsolete, 0 untrusted); Hermes 67/67 in sync; contract drift OK commands=3
+== recursive strict
+  15 RESULT: PASSED

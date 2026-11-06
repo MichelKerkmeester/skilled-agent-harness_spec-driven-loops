@@ -1,0 +1,21 @@
+Scenario: PAT-002, guards patch boot
+Category: patches
+
+The root playbook policy says patch scenarios use saved captures and do not launch dsh. The scenario command section lists a keyless dispatch, which was not executed. The saved boot capture was inspected instead.
+
+Documented keyless command: printf '%s' "Say ok." | env -i PATH="$PATH" HOME="$RUN_DIR" DSH_HOME="$DSH_HOME" NVM_DIR="$NVM_DIR" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --json --permission-mode read-only --approval-policy never -
+Exit code: N/A, not executed.
+Reason: the root policy directs patch scenarios to saved captures.
+Output: none.
+
+Command: rg -n "exit=|MISSING_CREDENTIAL|LLMGATEWAY_API_KEY|did not activate" specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt
+Exit code: 0
+Output (last 40 lines):
+3:exit=1
+5:dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "llmgateway"; its profile resolves LLMGATEWAY_API_KEY, which is not set
+6:# grep -c 'did not activate' stderr: 0
+8:{"type":"final","reason":{"kind":"error","error":{"code":"MISSING_CREDENTIAL"}},"text":""}
+
+Verdict: PASS
+Reason: the saved capture shows the expected keyless MISSING_CREDENTIAL final event and zero failed guard entries.
+

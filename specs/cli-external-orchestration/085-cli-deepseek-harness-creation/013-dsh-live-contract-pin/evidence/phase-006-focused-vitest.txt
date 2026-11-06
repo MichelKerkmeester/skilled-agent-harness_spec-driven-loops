@@ -1,0 +1,56 @@
+COMMAND: cd .skilled/skills/system-deep-loop/runtime && ./node_modules/.bin/vitest run tests/unit/executor-audit.vitest.ts tests/unit/executor-config.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/combo-matrix.vitest.ts
+RUN CONTEXT: Codex workspace-write sandbox. The only two failures match 012-deep-loop-modes-and-commands/evidence/sandbox-test-disposition.txt.
+
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime
+
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ❯ tests/unit/fanout-run.vitest.ts (185 tests | 1 failed) 204652ms
+     × resumes a future checkpoint before dispatching lineages 1941ms
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+ ❯ tests/unit/executor-audit.vitest.ts (58 tests | 1 failed) 88ms
+     × reads a process ancestry on platforms without /proc so the ancestry layer can fire 2ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/executor-audit.vitest.ts > executor-audit recursion guard: nested cli-codex dispatch > reads a process ancestry on platforms without /proc so the ancestry layer can fire
+AssertionError: expected 0 to be greater than 0
+ ❯ tests/unit/executor-audit.vitest.ts:752:31
+    750|     // host that has neither /proc nor ps rather than asserting an unr…
+    751|     if (existsSync('/proc/self/stat') || existsSync('/bin/ps')) {
+    752|       expect(cmdlines.length).toBeGreaterThan(0);
+       |                               ^
+    753|     }
+    754|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/unit/fanout-run.vitest.ts > fanout-run.cjs — persisted wait checkpoint > resumes a future checkpoint before dispatching lineages
+AssertionError: expected -1 to be greater than or equal to 0
+ ❯ tests/unit/fanout-run.vitest.ts:4736:25
+    4734|     const resumeIndex = ledgerEvents.findIndex((event) => event.event …
+    4735|     const startedIndex = ledgerEvents.findIndex((event) => event.event…
+    4736|     expect(resumeIndex).toBeGreaterThanOrEqual(0);
+       |                         ^
+    4737|     expect(startedIndex).toBeGreaterThan(resumeIndex);
+    4738|     // The lineage must not launch before the checkpoint deadline. Pro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  2 failed | 355 passed (357)
+   Start at  18:06:40
+   Duration  206.12s (transform 95ms, setup 24ms, import 213ms, tests 205.65s, environment 0ms)
+
+
+EXIT_CODE=1

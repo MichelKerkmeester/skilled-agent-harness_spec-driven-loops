@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout",
+  "description": "Add the cli-deepseek-harness manual testing playbook, reconcile governance docs, changelogs and generated indexes to eight runtimes and close the packet with a recursive strict validation.",
+  "keywords": [
+    "phase",
+    "playbook-docs-and-closeout",
+    "cli-deepseek-harness",
+    "manual-testing-playbook",
+    "trigger-index",
+    "closeout"
+  ],
+  "lastUpdated": "2026-11-06T14:32:02.532Z",
+  "specId": "014",
+  "folderSlug": "playbook-docs-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-11-26_15-32__phase-014-reconciliation-evidence.md"
+  ]
+}

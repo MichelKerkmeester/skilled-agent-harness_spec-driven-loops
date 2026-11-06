@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/012-deep-loop-modes-and-commands",
+  "description": "Make cli-deepseek-harness selectable from /deep:research and /deep:review through their protocols, command YAMLs, presentation lists and regenerated compiled contracts, and record the AI Council seat decision.",
+  "keywords": [
+    "phase",
+    "deep-loop-modes-and-commands",
+    "cli-deepseek-harness",
+    "deep-research",
+    "deep-review",
+    "compiled-contracts",
+    "ai-council"
+  ],
+  "lastUpdated": "2026-11-05T23:22:00.282Z",
+  "specId": "012",
+  "folderSlug": "deep-loop-modes-and-commands",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

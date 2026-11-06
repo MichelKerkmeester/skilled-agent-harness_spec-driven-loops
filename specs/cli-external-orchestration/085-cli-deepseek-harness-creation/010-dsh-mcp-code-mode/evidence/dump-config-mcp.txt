@@ -1,0 +1,15 @@
+# From a scratch cwd with a disposable DSH_HOME: route + lineage + guards patches, --dump-config, without and then with mcp-code-mode.patch.yml
+without: exit=0, rows naming dsh-mcp-client: 0, serverName code_mode: 0, stderr bytes: 0
+with:    exit=0, rows naming dsh-mcp-client: 1, serverName code_mode: 1, stderr bytes: 0
+# the row as composed:
+419-  name: '@deepseek-ai/dsh-mcp-client'
+420-  config:
+421:    serverName: code_mode
+422-    transport: stdio
+423-    command: node
+424-    args:
+425-      - .skilled/bin/mcp-code-mode-launcher.cjs
+426-    cwd: !!js |-
+427-      (() => {
+428-        const fs = process.getBuiltinModule('node:fs');
+429-        const path = process.getBuiltinModule('node:path');

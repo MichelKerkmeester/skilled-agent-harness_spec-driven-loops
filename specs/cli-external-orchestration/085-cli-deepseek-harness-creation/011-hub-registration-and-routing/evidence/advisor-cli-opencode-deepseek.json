@@ -1,0 +1,79 @@
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Skilled",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "cli-external-orchestration",
+        "score": 0.631246,
+        "confidence": 0.95,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active"
+      },
+      {
+        "skillId": "sk-code",
+        "score": 0.666736,
+        "confidence": 0.8784,
+        "uncertainty": 0.16,
+        "dominantLane": "explicit_author",
+        "status": "active",
+        "compiledRoute": {
+          "hubId": "sk-code",
+          "action": "route",
+          "selectionKind": "single",
+          "targets": [
+            {
+              "backendKind": "evidence-base",
+              "packetId": "sk-code-skilled",
+              "packetKind": "surface",
+              "skillId": "sk-code",
+              "workflowMode": "sk-code-skilled"
+            }
+          ],
+          "effectivePolicyHash": "33c90337e76406c4167f40c04c7ff842c6871636bae8ff53665219e28e11602a",
+          "generation": 2
+        }
+      }
+    ],
+    "ambiguous": true,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 2289,
+      "checkedAt": "2026-11-06T07:19:29.107Z",
+      "lastLiveAt": "2026-11-06T07:17:12.088Z"
+    },
+    "generatedAt": "2026-11-06T07:19:29.125Z",
+    "cache": {
+      "hit": true,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "sk-code",
+          "liveScore": 0.666736,
+          "shadowScore": 0.637622,
+          "delta": -0.029114,
+          "dominantShadowLane": "explicit_author"
+        },
+        {
+          "skillId": "cli-external-orchestration",
+          "liveScore": 0.631246,
+          "shadowScore": 0.608023,
+          "delta": -0.023223,
+          "dominantShadowLane": "explicit_author"
+        }
+      ]
+    }
+  }
+}

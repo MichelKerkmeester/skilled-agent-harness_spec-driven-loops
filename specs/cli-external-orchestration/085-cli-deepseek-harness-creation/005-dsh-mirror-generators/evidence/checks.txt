@@ -1,0 +1,24 @@
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
+[dsh-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
+[dsh-prompt-sync] PASS: 44 prompt stubs are in sync.
+exit=0
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+exit=0
+$ node --test .skilled/skills/system-spec-kit/runtime/cli/tests/sync-*-dsh.test.mjs
+ℹ tests 8
+ℹ pass 8
+ℹ fail 0
+exit=0
+$ count check
+farm dirs=55 resolving SKILL.md=55 canonical SKILL.md (find, no node_modules)=55. The generator printed 7 excluded directories and none of them holds a SKILL.md, so no skill was excluded
+$ rg -n dsh-mirror .github/workflows/command-tree-parity.yml
+130:  dsh-mirror:
+$ node --test .skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs
+ℹ tests 7
+ℹ pass 7
+ℹ fail 0
+exit=0
+# The orchestrator also composed all 11 .dsh/agents/*.patch.yml through dsh --dump-config from a disposable DSH_HOME: each exit 0, empty stderr

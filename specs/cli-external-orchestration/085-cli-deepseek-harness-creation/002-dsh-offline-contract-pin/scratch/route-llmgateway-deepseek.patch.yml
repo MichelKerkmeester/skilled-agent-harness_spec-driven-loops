@@ -1,0 +1,18 @@
+# Draft route: LLM Gateway, DeepSeek V4.1 Flash. The key is a reference, never a value.
+- id: llm-pi-ai
+  config:
+    providers:
+      llmgateway:
+        displayName: LLM Gateway
+        apiKeyEnv: LLMGATEWAY_API_KEY
+        api: openai-completions
+        baseURL: https://api.llmgateway.io/v1
+        compat:
+          thinkingFormat: deepseek
+        models:
+          - id: deepseek-v4.1-flash-1017
+            name: DeepSeek V4.1 Flash
+- id: agent-default-model
+  config:
+    provider: llmgateway
+    model: deepseek-v4.1-flash-1017

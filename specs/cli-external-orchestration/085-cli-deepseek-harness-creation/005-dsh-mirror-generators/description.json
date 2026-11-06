@@ -1,0 +1,25 @@
+{
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/005-dsh-mirror-generators",
+  "description": "Three generators build the .dsh/ skill symlink farm, prompt templates and persona patches from .skilled/, each with a --check mode wired into CI and the runtime-mirrors doctor.",
+  "keywords": [
+    "dsh",
+    "mirror",
+    "generators",
+    "skill",
+    "farm",
+    "prompts",
+    "personas",
+    "check",
+    "sync"
+  ],
+  "lastUpdated": "2026-11-05T23:21:55.023Z",
+  "specId": "005",
+  "folderSlug": "dsh-mirror-generators",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

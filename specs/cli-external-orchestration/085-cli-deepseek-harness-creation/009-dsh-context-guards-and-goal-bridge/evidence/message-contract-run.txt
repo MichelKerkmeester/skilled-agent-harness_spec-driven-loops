@@ -1,0 +1,48 @@
+# command: node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs
+✔ every shipped template parses, is well formed and matches its prose (9.75925ms)
+✔ drift is caught in both directions (1.465083ms)
+✔ a conforming commit passes and git-generated subjects pass through (0.534292ms)
+✔ optional commit rules stay inactive when their contract keys are absent (0.243625ms)
+✔ subject rules each fire on their own case (0.174417ms)
+✔ scope aliases name the canonical scope and canonical scopes pass (0.106875ms)
+✔ subject length target warns above its threshold and stays quiet at the threshold (0.092167ms)
+✔ body, trailer and attribution rules each fire on their own case (0.318708ms)
+✔ breaking commits require every declared section (0.112541ms)
+✔ the pre-stamp stage drops attribution the stamper would strip (0.098042ms)
+✔ the pre-stamp stage keeps a trailer that only names the vendor, for the rule to report (0.057291ms)
+✔ warnings never block (0.097959ms)
+✔ comment lines go only where git drops them (0.07125ms)
+✔ a commit message at the input cap validates and one character more reports the cap (0.674583ms)
+✔ PR descriptions need filled required sections and no attribution (0.641166ms)
+✔ a PR body at the input cap validates and one character more reports the cap (0.103417ms)
+✔ the shipped contracts advertise the input cap rule ids (0.020542ms)
+✔ branch names follow the grammar and worktree directories pair with them (0.179375ms)
+✔ a repository without templates enforces nothing (69.119959ms)
+✔ a pushed commit finds a packet the repository keeps out of git (360.262834ms)
+✔ a .sk-git copy is used, and a broken one throws rather than passing (73.35625ms)
+✔ a non-string scope alias value makes the commit contract invalid (47.9685ms)
+✔ subject warning length and breaking sections require valid shapes (0.12ms)
+✔ a warning length at or above the hard limit makes the commit contract invalid (0.03975ms)
+✔ a scope alias must point at a scope the pattern accepts, never at another alias (0.115334ms)
+✔ restated subject lengths must match the rules block, in the template and in SKILL.md (0.601458ms)
+✔ skgit.contractDir pointing nowhere is an error, not an opt-out (41.202ms)
+✔ a command-scope skgit.contractDir cannot switch the rules off (65.654792ms)
+✔ the gate refuses a bad inline commit message and allows a good one (118.267416ms)
+✔ a bundled short-flag cluster cannot carry a bad subject past the gate (145.5065ms)
+✔ a bundled commit flag keeps a conventional subject beside its separate body (57.82975ms)
+✔ a short value flag never expands the token that is its value (63.462542ms)
+✔ the gate reads heredoc messages the way agents write them (69.379667ms)
+✔ the gate refuses a PR body that breaks the PR rules (66.607875ms)
+✔ the gate refuses a branch name outside the grammar (130.31475ms)
+✔ the gate allows what it cannot read, leaving it to the hooks and CI (98.374917ms)
+✔ a backtracking contract pattern cannot hang the validator (98.306834ms)
+✔ the stamper drops exactly the attribution keys the commit template forbids (0.190583ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1562.492584
+# exit=0

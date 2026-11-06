@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin",
+  "description": "Later phases write dsh patches, hard rules and an executor builder against a headless contract that no run has observed yet",
+  "keywords": [
+    "later",
+    "phases",
+    "write",
+    "dsh",
+    "patches",
+    "hard",
+    "rules",
+    "executor",
+    "builder",
+    "against",
+    "headless",
+    "contract",
+    "run",
+    "observed"
+  ],
+  "lastUpdated": "2026-11-05T23:26:58.830Z",
+  "specId": "002",
+  "folderSlug": "dsh-offline-contract-pin",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

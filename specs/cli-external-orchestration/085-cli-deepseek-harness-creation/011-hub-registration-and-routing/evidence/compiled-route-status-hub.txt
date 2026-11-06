@@ -1,0 +1,18 @@
+{
+  "hubId": "cli-external-orchestration",
+  "servingAuthority": "legacy",
+  "shadowOnly": false,
+  "selectedPolicy": {
+    "generation": 5
+  },
+  "effectivePolicyHash": "b768e51370324096f20e98e00e7b3560c434660f20f8b2e66827b441d9e2924f",
+  "fenceEpoch": 2,
+  "manifestFingerprint": "ed50c7e46b7eddc584b6cab39d9afeb7299e8374cf6636355539870ba0538f39",
+  "causeCode": "stale-manifest",
+  "manifestFreshness": {
+    "manifestValid": true,
+    "fresh": false,
+    "causeCode": "stale-manifest",
+    "currentPolicyHash": "046167a05a0344642732b11dce063e664c0165dca8b7bc8f9aeaf57f7e12124a"
+  }
+}

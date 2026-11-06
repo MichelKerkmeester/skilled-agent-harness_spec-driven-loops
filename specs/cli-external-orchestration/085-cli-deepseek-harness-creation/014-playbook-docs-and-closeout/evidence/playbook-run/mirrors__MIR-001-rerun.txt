@@ -1,0 +1,12 @@
+## MIR-001 rerun 2026-11-06T12:56:13Z, after regenerating the dsh skill and prompt mirrors
+Cause of the first FAIL: another session added skill system-skilled-doctor and command doctor/overlay after the last sync; the mirrors lacked one link and one prompt stub.
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
+[dsh-skill-sync] PASS: 56 skill links are in sync.
+exit 0
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit 0
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+exit 0
+Verdict: PASS

@@ -1,0 +1,17 @@
+PASS opencode-single action=route modes=["cli-opencode"] expected=route/["cli-opencode"]
+PASS claude-single action=route modes=["cli-claude-code"] expected=route/["cli-claude-code"]
+PASS codex-single action=route modes=["cli-codex"] expected=route/["cli-codex"]
+PASS pi-single action=route modes=["cli-pi"] expected=route/["cli-pi"]
+PASS hermes-single action=route modes=["cli-hermes"] expected=route/["cli-hermes"]
+PASS dsh-headless-single action=route modes=["cli-deepseek-harness"] expected=route/["cli-deepseek-harness"]
+PASS opencode-deepseek-model-remains-opencode action=route modes=["cli-opencode"] expected=route/["cli-opencode"]
+PASS cursor-single action=route modes=["cli-cursor"] expected=route/["cli-cursor"]
+PASS devin-single action=route modes=["cli-devin"] expected=route/["cli-devin"]
+PASS explicit-pair-ordered action=route modes=["cli-opencode","cli-codex"] expected=route/["cli-opencode","cli-codex"]
+PASS explicit-triple-ordered action=route modes=["cli-opencode","cli-claude-code","cli-codex"] expected=route/["cli-opencode","cli-claude-code","cli-codex"]
+PASS semantic-tie-clarify action=clarify modes=[] expected=clarify/undefined
+PASS zero-signal-defer action=defer modes=[] expected=defer/undefined
+PASS forbidden-reject action=reject modes=[] expected=reject/undefined
+PASS hermes-alias-with-intervening-word action=route modes=["cli-hermes"] expected=route/["cli-hermes"]
+PASS jev-alias-narrowness action=defer modes=[] expected=defer/undefined
+summary pass=16 fail=0 total=16

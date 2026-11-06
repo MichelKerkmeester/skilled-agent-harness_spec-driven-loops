@@ -1,0 +1,76 @@
+{
+  "run_id": "1793915913100-enoz0j",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research",
+  "base_artifact_dir": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-05T21:58:33.215Z",
+        "end_at_iso": "2026-11-05T22:15:52.276Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-11-05T22:18:30Z",
+          "deltaMs": 37724
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-11-05T22:21:30Z",
+          "deltaMs": 217724
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-11-05T22:24:30Z",
+          "deltaMs": 397724
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-11-05T22:28:40Z",
+          "deltaMs": 647724
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-11-05T22:32:20Z",
+          "deltaMs": 867724
+        }
+      ]
+    }
+  ]
+}

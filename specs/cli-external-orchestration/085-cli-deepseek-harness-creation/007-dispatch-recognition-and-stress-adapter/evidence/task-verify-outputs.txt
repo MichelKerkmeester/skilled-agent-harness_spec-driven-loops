@@ -1,0 +1,39 @@
+# Phase 007 task verify outputs (static checks), 2026-11-06T07:20:06Z
+## T007/CHK-010 node --check on the three files
+audit exit=0
+rule-checks exit=0
+shim exit=0
+## T008 subject registration
+13:  'cli-deepseek-harness',
+70:  'cli-deepseek-harness',
+exit=0
+50:  'cli-deepseek-harness': 'dsh-shim.cjs',
+exit=0
+## T010 shims README
+21:- `dsh-shim.cjs` has its own runner because dsh needs JSON events and a separate process exit status.
+39:| `dsh-shim.cjs` | Stand-in for `cli-deepseek-harness`. Emits DSH JSON events and controls the process exit status independently. |
+exit=0
+## CHK-030 credential reads in the shim (literal form, then narrowed form)
+11
+literal matches all on process.env lines (count shown above)
+narrowed exit=1 (1 = no credential read)
+## CHK-012 each dsh rule check key matches a hard-rules.json id
+headless-only occurrences=1
+stdin-dash-required occurrences=1
+route-patch-required occurrences=2
+closed-roster occurrences=2
+approval-never-required occurrences=1
+dsh-home-isolated occurrences=1
+lineage-patch-required occurrences=2
+json-final-and-exit-required occurrences=1
+pinned-version-required occurrences=1
+no-repo-root-dotenv occurrences=1
+mcp-opt-in-only occurrences=1
+## CHK-013 added lines in 007 files (hooks and stress harness)
+exit=1 (1 = no matches)
+new files exit=1 (1 = no matches)
+## D3 shared shim core unchanged
+core exit=0
+## CHK-032 real dsh on PATH on this machine (stubs and shims are placed first on PATH in every dsh spawn)
+/Users/michelkerkmeester/.local/bin/dsh
+exit=0

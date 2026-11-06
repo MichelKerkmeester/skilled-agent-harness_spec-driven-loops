@@ -1,0 +1,39 @@
+== dsh generators
+[dsh-skill-sync] PASS: 56 skill links are in sync.
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+== rule tests
+ℹ pass 50
+ℹ fail 0
+== repo-guards
+ℹ pass 37
+ℹ fail 0
+== audit
+ Test Files  23 passed (23)
+      Tests  2854 passed (2854)
+== recursive strict
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+== runtime unit+stress (package vitest 4.1.12; the repo-root 5.0.3 binary fails to load these files with describe.sequential)
+ Test Files  12 passed (12)
+      Tests  524 passed | 9 skipped (533)
+tsc exit 0
+== recursive strict: 15 of 15 folders RESULT: PASSED

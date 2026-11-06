@@ -1,0 +1,11 @@
+Scenario: MDL-001, LLM Gateway route
+Category: model-dispatch
+
+Keyed request command: cd "$RUN_DIR" && printf '%s' "Reply with the single word OK and nothing else." | DSH_HOME="$DSH_HOME" NVM_DIR="$NVM_DIR" dsh --profile headless --patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" --patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" --json --permission-mode read-only --approval-policy never -
+Exit code: N/A, SKIP.
+Output: not executed; no keyed output.
+Reason: LLMGATEWAY_API_KEY is absent, confirmed by the keyless MISSING_CREDENTIAL result in CLI-001.
+
+Verdict: SKIP
+Reason: keyed route run pending phase 013 keys.
+

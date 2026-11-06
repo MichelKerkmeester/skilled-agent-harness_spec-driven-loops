@@ -1,0 +1,47 @@
+Scenario: EC-013, node-modules-integrity
+Category: stress
+
+Command:
+```sh
+export PATH="$HOME/.local/bin:$PATH"; .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts --configLoader runner --reporter=verbose -t "preserves independent worktree node_modules boundaries during cli-deepseek-harness dispatch" </dev/null
+```
+
+Exit code: 0
+
+Output (last 40 lines, redacted):
+```text
+
+ RUN  v4.1.12 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime
+
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness manifest integrity > binds exactly fourteen implemented adapter cells without forbidden overclaims
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > completes a hermetic lineage through the shipped builder and fan-out runtime
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > emits dsh JSON events and keeps each process exit code independent
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > retains cli-deepseek-harness authentication diagnostics in bounded lineage output
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > retains cli-deepseek-harness model-or-balance diagnostics in bounded lineage output
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > retains cli-deepseek-harness rate-limit diagnostics without retry delay
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > times out and terminates the captured cli-deepseek-harness process
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > closes stdin for the headless cli-deepseek-harness process
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > passes child gate variables through the full cli-deepseek-harness runtime
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > forwards the asserted cli-deepseek-harness sandbox and permission flags
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > fails before cli-deepseek-harness execution when its transport is unavailable
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > rejects an over-budget cli-deepseek-harness lineage before process spawn
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > reports a signal-killed cli-deepseek-harness lineage as failed
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > terminates the captured detached cli-deepseek-harness process group after timeout
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > runs cli-deepseek-harness from each isolated worktree cwd
+ ✓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > preserves independent worktree node_modules boundaries during cli-deepseek-harness dispatch 274ms
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness adapter contracts > blocks recursive cli-deepseek-harness fan-out before process spawn
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > cli-deepseek-harness fixture integrity > enforces exclusive ownership without counting the check as an adapter cell
+ ↓ tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts > live cli-deepseek-harness transport probe (dependency SKIP: dsh stress coverage uses the hermetic shim only)
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 18 skipped (19)
+   Start at  12:57:10
+   Duration  446ms (transform 51ms, setup 12ms, import 91ms, tests 275ms, environment 0ms)
+
+
+```
+
+Verdict: PASS
+Reason: the named hermetic test was reported passed and the command exited 0.
+Key-gated live confirmation: SKIP pending phase 013 keys.
+

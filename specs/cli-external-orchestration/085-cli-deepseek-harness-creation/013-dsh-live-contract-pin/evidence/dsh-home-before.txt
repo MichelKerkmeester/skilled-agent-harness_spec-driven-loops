@@ -1,0 +1,78 @@
+total 16
+drwxr-xr-x@   8 michelkerkmeester  staff   256 Nov  6 07:47 .
+drwxr-x---@ 120 michelkerkmeester  staff  3840 Nov  6 16:53 ..
+-rw-r--r--@   1 michelkerkmeester  staff    37 Nov  5 22:59 .anonymous-user-id
+-rw-------@   1 michelkerkmeester  staff   161 Nov  6 07:45 .credentials.yaml
+drwx------@   3 michelkerkmeester  staff    96 Nov  6 07:47 logs
+drwxr-xr-x@   4 michelkerkmeester  staff   128 Nov  6 07:45 profiles
+drwx------@   3 michelkerkmeester  staff    96 Nov  6 07:45 sessions
+drwx------@   4 michelkerkmeester  staff   128 Nov  6 07:45 storages
+
+/Users/michelkerkmeester/.dsh/logs:
+total 128
+drwx------@ 3 michelkerkmeester  staff     96 Nov  6 07:47 .
+drwxr-xr-x@ 8 michelkerkmeester  staff    256 Nov  6 07:47 ..
+-rw-------@ 1 michelkerkmeester  staff  64466 Nov  6 07:47 startup-2026-11-06T06-47-24.671Z-648012d5-fed8-48d5-8794-7b20ea69e711.log
+
+/Users/michelkerkmeester/.dsh/profiles:
+total 0
+drwxr-xr-x@ 4 michelkerkmeester  staff  128 Nov  6 07:45 .
+drwxr-xr-x@ 8 michelkerkmeester  staff  256 Nov  6 07:47 ..
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Nov  5 22:59 headless
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Nov  6 07:45 web
+
+/Users/michelkerkmeester/.dsh/profiles/headless:
+total 32
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Nov  5 22:59 .
+drwxr-xr-x@ 4 michelkerkmeester  staff  128 Nov  6 07:45 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  217 Nov  5 22:59 cordis.patch.yml
+-rw-r--r--@ 1 michelkerkmeester  staff  223 Nov  6 07:47 cordis.yml
+-rw-r--r--@ 1 michelkerkmeester  staff  213 Nov  5 22:59 package.json
+-rw-r--r--@ 1 michelkerkmeester  staff   61 Nov  5 22:59 pnpm-workspace.yaml
+
+/Users/michelkerkmeester/.dsh/profiles/web:
+total 32
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Nov  6 07:45 .
+drwxr-xr-x@ 4 michelkerkmeester  staff  128 Nov  6 07:45 ..
+-rw-------@ 1 michelkerkmeester  staff  343 Nov  6 07:45 cordis.patch.yml
+-rw-r--r--@ 1 michelkerkmeester  staff  223 Nov  6 07:47 cordis.yml
+-rw-r--r--@ 1 michelkerkmeester  staff  207 Nov  6 07:45 package.json
+-rw-r--r--@ 1 michelkerkmeester  staff   61 Nov  6 07:45 pnpm-workspace.yaml
+
+/Users/michelkerkmeester/.dsh/sessions:
+total 0
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:45 --Users-michelkerkmeester-Documents-deepseek-harness-default-workspace--
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:45 .
+drwxr-xr-x@ 8 michelkerkmeester  staff  256 Nov  6 07:47 ..
+
+/Users/michelkerkmeester/.dsh/sessions/--Users-michelkerkmeester-Documents-deepseek-harness-default-workspace--:
+total 0
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:45 .
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:45 ..
+drwx------@ 4 michelkerkmeester  staff  128 Nov  6 07:45 session-41989989-4ae8-42c5-9e7b-1ac1cd04587b
+
+/Users/michelkerkmeester/.dsh/sessions/--Users-michelkerkmeester-Documents-deepseek-harness-default-workspace--/session-41989989-4ae8-42c5-9e7b-1ac1cd04587b:
+total 8
+drwx------@ 4 michelkerkmeester  staff  128 Nov  6 07:45 .
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:45 ..
+-rw-r--r--@ 1 michelkerkmeester  staff    0 Nov  6 07:45 session.lock
+-rw-------@ 1 michelkerkmeester  staff  348 Nov  6 07:45 session.v4.jsonl.zstd
+
+/Users/michelkerkmeester/.dsh/storages:
+total 8
+drwx------@ 4 michelkerkmeester  staff  128 Nov  6 07:45 .
+drwxr-xr-x@ 8 michelkerkmeester  staff  256 Nov  6 07:47 ..
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:45 session_projcache
+-rw-------@ 1 michelkerkmeester  staff  720 Nov  6 07:45 workspace.json
+
+/Users/michelkerkmeester/.dsh/storages/session_projcache:
+total 0
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:45 .
+drwx------@ 4 michelkerkmeester  staff  128 Nov  6 07:45 ..
+drwx------@ 3 michelkerkmeester  staff   96 Nov  6 07:47 sessions
+
+/Users/michelkerkmeester/.dsh/storages/session_projcache/sessions:
+total 16
+drwx------@ 3 michelkerkmeester  staff    96 Nov  6 07:47 .
+drwx------@ 3 michelkerkmeester  staff    96 Nov  6 07:45 ..
+-rw-------@ 1 michelkerkmeester  staff  5187 Nov  6 07:47 session-41989989-4ae8-42c5-9e7b-1ac1cd04587b.json

@@ -1,0 +1,9 @@
+.skilled/commands/deep/assets/compiled/deep-review.contract.markdown
+.skilled/commands/deep/assets/compiled/deep-research.contract.markdown
+.skilled/commands/deep/assets/deep-review-presentation.txt
+.skilled/commands/deep/assets/deep-research-presentation.txt
+.skilled/commands/deep/assets/deep-review-auto.yaml
+.skilled/skills/system-deep-loop/deep-review/SKILL.md
+.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
+.skilled/commands/deep/assets/deep-research-auto.yaml

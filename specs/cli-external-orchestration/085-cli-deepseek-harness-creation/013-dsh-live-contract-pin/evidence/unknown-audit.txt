@@ -1,0 +1,15 @@
+# Remaining UNKNOWN audit
+
+Scope: cli-deepseek-harness `references/`, `SKILL.md`, `README.md` and `hard-rules.json`.
+The hard-rules file contains no UNKNOWN entries. The remaining UNKNOWN claims below retain a reason tied to the saved evidence gap.
+
+- OpenCode Go endpoint and authentication: `OPENCODE_API_KEY` was unset, so no request was sent. Evidence: `latency-and-tokens.md`.
+- `supportsDeveloperRole: true`: only the checked-in `false` setting was exercised. The closed roster did not allow a variant patch. Evidence: `reasoning-max.md`.
+- Failure outside a model turn: no saved run produced an `error` event without a final event. Evidence: `route-llmgateway.*` and the failure-shape row in `references/cli-reference.md`.
+- Whether all 56 linked skills load in one session: saved Gateway runs do not audit every linked skill. Evidence: `references/runtime-folder-and-sync.md`.
+- Whether the repository instruction chain loaded during the Gateway run: the saved stream does not report loaded instruction files. Evidence: `references/runtime-folder-and-sync.md`.
+- Nested `ctx.tools.restrict()` behavior: the live pin kept MCP disabled, so nested tool reach was not exercised. Evidence: `references/mcp.md`.
+- Whether a Code Mode `call_tool_chain` can read the child environment: phase 013 did not mount MCP or call this tool. Evidence: `references/mcp.md`.
+- A dsh-specific self-detection marker: none is known, so nested dispatch refusal relies on the dispatch stack, process ancestry, state environment and lockfile checks. Evidence: `references/fanout-executor.md`.
+- `compaction/summary` support: the source event index lists `compaction/summary-error` only. Evidence: `references/guards-and-hooks.md`.
+- DSH answer-channel semantics for `agent/turn-stopping`: no saved run exercised `decision-capture` on that event. Evidence: `references/guards-and-hooks.md`.

@@ -1,0 +1,36 @@
+# Remint after the packet doc edits changed the hashed cli-deepseek-harness/SKILL.md source
+$ node <authored>/009-parent-hub-rollout/004-cli-external-orchestration/harness/build-artifacts.cjs
+effectivePolicyHash 292dafb7b8c8d85888ed9d908d00ed83fc6c621a2baf02a200eba24b762f6027 (was b768e513...), written to both 013-live-activation manifests
+$ node .skilled/bin/compiled-route-sync.cjs  -> promoted 62 closure files
+$ node .skilled/bin/compiled-route-sync.cjs --finalize <rollback>  -> finalized
+$ node --test .skilled/bin/tests/compiled-route-manifest.test.cjs
+ℹ tests 48
+ℹ pass 48
+ℹ fail 0
+$ compiled-route.cjs --hub cli-external-orchestration --prompt "dispatch this review to DeepSeek Harness headless with dsh"
+"workflowMode":"cli-deepseek-harness"
+$ compiled-route.cjs --hub cli-external-orchestration --prompt "use cli-opencode with deepseek-v4.1-flash"
+"workflowMode":"cli-opencode"
+$ compiled-route.cjs --hub cli-external-orchestration --prompt "run this with codex exec gpt-6-luna"
+"workflowMode":"cli-codex"
+
+# Second remint, after the packet SKILL.md status notice was updated to current state
+effectivePolicyHash d60910f063d54df322b4e3ec640e7685db7b37368ea9ade65f7b2e596f8d6cbb (was 292dafb7...), both manifests; sync, finalize
+compiled-route-manifest.test.cjs: 48 pass, 0 fail
+routes: dsh prompt -> cli-deepseek-harness; "use cli-opencode with deepseek-v4.1-flash" -> cli-opencode; codex prompt -> cli-codex
+# Lesson: any edit to a packet SKILL.md, the hub SKILL.md, hub-router.json or mode-registry.json needs this remint before the manifest tests pass.
+
+## Remint 3 (2026-11-06, after the alignment-finding doc fixes to the packet and hub SKILL.md)
+build-artifacts.cjs effectivePolicyHash: 362056190d73d955d7fa2c64eaecca0882ddbab6327e5c8f8161ca3191cbf5ae (was d60910f0...)
+compiled-route-sync.cjs --finalize .skilled/bin/compiled-routing.rollback-56583-1793965422849: finalized, reconciled 0 external manifests
+compiled-route-manifest.test.cjs: pass 48, fail 0
+route probes: "delegate this review to dsh headless" -> cli-deepseek-harness; "use cli-opencode with deepseek-v4.1-flash" -> cli-opencode; "use cli-codex to review this diff" -> cli-codex
+scorer-eval-baseline-ratchet.vitest.ts: 7 passed
+
+## Remint 4 (2026-11-06, system-deep-loop hub, after the changelog sweep bumped its version carriers)
+Cause: manifest test 32/48 with MOVE-SIMULATION FAILED "promoted closure failed to resolve hubs: system-deep-loop".
+build-artifacts.cjs (002-system-deep-loop) effectivePolicyHash: fe3065788e4cb320e410fdc6475fe8ff07200d38f16436c3d6c5e5e5123ee233 (was f6c4d247...)
+compiled-route-sync.cjs --finalize .skilled/bin/lib/compiled-routing.rollback-91496-1793969726301: finalized
+compiled-route-manifest.test.cjs: pass 48, fail 0
+probes: deep research -> research; deep review -> review; "run a deep review lineage with the cli-deepseek-harness executor" -> review; dsh -> cli-deepseek-harness; cli-opencode canary -> cli-opencode
+scorer-eval-baseline-ratchet.vitest.ts: 7 passed

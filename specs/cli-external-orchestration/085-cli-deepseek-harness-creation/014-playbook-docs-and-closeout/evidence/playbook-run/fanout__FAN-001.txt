@@ -1,0 +1,21 @@
+Scenario: FAN-001, deep-research lineage
+Category: fanout
+
+Agent step 1: Start a research lineage with kind cli-deepseek-harness, model deepseek-v4.1-flash-1017, read-only permission and no MCP servers.
+Exit code: N/A, SKIP.
+Output: not executed; no lineage output.
+Reason: provider key absent, pending phase 013.
+
+Agent step 2: Confirm the runner probes the pinned dsh version, creates DSH_HOME under the lineage's .executor-state directory, and builds the route, lineage and guards patches with the prompt on stdin.
+Exit code: N/A, SKIP.
+Output: not executed; the lineage did not start.
+Reason: the selected lineage cannot start without a provider key.
+
+Bash step: Read the lineage result and confirm exit 0, a final completed event, no failed guard entry and clean containment.
+Exit code: N/A, SKIP.
+Output: no lineage result exists.
+Reason: the key-gated lineage was not run.
+
+Verdict: SKIP
+Reason: provider key absent, pending phase 013. No fanout-run invocation was made because the scenario requires a keyed lineage and its runner writes lineage artifacts outside the allowed evidence directory.
+

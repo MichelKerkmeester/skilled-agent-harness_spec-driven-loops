@@ -1,0 +1,2 @@
+{"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-opencode","packetKind":"workflow","skillId":"cli-external-orchestration","workflowMode":"cli-opencode"}],"effectivePolicyHash":"d60910f063d54df322b4e3ec640e7685db7b37368ea9ade65f7b2e596f8d6cbb","generation":5}
+EXIT=0

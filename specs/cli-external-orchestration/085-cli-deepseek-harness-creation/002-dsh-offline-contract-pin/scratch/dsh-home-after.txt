@@ -1,0 +1,26 @@
+total 8
+drwxr-xr-x@   5 michelkerkmeester  staff   160 Nov  5 22:59 .
+drwxr-x---@ 120 michelkerkmeester  staff  3840 Nov  6 05:08 ..
+-rw-r--r--@   1 michelkerkmeester  staff    37 Nov  5 22:59 .anonymous-user-id
+drwxr-xr-x@   3 michelkerkmeester  staff    96 Nov  5 22:59 profiles
+drwx------@   2 michelkerkmeester  staff    64 Nov  5 22:59 storages
+
+/Users/michelkerkmeester/.dsh/profiles:
+total 0
+drwxr-xr-x@ 3 michelkerkmeester  staff   96 Nov  5 22:59 .
+drwxr-xr-x@ 5 michelkerkmeester  staff  160 Nov  5 22:59 ..
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Nov  5 22:59 headless
+
+/Users/michelkerkmeester/.dsh/profiles/headless:
+total 32
+drwxr-xr-x@ 6 michelkerkmeester  staff  192 Nov  5 22:59 .
+drwxr-xr-x@ 3 michelkerkmeester  staff   96 Nov  5 22:59 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  217 Nov  5 22:59 cordis.patch.yml
+-rw-r--r--@ 1 michelkerkmeester  staff  223 Nov  5 23:12 cordis.yml
+-rw-r--r--@ 1 michelkerkmeester  staff  213 Nov  5 22:59 package.json
+-rw-r--r--@ 1 michelkerkmeester  staff   61 Nov  5 22:59 pnpm-workspace.yaml
+
+/Users/michelkerkmeester/.dsh/storages:
+total 0
+drwx------@ 2 michelkerkmeester  staff   64 Nov  5 22:59 .
+drwxr-xr-x@ 5 michelkerkmeester  staff  160 Nov  5 22:59 ..

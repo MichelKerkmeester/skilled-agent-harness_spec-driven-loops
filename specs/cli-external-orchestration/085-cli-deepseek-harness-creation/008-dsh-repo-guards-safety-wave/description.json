@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave",
+  "description": "Repo-guards plugin bundle that runs the eight safety guards on dsh seams through the shared cores, each with a declared error policy.",
+  "keywords": [
+    "repo-guards",
+    "plugin",
+    "bundle",
+    "runs",
+    "eight",
+    "safety",
+    "guards",
+    "dsh",
+    "seams",
+    "shared",
+    "cores",
+    "declared",
+    "error",
+    "policy"
+  ],
+  "lastUpdated": "2026-11-05T23:32:25.861Z",
+  "specId": "008",
+  "folderSlug": "dsh-repo-guards-safety-wave",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
