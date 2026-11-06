@@ -1,5 +1,5 @@
 {
-  "manifestHash": "473a3edb3245d05aab9aa8761b6416eb65e74f438af09ace18409980d3dbca3c",
+  "manifestHash": "cb66abeec5aab17add6e46beddb5f028cec2555142140fc82486cea98f2c61b0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21271,6 +21271,9 @@
     "cli deepseek harness 1 0 0 0": [
       "cli-deepseek-harness 1.0.0.0"
     ],
+    "cli deepseek harness commit follow up": [
+      "cli-deepseek-harness commit follow-up"
+    ],
     "cli deepseek harness creation phase parent spec": [
       "cli deepseek harness creation phase parent spec"
     ],
@@ -22170,6 +22173,9 @@
     "cli jev 0 1 10 0": [
       "cli-jev 0.1.10.0"
     ],
+    "cli jev 0 1 11 0": [
+      "cli-jev 0.1.11.0"
+    ],
     "cli jev 0 1 2 0": [
       "cli-jev 0.1.2.0"
     ],
@@ -22385,6 +22391,9 @@
     ],
     "cli jev v0 1 10 0": [
       "cli-jev v0.1.10.0"
+    ],
+    "cli jev v0 1 11 0": [
+      "cli-jev v0.1.11.0"
     ],
     "cli jev v0 1 2 0": [
       "cli-jev v0.1.2.0"
@@ -37869,6 +37878,9 @@
     "deepseek harness providers": [
       "deepseek harness providers"
     ],
+    "deepseek harness release handover": [
+      "deepseek harness release handover"
+    ],
     "deepseek harness research angles": [
       "deepseek harness research angles"
     ],
@@ -43305,6 +43317,9 @@
     "dsh release probe": [
       "dsh release probe"
     ],
+    "dsh release v4 0 2 0": [
+      "dsh release v4.0.2.0"
+    ],
     "dsh repo guards plugin": [
       "dsh repo-guards plugin"
     ],
@@ -43340,6 +43355,9 @@
     ],
     "dsh route verification": [
       "dsh route verification"
+    ],
+    "dsh run surface advisory": [
+      "dsh run surface advisory"
     ],
     "dsh runtime folder": [
       "dsh runtime folder"
@@ -43914,6 +43932,9 @@
     ],
     "effectivedepth gate query handler": [
       "effectiveDepth gate query handler"
+    ],
+    "eight executor dispatch shapes": [
+      "eight executor dispatch shapes"
     ],
     "eight grok 4 7 ids": [
       "eight grok 4.7 ids"
@@ -86072,6 +86093,9 @@
     "readme checker false positives": [
       "readme checker false positives"
     ],
+    "readme checks dsh folder": [
+      "readme checks dsh folder"
+    ],
     "readme claim check approach": [
       "readme claim check approach"
     ],
@@ -104153,6 +104177,9 @@
     "sk create readme 1 3 12 0": [
       "sk-create-readme 1.3.12.0"
     ],
+    "sk create readme 1 3 13 0": [
+      "sk-create-readme 1.3.13.0"
+    ],
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
     ],
@@ -104224,6 +104251,9 @@
     ],
     "sk create readme v1 3 12 0": [
       "sk-create-readme v1.3.12.0"
+    ],
+    "sk create readme v1 3 13 0": [
+      "sk-create-readme v1.3.13.0"
     ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
@@ -106153,6 +106183,9 @@
     "sk git 1 11 1 0": [
       "sk-git 1.11.1.0"
     ],
+    "sk git 1 11 10 0": [
+      "sk-git 1.11.10.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -106419,6 +106452,9 @@
     ],
     "sk git v1 11 1 0": [
       "sk-git v1.11.1.0"
+    ],
+    "sk git v1 11 10 0": [
+      "sk-git v1.11.10.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"

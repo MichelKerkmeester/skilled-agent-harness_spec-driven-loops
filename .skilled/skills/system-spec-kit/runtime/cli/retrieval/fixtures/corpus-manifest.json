@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2790496446f5634641d463286285428de28ee9e79eba6f022058d0a67913eced",
+  "corpusHash": "2f37fa8e0582809275113ba43b76a2ec4993f871ae44949e2ef4e50741ebc45d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28295,
+  "includedPathCount": 28299,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -171,6 +171,7 @@
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.0.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.1.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.10.0.md",
+    ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.11.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.2.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.3.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.4.0.md",
@@ -6905,6 +6906,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.10.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.11.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.12.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.13.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.4.0.md",
@@ -7113,6 +7115,7 @@
     ".skilled/skills/sk-git/changelog/v1.10.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.10.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
@@ -10491,6 +10494,7 @@
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/spec.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/tasks.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/goal.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
@@ -28326,7 +28330,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "473a3edb3245d05aab9aa8761b6416eb65e74f438af09ace18409980d3dbca3c",
+  "manifestHash": "cb66abeec5aab17add6e46beddb5f028cec2555142140fc82486cea98f2c61b0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
