@@ -55,14 +55,6 @@ interface PythonRow {
 // rr-iter2-020 is sk-code gold that the native scorer loses to sk-doc by under
 // 0.04 in the pinned regime. It is vocabulary bleed between the two hubs and
 // stays here until that is resolved, not hidden by a local graph.
-//
-// rr-iter3-166 joined for a related reason and was measured the same way. A hub
-// consolidation added roughly thirty terms to sk-code and restructured the
-// deep-loop modes; nothing was removed, but each term carries less weight once
-// the vocabulary grows, so the prompt loses its gold hub in the pinned regime.
-// With a live skill graph the daemon ranks it correctly, deep-loop over sk-doc
-// by 0.032, so a real session is unaffected. Adding aliases was tried and did
-// not move it, which is what identifies dilution rather than a missing term.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   // rr-hub6-204 and rr-hub6-207 left this list: the corpus growth (orchestration/jev
   // skills) let the TS scorer recover both prompts to the Python-correct
@@ -75,11 +67,13 @@ const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   //
   // rr-iter3-146 left this list when the explicit lane stopped reading a negated
   // write ("don't write anything back") as a request to write docs.
+  //
+  // rr-iter3-166 left this list when the hyphenated deep-review and deep-research
+  // workflow names became system-deep-loop lexical hints, the form the prompt uses.
   'rr-iter2-020',
   'rr-iter3-092',
   'rr-iter3-097',
   'rr-iter3-099',
-  'rr-iter3-166',
 ];
 
 function findWorkspaceRoot(): string {
@@ -262,7 +256,9 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     expect(pythonCorrect).toBe(109);
     // 103 -> 104: a negated write verb no longer awards the sk-doc write-surface
     // boost, so rr-iter3-146 reaches its sk-code gold.
-    expect(tsAlsoCorrect).toBe(104);
+    // 104 -> 105: the hyphenated deep-review and deep-research workflow names are
+    // system-deep-loop lexical hints, so rr-iter3-166 returns to its deep-loop gold.
+    expect(tsAlsoCorrect).toBe(105);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);
