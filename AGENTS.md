@@ -278,7 +278,7 @@ The reply-time rule loads are Gate 6 in §2, and the two clauses that bind regar
 
 ## 9. 🤖 AGENT ROUTING
 
-Use the active runtime's own agent directory, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/`, `.devin/agents/` or `.hermes/agents/`, and stay with it for the workflow phase.
+Use the active runtime's own agent directory, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/`, `.devin/agents/`, `.hermes/agents/` or `.dsh/agents/`, and stay with it for the workflow phase.
 
 Hermes is the exception worth knowing: it has no agent flag, so naming a directory is not enough there. Each agent is also mirrored as the preloadable skill `agent-<name>`, and a dispatch binds one by preloading that skill and naming it in `HERMES_AGENT_PERSONA`. The `cli-hermes` packet owns the mechanics.
 
