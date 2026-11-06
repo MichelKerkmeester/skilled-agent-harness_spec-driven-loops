@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.18.0
+version: 1.0.19.0
 ---
 
 # mcp-chrome-devtools
@@ -148,6 +148,8 @@ The CLI path covers the same actions and reaches the full CDP surface beyond the
 ### Isolated Instances
 
 `--isolated=true` is the key to parallelism. Register several entries in `.utcp_config.json`, each with its own name such as `chrome_devtools_1` and `chrome_devtools_2`. Each entry gets its own browser process. Inside a single `call_tool_chain()` block you can navigate two isolated browsers and capture both screenshots. The results return together, with no session conflicts and no port collisions.
+
+A third entry, `chrome_devtools_live`, is not isolated. It runs with `--autoConnect` and attaches to the Chrome you already have open, for signed-in work such as the ClickUp editor pass. It opens its own tabs in the background and closes only those, so your view does not change.
 
 ### Example Workflows
 

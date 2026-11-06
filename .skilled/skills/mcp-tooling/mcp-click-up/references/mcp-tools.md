@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -304,23 +304,102 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
 
 1. **Check the import.** Read the page with `content_format: "text/md"` and compare it with the markdown you sent, both normalized: trailing spaces and blank lines dropped, and `[url](url)` unwrapped to the bare URL. A line you sent that is missing from the read-back is an import defect, such as an escaped `\*\*`, a paragraph turned into a heading above a divider, a literal `\[\]` or an auto-linked `.md` name. Fix the content and write the page again before step 2. A bold run that ClickUp re-split around inline code is not a defect.
 2. **Count the gaps.** Read the page with `content_format: "text/plain"` and count `/(^|\n) \n/g`. Zero means the routine is done.
-3. **Remove the gaps.** Run the program below through the `mcp-chrome-devtools` mode. It needs a browser window where the user is logged in to ClickUp. When no browser tool is available, or a page opens on ClickUp's login screen, stop and tell the user the gap count per page and that they need to log in to ClickUp in the DevTools browser window. Run the program once they confirm.
+3. **Remove the gaps.** Run one of the two programs below. Both work in a browser the user is already logged in to, in a tab of their own, and close that tab when they finish:
+   - **Aside first** (`mcp-aside-devtools`). The `aside` manual drives the user's own Aside browser. `openTab` opens the page as a background tab, so the user's active tab and window stay as they are and they can keep working while the pass runs. Measured on 2026-11-06: the active tab in each window was the same before and after a pass, and the pass tab reported `active: false`.
+   - **Chrome as the fallback** (`mcp-chrome-devtools`). The `chrome_devtools_live` manual runs `chrome-devtools-mcp --autoConnect` and attaches to the user's own Chrome. It needs Chrome open with remote debugging turned on once at `chrome://inspect/#remote-debugging`. Never use `chrome_devtools_1` or `chrome_devtools_2` for this: they are isolated, so every run starts logged out, and ClickUp keeps a login only for the browser session, so a saved profile does not help either.
+
+   When no browser tool is available, or a page opens on ClickUp's login screen (`login: true`), stop and tell the user the gap count per page and which browser needs the ClickUp login. Run the program again once they confirm.
 4. **Report per page:** import diff lines, gaps before, gaps left and whether the text is unchanged. A page with gaps left or changed text is not delivered. Say which, and why.
 
-The program runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. `chrome_devtools_1` is the Chrome DevTools manual in this repository's Code Mode, so use the name your `list_tools()` shows. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change.
+**Aside program.** It runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. The read-backs run in Code Mode and the editor pass runs in one `aside.aside_repl` call per page. That tool needs a `title`, and its REPL keeps one shared scope between calls, so the pass runs inside its own function. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change. Verified on 2026-11-06 on four scratch pages: every gap removed, text unchanged, no login prompt, the user's view unchanged.
 
 ```javascript
 (async () => {
   const WORKSPACE = "WORKSPACE_ID";
   const DOC = "DOCUMENT_ID";
   const PAGES = [{ id: "PAGE_ID", sent: "THE MARKDOWN YOU SENT" }];
-  const B = chrome_devtools_1;
   const read = async (id, format) => (await clickup_official.clickup_official_clickup_get_document_pages(
     { document_id: DOC, page_ids: [id], content_format: format })).pages[0].content;
-  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
     .filter((l) => l.trim() !== "").map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1"));
   const gaps = (text) => (text.match(/(^|\n) \n/g) || []).length;
-  const sleep = (ms) => B.chrome_devtools_1_evaluate_script(
+  // Returns the number of empty blocks under a divider and puts the caret in the first one.
+  // -1 means no editor on the page, -2 means ClickUp showed its login screen.
+  const PICK = `() => {
+    if (location.pathname.includes("/login")) return -2;
+    const ed = document.querySelector(".ql-editor"); if (!ed) return -1; ed.focus();
+    const empty = [...ed.querySelectorAll(":scope > hr.ql-divider")].map((h) => h.nextElementSibling)
+      .filter((n) => n && n.classList.contains("ql-block") && n.textContent === ""
+        && n.children.length === 1 && n.firstElementChild.tagName === "BR");
+    if (!empty.length) return 0;
+    const sel = window.getSelection(); sel.removeAllRanges();
+    const range = document.createRange(); range.setStart(empty[0], 0); range.collapse(true); sel.addRange(range);
+    return empty.length;
+  }`;
+  const editorPass = (url) => `await (async () => {
+    const p = await openTab(${JSON.stringify(url)});
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const pick = () => p.evaluate(${JSON.stringify("(" + PICK + ")()")});
+    let presses = 0, left = 0, login = false, editor = false;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      if (attempt) { await p.goto(${JSON.stringify(url)}); }
+      await sleep(6000 + attempt * 2000);
+      let n = await pick(), stall = 0;
+      if (n === -2) { login = true; break; }
+      if (n === -1) continue;
+      editor = true;
+      while (n > 0 && stall < 3 && presses < 300) {
+        await p.keyboard.press("Delete"); presses++;
+        const m = await pick();
+        if (m >= n) { stall++; await sleep(2000); } else { stall = 0; }
+        n = m;
+      }
+      left = Math.max(n, 0);
+      if (left === 0) break;
+    }
+    if (!editor && !login) login = (await pick()) === -2;
+    await sleep(3500);
+    await closeTab(p);
+    console.log("RESULT " + JSON.stringify({ presses, left, login, editor }));
+  })();`;
+  const report = [];
+  for (const page of PAGES) {
+    const md = await read(page.id, "text/md");
+    const got = new Set(norm(md));
+    const importDiff = norm(page.sent).filter((line) => !got.has(line));
+    const gapsBefore = gaps(await read(page.id, "text/plain"));
+    let browser = { presses: 0, login: false, editor: true };
+    if (gapsBefore > 0) {
+      const raw = JSON.stringify(await aside.aside_repl({ title: "clickup divider gaps",
+        code: editorPass(`https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${page.id}`) }));
+      const m = /RESULT (\{[^}]*\})/.exec(raw.replace(/\\"/g, '"'));
+      browser = m ? JSON.parse(m[1]) : { error: raw.slice(0, 300) };
+    }
+    const after = await read(page.id, "text/md");
+    report.push({ page: page.id, importDiff, gapsBefore, ...browser,
+      gapsLeft: gaps(await read(page.id, "text/plain")),
+      textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
+  }
+  console.log(JSON.stringify(report));
+})();
+```
+
+A report with an `error` field means the Aside call failed before the editor pass, for example because Aside is closed. Open Aside and run the program again.
+
+**Chrome program.** The same routine through `chrome_devtools_live`. It opens the first page with `new_page` in the background, so the user's view does not change and their selected tab is never navigated away, reuses that tab for the rest of the batch and closes it at the end. `chrome_devtools_live` is the name in this repository's Code Mode, so use the name your `list_tools()` shows. Verified on 2026-11-06 on two scratch pages: every gap removed, text unchanged, no login prompt, only its own tab closed.
+
+```javascript
+(async () => {
+  const WORKSPACE = "WORKSPACE_ID";
+  const DOC = "DOCUMENT_ID";
+  const PAGES = [{ id: "PAGE_ID", sent: "THE MARKDOWN YOU SENT" }];
+  const B = chrome_devtools_live;
+  const read = async (id, format) => (await clickup_official.clickup_official_clickup_get_document_pages(
+    { document_id: DOC, page_ids: [id], content_format: format })).pages[0].content;
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
+    .filter((l) => l.trim() !== "").map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1"));
+  const gaps = (text) => (text.match(/(^|\n) \n/g) || []).length;
+  const sleep = (ms) => B.chrome_devtools_live_evaluate_script(
     { function: `() => new Promise((r) => setTimeout(() => r(1), ${ms}))` });
   const number = (result) => { const m = /```json\n(-?\d+)/.exec(result); return m ? Number(m[1]) : -9; };
   // Returns the number of empty blocks under a divider and puts the caret in the first one.
@@ -337,35 +416,54 @@ The program runs steps 1, 3 and 4 for a batch of pages. Fill in the constants an
     return empty.length;
   }`;
   const report = [];
-  for (const page of PAGES) {
-    const md = await read(page.id, "text/md");
-    const got = new Set(norm(md));
-    const importDiff = norm(page.sent).filter((line) => !got.has(line));
-    const gapsBefore = gaps(await read(page.id, "text/plain"));
-    let left = gapsBefore, presses = 0, login = false;
-    for (let attempt = 0; left > 0 && attempt < 3; attempt++) {
-      await B.chrome_devtools_1_navigate_page({ type: "url",
-        url: `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${page.id}` });
-      await sleep(6000 + attempt * 2000);
-      let n = number(await B.chrome_devtools_1_evaluate_script({ function: PICK })), stall = 0;
-      if (n === -2) { login = true; break; }
-      while (n > 0 && stall < 3 && presses < 300) {
-        await B.chrome_devtools_1_press_key({ key: "Delete" }); presses++;
-        const m = number(await B.chrome_devtools_1_evaluate_script({ function: PICK }));
-        if (m >= n) { stall++; await sleep(2000); } else { stall = 0; }
-        n = m;
+  let opened = null;
+  try {
+    for (const page of PAGES) {
+      const url = `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${page.id}`;
+      const md = await read(page.id, "text/md");
+      const got = new Set(norm(md));
+      const importDiff = norm(page.sent).filter((line) => !got.has(line));
+      const gapsBefore = gaps(await read(page.id, "text/plain"));
+      let left = gapsBefore, presses = 0, login = false, editor = gapsBefore === 0;
+      for (let attempt = 0; left > 0 && attempt < 3; attempt++) {
+        if (!opened) await B.chrome_devtools_live_new_page({ url, background: true });
+        else await B.chrome_devtools_live_navigate_page({ type: "url", url });
+        opened = url;
+        await sleep(6000 + attempt * 2000);
+        let n = number(await B.chrome_devtools_live_evaluate_script({ function: PICK })), stall = 0;
+        if (n === -2) { login = true; break; }
+        if (n === -1) continue;
+        editor = true;
+        while (n > 0 && stall < 3 && presses < 300) {
+          await B.chrome_devtools_live_press_key({ key: "Delete" }); presses++;
+          const m = number(await B.chrome_devtools_live_evaluate_script({ function: PICK }));
+          if (m >= n) { stall++; await sleep(2000); } else { stall = 0; }
+          n = m;
+        }
+        left = Math.max(n, 0);
       }
-      left = Math.max(n, 0);
+      // ClickUp can redirect to its login screen after the editor check, so look once more.
+      if (opened && !editor && !login) login = number(await B.chrome_devtools_live_evaluate_script({ function: PICK })) === -2;
+      await sleep(3500);
+      const after = await read(page.id, "text/md");
+      report.push({ page: page.id, login, editor, importDiff, gapsBefore, presses,
+        gapsLeft: gaps(await read(page.id, "text/plain")),
+        textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
     }
-    await sleep(3500);
-    const after = await read(page.id, "text/md");
-    report.push({ page: page.id, login, importDiff, gapsBefore, presses,
-      gapsLeft: gaps(await read(page.id, "text/plain")),
-      textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
+  } finally {
+    // Close only the tab this program opened, found by the page it last loaded.
+    if (opened) {
+      const line = String(await B.chrome_devtools_live_list_pages({})).split("\n")
+        .find((l) => l.includes(opened));
+      const m = line && /^(\d+): /.exec(line);
+      if (m) await B.chrome_devtools_live_close_page({ pageId: Number(m[1]) });
+    }
   }
   console.log(JSON.stringify(report));
 })();
 ```
+
+`editor: false` means the page never showed the ClickUp editor in three tries. Check `login`, then the page ID.
 
 `gapsLeft` counts every `" \n"` line, and an image at the end of a page reads that way too. When `gapsLeft` is 1 and the page ends in an image, check the text around the hit before calling it a divider.
 

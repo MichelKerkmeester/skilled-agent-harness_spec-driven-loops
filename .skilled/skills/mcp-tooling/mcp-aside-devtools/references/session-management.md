@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside concurrency"
 importance_tier: normal
 contextType: reference
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Aside Session Management
@@ -81,6 +81,15 @@ Default posture:
 - **Single-writer lock keyed by account/profile.**
 - Enable read-only concurrency only after a controlled multi-client test proves isolation.
 - Do not register parallel UTCP manuals (`aside_1`/`aside_2`) — the strategy is an unresolved open question pending that isolation test.
+
+### Working beside the user
+
+The REPL can drive pages while the user keeps working in the same browser. Measured on `1.26.626.1517` on 2026-11-06:
+- **`openTab(url)` opens a background tab.** The active tab in each of the user's windows was the same before and after, and the new tab reported `active: false`. Its "set it active" message names the REPL's current page, not the browser's.
+- **The page still acts as focused.** Inside that tab `document.visibilityState` is `visible` and `document.hasFocus()` is `true`, so `page.evaluate` and `page.keyboard.press` work there, as a ClickUp editor pass that pressed Delete showed.
+- **Tabs come only from `openTab`.** `chrome.tabs.create` is refused in the REPL because it can change the user's tab or window session.
+
+So open a tab of your own with `openTab`, work only in it and close it with `closeTab`. Never attach to the user's active tab for a mutating step.
 
 ---
 

@@ -65,6 +65,8 @@ The hosted server writes every divider with an empty block under it, whatever ma
 | `references/mcp-tools.md`, `SKILL.md`, `references/troubleshooting.md`, `changelog/v1.2.11.0.md` | Modified and Created | Required import check and gap removal, with its program |
 | `mcp-tooling/ROUTER.md`, `sk-doc/ROUTER.md` and their Hermes copies | Modified | Compiled-routing directive back in section 5 |
 | `mcp-tooling` 1.9.5.0 and `sk-doc` 2.4.3.0 release files | Modified and Created | Hub version fields and changelogs |
+| `.utcp_config.json` | Modified | New `chrome_devtools_live` manual with `--autoConnect` |
+| `mcp-click-up` 1.2.12.0, `mcp-chrome-devtools` 1.0.21.0, `mcp-aside-devtools` 1.1.8.0 files and their Hermes copies | Modified and Created | Gap pass in the user's own browser, in a background tab |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,6 +87,8 @@ The behavior was measured live first: 13 markdown variants, two edit modes and a
 | Steps in the reference, no script | The editor selectors are ClickUp internals that can change, and the steps fit in one subsection |
 | No router keyword change | "doc page" and "document" already load `references/mcp-tools.md`, so a new keyword would add a route surface for nothing |
 | Restore the directive in both hubs in one change | The same readability-pass defect broke the readiness check in `mcp-tooling` and `sk-doc`, and `sk-design` and `sk-code` show the passing shape |
+| Run the gap pass in the user's own browser, Aside first | An isolated browser starts logged out every run, and a saved profile does not help because ClickUp ends its login with the browser session. Aside opens a background tab and leaves the user's view alone |
+| Add a live Chrome manual instead of changing `chrome_devtools_1` | The isolated manuals stay right for testing, so only the new manual touches the user's real Chrome |
 | Fix the example's ID fields in the same change | The example read `doc.id`, while the server returns `document_id` and `page_id`, which the same run confirmed |
 <!-- /ANCHOR:decisions -->
 
@@ -103,6 +107,8 @@ The behavior was measured live first: 13 markdown variants, two edit modes and a
 | `validate_skill_package.py` on `mcp-tooling` and `sk-doc` | All three legs PASS, including `compiled-ready` |
 | `package_skill.py --check --strict` on both hubs and `mcp-click-up` | PASS |
 | The section 8 program on a gapped scratch page | Logged out: `login: true`, nothing touched. Logged in: 3 gaps to 0, text unchanged. Setext trap: `importDiff` names the swallowed lines |
+| Aside and Chrome live programs as written, on gapped scratch pages | Every gap removed, text unchanged, `login: false`, the user's active tabs unchanged |
+| Fixed program on a logged-out browser | `login: true`, `editor: false`, nothing touched |
 | sk-create-skill fleet checks | Leaf manifest, derived freshness, root metadata and playbook topology all exit 0 |
 <!-- /ANCHOR:verification -->
 
@@ -111,7 +117,8 @@ The behavior was measured live first: 13 markdown variants, two edit modes and a
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The automated pass depends on ClickUp's editor DOM.** If ClickUp renames `.ql-editor` or `hr.ql-divider`, the selector step finds nothing. The manual Delete-key fix and the plain-text check still work.
+1. **The Chrome fallback needs the user's Chrome open with remote debugging on**, and Chrome may ask the user to allow each new connection. Aside needs no setup.
+2. **The automated pass depends on ClickUp's editor DOM.** If ClickUp renames `.ql-editor` or `hr.ql-divider`, the selector step finds nothing. The manual Delete-key fix and the plain-text check still work.
 <!-- /ANCHOR:limitations -->
 
 ---

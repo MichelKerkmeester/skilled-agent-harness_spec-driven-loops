@@ -46,7 +46,8 @@
       ".skilled/skills/mcp-tooling/ROUTER.md",
       ".skilled/skills/sk-doc/ROUTER.md",
       ".hermes/skills/mcp-tooling/ROUTER.md",
-      ".hermes/skills/sk-doc/ROUTER.md"
+      ".hermes/skills/sk-doc/ROUTER.md",
+      "feature-catalog/feature-catalog.md"
     ],
     "entities": [
       {
@@ -101,6 +102,12 @@
         "name": "ROUTER.md",
         "kind": "doc",
         "path": ".skilled/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every divider the hosted ClickUp MCP writes into a doc page gets an empty line under it, so a page built from markdown shows a double gap under each `  `",
     "created_at": "2026-11-05T17:14:27Z",
-    "last_save_at": "2026-11-05T18:40:58.258Z",
+    "last_save_at": "2026-11-06T07:00:14.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6ebeba9a8c40aacaf7e8367045e0542714535d560382ef3730a1a1d02cb1ecd",
+    "source_fingerprint": "sha256:74acaaa83e24b77abfe8d575be7c9deda5f4ef16ed51692228809d09895a7584",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b911bedbdbb5c265435d4bf3d2d837097a8b85ee8a4b21f772702bdce0ecb59",
+      "spec.md": "9d7d33258f8664b9f10ddaa7052e0c71209b53428322f77bf971a82156ce1e79",
       "plan.md": "0937b1c53a464907f86cf6480735760ae4440c90b916272afd35aa6a83b1d752",
-      "tasks.md": "eb9aa5e38c028d9ce03e5b089752e98de9cc5334d24119aadae1bf1021c158c1",
-      "implementation-summary.md": "a3b5ae49bcc82b7164aa3e832780abca7ba7655a5c30650cefe8bf6364e29a6d"
+      "tasks.md": "56e1ee0e3dec22289537e3e42efbea961deae7045e3974e0970c8ff13262d171",
+      "implementation-summary.md": "ade5072ad309247aede1087ab304f266c1d00a441b73919d4eab0fa581474ffc"
     },
     "last_active_at": null
   }

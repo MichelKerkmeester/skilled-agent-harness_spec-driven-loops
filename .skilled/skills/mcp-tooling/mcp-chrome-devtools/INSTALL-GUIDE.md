@@ -1,7 +1,7 @@
 ---
 title: "Chrome DevTools Installation Guide"
 description: "Installation and configuration for Chrome DevTools browser debugging through the bdg CLI and the MCP fallback."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Chrome DevTools Installation Guide
@@ -381,6 +381,8 @@ Add the following to `.utcp_config.json`. Use `--isolated=true` to give each ins
 ```
 
 Register multiple instances for parallel testing. Each needs `--isolated=true`.
+
+**Optional: a live instance for signed-in work.** An isolated instance starts logged out every run. For a task that needs the user's logins, add a third entry named `chrome_devtools_live` with `"args": ["chrome-devtools-mcp@latest", "--autoConnect"]`. It attaches to the user's running Chrome after they turn on remote debugging once at `chrome://inspect/#remote-debugging`, and `SKILL.md` section 3 says how to use it without touching their tabs.
 
 ### Step 3: Verify MCP tools
 

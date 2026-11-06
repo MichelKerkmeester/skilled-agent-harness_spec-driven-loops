@@ -1,6 +1,6 @@
 ---
 title: "Chrome DevTools Code Mode Manuals - registered-state snapshot"
-description: "Registered-state snapshot of the chrome_devtools_1 and chrome_devtools_2 manual entries in .utcp_config.json, with the dual-manual-for-parallelism rationale. Verify, don't re-add."
+description: "Registered-state snapshot of the chrome_devtools_1, chrome_devtools_2 and chrome_devtools_live manual entries in .utcp_config.json, with the dual-manual-for-parallelism rationale. Verify, don't re-add."
 trigger_phrases:
   - "chrome devtools utcp config"
   - "chrome_devtools_1 manual"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "chrome devtools code mode snapshot"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Chrome DevTools Code Mode Manuals - registered-state snapshot
 
-Registered-state snapshot of BOTH Chrome DevTools manual entries in this repo's Code Mode config. **These manuals are ALREADY registered in `.utcp_config.json` — verify them, do not re-add them.**
+Registered-state snapshot of all three Chrome DevTools manual entries in this repo's Code Mode config. **These manuals are ALREADY registered in `.utcp_config.json` — verify them, do not re-add them.**
 
 ---
 
@@ -25,7 +25,7 @@ The MCP fallback path of mcp-chrome-devtools runs through Code Mode: two manuals
 
 ### Usage
 
-- Confirming both entries exist before any MCP browser call
+- Confirming the entries exist before any MCP browser call
 - Comparing the live `.utcp_config.json` against this known-good snapshot
 - Re-deriving the registered entries instead of duplicating them
 
@@ -48,9 +48,9 @@ Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own br
 ## 2. REGISTERED ENTRIES (byte-true from .utcp_config.json)
 
 **Key points:**
-- Both entries are `call_template_type: "mcp"`, transport `stdio`, launched via `npx`.
+- All three entries are `call_template_type: "mcp"`, transport `stdio`, launched via `npx`.
 - The npm package is pinned (`chrome-devtools-mcp@0.26.0` as of this snapshot) — note that `INSTALL-GUIDE.md` §4 shows `chrome-devtools-mcp@latest` as the generic install snippet; the live registration pins the version. The live config wins.
-- Both carry `--isolated=true` (the parallelism prerequisite) and an empty `env` (no credentials needed).
+- `chrome_devtools_1` and `chrome_devtools_2` carry `--isolated=true` (the parallelism prerequisite). `chrome_devtools_live` carries `--autoConnect` and attaches to the user's own Chrome. All three have an empty `env` (no credentials needed).
 - Tool naming follows `{manual_name}.{manual_name}_{tool_name}`, e.g. `chrome_devtools_1.chrome_devtools_1_navigate_page`.
 
 ### chrome_devtools_1
@@ -67,6 +67,30 @@ Per SKILL.md §3, MCP uses `--isolated=true` so each instance runs in its own br
         "args": [
           "chrome-devtools-mcp@0.26.0",
           "--isolated=true"
+        ],
+        "env": {}
+      }
+    }
+  }
+}
+```
+
+### chrome_devtools_live
+
+Attaches to the user's own running Chrome instead of starting a browser, for signed-in work only. See SKILL.md §3 Live Instance.
+
+```json
+{
+  "name": "chrome_devtools_live",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "chrome_devtools_live": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": [
+          "chrome-devtools-mcp@0.26.0",
+          "--autoConnect"
         ],
         "env": {}
       }

@@ -1,7 +1,7 @@
 ---
 title: "mcp-chrome-devtools: Feature Catalog"
 description: "Unified feature inventory for the mcp-chrome-devtools skill — the bdg CLI (primary, 300+ CDP methods across 53 domains) and the Chrome DevTools MCP via Code Mode (fallback, 26 exposed tools, dual isolated instances)."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # mcp-chrome-devtools: Feature Catalog
@@ -26,7 +26,7 @@ Routing is **capability-based**: prefer the CLI when it fits (SKILL.md Rule "Che
 | CLI CDP surface | 300+ methods across 53 domains (self-discovered, never hardcoded) |
 | MCP exposed tools | 26 (via Code Mode; confirm names with discovery) |
 | CLI install | `npm install -g browser-debugger-cli@alpha` |
-| MCP manuals | `chrome_devtools_1` + `chrome_devtools_2` in `.utcp_config.json`, both `--isolated=true` |
+| MCP manuals | `chrome_devtools_1` + `chrome_devtools_2` in `.utcp_config.json`, both `--isolated=true`, plus `chrome_devtools_live` with `--autoConnect` for signed-in work in the user's own Chrome |
 | MCP invocation | `chrome_devtools_N.chrome_devtools_N_<tool_name>` via `call_tool_chain()` |
 | Platforms | macOS and Linux native; Windows via WSL only |
 
