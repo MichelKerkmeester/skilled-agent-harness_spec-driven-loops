@@ -68,7 +68,7 @@ Eleven specialized agents own focused roles. Eight CLI bridges let a runtime dis
 
 - A review can fan out across several models at once, with the safest verdict winning
 - The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
-- The seven bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh target is a separate headless run surface. Fan-out lineages and dispatch stacks are bounded, so delegation never loops
+- The seven bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh target is a separate run surface, for a headless dispatch or an interactive session such as `dsh web`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops
 
 ### 🧩 Plugin & Extension Library
 
@@ -304,7 +304,7 @@ Some projects copy Skilled in instead of linking it. A new upstream release then
 - **`apply --capture <path>`** moves an edit made in the live copy into its overlay instead
 - **`repin`** moves the copy to a newer upstream commit. It shows a staged result first and backs up every path before it writes. `repin --rollback <run-id>` restores that backup
 
-A file an overlay owns is edited in its overlay, never in the live copy. The `overlay-guard` hook enforces that: it refuses an agent's edit to an owned file and names the overlay file to edit instead. It runs on Claude Code, Codex, Cursor, Devin and Pi, and it does nothing in a repo with no overlay folder. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off, and the [overlay-guard README](.skilled/hooks/overlay-guard/README.md) has the details.
+A file an overlay owns is edited in its overlay, never in the live copy. The `overlay-guard` hook enforces that: it refuses an agent's edit to an owned file and names the overlay file to edit instead. It runs on Claude Code, Codex, Cursor, Devin, Pi and DeepSeek Harness, and it does nothing in a repo with no overlay folder. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off, and the [overlay-guard README](.skilled/hooks/overlay-guard/README.md) has the details.
 
 &nbsp;
 
@@ -799,6 +799,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - **Claude Code, Codex, Cursor and Devin**: call the prompt-time hook adapters under `.skilled/skills/system-spec-kit/runtime/hooks/`, and each adapter labels its diagnostics with its own runtime name
 - **OpenCode**: uses `.opencode/plugins/system-skill-advisor.js`, which spawns `.skilled/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer
 - **Pi**: the extension `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` runs the same hook in-process and falls back to the outage status line and the directives if the advisor misses its deadline
+- **DeepSeek Harness**: the adapter `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` runs the same hook in an interactive session. A fan-out lineage gets no brief
 - **Disable everywhere**: set `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the OpenCode plugin alone). The legacy `SPECKIT_`-prefixed names still work
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default
 - **CLI front door**: the same nine commands over the warm daemon for hooks, cron and shell diagnostics. Mutation commands (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) are gated behind `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`
@@ -1051,6 +1052,7 @@ OpenCode, Pi and Devin inject the slice on every turn, and Cursor injects it at 
 - **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the parent `goal.md`'s chat slice to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal. `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal. Show, pause, clear and complete run through the `opencode_goal` tools
 - **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same objective slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
+- **DeepSeek Harness:** `DSH_SPEC_FOLDER` names the packet whose slice the session gets at start. An interactive session also manages the goal through `/goal-dsh` and the `dsh_goal` tool over the same shared core
 - **Guarded by the validator:** a phase parent or top-level packet goal has one limit, 4,000 characters, and fails only past it. A phase child whose goal has no binding row fails too
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.skilled/hooks/goal/README.md` for the model and `.skilled/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
 
@@ -1086,7 +1088,7 @@ Saves the answers you give to the AI's questions, so the reason behind a choice 
 
 Each answer is queued as you give it, and a full-auto `/speckit:save` writes it into the bound packet's `decision-record.md` as a short decision, with the question, the offered options and your answer kept word for word. Questions about process, such as which spec folder to use or whether to push, are left out. A repeat save changes nothing, and decisions you wrote by hand stay as they are.
 
-- **Runtimes:** Claude Code queues through a hook, Pi through an extension, and OpenCode and Devin during the session. Each of those and Codex also read the stored conversation at save for anything the live path missed, so nothing is added twice
+- **Runtimes:** Claude Code queues through a hook, Pi through an extension, and OpenCode, Devin and DeepSeek Harness during the session. Each of those and Codex also read the stored conversation at save for anything the live path missed, so nothing is added twice
 - **Chat answers:** a question you answered in plain chat is offered at save with evidence about the reply, and is added only after you confirm it
 - **Linked projects:** each project keeps its answers in its own folder under `.skilled/skills/.state/decision-capture/`, so projects linked to one checkout never see each other's answers
 - **Off:** `SYSTEM_DECISION_CAPTURE_DISABLED=1`. The [hooks README](.skilled/hooks/README.md) lists the adapters
@@ -1136,6 +1138,17 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 - **Each turn and at session start:** the skill advisor brief, the spec-folder gate, the session context, the named persona, the bound packet goal and the worktree, dist-freshness, git-hook and live-sync guards
 - **Before the final answer:** the completion-evidence nudge
 - **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. A `hermes` launch that the shell shim wraps gets the variable set for it, see [In-Session Handover](#in-session-handover). See [`.hermes/SYNC.md`](.hermes/SYNC.md)
+
+&nbsp;
+#### DeepSeek Harness Bundle
+
+DeepSeek Harness loads plugins only from the patches a run names. `.dsh/patches/guards.patch.yml` loads `.dsh/plugins/repo-guards/`, whose adapters live in the hook library beside their cores and reach the bundle through links that `/doctor:runtime-mirrors` checks.
+
+- **Before a tool call, able to stop it:** dispatch preflight, the spec-folder gate, the MCP route guard, the overlay guard and the git message gate
+- **After a tool call, as advice on its result:** post-edit quality, the git advisory, the dispatch audit log and the injection screen on fetched pages and MCP results
+- **At session start and each turn:** the session context and the bound packet goal, plus the skill advisor brief, `/goal-dsh` and six warn-only checks in an interactive session
+- **Around the session:** context again after compaction, the completion-evidence nudge and live decision capture, plus an autosave at close in an interactive session
+- **Fan-out lineages:** the lineage patch adds a marker row that keeps the four interactive-only adapters off and every guard on. See [`.dsh/SYNC.md`](.dsh/SYNC.md)
 
 &nbsp;
 #### Shared Hook Cores
@@ -1534,7 +1547,7 @@ The repo runs a live-sync loop around the worktree-per-session model.
 
 **Switches**
 
-- The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. The follower starts with Claude Code, Codex, Cursor, Devin, OpenCode, Pi and Hermes sessions
+- The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. The follower starts with Claude Code, Codex, Cursor, Devin, OpenCode, Pi, Hermes and interactive DeepSeek Harness sessions
 - `SYSTEM_LIVE_SYNC_DISABLED=1` disables the whole loop
 - `SPECKIT_AUTOSYNC=0` for the publish leg, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for the reconcile step
 - See `.skilled/skills/sk-git/references/continuous-integration.md` for the full model
