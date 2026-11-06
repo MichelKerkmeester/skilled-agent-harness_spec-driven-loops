@@ -1,12 +1,32 @@
 {
-  "count": 988,
+  "count": 997,
   "mode": "readme",
   "results": [
     {
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".claude/hooks/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".codex/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -26,7 +46,27 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".cursor/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".cursor/hooks/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".devin/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -76,6 +116,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".hermes/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".opencode/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -107,6 +157,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/plugins/tests/helpers/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".pi/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -361,8 +421,8 @@
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 261,
-          "line_number": 261,
+          "line": 279,
+          "line_number": 279,
           "message": "\"RELATED\" must be the last H2; it is followed by \"COVERAGE MATRIX\".",
           "severity": "warning",
           "type": "render_section_order"
@@ -5827,6 +5887,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/sk-git/scripts/hooks/dsh/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/sk-git/scripts/hooks/opencode/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -6837,6 +6907,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-skill-advisor/hooks/claude/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-skill-advisor/hooks/dsh/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -8254,6 +8334,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/runtime/hooks/devin/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/dsh/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
