@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-claude-code routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 A request that names Claude Code, the `claude` CLI, extended thinking or a deep-reasoning handoff reaches this skill, and so does one asking for surgical code editing, schema-validated JSON, a second-AI code review, an agent-delegated task or a cost-capped background run. Those signals select from the flag and capability references in `references/`, the prompt card and templates in `assets/`, and the hub [`ROUTER.md`](../../../.skilled/skills/cli-external-orchestration/ROUTER.md) that names the leaves a dispatch starts from. A session already running inside Claude Code never reaches this router, because the self-invocation guard refuses it first.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

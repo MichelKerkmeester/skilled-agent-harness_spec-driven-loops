@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-jev routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -30,7 +30,7 @@ question-shaping card, and `feature-catalog/` plus `manual-testing-playbook/` on
 them explicitly.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 The machine router for [`SKILL.md`](../../../.skilled/skills/cli-classifier/cli-jev/SKILL.md). `SKILL.md` keeps the short routing prose and the

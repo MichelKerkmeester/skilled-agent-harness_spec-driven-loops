@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep-research routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -24,7 +24,7 @@ link that points here; this file holds the declaration a reader parses to decide
 - It routes to two resource families. The `references/` doctrine starts at `references/guides/quick-reference.md` on every invocation and adds the loop protocol, spec anchoring, convergence, state, recovery, runtime-parity and resource-map references. The `assets/` markdown templates and prompt assets load on explicit request.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

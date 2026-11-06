@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-command routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -35,7 +35,7 @@ It routes to two resource families:
 - `assets/`: this packet's command templates, where `command-template.md`, `command-router-template.md` and `command-presentation-template.md` carry the skeletons and `command-contract.json` the machine-readable family contract.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

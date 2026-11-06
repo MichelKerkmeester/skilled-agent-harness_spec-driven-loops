@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-prompt routing"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 A `$text`, `$improve`, `$refine`, `$short`, `$json`, `$yaml` or `$raw` prefix reaches sk-prompt, and so does a request to improve, enhance, score or restructure a prompt, or a design-generation brief. The resource families are the flat `references/` pair (the improvement checklist and the framework library with CLEAR scoring) and the `assets/` guides for the Markdown, JSON and YAML formats plus the CLI prompt quality card. A request that scores no intent still loads the improvement checklist reference, then asks the disambiguation checklist rather than guessing.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

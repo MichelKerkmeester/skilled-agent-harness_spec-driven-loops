@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-skill routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,7 +21,7 @@ link that points here; this file holds the declaration a reader parses to decide
 ## 1. OVERVIEW
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 Requests reach this packet when they ask to create or rebuild an OpenCode skill under `.skilled/skills/`, to run `/create:skill` for a standalone skill or `/create:skill-parent` for a parent hub, to author or repair a skill package's `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/` or `changelog/`, or to validate and package a skill with `scripts/package_skill.py`. Its vocabulary is `create skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `parent hub`, `mode packet`, `nested workflow packet` and `package skill`. It routes to two resource families: the `references/shared/` doctrine and its root-metadata contract, which both modes load first, and the mode's own `references/<key>/` plus `assets/<key>/` trees, where `create-skill` resolves the `skill` key and `create-skill-parent` resolves `parent-skill`.

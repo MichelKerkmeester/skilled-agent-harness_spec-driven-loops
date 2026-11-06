@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-obsidian routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 An Obsidian vault or note request reaches this skill when it names Obsidian, a vault, `notesmd-cli`, the cyanheads MCP, the official app-backed `obsidian` CLI, or one of the two documented plugins, and the `mcp-tooling` hub's `mcp-obsidian` mode signal selects the packet. From there the router selects among the CLI command references, the official-CLI agent-usage guide, the cyanheads MCP tool catalog, the troubleshooting and Notion-migration guides, and the plugin and theme families under `references/plugins/` and `references/themes/`. `references/obsidian-cli-commands.md` is the declared default, offered as a fallback suggestion rather than loaded by any scored route.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

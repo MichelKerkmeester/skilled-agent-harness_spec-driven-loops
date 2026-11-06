@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-with-human-voice routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 A request that names the Human Voice Rules, a voice pass, a rewrite in human voice or `/create:with-human-voice` reaches this packet, and so does a draft someone calls machine-written and a passage someone wants scored without edits. The resource families split with the operation: `apply` edits, so it reaches the scope gate, the scoring arithmetic, the publish supplement and the report template, while `score` reports and loads the same four without editing. `references/hvr-rules.md` sits outside both, because the scanner parses it on every run.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

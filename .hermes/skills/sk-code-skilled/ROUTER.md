@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-skilled routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 The hub bundles this surface when a request touches `.skilled/` system code, such as a skill, agent, command, plugin, MCP server, descriptor or config. A language or authoring signal then selects the leaf, and the first leaves loaded are the shared tier under `references/shared/`. From there the router selects among four families: language references, shared patterns, the authoring and quality checklists under `assets/checklists/`, and the verifier assets under `assets/scripts/`.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

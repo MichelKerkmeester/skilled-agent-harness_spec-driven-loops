@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-quality routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -27,7 +27,7 @@ Requests reach this mode when they ask for the post-implementation quality gate,
 - the runner with `assets/quality-defaults.json` and the scripts this mode owns.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

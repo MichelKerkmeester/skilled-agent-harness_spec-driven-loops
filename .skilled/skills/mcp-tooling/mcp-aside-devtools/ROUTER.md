@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-aside-devtools routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 A request reaches this skill when the `mcp-tooling` hub's `mcp-aside-devtools` mode signal selects this packet for a prompt naming Aside, `aside exec` or `aside repl`, the Aside MCP, or an AI browser agent task: a goal-driven multi-step browser job such as booking, filling a form, comparing or signing in and downloading, a deterministic tab, snapshot or screenshot step, or browser work that must be chained with other Code Mode tools. It routes to four flat reference leaves under `references/`: `aside-cli-reference.md` for the command surface, `session-management.md` for the agent-task, REPL and browser-profile layers, `mcp-wiring.md` for the Code Mode path together with the `assets/utcp-aside-manual.md` snapshot, and `troubleshooting.md` for install and error intent. `references/aside-cli-reference.md` is the default reference and the fallback suggestion, and the dated online-research refresh sits outside the map, read only when verifying the current developer surface.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-click-up routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -28,7 +28,7 @@ Requests reach this skill when they name `clickup` or `cupt` with a task action 
 - `references/troubleshooting.md` alone for a failure report
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-benchmark routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 Requests reach this skill when they name a benchmark report, a benchmark package or a behavior benchmark, and when they ask to promote a completed MCP bake-off or to author a scenario contract, a `behavior-benchmark.md` index or a `claude-baseline.md`. It routes to two families: `references/shared/` beside `assets/shared/` for MCP promotion, and `references/behavior-benchmark/` beside `assets/behavior-benchmark/` for behavior. It falls back to `references/shared/README.md` when the family is unresolved, and it never routes to the behavior measurement framework, which stays lane-owned in `system-deep-loop`.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

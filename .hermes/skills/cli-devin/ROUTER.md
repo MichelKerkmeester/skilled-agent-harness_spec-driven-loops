@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-devin routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 Requests reach this skill when they name `devin`, Cognition, an autonomous SWE dispatch, a cloud handoff through `/handoff` or a subagent, and when the task wants a second AI perspective, a model offered only through Devin (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok, SWE-2) or parallel code generation. It routes to six guides under `references/`, from the CLI reference and the integration patterns through devin-tools, agent delegation, cloud handoff and the provider catalog, and to the two `assets/` files that carry the prompt-quality card and the copy-paste prompt templates. The CLI reference and the quality card load on every invocation, and every other family waits for an intent to select it.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-review routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -25,7 +25,7 @@ link that points here; this file holds the declaration a reader parses to decide
 - **Resource families**: the `references/` doctrine, which starts at `references/review-core.md` and adds the single-pass UX flow, the lightweight index and the PR-state dedup rules, plus the `assets/` checklists and templates for security, correctness and quality, SOLID, dead-code removal, test quality and fix completeness.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

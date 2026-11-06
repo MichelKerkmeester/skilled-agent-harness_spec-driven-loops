@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.5.0
+version: 1.0.6.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,7 +21,7 @@ link that points here; this file holds the declaration a reader parses to decide
 ## 1. OVERVIEW
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 A request that writes any file reaches system-spec-kit — a create, an add, an update, a fix, a rename or a configure — and so do a memory save, a resume, a validation question and an explicit spec-folder, phase, handover or goal request.

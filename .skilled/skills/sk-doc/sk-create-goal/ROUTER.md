@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-goal routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 A request to author or revise a packet `goal.md` reaches sk-create-goal, whether it targets a top-level goal, a phase-parent goal, a nested phase-child goal, a packet that has none yet, a newly added phase or an over-budget parent that needs cutting. The same packet also answers `/create:goal` and a request to print a parent goal's chat slice, while a request to set, bind or resend a session objective leaves for the goal hooks. This router picks from the workflow reference, the authoring standards and exemplars, the per-kind templates and the budget-and-handoff reference rather than from the whole folder.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

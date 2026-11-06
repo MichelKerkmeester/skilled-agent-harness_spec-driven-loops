@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-manual-testing-playbook routing"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -27,7 +27,7 @@ The router selects from two resource families. The scaffolds sit under `assets/`
 The runner itself, `scripts/run-conversation-scenario.cjs`, is a tool the conversation reference documents, not a routable resource: only markdown under `references/` and `assets/` loads.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-hermes routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 Requests reach this skill when they name Hermes, Nous Research or the Hermes agent, ask for headless `--oneshot` dispatch or an independent cross-AI validation, want a model from the LLM Gateway roster such as `deepseek-v4.1-flash-1017` or `glm-5.3-flash` through Hermes's own tool loop, or concern Hermes's repo-local project skills and plugins. A `/deep:research` or `/deep:review` lineage on `--executor=cli-hermes` lands here too, and a session already running inside Hermes is refused before any dispatch. It routes to `references/` for the CLI surface, the provider and roster contract, the toolset and hook model, the delegation patterns and the MCP policy, and to `assets/` for the prompt-quality card and the prompt templates.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

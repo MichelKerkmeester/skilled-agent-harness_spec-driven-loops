@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-agent routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 Requests reach this skill when a request names `create agent`, `/create:agent`, an OpenCode agent, a Claude Code agent, an agent file, a new agent, an agent persona, agent frontmatter, a permission object or an authority boundary, and when someone asks whether the component they want is an agent, a skill or a command. It routes to two resource families: `assets/agent-template.md`, the scaffold the creation workflow starts from, and the packet's flat `references/` group, where `references/README.md` is the route map and the fallback, with `references/agent-vs-skill-vs-command.md`, `references/permission-design.md` and `references/common-pitfalls.md` carrying the depth.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

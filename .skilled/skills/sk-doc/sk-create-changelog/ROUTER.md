@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-changelog routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 Requests reach this skill when they name a global component changelog, the `/create:changelog` command, release notes or the next four-part version, and when a changed spec folder, a component hint or recent git history needs resolving into a changelog target. A packet-local request also lands here, and the packet refuses it as deprecated and offers a global entry instead. It routes to two resource families: `assets/changelog-template.md`, which owns what an entry says and how it reads, and the flat `references/` set that `references/README.md` maps, carrying the worked examples, the version-bump rules and the topology edge cases.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

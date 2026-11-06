@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-diagram routing"
 importance_tier: normal
 contextType: general
-version: 1.2.3.0
+version: 1.2.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -32,7 +32,7 @@ The router selects from four resource families:
 An ambiguous format returns `UNKNOWN_FALLBACK` rather than a guess.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

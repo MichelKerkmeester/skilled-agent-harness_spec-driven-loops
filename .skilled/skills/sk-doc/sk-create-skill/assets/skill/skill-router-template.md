@@ -6,7 +6,7 @@ trigger_phrases:
   - "{{SKILL_NAME}} routing"
 importance_tier: normal
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -26,7 +26,7 @@ link that points here; this file holds the declaration a reader parses to decide
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
-loads before an intent selects it.
+other than `DEFAULT_RESOURCE` loads before an intent selects it.
 
 ### Usage
 

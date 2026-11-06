@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-figma routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -31,7 +31,7 @@ A request that names `figma`, `figma-ds-cli`, Figma Desktop, rendering in Figma,
 Design context pulled through an opt-in Figma MCP loads the wiring doc and the paste-ready assets on top of the CLI baseline, so the MCP path never replaces the transport every other route reads. A request whose keywords barely score loads nothing and asks a disambiguation checklist instead of guessing.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

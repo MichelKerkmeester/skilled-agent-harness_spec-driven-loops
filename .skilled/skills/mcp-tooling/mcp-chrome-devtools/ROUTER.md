@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-chrome-devtools routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -29,7 +29,7 @@ It routes to three resource families:
 - `references/troubleshooting.md` for an install, a failure, or the fuller diagnostics an on-demand keyword requests.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

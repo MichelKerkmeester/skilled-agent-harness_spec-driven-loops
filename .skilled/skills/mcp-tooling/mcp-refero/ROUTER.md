@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-refero routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -32,7 +32,7 @@ It is a flat intent router with no keyed resource subdirectories.
 `references/tool-surface.md` is the declared default: the three research routes load it, and a zero-score route offers it as a suggestion.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

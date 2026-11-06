@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-readme routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -31,7 +31,7 @@ It routes to three artifact templates under `assets/`:
 It falls back to `references/README.md` and the `references/readme/` overflow group when the artifact type or folder purpose is unclear.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

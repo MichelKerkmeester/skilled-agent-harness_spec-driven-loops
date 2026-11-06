@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep-review routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -27,7 +27,7 @@ Requests reach this skill when someone asks for a deep review, a convergence rev
 - `references/state/` with `assets/` for the state format, the outputs, the reducer registry, the dashboard and the strategy templates.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

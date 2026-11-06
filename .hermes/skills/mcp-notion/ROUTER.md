@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-notion routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 Requests reach this skill when the `mcp-tooling` hub's `mcp-notion` signal selects this packet for a prompt that names Notion or one of its surfaces: a page, a block, a database or data source, a property, a relation, a rollup, a formula, an `ntn_` integration token, or a phrase such as create a notion page, add a row, query notion, notion search or upload a file to notion. It routes to six reference files under `references/`: `mcp-tools.md` for the 24-tool MCP catalog, `api-gap-tools.md` for the direct Notion API calls that fill the five capabilities the MCP does not expose, `property-types.md` and `database-model.md` for schema and data-source intent, `troubleshooting.md` for install and error intent, and `migration-inventory.md` for a Notion to Obsidian inventory. `references/mcp-tools.md` is the default reference and the fallback suggestion, and no other reference loads without an intent that selects it.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---

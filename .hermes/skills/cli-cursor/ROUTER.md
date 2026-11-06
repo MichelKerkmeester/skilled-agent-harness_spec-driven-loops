@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-cursor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,7 +23,7 @@ link that points here; this file holds the declaration a reader parses to decide
 A request reaches this skill when it names `cursor-agent`, Composer, a Cursor plan or ask exploration, Cursor's native worktree or cloud-worker surface, or an explicit Grok (4.5, 4.6, 4.7) or GLM 5.2 dispatch, since those are the only non-Composer families on the enforced allowlist. The router selects from four resource families: the ALWAYS-loaded CLI command reference and prompt-quality card, the prompt templates, the integration and delegation patterns, and the Cursor-unique surface docs for worktrees, the cloud worker, hooks and the shared editor config. A cross-AI second opinion, an independent implementation attempt and a read-only architecture question all arrive here, while a task whose context is already loaded, a simple one-shot and any dispatch attempted from inside Cursor itself do not.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+what happens when nothing matches. Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
 loads before an intent selects it.
 
 ---
