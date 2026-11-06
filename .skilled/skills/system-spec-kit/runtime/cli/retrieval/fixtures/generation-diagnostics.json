@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7361,
-    "ok": 17149,
+    "missing-frontmatter": 7365,
+    "ok": 17193,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28058,
+  "documentsScanned": 28106,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1fbabc63ccd8a2895e57e6247f7d61bca58b5f5d777a26ce01a4c06146ea9825",
+  "manifestHash": "b686f42740d41468fbfc6a8f01ed5ca2957f0169d903e5f5c0e4ae713fb8a22b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41146,
+      "ok": 41231,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -32832,6 +32832,30 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/scripts/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/integration-request-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/moved-command-contract.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -74667,6 +74691,22 @@
     },
     {
       "path": "specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a0540717a4678a755b2b7ea1686dc0a76388db3d9afe311ba0a102f0a74cf7b3",
+  "corpusHash": "235539e918ca9cf2ba17ae8165d96720e199b6c0c5f2ad2446e09ba97c8fb07a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28058,
+  "includedPathCount": 28106,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -108,6 +108,7 @@
     ".skilled/hooks/hook-install/README.md",
     ".skilled/hooks/injection-contract.md",
     ".skilled/hooks/mcp-route-guard/README.md",
+    ".skilled/hooks/overlay-guard/README.md",
     ".skilled/hooks/permission-policy/README.md",
     ".skilled/hooks/post-edit-quality/README.md",
     ".skilled/hooks/session-cleanup/README.md",
@@ -8205,6 +8206,20 @@
     ".skilled/skills/system-skill-advisor/runtime/tools/README.md",
     ".skilled/skills/system-skill-advisor/runtime/types/README.md",
     ".skilled/skills/system-skill-advisor/scripts/README.md",
+    ".skilled/skills/system-skilled-doctor/README.md",
+    ".skilled/skills/system-skilled-doctor/ROUTER.md",
+    ".skilled/skills/system-skilled-doctor/SKILL.md",
+    ".skilled/skills/system-skilled-doctor/benchmark/README.md",
+    ".skilled/skills/system-skilled-doctor/benchmark/reports/README.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.0.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.2.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.3.0.0.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/integration-request-routing.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/moved-command-contract.md",
+    ".skilled/skills/system-skilled-doctor/references/overlays.md",
     ".skilled/skills/system-spec-kit/ARCHITECTURE.md",
     ".skilled/skills/system-spec-kit/README.md",
     ".skilled/skills/system-spec-kit/ROUTER.md",
@@ -18172,6 +18187,39 @@
     "specs/system-skill-advisor/033-build-freshness-record/plan.md",
     "specs/system-skill-advisor/033-build-freshness-record/spec.md",
     "specs/system-skill-advisor/033-build-freshness-record/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/decision-record.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/goal.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-decisions.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -28089,7 +28137,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1fbabc63ccd8a2895e57e6247f7d61bca58b5f5d777a26ce01a4c06146ea9825",
+  "manifestHash": "b686f42740d41468fbfc6a8f01ed5ca2957f0169d903e5f5c0e4ae713fb8a22b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33709,6 +33757,22 @@
     },
     {
       "path": "specs/system-skill-advisor/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/003-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/scratch",
       "reason": "excluded directory"
     },
     {

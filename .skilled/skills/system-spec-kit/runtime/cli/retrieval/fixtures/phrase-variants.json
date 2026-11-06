@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1fbabc63ccd8a2895e57e6247f7d61bca58b5f5d777a26ce01a4c06146ea9825",
+  "manifestHash": "b686f42740d41468fbfc6a8f01ed5ca2957f0169d903e5f5c0e4ae713fb8a22b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -897,6 +897,9 @@
     ],
     "003 template levels rollup": [
       "003-template-levels rollup"
+    ],
+    "003 vendored overlays and repin operator decisions": [
+      "003-vendored-overlays-and-repin operator decisions"
     ],
     "004": [
       "004"
@@ -13733,6 +13736,9 @@
     ],
     "barter frontend proposals for skilled": [
       "barter frontend proposals for skilled"
+    ],
+    "barter overlay mechanics research": [
+      "barter overlay mechanics research"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -41474,6 +41480,24 @@
     "doctor orphan processes": [
       "doctor orphan processes"
     ],
+    "doctor overlay build": [
+      "doctor overlay build"
+    ],
+    "doctor overlay command design": [
+      "doctor overlay command design"
+    ],
+    "doctor overlay plan": [
+      "doctor overlay plan"
+    ],
+    "doctor overlay repin rollback": [
+      "doctor overlay repin rollback"
+    ],
+    "doctor overlay status": [
+      "doctor overlay status"
+    ],
+    "doctor overlay status apply": [
+      "doctor overlay status apply"
+    ],
     "doctor ownership split": [
       "doctor ownership split"
     ],
@@ -41899,6 +41923,9 @@
     ],
     "doctor skill advisor yaml": [
       "doctor-skill-advisor.yaml"
+    ],
+    "doctor skill agent tag move": [
+      "doctor skill agent tag move"
     ],
     "doctor skill budget audit": [
       "doctor skill-budget audit"
@@ -43306,6 +43333,9 @@
     "edit note yaml metadata": [
       "edit note YAML metadata"
     ],
+    "edit the overlay not the live file": [
+      "edit the overlay not the live file"
+    ],
     "editorial extraction exemplar": [
       "editorial extraction exemplar"
     ],
@@ -43317,6 +43347,9 @@
     ],
     "editorial style and connectors": [
       "Editorial style and connectors"
+    ],
+    "edits go to the overlay": [
+      "edits go to the overlay"
     ],
     "effect enablement": [
       "effect enablement"
@@ -54264,6 +54297,24 @@
     ],
     "guard hard finding mapping": [
       "guard hard finding mapping"
+    ],
+    "guard hook acceptance criteria": [
+      "guard hook acceptance criteria"
+    ],
+    "guard hook decision record": [
+      "guard hook decision record"
+    ],
+    "guard hook goal": [
+      "guard hook goal"
+    ],
+    "guard hook implementation summary": [
+      "guard hook implementation summary"
+    ],
+    "guard hook plan": [
+      "guard hook plan"
+    ],
+    "guard hook tasks": [
+      "guard hook tasks"
     ],
     "guard index fixes acceptance": [
       "guard index fixes acceptance"
@@ -75028,6 +75079,54 @@
     "overengineering simplification summary": [
       "overengineering simplification summary"
     ],
+    "overlay engine": [
+      "overlay engine"
+    ],
+    "overlay engine acceptance criteria": [
+      "overlay engine acceptance criteria"
+    ],
+    "overlay engine decision record": [
+      "overlay engine decision record"
+    ],
+    "overlay engine goal": [
+      "overlay engine goal"
+    ],
+    "overlay engine implementation summary": [
+      "overlay engine implementation summary"
+    ],
+    "overlay engine one state source": [
+      "overlay engine one state source"
+    ],
+    "overlay engine plan": [
+      "overlay engine plan"
+    ],
+    "overlay engine tasks": [
+      "overlay engine tasks"
+    ],
+    "overlay folder setting": [
+      "overlay folder setting"
+    ],
+    "overlay guard": [
+      "overlay guard"
+    ],
+    "overlay guard hook": [
+      "overlay guard hook"
+    ],
+    "overlay owned file": [
+      "overlay owned file"
+    ],
+    "overlay repin": [
+      "overlay repin"
+    ],
+    "overlay replay sync repin": [
+      "overlay replay sync repin"
+    ],
+    "overlay sync repin failure modes": [
+      "overlay sync repin failure modes"
+    ],
+    "overlay sync state": [
+      "overlay sync state"
+    ],
     "overloaded root summary": [
       "overloaded root summary"
     ],
@@ -77355,6 +77454,9 @@
     "phase 1 sk code hub voice": [
       "phase 1 sk code hub voice"
     ],
+    "phase 1 skill and tag move": [
+      "phase 1 skill and tag move"
+    ],
     "phase 1 source deprecation": [
       "phase 1 source deprecation"
     ],
@@ -77883,6 +77985,9 @@
     "phase 2 onboarding fixes": [
       "phase 2 onboarding fixes"
     ],
+    "phase 2 overlay engine": [
+      "phase 2 overlay engine"
+    ],
     "phase 2 parent goal budget": [
       "phase 2 parent goal budget"
     ],
@@ -78264,6 +78369,9 @@
     "phase 3 quality mode": [
       "phase 3 quality mode"
     ],
+    "phase 3 repin": [
+      "phase 3 repin"
+    ],
     "phase 3 review remediation": [
       "phase 3 review remediation"
     ],
@@ -78425,6 +78533,9 @@
     ],
     "phase 4 final deep review": [
       "phase 4 final deep review"
+    ],
+    "phase 4 guard hook": [
+      "phase 4 guard hook"
     ],
     "phase 4 hook stdin deadline": [
       "phase 4 hook stdin deadline"
@@ -82536,6 +82647,9 @@
     "pre v4 upgrade tasks": [
       "pre-v4 upgrade tasks"
     ],
+    "pre write overlay guard": [
+      "pre write overlay guard"
+    ],
     "pre write restraint": [
       "pre-write restraint"
     ],
@@ -83981,6 +84095,9 @@
     "pushed work not visible in main checkout": [
       "pushed work not visible in main checkout"
     ],
+    "put skilled into my project": [
+      "put skilled into my project"
+    ],
     "pyramid hierarchy": [
       "pyramid hierarchy"
     ],
@@ -84896,11 +85013,17 @@
     "re election integration test plan": [
       "re-election integration test plan"
     ],
+    "re pin a vendored copy with a rollback": [
+      "re-pin a vendored copy with a rollback"
+    ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
     ],
     "re pin preceded by red run": [
       "re-pin preceded by red run"
+    ],
+    "re pin vendored skilled": [
+      "re-pin vendored skilled"
     ],
     "re read blocker evidence": [
       "re-read blocker evidence"
@@ -89178,6 +89301,27 @@
     "rephrased queries": [
       "rephrased queries"
     ],
+    "repin acceptance criteria": [
+      "repin acceptance criteria"
+    ],
+    "repin decision record": [
+      "repin decision record"
+    ],
+    "repin goal": [
+      "repin goal"
+    ],
+    "repin implementation summary": [
+      "repin implementation summary"
+    ],
+    "repin plan": [
+      "repin plan"
+    ],
+    "repin stage report": [
+      "repin stage report"
+    ],
+    "repin tasks": [
+      "repin tasks"
+    ],
     "replace depth in sk prompt": [
       "replace depth in sk-prompt"
     ],
@@ -92944,6 +93088,9 @@
     ],
     "role scoped data pipeline": [
       "role scoped data pipeline"
+    ],
+    "roll back a re pin": [
+      "roll back a re-pin"
     ],
     "roll back council round": [
       "roll back council round"
@@ -106777,6 +106924,9 @@
     "skill anatomy": [
       "skill anatomy"
     ],
+    "skill and overlay build phase parent spec": [
+      "skill and overlay build phase parent spec"
+    ],
     "skill and repo readmes cleanup plan": [
       "skill-and-repo-readmes cleanup plan"
     ],
@@ -106794,6 +106944,27 @@
     ],
     "skill and routing rename tasks": [
       "skill and routing rename tasks"
+    ],
+    "skill and tag move": [
+      "skill and tag move"
+    ],
+    "skill and tag move acceptance criteria": [
+      "skill and tag move acceptance criteria"
+    ],
+    "skill and tag move decision record": [
+      "skill and tag move decision record"
+    ],
+    "skill and tag move goal": [
+      "skill and tag move goal"
+    ],
+    "skill and tag move implementation summary": [
+      "skill and tag move implementation summary"
+    ],
+    "skill and tag move plan": [
+      "skill and tag move plan"
+    ],
+    "skill and tag move tasks": [
+      "skill and tag move tasks"
     ],
     "skill architecture document": [
       "skill architecture document"
@@ -107970,6 +108141,9 @@
     "skilled design tasks": [
       "skilled design tasks"
     ],
+    "skilled doctor commands": [
+      "skilled doctor commands"
+    ],
     "skilled framework release notes": [
       "skilled framework release notes"
     ],
@@ -107999,6 +108173,9 @@
     ],
     "skilled house style": [
       "skilled house style"
+    ],
+    "skilled integration commands get their own skill": [
+      "skilled integration commands get their own skill"
     ],
     "skilled layout options": [
       "skilled layout options"
@@ -114895,6 +115072,69 @@
     "system skill advisor v0 9 0 0": [
       "system-skill-advisor v0.9.0.0"
     ],
+    "system skilled doctor 1 0 0 0": [
+      "system-skilled-doctor 1.0.0.0"
+    ],
+    "system skilled doctor 1 1 0 0": [
+      "system-skilled-doctor 1.1.0.0"
+    ],
+    "system skilled doctor 1 2 0 0": [
+      "system-skilled-doctor 1.2.0.0"
+    ],
+    "system skilled doctor 1 3 0 0": [
+      "system-skilled-doctor 1.3.0.0"
+    ],
+    "system skilled doctor benchmark": [
+      "system-skilled-doctor benchmark"
+    ],
+    "system skilled doctor benchmark artifacts": [
+      "system-skilled-doctor benchmark artifacts"
+    ],
+    "system skilled doctor benchmark index": [
+      "system-skilled-doctor benchmark index"
+    ],
+    "system skilled doctor benchmark reports": [
+      "system-skilled-doctor benchmark reports"
+    ],
+    "system skilled doctor build": [
+      "system skilled doctor build"
+    ],
+    "system skilled doctor manual testing": [
+      "system-skilled-doctor manual testing"
+    ],
+    "system skilled doctor plan": [
+      "system skilled doctor plan"
+    ],
+    "system skilled doctor playbook": [
+      "system-skilled-doctor playbook"
+    ],
+    "system skilled doctor readme": [
+      "system-skilled-doctor readme"
+    ],
+    "system skilled doctor router": [
+      "system-skilled-doctor router"
+    ],
+    "system skilled doctor routing": [
+      "system-skilled-doctor routing"
+    ],
+    "system skilled doctor scaffold": [
+      "system skilled doctor scaffold"
+    ],
+    "system skilled doctor skill design": [
+      "system skilled doctor skill design"
+    ],
+    "system skilled doctor v1 0 0 0": [
+      "system-skilled-doctor v1.0.0.0"
+    ],
+    "system skilled doctor v1 1 0 0": [
+      "system-skilled-doctor v1.1.0.0"
+    ],
+    "system skilled doctor v1 2 0 0": [
+      "system-skilled-doctor v1.2.0.0"
+    ],
+    "system skilled doctor v1 3 0 0": [
+      "system-skilled-doctor v1.3.0.0"
+    ],
     "system spec gate": [
       "system-spec-gate"
     ],
@@ -121659,6 +121899,9 @@
     "vendor prompting sources": [
       "vendor prompting sources"
     ],
+    "vendored copies keep their own changes": [
+      "vendored copies keep their own changes"
+    ],
     "vendored copy review fixes": [
       "vendored copy review fixes"
     ],
@@ -121689,11 +121932,23 @@
     "vendored model card exemption": [
       "vendored model card exemption"
     ],
+    "vendored overlays and repin": [
+      "vendored overlays and repin"
+    ],
+    "vendored overlays and repin plan": [
+      "vendored overlays and repin plan"
+    ],
     "vendored reference charting library": [
       "vendored reference charting library"
     ],
     "vendored skilled below git root": [
       "vendored skilled below git root"
+    ],
+    "vendored skilled overlays": [
+      "vendored skilled overlays"
+    ],
+    "vendored skilled overlays and safe re pin": [
+      "vendored skilled overlays and safe re pin"
     ],
     "vendored source research": [
       "vendored source research"
