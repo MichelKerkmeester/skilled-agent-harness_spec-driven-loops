@@ -11,9 +11,9 @@
  * omits is the failure mode worth a test, because a local run then reports in
  * sync while the remote run fails on the same tree.
  *
- * Both Hermes checks are asserted here in the shape their neighbours use,
- * including the n/a rule: a checkout with no `.hermes/` tree is reported as n/a
- * rather than created, so a read-only diagnostic never has a write side effect.
+ * Hermes and DSH checks are asserted in the shape their neighbours use,
+ * including the n/a rule: an absent runtime tree is reported as n/a rather than
+ * created, so a read-only diagnostic never has a write side effect.
  *
  * Both files resolve through an environment override so the removed-line case can
  * be exercised against a copy in a scratch directory instead of by deleting a
@@ -39,22 +39,44 @@ const WORKFLOW_PATH =
 
 const ROUTE_TARGET = 'runtime-mirrors';
 
-// Each Hermes check with the surface it mirrors and the upstream_assets key the
-// workflow refers to it by. `surface` is asserted in the step text because a step
-// that names the key without saying what it covers reports nothing an operator can
-// act on.
+// Each mirror check names its surface, runtime tree and upstream_assets key. The
+// surface and tree are asserted so the diagnostic says what it checks and skips.
 const HERMES_CHECKS = [
   {
     key: 'hermes_skills',
     script: '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs',
     surface: '.hermes/skills',
+    tree: '.hermes/',
   },
   {
     key: 'hermes_prompts',
     script: '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs',
     surface: '.hermes/prompts',
+    tree: '.hermes/',
   },
 ];
+
+const DSH_CHECKS = [
+  {
+    key: 'dsh_skills',
+    script: '.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs',
+    surface: '.dsh/skills',
+    tree: '.dsh/',
+  },
+  {
+    key: 'dsh_prompts',
+    script: '.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs',
+    surface: '.dsh/prompts',
+    tree: '.dsh/',
+  },
+  {
+    key: 'dsh_agents',
+    script: '.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs',
+    surface: '.dsh/agents',
+    tree: '.dsh/',
+  },
+];
+const MIRROR_CHECKS = [...HERMES_CHECKS, ...DSH_CHECKS];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. READERS AND SMALL HELPERS
@@ -84,12 +106,12 @@ function runtimeMirrorsRoute(manifestText) {
 // 3. GAP DETECTION, PURE SO A REMOVED LINE IS OBSERVABLE
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Manifest gaps: a Hermes check missing from script_invocations, or not check-only. */
+/** Manifest gaps: a mirror check missing from script_invocations, or not check-only. */
 function routeGaps(manifestText) {
   const route = runtimeMirrorsRoute(manifestText);
   const invocations = Array.isArray(route.script_invocations) ? route.script_invocations : [];
   const gaps = [];
-  for (const check of HERMES_CHECKS) {
+  for (const check of MIRROR_CHECKS) {
     const entry = invocations.find((invocation) => tokens(invocation).includes(check.script));
     if (!entry) {
       gaps.push(`script_invocations never runs ${check.script}`);
@@ -114,7 +136,7 @@ function workflowGaps(workflowText) {
     : [];
   const gaps = [];
 
-  for (const check of HERMES_CHECKS) {
+  for (const check of MIRROR_CHECKS) {
     if (assets[check.key] !== check.script) {
       gaps.push(`upstream_assets.${check.key} does not name ${check.script}`);
     }
@@ -133,11 +155,11 @@ function workflowGaps(workflowText) {
     if (!/\bn\/a\b/.test(step)) {
       gaps.push(`the ${check.key} step never reports n/a`);
     }
-    if (!step.includes('.hermes/')) {
-      gaps.push(`the ${check.key} step never names the .hermes/ tree whose absence makes it n/a`);
+    if (!step.includes(check.tree)) {
+      gaps.push(`the ${check.key} step never names the ${check.tree} tree whose absence makes it n/a`);
     }
     if (!/never creates/i.test(step)) {
-      gaps.push(`the ${check.key} step does not say the run never creates .hermes/`);
+      gaps.push(`the ${check.key} step does not say the run never creates ${check.tree}`);
     }
   }
   return gaps;
@@ -149,7 +171,7 @@ function repairGaps(workflowText) {
   const outputLines = String((document && document.output) || '').split('\n');
   const gaps = [];
 
-  for (const check of HERMES_CHECKS) {
+  for (const check of MIRROR_CHECKS) {
     const line = outputLines.find((candidate) => candidate.includes(check.script));
     if (!line) {
       gaps.push(`the output block carries no repair line for ${check.script}`);
@@ -169,15 +191,15 @@ function repairGaps(workflowText) {
 // 4. THE MANIFEST AND WORKFLOW AS THEY SHIP
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the route declares both Hermes checks in their check-only form', () => {
+test('the route declares all Hermes and DSH checks in their check-only form', () => {
   assert.deepEqual(routeGaps(read(ROUTES_PATH)), []);
 });
 
-test('the workflow names both Hermes checks and reports n/a when .hermes/ is absent', () => {
+test('the workflow names all mirror checks and reports n/a when a runtime tree is absent', () => {
   assert.deepEqual(workflowGaps(read(WORKFLOW_PATH)), []);
 });
 
-test('the output block carries a generator repair line for each Hermes check', () => {
+test('the output block carries a generator repair line for every mirror check', () => {
   assert.deepEqual(repairGaps(read(WORKFLOW_PATH)), []);
 });
 
@@ -201,9 +223,9 @@ test('the route stays read-only and never runs a mirror generator in write mode'
 // 5. THE CONTRACT FAILS WHEN EITHER LINE GOES MISSING
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the contract fails when a Hermes line is removed from the route', () => {
+test('the contract fails when a mirror line is removed from the route', () => {
   const manifestText = read(ROUTES_PATH);
-  for (const check of HERMES_CHECKS) {
+  for (const check of MIRROR_CHECKS) {
     const stripped = deleteLines(manifestText, (line) => line.includes(check.script));
     const gaps = routeGaps(stripped);
     assert.ok(
@@ -213,9 +235,9 @@ test('the contract fails when a Hermes line is removed from the route', () => {
   }
 });
 
-test('the contract fails when a Hermes asset, step or repair line leaves the workflow', () => {
+test('the contract fails when a mirror asset, step or repair line leaves the workflow', () => {
   const workflowText = read(WORKFLOW_PATH);
-  for (const check of HERMES_CHECKS) {
+  for (const check of MIRROR_CHECKS) {
     const withoutAsset = deleteLines(workflowText, (line) => line.includes(check.script));
     assert.ok(
       workflowGaps(withoutAsset).some((gap) => gap.includes(`upstream_assets.${check.key}`)),
@@ -241,7 +263,7 @@ test('the contract fails when a Hermes asset, step or repair line leaves the wor
 
 test('the contract fails when a step loses its n/a rule or names no surface', () => {
   const workflowText = read(WORKFLOW_PATH);
-  for (const check of HERMES_CHECKS) {
+  for (const check of MIRROR_CHECKS) {
     const bareStep = workflowText
       .split('\n')
       .map((line) => {
