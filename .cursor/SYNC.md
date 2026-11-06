@@ -5,13 +5,13 @@ description: "How .cursor derives from .skilled and .claude: symlinked agents an
 
 # Cursor CLI Sync Manifest
 
-> Almost everything Cursor consumes is a **symlink** onto a canonical file, so those mirrors cannot drift from their source. Authored in this directory: `hooks.json`, `rules/`, and the native command `commands/goal-cursor.md`, which has no canonical counterpart to point at.
+> Almost everything Cursor consumes is a **symlink** onto a canonical file, so those mirrors cannot drift from their source. Authored in this directory: `rules/` and the native command `commands/goal-cursor.md`, which has no canonical counterpart to point at. `hooks.json` is generated from the shared hook registry.
 
 ---
 
 ## 1. OVERVIEW
 
-Cursor discovers agents and commands by **file convention**, not by CLI flag. That is worth stating plainly because an earlier pass in this repo grepped `cursor-agent --help` for an agent flag, found none, and wrongly concluded Cursor had no custom-agent concept — while all 13 agents were already loading.
+Cursor discovers agents and commands by **file convention**, not by CLI flag. That is worth stating plainly because an earlier pass in this repo grepped `cursor-agent --help` for an agent flag, found none, and wrongly concluded Cursor had no custom-agent concept — while all 11 agents were already loading.
 
 Cursor loads custom subagents from two places, both confirmed live:
 
@@ -29,9 +29,9 @@ Agents source from **`.claude/agents/`**, not `.skilled/agents/`, because Cursor
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/*.md` | symlink | `.claude/agents/<name>.md` | `../../.claude/agents/<name>.md` |
-| `commands/*.md` (35) | symlink, except the two native commands | `.skilled/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
+| `commands/*.md` (46) | symlink, except the native `goal-cursor.md` | `.skilled/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
 | `hooks/*` | symlink | scattered `.skilled/**` | discovery mirror only |
-| `hooks.json` | **hand-authored** | — | — |
+| `hooks.json` | **generated** | `hook-registry.json` via `sync-hook-registrations.cjs` | `--check` catches a hand edit |
 | `rules/skill-routing.md` | **hand-authored**, plus one generated Gate 1 pointer block | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` | also read by Devin; `--check` catches a stale block |
 | `mcp.json` | symlink | `../.mcp.json` → `.claude/mcp.json` | double hop |
 | `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` | `../.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` |
@@ -44,7 +44,7 @@ No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` 
 
 - An agent is added or removed in `.claude/agents/` → re-run the mirror generator.
 - A command is added, renamed or removed in `.skilled/commands/` → re-run the mirror generator.
-- A hook is registered in `hooks.json` → re-run the generator for the matching `hooks/` symlink.
+- A hook is added or rebound → edit `hook-registry.json`, run `sync-hook-registrations.cjs` to render `hooks.json`, then re-run the mirror generator for the matching `hooks/` symlink.
 - Skill routing changes → hand-edit `rules/skill-routing.md`, and remember **Devin reads this file too**.
 
 ---
@@ -52,14 +52,17 @@ No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` 
 ## 4. SYNC WORKFLOW
 
 ```bash
+# Render hooks.json from the shared hook registry
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs
+
 # Refresh every symlink tree (cursor agents + commands + hooks, and the devin trees)
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
-# Verify roster coverage across all five runtime surfaces
+# Verify the other runtimes cover the canonical roster
 node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
 
-Both refuse to accept a real file where a symlink belongs — that is a silent fork, not a valid mirror.
+The last two refuse to accept a real file where a symlink belongs — that is a silent fork, not a valid mirror.
 
 ---
 
@@ -94,6 +97,7 @@ Both refuse to accept a real file where a symlink belongs — that is a silent f
 
 | Check | Command | Exit |
 |---|---|---|
+| Hook registrations | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` | 0 ok / 1 drift |
 | Symlink trees incl. `hooks/` | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Roster coverage | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | 0 ok / 1 drift |
 | Everything at once | `/doctor runtime-mirrors` | read-only |
@@ -104,13 +108,13 @@ Live confirmation, which file checks cannot give you:
 cursor-agent --force -p "List ONLY custom subagent profile names, one per line."
 ```
 
-Expect the 13 repo agents alongside Cursor's own built-ins. Note that dispatching a subagent is additionally gated by this repo's `preToolUse` spec-gate — a refusal there is the guard working, not a missing agent.
+Expect the 11 repo agents alongside Cursor's own built-ins. Note that dispatching a subagent is additionally gated by this repo's `preToolUse` spec-gate — a refusal there is the guard working, not a missing agent.
 
 ---
 
 ## 8. KNOWN GAPS
 
-- **`hooks.json` is hand-authored and unmirrorable.** Its dialect has no counterpart in the other three runtimes.
+- **A hand edit to `hooks.json` does not last.** The file is rendered in Cursor's own dialect from `hook-registry.json`, so the next `sync-hook-registrations.cjs` run overwrites the edit. Change the registry instead.
 - **`rules/skill-routing.md`'s packet list has no generator** and is not derived from the skill registry, so a new skill packet will not appear in it automatically. Only its Gate 1 pointer block is generated, from the root `AGENTS.md` line, by `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs` (`--check` reports drift).
 - **`beforeSubmitPrompt` dormancy is unresolved upstream.** The static rules file mitigates but does not replace it.
 

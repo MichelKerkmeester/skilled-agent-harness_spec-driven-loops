@@ -26,9 +26,9 @@ Canonical for agents is `.skilled/agents/` (note: *not* `.claude/agents/`, which
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
 | `agents/*.toml` | **generated** | `.skilled/agents/*.md` | Yes — `sync-agents.cjs --check` |
-| `prompts/*.md` (33) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
-| `hooks/*` (18 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
-| `hooks.json` | **hand-authored** | — | read by Codex from this checkout; never copied to `~/.codex/hooks.json` |
+| `prompts/*.md` (45) | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes — `sync-prompts.cjs --check` |
+| `hooks/*` (23 symlinks) | per-file symlinks | scattered `.skilled/**` | Yes — mirror generator |
+| `hooks.json` | **generated** | `hook-registry.json`, rendered by `sync-hook-registrations.cjs` | Yes, `sync-hook-registrations.cjs --check` reports it. Read by Codex from this checkout, never copied to `~/.codex/hooks.json` |
 | `config.toml` | **hand-authored** | — | MCP servers inlined here, unlike `.claude`/`.cursor` which use `mcp.json` |
 | `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook` | No |
 
@@ -50,7 +50,7 @@ User request: $ARGUMENTS
 - Any `.skilled/agents/*.md` changes → re-run `sync-agents.cjs`.
 - Any `.skilled/commands/**` file is added, renamed or deleted → re-run `sync-prompts.cjs`. Renames matter: a deleted canonical file leaves a stale prompt that points at nothing.
 - `.codex/hooks.json` changes → nothing to install, because Codex reads the file from the checkout. Run `install-codex-hooks.mjs --check` to confirm the user-global file holds no stale copy.
-- A hook is registered in `hooks.json` → run the mirror generator for the matching `hooks/` symlink.
+- A hook is added or rebound → edit `hook-registry.json`, run `sync-hook-registrations.cjs` to render `hooks.json`, then run the mirror generator for the matching `hooks/` symlink.
 
 ---
 
@@ -61,7 +61,8 @@ User request: $ARGUMENTS
 node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
 node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs
 
-# 2. Refresh the hooks discovery mirror
+# 2. Render hooks.json from the shared hook registry, then refresh the hooks discovery mirror
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
 
 # 3. Remove stale copies of repo hooks from the user-global Codex hook file
@@ -108,6 +109,7 @@ developer_instructions = '''
 |---|---|---|
 | Generated agents | `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check` | 0 ok / 1 drift |
 | Generated prompts | `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check` | 0 ok / 1 drift |
+| Hook registrations | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` | 0 ok / 1 drift |
 | Hooks discovery mirror | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | 0 ok / 1 drift |
 | Prompt mirror identity | `node .skilled/commands/scripts/validate-command-references.cjs` | 0 ok / 1 violation |
 | User-global hook hygiene | `node .skilled/bin/install-codex-hooks.mjs --check` | 0 ok / 1 drift |
@@ -120,7 +122,7 @@ developer_instructions = '''
 ## 8. KNOWN GAPS
 
 - **Generated agents lose information.** `sandbox_mode`, `model` and `model_reasoning_effort` cannot round-trip back to `.skilled/agents/`. Codex is a one-way derivation.
-- **`hooks.json` and `config.toml` are hand-authored.** No generator produces them, and the four runtimes' hook dialects are too different for one to exist.
+- **`config.toml` is hand-authored.** No generator produces it. `hooks.json` is generated, so a hand edit to it is overwritten by the next `sync-hook-registrations.cjs` run. Change `hook-registry.json` instead.
 - **Prompt staleness is silent at runtime.** A stub pointing at a deleted canonical file still loads and still looks valid; only `--check` catches it. This drift was live here (five `design-*` stubs pointing at removed files) until it was regenerated.
 
 ---
