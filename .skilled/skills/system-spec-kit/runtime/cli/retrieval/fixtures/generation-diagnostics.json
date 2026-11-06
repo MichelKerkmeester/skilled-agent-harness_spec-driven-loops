@@ -1,11 +1,11 @@
 {
   "counts": {
-    "duplicate-phrase": 48,
-    "missing-frontmatter": 7365,
-    "ok": 17194,
+    "duplicate-phrase": 49,
+    "missing-frontmatter": 7367,
+    "ok": 17204,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28107,
+  "documentsScanned": 28120,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6f52d067a74d9a172701de65d1bf310fb93d2ec2f193a3eed7c4a52b1ec74efb",
+  "manifestHash": "f261175b9e4d05d1138d8b7ad6b006d72ba79ed853091735c370fb0e0b617402",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41233,
+      "ok": 41262,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -9040,6 +9040,13 @@
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/feature-catalog/mcp-parallel-instances/live-instance.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"chrome devtools live\""
+    },
+    {
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/cli-bdg-lifecycle/install-version.md",
@@ -9372,6 +9379,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/divider-gap-pass.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/document-pages.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -9379,6 +9392,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/read-document-pages.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-tooling/mcp-click-up/manual-testing-playbook/mcp-documents/readiness-check.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6f52d067a74d9a172701de65d1bf310fb93d2ec2f193a3eed7c4a52b1ec74efb",
+  "manifestHash": "f261175b9e4d05d1138d8b7ad6b006d72ba79ed853091735c370fb0e0b617402",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8074,6 +8074,9 @@
     ],
     "add devin executor kind": [
       "add devin executor kind"
+    ],
+    "add emoji reaction": [
+      "add emoji reaction"
     ],
     "add goal md to a phase parent": [
       "add goal.md to a phase parent"
@@ -18829,6 +18832,12 @@
     "chrome devtools frontmatter complete": [
       "chrome devtools frontmatter complete"
     ],
+    "chrome devtools live": [
+      "chrome_devtools_live"
+    ],
+    "chrome devtools live manual": [
+      "chrome_devtools_live manual"
+    ],
     "chrome devtools manuals snapshot": [
       "chrome devtools manuals snapshot"
     ],
@@ -23607,11 +23616,20 @@
     "clickup create reminder": [
       "clickup_create_reminder"
     ],
+    "clickup create space tag": [
+      "clickup_create_space_tag"
+    ],
     "clickup create task": [
       "clickup_create_task"
     ],
     "clickup create task comment": [
       "clickup_create_task_comment"
+    ],
+    "clickup current user": [
+      "clickup current user"
+    ],
+    "clickup delete chat message": [
+      "clickup_delete_chat_message"
     ],
     "clickup delete comment": [
       "clickup_delete_comment"
@@ -23703,6 +23721,9 @@
     "clickup get list": [
       "clickup_get_list"
     ],
+    "clickup get list location": [
+      "clickup_get_list_location"
+    ],
     "clickup get operators": [
       "clickup_get_operators"
     ],
@@ -23723,6 +23744,9 @@
     ],
     "clickup get time entries": [
       "clickup_get_time_entries"
+    ],
+    "clickup get user": [
+      "clickup_get_user"
     ],
     "clickup get workspace hierarchy": [
       "clickup_get_workspace_hierarchy"
@@ -23784,6 +23808,9 @@
     "clickup operators": [
       "clickup operators"
     ],
+    "clickup react to chat message": [
+      "clickup_react_to_chat_message"
+    ],
     "clickup remove tag from task": [
       "clickup_remove_tag_from_task"
     ],
@@ -23826,6 +23853,12 @@
     ],
     "clickup task": [
       "clickup task"
+    ],
+    "clickup timezone": [
+      "clickup timezone"
+    ],
+    "clickup update chat message": [
+      "clickup_update_chat_message"
     ],
     "clickup update comment": [
       "clickup_update_comment"
@@ -31148,6 +31181,9 @@
     "create skill template conformance": [
       "create-skill template conformance"
     ],
+    "create space tag": [
+      "create space tag"
+    ],
     "create subtask": [
       "create subtask"
     ],
@@ -38028,6 +38064,9 @@
     "delete aware journal mode check": [
       "delete-aware journal mode check"
     ],
+    "delete chat message": [
+      "delete chat message"
+    ],
     "delete cli deem packet": [
       "delete cli-deem packet"
     ],
@@ -43317,6 +43356,9 @@
     ],
     "edit a notion page with markdown": [
       "edit a Notion page with Markdown"
+    ],
+    "edit chat message": [
+      "edit chat message"
     ],
     "edit comment": [
       "edit comment"
@@ -61906,6 +61948,9 @@
     "list attachments": [
       "list attachments"
     ],
+    "list breadcrumbs": [
+      "list breadcrumbs"
+    ],
     "list cdp domains": [
       "list cdp domains"
     ],
@@ -61927,6 +61972,9 @@
     ],
     "list doc pages": [
       "list doc pages"
+    ],
+    "list location": [
+      "list location"
     ],
     "list my tasks": [
       "list my tasks"
@@ -63742,6 +63790,9 @@
     "mcp aside devtools 1 1 8 0": [
       "mcp-aside-devtools 1.1.8.0"
     ],
+    "mcp aside devtools 1 1 9 0": [
+      "mcp-aside-devtools 1.1.9.0"
+    ],
     "mcp aside devtools implementation summary": [
       "mcp aside devtools implementation summary"
     ],
@@ -63789,6 +63840,9 @@
     ],
     "mcp aside devtools v1 1 8 0": [
       "mcp-aside-devtools v1.1.8.0"
+    ],
+    "mcp aside devtools v1 1 9 0": [
+      "mcp-aside-devtools v1.1.9.0"
     ],
     "mcp aside devtools workflow mode": [
       "mcp-aside-devtools workflow mode"
@@ -63861,6 +63915,9 @@
     ],
     "mcp chrome devtools 1 0 21 0": [
       "mcp-chrome-devtools 1.0.21.0"
+    ],
+    "mcp chrome devtools 1 0 22 0": [
+      "mcp-chrome-devtools 1.0.22.0"
     ],
     "mcp chrome devtools 1 0 7 0": [
       "mcp-chrome-devtools 1.0.7.0"
@@ -63946,6 +64003,9 @@
     "mcp chrome devtools v1 0 21 0": [
       "mcp-chrome-devtools v1.0.21.0"
     ],
+    "mcp chrome devtools v1 0 22 0": [
+      "mcp-chrome-devtools v1.0.22.0"
+    ],
     "mcp chrome devtools v1 0 7 0": [
       "mcp-chrome-devtools v1.0.7.0"
     ],
@@ -64011,6 +64071,9 @@
     ],
     "mcp click up 1 2 14 0": [
       "mcp-click-up 1.2.14.0"
+    ],
+    "mcp click up 1 2 15 0": [
+      "mcp-click-up 1.2.15.0"
     ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
@@ -64098,6 +64161,9 @@
     ],
     "mcp click up v1 2 14 0": [
       "mcp-click-up v1.2.14.0"
+    ],
+    "mcp click up v1 2 15 0": [
+      "mcp-click-up v1.2.15.0"
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
@@ -65590,6 +65656,9 @@
     "mcp tooling 1 9 6 0": [
       "mcp-tooling 1.9.6.0"
     ],
+    "mcp tooling 1 9 7 0": [
+      "mcp-tooling 1.9.7.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -65748,6 +65817,9 @@
     ],
     "mcp tooling v1 9 6 0": [
       "mcp-tooling v1.9.6.0"
+    ],
+    "mcp tooling v1 9 7 0": [
+      "mcp-tooling v1.9.7.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -70543,6 +70615,9 @@
     "mxbai vs bge reranker code": [
       "mxbai vs bge reranker code"
     ],
+    "my own signed in chrome": [
+      "my own signed-in chrome"
+    ],
     "my reminders": [
       "my reminders"
     ],
@@ -71046,6 +71121,9 @@
     ],
     "new clickup doc": [
       "new clickup doc"
+    ],
+    "new clickup tag": [
+      "new clickup tag"
     ],
     "new clickup task": [
       "new clickup task"
@@ -85061,6 +85139,9 @@
     "react native in canonical sk code": [
       "react native in canonical sk-code"
     ],
+    "react to chat message": [
+      "react to chat message"
+    ],
     "reactive eof idle kill": [
       "reactive-EOF idle kill"
     ],
@@ -88772,6 +88853,9 @@
     "remove agent improvement mode": [
       "remove agent-improvement mode"
     ],
+    "remove chat reply": [
+      "remove chat reply"
+    ],
     "remove clarify default scorer": [
       "remove clarify default scorer"
     ],
@@ -90905,6 +90989,9 @@
     ],
     "resolve assignees": [
       "resolve assignees"
+    ],
+    "resolve chat message": [
+      "resolve chat message"
     ],
     "resolve comment": [
       "resolve comment"
