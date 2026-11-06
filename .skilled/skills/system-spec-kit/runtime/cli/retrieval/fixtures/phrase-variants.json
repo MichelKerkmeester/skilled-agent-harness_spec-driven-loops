@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c7137aceb1a07564cdede6b5980f6e04e6cc2f61e346229a49826fbfadc0cd28",
+  "manifestHash": "41bb1c7f76fde845c73bda27d3392b235bcb82b9b665f0d5e0b0d54cd6a3c891",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -23760,6 +23760,9 @@
     "clickup gap pass aside": [
       "clickup gap pass aside"
     ],
+    "clickup gap pass in your browser": [
+      "clickup gap pass in your browser"
+    ],
     "clickup get bulk tasks time in status": [
       "clickup_get_bulk_tasks_time_in_status"
     ],
@@ -28250,6 +28253,9 @@
     ],
     "concise changelog entries": [
       "concise changelog entries"
+    ],
+    "concise changelog format": [
+      "concise changelog format"
     ],
     "concise classifier routing": [
       "concise classifier routing"
@@ -37836,9 +37842,6 @@
     "deepseek harness cli": [
       "deepseek harness cli"
     ],
-    "deepseek harness cli bridge": [
-      "DeepSeek Harness CLI bridge"
-    ],
     "deepseek harness closeout": [
       "deepseek harness closeout"
     ],
@@ -37850,6 +37853,9 @@
     ],
     "deepseek harness dispatch mode": [
       "DeepSeek Harness Dispatch Mode"
+    ],
+    "deepseek harness eighth cli": [
+      "deepseek harness eighth cli"
     ],
     "deepseek harness fan out": [
       "DeepSeek Harness fan-out"
@@ -75813,6 +75819,9 @@
     ],
     "overlay sync state": [
       "overlay sync state"
+    ],
+    "overlays for vendored copies": [
+      "overlays for vendored copies"
     ],
     "overloaded root summary": [
       "overloaded root summary"

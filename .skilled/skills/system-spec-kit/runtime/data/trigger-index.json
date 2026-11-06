@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c7137aceb1a07564cdede6b5980f6e04e6cc2f61e346229a49826fbfadc0cd28",
+  "manifestHash": "41bb1c7f76fde845c73bda27d3392b235bcb82b9b665f0d5e0b0d54cd6a3c891",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -42137,6 +42137,9 @@
     "clickup gap pass aside": [
       707
     ],
+    "clickup gap pass in your browser": [
+      61
+    ],
     "clickup get bulk tasks time in status": [
       790
     ],
@@ -47416,6 +47419,9 @@
     ],
     "concise changelog entries": [
       1745
+    ],
+    "concise changelog format": [
+      61
     ],
     "concise classifier routing": [
       118
@@ -57437,9 +57443,6 @@
     "deepseek harness cli": [
       310
     ],
-    "deepseek harness cli bridge": [
-      61
-    ],
     "deepseek harness closeout": [
       4534
     ],
@@ -57452,6 +57455,9 @@
     "deepseek harness dispatch mode": [
       495,
       496
+    ],
+    "deepseek harness eighth cli": [
+      61
     ],
     "deepseek harness fan out": [
       2214,
@@ -62978,6 +62984,7 @@
       317
     ],
     "dsh hook parity": [
+      61,
       4540
     ],
     "dsh hook parity acceptance criteria": [
@@ -98568,6 +98575,9 @@
     ],
     "overlay sync state": [
       2811
+    ],
+    "overlays for vendored copies": [
+      61
     ],
     "overloaded root summary": [
       1892
