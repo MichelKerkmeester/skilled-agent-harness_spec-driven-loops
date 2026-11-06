@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # CLI Prompt Quality Card
@@ -138,7 +138,7 @@ Attach the resolved persona via the mode's native surface where the CLI loads it
 | Mode | How to attach the resolved persona |
 |------|------------------------------------|
 | `cli-claude-code` | NATIVE: `claude -p --agent <name>` resolves `.claude/agents/<name>.md`. INLINE on a bare `-p`. |
-| `cli-cursor` | NATIVE: name the resolved subagent (`.cursor/agents` + `.claude/agents` mirror all 13 agents). INLINE on a bare `cursor-agent -p`. |
+| `cli-cursor` | NATIVE: name the resolved subagent (`.cursor/agents` + `.claude/agents` mirror all 11 agents). INLINE on a bare `cursor-agent -p`. |
 | `cli-devin` | NATIVE: `run_subagent` naming the resolved profile (`.devin/agents/<name>/AGENT.md`). INLINE on a bare `devin -p`. |
 | `cli-opencode` | PARTIAL: route `--agent orchestrate` → Task subagent (`mode: subagent` personas are rejected at top-level `--agent`). Else INLINE. |
 | `cli-codex` | INLINE (mandatory): `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p` load config, not a persona. |
