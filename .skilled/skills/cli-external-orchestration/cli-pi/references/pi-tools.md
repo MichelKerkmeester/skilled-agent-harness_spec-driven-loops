@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # Pi CLI Unique Capabilities
@@ -76,7 +76,7 @@ None of the other 5 CLI executors in this hub expose an equivalent persistent, b
 
 ### Compared to Other CLI Executors
 
-`cli-cursor` and `cli-devin` both read an external, hand-authored JSON hooks-config file (`hooks.json` / `hooks.v1.json`) that maps event names to shell-command adapters — the logic lives outside the runtime as scripts the config merely points at. `cli-claude-code` similarly drives hooks from `settings.json` shell-command entries. Pi's extensions are executable code loaded directly by the runtime, not a config file pointing at external scripts — a first-party in-process API, closer in shape to a plugin system than a hooks manifest.
+`cli-cursor` and `cli-devin` both read an external JSON hooks-config file (`hooks.json` / `hooks.v1.json`), rendered from the shared hook registry, that maps event names to shell-command adapters — the logic lives outside the runtime as scripts the config merely points at. `cli-claude-code` similarly drives hooks from `settings.json` shell-command entries. Pi's extensions are executable code loaded directly by the runtime, not a config file pointing at external scripts — a first-party in-process API, closer in shape to a plugin system than a hooks manifest.
 
 ### Best For
 

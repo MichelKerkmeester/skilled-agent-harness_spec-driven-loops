@@ -295,7 +295,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 17. **Agent-persona injection (attach identity, not just the task).** Every dispatch composes `{resolved agent persona + task prompt}` — never a bare task.
     - Resolve the persona from the ACTIVE runtime's agent directory per AGENTS.md §9 (`.skilled/agents/<name>.md`, `.claude/agents/<name>.md`, etc. — never hardcode one runtime).
     - Map each subtask to the RIGHT agent (`code`→code, `review`→review, `design`→design, research→`deep-research`, docs→`markdown`), not one default.
-    - **Devin has a native persona surface:** dispatch via `run_subagent` naming the resolved profile (`.devin/agents/<name>/AGENT.md` mirrors all 13 canonical agents; see "Agent Roster Parity"). Native resolution satisfies the rule.
+    - **Devin has a native persona surface:** dispatch via `run_subagent` naming the resolved profile (`.devin/agents/<name>/AGENT.md` mirrors all 11 canonical agents; see "Agent Roster Parity"). Native resolution satisfies the rule.
     - On a bare top-level `devin -p` that names no subagent, **INLINE** the persona block into the payload using the same in-payload pattern as the `DESIGN_DISPATCH_MANIFEST` (Rule 14). The child cannot resolve agent paths by reference.
     - A persona-less dispatch runs the leaf as a generic assistant, silently dropping the agent's tool-scope, verification gates, and output contract.
     Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection"; native precedent: `orchestrate.md` "Agent Loading Protocol". Rare exceptions (native surface used, focused summary for a small-context model, pure-mechanical command) are declared at the dispatch site.

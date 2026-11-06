@@ -286,7 +286,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
     Map each subtask to the RIGHT agent, not one default:
     `code`→code, `review`→review, `design`→design, research→`deep-research`, and docs→`markdown`.
     **Cursor has a native file-convention subagent surface.**
-    `.cursor/agents/*.md` and `.claude/agents/*.md` mirror all 13 canonical agents.
+    `.cursor/agents/*.md` and `.claude/agents/*.md` mirror all 11 canonical agents.
     Dispatch by naming the resolved subagent to satisfy the rule.
     On a bare `cursor-agent -p` that names no subagent, **INLINE** the persona block into the payload.
     Use the same in-payload pattern as the `DESIGN_DISPATCH_MANIFEST` (Rule 14), because the child cannot resolve agent paths by reference.
