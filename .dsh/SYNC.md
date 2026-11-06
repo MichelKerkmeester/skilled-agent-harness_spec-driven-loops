@@ -23,10 +23,11 @@ This folder holds the `--patch` layers the repository owns. Model selection belo
 |---|---|---|---|
 | `patches/route-llmgateway-deepseek.patch.yml` | **hand-authored** route patch | none | Yes. `--dump-config` shows the composed `llm-pi-ai` provider and the `agent-default-model` row |
 | `patches/route-opencode-go-deepseek.patch.yml` | **hand-authored** route patch | none | Yes, same check. Its endpoint is unverified until a keyed run proves it |
-| `patches/lineage.patch.yml` | **hand-authored** lineage patch | none | Yes. `--dump-config` shows telemetry `DISABLED` and the four disabled rows |
+| `patches/lineage.patch.yml` | **hand-authored** lineage patch | none | Yes. `--dump-config` shows telemetry `DISABLED`, the four disabled rows and the `repo-guards-lineage-leaf` marker row |
 | `patches/guards.patch.yml` | **hand-authored** patch that inserts the `repo-guards` row | none | Yes. A keyless boot with it must print no `did not activate` line |
 | `patches/mcp-code-mode.patch.yml` | **hand-authored**, opt-in patch that mounts one `code_mode` stdio server | `.pi/mcp.json` | Yes. A keyless boot with it must leave no new `mcp-code-mode-launcher` process |
-| `plugins/repo-guards/` | **hand-authored** plugin bundle; its adapters call the shared guard cores under `.skilled/` | `.skilled/hooks/`, `.skilled/skills/*/runtime/hooks/` | Yes. `node --test .dsh/plugins/repo-guards/tests/` |
+| `plugins/repo-guards/` | **hand-authored** bundle entry, leaf marker plugin and tests | `.skilled/hooks/`, `.skilled/skills/*/runtime/hooks/` | Yes. `node --test .dsh/plugins/repo-guards/tests/` |
+| `plugins/repo-guards/adapters/*.mjs` | **derived** relative symlink, one per adapter in a `.skilled/hooks/<concern>/dsh/` folder, aimed at the real file | `.skilled/hooks/*/dsh/*.mjs` and the skill-owned files they index | Yes. `sync-runtime-mirrors.cjs --check` |
 | `skills/<name>` | **generated** relative symlink, one per canonical `SKILL.md`, named by its frontmatter `name` | `.skilled/skills/**/SKILL.md` | Yes. `sync-skills-dsh.cjs --check` |
 | `prompts/*.md` | **generated** pointer stubs | `.skilled/commands/**/*.md` | Yes. `sync-prompts-dsh.cjs --check` |
 | `agents/<name>.patch.yml` | **generated** persona patch, one `system-prompt` row whose `personaPrefix` is the agent body | `.skilled/agents/*.md` | Yes. `sync-agents-dsh.cjs --check` |
@@ -35,41 +36,24 @@ This folder holds the `--patch` layers the repository owns. Model selection belo
 
 ### Repo-guards adapters
 
-| Adapter | DSH event | Scope | Error policy |
-|---|---|---|---|
-| `dispatch-audit` | `tools/post-execute` | `bash` | Log and continue |
-| `dispatch-preflight-lint` | `tools/pre-execute` | `bash` | Log and deny on core failure |
-| `spec-gate-classify` | `agent/pre-step` | Latest user message | Log and continue |
-| `spec-gate-enforce` | `tools/pre-execute` | `write`, `edit`, `apply_patch`, `bash` | Log and deny on core failure |
-| `completion-evidence` | `agent/turn-stopping` | Current assistant turn | Log and continue |
-| `task-dispatch-guard` | `tools/pre-execute` | `subagent`, `subagent_fork` | Log and continue |
-| `post-edit-quality` | `tools/post-execute` | `write`, `edit`, `apply_patch` | Log and continue |
-| `mcp-route-guard` | `tools/pre-execute` | `mcp__*` | Log and deny on core failure; deny `code_mode` outside `call_tool_chain`, `list_tools`, `search_tools` and `tool_info` |
-| `classifier-injection-screen` | `tools/post-execute` | `web_fetch`, `web_search`, `mcp__*` | Log and continue |
-| `goal-context` | `agent/created` | `DSH_SPEC_FOLDER` chat slice | Log and continue |
-| `session-start-context` | `agent/created` | Session-prime output | Log and continue |
-| `prompt-advisor` | `agent/pre-step` | Latest user message | Log and continue; disabled by default |
-| `git-preflight-advisory` | `tools/post-execute` | Bash Git commands | Log and continue; add context |
-| `git-message-gate` | `tools/pre-execute` | Bash commands covered by the message contract | Log unexpected errors and continue; deny on `ContractError` |
+The bundle registers twenty adapters. `.dsh/plugins/repo-guards/README.md` section 4 owns the full table with each adapter's event, scope, leaf behavior and error policy. The real adapters live in the hook library, `.skilled/hooks/<concern>/dsh/` or the owning skill's `hooks/dsh/` folder, and `adapters/` holds one relative link per adapter, the layout `.pi/extensions/` uses.
 
-Four adapters remain deferred:
-
-| Adapter | Reason |
-|---|---|
-| `session-compact-context` | `compaction/summary` is UNKNOWN in the source event index, which lists only `compaction/summary-error`. |
-| `session-stop-context` | `agent/disposed` exists, but its source contract does not confirm session shutdown semantics. |
-| `session-start-advisories` | `agent/created` exists, but the Pi implementation runs several scripts instead of one plain shared function. |
-| `decision-capture` | `agent/turn-stopping` exists, but the DSH answer-channel semantics are UNKNOWN. |
+| Adapter group | Adapters | Fan-out leaf |
+|---|---|---|
+| Deny or ask | `dispatch-preflight-lint`, `spec-gate-enforce`, `mcp-route-guard`, `git-message-gate`, `overlay-guard` | runs |
+| Advise, audit or attach | `dispatch-audit`, `task-dispatch-guard`, `post-edit-quality`, `classifier-injection-screen`, `git-preflight-advisory`, `completion-evidence`, `spec-gate-classify` | runs |
+| Context and capture | `goal-context`, `session-start-context`, `session-compact-context`, `decision-capture` | runs |
+| Interactive only | `prompt-advisor`, `goal-manage`, `session-start-advisories`, `session-stop-context` | off by the lineage marker |
 
 dsh discovers skills at `.dsh/skills/<name>/SKILL.md`, one level deep, and follows symlinks. A single link to the whole skill tree would expose only the top-level hubs, so the generator links every skill directory on its own, and a linked skill keeps its `references/`, `assets/` and `scripts/`. dsh has no agent-file loader and no command loader. A persona reaches a run as `--patch .dsh/agents/<name>.patch.yml`, and a dispatcher composes a prompt stub into the task text, appending the user request below its last line. A `.dsh/skills/local-*` entry belongs to the operator and is ignored by git and never pruned.
 
 The two route patches replace two rows. `llm-pi-ai` gets one custom provider with `apiKeyEnv` naming the key variable, never a key value. `agent-default-model` gets that provider, its single model and the default effort `max`. Each provider carries `compat.thinkingFormat: deepseek`, so `off` sends `thinking: {type: disabled}`, and `compat.supportsDeveloperRole: false`, because the gateway upstream refuses the `developer` role. Each model declares `off`, `high` and `max`, since a hand-declared model has no reasoning levels until the patch declares them. Whether either endpoint accepts `max` on the wire is unverified until a keyed run.
 
-The guards patch inserts `plugins/repo-guards/index.mjs` by a path relative to the patch file, so it resolves from any dispatch cwd. A plugin that fails to load only prints `N entry did not activate` and the run carries on unguarded, so the deep-loop runner fails a lineage whose stderr holds that line. The inventory above names every shipped adapter, its error policy and the four deferred hooks with their reasons.
+The guards patch inserts `plugins/repo-guards/index.mjs` by a path relative to the patch file, so it resolves from any dispatch cwd. A plugin that fails to load only prints `N entry did not activate` and the run carries on unguarded, so the deep-loop runner fails a lineage whose stderr holds that line. The bundle README names every shipped adapter and its error policy.
 
 The MCP patch is never part of a default dispatch. A caller adds it, and the deep-loop runner adds it only for a lineage that names `code_mode` in `liveTools.mcpServers`. dsh starts the server eagerly and strips ambient variables whose names hold `KEY`, `PASSWORD`, `SECRET` or `TOKEN`, so the row names `UTCP_CONFIG_FILE` in its `env` and resolves the checkout root from its own `--patch` path. The launcher picks a Node 24 interpreter through `NVM_DIR` or `$HOME/.nvm`, so a dispatch that also replaces `HOME` must pass `NVM_DIR`. A Code Mode manual whose token variable was stripped does not register; the server still starts.
 
-The lineage patch sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal` and `plan-mode`. The base bundle mounts all five. A headless dispatch has no feedback channel, a goal round driver keeps an idle agent running, and plan mode's exit tool fails closed without an interactive review.
+The lineage patch sets `session-telemetry-otel` to `mode: DISABLED` and disables `session-log-deepseek`, `goal-round-driver`, `command-goal` and `plan-mode`. The base bundle mounts all five. A headless dispatch has no feedback channel, a goal round driver keeps an idle agent running, and plan mode's exit tool fails closed without an interactive review. It also inserts `repo-guards-lineage-leaf`, a marker plugin. The runner applies the lineage patch before the guards patch inserts `repo-guards`, so the lineage patch cannot override that row, and the bundle reads the marker when an event fires instead.
 
 ---
 

@@ -114,7 +114,8 @@ hooks/
 |   +-- install-hooks.sh
 |   `-- pre-commit                   # standalone, opt-in; the primary hook has its own gate
 +-- shared/
-|   `-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by the CommonJS and ESM adapters below
+|   +-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by the CommonJS and ESM adapters below
+|   `-- dsh/      dsh-llm.mjs (harness package loader), session-role.mjs (fan-out leaf marker)
 +-- dispatch/                        # cli-opencode dispatch-shape hard-rule + audit hooks
 |   +-- lib/
 |   |   +-- dispatch-rule-checks.mjs
@@ -125,30 +126,35 @@ hooks/
 |   +-- devin/    (same pair)
 |   +-- codex/    (same pair)
 |   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- dsh/      dispatch-preflight-lint.mjs, dispatch-audit.mjs (real file; `.dsh/plugins/repo-guards/adapters/` symlinks to it)
 |   `-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/)
 +-- decision-capture/                # operator answers queued per project for the next full-auto save
 |   +-- lib/capture-core.mjs, chat-questions.mjs (the chat-candidate detector every sweep shares), their tests
 |   +-- claude/   ask-capture-posttooluse.mjs (PostToolUse on AskUserQuestion), fixtures/
 |   +-- devin/    ask-capture-posttooluse.mjs (PostToolUse on ask_user_question), its test, fixtures/
 |   +-- pi/       decision-capture.ts (tool_result on ask_user_question and question; `.pi/extensions/` symlinks to it), its test
-|   `-- bin/      sweep-transcript.mjs (Claude), sweep-opencode.mjs, sweep-devin.mjs, sweep-codex.mjs, sweep-pi.mjs, their tests, fixtures/
+|   +-- dsh/      decision-capture.mjs (tools/result on ask_user_question plus a late timed reply; the DSH adapters folder symlinks to it)
+|   `-- bin/      sweep-transcript.mjs (Claude), sweep-opencode.mjs, sweep-devin.mjs, sweep-codex.mjs, sweep-pi.mjs, sweep-dsh.mjs, their tests, fixtures/
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
 |   +-- claude/, devin/, codex/      mcp-route-guard.cjs
 |   +-- cursor/   mcp-route-guard.mjs
 |   +-- pi/       mcp-route-guard.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- dsh/      mcp-route-guard.mjs (real file; the DSH adapters folder symlinks to it)
 |   `-- opencode/ mcp-route-guard.js (browsability symlink -> .opencode/plugins/)
 +-- overlay-guard/                   # refuse an edit to a file a vendored copy's overlay owns
 |   +-- lib/overlay-guard.cjs, overlay-guard.test.cjs
 |   +-- claude/, devin/, codex/      overlay-guard.cjs
 |   +-- cursor/   overlay-guard.mjs
-|   `-- pi/       overlay-guard.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- pi/       overlay-guard.ts (real file; `.pi/extensions/` symlinks to it)
+|   `-- dsh/      overlay-guard.mjs (real file; the DSH adapters folder symlinks to it)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs
 |   +-- devin/    post-edit-quality.cjs
 |   +-- codex/    post-edit-quality.cjs
 |   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- dsh/      post-edit-quality.mjs (real file; the DSH adapters folder symlinks to it)
 |   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> .opencode/plugins/)
 +-- classifier-injection-screen/                # Jev screen of fetched web text for instructions aimed at an agent
 |   +-- lib/  classifier-injection-advisory.mjs, classifier-screen-fetched-text.mjs
@@ -156,13 +162,15 @@ hooks/
 |   +-- claude/   classifier-injection-screen-posttooluse.mjs (+ test)
 |   +-- devin/    classifier-injection-screen-posttooluse.mjs (+ test)
 |   +-- opencode/ classifier-injection-screen.js (browsability symlink -> .opencode/plugins/)
-|   `-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` symlinks to it)
+|   +-- pi/       classifier-injection-screen.ts (+ test; `.pi/extensions/` symlinks to it)
+|   `-- dsh/      classifier-injection-screen.mjs (real file; the DSH adapters folder symlinks to it)
 +-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/dispatch-guard.cjs
 |   +-- claude/   task-dispatch-guard.cjs, fable-subagent-guard.mjs
 |   +-- devin/    task-dispatch-guard.cjs
 |   +-- cursor/   task-dispatch-guard.mjs
 |   +-- pi/       task-dispatch-guard.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- dsh/      task-dispatch-guard.mjs (real file; the DSH adapters folder symlinks to it)
 |   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> .opencode/plugins/)
 +-- session-relaunch/              # Claude, Pi, OpenCode, Codex and Hermes context nudge and relaunch adapters
 |   +-- bin/session-relaunch.cjs
@@ -180,12 +188,15 @@ hooks/
     +-- cursor/   goal-inject.mjs
     +-- devin/    goal-inject.mjs
     +-- pi/       goal-context.ts (real file; `.pi/extensions/` symlinks to it)
+    +-- dsh/      goal-context.mjs, goal-manage.mjs (real files; the DSH adapters folder symlinks to them)
     `-- opencode/ opencode-goal.js (browsability symlink -> .opencode/plugins/)
 ```
 
-**Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill, as "Full index + kill-switches" above describes): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `git-message-gate/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`. The same pattern covers the bin-backed concerns: `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/` and are indexed in the additional-hooks table below.
+**Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill, as "Full index + kill-switches" above describes): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `git-message-gate/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`. The same pattern covers the bin-backed concerns: `git-live-follow/` and `git-primary-reconcile/` hold one symlink per runtime into `.skilled/bin/` and are indexed in the additional-hooks table below. DSH's skill-owned adapters follow it too: `skill-advisor/dsh/`, `spec-gate/dsh/`, `session-lifecycle/dsh/`, `completion/dsh/`, `git-preflight/dsh/` and `git-message-gate/dsh/` hold index links to the real files in `system-skill-advisor/hooks/dsh/`, `system-spec-kit/runtime/hooks/dsh/` and `sk-git/scripts/hooks/dsh/`.
 
 Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`, `session-relaunch/pi/`), Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
+
+DSH follows Pi's layout. Each real adapter lives in a per-concern `dsh/` subfolder, or in its owning skill's `hooks/dsh/` folder with an index link here, and `.dsh/plugins/repo-guards/adapters/` holds one relative link per adapter aimed at the real file. The bundle entry `.dsh/plugins/repo-guards/index.mjs`, which the guards patch loads, imports every adapter through those links. Node is not Pi's loader: it resolves a link to its real path before it resolves the adapter's own imports, so each DSH adapter's imports are written for its real folder, and the adapters that find the checkout from their own file (`dispatch-audit`, `dispatch-preflight-lint`, `git-preflight-advisory`, `mcp-route-guard`, `session-start-advisories`) count up from there. `sync-runtime-mirrors.cjs --check`, which `/doctor:runtime-mirrors` runs, derives one expected link per `.mjs` file in a `dsh/` folder here and reports a missing link, a stale one or a real file in its place.
 
 ---
 
@@ -193,14 +204,14 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 
 | Concern | Real adapters here | Stays in `.opencode/plugins/` (mirrored at `opencode/` via browsability symlink) |
 |---|---|---|
-| `dispatch` | claude, devin, codex, cursor (indexed proxy), pi (symlinked from `.pi/extensions/`) | `cli-dispatch-audit.js` |
-| `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked) | `mcp-route-guard.js` |
-| `overlay-guard` | claude, cursor, devin, codex, pi (symlinked) | none: no OpenCode adapter |
-| `post-edit-quality` | claude, devin, codex, cursor (indexed proxy), pi (symlinked) | `sk-code-post-edit-quality.js` |
-| `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`) | `classifier-injection-screen.js` |
-| `task-dispatch` | claude, cursor, devin, pi (symlinked) | `system-deep-loop-guard.js` |
-| `goal` | cursor, devin, pi (symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
-| `decision-capture` | claude and devin (PostToolUse), pi (symlinked from `.pi/extensions/`), plus save-time sweeps in `bin/` that read the Claude, Devin and Pi sessions, Codex rollouts and OpenCode's SQLite store | `decision-capture.js` |
+| `dispatch` | claude, devin, codex, cursor (indexed proxy), pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`) | `cli-dispatch-audit.js` |
+| `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked), dsh (symlinked) | `mcp-route-guard.js` |
+| `overlay-guard` | claude, cursor, devin, codex, pi (symlinked), dsh (symlinked) | none: no OpenCode adapter |
+| `post-edit-quality` | claude, devin, codex, cursor (indexed proxy), pi (symlinked), dsh (symlinked) | `sk-code-post-edit-quality.js` |
+| `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`) | `classifier-injection-screen.js` |
+| `task-dispatch` | claude, cursor, devin, pi (symlinked), dsh (symlinked) | `system-deep-loop-guard.js` |
+| `goal` | cursor, devin, pi (symlinked), dsh (`goal-context.mjs` and `goal-manage.mjs`, symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
+| `decision-capture` | claude and devin (PostToolUse), pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), plus save-time sweeps in `bin/` that read the Claude, Devin, Pi and DSH sessions, Codex rollouts and OpenCode's SQLite store | `decision-capture.js` |
 | session-relaunch | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop and compact-pointer on SessionStart after a compaction. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `prompt-seed.mjs` on UserPromptSubmit, `context-nudge.mjs` on PostToolUse, `stop-arm.mjs` on Stop. Hermes: `context-nudge.mjs` and `session-end-arm.mjs`, bridged by the repo-guards plugin on `pre_llm_call`, `post_api_request` and `on_session_end`. Cursor and Devin run the `/speckit:handoff` command trigger only | `session-relaunch.js` (real OpenCode adapter) |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
@@ -239,6 +250,13 @@ node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/sh
 Expected result: all suites pass.
 
 ```bash
+# DSH adapters, through the bundle's links, plus the DSH session sweep
+node --test .dsh/plugins/repo-guards/tests/ .skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs
+```
+
+Expected result: all suites pass.
+
+```bash
 pi --offline --approve -p "list your available tools" </dev/null
 ```
 
@@ -267,6 +285,7 @@ Expected result: a `COMMENT_CHECKER=${SOURCE_ROOT}/skills/sk-code/sk-code-qualit
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors pointing back into this tree.
 - [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): the OpenCode plugins that import these cores directly.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): the Pi extensions that import these cores directly.
+- [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugins/repo-guards/README.md): the DSH bundle whose adapter links point back into this tree.
 
 ---
 
@@ -276,27 +295,27 @@ This matrix is the coverage authority for the intentionally uneven runtime surfa
 
 For the *why* behind each absence, why a runtime has no adapter for a concern, see [`coverage-rationale.md`](./coverage-rationale.md).
 
-| Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi |
-|---|---|---|---|---|---|---|
-| `codex-watchdog` | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | ✓ covered | by-design: OpenCode plugin audits Codex hook installation |
-| `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `decision-capture` | ✓ covered | by-design: the save-time rollout sweep already reads every answer, so a live hook would add a mapping for a reminder only | unverified: no answered question tool call was found to probe | ✓ covered | ✓ covered | ✓ covered |
-| `directive-lifecycle` | ✓ covered | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in `system-skill-advisor` lifecycle state | by-design: embedded in `prompt-advisor.ts` directive de-dup |
-| `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `dist-freshness` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: runs `check-dist-staleness.sh --all` bundled into `session-start-advisories.ts` |
-| `git-message-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `goal` | by-design: native host goal command, and the packet goal reaches it through the speckit workflows | by-design: native host goal command, as for Claude | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered |
-| `injection-screen` | ✓ covered | n/a: only web tool is the provider-hosted `web_search`, so no local hook ever sees a fetched page | n/a: the `Fetch` postToolUse payload carries only `url`, `status_code` and `content_length` | ✓ covered | ✓ covered | ✓ covered |
-| `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `overlay-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: no adapter, and `/doctor:overlay status` reports an edit made there | ✓ covered |
-| `permission-policy` | by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists | by-design: no dedicated permission-request adapter | ✓ covered | by-design: no dedicated permission-request adapter | by-design: no separate approval event beyond `tool_call` |
-| `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered |
-| `session-relaunch` | ✓ covered | ✓ covered | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | ✓ covered | ✓ covered |
-| `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `task-dispatch` | ✓ covered | n/a: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` (as `collaborationspawn_agent`), but a captured payload carries the spawn message encrypted, so no prompt or target reaches a hook | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls, but not yet workflow-nested (`runs.run`) dispatches |
+| Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi | DSH |
+|---|---|---|---|---|---|---|---|
+| `codex-watchdog` | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | ✓ covered | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation |
+| `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `decision-capture` | ✓ covered | by-design: the save-time rollout sweep already reads every answer, so a live hook would add a mapping for a reminder only | unverified: no answered question tool call was found to probe | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `directive-lifecycle` | ✓ covered | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in `system-skill-advisor` lifecycle state | by-design: embedded in `prompt-advisor.ts` directive de-dup | by-design: embedded in `prompt-advisor.mjs` directive de-dup |
+| `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `dist-freshness` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: runs `check-dist-staleness.sh --all` bundled into `session-start-advisories.ts` | by-design: runs `check-dist-staleness.sh --all` bundled into `session-start-advisories.mjs` |
+| `git-message-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `goal` | by-design: native host goal command, and the packet goal reaches it through the speckit workflows | by-design: native host goal command, as for Claude | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered | ✓ covered |
+| `injection-screen` | ✓ covered | n/a: only web tool is the provider-hosted `web_search`, so no local hook ever sees a fetched page | n/a: the `Fetch` postToolUse payload carries only `url`, `status_code` and `content_length` | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `overlay-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: no adapter, and `/doctor:overlay status` reports an edit made there | ✓ covered | ✓ covered |
+| `permission-policy` | by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists | by-design: no dedicated permission-request adapter | ✓ covered | by-design: no dedicated permission-request adapter | by-design: no separate approval event beyond `tool_call` | by-design: `tools/pre-execute` already carries the spec-gate and dispatch decisions, and `approval/request` carries no tool arguments to judge |
+| `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered | ✓ covered |
+| `session-relaunch` | ✓ covered | ✓ covered | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | ✓ covered | ✓ covered | by-design: `/speckit:handoff` prompt trigger only, because `skilled-loop` launches no DSH session |
+| `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `task-dispatch` | ✓ covered | n/a: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` (as `collaborationspawn_agent`), but a captured payload carries the spawn message encrypted, so no prompt or target reaches a hook | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls, but not yet workflow-nested (`runs.run`) dispatches | ✓ covered |
 
 ### Additional centralized hooks
 
@@ -306,8 +325,8 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 |---|---|---|
 | `git-worktree-guard` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/bin/worktree-guard.sh` |
 | `git-hooks-check` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/bin/check-git-hooks.sh` |
-| `git-primary-reconcile` | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-primary-reconcile.sh` |
-| `live-sync` (`git-live-follow`) | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-live-follow.sh` |
+| `git-primary-reconcile` | claude, codex, cursor, devin, pi, dsh + opencode plugin + hermes plugin | `.skilled/bin/git-primary-reconcile.sh` |
+| `live-sync` (`git-live-follow`) | claude, codex, cursor, devin, pi, dsh + opencode plugin + hermes plugin | `.skilled/bin/git-live-follow.sh` |
 | `session-cleanup` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/scripts/session-cleanup.sh`, `.opencode/plugins/session-cleanup.js` |
 | `hook-install` | claude, cursor, devin (Codex's user-global file is the cleanup target) | `.skilled/bin/install-codex-hooks.mjs` |
 | `dist-freshness` (per-runtime `.sh`) | claude, codex, cursor, devin + hermes plugin | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` |

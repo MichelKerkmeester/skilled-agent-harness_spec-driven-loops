@@ -136,7 +136,7 @@ inputs:
 # ─────────────────────────────────────────────────────────────────
 execution:
   steps:
-    - "Run upstream_assets.runtime_mirrors with --check. Covers the cursor/devin agent, command and skill symlink trees plus all four hook discovery mirrors. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.runtime_mirrors with --check. Covers the cursor/devin agent, command and skill symlink trees, all four hook discovery mirrors and the .dsh/plugins/repo-guards/adapters/ links into the hook library. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.codex_agents with --check. Covers the generated .codex/agents/*.toml. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.codex_prompts with --check. Covers the generated .codex/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = checker error (bad argument, canonical dir missing, or crash)."

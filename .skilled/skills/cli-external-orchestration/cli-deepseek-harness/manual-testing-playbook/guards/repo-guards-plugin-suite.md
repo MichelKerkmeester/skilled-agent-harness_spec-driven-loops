@@ -1,7 +1,7 @@
 ---
 title: "GRD-001 -- Repo-guards plugin suite"
 description: "This scenario validates that the repo-guards plugin test suite passes with no adapter, policy or loader failure for `GRD-001`."
-version: 1.0.1.0
+version: 1.1.0.0
 ---
 
 # GRD-001 -- Repo-guards plugin suite
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the bundle that carries the shared guard cores into a dsh child. It focuses on the adapter contracts, the per-adapter error policy and the anchored message loader.
+This scenario validates the bundle that carries the shared guard cores into a dsh session. It focuses on the adapter contracts, the per-adapter error policy, the fan-out leaf split and the anchored message loader. The adapters are links into the hook library, so a passing run also proves every link and every import from the real adapter folders resolves.
 
 ### Why This Matters
 
@@ -26,7 +26,7 @@ The guards patch can load the bundle and still leave a broken adapter. The suite
 - Real user request: `Run the guard plugin tests before we rely on the guards patch. I want to know whether every adapter still passes, including the error paths.`
 - Prompt: `Run the repo-guards plugin test suite and tell me whether every adapter test passes. Do not change the plugin.`
 - Expected execution process: Run the whole test directory from the repository root -> read the summary counts -> confirm zero failures and zero skipped tests -> confirm the exit code.
-- Expected signals: The runner prints a test count, a pass count equal to that count, `fail 0` and a zero exit code. The suite covers the dispatch, spec-gate, completion, task-dispatch, post-edit, MCP route, classifier, goal, session-start, prompt-advisor, git-preflight, git-message and message-loader paths.
+- Expected signals: The runner prints a test count, a pass count equal to that count, `fail 0` and a zero exit code. The suite covers the dispatch, spec-gate, completion, task-dispatch, post-edit, MCP route, classifier, overlay, goal context, goal management, decision capture, session-start context, session-start guards, compaction context, stop autosave, prompt-advisor and directive lifecycle, git-preflight, git-message, leaf marker and message-loader paths.
 - Desired user-visible outcome: A clear statement that the plugin suite passes, with the counts and exit code.
 - Pass/fail: PASS if the suite exits `0` with `fail 0`. FAIL if any test fails, the runner cannot load the tests or the exit code is non-zero.
 
@@ -50,13 +50,13 @@ node --test .dsh/plugins/repo-guards/tests/
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Observed: exit `0`, 37 tests, 37 pass, 0 fail, 0 skipped, 0 todo.
-- The bundle README and this run both report 37 tests. Grade on `fail 0`, not on a fixed number.
-- The suite includes `mcp-route-guard.test.mjs` beside the main adapter suite.
+- Observed: exit `0`, 75 tests, 75 pass, 0 fail, 0 skipped, 0 todo.
+- The bundle README and this run both report 75 tests. Grade on `fail 0`, not on a fixed number.
+- The suite holds seven test files: the main adapter suite, `mcp-route-guard`, `overlay-guard`, `decision-capture`, `goal-manage`, `session-lifecycle` and `session-role`, with `harness.mjs` as their shared fixture.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GRD-001 | Repo-guards plugin suite | Prove every adapter test passes | `Run the repo-guards plugin test suite and tell me whether every adapter test passes. Do not change the plugin.` | 1. `node --test .dsh/plugins/repo-guards/tests/` -> 2. read the summary block -> 3. record the pass, fail and skipped counts with the exit code | Step 1: exit `0`. Step 2: 37 tests, 37 pass, 0 fail, 0 skipped | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0`. FAIL if any test fails or the runner cannot load the tests | 1. Read the first failing test name and its assertion. 2. Check whether a shared guard core export changed. 3. Run the suite from the repository root so the anchored loader resolves |
+| GRD-001 | Repo-guards plugin suite | Prove every adapter test passes | `Run the repo-guards plugin test suite and tell me whether every adapter test passes. Do not change the plugin.` | 1. `node --test .dsh/plugins/repo-guards/tests/` -> 2. read the summary block -> 3. record the pass, fail and skipped counts with the exit code | Step 1: exit `0`. Step 2: 75 tests, 75 pass, 0 fail, 0 skipped | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0`. FAIL if any test fails or the runner cannot load the tests | 1. Read the first failing test name and its assertion. 2. Check whether a shared guard core export changed. 3. For `ERR_MODULE_NOT_FOUND`, run `sync-runtime-mirrors.cjs --check` to find a missing or stale adapter link. 4. Run the suite from the repository root so the anchored loader resolves |
 
 ---
 
@@ -68,7 +68,7 @@ node --test .dsh/plugins/repo-guards/tests/
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Verdict rules and evidence policy |
 | `../../SKILL.md` | Guard delivery and the tested-core boundary |
-| `../../references/guards-and-hooks.md` | Fourteen adapters, error policies and deferred adapters |
+| `../../references/guards-and-hooks.md` | Twenty adapters, error policies and the interactive and fan-out leaf split |
 | `.dsh/plugins/repo-guards/README.md` | Adapter inventory, configuration and validation commands |
 
 ### Implementation And Test Anchors
@@ -76,9 +76,10 @@ node --test .dsh/plugins/repo-guards/tests/
 | File | Role |
 |---|---|
 | `.dsh/plugins/repo-guards/index.mjs` | Registers the adapter set |
-| `.dsh/plugins/repo-guards/adapters/` | Adapter implementations |
+| `.dsh/plugins/repo-guards/adapters/` | One link per adapter into `.skilled/hooks/<concern>/dsh/` or a skill's `hooks/dsh/` folder |
+| `.dsh/plugins/repo-guards/lineage-leaf.mjs` | Leaf marker the lineage patch inserts |
 | `.dsh/plugins/repo-guards/tests/repo-guards.test.mjs` | Main adapter suite |
-| `.dsh/plugins/repo-guards/tests/mcp-route-guard.test.mjs` | MCP route guard suite |
+| `.dsh/plugins/repo-guards/tests/` | The other six adapter suites and `harness.mjs` |
 
 ---
 
