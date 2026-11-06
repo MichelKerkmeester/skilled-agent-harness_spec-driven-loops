@@ -208,7 +208,7 @@
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-06T21:23:58.241Z",
+    "last_save_at": "2026-11-06T21:47:34.990Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e515af78beddde20a2d313be79cd6f94776743e8ebfe376ea9c475fae2179955",
+    "source_fingerprint": "sha256:cb4055ab95f9a705a4c1b47809c24d75cb101b6846ca683612e76a47114ad78f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e553687b67b85fbf3c2b823d1aa8f813a75fd875f420ee9364107fab0ac261e2",

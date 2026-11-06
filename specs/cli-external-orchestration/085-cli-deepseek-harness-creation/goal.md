@@ -91,9 +91,9 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Each keyed roster route answers `dsh --profile headless --json -` with exit 0 and `final.reason.kind` `completed`, saved verbatim; an unkeyed route is marked "configured, not verified" and excluded from default allowlists
-- [ ] One `fanout-run.cjs` deep-research lineage on kind `cli-deepseek-harness` completes with a clean containment scan
-- [ ] The three `.dsh/` mirror generators exit 0 with `--check`, and the dispatch-audit, executor and stress test suites pass
+- [x] Each keyed roster route answers `dsh --profile headless --json -` with exit 0 and `final.reason.kind` `completed`, saved verbatim; an unkeyed route is marked "configured, not verified" and excluded from default allowlists
+- [x] One `fanout-run.cjs` deep-research lineage on kind `cli-deepseek-harness` completes with a clean containment scan
+- [x] The three `.dsh/` mirror generators exit 0 with `--check`, and the dispatch-audit, executor and stress test suites pass
 - [x] `mode-registry.json` lists eight modes including `cli-deepseek-harness`, and the advisor still routes "use cli-opencode with deepseek-v4.1-flash" to `cli-opencode`
 - [x] `validate.sh specs/cli-external-orchestration/085-cli-deepseek-harness-creation --strict --recursive` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
@@ -137,6 +137,7 @@ and findings belong here.
 | Release closeout 2026-11-06 | Committed | DSH handover items committed (dispatch fix, 13th rule, $REPO fixes, .env.example, changelogs, runtime READMEs, root README). Criteria 1-3 are met: keyed LLM Gateway run exit 0 completed (013 evidence/route-llmgateway.*), OpenCode Go explicit-only and not default (DSH_DEFAULT_MODEL), clean fan-out lineage dsh-live-2 (013 evidence/fanout-lineage.md), dsh generators and test suites green in final... |
 | Final gate r6 | Green on HEAD | 15 mirror checks exit 0, rule tests 50/50, dispatch audit 128/128, runtime 534 pass 9 skip, tsc 0, routing 48/48, repo-guards 37/37 and strict 15/15 from a HEAD export. Evidence: 014-playbook-docs-and-closeout/evidence/final-gate-2026-11-06-r6.txt |
 | 015 DSH hook parity | Done | 20 adapters with 6 new, the advisor on for interactive sessions and off in leaves by a lineage marker, /goal-dsh and the dsh_goal tool, sweep-dsh in /speckit:save, every adapter moved into the hook library behind links. Bundle 75/75 (was 37/37), sweep 8/8, mirrors 243 across 10 trees, keyless boots show the interactive and leaf split. Evidence: 015-dsh-hook-parity/evidence/gates-2026-11-06.txt... |
+| Criteria 1-3 ticked | Done | C1 013/evidence/route-llmgateway.stdout.jsonl (exit 0, completed, Go explicit-only). C2 013/evidence/fanout-lineage.md (dsh-live-2 clean). C3 014/evidence/final-gate-2026-11-06-r6.txt, 015/evidence/gates-2026-11-06.txt |
 
 ### Deviations and findings
 
