@@ -521,6 +521,9 @@ A keyless lineage boot still listed `create_goal`, `get_goal` and `update_goal`,
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
+| Q001 | Take ownership of the three DSH sync scripts along with the route, mirror-check and contract-test edits, so route validation passes. | Committing the edits alone would fail route-validate, because the new route lines call sync scripts that were untracked. | None | Commits 602309b436 to 8df2e4c343, .skilled/commands/doctor/_routes.yaml |
+| Q002 | Add `.dsh/agents/` to the agent-folder list in AGENTS.md section 9 and refresh the AGENTS.md manifest. | Not stated. | None | Commit 9f8cee8630, AGENTS.md, agents-md-manifest.json |
+| Q003 | Tick goal criteria 1 to 3 in the packet 085 goal only after hook parity has landed. | Not stated. | None | Commit ccf52fa7df, 085 goal.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -529,6 +532,66 @@ A keyless lineage boot still listed `create_goal`, `get_goal` and `update_goal`,
 ## Appendix: Verbatim Operator Answers
 
 Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
+
+### Q001
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_017CRejh4rtd9XjeUmidgLhc:0 -->
+
+Question:
+```text
+The three DSH edits (the _routes.yaml lines, the doctor-runtime-mirrors.yaml rows and the contract test) applied cleanly on my branch, and the doctor suite passes, 1067/1067. But route validation fails: the new route lines call three DSH sync scripts that exist only as untracked files in the main checkout. Commit the edits alone and the branch fails `route-validate`. How far should I take ownership?
+```
+
+Options:
+```text
+Also take the sync scripts (Recommended)
+Take all the DSH work
+Drop it, leave it to them
+```
+
+Answer:
+```text
+Also take the sync scripts (Recommended)
+```
+
+### Q002
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01Y2HrQgqw2Eh1oARajecSJd:0 -->
+
+Question:
+```text
+AGENTS.md §9 lists each runtime's agent folder but leaves out `.dsh/agents/`. Should I add it to line 281 as "...`.devin/agents/`, `.hermes/agents/` or `.dsh/agents/`" (+16 bytes, still under the size cap) and refresh the AGENTS.md manifest? This edits the instruction file Claude Code loads, so the agent wouldn't do it without your direct OK.
+```
+
+Options:
+```text
+Yes, add it (Recommended)
+No, leave it
+```
+
+Answer:
+```text
+Yes, add it (Recommended)
+```
+
+### Q003
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01Y2HrQgqw2Eh1oARajecSJd:1 -->
+
+Question:
+```text
+Should goal criteria 1 to 3 in DSH packet 085 be ticked? The log rows give the evidence, and ticking them changes the goal text you'd resend.
+```
+
+Options:
+```text
+Tick after parity lands (Recommended)
+Tick now
+Leave unticked
+```
+
+Answer:
+```text
+Tick after parity lands (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---
