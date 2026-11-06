@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -55,6 +55,74 @@ See `INSTALL-GUIDE.md` for the configuration block.
 ## 3. AUTHENTICATION
 
 OAuth 2.1 with PKCE, through the hosted server, with one browser approval on the first launch. The `clickup_official` manual reads no API key, so `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` play no part in this route. Calls act as the signed-in user, so permissions follow that user's role in the workspace.
+
+### First-Use Readiness Check
+
+Two logins sit outside the agent's reach, and the agent never performs either one. The ClickUp MCP needs one OAuth approval in the user's browser. A doc page push also needs ClickUp logged in, in the browser the divider gap pass runs in. Run this check once per session, after the user approves the first ClickUp write and before that write. Task writes need only the MCP part, and doc page writes need both.
+
+What the agent sees, measured on 2026-11-06 with an empty login store:
+- **Before the approval, the manual has no tools.** Registering `clickup_official` waits about a minute, ends with `MCP error -32001: Request timed out` and lists 0 tools, so a call fails because the tool is not defined. It never returns a 401.
+- **The approval counts only while a connection waits for it.** mcp-remote's local callback runs during registration. An approval given after the timeout writes no token, so tell the user first and then start the connection.
+- **After one approval, reconnecting needs nothing.** mcp-remote stores the token under `~/.mcp-auth`, and the next registration listed all 67 tools in seconds with no new tab.
+- **The `aside` connection can drop.** After some idle time a call returns `Error: Not connected` while Aside itself is still running. Registering the `aside` manual again brings it back.
+
+Run the program below as the `code` of one `mcp__code_mode__call_tool_chain` call with a `timeout` of 90000. Set `NEED_BROWSER` to `false` when no doc page is written. It opens and closes its own background tab, so the user's view does not change.
+
+```javascript
+(async () => {
+  const NEED_BROWSER = true;
+  const out = { mcp: "unknown", browser: NEED_BROWSER ? "unknown" : "not-needed" };
+  // MCP: a cheap read that needs the OAuth approval.
+  const resolve = typeof clickup_official === "undefined" ? undefined
+    : clickup_official.clickup_official_clickup_resolve_assignees;
+  if (typeof resolve !== "function") out.mcp = "not-connected";
+  else {
+    try {
+      const me = JSON.stringify(await resolve({ assignees: ["me"] }));
+      out.mcp = /"error"|unauthori[sz]ed|\b401\b|not_found_or_authorized/i.test(me) ? "login" : "ok";
+    } catch (e) { out.mcp = "error"; out.mcpError = String(e).slice(0, 200); }
+  }
+  // Browser: open ClickUp in a background tab and see whether it lands on the login screen.
+  if (NEED_BROWSER) {
+    try {
+      const raw = JSON.stringify(await aside.aside_repl({ title: "clickup readiness", code: `await (async () => {
+        const t = await openTab("https://app.clickup.com/");
+        await new Promise((r) => setTimeout(r, 7000));
+        const path = await t.evaluate("location.pathname");
+        await closeTab(t);
+        console.log("PROBE " + path);
+      })();` }));
+      const m = /PROBE (\/[^\s"\\]*)/.exec(raw);
+      if (m) out.browser = m[1].includes("/login") ? "aside-login" : "aside";
+      else out.asideError = raw.slice(0, 200);
+    } catch (e) { out.asideError = String(e).slice(0, 200); }
+    if (out.browser === "unknown" && typeof chrome_devtools_live !== "undefined") {
+      const B = chrome_devtools_live;
+      try {
+        const ids = async () => String(await B.chrome_devtools_live_list_pages({})).match(/^\d+(?=: )/gm) || [];
+        const before = await ids();
+        await B.chrome_devtools_live_new_page({ url: "https://app.clickup.com/", background: true });
+        const path = String(await B.chrome_devtools_live_evaluate_script(
+          { function: "() => new Promise((r) => setTimeout(() => r(location.pathname), 7000))" }));
+        const mine = (await ids()).find((id) => !before.includes(id));
+        if (mine) await B.chrome_devtools_live_close_page({ pageId: Number(mine) });
+        out.browser = path.includes("/login") ? "chrome-login" : "chrome";
+      } catch (e) { out.chromeError = String(e).slice(0, 200); }
+    }
+    if (out.browser === "unknown") out.browser = "none";
+  }
+  console.log(JSON.stringify(out));
+})();
+```
+
+Act on each result in this order, and run the program again after each fix. Ask with the runtime's structured question tool, such as `AskUserQuestion` in Claude Code, and fall back to a one-line question and a wait where the runtime has none. After two rechecks of the same state, stop and report what is missing instead of asking again.
+1. **`mcp: "not-connected"` or `"login"`.** Ask: "ClickUp needs a one-time approval. When you pick Ready, a ClickUp 'allow access' tab opens in your browser. Approve it within about a minute." Offer **Ready** and **Skip ClickUp for now**. On Ready, register the `clickup_official` manual again with Code Mode's `register_manual`, using its entry from `.utcp_config.json`. The call waits for the approval and succeeds once it lists tools. Where the runtime has no `register_manual`, ask the user to restart the client or reconnect Code Mode and approve the tab that opens.
+2. **`mcp: "error"`.** Report `mcpError` and stop. It is not a login problem.
+3. **`asideError` contains `Not connected`.** Register the `aside` manual again from its `.utcp_config.json` entry and rerun the check. This needs no question.
+4. **`browser: "aside-login"` or `"chrome-login"`.** Ask: "Log in to ClickUp in {Aside or Chrome}, then pick Logged in." Offer **Logged in** and **Skip the gap removal**.
+5. **`browser: "none"`.** Ask: "To remove the divider gaps I need Aside open, or Chrome open with remote debugging turned on at `chrome://inspect/#remote-debugging`." Offer **Aside is open**, **Chrome is ready** and **Skip the gap removal**.
+
+When every part reads `ok`, `aside` or `chrome`, the session is ready, and later writes in it skip the check. A login that fails later, such as `login: true` from the gap pass, goes straight to the matching question above. When the user picks a skip, the write still happens if the MCP is ready, and the report names what was skipped, for example the gaps left on each page. Never call such a page delivered without saying so.
 
 ---
 

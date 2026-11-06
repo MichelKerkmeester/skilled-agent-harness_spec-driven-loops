@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Every divider the hosted ClickUp MCP writes into a doc page gets an empty line under it, so a page built from markdown shows a double gap under each `  `",
     "created_at": "2026-11-05T17:14:27Z",
-    "last_save_at": "2026-11-06T07:38:14.447Z",
+    "last_save_at": "2026-11-06T08:45:25.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a5be29ace288d058f8c2c595509e4484881fa90aaf419968dff2615dae69257",
+    "source_fingerprint": "sha256:753c6f6d86c6c68ba18e083b8558155667d45cbddeed82beb826b649f1906db6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d7d33258f8664b9f10ddaa7052e0c71209b53428322f77bf971a82156ce1e79",
+      "spec.md": "f9f44cab33560cb65e1996ed224de34025c66bf5aa59cb26845d9a126b9abac9",
       "plan.md": "0937b1c53a464907f86cf6480735760ae4440c90b916272afd35aa6a83b1d752",
-      "tasks.md": "6b2fccecb44b4d42d5e0b06a4f794e27398c3bdec0478c9e184595526dfeaad0",
+      "tasks.md": "4b3dd72651529c52bb446d49c0f45eeb49cc1dbda58af5f4eea514e56c493b06",
       "implementation-summary.md": "ade5072ad309247aede1087ab304f266c1d00a441b73919d4eab0fa581474ffc"
     },
     "last_active_at": null

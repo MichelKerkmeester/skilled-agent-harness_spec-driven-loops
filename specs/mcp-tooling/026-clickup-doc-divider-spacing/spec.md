@@ -72,6 +72,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 - Make the import check and the gap removal a required routine after every page write, with a Code Mode program that runs both, in `references/mcp-tools.md` section 8 (mode 1.2.11.0)
 - Restore the sk-create-benchmark trigger the hub vocabulary routes, and let the document validator accept a deliberate section 0
 - Move the compiled-routing directive in the `mcp-tooling` and `sk-doc` hub `ROUTER.md` files back into `## 5. MACHINE ROUTER`, where `validate_skill_package.py` reads it, and release each hub one patch step
+- Check both ClickUp logins once per session before the first write, and ask the user for any that is missing (`mcp-click-up` 1.2.14.0)
 - Run the gap pass in a browser already logged in to ClickUp, in a background tab: an Aside program first, and a Chrome program through a new `chrome_devtools_live` manual (`--autoConnect`) as the fallback (`mcp-click-up` 1.2.12.0, `mcp-chrome-devtools` 1.0.21.0), plus a note in `mcp-aside-devtools` that `openTab` leaves the user's view alone (1.1.8.0)
 
 ### Out of Scope
@@ -118,6 +119,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 | REQ-004 | The changed docs validate and the Hermes copy matches | `validate_document.py` reports 0 issues on the two references and the changelog, and `sync-skills-hermes.cjs --check` prints `PASS` |
 | REQ-006 | Every page write runs the import check and gap removal without a second question | `rg -n 'Required after every page write' references/mcp-tools.md` prints one heading, and the program run on a gapped scratch page reports `gapsLeft: 0` and `textUnchanged: true` |
 | REQ-007 | The gap pass runs in a browser already logged in to ClickUp without changing the user's view | Both section 8 programs, run as written on a gapped scratch page, report `login: false`, `gapsLeft: 0` and `textUnchanged: true`, and the user's active tabs are the same before and after an Aside run |
+| REQ-008 | A missing ClickUp login is found and fixed with the user before the first write | The readiness program reports `not-connected`, `login`, `none` and the logged-in states correctly, and each has a written question, recheck and stop rule |
 | REQ-005 | Both hubs and the mode meet the sk-create-skill package contract | `validate_skill_package.py` passes all three legs on `mcp-tooling` and `sk-doc`, and `package_skill.py --check --strict` passes on both hubs and on `mcp-click-up` |
 <!-- /ANCHOR:requirements -->
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-click-up routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -37,7 +37,7 @@ loads before an intent selects it.
 
 - **`CUPT_DAILY`** (weight 5) fires on the daily cupt phrasing, "list", "show", "done", "mark done", "complete task", "my tasks", "due today", "overdue", "log time", "start timer", "add a comment", "work queue" and "task details". It loads `references/cupt-commands.md`, and nothing else.
 - **`MCP_ADVANCED`** (weight 5) fires on "create a task", "subtask", "document", "doc page", "search clickup", "manage lists", "task dependencies", "chat", "reminder" and "move task", and the MCP-only phrasings in `MCP_ONLY_PHRASES` select it whenever an error or install signal does not outrank them. It loads `references/mcp-tools.md`.
-- **`INSTALL`** (weight 6) fires on "install cupt", "setup", "not installed", "auth", "authenticate", "api token", "mcp config", "sign in" and "how do i install", and a score above 4 selects it, unless `TROUBLESHOOT` also scores above 3, which the machine router checks first. It loads `INSTALL-GUIDE.md` and `references/troubleshooting.md`, because a setup request usually ends in a failure report.
+- **`INSTALL`** (weight 6) fires on "install cupt", "setup", "not installed", "auth", "authenticate", "api token", "mcp config", "log in to clickup", "clickup login", "oauth", "sign in" and "how do i install", and a score above 4 selects it, unless `TROUBLESHOOT` also scores above 3, which the machine router checks first. It loads `INSTALL-GUIDE.md` and `references/troubleshooting.md`, because a setup request usually ends in a failure report.
 - **`TROUBLESHOOT`** (weight 6) fires on "error", "failed", "not working", "401", "403", "rate limit", "429", "empty", "no tasks", "not authenticated" and "can't connect", and a score above 3 selects it ahead of every other intent. It loads `references/troubleshooting.md`.
 
 A request that scores on no intent loads nothing. It returns `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST`, and `references/cupt-commands.md` is suggested beside that checklist as a fallback-only default, so it never enters a scored route's loaded set.
@@ -134,7 +134,7 @@ INTENT_SIGNALS = {
     "INSTALL": {
         "weight": 6,
         "keywords": ["install cupt", "setup", "not found", "not installed", "auth",
-                     "authenticate", "api token", "mcp config",
+                     "authenticate", "api token", "mcp config", "log in to clickup", "clickup login", "oauth",
                      "getting started", "onboarding", "configure", "configuration",
                      "connect clickup", "link my account", "personal token", "pipx install",
                      "sign in", "how do i install"],
