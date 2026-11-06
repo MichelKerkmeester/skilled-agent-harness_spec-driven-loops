@@ -1,5 +1,5 @@
 {
-  "manifestHash": "951b91f17d030c445a493e7bfb402888c5519201df7b17ac0a726f161769ef9b",
+  "manifestHash": "3c2ce1662e154cb6557a33eb0f558e6aa3538d7e04de95a55ba160d59808908f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21265,6 +21265,57 @@
     "cli deem verification tasks": [
       "cli-deem verification tasks"
     ],
+    "cli deepseek harness": [
+      "cli-deepseek-harness"
+    ],
+    "cli deepseek harness 1 0 0 0": [
+      "cli-deepseek-harness 1.0.0.0"
+    ],
+    "cli deepseek harness creation phase parent spec": [
+      "cli deepseek harness creation phase parent spec"
+    ],
+    "cli deepseek harness executor kind": [
+      "cli-deepseek-harness executor kind"
+    ],
+    "cli deepseek harness hard rules": [
+      "cli-deepseek-harness hard rules"
+    ],
+    "cli deepseek harness phases": [
+      "cli-deepseek-harness phases"
+    ],
+    "cli deepseek harness research": [
+      "cli-deepseek-harness research"
+    ],
+    "cli deepseek harness router": [
+      "cli-deepseek-harness router"
+    ],
+    "cli deepseek harness routing": [
+      "cli-deepseek-harness routing"
+    ],
+    "cli deepseek harness skill packet": [
+      "cli deepseek harness skill packet"
+    ],
+    "cli deepseek harness skill packet acceptance criteria": [
+      "cli deepseek harness skill packet acceptance criteria"
+    ],
+    "cli deepseek harness skill packet goal": [
+      "cli deepseek harness skill packet goal"
+    ],
+    "cli deepseek harness skill packet implementation summary": [
+      "cli deepseek harness skill packet implementation summary"
+    ],
+    "cli deepseek harness skill packet plan": [
+      "cli deepseek harness skill packet plan"
+    ],
+    "cli deepseek harness skill packet tasks": [
+      "cli deepseek harness skill packet tasks"
+    ],
+    "cli deepseek harness v1 0 0 0": [
+      "cli-deepseek-harness v1.0.0.0"
+    ],
+    "cli deepseek research scope": [
+      "cli-deepseek research scope"
+    ],
     "cli devin": [
       "cli devin",
       "cli-devin"
@@ -21672,6 +21723,9 @@
     "cli external orchestration 1 7 9 0": [
       "cli-external-orchestration 1.7.9.0"
     ],
+    "cli external orchestration 1 8 0 0": [
+      "cli-external-orchestration 1.8.0.0"
+    ],
     "cli external orchestration benchmark": [
       "cli-external-orchestration benchmark"
     ],
@@ -21803,6 +21857,9 @@
     ],
     "cli external orchestration v1 7 9 0": [
       "cli-external-orchestration v1.7.9.0"
+    ],
+    "cli external orchestration v1 8 0 0": [
+      "cli-external-orchestration v1.8.0.0"
     ],
     "cli fallback envelope normalization": [
       "cli fallback envelope normalization"
@@ -30368,6 +30425,9 @@
     "council seat roles": [
       "council seat roles"
     ],
+    "council seat roster": [
+      "council seat roster"
+    ],
     "council seat scoring weights": [
       "council seat scoring weights"
     ],
@@ -31240,6 +31300,9 @@
     ],
     "credential check dispatch": [
       "credential check dispatch"
+    ],
+    "credential free dsh contract": [
+      "credential-free dsh contract"
     ],
     "credential health check": [
       "credential health check"
@@ -35023,6 +35086,24 @@
     "deep loop executor cli devin": [
       "deep-loop executor cli-devin"
     ],
+    "deep loop executor kind": [
+      "deep loop executor kind"
+    ],
+    "deep loop executor kind acceptance criteria": [
+      "deep loop executor kind acceptance criteria"
+    ],
+    "deep loop executor kind goal": [
+      "deep loop executor kind goal"
+    ],
+    "deep loop executor kind implementation summary": [
+      "deep loop executor kind implementation summary"
+    ],
+    "deep loop executor kind plan": [
+      "deep loop executor kind plan"
+    ],
+    "deep loop executor kind tasks": [
+      "deep loop executor kind tasks"
+    ],
     "deep loop executor matrix audit": [
       "deep-loop executor matrix audit"
     ],
@@ -35263,6 +35344,24 @@
     "deep loop mode write ownership": [
       "deep-loop mode write ownership"
     ],
+    "deep loop modes and commands": [
+      "deep loop modes and commands"
+    ],
+    "deep loop modes and commands acceptance criteria": [
+      "deep loop modes and commands acceptance criteria"
+    ],
+    "deep loop modes and commands goal": [
+      "deep loop modes and commands goal"
+    ],
+    "deep loop modes and commands implementation summary": [
+      "deep loop modes and commands implementation summary"
+    ],
+    "deep loop modes and commands plan": [
+      "deep loop modes and commands plan"
+    ],
+    "deep loop modes and commands tasks": [
+      "deep loop modes and commands tasks"
+    ],
     "deep loop package topology": [
       "deep-loop package topology"
     ],
@@ -35491,6 +35590,9 @@
     "deep loop runtime 1 9 14 0": [
       "deep-loop-runtime 1.9.14.0"
     ],
+    "deep loop runtime 1 9 15 0": [
+      "deep-loop-runtime 1.9.15.0"
+    ],
     "deep loop runtime 1 9 2 0": [
       "deep-loop-runtime 1.9.2.0"
     ],
@@ -35610,6 +35712,9 @@
     ],
     "deep loop runtime v1 9 14 0": [
       "deep-loop-runtime v1.9.14.0"
+    ],
+    "deep loop runtime v1 9 15 0": [
+      "deep-loop-runtime v1.9.15.0"
     ],
     "deep loop runtime v1 9 2 0": [
       "deep-loop-runtime v1.9.2.0"
@@ -36196,6 +36301,9 @@
     ],
     "deep research feature catalog": [
       "deep-research feature catalog"
+    ],
+    "deep research goal": [
+      "deep research goal"
     ],
     "deep research golden lane complete": [
       "deep-research golden lane complete"
@@ -37713,8 +37821,62 @@
     "deepseek guard implementation": [
       "deepseek guard implementation"
     ],
+    "deepseek harness": [
+      "deepseek harness"
+    ],
+    "deepseek harness cli": [
+      "deepseek harness cli"
+    ],
+    "deepseek harness cli bridge": [
+      "DeepSeek Harness CLI bridge"
+    ],
+    "deepseek harness closeout": [
+      "deepseek harness closeout"
+    ],
+    "deepseek harness council seat": [
+      "deepseek harness council seat"
+    ],
+    "deepseek harness deep research": [
+      "deepseek harness deep research"
+    ],
+    "deepseek harness dispatch mode": [
+      "DeepSeek Harness Dispatch Mode"
+    ],
+    "deepseek harness fan out": [
+      "DeepSeek Harness fan-out"
+    ],
+    "deepseek harness integration": [
+      "deepseek harness integration"
+    ],
+    "deepseek harness live contract": [
+      "deepseek harness live contract"
+    ],
     "deepseek harness mirrors": [
       "DeepSeek Harness mirrors"
+    ],
+    "deepseek harness mode": [
+      "deepseek harness mode"
+    ],
+    "deepseek harness mode packet": [
+      "deepseek harness mode packet"
+    ],
+    "deepseek harness persona": [
+      "DeepSeek Harness persona"
+    ],
+    "deepseek harness phase plan": [
+      "deepseek harness phase plan"
+    ],
+    "deepseek harness providers": [
+      "deepseek harness providers"
+    ],
+    "deepseek harness research angles": [
+      "deepseek harness research angles"
+    ],
+    "deepseek harness research synthesis": [
+      "deepseek harness research synthesis"
+    ],
+    "deepseek harness resource map": [
+      "deepseek harness resource map"
     ],
     "deepseek like compat warning": [
       "deepseek-like compat warning"
@@ -38030,6 +38192,9 @@
     ],
     "delegate to devin": [
       "delegate to devin"
+    ],
+    "delegate to dsh": [
+      "delegate to dsh"
     ],
     "delegate to hermes": [
       "delegate to hermes"
@@ -40128,6 +40293,24 @@
     "dispatch receipt verifier": [
       "dispatch receipt verifier"
     ],
+    "dispatch recognition and stress adapter": [
+      "dispatch recognition and stress adapter"
+    ],
+    "dispatch recognition and stress adapter acceptance criteria": [
+      "dispatch recognition and stress adapter acceptance criteria"
+    ],
+    "dispatch recognition and stress adapter goal": [
+      "dispatch recognition and stress adapter goal"
+    ],
+    "dispatch recognition and stress adapter implementation summary": [
+      "dispatch recognition and stress adapter implementation summary"
+    ],
+    "dispatch recognition and stress adapter plan": [
+      "dispatch recognition and stress adapter plan"
+    ],
+    "dispatch recognition and stress adapter tasks": [
+      "dispatch recognition and stress adapter tasks"
+    ],
     "dispatch research iteration": [
       "dispatch research iteration"
     ],
@@ -41070,6 +41253,9 @@
     "doctor command routing acceptance criteria": [
       "doctor command routing acceptance criteria"
     ],
+    "doctor command routing fix": [
+      "doctor command routing fix"
+    ],
     "doctor command routing implementation summary": [
       "doctor command routing implementation summary"
     ],
@@ -41938,6 +42124,12 @@
     ],
     "doctor sk code setup versus hub mode": [
       "doctor sk-code-setup versus hub mode"
+    ],
+    "doctor sk code surface alignment": [
+      "doctor sk-code surface alignment"
+    ],
+    "doctor sk code surface contract research": [
+      "doctor sk-code surface contract research"
     ],
     "doctor sk skill": [
       "/doctor:sk-skill"
@@ -42882,8 +43074,308 @@
     "dry run trigger migration decision": [
       "dry run trigger migration decision"
     ],
+    "dsh advisor routing": [
+      "dsh advisor routing"
+    ],
+    "dsh build roadmap": [
+      "dsh build roadmap"
+    ],
+    "dsh cli reference": [
+      "dsh cli reference"
+    ],
+    "dsh code mode": [
+      "dsh code mode"
+    ],
+    "dsh constraints versus other runtimes": [
+      "dsh constraints versus other runtimes"
+    ],
+    "dsh context guards and goal bridge": [
+      "dsh context guards and goal bridge"
+    ],
+    "dsh context guards and goal bridge acceptance criteria": [
+      "dsh context guards and goal bridge acceptance criteria"
+    ],
+    "dsh context guards and goal bridge goal": [
+      "dsh context guards and goal bridge goal"
+    ],
+    "dsh context guards and goal bridge implementation summary": [
+      "dsh context guards and goal bridge implementation summary"
+    ],
+    "dsh context guards and goal bridge plan": [
+      "dsh context guards and goal bridge plan"
+    ],
+    "dsh context guards and goal bridge tasks": [
+      "dsh context guards and goal bridge tasks"
+    ],
+    "dsh cordis plugin": [
+      "dsh cordis plugin"
+    ],
+    "dsh council seat decision": [
+      "dsh council seat decision"
+    ],
+    "dsh deep loop lineage": [
+      "dsh deep-loop lineage"
+    ],
+    "dsh deep research executor": [
+      "dsh deep research executor"
+    ],
+    "dsh deep review executor": [
+      "dsh deep review executor"
+    ],
+    "dsh dispatch prompt discipline": [
+      "dsh dispatch prompt discipline"
+    ],
+    "dsh dispatch template": [
+      "dsh dispatch template"
+    ],
+    "dsh dump config evidence": [
+      "dsh dump-config evidence"
+    ],
+    "dsh env allowlist": [
+      "dsh env allowlist"
+    ],
+    "dsh exit code contract": [
+      "dsh exit code contract"
+    ],
+    "dsh fan out executor": [
+      "dsh fan-out executor"
+    ],
+    "dsh folder": [
+      ".dsh folder"
+    ],
+    "dsh goal context adapter": [
+      "dsh goal-context adapter"
+    ],
+    "dsh guards": [
+      "dsh guards"
+    ],
+    "dsh guards patch": [
+      "dsh guards patch"
+    ],
+    "dsh headless": [
+      "dsh headless"
+    ],
+    "dsh headless dispatch": [
+      "dsh headless dispatch"
+    ],
+    "dsh headless dispatch inspection": [
+      "dsh headless dispatch inspection"
+    ],
+    "dsh headless executor": [
+      "dsh headless executor"
+    ],
+    "dsh headless flags": [
+      "dsh headless flags"
+    ],
+    "dsh home isolation": [
+      "dsh home isolation"
+    ],
+    "dsh hook bridge": [
+      "dsh hook bridge"
+    ],
+    "dsh hooks": [
+      "dsh hooks"
+    ],
+    "dsh implementation template": [
+      "dsh implementation template"
+    ],
+    "dsh json event stream": [
+      "dsh json event stream"
+    ],
+    "dsh known context": [
+      "dsh known context"
+    ],
+    "dsh launcher patch flag": [
+      "dsh launcher patch flag"
+    ],
+    "dsh lineage command": [
+      "dsh lineage command"
+    ],
+    "dsh lineage patch": [
+      "dsh lineage patch"
+    ],
+    "dsh live contract pin": [
+      "dsh live contract pin"
+    ],
+    "dsh live contract pin acceptance criteria": [
+      "dsh live contract pin acceptance criteria"
+    ],
+    "dsh live contract pin goal": [
+      "dsh live contract pin goal"
+    ],
+    "dsh live contract pin implementation summary": [
+      "dsh live contract pin implementation summary"
+    ],
+    "dsh live contract pin plan": [
+      "dsh live contract pin plan"
+    ],
+    "dsh live contract pin tasks": [
+      "dsh live contract pin tasks"
+    ],
+    "dsh llm gateway route": [
+      "dsh llm gateway route"
+    ],
+    "dsh manual testing playbook": [
+      "dsh manual testing playbook"
+    ],
+    "dsh mcp": [
+      "dsh mcp"
+    ],
+    "dsh mcp client row": [
+      "dsh mcp client row"
+    ],
+    "dsh mcp code mode": [
+      "dsh mcp code mode"
+    ],
+    "dsh mcp code mode acceptance criteria": [
+      "dsh mcp code mode acceptance criteria"
+    ],
+    "dsh mcp code mode goal": [
+      "dsh mcp code mode goal"
+    ],
+    "dsh mcp code mode implementation summary": [
+      "dsh mcp code mode implementation summary"
+    ],
+    "dsh mcp code mode plan": [
+      "dsh mcp code mode plan"
+    ],
+    "dsh mcp code mode tasks": [
+      "dsh mcp code mode tasks"
+    ],
+    "dsh mcp patch": [
+      "dsh mcp patch"
+    ],
+    "dsh mcp route guard": [
+      "dsh mcp-route-guard"
+    ],
     "dsh mirror generators": [
       "dsh mirror generators"
+    ],
+    "dsh mirror generators acceptance criteria": [
+      "dsh mirror generators acceptance criteria"
+    ],
+    "dsh mirror generators goal": [
+      "dsh mirror generators goal"
+    ],
+    "dsh mirror generators implementation summary": [
+      "dsh mirror generators implementation summary"
+    ],
+    "dsh mirror generators plan": [
+      "dsh mirror generators plan"
+    ],
+    "dsh mirror generators tasks": [
+      "dsh mirror generators tasks"
+    ],
+    "dsh model roster": [
+      "dsh model roster"
+    ],
+    "dsh offline contract pin": [
+      "dsh offline contract pin"
+    ],
+    "dsh offline contract pin acceptance criteria": [
+      "dsh offline contract pin acceptance criteria"
+    ],
+    "dsh offline contract pin goal": [
+      "dsh offline contract pin goal"
+    ],
+    "dsh offline contract pin implementation summary": [
+      "dsh offline contract pin implementation summary"
+    ],
+    "dsh offline contract pin plan": [
+      "dsh offline contract pin plan"
+    ],
+    "dsh offline contract pin tasks": [
+      "dsh offline contract pin tasks"
+    ],
+    "dsh opencode go route": [
+      "dsh opencode go route"
+    ],
+    "dsh packet goal bridge": [
+      "dsh packet goal bridge"
+    ],
+    "dsh patches folder": [
+      "dsh patches folder"
+    ],
+    "dsh prompt framework selection": [
+      "dsh prompt framework selection"
+    ],
+    "dsh prompt quality card": [
+      "dsh prompt quality card"
+    ],
+    "dsh prompt templates": [
+      "dsh prompt templates"
+    ],
+    "dsh release probe": [
+      "dsh release probe"
+    ],
+    "dsh repo guards plugin": [
+      "dsh repo-guards plugin"
+    ],
+    "dsh repo guards safety wave": [
+      "dsh repo guards safety wave"
+    ],
+    "dsh repo guards safety wave acceptance criteria": [
+      "dsh repo guards safety wave acceptance criteria"
+    ],
+    "dsh repo guards safety wave goal": [
+      "dsh repo guards safety wave goal"
+    ],
+    "dsh repo guards safety wave implementation summary": [
+      "dsh repo guards safety wave implementation summary"
+    ],
+    "dsh repo guards safety wave plan": [
+      "dsh repo guards safety wave plan"
+    ],
+    "dsh repo guards safety wave tasks": [
+      "dsh repo guards safety wave tasks"
+    ],
+    "dsh research lineages": [
+      "dsh research lineages"
+    ],
+    "dsh review template": [
+      "dsh review template"
+    ],
+    "dsh route patch": [
+      "dsh route patch"
+    ],
+    "dsh route re pin": [
+      "dsh route re-pin"
+    ],
+    "dsh route verification": [
+      "dsh route verification"
+    ],
+    "dsh runtime folder": [
+      "dsh runtime folder"
+    ],
+    "dsh runtime folder and patches": [
+      "dsh runtime folder and patches"
+    ],
+    "dsh runtime folder and patches acceptance criteria": [
+      "dsh runtime folder and patches acceptance criteria"
+    ],
+    "dsh runtime folder and patches goal": [
+      "dsh runtime folder and patches goal"
+    ],
+    "dsh runtime folder and patches implementation summary": [
+      "dsh runtime folder and patches implementation summary"
+    ],
+    "dsh runtime folder and patches plan": [
+      "dsh runtime folder and patches plan"
+    ],
+    "dsh runtime folder and patches tasks": [
+      "dsh runtime folder and patches tasks"
+    ],
+    "dsh runtime integration findings": [
+      "dsh runtime integration findings"
+    ],
+    "dsh skill packet references": [
+      "dsh skill packet references"
+    ],
+    "dsh skills symlink farm": [
+      "dsh skills symlink farm"
+    ],
+    "dsh sync manifest": [
+      "dsh sync manifest"
     ],
     "dtype embedding profile key": [
       "dtype embedding profile key"
@@ -43438,6 +43930,9 @@
     "eight mode gates event ledger": [
       "eight mode gates event ledger"
     ],
+    "eight runtime docs reconciliation": [
+      "eight runtime docs reconciliation"
+    ],
     "eighteen code deviations found": [
       "eighteen code deviations found"
     ],
@@ -43449,6 +43944,12 @@
     ],
     "eighteen item no go list tasks": [
       "eighteen item no-go list tasks"
+    ],
+    "eighth cli runtime": [
+      "eighth cli runtime"
+    ],
+    "eighth hub mode": [
+      "eighth hub mode"
     ],
     "either root completion criteria": [
       "either root completion criteria"
@@ -56652,6 +57153,24 @@
     "hub registration": [
       "hub registration"
     ],
+    "hub registration and routing": [
+      "hub registration and routing"
+    ],
+    "hub registration and routing acceptance criteria": [
+      "hub registration and routing acceptance criteria"
+    ],
+    "hub registration and routing goal": [
+      "hub registration and routing goal"
+    ],
+    "hub registration and routing implementation summary": [
+      "hub registration and routing implementation summary"
+    ],
+    "hub registration and routing plan": [
+      "hub registration and routing plan"
+    ],
+    "hub registration and routing tasks": [
+      "hub registration and routing tasks"
+    ],
     "hub repo folder exemption": [
       "hub repo folder exemption"
     ],
@@ -59726,6 +60245,9 @@
     ],
     "key questions generated projection": [
       "key-questions generated projection"
+    ],
+    "keyed dsh pin": [
+      "keyed dsh pin"
     ],
     "keyed runtime discovery": [
       "keyed runtime discovery"
@@ -77595,6 +78117,9 @@
     "phase 10 documentation sweep": [
       "phase 10 documentation sweep"
     ],
+    "phase 10 dsh mcp code mode": [
+      "phase 10 dsh mcp code mode"
+    ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
     ],
@@ -77667,6 +78192,9 @@
     "phase 11 goal drift remediation": [
       "phase 11 goal drift remediation"
     ],
+    "phase 11 hub registration and routing": [
+      "phase 11 hub registration and routing"
+    ],
     "phase 11 post fix remediation": [
       "phase 11 post fix remediation"
     ],
@@ -77708,6 +78236,9 @@
     ],
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
+    ],
+    "phase 12 deep loop modes and commands": [
+      "phase 12 deep loop modes and commands"
     ],
     "phase 12 legacy row migration": [
       "phase 12 legacy row migration"
@@ -77772,6 +78303,9 @@
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
     ],
+    "phase 13 dsh live contract pin": [
+      "phase 13 dsh live contract pin"
+    ],
     "phase 13 killer test spawn race": [
       "phase 13 killer test spawn race"
     ],
@@ -77810,6 +78344,9 @@
     ],
     "phase 14 handover docs promotion": [
       "phase 14 handover docs promotion"
+    ],
+    "phase 14 playbook docs and closeout": [
+      "phase 14 playbook docs and closeout"
     ],
     "phase 14 removed template reality sweep": [
       "phase 14 removed template reality sweep"
@@ -78059,6 +78596,9 @@
     ],
     "phase 2 doctor sk code setup": [
       "phase 2 doctor sk-code setup"
+    ],
+    "phase 2 dsh offline contract pin": [
+      "phase 2 dsh offline contract pin"
     ],
     "phase 2 exempt and rewrite guard": [
       "phase 2 exempt and rewrite guard"
@@ -78378,6 +78918,9 @@
     "phase 3 cli codex": [
       "phase 3 cli codex"
     ],
+    "phase 3 cli deepseek harness skill packet": [
+      "phase 3 cli deepseek harness skill packet"
+    ],
     "phase 3 cli orca": [
       "phase 3 cli orca"
     ],
@@ -78633,6 +79176,9 @@
     "phase 4 doctrine tasks": [
       "phase 4 doctrine tasks"
     ],
+    "phase 4 dsh runtime folder and patches": [
+      "phase 4 dsh runtime folder and patches"
+    ],
     "phase 4 final deep review": [
       "phase 4 final deep review"
     ],
@@ -78791,6 +79337,9 @@
     ],
     "phase 5 doc claims hardening": [
       "phase 5 doc claims hardening"
+    ],
+    "phase 5 dsh mirror generators": [
+      "phase 5 dsh mirror generators"
     ],
     "phase 5 external user guide": [
       "phase 5 external user guide"
@@ -78960,6 +79509,9 @@
     "phase 6 create skill guidance": [
       "phase 6 create skill guidance"
     ],
+    "phase 6 deep loop executor kind": [
+      "phase 6 deep loop executor kind"
+    ],
     "phase 6 deep loop findings parser": [
       "phase 6 deep loop findings parser"
     ],
@@ -79122,6 +79674,9 @@
     "phase 7 compaction pointer staleness": [
       "phase 7 compaction pointer staleness"
     ],
+    "phase 7 dispatch recognition and stress adapter": [
+      "phase 7 dispatch recognition and stress adapter"
+    ],
     "phase 7 dispatch wrapper scan": [
       "phase 7 dispatch wrapper scan"
     ],
@@ -79242,6 +79797,9 @@
     "phase 8 doctor and ci": [
       "phase 8 doctor and ci"
     ],
+    "phase 8 dsh repo guards safety wave": [
+      "phase 8 dsh repo guards safety wave"
+    ],
     "phase 8 hub gap report": [
       "phase 8 hub gap report"
     ],
@@ -79319,6 +79877,9 @@
     ],
     "phase 9 doctor update compatibility": [
       "phase 9 doctor update compatibility"
+    ],
+    "phase 9 dsh context guards and goal bridge": [
+      "phase 9 dsh context guards and goal bridge"
     ],
     "phase 9 existing issue fixes": [
       "phase 9 existing issue fixes"
@@ -81326,6 +81887,24 @@
     ],
     "playbook doc sync fixes": [
       "playbook doc sync fixes"
+    ],
+    "playbook docs and closeout": [
+      "playbook docs and closeout"
+    ],
+    "playbook docs and closeout acceptance criteria": [
+      "playbook docs and closeout acceptance criteria"
+    ],
+    "playbook docs and closeout goal": [
+      "playbook docs and closeout goal"
+    ],
+    "playbook docs and closeout implementation summary": [
+      "playbook docs and closeout implementation summary"
+    ],
+    "playbook docs and closeout plan": [
+      "playbook docs and closeout plan"
+    ],
+    "playbook docs and closeout tasks": [
+      "playbook docs and closeout tasks"
     ],
     "playbook drift self check": [
       "playbook drift self check"
@@ -83459,6 +84038,9 @@
     ],
     "projection surface contracts": [
       "projection surface contracts"
+    ],
+    "promote cli deepseek harness": [
+      "promote cli-deepseek-harness"
     ],
     "promote qwen default reranker": [
       "promote qwen default reranker"
@@ -87176,6 +87758,9 @@
     ],
     "register child identity rule": [
       "register child identity rule"
+    ],
+    "register cli deepseek harness": [
+      "register cli-deepseek-harness"
     ],
     "register cli hermes": [
       "register cli-hermes"
@@ -100179,6 +100764,9 @@
     "sk code 3 11 2 0": [
       "sk-code 3.11.2.0"
     ],
+    "sk code 3 11 3 0": [
+      "sk-code 3.11.3.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -101937,6 +102525,9 @@
     "sk code skilled implementation summary": [
       "sk code skilled implementation summary"
     ],
+    "sk code skilled obsidian webflow consistency": [
+      "sk-code-skilled obsidian webflow consistency"
+    ],
     "sk code skilled plan": [
       "sk code skilled plan"
     ],
@@ -102102,6 +102693,18 @@
     "sk code sub skills": [
       "sk-code sub-skills"
     ],
+    "sk code surface consistency": [
+      "sk-code surface consistency"
+    ],
+    "sk code surface consistency acceptance criteria": [
+      "sk-code surface consistency acceptance criteria"
+    ],
+    "sk code surface consistency research": [
+      "sk-code surface consistency research"
+    ],
+    "sk code surface consistency research round 2": [
+      "sk-code surface consistency research round 2"
+    ],
     "sk code surface detection": [
       "sk-code surface detection"
     ],
@@ -102110,6 +102713,9 @@
     ],
     "sk code surface insertion rule build": [
       "sk-code surface insertion rule build"
+    ],
+    "sk code surface layout research": [
+      "sk-code surface layout research"
     ],
     "sk code surface order for external users": [
       "sk-code surface order for external users"
@@ -102122,6 +102728,21 @@
     ],
     "sk code surface packets": [
       "sk-code surface packets"
+    ],
+    "sk code surface remediation": [
+      "sk-code surface remediation"
+    ],
+    "sk code surface remediation plan": [
+      "sk-code surface remediation plan"
+    ],
+    "sk code surface remediation tasks": [
+      "sk-code surface remediation tasks"
+    ],
+    "sk code surface scaffold": [
+      "sk-code surface scaffold"
+    ],
+    "sk code surface scaffold research": [
+      "sk-code surface scaffold research"
     ],
     "sk code taxonomy fan out": [
       "sk-code taxonomy fan-out"
@@ -102248,6 +102869,9 @@
     ],
     "sk code v3 11 2 0": [
       "sk-code v3.11.2.0"
+    ],
+    "sk code v3 11 3 0": [
+      "sk-code v3.11.3.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
@@ -106009,6 +106633,9 @@
     "sk prompt 4 0 3 0": [
       "sk-prompt 4.0.3.0"
     ],
+    "sk prompt 4 0 4 0": [
+      "sk-prompt 4.0.4.0"
+    ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
     ],
@@ -106374,6 +107001,9 @@
     ],
     "sk prompt v4 0 3 0": [
       "sk-prompt v4.0.3.0"
+    ],
+    "sk prompt v4 0 4 0": [
+      "sk-prompt v4.0.4.0"
     ],
     "sk vision changelog retrofit": [
       "sk-vision changelog retrofit"
@@ -108686,6 +109316,9 @@
     ],
     "skilled v4 0 1 0": [
       "skilled v4.0.1.0"
+    ],
+    "skilled v4 0 2 0": [
+      "skilled v4.0.2.0"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -113803,6 +114436,18 @@
     "surface comparison outcome": [
       "surface comparison outcome"
     ],
+    "surface consistency research": [
+      "surface consistency research"
+    ],
+    "surface consistency research implementation summary": [
+      "surface consistency research implementation summary"
+    ],
+    "surface consistency research plan": [
+      "surface consistency research plan"
+    ],
+    "surface consistency research tasks": [
+      "surface consistency research tasks"
+    ],
     "surface contract alignment": [
       "surface contract alignment"
     ],
@@ -114418,6 +115063,9 @@
     "system deep loop 1 6 22 0": [
       "system-deep-loop 1.6.22.0"
     ],
+    "system deep loop 1 6 23 0": [
+      "system-deep-loop 1.6.23.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -114609,6 +115257,9 @@
     ],
     "system deep loop v1 6 22 0": [
       "system-deep-loop v1.6.22.0"
+    ],
+    "system deep loop v1 6 23 0": [
+      "system-deep-loop v1.6.23.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
@@ -115195,6 +115846,9 @@
     "system skilled doctor 1 3 0 0": [
       "system-skilled-doctor 1.3.0.0"
     ],
+    "system skilled doctor 1 3 1 0": [
+      "system-skilled-doctor 1.3.1.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -115245,6 +115899,9 @@
     ],
     "system skilled doctor v1 3 0 0": [
       "system-skilled-doctor v1.3.0.0"
+    ],
+    "system skilled doctor v1 3 1 0": [
+      "system-skilled-doctor v1.3.1.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -115566,6 +116223,9 @@
     ],
     "system spec kit 2 12 33 0": [
       "system-spec-kit 2.12.33.0"
+    ],
+    "system spec kit 2 12 34 0": [
+      "system-spec-kit 2.12.34.0"
     ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
@@ -116133,6 +116793,9 @@
     ],
     "system spec kit v2 12 33 0": [
       "system-spec-kit v2.12.33.0"
+    ],
+    "system spec kit v2 12 34 0": [
+      "system-spec-kit v2.12.34.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
@@ -121231,6 +121894,9 @@
     ],
     "v4 0 1 0 short release entry rules": [
       "v4.0.1.0 short release entry rules"
+    ],
+    "v4 0 2 0 release notes": [
+      "v4.0.2.0 release notes"
     ],
     "v4 changelog": [
       "v4 changelog"
