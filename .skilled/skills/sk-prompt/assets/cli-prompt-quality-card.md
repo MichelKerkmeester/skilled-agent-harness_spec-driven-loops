@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # CLI Prompt Quality Card
@@ -144,6 +144,7 @@ Attach the resolved persona via the mode's native surface where the CLI loads it
 | `cli-codex` | INLINE (mandatory): `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p` load config, not a persona. |
 | `cli-pi` | INLINE (mandatory): core Pi has no persona surface on `pi -p`. |
 | `cli-hermes` | SKILL + PLUGIN: `-s agent-<name>` preloads the mirrored persona skill and `HERMES_AGENT_PERSONA=<name>` (repo plugin) binds it for the session. INLINE otherwise: a headless `hermes chat` has no persona flag; profiles are whole-home islands. |
+| `cli-deepseek-harness` | INLINE (mandatory): dsh has no agent-file loader. Generated `.dsh/agents/<name>.patch.yml` persona patches exist, but a hand-composed dispatch still inlines the resolved persona. The fan-out builder passes the patch when `agentPersona` is set. |
 | `cli-jev` (a mode of the `cli-classifier` hub) | NONE (transport): the mode answers one typed judgment and runs nothing, so it takes no persona and no task is dispatched to it. |
 | fanout runtime | INLINE into the composed prompt string (`fanout-run.cjs` has no persona slot). |
 

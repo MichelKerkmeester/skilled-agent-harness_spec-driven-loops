@@ -70,6 +70,7 @@ cli_cards=(
   "$ROOT/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md"
   "$ROOT/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md"
   "$ROOT/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md"
+  "$ROOT/.skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-quality-card.md"
 )
 
 echo "CHECK 1 — framework / CLEAR table inlining"
@@ -97,7 +98,7 @@ done
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
 echo "CHECK 2 — Deep-path pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor cli-external-orchestration/cli-pi cli-external-orchestration/cli-codex cli-external-orchestration/cli-devin cli-external-orchestration/cli-hermes)
+cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor cli-external-orchestration/cli-pi cli-external-orchestration/cli-codex cli-external-orchestration/cli-devin cli-external-orchestration/cli-hermes cli-external-orchestration/cli-deepseek-harness)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.skilled/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
