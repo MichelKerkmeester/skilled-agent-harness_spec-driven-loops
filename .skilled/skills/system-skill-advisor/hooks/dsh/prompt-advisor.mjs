@@ -18,6 +18,8 @@ const MAX_TRACKED_SESSIONS = 64;
 const RECEIPTS = Symbol.for('skilled.repo-guards.directive-receipts');
 
 export const ERROR_POLICY = 'fail-open';
+// The advisor keys its metrics and outcome records by runtime and drops a label it does not list.
+export const ADVISOR_RUNTIME = 'dsh';
 
 function contentText(content) {
   if (typeof content === 'string') return content;
@@ -94,10 +96,17 @@ async function makeNotice(text) {
   });
 }
 
-async function runAdvisor(input) {
-  const advisor = await import(ADVISOR_MODULE_URL);
+/**
+ * Run the shared advisor hook for one operator prompt under the DSH runtime label.
+ *
+ * @param {Object} input - The UserPromptSubmit-shaped input.
+ * @param {Function} [load] - Loads the advisor module, injectable for tests.
+ * @returns {Promise<Object>} The advisor hook output.
+ */
+export async function runAdvisor(input, load = () => import(ADVISOR_MODULE_URL)) {
+  const advisor = await load();
   return advisor.handleClaudeUserPromptSubmit(input, {
-    runtime: 'pi',
+    runtime: ADVISOR_RUNTIME,
     writeDiagnostic: () => {},
   });
 }

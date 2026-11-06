@@ -8,6 +8,10 @@
   disabled: true
 - id: command-goal
   disabled: true
+# get_goal, create_goal and update_goal need a direct human turn and the round driver
+# above, so a fan-out leaf can only misuse them.
+- id: tool-goal
+  disabled: true
 - id: plan-mode
   disabled: true
 # Marks the run as a fan-out leaf. The guards patch inserts repo-guards after this one

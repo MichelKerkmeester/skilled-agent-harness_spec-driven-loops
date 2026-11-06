@@ -15,6 +15,7 @@ export const ADVISOR_RUNTIME_VALUES = [
   'codex',
   'cursor',
   'devin',
+  'dsh',
 ] as const;
 
 export type AdvisorRuntime = (typeof ADVISOR_RUNTIME_VALUES)[number];

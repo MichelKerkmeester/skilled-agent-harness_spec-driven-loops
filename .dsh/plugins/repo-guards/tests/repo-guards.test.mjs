@@ -127,11 +127,43 @@ test('parity: spec classification defers an open gate without stopping the model
     });
     const result = await handlers.get('agent/pre-step')({
       agent: { session: { id: 'classify-parity', header: { cwd: directory } } },
-      messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }],
+      messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: prompt }] }],
     }, async () => ({ kind: 'enter', messages: [] }));
     assert.equal(result.kind, 'enter');
     assert.equal(result.messages.length, 1);
     assert.match(result.messages[0].content[0].text, /first file mutation/);
+  } finally {
+    cleanup(directory);
+  }
+});
+
+test('spec classification reads only what the operator typed, never an injected notice', async () => {
+  const directory = tempDir();
+  try {
+    const env = {};
+    const prompt = 'I need to create a new file for this change.';
+    const operator = (text) => ({ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text }] });
+    const injected = (text) => ({ role: 'user', source: { kind: 'repo-guards' }, content: [{ type: 'text', text }] });
+    const { ctx, handlers } = harness();
+    registerSpecGateClassify(ctx, {
+      core: specGateCore,
+      env,
+      cwd: directory,
+      createNotice: async (text) => ({ role: 'user', content: [{ type: 'text', text }] }),
+    });
+    const step = (sessionId, messages) => handlers.get('agent/pre-step')({
+      agent: { session: { id: sessionId, header: { cwd: directory } } },
+      messages,
+    }, async () => ({ kind: 'enter', messages: [] }));
+
+    // A session-context notice spliced in after the prompt must not hide the prompt.
+    const prompted = await step('classify-operator', [operator(prompt), injected('Session context received.')]);
+    assert.equal(prompted.messages.length, 1);
+    assert.match(prompted.messages[0].content[0].text, /first file mutation/);
+
+    // A notice that reads like a mutation request is not the operator asking for one.
+    const noticeOnly = await step('classify-notice', [injected(prompt)]);
+    assert.equal(noticeOnly.messages.length, 0);
   } finally {
     cleanup(directory);
   }
@@ -301,7 +333,7 @@ test('throw policy: spec classification fails open and logs when its core throws
   });
   const result = await handlers.get('agent/pre-step')({
     agent: { session: { id: 'classify-throw', header: { cwd: process.cwd() } } },
-    messages: [{ role: 'user', content: [{ type: 'text', text: 'Please make a new file.' }] }],
+    messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: 'Please make a new file.' }] }],
   }, async () => ({ kind: 'enter', messages: [] }));
   assert.equal(result.kind, 'enter');
   assert.equal(logs.length, 1);

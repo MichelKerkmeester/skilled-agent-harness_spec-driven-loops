@@ -4,7 +4,7 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 import { isLineageLeaf } from '../adapters/session-role.mjs';
-import { registerPromptAdvisor } from '../adapters/prompt-advisor.mjs';
+import { ADVISOR_RUNTIME, registerPromptAdvisor, runAdvisor } from '../adapters/prompt-advisor.mjs';
 import { apply as applyLineageLeaf, name as lineageLeafName } from '../lineage-leaf.mjs';
 import {
   disabled,
@@ -22,6 +22,15 @@ const LEAF_MARKER = Symbol.for('skilled.repo-guards.lineage-leaf');
 
 function readPatch(fileName) {
   return readFileSync(fileURLToPath(new URL(`../../../patches/${fileName}`, import.meta.url)), 'utf8');
+}
+
+function advisorRuntimeValues() {
+  const source = readFileSync(fileURLToPath(new URL(
+    '../../../../.skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts',
+    import.meta.url,
+  )), 'utf8');
+  const tuple = source.match(/ADVISOR_RUNTIME_VALUES\s*=\s*\[([^\]]*)\]/);
+  return tuple ? [...tuple[1].matchAll(/'([^']+)'/g)].map((match) => match[1]) : [];
 }
 
 function advisorCore(context, calls = []) {
@@ -43,6 +52,26 @@ test('the guards patch turns the advisor on and only the lineage patch marks a f
   assert.match(lineage, /id:\s*repo-guards-lineage-leaf/);
   assert.match(lineage, /name:\s*\.\.\/plugins\/repo-guards\/lineage-leaf\.mjs/);
   assert.doesNotMatch(readPatch('guards.patch.yml'), /lineage-leaf/);
+});
+
+test('the lineage patch also turns off the native goal tools a leaf cannot use', () => {
+  const lineage = readPatch('lineage.patch.yml');
+  assert.match(lineage, /- id:\s*tool-goal\s*\n\s*disabled:\s*true/);
+  assert.match(lineage, /- id:\s*goal-round-driver\s*\n\s*disabled:\s*true/);
+  assert.match(lineage, /- id:\s*command-goal\s*\n\s*disabled:\s*true/);
+});
+
+test('the prompt advisor reports itself as dsh, a runtime the advisor accepts', async () => {
+  assert.equal(ADVISOR_RUNTIME, 'dsh');
+  assert.ok(advisorRuntimeValues().includes('dsh'), `advisor runtimes: ${advisorRuntimeValues().join(', ')}`);
+  const seen = [];
+  await runAdvisor({ prompt: 'probe' }, async () => ({
+    handleClaudeUserPromptSubmit: async (input, dependencies) => {
+      seen.push(dependencies.runtime);
+      return {};
+    },
+  }));
+  assert.deepEqual(seen, ['dsh']);
 });
 
 test('the lineage leaf plugin marks the process as a fan-out leaf', () => {

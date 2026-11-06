@@ -23,11 +23,14 @@ function contentText(content) {
     .filter((text) => typeof text === 'string').join('\n');
 }
 
-function latestUserPrompt(messages) {
+// Guard notices and session-context snapshots also arrive as user-role messages, and a
+// notice can read like a mutation request or a Gate 3 answer, so only a message the
+// operator typed is classified.
+function latestOperatorPrompt(messages) {
   if (!Array.isArray(messages)) return '';
   for (let index = messages.length - 1; index >= 0; index -= 1) {
     const message = messages[index];
-    if (message?.role === 'user') return contentText(message.content);
+    if (message?.role === 'user' && message.source?.kind === 'user') return contentText(message.content);
   }
   return '';
 }
@@ -65,10 +68,12 @@ export function registerSpecGateClassify(ctx, {
     const downstream = await next();
     try {
       if (downstream.kind !== 'enter') return downstream;
+      const operatorPrompt = latestOperatorPrompt(payload.messages);
+      if (!operatorPrompt.trim()) return downstream;
       const agent = payload.agent;
       const projectDir = agent?.session?.header?.cwd ?? cwd;
       const sessionID = core.resolveSessionKey({ sessionId: agent?.session?.id });
-      const prompt = core.sanitizePromptForClassify(latestUserPrompt(payload.messages));
+      const prompt = core.sanitizePromptForClassify(operatorPrompt);
       const result = core.runClassifyGate({
         prompt,
         sessionID,

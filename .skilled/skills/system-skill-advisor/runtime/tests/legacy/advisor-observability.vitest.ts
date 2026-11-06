@@ -66,7 +66,7 @@ describe('advisor observability contract', () => {
         labels: ['runtime', 'state'],
       },
     ]);
-    expect(ADVISOR_RUNTIME_VALUES).toEqual(['claude', 'copilot', 'opencode', 'pi', 'codex', 'cursor', 'devin']);
+    expect(ADVISOR_RUNTIME_VALUES).toEqual(['claude', 'copilot', 'opencode', 'pi', 'codex', 'cursor', 'devin', 'dsh']);
     expect(ADVISOR_HOOK_STATUS_VALUES).toEqual(['ok', 'skipped', 'stale', 'degraded', 'fail_open']);
     expect(ADVISOR_HOOK_FRESHNESS_VALUES).toEqual(['live', 'stale', 'absent', 'unavailable']);
     expect(ADVISOR_ERROR_CODE_VALUES).toEqual(expect.arrayContaining([
