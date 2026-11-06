@@ -111,6 +111,7 @@ The registry count is eight, the parent-skill check passes with no warnings, and
 3. **CHK-041 remains open.** One stale seven-mode count remains in the out-of-scope `cli-hermes` feature catalog.
 4. **CHK-050 remains open.** Check outputs are stored under `evidence/`, as the dispatch requested, rather than `scratch/`.
 5. **The archived canary validator is blocked by a pre-existing missing untracked script.** It reports ENOENT for `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs`; the script is outside this phase's write scope.
+6. **Why the status stays In Progress.** T003, CHK-040, CHK-041 and CHK-050 stay open. The spec stays In Progress because the open rows above have no saved evidence in this folder, and a baseline taken before an edit cannot be recaptured afterwards. Each row closes only with a new run. The parent goal's completion criteria are met by phase 013 evidence and the final gate, so these rows do not block the packet goal.
 <!-- /ANCHOR:limitations -->
 
 ---

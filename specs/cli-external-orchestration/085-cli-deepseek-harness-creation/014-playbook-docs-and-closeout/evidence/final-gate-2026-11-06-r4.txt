@@ -1,0 +1,43 @@
+# Final gate, run 4 (2026-11-06T18:56:02Z), after the operator-approved rule fixes and remint 7
+== dsh generators
+[dsh-skill-sync] PASS: 56 skill links are in sync.
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+== hermes
+PASS: 67 Hermes skill copies in sync
+== contract drift
+[CONTRACT DRIFT] OK commands=3
+== trigger index
+  duration ms       : 4913.5
+trigger index --check exit 0
+== rule tests
+ℹ pass 50
+ℹ fail 0
+== repo-guards
+ℹ pass 37
+ℹ fail 0
+== dispatch audit
+ Test Files  7 passed (7)
+      Tests  870 passed (870)
+== runtime units + stress (package vitest)
+ Test Files  13 passed (13)
+      Tests  526 passed | 9 skipped (535)
+tsc exit 0
+== mode registry
+modes 8 cli-opencode,cli-claude-code,cli-codex,cli-cursor,cli-devin,cli-pi,cli-hermes,cli-deepseek-harness
+== advisor canary
+top cli-external-orchestration confidence 0.95 packet {"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-opencode","packetKind":"workflow","skillId":"cli-external-orche
+== compiled routing
+ℹ pass 48
+ℹ fail 0
+== recursive strict
+  15 RESULT: PASSED
+== operator-approved changes in this run
+D-04/D-03: `$REPO`/`${REPO}` (quoted or not) now resolves to the checkout in no-repo-root-dotenv and dsh-home-isolated.
+  Pre-fix probe on the old code: `cd "$REPO"` passed no-repo-root-dotenv (true); `DSH_HOME=$REPO/.dsh-home` passed dsh-home-isolated (true). Both now fail.
+  Unchanged: `cd "$W"` with `W=$(mktemp -d)` and `DSH_HOME="$T"` still pass; `$REPOSITORY` is not read as `$REPO`.
+D-05: new rule dsh-availability-required (check command-v-dsh-required, PATH lookup); KNOWN_CHECKS 41; fixture pair runs on an empty PATH.
+  dispatch README pinned-version-required row corrected: command text cannot read an installed binary's version.
+C-01: six DSH_*_DIR overrides listed in .env.example; check-env-tokens STATUS=OK unlisted=0, exit 0.
+Deleted 001-deep-research/research/lineages/deepseek/.dsh-home/ (8 files, committed in 602309b436; restore with git checkout HEAD -- <path>).
+Compiled routing remint 7: cli-external-orchestration effectivePolicyHash 439177af71aee620d2615fb4f480537d881c12df00482eedd29df83fca70cd91; scorer ratchet 7/7.

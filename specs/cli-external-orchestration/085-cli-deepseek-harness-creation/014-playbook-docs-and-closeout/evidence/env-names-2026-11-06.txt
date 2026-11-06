@@ -1,0 +1,14 @@
+# T009 and CHK-030 check, 2026-11-06T20:19:00Z
+== rg -n 'DSH_HOME|LLMGATEWAY_API_KEY|OPENCODE_API_KEY' .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+471:DeepSeek Harness configuration names are listed here without values. The dispatch uses a scratch working directory and disposable `DSH_HOME`. It does not read a repository-root `.env`.
+475:| `DSH_HOME` |
+476:| `LLMGATEWAY_API_KEY` |
+477:| `OPENCODE_API_KEY` |
+exit=0
+== rg -n 'DSH_HOME|LLMGATEWAY_API_KEY|OPENCODE_API_KEY' .env.example
+483:# OPENCODE_API_KEY=                     # Optional OpenCode headless API key (unset by default)
+502:# LLMGATEWAY_API_KEY=                   # Key the dsh LLM Gateway route patch names (export it, never commit a value)
+503:# DSH_HOME=                             # Set per dispatch to a fresh mktemp -d folder, never shared and never set here
+exit=0
+== value after = in .env.example (exit 1 means no value)
+exit=1

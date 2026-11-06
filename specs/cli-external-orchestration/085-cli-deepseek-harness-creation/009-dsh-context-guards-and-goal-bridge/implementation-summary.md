@@ -141,11 +141,12 @@ Concurrent change: another process edited several adapters and both test files b
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Seams proven on fixtures only. The compaction and disposal seams were not reached in a live run. Whether they fire in a short headless run stays UNKNOWN until the keyed pin in phase 013.
+1. Seams proven on fixtures only. Phase 013's keyed runs saved no record of the compaction or disposal seams firing, so whether they fire in a short headless run stays UNKNOWN.
 2. The session-start test stubs the session-prime core. The adapter's output has not been compared with the Pi extension's output for the same workspace (AC-002).
 3. The git message gate has two bundle cases. The 38 contract cases pass on their own, and the gate is not run through them (AC-005).
 4. `.dsh/SYNC.md` does not name goal-context or the four deferrals with reasons. The bundle README does (AC-006). SYNC.md is outside this closeout's write scope.
 5. The keyless boot has not been rerun on the current bundle (AC-003).
+6. **Why the status stays In Progress.** T001, T003 and T006 to T013 stay open, with CHK-003, CHK-010, CHK-011, CHK-020, CHK-022 and CHK-042. The spec stays In Progress because the open rows above have no saved evidence in this folder, and a baseline taken before an edit cannot be recaptured afterwards. Each row closes only with a new run. The parent goal's completion criteria are met by phase 013 evidence and the final gate, so these rows do not block the packet goal. The repo-guards plugin and patches these rows name are being extended by the separate DSH hook-parity work, which re-verifies them there.
 <!-- /ANCHOR:limitations -->
 
 ---

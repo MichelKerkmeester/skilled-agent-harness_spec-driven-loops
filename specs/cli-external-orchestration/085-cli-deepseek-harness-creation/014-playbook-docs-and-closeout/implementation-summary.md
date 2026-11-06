@@ -60,7 +60,7 @@ The playbook and keyless documentation closeout are recorded. Its 25 scenario ro
 
 ### Phase 14: playbook-docs-and-closeout
 
-The feature catalog and changelogs retain the Experimental/configured, not verified route status. The trigger lookup returns packet paths. The keyless doc sweep and saved outputs are the source for this phase's results.
+The feature catalog and changelogs copy the phase 013 route status: LLM Gateway verified, OpenCode Go configured, not verified, and the mode Experimental. The trigger lookup returns packet paths. The keyless doc sweep and saved outputs are the source for this phase's results.
 
 ### Files Changed
 
@@ -107,10 +107,10 @@ The keyless sweep recorded the documentation, manifest and index checks without 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Phase 013 has no provider key or evidence directory; keyed route and fanout checks remain open, and both routes stay Experimental/configured, not verified.
-2. AC-002 remains unmet because phases 006-012 are In Progress and phase 013 is Planned, even though the recursive strict validator passes.
+1. Phase 013 verified LLM Gateway with a keyed run and two fan-out lineages. OpenCode Go stays configured, not verified, because its key is unset.
+2. AC-002 remains unmet because phases 006-012 are In Progress, even though the recursive strict validator passes. Each of those phases records its open rows under Known Limitations.
 3. AC-005 and tasks T008/T013 remain open: the scan retains four active host-runtime mentions, so it does not match historical changelog lines only.
-4. .env.example remains operator-gated and uninspected; T009 and CHK-030 stay open.
+4. T009 and CHK-030 are closed: `.env.example` lists the dsh names with no value (`evidence/env-names-2026-11-06.txt`).
 5. The seven-count scratch baseline was not saved; T002 and CHK-050 stay open.
 <!-- /ANCHOR:limitations -->
 

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The repo's safety policy (spec gate, dispatch preflight, completion evidence, subagent dispatch checks, post-edit quality and the classifier injection screen) reaches Pi through 19 hand-authored extensions in `.pi/extensions/`, and nothing reaches dsh",
     "created_at": "2026-11-05T23:21:56Z",
-    "last_save_at": "2026-11-06T07:58:24.829Z",
+    "last_save_at": "2026-11-06T20:49:20.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2aedf9f0af4199b4595af24e872810a1fb42ea9f48c51d5d84a27e0e937a61ba",
+    "source_fingerprint": "sha256:c30ea47c1782b88de4f0f9e53dc8deef5b6e57a1682ca661082c987bcdc0c851",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19cd46b147b1616de0eae18ee04ed51140d2ac2fb4d5f702b105a2a9c172b41f",
       "plan.md": "7b3d05243f6767bebf60d90e76ab817236a204e60c6104162349f29f4987587d",
       "tasks.md": "4602d3479ab8ba5fb379f281e1ea7731b9c22c53b862747d08643aa96b99cbad",
-      "implementation-summary.md": "381bcac7e7b87620b27bc8d402c043e602036bca9b4028cb2a36f74d32b05377"
+      "implementation-summary.md": "d5201cae1e45a361662b6543ba8dfb14cd76679200d3e1c6caaa394a5fb09047"
     },
     "last_active_at": null
   }

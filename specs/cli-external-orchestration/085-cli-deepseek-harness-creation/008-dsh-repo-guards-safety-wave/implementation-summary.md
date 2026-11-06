@@ -126,11 +126,12 @@ Concurrent change: another process edited several adapters and both test files b
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Fixture proof only. Whether the adapters deny and allow on real model tool calls stays UNKNOWN until the keyed pin in phase 013. No provider key exists yet.
+1. Fixture proof only. Phase 013's keyed runs loaded the bundle with no `did not activate` line, but no run asked for a tool call a guard should deny. Whether the adapters deny and allow on real model tool calls stays UNKNOWN.
 2. The parity cases compare each adapter with the shared core that the matching Pi extension imports. They do not run the `.pi/extensions/*.ts` files, and `scratch/pi-verdicts.md` was never written.
 3. `decision-record.md` is not written, so the native-plugin choice has no record yet.
 4. The keyless boot has not been rerun on the current bundle, so the closure criterion AC-001 stays open.
 5. The runner checks for `did not activate` in captured stderr after dsh exits. A plugin load failure can leave a run unguarded before the runner reports it (`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3193-3200`). This accepted gap is recorded, not changed in this phase.
+6. **Why the status stays In Progress.** T003, T011, T012, T013, CHK-010, CHK-011, CHK-020, CHK-022 and CHK-030 stay open. The spec stays In Progress because the open rows above have no saved evidence in this folder, and a baseline taken before an edit cannot be recaptured afterwards. Each row closes only with a new run. The parent goal's completion criteria are met by phase 013 evidence and the final gate, so these rows do not block the packet goal. The repo-guards plugin and patches these rows name are being extended by the separate DSH hook-parity work, which re-verifies them there.
 <!-- /ANCHOR:limitations -->
 
 ---

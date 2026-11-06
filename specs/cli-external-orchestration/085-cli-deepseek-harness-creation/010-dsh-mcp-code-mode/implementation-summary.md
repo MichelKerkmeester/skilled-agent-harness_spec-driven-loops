@@ -126,11 +126,12 @@ Concurrent change: another process edited six adapters and both test files betwe
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. No live tool call. This phase proves mount, guard and shutdown without a provider key. Whether a model reaches `mcp__code_mode__*` tools through dsh stays UNKNOWN until the keyed pin in phase 013.
+1. No live tool call. This phase proves mount, guard and shutdown without a provider key. Phase 013's keyed runs did not use the MCP patch, so whether a model reaches `mcp__code_mode__*` tools through dsh stays UNKNOWN.
 2. The startup-timeout path (CHK-023) and the run without the MCP patch (CHK-022) were not exercised.
 3. Lint and format checks for the adapter and config change (CHK-010) were not run.
 4. The stderr question in AC-003 is open. This summary does not decide it.
 5. `references/mcp.md:68` says Code Mode's UTCP config loads the repository `.env` and passes its values to the child process. dsh does not receive those keys. This accepted behavior was recorded without opening any `.env` file.
+6. **Why the status stays In Progress.** T001, T002, T004, T006, T009, CHK-003, CHK-010, CHK-011, CHK-020, CHK-022 and CHK-023 stay open. The spec stays In Progress because the open rows above have no saved evidence in this folder, and a baseline taken before an edit cannot be recaptured afterwards. Each row closes only with a new run. The parent goal's completion criteria are met by phase 013 evidence and the final gate, so these rows do not block the packet goal. The repo-guards plugin and patches these rows name are being extended by the separate DSH hook-parity work, which re-verifies them there.
 <!-- /ANCHOR:limitations -->
 
 ---

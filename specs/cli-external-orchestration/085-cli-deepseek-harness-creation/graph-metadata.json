@@ -35,7 +35,9 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "deepseek harness release handover",
+      "dsh release v4.0.2.0"
     ],
     "key_topics": [
       "cli",
@@ -56,6 +58,7 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "handover.md",
       "001-deep-research/research/research.md",
       "001-deep-research/research/phase-plan.md",
       "001-deep-research/goal.md",
@@ -71,7 +74,8 @@
       "011-hub-registration-and-routing/goal.md",
       "012-deep-loop-modes-and-commands/goal.md",
       "013-dsh-live-contract-pin/goal.md",
-      "014-playbook-docs-and-closeout/goal.md"
+      "014-playbook-docs-and-closeout/goal.md",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"
     ],
     "entities": [
       {
@@ -87,9 +91,21 @@
         "source": "derived"
       },
       {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "phase-plan.md",
         "kind": "doc",
         "path": "001-deep-research/research/phase-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
         "source": "derived"
       },
       {
@@ -151,21 +167,59 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary The",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Completed",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Time",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-06T17:45:04.194Z",
+    "last_save_at": "2026-11-06T20:05:22.138Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:6cea977ad1ff555c25512fb5407010e154c8f721eab98d9ac4b81769478505db",
+    "source_fingerprint": "sha256:aa3ac38790e631caeed33b9d1e588a897343c958b6fcefdd5c8602272e5d29e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0323605771f35ce0389db65a5a6d8e239d67a37ae15801cc00294d46bfe6743a"
+      "spec.md": "0323605771f35ce0389db65a5a6d8e239d67a37ae15801cc00294d46bfe6743a",
+      "handover.md": "9c49e425e654489b56a9bbcc2745ee3f97c298e44323ee88738d8c3e3fb4df31"
     },
     "last_active_child_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin",
     "last_active_at": "2026-11-06T14:40:53.718Z"

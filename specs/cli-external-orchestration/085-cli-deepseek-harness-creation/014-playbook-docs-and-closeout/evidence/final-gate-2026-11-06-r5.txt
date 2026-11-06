@@ -1,0 +1,42 @@
+# Final gate, run 5 (2026-11-06T19:53:48Z), after the readability review fixes and remint 8
+== dsh generators
+[dsh-skill-sync] PASS: 56 skill links are in sync.
+[dsh-prompt-sync] PASS: 45 prompt stubs are in sync.
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+== hermes
+PASS: 67 Hermes skill copies in sync
+== contract drift
+[CONTRACT DRIFT] OK commands=3
+== trigger index
+  duration ms       : 2572.4
+trigger index --check exit 0
+== rule tests
+ℹ pass 50
+ℹ fail 0
+== repo-guards
+ℹ pass 37
+ℹ fail 0
+== dispatch audit
+ Test Files  7 passed (7)
+      Tests  870 passed (870)
+== runtime units + stress (package vitest)
+ Test Files  13 passed (13)
+      Tests  526 passed | 9 skipped (535)
+tsc exit 0
+== mode registry
+modes 8 cli-opencode,cli-claude-code,cli-codex,cli-cursor,cli-devin,cli-pi,cli-hermes,cli-deepseek-harness
+== advisor canary
+top cli-external-orchestration confidence 0.95 packet {"hubId":"cli-external-orchestration","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-opencode","packetKind":"workflow","skillId":"cli-external-orche
+== compiled routing
+ℹ pass 48
+ℹ fail 0
+== recursive strict
+  15 RESULT: PASSED
+== dsh routing probes after remint 8 (72d53d92…)
+delegate this review to dsh -> undefined 0.95 cli-deepseek-harness
+run it headless with deepseek harness -> undefined 0.95 cli-deepseek-harness
+use dsh to research the auth module -> undefined 0.95 cli-deepseek-harness
+use cli-pi with deepseek flash -> undefined 0.95 cli-pi
+== stale-phrase grep (mode + hub docs)
+       0
+== docs: readability review rv1 (18 findings, all fixed) + 2 orchestrator fixes; validate_document 0 failing of 35 changed; quick_validate valid; parent-skill-check 0 warnings

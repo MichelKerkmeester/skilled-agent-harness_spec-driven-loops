@@ -49,6 +49,7 @@
       "evidence/playbook-run/summary.md",
       "evidence/playbook-run/mirrors__MIR-001-rerun.txt",
       "evidence/recursive-strict-final-2026-11-06.txt",
+      "evidence/env-names-2026-11-06.txt",
       ".skilled/skills/README.txt",
       ".skilled/CROSS-CLI.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
@@ -115,6 +116,12 @@
         "name": "recursive-strict-final-2026-11-06.txt",
         "kind": "file",
         "path": "evidence/recursive-strict-final-2026-11-06.txt",
+        "source": "derived"
+      },
+      {
+        "name": "env-names-2026-11-06.txt",
+        "kind": "file",
+        "path": "evidence/env-names-2026-11-06.txt",
         "source": "derived"
       },
       {
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Eleven files across the repo root and the hub still match a \"seven\" runtime count, the `cli-deepseek-harness` packet has no playbook, and the trigger index returns no result for \"deepseek harness\"",
     "created_at": "2026-11-05T23:22:01Z",
-    "last_save_at": "2026-11-06T14:49:58.630Z",
+    "last_save_at": "2026-11-06T20:49:28.142Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7008fabe621bfd670a5d4df2d9a5d9f0fa83858230978f877d8c88ad9a8ef72c",
+    "source_fingerprint": "sha256:6b66449acd8b6f50448acd5d8d05ad1a1b05d58ceaded17cf24123c481679b1b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72e9783f6b732659fe26c46bd792b685dcd5355927bfb0ff33248e0a91fb5f94",
       "plan.md": "1b9bb9100f71164d08e40c27c206a524dd72ea9d9cdee2f211bb72becbb6ad72",
-      "tasks.md": "21defef4ccce9238ed26a7baf9cd145964a79dd29e34c93c3ecd9ea9f7487c51",
-      "implementation-summary.md": "fde8f3e51376e6df0102bdc56728dde687e62587a5823a374bdde1e0cefdcb6e"
+      "tasks.md": "474c996fa59a34b34ec18262f84ae22e23bd0f1ca04f2ec7bb3380dce562e991",
+      "implementation-summary.md": "d8ffd2783cb849c0c2291affb612570c503c2bddb130e5a23b2f98ce8ef2d444"
     },
     "last_active_at": null
   }

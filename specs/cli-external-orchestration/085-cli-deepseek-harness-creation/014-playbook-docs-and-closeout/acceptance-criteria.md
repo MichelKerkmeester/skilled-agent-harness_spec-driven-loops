@@ -82,5 +82,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-Not closeable: AC-002's precondition remains false while phases 006-012 are In Progress and phase 013 is Planned. AC-005 remains unmet because its historical-changelog-only wording conflicts with four active host-runtime mentions required by the docs. The recursive strict validator itself passes all 15 folders.
+Not closeable: AC-002's precondition remains false while phases 006-012 are In Progress. Phase 013 is Complete. AC-005 remains unmet because its historical-changelog-only wording conflicts with four active host-runtime mentions required by the docs. The recursive strict validator itself passes all 15 folders.
 <!-- /ANCHOR:closure -->

@@ -35,8 +35,8 @@ contextType: "general"
 
 - [x] T001 Validate each child 002 to 013 (`PK/0*/`). Verify: each `validate.sh --strict` prints `RESULT: PASSED`. Evidence: `evidence/recursive-strict-final-2026-11-06.txt:423`, `:477`, `:530`, `:583`, `:635`, `:688`, `:740`, `:792`, `:844`, `:897`, `:950` and `:1002` record the child results.
 - [ ] T002 Record the "seven" sweep baseline (`scratch/seven-before.txt`). Verify: the `rg -c` output from `spec.md` Measured Behavior is saved.
-- [ ] T003 [P] Read phase 013 evidence for each route's verified status (`PK/013-dsh-live-contract-pin/evidence/`). Verify: each route has a status to copy.
-  - Open: phase 013 has no evidence directory or keyed run. The routes remain configured, not verified. Evidence: `evidence/keyless-docs-sweep.txt` and `../013-dsh-live-contract-pin/implementation-summary.md`.
+- [x] T003 [P] Read phase 013 evidence for each route's verified status (`PK/013-dsh-live-contract-pin/evidence/`). Verify: each route has a status to copy.
+  - Evidence: `../013-dsh-live-contract-pin/evidence/latency-and-tokens.md` records LLM Gateway `deepseek-v4.1-flash-1017` as verified and OpenCode Go `deepseek-v4.1-flash` as configured, not verified. The docs copy those two statuses.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -51,7 +51,7 @@ contextType: "general"
 - [x] T007 [P] Add packet, hub and repo changelog entries (`H/cli-deepseek-harness/changelog/`, `H/changelog/`, `.skilled/changelog/skilled/`). sk-doc `sk-create-changelog`. Verify: each new entry names `cli-deepseek-harness`.
   - Evidence: `evidence/keyless-docs-sweep.txt` names the packet v1.0.0.0, existing hub v1.8.0.0 and root v4.0.2.0 entries. Each names the mode and records the unverified status.
 - [ ] T008 Reconcile governance docs (`AGENTS.md`, `README.md`, `SECURITY.md`, `.skilled/skills/README.txt`, `.skilled/CROSS-CLI.md`). sk-doc `sk-create-readme`. Verify: the "seven" sweep prints only historical changelog lines.
-- [ ] T009 Add env names (`.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, `.env.example`). Verify: `rg -n 'DSH_HOME\|LLMGATEWAY_API_KEY\|OPENCODE_API_KEY'` matches, with no value after `=` in `.env.example`.
+- [x] T009 Add env names (`.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, `.env.example`). Verify: `rg -n 'DSH_HOME\|LLMGATEWAY_API_KEY\|OPENCODE_API_KEY'` matches, with no value after `=` in `.env.example`. Evidence: `evidence/env-names-2026-11-06.txt` shows all three names in both files and no value after `=`.
 - [x] T010 Regenerate `agents-md-manifest.json` and update the sk-doc code-folder manifests (`.skilled/commands/doctor/assets/`, `.skilled/skills/sk-doc/scripts/tests/code-folder/`). sk-code. Verify: the `/doctor:agents-md` check and code-folder tests pass.
   - Evidence: `evidence/keyless-docs-sweep.txt` records the in-sync agents check and passing code-folder manifest, parity and fixture tests.
 - [x] T011 Rebuild the trigger index (`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`). sk-code. Verify: the `deepseek harness` lookup returns the packet.
@@ -161,7 +161,7 @@ N/A: this phase fixes no reported finding.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] `.env.example` holds names only, with no key value
+- [x] CHK-030 [P0] `.env.example` holds names only, with no key value. Evidence: `evidence/env-names-2026-11-06.txt`
 - [x] CHK-031 [P0] No playbook result or doc prints a key. Evidence: the closeout key-pattern scan over `evidence/playbook-run/` returned no matching files; `evidence/playbook-run/summary.md` records that no environment values were recorded.
 - [x] CHK-032 [P1] `SECURITY.md` names the approval and key-handling rules for dsh
   - Evidence: `SECURITY.md` documents the dsh approval policy, scratch working directory and disposable `DSH_HOME`. Details are summarized in `evidence/keyless-docs-sweep.txt`.

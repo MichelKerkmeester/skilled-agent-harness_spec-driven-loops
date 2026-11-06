@@ -113,9 +113,10 @@ The baseline run records 139 files and 2503 passing tests (`evidence/baseline-un
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **No keyed run.** The tests prove the builder and success checks against fixtures only. The kind stays experimental until phase 013 completes a keyed run.
+1. **Live run lives in phase 013.** The tests here prove the builder and success checks against fixtures only. Phase 013 then ran the kind live: two fan-out lineages completed on the LLM Gateway route. The kind stays experimental while OpenCode Go is unverified.
 2. **Default allowlists.** The evidence does not include a search that isolates every default table, so REQ-005 remains open.
 3. **Quality review.** No `sk-code-quality` report is recorded for the three runtime files.
+4. **Why the status stays In Progress.** T013, T014, CHK-013, CHK-020, CHK-040, CHK-042 and CHK-050 stay open. The spec stays In Progress because the open rows above have no saved evidence in this folder, and a baseline taken before an edit cannot be recaptured afterwards. Each row closes only with a new run. The parent goal's completion criteria are met by phase 013 evidence and the final gate, so these rows do not block the packet goal.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -141,7 +141,8 @@ The recorded checks ran on 2026-11-06 between 08:08 and 08:24 local time. The sa
 5. **The earlier `evidence/checks.txt` is kept as written.** It names no TypeScript binary, and its note calls `deep-research/SKILL.md` a file with no executors, which the rerun shows is not exact. `evidence/rerun-checks.txt` is the later record.
 6. **The global `tsc` on PATH is TypeScript 6.0.3.** With the runtime tsconfig it exits 2 on TS5107, which reports that `moduleResolution` node10 is deprecated. The repo's TypeScript 5.9.3 exits 0. The earlier checks did not name the binary they used.
 7. **CHK-050 remains open.** Check outputs are under `evidence/`, as the dispatch requested, rather than `scratch/`.
-8. **Live proof belongs to phase 013.** No provider key exists yet, so nothing in this folder shows a live dsh run.
+8. **Live proof sits in phase 013.** Phase 013 completed two fan-out lineages on the LLM Gateway route. Nothing in this folder shows a live dsh run.
+9. **Why the status stays In Progress.** T002, CHK-022, CHK-032, CHK-041 and CHK-050 stay open. The spec stays In Progress because the open rows above have no saved evidence in this folder, and a baseline taken before an edit cannot be recaptured afterwards. Each row closes only with a new run. The parent goal's completion criteria are met by phase 013 evidence and the final gate, so these rows do not block the packet goal.
 <!-- /ANCHOR:limitations -->
 
 ---

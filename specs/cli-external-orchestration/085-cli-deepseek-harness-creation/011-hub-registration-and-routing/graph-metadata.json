@@ -208,7 +208,7 @@
     ],
     "causal_summary": "After phase 003 the `cli-deepseek-harness` packet exists on disk, but `mode-registry.json` lists only seven modes and no advisor, router or canary fixture names it",
     "created_at": "2026-11-05T23:21:58Z",
-    "last_save_at": "2026-11-06T08:57:32.226Z",
+    "last_save_at": "2026-11-06T20:49:25.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5820f7e1e209b2d8ee91f9fbf99cba41e64b5ed30bade0bbb8ba2eab317d93c",
+    "source_fingerprint": "sha256:c4f8d737b8002b7c7c65677b8a7979171c06b3ca13c646b52bd7da9bbefc561a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "600aeddeaa746333b3985370ff7162d77ab8c972d6ce0fd9cc3f0a8c271547a0",
       "plan.md": "16a1c189615359554fd4b3f9e0b72150c98b643ca05f03049f8d2909cd561fcc",
       "tasks.md": "caa9507cde1613d316bee00512beb66433aea56d928f1c7e8625819082d1778d",
-      "implementation-summary.md": "7aa9e30f8f6bcbed3ca72e8d06329475d3869c75ebdf63105ae0167c200d8564"
+      "implementation-summary.md": "92e42d8cce7be4e55880e753d05d563c9c2e4bc79d2f3905d0a0c08f93b17633"
     },
     "last_active_at": null
   }

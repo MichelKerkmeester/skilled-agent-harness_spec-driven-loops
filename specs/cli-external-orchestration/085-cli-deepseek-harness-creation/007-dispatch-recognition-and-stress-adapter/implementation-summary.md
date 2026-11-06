@@ -133,12 +133,12 @@ Partial pre-edit numbers are in `evidence/part-one-checks.txt`. The rule checks 
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Shim only.** The stress suite proves the adapter against `dsh-shim.cjs`. Live proof waits on phase 013 and a keyed run.
+1. **Shim only.** The stress suite proves the adapter against `dsh-shim.cjs`. Phase 013's keyed runs went through `fanout-run.cjs`, not this adapter's live smoke, so the adapter's live leg is still unproven.
 2. **Baseline.** Pi and Hermes pre-edit counts were not saved. The acceptance criteria pass, but T002 and CHK-002 remain open.
 3. **Stress README.** `tests/stress/cli-adapter/README.md` says dsh uses its shim only and never runs a live binary. It does not say the live smoke waits on a keyed run, so CHK-041 stays open. That README sits outside this closeout's write scope.
 4. **Real dsh on PATH.** `dsh` resolves to `/Users/michelkerkmeester/.local/bin/dsh` on this machine. Every fixture copies the shim in first on PATH, but no run recorded that the real binary was never spawned, so CHK-032 stays open.
 5. **Test order.** The new dispatch-audit cases pass, but the evidence does not prove they failed before the hook change, so T004 remains open.
-
+6. **Why the status stays In Progress.** T002, T004, CHK-002, CHK-032, CHK-040, CHK-041 and CHK-050 stay open. The spec stays In Progress because the open rows above have no saved evidence in this folder, and a baseline taken before an edit cannot be recaptured afterwards. Each row closes only with a new run. The parent goal's completion criteria are met by phase 013 evidence and the final gate, so these rows do not block the packet goal.
 <!-- /ANCHOR:limitations -->
 
 ---

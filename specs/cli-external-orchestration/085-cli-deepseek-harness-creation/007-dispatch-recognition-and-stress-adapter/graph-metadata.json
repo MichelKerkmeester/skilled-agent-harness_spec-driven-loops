@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The dispatch-audit hook matches task shapes per binary and has no `dsh` shape, so a dsh dispatch runs with no preflight and none of the packet's hard rules checked",
     "created_at": "2026-11-05T23:21:55Z",
-    "last_save_at": "2026-11-06T08:02:36.237Z",
+    "last_save_at": "2026-11-06T20:49:19.172Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30818aa3e0f1a76240753dd577835c8e8837bf7ac446a6c306491c5ad5093fa8",
+    "source_fingerprint": "sha256:68c9b7b6aa6e21cffe580650d464ec6d72a15c94b6d57a237560467868dbb0dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "29e82dba942b4bc95ac47f83bf7392b8fc7570b52345a847f3f1590ec8a4c700",
       "plan.md": "19ef7fbe154211464a5ae0f8883b3d7d37225260ca36bb0657e1711b05cfaa84",
       "tasks.md": "1909d8fcc3504b9d63b39e9874e5cd16280a4e91336bdf3d08c51e70a8d7c2ca",
-      "implementation-summary.md": "649ecde4fba940f1a2690d0bb12ed003963921a430de3c439ecd0b6e0a94eeb7"
+      "implementation-summary.md": "dd4a8778ca68ca36291f031919e3d41ab507e16a5d094be625e73d9cf559115b"
     },
     "last_active_at": null
   }
