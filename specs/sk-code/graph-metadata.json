@@ -21,7 +21,8 @@
     "sk-code/015-quality-agnostic-gate",
     "sk-code/016-review-mode-followups",
     "sk-code/017-portable-code-modes",
-    "sk-code/018-frontend-upstream-proposals"
+    "sk-code/018-frontend-upstream-proposals",
+    "sk-code/019-surface-consistency-research"
   ],
   "manual": {
     "depends_on": [],

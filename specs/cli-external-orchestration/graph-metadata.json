@@ -16,7 +16,8 @@
     "cli-external-orchestration/081-claude-5-5-roster-and-effort-levels",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
     "cli-external-orchestration/083-gpt-6-1-terra-roster",
-    "cli-external-orchestration/084-remove-llmgateway-luna-route"
+    "cli-external-orchestration/084-remove-llmgateway-luna-route",
+    "cli-external-orchestration/085-cli-deepseek-harness-creation"
   ],
   "manual": {
     "depends_on": [],
