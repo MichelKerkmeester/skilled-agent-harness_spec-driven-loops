@@ -885,13 +885,13 @@ Run **cross-CLI agent teams from supported runtimes**. Claude Code, OpenCode or 
 
 - **Any model the CLI supports.** Point a bridge at another provider or model and the next dispatch uses it
 - **Built for deep-loop fan-out.** Bind several bridges to one research, review or council run, and each becomes its own lineage with its own state, budget and stall watchdog. The safest verdict wins the merge
-- **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config, and commit hooks plus a CI check keep those mirrors in step with `.skilled/`
+- **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config, and commit hooks plus a CI check keep those mirrors in step with `.skilled/`. Each runtime folder's README says what is generated there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md) and [Hermes](.hermes/README.md)
 - **Checks before it runs.** A bridge confirms its CLI is installed and usable, so a missing tool stops the route up front
 - **No self-dispatch.** Every bridge but `cli-pi` refuses to dispatch the runtime it runs in, so delegation never loops
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`. The DeepSeek Harness bridge is experimental and configured, but not verified: no keyed run exists.
+One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run, and its OpenCode Go route is configured but not verified. All eight bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
 
 &nbsp;
 
@@ -1099,7 +1099,7 @@ Seventeen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
 - **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit and a screen for instructions hidden in fetched web pages
-- **Sessions:** the goal plugin, session cleanup, the in-session handover relaunch and on-device image reads
+- **Sessions:** the goal plugin, session cleanup and the in-session handover relaunch
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
 
@@ -1132,7 +1132,7 @@ Other entries in `.pi/extensions/`:
 Hermes keeps shell hooks in your user-level config, so a repository cannot ship them. It ships one project plugin instead, `.hermes/plugins/repo-guards/`, which runs the same shared cores as the other runtimes and maps their answers onto Hermes's own hook events.
 
 - **Before a tool call, able to stop it:** dispatch preflight, the git message gate and the subagent dispatch guard
-- **After a tool call, as advice on its result:** post-edit quality, the spec-folder notice, the git advisory, the MCP route advisory, on-device image reads and the web-page injection screen on `web_extract` results
+- **After a tool call, as advice on its result:** post-edit quality, the spec-folder notice, the git advisory, the MCP route advisory and the web-page injection screen on `web_extract` results
 - **Each turn and at session start:** the skill advisor brief, the spec-folder gate, the session context, the named persona, the bound packet goal and the worktree, dist-freshness, git-hook and live-sync guards
 - **Before the final answer:** the completion-evidence nudge
 - **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. A `hermes` launch that the shell shim wraps gets the variable set for it, see [In-Session Handover](#in-session-handover). See [`.hermes/SYNC.md`](.hermes/SYNC.md)
@@ -1647,6 +1647,7 @@ The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack)
 - **`opencode.json`** - permissions, the `code_mode` MCP binding and one experimental flag. Used by OpenCode
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only
+- **Runtime folders** - `.claude/`, `.codex/`, `.opencode/`, `.cursor/`, `.pi/`, `.devin/` and `.hermes/`. Each holds a README that separates what is generated from `.skilled/` from what is authored there, and names the command that checks its mirrors: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md), [Hermes](.hermes/README.md)
 
 &nbsp;
 ### Environment Settings
