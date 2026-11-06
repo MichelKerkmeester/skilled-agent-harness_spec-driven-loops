@@ -510,6 +510,7 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-devin': 'SPECKIT_DEVIN_STATE_DIR',
   'cli-pi': 'SPECKIT_PI_STATE_DIR',
   'cli-hermes': 'SPECKIT_HERMES_STATE_DIR',
+  'cli-deepseek-harness': 'SPECKIT_DEEPSEEK_HARNESS_STATE_DIR',
 };
 
 const activeLineageProcesses = new Set();
@@ -3087,6 +3088,162 @@ function buildHermesLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   });
 }
 
+const DSH_ALLOWED_MODELS = new Set([
+  'deepseek-v4.1-flash-1017',
+  'deepseek-v4.1-flash',
+]);
+const DSH_DEFAULT_MODEL = 'deepseek-v4.1-flash-1017';
+const DSH_VERSION = '0.2.2-rc.1';
+const DSH_PERSONA_NAME = /^[a-z0-9][a-z0-9-]{0,63}$/;
+
+// A lineage can throw between creating its harness home and spawning, which skips the
+// removal after the run. One exit listener sweeps whatever homes are still pending.
+const pendingDshHomes = new Set();
+let dshHomeSweepRegistered = false;
+
+function createDshHome() {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'));
+  pendingDshHomes.add(home);
+  if (!dshHomeSweepRegistered) {
+    dshHomeSweepRegistered = true;
+    process.once('exit', () => {
+      for (const pending of pendingDshHomes) fs.rmSync(pending, { recursive: true, force: true });
+    });
+  }
+  return home;
+}
+
+function removeDshHome(home) {
+  fs.rmSync(home, { recursive: true, force: true });
+  pendingDshHomes.delete(home);
+}
+
+function buildDshLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  const env = options.env || process.env;
+  if (!isDshBinaryAvailable(env)) {
+    throw inputError('cli-deepseek-harness executor unavailable: command -v dsh failed');
+  }
+  // Even a version probe creates harness state, so it runs in a throwaway home outside the checkout.
+  const probeHome = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-version-'));
+  const versionResult = spawnSync('dsh', ['--version'], {
+    env: { ...env, DSH_HOME: probeHome },
+    cwd: probeHome,
+    encoding: 'utf8',
+    timeout: 5000,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  fs.rmSync(probeHome, { recursive: true, force: true });
+  const actualVersion = typeof versionResult.stdout === 'string' ? versionResult.stdout.trim() : '';
+  if (versionResult.error || versionResult.status !== 0 || actualVersion !== DSH_VERSION) {
+    throw inputError(
+      `cli-deepseek-harness requires dsh ${DSH_VERSION}; found '${actualVersion || 'unknown'}'`,
+    );
+  }
+
+  const model = lineage.model || DSH_DEFAULT_MODEL;
+  if (!DSH_ALLOWED_MODELS.has(model)) {
+    throw inputError(
+      `cli-deepseek-harness model '${model}' is not in the enforced allowlist: ${[...DSH_ALLOWED_MODELS].join(', ')}`,
+    );
+  }
+  if (typeof options.lineageDir !== 'string' || options.lineageDir.trim() === '') {
+    throw inputError('cli-deepseek-harness requires a lineage directory');
+  }
+
+  const repoRoot = options.repoRoot || path.resolve(__dirname, '../../../../..');
+  const routeName = model === 'deepseek-v4.1-flash-1017'
+    ? 'route-llmgateway-deepseek.patch.yml'
+    : 'route-opencode-go-deepseek.patch.yml';
+  const routePatch = path.join(repoRoot, '.dsh', 'patches', routeName);
+  const lineagePatch = path.join(repoRoot, '.dsh', 'patches', 'lineage.patch.yml');
+  if (!fs.existsSync(routePatch) || !fs.existsSync(lineagePatch)) {
+    throw inputError('cli-deepseek-harness route or lineage patch is missing');
+  }
+
+  const args = ['--profile', 'headless', '--patch', routePatch, '--patch', lineagePatch];
+  const persona = typeof lineage.agentPersona === 'string' ? lineage.agentPersona.trim() : '';
+  if (persona) {
+    if (!DSH_PERSONA_NAME.test(persona)) {
+      throw inputError(`cli-deepseek-harness agentPersona '${persona}' is not a valid patch name`);
+    }
+    const personaPatch = path.join(repoRoot, '.dsh', 'agents', `${persona}.patch.yml`);
+    if (!fs.existsSync(personaPatch)) {
+      throw inputError(`cli-deepseek-harness persona patch '${persona}' is missing`);
+    }
+    args.push('--patch', personaPatch);
+  }
+  // An unguarded dispatch must not start, so a missing guards bundle is an input error.
+  const guardsPatch = path.join(repoRoot, '.dsh', 'patches', 'guards.patch.yml');
+  if (!fs.existsSync(guardsPatch)) {
+    throw inputError('cli-deepseek-harness guards patch is missing');
+  }
+  args.push('--patch', guardsPatch);
+  // MCP is opt-in: only a lineage that names code_mode gets the server, and dsh has no other.
+  const mcpServers = Array.isArray(lineage.liveTools?.mcpServers) ? lineage.liveTools.mcpServers : [];
+  if (mcpServers.some((name) => name !== 'code_mode')) {
+    throw inputError('cli-deepseek-harness liveTools.mcpServers may name only code_mode');
+  }
+  if (mcpServers.length > 0) {
+    const mcpPatch = path.join(repoRoot, '.dsh', 'patches', 'mcp-code-mode.patch.yml');
+    if (!fs.existsSync(mcpPatch)) {
+      throw inputError('cli-deepseek-harness MCP patch is missing');
+    }
+    args.push('--patch', mcpPatch);
+  }
+
+  const permissionMode = resolvedSandbox === 'read-only' ? 'read-only' : 'workspace-write';
+  args.push('--json', '--permission-mode', permissionMode, '--approval-policy', 'never', '-');
+  const reasoningEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort || 'max');
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'dsh',
+    args,
+    input: prompt,
+    prompt,
+    promptArgIndexes: [],
+    cwd: path.resolve(options.lineageDir),
+    executableVersion: resolveExecutableVersion('dsh', options),
+    model,
+    reasoningEffort,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission: permissionMode,
+    webSearch: effectiveWebSearchPolicy(lineage),
+  });
+}
+
+// A plugin that fails to load only prints this line and the run carries on unguarded.
+const DSH_INACTIVE_PLUGIN = /\bdid not activate\b/;
+
+function validateDshCompletion(exitCode, stdout, stderr = '') {
+  if (exitCode !== 0) return `exited with code ${exitCode}`;
+  if (DSH_INACTIVE_PLUGIN.test(String(stderr || ''))) return 'reported a plugin that did not activate';
+  const lines = String(stdout || '').split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const events = [];
+  for (const line of lines) {
+    try {
+      const event = JSON.parse(line);
+      if (event && typeof event === 'object') events.push(event);
+    } catch {
+      continue;
+    }
+  }
+  if (events.some((event) => event.type === 'error' || event.event === 'error')) {
+    return 'emitted an error event';
+  }
+  if (lines.length === 0) return 'did not emit a final event';
+  let finalEvent;
+  try {
+    finalEvent = JSON.parse(lines[lines.length - 1]);
+  } catch {
+    return 'did not emit a final event';
+  }
+  if (!finalEvent || finalEvent.type !== 'final') return 'did not emit a final event';
+  if (finalEvent.reason?.kind === 'error') return 'reported an error final reason';
+  if (finalEvent.reason?.kind !== 'completed') return 'did not complete successfully';
+  return null;
+}
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
@@ -3096,6 +3253,7 @@ const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   'cli-devin': buildDevinLineageCommand,
   'cli-pi': buildPiLineageCommand,
   'cli-hermes': buildHermesLineageCommand,
+  'cli-deepseek-harness': buildDshLineageCommand,
 });
 
 /**
@@ -3175,6 +3333,14 @@ function isPiBinaryAvailable(env = process.env) {
 // exit-code gate below catches.
 function isHermesBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v hermes >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+function isDshBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v dsh >/dev/null 2>&1'], {
     env,
     stdio: 'ignore',
   });
@@ -3579,6 +3745,11 @@ async function main() {
       const stateDir = path.join(lineageDir, '.executor-state');
       fs.mkdirSync(lineageDir, { recursive: true });
       fs.mkdirSync(stateDir, { recursive: true });
+      // The harness writes profiles and an anonymous id into its home, so the home sits outside
+      // the checkout where nothing can commit it, and it is removed once the lineage settles.
+      const dshHome = lineage.kind === 'cli-deepseek-harness'
+        ? createDshHome()
+        : null;
 
       const sessionId = readStoredLineageSessionId(loopType, lineageDir) || `fanout-${lineage.label}-${runId}`;
       const promptLineageDir = path.resolve(process.cwd(), lineageDir);
@@ -3673,6 +3844,13 @@ async function main() {
         SYSTEM_SPEC_GATE_DISABLED: '1',
         AI_SESSION_CHILD: '1',
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
+        ...(dshHome ? { DSH_HOME: dshHome } : {}),
+        // The repo-guards goal bridge names the packet from this marker. The env allowlist
+        // drops every DSH_ key, and the lineage runs from its own folder, so the path is
+        // re-injected here as an absolute path.
+        ...(lineage.kind === 'cli-deepseek-harness'
+          ? { DSH_SPEC_FOLDER: path.resolve(process.cwd(), specFolder) }
+          : {}),
         ...(resolvedClaudeConfigDir ? { CLAUDE_CONFIG_DIR: resolvedClaudeConfigDir } : {}),
         // A Hermes leaf learns its packet through the repo plugin, which reads this path, and
         // a read-only Hermes leaf keeps the `file` toolset (Hermes has no read-only file
@@ -4005,6 +4183,7 @@ async function main() {
       fs.writeFileSync(path.join(logsDir, 'fanout-lineage.out'), savedStdout, 'utf8');
       const savedStderr = typeof result.stderr === 'string' ? result.stderr : '';
       fs.writeFileSync(path.join(logsDir, 'fanout-lineage.err'), savedStderr, 'utf8');
+      if (dshHome) removeDshHome(dshHome);
 
       // A lineage can exit cleanly on a question the operator still owes an answer to. That
       // failure is terminal until answered, so the exit-0 gates below mark it needs_input
@@ -4023,6 +4202,9 @@ async function main() {
       // stall-watchdog / lag-ceiling abort or an external SIGKILL leaves result.status null,
       // so exitCode computes to 0 and the lineage would otherwise be masked as success.
       const killedBySignal = result.signal != null;
+      const dshCompletionFailure = lineage.kind === 'cli-deepseek-harness'
+        ? validateDshCompletion(exitCode, savedStdout, savedStderr)
+        : null;
       const missingArtifacts = findMissingLineageArtifacts(loopType, lineageDir);
       const stateRead = readLineageStateRecords(loopType, lineageDir);
       const stopPolicyViolation = findMaxIterationsPolicyViolation({
@@ -4045,13 +4227,15 @@ async function main() {
       // for cli-pi a non-zero exit is not a failure signal. The artifact validation below
       // is its success gate instead — a genuinely failed pi run produces no artifact and
       // is rejected there. Timeouts and signal kills remain real failures for every kind.
-      const exitCodeIsFailure = exitCode !== 0 && lineage.kind !== 'cli-pi';
+      const exitCodeIsFailure = (exitCode !== 0 && lineage.kind !== 'cli-pi') || dshCompletionFailure !== null;
       if (timedOut || killedBySignal || exitCodeIsFailure) {
         const reason = timedOut
           ? 'timed out'
           : killedBySignal
             ? `killed by signal ${result.signal}`
-            : `exited with code ${exitCode}`;
+            : dshCompletionFailure
+              ? dshCompletionFailure
+              : `exited with code ${exitCode}`;
         const failure = new Error(`lineage ${lineage.label} ${reason}`);
         failure.label = lineage.label;
         failure.exitCode = exitCode;
@@ -4277,7 +4461,11 @@ module.exports = {
   PI_DEFAULT_MODEL,
   HERMES_ALLOWED_MODELS,
   HERMES_DEFAULT_MODEL,
+  DSH_ALLOWED_MODELS,
+  DSH_DEFAULT_MODEL,
+  DSH_VERSION,
   buildLineageCommand,
+  validateDshCompletion,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
   isOpencodeBinaryAvailable,
@@ -4285,6 +4473,7 @@ module.exports = {
   isDevinBinaryAvailable,
   isPiBinaryAvailable,
   isHermesBinaryAvailable,
+  isDshBinaryAvailable,
   buildLoopPrompt,
   buildNativeCommandInput,
   normalizeReviewFocus,

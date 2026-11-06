@@ -72,6 +72,7 @@ const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-devin': 'devin',
   'cli-pi': 'pi',
   'cli-hermes': 'hermes',
+  'cli-deepseek-harness': 'dsh',
 };
 
 // Pi's session environment variable is unconfirmed; leave this kind absent
@@ -107,6 +108,7 @@ const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // so an operator who relocated the home is detected there; the fan-out never sets it,
   // because a fresh home carries no credentials.
   'cli-hermes': ['SPECKIT_HERMES_STATE_DIR', 'HERMES_HOME'],
+  'cli-deepseek-harness': ['SPECKIT_DEEPSEEK_HARNESS_STATE_DIR', 'DSH_HOME'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
@@ -117,6 +119,7 @@ const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> =
   'cli-devin': '.devin',
   'cli-pi': '.pi',
   'cli-hermes': '.hermes',
+  'cli-deepseek-harness': '.dsh',
 };
 
 // Two of the five recursion layers ask "is the caller sitting inside this CLI right now" —
@@ -173,6 +176,7 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // pins to the same LLMGATEWAY_ prefix cli-pi already earned above. Hermes also loads
   // `~/.hermes/.env` itself, so a key kept there needs no pass-through at all.
   'cli-hermes': ['HERMES_', 'LLMGATEWAY_'],
+  'cli-deepseek-harness': ['LLMGATEWAY_'],
 };
 
 // Single variables a kind passes through where no prefix fits. Each entry names one
@@ -183,6 +187,9 @@ const EXECUTOR_ENV_KEYS_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // This variable switches the package to passive, and the cli-pi skill tells
   // dispatchers to set it, so the filter must not drop it on the way to the child.
   'cli-pi': ['PI_BLACKHOLE_PASSIVE'],
+  // DSH_HOME is absent on purpose: the runner gives every lineage a fresh home, and an
+  // inherited one would point a leaf at the operator's harness state.
+  'cli-deepseek-harness': ['OPENCODE_API_KEY'],
 };
 
 type RunAuditedExecutorCommandInput = {
@@ -949,6 +956,22 @@ export function validateExecutorDispatchAllowed(
       layer: 'env',
       reason: recursionReasonForLayer('env'),
       detail: `${envName} is set for ${kind}`,
+    };
+  }
+
+  if (
+    kind === 'cli-deepseek-harness'
+    && (EXECUTOR_STATE_ENV_BY_KIND[kind] ?? [])
+      .some((name) => {
+        const value = env[name];
+        return typeof value === 'string' && value.trim() !== '';
+      })
+  ) {
+    return {
+      allowed: false,
+      layer: 'env',
+      reason: recursionReasonForLayer('env'),
+      detail: 'dsh state environment is set for cli-deepseek-harness',
     };
   }
 

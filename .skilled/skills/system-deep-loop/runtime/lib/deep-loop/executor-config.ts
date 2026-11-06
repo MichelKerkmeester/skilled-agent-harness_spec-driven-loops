@@ -8,8 +8,22 @@ import { z } from 'zod';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor', 'cli-devin', 'cli-pi', 'cli-hermes'] as const;
+export const EXECUTOR_KINDS = [
+  'native',
+  'cli-codex',
+  'cli-claude-code',
+  'cli-opencode',
+  'cli-cursor',
+  'cli-devin',
+  'cli-pi',
+  'cli-hermes',
+  'cli-deepseek-harness',
+] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
+
+// Informational only: nothing reads this set to gate a run. dsh stays listed while OpenCode Go
+// is unverified; DSH_DEFAULT_MODEL keeps the verified Gateway route as the default.
+export const EXPERIMENTAL_EXECUTOR_KINDS: ReadonlySet<ExecutorKind> = new Set(['cli-deepseek-harness']);
 
 // Ordered low→high. `ultra` is codex gpt-6-sol's top reasoning tier, above `max`.
 export const REASONING_EFFORTS = ['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max', 'ultra'] as const;
@@ -120,6 +134,9 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // fresh `.env` and `auth.json`, so remapping it logs the lineage out of every provider;
   // per-lineage profiles wait for a seeded-credential contract.
   'cli-hermes': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
+  // dsh selects a route through its model patch and a persona through a separate patch.
+  // The route patch pins the supported DeepSeek Flash models to max reasoning.
+  'cli-deepseek-harness': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
 };
 
 /**
@@ -146,6 +163,7 @@ export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolea
   'cli-devin': false, // --sandbox is deliberately never passed (conflicts with non-interactive auto-approval); confinement is the fan-out's post-hoc write-containment guard, not an OS boundary
   'cli-pi': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; read-only is a tool-allowlist restriction only
   'cli-hermes': false, // no confinement flag exists; a read-only leaf narrows the toolset and omits --yolo (Hermes then blocks flagged actions), neither of which is an OS boundary
+  'cli-deepseek-harness': true, // Workspace-write blocks home writes; OS temp remains writable.
 };
 
 /** Proven web-search policies for every shipped executor kind. */
@@ -205,6 +223,13 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
     disabled: true,
     cached: false,
     live: true,
+  },
+  // dsh receives no per-dispatch web-search switch; its route profile has no web tool.
+  'cli-deepseek-harness': {
+    inherit: true,
+    disabled: false,
+    cached: false,
+    live: false,
   },
 } as const satisfies Record<ExecutorKind, Record<WebSearchPolicy, boolean>>;
 
@@ -278,6 +303,19 @@ export function isHermesModelAllowed(model: string): model is HermesSupportedMod
   return (HERMES_SUPPORTED_MODELS as readonly string[]).includes(model);
 }
 
+/** Keep explicit route selection available, with only the verified Gateway route as default. */
+export const DSH_SUPPORTED_MODELS = [
+  'deepseek-v4.1-flash-1017',
+  'deepseek-v4.1-flash', // OpenCode Go is configured, not verified, and remains explicit-only.
+] as const;
+export type DshSupportedModel = typeof DSH_SUPPORTED_MODELS[number];
+
+export const DSH_DEFAULT_MODEL: DshSupportedModel = 'deepseek-v4.1-flash-1017';
+
+export function isDshModelAllowed(model: string): model is DshSupportedModel {
+  return (DSH_SUPPORTED_MODELS as readonly string[]).includes(model);
+}
+
 /**
  * DeepSeek V4 Flash and GLM-5.3-Flash are reasoning models pinned to their TOP tier: they are
  * never dispatched at a lower effort. Both top out at `max` on every route reachable from
@@ -288,8 +326,8 @@ export function isHermesModelAllowed(model: string): model is HermesSupportedMod
  * literals reach this function — and has no `xhigh` on either, so pinning a GLM literal to
  * `xhigh` would send the fan-out routes a tier their provider does not offer.
  *
- * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash-1017`, fronted by DevPass) and on
- * cli-hermes (that id and the undated `deepseek-v4.1-flash`), and provider-prefixed on cli-opencode
+ * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash-1017`, fronted by DevPass), cli-hermes,
+ * and cli-deepseek-harness, and provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4.1-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
  * too. GLM-5.3-Flash is matched on both its bare DevPass literal (`glm-5.3-flash`) and
@@ -685,9 +723,10 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
  * @throws {@link ExecutorConfigError} If the requested policy is unsupported.
  */
 /**
- * Which executor kinds can name MCP servers per lineage. Only Hermes exposes a configured
- * MCP server as a toolset name on its command line (`-t ...,<server>`); every sibling either
- * reads servers from a repo dotfolder the lineage cannot vary or has no per-run switch.
+ * Which executor kinds can name MCP servers per lineage. Hermes exposes a configured MCP
+ * server as a toolset name on its command line (`-t ...,<server>`), and DeepSeek Harness
+ * mounts one through an opt-in `--patch`; every sibling either reads servers from a repo
+ * dotfolder the lineage cannot vary or has no per-run switch.
  */
 export const EXECUTOR_MCP_SERVER_CAPABILITY: Record<ExecutorKind, boolean> = {
   native: false,
@@ -698,6 +737,15 @@ export const EXECUTOR_MCP_SERVER_CAPABILITY: Record<ExecutorKind, boolean> = {
   'cli-devin': false,
   'cli-pi': false,
   'cli-hermes': true,
+  'cli-deepseek-harness': true,
+};
+
+/**
+ * The servers a kind may mount per lineage when it cannot take an arbitrary name. DeepSeek
+ * Harness has one MCP patch, so `code_mode` is the only server it can mount.
+ */
+export const EXECUTOR_MCP_SERVER_ROSTER: Partial<Record<ExecutorKind, readonly string[]>> = {
+  'cli-deepseek-harness': ['code_mode'],
 };
 
 /**
@@ -727,7 +775,17 @@ export function assertExecutorMcpServerCapability(
     throw new ExecutorConfigError({
       issues: [{
         path: [...path, 'liveTools', 'mcpServers'],
-        message: `liveTools.mcpServers is not supported by executor kind '${config.kind}'; only cli-hermes names MCP servers per lineage`,
+        message: `liveTools.mcpServers is not supported by executor kind '${config.kind}'; only cli-hermes and cli-deepseek-harness name MCP servers per lineage`,
+      }],
+    });
+  }
+  const roster = EXECUTOR_MCP_SERVER_ROSTER[config.kind];
+  const unmountable = roster ? servers.filter((name) => !roster.includes(name)) : [];
+  if (unmountable.length > 0) {
+    throw new ExecutorConfigError({
+      issues: [{
+        path: [...path, 'liveTools', 'mcpServers'],
+        message: `liveTools.mcpServers for '${config.kind}' may name only ${roster!.join(', ')}; got ${unmountable.join(', ')}`,
       }],
     });
   }

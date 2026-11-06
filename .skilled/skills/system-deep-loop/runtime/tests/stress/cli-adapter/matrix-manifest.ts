@@ -10,6 +10,7 @@ export const CLI_ADAPTER_SUBJECTS = [
   'cli-devin',
   'cli-cursor',
   'cli-hermes',
+  'cli-deepseek-harness',
   'fanout-run',
 ] as const;
 
@@ -66,6 +67,7 @@ export const PHASE_TWO_ADAPTER_SUBJECTS = [
   'cli-devin',
   'cli-cursor',
   'cli-hermes',
+  'cli-deepseek-harness',
 ] as const satisfies readonly CliAdapterSubject[];
 
 export type PhaseTwoAdapterSubject = typeof PHASE_TWO_ADAPTER_SUBJECTS[number];

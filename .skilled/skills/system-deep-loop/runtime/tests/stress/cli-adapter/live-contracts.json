@@ -41,5 +41,9 @@
     "adapterDefect": "A hermetic invocation reaches the shipped adapter contract and violates an asserted command, process, artifact, or classification invariant.",
     "dependencySkip": "A gated live-only cell names the unavailable binary, authentication state, recursion signal, dependency realpath, or opt-in switch.",
     "harnessFailure": "The fixture itself cannot establish its timeout, process ownership, isolated workspace, capture, or cleanup precondition."
+  },
+  "deepseekHarness": {
+    "value": "cli-deepseek-harness",
+    "contract": "LLM Gateway deepseek-v4.1-flash-1017 is verified on dsh 0.2.2-rc.1 and is the default route. OpenCode Go deepseek-v4.1-flash is configured, not verified, and stays out of defaults. Workspace-write blocks file writes under $HOME but allows OS temp paths."
   }
 }

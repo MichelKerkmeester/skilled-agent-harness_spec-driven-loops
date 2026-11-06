@@ -774,6 +774,7 @@ describe('executor-audit recursion guard: pi self-presence exemption', () => {
     ['cli-opencode', '/opt/homebrew/bin/opencode run'],
     ['cli-cursor', '/opt/homebrew/bin/cursor-agent -p'],
     ['cli-devin', '/opt/homebrew/bin/devin -p'],
+    ['cli-deepseek-harness', '/opt/homebrew/bin/dsh --profile headless -'],
   ];
 
   it('allows a cli-pi dispatch whose only signal is the pi binary in process ancestry', () => {
@@ -839,6 +840,43 @@ describe('executor-audit recursion guard: pi self-presence exemption', () => {
       });
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it.each(['SPECKIT_DEEPSEEK_HARNESS_STATE_DIR', 'DSH_HOME'])('refuses a cli-deepseek-harness dispatch when %s is set', (key) => {
+    expect(
+      validateExecutorDispatchAllowed(executorOfKind('cli-deepseek-harness'), {
+        env: { [key]: '/tmp/dsh-state' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      }),
+    ).toMatchObject({
+      allowed: false,
+      layer: 'env',
+      reason: 'recursion-guard-env',
+    });
+  });
+
+  it('detects cli-deepseek-harness lockfiles under the default .dsh home', () => {
+    const tempHome = mkdtempSync(join(tmpdir(), 'executor-guard-dsh-home-'));
+
+    try {
+      const dshHome = join(tempHome, '.dsh');
+      mkdirSync(dshHome, { recursive: true });
+      writeFileSync(join(dshHome, 'dsh.lock'), 'pid=123\n', 'utf8');
+
+      expect(
+        validateExecutorDispatchAllowed(executorOfKind('cli-deepseek-harness'), {
+          env: { HOME: tempHome },
+          ancestryCmdlines: [],
+        }),
+      ).toMatchObject({
+        allowed: false,
+        layer: 'lockfile',
+        reason: 'recursion-guard-lockfile',
+      });
+    } finally {
+      rmSync(tempHome, { recursive: true, force: true });
     }
   });
 
@@ -947,5 +985,46 @@ describe('executor-audit: cli-pi environment filter', () => {
     });
 
     expect(childEnv).toEqual({ passive: 'true', unlisted: null });
+  });
+});
+
+describe('executor-audit: cli-deepseek-harness environment filter', () => {
+  const executor: ExecutorConfig = {
+    kind: 'cli-deepseek-harness',
+    model: null,
+    configDir: null,
+    reasoningEffort: null,
+    serviceTier: null,
+    sandboxMode: null,
+    timeoutSeconds: 900,
+  };
+
+  it('passes only its gateway prefix and named provider key, never an inherited DSH_HOME', () => {
+    const nextEnv = buildExecutorDispatchEnv(executor, {
+      PATH: '/usr/bin',
+      LLMGATEWAY_API_KEY: 'gateway-secret',
+      LLMGATEWAY_REGION: 'eu',
+      DSH_HOME: 'must-drop',
+      OPENCODE_API_KEY: 'opencode-secret',
+      DEEPSEEK_API_KEY: 'must-drop',
+      DSH_TELEMETRY_OTLP_URL: 'must-drop',
+      DSH_FOO: 'must-drop',
+      OPENCODE_FOO: 'must-drop',
+      UNRELATED_TOKEN: 'must-drop',
+    });
+
+    expect(nextEnv).toMatchObject({
+      PATH: '/usr/bin',
+      LLMGATEWAY_API_KEY: 'gateway-secret',
+      LLMGATEWAY_REGION: 'eu',
+      OPENCODE_API_KEY: 'opencode-secret',
+      [CLI_DISPATCH_STACK_ENV]: 'cli-deepseek-harness',
+    });
+    expect(nextEnv).not.toHaveProperty('DEEPSEEK_API_KEY');
+    expect(nextEnv).not.toHaveProperty('DSH_HOME');
+    expect(nextEnv).not.toHaveProperty('DSH_TELEMETRY_OTLP_URL');
+    expect(nextEnv).not.toHaveProperty('DSH_FOO');
+    expect(nextEnv).not.toHaveProperty('OPENCODE_FOO');
+    expect(nextEnv).not.toHaveProperty('UNRELATED_TOKEN');
   });
 });

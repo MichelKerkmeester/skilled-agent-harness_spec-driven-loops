@@ -25,6 +25,7 @@ export const ADAPTER_KINDS = [
   'cli-devin',
   'cli-cursor',
   'cli-hermes',
+  'cli-deepseek-harness',
 ] as const;
 
 export type AdapterKind = typeof ADAPTER_KINDS[number];
@@ -36,6 +37,7 @@ const BINARY_BY_KIND: Record<AdapterKind, string> = {
   'cli-devin': 'devin',
   'cli-cursor': 'cursor-agent',
   'cli-hermes': 'hermes',
+  'cli-deepseek-harness': 'dsh',
 };
 
 const SHIM_BY_KIND: Record<AdapterKind, string> = {
@@ -45,6 +47,7 @@ const SHIM_BY_KIND: Record<AdapterKind, string> = {
   'cli-devin': 'devin-shim.cjs',
   'cli-cursor': 'cursor-shim.cjs',
   'cli-hermes': 'hermes-shim.cjs',
+  'cli-deepseek-harness': 'dsh-shim.cjs',
 };
 
 export const MODEL_BY_KIND: Record<AdapterKind, string> = {
@@ -54,6 +57,7 @@ export const MODEL_BY_KIND: Record<AdapterKind, string> = {
   'cli-devin': 'glm-5-2',
   'cli-cursor': 'composer-2.5',
   'cli-hermes': 'deepseek-v4.1-flash',
+  'cli-deepseek-harness': 'deepseek-v4.1-flash-1017',
 };
 
 export interface AdapterShimCapture {
@@ -167,7 +171,8 @@ export async function runAdapterFanout(
     count: options.count ?? 1,
   };
   if (fixture.kind === 'cli-claude-code') executor.configDir = configDir;
-  if (fixture.kind === 'cli-opencode' || fixture.kind === 'cli-pi' || fixture.kind === 'cli-claude-code' || fixture.kind === 'cli-hermes') {
+  if (fixture.kind === 'cli-opencode' || fixture.kind === 'cli-pi' || fixture.kind === 'cli-claude-code'
+    || fixture.kind === 'cli-hermes' || fixture.kind === 'cli-deepseek-harness') {
     executor.reasoningEffort = 'high';
   }
   if (fixture.kind !== 'cli-pi' && fixture.kind !== 'cli-hermes' && options.sandboxMode) {
@@ -217,6 +222,9 @@ export function preflightAdapterLive(kind: AdapterKind, env: NodeJS.ProcessEnv):
   readonly ready: boolean;
   readonly reason: string | null;
 } {
+  if (kind === 'cli-deepseek-harness') {
+    return { ready: false, reason: 'dsh stress coverage uses the hermetic shim only' };
+  }
   const flag = `DEEP_LOOP_${kind.replaceAll('-', '_').toUpperCase()}_LIVE`;
   if (env[flag] !== '1') {
     return { ready: false, reason: `live probe disabled: set ${flag}=1` };

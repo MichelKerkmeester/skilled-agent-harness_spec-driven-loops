@@ -1577,6 +1577,7 @@ workflow:
             - "cli-pi single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-pi model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
             - "Fails closed when pi is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-pi executor never degrades to native"
             - "cli-hermes single-executor: the same shared builder emits `hermes chat -Q --oneshot --query-file -` with the prompt on stdin, the two-id llmgateway roster and the max reasoning pin; fails closed when hermes is absent or the model is off the roster"
+            - "cli-deepseek-harness single-executor (experimental, never a default): the same shared builder emits `dsh --profile headless` with the route, lineage and guards patches, `--json` and the prompt on stdin, from the lineage directory with a fresh DSH_HOME; fails closed when dsh is absent, its version is not the pinned release, the model is off the two-id roster or the guards patch is missing"
         record_executor_audit:
           skip_when: "config.executor.type == 'native'"
           target: "{state_paths.state_log}"

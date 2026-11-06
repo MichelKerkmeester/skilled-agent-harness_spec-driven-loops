@@ -18,6 +18,7 @@ trigger_phrases:
 Current state:
 
 - `adapter-shim-core.cjs` holds the shared behavior. The six thin shims are one call each into `runAdapterShim(kind)`.
+- `dsh-shim.cjs` has its own runner because dsh needs JSON events and a separate process exit status.
 - `codex-shim.cjs` does not use the core. It keeps its own mode switch, writes its last message to the `-o` output path, and doubles as a `pkill` stand-in.
 - The mode resolves from `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`.
 - Capture and pid targets resolve from the control file, then `CLI_ADAPTER_SHIM_CAPTURE` and `CLI_ADAPTER_SHIM_PID_FILE`.
@@ -35,13 +36,14 @@ Current state:
 | `devin-shim.cjs` | Calls `runAdapterShim('cli-devin')`. |
 | `cursor-shim.cjs` | Calls `runAdapterShim('cli-cursor')`. |
 | `hermes-shim.cjs` | Calls `runAdapterShim('cli-hermes')`. |
+| `dsh-shim.cjs` | Stand-in for `cli-deepseek-harness`. Emits DSH JSON events and controls the process exit status independently. |
 | `codex-shim.cjs` | Self-contained codex stand-in with its own mode switch, last-message output path and `pkill` forwarding. |
 
 ---
 
 ## 3. SHIM MODES
 
-Core modes, used by every shim except codex:
+Core modes, used by the six shims that call `adapter-shim-core.cjs`:
 
 | Mode | Behavior |
 |---|---|
@@ -60,6 +62,17 @@ Core modes, used by every shim except codex:
 
 Codex modes differ where its CLI contract differs. `success` writes `shim-success` to the `-o` path and prints `completed`. `stdin-wait` writes `stdin-closed` or `stdin-closed-empty` depending on stdin length. `malformed-output` writes `{not-json` to the `-o` path. `missing-artifact` prints `completed-without-last-message` and writes no last message. The exit-23 diagnostic mode is named `non-zero`. `orphan-tree`, `signal-exit`, `timeout`, `auth-denial`, `model-not-found`, `rate-limit` and the unknown-mode fallback match the core shape.
 
+DSH modes use newline-delimited JSON. The shim never invokes the installed dsh binary.
+
+| Mode | Events and exit status |
+|---|---|
+| `success` | Emits `session`, `status` and a `final` event with reason `completed`, then exits 0. |
+| `keyless-failure` | Emits a `final` event with reason `error` and code `MISSING_CREDENTIAL`, then exits 1. |
+| `error-event` | Emits an `error` event followed by a completed `final` event, then exits 0. |
+| `missing-final` | Emits `session` and `status` without a `final` event, then exits 0. |
+| `stdin-wait` | Reports the closed stdin length in `status`, emits a completed `final` event and writes the lineage artifacts. |
+| `timeout`, `signal-exit`, `orphan-tree` | Exercise the scheduler's timeout, signal and process-tree cleanup cases. |
+
 ---
 
 ## 4. CONFIGURATION
@@ -69,7 +82,7 @@ Codex modes differ where its CLI contract differs. `success` writes `shim-succes
 | Shim mode | `mode` in `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`. |
 | Capture path | `capturePath` in the control file, then `CLI_ADAPTER_SHIM_CAPTURE`. The core appends one JSON record per run with kind, pid, cwd, args, stdin and selected environment values. Codex writes a single record instead. |
 | Pid path | `pidPath` in the control file, then `CLI_ADAPTER_SHIM_PID_FILE`. Holds the root pid, plus child and grandchild pids for `orphan-tree`. |
-| Artifact location | The parent of the state directory named by the per-kind variable (`SPECKIT_OPENCODE_STATE_DIR`, `SPECKIT_PI_STATE_DIR`, `SPECKIT_CLAUDE_CODE_STATE_DIR`, `SPECKIT_DEVIN_STATE_DIR`, `SPECKIT_CURSOR_STATE_DIR`, `SPECKIT_HERMES_STATE_DIR`), otherwise the current working directory. |
+| Artifact location | The parent of the state directory named by the per-kind variable (`SPECKIT_OPENCODE_STATE_DIR`, `SPECKIT_PI_STATE_DIR`, `SPECKIT_CLAUDE_CODE_STATE_DIR`, `SPECKIT_DEVIN_STATE_DIR`, `SPECKIT_CURSOR_STATE_DIR`, `SPECKIT_HERMES_STATE_DIR`, `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR`), otherwise the current working directory. |
 | Reap capture | `CLI_ADAPTER_REAP_CAPTURE`, codex only. Records the arguments when codex is invoked as `pkill`, then forwards to `/usr/bin/pkill` or `/bin/pkill`. |
 
 ---

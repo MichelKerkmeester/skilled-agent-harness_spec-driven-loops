@@ -10,6 +10,7 @@ import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {
   EXECUTOR_KINDS,
+  EXPERIMENTAL_EXECUTOR_KINDS,
   EXECUTOR_KIND_FLAG_SUPPORT,
   EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY,
   EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX,
@@ -31,6 +32,9 @@ import {
   HERMES_SUPPORTED_MODELS,
   HERMES_DEFAULT_MODEL,
   isHermesModelAllowed,
+  DSH_SUPPORTED_MODELS,
+  DSH_DEFAULT_MODEL,
+  isDshModelAllowed,
   isFlashMaxPinnedModel,
   pinReasoningEffortForModel,
   assertExecutorMcpServerCapability,
@@ -40,8 +44,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
 
 describe('executor-config', () => {
-  it('defines eight executor kinds including cli-devin, cli-pi and cli-hermes', () => {
-    expect(EXECUTOR_KINDS).toHaveLength(8);
+  it('defines nine executor kinds including the experimental cli-deepseek-harness kind', () => {
+    expect(EXECUTOR_KINDS).toHaveLength(9);
     expect([...EXECUTOR_KINDS]).toEqual([
       'native',
       'cli-codex',
@@ -51,7 +55,33 @@ describe('executor-config', () => {
       'cli-devin',
       'cli-pi',
       'cli-hermes',
+      'cli-deepseek-harness',
     ]);
+    expect([...EXPERIMENTAL_EXECUTOR_KINDS]).toEqual(['cli-deepseek-harness']);
+    expect(parseExecutorConfig({}).kind).toBe('native');
+  });
+
+  it('allows only the configured cli-deepseek-harness fields', () => {
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-deepseek-harness']).toEqual([
+      'model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona',
+    ]);
+    expect(parseExecutorConfig({
+      kind: 'cli-deepseek-harness',
+      model: 'deepseek-v4.1-flash-1017',
+      reasoningEffort: 'high',
+      timeoutSeconds: 120,
+      agentPersona: 'researcher',
+    })).toMatchObject({
+      kind: 'cli-deepseek-harness',
+      model: 'deepseek-v4.1-flash-1017',
+      reasoningEffort: 'high',
+      timeoutSeconds: 120,
+      agentPersona: 'researcher',
+    });
+    expect(() => parseExecutorConfig({ kind: 'cli-deepseek-harness', sandboxMode: 'read-only' }))
+      .toThrow(/not supported by executor kind 'cli-deepseek-harness'/);
+    expect(() => parseExecutorConfig({ kind: 'cli-deepseek-harness', configDir: '/tmp/dsh-home' }))
+      .toThrow(/not supported by executor kind 'cli-deepseek-harness'/);
   });
 
   it('allows only confirmed-safe cli-hermes fields', () => {
@@ -355,6 +385,13 @@ describe('executor MCP server list', () => {
     expect(parseExecutorConfig({ kind: 'cli-hermes' }).liveTools.mcpServers).toEqual([]);
   });
 
+  it('lets cli-deepseek-harness mount code_mode and nothing else', () => {
+    const mounted = parseExecutorConfig({ kind: 'cli-deepseek-harness', liveTools: { mcpServers: ['code_mode'] } });
+    expect(() => assertExecutorMcpServerCapability(mounted)).not.toThrow();
+    const other = parseExecutorConfig({ kind: 'cli-deepseek-harness', liveTools: { mcpServers: ['code_mode', 'gitkraken'] } });
+    expect(() => assertExecutorMcpServerCapability(other)).toThrow(/may name only code_mode; got gitkraken/);
+  });
+
   it('rejects a name that cannot be a Hermes toolset', () => {
     expect(() => parseExecutorConfig({
       kind: 'cli-hermes',
@@ -363,9 +400,10 @@ describe('executor MCP server list', () => {
   });
 
   it('refuses a non-empty list on every other executor kind and any reserved toolset name', () => {
-    for (const kind of EXECUTOR_KINDS.filter((candidate) => candidate !== 'cli-hermes')) {
+    const perLineageKinds = ['cli-hermes', 'cli-deepseek-harness'];
+    for (const kind of EXECUTOR_KINDS.filter((candidate) => !perLineageKinds.includes(candidate))) {
       const config = parseExecutorConfig({ kind, liveTools: { mcpServers: ['code_mode'] } });
-      expect(() => assertExecutorMcpServerCapability(config, ['lineages', 0])).toThrow(/only cli-hermes names MCP servers/);
+      expect(() => assertExecutorMcpServerCapability(config, ['lineages', 0])).toThrow(/only cli-hermes and cli-deepseek-harness name MCP servers/);
     }
     for (const reserved of ['delegation', 'Memory', 'clarify']) {
       const config = parseExecutorConfig({ kind: 'cli-hermes', liveTools: { mcpServers: [reserved] } });
@@ -403,8 +441,7 @@ describe('executor web-search policy', () => {
       model: 'glm-5.3-flash',
       agentPersona: 'markdown',
     }).agentPersona).toBe('markdown');
-    // Every other kind ignores the field at dispatch, so accepting it silently would
-    // let a lineage believe it runs as a persona it never gets.
+    // A kind without persona support must reject the field rather than imply it was applied.
     expect(() => parseExecutorConfig({
       kind: 'cli-pi',
       model: 'deepseek-v4.1-flash-1017',
@@ -427,6 +464,7 @@ describe('executor web-search policy', () => {
       'cli-devin': { inherit: true, disabled: false, cached: false, live: false },
       'cli-pi': { inherit: true, disabled: false, cached: false, live: false },
       'cli-hermes': { inherit: true, disabled: true, cached: false, live: true },
+      'cli-deepseek-harness': { inherit: true, disabled: false, cached: false, live: false },
     });
   });
 
@@ -445,8 +483,9 @@ describe('executor web-search policy', () => {
       'cli-devin': false,
       'cli-pi': false,
       'cli-hermes': false,
+      'cli-deepseek-harness': true,
     });
-    // devin, pi, hermes, and opencode are the four CLI kinds with no preventive OS sandbox.
+    // Devin, Pi, Hermes, and OpenCode have no preventive OS sandbox.
     expect(['cli-devin', 'cli-pi', 'cli-hermes', 'cli-opencode'].every(
       (kind) => EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY[kind as keyof typeof EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY] === false,
     )).toBe(true);
@@ -1078,6 +1117,19 @@ describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
     for (const model of ['minimax-m3', 'qwen3.8-max']) {
       expect(pinReasoningEffortForModel(model, 'high')).toBe('high');
     }
+  });
+});
+
+describe('DSH_SUPPORTED_MODELS / isDshModelAllowed', () => {
+  it('restricts dsh to its two route-patch model ids and defaults to the gateway route', () => {
+    expect([...DSH_SUPPORTED_MODELS]).toEqual([
+      'deepseek-v4.1-flash-1017',
+      'deepseek-v4.1-flash',
+    ]);
+    expect(DSH_DEFAULT_MODEL).toBe('deepseek-v4.1-flash-1017');
+    for (const model of DSH_SUPPORTED_MODELS) expect(isDshModelAllowed(model)).toBe(true);
+    expect(isDshModelAllowed('deepseek-v4-flash')).toBe(false);
+    expect(isDshModelAllowed('opencode-go/deepseek-v4.1-flash')).toBe(false);
   });
 });
 

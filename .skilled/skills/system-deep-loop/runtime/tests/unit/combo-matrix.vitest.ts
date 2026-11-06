@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
 
@@ -13,6 +13,7 @@ import {
   CURSOR_SUPPORTED_MODELS,
   DEVIN_SUPPORTED_MODELS,
   EXECUTOR_KINDS,
+  DSH_SUPPORTED_MODELS,
   HERMES_SUPPORTED_MODELS,
   PI_SUPPORTED_MODELS,
   type ExecutorKind,
@@ -70,7 +71,10 @@ const MODELS_BY_KIND: Record<ExecutorKind, readonly (string | undefined)[]> = {
   'cli-devin': DEVIN_SUPPORTED_MODELS,
   'cli-pi': PI_SUPPORTED_MODELS,
   'cli-hermes': HERMES_SUPPORTED_MODELS,
+  'cli-deepseek-harness': DSH_SUPPORTED_MODELS,
 };
+
+const DSH_GUARDS_PATCH = resolve(runtimeRoot, '..', '..', '..', '..', '.dsh', 'patches', 'guards.patch.yml');
 
 const COMMAND_BY_KIND: Record<ExecutorKind, string> = {
   native: 'opencode',
@@ -81,6 +85,7 @@ const COMMAND_BY_KIND: Record<ExecutorKind, string> = {
   'cli-devin': 'devin',
   'cli-pi': 'pi',
   'cli-hermes': 'hermes',
+  'cli-deepseek-harness': 'dsh',
 };
 
 const CREDENTIALS_GATED_KINDS = new Set<ExecutorKind>(EXECUTOR_KINDS);
@@ -96,6 +101,8 @@ function writeStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   const script = name === 'opencode'
     ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 1.19.3; exit 0; fi\nexit 0\n'
+    : name === 'dsh'
+      ? '#!/bin/sh\nif [ "$1" = "--version" ]; then echo 0.2.2-rc.1; exit 0; fi\nexit 0\n'
     : '#!/bin/sh\nexit 0\n';
   writeFileSync(stubPath, script, { mode: 0o755 });
   return stubPath;
@@ -163,6 +170,14 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
       return [
         'chat', '-Q', '--oneshot', '--query-file', '-', '--provider', 'llmgateway', '--model', 'deepseek-v4.1-flash',
         '--ignore-rules', '--source', 'tool', '--max-turns', '200', '--run-budget', '840', '-t', 'file,todo,web', '--reasoning', 'max',
+      ];
+    case 'cli-deepseek-harness':
+      return [
+        '--profile', 'headless', '--patch', resolve(runtimeRoot, '..', '..', '..', '..', '.dsh', 'patches', 'route-llmgateway-deepseek.patch.yml'),
+        '--patch', resolve(runtimeRoot, '..', '..', '..', '..', '.dsh', 'patches', 'lineage.patch.yml'),
+        // The builder mounts the guards patch only when the repository ships it.
+        ...(existsSync(DSH_GUARDS_PATCH) ? ['--patch', DSH_GUARDS_PATCH] : []),
+        '--json', '--permission-mode', 'read-only', '--approval-policy', 'never', '-',
       ];
   }
 }

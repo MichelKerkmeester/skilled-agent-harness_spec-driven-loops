@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # Fan-out CLI lineage driver
@@ -37,11 +37,21 @@ the post-subprocess salvage step.
 
 ## 2. HOW IT WORKS
 
-Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`.
+Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`, and `cli-deepseek-harness` (experimental).
 Per-lineage subprocess timeout = `min(iterations *
 timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit
 codes: 0=all ok, 2=some failed, 3=all failed.
+
+A `cli-deepseek-harness` lineage is built by `buildDshLineageCommand`. It first checks that
+`dsh --version` prints the pinned release, running that probe in a throwaway home outside the
+checkout. It then maps the model to one of the two route patches in `.dsh/patches/` and adds
+the lineage patch, an optional persona patch and the guards patch, which is required. A lineage
+that names `code_mode` in `liveTools.mcpServers` also gets the MCP patch. The prompt goes in on
+stdin, the cwd is the lineage directory and every lineage gets a fresh `DSH_HOME`.
+`validateDshCompletion` passes a run only when it exits 0, ends on a `final` event whose reason
+is `completed`, and its stderr has no "did not activate" line. That line is the only sign of a
+guards bundle that failed to load.
 
 The driver also carries an optional per-lineage progress-heartbeat gauge.
 `startLineageProgressHeartbeat` emits periodic progress events at the configured cadence so a

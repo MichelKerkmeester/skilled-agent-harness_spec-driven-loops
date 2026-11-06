@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.5.0
+version: 1.11.6.0
 ---
 
 # Deep Review Loop Protocol
@@ -279,7 +279,7 @@ Before dispatching, the YAML resolves the executor via `parseExecutorConfig` fro
 
 - `native`: dispatch `@deep-review` agent with model Opus.
 - `cli-opencode`: pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
-- `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
+- `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness` (experimental) use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
 
 All branches share:
 1. Pre-dispatch prompt rendering via `renderPromptPack` (writes to `{artifact_dir}/prompts/iteration-{n}.md`).

@@ -44,6 +44,8 @@ import {
   PI_SUPPORTED_MODELS,
   HERMES_DEFAULT_MODEL as TS_HERMES_DEFAULT_MODEL,
   HERMES_SUPPORTED_MODELS,
+  DSH_DEFAULT_MODEL as TS_DSH_DEFAULT_MODEL,
+  DSH_SUPPORTED_MODELS,
 } from '../../lib/deep-loop/executor-config.js';
 
 const tempDirs: string[] = [];
@@ -158,8 +160,11 @@ function writeStubBinary(binDir: string, name: string): string {
     [
       '#!/bin/sh',
       ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
+      ...(name === 'dsh' ? ['if [ "$1" = "--version" ]; then echo 0.2.2-rc.1; exit 0; fi'] : []),
       'write_fanout_artifacts',
-      'echo "stub-done"',
+      ...(name === 'dsh'
+        ? ['printf \'{"type":"final","reason":{"kind":"completed"}}\\n\'']
+        : ['echo "stub-done"']),
       'exit 0',
       '',
     ].join('\n')
@@ -418,7 +423,7 @@ function shellQuote(value: string): string {
 function writeFanoutArtifactsShell(): string {
   return [
     'lineage_dir=""',
-    'for state_dir in "$SPECKIT_OPENCODE_STATE_DIR" "$SPECKIT_CLAUDE_CODE_STATE_DIR"; do',
+    'for state_dir in "$SPECKIT_OPENCODE_STATE_DIR" "$SPECKIT_CLAUDE_CODE_STATE_DIR" "$SPECKIT_DEEPSEEK_HARNESS_STATE_DIR"; do',
     '  if [ -n "$state_dir" ]; then',
     '    lineage_dir=$(dirname "$state_dir")',
     '    break',
@@ -1976,6 +1981,254 @@ describe('fanout-run.cjs — cli-hermes adapter', () => {
     ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
     expect(command.args[command.args.indexOf('--reasoning') + 1]).toBe('max');
     expect(command.effectiveConfig.reasoningEffort).toBe('max');
+  });
+});
+
+describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
+  const {
+    buildLineageCommand,
+    DSH_ALLOWED_MODELS,
+    DSH_DEFAULT_MODEL,
+    DSH_VERSION,
+    validateDshCompletion,
+  } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv; repoRoot?: string; lineageDir?: string },
+    ) => {
+      command: string;
+      args: string[];
+      input?: string;
+      cwd?: string;
+      effectiveConfig: { model: string; reasoningEffort: string | null };
+    };
+    DSH_ALLOWED_MODELS: ReadonlySet<string>;
+    DSH_DEFAULT_MODEL: string;
+    DSH_VERSION: string;
+    validateDshCompletion: (exitCode: number, stdout: string, stderr?: string) => string | null;
+  };
+
+  function writeDshStub(binDir: string, version = '0.2.2-rc.1'): string {
+    const stubPath = join(binDir, 'dsh');
+    writeFileSync(stubPath, `#!/bin/sh\nif [ "$1" = "--version" ]; then printf '%s\\n' '${version}'; exit 0; fi\nexit 0\n`, { mode: 0o755 });
+    return stubPath;
+  }
+
+  function makeDshPatchRepo(withPersona = true, withGuards = true): string {
+    const repoRoot = makeTempDir('fanout-run-dsh-patches-');
+    const patchDir = join(repoRoot, '.dsh', 'patches');
+    mkdirSync(patchDir, { recursive: true });
+    writeFileSync(join(patchDir, 'route-llmgateway-deepseek.patch.yml'), 'route: gateway\n');
+    writeFileSync(join(patchDir, 'route-opencode-go-deepseek.patch.yml'), 'route: opencode-go\n');
+    writeFileSync(join(patchDir, 'lineage.patch.yml'), 'lineage: true\n');
+    if (withGuards) writeFileSync(join(patchDir, 'guards.patch.yml'), 'guards: true\n');
+    if (withPersona) {
+      const agentsDir = join(repoRoot, '.dsh', 'agents');
+      mkdirSync(agentsDir, { recursive: true });
+      writeFileSync(join(agentsDir, 'researcher.patch.yml'), 'persona: researcher\n');
+    }
+    return repoRoot;
+  }
+
+  it('matches the closed model roster and builds exact argv, stdin, and lineage cwd', () => {
+    const binDir = makeTempDir('fanout-run-dsh-bin-');
+    writeDshStub(binDir);
+    const repoRoot = makeDshPatchRepo();
+    const lineageDir = makeTempDir('fanout-run-dsh-lineage-');
+    const env = { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` };
+    const routePatch = join(repoRoot, '.dsh', 'patches', 'route-opencode-go-deepseek.patch.yml');
+    const lineagePatch = join(repoRoot, '.dsh', 'patches', 'lineage.patch.yml');
+    const personaPatch = join(repoRoot, '.dsh', 'agents', 'researcher.patch.yml');
+    const guardsPatch = join(repoRoot, '.dsh', 'patches', 'guards.patch.yml');
+
+    expect([...DSH_ALLOWED_MODELS]).toEqual([...DSH_SUPPORTED_MODELS]);
+    expect(DSH_DEFAULT_MODEL).toBe(TS_DSH_DEFAULT_MODEL);
+    expect(DSH_VERSION).toBe('0.2.2-rc.1');
+    const command = buildLineageCommand({
+      kind: 'cli-deepseek-harness',
+      model: 'deepseek-v4.1-flash',
+      reasoningEffort: 'low',
+      agentPersona: 'researcher',
+    }, 'prompt on stdin\nsecond line', 'workspace-write', 'default', {
+      env,
+      repoRoot,
+      lineageDir,
+    });
+
+    expect(command).toMatchObject({ command: 'dsh', cwd: lineageDir, input: 'prompt on stdin\nsecond line' });
+    expect(command.args).toEqual([
+      '--profile', 'headless',
+      '--patch', routePatch,
+      '--patch', lineagePatch,
+      '--patch', personaPatch,
+      '--patch', guardsPatch,
+      '--json', '--permission-mode', 'workspace-write', '--approval-policy', 'never', '-',
+    ]);
+    expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash');
+    expect(command.effectiveConfig.reasoningEffort).toBe('max');
+    expect(command.args).not.toContain('prompt on stdin\nsecond line');
+  });
+
+  it('omits a missing persona patch and selects the read-only preset for read-only loops', () => {
+    const binDir = makeTempDir('fanout-run-dsh-readonly-bin-');
+    writeDshStub(binDir);
+    const repoRoot = makeDshPatchRepo(false, true);
+    const lineageDir = makeTempDir('fanout-run-dsh-readonly-lineage-');
+    const command = buildLineageCommand(
+      { kind: 'cli-deepseek-harness', model: 'deepseek-v4.1-flash-1017' },
+      'read only prompt', 'read-only', 'plan', {
+        env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+        repoRoot,
+        lineageDir,
+      },
+    );
+
+    expect(command.args).toEqual([
+      '--profile', 'headless',
+      '--patch', join(repoRoot, '.dsh', 'patches', 'route-llmgateway-deepseek.patch.yml'),
+      '--patch', join(repoRoot, '.dsh', 'patches', 'lineage.patch.yml'),
+      '--patch', join(repoRoot, '.dsh', 'patches', 'guards.patch.yml'),
+      '--json', '--permission-mode', 'read-only', '--approval-policy', 'never', '-',
+    ]);
+    expect(command.cwd).toBe(lineageDir);
+    expect(command.input).toBe('read only prompt');
+  });
+
+  it('adds the MCP patch only for a lineage that names code_mode', () => {
+    const binDir = makeTempDir('fanout-run-dsh-mcp-bin-');
+    writeDshStub(binDir);
+    const repoRoot = makeDshPatchRepo(false, true);
+    const mcpPatch = join(repoRoot, '.dsh', 'patches', 'mcp-code-mode.patch.yml');
+    writeFileSync(mcpPatch, 'mcp: true\n');
+    const opts = {
+      env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+      repoRoot,
+      lineageDir: makeTempDir('fanout-run-dsh-mcp-lineage-'),
+    };
+    const plain = buildLineageCommand({ kind: 'cli-deepseek-harness' }, 'p', 'workspace-write', 'default', opts);
+    expect(plain.args).not.toContain(mcpPatch);
+    const mounted = buildLineageCommand(
+      { kind: 'cli-deepseek-harness', liveTools: { mcpServers: ['code_mode'] } }, 'p', 'workspace-write', 'default', opts,
+    );
+    expect(mounted.args.slice(mounted.args.indexOf('--json') - 2, mounted.args.indexOf('--json'))).toEqual(['--patch', mcpPatch]);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-deepseek-harness', liveTools: { mcpServers: ['gitkraken'] } }, 'p', 'workspace-write', 'default', opts,
+    )).toThrow(/may name only code_mode/);
+  });
+
+  it('refuses to build an unguarded dispatch when the guards patch is missing', () => {
+    const binDir = makeTempDir('fanout-run-dsh-unguarded-bin-');
+    writeDshStub(binDir);
+    const opts = {
+      env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+      repoRoot: makeDshPatchRepo(true, false),
+      lineageDir: makeTempDir('fanout-run-dsh-unguarded-lineage-'),
+    };
+    expect(() => buildLineageCommand(
+      { kind: 'cli-deepseek-harness' }, 'p', 'workspace-write', 'default', opts,
+    )).toThrow(/guards patch is missing/);
+  });
+
+  it('rejects a dsh version other than the pinned release', () => {
+    const binDir = makeTempDir('fanout-run-dsh-wrong-version-');
+    writeDshStub(binDir, '0.2.2-alpha.3');
+    const opts = {
+      env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` },
+      repoRoot: makeDshPatchRepo(),
+      lineageDir: makeTempDir('fanout-run-dsh-wrong-version-lineage-'),
+    };
+    expect(() => buildLineageCommand(
+      { kind: 'cli-deepseek-harness' }, 'p', 'workspace-write', 'default', opts,
+    )).toThrow(/requires dsh 0\.2\.2-rc\.1; found '0\.2\.2-alpha\.3'/);
+  });
+
+  it.each([
+    ['non-zero exit', 1, '{"type":"final","reason":{"kind":"completed"}}\n', /exited with code 1/],
+    ['missing final', 0, '{"type":"event","event":"message"}\n', /did not emit a final event/],
+    ['error event', 0, '{"type":"event","event":"error"}\n{"type":"final","reason":{"kind":"completed"}}\n', /emitted an error event/],
+    ['incomplete final', 0, '{"type":"final","reason":{"kind":"cancelled"}}\n', /did not complete successfully/],
+    ['error final reason', 0, '{"type":"final","reason":{"kind":"error"}}\n', /reported an error final reason/],
+  ])('rejects dsh completion with %s', (_case, exitCode, stdout, expected) => {
+    expect(validateDshCompletion(exitCode as number, stdout as string)).toMatch(expected as RegExp);
+  });
+
+  it('rejects a completed run whose stderr reports a plugin that did not activate', () => {
+    const completed = '{"type":"final","reason":{"kind":"completed"}}\n';
+    expect(validateDshCompletion(0, completed, '')).toBeNull();
+    expect(validateDshCompletion(0, completed, 'dsh: warning: 1 entry did not activate\n'))
+      .toMatch(/plugin that did not activate/);
+  });
+
+  it('passes a fresh DSH_HOME outside the checkout, removes it afterwards and requires a completed final event', async () => {
+    const binDir = makeTempDir('fanout-run-dsh-home-bin-');
+    writeFileSync(join(binDir, 'dsh'), [
+      '#!/bin/sh',
+      'if [ "$1" = "--version" ]; then printf "0.2.2-rc.1\\n"; exit 0; fi',
+      'lineage_dir=$(dirname "$SPECKIT_DEEPSEEK_HARNESS_STATE_DIR")',
+      'mkdir -p "$lineage_dir"',
+      'printf "%s\\n" "$@" > "$lineage_dir/dsh-argv.txt"',
+      'pwd > "$lineage_dir/dsh-cwd.txt"',
+      'printf "%s\\n" "$DSH_HOME" > "$lineage_dir/dsh-home.txt"',
+      'printf "%s\\n" "$DSH_SPEC_FOLDER" > "$lineage_dir/dsh-spec-folder.txt"',
+      'test -d "$DSH_HOME" && printf "yes\\n" > "$lineage_dir/dsh-home-exists.txt"',
+      'cat > "$lineage_dir/dsh-stdin.txt"',
+      writeFanoutArtifactsShell(),
+      'printf \'{"type":"final","reason":{"kind":"completed"}}\\n\'',
+      'exit 0',
+      '',
+    ].join('\n'), { mode: 0o755 });
+    const baseDir = makeTempDir('fanout-run-dsh-home-base-');
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'dsh-home', kind: 'cli-deepseek-harness', model: 'deepseek-v4.1-flash-1017', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+    const { hermetic, result } = await spawnFanout('dsh-home', [
+      '--spec-folder', 'specs/test-fanout-dsh-home',
+      '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--no-metadata-refresh',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(result.exitCode).toBe(0);
+    const lineageDir = join(hermetic.tmpDir, 'specs/test-fanout-dsh-home/research/fanout-test-artifacts/lineages/dsh-home');
+    const dshHome = readFileSync(join(lineageDir, 'dsh-home.txt'), 'utf8').trim();
+    expect(dshHome).toMatch(/\/dsh-home-[^/]+$/);
+    expect(isPathInside(dshHome, realpathSync(tmpdir())) || isPathInside(dshHome, tmpdir())).toBe(true);
+    expect(isPathInside(dshHome, lineageDir)).toBe(false);
+    expect(existsSync(dshHome)).toBe(false);
+    expect(readFileSync(join(lineageDir, 'dsh-home-exists.txt'), 'utf8').trim()).toBe('yes');
+    expect(realpathSync(readFileSync(join(lineageDir, 'dsh-spec-folder.txt'), 'utf8').trim()))
+      .toBe(realpathSync(join(hermetic.tmpDir, 'specs/test-fanout-dsh-home')));
+    expect(realpathSync(readFileSync(join(lineageDir, 'dsh-cwd.txt'), 'utf8').trim())).toBe(realpathSync(lineageDir));
+    expect(readFileSync(join(lineageDir, 'dsh-stdin.txt'), 'utf8')).toContain('FANOUT_LINEAGE_COMPLETE:dsh-home');
+    expect(readFileSync(join(lineageDir, 'dsh-argv.txt'), 'utf8')).toContain('--permission-mode\nworkspace-write\n');
+  });
+
+  it('leaves no harness home behind when a lineage throws before it spawns', async () => {
+    const binDir = makeTempDir('fanout-run-dsh-prespawn-bin-');
+    writeDshStub(binDir, '0.2.2-alpha.3');
+    const tempRoot = makeTempDir('fanout-run-dsh-prespawn-tmp-');
+    const baseDir = makeTempDir('fanout-run-dsh-prespawn-base-');
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'dsh-prespawn', kind: 'cli-deepseek-harness', model: 'deepseek-v4.1-flash-1017', iterations: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+    const { result } = await spawnFanout('dsh-prespawn', [
+      '--spec-folder', 'specs/test-fanout-dsh-prespawn',
+      '--loop-type', 'research',
+      '--fanout-config-json', fanoutConfig,
+      '--base-artifact-dir', baseDir,
+      '--no-metadata-refresh',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}`, TMPDIR: tempRoot } });
+
+    expect(result.exitCode).not.toBe(0);
+    expect(readdirSync(tempRoot).filter((name) => name.startsWith('dsh-home-'))).toEqual([]);
   });
 });
 

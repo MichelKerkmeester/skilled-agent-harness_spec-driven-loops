@@ -61,7 +61,8 @@ function lineageFor(kind: AdapterKind): Record<string, unknown> {
   return {
     kind,
     model: MODEL_BY_KIND[kind],
-    ...(kind === 'cli-opencode' || kind === 'cli-pi' || kind === 'cli-claude-code' || kind === 'cli-hermes'
+    ...(kind === 'cli-opencode' || kind === 'cli-pi' || kind === 'cli-claude-code'
+      || kind === 'cli-hermes' || kind === 'cli-deepseek-harness'
       ? { reasoningEffort: 'high' }
       : {}),
   };
@@ -84,6 +85,8 @@ function authEnv(kind: AdapterKind): NodeJS.ProcessEnv {
     case 'cli-pi':
       return {};
     case 'cli-hermes':
+      return { LLMGATEWAY_API_KEY: 'shim-llmgateway-token' };
+    case 'cli-deepseek-harness':
       return { LLMGATEWAY_API_KEY: 'shim-llmgateway-token' };
   }
 }
@@ -133,6 +136,18 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
       expect(args).not.toContain('--worktree');
       expect(args).not.toContain('-z');
       break;
+    case 'cli-deepseek-harness': {
+      expect(args).toEqual(expect.arrayContaining([
+        '--profile', 'headless', '--patch', '--json', '--permission-mode', 'workspace-write',
+        '--approval-policy', 'never', '-',
+      ]));
+      const patchArgs = args.flatMap((argument, index) => (
+        argument === '--patch' ? [args[index + 1]] : []
+      ));
+      expect(patchArgs[0]).toMatch(/route-llmgateway-deepseek\.patch\.yml$/);
+      expect(patchArgs[1]).toMatch(/lineage\.patch\.yml$/);
+      break;
+    }
   }
 }
 
@@ -206,7 +221,12 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       'hermetic adapter prompt',
       sandbox,
       resolveClaudePermissionMode(sandbox as 'read-only' | 'workspace-write' | 'danger-full-access'),
-      { env: fixture.env, cwd, executableVersion: 'shim' },
+      {
+        env: fixture.env,
+        cwd,
+        ...(kind === 'cli-deepseek-harness' ? { lineageDir: cwd } : {}),
+        executableVersion: 'shim',
+      },
     );
   }
 
@@ -297,22 +317,82 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       }
     });
 
+    if (kind === 'cli-deepseek-harness') {
+      it('emits dsh JSON events and keeps each process exit code independent', async () => {
+        const scenarios: readonly {
+          readonly mode: string;
+          readonly status: number;
+          readonly eventTypes: readonly string[];
+        }[] = [
+          { mode: 'success', status: 0, eventTypes: ['session', 'status', 'final'] },
+          { mode: 'keyless-failure', status: 1, eventTypes: ['session', 'status', 'final'] },
+          { mode: 'error-event', status: 0, eventTypes: ['session', 'status', 'error', 'final'] },
+          { mode: 'missing-final', status: 0, eventTypes: ['session', 'status'] },
+        ];
+
+        for (const scenario of scenarios) {
+          const fixture = useShim(scenario.mode);
+          if (scenario.mode === 'success') fixture.env.LLMGATEWAY_API_KEY = 'shim-llmgateway-token';
+          if (scenario.mode === 'keyless-failure') fixture.env.LLMGATEWAY_API_KEY = '';
+          const result = await runBuiltCommand(fixture, fixture.root);
+          const events = result.stdout.trim().split(/\r?\n/).filter(Boolean).map((line) => (
+            JSON.parse(line) as {
+              readonly type?: string;
+              readonly reason?: {
+                readonly kind?: string;
+                readonly error?: { readonly code?: string };
+              };
+            }
+          ));
+
+          expect(result.status).toBe(scenario.status);
+          expect(result.timedOut).toBe(false);
+          expect(events.map((event) => event.type)).toEqual(scenario.eventTypes);
+          expect(readAdapterCaptures(fixture)).toHaveLength(1);
+
+          if (scenario.mode === 'success') {
+            expect(events.at(-1)).toMatchObject({
+              type: 'final',
+              reason: { kind: 'completed' },
+            });
+          } else if (scenario.mode === 'keyless-failure') {
+            expect(events.at(-1)).toMatchObject({
+              type: 'final',
+              reason: { kind: 'error', error: { code: 'MISSING_CREDENTIAL' } },
+            });
+          } else if (scenario.mode === 'error-event') {
+            expect(events.at(-1)).toMatchObject({
+              type: 'final',
+              reason: { kind: 'completed' },
+            });
+          } else {
+            expect(events.some((event) => event.type === 'final')).toBe(false);
+          }
+        }
+      });
+    }
+
     it(testName(0), async () => {
-      const fixture = useShim('auth-denial');
-      const run = await runAdapterFanout(fixture, { mode: 'auth' });
+      const fixture = useShim(kind === 'cli-deepseek-harness' ? 'keyless-failure' : 'auth-denial');
+      const run = await runAdapterFanout(fixture, {
+        mode: 'auth',
+        ...(kind === 'cli-deepseek-harness' ? { extraEnv: { LLMGATEWAY_API_KEY: '' } } : {}),
+      });
       expect(run.result.exitCode).not.toBe(0);
-      expect(fanoutLog(run.lineageDir)).toContain(`${kind} OAuth authentication unavailable`);
+      expect(fanoutLog(run.lineageDir)).toContain(kind === 'cli-deepseek-harness'
+        ? 'MISSING_CREDENTIAL'
+        : `${kind} OAuth authentication unavailable`);
     });
 
     it(testName(1), async () => {
-      const fixture = useShim('model-not-found');
+      const fixture = useShim(kind === 'cli-deepseek-harness' ? 'error-event' : 'model-not-found');
       const run = await runAdapterFanout(fixture, { mode: 'model' });
       expect(run.result.exitCode).not.toBe(0);
       expect(fanoutLog(run.lineageDir)).toContain('model not found or insufficient balance');
     });
 
     it(testName(2), async () => {
-      const fixture = useShim('rate-limit');
+      const fixture = useShim(kind === 'cli-deepseek-harness' ? 'missing-final' : 'rate-limit');
       const run = await runAdapterFanout(fixture, { mode: 'rate-limit' });
       expect(run.result.exitCode).not.toBe(0);
       expect(fanoutLog(run.lineageDir)).toContain('429 rate limit: throttled');
@@ -348,9 +428,8 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       const run = await runAdapterFanout(fixture, { mode: 'stdin' });
       const capture = readAdapterCaptures(fixture)[0];
       expect(run.result.exitCode).toBe(0);
-      if (kind === 'cli-hermes') {
-        // Hermes reads the prompt from stdin (`--query-file -`); the pipe is written once and
-        // closed, so the shim sees the whole prompt and then end-of-input, never a wait.
+      if (kind === 'cli-hermes' || kind === 'cli-deepseek-harness') {
+        // These CLIs read the prompt from stdin, so the pipe must close after one write.
         expect(capture.stdin.length).toBeGreaterThan(0);
         expect(fanoutLog(run.lineageDir)).toContain(`stdin-closed:${capture.stdin.length}`);
       } else {
@@ -394,6 +473,10 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['-t', 'file,todo,web']));
         expect(readOnlyArgs).not.toContain('--yolo');
         expect(readOnlyArgs[readOnlyArgs.indexOf('-t') + 1].split(',')).not.toContain('terminal');
+      } else if (kind === 'cli-deepseek-harness') {
+        expect(readOnlyArgs).toEqual(expect.arrayContaining([
+          '--permission-mode', 'read-only', '--approval-policy', 'never',
+        ]));
       } else {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['--mode', 'plan', '--trust']));
         expect(readOnlyArgs).not.toContain('--force');

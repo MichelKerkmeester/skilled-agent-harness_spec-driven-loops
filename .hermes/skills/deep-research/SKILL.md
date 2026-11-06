@@ -94,9 +94,9 @@ The YAML workflow owns executor selection: native `@deep-research` by default, o
 Cross-CLI delegation inside an executor sandbox is possible but discouraged.
 Do not invoke the same CLI from within itself, and do not assume auth propagates to child CLIs.
 
-The seven executor kinds are owned by `runtime/lib/deep-loop/executor-config.ts`.
+The nine executor kinds are owned by `runtime/lib/deep-loop/executor-config.ts`.
 The inline research YAML carries branches for `native`, `cli-claude-code`, `cli-opencode` and `cli-codex`.
-`cli-cursor`, `cli-devin` and `cli-pi` are handled by the shared fan-out adapters.
+`cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness` are handled by the shared fan-out adapters.
 Flag compatibility remains in [loop-protocol.md §3](../../../.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md).
 
 Executor invariants:
