@@ -22,7 +22,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- **13 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
+- **14 On-Demand Skills** - deep capabilities for code, design, docs, multi-CLI dispatch and installing Skilled in your own projects
 
 &nbsp;
 
@@ -79,7 +79,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 13 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 14 on-demand skills, 45 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 &nbsp;
 
@@ -124,7 +124,7 @@ From request to documented result:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 11 specialized│          │ 13 domain skills │
+         │ 11 specialized│          │ 14 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -185,7 +185,7 @@ It checks the install without changing anything and names one repair command for
 
 ### Use It In Your Own Project
 
-You can also keep Skilled in this one checkout and link it into your own project repos, so every project shares one copy and one `git pull` updates them all. Run `/doctor:install` here and follow the steps it prints. [Use It In Your Own Project](#5--use-it-in-your-own-project) walks through it.
+You can also keep Skilled in this one checkout and link it into your own project repos, so every project shares one copy and one `git pull` updates them all. Run `/doctor:install` here and follow the steps it prints. [Use It In Your Own Project](#5--use-it-in-your-own-project) walks through it and also covers a project that copies Skilled in and keeps its own changes to the copy.
 
 ### First Task
 
@@ -209,13 +209,13 @@ Another clone is checked only after `git config --local skilled.trustRepoHooks t
 
 ### Make It Yours
 
-Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 12 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
+Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 13 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
 
 Every setting has a working default. To change one, see [Environment Settings](#environment-settings), or run `/doctor:env`, which lists them all and saves a change after your yes.
 
 ### Keep It Healthy
 
-The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, `/doctor:agents-md` checks your root instruction file against the shipped template and embeds the shipped sections plus your own block after a plan, `/doctor:install` prints the ordered steps that put Skilled into your own project repo and `/doctor:symlink` checks and repairs the framework links there, and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section lists every command and target in one table, with which ones only read and which write after your yes, then describes each one.
+The doctor commands check and repair one area each. `/doctor:helper` names the one that fits a problem you describe, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/`, `/doctor:skill-advisor` rebuilds or tunes skill routing, `/doctor:sk-skill` reports how far a skill is from the Skilled format and converts one after a plan, `/doctor:agents-md` checks your root instruction file against the shipped template and embeds the shipped sections plus your own block after a plan, `/doctor:install` prints the ordered steps that put Skilled into your own project repo and `/doctor:symlink` checks and repairs the framework links there, `/doctor:overlay` keeps a copied Skilled's own changes through an update and `/doctor:ci` reports and toggles the CI workflow switches. The [Doctor](#doctor) commands section lists every command and target in one table, with which ones only read and which write after your yes, then describes each one.
 
 &nbsp;
 
@@ -289,6 +289,22 @@ Unlink removes only what that run created and restores only what it replaced. A 
 Run `/doctor:symlink check --root <dir>` at any time. It reports each framework folder as linked whole, merged, partly merged, missing or broken, names missing entries and broken links, and warns about absolute links that git already tracks. When the checkout gains new commands or prompts, a merged folder shows them as missing, and `/doctor:symlink link` adds them.
 
 > **Context saves.** A save lands in the project's own `specs/` folder when it runs from inside the project. Run `/doctor:setup` and your saves from the project, not from the Skilled checkout.
+
+### Keep Your Changes To A Copy
+
+<!-- readme-check
+allow-ref skilled-overlays/ | the overlay folder in a project that vendors Skilled, which this checkout does not ship
+allow-ref .skilled-overlays.json | the optional overlay folder setting at the root of a vendored copy, which this checkout does not ship
+-->
+
+Some projects copy Skilled in instead of linking it. A new upstream release then replaces the whole copy, so a change you made to it survives only if it also lives in an overlay: a file in the project's own overlay folder that `/doctor:overlay` puts back on the copy. The folder is `skilled-overlays/` unless `.skilled-overlays.json` at the root of the copy names another. The `system-skilled-doctor` skill owns the command, and its [overlays reference](.skilled/skills/system-skilled-doctor/references/overlays.md) explains each sync state.
+
+- **`status`** is read-only. It reports every overlay that is out of sync and names the fix
+- **`apply`** shows that report as its plan and puts the overlays back after your yes
+- **`apply --capture <path>`** moves an edit made in the live copy into its overlay instead
+- **`repin`** moves the copy to a newer upstream commit. It shows a staged result first and backs up every path before it writes. `repin --rollback <run-id>` restores that backup
+
+A file an overlay owns is edited in its overlay, never in the live copy. The `overlay-guard` hook enforces that: it refuses an agent's edit to an owned file and names the overlay file to edit instead. It runs on Claude Code, Codex, Cursor, Devin and Pi, and it does nothing in a repo with no overlay folder. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off, and the [overlay-guard README](.skilled/hooks/overlay-guard/README.md) has the details.
 
 &nbsp;
 
@@ -806,7 +822,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 ## 9. 🧰 SKILL LIBRARY
 
-13 skills in `.skilled/skills/`. Gate 2 loads them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). By default, no skills are excluded from advisor routing.
+14 skills in `.skilled/skills/`. Gate 2 loads them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). By default, no skills are excluded from advisor routing.
 
 #### SYSTEM
 
@@ -822,6 +838,13 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 - Gate 2 skill-routing subsystem at `.skilled/skills/system-skill-advisor/`
 - Owns prompt-time skill routing, the `skill_graph_*` commands, freshness and lifecycle checks, plus the shared embeddings stack
 - Front door: `node .skilled/bin/skill-advisor.cjs` over the resident daemon's socket protocol. No MCP registration, no client namespace
+
+**`system-skilled-doctor`**
+
+- Doctor-command skill at `.skilled/skills/system-skilled-doctor/` for putting Skilled into your own project and keeping it current there
+- Owns eleven of the seventeen doctor commands: `/doctor:install`, `/doctor:symlink`, `/doctor:update`, `/doctor:agents-md`, `/doctor:runtime-mirrors`, `/doctor:env`, `/doctor:setup`, `/doctor:helper`, `/doctor:speckit`, `/doctor:mcp` and `/doctor:overlay`. Each keeps its workflow in `.skilled/commands/doctor/`, and the skill matches a request to one of them
+- Keeps a vendored copy's own changes: `/doctor:overlay` reports an overlay that drifted and puts it back, and it re-pins the copy to a newer upstream commit. See [Keep Your Changes To A Copy](#keep-your-changes-to-a-copy)
+- The other six doctor commands stay with the skill whose own checks they run, such as `/doctor:git` with `sk-git`. The [Doctor](#doctor) section lists them
 
 &nbsp;
 #### CODE WORKFLOW
@@ -1119,7 +1142,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
 
-- `goal`, `dispatch`, `spec-gate`, `completion`, `mcp-route-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen`
+- `goal`, `dispatch`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen`
 - `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard`, `hook-install`
 - `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, plus `shared` for the helpers they all use
 
@@ -1129,7 +1152,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 12. ⌨️ COMMAND LIBRARY
 
-42 commands: 41 in six groups plus one utility. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
+45 commands: 43 in six groups plus two utilities. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
 
 #### SPEC KIT
 
@@ -1311,7 +1334,7 @@ The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Sixteen commands check and repair the setup, one per area. Every target that writes asks for your yes first. When a prompt describes a problem one of them owns, the skill advisor suggests that command, and `/doctor:helper` ranks them for you when you are not sure.
+Seventeen commands check and repair the setup, one per area. Eleven of them belong to the `system-skilled-doctor` skill, which owns the commands that install Skilled in a project and keep it current there. The other six stay with the skill whose own checks they run: `/doctor:sk-code` and `/doctor:ci` with `sk-code`, `/doctor:git` with `sk-git`, `/doctor:sk-skill` with `sk-doc`, `/doctor:skill-advisor` with `system-skill-advisor` and `/doctor:deep-loop` with `system-deep-loop`. Every target that writes asks for your yes first. When a prompt describes a problem one of them owns, the skill advisor suggests that command, and `/doctor:helper` ranks them for you when you are not sure.
 
 | Command | Targets (default first) | Reads only | Writes after your yes |
 | --- | --- | --- | --- |
@@ -1329,6 +1352,7 @@ Sixteen commands check and repair the setup, one per area. Every target that wri
 | `/doctor:git` | `setup`, `hooks`, `standards` | `setup` | `hooks`, `standards` |
 | `/doctor:mcp` | `install`, `debug` | `debug` | `install`, and `debug --fix` repairs |
 | `/doctor:update` | `check`, `align`, `apply`, `rollback`, `record-base`, `compat` | `check` (`align` writes only its own run folder) | `apply`, `rollback`, `record-base`, `compat` |
+| `/doctor:overlay` | `status`, `apply`, `repin` | `status` | `apply`, `repin` |
 | `/doctor:agents-md` | `check`, `embed`, `restore` | `check` | `embed`, `restore` |
 | `/doctor:env` | `list`, a section or one variable | `list` and lookups | a saved preference |
 
@@ -1410,6 +1434,15 @@ Sixteen commands check and repair the setup, one per area. Every target that wri
 
 - Checks what a release changes, applies it after your approval and can roll it back
 - `compat` moves a v3 checkout to the v4 `specs/` layout, and `--dry-run` previews the move
+
+**`/doctor:overlay [status|apply|repin] [--json] [--root <dir>] [--capture <path>] [--upstream <dir>] [--to <commit>] [--rollback <run-id>]`** - a vendored Skilled copy's own changes. [Keep Your Changes To A Copy](#keep-your-changes-to-a-copy) says when a project needs them
+
+- `status` (the default, read-only) prints one line for each destination that is not in sync, with the fix the engine names. It writes nothing. `--json` prints the engine's report and nothing else
+- `apply` shows the `status` report as its plan, asks once, then writes the overlays and runs the manifest's regenerate and verify steps. It writes nothing while a destination holds an edit made in the live copy or a conflict, and the run names the fix for each
+- `apply --capture <path>` moves one live edit into its overlay source and asks only when that path is a live edit
+- `repin --upstream <dir> --to <commit>` stages the move to a newer upstream commit on a temporary copy and shows that report first. A staged report that lists a blocked overlay stops the run before the question. After your yes it backs up every path it touches before its first write
+- `repin --rollback <run-id>` restores that backup after its own yes
+- `--root <dir>` points the command at another vendored tree. The run stages nothing and commits nothing
 
 **`/doctor:agents-md [check|embed|restore] [--json] [--root <dir>] [--dry-run] [--plan-digest <digest>] [--run <dir>] [--yes]`** - your root `AGENTS.md` against the shipped template
 
@@ -1541,6 +1574,10 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 **`system-skill-advisor`** - ✅ codebase-agnostic
 
 - Prompt-time skill routing over the shared skill graph. Works for any project
+
+**`system-skilled-doctor`** - ✅ codebase-agnostic
+
+- Doctor commands that install, link, update and check Skilled in a project, and keep a vendored copy's overlays. Works for any project
 
 **`mcp-code-mode`** - ✅ codebase-agnostic
 
@@ -1681,7 +1718,7 @@ Nothing to configure.
 
 &nbsp;
 
-**Q: Do I need all 13 skills installed to use the framework?**
+**Q: Do I need all 14 skills installed to use the framework?**
 
 No. Skills are loaded on demand by Gate 2, so you only need the ones relevant to your work.
 
@@ -1776,6 +1813,7 @@ Everything is a file in your own repository.
 - **[→ sk-code README](.skilled/skills/sk-code/README.md)** - the code skill and the step-by-step guide to adapting it to your stack
 - **[→ Repo Scripts Runbook](.skilled/scripts/README.md)** - dry-run orphan sweeper for stale MCP helpers and temp-path strays, session cleanup and LaunchAgent template guidance
 - **[→ Skill Advisor README](.skilled/skills/system-skill-advisor/README.md)** - daemon-backed CLI front door, nine advisor/skill-graph commands and routing docs
+- **[→ system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md)** - the eleven doctor commands that install Skilled in a project, plus the overlay reference for a vendored copy
 - **[→ Architecture](.skilled/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.skilled/skills/sk-doc/SKILL.md)** - documentation standards, DQI scoring
 - **[→ Skills Index](.skilled/skills/README.txt)** - skills library and invocation patterns
