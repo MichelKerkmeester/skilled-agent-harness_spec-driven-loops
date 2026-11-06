@@ -62,7 +62,7 @@ One core asks the engine's `--guard` about each path a pending write names. Adap
 | `.claude/hooks/`, `.codex/hooks/`, `.cursor/hooks/`, `.devin/hooks/`, `.pi/extensions/` | Created | The mirror links |
 | `hook-registration-sync.vitest.ts` | Modified | The pinned binding count, 101 to 105 |
 | `.skilled/hooks/README.md`, `hook-flags.env.example`, `doctor-runtime-mirrors.yaml` | Modified | The hook listed with its flag and health checks |
-| `.skilled/skills/system-skilled-doctor/` | Modified | The guard in the overlay reference and the v1.3.0.0 changelog |
+| `.skilled/skills/system-skilled-doctor/` | Modified | The guard in the overlay reference and the guard part of the v1.0.0.0 changelog |
 <!-- /ANCHOR:what-built -->
 
 ---

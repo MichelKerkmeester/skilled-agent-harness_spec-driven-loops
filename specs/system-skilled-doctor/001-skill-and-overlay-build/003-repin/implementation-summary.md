@@ -63,7 +63,7 @@ The engine computes one set of touched paths from the two commits, refuses an in
 | `.skilled/commands/doctor/assets/doctor-overlay-repin.yaml` | Created | The repin workflow |
 | `overlay.md`, `_routes.yaml`, the presentation and the contract test | Modified | The `repin` route |
 | The bridges, the scoring list, the listing surfaces and the mirrors | Modified, Generated | The new route listed and routed |
-| `.skilled/skills/system-skilled-doctor/` | Modified | The re-pin steps, the README row and FAQ, and the v1.2.0.0 changelog |
+| `.skilled/skills/system-skilled-doctor/` | Modified | The re-pin steps, the README row and FAQ, and the re-pin part of the v1.0.0.0 changelog |
 <!-- /ANCHOR:what-built -->
 
 ---

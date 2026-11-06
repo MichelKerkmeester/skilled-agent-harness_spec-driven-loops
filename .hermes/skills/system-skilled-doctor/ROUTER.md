@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor routing"
 importance_tier: normal
 contextType: general
-version: 1.3.1.0
+version: 1.0.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---

@@ -48,7 +48,7 @@ contextType: "implementation"
 - [x] T006 Register one `overlay-guard` entry in `G/hook-registry.json` with no fallback chain for Cursor (ADR-001). Verify: the registered Cursor command exits 2 on an owned path.
 - [x] T007 Regenerate the registrations and the mirrors, and update the pinned binding count. Verify: `sync-hook-registrations.cjs --check` prints `PASS: 4 registration files match the 33-hook registry`.
 - [x] T008 List the hook in `.skilled/hooks/README.md`, `hook-flags.env.example` and the doctor's fallback health checks. Verify: `rg -c "overlay-guard" .skilled/hooks/README.md` prints 10.
-- [x] T009 Add the guard to `K/references/overlays.md` and write `K/changelog/v1.3.0.0.md`. Verify: `check_changelog_shape.py` prints `pass=1 fail=0`.
+- [x] T009 Add the guard to `K/references/overlays.md` and write the guard changelog entry, since folded into `K/changelog/v1.0.0.0.md`. Verify: `check_changelog_shape.py` prints `pass=1 fail=0`.
 <!-- /ANCHOR:phase-2 -->
 
 ---

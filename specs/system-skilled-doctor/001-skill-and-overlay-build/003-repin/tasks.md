@@ -49,7 +49,7 @@ contextType: "implementation"
 - [x] T007 Add the `.env` refusal test (ADR-003). Verify: it fails when the refusal is removed from a copy of the engine, and passes on the engine.
 - [x] T008 Add the `repin` route: `D/assets/doctor-overlay-repin.yaml`, `D/overlay.md`, `D/_routes.yaml` and the presentation. Verify: `route-validate.sh` prints `31 routes validated`.
 - [x] T009 Extend the command's contract test, the scoring list, the listing surfaces and the mirrors. Verify: `derive-command-bridges.cjs --check` prints `"changed": []`.
-- [x] T010 Add the re-pin steps to `K/references/overlays.md` and write `K/changelog/v1.2.0.0.md`. Verify: `check_changelog_shape.py` prints `pass=1 fail=0`.
+- [x] T010 Add the re-pin steps to `K/references/overlays.md` and write the re-pin changelog entry, since folded into `K/changelog/v1.0.0.0.md`. Verify: `check_changelog_shape.py` prints `pass=1 fail=0`.
 <!-- /ANCHOR:phase-2 -->
 
 ---

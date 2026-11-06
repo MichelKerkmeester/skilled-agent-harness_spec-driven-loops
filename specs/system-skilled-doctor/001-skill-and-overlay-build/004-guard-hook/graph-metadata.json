@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Barter's rule says a file an overlay owns is edited in its overlay, but only Barter's private hooks enforce that, and they find the overlay folder by the hard-coded name `barter-overlays`",
     "created_at": "2026-11-06T07:23:11Z",
-    "last_save_at": "2026-11-06T09:57:52.928Z",
+    "last_save_at": "2026-11-06T18:52:42.206Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d58179bba5ec57a36498e730c05eeadd1b40d5fd45c72920986ea1db67e5e7c2",
+    "source_fingerprint": "sha256:161704ca77b869e5f93dcc2f280dae115e0213862bde5978192a5f6d84114049",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "458dbe7777d6730e9e5a4edaf7c895a5ce56885e9afaa4d74e55668a1dde0970",
       "plan.md": "075cd6e9f84158be28d71f3d9190edd95c3c0cb38322b378393b8f6cbaaf430d",
-      "tasks.md": "4e99220df0ea77bc46f390add00fd221312d17dfeaccb411aba2bc4a612df6ed",
+      "tasks.md": "1fcaa75cb3ffe32507ca57914c680061842c0ab06c13a707f1decf36e2dc2388",
       "decision-record.md": "494b2ae2a7e1d9fa28165794fcf19e887cd9cc42ba36f66086552122190029e6",
-      "implementation-summary.md": "6c0b13ec814054784b001775be6d589315b5cb4c137ff10a35d2c54ad1902049"
+      "implementation-summary.md": "569bd27301540dc445390b5a0d79020851d9f0bc78767918910c85e3c985ec43"
     },
     "last_active_at": null
   }
