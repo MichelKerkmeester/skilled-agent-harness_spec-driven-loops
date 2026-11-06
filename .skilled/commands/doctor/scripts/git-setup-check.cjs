@@ -21,7 +21,7 @@
 // Usage: node git-setup-check.cjs [--repo <dir>] [--tool <name>] [--json]
 //   --repo  repository to inspect (default: the current directory)
 //   --tool  the AI tool running the check: claude, codex, devin, cursor,
-//           opencode, pi or hermes. Without it, claude is assumed when CLAUDECODE is
+//           opencode, pi, hermes or dsh. Without it, claude is assumed when CLAUDECODE is
 //           set; no other environment variable is consulted.
 //   --json  print one JSON object instead of the human report
 // Exit 0 when every check passed or skipped, 3 (DEGRADED) when none failed
@@ -59,9 +59,9 @@ const GIT_HOOK_NAMES = new Set([
   'p4-post-changelist', 'p4-pre-submit', 'post-index-change',
 ]);
 
-const USAGE = 'Usage: node .skilled/commands/doctor/scripts/git-setup-check.cjs [--repo <dir>] [--tool <claude|codex|devin|cursor|opencode|pi|hermes>] [--json]';
+const USAGE = 'Usage: node .skilled/commands/doctor/scripts/git-setup-check.cjs [--repo <dir>] [--tool <claude|codex|devin|cursor|opencode|pi|hermes|dsh>] [--json]';
 
-const TOOLS = ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'hermes'];
+const TOOLS = ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'hermes', 'dsh'];
 
 // Where each runtime reads its git-preflight advisory registration from.
 const TOOL_FILES = {
@@ -72,7 +72,12 @@ const TOOL_FILES = {
   opencode: '.opencode/plugins/sk-git-preflight-advisory.js',
   pi: '.pi/extensions/git-preflight-advisory.ts',
   hermes: '.hermes/plugins/repo-guards/__init__.py',
+  dsh: '.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs',
 };
+
+// DSH loads one plugin bundle, and an adapter link in it runs only when the bundle
+// entry imports and calls its register function.
+const DSH_BUNDLE = '.dsh/plugins/repo-guards/index.mjs';
 
 // The guard and the gate registry both write PASS and FAIL lines to whichever
 // stream suits them, so both are captured and the buffer is sized for the
@@ -1403,17 +1408,79 @@ function adapterExportsBinding(tool, source) {
   });
 }
 
+function stripScriptComments(text) {
+  return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:\\])\/\/.*$/gm, '$1');
+}
+
+// The DSH adapter is a link into the hook library, and Node resolves a link to its real
+// path before it resolves the adapter's own imports, so the shared rule module is looked
+// up from the real file. Source is read, never executed.
+function dshRegistration(repoRoot, rel) {
+  const adapterPath = path.join(repoRoot, rel);
+  let linkTarget = null;
+  try {
+    const stat = fs.lstatSync(adapterPath);
+    if (stat.isSymbolicLink()) linkTarget = fs.readlinkSync(adapterPath);
+  } catch {
+    return { status: 'absent' };
+  }
+  if (!fs.existsSync(adapterPath)) {
+    return { status: 'broken', detail: `${rel} links to ${linkTarget}, which does not exist` };
+  }
+  const bundle = readRepoFile(path.join(repoRoot, DSH_BUNDLE));
+  if (bundle.text === null) {
+    return { status: 'broken', detail: `cannot read ${DSH_BUNDLE}: ${bundle.problem || 'missing'}` };
+  }
+  const entry = stripScriptComments(bundle.text);
+  const imported = /\bimport\s*\{[^}]*\bregisterGitPreflightAdvisory\b[^}]*\}\s*from\s*['"]\.\/adapters\/git-preflight-advisory\.mjs['"]/.test(entry);
+  if (!imported || !/\bregisterGitPreflightAdvisory\s*\(\s*ctx\b/.test(entry)) {
+    return { status: 'broken', detail: `${DSH_BUNDLE} does not register the git-preflight advisory adapter` };
+  }
+  let realPath;
+  try {
+    realPath = fs.realpathSync(adapterPath);
+  } catch (err) {
+    return { status: 'broken', detail: `cannot resolve ${rel}: ${err.message}` };
+  }
+  const adapter = readRepoFile(realPath);
+  if (adapter.text === null) {
+    return { status: 'broken', detail: `cannot read ${rel}: ${adapter.problem || 'missing'}` };
+  }
+  const code = stripScriptComments(adapter.text);
+  const importMatch = code.match(/(?:\bfrom\s*|\bimport\s*\(\s*)['"]([^'"]*git-rule-checks\.mjs)['"]/);
+  const handler = /\bexport\s+function\s+registerGitPreflightAdvisory\b/.test(code)
+    && /\bctx\.on\(\s*['"]tools\/post-execute['"]/.test(code);
+  if (importMatch === null || !handler) {
+    return { status: 'broken', detail: `${rel} does not register a tools/post-execute handler with git-rule-checks.mjs` };
+  }
+  if (!fs.existsSync(path.resolve(path.dirname(realPath), importMatch[1]))) {
+    return { status: 'broken', detail: `${rel} imports ${importMatch[1]}, which does not exist` };
+  }
+  return { status: 'registered', detail: `registered (${rel})` };
+}
+
 function checkAiToolHooks(ctx) {
   const explicit = typeof ctx.tool === 'string' && ctx.tool !== '';
   const active = explicit ? ctx.tool : process.env.CLAUDECODE ? 'claude' : null;
   const source = active === null
-    ? 'seven adapter files, no active tool detected'
-    : `seven adapter files, active ${active} via ${explicit ? '--tool' : 'CLAUDECODE'}`;
+    ? 'eight adapter files, no active tool detected'
+    : `eight adapter files, active ${active} via ${explicit ? '--tool' : 'CLAUDECODE'}`;
   const details = [];
   const broken = [];
   for (const tool of TOOLS) {
     const rel = TOOL_FILES[tool];
     const label = tool === active ? `${tool} (active)` : tool;
+    if (tool === 'dsh') {
+      const registration = dshRegistration(ctx.repoRoot, rel);
+      if (registration.status === 'absent') {
+        details.push(`${label}: not set up (${rel})`);
+        if (tool === active) broken.push(tool);
+      } else {
+        details.push(`${label}: ${registration.detail}`);
+        if (registration.status !== 'registered') broken.push(tool);
+      }
+      continue;
+    }
     const present = [rel, ...(TOOL_EXTRA_FILES[tool] || [])]
       .filter((candidate) => fs.existsSync(path.join(ctx.repoRoot, candidate)));
     if (present.length === 0) {
@@ -1522,7 +1589,7 @@ function checkAiToolHooks(ctx) {
   if (broken.length > 0) return fail(source, details, broken.map(advisoryRepair).join(', then '));
   if (active === null) {
     return unknown(source, [
-      'no active AI tool detected: pass --tool <claude|codex|devin|cursor|opencode|pi|hermes>',
+      'no active AI tool detected: pass --tool <claude|codex|devin|cursor|opencode|pi|hermes|dsh>',
       ...details,
     ]);
   }

@@ -49,7 +49,7 @@ Run every command from the repository root.
 1. Record the starting state, clean or not, since step 7 compares against it: `git status --porcelain` and `git config --list --local`.
 2. Run `/doctor:git setup` through the real runtime. An agent without slash commands records steps 2 and 3 as not run and continues with step 4.
 3. Capture the result table and the `DOCTOR DIAGNOSTIC RESULT` block.
-4. Run `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <runtime>` and keep its exit code and final `STATUS=` line, where <runtime> is the AI tool running the scenario: claude, codex, devin, cursor, opencode, pi or hermes.
+4. Run `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <runtime>` and keep its exit code and final `STATUS=` line, where <runtime> is the AI tool running the scenario: claude, codex, devin, cursor, opencode, pi, hermes or dsh.
 5. Run the step 4 command again with `--json` and confirm the output parses as one JSON object with a `checks` array of eleven rows, each with id, result, source, details and repair.
 6. Run `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool nope` and confirm exit 2 with a usage line.
 7. Record `git status --porcelain` and `git config --list --local` again and compare them with step 1.

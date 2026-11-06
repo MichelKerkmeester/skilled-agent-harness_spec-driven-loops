@@ -337,7 +337,7 @@ routes:
     default_target: true
     yaml: doctor-git-setup.yaml
     setup_vars: [execution_mode, tool]
-    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi|hermes>"]
+    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi|hermes|dsh>"]
     mutating: read-only
     gate3_location: "n/a (read-only setup battery; inspects each sk-git surface in its check-only form and prints repair commands, writes nothing)"
     mcp_tools: []   # script-only battery; no MCP calls

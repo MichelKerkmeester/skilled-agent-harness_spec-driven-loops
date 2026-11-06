@@ -47,7 +47,20 @@ const TOOL_FILES = {
   opencode: '.opencode/plugins/sk-git-preflight-advisory.js',
   pi: '.pi/extensions/git-preflight-advisory.ts',
   hermes: '.hermes/plugins/repo-guards/__init__.py',
+  dsh: '.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs',
 };
+
+const DSH_BUNDLE = '.dsh/plugins/repo-guards/index.mjs';
+
+// Lay out the DSH bundle as the checkout ships it: the entry file, and the adapter
+// link that points into the fixture's .skilled tree, which links to this checkout.
+function plantDshBundle(repo, indexSource) {
+  const realRoot = path.dirname(OWN_ROOT);
+  const link = path.join(repo, TOOL_FILES.dsh);
+  fs.mkdirSync(path.dirname(link), { recursive: true });
+  fs.symlinkSync(fs.readlinkSync(path.join(realRoot, TOOL_FILES.dsh)), link);
+  fs.writeFileSync(path.join(repo, DSH_BUNDLE), indexSource ?? fs.readFileSync(path.join(realRoot, DSH_BUNDLE), 'utf8'));
+}
 
 const RESULTS = ['PASS', 'FAIL', 'SKIP', 'UNKNOWN', 'DEGRADED'];
 
@@ -1700,6 +1713,41 @@ test('hermes passes the repo-guards plugin that runs the advisory and fails one 
   );
 });
 
+test('dsh passes only when the bundle registers the linked advisory adapter', (t) => {
+  const realIndex = fs.readFileSync(path.join(path.dirname(OWN_ROOT), DSH_BUNDLE), 'utf8');
+  const row = (f) => rowOf(reportOf(f.run(['--tool', 'dsh', '--json'])), 'ai-tool-hooks');
+
+  const registered = fixture(t);
+  fs.symlinkSync(OWN_ROOT, path.join(registered.repo, '.skilled'), 'dir');
+  plantDshBundle(registered.repo);
+  const pass = row(registered);
+  assert.equal(pass.result, 'PASS', pass.details.join(' | '));
+  assert.ok(pass.details.includes(`dsh (active): registered (${TOOL_FILES.dsh})`), pass.details.join(' | '));
+
+  // The adapter link alone loads nothing: the bundle entry must call its register function.
+  const unregistered = fixture(t);
+  fs.symlinkSync(OWN_ROOT, path.join(unregistered.repo, '.skilled'), 'dir');
+  const withoutCall = realIndex.replace(/^[ \t]*registerGitPreflightAdvisory\(ctx[^\n]*\n/m, '');
+  assert.notEqual(withoutCall, realIndex, 'fixture must remove the advisory registration');
+  plantDshBundle(unregistered.repo, withoutCall);
+  const fail = row(unregistered);
+  assert.equal(fail.result, 'FAIL', fail.details.join(' | '));
+  assert.ok(
+    fail.details.some((detail) => detail.startsWith(`dsh (active): ${DSH_BUNDLE} does not register`)),
+    fail.details.join(' | '),
+  );
+
+  // A link whose adapter is gone fails like any registration whose file is missing.
+  const dangling = fixture(t);
+  plantDshBundle(dangling.repo);
+  const missing = row(dangling);
+  assert.equal(missing.result, 'FAIL', missing.details.join(' | '));
+  assert.ok(
+    missing.details.some((detail) => detail.startsWith(`dsh (active): ${TOOL_FILES.dsh}`) && detail.includes('does not exist')),
+    missing.details.join(' | '),
+  );
+});
+
 test('gates reports UNKNOWN with no repair when the helper fails or its report has no gates', (t) => {
   const f = fixture(t);
   const cases = [
@@ -2011,7 +2059,7 @@ test('round trip: the suppression repairs turn the row PASS, from the environmen
 test('round trip: registering the advisory as README section 3 shows turns ai-tool-hooks PASS for every runtime', (t) => {
   const REAL_ROOT = path.dirname(OWN_ROOT);
 
-  for (const tool of ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'hermes']) {
+  for (const tool of ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'hermes', 'dsh']) {
     const f = fixture(t);
     // A registration counts only when the file it runs exists.
     fs.symlinkSync(OWN_ROOT, path.join(f.repo, '.skilled'), 'dir');
@@ -2028,9 +2076,14 @@ test('round trip: registering the advisory as README section 3 shows turns ai-to
 
     // This checkout ships the registration the README's section 3 shows for this
     // runtime, so its file content is the repair the fixture repository needs.
-    const target = path.join(f.repo, file);
-    fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.writeFileSync(target, fs.readFileSync(path.join(REAL_ROOT, file), 'utf8'));
+    // DSH registers through a link and the bundle entry rather than one file's content.
+    if (tool === 'dsh') {
+      plantDshBundle(f.repo);
+    } else {
+      const target = path.join(f.repo, file);
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.writeFileSync(target, fs.readFileSync(path.join(REAL_ROOT, file), 'utf8'));
+    }
 
     const fixed = rowOf(reportOf(f.run(['--tool', tool, '--json'])), 'ai-tool-hooks');
     assert.equal(fixed.result, 'PASS', `${tool}: ${fixed.details.join(' | ')}`);
