@@ -13,13 +13,13 @@
     "cannot",
     "dispatch"
   ],
-  "lastUpdated": "2026-11-06T21:07:37.437Z",
+  "lastUpdated": "2026-11-07T06:15:21.350Z",
   "specId": "085",
   "folderSlug": "cli-deepseek-harness-creation",
   "parentChain": [
     "cli-external-orchestration"
   ],
-  "memorySequence": 8,
+  "memorySequence": 9,
   "memoryNameHistory": [
     "06-11-26_05-46__codex-on-005-part-two-is-still-working-its-log.md",
     "06-11-26_13-54__not-done-yet-criteria-1-and-2-are-blocked-on-you.md",
@@ -28,6 +28,7 @@
     "06-11-26_15-11__both-codex-fix-workers-are-still-running-and-both.md",
     "06-11-26_15-11__i-ve-set-a-watcher-that-alerts-me-when-both-codex.md",
     "06-11-26_16-15__the-goal-is-still-incomplete-criteria-3-5-are-met.md",
-    "06-11-26_16-56__the-evidence-is-saved-for-t004-live-route-t005.md"
+    "06-11-26_16-56__the-evidence-is-saved-for-t004-live-route-t005.md",
+    "07-11-26_07-15__criterion-5-is-met-the-stop-hook-was-right-that.md"
   ]
 }
