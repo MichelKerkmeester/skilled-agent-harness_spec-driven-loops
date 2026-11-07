@@ -62,21 +62,14 @@
       "handover.md",
       "001-deep-research/research/research.md",
       "001-deep-research/research/phase-plan.md",
-      "001-deep-research/goal.md",
-      "002-dsh-offline-contract-pin/goal.md",
-      "003-cli-deepseek-harness-skill-packet/goal.md",
-      "004-dsh-runtime-folder-and-patches/goal.md",
-      "005-dsh-mirror-generators/goal.md",
-      "006-deep-loop-executor-kind/goal.md",
-      "007-dispatch-recognition-and-stress-adapter/goal.md",
-      "008-dsh-repo-guards-safety-wave/goal.md",
-      "009-dsh-context-guards-and-goal-bridge/goal.md",
-      "010-dsh-mcp-code-mode/goal.md",
-      "011-hub-registration-and-routing/goal.md",
-      "012-deep-loop-modes-and-commands/goal.md",
-      "013-dsh-live-contract-pin/goal.md",
-      "014-playbook-docs-and-closeout/goal.md",
-      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/README.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "014-playbook-docs-and-closeout/evidence/final-gate-2026-11-06-r5.txt",
+      "013-dsh-live-contract-pin/evidence/latency-and-tokens.md",
+      ".skilled/changelog/skilled/v4.0.2.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md"
     ],
     "entities": [
       {
@@ -107,6 +100,48 @@
         "name": "dispatch-rule-checks.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "final-gate-2026-11-06-r5.txt",
+        "kind": "file",
+        "path": "014-playbook-docs-and-closeout/evidence/final-gate-2026-11-06-r5.txt",
+        "source": "derived"
+      },
+      {
+        "name": "latency-and-tokens.md",
+        "kind": "doc",
+        "path": "013-dsh-live-contract-pin/evidence/latency-and-tokens.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
         "source": "derived"
       },
       {
@@ -180,35 +215,11 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
-      },
-      {
-        "name": "From Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "To Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Completed",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handover Time",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-06T22:15:14.974Z",
+    "last_save_at": "2026-11-07T05:14:51.659Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +227,13 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b9a90b0770b3024be060a19df07bc18048bc3f0cb7a2d2d7ab5a7a87ace3b220",
+    "source_fingerprint": "sha256:de9bfbf52008fb3a8800dc9558989ab3ba1d1cc50b73407bf5c31748d0bd17b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e553687b67b85fbf3c2b823d1aa8f813a75fd875f420ee9364107fab0ac261e2",
       "handover.md": "9c49e425e654489b56a9bbcc2745ee3f97c298e44323ee88738d8c3e3fb4df31"
     },
     "last_active_child_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity",
-    "last_active_at": "2026-11-06T22:15:14.974Z"
+    "last_active_at": "2026-11-07T05:12:37.755Z"
   }
 }

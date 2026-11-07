@@ -524,6 +524,8 @@ A keyless lineage boot still listed `create_goal`, `get_goal` and `update_goal`,
 | Q001 | Take ownership of the three DSH sync scripts along with the route, mirror-check and contract-test edits, so route validation passes. | Committing the edits alone would fail route-validate, because the new route lines call sync scripts that were untracked. | None | Commits 602309b436 to 8df2e4c343, .skilled/commands/doctor/_routes.yaml |
 | Q002 | Add `.dsh/agents/` to the agent-folder list in AGENTS.md section 9 and refresh the AGENTS.md manifest. | Not stated. | None | Commit 9f8cee8630, AGENTS.md, agents-md-manifest.json |
 | Q003 | Tick goal criteria 1 to 3 in the packet 085 goal only after hook parity has landed. | Not stated. | None | Commit ccf52fa7df, 085 goal.md |
+| Q004 | Record the other answers in their own packets: repair the five cut source keys in sk-doc 055/005 and add the doctor answers to the system-skilled-doctor children, leaving the housekeeping and handover answers unrecorded. | Not stated. | None | sk-doc/055/005 decision-record.md, system-skilled-doctor/001 children |
+| Q005 | Amend D3 so interactive sessions load the same hooks as the other runtimes, add the 015 row to BINDING, and shorten the binding table to stay inside the slice budget. | Not stated. | None | ../goal.md D3 and BINDING |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -590,6 +592,46 @@ Leave unticked
 Answer:
 ```text
 Tick after parity lands (Recommended)
+```
+
+### Q004
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_015mpKaRe3a6QBuWfMqRuCYx:0 -->
+
+Question:
+```text
+The DSH save recorded 3 of the session's 16 operator answers in packet 085/015. The other 13 belong elsewhere: 5 changelog answers are already in sk-doc/055/005, but 4 of them have corrupted source keys (the ':t' was dropped), so the queue still lists them as pending; 3 doctor answers (job d005a, the token-file guard, the gold row) belong to the system-skilled-doctor/001 children; 3 are git housekeeping with no packet; 2 are Barter, whose files are read-only. What should I do with them?
+```
+
+Options:
+```text
+Route + repair (Recommended)
+Repair keys only
+Leave them
+```
+
+Answer:
+```text
+Route + repair (Recommended)
+```
+
+### Q005
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_015mpKaRe3a6QBuWfMqRuCYx:1 -->
+
+Question:
+```text
+The DSH packet 085 goal.md still says D3 is 'Headless only' and its BINDING list has no row for the 015 hook-parity child. The chat slice is at 3,991 of 4,000 characters, so any addition needs cuts elsewhere. Should I update the goal?
+```
+
+Options:
+```text
+Update and cut (Recommended)
+BINDING row only
+Leave the goal
+```
+
+Answer:
+```text
+Update and cut (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

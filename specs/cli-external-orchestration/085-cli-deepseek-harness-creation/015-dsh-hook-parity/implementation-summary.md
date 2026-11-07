@@ -8,19 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity"
-    last_updated_at: "2026-11-06T22:15:14Z"
+    last_updated_at: "2026-11-07T05:12:37Z"
     last_updated_by: "generate-context"
-    recent_action: "Pushed DSH hook parity, drift fixes and the release notes"
-    next_safe_action: "Decide goal D3 wording and the 015 BINDING row, then tag the release"
+    recent_action: "Amended goal D3 and bound 015, routed the remaining operator answers"
+    next_safe_action: "Run a keyed interactive DSH session to show the goal and advisor briefs"
     blockers: []
     key_files:
-      - "spec.md"
       - "decision-record.md"
       - "implementation-summary.md"
-      - "evidence/gates-2026-11-06.txt"
-      - "evidence/followup-fixes-2026-11-06.txt"
+      - "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/goal.md"
     session_dedup:
-      fingerprint: "sha256:f7f6fa8ab6d2a8ca9db1b9a6691ff79aa9f3971c6f27dde3014c768cf78fab95"
+      fingerprint: "sha256:6b58af9e04d8e406ede476eeb8525dedee920f6dbbcb55beac08d3ed74ebdcc5"
       session_id: "spec-085-015-dsh-hook-parity"
       parent_session_id: null
     completion_pct: 100

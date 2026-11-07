@@ -207,7 +207,7 @@
     ],
     "causal_summary": "An operator running `dsh web` with the guards patch got no skill-advisor brief, no way to bind or log a goal, no session-start warnings and no capture of the answers they gave, because the guards patch set `promptAdvisor: false` and four Pi concerns stayed deferred",
     "created_at": "2026-11-06T20:30:28Z",
-    "last_save_at": "2026-11-06T22:15:14.943Z",
+    "last_save_at": "2026-11-07T05:12:37.723Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01a8b1c340889e9d44a372e963acf4e840cac3fb6af6a0801d501ee3c83c6330",
+    "source_fingerprint": "sha256:30f87aa52cf02ef9584f1f5b56f52cb52d230aa05b9f3cbfc1057aca15b7cb4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49d1a57fd4a7206323decf74a4cf4f62dcddc9fc782ad9562fdcdba6115d0e5c",
       "plan.md": "ee3770a8d86f528c9a42078f62f9d9358d57e59cc27aab91bd76e1570bb268cf",
       "tasks.md": "ad6f055392015b436453aac8075b1ff4cbd4d92ad863a565dbf217d36be1e4aa",
-      "decision-record.md": "67d99160e7f5e03ac98d2ac6f2e77f81a1445f716e875ac88424c6de89f91a73",
-      "implementation-summary.md": "4bb97a21d9edd16815836c8658bfbcb7346856164808ba26d6cfec6569d00c91"
+      "decision-record.md": "32e681e1fd7ca3320240968037ea047fd2be8437a75fb652634895a301280374",
+      "implementation-summary.md": "bb960e8efb84d7f9baffbc8c550bff18f6ddf858f5f35c1cb873c91a4d93b084"
     },
     "last_active_at": null
   }

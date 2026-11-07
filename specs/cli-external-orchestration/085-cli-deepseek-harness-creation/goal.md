@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Evidence is `001-deep-research/research/research.md`; per-phase scope is its `phase-plan.md` |
 | D2 | Mode id `cli-deepseek-harness`, binary `dsh`, repo folder `.dsh/`, pinned `@deepseek-ai/dsh@0.2.2-rc.1` |
-| D3 | Headless only: `dsh --profile headless --json`, prompt on stdin via `-`, route and lineage patches on every dispatch |
+| D3 | Dispatch is headless: `dsh --profile headless --json`, prompt on stdin via `-`, route and lineage patches every time. Interactive sessions load the same hooks as the other runtimes, linked from the shared hook library |
 | D4 | Closed roster: LLM Gateway `deepseek-v4.1-flash-1017` and OpenCode Go `deepseek-v4.1-flash`; the official DeepSeek route and `DEEPSEEK_` env never pass |
 | D5 | Guards ship as one relative-path repo plugin under `.dsh/plugins/repo-guards/`, not the experimental Claude hook bridge |
 | D6 | The kind stays experimental and out of default allowlists until a keyed live pin proves a route |
@@ -62,22 +62,23 @@ Frozen choices. Changing one is an amendment.
 **Read the child goal before working a phase.** Each is authoritative for its
 phase and binds as if written here.
 
-| Phase | Goal document |
-|-------|---------------|
-| 001-deep-research | `001-deep-research/goal.md` |
-| 002-dsh-offline-contract-pin | `002-dsh-offline-contract-pin/goal.md` |
-| 003-cli-deepseek-harness-skill-packet | `003-cli-deepseek-harness-skill-packet/goal.md` |
-| 004-dsh-runtime-folder-and-patches | `004-dsh-runtime-folder-and-patches/goal.md` |
-| 005-dsh-mirror-generators | `005-dsh-mirror-generators/goal.md` |
-| 006-deep-loop-executor-kind | `006-deep-loop-executor-kind/goal.md` |
-| 007-dispatch-recognition-and-stress-adapter | `007-dispatch-recognition-and-stress-adapter/goal.md` |
-| 008-dsh-repo-guards-safety-wave | `008-dsh-repo-guards-safety-wave/goal.md` |
-| 009-dsh-context-guards-and-goal-bridge | `009-dsh-context-guards-and-goal-bridge/goal.md` |
-| 010-dsh-mcp-code-mode | `010-dsh-mcp-code-mode/goal.md` |
-| 011-hub-registration-and-routing | `011-hub-registration-and-routing/goal.md` |
-| 012-deep-loop-modes-and-commands | `012-deep-loop-modes-and-commands/goal.md` |
-| 013-dsh-live-contract-pin | `013-dsh-live-contract-pin/goal.md` |
-| 014-playbook-docs-and-closeout | `014-playbook-docs-and-closeout/goal.md` |
+| Phase folder | Goal document |
+|--------------|---------------|
+| 001-deep-research | `goal.md` |
+| 002-dsh-offline-contract-pin | `goal.md` |
+| 003-cli-deepseek-harness-skill-packet | `goal.md` |
+| 004-dsh-runtime-folder-and-patches | `goal.md` |
+| 005-dsh-mirror-generators | `goal.md` |
+| 006-deep-loop-executor-kind | `goal.md` |
+| 007-dispatch-recognition-and-stress-adapter | `goal.md` |
+| 008-dsh-repo-guards-safety-wave | `goal.md` |
+| 009-dsh-context-guards-and-goal-bridge | `goal.md` |
+| 010-dsh-mcp-code-mode | `goal.md` |
+| 011-hub-registration-and-routing | `goal.md` |
+| 012-deep-loop-modes-and-commands | `goal.md` |
+| 013-dsh-live-contract-pin | `goal.md` |
+| 014-playbook-docs-and-closeout | `goal.md` |
+| 015-dsh-hook-parity | `spec.md`, which has no goal |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -139,6 +140,7 @@ and findings belong here.
 | 015 DSH hook parity | Done | 20 adapters with 6 new, the advisor on for interactive sessions and off in leaves by a lineage marker, /goal-dsh and the dsh_goal tool, sweep-dsh in /speckit:save, every adapter moved into the hook library behind links. Bundle 75/75 (was 37/37), sweep 8/8, mirrors 243 across 10 trees, keyless boots show the interactive and leaf split. Evidence: 015-dsh-hook-parity/evidence/gates-2026-11-06.txt... |
 | Criteria 1-3 ticked | Done | C1 013/evidence/route-llmgateway.stdout.jsonl (exit 0, completed, Go explicit-only). C2 013/evidence/fanout-lineage.md (dsh-live-2 clean). C3 014/evidence/final-gate-2026-11-06-r6.txt, 015/evidence/gates-2026-11-06.txt |
 | 015 follow-up drift fixes | Done | Spec gate classifies only operator prompts, advisor reports runtime dsh, leaves have no native goal tools, orphan sweeper keeps DSH session helpers, /doctor:git setup checks the DSH row. Bundle 78/78, setup check 78/78, advisor 1373 pass. Evidence: 015-dsh-hook-parity/evidence/followup-fixes-2026-11-06.txt |
+| Goal amendment | Done | D3 now covers interactive hook parity, 015 bound by its spec.md, slice 3727 of 4000 |
 
 ### Deviations and findings
 
