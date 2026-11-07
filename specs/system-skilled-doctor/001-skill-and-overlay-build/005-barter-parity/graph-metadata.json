@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "barter parity",
+      "phase 5 barter parity",
+      "adopt the overlay engine",
+      "vendored overlay adoption",
+      "barter parity plan",
+      "barter parity tasks",
+      "barter parity acceptance criteria",
+      "overlay adoption closure gate",
+      "barter parity implementation summary"
+    ],
+    "key_topics": [
+      "barter",
+      "parity",
+      "phase",
+      "adopt",
+      "overlay",
+      "engine",
+      "vendored",
+      "adoption",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+      ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+      ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      "scratch/morning-decisions.md",
+      ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs",
+      ".skilled/commands/doctor/install.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-fixes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-fixes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-repin.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/overlay-engine-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-repin.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-overlay-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-overlay-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "morning-decisions.md",
+        "kind": "doc",
+        "path": "scratch/morning-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/install.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Barter vendors Skilled with 130 overlays, and the upstream `/doctor:overlay` could not read them",
+    "created_at": "2026-11-07T21:36:40Z",
+    "last_save_at": "2026-11-07T22:32:56.113Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b32a2f7b7ce30716c788acf7917572381bf5972c2377c07d825ec3d215c556d5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ffda25ff742140676f2c9629281d248ce0a4c4ec8e784f93b2a916e242a8aa36",
+      "plan.md": "a4934f0acc96d3fb75f37427ed8918d7919a835d9b521c6dab76f89a48fbe729",
+      "tasks.md": "e006e2949fc79fe84a258c0bd8ea01b63f717b95032219f9dc6fb809bb28a810",
+      "implementation-summary.md": "31a38d45ece7b289ae1a8aecf0248412ed029430e59089a70647e71cc5d10c79",
+      "research/research.md": "356f1257cbe395f7e83cdd586ce84ee039bd27d1f9603c658281ff7b796e9e71"
+    },
+    "last_active_at": null
+  }
+}

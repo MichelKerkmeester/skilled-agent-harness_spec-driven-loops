@@ -1,0 +1,36 @@
+{
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Root-file traps, cross-runtime wiring, and the doc discovery path",
+  "noveltyJustification": "All 8 findings were new to this lineage; the install-route discovery gap and the root-file silence had not been examined in earlier iterations.",
+  "keyQuestions": [],
+  "answeredQuestions": ["Q4: Which root-file and cross-runtime traps (`AGENTS.md`, `REPO RULES.md`, `.opencode/scripts`, fork-drifted files) must the engine handle before an external repo can adopt it safely?"],
+  "ruledOut": [
+    "Expecting the engine to need a root-file copy rule",
+    "Expecting the docs to be silent about overlays",
+    "Expecting .opencode/scripts and .dsh to be engine features",
+    "Searching update.md, symlink.md, runtime-mirrors.md and env.md for overlay mentions"
+  ],
+  "edgeCase": "contradictory-evidence",
+  "focusTrack": "adoption-traps",
+  "toolsUsed": ["Read", "Bash", "Grep"],
+  "sourcesQueried": [
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+    ".skilled/skills/system-skilled-doctor/references/overlays.md",
+    ".skilled/commands/doctor/install.md",
+    ".skilled/commands/doctor/assets/doctor-install.yaml",
+    ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+    ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs",
+    "README.md",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md"
+  ],
+  "findingSources": {
+    "default": [
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      "README.md",
+      "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md"
+    ]
+  },
+  "durationMs": 0
+}

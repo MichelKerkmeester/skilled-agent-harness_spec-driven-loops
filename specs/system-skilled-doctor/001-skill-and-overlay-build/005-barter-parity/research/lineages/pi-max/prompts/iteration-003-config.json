@@ -1,0 +1,36 @@
+{
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Post-re-pin regeneration coverage: dsh links, runtime mirrors, hook registrations, trigger index, advisor graph",
+  "noveltyJustification": "All 8 findings were new to this lineage; the generator check contracts had not been read before iteration 3 and one directly corrects the dispatch brief.",
+  "keyQuestions": [],
+  "answeredQuestions": ["Q3: Which runtime surfaces must be re-pinned or regenerated after a re-pin (dsh skill links, runtime mirrors, hook registrations, trigger index, advisor graph), and how should the engine express them?"],
+  "ruledOut": [
+    "Assuming the engine needs a new regeneration mechanism",
+    "Assuming the advisor graph can be treated like the other generators",
+    "Trusting the repin workflow stage invariant",
+    "Looking for an engine-level post-repin hook"
+  ],
+  "edgeCase": "contradictory-evidence",
+  "focusTrack": "regeneration",
+  "toolsUsed": ["Read", "Bash", "Grep"],
+  "sourcesQueried": [
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+    ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+    ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+    ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+    ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+  ],
+  "findingSources": {
+    "default": [
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+    ]
+  },
+  "durationMs": 0
+}

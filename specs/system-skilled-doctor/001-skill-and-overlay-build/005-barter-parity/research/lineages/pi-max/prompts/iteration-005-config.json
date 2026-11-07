@@ -1,0 +1,42 @@
+{
+  "newInfoRatio": 0.65,
+  "status": "complete",
+  "focus": "Ranked engine changes, Barter manifest migration steps, and doc/advertising changes",
+  "noveltyJustification": "Three of nine findings are new (token-file scoping, repin test coupling, the ranking itself) and the remaining six resynthesize iterations 1-4 evidence into ranked deliverables.",
+  "keyQuestions": [],
+  "answeredQuestions": [
+    "Q1: Which overlay-engine changes are required so a vendored repo whose overlay folder is `barter-overlays` can run status, apply and repin without an unexplained exit 2 or a whole-run abort on a protected path?",
+    "Q5: Which documentation and advertising changes are needed so adoption is discoverable and correctly described, and how should all proposed changes be ranked by impact and risk?"
+  ],
+  "ruledOut": [
+    "Prioritising the Barter fork's two extra states above the smaller fixes",
+    "Adopting Barter's extension allowlist for token-named files",
+    "Treating the .dsh default as a documentation-only change",
+    "Looking for an existing migration document for a hand-rolled overlay folder"
+  ],
+  "edgeCase": "partial-success",
+  "focusTrack": "synthesis",
+  "toolsUsed": ["Read", "Bash", "Grep"],
+  "sourcesQueried": [
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+    ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs",
+    ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs",
+    ".skilled/commands/doctor/install.md",
+    ".skilled/commands/doctor/assets/doctor-install.yaml",
+    ".skilled/commands/doctor/_routes.yaml",
+    ".skilled/skills/system-skilled-doctor/references/overlays.md",
+    "README.md",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json"
+  ],
+  "findingSources": {
+    "default": [
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md",
+      ".skilled/commands/doctor/install.md",
+      "README.md",
+      "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json"
+    ]
+  },
+  "durationMs": 0
+}

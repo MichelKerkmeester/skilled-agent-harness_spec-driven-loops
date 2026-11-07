@@ -1,0 +1,13 @@
+All five iterations ran inline in this process, each with its narrative, delta, gateway record, reducer refresh, and `verify-iteration` pass; synthesis closed out through `synthesis-closeout.cjs` plus the gateway with `stopReason: "maxIterationsReached"`.
+
+**Lineage `pi-max` delivered** (42 findings, 5/5 key questions answered):
+
+- **Ranked engine changes** — P1 per-entry protected-path refusal instead of a whole-run throw (`overlay-engine.cjs:1688`, `:1801`); P2 `.dsh` in `DEFAULT_RUNTIME_FOLDERS` (`:74`, plus repin test re-baseline); P3 stage-honesty line (`:2914` vs `doctor-overlay-repin.yaml:40`); P4 root-file upstream-change report (`:2531`); P5 diagnosable missing setting (`:375`, `:425`); P6/P7 `fork-drifted` + `outsideCertificate` as one optional extension; extension-based token trust **declined**.
+- **Barter migration** — setting file, schema-compatible `sync-state.json`, `protectedPaths: ["assets/tokens.css", "references/barter-design-tokens.md"]` on `repo-frontend` only, a `repin` block (seven runtime folders + `.opencode/scripts` exclude), four regenerate/verify pairs, fork keys set aside, fork retired.
+- **Doc changes** — D1 `/doctor:install` overlay branch (zero mentions today), D2 adoption section in `references/overlays.md`, D3 adoption trigger phrases, D4 re-pin invariant correction, D5 `AGENTS.md`/`REPO RULES.md` precedence, D6 `setup`/`helper` routing.
+
+Three dispatch-brief claims were corrected with evidence: `repin.exclude` exists and is tested, hook-registration regeneration already exists, and the docs document the full feature (the gap is routing, not writing).
+
+Writes stayed inside the lineage directory; `spec.md` write-back, `validate.sh`, `git add` and the memory save were recorded as narrowed-scope skips rather than executed.
+
+FANOUT_LINEAGE_COMPLETE:pi-max
