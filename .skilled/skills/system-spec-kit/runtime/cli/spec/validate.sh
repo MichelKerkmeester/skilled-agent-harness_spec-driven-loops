@@ -180,14 +180,55 @@ exit_if_switched_off() {
 # 4. PHASE CHILD DISCOVERY
 # ───────────────────────────────────────────────────────────────
 
+is_track_root_folder() {
+    local folder="$1"
+    local folder_name
+    folder_name=$(basename "$folder")
+    [[ "$(basename "$(dirname "$folder")")" == "specs" ]] || return 1
+    [[ ! "$folder_name" =~ ^[0-9]{3}-[a-z0-9-]+$ ]] || return 1
+    [[ ! -f "$folder/spec.md" ]]
+}
+
+has_subtrack_declaration() {
+    local folder="$1"
+    local folder_name
+    folder_name=$(basename "$folder")
+    [[ "$folder_name" != z_* ]] || return 1
+    [[ ! "$folder_name" =~ ^[0-9]{3}-[a-z0-9-]+$ ]] || return 1
+    [[ ! -f "$folder/spec.md" ]] || return 1
+    [[ -f "$folder/description.json" ]] || return 1
+    node -e '
+const fs = require("fs");
+try {
+  const description = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+  if (description.level === "sub-track") process.exit(0);
+} catch {}
+process.exit(1);
+' "$folder/description.json" >/dev/null 2>&1
+}
+
+is_declared_subtrack_folder() {
+    local folder="$1"
+    [[ -d "$folder" && ! -L "$folder" ]] || return 1
+    is_track_root_folder "$(dirname "$folder")" || return 1
+    has_subtrack_declaration "$folder"
+}
+
 has_phase_children() {
     local parent_folder="$1"
     local phase_dir
+    local subtrack_folder
     for phase_dir in "$parent_folder"/[0-9][0-9][0-9]-*/; do
         if [[ -d "$phase_dir" ]]; then
             return 0
         fi
     done
+    if is_track_root_folder "$parent_folder"; then
+        for subtrack_folder in "$parent_folder"/*/; do
+            [[ -d "$subtrack_folder" ]] || continue
+            is_declared_subtrack_folder "${subtrack_folder%/}" && return 0
+        done
+    fi
     return 1
 }
 
@@ -302,6 +343,8 @@ collect_phase_dirs() {
     local manifest_rc=0
     local phase_dir=""
     local phase_name=""
+    local subtrack_folder=""
+    local packet_dir=""
 
     PHASE_DIRS=()
     load_child_manifest "$parent_folder" || manifest_rc=$?
@@ -314,6 +357,26 @@ collect_phase_dirs() {
     else
         for phase_dir in "$parent_folder"/[0-9][0-9][0-9]-*/; do
             [[ -d "$phase_dir" ]] && PHASE_DIRS+=("${phase_dir%/}")
+        done
+    fi
+
+    if ! $CHILD_MANIFEST_ACTIVE && is_track_root_folder "$parent_folder"; then
+        for subtrack_folder in "$parent_folder"/*/; do
+            [[ -d "$subtrack_folder" ]] || continue
+            subtrack_folder="${subtrack_folder%/}"
+            if [[ -L "$subtrack_folder" ]]; then
+                if has_subtrack_declaration "$subtrack_folder"; then
+                    printf 'Skipped symlinked sub-track: %s\n' "$subtrack_folder" >&2
+                fi
+                continue
+            fi
+            is_declared_subtrack_folder "$subtrack_folder" || continue
+            # A sub-track's packets are validated at the same depth as a track's
+            # own packets, so a packet's result never depends on which it sits in.
+            PHASE_DIRS+=("$subtrack_folder")
+            for packet_dir in "$subtrack_folder"/[0-9][0-9][0-9]-*/; do
+                [[ -d "$packet_dir" ]] && PHASE_DIRS+=("${packet_dir%/}")
+            done
         done
     fi
     return 0

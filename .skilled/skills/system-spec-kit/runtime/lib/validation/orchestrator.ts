@@ -223,6 +223,28 @@ function isTrackRoot(folder: string): boolean {
   return !fs.existsSync(path.join(resolved, 'spec.md'));
 }
 
+function hasSubTrackLevel(folder: string): boolean {
+  const descriptionPath = path.join(folder, 'description.json');
+  if (!fs.existsSync(descriptionPath)) return false;
+
+  try {
+    const description = JSON.parse(fs.readFileSync(descriptionPath, 'utf8')) as Record<string, unknown>;
+    return description.level === 'sub-track';
+  } catch {
+    return false;
+  }
+}
+
+function isDeclaredSubTrack(folder: string): boolean {
+  const resolved = path.resolve(folder);
+  const name = path.basename(resolved);
+  if (!fs.existsSync(resolved) || fs.lstatSync(resolved).isSymbolicLink()) return false;
+  if (name.startsWith('z_') || PACKET_FOLDER_RE.test(name)) return false;
+  if (fs.existsSync(path.join(resolved, 'spec.md'))) return false;
+  if (!isTrackRoot(path.dirname(resolved))) return false;
+  return hasSubTrackLevel(resolved);
+}
+
 function isRegistryEntry(value: unknown): value is ValidatorRegistryEntry {
   if (!value || typeof value !== 'object') return false;
   const candidate = value as Record<string, unknown>;
@@ -1337,8 +1359,12 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   // metadata so the tracks are searchable, which is enough to make it look like
   // a phase parent, and it then fails rules it can never satisfy — its name is
   // a track name and will never match the packet naming convention.
-  if (isTrackRoot(folder)) {
-    const entries = [entry('TRACK_ROOT', 'info', 'Track directory, not a packet; no packet rules apply')];
+  const isTrack = isTrackRoot(folder);
+  if (isTrack || isDeclaredSubTrack(folder)) {
+    const message = isTrack
+      ? 'Track directory, not a packet; no packet rules apply'
+      : 'Sub-track directory, not a packet; no packet rules apply';
+    const entries = [entry('TRACK_ROOT', 'info', message)];
     return {
       folder,
       level: '1',
