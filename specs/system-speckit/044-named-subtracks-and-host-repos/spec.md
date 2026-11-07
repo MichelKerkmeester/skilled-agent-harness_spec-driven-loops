@@ -1,49 +1,53 @@
 ---
 title: "Feature Specification: Named sub-track support in spec-kit, plus project-owned doctor entries, the vendored .skilled/specs link and a host-repository trigger index"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Spec-kit's track tooling stops one level below specs/, so packets filed in a named sub-track are skipped by track roots, refresh, the pre-push sweep, recursive validation and archive. This packet adds declared sub-tracks and three host-repository fixes Barter asked for."
 trigger_phrases:
   - "named subtracks and host repos"
   - "named sub track support in spec kit plus"
-importance_tier: "normal"
-contextType: "general"
+  - "declared sub-track container"
+  - "host repository trigger index mode"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Named sub-track support in spec-kit, plus project-owned doctor entries, the vendored .skilled/specs link and a host-repository trigger index
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
+| **Level** | 2 |
+| **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-11-07 |
-| **Branch** | `scaffold/044-named-subtracks-and-host-repos` |
+| **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`. Track roots, refresh, the pre-push sweep, `create.sh`'s refresh, recursive validation and archive all skip the sub-track's packets, and validating the sub-track folder itself fails packet rules. Barter's phase 004, which groups tracks of 276 and 282 packets into sub-tracks, is on hold until this works.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+A declared sub-track behaves like a track in every track-level tool, while flat tracks behave exactly as before.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ mkdir -p specs/demo/001-flat-probe specs/demo/sub/001-nested-probe   # in a scratch tree, demo/graph-metadata.json present
+$ node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --specs <scratch>/specs --track demo/sub
+refresh-track-roots: not a track root with graph-metadata.json: demo/sub
+exit=2
+$ node -e "...readWorkingTreeTracks('<scratch>/specs')..."
+[{"name":"demo","children":["001-flat-probe"]}]
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -51,76 +55,119 @@ contextType: "general"
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Recognize a declared sub-track (a direct child of a track whose `description.json` has `level: "sub-track"`) in track-root discovery, refresh, the pre-push sweep, `create.sh`, validation, recursive validation and archive.
+- Derive a sub-track packet's `parent_id` from its sub-track, and recompute it when a packet moves.
+- Report an undeclared non-numbered folder inside a track instead of skipping it.
+- Upstream Barter's project-owned doctor entry for `.env.example`, keep the vendored `.skilled/specs` link working when a host has no `specs/`, and document a host-repository trigger index.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Writes through a linked specs root - packet `system-speckit/037-symlinked-runtime-root` owns them.
+- Barter's priority numbering and its sub-track map - Barter phase 004 owns them; spec-kit does not enforce number bands.
+- Following a symlinked sub-track - it is skipped with a diagnostic in both views, matching how the commit view treats a symlinked track today.
+- Sub-tracks nested inside sub-tracks - one named level is the requested layout.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs` | Modify | Return declared sub-tracks with their own packets in both views; report undeclared folders |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs` | Modify | Accept `--track <track>/<sub-track>` |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs` | Modify | Sweep sub-tracks and print undeclared-folder diagnostics |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | Refresh the sub-track and its track instead of skipping |
+| `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts` | Modify | Exempt a declared sub-track folder like a track root |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modify | Recurse through declared sub-tracks |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh` | Modify | Accept a sub-track as a packet home and refresh both levels |
+| `.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts` | Modify | Derive `parent_id` from a declared sub-track |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs` | Modify | Recompute `parent_id` after a move |
+| `.skilled/commands/doctor/assets/symlink-manifest.json`, `.skilled/commands/doctor/scripts/symlink-engine.cjs` | Modify | `project_owned` entry and `project-owned` status |
+| `.skilled/skills/system-spec-kit/references/structure/folder-structure.md`, `README.md`, `.skilled/commands/speckit/search.md`, `runtime/data/README.md` | Modify | Document sub-tracks and host index mode |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/*.vitest.ts`, `.skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs` | Modify | Failing-first tests |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-001 | Track-root discovery returns a declared sub-track as its own root with its immediate numbered packets, and lists it in its track's children, in the working-tree and commit views | `track-roots.vitest.ts` sub-track cases pass in both views |
+| REQ-002 | `refresh-track-roots.mjs --track demo/sub --apply` writes the sub-track's `children_ids` | The scratch reproduction in Measured Behavior exits 0 and the file lists `demo/sub/001-nested-probe` |
+| REQ-003 | `create.sh --track demo/sub` numbers inside the sub-track and refreshes the sub-track and the track | A new packet is `demo/sub/002-*` and both `children_ids` lists contain it |
+| REQ-004 | Validating a declared sub-track folder reports it as a container, and `validate.sh specs/<track> --recursive` reaches its packets | `validate.sh specs/demo/sub --strict` prints `RESULT: PASSED`; the recursive run lists the nested packet |
+| REQ-005 | A packet inside a sub-track gets the sub-track as `parent_id`, and a move recomputes it | `repair-derived.vitest.ts` move cases pass with no `parent_id_review_required` |
+| REQ-006 | Flat tracks behave exactly as before | Every existing track-roots, refresh, sweep, create, validate, archive and repair-derived test passes unchanged |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-007 | Archive and restore work for a sub-track packet through the sub-track's own `z_archive/` | `archive-track.vitest.ts` sub-track cases pass |
+| REQ-008 | An undeclared non-numbered folder inside a track is reported, and a symlinked sub-track is skipped with a diagnostic in both views | The sweep prints one diagnostic line per such folder and exits 1 |
+| REQ-009 | A `project_owned` manifest entry keeps the host's real `.env.example`, reports `project-owned` and passes the install post-check | `symlink-engine.test.cjs` proves the status and byte-identical file without opening any `.env` |
+| REQ-010 | A vendored copy with no host `specs/` leaves no dangling `.skilled/specs` link after setup, and a copy with one keeps it | Two fixture cases in the symlink engine tests |
+| REQ-011 | Host trigger-index mode is documented, including the explicit `--index` in the host's Gate 1 command | `runtime/data/README.md` and `folder-structure.md` name the generate and lookup commands |
+| REQ-012 | The search guide, README and `folder-structure.md` show the sub-track level | `rg -n 'sub-track' <each file>` prints at least one line |
 <!-- /ANCHOR:requirements -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: The Barter handover reproduction passes: recursive validation of `specs/demo` reaches `demo/sub/001-nested-probe`, `validate.sh specs/demo/sub` passes, and `refresh-track-roots.mjs --track demo/sub` exits 0.
+- **SC-002**: The full spec-kit test suites that cover tracks pass with zero failures, against the baseline taken before the first change.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Packet 037's uncommitted edits to `graph-metadata-parser.ts` | A parallel edit to the same file could conflict | Edit `resolveParentId` only, rebase onto 037 once it lands, and run both packets' tests |
+| Risk | The pre-push gate starts blocking existing repositories | High: a push fails on a tree that passed before | Undeclared-folder diagnostics stay out of the blocking path until a track opts in; flat-track tests guard the rest |
+| Risk | Editing spec-kit TypeScript leaves the compiled orchestrator stale | Med: `validate.sh` refuses to run | Run `npm run build` in `runtime/` after each TypeScript change |
 <!-- /ANCHOR:risks -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
-- How should spec-kit support named sub-tracks (specs/<track>/<sub-track>/<NNN>-<slug>/), and how should it handle project-owned doctor entries, the vendored .skilled/specs link and a host-repository trigger index?
-- Research Context: deep-research is active for this topic; research/research.md remains canonical.
+### Performance
+- **NFR-P01**: Track-root discovery on this repository's `specs/` takes no more than 10 percent longer than the baseline measured before the change.
+
+### Security
+- **NFR-S01**: No change reads a `.env` file; the project-owned test checks bytes of a fixture `.env.example` only.
+
+### Reliability
+- **NFR-R01**: A tree with no sub-tracks produces byte-identical track-root metadata before and after the change.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- Empty input: a declared sub-track with no packets has empty `children_ids` and validates.
+- Maximum input: a track holding several sub-tracks of 280 packets each lists each sub-track once and each packet only in its own sub-track.
+- Failure path: `--track demo/missing` exits 2 naming the path, and a numbered phase parent inside a sub-track stays one entry whose phases remain its own children.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
+
+- Does any host vendor Skilled without an adjacent `specs/` today? REQ-010 covers the case either way.
+- Should undeclared-folder diagnostics ever block a push? This packet keeps them advisory.
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 Abridged from `research/research.md` (3 iterations, 5/5 questions answered):
@@ -132,4 +179,9 @@ Abridged from `research/research.md` (3 iterations, 5/5 questions answered):
 
 ---
 
+## RELATED DOCUMENTS
 
+- **Research**: `research/research.md`
+- **Plan**: `plan.md`
+- **Tasks**: `tasks.md`
+- **Acceptance criteria**: `acceptance-criteria.md`

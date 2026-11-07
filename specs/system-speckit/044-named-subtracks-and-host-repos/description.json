@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-speckit/044-named-subtracks-and-host-repos",
   "description": "Named sub-track support in spec-kit, plus project-owned doctor entries, the vendored .skilled/specs link and a host-repository trigger index",
   "keywords": [
@@ -19,14 +19,15 @@
     "trigger",
     "index"
   ],
-  "lastUpdated": "2026-11-07T13:00:35.273Z",
+  "lastUpdated": "2026-11-07T13:57:38.589Z",
   "specId": "044",
   "folderSlug": "named-subtracks-and-host-repos",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "07-11-26_14-00__deep-research-completed-in-3-iterations-on-cli.md"
+    "07-11-26_14-00__deep-research-completed-in-3-iterations-on-cli.md",
+    "07-11-26_14-57__planned-packet-044-at-level-2-declared-named-sub.md"
   ]
 }

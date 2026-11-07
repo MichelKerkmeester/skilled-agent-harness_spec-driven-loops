@@ -8,28 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/044-named-subtracks-and-host-repos"
-    last_updated_at: "2026-11-07T13:00:35Z"
+    last_updated_at: "2026-11-07T13:57:38Z"
     last_updated_by: "generate-context"
-    recent_action: "Ran 3 deep-research iterations and synthesized research/research.md"
-    next_safe_action: "Run /speckit:plan on this packet, starting with the failing-first tests in research.md section 5"
+    recent_action: "Planned packet 044 at Level 2 with 12 requirements and 19 test-first tasks"
+    next_safe_action: "Run /speckit:implement on this packet, starting with T001 baseline and T002 fixture"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
       - ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh"
-      - ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts"
+      - ".skilled/commands/doctor/scripts/symlink-engine.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-044-named-subtracks-and-host-repos"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 30
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 044-named-subtracks-and-host-repos |
 | **Completed** | 2026-11-07 |
-| **Level** | 1 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---

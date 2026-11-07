@@ -13,13 +13,16 @@
     "trigger_phrases": [
       "named subtracks and host repos",
       "named sub track support in spec kit plus",
+      "declared sub-track container",
+      "host repository trigger index mode",
       "named subtracks and host repos plan",
+      "sub-track implementation plan",
       "named subtracks and host repos tasks",
+      "sub-track acceptance criteria",
+      "named subtracks closure gate",
       "named subtracks and host repos implementation summary",
       "named sub-track research",
-      "spec-kit sub-track design",
-      "host repository trigger index",
-      "project owned doctor entry"
+      "spec-kit sub-track design"
     ],
     "key_topics": [
       "named",
@@ -32,20 +35,32 @@
       "spec",
       "kit",
       "plus",
-      "plan",
-      "tasks"
+      "declared",
+      "sub-track"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md",
       "research/research.md",
-      "barter/ai-speckit/specs/skilled-barter-overlays/002-spec-tracks-restructure/005-skilled-harness-support/handover.md",
-      "research/iterations/iteration-001.md",
-      "research/resource-map.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/commands/doctor/assets/symlink-manifest.json",
+      ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      ".skilled/commands/speckit/search.md",
+      "runtime/data/README.md"
     ],
     "entities": [
       {
@@ -67,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -79,19 +100,91 @@
         "source": "derived"
       },
       {
-        "name": "iteration-001.md",
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/symlink-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
         "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
+        "path": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/data/README.md",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Draft",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -113,105 +206,28 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
     "created_at": "2026-11-07T12:11:59Z",
-    "last_save_at": "2026-11-07T13:00:35.273Z",
+    "last_save_at": "2026-11-07T13:57:38.589Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b2289704d4f1ad3d7142b5e9524a153dcfd562dfdd02362b516b9f0284ce65f3",
+    "source_fingerprint": "sha256:05622c15bd15b5c113341dbdc7e4539fbe6c5c9d69bd079f8d3bc1fd1fb35fac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4eab1ca097d5c06e0624d1cee08a01ae2286b6c2b9f181490fca62ab8d11039",
-      "plan.md": "210c1910025448aeedd370b84f2f85f458912e80199859b4e7c4eee58d802f16",
-      "tasks.md": "b2e8a36444277ba85c8aaaa4e54c352d096e0ded93856ab5ea37fe01e80bcb86",
-      "implementation-summary.md": "3d5cec6506d993179165dbc61fdf78962ffbe491655be46403c431a640014ab3",
+      "spec.md": "285784b4c68110b18bc9a39aecf75b1ac279b3012301b61a003c44321e521fc2",
+      "plan.md": "48781c63acb1d5d31308e194bb46bc86ea538e56c518337f4d666cbc8a7483fd",
+      "tasks.md": "bbc718a7e3b46f93f76c3b951d7e0b5b132761342032b4d57bb37a2e8204abe9",
+      "implementation-summary.md": "a42555f2e67ef3bc523315338e1d643583216bf2d4b7739ec3fd1357d1477c3e",
       "research/research.md": "b11898910b2446c7e3cab618b2b105dcb93da1ccc09273ab3b9687a376e0225f"
     },
     "last_active_at": null
