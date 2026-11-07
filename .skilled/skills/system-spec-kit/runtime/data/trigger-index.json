@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a7f1eb3a8c84cce1ca2c60b81caecffaf2caa070805f9ae1055aeb7b8923cd87",
+  "manifestHash": "81ce9aa6ed76155a7d7cdcb38d0d367bcafa2c8ba9289fc4a4c34395bb8bf339",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17553,7 +17553,14 @@
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-strategy.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/research.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/research.md",
-    "specs/system-speckit/043-decision-capture/spec.md"
+    "specs/system-speckit/043-decision-capture/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-strategy.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/research.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -53445,6 +53452,9 @@
     "declared signal closure": [
       7822
     ],
+    "declared sub track container": [
+      17549
+    ],
     "declared surfaces parity": [
       1479
     ],
@@ -56777,7 +56787,8 @@
       15236,
       15238,
       16047,
-      16938
+      16938,
+      17547
     ],
     "deep research strategy md": [
       2512
@@ -67695,7 +67706,8 @@
       7183,
       7377,
       16047,
-      16938
+      16938,
+      17547
     ],
     "exhausted review approaches": [
       2531,
@@ -79601,6 +79613,12 @@
       15340,
       15341,
       15343
+    ],
+    "host repository trigger index": [
+      17548
+    ],
+    "host repository trigger index mode": [
+      17549
     ],
     "hostile locale child vitest": [
       10055
@@ -94795,6 +94813,27 @@
     "named refusal not raw errno": [
       16256
     ],
+    "named sub track research": [
+      17548
+    ],
+    "named sub track support in spec kit plus": [
+      17549
+    ],
+    "named subtracks and host repos": [
+      17549
+    ],
+    "named subtracks and host repos implementation summary": [
+      17545
+    ],
+    "named subtracks and host repos plan": [
+      17546
+    ],
+    "named subtracks and host repos tasks": [
+      17550
+    ],
+    "named subtracks closure gate": [
+      17544
+    ],
     "namespace command example": [
       1931
     ],
@@ -109045,6 +109084,9 @@
     "project milestones": [
       1677
     ],
+    "project owned doctor entry": [
+      17548
+    ],
     "project plan roadmap": [
       1660
     ],
@@ -116890,7 +116932,8 @@
       7183,
       7377,
       16047,
-      16938
+      16938,
+      17547
     ],
     "research spec conflict detection": [
       2522
@@ -116921,7 +116964,8 @@
       7183,
       7377,
       16047,
-      16938
+      16938,
+      17547
     ],
     "research stop contract": [
       2517
@@ -116946,7 +116990,8 @@
       7183,
       7377,
       16047,
-      16938
+      16938,
+      17547
     ],
     "research stuck count": [
       2516
@@ -121004,7 +121049,8 @@
       7183,
       7377,
       16047,
-      16938
+      16938,
+      17547
     ],
     "ruledout array": [
       2503
@@ -137724,6 +137770,9 @@
     "spec kit skill graph sqlite collision": [
       13526
     ],
+    "spec kit sub track design": [
+      17548
+    ],
     "spec kit tasks": [
       15584
     ],
@@ -140785,6 +140834,12 @@
     ],
     "sub folder versioning": [
       3215
+    ],
+    "sub track acceptance criteria": [
+      17544
+    ],
+    "sub track implementation plan": [
+      17546
     ],
     "subagent": [
       5443
