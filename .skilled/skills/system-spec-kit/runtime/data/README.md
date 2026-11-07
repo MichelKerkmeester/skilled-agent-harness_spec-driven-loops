@@ -34,6 +34,26 @@ Current state:
 - Do not hand-edit the index; the generator is the only writer.
 - Do not place databases, logs, or large artifacts here.
 
+### Host Repository Index
+
+A host repository that vendors Skilled keeps its own index at `.speckit-index/trigger-index.json` in the host root. Nothing selects that file automatically: the lookup's default stays the packaged `runtime/data/trigger-index.json`, so the host passes its path with `--index`.
+
+```bash
+# generate from the host root
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
+  --repo-root . --out .speckit-index/trigger-index.json
+
+# Gate 1 lookup against the host index
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+  --index .speckit-index/trigger-index.json --json -- "<prompt>"
+
+# freshness check against the same file
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
+  --check --repo-root . --out .speckit-index/trigger-index.json
+```
+
+`--out` alone writes the corpus manifest, diagnostics and phrase variants beside the index. Regenerate it after any `trigger_phrases` change in the host's docs.
+
 ---
 
 ## 4. RELATED RESOURCES

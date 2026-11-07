@@ -81,6 +81,8 @@ The keyed lookup over the generated index. Reads a file and exits.
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<QUERY>"
 ```
 
+The default index is the packaged `runtime/data/trigger-index.json`. A host repository that generated its own index passes it explicitly: `--index .speckit-index/trigger-index.json`.
+
 1. Run the command with the resolved `QUERY`.
 2. Branch on the exit status: `0` = candidates, `1` = clean no-hit, `2` or higher = the index is missing or unreadable.
 3. Render candidates with the Section 2 contract in the presentation asset — score, match class and path, in the order the tool returned them.
@@ -105,7 +107,7 @@ rg --no-config --hidden --json --fixed-strings --ignore-case \
   -- '<QUERY>' specs .skilled
 ```
 
-1. Resolve the search roots. Narrow by positional path, never by pattern: `specs .skilled` for everything, `specs/<track>` for one track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
+1. Resolve the search roots. Narrow by positional path, never by pattern: `specs .skilled` for everything, `specs/<track>` for one track, `specs/<track>/<sub-track>` for one declared sub-track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<sub-track>/<NNN-name>` for a packet inside a sub-track, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
 2. Run exactly one recipe. Never combine `--json` with the path-only or count mode: ripgrep does not reject the combination, the last output-mode flag wins silently, and a JSONL parser handed count output sees an empty result rather than an error.
 3. Branch on the exit status: `0` = matches, `1` = no match returned as an empty result, `2` or higher = an execution or configuration error.
 4. Order results with the ranking tuple in `retrieval-conventions.md` Section 5 — evidence field, then normalized match class, then relative path and one-based line. Ripgrep supplies matches, paths and lines; it never ranks relevance, and no rendered output may imply that it does.

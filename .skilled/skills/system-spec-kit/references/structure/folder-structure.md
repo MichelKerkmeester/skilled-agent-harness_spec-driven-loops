@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # Folder Structure Reference
@@ -93,6 +93,34 @@ Format: `NNN-topic-name`
 ├── 002-bug-fixes/
 └── 003-performance-optimization/
 ```
+
+### Sub-Track Folders
+
+A track may hold one optional level of named sub-tracks between itself and its packets:
+
+```
+specs/<track>/
+├── <NNN>-<slug>/                  # packet filed directly in the track
+├── <sub-track>/
+│   ├── 001-<slug>/                # numbering restarts inside the sub-track
+│   └── 002-<slug>/
+└── z_archive/
+```
+
+A sub-track is declared, not inferred. All of these hold:
+
+| Part | Requirement |
+|---|---|
+| Shape | Direct child of a track root, name not `NNN-*`, no `spec.md` |
+| `description.json` | `"level": "sub-track"`, with `specFolder` and `specId` set to `<track>/<sub-track>` |
+| `graph-metadata.json` | Track-root shape: `packet_id` `<track>/<sub-track>`, `parent_id` the track, `children_ids` its immediate numbered packets |
+| Track registration | The sub-track id appears in the track's `graph-metadata.json` `children_ids` |
+
+Numbering continues per folder, so each sub-track numbers its own packets from `001`. One level is supported: a sub-track holds numbered packets, not another sub-track.
+
+A track's `children_ids` lists its direct numbered packets and its declared sub-tracks. A sub-track's `children_ids` lists only its own immediate numbered packets. A numbered phase parent counts as one entry, and its phases stay its own children.
+
+A sub-track has its own `z_archive/`. Any `z_` folder inside a track or sub-track is never a sub-track and is never discovered as content. A non-numbered folder without the declaration gets one diagnostic and is never promoted. A symlinked sub-track is skipped with one diagnostic in both the working-tree and the commit view. Diagnostics are advisory and never change an exit code.
 
 ---
 
@@ -257,6 +285,18 @@ specs/
     └── 002-abandoned-approach/
 ```
 
+A declared sub-track archives into its own `z_archive/`, not the track's:
+
+```
+specs/demo/
+├── sub/
+│   ├── 001-active/
+│   └── z_archive/
+│       └── 001-retired/
+└── z_archive/
+    └── 001-old-track-packet/
+```
+
 **Archive Triggers:**
 - Feature fully implemented and verified
 - Approach abandoned for alternative
@@ -337,9 +377,61 @@ specs/022-hybrid-rag-fusion/        <- Coordination root (point-in-time snapshot
     └── 002-skill-review/            <- Nested child
 ```
 
+### Track With Sub-Tracks
+
+```
+specs/billing/
+├── description.json                 # level: "track"
+├── graph-metadata.json              # children_ids: 001-invoices, invoicing
+├── 001-invoices/
+│   ├── spec.md
+│   └── ...
+├── invoicing/                       # declared sub-track
+│   ├── description.json             # level: "sub-track"
+│   ├── graph-metadata.json          # parent_id: billing
+│   ├── 001-numbering/
+│   │   ├── spec.md
+│   │   └── ...
+│   └── 002-credits/
+└── z_archive/
+```
+
 ---
 
-## 7. RELATED RESOURCES
+## 7. HOST REPOSITORY TRIGGER INDEX
+
+The packaged index at `runtime/data/trigger-index.json` is the default every lookup reads. A host repository that vendors Skilled can build an index over its own docs at `.speckit-index/trigger-index.json`. Nothing selects that file on its own, so the host passes it with `--index`.
+
+Generate from the host root:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
+  --repo-root . \
+  --out .speckit-index/trigger-index.json
+```
+
+Call it from the host's Gate 1 lookup:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+  --index .speckit-index/trigger-index.json \
+  --json -- "<prompt>"
+```
+
+Exit `0` means candidates, `1` a clean miss and `2` a bad invocation or an unreadable index. `--out` alone writes the corpus manifest, diagnostics and phrase variants beside the index. Check freshness against the same file:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
+  --check \
+  --repo-root . \
+  --out .speckit-index/trigger-index.json
+```
+
+Without `--index`, the lookup keeps reading the packaged index.
+
+---
+
+## 8. RELATED RESOURCES
 
 - [spec-kit-docs.json](../../templates/spec-kit-docs.json) - Level contract resolved by create.sh
 - [Template Guide](../templates/template-guide.md)
