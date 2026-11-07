@@ -6,16 +6,17 @@
     "phase",
     "concise-release-format"
   ],
-  "lastUpdated": "2026-11-05T21:47:48.744Z",
+  "lastUpdated": "2026-11-07T05:11:15.293Z",
   "specId": "005",
   "folderSlug": "concise-release-format",
   "parentChain": [
     "sk-doc",
     "055-changelog-system"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "05-11-26_21-31__deep-research-5-iterations-cli-pi-deepseek-v4-1.md",
-    "05-11-26_22-47__researched-5-iterations-deepseek-v4-1-flash-max.md"
+    "05-11-26_22-47__researched-5-iterations-deepseek-v4-1-flash-max.md",
+    "07-11-26_06-11__repaired-five-decision-source-keys-that-a-shell.md"
   ]
 }

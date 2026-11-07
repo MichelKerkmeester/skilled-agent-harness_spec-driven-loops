@@ -50,7 +50,7 @@ _memory:
 Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
 
 ### Q001
-<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78oolu_01FAT8B3vxXDTy33zeNDYoVM:1 -->
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01FAT8B3vxXDTy33zeNDYoVM:1 -->
 
 Question:
 ```text
@@ -69,7 +69,7 @@ Research, then build
 ```
 
 ### Q002
-<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78oolu_01PBrWRqD2K1M6ytAMT1Y9yP:0 -->
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01PBrWRqD2K1M6ytAMT1Y9yP:0 -->
 
 Question:
 ```text
@@ -89,7 +89,7 @@ Maybe take best from both
 ```
 
 ### Q003
-<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78oolu_01PBrWRqD2K1M6ytAMT1Y9yP:1 -->
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01PBrWRqD2K1M6ytAMT1Y9yP:1 -->
 
 Question:
 ```text
@@ -127,7 +127,7 @@ Drop it (Recommended)
 ```
 
 ### Q005
-<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78oolu_01PBrWRqD2K1M6ytAMT1Y9yP:3 -->
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01PBrWRqD2K1M6ytAMT1Y9yP:3 -->
 
 Question:
 ```text
@@ -146,7 +146,7 @@ Optional slot (Recommended)
 ```
 
 ### Q006
-<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78oolu_01DSyEqsE8wHK2pg9tNctV7u:1 -->
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01DSyEqsE8wHK2pg9tNctV7u:1 -->
 
 Question:
 ```text
