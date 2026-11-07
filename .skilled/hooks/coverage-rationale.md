@@ -13,7 +13,7 @@ contextType: "reference"
 
 # Hook Coverage Rationale: Why a Runtime Lacks a Concern
 
-The coverage is uneven because the seven runtimes have different event surfaces and extension models; a concern's adapter appears only where it can attach and where it isn't already handled elsewhere.
+The coverage is uneven because the eight runtimes have different event surfaces and extension models. A concern's adapter appears only where it can attach and where it isn't already handled elsewhere.
 
 ---
 
@@ -23,7 +23,7 @@ The coverage is uneven because the seven runtimes have different event surfaces 
 
 A concern gets an adapter on a runtime only when three things line up: the runtime **fires an event** the concern needs, the concern **isn't already handled** by another adapter there, and the runtime's extension model **wires it as its own entry** rather than bundling it.
 
-**Most visible asymmetry is the third one — a factoring difference between three extension models, not a capability gap.** A runtime that "lacks" a concern is usually running the same logic, just folded into a different adapter. The rare *real* capability gaps (Codex has no permission event, and its agent-spawn payload is encrypted) are flagged as such below.
+**Most visible asymmetry is the third one: a factoring difference between the four extension models, not a capability gap.** A runtime that "lacks" a concern is usually running the same logic, just folded into a different adapter. The rare *real* capability gaps (Codex has no permission event, and its agent-spawn payload is encrypted) are flagged as such below.
 
 To scan: read the **bold line** under each concern in Section 3 for the core reason; the sentence after it is the evidence. The per-cell grid lives in [`README.md`](./README.md).
 
@@ -31,14 +31,14 @@ Kill-switch names and wiring status live in the [`README.md` kill-switch index](
 
 ---
 
-## 2. THE THREE EXTENSION MODELS
+## 2. THE FOUR EXTENSION MODELS
 
 Almost every asymmetry falls out of which of these a runtime uses:
 
 - **Config-invoked discrete hooks — Claude, Codex, Cursor, Devin.** Named events (`SessionStart`, `Stop`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `PreCompact`; Claude/Devin also `SessionEnd`/`PermissionRequest`) each run one file per matcher. The matcher runs a **shell command**, so every concern — including standalone `.sh` guards — is wired as its own discrete entry. → many small per-concern folders.
 - **In-process event-bus plugins — OpenCode.** One `event` handler per plugin, branching on `eventType`. Concern logic is factored **per plugin** (`system-skill-advisor`, `opencode-goal`, …); there are no per-event files. → session work distributed across plugins, few folders.
 - **TS session-bound extensions — Pi.** Extensions register on `session_start`/`session_compact`/`prompt`/`tool_call`/`turn_end` and can shell out via `ctx.exec()`. Pi bundles several SessionStart advisories into one extension, but independently gates `git-worktree-guard`, `git-hooks-check`, `dist-freshness`, and `hook-install` by their own concerns. → few folders.
-- **One Cordis plugin bundle: DSH.** The guards patch inserts `.dsh/plugins/repo-guards/index.mjs`, which registers one adapter per concern on harness events (`agent/created`, `agent/pre-step`, `tools/pre-execute`, `tools/post-execute`, `tools/result`, `agent/turn-stopping`, `agent/status`, `agent/disposed` and the `session/event` feed). Each adapter's real file sits in a `dsh/` folder in this tree or its owning skill, and the bundle reaches it through a link, the layout Pi uses. Like Pi, DSH bundles the session-start guards into one adapter and gates each by its own concern. The same bundle runs in two compositions. A fan-out leaf adds the lineage patch, whose marker row turns the writer and side-effect adapters off (advisor, goal management, session-start guards, stop autosave). An interactive session runs them all.
+- **One plugin bundle per host: DSH (Cordis) and Hermes.** DSH's guards patch inserts `.dsh/plugins/repo-guards/index.mjs`, which registers one adapter per concern on DSH events (`agent/created`, `agent/pre-step`, `tools/pre-execute`, `tools/post-execute`, `tools/result`, `agent/turn-stopping`, `agent/status`, `agent/disposed` and the `session/event` feed). Each adapter's real file sits in a `dsh/` folder in this tree or its owning skill, and the bundle reaches it through a link, the layout Pi uses. Like Pi, DSH bundles the session-start guards into one adapter and gates each by its own concern. The same bundle runs in two compositions. A fan-out leaf adds the lineage patch, whose marker row turns the writer and side-effect adapters off (advisor, goal management, session-start guards, stop autosave). An interactive session runs them all. Hermes has the same shape: one Python plugin at `.hermes/plugins/repo-guards/` registers one callback per Hermes hook and calls the same cores as subprocesses.
 
 ---
 
@@ -52,7 +52,7 @@ The others wire one file per boundary (`SessionStart`/`Stop`/`PreCompact`) — t
 
 ### `git-worktree-guard` and `git-hooks-check`: folders on **claude, codex, cursor, devin**
 **OpenCode and Pi run the same `.sh` guards too — just bundled into one session-start adapter instead of a folder per guard.**
-OpenCode's `session-cleanup` plugin executes `worktree-guard.sh` (`session-cleanup.js:32`); Pi's `session-start-advisories.ts` runs them via `ctx.exec()` (`.pi/extensions/README.md:66`). Not a coverage gap, a factoring artifact. DSH bundles them the same way: `session-start-advisories.mjs` runs both on a fresh interactive session, each behind its own concern switch.
+OpenCode's `session-cleanup` plugin executes `worktree-guard.sh` (`session-cleanup.js:36`); Pi's `session-start-advisories.ts` runs them via `ctx.exec()` (`.pi/extensions/README.md:77`). Not a coverage gap, a factoring artifact. DSH bundles them the same way: `session-start-advisories.mjs` runs both on a fresh interactive session, each behind its own concern switch.
 
 ### `dist-freshness`: folder on **all but pi and dsh**
 **Pi runs the same staleness check, bundled into `session-start-advisories`; it just has no discrete folder.**
@@ -76,7 +76,7 @@ Codex fires **no** permission event at all (real capability gap); Claude *has* `
 
 ### `task-dispatch`: folder on **all but codex**
 **Codex fires `PreToolUse` on its `spawn_agent` tool, but the payload hides what the guard checks.**
-Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a subagent `tool_call`. A live codex-cli 0.160 capture shows the spawn reaching `PreToolUse` as `collaborationspawn_agent` with `tool_input` holding `task_name`, `fork_turns` and a `message` that is encrypted (`gAAAAA...`). The guard's mode check needs the prompt, and its loop check would read every loop-executor spawn as one no command drove, so an adapter could only stay silent or warn falsely. Codex is n/a until a payload carries the prompt in clear text. (Pi is `~ partial`: direct `subagent` calls only.) DSH guards `subagent` and `subagent_fork` at `tools/pre-execute`. A call nested in a `workflow` run goes through the same executor call that raises that event (`dsh-tools` `pipeline.js`), so the guard sees it too. That is read from the installed code, not yet observed on a live nested dispatch.
+Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a subagent `tool_call`. A live codex-cli 0.160 capture shows the spawn reaching `PreToolUse` as `collaborationspawn_agent` with `tool_input` holding `task_name`, `fork_turns` and a `message` that is encrypted (`gAAAAA...`). The guard's mode check needs the prompt, and its loop check would read every loop-executor spawn as one no command drove, so an adapter could only stay silent or warn falsely. Codex is n/a until a payload carries the prompt in clear text. (Pi is `~ partial`: direct `subagent` calls only.) DSH evaluates `subagent` and `subagent_fork` at `tools/pre-execute`, but its guard only logs warnings and audits, so it never denies (`~ partial`). A call nested in a `workflow` run goes through the same executor call that raises that event (`dsh-tools` `pipeline.js`), so the guard sees it too. That is read from the installed code, not yet observed on a live nested dispatch.
 
 The Claude-only `fable-subagent-guard.mjs` stays single-runtime by design: it guards Claude Code's own Agent-tool model override and its `fork` sub-agent type, both of which inherit the parent's Fable model; no other runtime has those semantics to guard.
 
@@ -86,31 +86,31 @@ Per the goal contract: OpenCode has `opencode-goal` + `/goal-opencode`, Pi has a
 
 ### `injection-screen`: folders on **claude, devin, opencode, pi, dsh**
 **Only Cursor and Codex cannot carry it, because no hook on either ever sees the fetched page text.**
-Cursor's `postToolUse` payload for its `Fetch` tool carries only `url`, `status_code` and `content_length` (probed on the cursor-agent 2026.09.28 build), so there is no text to screen; Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a page. The four wired runtimes share `lib/classifier-injection-advisory.mjs`: Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin and drains the advisory through the next `experimental.chat.system.transform`, and Pi screens `fetch_content` at `tool_result`. DSH screens `web_fetch`, `web_search` and `mcp__*` results at `tools/post-execute`. Hermes runs the Devin adapter from `transform_tool_result` for `web_extract`, handing it a `webfetch`-shaped payload.
+Cursor's `postToolUse` payload for its `Fetch` tool carries only `url`, `status_code` and `content_length` (probed on the cursor-agent 2026.09.28 build), so there is no text to screen; Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a page. The five wired runtimes share `lib/classifier-injection-advisory.mjs`: Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin and drains the advisory through the next `experimental.chat.system.transform`, and Pi screens `fetch_content` at `tool_result`. DSH screens `web_fetch`, `web_search` and `mcp__*` results at `tools/post-execute`. Hermes runs the Devin adapter from `transform_tool_result` for `web_extract`, handing it a `webfetch`-shaped payload.
 
 ### `decision-capture`: live on **claude, devin, opencode, pi, dsh**; save-time on **codex**; **cursor** unverified
 **Codex captures at save time by choice, and Cursor has never shown an answered question to capture.**
 Codex's rollout holds the same answered `request_user_input` calls a `PostToolUse` hook would see (`.skilled/skills/.state/decision-capture/probe/codex.json`), and `sweep-codex.mjs` copies them into the queue when a save runs, so every answer still reaches the record. A live hook would add a fifth live mapping to keep in step with that sweep, and its only gain is a live pending-answer reminder; without a save, neither path writes a record. Cursor stays `unverified` because no probe has observed a Cursor question tool returning an answer, and an adapter is registered only after a probe shows one. The pending-answer reminder reaches the operator on Claude, OpenCode and Pi; Devin computes it but discards Stop-hook output, so no reminder can reach a Devin operator. DSH queues an `ask_user_question` answer at `tools/result`, and a late answer to a timed question from its steered `user-question-reply` message. `sweep-dsh.mjs` recovers both from the session log at save time. DSH has no operator notice a plugin can raise, so the reminder is injected when the agent goes idle and rides with the next prompt.
 
-### `git-preflight`: covered on **all seven** (not a gap)
+### `git-preflight`: covered on **all eight** (not a gap)
 **The four editors share one `shared/` adapter instead of a copy each; only opencode, pi and dsh carry runtime-native subfolders.**
-A folder scan shows just `opencode/`, `pi/` and `dsh/` because the editor adapter is centralized in `shared/git-preflight-advisory.mjs`.
+A folder scan shows just `opencode/`, `pi/` and `dsh/` because the editor adapter is centralized in `shared/git-preflight-advisory.mjs`. Hermes runs the same shared adapter from its `repo-guards` plugin.
 
-### `git-message-gate`: covered on **all seven**, and in Hermes
+### `git-message-gate`: covered on **all eight**, Hermes included
 **Same shape as `git-preflight`: the four editors share the `shared/` gate, and only opencode, pi and dsh carry runtime-native subfolders.**
 Claude, Codex, Cursor and Devin run `shared/git-message-gate.mjs` through the hook registry. The OpenCode plugin, the Pi extension and the DSH adapter import its `evaluateCommand`, and the Hermes `repo-guards` plugin runs it from `pre_tool_call`.
 
-### `live-sync` (`git-live-follow` and `git-primary-reconcile`): covered on **all seven**, folders on all but opencode
+### `live-sync` (`git-live-follow` and `git-primary-reconcile`): covered on **all eight**, folders on all but opencode and hermes
 **OpenCode and Pi run both `.sh` scripts too — one bundled into a session-start extension, one launched by a plugin — instead of a discrete folder per runtime.**
 Claude, Codex, Cursor and Devin each hold a relative symlink per script and wire it at SessionStart (`git-live-follow.sh --start`; `git-primary-reconcile.sh` detached in the background). Pi runs both inside `session-start-advisories.ts` via `ctx.exec()`; OpenCode launches both from its `session-cleanup` plugin. Hermes runs both as session-start guards in its `repo-guards` plugin. DSH runs both inside `session-start-advisories.mjs`, primary reconcile detached, and only in an interactive session: a fan-out leaf must not start background git work in the operator's checkout. Not a coverage gap, a factoring artifact. The two scripts are the follow and converge legs of the same live-sync loop, so they share this rationale.
 
 ### `session-relaunch` on **dsh**: command trigger only
 **DSH gets the `/speckit:handoff` prompt but no automatic hop, because `skilled-loop` launches no DSH session.**
-The wrapper's runtime list in `.skilled/bin/skilled-loop` names Claude, Pi, OpenCode, Codex, Hermes and Devin, and the per-runtime enable switch list in `shared/hook-flags.cjs` has no DSH entry, so no relaunch could be armed. The handoff command reaches DSH as `.dsh/prompts/speckit-handoff.md`. A fan-out leaf is one-shot, and the outer deep-loop runner owns its restarts.
+The wrapper's runtime list in `.skilled/bin/skilled-loop` names Claude, Pi, OpenCode, Codex, Hermes, Devin and Cursor, and the per-runtime enable switch list in `shared/hook-flags.cjs` has no DSH entry, so no relaunch could be armed. The handoff command reaches DSH as `.dsh/prompts/speckit-handoff.md`. A fan-out leaf is one-shot, and the outer deep-loop runner owns its restarts.
 
 ### `git` (commit hooks): **no runtime subfolders**
 **They fire from git itself, independent of any AI runtime.**
-`pre-commit`/`pre-push`/`commit-msg` install into `.git/hooks` (or `core.hooksPath`), so there is no per-runtime axis to populate.
+`pre-commit` is the only hook this folder installs, into `.git/hooks` (or `core.hooksPath`), so there is no per-runtime axis to populate.
 
 ---
 

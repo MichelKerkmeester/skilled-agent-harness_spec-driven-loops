@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi, Hermes and DeepSeek Harness) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
-**Kill-switches.** Every concern honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships off: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, and `SYSTEM_SESSION_RELAUNCH_ENABLED` decides otherwise. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index); this contract does not duplicate it.
+**Kill-switches.** Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch plus its canonical `SYSTEM_<CONCERN>_DISABLED` switch, and every concern except session relaunch is default-on. Session relaunch ships off: a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime when it holds a value, and `SYSTEM_SESSION_RELAUNCH_ENABLED` decides otherwise. Guard resolution is fail-open, so a resolver failure does not block the underlying runtime event. The single source for concern names, aliases, effects, and wiring status is the [`README.md` kill-switch index](./README.md#kill-switch-index); this contract does not duplicate it.
 
 ---
 
@@ -63,7 +63,7 @@ gate blocks violations.
 
 - **Trigger:** every user prompt submission. The **constant directive** is delivered in full on the first proven message and after lifecycle boundaries. Route-only delivery requires confirmed primitive identity, valid transcript evidence, a matching versioned record, stable generation/epoch state, and an atomically advanced transcript high-water mark. Registered session/compaction owners advance the durable epoch through the boundary bridge; unidentified or failed boundaries poison older receipts until a successful reset clears the fail-safe marker. The file-backed store uses a directory-descriptor-anchored helper and defers full-delivery receipts until stdout handoff. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. Missing evidence, contention, insecure state, helper/platform failure, fallback policy, or any error also stays full. Canonical rule: `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`; durable state: `directive-lifecycle-file-store.ts` plus `directive-lifecycle-store.py`; OpenCode mirrors the in-process semantics.
 - **Canonical owner:** `.skilled/skills/system-skill-advisor/runtime/lib/render.ts` (`renderAdvisorBrief`, `HYGIENE_DIRECTIVE`) owns the shared directive text used by runtime adapters. The OpenCode plugin (`.opencode/plugins/system-skill-advisor.js`) is the fallback emitter: it mirrors the same directive locally and delegates to the canonical renderer when the compiled module is available.
-- **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`system-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` forwards the shared context onto the visible prompt via the `input` event's `{action:"transform"}`).
+- **Channel per runtime:** Claude Code `[SYS]` (`user-prompt-submit.js` -> `hookSpecificOutput.additionalContext`). Cursor/Devin `[SYS]` (same shim, re-wrapped into each CLI's own envelope). Codex `[SYS]` (mirror of the Claude shim). OpenCode `[SYS]` (`system-skill-advisor.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`prompt-advisor.ts` forwards the shared context onto the visible prompt via the `input` event's `{action:"transform"}`). Hermes `[SYS]` (`pre_llm_call` returns the brief as `context`, appended to the turn's user message). DSH `[SYS]` (`agent/pre-step`, interactive only, as an appended `repo-guards` message).
 - **Pi-only directive ownership:** the Pi adapter forwards the shared advisor context onto the visible prompt but injects no Pi-only directive of its own; the current-turn `cli-*` override policy is enforced at the tool-call boundary by `dispatch-preflight-lint.ts`, which never writes into the prompt. The Pi adapter is a forwarder, not an owner, of the shared directive; it is not emitted by `render.ts` or the OpenCode bridge.
 - **See also:** [`skill-advisor-hook.md`](../skills/system-skill-advisor/hooks/skill-advisor-hook.md) for setup and validation. This file only documents the injected content.
 
@@ -78,7 +78,7 @@ Do not stop to ask it now; ask it once when you are about to write, then continu
 
 - **Trigger:** a user prompt the classifier scores as a probable file mutation opens the session gate; the menu itself reaches the operator at the first non-exempt Write/Edit, or through Pi's interactive dialog, and not again for that session unless the gate re-arms.
 - **Owning module:** `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent` opens the gate; `evaluateMutation` composes `GATE_3_MUTATION_NOTICE`; `recordGate3NoticeDelivered` persists the once-per-session marker).
-- **Channel per runtime:** Claude/Codex/Devin `[SYS]` (`spec-gate-enforce.mjs` -> `additionalContext` on the first in-gate advise; a deny reason is `GATE_3_DENY_DETAIL`, which embeds the same notice). Cursor `[SYS]` (`agent_message` on advise, `user_message` on deny). OpenCode `[SYS]` (`system-spec-gate.js` pushes the deferral instruction through `experimental.chat.system.transform` once; its thrown deny reason carries `GATE_3_DENY_DETAIL`). Pi `[MSG]` only when the session has no UI (`spec-gate-classify.ts` appends the deferral instruction to the visible prompt); a dialog-capable Pi session gets an interactive dialog instead of any text, and its one blocked call carries the notice in the retry reason.
+- **Channel per runtime:** Claude/Codex/Devin `[SYS]` (`spec-gate-enforce.mjs` -> `additionalContext` on the first in-gate advise; a deny reason is `GATE_3_DENY_DETAIL`, which embeds the same notice). Cursor `[SYS]` (`agent_message` on advise, `user_message` on deny). OpenCode `[SYS]` (`system-spec-gate.js` pushes the deferral instruction through `experimental.chat.system.transform` once; its thrown deny reason carries `GATE_3_DENY_DETAIL`). Pi `[MSG]` only when the session has no UI (`spec-gate-classify.ts` appends the deferral instruction to the visible prompt); a dialog-capable Pi session gets an interactive dialog instead of any text, and its one blocked call carries the notice in the retry reason. Hermes `[SYS]`: `pre_llm_call` classifies the prompt, and the Gate-3 notice is appended to the result of the first unenforced write. Under `SYSTEM_SPEC_GATE_ENFORCE=1`, `pre_tool_call` blocks that write instead. DSH classifies at `agent/pre-step`, and `tools/pre-execute` returns an `ask` verdict with the menu on the first undelivered write, or a `deny` under enforcement.
 
 ### Goal / Dist-Freshness Context (OpenCode only)
 
@@ -88,7 +88,7 @@ Do not stop to ask it now; ask it once when you are about to write, then continu
 - **Owning modules:** `opencode-goal.js`, `system-dist-freshness-guard.js` (see their own entries in [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md) §5).
 - **Channel:** `[SYS]` only. Both use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
 
-### Cross-Runtime Active-Goal Brief (Cursor / Pi / Devin)
+### Cross-Runtime Active-Goal Brief (Cursor / Pi / Devin / DSH / Hermes)
 
 **Injects:** the passive session-goal steering block, marker- and field-compatible with opencode-goal's OpenCode injection but rendered by the runtime-neutral core (`.skilled/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. When the session is bound to a packet, the `objective:` and `goal_prompt:` content is projected from that packet's `goal.md` durable slice on every turn (frontmatter never included), and one `[goal_resend_pending] ...` line follows the block while the operator copy is behind the file. Verbatim shape:
 
@@ -112,9 +112,9 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 [/active_goal]
 ```
 
-- **Trigger per runtime:** Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`).
-- **Owning modules:** the shared core `.skilled/hooks/goal/lib/goal-core.cjs`, the slice module `lib/goal-slice.cjs`, plus the per-runtime adapters under `.skilled/hooks/goal/{cursor,devin,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
-- **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Devin `[SYS]` (`SessionStart` and `UserPromptSubmit` `hookSpecificOutput.additionalContext`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 deferral instruction, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
+- **Trigger per runtime:** Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`). Devin `SessionStart` and `UserPromptSubmit`. DSH `agent/pre-step` (the brief, on each operator turn, interactive only) and `agent/created` (the packet slice). Hermes `on_session_start` binds the packet to the session, and the system-prompt section renders the brief at session start.
+- **Owning modules:** the shared core `.skilled/hooks/goal/lib/goal-core.cjs`, the slice module `lib/goal-slice.cjs`, plus the per-runtime adapters under `.skilled/hooks/goal/{cursor,devin,pi,dsh}/`, plus the Hermes plugin's bind and system-prompt section in `.hermes/plugins/repo-guards/__init__.py`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
+- **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Devin `[SYS]` (`SessionStart` and `UserPromptSubmit` `hookSpecificOutput.additionalContext`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 deferral instruction, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`). DSH `[SYS]`: `agent.inject` delivers the packet slice at `agent/created` and the brief at `agent/pre-step`, and the verify and status notes at `agent/turn-stopping` and `agent/status` (interactive only). Hermes `[SYS]`: the system-prompt section, frozen once at session start.
 
 ---
 
@@ -125,8 +125,10 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 | Session relaunch | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
 | Session relaunch | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
 | Session relaunch | Hermes: `pre_llm_call` through the `repo-guards` plugin, fed by `post_api_request` usage | `context` appended to the turn's user message | Once per reached threshold level in a session |
+| Session relaunch | Pi: `message_end` decides and `agent_end` delivers the held nudge | `pi.sendMessage` with `display: false` | Once per reached threshold level in a session |
+| Session relaunch | OpenCode: `experimental.chat.system.transform` pushes the pending nudge, fed by message events | an entry in the system array | Once per reached threshold level in a session |
 
-The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. The Hermes nudge rides the plugin's user-message channel, which is `[SYS]`-equivalent: the text reaches the model with the turn it precedes and is not rendered as a separate chat bubble. Hermes fires `on_session_end` after every message, so the arm side runs there while `on_session_finalize` and `on_session_reset` drop the session's recorded usage. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor and Devin carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
+The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. The Hermes nudge rides the plugin's user-message channel, which is `[SYS]`-equivalent: the text reaches the model with the turn it precedes and is not rendered as a separate chat bubble. Hermes fires `on_session_end` after every message, so the arm side runs there while `on_session_finalize` and `on_session_reset` drop the session's recorded usage. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor, Devin and DSH carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
 
 ---
 
@@ -140,7 +142,7 @@ Fire around a specific tool call, not the whole turn.
 
 - **Trigger:** a mutating tool call (`write`/`edit`) the shared gate evaluates as denied. `bash` is never denied, only advised.
 - **Owning module:** `spec-gate-core.mjs` (`evaluateMutation`).
-- **Channel:** `[BLOCK]` everywhere. Claude/Cursor/Devin/Codex return `hookSpecificOutput.permissionDecision: "deny"` plus `permissionDecisionReason`. Pi's `spec-gate-enforce.ts` returns `{block: true, reason}`. OpenCode's `system-spec-gate.js` denies via `tool.execute.before`.
+- **Channel:** `[BLOCK]` everywhere. Claude/Cursor/Devin/Codex return `hookSpecificOutput.permissionDecision: "deny"` plus `permissionDecisionReason`. Pi's `spec-gate-enforce.ts` returns `{block: true, reason}`. OpenCode's `system-spec-gate.js` denies via `tool.execute.before`. Hermes's `pre_tool_call` returns a `block` action, and DSH's `spec-gate-enforce` returns a `deny` verdict at `tools/pre-execute`.
 
 ### Dispatch Preflight Lint
 
@@ -153,7 +155,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 
 - **Trigger:** a bash tool call matching a known CLI-dispatch shape (`opencode run`, `claude -p`, etc.).
 - **Owning module:** `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, relocated from `cli-external-orchestration/cli-opencode/scripts/lib/` since it has no real dependency on `cli-opencode`'s other content.
-- **Channel:** the block path is `[BLOCK]`. The warn-only path is `[SYS]` (`additionalContext`) on Claude/Cursor/Devin/Codex/Pi, or a bounded system-transform append on OpenCode.
+- **Channel:** the block path is `[BLOCK]`. The warn-only path is `[SYS]` (`additionalContext`) on Claude/Cursor/Devin/Codex/Pi, or a bounded system-transform append on OpenCode. DSH's `dispatch-preflight-lint` returns a `deny` at `tools/pre-execute` for a blocking rule. Hermes blocks at `pre_tool_call` on a deny, and its warn-only findings are not forwarded.
 
 ### MCP Route Guard
 
@@ -161,7 +163,7 @@ Dispatch blocked by cli-opencode hard-rule(s):
 
 - **Trigger:** a native (non-Code-Mode) MCP tool call matching a manual Code Mode already covers.
 - **Owning module:** `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs`, relocated from `mcp-code-mode/runtime/lib/`.
-- **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex/Pi (`additionalContext`/`reason`). `[LOG]`-only on OpenCode: `mcp-route-guard.js`'s own README entry says explicitly it "writes advisory logs only and never rejects a call," so this is the one guard genuinely invisible to the OpenCode model, not just invisible to the human.
+- **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex/Pi (`additionalContext`/`reason`). `[LOG]`-only on OpenCode: `mcp-route-guard.js`'s own README entry says explicitly it "writes advisory logs only and never rejects a call," so this is the one guard genuinely invisible to the OpenCode model, not just invisible to the human. DSH `[BLOCK]` at `tools/pre-execute`: a routing warning becomes the deny reason, because a dsh pre-execute hook has no advisory channel, a Code Mode tool outside the mount allowlist is denied, and so is a core failure. Hermes `[SYS]`: `transform_tool_result` appends the advisory to the tool result.
 
 ### Dispatch Audit
 
@@ -175,15 +177,15 @@ Dispatch blocked by cli-opencode hard-rule(s):
 
 - **Trigger:** a `run_subagent`/Task-tool/`subagent` dispatch.
 - **Owning module:** `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, relocated from `system-deep-loop/runtime/lib/deep-loop/`.
-- **Channel:** `[BLOCK]` on deny (same envelope shape as spec-gate enforcement). Pi's `.pi/extensions/task-dispatch-guard.ts` is wired on the native `subagent` tool and returns the guard's text as an advisory reason, never a block (`~ partial`: direct `subagent` calls only; workflow-nested `runs.run` dispatches are not covered).
+- **Channel:** `[BLOCK]` on deny (same envelope shape as spec-gate enforcement). Pi's `.pi/extensions/task-dispatch-guard.ts` is wired on the native `subagent` tool and returns the guard's text as an advisory reason, never a block (`~ partial`: direct `subagent` calls only; workflow-nested `runs.run` dispatches are not covered). DSH's `task-dispatch-guard` is `[LOG]` only: it writes warnings and audits to the guard's state folder and always calls `next()`, so it never denies. Hermes `[BLOCK]` on a denied `delegate_task` at `pre_tool_call`, with the guard's guidance appended to the tool result.
 
 ### Injection Screen
 
 **Injects:** one advisory line naming how many sections of a just-fetched page read as instructions aimed at an agent, the strongest section's position and its probability.
 
-- **Trigger:** a completed fetch tool call: `WebFetch` (Claude Code), `webfetch` (Devin, OpenCode), `fetch_content` (Pi), `web_extract` (Hermes). The fetch result itself always reaches the model unchanged.
+- **Trigger:** a completed fetch tool call: `WebFetch` (Claude Code), `webfetch` (Devin, OpenCode), `fetch_content` (Pi), `web_extract` (Hermes), and `web_fetch`, `web_search` and `mcp__*` results (DSH). The fetch result itself always reaches the model unchanged.
 - **Owning module:** `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs`, over `lib/classifier-screen-fetched-text.mjs`; each runtime adapter keeps only its own event, its fetch tool's name and its delivery channel.
-- **Channel per runtime:** Claude Code `[SYS]` (`PostToolUse` -> `hookSpecificOutput.additionalContext`). Devin `[SYS]` (matcher `^webfetch$` -> `additionalContext`). OpenCode `[SYS]` (`tool.execute.after` on `webfetch` buffers the line; the next `experimental.chat.system.transform` — the model call that reads the fetch result — drains it). Pi `[SYS]` (the advisory text block is appended to the `fetch_content` tool result). Hermes `[SYS]` (the `repo-guards` plugin runs the Devin adapter from `transform_tool_result` for `web_extract`).
+- **Channel per runtime:** Claude Code `[SYS]` (`PostToolUse` -> `hookSpecificOutput.additionalContext`). Devin `[SYS]` (matcher `^webfetch$` -> `additionalContext`). OpenCode `[SYS]` (`tool.execute.after` on `webfetch` buffers the line; the next `experimental.chat.system.transform` — the model call that reads the fetch result — drains it). Pi `[SYS]` (the advisory text block is appended to the `fetch_content` tool result). Hermes `[SYS]` (the `repo-guards` plugin runs the Devin adapter from `transform_tool_result` for `web_extract`). DSH `[SYS]` (`additionalContexts` on the tool result at `tools/post-execute`).
 - **Why Cursor and Codex are absent:** Cursor's `postToolUse` payload for the `Fetch` tool carries only `url`, `status_code` and `content_length`, so no page text ever reaches a hook; Codex's only web tool is the provider-hosted `web_search`, which runs on the model provider's side, so no local hook ever sees a fetched page.
 - **Kill-switch:** `SYSTEM_INJECTION_SCREEN_DISABLED`, plus the master `SYSTEM_HOOKS_DISABLED`. The Jev feature switches also turn it off: `JEV_FEATURE_INJECTION_SCREEN=0` and `JEV_FEATURES=0`. It stays silent until `jev auth status` passes, and any error exits 0 with no output.
 
@@ -200,7 +202,7 @@ Violations in src/foo.ts:
 
 - **Trigger:** a completed `edit`/`write` tool call.
 - **Owning module:** `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs`, relocated from `sk-code/sk-code-quality/scripts/lib/`.
-- **Channel:** `[SYS]` on Claude and Devin: `claude-posttooluse.cjs` and `devin/post-edit-quality.cjs` return the findings in a `PostToolUse` envelope as `hookSpecificOutput.additionalContext`, and a clean edit stays silent. Pi's `post-edit-quality.ts` appends them to the tool result (`ToolResultEventResult.content`) and OpenCode's `sk-code-post-edit-quality.js` drains them on the next `experimental.chat.system.transform`. Codex's `post-edit-quality.cjs` still writes plain stdout, and its `PostToolUse` stdout handling is not independently verified in this repo; every other adapter's findings are confirmed to reach the assistant.
+- **Channel:** `[SYS]` on Claude and Devin: `claude-posttooluse.cjs` and `devin/post-edit-quality.cjs` return the findings in a `PostToolUse` envelope as `hookSpecificOutput.additionalContext`, and a clean edit stays silent. Pi's `post-edit-quality.ts` appends them to the tool result (`ToolResultEventResult.content`) and OpenCode's `sk-code-post-edit-quality.js` drains them on the next `experimental.chat.system.transform`. Cursor's `post-tool-use.mjs` proxies the Claude check for `Write`, Hermes runs the Devin adapter from `transform_tool_result`, and DSH returns `additionalContexts` at `tools/post-execute`. Codex's `post-edit-quality.cjs` still writes plain stdout, and its `PostToolUse` stdout handling is not independently verified in this repo; every other adapter's findings are confirmed to reach the assistant.
 
 ---
 
@@ -212,9 +214,9 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 **Injects:** a startup or resume brief: a session-context surface on cold start, or a cached compaction/resume payload.
 
-- **Trigger:** `session_start` (Pi) / `SessionStart` (Claude/Cursor/Devin/Codex).
+- **Trigger:** `session_start` (Pi) / `SessionStart` (Claude/Cursor/Devin/Codex) / `agent/created` (DSH). Hermes renders its session-context section into the system prompt at session start.
 - **Owning module:** `system-spec-kit/runtime/hooks/claude/session-prime.ts`. Emits **plain text**, not a JSON envelope. Every proxy that wraps it (`emitDevinContext`, Pi's `session-start-context.ts`) constructs the envelope on the way out. `session-prime.js` itself does not.
-- **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex (SessionStart context is not rendered as a chat bubble by default). Pi's bridge delivers it via `pi.sendMessage()`, which is confirmed live-visible to the model (a live session's reply referenced content only present in this injected text), but rendered with `display: false`, so it is **not** visible to the human by default either. Pi's `[MSG]` behavior is specific to the `input`-event transform, not every injection path.
+- **Channel:** `[SYS]` on Claude/Cursor/Devin/Codex (SessionStart context is not rendered as a chat bubble by default). Pi's bridge delivers it via `pi.sendMessage()`, which is confirmed live-visible to the model (a live session's reply referenced content only present in this injected text), but rendered with `display: false`, so it is **not** visible to the human by default either. Pi's `[MSG]` behavior is specific to the `input`-event transform, not every injection path. DSH `[SYS]` via `agent.inject` of the session-prime output. Hermes `[SYS]` as a system-prompt section, frozen once per session.
 
 ### Session Stop / Cleanup
 
@@ -228,31 +230,31 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 - **Channel:** `[NONE]` at fire time. Becomes `[SYS]` one event later, through Session Start Context.
 
-### Post-Compaction Recovery (Devin/Pi)
+### Post-Compaction Recovery (Devin/Pi/DSH)
 
 **Injects:** a composed recovery block: retained summary and active spec-folder pointer.
 
-- **Trigger:** `PostCompaction` (Devin) / `session_compact` (Pi). Devin's `PostCompaction` fires *after* compaction with only `session_id` and a possibly-null summary, a materially different contract from Claude's `PreCompact`-then-cached-`SessionStart` chain, per `post-compaction.cjs`'s own header comment.
-- **Owning module:** `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`. Pi's `session-compact-context.ts` is a native port of the same recovery chain, not a proxy.
-- **Channel:** `[SYS]` (Devin's `hookSpecificOutput.additionalContext`). Pi via `pi.sendMessage({display: false})`, same invisible-to-human caveat as Session Start Context.
+- **Trigger:** `PostCompaction` (Devin) / `session_compact` (Pi) / `session/event` `compaction/end` (DSH). Devin's `PostCompaction` fires *after* compaction with only `session_id` and a possibly-null summary, a materially different contract from Claude's `PreCompact`-then-cached-`SessionStart` chain, per `post-compaction.cjs`'s own header comment.
+- **Owning module:** `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`. Pi's `session-compact-context.ts` is a native port of the same recovery chain, not a proxy. DSH's `session-compact-context.mjs` injects the session-prime `compact` output.
+- **Channel:** `[SYS]` (Devin's `hookSpecificOutput.additionalContext`). Pi via `pi.sendMessage({display: false})`, same invisible-to-human caveat as Session Start Context. DSH `[SYS]`: `agent.inject` of the session-prime `compact` output.
 
 ### Completion Evidence Sentinel
 
-**Injects:** Pi's `turn_end` adapter queues a model-visible advisory for the next turn with `pi.sendMessage`, `display: false`, and `{ deliverAs: "nextTurn" }`. It stays hidden from human display and does not start a turn immediately. The other adapters record the advisory through their runtime's log and/or stderr channel. All adapters remain advisory-only and never block a turn.
+**Injects:** Pi's `turn_end` adapter queues a model-visible advisory for the next turn with `pi.sendMessage`, `display: false`, and `{ deliverAs: "nextTurn" }`. It stays hidden from human display and does not start a turn immediately. DSH's `completion-evidence` calls `agent.inject` at `agent/turn-stopping`, so the advisory reaches the model. Hermes's `pre_verify` returns a continue message, which keeps the turn going. The other adapters record the advisory through their runtime's log and/or stderr channel. All adapters remain advisory-only and never block a turn.
 
-- **Channel:** Pi model context on the next turn; other adapters use advisory logs and/or stderr, depending on the runtime.
+- **Channel:** Pi model context on the next turn; DSH `agent.inject` and Hermes's `pre_verify` message reach the model as the turn stops; other adapters use advisory logs and/or stderr, depending on the runtime.
 
 ### Permission Request Policy (Devin only)
 
 **Injects:** an allow/deny decision with reason for a `PermissionRequest` event, composing the same `spec-gate-core`/`dispatch-rule-checks` cores the tool-time hooks already use.
 
-- **Channel:** `[BLOCK]`. Not applicable to Pi/OpenCode/Claude/Cursor/Codex. None of them expose a distinct approval-gate event separate from the tool-call-time hooks above. See [`../skills/cli-external-orchestration/cli-pi/references/pi-tools.md`](../skills/cli-external-orchestration/cli-pi/references/pi-tools.md) for why this is a confirmed non-gap rather than a missing bridge.
+- **Channel:** `[BLOCK]`. Not applicable to Pi/OpenCode/Claude/Cursor/Codex/DSH/Hermes. Claude's `PermissionRequest` is already covered by its `PreToolUse` deny, Codex fires no permission event, and Pi, OpenCode, Cursor, DSH and Hermes decide in their tool-call hooks. Hermes's `pre_approval_request` and `post_approval_response` are observers whose return values are ignored, and DSH's `approval/request` carries no tool arguments to judge. See [`../skills/cli-external-orchestration/cli-pi/references/pi-tools.md`](../skills/cli-external-orchestration/cli-pi/references/pi-tools.md) for why this is a confirmed non-gap rather than a missing bridge.
 
 ### Session-Start Advisories (worktree/git-hooks/dist-staleness/codex-hooks checks)
 
-**Injects:** nothing into the model. The warn-only CLI checks run at session start and write a one-line warning to **stderr only**, always exiting 0; the live-sync scripts also run there and act without touching the model.
+**Injects:** nothing into the model on Claude, Cursor, Devin or Codex. The warn-only CLI checks run at session start and write a one-line warning to **stderr only**, always exiting 0. The live-sync scripts also run there and act without touching the model. DSH's `session-start-advisories` collects the warnings and calls `agent.inject` on `agent/created` for a fresh interactive session. Hermes puts them in a system-prompt section. Both reach the model.
 
-- **Channel:** `[LOG]`-equivalent. Visible to a human watching the terminal interactively, or in a runtime's own startup log, but never delivered to the assistant. Pi's bridge (`session-start-advisories.ts`) calls `ctx.ui.notify()`, which is a confirmed no-op in print/headless mode, so even the human-terminal visibility disappears for non-interactive dispatches.
+- **Channel:** `[LOG]`-equivalent on the CLI runtimes. Visible to a human watching the terminal interactively, or in a runtime's own startup log, but never delivered to the assistant. Pi's bridge (`session-start-advisories.ts`) calls `ctx.ui.notify()`, which is a confirmed no-op in print/headless mode, so even the human-terminal visibility disappears for non-interactive dispatches.
 
 ### DeepSeek Harness Channels
 
@@ -301,4 +303,4 @@ The bundle README, [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugi
 - [`../../.opencode/plugins/README.md`](../../.opencode/plugins/README.md): full OpenCode plugin inventory and hook-event model this doc's OpenCode column cites.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): Pi's own extension inventory, including the `session_compact`-untraced caveat this doc's §4 repeats.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors this doc cross-links from.
-- [`README.md`](./README.md): why `dispatch`, `mcp-route-guard`, `post-edit-quality`, and `task-dispatch` live outside `.skilled/skills/` while every other hook in this doc stays inside its owning skill.
+- [`README.md`](./README.md): why the real cores of `dispatch`, `mcp-route-guard`, `overlay-guard`, `post-edit-quality`, `task-dispatch`, `classifier-injection-screen`, `goal`, `decision-capture` and `session-relaunch` live under `.skilled/hooks/` instead of `.skilled/skills/`, while every skill-owned hook in this doc stays inside its owning skill.
