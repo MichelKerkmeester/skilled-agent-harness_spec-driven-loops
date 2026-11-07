@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ae86dc03da3d697a4c6ae237d1233fc2b871bb1defec0f6651d733ee0f1bbc1b",
+  "manifestHash": "eb8cd1de48ae278471f524ebfa8baef3e6ceab2b6f3c67cf73220d7da1f0f902",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6922,6 +6922,9 @@
     ],
     "044 implementation summary": [
       "044 implementation summary"
+    ],
+    "044 named subtracks and host repos operator decisions": [
+      "044-named-subtracks-and-host-repos operator decisions"
     ],
     "044 suite revalidation": [
       "044 suite revalidation"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3f006df68af9d86de0cf6f2d0b20ffd7b899e5634dd846c4966263b335cecb83",
+  "corpusHash": "a10bcb8133fa20b914a8f2a8b7b11cfe4719963729e67c204e67cbc9f6ce918c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28397,
+  "includedPathCount": 28398,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28412,6 +28412,7 @@
     "specs/system-speckit/043-decision-capture/review/review-report.md",
     "specs/system-speckit/043-decision-capture/spec.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/plan.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-dashboard.md",
@@ -28428,7 +28429,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ae86dc03da3d697a4c6ae237d1233fc2b871bb1defec0f6651d733ee0f1bbc1b",
+  "manifestHash": "eb8cd1de48ae278471f524ebfa8baef3e6ceab2b6f3c67cf73220d7da1f0f902",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
