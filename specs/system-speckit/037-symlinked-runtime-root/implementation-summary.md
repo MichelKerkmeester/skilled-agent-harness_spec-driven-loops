@@ -98,6 +98,21 @@ Paths below are from the repository root. `runtime/` in the prose is `.skilled/s
 | `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` | Modified | `--project-root`, checked against the working repository |
 | `.skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts` | Modified | Cases for the guard under `--preserve-symlinks-main` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts` | Created | Saves through a real `.skilled` link from a temp repository |
+
+### Reopened 2026-11-07: graph-metadata writes through a linked specs root
+
+A project whose `specs` folder links into another workspace's track can now refresh, backfill and save its packets. Before, every such write was refused with `Refusing to write graph metadata outside a configured specs root`.
+
+The write guard in `runtime/lib/graph/graph-metadata-parser.ts` changed in three ways:
+
+- **Real locations.** `isWithinConfiguredSpecsRoot` keeps its unresolved check and adds a second one on real locations, through a new `realLocationOf` that also handles a file not created yet. A root that is itself a link now admits its own track. This is the change Barter carried as an overlay.
+- **The named path.** `refreshGraphMetadataForSpecFolder` hands the writer the folder as the caller spelled it. The writer still writes the canonical path, but the roots now come from the caller's workspace.
+- **The process roots.** The save resolves its folder in `sanitizePath` before it refreshes, so by the time the guard runs the project's name is gone. The real-location check therefore also counts the roots of the workspace the process runs in.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts` | Modified | The three guard changes above |
+| `.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts` | Modified | Five cases: two for a linked root, three for the project layout including stray destinations |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -122,6 +137,8 @@ Two plan entries changed. `workflow.ts` stayed untouched, for the reason under E
 | Accept `--project-root` only inside the working repository | The option may narrow the target, but it must not let a save write outside the repository the caller stands in |
 | Change no workflow code for empty saves | The existing gate already exits 1 with a named reason, and refusing on an empty `exchanges` array alone would fail every Stop-hook auto-save |
 | Canonicalize each side on its own, with a fallback | `--preserve-symlinks-main` leaves either side non-canonical, and a resolution failure must not raise |
+| Count the process workspace's roots in the real-location check | The guard's comment had recorded that consulting the process "was measured to change no outcome". A project whose `specs` links elsewhere is the counterexample: the save resolves its folder before the guard runs, and only the process still names the project. Threading the named path through every save refresh would touch `workflow.ts` in three places; the guard is one place. The process roots admit only the real locations they point to |
+| Keep trusting a link planted inside a root | The guard documents this as deliberate: planting one needs write access to the repository, which already allows editing the guard. Tightening it would refuse the sibling-repository tracks Skilled itself uses |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -142,6 +159,9 @@ Two plan entries changed. `workflow.ts` stayed untouched, for the reason under E
 | `generate-description.js` with no arguments, through the link | Main's build with the flag: exit 0, 0 bytes. Fixed build with the flag: exit 1, 92 bytes of usage, the same as without it |
 | `generate-context.js --not-an-option`, through the link | Main's build with the flag: exit 0, 0 bytes. Fixed build with the flag: exit 1, 1049 bytes, against 854 without it — the extra bytes name the new option |
 | A save through the link from a temp git repository | Main's build: exit 1, `Spec packet write blocked for "demo/001-demo": collision class is divergent-duplicate (no readable packet roots)`. Fixed build: exit 0, with `description.json` and `graph-metadata.json` in the temp repository and nothing under the runtime repository's `specs/demo` |
+| Reopened: `npx vitest run tests/graph-metadata-schema.vitest.ts` in `runtime` | `Tests 59 passed (59)` against a baseline of `54 passed (54)`, a delta of the 5 new cases. Each project-layout case fails without its change |
+| Reopened: backfill and save from a scratch project whose `specs` links into another workspace | Before: backfill exit 1 with the configured-root refusal. After: backfill exit 0 with `"failed": []`; `generate-context.js` save exit 0 with `Created graph-metadata.json` at the canonical track path |
+| Reopened: full runtime suite | `Tests 9 failed \| 4269 passed \| 22 skipped (4300)`. None of the nine touches graph metadata; seven pass when rerun alone, and the other two fail identically with this change reverted |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/037-symlinked-runtime-root --strict` | The rules over the five documents pass, including `STATUS_CROSS_DOC_CONSISTENCY`, `AC_COVERAGE` at 8/8 and `AC_CLOSURE` at 8/8. The overall result is `RESULT: FAILED` on two `GENERATED_METADATA_*` errors: `description.json` and `graph-metadata.json` are stale against the edited docs, and `repair-derived.cjs` rewrites them |
 <!-- /ANCHOR:verification -->
 
@@ -154,4 +174,7 @@ Two plan entries changed. `workflow.ts` stayed untouched, for the reason under E
 2. **The graph-metadata write guard trusts a workspace only when it carries `.opencode`** A linked repository without that folder still receives no `graph-metadata.json`, so the test repository links both `.skilled` and `.opencode`.
 3. **`npm run typecheck:tests` in `runtime` is red** 99 errors, the same 99 as main. The one that names a `config.ts` is `shared/config.ts`, a file this change does not touch.
 4. **The runtime suite has no main baseline** The cli suite's delta is exactly the 10 added cases. The runtime suite's delta is not stated because no baseline was captured for it.
+5. **Two runtime-suite failures predate the reopened change** `hook-adapter-path-parity` (the cursor adapter lacks the drift-marker fallback) and `deep-research-ledger-schema` (a 30 s timeout) fail with the change reverted too. Neither is fixed here.
+6. **A save run from outside the project still needs the project's own path** The process-roots check helps only a process running inside the project. A caller elsewhere that hands the guard an already-resolved packet path is still refused; one that passes the path through the project's `specs` link is admitted.
+7. **Barter can drop its overlay of `graph-metadata-parser.ts`** after re-pinning past this change; its two cases are among the five added here.
 <!-- /ANCHOR:limitations -->

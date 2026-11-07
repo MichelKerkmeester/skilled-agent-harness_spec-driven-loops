@@ -1186,3 +1186,108 @@ describe('graph metadata symbolic link is not followed', () => {
     expect(metadata.derived.source_docs).toContain('research/research.md');
   });
 });
+
+describe('graph metadata write through a linked specs root', () => {
+  // A workspace whose `specs` root links to a spec track elsewhere in the same
+  // repository, the layout a repository uses when its packets live per project.
+  function linkedTrackPacket(): { root: string; realPacket: string } {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-linked-root-'));
+    createdRoots.add(root);
+    fs.mkdirSync(path.join(root, '.opencode'));
+    const trackSpecs = path.join(root, 'repositories', 'demo', 'specs');
+    fs.mkdirSync(trackSpecs, { recursive: true });
+    fs.cpSync(createSpecFolder(), path.join(trackSpecs, '900-graph-metadata'), { recursive: true });
+    fs.symlinkSync(path.join('repositories', 'demo', 'specs'), path.join(root, 'specs'), 'dir');
+    return { root, realPacket: fs.realpathSync(path.join(trackSpecs, '900-graph-metadata')) };
+  }
+
+  it('writes to the resolved track path of a packet under the linked root', () => {
+    const { root, realPacket } = linkedTrackPacket();
+    const metadata = deriveGraphMetadata(path.join(root, 'specs', '900-graph-metadata'), null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(() => graphMetadataParserTestables.writeGraphMetadataFile(
+      path.join(realPacket, 'graph-metadata.json'),
+      metadata,
+    )).not.toThrow();
+    expect(fs.existsSync(path.join(realPacket, 'graph-metadata.json'))).toBe(true);
+  });
+
+  it('still refuses a destination outside every root of its workspace', () => {
+    const { root } = linkedTrackPacket();
+    const metadata = deriveGraphMetadata(path.join(root, 'specs', '900-graph-metadata'), null, { now: '2026-04-12T12:00:00.000Z' });
+    const stray = path.join(root, 'repositories', 'other', 'specs', '901-stray');
+    fs.mkdirSync(stray, { recursive: true });
+
+    expect(() => graphMetadataParserTestables.writeGraphMetadataFile(
+      path.join(stray, 'graph-metadata.json'),
+      metadata,
+    )).toThrow(/outside a configured specs root/);
+  });
+});
+
+describe('graph metadata refresh from a project whose specs root links into another workspace', () => {
+  // A project checkout with its own `.opencode` links `specs` into a track that
+  // another workspace owns. Resolving the packet lands in that other workspace,
+  // whose roots do not hold the track, so the refresh has to be authorized
+  // against the project path the caller named.
+  function projectLinkedPacket(): { project: string; realPacket: string; base: string } {
+    const base = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-project-link-'));
+    createdRoots.add(base);
+    const hub = path.join(base, 'hub');
+    const trackSpecs = path.join(hub, 'repositories', 'demo', 'specs');
+    fs.mkdirSync(path.join(hub, '.opencode'), { recursive: true });
+    fs.mkdirSync(path.join(hub, 'repositories', 'own', 'specs'), { recursive: true });
+    fs.mkdirSync(trackSpecs, { recursive: true });
+    fs.symlinkSync(path.join('repositories', 'own', 'specs'), path.join(hub, 'specs'), 'dir');
+    const packet = path.join(trackSpecs, '900-graph-metadata');
+    fs.cpSync(createSpecFolder(), packet, { recursive: true });
+    fs.rmSync(path.join(packet, 'graph-metadata.json'), { force: true });
+
+    const project = path.join(base, 'project');
+    fs.mkdirSync(path.join(project, '.opencode'), { recursive: true });
+    fs.symlinkSync(trackSpecs, path.join(project, 'specs'), 'dir');
+    return { project, realPacket: fs.realpathSync(packet), base };
+  }
+
+  it('writes the packet reached through the project specs link', () => {
+    const { project, realPacket } = projectLinkedPacket();
+
+    const result = refreshGraphMetadataForSpecFolder(path.join(project, 'specs', '900-graph-metadata'), {
+      now: '2026-04-12T12:00:00.000Z',
+    });
+
+    expect(result.created).toBe(true);
+    expect(result.filePath).toBe(path.join(realPacket, 'graph-metadata.json'));
+    expect(fs.existsSync(path.join(realPacket, 'graph-metadata.json'))).toBe(true);
+  });
+
+  it('refuses a packet outside both workspaces', () => {
+    const { base } = projectLinkedPacket();
+    const stray = path.join(base, 'elsewhere', 'specs', '901-stray');
+    fs.cpSync(createSpecFolder(), stray, { recursive: true });
+    fs.rmSync(path.join(stray, 'graph-metadata.json'), { force: true });
+
+    expect(() => refreshGraphMetadataForSpecFolder(stray, { now: '2026-04-12T12:00:00.000Z' }))
+      .toThrow(/outside a configured specs root/);
+  });
+
+  it('writes the resolved packet path when the save runs inside the project', () => {
+    // A save resolves the packet before it refreshes, so only the workspace the
+    // process runs in still names the project.
+    const { project, realPacket, base } = projectLinkedPacket();
+    const metadata = deriveGraphMetadata(realPacket, null, { now: '2026-04-12T12:00:00.000Z' });
+    const stray = path.join(base, 'elsewhere', 'specs', '901-stray');
+    fs.mkdirSync(stray, { recursive: true });
+    vi.spyOn(process, 'cwd').mockReturnValue(project);
+
+    expect(() => graphMetadataParserTestables.writeGraphMetadataFile(
+      path.join(realPacket, 'graph-metadata.json'),
+      metadata,
+    )).not.toThrow();
+    expect(fs.existsSync(path.join(realPacket, 'graph-metadata.json'))).toBe(true);
+    expect(() => graphMetadataParserTestables.writeGraphMetadataFile(
+      path.join(stray, 'graph-metadata.json'),
+      metadata,
+    )).toThrow(/outside a configured specs root/);
+  });
+});

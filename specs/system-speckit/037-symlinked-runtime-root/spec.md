@@ -25,6 +25,7 @@ contextType: "implementation"
 | **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Complete |
+| **Reopened** | 2026-11-07, for graph-metadata writes through a linked `specs` root (§7) |
 | **Created** | 2026-10-12 |
 | **Branch** | `scaffold/051-symlinked-runtime-root` |
 | **Related** | `system-speckit/031-system-speckit-v4/039-entry-point-symlink-resolution`, whose fix covers the case without the flag |
@@ -127,6 +128,43 @@ REQ-004 is settled by the empty-save decision in `implementation-summary.md`: a 
 
 ---
 
+## 7. REOPENED SCOPE: GRAPH-METADATA WRITES THROUGH A LINKED SPECS ROOT
+
+### Problem
+A project checkout can link its `specs` folder into a spec track that another workspace owns. Barter's project setup builds that layout: each project's `specs` points into `ai-speckit/repositories/<repo>/specs`. Every continuity save and every `backfill-graph-metadata` run there failed with `Refusing to write graph metadata outside a configured specs root`.
+
+The writer's guard derives its roots by walking up from the destination to the first folder holding `.opencode`. Two callers resolve the packet first: `refreshGraphMetadataForSpecFolder` calls `fs.realpathSync` on the folder, and the save's `sanitizePath` returns the resolved path. From a resolved path the walk reaches the other workspace, whose roots do not hold the track. Reproduced on 2026-11-07 from a scratch project layout: backfill exited 1 with that refusal.
+
+A second shape fails the same way: a workspace whose own `specs` root is itself a link, because the roots are compared unresolved while the target arrives resolved.
+
+### In Scope
+- Compare real locations in the guard, so a root that is a link admits its own track
+- Authorize `refreshGraphMetadataForSpecFolder`'s write against the folder as the caller named it, writing to the canonical path as before
+- Count the process workspace's roots in the real-location comparison, so a save run inside the project is admitted after its folder was resolved
+- Tests for the linked-root layout, the project layout and a stray destination
+
+### Out of Scope
+- The doctor symlink engine's project-owned entries; that belongs to `system-skilled-doctor`
+- Where `.skilled/specs` should point when Skilled is vendored inside another repository; recorded as an open question in §10
+- Tightening the documented trust in links planted inside a root
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts` | Modify | Real-location comparison and `realLocationOf` in the guard; process roots; refresh writes through the named path |
+| `.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts` | Modify | Linked-root and project-layout cases |
+
+### Requirements
+
+| ID | Priority | Requirement |
+|----|----------|-------------|
+| REQ-005 | P0 | A graph-metadata write to a packet under a `specs` root that is a link succeeds, whether the destination arrives resolved or unresolved |
+| REQ-006 | P0 | A refresh, backfill or continuity save of a project packet reached through a linked `specs` folder writes `graph-metadata.json` at the canonical location and exits 0 |
+| REQ-007 | P0 | A destination outside every specs root of both the destination's and the process's workspace is still refused |
+
+---
+
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
@@ -180,4 +218,5 @@ Both planning questions are answered, and `implementation-summary.md` records th
 
 - Empty saves: neither option was taken. The existing `INSUFFICIENT_CONTEXT_ABORT` gate already exits 1 on a save with nothing in it, and refusing on empty exchanges alone would fail every Stop-hook auto-save.
 - Readers of `CONFIG.PROJECT_ROOT`: every one is project-owned. Runtime assets such as the templates stay script-relative.
+- Open, from the reopened scope: Skilled tracks `.skilled/specs -> ../specs`. Vendored inside another repository with no `specs` beside it, that link dangles and every project linking `.skilled` reports it broken. Dropping the link from the tracked tree or having setup tolerate it are the two candidates; neither is decided here.
 <!-- /ANCHOR:questions -->
