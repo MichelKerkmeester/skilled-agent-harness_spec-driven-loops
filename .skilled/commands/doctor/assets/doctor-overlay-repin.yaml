@@ -37,7 +37,7 @@ mutation_boundaries:
     - "the upstream checkout given with --upstream, which the engine only reads through git"
     - ".skilled/commands/doctor/scripts/overlay-engine.cjs itself"
     - "the git index, history and remotes"
-  invariant: "Nothing in the vendored tree is written until the operator has read this run's stage report and answered yes to it. The stage runs every step on a copy and leaves the live tree untouched. A stage report with any blocked overlay ends the run before the question. A rollback runs only after its own yes. A no at either question writes nothing."
+  invariant: "Nothing in the vendored tree is written until the operator has read this run's stage report and answered yes to it. The stage runs the copy, the pin change, both applies and the overlay check on a copy, skips the manifest's regenerate and verify steps because the copy has no project install, says how many it skipped, and leaves the live tree untouched. A stage report with any blocked overlay ends the run before the question. A rollback runs only after its own yes. A no at either question writes nothing."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS

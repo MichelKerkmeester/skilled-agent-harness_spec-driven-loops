@@ -496,8 +496,9 @@ test('repin --stage builds the re-pinned tree in a copy, reports both groups and
   assert.equal(treeDigest(fixture.tree), before);
   assert.equal(read(stageDir, '.skilled/skills/hub/ROUTER.md'), 'router v2\n');
   assert.equal(readJson(path.join(stageDir, 'skilled-overlays/overlay-manifest.json')).pin.commit, fixture.newCommit.slice(0, 10));
-  // The stage skips the regenerate and verify steps.
+  // The stage skips the regenerate and verify steps, and says so.
   assert.equal(read(stageDir, '.codex/hooks.json'), '{}\n');
+  assert.match(staged.output, /^stage skipped 1 regenerate and 1 verify step\(s\); the live run runs them$/m);
 });
 
 test('repin --stage refuses a folder that is not empty or that sits inside the live tree', (t) => {
@@ -531,4 +532,52 @@ test('a misused repin command line prints the usage and exits 2', (t) => {
     assert.match(result.output, /^usage: node overlay-engine\.cjs status/, args.join(' '));
     assert.match(result.output, /repin --upstream <dir> --to <commit>/, args.join(' '));
   }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. WHAT A RE-PIN COPIES, WHAT IT LEAVES, AND WHAT STOPS IT
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('a re-pin copies .dsh with the other runtime folders when the manifest names none', (t) => {
+  const fixture = createRepinFixture(t, { newEntries: { '.dsh/skills/hub.md': 'dsh hub\n' } });
+  const result = fixture.repin();
+  assert.equal(result.code, 0, result.output);
+  // The base set plus the one new .dsh file, and nothing else.
+  assert.match(result.output, /^copy 10 paths, delete 2 paths$/m);
+  assert.equal(read(fixture.tree, '.dsh/skills/hub.md'), 'dsh hub\n');
+});
+
+test('a re-pin lists upstream changes it does not copy and skips a top-level link', (t) => {
+  const fixture = createRepinFixture(t, {
+    newEntries: { 'repo-rules/new-rule.md': 'rule\n', 'specs/notes.md': 'notes\n', 'docs/guide.md': 'guide\n' },
+  });
+  // The project keeps its own repo-rules folder and links specs elsewhere; it has no docs folder.
+  writeFile(fixture.tree, 'repo-rules/local.md', 'local rule\n');
+  fs.symlinkSync('../project-specs', path.join(fixture.tree, 'specs'));
+  fixture.manifest.repin = { exclude: ['.claude/new.md'] };
+  writeManifest(fixture);
+
+  const result = fixture.repin(['--json']);
+  assert.equal(result.code, 0, result.output);
+  const report = JSON.parse(result.stdout);
+  assert.deepEqual(report.notCopied, ['.claude/new.md', 'AGENTS.md', 'repo-rules/new-rule.md']);
+  assert.ok(report.lines.some((line) => /^not-copied 3 upstream change\(s\) outside .*; carry them over by hand/.test(line)), report.lines.join('\n'));
+  // The project's own copy of a root file is never overwritten.
+  assert.equal(read(fixture.tree, 'AGENTS.md'), 'upstream agents\n');
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'repo-rules/new-rule.md')), false);
+});
+
+test('a re-pin over a refused overlay stops before the backup and writes nothing', (t) => {
+  const fixture = createRepinFixture(t);
+  writeFile(fixture.overlayDir, 'files/.env.local', 'SECRET=1\n');
+  fixture.manifest.overlays.push({ id: 'env', scope: 'file', source: 'files/.env.local', destination: '.env.local' });
+  writeManifest(fixture);
+  const before = treeDigest(fixture.tree);
+
+  const result = fixture.repin();
+  assert.equal(result.code, 2, result.output);
+  assert.match(result.output, /^blocked env: refused refusing to inspect a protected path: files\/\.env\.local/m);
+  assert.match(result.output, /^refuse: status shows 1 refused overlay\(s\); fix them before a re-pin$/m);
+  assert.equal(treeDigest(fixture.tree), before);
+  assert.equal(fs.existsSync(fixture.runsDir), false);
 });

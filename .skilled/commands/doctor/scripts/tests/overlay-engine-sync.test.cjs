@@ -503,7 +503,16 @@ test('status --json reports each out-of-sync destination with its fix, and an er
   fs.rmSync(path.join(fixture.overlayDir, 'overlay-manifest.json'));
   const failed = fixture.run(['status', '--json']);
   assert.equal(failed.code, 2, failed.output);
-  assert.deepEqual(JSON.parse(failed.stdout), { result: 'ERROR', error: 'no overlay manifest at skilled-overlays/overlay-manifest.json' });
+  const error = JSON.parse(failed.stdout);
+  assert.equal(error.result, 'ERROR');
+  // With no setting file the folder was guessed, so the error names the guess and the fix.
+  assert.match(error.error, /^no overlay manifest at skilled-overlays\/overlay-manifest\.json: with no \.skilled-overlays\.json /);
+  assert.match(error.error, /add \.skilled-overlays\.json at the tree root naming that folder$/);
+
+  fs.writeFileSync(path.join(fixture.tree, '.skilled-overlays.json'), '{ "overlayDir": "skilled-overlays" }\n');
+  const named = fixture.run(['status', '--json']);
+  assert.equal(named.code, 2, named.output);
+  assert.deepEqual(JSON.parse(named.stdout), { result: 'ERROR', error: 'no overlay manifest at skilled-overlays/overlay-manifest.json' });
 });
 
 test('a misused command line prints the usage and exits 2', (t) => {

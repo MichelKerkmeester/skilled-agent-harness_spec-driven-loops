@@ -214,7 +214,7 @@ Next: [stage the re-pin in a temporary folder, which leaves the live tree untouc
 
 ### The Plan The Operator Approves
 
-The plan is the stage report. The engine runs every re-pin step on a copy in a fresh temporary folder, and the live tree is not touched. Quote the engine's lines rather than paraphrasing them.
+The plan is the stage report. The engine runs the re-pin on a copy in a fresh temporary folder, and the live tree is not touched. The copy has no project install, so the manifest's regenerate and verify steps run only in the live run, and the stage says how many it skipped. Quote the engine's lines rather than paraphrasing them.
 
 ```text
 OVERLAY REPIN PLAN
@@ -224,6 +224,8 @@ To: [the --to commit]
 Stage: [the temporary folder the plan ran in]
 Copy: [the engine's copy <n> paths, delete <n> paths line]
 Now equal to upstream: [one equals-upstream <overlay-id> line per overlay, or none]
+Not copied: [the engine's not-copied lines, upstream changes the re-pin leaves for the operator, or none]
+Skipped on the copy: [the engine's stage skipped line, or none]
 Stage result: RESULT: STAGED
 Then: the live run backs up every path it touches into [overlay folder]/repin-runs/<run-id>/, copies, sets the pin, applies the overlays and runs the full check
 Lock: the engine holds [overlay folder]/.build-lock for the whole run
@@ -247,6 +249,7 @@ An overlay that now equals upstream needs no change to re-pin. Its entry can be 
 |----------------------------|-----|
 | The overlay lock is held | Wait for the other run to end, then remove the lock file the message names by hand. The engine never clears a held lock itself |
 | A destination is `live-edited`, `both-changed` or `upstream-moved` | Settle it first: `/doctor:overlay apply --capture <path>` for a live edit, or resolve the overlay by hand for the other two, then rerun `/doctor:overlay status` |
+| An overlay is refused, shown as `blocked <overlay-id>: refused ...` | Follow the fix the line names, usually adding a token-named file to that entry's `protectedPaths`, then rerun `/doctor:overlay status` |
 | An unowned file in the copied roots differs from the old pin, at the path the engine names | That file holds an edit made in place, which the copy would revert. Move the edit into an overlay or upstream, then rerun |
 | A commit is missing from `--upstream` | Fetch both the pinned commit and the `--to` commit into that checkout, then rerun |
 
@@ -392,7 +395,10 @@ What each engine exit means for `Changed:`:
 
 | Situation | Suggested Action |
 |-----------|------------------|
-| `no overlay manifest at ...` | The tree has no overlay folder yet, or `.skilled-overlays.json` names another one. Check the setting file at the tree root, then rerun `/doctor:overlay status` |
+| `no overlay manifest at ...` | The tree has no overlay folder yet, or `.skilled-overlays.json` names another one. When the message says no setting file was found, add `.skilled-overlays.json` at the tree root naming the folder that holds `overlay-manifest.json`. Then rerun `/doctor:overlay status` |
+| `refusing to inspect a protected path: ...` | That one entry is blocked and every other overlay is still reported. Follow the fix the line names: add the file to that entry's `protectedPaths`, or move a `.env` file out of the overlay. Then rerun `/doctor:overlay status` |
+| `not-copied` lines in a re-pin report | Upstream changed these paths, and a re-pin never copies them: they sit under `repin.exclude` or in a top-level file or folder outside the copied roots, such as `AGENTS.md`. Carry over what applies by hand. For the shipped `AGENTS.md` sections, run `/doctor:agents-md` |
+| `stage skipped ... regenerate and ... verify step(s)` | Expected. The stage has no project install, so the generators run only in the live re-pin |
 | `.skilled-overlays.json` is refused | The setting must name a relative folder inside the tree with forward slashes. Fix the file, then rerun `/doctor:overlay status` |
 | `refuse: the overlay lock is held` | Another run holds the lock. Wait for it to end, then remove the lock file the message names by hand. The engine never clears a held lock itself |
 | A `live-edited` line | Run `/doctor:overlay apply --capture <path>` for that path, then `/doctor:overlay apply` |

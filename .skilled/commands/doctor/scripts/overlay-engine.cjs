@@ -71,7 +71,7 @@ const EXIT_OK = 0;
 const EXIT_CONFLICT = 1;
 const EXIT_ERROR = 2;
 const VENDOR_ROOT = '.skilled';
-const DEFAULT_RUNTIME_FOLDERS = ['.claude', '.codex', '.cursor', '.devin', '.opencode', '.pi'];
+const DEFAULT_RUNTIME_FOLDERS = ['.claude', '.codex', '.cursor', '.devin', '.dsh', '.opencode', '.pi'];
 const RUNS_FOLDER = 'repin-runs';
 const RUN_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const GIT_MAX_BUFFER = 512 * 1024 * 1024;
@@ -411,6 +411,7 @@ function createContext(root) {
     root: absoluteRoot,
     overlayLabel,
     overlayRoot,
+    hasSetting: pathExists(path.join(absoluteRoot, SETTING_FILE)),
     manifestPath: path.join(overlayRoot, MANIFEST_FILE),
     statePath: path.join(overlayRoot, STATE_FILE),
     lockPath: path.join(overlayRoot, LOCK_FILE),
@@ -424,7 +425,17 @@ function createContext(root) {
  */
 function loadManifest(ctx) {
   const buffer = readBufferOrNull(ctx.manifestPath);
-  if (!buffer) throw new Error('no overlay manifest at ' + toPosix(path.relative(ctx.root, ctx.manifestPath)));
+  if (!buffer) {
+    const where = toPosix(path.relative(ctx.root, ctx.manifestPath));
+    // Without the setting file the folder is a guess, so the error says what was
+    // guessed and how to name the real folder rather than blaming the manifest.
+    if (!ctx.hasSetting) {
+      throw new Error(`no overlay manifest at ${where}: with no ${SETTING_FILE} at the tree root the engine ` +
+        `looks in ${DEFAULT_OVERLAY_FOLDER}/; if the overlays live elsewhere, add ` +
+        `${SETTING_FILE} at the tree root naming that folder`);
+    }
+    throw new Error('no overlay manifest at ' + where);
+  }
   const manifest = JSON.parse(buffer.toString('utf8'));
   if (!manifest || !Array.isArray(manifest.overlays)) throw new Error('overlay manifest has no overlays array');
   return manifest;
@@ -1656,14 +1667,38 @@ function isCaptureRestricted(ctx, record, inputPath) {
 }
 
 /**
- * Refuse a manifest whose paths escape their roots or would read a secret.
+ * Name a protected path and the one change that lets an overlay own it.
+ * @param {object} ctx Engine context.
+ * @param {object} entry Manifest overlay entry.
+ * @param {string} filePath Absolute path that was refused.
+ * @param {string} shownPath The path as the report prints it.
+ * @returns {string} One problem line for the entry.
+ */
+function protectedPathProblem(ctx, entry, filePath, shownPath) {
+  const problem = 'refusing to inspect a protected path: ' + shownPath;
+  if (isEnvName(filePath)) return problem + '; a .env file is never read, so move it out of the overlay';
+  if (entry.scope !== 'directory' && entry.scope !== 'skill-root') return problem;
+  // protectedPaths names a path relative to the entry, the same on both sides.
+  const entryRoots = [path.resolve(ctx.overlayRoot, entry.source), path.resolve(ctx.root, entry.destination)];
+  const entryRoot = entryRoots.find((candidate) => isWithin(candidate, filePath));
+  if (!entryRoot) return problem;
+  return problem + `; if the overlay owns it, add "${toPosix(path.relative(entryRoot, filePath))}" to this entry's protectedPaths`;
+}
+
+/**
+ * Refuse a manifest whose paths escape their roots, and find every entry that
+ * would read a secret. A path escape means the manifest itself is wrong, so it
+ * stops the run. A protected path blocks only its own entry: the report still
+ * covers every other overlay, and apply still writes nothing while one is blocked.
  * @param {object} ctx Engine context.
  * @param {object} manifest Loaded overlay manifest.
- * @returns {Set<string>} The exact manifest paths, for the per-output check.
+ * @returns {{exact: Set<string>, refused: Map<string, string>}} The exact
+ *   manifest paths, for the per-output check, and one problem per refused entry id.
  */
 function assertSafeToPlan(ctx, manifest) {
   const root = ctx.root;
   const exact = exactManifestPaths(ctx, manifest);
+  const refused = new Map();
   for (const entry of manifest.overlays) {
     const candidates = [];
     for (const key of ['source', 'base', 'fragment', 'destination']) {
@@ -1686,22 +1721,35 @@ function assertSafeToPlan(ctx, manifest) {
         }
       }
     }
-    for (const candidate of candidates) {
-      if (isProtectedReadPath(candidate, exact)) {
-        throw new Error(entry.id + ': refusing to inspect a protected path: ' + toPosix(path.relative(ctx.overlayRoot, candidate)));
-      }
+    const named = candidates.find((candidate) => isProtectedReadPath(candidate, exact));
+    if (named) {
+      refused.set(entry.id, protectedPathProblem(ctx, entry, named, toPosix(path.relative(ctx.overlayRoot, named))));
+      continue;
     }
     if (entry.scope === 'directory' || entry.scope === 'skill-root') {
       const sourceDirectory = path.resolve(ctx.overlayRoot, entry.source);
       const destinationDirectory = path.resolve(root, entry.destination);
       for (const filePath of [...listTreePaths(sourceDirectory), ...listTreePaths(destinationDirectory)]) {
         if (isProtectedReadPath(filePath, exact)) {
-          throw new Error(entry.id + ': refusing to inspect a protected path: ' + toPosix(path.relative(root, filePath)));
+          refused.set(entry.id, protectedPathProblem(ctx, entry, filePath, toPosix(path.relative(root, filePath))));
+          break;
         }
       }
     }
   }
-  return exact;
+  return { exact, refused };
+}
+
+/**
+ * Stand in for an entry the engine must not read: no outputs and no writes, so
+ * nothing classifies, applies or captures through it, and one problem the check
+ * and apply both report.
+ * @param {object} entry Manifest overlay entry.
+ * @param {string} problem Why the entry was refused.
+ * @returns {object} A plan shaped like planOverlay's result.
+ */
+function refusedPlan(entry, problem) {
+  return { entry, problems: [problem], writes: [], deletes: [], outputs: [] };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1783,13 +1831,28 @@ function layoutLinkRecords(layout, root) {
  */
 function analyze(ctx, manifest, state) {
   const root = ctx.root;
-  const exact = assertSafeToPlan(ctx, manifest);
-  const plans = manifest.overlays.map((entry) => planOverlay(entry, ctx, { acceptedSha256: state.files }));
+  const { exact, refused } = assertSafeToPlan(ctx, manifest);
+  const plans = manifest.overlays.map((entry) => (refused.has(entry.id)
+    ? refusedPlan(entry, refused.get(entry.id))
+    : planOverlay(entry, ctx, { acceptedSha256: state.files })));
   const records = [];
   const blocked = [];
   const seen = new Set();
 
-  for (const plan of plans) {
+  for (let index = 0; index < plans.length; index += 1) {
+    const plan = plans[index];
+    // A planner can produce an output the pre-plan walk never saw, such as a
+    // generated name. That output is never classified: the whole entry is
+    // swapped for a refused plan, so apply has nothing of it to write.
+    const protectedPath = plan.outputs
+      .flatMap((output) => [output.filePath, output.sourcePath])
+      .find((filePath) => filePath && isProtectedReadPath(filePath, exact));
+    if (protectedPath) {
+      plans[index] = refusedPlan(plan.entry, protectedPathProblem(ctx, plan.entry, protectedPath,
+        toPosix(path.relative(root, protectedPath))));
+      blocked.push(plans[index]);
+      continue;
+    }
     if (plan.problems.length > 0 && plan.outputs.length === 0) {
       blocked.push(plan);
       continue;
@@ -1798,10 +1861,6 @@ function analyze(ctx, manifest, state) {
       const key = relativeKey(root, output.filePath);
       if (seen.has(key)) throw new Error('multiple overlays own the same destination: ' + key);
       seen.add(key);
-      if (isProtectedReadPath(output.filePath, exact) ||
-          (output.sourcePath && isProtectedReadPath(output.sourcePath, exact))) {
-        throw new Error(plan.entry.id + ': refusing to inspect a protected path: ' + key);
-      }
       let stateName = plan.entry.scope === 'remove-root'
         ? (pathExists(output.filePath) ? 'overlay-edited' : 'in-sync')
         : classifyDestination({
@@ -2875,6 +2934,44 @@ function overlaysEqualToUpstream(ctx, analysis, newTree, roots) {
   return ids;
 }
 
+// The most not-copied paths printed one per line; the report file keeps them all.
+const NOT_COPIED_SHOWN = 20;
+
+/**
+ * List the upstream changes between the two commits that this tree holds but a
+ * re-pin never copies: files under a top-level file or real folder outside the
+ * copied roots, such as AGENTS.md, and paths in repin.exclude. Leaving them out
+ * is deliberate, so a project's own copy is never overwritten, but without this
+ * list an upstream change there is dropped without anyone seeing it. A
+ * top-level link is the project's own wiring, such as a specs link, and is skipped.
+ * @param {object} ctx Engine context of the tree being re-pinned.
+ * @param {object} job Re-pin job.
+ * @returns {string[]} Sorted paths, relative to the tree.
+ */
+function notCopiedChanges(ctx, job) {
+  const { roots, exclude } = job.settings;
+  const holdsRealTopLevel = (relativePath) => {
+    const top = relativePath.split('/')[0];
+    if (top === ctx.overlayLabel.split('/')[0]) return false;
+    try {
+      return !fs.lstatSync(path.join(ctx.root, top)).isSymbolicLink();
+    } catch {
+      return false;
+    }
+  };
+  return diffNames(job.upstream, job.oldCommit, job.newCommit, 'AMTD', [])
+    .filter((relativePath) => isUnderAny(relativePath, exclude) ||
+      (!isUnderAny(relativePath, roots) && holdsRealTopLevel(relativePath)))
+    .sort();
+}
+
+function reportNotCopied(paths, settings) {
+  if (paths.length === 0) return;
+  console.log(`not-copied ${paths.length} upstream change(s) outside ${settings.roots.join(', ')} or in repin.exclude; carry them over by hand if they apply (AGENTS.md sections: /doctor:agents-md)`);
+  for (const relativePath of paths.slice(0, NOT_COPIED_SHOWN)) console.log('not-copied ' + relativePath);
+  if (paths.length > NOT_COPIED_SHOWN) console.log(`not-copied … ${paths.length - NOT_COPIED_SHOWN} more in report.json`);
+}
+
 function reportBlocked(analysis, report) {
   for (const record of analysis.records) {
     if (!BLOCKING_STATES.has(record.state)) continue;
@@ -2914,6 +3011,17 @@ function repinWrites(ctx, job, touched, newTree, report) {
   // A stage has no project install behind it, so it skips the regenerate and
   // verify steps and reports only what the overlays do.
   const manifest = job.isStage ? { ...loaded, regenerate: [], verifyGenerated: [] } : loaded;
+  if (job.isStage) {
+    report.stageSkipped = {
+      regenerate: (loaded.regenerate || []).length,
+      verify: (loaded.verifyGenerated || []).length,
+    };
+    // A clean stage proves the copy and the overlays, never the generators, so
+    // the report says so rather than reading as a full rehearsal.
+    if (report.stageSkipped.regenerate + report.stageSkipped.verify > 0) {
+      console.log(`stage skipped ${report.stageSkipped.regenerate} regenerate and ${report.stageSkipped.verify} verify step(s); the live run runs them`);
+    }
+  }
   const afterCopy = analyze(ctx, manifest, loadState(ctx, manifest));
   reportBlocked(afterCopy, report);
   report.equalsUpstream = overlaysEqualToUpstream(ctx, afterCopy, newTree, job.settings.roots);
@@ -2957,6 +3065,13 @@ function repinUnderLock(ctx, job, report) {
     for (const record of blockers) console.log(problemLine(ctx, record));
     return refuseRepin([`refuse: status shows ${blockers.length} live or conflicting destination(s); resolve them before a re-pin`]);
   }
+  // A refused overlay would block the apply that follows the copy, after the copy
+  // had already written, so it stops the run before the backup instead.
+  if (analysis.blocked.length > 0) {
+    const lines = analysis.blocked.flatMap((plan) => plan.problems.map((problem) => `blocked ${plan.entry.id}: refused ${problem}`));
+    lines.push(`refuse: status shows ${analysis.blocked.length} refused overlay(s); fix them before a re-pin`);
+    return refuseRepin(lines);
+  }
   if (isUnderAny(ctx.overlayLabel, job.settings.roots)) {
     return refuseRepin([`refuse: the overlay folder ${ctx.overlayLabel} sits inside a folder the re-pin copies`]);
   }
@@ -2971,6 +3086,8 @@ function repinUnderLock(ctx, job, report) {
   }
   const shape = treeShapeProblems(ctx.root, touched);
   if (shape.length > 0) return refuseRepin(shape);
+  report.notCopied = notCopiedChanges(ctx, job);
+  reportNotCopied(report.notCopied, job.settings);
 
   const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-repin-'));
   try {
@@ -3215,6 +3332,8 @@ function commandRepin(ctx, options) {
     delete: 0,
     blocked: [],
     equalsUpstream: [],
+    notCopied: [],
+    stageSkipped: null,
     lines: [],
   };
   const original = console.log;

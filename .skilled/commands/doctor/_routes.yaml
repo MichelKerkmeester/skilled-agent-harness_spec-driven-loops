@@ -638,6 +638,9 @@ routes:
       - "does my vendored skilled tree still carry its overlays"
       - "vendored skilled overlays out of sync"
       - "does my vendored skilled copy still carry its overlays"
+      - "adopt the skilled overlay engine in my project"
+      - "migrate my own overlay folder to doctor overlay"
+      - "we copy skilled into our repo and lose our edits on update"
 
   - command: /doctor:overlay
     target: apply
