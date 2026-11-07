@@ -13,7 +13,10 @@
     "repo-rules": [{ "name": "repo-rules", "kind": "dir" }],
     "github":     [{ "name": ".github", "kind": "dir", "merge_only": true }],
     "utcp":       [{ "name": ".utcp_config.json", "kind": "file" }],
-    "env":        [{ "name": ".env", "kind": "file", "warning": "links the Skilled checkout's .env, so every tool started in this repository reads its secrets" }]
+    "env":        [
+      { "name": ".env", "kind": "file", "warning": "links the Skilled checkout's .env, so every tool started in this repository reads its secrets" },
+      { "name": ".env.example", "kind": "file", "project_owned": true }
+    ]
   },
   "instructions": [
     { "name": "AGENTS.md", "kind": "file", "source": "AGENTS.md" },

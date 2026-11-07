@@ -412,3 +412,89 @@ test('git exclude receives only the new ignore lines and unlink removes only tho
   assertStatus(undone, 0, 'unlink should remove its recorded ignore lines');
   assert.equal(fs.readFileSync(excludePath, 'utf8'), `${initialExclude}/keep-after-apply\n`);
 });
+
+test('a project-owned file reports its status and survives link and unlink byte-for-byte', () => {
+  const { source, root } = buildFixture();
+  const sourceContents = Buffer.from('SOURCE_KEY=\n');
+  const projectContents = Buffer.from([0, 1, 2, 3, 250, 255]);
+  writeFile(path.join(source, '.env.example'), sourceContents);
+  writeFile(path.join(root, '.env.example'), projectContents);
+
+  const checked = runRoot(source, root, 'check', ['--include', 'env', '--json']);
+  assertStatus(checked, 0, 'check should accept the project-owned file');
+  assert.equal(findEntry(JSON.parse(checked.stdout), '.env.example').status, 'project-owned');
+
+  const plan = planFor(source, root, ['--include', 'env']);
+  assert.doesNotMatch(plan.output, /^refusal:/m);
+  assertNoPlanAction(plan, ['link', 'replace-link', 'remove-broken'], '.env.example');
+  const applied = runRoot(source, root, 'apply', [
+    '--include', 'env', '--plan-digest', plan.digest,
+  ]);
+  assertStatus(applied, 0, 'apply should preserve the project-owned file');
+  assert.deepEqual(fs.readFileSync(path.join(root, '.env.example')), projectContents);
+
+  const report = runRoot(source, root, 'check', ['--include', 'env', '--json']);
+  assertStatus(report, 0, 'post-apply check should accept the project-owned file');
+  assert.equal(findEntry(JSON.parse(report.stdout), '.env.example').status, 'project-owned');
+
+  const undone = runUnlink(source, runDirectoryFrom(applied.output), '--yes');
+  assertStatus(undone, 0, 'unlink should leave the project-owned file alone');
+  assert.deepEqual(fs.readFileSync(path.join(root, '.env.example')), projectContents);
+});
+
+test('a missing project-owned destination keeps the existing source-link behavior', () => {
+  const { source, root } = buildFixture();
+  writeFile(path.join(source, '.env.example'), 'SOURCE_KEY=\n');
+  const plan = planFor(source, root, ['--include', 'env']);
+
+  assertPlanAction(plan, 'link', '.env.example');
+  const applied = runRoot(source, root, 'apply', [
+    '--include', 'env', '--plan-digest', plan.digest,
+  ]);
+  assertStatus(applied, 0, 'apply should link the missing project-owned destination');
+  assertLinkResolvesTo(path.join(root, '.env.example'), path.join(source, '.env.example'));
+
+  const undone = runUnlink(source, runDirectoryFrom(applied.output), '--yes');
+  assertStatus(undone, 0, 'unlink should remove the link created for a missing destination');
+  assert.equal(fs.lstatSync(path.join(root, '.env.example'), { throwIfNoEntry: false }), undefined);
+});
+
+test('setup omits a dangling specs alias when the host has no specs folder', () => {
+  const { source, root } = buildFixture();
+  fs.symlinkSync('../specs', path.join(source, '.skilled/specs'));
+  const plan = planFor(source, root);
+
+  assertPlanAction(plan, 'mkdir', '.skilled');
+  assertNoPlanAction(plan, ['link'], '.skilled');
+  assertNoPlanAction(plan, ['link', 'replace-link'], '.skilled/specs');
+  const applied = runRoot(source, root, 'apply', ['--plan-digest', plan.digest]);
+  assertStatus(applied, 0, 'apply should install without the missing specs alias');
+  assert.ok(fs.lstatSync(path.join(root, '.skilled')).isDirectory());
+  assert.equal(fs.lstatSync(path.join(root, '.skilled/specs'), { throwIfNoEntry: false }), undefined);
+  assert.equal(findEntry(checkReport(source, root), '.skilled').status, 'linked-merge');
+
+  const undone = runUnlink(source, runDirectoryFrom(applied.output), '--yes');
+  assertStatus(undone, 0, 'unlink should remove the merged install');
+});
+
+test('setup keeps the specs alias pointed at a host specs folder', () => {
+  const { source, root } = buildFixture();
+  fs.symlinkSync('../specs', path.join(source, '.skilled/specs'));
+  writeFile(path.join(root, 'specs/host-packet/spec.md'), '# Host packet\n');
+  const hostSpecs = path.join(root, 'specs');
+  const alias = path.join(root, '.skilled/specs');
+  const plan = planFor(source, root);
+
+  assertPlanAction(plan, 'mkdir', '.skilled');
+  assertPlanAction(plan, 'link', '.skilled/specs');
+  const applied = runRoot(source, root, 'apply', ['--plan-digest', plan.digest]);
+  assertStatus(applied, 0, 'apply should preserve the host specs alias');
+  assert.equal(fs.readlinkSync(alias), '../specs');
+  assert.equal(fs.realpathSync(alias), fs.realpathSync(hostSpecs));
+  assert.equal(findEntry(checkReport(source, root), '.skilled').status, 'linked-merge');
+
+  const undone = runUnlink(source, runDirectoryFrom(applied.output), '--yes');
+  assertStatus(undone, 0, 'unlink should remove the host specs alias');
+  assert.equal(fs.lstatSync(alias, { throwIfNoEntry: false }), undefined);
+  assert.equal(fs.existsSync(path.join(hostSpecs, 'host-packet/spec.md')), true);
+});

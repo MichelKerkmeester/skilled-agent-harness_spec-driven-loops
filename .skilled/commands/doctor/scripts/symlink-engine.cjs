@@ -541,14 +541,49 @@ function isUnmirroredChild(sourceRelative, name) {
 }
 
 /**
+ * Whether a source child is a relative link that leaves its manifest folder.
+ * Such a link names a host sibling, so it can only be mirrored relative to the host.
+ * @param {string} sourcePath
+ * @param {string} entrySource
+ * @returns {boolean}
+ */
+function isHostRelativeLink(sourcePath, entrySource) {
+  const stat = lstatOrNull(sourcePath);
+  if (!stat || !stat.isSymbolicLink()) return false;
+  const linkText = fs.readlinkSync(sourcePath);
+  if (path.isAbsolute(linkText)) return false;
+  return !isWithin(path.resolve(path.dirname(sourcePath), linkText), entrySource);
+}
+
+/**
+ * Whether a source folder holds any link that names a host sibling.
+ * @param {string} directory
+ * @param {string} entrySource
+ * @param {string} sourceRelative
+ * @returns {boolean}
+ */
+function hasHostRelativeLink(directory, entrySource, sourceRelative) {
+  for (const name of fs.readdirSync(directory)) {
+    if (isUnmirroredChild(sourceRelative, name)) continue;
+    const child = path.join(directory, name);
+    if (isHostRelativeLink(child, entrySource)) return true;
+    const stat = lstatOrNull(child);
+    if (stat && stat.isDirectory() && !stat.isSymbolicLink()
+      && hasHostRelativeLink(child, entrySource, path.join(sourceRelative, name))) return true;
+  }
+  return false;
+}
+
+/**
  * Inspect children of a merged source directory without following root symlinks.
  * @param {string} root
  * @param {string} source
  * @param {string} rootRelative
  * @param {string} sourceRelative
+ * @param {string} entrySource
  * @param {object} details
  */
-function inspectMergeTree(root, source, rootRelative, sourceRelative, details) {
+function inspectMergeTree(root, source, rootRelative, sourceRelative, entrySource, details) {
   const sourceDirectory = resolveInside(source, sourceRelative);
   const rootDirectory = resolveInside(root, rootRelative);
   let sourceNames;
@@ -568,6 +603,18 @@ function inspectMergeTree(root, source, rootRelative, sourceRelative, details) {
     const sourceStat = lstatOrNull(childSource);
     const rootStat = lstatOrNull(childRoot);
     if (!sourceStat) continue;
+    if (isHostRelativeLink(childSource, entrySource)) {
+      const linkText = fs.readlinkSync(childSource);
+      const hostTarget = path.resolve(path.dirname(childRoot), linkText);
+      // A host sibling that is absent means the alias is omitted, never missing.
+      if (!isWithin(hostTarget, root) || !linkTargetExists(hostTarget)) continue;
+      if (!rootStat) {
+        details.missing_children.push(childRootRelative);
+      } else if (!rootStat.isSymbolicLink() || fs.readlinkSync(childRoot) !== linkText) {
+        details.local_conflicts.push(childRootRelative);
+      }
+      continue;
+    }
     if (!rootStat) {
       details.missing_children.push(childRootRelative);
       continue;
@@ -584,7 +631,7 @@ function inspectMergeTree(root, source, rootRelative, sourceRelative, details) {
       continue;
     }
     if (rootStat.isDirectory() && sourceStat.isDirectory()) {
-      inspectMergeTree(root, source, childRootRelative, childSourceRelative, details);
+      inspectMergeTree(root, source, childRootRelative, childSourceRelative, entrySource, details);
     } else {
       details.local_conflicts.push(childRootRelative);
     }
@@ -642,6 +689,10 @@ function inspectEntry(selected, root, source, gitWorkTree) {
     details.status = 'missing';
     return details;
   }
+  if (entry.project_owned === true && rootStat.isFile()) {
+    details.status = 'project-owned';
+    return details;
+  }
   if (rootStat.isSymbolicLink()) {
     const linkText = fs.readlinkSync(rootPath);
     if (isWholeLink(rootPath, sourcePath, entry, linkText)) {
@@ -655,7 +706,7 @@ function inspectEntry(selected, root, source, gitWorkTree) {
     return details;
   }
   if (rootStat.isDirectory() && sourceStat.isDirectory() && entry.kind === 'dir') {
-    inspectMergeTree(root, source, entry.name, entry.source || entry.name, details);
+    inspectMergeTree(root, source, entry.name, entry.source || entry.name, sourcePath, details);
     details.status = details.missing_children.length > 0 || details.broken_links.length > 0
       ? 'partial-merge'
       : 'linked-merge';
@@ -736,10 +787,11 @@ function refuse(actions, refusals, pathName, reason) {
  * @param {string} source
  * @param {string} rootRelative
  * @param {string} sourceRelative
+ * @param {string} entrySource
  * @param {Array<object>} actions
  * @param {Array<string>} ignoreCandidates
  */
-function planMergeTree(root, source, rootRelative, sourceRelative, actions, ignoreCandidates) {
+function planMergeTree(root, source, rootRelative, sourceRelative, entrySource, actions, ignoreCandidates) {
   const sourceDirectory = resolveInside(source, sourceRelative);
   const rootDirectory = resolveInside(root, rootRelative);
   let sourceNames;
@@ -759,6 +811,16 @@ function planMergeTree(root, source, rootRelative, sourceRelative, actions, igno
     const sourceStat = lstatOrNull(childSource);
     const rootStat = lstatOrNull(childRoot);
     if (!sourceStat) continue;
+    if (isHostRelativeLink(childSource, entrySource)) {
+      const linkText = fs.readlinkSync(childSource);
+      const hostTarget = path.resolve(path.dirname(childRoot), linkText);
+      // Only a host sibling that already exists receives the alias; it is never a link into the checkout.
+      if (!isWithin(hostTarget, root) || !linkTargetExists(hostTarget)) continue;
+      if (!rootStat) {
+        actions.push({ op: 'link', path: childRootRelative, target: linkText });
+      }
+      continue;
+    }
     if (!rootStat) {
       actions.push({ op: 'link', path: childRootRelative, target: childSource });
       ignoreCandidates.push(childRootRelative);
@@ -776,7 +838,7 @@ function planMergeTree(root, source, rootRelative, sourceRelative, actions, igno
       continue;
     }
     if (rootStat.isDirectory() && sourceStat.isDirectory()) {
-      planMergeTree(root, source, childRootRelative, childSourceRelative, actions, ignoreCandidates);
+      planMergeTree(root, source, childRootRelative, childSourceRelative, entrySource, actions, ignoreCandidates);
     }
   }
 
@@ -837,10 +899,14 @@ function buildPlan(options = {}) {
     const rootStat = lstatOrNull(rootPath);
 
     if (!rootStat) {
-      const merge = entry.kind === 'dir' && (mode === 'merge' || entry.merge_only === true);
+      // A whole link would resolve a host-sibling alias against this checkout, so such a
+      // folder is built in place; every other folder keeps the whole-link default.
+      const merge = entry.kind === 'dir' && (mode === 'merge' || entry.merge_only === true
+        || hasHostRelativeLink(sourcePath, sourcePath, entry.source || entry.name));
       if (merge) {
         actions.push({ op: 'mkdir', path: entry.name });
-        planMergeTree(context.root, context.source, entry.name, entry.source || entry.name, actions, ignoreCandidates);
+        planMergeTree(context.root, context.source, entry.name, entry.source || entry.name,
+          sourcePath, actions, ignoreCandidates);
       } else {
         const target = entry.kind === 'relative-link' ? entry.target : sourcePath;
         actions.push({ op: 'link', path: entry.name, target });
@@ -848,6 +914,9 @@ function buildPlan(options = {}) {
       }
       continue;
     }
+
+    // A real project file wins over the vendored copy; the manifest entry is a fallback only.
+    if (entry.project_owned === true && rootStat.isFile()) continue;
 
     if (rootStat.isSymbolicLink()) {
       const linkText = fs.readlinkSync(rootPath);
@@ -866,7 +935,8 @@ function buildPlan(options = {}) {
       if (mode === 'whole' && entry.merge_only !== true) {
         refuse(actions, refusals, entry.name, 'a real folder exists; use --mode merge');
       } else {
-        planMergeTree(context.root, context.source, entry.name, entry.source || entry.name, actions, ignoreCandidates);
+        planMergeTree(context.root, context.source, entry.name, entry.source || entry.name,
+          sourcePath, actions, ignoreCandidates);
       }
       continue;
     }
@@ -1362,7 +1432,12 @@ function isManifestTarget(manifest, source, rootRelative, target) {
     const suffix = rootRelative.slice(entry.name.length + 1);
     const sourceRelative = path.join(entry.source || entry.name, suffix);
     try {
-      if (target === resolveInside(source, sourceRelative)) return true;
+      const sourceChild = resolveInside(source, sourceRelative);
+      if (target === sourceChild) return true;
+      // A merged child may itself be a relative link mirrored from the source tree.
+      const sourceChildStat = lstatOrNull(sourceChild);
+      if (sourceChildStat && sourceChildStat.isSymbolicLink()
+        && !path.isAbsolute(target) && fs.readlinkSync(sourceChild) === target) return true;
     } catch {
       return false;
     }
