@@ -1001,15 +1001,15 @@ backfill_graph_metadata() {
     done
 }
 
-# A track root declares its packets in children_ids, and the pre-push gate
-# blocks a commit whose list disagrees with the packets it holds. Declaring the
-# new packet here keeps the two in step from the moment the packet exists. A
-# track with no graph-metadata.json declares nothing, so there is nothing to do.
-refresh_track_root() {
+# A track root declares its packets in children_ids, and a declared sub-track
+# does the same for its own. The pre-push gate blocks a commit whose list
+# disagrees with the folders it holds, so every level the new packet touches is
+# refreshed here. A level with no graph-metadata.json declares nothing.
+refresh_track_level() {
     local specs_root="$1"
     local track="$2"
     local refresh_script="$SCRIPT_DIR/refresh-track-roots.mjs"
-    [[ -n "$track" && "$track" != */* && -f "$specs_root/$track/graph-metadata.json" ]] || return 0
+    [[ -f "$specs_root/$track/graph-metadata.json" ]] || return 0
     if [[ ! -f "$refresh_script" ]]; then
         report_missing_generator "track root refresh" "$refresh_script" "Restore it from the repository."
         return 0
@@ -1018,6 +1018,42 @@ refresh_track_root() {
     if ! node "$refresh_script" --specs "$specs_root" --track "$track" --apply >&2; then
         echo "  Warning: ${track}/graph-metadata.json was not refreshed; its children_ids may not list the new packet. Rerun refresh-track-roots.mjs --track ${track} --apply." >&2
     fi
+}
+
+# A declared sub-track is a track root inside its parent. It is judged here by
+# the same reader the writer uses, so the two tools never disagree about which
+# folders are containers. Anything else with a slash keeps the earlier skip.
+is_declared_subtrack() {
+    local specs_root="$1"
+    local track="$2"
+    local reader="${SCRIPT_DIR}/../lib/track-roots.mjs"
+    [[ -f "$reader" ]] || return 1
+    node --input-type=module - "$reader" "$specs_root" "$track" <<'NODE' >/dev/null 2>&1
+import { pathToFileURL } from 'node:url';
+
+const [readerPath, specsRoot, trackName] = process.argv.slice(2);
+const { readWorkingTreeTracks } = await import(pathToFileURL(readerPath).href);
+process.exit(readWorkingTreeTracks(specsRoot).some((track) => track.name === trackName) ? 0 : 1);
+NODE
+}
+
+# A packet filed in a declared sub-track is listed by the sub-track, while the
+# track lists the sub-track itself. A slash value that names no declared
+# sub-track is not a second level at all, so it keeps the earlier skip.
+refresh_track_root() {
+    local specs_root="$1"
+    local track="$2"
+    [[ -n "$track" ]] || return 0
+    if [[ "$track" == */* ]]; then
+        local parent="${track%%/*}"
+        local sub="${track#*/}"
+        [[ "$sub" != */* ]] || return 0
+        is_declared_subtrack "$specs_root" "$track" || return 0
+        refresh_track_level "$specs_root" "$track"
+        refresh_track_level "$specs_root" "$parent"
+        return 0
+    fi
+    refresh_track_level "$specs_root" "$track"
 }
 
 # The presence rule counts a phase parent's description.json as required, so a

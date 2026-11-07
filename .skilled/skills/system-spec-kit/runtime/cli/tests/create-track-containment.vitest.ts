@@ -83,6 +83,7 @@ describe('create.sh refuses a --track that leaves specs/', () => {
     ['a/../../x', () => 'a/../../x'],
     ['an absolute path', () => path.join(sandbox, 'absolute-track')],
     ['.', () => '.'],
+    ['an empty segment', () => 'demo//sub'],
   ];
 
   for (const [label, value] of refused) {

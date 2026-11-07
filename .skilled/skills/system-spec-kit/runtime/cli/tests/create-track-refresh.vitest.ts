@@ -8,6 +8,8 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { buildSubtrackTree } from './fixtures/subtrack-tree.mjs';
+
 const CLI_DIR = path.resolve(__dirname, '..');
 const SKILL_ROOT = path.resolve(CLI_DIR, '../..');
 
@@ -139,6 +141,64 @@ describe('create.sh --track refreshes its track root', () => {
     expect(result.status, result.stderr).toBe(0);
     expect(fs.readFileSync(metadataPath, 'utf8')).toBe(before);
   });
+});
+
+// A declared sub-track is a container like a track root, so a packet scaffolded
+// into it is declared at two levels: the sub-track lists the new packet, and the
+// track keeps listing only the sub-track itself.
+describe('create.sh --track refreshes a declared sub-track and its track', () => {
+  it('numbers inside the sub-track and declares the packet at both levels', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const result = create(['--track', 'demo/sub', '--short-name', 'second-probe', 'Second nested packet']);
+    expect(result.status, result.stderr).toBe(0);
+    expect(() => JSON.parse(result.stdout)).not.toThrow();
+
+    const folders = fs.readdirSync(path.join(specs, 'demo', 'sub'))
+      .filter((name) => /^\d{3}-/.test(name))
+      .sort();
+    expect(folders).toEqual(['001-nested-probe', '002-second-probe']);
+
+    expect(children(path.join(specs, 'demo', 'sub', 'graph-metadata.json')))
+      .toEqual(['demo/sub/001-nested-probe', 'demo/sub/002-second-probe']);
+
+    const trackMetadata = path.join(specs, 'demo', 'graph-metadata.json');
+    expect(children(trackMetadata)).toEqual(['demo/001-flat-probe', 'demo/sub']);
+    expect(children(trackMetadata).filter((entry) => entry === 'demo/sub')).toHaveLength(1);
+    expect(children(trackMetadata)).not.toContain('demo/sub/002-second-probe');
+  });
+
+  it('leaves an undeclared slash value alone', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const loose = path.join(specs, 'demo', 'loose');
+    const trackMetadata = path.join(specs, 'demo', 'graph-metadata.json');
+    const before = fs.readFileSync(trackMetadata, 'utf8');
+
+    const result = create(['--track', 'demo/loose', '--short-name', 'loose-probe', 'Loose packet']);
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(loose, 'graph-metadata.json'))).toBe(false);
+    expect(fs.readFileSync(trackMetadata, 'utf8')).toBe(before);
+    expect(result.stderr).not.toContain('was not refreshed');
+  });
+});
+
+// The track value can name two segments, but it still may not climb out of
+// specs/ or carry an empty segment.
+describe('create.sh still refuses an invalid --track', () => {
+  const refused: Array<[string, () => string]> = [
+    ['a parent segment', () => '..'],
+    ['an absolute path', () => path.join(workspace, 'absolute-track')],
+    ['an empty segment', () => 'demo//sub'],
+  ];
+
+  for (const [label, value] of refused) {
+    it(`refuses ${label} before any folder is made`, () => {
+      const result = create(['--track', value(), '--short-name', 'probe', 'Probe packet']);
+      expect(result.status).not.toBe(0);
+      expect(result.stderr).toContain('--track');
+      expect(fs.existsSync(path.join(workspace, 'specs'))).toBe(false);
+    });
+  }
 });
 
 // A new top-level packet is the moment to notice a recent sibling that already
