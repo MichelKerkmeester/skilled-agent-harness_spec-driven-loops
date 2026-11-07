@@ -55,6 +55,7 @@ contextType: "implementation"
 - [x] T010 Rerun every baseline command. Verify: no failure that main does not also have.
 - [x] T011 Run the typecheck (`npm run typecheck`). Verify: exit 0.
 - [x] T012 Residue sweep over the phase area. Verify: only the justified transcript fixture remains.
+- [x] T013 Follow-up on 2026-11-07: put the DSH copy checks in the pre-commit mirror gate where the Hermes ones were (`pre-commit`, `tests/pre-commit.test.sh`, `.dsh/SYNC.md`). Verify: `pre-commit.test.sh` reads 159 passed, 0 failed, and 157 passed, 2 failed against the hook without the DSH checks.
 <!-- /ANCHOR:phase-3 -->
 
 ---

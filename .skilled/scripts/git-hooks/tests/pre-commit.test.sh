@@ -778,6 +778,22 @@ else
   echo "FAIL  the Codex prompt copy check did not receive --check"; FAIL=$((FAIL + 1))
 fi
 
+# ── 49b. the DSH copy checks run in the mirror gate ──
+setup_gate_fixture toolchain
+DSH_STUBS="$TMP/.opencode/skills/system-spec-kit/runtime/cli/dsh"
+mkdir -p "$DSH_STUBS"
+printf '%s\n' 'console.log("DRIFT demo-skill"); process.exit(1);' > "$DSH_STUBS/sync-skills-dsh.cjs"
+printf '%s\n' 'require("fs").appendFileSync("dsh-prompt-calls.log", process.argv.slice(2).join(" ") + "\n");' > "$DSH_STUBS/sync-prompts-dsh.cjs"
+printf '%s\n' 'require("fs").appendFileSync("dsh-agent-calls.log", process.argv.slice(2).join(" ") + "\n");' > "$DSH_STUBS/sync-agents-dsh.cjs"
+stage_new "notes.md" "note"
+SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
+check "a drifted DSH skill copy blocks the mirror gate" 1 "$RC" "sync-skills-dsh.cjs failed"
+if grep -qx -- '--check' "$TMP/dsh-prompt-calls.log" 2>/dev/null && grep -qx -- '--check' "$TMP/dsh-agent-calls.log" 2>/dev/null; then
+  echo "PASS  the DSH prompt and agent copy checks receive --check"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the DSH prompt and agent copy checks did not receive --check"; FAIL=$((FAIL + 1))
+fi
+
 # ══ skill authoring gate ════════════════════════════════════════════════════
 # The gate regenerates a skill's derived artifacts through three creator tools and
 # blocks when any of them reports drift. Its fixture plants all three as stubs and a

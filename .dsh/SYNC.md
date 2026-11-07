@@ -95,6 +95,8 @@ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --chec
 node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
 ```
 
+The pre-commit mirror gate runs the three checks on every commit in this repository, and CI runs them again in its `dsh-mirror` job. A commit that stages a skill, agent or command source with a dirty `.dsh` copy is blocked until the regenerated copy is staged too.
+
 Then check that the patches still compose:
 
 ```bash

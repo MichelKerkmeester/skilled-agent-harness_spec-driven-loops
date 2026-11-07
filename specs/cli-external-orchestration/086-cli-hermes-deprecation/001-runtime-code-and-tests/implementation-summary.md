@@ -66,6 +66,7 @@ You can no longer select `cli-hermes` anywhere. The executor config rejects it, 
 | `.skilled/bin/skilled-loop`, `skilled-loop-shell.sh` | Modify | Drop the launcher arm and shell function |
 | `.skilled/scripts/git-hooks/pre-commit`, `orphan-mcp-sweeper.sh` | Modify | Drop Hermes mirror checks and process patterns |
 | `.skilled/commands/doctor/scripts/**` | Modify | Drop Hermes from the integrate, surface, check and git-setup scripts |
+| `.skilled/scripts/git-hooks/pre-commit`, `tests/pre-commit.test.sh`, `.dsh/SYNC.md` | Modify | Follow-up: the mirror gate runs the three DSH copy checks CI already ran, and blocks a commit that stages a skill, agent or command source beside a dirty `.dsh` copy |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -101,6 +102,7 @@ The hooks, launcher and git-hooks area went to one Claude agent. The deep-loop a
 | Hooks vitest | PASS, 483/483 (baseline 482 of 483) |
 | Dispatch rule checks | PASS, 47/47 (baseline 50/50) |
 | Pre-commit tests | PASS, 157 passed, 0 failed (baseline 159, 0 failed) |
+| Pre-commit tests after the DSH follow-up | PASS, 159 passed, 0 failed. The two new DSH cases fail against the hook without the checks (157 passed, 2 failed) |
 | Deep-loop typecheck | PASS, exit 0 |
 <!-- /ANCHOR:verification -->
 
@@ -109,7 +111,7 @@ The hooks, launcher and git-hooks area went to one Claude agent. The deep-loop a
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Full deep-loop suite keeps one failure.** `deep-research-ledger-schema.vitest.ts` fails on main as well; this change did not cause it.
+1. **Full deep-loop suite kept one failure.** `deep-research-ledger-schema.vitest.ts` failed on main as well, from a 30 s timeout under a full run. It has since been given its own timeout and passes.
 2. **One residue is kept on purpose.** `decision-capture` keeps a captured Devin transcript that mentions Hermes as text.
 <!-- /ANCHOR:limitations -->
 

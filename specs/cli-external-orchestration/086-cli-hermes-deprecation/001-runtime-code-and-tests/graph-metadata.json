@@ -38,7 +38,8 @@
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs"
+      ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+      ".dsh/SYNC.md"
     ],
     "entities": [
       {
@@ -87,6 +88,12 @@
         "name": "orchestrate-session.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Remove Hermes",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Runtime code carried a full Hermes executor: a fan-out command builder, executor config and audit tables, session-relaunch adapters, dispatch lint rules, a launcher arm and a shell function",
     "created_at": "2026-11-07T10:34:39Z",
-    "last_save_at": "2026-11-07T14:00:43.726Z",
+    "last_save_at": "2026-11-07T16:05:59.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +199,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9299a7667e46791107a9b0d44d453398a2ddb344fd9147fe151e3deaeaf4aebc",
+    "source_fingerprint": "sha256:2226727033cb819b32a4f8e06e7e3fbbcaa6d9d669a63fa73e3bbe6b070e5bb4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf6f8c9ef32698b5a9db9327bc9435d431be0d5f4cc3411b342dc1a1aa536e00",
       "plan.md": "aff68b76dbf6d431ed1f37136b165561e43b45b126d131477b6bac01b63ccc0e",
-      "tasks.md": "d3a6720de3b46fc7c85e0d23a8e264faa0b192d2c781c0b59c961356cd6ce241",
-      "implementation-summary.md": "75f80df719ba2c7196371cecc7a4b39cd53b39d78601c33482c078a610cb8663"
+      "tasks.md": "e71b4550480e7e4667f2108750b1f64238b1f4684de911badf5f4ea117813d9d",
+      "implementation-summary.md": "b02b730ec191b81e54f39ee01dad77b888e07fbbe539621f1ef9fd3fa985c084"
     },
     "last_active_at": null
   }

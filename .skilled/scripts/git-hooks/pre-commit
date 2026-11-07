@@ -363,11 +363,12 @@ if [[ "${SPECKIT_SKIP_DOC_VERSION_BUMP:-0}" != "1" ]] && command -v node >/dev/n
 fi
 
 # --- Mirror parity gate (blocking): runs what CI's mirror job runs ---
-# Six checks run here, the six that feed the mirror CI job, and until now one of those 6
-# had a local gate. The other five failed CI the same way the prompt mirror did and were
-# masked behind it, because the job stops at its first failure. All six checks together
-# cost about half a second on a warm checkout, so they run on every commit rather than
-# behind a trigger list that a new mirror would silently miss.
+# Nine checks run here: the six that feed the mirror CI job and the three DSH copy checks
+# CI runs in its own job. Until the six were gathered here, one had a local gate, and the
+# other five failed CI the same way the prompt mirror did and were masked behind it,
+# because the job stops at its first failure. All nine together cost under a second on a
+# warm checkout, so they run on every commit rather than behind a trigger list that a new
+# mirror would silently miss.
 # Two halves, because they fail independently. Every check must pass on the working
 # tree, which proves each mirror was regenerated. And no mirror output may carry an
 # unstaged change, which proves what was regenerated is what gets committed. The
@@ -380,13 +381,14 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
   # One command file fans out to three mirrors: the codex prompt, and the .claude and
   # .cursor command copies those runtimes discover by convention. Missing a tree here
   # lets its regenerated copy sit unstaged and pass, which is the failure this gate
-  # exists to stop, so every generated tree the six checks cover is listed.
+  # exists to stop, so every generated tree the nine checks cover is listed.
   MIRROR_OUTPUTS=(
     .codex/prompts .codex/agents .codex/hooks .codex/hooks.json
     .claude/agents .claude/commands .claude/hooks .claude/settings.json
     .cursor/agents .cursor/commands .cursor/hooks .cursor/hooks.json
     .devin/agents .devin/hooks .devin/hooks.v1.json
     .pi/agents .pi/extensions
+    .dsh/agents .dsh/prompts .dsh/skills .dsh/plugins/repo-guards/adapters
     .opencode/commands/README.txt .skilled/commands/README.txt
   )
   # The trees a mirror is generated FROM. A commit that stages none of these, and no
@@ -401,6 +403,9 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
     .skilled/agents .skilled/commands .skilled/hooks
     .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors
     .skilled/skills/system-spec-kit/runtime/cli/codex
+    .opencode/skills/system-spec-kit/runtime/cli/dsh
+    .skilled/skills/system-spec-kit/runtime/cli/dsh
+    '.opencode/skills/*/SKILL.md' '.skilled/skills/*/SKILL.md'
   )
   UNSTAGED_MIRROR="$( { git_bounded diff --name-only -- "${MIRROR_OUTPUTS[@]}" '.opencode/commands/*/README.txt' '.opencode/skills/*/command-metadata.json' '.skilled/commands/*/README.txt' '.skilled/skills/*/command-metadata.json'; git_bounded ls-files --others --exclude-standard -- "${MIRROR_OUTPUTS[@]}"; } 2>/dev/null )"
   if [[ -n "$UNSTAGED_MIRROR" ]]; then
@@ -435,6 +440,9 @@ if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && comm
     "$SOURCE_ROOT/commands/doctor/scripts/agent-roster-mirror-check.cjs|"
     "$SOURCE_ROOT/commands/doctor/scripts/command-catalog-mirror-check.cjs|"
     "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs|--check"
+    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs|--check"
+    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs|--check"
+    "$SOURCE_ROOT/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs|--check"
   )
   for MIRROR_ENTRY in "${MIRROR_CHECKS[@]}"; do
     MIRROR_SCRIPT="${MIRROR_ENTRY%%|*}"
