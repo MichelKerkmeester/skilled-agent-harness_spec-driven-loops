@@ -2,7 +2,15 @@
 // MODULE: Pi Extension - Prompt Advisor
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const RAW_INPUT_STORE_KEY = Symbol.for("mk.pi.dispatch.raw-input");
 const MAX_CAPTURED_USER_TEXT = 32_768;
@@ -12,6 +20,10 @@ const MAX_TRACKED_SESSIONS = 64;
 const PI_ADVISOR_DEADLINE_MARGIN_MS = 300;
 // Mirrors the Claude hook's default budget, which Pi cannot import statically because it loads the hook lazily.
 const PI_ADVISOR_DEFAULT_BUDGET_MS = 2500;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 // The hook applies the same parse rule; diverging here would let Pi's deadline fire
 // before the hook's own budget expires.
@@ -50,6 +62,10 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. ADVISOR HOOK MODULES
+// ───────────────────────────────────────────────────────────────────
+
 // The shared advisor lifecycle module the claude/codex/cursor runtimes execute
 // as a subprocess. Its CLI entrypoint is guarded, so importing it in-process is
 // safe. Pi awaits input handlers before agent processing begins, so the old
@@ -61,7 +77,10 @@ export const ADVISOR_HOOK_MODULE =
 export const ADVISOR_HOOK_FALLBACK_MODULE =
   "../../runtime/dist/hooks/claude/user-prompt-submit.js";
 
-// ── Pi-local advisor-brief de-duplication ──────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 5. DIRECTIVE DE-DUPLICATION
+// ───────────────────────────────────────────────────────────────────
+
 // The advisor brief Pi appends onto the visible prompt is a dynamic route line
 // plus constant directives. Pi renders the entire extension contribution on
 // screen, so a proven same-content repeat suppresses that brief. The first
@@ -174,6 +193,10 @@ export function resetPiDirectiveDedupState(): void {
   directiveDedupStore().directiveDedupBySession.clear();
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. DEBUG OUTPUT
+// ───────────────────────────────────────────────────────────────────
+
 export const PI_ADVISOR_DEBUG_FLAG = "SPECKIT_PI_ADVISOR_DEBUG";
 
 export function isPiAdvisorDebugEnabled(): boolean {
@@ -205,6 +228,10 @@ export function formatPiAdvisorDebug(
   const budgetMs = advisorBudgetMs();
   return `[advisor-debug] brief=${brief} durationMs=${durationMs} budgetMs=${budgetMs}`;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. EXTENSION ENTRY POINT
+// ───────────────────────────────────────────────────────────────────
 
 interface AdvisorEnvelope {
   hookSpecificOutput?: {

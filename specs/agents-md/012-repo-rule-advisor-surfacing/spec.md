@@ -113,6 +113,7 @@ Decide, from repository evidence, what should surface repo rules, how to write t
 | 8 | `008-gate5-card-pilot/` | Card generator and a two-arm pilot of full files against cards at Gate 5, resident cards dropped | Complete (cards held) |
 | 9 | `009-rule-delivery-debugging/` | Why each executor skips a mandated rule load, and a fix on the delivery surface | Complete |
 | 10 | `010-rule-phrase-find-surface/` | Rule trigger phrases as the ripgrep find surface: wording, guidance and plain-noun phrases | Complete |
+| 11 | `011-decisions-rule-delivery/` | Gate 3 question text asks for one recommended option, so it stops arriving as a neutral menu | Complete |
 
 ### Phase Transition Rules
 
@@ -134,6 +135,7 @@ Decide, from repository evidence, what should surface repo rules, how to write t
 | 007-table-wording-experiment | 008-gate5-card-pilot | Both run in isolated environments. 007 decides before an 008 winner goes live | `results/` decision recorded in 007 |
 | 008-gate5-card-pilot | 009-rule-delivery-debugging | 008 write-task runs scored, since they feed the 009 Gate 5 rate | `rule-experiment.py score` output in 008 `results/` |
 | 009-rule-delivery-debugging | 010-rule-phrase-find-surface | Independent. 010 doc and checker edits may go first, and its rule-file edits wait for the 006 window | `validate.sh 010-rule-phrase-find-surface --strict` returns RESULT: PASSED |
+| 010-rule-phrase-find-surface | 011-decisions-rule-delivery | Independent. 011 changes only the Gate 3 wording | `validate.sh 011-decisions-rule-delivery --strict` returns RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

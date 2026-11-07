@@ -20,7 +20,8 @@
     "system-speckit/039-ci-workflow-efficiency",
     "system-speckit/040-weak-model-spec-authoring",
     "system-speckit/041-orphan-sweep-temp-processes",
-    "system-speckit/043-decision-capture"
+    "system-speckit/043-decision-capture",
+    "system-speckit/044-named-subtracks-and-host-repos"
   ],
   "manual": {
     "depends_on": [],

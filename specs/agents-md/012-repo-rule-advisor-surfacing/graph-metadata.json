@@ -13,7 +13,8 @@
     "agents-md/012-repo-rule-advisor-surfacing/007-table-wording-experiment",
     "agents-md/012-repo-rule-advisor-surfacing/008-gate5-card-pilot",
     "agents-md/012-repo-rule-advisor-surfacing/009-rule-delivery-debugging",
-    "agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface"
+    "agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
+    "agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery"
   ],
   "manual": {
     "depends_on": [],
@@ -167,17 +168,17 @@
     ],
     "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
     "created_at": "2026-10-04T13:11:17Z",
-    "last_save_at": "2026-10-31T15:23:33.681Z",
+    "last_save_at": "2026-11-07T10:39:56.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:80a2cabd973dd6bb4d28854651235922e7556ad67d0156b3156d27f1828c2182",
+    "source_fingerprint": "sha256:dfdabd2d3860d1c512d1eefe67faa4402929094c1f07e69b044199ae7488b31c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "061b083a87b53b1523b936d06d3a2ba618e51e8c796c5f9a64ca77bf1bda6aa7"
+      "spec.md": "3cce6bd6aaa47ebac99345107d586a943af31148882076148b909eddefa73223"
     },
     "last_active_child_id": "agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
     "last_active_at": "2026-10-05T10:38:45.444Z"

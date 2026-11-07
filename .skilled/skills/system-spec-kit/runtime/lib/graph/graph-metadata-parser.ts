@@ -1823,26 +1823,56 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
  */
 function isWithinConfiguredSpecsRoot(candidate: string): boolean {
   const target = path.resolve(candidate);
-  // Roots come from the destination, not from the calling process. The process
-  // is the workspace the caller happens to be running in, which is not where
-  // the bytes land: a hook launched from the home directory, or a fixture
-  // repository built under a temporary directory, resolves a different root and
-  // every write is refused - including writes into the real repository.
-  //
-  // Consulting the process as a second source was measured to change no
-  // outcome, because walking up from a destination inside a configured root
-  // reaches the same workspace anchor. It was removed rather than kept as a
-  // second layer: a branch that never decides anything claims a check that is
-  // not performed.
+  // Roots come first from the destination. The process is the workspace the
+  // caller happens to be running in, which is not where the bytes land: a hook
+  // launched from the home directory, or a fixture repository built under a
+  // temporary directory, resolves a different root, so the process alone would
+  // refuse writes into the real repository. It joins only the real-location
+  // check below, as a second source of roots.
   //
   // This does not let a destination authorize itself. A root counts only when
   // it exists on disk and its workspace is anchored on a real `.opencode`
   // directory, so a path that merely contains a `specs` segment yields none.
-  for (const root of getSpecsBasePaths(target)) {
+  const roots = getSpecsBasePaths(target);
+  for (const root of roots) {
     const base = path.resolve(root);
     if (target === base || target.startsWith(base + path.sep)) return true;
   }
+  // A specs root can itself be a link to a spec track elsewhere, which is how a
+  // project checkout shares its packets with another repository. A destination
+  // spelled through the track's real path sits inside no unresolved root, so it
+  // also counts when its real location sits inside a root's real location.
+  //
+  // For this comparison the process's own workspace adds its roots. A save run
+  // in a project whose `specs` links into another repository receives the
+  // packet already resolved, and walking up from there reaches the other
+  // repository, whose roots do not hold the track. The process's roots only
+  // admit the real locations they point to, so a path outside every root of
+  // both workspaces stays refused.
+  const realTarget = realLocationOf(target);
+  if (realTarget === null) return false;
+  for (const root of [...roots, ...getSpecsBasePaths(process.cwd())]) {
+    const realBase = realLocationOf(path.resolve(root));
+    if (realBase !== null && (realTarget === realBase || realTarget.startsWith(realBase + path.sep))) return true;
+  }
   return false;
+}
+
+/**
+ * The real location of a path whose last segment may not exist yet: the real
+ * parent directory joined with that segment, or null when the parent does not
+ * resolve.
+ */
+function realLocationOf(candidate: string): string | null {
+  try {
+    return fs.realpathSync(candidate);
+  } catch {
+    try {
+      return path.join(fs.realpathSync(path.dirname(candidate)), path.basename(candidate));
+    } catch {
+      return null;
+    }
+  }
 }
 
 /**
@@ -1868,9 +1898,10 @@ export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata
   // The classifier above only proves the path *looks* like a spec document: it
   // matches any path containing a specs segment, so a destination anywhere on
   // the filesystem satisfied it. Membership is proven against the configured
-  // roots, and against the canonical path — the one the bytes actually reach.
-  // Authorizing the unresolved path while writing the canonical one let a link
-  // inside a root redirect the write outside it.
+  // roots of the workspace the caller's path names, which is why callers pass
+  // the path as they spelled it: resolving it first can land in a different
+  // workspace, whose roots do not hold the packet. The bytes still go to the
+  // canonical path.
   if (!isWithinConfiguredSpecsRoot(resolvedFilePath)) {
     throw new Error(`Refusing to write graph metadata outside a configured specs root: ${resolvedFilePath}`);
   }
@@ -1932,7 +1963,10 @@ export function refreshGraphMetadataForSpecFolder(
     };
   }
 
-  writeGraphMetadataFile(filePath, merged);
+  // The writer authorizes against the folder as the caller named it. A project
+  // whose specs root links into another repository resolves into that
+  // repository, whose roots do not hold the packet.
+  writeGraphMetadataFile(path.join(resolvedSpecFolderPath, GRAPH_METADATA_FILENAME), merged);
 
   return {
     filePath,

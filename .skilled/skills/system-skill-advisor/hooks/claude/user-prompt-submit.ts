@@ -5,6 +5,10 @@
 // Runs on Claude Code UserPromptSubmit. Emits a JSON additionalContext
 // envelope for model-visible advisor guidance and fails open on all errors.
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import { statSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
@@ -40,6 +44,10 @@ import { buildSkillAdvisorBriefFromCli } from '../lib/skill-advisor-cli-fallback
 
 export { renderAdvisorFallbackDirective };
 
+// ───────────────────────────────────────────────────────────────
+// 2. CONFIGURATION
+// ───────────────────────────────────────────────────────────────
+
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
   : false;
@@ -67,6 +75,10 @@ function skillAdvisorHookEnabled(): boolean {
     return true;
   }
 }
+
+// ───────────────────────────────────────────────────────────────
+// 3. TYPES
+// ───────────────────────────────────────────────────────────────
 
 export interface ClaudeUserPromptSubmitInput {
   readonly session_id?: string;
@@ -124,11 +136,19 @@ interface HookDiagnosticInput {
   readonly directivesSuppressed?: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────
+// 4. CONSTANTS
+// ───────────────────────────────────────────────────────────────
+
 export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500;
 const MAX_PROMPT_BYTES = 64 * 1024;
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 const DIRECTIVE_RECEIPT_COMMIT = Symbol('directiveReceiptCommit');
 const pendingDiagnosticWrites = new Set<Promise<unknown>>();
+
+// ───────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -260,6 +280,10 @@ export function parseClaudeUserPromptSubmitInput(raw: string): ClaudeUserPromptS
     return null;
   }
 }
+
+// ───────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────
 
 export async function handleClaudeUserPromptSubmit(
   input: ClaudeUserPromptSubmitInput | null,
@@ -436,6 +460,10 @@ export async function handleClaudeUserPromptSubmit(
   }
 }
 
+// ───────────────────────────────────────────────────────────────
+// 7. OUTPUT DELIVERY
+// ───────────────────────────────────────────────────────────────
+
 async function readStdin(): Promise<string> {
   const chunks: Buffer[] = [];
   for await (const chunk of process.stdin) {
@@ -464,6 +492,10 @@ function writeHookOutput(output: ClaudeUserPromptSubmitOutput): Promise<void> {
     });
   });
 }
+
+// ───────────────────────────────────────────────────────────────
+// 8. CLI ENTRY POINT
+// ───────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
   const rawInput = await readStdin();

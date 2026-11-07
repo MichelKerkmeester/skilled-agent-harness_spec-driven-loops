@@ -169,7 +169,7 @@ export const GATE_3_QUESTION = [
 // that cannot remember a delivery still stops asking after the first answer.
 export const GATE_3_MUTATION_NOTICE = [
   'SPEC FOLDER QUESTION - this session has no bound spec folder and a file mutation is about to run.',
-  'Ask the operator once where this change should live, then continue:',
+  'Ask the operator once where this change should live. Recommend one option first and say why, never a neutral menu. Then continue:',
   `A) ${GATE_3_CHOICE_EXISTING} - reply with its path, e.g. specs/<track>/<NNN-name>`,
   `B) ${GATE_3_CHOICE_NEW} - reply with its path, e.g. specs/<track>/<NNN-name> (it does not have to exist yet)`,
   'C) A related folder, a phase child, or a series parent for a different change to the same artifact as an existing packet in the same track - reply with its path',

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7362,
-    "ok": 17440,
+    "missing-frontmatter": 7371,
+    "ok": 17476,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28351,
+  "documentsScanned": 28396,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b73b5faa6da95c0f5839a4428f0a2c1803fc5b7fd4c56ebe91a202c5d3b7b906",
+  "manifestHash": "91a45334e4ab4ecf157114c2ba97f65ca6309c5163591b9bc3ec9238ef80b63e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41704,
+      "ok": 41793,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -33898,6 +33898,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/graph-metadata-write-guard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69067,6 +69073,54 @@
       "line": 1,
       "path": "specs/system-speckit/043-decision-capture/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     }
   ],
   "skippedPaths": [
@@ -69920,6 +69974,10 @@
     },
     {
       "path": "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/scratch",
       "reason": "excluded directory"
     },
     {
@@ -77416,6 +77474,10 @@
     },
     {
       "path": "specs/system-speckit/043-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/scratch",
       "reason": "excluded directory"
     },
     {

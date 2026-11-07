@@ -1,8 +1,8 @@
 ---
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
-last_updated: "2026-10-30"
-version: 2.1.15.0
+last_updated: "2026-11-07"
+version: 2.1.16.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -203,6 +203,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 233 | Completion verification workflow | [233](tooling-and-scripts/completion-verification-workflow.md) | [completion-verification-workflow](../feature-catalog/tooling-and-scripts/completion-verification-workflow.md) |
 | 240 | Core workflow infrastructure | [240](tooling-and-scripts/core-workflow-infrastructure.md) | [core-workflow-infrastructure](../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md) |
 | DBG-SCAF-001 | Debug-delegation scaffold generator | [DBG-SCAF-001](tooling-and-scripts/debug-delegation-scaffold-generator.md) | [debug-delegation-scaffold-generator](../feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md) |
+| 488 | Graph metadata write guard through a linked specs root | [488](tooling-and-scripts/graph-metadata-write-guard.md) | [graph-metadata-write-guard](../feature-catalog/tooling-and-scripts/graph-metadata-write-guard.md) |
 | 469 | Heal spec-docs anchor repair dry run | [469](tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md) | [heal-spec-docs-anchor-repair](../feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md) |
 | 470 | Heal spec-docs anchor repair apply | [470](tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md) | [heal-spec-docs-anchor-repair](../feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md) |
 | 471 | Heal spec-docs lane modes | [471](tooling-and-scripts/heal-spec-docs-lane-modes.md) | [heal-spec-docs-lane-modes](../feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md) |

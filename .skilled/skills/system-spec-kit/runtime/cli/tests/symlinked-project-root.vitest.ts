@@ -116,6 +116,27 @@ describe('generate-context launched through the link', () => {
     expect(existsSync(join(RUNTIME_REPOSITORY, PACKET))).toBe(false);
   }, 60_000);
 
+  it('saves a packet reached through a specs folder that links into another workspace', () => {
+    // The save resolves the packet before it refreshes graph metadata, and walking up from the
+    // resolved path reaches the other workspace, whose roots do not hold the track.
+    const repository = makeLinkedRepository();
+    const workspace = realpathSync(mkdtempSync(join(tmpdir(), 'track-owner-')));
+    roots.push(workspace);
+    mkdirSync(join(workspace, '.opencode'));
+    const trackSpecs = join(workspace, 'repositories', 'demo', 'specs');
+    const trackPacket = join(trackSpecs, 'demo', '001-demo');
+    mkdirSync(trackPacket, { recursive: true });
+    writeFileSync(join(trackPacket, 'spec.md'), '# Demo\n', 'utf8');
+    rmSync(join(repository, 'specs'), { recursive: true, force: true });
+    symlinkSync(trackSpecs, join(repository, 'specs'));
+
+    const result = run(repository, [], ['--json', SAVE_PAYLOAD]);
+
+    expect(result.stderr).not.toContain('outside a configured specs root');
+    expect(result.status).toBe(0);
+    expect(existsSync(join(trackPacket, 'graph-metadata.json'))).toBe(true);
+  }, 60_000);
+
   it('honours an explicit project root from a directory outside any repository', () => {
     const repository = makeLinkedRepository();
     const outside = realpathSync(mkdtempSync(join(tmpdir(), 'no-project-')));

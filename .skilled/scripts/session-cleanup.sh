@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: SESSION CLEANUP
+# ───────────────────────────────────────────────────────────────
 # Clean up MCP helper descendants owned by the current runtime session.
 #
 # This script is intentionally session-scoped: it only ever kills processes it

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d5e4f6096e9a033eddc79e2b14eb6615e4027b5f39ec63fe826e3df7d6dbf4b9",
+  "corpusHash": "3ee7f022831a04e3143031d13c94e367f1ea6784efff1fcfbbd4228ba953659e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28351,
+  "includedPathCount": 28396,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -243,7 +243,30 @@
     ".skilled/hooks/shared/README.md",
     ".skilled/hooks/shared/dsh/README.md",
     ".skilled/hooks/shared/tests/README.md",
+    ".skilled/hooks/skill-advisor/claude/README.md",
+    ".skilled/hooks/skill-advisor/codex/README.md",
+    ".skilled/hooks/skill-advisor/cursor/README.md",
+    ".skilled/hooks/skill-advisor/devin/README.md",
+    ".skilled/hooks/skill-advisor/dsh/README.md",
+    ".skilled/hooks/skill-advisor/opencode/README.md",
+    ".skilled/hooks/skill-advisor/pi/README.md",
+    ".skilled/hooks/spec-gate/claude/README.md",
+    ".skilled/hooks/spec-gate/codex/README.md",
+    ".skilled/hooks/spec-gate/cursor/README.md",
+    ".skilled/hooks/spec-gate/devin/README.md",
+    ".skilled/hooks/spec-gate/dsh/README.md",
+    ".skilled/hooks/spec-gate/opencode/README.md",
+    ".skilled/hooks/spec-gate/pi/README.md",
+    ".skilled/hooks/spec-gate/tests/README.md",
     ".skilled/hooks/task-dispatch/README.md",
+    ".skilled/hooks/task-dispatch/claude/README.md",
+    ".skilled/hooks/task-dispatch/cursor/README.md",
+    ".skilled/hooks/task-dispatch/devin/README.md",
+    ".skilled/hooks/task-dispatch/dsh/README.md",
+    ".skilled/hooks/task-dispatch/lib/README.md",
+    ".skilled/hooks/task-dispatch/opencode/README.md",
+    ".skilled/hooks/task-dispatch/pi/README.md",
+    ".skilled/hooks/task-dispatch/tests/README.md",
     ".skilled/skills/.state/advisor/README.md",
     ".skilled/skills/.state/authority/README.md",
     ".skilled/skills/.state/completion-sentinel/README.md",
@@ -8591,6 +8614,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.32.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.33.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.34.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.35.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -8656,6 +8680,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/draft-auto-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/graph-metadata-write-guard.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md",
@@ -8745,6 +8770,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/graph-metadata-write-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md",
@@ -9166,6 +9192,10 @@
     "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/plan.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/spec.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/tasks.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/implementation-summary.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/plan.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/spec.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/tasks.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/changelog/changelog-016-003-agents-md-delivery-prefix.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/changelog/changelog-016-004-rule-delivery-instrumentation.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/changelog/changelog-016-005-trigger-coverage-check.md",
@@ -28379,10 +28409,25 @@
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/resource-map.md",
     "specs/system-speckit/043-decision-capture/review/fanout-attribution.md",
     "specs/system-speckit/043-decision-capture/review/review-report.md",
-    "specs/system-speckit/043-decision-capture/spec.md"
+    "specs/system-speckit/043-decision-capture/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-dashboard.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-strategy.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-001.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-002.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-003.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-1.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-2.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-3.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/research.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/research/resource-map.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b73b5faa6da95c0f5839a4428f0a2c1803fc5b7fd4c56ebe91a202c5d3b7b906",
+  "manifestHash": "91a45334e4ab4ecf157114c2ba97f65ca6309c5163591b9bc3ec9238ef80b63e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29242,6 +29287,10 @@
     },
     {
       "path": "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36738,6 +36787,10 @@
     },
     {
       "path": "specs/system-speckit/043-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/scratch",
       "reason": "excluded directory"
     },
     {

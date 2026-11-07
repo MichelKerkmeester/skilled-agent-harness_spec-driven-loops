@@ -7,8 +7,8 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-11-01"
-version: 2.1.20.0
+last_updated: "2026-11-07"
+version: 2.1.21.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -244,6 +244,22 @@ Compares every hand-written example with its template and fails when an anchor o
 #### Source Files
 
 See [`tooling-and-scripts/example-drift-guard.md`](tooling-and-scripts/example-drift-guard.md) for full implementation and test file listings.
+
+---
+
+### Graph metadata write guard
+
+#### Description
+
+Admits graph-metadata writes for a packet reached through a specs folder that links into another workspace, and refuses any destination outside the specs roots of both workspaces.
+
+#### Current Reality
+
+The guard compares real locations as well as spelled paths and counts the roots of the process's own workspace, so a save run from a linked project is admitted. A refresh authorizes against the folder the caller named and still writes the canonical path.
+
+#### Source Files
+
+See [`tooling-and-scripts/graph-metadata-write-guard.md`](tooling-and-scripts/graph-metadata-write-guard.md) for full implementation and test file listings.
 
 ---
 

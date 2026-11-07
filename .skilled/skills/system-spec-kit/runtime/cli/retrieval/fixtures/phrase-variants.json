@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b73b5faa6da95c0f5839a4428f0a2c1803fc5b7fd4c56ebe91a202c5d3b7b906",
+  "manifestHash": "91a45334e4ab4ecf157114c2ba97f65ca6309c5163591b9bc3ec9238ef80b63e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9472,6 +9472,9 @@
     ],
     "advisor shim fix": [
       "advisor shim fix"
+    ],
+    "advisor shim resolution": [
+      "advisor shim resolution"
     ],
     "advisor should not suggest repo rules": [
       "advisor should not suggest repo rules"
@@ -19976,6 +19979,9 @@
     "claude decision capture": [
       "claude decision capture"
     ],
+    "claude deep loop guard": [
+      "claude deep loop guard"
+    ],
     "claude directive lifecycle boundary": [
       "claude directive lifecycle boundary"
     ],
@@ -19990,6 +19996,9 @@
     ],
     "claude extended thinking dispatch": [
       "claude extended thinking dispatch"
+    ],
+    "claude gate 3 classifier": [
+      "claude gate 3 classifier"
     ],
     "claude gemini codex devin hook adapter results": [
       "claude gemini codex devin hook adapter results"
@@ -20148,6 +20157,9 @@
       "Claude session relaunch",
       "claude session relaunch"
     ],
+    "claude spec gate enforce": [
+      "claude spec gate enforce"
+    ],
     "claude stale build warning": [
       "claude stale build warning"
     ],
@@ -20157,7 +20169,11 @@
     "claude stop sentinel": [
       "claude stop sentinel"
     ],
+    "claude task dispatch guard": [
+      "claude task dispatch guard"
+    ],
     "claude user prompt submit": [
+      "claude user prompt submit",
       "claude user-prompt-submit"
     ],
     "claude webfetch screen": [
@@ -26221,6 +26237,9 @@
     "codex": [
       "codex"
     ],
+    "codex advisor adapter": [
+      "codex advisor adapter"
+    ],
     "codex advisor brief": [
       "codex advisor brief"
     ],
@@ -26409,6 +26428,9 @@
     ],
     "codex frontmatter authoring complete": [
       "codex frontmatter authoring complete"
+    ],
+    "codex gate 3 classifier": [
+      "codex gate 3 classifier"
     ],
     "codex generate review fix cycle": [
       "codex generate review fix cycle"
@@ -26660,6 +26682,9 @@
     "codex spec folder handoff": [
       "codex spec folder handoff"
     ],
+    "codex spec gate enforce": [
+      "codex spec gate enforce"
+    ],
     "codex stale build warning": [
       "codex stale build warning"
     ],
@@ -26686,6 +26711,9 @@
     ],
     "codex toml agent drift": [
       "codex toml agent drift"
+    ],
+    "codex user prompt submit": [
+      "codex user prompt submit"
     ],
     "codex userpromptsubmit hook": [
       "codex userpromptsubmit hook"
@@ -32082,6 +32110,9 @@
     "cursor": [
       "cursor"
     ],
+    "cursor advisor adapter": [
+      "cursor advisor adapter"
+    ],
     "cursor after agent response": [
       "cursor after agent response"
     ],
@@ -32111,6 +32142,9 @@
     ],
     "cursor background execution": [
       "cursor background execution"
+    ],
+    "cursor before submit prompt": [
+      "cursor before submit prompt"
     ],
     "cursor clear check": [
       "cursor clear check"
@@ -32160,6 +32194,9 @@
     "cursor cross validation": [
       "cursor cross validation"
     ],
+    "cursor deep loop guard": [
+      "cursor deep loop guard"
+    ],
     "cursor default model composer": [
       "cursor default model composer"
     ],
@@ -32180,6 +32217,9 @@
     ],
     "cursor execution mode dispatch": [
       "cursor execution mode dispatch"
+    ],
+    "cursor gate 3 prebind": [
+      "cursor gate 3 prebind"
     ],
     "cursor gemini 3 7 flash high": [
       "cursor gemini 3.7 flash high"
@@ -32298,6 +32338,9 @@
     "cursor pretooluse spec gate": [
       "Cursor preToolUse spec gate"
     ],
+    "cursor pretooluse task": [
+      "cursor pretooluse task"
+    ],
     "cursor primary reconcile": [
       "cursor primary reconcile"
     ],
@@ -32373,6 +32416,9 @@
     "cursor shell preflight": [
       "cursor shell preflight"
     ],
+    "cursor spec gate enforce": [
+      "cursor spec gate enforce"
+    ],
     "cursor stale build warning": [
       "cursor stale build warning"
     ],
@@ -32393,6 +32439,9 @@
     ],
     "cursor style reference": [
       "cursor style reference"
+    ],
+    "cursor task dispatch guard": [
+      "cursor task dispatch guard"
     ],
     "cursor trust gate mode plan fanout": [
       "cursor trust gate mode plan fanout"
@@ -33624,6 +33673,18 @@
     "decisions notes system": [
       "decisions notes system"
     ],
+    "decisions rule delivery": [
+      "decisions rule delivery"
+    ],
+    "decisions rule delivery implementation summary": [
+      "decisions rule delivery implementation summary"
+    ],
+    "decisions rule delivery plan": [
+      "decisions rule delivery plan"
+    ],
+    "decisions rule delivery tasks": [
+      "decisions rule delivery tasks"
+    ],
     "decisions system analysis": [
       "decisions system analysis"
     ],
@@ -33659,6 +33720,9 @@
     ],
     "declared signal closure": [
       "declared signal closure"
+    ],
+    "declared sub track container": [
+      "declared sub-track container"
     ],
     "declared surfaces parity": [
       "declared surfaces parity"
@@ -35637,6 +35701,9 @@
     ],
     "deep loop playbook scenarios": [
       "deep loop playbook scenarios"
+    ],
+    "deep loop policy core": [
+      "deep loop policy core"
     ],
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
@@ -39474,6 +39541,9 @@
     "devin adapter plan": [
       "devin adapter plan"
     ],
+    "devin advisor adapter": [
+      "devin advisor adapter"
+    ],
     "devin agent md profile": [
       "devin agent.md profile"
     ],
@@ -39606,6 +39676,9 @@
     "devin deep loop executor summary": [
       "devin deep loop executor summary"
     ],
+    "devin deep loop guard": [
+      "devin deep loop guard"
+    ],
     "devin deepseek missing runtime": [
       "devin deepseek missing runtime"
     ],
@@ -39653,6 +39726,9 @@
     ],
     "devin fetch tool": [
       "devin fetch tool"
+    ],
+    "devin gate 3 classifier": [
+      "devin gate 3 classifier"
     ],
     "devin gemini 3 7 flash high": [
       "devin gemini 3.7 flash high"
@@ -39837,6 +39913,9 @@
     "devin run subagent": [
       "devin run_subagent"
     ],
+    "devin run subagent guard": [
+      "devin run subagent guard"
+    ],
     "devin sandbox ignores permission mode": [
       "devin sandbox ignores permission-mode"
     ],
@@ -39866,6 +39945,9 @@
     ],
     "devin sessionstart hook fix": [
       "devin sessionstart hook fix"
+    ],
+    "devin spec gate enforce": [
+      "devin spec gate enforce"
     ],
     "devin stale build warning": [
       "devin stale build warning"
@@ -39906,11 +39988,17 @@
     "devin swe default model": [
       "devin swe default model"
     ],
+    "devin task dispatch guard": [
+      "devin task dispatch guard"
+    ],
     "devin tool surface": [
       "devin tool surface"
     ],
     "devin transcript sweep": [
       "devin transcript sweep"
+    ],
+    "devin user prompt submit": [
+      "devin user prompt submit"
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
@@ -40520,6 +40608,9 @@
     ],
     "dispatch guard and vitest tasks": [
       "dispatch guard and vitest tasks"
+    ],
+    "dispatch guard core": [
+      "dispatch guard core"
     ],
     "dispatch header envelope changelog": [
       "dispatch header envelope changelog"
@@ -43401,6 +43492,12 @@
     "dsh adapter layout": [
       "dsh adapter layout"
     ],
+    "dsh adapter parity tests": [
+      "dsh adapter parity tests"
+    ],
+    "dsh advisor adapter": [
+      "dsh advisor adapter"
+    ],
     "dsh advisor routing": [
       "dsh advisor routing"
     ],
@@ -43476,6 +43573,9 @@
     "dsh decision capture tests": [
       "dsh decision capture tests"
     ],
+    "dsh deep loop guard": [
+      "dsh deep loop guard"
+    ],
     "dsh deep loop lineage": [
       "dsh deep-loop lineage"
     ],
@@ -43517,6 +43617,9 @@
     ],
     "dsh folder": [
       ".dsh folder"
+    ],
+    "dsh gate 3 classifier": [
+      "dsh gate 3 classifier"
     ],
     "dsh git message gate": [
       "dsh git message gate"
@@ -43873,8 +43976,17 @@
     "dsh spec gate": [
       "dsh spec gate"
     ],
+    "dsh spec gate enforce": [
+      "dsh spec gate enforce"
+    ],
+    "dsh subagent hand off": [
+      "dsh subagent hand off"
+    ],
     "dsh sync manifest": [
       "dsh sync manifest"
+    ],
+    "dsh task dispatch guard": [
+      "dsh task dispatch guard"
     ],
     "dsh tools post execute": [
       "dsh tools post-execute"
@@ -52181,6 +52293,9 @@
     "gate 3 re ask": [
       "gate 3 re-ask"
     ],
+    "gate 3 recommend one option": [
+      "gate 3 recommend one option"
+    ],
     "gate 3 relay implementation summary": [
       "gate 3 relay implementation summary"
     ],
@@ -55076,6 +55191,9 @@
     "graph metadata json": [
       "graph-metadata.json"
     ],
+    "graph metadata json linked specs root": [
+      "graph-metadata.json linked specs root"
+    ],
     "graph metadata json skill advisor": [
       "graph-metadata.json skill advisor"
     ],
@@ -57260,6 +57378,12 @@
     ],
     "host queue dependency": [
       "host queue dependency"
+    ],
+    "host repository trigger index": [
+      "host repository trigger index"
+    ],
+    "host repository trigger index mode": [
+      "host repository trigger index mode"
     ],
     "hostile locale child vitest": [
       "hostile locale child vitest"
@@ -62770,6 +62894,9 @@
     "linked projects share decision capture state": [
       "linked projects share decision capture state"
     ],
+    "linked specs folder saves": [
+      "linked specs folder saves"
+    ],
     "links and generated state implementation summary": [
       "links and generated state implementation summary"
     ],
@@ -63701,6 +63828,9 @@
     ],
     "loop lock two winners": [
       "loop lock two winners"
+    ],
+    "loop repeat state": [
+      "loop repeat state"
     ],
     "loop termination cause event": [
       "loop termination cause event"
@@ -71536,6 +71666,27 @@
     "named refusal not raw errno": [
       "named refusal not raw errno"
     ],
+    "named sub track research": [
+      "named sub-track research"
+    ],
+    "named sub track support in spec kit plus": [
+      "named sub track support in spec kit plus"
+    ],
+    "named subtracks and host repos": [
+      "named subtracks and host repos"
+    ],
+    "named subtracks and host repos implementation summary": [
+      "named subtracks and host repos implementation summary"
+    ],
+    "named subtracks and host repos plan": [
+      "named subtracks and host repos plan"
+    ],
+    "named subtracks and host repos tasks": [
+      "named subtracks and host repos tasks"
+    ],
+    "named subtracks closure gate": [
+      "named subtracks closure gate"
+    ],
     "namespace command example": [
       "namespace command example"
     ],
@@ -71979,6 +72130,9 @@
     ],
     "neutral delegation wording": [
       "neutral delegation wording"
+    ],
+    "neutral menu spec folder question": [
+      "neutral menu spec folder question"
     ],
     "never fatal untracked": [
       "never fatal untracked"
@@ -74151,6 +74305,9 @@
     "opencode advisor plugin loads": [
       "opencode advisor plugin loads"
     ],
+    "opencode advisor status tool": [
+      "opencode advisor status tool"
+    ],
     "opencode agent delegation": [
       "opencode agent delegation"
     ],
@@ -74262,6 +74419,9 @@
     "opencode deep loop dispatch safety": [
       "opencode deep-loop dispatch safety"
     ],
+    "opencode deep loop guard": [
+      "opencode deep loop guard"
+    ],
     "opencode default model llmgateway flash": [
       "opencode default model llmgateway flash"
     ],
@@ -74327,6 +74487,9 @@
     ],
     "opencode full runtime dispatch": [
       "opencode full runtime dispatch"
+    ],
+    "opencode gate 3 transform": [
+      "opencode gate 3 transform"
     ],
     "opencode git message gate": [
       "opencode git message gate"
@@ -74726,6 +74889,9 @@
     "opencode source root blockers": [
       "opencode source root blockers"
     ],
+    "opencode spec gate enforce": [
+      "opencode spec gate enforce"
+    ],
     "opencode spec gate plugin": [
       "opencode spec gate plugin"
     ],
@@ -74758,6 +74924,15 @@
     ],
     "opencode system context findings": [
       "opencode system context findings"
+    ],
+    "opencode system transform advisor": [
+      "opencode system transform advisor"
+    ],
+    "opencode task dispatch guard": [
+      "opencode task dispatch guard"
+    ],
+    "opencode task execute before": [
+      "opencode task execute before"
     ],
     "opencode teardown plugin": [
       "opencode teardown plugin"
@@ -78655,6 +78830,9 @@
     "phase 11 ci health followups": [
       "phase 11 ci health followups"
     ],
+    "phase 11 decisions rule delivery": [
+      "phase 11 decisions rule delivery"
+    ],
     "phase 11 gateway enforcement": [
       "phase 11 gateway enforcement"
     ],
@@ -81257,6 +81435,9 @@
     "pi dedup reset after compaction": [
       "pi dedup reset after compaction"
     ],
+    "pi deep loop guard": [
+      "pi deep loop guard"
+    ],
     "pi default transport": [
       "pi default transport"
     ],
@@ -81462,6 +81643,9 @@
     ],
     "pi fork fix plan": [
       "pi fork fix plan"
+    ],
+    "pi gate 3 classifier": [
+      "pi gate 3 classifier"
     ],
     "pi gate 3 live proof": [
       "pi gate-3 live proof"
@@ -81873,6 +82057,9 @@
     "pi subagent dispatch shrink": [
       "pi subagent dispatch shrink"
     ],
+    "pi subagent guard": [
+      "pi subagent guard"
+    ],
     "pi subagents capsule": [
       "pi-subagents capsule"
     ],
@@ -81896,6 +82083,9 @@
     ],
     "pi subagents package removal": [
       "pi-subagents package removal"
+    ],
+    "pi task dispatch guard": [
+      "pi task dispatch guard"
     ],
     "pi thinking reasoning effort": [
       "pi thinking reasoning effort"
@@ -84563,6 +84753,9 @@
     ],
     "project milestones": [
       "project milestones"
+    ],
+    "project owned doctor entry": [
+      "project owned doctor entry"
     ],
     "project plan roadmap": [
       "project plan roadmap"
@@ -88256,6 +88449,9 @@
     ],
     "refuses symlink traversal at open": [
       "refuses symlink traversal at open"
+    ],
+    "refusing graph metadata outside a configured specs root": [
+      "refusing graph metadata outside a configured specs root"
     ],
     "refuted research finding record": [
       "refuted research finding record"
@@ -107825,6 +108021,9 @@
     "skill advisor changelog alignment": [
       "skill advisor changelog alignment"
     ],
+    "skill advisor claude hook": [
+      "skill advisor claude hook"
+    ],
     "skill advisor cli": [
       "skill advisor cli",
       "skill-advisor cli"
@@ -107847,6 +108046,9 @@
     "skill advisor cli research changelog": [
       "skill advisor cli research changelog"
     ],
+    "skill advisor codex hook": [
+      "skill advisor codex hook"
+    ],
     "skill advisor compat": [
       "skill advisor compat"
     ],
@@ -107864,6 +108066,9 @@
     ],
     "skill advisor cross session reconnect": [
       "skill advisor cross session reconnect"
+    ],
+    "skill advisor cursor hook": [
+      "skill advisor cursor hook"
     ],
     "skill advisor daemon restart after rebuild": [
       "skill advisor daemon restart after rebuild"
@@ -107892,6 +108097,9 @@
     "skill advisor descriptors": [
       "skill advisor descriptors"
     ],
+    "skill advisor devin hook": [
+      "skill advisor devin hook"
+    ],
     "skill advisor dist json copy": [
       "skill-advisor dist json copy"
     ],
@@ -107915,6 +108123,9 @@
     ],
     "skill advisor documentation bugs": [
       "skill-advisor documentation bugs"
+    ],
+    "skill advisor dsh hook": [
+      "skill advisor dsh hook"
     ],
     "skill advisor embedder registry": [
       "skill-advisor embedder registry"
@@ -108060,6 +108271,9 @@
     "skill advisor no match diagnostic": [
       "skill advisor no-match diagnostic"
     ],
+    "skill advisor opencode plugin": [
+      "skill advisor opencode plugin"
+    ],
     "skill advisor orphan references": [
       "skill-advisor orphan references"
     ],
@@ -108083,6 +108297,9 @@
     ],
     "skill advisor phase 3 changelog": [
       "skill-advisor phase 3 changelog"
+    ],
+    "skill advisor pi hook": [
+      "skill advisor pi hook"
     ],
     "skill advisor plan": [
       "skill advisor plan"
@@ -111160,14 +111377,32 @@
     "spec gate archive": [
       "spec gate archive"
     ],
+    "spec gate claude hook": [
+      "spec gate claude hook"
+    ],
     "spec gate closure gate": [
       "spec gate closure gate"
+    ],
+    "spec gate codex hook": [
+      "spec gate codex hook"
     ],
     "spec gate core port": [
       "spec gate core port"
     ],
+    "spec gate cursor hook": [
+      "spec gate cursor hook"
+    ],
     "spec gate deferral": [
       "spec gate deferral"
+    ],
+    "spec gate devin hook": [
+      "spec gate devin hook"
+    ],
+    "spec gate dsh hook": [
+      "spec gate dsh hook"
+    ],
+    "spec gate dsh tests": [
+      "spec gate dsh tests"
     ],
     "spec gate enforce": [
       "spec gate enforce"
@@ -111175,8 +111410,14 @@
     "spec gate migration tasks": [
       "spec gate migration tasks"
     ],
+    "spec gate opencode plugin": [
+      "spec gate opencode plugin"
+    ],
     "spec gate orchestration extraction": [
       "spec gate orchestration extraction"
+    ],
+    "spec gate pi hook": [
+      "spec gate pi hook"
     ],
     "spec gate port objective": [
       "spec gate port objective"
@@ -111204,6 +111445,9 @@
     ],
     "spec gate tests": [
       "spec gate tests"
+    ],
+    "spec gate throw policy test": [
+      "spec gate throw policy test"
     ],
     "spec gate tmp exemption": [
       "spec gate tmp exemption"
@@ -111874,6 +112118,9 @@
     ],
     "spec kit skill graph sqlite collision": [
       "spec-kit skill-graph sqlite collision"
+    ],
+    "spec kit sub track design": [
+      "spec-kit sub-track design"
     ],
     "spec kit tasks": [
       "spec-kit tasks"
@@ -112947,6 +113194,9 @@
     ],
     "specs folder research": [
       "specs folder research"
+    ],
+    "specs folder symlink graph metadata": [
+      "specs folder symlink graph metadata"
     ],
     "specs move to the top level": [
       "specs move to the top level"
@@ -114723,6 +114973,12 @@
     ],
     "sub folder versioning": [
       "sub-folder versioning"
+    ],
+    "sub track acceptance criteria": [
+      "sub-track acceptance criteria"
+    ],
+    "sub track implementation plan": [
+      "sub-track implementation plan"
     ],
     "subagent": [
       "subagent"
@@ -116860,6 +117116,9 @@
     "system spec kit 2 12 34 0": [
       "system-spec-kit 2.12.34.0"
     ],
+    "system spec kit 2 12 35 0": [
+      "system-spec-kit 2.12.35.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -117430,6 +117689,9 @@
     "system spec kit v2 12 34 0": [
       "system-spec-kit v2.12.34.0"
     ],
+    "system spec kit v2 12 35 0": [
+      "system-spec-kit v2.12.35.0"
+    ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
     ],
@@ -117770,8 +118032,14 @@
     "task details mcp": [
       "task details mcp"
     ],
+    "task dispatch dsh tests": [
+      "task dispatch dsh tests"
+    ],
     "task dispatch guard": [
       "task dispatch guard"
+    ],
+    "task dispatch throw policy": [
+      "task dispatch throw policy"
     ],
     "task duration bars": [
       "task duration bars"
