@@ -1,6 +1,6 @@
 ---
 title: "Overlay Guard: Refuse Edits to Overlay-Owned Files"
-description: "Pre-write guard that refuses an edit to a file a vendored Skilled tree's overlay owns and names the overlay file to edit, with one runtime-neutral core and five per-runtime adapters."
+description: "Pre-write guard that refuses an edit to a file a vendored Skilled tree's overlay owns and names the overlay file to edit, with one runtime-neutral core and six per-runtime adapters."
 trigger_phrases:
   - "overlay guard"
   - "overlay owned file"
@@ -57,12 +57,13 @@ Every runtime evaluates the same `lib/overlay-guard.cjs` core. What differs is t
 | **Cursor** | `cursor/overlay-guard.mjs` | `preToolUse`, `Write` | `tool_input.file_path` | `{"permission":"deny"}` and exit 2 |
 | **Devin** | `devin/overlay-guard.cjs` | `PreToolUse`, `^(edit\|write)$` | `tool_input.file_path` | `permissionDecision: "deny"` |
 | **Pi** | `pi/overlay-guard.ts` | `tool_call`, tools `edit` and `write` | `input.path` | `{ block: true, reason }` |
+| **DSH** | `dsh/overlay-guard.mjs` | `tools/pre-execute`, tools `write`, `edit` and `apply_patch` | a path field, or every file header in the patch | `{ kind: 'deny', reason }` |
 
 Shell commands are not parsed. A write made through `Bash`, `exec` or `Shell` is not guarded.
 
 The Cursor registration carries no fallback chain. Cursor blocks on exit 2, and a `|| { fallback }` chain would run on that exit, append an allow envelope and exit 0, so the refusal would never reach Cursor.
 
-Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `pi/overlay-guard.ts`. Pi resolves the extension's imports against the symlink path, so they are written for the `.pi/extensions/` base. OpenCode has no adapter.
+Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `pi/overlay-guard.ts`. Pi resolves the extension's imports against the symlink path, so they are written for the `.pi/extensions/` base. DSH loads through the repo-guards bundle, whose `adapters/overlay-guard.mjs` links back to `dsh/overlay-guard.mjs`. OpenCode has no adapter.
 
 ---
 
@@ -72,12 +73,15 @@ Pi loads through `.pi/extensions/overlay-guard.ts`, a relative symlink back to `
 overlay-guard/
 +-- lib/
 |   +-- overlay-guard.cjs        # runtime-neutral core (fast no-manifest exit, engine --guard per path)
-|   `-- overlay-guard.test.cjs   # node --test suite for the core and every adapter
+|   `-- overlay-guard.test.cjs   # node --test suite for the core and the Claude, Codex, Cursor and Devin adapters
 +-- claude/   overlay-guard.cjs  # PreToolUse adapter
 +-- codex/    overlay-guard.cjs  # PreToolUse adapter, reads apply_patch headers
 +-- cursor/   overlay-guard.mjs  # preToolUse adapter, Cursor permission envelope
 +-- devin/    overlay-guard.cjs  # PreToolUse adapter
-`-- pi/       overlay-guard.ts   # Pi tool_call extension (symlinked from .pi/extensions/)
++-- dsh/      overlay-guard.mjs  # tools/pre-execute adapter (linked from the .dsh repo-guards bundle)
++-- pi/       overlay-guard.ts   # Pi tool_call extension (symlinked from .pi/extensions/)
+`-- tests/
+    `-- dsh-overlay-guard.test.mjs  # node --test suite for the DSH adapter
 ```
 
 ---
