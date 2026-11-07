@@ -78,11 +78,11 @@ Setup records the baseline and builds the red fixture. Implementation turns each
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Run from `.skilled/skills/system-spec-kit/runtime` after `npm run build`:
+Run from `.skilled/skills/system-spec-kit/runtime/cli` after `npm run build` in `runtime/`. The runtime's default vitest config excludes `runtime/cli/**`, so the cli project config is named explicitly:
 
 ```bash
-npx vitest run cli/tests/track-roots.vitest.ts cli/tests/create-track-refresh.vitest.ts cli/tests/create-track-containment.vitest.ts cli/tests/create-root-numbering.vitest.ts cli/tests/archive-track.vitest.ts cli/tests/repair-derived.vitest.ts cli/tests/graph-metadata-refresh.vitest.ts cli/tests/validate-recursive-artifact-skip.vitest.ts
-node --test ../../../commands/doctor/scripts/tests/symlink-engine.test.cjs ../../../commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs
+npx vitest run --config ../../vitest.config.ts --project cli tests/track-roots.vitest.ts tests/create-track-refresh.vitest.ts tests/create-track-containment.vitest.ts tests/create-root-numbering.vitest.ts tests/archive-track.vitest.ts tests/repair-derived.vitest.ts tests/graph-metadata-refresh.vitest.ts tests/validate-recursive-artifact-skip.vitest.ts tests/subtrack-fixture.vitest.ts
+node --test ../../../../commands/doctor/scripts/tests/symlink-engine.test.cjs ../../../../commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs
 ```
 
 Every new case is written first and shown failing on the unchanged code. The fixture holds a flat packet, a declared sub-track with a numbered phase parent and one phase child, the sub-track's `z_archive/`, an undeclared folder and a symlinked sub-track. A flat-only fixture proves byte-identical metadata before and after (NFR-R01). The Barter reproduction in `spec.md` Measured Behavior is the end-to-end check.

@@ -1,0 +1,13 @@
+# Baseline 2026-11-07, HEAD 6ab6760362
+# vitest (from runtime/cli: --config ../../vitest.config.ts --project cli)
+tests/archive-track.vitest.ts pass=54 fail=0
+tests/create-root-numbering.vitest.ts pass=16 fail=0
+tests/create-track-containment.vitest.ts pass=10 fail=0
+tests/create-track-refresh.vitest.ts pass=11 fail=0
+tests/graph-metadata-refresh.vitest.ts pass=5 fail=0
+tests/repair-derived.vitest.ts pass=36 fail=0
+tests/track-roots.vitest.ts pass=10 fail=0
+tests/validate-recursive-artifact-skip.vitest.ts pass=3 fail=0
+# node --test doctor
+symlink-engine.test.cjs pass=12 fail=0
+doctor-symlink-contract.test.cjs pass=34 fail=0

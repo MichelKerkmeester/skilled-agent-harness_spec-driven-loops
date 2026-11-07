@@ -19,15 +19,16 @@
     "trigger",
     "index"
   ],
-  "lastUpdated": "2026-11-07T13:57:38.589Z",
+  "lastUpdated": "2026-11-07T15:26:58.150Z",
   "specId": "044",
   "folderSlug": "named-subtracks-and-host-repos",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "07-11-26_14-00__deep-research-completed-in-3-iterations-on-cli.md",
-    "07-11-26_14-57__planned-packet-044-at-level-2-declared-named-sub.md"
+    "07-11-26_14-57__planned-packet-044-at-level-2-declared-named-sub.md",
+    "07-11-26_16-26__implemented-packet-044-declared-named-sub-tracks.md"
   ]
 }

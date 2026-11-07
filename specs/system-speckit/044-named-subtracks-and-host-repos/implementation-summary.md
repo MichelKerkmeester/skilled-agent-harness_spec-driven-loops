@@ -1,28 +1,29 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A track can now hold declared named sub-tracks that every track-level tool follows, and the doctor keeps a host's own .env.example and points .skilled/specs at the host's specs."
 trigger_phrases:
   - "named subtracks and host repos implementation summary"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/044-named-subtracks-and-host-repos"
-    last_updated_at: "2026-11-07T13:57:38Z"
+    last_updated_at: "2026-11-07T15:26:58Z"
     last_updated_by: "generate-context"
-    recent_action: "Planned packet 044 at Level 2 with 12 requirements and 19 test-first tasks"
-    next_safe_action: "Run /speckit:implement on this packet, starting with T001 baseline and T002 fixture"
+    recent_action: "Implemented and verified all 19 tasks; acceptance criteria all Met"
+    next_safe_action: "Run the review gate, then commit and push"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
-      - ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+      - ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts"
       - ".skilled/commands/doctor/scripts/symlink-engine.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:84d173bf899905826de79fb872806f4a16aecc0a3537a860a2561dec5175ff5d"
       session_id: "scaffold-044-named-subtracks-and-host-repos"
       parent_session_id: null
-    completion_pct: 30
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -49,62 +50,85 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+You can now file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/` and every track-level tool follows them: track roots, refresh, the pre-push sweep, `create.sh`, validation, recursive validation, archive and parent derivation. A flat track with no sub-track behaves exactly as before, so no existing repository changes on upgrade.
 
-### Named sub-track support in spec-kit, plus project-owned doctor entries, the vendored .skilled/specs link and a host-repository trigger index
+### Named sub-tracks and three host-repository fixes
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+A sub-track is declared, never guessed. You give the folder a `description.json` with `level: "sub-track"` and a `graph-metadata.json` in the track-root shape, and the track lists it in its `children_ids`. Its packets number from `001` on their own, archive into its own `z_archive/`, and take the sub-track as their `parent_id`. A non-numbered folder without the declaration, or a symlinked folder, gets one advisory line from the sweep and is never followed. Barter's phase 004, which groups tracks of 276 and 282 packets, was waiting on exactly this.
+
+The doctor now keeps a host's own `.env.example` instead of linking the vendored one over it, and reports it as `project-owned`. A new host also gets `.skilled/` built as a real folder, so `.skilled/specs` points at the host's own `specs/`, or is left out when the host has none. The host trigger index is documented with the explicit `--index` the Gate 1 lookup needs.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `runtime/cli/lib/track-roots.mjs` | Modified | Returns declared sub-tracks with their own packets in both views, plus advisory diagnostics |
+| `runtime/cli/spec/refresh-track-roots.mjs` | Modified | Accepts `--track <track>/<sub-track>` |
+| `runtime/cli/spec/sweep-track-roots.mjs` | Modified | Sweeps sub-tracks and prints the diagnostics without changing the exit code |
+| `runtime/cli/spec/create.sh` | Modified | Refreshes the sub-track and its track after creating a packet in it |
+| `runtime/lib/validation/orchestrator.ts` | Modified | Treats a declared sub-track folder as a container, like a track root |
+| `runtime/cli/spec/validate.sh` | Modified | Recurses through declared sub-tracks, skipping archives and symlinks |
+| `runtime/lib/graph/graph-metadata-parser.ts` | Modified | Derives a sub-track packet's `parent_id` from the declaration |
+| `runtime/cli/spec/repair-derived.cjs` | Modified | Recomputes `parent_id` from a packet's new location after a move |
+| `runtime/cli/spec/archive.sh` | Modified | Accepts a sub-track as a packet home, directly below its track only |
+| `.skilled/commands/doctor/scripts/symlink-engine.cjs` | Modified | `project_owned` entries, and in-place build of a folder holding a host-relative link |
+| `.skilled/commands/doctor/assets/symlink-manifest.json` | Modified | Marks `.env.example` project-owned |
+| `runtime/cli/tests/fixtures/subtrack-tree.mjs`, `subtrack-fixture.vitest.ts`, `validate-subtrack.vitest.ts` | Created | The shared sub-track fixture, its smoke test and the validation cases |
+| Seven existing test files | Modified | Failing-first cases for each behavior above |
+| `references/structure/folder-structure.md`, `README.md`, `.skilled/commands/speckit/search.md`, `runtime/data/README.md` | Modified | The sub-track level and host trigger-index mode |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+The baseline came first: 145 vitest cases across eight files and 46 doctor node tests, all passing. One fixture holds every shape a sub-track can meet. Workers wrote each new case and kept its failing run in `scratch/red-*.log` before changing code: four on Luna xhigh fast until that model's quota ran out, then DeepSeek flash max for the rest. Every worker's result was rerun here before it was accepted. The end-to-end check built a scratch repository, created a flat packet and a sub-track packet with `create.sh`, then ran recursive validation, strict validation of the sub-track and the refresh.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| The sub-track is marked in `description.json`, and `graph-metadata.json` keeps the track-root shape | No schema migration: every existing reader of track metadata still reads a sub-track |
+| Undeclared and symlinked folders get advisory diagnostics only | A push that passed before must not start failing; REQ-008's "exits 1" contradicted T006, the risk table and the open question, so it was corrected to advisory |
+| A new host gets `.skilled/` built in place when the source holds a host-relative link | A whole link resolves `.skilled/specs` into the Skilled checkout's own specs, the wrong tree for a host. The operator chose this default change on 2026-11-07 |
+| A sub-track counts as a packet home only directly below its track | A folder deeper down that shares a sub-track's name must not become an archive home |
+| Every copy of the sub-track check uses the exact word and the same location rules | The review found the parser accepting a differently cased level and an archive folder that the track reader refused, which would split `parent_id` from `children_ids` |
+| Recursive validation reaches a sub-track's packets, not their phases | A flat track's run stops at its packets, so a packet's result does not depend on whether it sits in a sub-track |
+| `repair-derived` writes a parent only where a sub-track or an archive is involved | After a move the merge kept a stale parent flagged for review. A flat packet's stored parent and its review flag are left alone, because they wait for a person; the review gate caught an earlier version that rewrote them |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Packet test set, `plan.md` section 5 | 10 vitest files 178/178 pass (baseline 145, plus 33 new); doctor node tests 50/50 (baseline 46) |
+| Full cli and core suites, after the review fixes | cli project 2346 passed, 0 failed, 20 skipped; core 4243 passed, 0 failed, 21 skipped |
+| End-to-end reproduction (`scratch/t019-reproduction.log`) | Recursive validation of `specs/demo` reaches `demo/sub/001-nested-probe`; `validate.sh specs/demo/sub --strict` prints `RESULT: PASSED`; `refresh-track-roots.mjs --track demo/sub` exits 0 |
+| `refresh-track-roots.mjs --track demo/missing` | Exits 2 and names the path |
+| Sweep on this repository, old code against new | Same exit codes in the working-tree and commit views; the new code adds seven advisory lines for symlinked folders in `ai-systems/` |
+| Track discovery time on this repository | 0.04 to 0.05 s before and after |
+| `bash -n` on `create.sh`, `validate.sh`, `archive.sh` | Exit 0 |
+| sk-code alignment check and quality gate on the 19 changed code files | 0 errors, 0 findings |
+| `@review` gate | First pass FAIL with one P1 (flat parents rewritten) and five P2s; all six fixed test-first. The recheck passed with every finding resolved; its one new P2, a stored parent with `..` segments, was fixed by accepting only an exact `<track>/<sub>` id |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **One level only.** A sub-track holds numbered packets, not another sub-track. A deeper layout is reported as an undeclared folder.
+2. **A symlinked sub-track is never followed.** Copy or move the folder into the track and declare it, and the tools pick it up.
+3. **A fresh `/doctor:symlink` now builds `.skilled/` as a real folder** with a link per child, where it used to make one whole link. An existing whole-link install still checks as linked and is left alone.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

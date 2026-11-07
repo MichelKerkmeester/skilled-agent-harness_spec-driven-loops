@@ -20,9 +20,9 @@
       "named subtracks and host repos tasks",
       "sub-track acceptance criteria",
       "named subtracks closure gate",
+      "044-named-subtracks-and-host-repos operator decisions",
       "named subtracks and host repos implementation summary",
-      "named sub-track research",
-      "spec-kit sub-track design"
+      "named sub-track research"
     ],
     "key_topics": [
       "named",
@@ -38,29 +38,29 @@
       "declared",
       "sub-track"
     ],
-    "importance_tier": "important",
-    "status": "draft",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
-      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
-      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
-      ".skilled/commands/doctor/assets/symlink-manifest.json",
+      "runtime/cli/lib/track-roots.mjs",
+      "runtime/cli/spec/refresh-track-roots.mjs",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      "runtime/cli/spec/create.sh",
+      "runtime/lib/validation/orchestrator.ts",
+      "runtime/cli/spec/validate.sh",
+      "runtime/lib/graph/graph-metadata-parser.ts",
+      "runtime/cli/spec/repair-derived.cjs",
+      "runtime/cli/spec/archive.sh",
       ".skilled/commands/doctor/scripts/symlink-engine.cjs",
-      ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
-      ".skilled/commands/speckit/search.md",
-      "runtime/data/README.md"
+      ".skilled/commands/doctor/assets/symlink-manifest.json",
+      "runtime/cli/tests/fixtures/subtrack-tree.mjs",
+      "references/structure/folder-structure.md"
     ],
     "entities": [
       {
@@ -88,6 +88,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -102,61 +108,55 @@
       {
         "name": "track-roots.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        "path": "runtime/cli/lib/track-roots.mjs",
         "source": "derived"
       },
       {
         "name": "refresh-track-roots.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
+        "path": "runtime/cli/spec/refresh-track-roots.mjs",
         "source": "derived"
       },
       {
         "name": "sweep-track-roots.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+        "path": "runtime/cli/spec/sweep-track-roots.mjs",
         "source": "derived"
       },
       {
         "name": "create.sh",
         "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "path": "runtime/cli/spec/create.sh",
         "source": "derived"
       },
       {
         "name": "orchestrator.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "path": "runtime/lib/validation/orchestrator.ts",
         "source": "derived"
       },
       {
         "name": "validate.sh",
         "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "archive.sh",
-        "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "path": "runtime/cli/spec/validate.sh",
         "source": "derived"
       },
       {
         "name": "graph-metadata-parser.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        "path": "runtime/lib/graph/graph-metadata-parser.ts",
         "source": "derived"
       },
       {
         "name": "repair-derived.cjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "path": "runtime/cli/spec/repair-derived.cjs",
         "source": "derived"
       },
       {
-        "name": "symlink-manifest.json",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/symlink-manifest.json",
+        "name": "archive.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/archive.sh",
         "source": "derived"
       },
       {
@@ -166,21 +166,21 @@
         "source": "derived"
       },
       {
+        "name": "symlink-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/symlink-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "subtrack-tree.mjs",
+        "kind": "file",
+        "path": "runtime/cli/tests/fixtures/subtrack-tree.mjs",
+        "source": "derived"
+      },
+      {
         "name": "folder-structure.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".skilled/commands/speckit/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "runtime/data/README.md",
+        "path": "references/structure/folder-structure.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
     "created_at": "2026-11-07T12:11:59Z",
-    "last_save_at": "2026-11-07T13:57:38.589Z",
+    "last_save_at": "2026-11-07T16:11:56.964Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,16 +218,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:05622c15bd15b5c113341dbdc7e4539fbe6c5c9d69bd079f8d3bc1fd1fb35fac",
+    "source_fingerprint": "sha256:3a73bc19081b16ef71d396c9a6a960fd4082885c455d24ed73343c1d77d14ed0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "285784b4c68110b18bc9a39aecf75b1ac279b3012301b61a003c44321e521fc2",
-      "plan.md": "48781c63acb1d5d31308e194bb46bc86ea538e56c518337f4d666cbc8a7483fd",
-      "tasks.md": "bbc718a7e3b46f93f76c3b951d7e0b5b132761342032b4d57bb37a2e8204abe9",
-      "implementation-summary.md": "a42555f2e67ef3bc523315338e1d643583216bf2d4b7739ec3fd1357d1477c3e",
+      "spec.md": "4529ceba82bc3faabdb91cde2c5f9bf0bfe4f0c6a1822b16cfe5ce43872b571f",
+      "plan.md": "ba2a165837b7130054667f23e6ba86fab0b7969f5cde6b826b590651f99d793e",
+      "tasks.md": "1ef950292d746bf10dcf939fcd6306f37261021144677b0de4fff8aac3575dd6",
+      "decision-record.md": "06e4f7dc9f223b742165a6184a4b39f3a5db9457b4e2a2290d20501c5fb82a96",
+      "implementation-summary.md": "0a10377c44764a1db3e83c4d0ed64e9adf874b86f3e8a833c2b1e18d3dce9a18",
       "research/research.md": "b11898910b2446c7e3cab618b2b105dcb93da1ccc09273ab3b9687a376e0225f"
     },
     "last_active_at": null

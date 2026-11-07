@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-07 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -98,7 +98,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|---------------------|
 | REQ-001 | Track-root discovery returns a declared sub-track as its own root with its immediate numbered packets, and lists it in its track's children, in the working-tree and commit views | `track-roots.vitest.ts` sub-track cases pass in both views |
 | REQ-002 | `refresh-track-roots.mjs --track demo/sub --apply` writes the sub-track's `children_ids` | The scratch reproduction in Measured Behavior exits 0 and the file lists `demo/sub/001-nested-probe` |
-| REQ-003 | `create.sh --track demo/sub` numbers inside the sub-track and refreshes the sub-track and the track | A new packet is `demo/sub/002-*` and both `children_ids` lists contain it |
+| REQ-003 | `create.sh --track demo/sub` numbers inside the sub-track and refreshes the sub-track and the track | A new packet is `demo/sub/002-*`; the sub-track's `children_ids` lists it and the track's lists `demo/sub` once |
 | REQ-004 | Validating a declared sub-track folder reports it as a container, and `validate.sh specs/<track> --recursive` reaches its packets | `validate.sh specs/demo/sub --strict` prints `RESULT: PASSED`; the recursive run lists the nested packet |
 | REQ-005 | A packet inside a sub-track gets the sub-track as `parent_id`, and a move recomputes it | `repair-derived.vitest.ts` move cases pass with no `parent_id_review_required` |
 | REQ-006 | Flat tracks behave exactly as before | Every existing track-roots, refresh, sweep, create, validate, archive and repair-derived test passes unchanged |
@@ -108,7 +108,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-007 | Archive and restore work for a sub-track packet through the sub-track's own `z_archive/` | `archive-track.vitest.ts` sub-track cases pass |
-| REQ-008 | An undeclared non-numbered folder inside a track is reported, and a symlinked sub-track is skipped with a diagnostic in both views | The sweep prints one diagnostic line per such folder and exits 1 |
+| REQ-008 | An undeclared non-numbered folder inside a track is reported, and a symlinked sub-track is skipped with a diagnostic in both views | The sweep prints one diagnostic line per such folder; the diagnostics are advisory and leave its exit status unchanged |
 | REQ-009 | A `project_owned` manifest entry keeps the host's real `.env.example`, reports `project-owned` and passes the install post-check | `symlink-engine.test.cjs` proves the status and byte-identical file without opening any `.env` |
 | REQ-010 | A vendored copy with no host `specs/` leaves no dangling `.skilled/specs` link after setup, and a copy with one keeps it | Two fixture cases in the symlink engine tests |
 | REQ-011 | Host trigger-index mode is documented, including the explicit `--index` in the host's Gate 1 command | `runtime/data/README.md` and `folder-structure.md` name the generate and lookup commands |
