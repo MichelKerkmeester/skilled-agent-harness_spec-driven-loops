@@ -19,6 +19,7 @@ description: "Fixed input files and generator helpers consumed by the vitest and
 |------|---------|
 | `generate-phase1-5-dataset.ts` | CLI generator that expands a spec folder's `eval-dataset-100.json` into a balanced per-intent evaluation dataset for memory-search ranking tests. |
 | `session-data-factory.ts` | Default, overridable `SessionData` builder shared by save-pipeline integration and E2E tests. |
+| `subtrack-tree.mjs` | Builds one specs tree with a track, a flat packet, a declared sub-track holding a phase parent, its `z_archive/`, an undeclared folder and a symlinked sub-track, plus a flat-only tree, for the track-level tool suites. |
 | `deep-loop-optimizer/` | Sample corpus and baseline/candidate config JSON for the deep-loop config-optimizer replay and search tests. |
 | `deep-loop-replay/` | Recorded per-packet replay fixtures (`028/`, `040/`) for the optimizer replay corpus test. |
 | `is-phase-parent/` | `mixed`/`populated` folder trees exercising phase-parent detection. |
