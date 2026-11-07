@@ -4,9 +4,9 @@
 # ───────────────────────────────────────────────────────────────
 #
 # Archive completed spec folders into the z_archive/ beside them: specs/z_archive/
-# for a packet at the specs root, a track's own z_archive/ for a track packet,
-# and a parent's own z_archive/ for a phase. Restore returns them to where they
-# came from.
+# for a packet at the specs root, a track's or declared sub-track's own z_archive/
+# for its packets, and a parent's own z_archive/ for a phase. Restore returns them
+# to where they came from.
 # Usage: archive-spec.sh <spec-folder> | --list | --restore <folder>
 
 set -euo pipefail
@@ -67,6 +67,7 @@ EXAMPLES:
     archive-spec.sh specs/051-feature-name/
     archive-spec.sh --force specs/051-feature-name/
     archive-spec.sh specs/my-track/012-feature-name/
+    archive-spec.sh specs/my-track/my-sub/012-feature-name/
     archive-spec.sh specs/my-track/012-feature-name/003-phase-name/
     archive-spec.sh --list
     archive-spec.sh --restore specs/z_archive/051-feature-name/
@@ -77,15 +78,16 @@ NOTES:
     - Specs with <90% completeness will prompt for confirmation
     - Use --force to skip the completeness check
     - A spec is moved into the z_archive/ beside it: specs/z_archive/ at the
-      specs root, specs/<track>/z_archive/ in a track, <parent>/z_archive/
-      for a phase
+      specs root, specs/<track>/z_archive/ in a track, a declared sub-track's
+      own z_archive/ for its packets, <parent>/z_archive/ for a phase
     - Restore returns a spec to the folder its z_archive/ belongs to
     - A z_archive/ that is a symlink is refused on archive and on restore
     - An archive or restore argument that passes through a symlink is refused,
       and the message names the real folder to use instead
     - An archive or restore path with a . or .. segment is refused, since a
       segment can reach a linked z_archive/ that the literal path does not show
-    - A track's graph-metadata.json list is refreshed after both moves
+    - A track's graph-metadata.json list is refreshed after both moves; a
+      declared sub-track's list and its track's are refreshed together
     - A phase parent's graph-metadata.json is left as it is: its writer drops
       a child only through a reviewed prune
 EOF
@@ -183,27 +185,62 @@ validate_spec_folder_name() {
     fi
 }
 
-# The track a folder sits directly under, or nothing for a packet at the specs
-# root. A track is a directory directly under specs/ that is neither numbered nor
-# the root archive.
+# A declared sub-track: a non-numbered direct child of a track root, with no
+# spec.md of its own and a description.json that names its level "sub-track".
+# The declaration is what makes it a container, and an archive folder is never
+# one. A missing description, an unreadable one or a missing node all leave the
+# folder undeclared rather than promoting it.
+is_declared_subtrack() {
+    local folder="$1"
+    local specs_root="$2"
+    local name track
+    [[ -d "$folder" && ! -L "$folder" ]] || return 1
+    [[ "$(dirname "$(dirname "$folder")")" == "$specs_root" ]] || return 1
+    name="$(basename "$folder")"
+    track="$(basename "$(dirname "$folder")")"
+    [[ "$name" != z_* && "$name" != .* && "$track" != z_* && "$track" != .* ]] || return 1
+    [[ ! "$name" =~ ^[0-9]{3} && ! "$track" =~ ^[0-9]{3} ]] || return 1
+    [[ ! -f "$folder/spec.md" && ! -f "$(dirname "$folder")/spec.md" ]] || return 1
+    [[ -f "$folder/description.json" ]] || return 1
+    node -e '
+const fs = require("fs");
+try {
+  const description = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+  if (description.level === "sub-track") process.exit(0);
+} catch {}
+process.exit(1);
+' "$folder/description.json" >/dev/null 2>&1
+}
+
+# The track a folder belongs to for its metadata refresh: the track name for a
+# packet directly under specs/<track>/, and "<track>/<sub>" for a packet directly
+# under a declared sub-track. A phase nested in a packet belongs to no track
+# level: its parent's list is left alone, as before.
 track_of() {
     local folder="$1"
     local specs_root="$2"
     local parent name
     parent="$(dirname "$folder")"
-    [[ "$(dirname "$parent")" == "$specs_root" ]] || return 0
-    name="$(basename "$parent")"
-    if [[ "$name" =~ ^[0-9]{3} || "$name" == "z_archive" ]]; then
+    if [[ "$(dirname "$parent")" == "$specs_root" ]]; then
+        name="$(basename "$parent")"
+        if [[ "$name" =~ ^[0-9]{3} || "$name" == "z_archive" ]]; then
+            return 0
+        fi
+        printf '%s' "$name"
         return 0
     fi
-    printf '%s' "$name"
+    if is_declared_subtrack "$parent" "$specs_root"; then
+        printf '%s/%s' "$(basename "$(dirname "$parent")")" "$(basename "$parent")"
+    fi
 }
 
 
 # Where packets live, with their archive beside them: the specs root, a track
-# directly under it, or a packet or phase reached from either through numbered
-# folders only. A copy of a specs tree kept inside a packet's research is not
-# one, however much it looks like the real thing.
+# directly under it, a declared sub-track of that track, or a packet or phase
+# reached from either through numbered folders only. A folder without the
+# declaration and anything inside a z_ folder are not homes. A copy of a specs
+# tree kept inside a packet's research is not one, however much it looks like the
+# real thing.
 is_packet_home() {
     local dir="$1"
     local specs_root="$2"
@@ -213,11 +250,23 @@ is_packet_home() {
     local first="${relative%%/*}"
     [[ "$first" != "z_archive" && "$first" != .* ]] || return 1
     [[ "$relative" == */* ]] || return 0
-    local segments=() segment
+    local segments=() segment index=0
     IFS=/ read -r -a segments <<< "${relative#*/}"
     for segment in "${segments[@]}"; do
-        [[ "$segment" =~ ^[0-9]{3} ]] || return 1
+        [[ -n "$segment" ]] || return 1
+        if [[ "$segment" =~ ^[0-9]{3} ]]; then
+            index=$((index + 1))
+            continue
+        fi
+        # A sub-track sits directly in its track, so only the first segment below
+        # the track may be one.
+        if (( index == 0 )) && is_declared_subtrack "$specs_root/$first/$segment" "$specs_root"; then
+            index=$((index + 1))
+            continue
+        fi
+        return 1
     done
+    return 0
 }
 
 # A track root lists its packets in children_ids, and the pre-push gate blocks a
@@ -235,6 +284,19 @@ refresh_track_root() {
     fi
     if ! node "$refresh_script" --specs "$specs_root" --track "$track" --apply; then
         log_warning "${track}/graph-metadata.json was not refreshed. Rerun refresh-track-roots.mjs --track ${track} --apply."
+    fi
+}
+
+# A declared sub-track's identity carries its track, "<track>/<sub>", so a move
+# inside it refreshes both levels: either list that disagrees with the disk is
+# repaired in the same step. A flat track refreshes the one level it always did.
+refresh_track_levels() {
+    local specs_root="$1"
+    local track="$2"
+    [[ -n "$track" ]] || return 0
+    refresh_track_root "$specs_root" "$track"
+    if [[ "$track" == */* ]]; then
+        refresh_track_root "$specs_root" "${track%%/*}"
     fi
 }
 
@@ -409,7 +471,7 @@ archive_spec() {
 
     log_success "Archived: $resolved_spec -> $archive_root/$basename"
     rederive_moved "$archive_root/$basename"
-    refresh_track_root "$specs_root" "$track"
+    refresh_track_levels "$specs_root" "$track"
 
     # A phase parent's children_ids is not rewritten here. Its writer only adds
     # children, and dropping one is a reviewed prune, so the entry stays until
@@ -449,6 +511,12 @@ archive_dirs() {
             continue
         fi
         archive_dirs_under "$track"
+        # A declared sub-track keeps its own archive one level below the track.
+        local sub
+        for sub in "$track"/*/; do
+            sub="${sub%/}"
+            is_declared_subtrack "$sub" specs && archive_dirs_under "$sub"
+        done
     done
 }
 
@@ -545,7 +613,7 @@ restore_spec() {
 
     log_success "Restored: $resolved_archived -> $destination"
     rederive_moved "$destination"
-    refresh_track_root "$specs_root" "$track"
+    refresh_track_levels "$specs_root" "$track"
 }
 
 # ───────────────────────────────────────────────────────────────

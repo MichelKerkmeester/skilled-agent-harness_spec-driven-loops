@@ -8,6 +8,8 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { buildSubtrackTree } from './fixtures/subtrack-tree.mjs';
+
 const CLI_DIR = path.resolve(__dirname, '..');
 
 // A track keeps its archived packets in its own z_archive/, and its track root
@@ -397,6 +399,113 @@ describe('archive.sh with phases', () => {
     expect(result.stderr).toContain('not in archive directory');
     expect(fs.existsSync(path.join(specs, 'z_archive', '007-old', '001-y', 'spec.md'))).toBe(true);
     expect(fs.existsSync(path.join(specs, '001-y'))).toBe(false);
+  });
+});
+
+describe('archive.sh with declared sub-tracks', () => {
+  // A declared sub-track is a packet home in its own right: a packet filed in
+  // specs/<track>/<sub>/ belongs in that sub-track's z_archive/, and both
+  // levels' lists follow the move. A flat track keeps its one-level behavior.
+  it('archives and restores a sub-track packet through the sub-track archive', () => {
+    buildSubtrackTree(repo);
+    const trackBefore = readMetadata('demo');
+
+    const archived = archive(['--force', 'specs/demo/sub/001-nested-probe']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', 'z_archive', '001-nested-probe', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', '001-nested-probe'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'demo', 'z_archive'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'z_archive'))).toBe(false);
+    expect(children('demo/sub')).toEqual([]);
+    expect(readMetadata('demo')).toBe(trackBefore);
+    expect(archived.stdout + archived.stderr).not.toContain('reviewed prune');
+
+    const restored = archive(['--restore', 'specs/demo/sub/z_archive/001-nested-probe']);
+    expect(restored.status, restored.stdout + restored.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', '001-nested-probe', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'demo', 'z_archive'))).toBe(false);
+    expect(children('demo/sub')).toEqual(['demo/sub/001-nested-probe']);
+    expect(readMetadata('demo')).toBe(trackBefore);
+  });
+
+  // The track above a sub-track is refreshed in the same move, so a list that
+  // fell behind is repaired rather than carried forward by the archive.
+  it('refreshes the track above a sub-track when its own list is stale', () => {
+    buildSubtrackTree(repo);
+    const metadata = JSON.parse(readMetadata('demo'));
+    fs.writeFileSync(path.join(specs, 'demo', 'graph-metadata.json'), `${JSON.stringify({ ...metadata, children_ids: [] }, null, 2)}\n`);
+
+    const result = archive(['--force', 'specs/demo/sub/001-nested-probe']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(children('demo')).toEqual(['demo/001-flat-probe', 'demo/sub']);
+    expect(children('demo/sub')).toEqual([]);
+  });
+
+  it('archives and restores a phase parent inside a sub-track as one unit', () => {
+    buildSubtrackTree(repo);
+    phaseParent('demo/sub/001-nested-probe', ['001-phase-one']);
+    const parentBefore = readMetadata('demo/sub/001-nested-probe');
+    const subBefore = readMetadata('demo/sub');
+    const trackBefore = readMetadata('demo');
+
+    const archived = archive(['--force', 'specs/demo/sub/001-nested-probe/001-phase-one']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', '001-nested-probe', 'z_archive', '001-phase-one', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', '001-nested-probe', '001-phase-one'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', 'z_archive', '001-phase-one'))).toBe(false);
+    expect(readMetadata('demo/sub/001-nested-probe')).toBe(parentBefore);
+    expect(readMetadata('demo/sub')).toBe(subBefore);
+    expect(readMetadata('demo')).toBe(trackBefore);
+    expect(children('demo/sub')).toEqual(['demo/sub/001-nested-probe']);
+    expect(archived.stdout + archived.stderr).toContain('reviewed prune');
+
+    const restored = archive(['--restore', 'specs/demo/sub/001-nested-probe/z_archive/001-phase-one']);
+    expect(restored.status, restored.stdout + restored.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', '001-nested-probe', '001-phase-one', 'spec.md'))).toBe(true);
+    expect(readMetadata('demo/sub')).toBe(subBefore);
+    expect(readMetadata('demo')).toBe(trackBefore);
+    expect(children('demo/sub')).toEqual(['demo/sub/001-nested-probe']);
+  });
+
+  // Only a declaration makes a non-numbered folder a container, and an archive
+  // folder is never one: neither is promoted to a packet home by the move.
+  it('never treats an undeclared folder or an archive folder as a packet home', () => {
+    buildSubtrackTree(repo);
+    packet('demo/loose/001-loose');
+    const undeclared = archive(['--force', 'specs/demo/loose/001-loose']);
+    expect(undeclared.status, undeclared.stdout + undeclared.stderr).not.toBe(0);
+    expect(undeclared.stderr).toContain('Not a packet, track packet or phase');
+    expect(fs.existsSync(path.join(specs, 'demo', 'loose', '001-loose', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'demo', 'loose', 'z_archive'))).toBe(false);
+
+    packet('demo/z_old/001-archived');
+    const zFolder = archive(['--force', 'specs/demo/z_old/001-archived']);
+    expect(zFolder.status, zFolder.stdout + zFolder.stderr).not.toBe(0);
+    expect(zFolder.stderr).toContain('Not a packet, track packet or phase');
+    expect(fs.existsSync(path.join(specs, 'demo', 'z_old', '001-archived', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'demo', 'z_old', 'z_archive'))).toBe(false);
+  });
+
+  // A sub-track sits directly in its track and nowhere deeper, so a folder that
+  // only shares a declared sub-track's name inside a packet is still not a home.
+  it('lists packets archived inside a sub-track', () => {
+    buildSubtrackTree(repo);
+    const archived = archive(['--force', 'specs/demo/sub/001-nested-probe']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+
+    const listed = archive(['--list']);
+    expect(listed.status, listed.stdout + listed.stderr).toBe(0);
+    expect(listed.stdout).toContain('demo/sub/z_archive/001-nested-probe');
+  });
+
+  it('accepts a sub-track name only directly below the track', () => {
+    buildSubtrackTree(repo);
+    packet('demo/001-flat-probe/sub/001-deep');
+    const result = archive(['--force', 'specs/demo/001-flat-probe/sub/001-deep']);
+    expect(result.status, result.stdout + result.stderr).not.toBe(0);
+    expect(result.stderr).toContain('Not a packet, track packet or phase');
+    expect(fs.existsSync(path.join(specs, 'demo', '001-flat-probe', 'sub', '001-deep', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'demo', '001-flat-probe', 'sub', 'z_archive'))).toBe(false);
   });
 });
 
