@@ -26,9 +26,14 @@ describe('claude code native dispatch docs', () => {
   it('says a subagent inherits the session effort and cites the official page', () => {
     for (const docPath of skillDocs) {
       const content = readWorkspaceFile(docPath);
-      const guard = content.split('\n').find((line) => line.includes('You ARE Claude Code already'));
+      // The guard is a bullet with indented sub-bullets, so read it through its last sub-bullet.
+      const lines = content.split('\n');
+      const start = lines.findIndex((line) => line.includes('You ARE Claude Code already'));
+      expect(start, `${docPath} should keep the self-invocation bullet`).toBeGreaterThanOrEqual(0);
+      let end = start + 1;
+      while (end < lines.length && /^\s+-\s/.test(lines[end])) end += 1;
+      const guard = lines.slice(start, end).join('\n');
 
-      expect(guard, `${docPath} should keep the self-invocation bullet`).toBeDefined();
       expect(guard, `${docPath} should say subagents run at the session's effort`).toContain("session's effort level");
       expect(guard, `${docPath} should limit definitions to a different level`).toContain('only for a level different');
       expect(guard, `${docPath} should cite the subagents page`).toContain('https://code.claude.com/docs/en/sub-agents');

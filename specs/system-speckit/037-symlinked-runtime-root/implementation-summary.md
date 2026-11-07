@@ -113,6 +113,12 @@ The write guard in `runtime/lib/graph/graph-metadata-parser.ts` changed in three
 |------|--------|---------|
 | `.skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts` | Modified | The three guard changes above |
 | `.skilled/skills/system-spec-kit/runtime/tests/graph-metadata-schema.vitest.ts` | Modified | Five cases: two for a linked root, three for the project layout including stray destinations |
+| `.skilled/skills/system-spec-kit/runtime/cli/graph/backfill-graph-metadata.ts` | Modified | Counts a folder as changed only after its write goes through |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/graph-metadata-backfill.vitest.ts` | Modified | A refused write reports as failed and not as changed |
+| `.skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts` | Modified | Exempts a Cursor binding the hook registry registers bare |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts` | Modified | A 120 s timeout on the case that appends every event stem |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/claude-code-native-dispatch-docs.vitest.ts` | Modified | Reads the self-invocation bullet through its sub-bullets |
+| `.skilled/changelog/skilled/v4.0.2.0.md` | Modified | The linked specs folder fix folded into the release notes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -174,7 +180,7 @@ Two plan entries changed. `workflow.ts` stayed untouched, for the reason under E
 2. **The graph-metadata write guard trusts a workspace only when it carries `.opencode`** A linked repository without that folder still receives no `graph-metadata.json`, so the test repository links both `.skilled` and `.opencode`.
 3. **`npm run typecheck:tests` in `runtime` is red** 99 errors, the same 99 as main. The one that names a `config.ts` is `shared/config.ts`, a file this change does not touch.
 4. **The runtime suite has no main baseline** The cli suite's delta is exactly the 10 added cases. The runtime suite's delta is not stated because no baseline was captured for it.
-5. **Two runtime-suite failures predate the reopened change** `hook-adapter-path-parity` (the cursor adapter lacks the drift-marker fallback) and `deep-research-ledger-schema` (a 30 s timeout) fail with the change reverted too. Neither is fixed here.
+5. **Two runtime-suite failures predated the reopened change, and both are now fixed** `hook-adapter-path-parity` required the drift-marker fallback on the Cursor overlay guard, which is registered bare on purpose because the chain would turn its refusal into an allow. The test now reads the hook registry and exempts a binding marked `fallback: "none"`. `deep-research-ledger-schema` timed out at 30 s under a full run on a case whose per-append `fsync` takes about 25 s alone, and that case now has 120 s. A backfill that counted a refused folder as changed, and playbook scenario 456 pointing its regression step at a config that excludes the cli tests, were fixed in the same pass.
 6. **A save run from outside the project still needs the project's own path** The process-roots check helps only a process running inside the project. A caller elsewhere that hands the guard an already-resolved packet path is still refused; one that passes the path through the project's `specs` link is admitted.
 7. **Barter can drop its overlay of `graph-metadata-parser.ts`** after re-pinning past this change; its two cases are among the five added here.
 <!-- /ANCHOR:limitations -->

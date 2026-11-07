@@ -1,7 +1,7 @@
 ---
 title: "456 -- Canonical-first spec-root resolution"
 description: "This scenario validates canonical-first bare-name resolution, explicit-path preservation, legacy-only read fallback, divergent-duplicate write rejection, and no-alias writes without touching either live spec root."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # 456 -- Canonical-first spec-root resolution
@@ -142,8 +142,8 @@ Validate canonical-first spec-root resolution in an operating-system temporary w
 3. From the repository root, run the existing focused regression set as corroborating evidence. It uses its own operating-system temp fixtures and does not target the checkout's spec roots.
 
    ```bash
-   cd .skilled/skills/system-spec-kit
-   npx vitest run runtime/cli/tests/spec-root-canonical-resolver.vitest.ts runtime/cli/tests/spec-root-collision-classifier.vitest.ts runtime/cli/tests/spec-root-write-guard.vitest.ts runtime/cli/tests/spec-root-validation-matrix.vitest.ts --config runtime/vitest.config.ts --root .
+   cd .skilled/skills/system-spec-kit/runtime/cli
+   npx vitest run --config ../../vitest.config.ts --project cli tests/spec-root-canonical-resolver.vitest.ts tests/spec-root-collision-classifier.vitest.ts tests/spec-root-write-guard.vitest.ts tests/spec-root-validation-matrix.vitest.ts
    ```
 
 ### Expected

@@ -74,6 +74,10 @@ contextType: "implementation"
 - [x] T022 Rebuild and rerun the reproduction and a continuity save through the link — evidence: `npm run build` exit 0; backfill exit 0 with `"failed": []`; `generate-context.js` save through `specs/900-linked-specs-root-graph-write` exit 0 with `Created graph-metadata.json` at the canonical track path
 - [x] T023 Run typecheck, lint on the changed files and the full runtime suite from the final state — evidence: `npm run typecheck` exit 0; `eslint` on both changed files exit 0; comment hygiene exit 0. Full suite `Tests 9 failed \| 4269 passed \| 22 skipped (4300)`: none touches graph metadata. Rerun alone, seven pass; the other two (`hook-adapter-path-parity` cursor drift marker, `deep-research-ledger-schema` timeout) fail the same way with this change reverted. No baseline of the full suite was taken before the change
 - [x] T024 Act on the alignment run over the fix commit — evidence: the guard's comment now names the process roots; a CLI save case through a `specs` folder linked into another workspace (`runtime/cli/tests/symlinked-project-root.vitest.ts`) fails against the old guard with `Tests 1 failed` and passes after, `Tests 11 passed (11)`; a `system-spec-kit` changelog entry `v2.12.35.0` with the `SKILL.md` version raised to match; a feature-catalog entry and a playbook scenario for the linked-root write. The open Skilled release notes were left alone because `v4.0.2.0` is already tagged
+- [x] T025 Count a backfill folder as changed only after its write goes through (`runtime/cli/graph/backfill-graph-metadata.ts`) — evidence: a scratch backfill with its write refused reported `"changed":1` beside the failure; the new case `reports a folder whose write is refused as failed and not as changed` in `runtime/cli/tests/graph-metadata-backfill.vitest.ts` fails against the old code with `expected 1 to be +0` and passes after, `Tests 16 passed \| 1 skipped (17)`; `system-spec-kit` changelog `v2.12.35.1`
+- [x] T026 Point playbook scenario 456's regression step at the cli project (`manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md`) — evidence: the old command printed `No test files found` because `runtime/vitest.config.ts` excludes `runtime/cli/**`; the new one reads `Tests 36 passed (36)`, exit 0
+- [x] T027 Clear the two runtime-suite failures that predate the reopening — evidence: `hook-adapter-path-parity` now exempts a Cursor binding the hook registry marks `fallback: "none"` and asserts it stays unwrapped, `Tests 136 passed (136)`; the `deep-research-ledger-schema` case that appends every event stem gets a 120 s timeout because its per-append `fsync` costs about 17 of its 25 s alone, `Tests 51 passed (51)`. A third, `claude-code-native-dispatch-docs`, read only the first line of a self-invocation bullet the `cli-claude-code` docs had split into sub-bullets, and now reads the sub-bullets too, `Tests 1 passed (1)`. From the final state: both builds and typechecks exit 0; runtime suite `Tests 4278 passed \| 22 skipped (4300)` against `9 failed` before; cli suite `Tests 2341 passed \| 20 skipped` whose one failure was that docs case, which now passes
+- [x] T028 Fold the reopened work into the `v4.0.2.0` release notes at the operator's direction — evidence: a glance bullet, an H4 under Skilled in Your Project, the spec folder and a Why This Release sentence; shape check `PASS`, `validate_document` 0 issues, voice scan blockers unchanged from HEAD (9, all the product name)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,7 +85,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]` — T001 to T024
+- [x] All tasks marked `[x]` — T001 to T028
 - [x] No `[B]` blocked tasks remaining
 - [x] Every acceptance row Met — 11 of 11 in `acceptance-criteria.md`
 <!-- /ANCHOR:completion -->

@@ -709,9 +709,7 @@ export function runBackfillCore({
         ? preserveExistingChildrenForPrediction(specFolderPath, existing, derived)
         : derived;
       const merged = mergeGraphMetadata(existing, mergeInput, { prune });
-      if (!existing || !graphMetadataEqualIgnoringVolatile(existing, merged)) {
-        summary.changed += 1;
-      }
+      const wouldChange = !existing || !graphMetadataEqualIgnoringVolatile(existing, merged);
       const pruneCandidates = collectChildrenPruneCandidates(specFolderPath, existing, derived);
       if (pruneReport || prune) {
         for (const candidate of pruneCandidates) {
@@ -728,6 +726,11 @@ export function runBackfillCore({
         ? merged
         : refreshGraphMetadataForSpecFolder(specFolderPath, { saveLineage, prune }).metadata;
 
+      // Counted only once the write has gone through, so a refused folder reports as failed
+      // and never as changed too.
+      if (wouldChange) {
+        summary.changed += 1;
+      }
       if (!existing) {
         summary.created += 1;
       } else {

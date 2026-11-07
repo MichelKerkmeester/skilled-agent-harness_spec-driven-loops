@@ -19,6 +19,7 @@ import {
   createPruneReportArtifact,
   pruneReportPath,
   runBackfill,
+  runBackfillCore,
   writePruneReportArtifact,
 } from '../graph/backfill-graph-metadata.js';
 
@@ -294,6 +295,25 @@ describe('graph metadata backfill exit status', () => {
     expect(result.status, result.stderr).toBe(1);
     const failed = JSON.parse(result.stdout).failed as Array<{ specFolder: string }>;
     expect(failed.some((item) => item.specFolder.endsWith(path.basename(broken)))).toBe(true);
+  });
+
+  it('reports a folder whose write is refused as failed and not as changed', () => {
+    // No `.opencode` anchor above this tree, so the writer refuses every destination in it.
+    const repoRoot = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-refused-')));
+    createdRoots.add(repoRoot);
+    const specsRoot = path.join(repoRoot, 'specs');
+    writePacket(
+      path.join(specsRoot, 'demo', '001-refused'),
+      'Refused Packet',
+      'Exercise a backfill write the guard refuses.',
+      'runtime/lib/graph/graph-metadata-parser.ts',
+    );
+
+    const summary = runBackfillCore({ dryRun: false, root: specsRoot });
+
+    expect(summary.failed).toHaveLength(1);
+    expect(summary.failed[0].error).toContain('outside a configured specs root');
+    expect(summary.changed).toBe(0);
   });
 
   it('refuses a root outside the repository and writes no graph metadata under it', () => {

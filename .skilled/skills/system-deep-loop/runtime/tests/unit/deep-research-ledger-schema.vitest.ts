@@ -765,7 +765,9 @@ afterEach(() => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('deep-research typed ledger schema', () => {
-  it('authorizes and appends every event stem with replay-addressable metadata', async () => {
+  // One durable append per event stem, each with its own fsync, costs about 25s alone on
+  // macOS. The suite default of 30s left no room under a full parallel run.
+  it('authorizes and appends every event stem with replay-addressable metadata', { timeout: 120_000 }, async () => {
     const harness = createHarness();
     let priorHash = '0'.repeat(64);
     for (const [offset, stem] of DeepResearchEventStems.entries()) {

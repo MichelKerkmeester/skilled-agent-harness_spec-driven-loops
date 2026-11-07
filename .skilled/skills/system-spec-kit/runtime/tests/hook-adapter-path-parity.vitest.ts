@@ -197,6 +197,19 @@ function isBackgroundedReconcile(command: string): boolean {
   return command.includes('git-primary-reconcile.sh') && command.includes('&');
 }
 
+// A binding the hook registry marks `fallback: "none"` is registered bare on
+// purpose. On Cursor the drift chain would turn a refusing hook's exit 2 into
+// an allow, so a guard that refuses writes must stay unwrapped there.
+function unwrappedScripts(runtime: string): string[] {
+  const registry = readJson('.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json') as {
+    hooks?: Array<{ bindings?: Record<string, Array<{ script?: string; fallback?: string }>> }>;
+  };
+  return (registry.hooks ?? [])
+    .flatMap((hook) => hook.bindings?.[runtime] ?? [])
+    .filter((binding) => binding.fallback === 'none' && typeof binding.script === 'string')
+    .map((binding) => binding.script as string);
+}
+
 // The `|| { ... }` branch is the only form that answers the host: a progress
 // line on stderr plus a hook-shaped JSON envelope on stdout. Commands
 // registered as `none` or backgrounded carry no branch at all, so they are
@@ -257,9 +270,14 @@ describe('hook adapter path parity', () => {
 
   it('wraps every cursor adapter invocation in the drift-marker fallback', () => {
     const commands = cursorCommands();
+    const unwrapped = unwrappedScripts('cursor');
     expect(commands.length).toBeGreaterThan(0);
     for (const { runtime, event, command } of commands) {
       if (isBackgroundedReconcile(command)) continue;
+      if (unwrapped.some((script) => command.includes(script))) {
+        expect(command, `${runtime}:${event}`).not.toContain('|| {');
+        continue;
+      }
       expect(command, `${runtime}:${event}`).toContain('mkHookDrift');
       expect(command, `${runtime}:${event}`).toContain(`mk-hook-drift host=${runtime} event=${event} `);
     }
