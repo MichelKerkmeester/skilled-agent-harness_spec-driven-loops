@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ae86dc03da3d697a4c6ae237d1233fc2b871bb1defec0f6651d733ee0f1bbc1b",
+  "manifestHash": "eb8cd1de48ae278471f524ebfa8baef3e6ceab2b6f3c67cf73220d7da1f0f902",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17530,6 +17530,7 @@
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/research.md",
     "specs/system-speckit/043-decision-capture/spec.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/plan.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-strategy.md",
@@ -24772,6 +24773,9 @@
     ],
     "044 implementation summary": [
       12010
+    ],
+    "044 named subtracks and host repos operator decisions": [
+      17520
     ],
     "044 suite revalidation": [
       13592
@@ -53299,7 +53303,7 @@
       7797
     ],
     "declared sub track container": [
-      17524
+      17525
     ],
     "declared surfaces parity": [
       1440
@@ -56634,7 +56638,7 @@
       15213,
       16022,
       16913,
-      17522
+      17523
     ],
     "deep research strategy md": [
       2473
@@ -67543,7 +67547,7 @@
       7352,
       16022,
       16913,
-      17522
+      17523
     ],
     "exhausted review approaches": [
       2492,
@@ -79240,10 +79244,10 @@
       15318
     ],
     "host repository trigger index": [
-      17523
+      17524
     ],
     "host repository trigger index mode": [
-      17524
+      17525
     ],
     "hostile locale child vitest": [
       10030
@@ -94431,22 +94435,22 @@
       16231
     ],
     "named sub track research": [
-      17523
+      17524
     ],
     "named sub track support in spec kit plus": [
-      17524
+      17525
     ],
     "named subtracks and host repos": [
-      17524
+      17525
     ],
     "named subtracks and host repos implementation summary": [
-      17520
-    ],
-    "named subtracks and host repos plan": [
       17521
     ],
+    "named subtracks and host repos plan": [
+      17522
+    ],
     "named subtracks and host repos tasks": [
-      17525
+      17526
     ],
     "named subtracks closure gate": [
       17519
@@ -108693,7 +108697,7 @@
       1638
     ],
     "project owned doctor entry": [
-      17523
+      17524
     ],
     "project plan roadmap": [
       1621
@@ -116546,7 +116550,7 @@
       7352,
       16022,
       16913,
-      17522
+      17523
     ],
     "research spec conflict detection": [
       2483
@@ -116578,7 +116582,7 @@
       7352,
       16022,
       16913,
-      17522
+      17523
     ],
     "research stop contract": [
       2478
@@ -116604,7 +116608,7 @@
       7352,
       16022,
       16913,
-      17522
+      17523
     ],
     "research stuck count": [
       2477
@@ -120662,7 +120666,7 @@
       7352,
       16022,
       16913,
-      17522
+      17523
     ],
     "ruledout array": [
       2464
@@ -137369,7 +137373,7 @@
       13501
     ],
     "spec kit sub track design": [
-      17523
+      17524
     ],
     "spec kit tasks": [
       15559
@@ -140434,7 +140438,7 @@
       17519
     ],
     "sub track implementation plan": [
-      17521
+      17522
     ],
     "subagent": [
       5418
