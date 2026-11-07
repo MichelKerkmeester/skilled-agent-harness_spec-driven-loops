@@ -1,95 +1,100 @@
 ---
-title: "Claude Code Runtime Folder"
-description: "What Claude Code reads from .claude/, which entries are generated from .skilled/ and which are authored here, how its hooks are registered and how to check the mirrors."
+title: "Claude Code in Skilled"
+description: "How Claude Code uses this repository: the skills, agents, commands, hooks and MCP servers it loads, which files are generated from .skilled/ and how to check that they are in sync."
 trigger_phrases:
-  - "claude code runtime folder"
+  - "claude code in skilled"
   - "claude folder readme"
-  - "claude code hooks registration"
+  - "claude code hooks"
 ---
 
-# Claude Code Runtime Folder
+# Claude Code in Skilled
 
-> The `.claude/` folder is where Claude Code finds this repository's agents, commands, hooks and MCP servers, nearly all of it drawn from `.skilled/`.
+> Open this repository in Claude Code and its agents, commands, skills, guards and MCP servers load with the session.
 
 ---
 
 ## 1. OVERVIEW
 
-Skilled keeps its authored content in [`.skilled/`](../.skilled). Claude Code does not read that folder by name, so this one exposes the same skills, commands, agents and hooks at the paths Claude Code scans. Most entries are links or generated output. Edit the source in `.skilled/` and rerun the generator, never the copy here.
+### At a Glance
 
-Two parts are real files. The agents are a Claude-dialect copy of `.skilled/agents/`, because Claude declares tools with a `tools:` list where the source uses a `permission:` map. `settings.json` holds the hook registrations and the runtime settings. The shared instruction file for every runtime is the root [`AGENTS.md`](../AGENTS.md).
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Working on this repository in Claude Code with the same skills, agents and guards the other runtimes use |
+| **Start with** | Open the repository in Claude Code, then type `/` to see its commands |
+| **Works on** | Claude Code sessions started from this checkout |
+| **Checked by** | `/doctor:runtime-mirrors` and the commands in section 5 |
+
+### What You Get
+
+Skilled keeps its authored content in [`.skilled/`](../.skilled). Claude Code does not read that folder by name, so `.claude/` exposes the same skills, commands and hooks at the paths Claude Code scans. You edit a skill once, and Claude Code, Codex, Cursor and the other runtimes all read that one file.
+
+Two parts belong to Claude Code alone. The agents are a copy in Claude's dialect, because Claude declares tools in a `tools:` list. The hook registrations live in `settings.json`. They switch on the guards that check each prompt, each tool call and each file write.
 
 ---
 
-## 2. WHAT IS HERE
+## 2. HOW IT CONNECTS TO SKILLED
 
-| Entry | Kind | What it holds |
+| Piece | How Claude Code gets it |
+|---|---|
+| Instructions | The root [`AGENTS.md`](../AGENTS.md). The repository has no separate Claude instruction file, so there is no second copy to drift |
+| Skills | The `skills` link points at `.skilled/skills`, so each `SKILL.md` and its `ROUTER.md` load from their own folder |
+| Agents | Each shared agent in `agents/`, plus `Explore.md`, which only Claude has |
+| Commands | Links to the command families in `.skilled/commands/`, such as `/speckit:plan` and `/doctor:runtime-mirrors` |
+| Hooks and guards | 26 hooks in `settings.json`, rendered from the shared registry. They cover the spec-folder gate, the dispatch and MCP route guards, the post-edit checks and the session context |
+| Advisor | The skill advisor runs on each submitted prompt and names the skill to load |
+| MCP | `mcp.json` names the servers. The root `.mcp.json` links to it. `.utcp_config.json` gives Code Mode its manual list |
+| Goals | Skilled registers no goal hook for this runtime, and this folder authors no session goal command |
+| Dispatch | Other runtimes hand work to Claude Code through the [`cli-claude-code`](../.skilled/skills/cli-external-orchestration/cli-claude-code/README.md) mode, which refuses to dispatch Claude Code from inside a Claude Code session |
+
+---
+
+## 3. GETTING STARTED
+
+1. Open the repository in Claude Code from its root folder. Claude Code reads `settings.json` for its hooks and the root `AGENTS.md` for instructions.
+2. Type `/` to list the commands. Commands group under a family prefix, such as `/speckit`, `/doctor` and `/create`.
+3. Run `/doctor:runtime-mirrors` when you want to know whether every runtime still matches `.skilled/`. It reports and writes nothing.
+
+---
+
+## 4. WHAT IS GENERATED AND WHAT IS AUTHORED
+
+| Path | Kind | Notes |
 |---|---|---|
-| `agents/` | real files, guarded copy | The 11 shared agents in Claude's dialect, plus the Claude-only `Explore.md` and `README.txt`. Cursor and Devin link to these files |
-| `commands/` | generated links | One relative link per command in `.skilled/commands/`, minus the OpenCode-only ones |
-| `hooks/` | generated links | A discovery mirror of every hook script `settings.json` runs. The registrations call `.skilled/` paths directly |
-| `skills` | link | `../.skilled/skills`, the whole skill library |
-| `settings.json` | partly generated | Its `hooks` key is rendered from the shared hook registry. The rest is authored here |
-| `mcp.json` | authored, canonical | The MCP servers. The root `.mcp.json` links to this file |
-| `.utcp_config.json` | link | `../.utcp_config.json`, the Code Mode manual list |
-| `repo-rules` | link | `../.skilled/repo-rules`, the rule files `REPO RULES.md` routes |
-| `manual-testing-playbook` | link | The `cli-claude-code` playbook |
-| `statusline-command.sh` | authored | The status line script |
-| `SYNC.md` | authored | The surface inventory and drift checks |
+| `agents/` | Copy in Claude's dialect | Follows `.skilled/agents/`. The pre-commit gate compares each pair |
+| `commands/`, `hooks/`, `skills`, `repo-rules` | Links | Point into `.skilled/` and cannot drift |
+| `settings.json` | Partly generated | The `hooks` key is rendered from `hook-registry.json`. The other keys are authored here |
+| `mcp.json` | Authored | The canonical MCP file. The root `.mcp.json` links to it |
+| `.utcp_config.json` | Link | Points at the root Code Mode manual list |
+| `statusline-command.sh`, `README.md`, `SYNC.md` | Authored | The status line and the documentation |
+| `settings.local.json`, `scheduled_tasks.lock`, `worktrees/` | Per machine | Git ignores them |
 
-`settings.local.json` and `scheduled_tasks.lock` belong to one machine, and so does the `worktrees/` folder. Git ignores all of them.
+**The one rule:** edit the source in `.skilled/`, not the copy here, and rerun the generator when a command or hook changes. Hooks come from `hook-registry.json`. Change that file, then rerun `sync-hook-registrations.cjs`. A hand edit to the `hooks` key in `settings.json` does not last. For agents, change `.skilled/agents/` first and carry the same change into `agents/`. The pre-commit gate blocks a commit whose pair has drifted.
 
 ---
 
-## 3. HOOKS
-
-Claude Code reads its hooks from the `hooks` key of `settings.json`. That key is generated: [`hook-registry.json`](../.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json) names each hook once with its script and its per-runtime events, and `sync-hook-registrations.cjs` renders the Claude block from it. The registry binds 26 hooks to Claude Code across `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PreCompact`, `Stop` and `SessionEnd`.
-
-The hook cores that run here include the skill advisor, the spec-folder gate, the CLI dispatch lint and audit, the MCP route guard, the post-edit quality checks, the overlay guard, the sk-git message gate and preflight advisory, decision capture and the session-relaunch nudge. The coverage matrix in [`.skilled/hooks/README.md`](../.skilled/hooks/README.md) is the authority for which concern runs on which runtime.
-
-A session that was already running when a hook changed may need `/hooks` approval or a restart before the new entry runs.
-
----
-
-## 4. WHAT CLAUDE CODE LOADS
-
-- **Instructions.** Claude Code reads the root `AGENTS.md` directly, so the gates and rules reach every session without a copy here.
-- **Skills.** `skills` links to the whole library, so every `SKILL.md` and its `ROUTER.md` load from their canonical folder.
-- **Agents.** Each file in `agents/` matches its `.skilled/agents/` twin apart from the frontmatter dialect and the path line. The pre-commit hook runs `check-agent-mirror-sync.cjs` and blocks a commit whose pair has drifted.
-- **Commands.** Slash commands such as `/speckit:plan` resolve through the links in `commands/`, so editing a command in `.skilled/commands/` needs no relink.
-
----
-
-## 5. KEEPING IT IN SYNC
-
-```bash
-# Re-render the hook registrations from the shared registry
-node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs
-
-# Refresh the command and hook link trees
-node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
-```
-
-Each generator takes `--check` to report drift without writing. The agent copy has its own check.
+## 5. CHECKING IT IS HEALTHY
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
 node .skilled/bin/check-agent-mirror-sync.cjs --all
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
 ```
 
-Expected output: a `PASS` line from the first and a line ending in `OK` from the second, each with exit 0. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
+The first and third print a `PASS` line. The second ends with `OK`. Each exits 0. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
 
 ---
 
-## 6. DISPATCHING CLAUDE CODE
+## 6. LIMITS AND KNOWN GAPS
 
-Another runtime hands work to Claude Code through the [`cli-claude-code`](../.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md) mode of the `cli-external-orchestration` hub. That mode owns the dispatch contract, and it refuses to dispatch Claude Code from inside a Claude Code session.
+- **The agents are a fork, not a mirror.** The gate compares sets of tokens, so an edit that changes only the wording can pass while the pair diverges.
+- **`agents/README.txt` has no gate.** A new agent once went missing from it while its file existed.
+- **The checks prove discovery, not behavior.** They confirm that every file resolves from this folder. They cannot show how a given Claude Code release uses them.
 
 ---
 
 ## 7. RELATED
 
-- [`SYNC.md`](./SYNC.md): the full surface inventory and known gaps
+- [`SYNC.md`](./SYNC.md): the full surface inventory, format contract and drift checks
 - [`hooks/README.md`](./hooks/README.md): why `hooks/` is a discovery mirror
 - [`.skilled/hooks/README.md`](../.skilled/hooks/README.md): the hook cores and the coverage matrix
 - [`AGENTS.md`](../AGENTS.md): the shared instruction file

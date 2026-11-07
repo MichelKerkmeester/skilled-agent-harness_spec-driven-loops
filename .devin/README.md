@@ -1,94 +1,106 @@
 ---
-title: "Devin CLI Runtime Folder"
-description: "What Devin reads from .devin/, the nested agent links and the skills link it uses, how its hooks are registered, why it carries no commands or rules and how to check the mirrors."
+title: "Devin CLI in Skilled"
+description: "How the Devin CLI uses this repository: linked agents and skills, generated hooks, the routing rule it inherits from Cursor and the checks that keep the links intact."
 trigger_phrases:
-  - "devin runtime folder"
+  - "devin cli in skilled"
   - "devin folder readme"
   - "devin hooks registration"
 ---
 
-# Devin CLI Runtime Folder
+# Devin CLI in Skilled
 
-> The `.devin/` folder gives the Devin CLI this repository's agents, skills, hooks and MCP setup at the paths and in the nested shape Devin scans.
+> Devin gets this repository's agents, skills and guards at the paths and in the nested shape it scans, and it reads this checkout's own instructions instead of a copy from elsewhere.
 
 ---
 
 ## 1. OVERVIEW
 
-Skilled keeps its authored content in [`.skilled/`](../.skilled). Devin reads the same files as its sibling runtimes, but at different paths: an agent must sit at `agents/<name>/AGENT.md`, one folder per agent. Every mirror here is a link. The agent links point at the Claude-dialect copies in [`.claude/agents/`](../.claude/agents), whose `tools:` frontmatter Devin accepts unchanged.
+### At a Glance
 
-Two files are authored for Devin alone. `mcp_config.json` is Devin's own MCP file, and `config.json` turns off Devin's Claude import. With that import off, Devin loads this checkout's own root [`AGENTS.md`](../AGENTS.md) instead of a copy reached through `~/.claude/`.
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Working on this repository in Devin with the shared agents, skills and guards |
+| **Start with** | Run `devin` in this checkout. Each skill appears as a slash command, such as `/sk-doc` or `/sk-git` |
+| **Works on** | Devin sessions started from this checkout |
+| **Checked by** | `/doctor:runtime-mirrors` and the commands in section 5 |
+
+### What You Get
+
+Devin reads the same files as its sibling runtimes, but at other paths. An agent must sit at `agents/<name>/AGENT.md`, one folder per agent, so every mirror here is a link. The agent links point at the Claude copies in `.claude/agents/`, whose `tools:` frontmatter Devin accepts as written.
+
+Devin also has authored files of its own. `mcp_config.json` is Devin's MCP file, and `config.json` turns off Devin's Claude import. With the import off, a session loads this checkout's root `AGENTS.md` and not a copy reached through `~/.claude/`.
 
 ---
 
-## 2. WHAT IS HERE
+## 2. HOW IT CONNECTS TO SKILLED
 
-| Entry | Kind | What it holds |
+| Piece | How Devin gets it |
+|---|---|
+| Instructions | The root [`AGENTS.md`](../AGENTS.md), plus the routing rule Devin inherits from Cursor |
+| Rules | No rules folder here. Devin inherits [`.cursor/rules/skill-routing.md`](../.cursor/rules/skill-routing.md) |
+| Skills | The `skills` link exposes `.skilled/skills` as slash commands |
+| Agents | Each shared agent as `agents/<name>/AGENT.md`, a link to `.claude/agents/<name>.md` |
+| Commands | No command folder. Devin carries no mirrored command surface |
+| Hooks and guards | `hooks.v1.json`, rendered from the shared registry. The hooks cover the advisor, the spec-folder gate, the dispatch and MCP route guards, the post-edit checks, decision capture and goal injection |
+| Advisor | The advisor runs on each prompt through the prompt hook |
+| Goals | The goal injection hook adds the bound packet's goal to the session |
+| MCP | `mcp_config.json`, Devin's own file |
+| Dispatch | [`cli-devin`](../.skilled/skills/cli-external-orchestration/cli-devin/README.md) hands work to Devin from another runtime |
+
+---
+
+## 3. GETTING STARTED
+
+1. Open this checkout in Devin. Devin loads the root `AGENTS.md` and the routing rule.
+2. Type a skill's slash command to use it, such as `/sk-doc`.
+3. If a skill is missing from `devin skills list`, check its frontmatter. Devin drops a whole file whose frontmatter fails a strict YAML parse, such as an unquoted `description:` that contains a colon.
+
+---
+
+## 4. WHAT IS GENERATED AND WHAT IS AUTHORED
+
+| Path | Kind | Notes |
 |---|---|---|
-| `agents/<name>/AGENT.md` | generated links | The 11 shared agents, each linking to `.claude/agents/<name>.md` |
-| `skills` | link | `../.skilled/skills`, the whole skill library |
-| `hooks.v1.json` | generated | The hook registrations, rendered from the shared hook registry |
-| `hooks/` | generated links | A discovery mirror of the scripts `hooks.v1.json` runs |
-| `config.json` | authored | Sets `read_config_from.claude` to `false` |
-| `mcp_config.json` | authored, Devin-owned | The MCP servers |
-| `repo-rules` | link | `../.skilled/repo-rules`, the rule files `REPO RULES.md` routes |
-| `manual-testing-playbook` | link | The `cli-devin` playbook |
-| `SYNC.md` | authored | The surface inventory and drift checks |
+| `agents/<name>/AGENT.md` | Links | Each points at `.claude/agents/<name>.md`. A real file here would be a silent fork |
+| `skills` | Link | `../.skilled/skills` |
+| `hooks.v1.json` | Generated | Rendered from `hook-registry.json` with the event names at the top level |
+| `hooks/` | Links | A discovery mirror of the hook scripts |
+| `config.json` | Authored | Sets `read_config_from.claude` to `false` |
+| `mcp_config.json` | Authored, Devin's own | The MCP servers |
+| `config.local.json` | Per machine | Git ignores it |
+| `repo-rules`, `manual-testing-playbook` | Links | The rule files and the `cli-devin` playbook |
+| `README.md`, `SYNC.md` | Authored | The documentation |
 
-`config.local.json` belongs to one machine and is ignored by git. There is no commands folder: Devin carries no mirrored command surface. There is no rules folder either, because Devin inherits the Cursor rule in [`.cursor/rules/`](../.cursor/rules) and the root `AGENTS.md`.
-
----
-
-## 3. HOOKS
-
-Devin reads its hooks from `hooks.v1.json`, which is generated: [`hook-registry.json`](../.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json) names each hook once, and `sync-hook-registrations.cjs` renders Devin's dialect from it, with the event names at the top level and anchored regex matchers. The registry binds 26 hooks to Devin across `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PermissionRequest`, `PostToolUse`, `PostCompaction`, `Stop` and `SessionEnd`.
-
-This repository dispatches Devin with `--permission-mode bypass`. Under bypass Devin never raises `PermissionRequest`, so the hook registered for it stays idle. `PreToolUse` still fires, so the spec-folder gate and the dispatch guards stay active.
-
-The hook cores that run here include the skill advisor, the spec-folder gate, the CLI dispatch lint and audit, the MCP route guard, the post-edit quality checks, the overlay guard, the sk-git message gate and preflight advisory, decision capture and the goal injection. The coverage matrix in [`.skilled/hooks/README.md`](../.skilled/hooks/README.md) is the authority per concern.
+**The one rule:** never edit a linked agent or skill here, because each link points at its source. Change `hook-registry.json` for hooks, then rerun `sync-hook-registrations.cjs`. A hand edit to `hooks.v1.json` does not last.
 
 ---
 
-## 4. WHAT DEVIN LOADS
-
-- **Instructions.** Devin loads the root `AGENTS.md` and the shared Cursor rule. It cuts each rule file at 16,384 bytes, so hard rules must sit in the first 16 KB.
-- **Skills.** The `skills` link exposes each skill as a slash command, such as `/sk-doc` or `/sk-git`.
-- **Agents.** Each `AGENT.md` must stay a link. A real file there is a silent fork.
-- **Strict frontmatter.** Devin drops a whole file whose frontmatter fails a strict YAML parse, such as an unquoted `description:` holding a colon. A file missing from `devin skills list` usually has that fault.
-
----
-
-## 5. KEEPING IT IN SYNC
-
-```bash
-# Re-render the hook registrations from the shared registry
-node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs
-
-# Refresh the agent and hook link trees
-node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
-```
-
-Each generator takes `--check` to report drift without writing.
+## 5. CHECKING IT IS HEALTHY
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
 node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
 ```
 
-Expected output: a `PASS` line from the first and `STATUS=OK` from the second, each with exit 0. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
+The first two print a `PASS` line. The third ends with `STATUS=OK`. Each exits 0. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
 
 ---
 
-## 6. DISPATCHING DEVIN
+## 6. LIMITS AND KNOWN GAPS
 
-Another runtime hands work to the Devin CLI through the [`cli-devin`](../.skilled/skills/cli-external-orchestration/cli-devin/SKILL.md) mode of the `cli-external-orchestration` hub. That mode owns the dispatch contract and the permission-mode rules.
+- **Devin reads each rule file up to 16,384 bytes.** Keep hard rules in the first 16 KB of a file.
+- **Bypass mode skips the approval hook.** This repository dispatches Devin with `--permission-mode bypass`. `PermissionRequest` never fires under it, but `PreToolUse` still does, so the spec-folder gate and the dispatch guards stay active.
+- **Strict YAML has no gate.** Nothing stops an unquoted colon in a `description:` line from being committed, and Devin then drops the command with no message.
+- **`PostCompaction` has not been seen firing.** A dispatch is too short to trigger a compaction.
+- **A hand edit to `hooks.v1.json` does not last.** The next sync overwrites it.
 
 ---
 
 ## 7. RELATED
 
-- [`SYNC.md`](./SYNC.md): the full surface inventory and known gaps
+- [`SYNC.md`](./SYNC.md): the surface inventory, format contract and drift checks
 - [`hooks/README.md`](./hooks/README.md): why `hooks/` is a discovery mirror
-- [`.cursor/rules/skill-routing.md`](../.cursor/rules/skill-routing.md): the routing rule Devin inherits
+- [`.cursor/README.md`](../.cursor/README.md): the Cursor runtime, which owns the routing rule
 - [`.skilled/hooks/README.md`](../.skilled/hooks/README.md): the hook cores and the coverage matrix
-- [`README.md`](../README.md): the repository overview
+- [`cli-devin`](../.skilled/skills/cli-external-orchestration/cli-devin/README.md): dispatching Devin from another runtime

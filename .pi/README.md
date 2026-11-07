@@ -1,96 +1,103 @@
 ---
-title: "Pi CLI Runtime Folder"
-description: "What Pi reads from .pi/, the generators that write its agents and prompts from .skilled/, the extensions that bridge the shared hook cores and how to check the mirrors."
+title: "Pi CLI in Skilled"
+description: "How the Pi CLI uses this repository: the shared guard cores bridged as TypeScript extensions, generated prompts and agents, the Code Mode server and the checks that confirm the bridges still resolve."
 trigger_phrases:
-  - "pi runtime folder"
+  - "pi cli in skilled"
   - "pi folder readme"
-  - "pi extensions and hooks"
+  - "pi extensions"
 ---
 
-# Pi CLI Runtime Folder
+# Pi CLI in Skilled
 
-> The `.pi/` folder holds the Pi configuration this repository ships, together with the generated files and hook extensions Pi reads.
+> Pi runs the same guard cores as the other runtimes through TypeScript extensions that link straight into the shared hook code.
 
 ---
 
 ## 1. OVERVIEW
 
-Skilled keeps its authored content in [`.skilled/`](../.skilled). Pi reads flat real files, so two generators translate `.skilled/agents/` and `.skilled/commands/` into this folder. Never edit a generated file here. Edit its source and rerun the generator.
+### At a Glance
 
-Pi has no hook configuration file. Its hooks are TypeScript extensions in `extensions/`, and each one is a link to the adapter its owning hook core keeps. Pi loads every `*.ts` file there at session start, with no registration step. Pi also loads the root [`AGENTS.md`](../AGENTS.md) from its working directory and the folders above it.
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Working on this repository in Pi with the shared guards, skills and prompts |
+| **Start with** | Run `pi` in this checkout. Pi loads its extensions when the session starts |
+| **Works on** | Pi sessions started from this checkout |
+| **Checked by** | `/doctor:runtime-mirrors` and the commands in section 5 |
+
+### What You Get
+
+Pi has no hook configuration file. Its hooks are TypeScript extensions in `extensions/`, and each one links to the adapter its owning hook core keeps. A fix to a guard therefore reaches Pi without a copy to update.
+
+A handler fails open when its hook core faults, so a bug in a guard never blocks the work it watches. Pi also reads the root `AGENTS.md` from its working directory and the folders above it, so the shared instructions arrive without a copy here.
 
 ---
 
-## 2. WHAT IS HERE
+## 2. HOW IT CONNECTS TO SKILLED
 
-| Entry | Kind | What it holds |
+| Piece | How Pi gets it |
+|---|---|
+| Instructions | The root [`AGENTS.md`](../AGENTS.md), loaded from the working directory and its parents |
+| Skills | The `skills` link exposes the whole skill library |
+| Agents | Each shared agent in `agents/`, in Pi's dialect. No installed Pi surface reads them today, so the folder stays current for a consumer that returns |
+| Commands | One prompt template per command in `prompts/`. Each template points at its canonical command file. `goal-pi.md` is the native goal command |
+| Hooks and guards | 20 extensions. They cover the advisor, the spec-folder gate, dispatch lint and audit, the task-dispatch guard, the MCP route guard, post-edit quality, the injection screen, the overlay guard, decision capture, the sk-git gate and preflight advisory, the session context hooks and the session-relaunch nudge |
+| Advisor | The `prompt-advisor` extension |
+| Goals | The `goal-context` extension, and `goal-pi.md` for the native command |
+| MCP | `mcp.json` registers the Code Mode server |
+| Dispatch | [`cli-pi`](../.skilled/skills/cli-external-orchestration/cli-pi/README.md) hands work to Pi from another runtime. Pi is the one bridge that may dispatch its own runtime, because it has no in-process delegation left |
+
+---
+
+## 3. GETTING STARTED
+
+1. Start Pi from the repository root. It loads `AGENTS.md`, the extensions and the prompt templates.
+2. Pick a prompt template by name. Names flatten the command path, so `create/agent` becomes `create-agent`.
+3. Run the checks in section 5 after you change a source file.
+
+---
+
+## 4. WHAT IS GENERATED AND WHAT IS AUTHORED
+
+| Path | Kind | Notes |
 |---|---|---|
-| `extensions/*.ts` | links | The hook adapters, each linking into its owner's tree under `.skilled/` |
-| `extensions/pi-cache-optimizer/`, `extensions/pi-fast-mode-w-subagent-support/` | packages | Third-party extensions loaded from local folders |
-| `prompts/*.md` | generated | One short stub per command, written by `sync-prompts-pi.cjs` |
-| `prompts/goal-pi.md` | authored | The native goal command |
-| `agents/*.md` | generated | The 11 shared agents in Pi's dialect, written by `sync-agents-pi.cjs` |
-| `skills` | link | `../.skilled/skills`, the whole skill library |
-| `mcp.json` | authored | Registers the Code Mode MCP server |
-| `settings.json` | authored | Pi's package list and settings |
-| `models.json`, `custom-providers.md` | authored | The model and provider setup |
-| `PLUGINS.md` | authored | The list of Pi packages this environment enables |
-| `statusline.sh` and the `pi-*-config.json` files | authored | The status line and per-package settings |
-| `git/`, `npm/` | package installs | Only their `.gitignore` files are tracked |
-| `types/` | authored | Type declarations for the extensions |
-| `repo-rules` | link | `../.skilled/repo-rules`, the rule files `REPO RULES.md` routes |
-| `manual-testing-playbook` | link | The `cli-pi` playbook |
-| `SYNC.md` | authored | The surface inventory and drift checks |
+| `extensions/*.ts` | Links | Each points into its owning hook core under `.skilled/` |
+| `extensions/pi-cache-optimizer/`, `extensions/pi-fast-mode-w-subagent-support/` | Packages | Third-party extensions loaded from local folders |
+| `prompts/*.md` | Generated, plus `goal-pi.md` | Written by `sync-prompts-pi.cjs`. `goal-pi.md` is authored |
+| `agents/*.md` | Generated | Written by `sync-agents-pi.cjs` from `.skilled/agents/` |
+| `skills` | Link | `../.skilled/skills` |
+| `mcp.json`, `settings.json`, `models.json`, `custom-providers.md`, `PLUGINS.md` | Authored | The Code Mode server, the packages, the models and the providers |
+| `statusline.sh`, `pi-*-config.json` | Authored | The status line and the per-package settings |
+| `git/`, `npm/` | Package installs | Only their `.gitignore` files are tracked |
+| `types/` | Authored | Type declarations for the extensions |
 
-Several of these files are canonical for the operator's machine too: `~/.pi/agent/` links back to them, so a pull updates the local Pi setup.
+**The one rule:** never edit `prompts/` or `agents/` by hand. Change the source in `.skilled/`, then rerun the matching generator. To change what a guard does, change the hook core, because the extension only links to it.
 
 ---
 
-## 3. HOOKS
-
-Each extension registers handlers with `pi.on(event, handler)` and calls the same shared hook core the other runtimes use. The extensions cover the skill advisor, the spec-folder gate, the CLI dispatch lint and audit, the task-dispatch guard, the MCP route guard, the post-edit quality checks, the injection screen, the overlay guard, decision capture, the sk-git message gate and preflight advisory, the session context hooks, the goal context and the session-relaunch nudge.
-
-A handler fails open when its hook core faults, so a bug in a core never blocks the work it observes. The shared hook registry does not render anything for Pi. `sync-hook-registrations.cjs --check` instead confirms that every expected extension link resolves. The coverage matrix in [`.skilled/hooks/README.md`](../.skilled/hooks/README.md) records where Pi coverage is partial.
-
----
-
-## 4. WHAT PI LOADS
-
-- **Instructions.** Pi loads `AGENTS.md` from the working directory and its parents, so the root file reaches every session without a copy here.
-- **Skills.** The `skills` link exposes the whole library.
-- **Commands.** Each command runs as a prompt template whose stub points at the canonical command file.
-- **Agents.** No installed Pi surface reads `agents/` today. The generator keeps it current and checked so it is ready if a consumer returns.
-
----
-
-## 5. KEEPING IT IN SYNC
+## 5. CHECKING IT IS HEALTHY
 
 ```bash
-node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
-node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
-```
-
-Each generator takes `--check` to report drift without writing, and write mode also prunes stale output. The extension links have their own check.
-
-```bash
+node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
 node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
 ```
 
-Expected output: a `PASS` line from each, the second naming how many Pi extensions resolve, each with exit 0. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
+The first two print a `PASS` line with their counts. The third prints a `PASS` line that names how many Pi extensions resolve. Each exits 0. `/doctor:runtime-mirrors` runs every runtime's checks at once and writes nothing.
 
 ---
 
-## 6. DISPATCHING PI
+## 6. LIMITS AND KNOWN GAPS
 
-Another runtime hands work to Pi through the [`cli-pi`](../.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md) mode of the `cli-external-orchestration` hub. Pi is the one bridge that may dispatch its own runtime.
+- **Generated agents are one way.** The permission-to-tool mapping does not round-trip, so `.skilled/agents/` stays the source.
+- **The extensions have no drift checker.** A change in a shared core shows up at runtime or in the manual testing playbook, not in a check.
+- **Editing a canonical agent gives no Pi reminder.** Only `--check` catches a stale `.pi` tree.
 
 ---
 
 ## 7. RELATED
 
-- [`SYNC.md`](./SYNC.md): the full surface inventory and known gaps
+- [`SYNC.md`](./SYNC.md): the surface inventory, format contract and drift checks
 - [`extensions/README.md`](./extensions/README.md): how each extension bridges its hook core
-- [`PLUGINS.md`](./PLUGINS.md): the enabled Pi packages
+- [`PLUGINS.md`](./PLUGINS.md): the Pi packages this environment enables
 - [`.skilled/hooks/README.md`](../.skilled/hooks/README.md): the hook cores and the coverage matrix
 - [`README.md`](../README.md): the repository overview
