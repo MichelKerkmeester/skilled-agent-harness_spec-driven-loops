@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6c4b3f2a8e4b3c6ef0bedff1f74ac7f68745faaa72fd5aff3a897aad36f04f6b",
+  "manifestHash": "0a483b585e350fbf1120cb690bd26c43d4dd761f83b1f7cbab6a035f56147d17",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8291,6 +8291,9 @@
     "adopt spec kit modules": [
       "adopt spec-kit modules"
     ],
+    "adopt the overlay engine": [
+      "adopt the overlay engine"
+    ],
     "adopter customized sk code": [
       "adopter customized sk-code"
     ],
@@ -13769,6 +13772,21 @@
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
+    ],
+    "barter parity": [
+      "barter parity"
+    ],
+    "barter parity acceptance criteria": [
+      "barter parity acceptance criteria"
+    ],
+    "barter parity implementation summary": [
+      "barter parity implementation summary"
+    ],
+    "barter parity plan": [
+      "barter parity plan"
+    ],
+    "barter parity tasks": [
+      "barter parity tasks"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -69851,6 +69869,9 @@
     "migrate misplaced child packets": [
       "migrate misplaced child packets"
     ],
+    "migrate my overlay folder": [
+      "migrate my overlay folder"
+    ],
     "migrate notion to obsidian": [
       "migrate notion to obsidian"
     ],
@@ -71650,6 +71671,9 @@
     ],
     "mxbai vs bge reranker code": [
       "mxbai vs bge reranker code"
+    ],
+    "my changes vanish on update": [
+      "my changes vanish on update"
     ],
     "my own signed in chrome": [
       "my own signed-in chrome"
@@ -76314,6 +76338,9 @@
     "overengineering simplification summary": [
       "overengineering simplification summary"
     ],
+    "overlay adoption closure gate": [
+      "overlay adoption closure gate"
+    ],
     "overlay engine": [
       "overlay engine"
     ],
@@ -79960,6 +79987,9 @@
     ],
     "phase 5 advisor negation and routing": [
       "phase 5 advisor negation and routing"
+    ],
+    "phase 5 barter parity": [
+      "phase 5 barter parity"
     ],
     "phase 5 central doctor playbook": [
       "phase 5 central doctor playbook"
@@ -123633,6 +123663,9 @@
     ],
     "vendored model card exemption": [
       "vendored model card exemption"
+    ],
+    "vendored overlay adoption": [
+      "vendored overlay adoption"
     ],
     "vendored overlays and repin": [
       "vendored overlays and repin"

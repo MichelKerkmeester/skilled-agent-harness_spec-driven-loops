@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7371,
-    "ok": 17478,
+    "missing-frontmatter": 7374,
+    "ok": 17483,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28398,
+  "documentsScanned": 28406,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6c4b3f2a8e4b3c6ef0bedff1f74ac7f68745faaa72fd5aff3a897aad36f04f6b",
+  "manifestHash": "0a483b585e350fbf1120cb690bd26c43d4dd761f83b1f7cbab6a035f56147d17",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41797,
+      "ok": 41808,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -45978,6 +45978,24 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
@@ -74890,6 +74908,14 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch",
       "reason": "excluded directory"
     },
     {

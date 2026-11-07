@@ -1,5 +1,5 @@
 {
-  "corpusHash": "55fb5496d6ed290cb46b768a5cc6265719d03f9a7717c33c36687a126444e9d1",
+  "corpusHash": "e6be935bb4728c335c8bdf99d1dc2e7a4718b8d1fed8ffcac0b1c8f77e65c869",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28398,
+  "includedPathCount": 28406,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -18491,6 +18491,14 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/fanout-attribution.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/research.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/resource-map.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-decisions.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-spec.md",
@@ -28429,7 +28437,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6c4b3f2a8e4b3c6ef0bedff1f74ac7f68745faaa72fd5aff3a897aad36f04f6b",
+  "manifestHash": "0a483b585e350fbf1120cb690bd26c43d4dd761f83b1f7cbab6a035f56147d17",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34205,6 +34213,14 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch",
       "reason": "excluded directory"
     },
     {
