@@ -94,10 +94,10 @@ Keys and `.env` files stay out of this folder. The launch environment or a dispo
 node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check
 node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check
 node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
-node --test .dsh/plugins/repo-guards/tests/
+node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/
 ```
 
-Each generator prints a `PASS` line and exits 0. The bundle tests run the plugin's own checks. Then confirm that the patches still compose, from a disposable home and a scratch folder:
+Each generator prints a `PASS` line and exits 0. The test command runs every DSH adapter's tests, which live in each concern's `tests/` folder, plus the bundle's own tests. Then confirm that the patches still compose, from a disposable home and a scratch folder:
 
 ```bash
 H=$(mktemp -d); W=$(mktemp -d); R="$PWD/.dsh/patches"

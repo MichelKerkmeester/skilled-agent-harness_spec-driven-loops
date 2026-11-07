@@ -33,7 +33,7 @@ Agents source from **`.claude/agents/`**, not `.skilled/agents/`, because Cursor
 | `hooks/*` | symlink | scattered `.skilled/**` | discovery mirror only |
 | `hooks.json` | **generated** | `hook-registry.json` via `sync-hook-registrations.cjs` | `--check` catches a hand edit |
 | `rules/skill-routing.md` | **hand-authored**, plus one generated Gate 1 pointer block | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` | also read by Devin; `--check` catches a stale block |
-| `mcp.json` | symlink | `../.mcp.json` → `.claude/mcp.json` | double hop |
+| `mcp.json` | **hand-authored** copy | same content as `.claude/mcp.json` | a real file, not a link; nothing keeps the two in step, so edit both |
 | `manual-testing-playbook/` | whole-dir symlink | `.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` | `../.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook` |
 
 No `.cursor/skills/` — Cursor's own skills live in `~/.cursor/skills-cursor/` and are managed by Cursor itself.
