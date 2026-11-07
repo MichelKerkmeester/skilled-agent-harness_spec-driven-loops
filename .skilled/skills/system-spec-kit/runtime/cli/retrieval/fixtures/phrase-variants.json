@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2b14622b3f087f98e508870e159cf0de8ce3090e4ebbc1512b84ee8574c9c997",
+  "manifestHash": "34fa78dc646710a2955c2504074ec948e411cdb9549de50e6800f4baff13c48c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8015,6 +8015,9 @@
     "adapter suite runner ci gap": [
       "adapter suite runner ci gap"
     ],
+    "adapter test helper": [
+      "adapter test helper"
+    ],
     "adapter thin transport completion": [
       "adapter thin transport completion"
     ],
@@ -8125,6 +8128,9 @@
     ],
     "adding new mcp server": [
       "adding new mcp server"
+    ],
+    "additional context envelope": [
+      "additional context envelope"
     ],
     "additionalcontext contents": [
       "additionalContext contents"
@@ -9467,6 +9473,9 @@
     "advisor shim fix": [
       "advisor shim fix"
     ],
+    "advisor shim resolution": [
+      "advisor shim resolution"
+    ],
     "advisor should not suggest repo rules": [
       "advisor should not suggest repo rules"
     ],
@@ -9778,6 +9787,9 @@
     ],
     "advisorhookresult renderer": [
       "AdvisorHookResult renderer"
+    ],
+    "advisory adapter test": [
+      "advisory adapter test"
     ],
     "advisory cd prefix env steps": [
       "advisory cd prefix env steps"
@@ -11641,6 +11653,9 @@
     "answerable questions tags": [
       "answerable questions tags"
     ],
+    "answered question recovery": [
+      "answered question recovery"
+    ],
     "anthropic": [
       "anthropic"
     ],
@@ -11900,6 +11915,12 @@
     ],
     "apply mode phase b implementation": [
       "apply mode phase b implementation"
+    ],
+    "apply patch overlay deny": [
+      "apply patch overlay deny"
+    ],
+    "apply patch path test": [
+      "apply patch path test"
     ],
     "apply path and candidate filter fixes acceptance criteria": [
       "apply path and candidate filter fixes acceptance criteria"
@@ -13896,6 +13917,9 @@
     "bash naming conventions": [
       "bash naming conventions"
     ],
+    "bash pre execute deny": [
+      "bash pre-execute deny"
+    ],
     "bash quality validation checklist": [
       "bash quality validation checklist"
     ],
@@ -13907,6 +13931,9 @@
     ],
     "bash string operations": [
       "bash string operations"
+    ],
+    "bash tool before hook": [
+      "bash tool before hook"
     ],
     "bash variable handling": [
       "bash variable handling"
@@ -14093,6 +14120,9 @@
     ],
     "before image manifest": [
       "before-image manifest"
+    ],
+    "beforemcpexecution advisory": [
+      "beforemcpexecution advisory"
     ],
     "begin time tracking": [
       "begin time tracking"
@@ -15263,6 +15293,9 @@
     ],
     "budget novelty coverage wall time stop": [
       "budget novelty coverage wall-time stop"
+    ],
+    "buffered system context": [
+      "buffered system context"
     ],
     "bug surface remediation backlog": [
       "bug surface remediation backlog"
@@ -18469,6 +18502,9 @@
     "checker debt closeout tasks": [
       "checker debt closeout tasks"
     ],
+    "checker dispatch tests": [
+      "checker dispatch tests"
+    ],
     "checker family coverage": [
       "checker family coverage"
     ],
@@ -19783,6 +19819,9 @@
     "claude baseline md scaffold": [
       "claude-baseline.md scaffold"
     ],
+    "claude bash dispatch lint": [
+      "claude bash dispatch lint"
+    ],
     "claude cli": [
       "claude cli"
     ],
@@ -19921,8 +19960,21 @@
     "claude codex copilot opencode hook parity": [
       "claude codex copilot opencode hook parity"
     ],
+    "claude codex hook drift": [
+      "claude codex hook drift"
+    ],
+    "claude comment hygiene hook": [
+      "claude comment hygiene hook"
+    ],
+    "claude compact inject": [
+      "claude compact inject"
+    ],
+    "claude completion evidence": [
+      "claude completion evidence"
+    ],
     "claude context nudge": [
-      "Claude context nudge"
+      "Claude context nudge",
+      "claude context nudge"
     ],
     "claude cursor fallback wrap": [
       "claude cursor fallback wrap"
@@ -19933,11 +19985,35 @@
     "claude cursor opencode copilot hooks": [
       "claude cursor opencode copilot hooks"
     ],
+    "claude decision capture": [
+      "claude decision capture"
+    ],
+    "claude deep loop guard": [
+      "claude deep loop guard"
+    ],
+    "claude directive lifecycle boundary": [
+      "claude directive lifecycle boundary"
+    ],
+    "claude dispatch audit": [
+      "claude dispatch audit"
+    ],
+    "claude dispatch preflight": [
+      "claude dispatch preflight"
+    ],
+    "claude dist freshness": [
+      "claude dist freshness"
+    ],
     "claude extended thinking dispatch": [
       "claude extended thinking dispatch"
     ],
+    "claude gate 3 classifier": [
+      "claude gate 3 classifier"
+    ],
     "claude gemini codex devin hook adapter results": [
       "claude gemini codex devin hook adapter results"
+    ],
+    "claude git hooks check": [
+      "claude git hooks check"
     ],
     "claude goal as start prompt": [
       "claude goal as start prompt"
@@ -19975,8 +20051,17 @@
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
     ],
+    "claude injection screen": [
+      "claude injection screen"
+    ],
+    "claude live follow": [
+      "claude live follow"
+    ],
     "claude live relaunch": [
       "Claude live relaunch"
+    ],
+    "claude mcp route guard": [
+      "claude mcp route guard"
     ],
     "claude md agents md symlink": [
       "claude md agents md symlink"
@@ -20014,8 +20099,20 @@
     "claude opus sonnet haiku dispatch": [
       "claude opus sonnet haiku dispatch"
     ],
+    "claude overlay guard": [
+      "claude overlay guard"
+    ],
+    "claude post edit quality": [
+      "claude post edit quality"
+    ],
     "claude posttooluse sh": [
       "claude posttooluse sh"
+    ],
+    "claude pre write guard": [
+      "claude pre write guard"
+    ],
+    "claude primary reconcile": [
+      "claude primary reconcile"
     ],
     "claude project routing document": [
       "claude project routing document"
@@ -20025,6 +20122,9 @@
     ],
     "claude relaunch acceptance criteria": [
       "Claude relaunch acceptance criteria"
+    ],
+    "claude relaunch arm": [
+      "claude relaunch arm"
     ],
     "claude relaunch implementation plan": [
       "Claude relaunch implementation plan"
@@ -20050,17 +20150,46 @@
     "claude session cleanup hook": [
       "claude session cleanup hook"
     ],
+    "claude session end teardown": [
+      "claude session end teardown"
+    ],
+    "claude session lifecycle": [
+      "claude session lifecycle"
+    ],
     "claude session pid not set": [
       "CLAUDE_SESSION_PID not set"
     ],
+    "claude session prime": [
+      "claude session prime"
+    ],
     "claude session relaunch": [
-      "Claude session relaunch"
+      "Claude session relaunch",
+      "claude session relaunch"
+    ],
+    "claude spec gate enforce": [
+      "claude spec gate enforce"
+    ],
+    "claude stale build warning": [
+      "claude stale build warning"
     ],
     "claude start hook goal": [
       "claude start hook goal"
     ],
+    "claude stop sentinel": [
+      "claude stop sentinel"
+    ],
+    "claude task dispatch guard": [
+      "claude task dispatch guard"
+    ],
     "claude user prompt submit": [
+      "claude user prompt submit",
       "claude user-prompt-submit"
+    ],
+    "claude webfetch screen": [
+      "claude webfetch screen"
+    ],
+    "claude worktree guard": [
+      "claude worktree guard"
     ],
     "claudest claude memory research": [
       "claudest claude-memory research"
@@ -21550,6 +21679,9 @@
     ],
     "cli dispatch audit": [
       "cli-dispatch-audit"
+    ],
+    "cli dispatch audit plugin": [
+      "cli dispatch audit plugin"
     ],
     "cli dispatch audit trail": [
       "cli-dispatch-audit-trail"
@@ -25707,6 +25839,9 @@
     "code mode": [
       "code mode"
     ],
+    "code mode allowlist test": [
+      "code mode allowlist test"
+    ],
     "code mode contract plan": [
       "code mode contract plan"
     ],
@@ -25778,6 +25913,9 @@
     ],
     "code mode routing advisory": [
       "code mode routing advisory"
+    ],
+    "code mode routing nudge": [
+      "code mode routing nudge"
     ],
     "code mode routing prose": [
       "code mode routing prose"
@@ -26231,6 +26369,9 @@
     "codex": [
       "codex"
     ],
+    "codex advisor adapter": [
+      "codex advisor adapter"
+    ],
     "codex advisor brief": [
       "codex advisor brief"
     ],
@@ -26279,6 +26420,9 @@
     "codex apply patch alignment halt": [
       "codex apply_patch alignment halt"
     ],
+    "codex apply patch quality": [
+      "codex apply patch quality"
+    ],
     "codex availability probe": [
       "codex availability probe"
     ],
@@ -26315,8 +26459,23 @@
     "codex code generation template": [
       "codex code generation template"
     ],
+    "codex code mode routing": [
+      "codex code mode routing"
+    ],
     "codex cold start": [
       "Codex cold-start"
+    ],
+    "codex comment hygiene": [
+      "codex comment hygiene"
+    ],
+    "codex compact inject": [
+      "codex compact inject"
+    ],
+    "codex completion claim check": [
+      "codex completion claim check"
+    ],
+    "codex completion evidence": [
+      "codex completion evidence"
     ],
     "codex conductor executor model": [
       "codex conductor executor model"
@@ -26351,6 +26510,12 @@
     "codex dispatch and checklist tasks": [
       "codex dispatch and checklist tasks"
     ],
+    "codex dispatch audit": [
+      "codex dispatch audit"
+    ],
+    "codex dispatch preflight": [
+      "codex dispatch preflight"
+    ],
     "codex dispatch prompt discipline": [
       "codex dispatch prompt discipline"
     ],
@@ -26359,6 +26524,12 @@
     ],
     "codex dispatch shape fold in": [
       "codex dispatch shape fold-in"
+    ],
+    "codex dist freshness": [
+      "codex dist freshness"
+    ],
+    "codex dist staleness check": [
+      "codex dist staleness check"
     ],
     "codex doc contract authoring": [
       "codex doc contract authoring"
@@ -26381,14 +26552,23 @@
     "codex exec model reasoning effort": [
       "codex exec model reasoning effort"
     ],
+    "codex exec shell tool": [
+      "codex exec shell tool"
+    ],
     "codex exec templates": [
       "codex exec templates"
     ],
     "codex frontmatter authoring complete": [
       "codex frontmatter authoring complete"
     ],
+    "codex gate 3 classifier": [
+      "codex gate 3 classifier"
+    ],
     "codex generate review fix cycle": [
       "codex generate review fix cycle"
+    ],
+    "codex git hooks check": [
+      "codex git hooks check"
     ],
     "codex goal nesting": [
       "codex goal nesting"
@@ -26426,6 +26606,9 @@
     "codex hook contract": [
       "codex hook contract"
     ],
+    "codex hook drift check": [
+      "codex hook drift check"
+    ],
     "codex hook health": [
       "codex hook health"
     ],
@@ -26456,6 +26639,9 @@
     "codex hooks watchdog": [
       "codex hooks watchdog"
     ],
+    "codex hooks watchdog link": [
+      "codex hooks watchdog link"
+    ],
     "codex image input": [
       "codex image input"
     ],
@@ -26468,8 +26654,14 @@
     "codex lineage auth isolation tasks": [
       "codex lineage auth isolation tasks"
     ],
+    "codex live follow": [
+      "codex live follow"
+    ],
     "codex mcp integration": [
       "codex mcp integration"
+    ],
+    "codex mcp route guard": [
+      "codex mcp route guard"
     ],
     "codex mcp runtime alignment tasks": [
       "Codex MCP runtime alignment tasks"
@@ -26501,14 +26693,29 @@
     "codex orchestration patterns": [
       "codex orchestration patterns"
     ],
+    "codex overlay guard": [
+      "codex overlay guard"
+    ],
     "codex payload probe plan": [
       "codex payload probe plan"
     ],
     "codex pi sync agents": [
       "codex pi sync agents"
     ],
+    "codex post edit quality": [
+      "codex post edit quality"
+    ],
+    "codex pre write guard": [
+      "codex pre write guard"
+    ],
+    "codex pretooluse advisory": [
+      "codex pretooluse advisory"
+    ],
     "codex pretooluse denylist": [
       "codex pretooluse denylist"
+    ],
+    "codex primary reconcile": [
+      "codex primary reconcile"
     ],
     "codex profile config file": [
       "codex profile config file"
@@ -26521,6 +26728,9 @@
     ],
     "codex prompt quality card": [
       "codex prompt quality card"
+    ],
+    "codex prompt seed": [
+      "codex prompt seed"
     ],
     "codex prompt templates": [
       "codex prompt templates"
@@ -26536,6 +26746,9 @@
     ],
     "codex reasoning effort lever": [
       "codex reasoning effort lever"
+    ],
+    "codex relaunch arm": [
+      "codex relaunch arm"
     ],
     "codex request user input async capture": [
       "codex request_user_input_async capture"
@@ -26564,14 +26777,27 @@
     "codex seed goal": [
       "codex seed goal"
     ],
+    "codex session cleanup": [
+      "codex session cleanup"
+    ],
+    "codex session lifecycle": [
+      "codex session lifecycle"
+    ],
     "codex session relaunch": [
-      "Codex session relaunch"
+      "Codex session relaunch",
+      "codex session relaunch"
     ],
     "codex session resume companion": [
       "Codex session resume companion"
     ],
     "codex session resume fork": [
       "codex session resume fork"
+    ],
+    "codex session start hook": [
+      "codex session start hook"
+    ],
+    "codex sessionstart guard": [
+      "codex sessionstart guard"
     ],
     "codex sessionstart hook": [
       "codex sessionstart hook"
@@ -26588,6 +26814,12 @@
     "codex spec folder handoff": [
       "codex spec folder handoff"
     ],
+    "codex spec gate enforce": [
+      "codex spec gate enforce"
+    ],
+    "codex stale build warning": [
+      "codex stale build warning"
+    ],
     "codex startup context": [
       "codex startup context"
     ],
@@ -26596,6 +26828,12 @@
     ],
     "codex stop cleanup diagnostic": [
       "codex stop cleanup diagnostic"
+    ],
+    "codex stop sentinel": [
+      "codex stop sentinel"
+    ],
+    "codex stop teardown": [
+      "codex stop teardown"
     ],
     "codex task dispatch payload": [
       "codex task dispatch payload"
@@ -26606,6 +26844,9 @@
     "codex toml agent drift": [
       "codex toml agent drift"
     ],
+    "codex user prompt submit": [
+      "codex user prompt submit"
+    ],
     "codex userpromptsubmit hook": [
       "codex userpromptsubmit hook"
     ],
@@ -26615,6 +26856,9 @@
     "codex vs claude code capabilities": [
       "codex vs claude code capabilities"
     ],
+    "codex watchdog opencode entry": [
+      "codex watchdog opencode entry"
+    ],
     "codex web research template": [
       "codex web research template"
     ],
@@ -26623,6 +26867,9 @@
     ],
     "codex withdraw reply evidence": [
       "codex withdraw reply evidence"
+    ],
+    "codex worktree guard": [
+      "codex worktree guard"
     ],
     "codex write containment": [
       "codex write containment"
@@ -27576,6 +27823,9 @@
     "compaction census verification": [
       "compaction census verification"
     ],
+    "compaction context test": [
+      "compaction context test"
+    ],
     "compaction fixtures canary": [
       "compaction fixtures canary"
     ],
@@ -27972,6 +28222,9 @@
     "completion claim census tasks": [
       "completion claim census tasks"
     ],
+    "completion claim check": [
+      "completion claim check"
+    ],
     "completion claim gate": [
       "completion claim gate"
     ],
@@ -28025,6 +28278,9 @@
     ],
     "completion evidence hook": [
       "completion evidence hook"
+    ],
+    "completion evidence parity tests": [
+      "completion evidence parity tests"
     ],
     "completion evidence reconcile": [
       "completion evidence reconcile"
@@ -31986,6 +32242,12 @@
     "cursor": [
       "cursor"
     ],
+    "cursor advisor adapter": [
+      "cursor advisor adapter"
+    ],
+    "cursor after agent response": [
+      "cursor after agent response"
+    ],
     "cursor agent": [
       "cursor agent"
     ],
@@ -32012,6 +32274,9 @@
     ],
     "cursor background execution": [
       "cursor background execution"
+    ],
+    "cursor before submit prompt": [
+      "cursor before submit prompt"
     ],
     "cursor clear check": [
       "cursor clear check"
@@ -32040,6 +32305,18 @@
     "cursor code generation template": [
       "cursor code generation template"
     ],
+    "cursor code mode routing": [
+      "cursor code mode routing"
+    ],
+    "cursor codex hook drift": [
+      "cursor codex hook drift"
+    ],
+    "cursor completion claim check": [
+      "cursor completion claim check"
+    ],
+    "cursor completion evidence": [
+      "cursor completion evidence"
+    ],
     "cursor composer template": [
       "cursor composer template"
     ],
@@ -32049,11 +32326,23 @@
     "cursor cross validation": [
       "cursor cross validation"
     ],
+    "cursor deep loop guard": [
+      "cursor deep loop guard"
+    ],
     "cursor default model composer": [
       "cursor default model composer"
     ],
+    "cursor dispatch preflight": [
+      "cursor dispatch preflight"
+    ],
     "cursor dispatch prompt discipline": [
       "cursor dispatch prompt discipline"
+    ],
+    "cursor dist freshness": [
+      "cursor dist freshness"
+    ],
+    "cursor dist staleness check": [
+      "cursor dist staleness check"
     ],
     "cursor editor config": [
       "cursor editor config"
@@ -32061,11 +32350,17 @@
     "cursor execution mode dispatch": [
       "cursor execution mode dispatch"
     ],
+    "cursor gate 3 prebind": [
+      "cursor gate 3 prebind"
+    ],
     "cursor gemini 3 7 flash high": [
       "cursor gemini 3.7 flash high"
     ],
     "cursor generate review fix cycle": [
       "cursor generate review fix cycle"
+    ],
+    "cursor git hooks check": [
+      "cursor git hooks check"
     ],
     "cursor goal fail open": [
       "cursor goal fail-open"
@@ -32081,6 +32376,9 @@
     ],
     "cursor goal hooks tasks": [
       "cursor goal hooks tasks"
+    ],
+    "cursor goal injection": [
+      "cursor goal injection"
     ],
     "cursor grok glm effort suffix": [
       "cursor grok glm effort suffix"
@@ -32106,11 +32404,17 @@
     "cursor hooks json shared configuration": [
       "Cursor hooks.json shared configuration"
     ],
+    "cursor live follow": [
+      "cursor live follow"
+    ],
     "cursor mcp client": [
       "cursor mcp client"
     ],
     "cursor mcp json hooks json rules": [
       "cursor mcp.json hooks.json rules"
+    ],
+    "cursor mcp route guard": [
+      "cursor mcp route guard"
     ],
     "cursor mode ask plan": [
       "cursor mode ask plan"
@@ -32130,6 +32434,9 @@
     "cursor orchestration patterns": [
       "cursor orchestration patterns"
     ],
+    "cursor overlay guard": [
+      "cursor overlay guard"
+    ],
     "cursor plan ask template": [
       "cursor plan ask template"
     ],
@@ -32139,14 +32446,35 @@
     "cursor plugin marketplace": [
       "cursor plugin marketplace"
     ],
+    "cursor post edit quality": [
+      "cursor post edit quality"
+    ],
+    "cursor post tool use": [
+      "cursor post tool use"
+    ],
+    "cursor post tool use proxy": [
+      "cursor post tool use proxy"
+    ],
+    "cursor pre tool use deny": [
+      "cursor pre tool use deny"
+    ],
     "cursor prebind injection": [
       "cursor prebind injection"
+    ],
+    "cursor precompact": [
+      "cursor precompact"
     ],
     "cursor pretooluse refresh probe": [
       "cursor preToolUse refresh probe"
     ],
     "cursor pretooluse spec gate": [
       "Cursor preToolUse spec gate"
+    ],
+    "cursor pretooluse task": [
+      "cursor pretooluse task"
+    ],
+    "cursor primary reconcile": [
+      "cursor primary reconcile"
     ],
     "cursor prompt framework selection": [
       "cursor prompt framework selection"
@@ -32165,6 +32493,9 @@
     ],
     "cursor providers and models catalog": [
       "cursor providers-and-models catalog"
+    ],
+    "cursor quality proxy": [
+      "cursor quality proxy"
     ],
     "cursor reconcile hook test exemption": [
       "cursor reconcile hook test exemption"
@@ -32187,17 +32518,41 @@
     "cursor self invocation guard": [
       "cursor self-invocation guard"
     ],
+    "cursor session cleanup": [
+      "cursor session cleanup"
+    ],
+    "cursor session end teardown": [
+      "cursor session end teardown"
+    ],
+    "cursor session lifecycle": [
+      "cursor session lifecycle"
+    ],
     "cursor session relaunch": [
       "Cursor session relaunch"
     ],
     "cursor session resume": [
       "cursor session resume"
     ],
+    "cursor session start hook": [
+      "cursor session start hook"
+    ],
     "cursor sessionstart goal injection": [
       "cursor sessionStart goal injection"
     ],
+    "cursor sessionstart guard": [
+      "cursor sessionstart guard"
+    ],
     "cursor shared config": [
       "cursor shared config"
+    ],
+    "cursor shell preflight": [
+      "cursor shell preflight"
+    ],
+    "cursor spec gate enforce": [
+      "cursor spec gate enforce"
+    ],
+    "cursor stale build warning": [
+      "cursor stale build warning"
     ],
     "cursor stock register": [
       "cursor stock register"
@@ -32217,6 +32572,9 @@
     "cursor style reference": [
       "cursor style reference"
     ],
+    "cursor task dispatch guard": [
+      "cursor task dispatch guard"
+    ],
     "cursor trust gate mode plan fanout": [
       "cursor trust gate mode plan fanout"
     ],
@@ -32231,6 +32589,9 @@
     ],
     "cursor worktree": [
       "cursor worktree"
+    ],
+    "cursor worktree guard": [
+      "cursor worktree guard"
     ],
     "custom fields": [
       "custom fields"
@@ -33264,6 +33625,9 @@
     "decision capture orphaned answers": [
       "decision capture orphaned answers"
     ],
+    "decision capture parity tests": [
+      "decision capture parity tests"
+    ],
     "decision capture phase parent spec": [
       "decision capture phase parent spec"
     ],
@@ -33272,6 +33636,9 @@
     ],
     "decision capture project token": [
       "decision capture project token"
+    ],
+    "decision capture queue": [
+      "decision capture queue"
     ],
     "decision capture runtime matrix": [
       "decision capture runtime matrix"
@@ -35451,6 +35818,9 @@
     ],
     "deep loop playbook scenarios": [
       "deep loop playbook scenarios"
+    ],
+    "deep loop policy core": [
+      "deep loop policy core"
     ],
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
@@ -39291,6 +39661,9 @@
     "devin adapter plan": [
       "devin adapter plan"
     ],
+    "devin advisor adapter": [
+      "devin advisor adapter"
+    ],
     "devin agent md profile": [
       "devin agent.md profile"
     ],
@@ -39312,8 +39685,14 @@
     "devin allowlist prune": [
       "devin allowlist prune"
     ],
+    "devin approval adapter": [
+      "devin approval adapter"
+    ],
     "devin approval per task": [
       "devin approval per task"
+    ],
+    "devin ask user question capture": [
+      "devin ask_user_question capture"
     ],
     "devin background execution": [
       "devin background execution"
@@ -39348,11 +39727,26 @@
     "devin code generation template": [
       "devin code generation template"
     ],
+    "devin code mode routing": [
+      "devin code mode routing"
+    ],
+    "devin codex hook drift": [
+      "devin codex hook drift"
+    ],
     "devin commands gap": [
       "devin commands gap"
     ],
+    "devin comment hygiene": [
+      "devin comment hygiene"
+    ],
     "devin compact recovery": [
       "devin compact recovery"
+    ],
+    "devin completion claim check": [
+      "devin completion claim check"
+    ],
+    "devin completion evidence": [
+      "devin completion evidence"
     ],
     "devin config json": [
       "devin config json"
@@ -39393,11 +39787,17 @@
     "devin dangerous mode approval": [
       "devin dangerous mode approval"
     ],
+    "devin decision capture": [
+      "devin decision capture"
+    ],
     "devin deep loop executor": [
       "devin deep loop executor"
     ],
     "devin deep loop executor summary": [
       "devin deep loop executor summary"
+    ],
+    "devin deep loop guard": [
+      "devin deep loop guard"
     ],
     "devin deepseek missing runtime": [
       "devin deepseek missing runtime"
@@ -39414,8 +39814,23 @@
     "devin delegation patterns": [
       "devin delegation patterns"
     ],
+    "devin dispatch audit": [
+      "devin dispatch audit"
+    ],
+    "devin dispatch preflight": [
+      "devin dispatch preflight"
+    ],
     "devin dispatch prompt discipline": [
       "devin dispatch prompt discipline"
+    ],
+    "devin dist freshness": [
+      "devin dist freshness"
+    ],
+    "devin dist staleness check": [
+      "devin dist staleness check"
+    ],
+    "devin exec dispatch lint": [
+      "devin exec dispatch lint"
     ],
     "devin executor implementation": [
       "devin executor implementation"
@@ -39432,11 +39847,17 @@
     "devin fetch tool": [
       "devin fetch tool"
     ],
+    "devin gate 3 classifier": [
+      "devin gate 3 classifier"
+    ],
     "devin gemini 3 7 flash high": [
       "devin gemini 3.7 flash high"
     ],
     "devin generate review fix cycle": [
       "devin generate review fix cycle"
+    ],
+    "devin git hooks check": [
+      "devin git hooks check"
     ],
     "devin glm swe grok deepseek dispatch": [
       "devin glm swe grok deepseek dispatch"
@@ -39462,6 +39883,9 @@
     "devin goal hooks tasks": [
       "devin goal hooks tasks"
     ],
+    "devin goal injection": [
+      "devin goal injection"
+    ],
     "devin goal remnant removal": [
       "devin goal remnant removal"
     ],
@@ -39486,6 +39910,12 @@
     "devin hop waived": [
       "devin hop waived"
     ],
+    "devin injection screen": [
+      "devin injection screen"
+    ],
+    "devin live follow": [
+      "devin live follow"
+    ],
     "devin long running task": [
       "devin long-running task"
     ],
@@ -39494,6 +39924,9 @@
     ],
     "devin mcp integration": [
       "devin mcp integration"
+    ],
+    "devin mcp route guard": [
+      "devin mcp route guard"
     ],
     "devin model alias reference": [
       "devin model alias reference"
@@ -39513,8 +39946,14 @@
     "devin model selection": [
       "devin model selection"
     ],
+    "devin operator answer queue": [
+      "devin operator answer queue"
+    ],
     "devin orchestration patterns": [
       "devin orchestration patterns"
+    ],
+    "devin overlay guard": [
+      "devin overlay guard"
     ],
     "devin p command reference": [
       "devin -p command reference"
@@ -39536,6 +39975,30 @@
     ],
     "devin permission modes": [
       "devin permission modes"
+    ],
+    "devin permission request": [
+      "devin permission request"
+    ],
+    "devin post compaction": [
+      "devin post compaction"
+    ],
+    "devin post edit quality": [
+      "devin post edit quality"
+    ],
+    "devin posttooluse injection check": [
+      "devin posttooluse injection check"
+    ],
+    "devin posttooluse quality": [
+      "devin posttooluse quality"
+    ],
+    "devin pre write guard": [
+      "devin pre write guard"
+    ],
+    "devin pretooluse advisory": [
+      "devin pretooluse advisory"
+    ],
+    "devin primary reconcile": [
+      "devin primary reconcile"
     ],
     "devin prompt framework selection": [
       "devin prompt framework selection"
@@ -39570,11 +40033,23 @@
     "devin run subagent": [
       "devin run_subagent"
     ],
+    "devin run subagent guard": [
+      "devin run subagent guard"
+    ],
     "devin sandbox ignores permission mode": [
       "devin sandbox ignores permission-mode"
     ],
     "devin self invocation guard": [
       "devin self-invocation guard"
+    ],
+    "devin session cleanup": [
+      "devin session cleanup"
+    ],
+    "devin session end teardown": [
+      "devin session end teardown"
+    ],
+    "devin session lifecycle": [
+      "devin session lifecycle"
     ],
     "devin session relaunch": [
       "Devin session relaunch"
@@ -39582,8 +40057,20 @@
     "devin session resume continue": [
       "devin session resume continue"
     ],
+    "devin session start hook": [
+      "devin session start hook"
+    ],
+    "devin sessionstart guard": [
+      "devin sessionstart guard"
+    ],
     "devin sessionstart hook fix": [
       "devin sessionstart hook fix"
+    ],
+    "devin spec gate enforce": [
+      "devin spec gate enforce"
+    ],
+    "devin stale build warning": [
+      "devin stale build warning"
     ],
     "devin static scenarios": [
       "devin static scenarios"
@@ -39596,6 +40083,9 @@
     ],
     "devin stop hook probe": [
       "devin stop hook probe"
+    ],
+    "devin stop sentinel": [
+      "devin stop sentinel"
     ],
     "devin subagent delegation": [
       "devin subagent delegation"
@@ -39618,11 +40108,17 @@
     "devin swe default model": [
       "devin swe default model"
     ],
+    "devin task dispatch guard": [
+      "devin task dispatch guard"
+    ],
     "devin tool surface": [
       "devin tool surface"
     ],
     "devin transcript sweep": [
       "devin transcript sweep"
+    ],
+    "devin user prompt submit": [
+      "devin user prompt submit"
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
@@ -39630,8 +40126,14 @@
     "devin vm offload": [
       "devin vm offload"
     ],
+    "devin webfetch screen": [
+      "devin webfetch screen"
+    ],
     "devin workspace trust gate": [
       "devin workspace-trust gate"
+    ],
+    "devin worktree guard": [
+      "devin worktree guard"
     ],
     "devin write tool spec gate": [
       "devin write tool spec gate"
@@ -39963,6 +40465,9 @@
     "directive lifecycle boundary": [
       "directive lifecycle boundary"
     ],
+    "directive lifecycle bridge": [
+      "directive lifecycle bridge"
+    ],
     "directive lifecycle dedup": [
       "directive lifecycle dedup"
     ],
@@ -40128,6 +40633,9 @@
     "disk derived plugin inventory": [
       "disk derived plugin inventory"
     ],
+    "dispatch adapter parity tests": [
+      "dispatch adapter parity tests"
+    ],
     "dispatch adapter test repair": [
       "dispatch adapter test repair"
     ],
@@ -40142,6 +40650,9 @@
     ],
     "dispatch adapter test repair tasks": [
       "dispatch adapter test repair tasks"
+    ],
+    "dispatch audit core": [
+      "dispatch audit core"
     ],
     "dispatch audit trail": [
       "dispatch audit trail"
@@ -40185,6 +40696,9 @@
     "dispatch evidence tasks": [
       "dispatch evidence tasks"
     ],
+    "dispatch fail closed tests": [
+      "dispatch fail-closed tests"
+    ],
     "dispatch failed reason": [
       "dispatch failed reason"
     ],
@@ -40214,6 +40728,9 @@
     ],
     "dispatch guard and vitest tasks": [
       "dispatch guard and vitest tasks"
+    ],
+    "dispatch guard core": [
+      "dispatch guard core"
     ],
     "dispatch header envelope changelog": [
       "dispatch header envelope changelog"
@@ -40358,6 +40875,9 @@
     ],
     "dispatch rule checks sidecar": [
       "dispatch rule checks sidecar"
+    ],
+    "dispatch rule engine": [
+      "dispatch rule engine"
     ],
     "dispatch rule reader design": [
       "dispatch rule reader design"
@@ -40520,6 +41040,9 @@
     ],
     "dist stale rebuild required": [
       "dist stale rebuild required"
+    ],
+    "dist staleness check": [
+      "dist staleness check"
     ],
     "dist staleness hook": [
       "dist staleness hook"
@@ -43089,11 +43612,32 @@
     "dry run trigger migration decision": [
       "dry run trigger migration decision"
     ],
+    "dsh adapter fail open tests": [
+      "dsh adapter fail-open tests"
+    ],
     "dsh adapter layout": [
       "dsh adapter layout"
     ],
+    "dsh adapter parity tests": [
+      "dsh adapter parity tests"
+    ],
+    "dsh advisor adapter": [
+      "dsh advisor adapter"
+    ],
     "dsh advisor routing": [
       "dsh advisor routing"
+    ],
+    "dsh answer queue tests": [
+      "dsh answer queue tests"
+    ],
+    "dsh answer reminder": [
+      "dsh answer reminder"
+    ],
+    "dsh ask user question capture": [
+      "dsh ask_user_question capture"
+    ],
+    "dsh bash dispatch lint": [
+      "dsh bash dispatch lint"
     ],
     "dsh build roadmap": [
       "dsh build roadmap"
@@ -43104,8 +43648,23 @@
     "dsh code mode": [
       "dsh code mode"
     ],
+    "dsh code mode allowlist": [
+      "dsh code mode allowlist"
+    ],
+    "dsh compaction context": [
+      "dsh compaction context"
+    ],
+    "dsh completion claim check": [
+      "dsh completion claim check"
+    ],
     "dsh completion evidence": [
       "dsh completion evidence"
+    ],
+    "dsh completion fail open tests": [
+      "dsh completion fail-open tests"
+    ],
+    "dsh completion tests": [
+      "dsh completion tests"
     ],
     "dsh constraints versus other runtimes": [
       "dsh constraints versus other runtimes"
@@ -43134,6 +43693,15 @@
     "dsh council seat decision": [
       "dsh council seat decision"
     ],
+    "dsh decision capture": [
+      "dsh decision capture"
+    ],
+    "dsh decision capture tests": [
+      "dsh decision capture tests"
+    ],
+    "dsh deep loop guard": [
+      "dsh deep loop guard"
+    ],
     "dsh deep loop lineage": [
       "dsh deep-loop lineage"
     ],
@@ -43143,11 +43711,20 @@
     "dsh deep review executor": [
       "dsh deep review executor"
     ],
+    "dsh dispatch audit": [
+      "dsh dispatch audit"
+    ],
+    "dsh dispatch preflight": [
+      "dsh dispatch preflight"
+    ],
     "dsh dispatch prompt discipline": [
       "dsh dispatch prompt discipline"
     ],
     "dsh dispatch template": [
       "dsh dispatch template"
+    ],
+    "dsh dispatch tests": [
+      "dsh dispatch tests"
     ],
     "dsh dump config evidence": [
       "dsh dump-config evidence"
@@ -43161,17 +43738,41 @@
     "dsh fan out executor": [
       "dsh fan-out executor"
     ],
+    "dsh fetch injection check": [
+      "dsh fetch injection check"
+    ],
     "dsh folder": [
       ".dsh folder"
+    ],
+    "dsh gate 3 classifier": [
+      "dsh gate 3 classifier"
     ],
     "dsh git message gate": [
       "dsh git message gate"
     ],
+    "dsh git message gate tests": [
+      "dsh git message gate tests"
+    ],
     "dsh git preflight": [
       "dsh git preflight"
     ],
+    "dsh git preflight advisory": [
+      "dsh git preflight advisory"
+    ],
+    "dsh git preflight tests": [
+      "dsh git preflight tests"
+    ],
+    "dsh goal context": [
+      "dsh goal context"
+    ],
     "dsh goal context adapter": [
       "dsh goal-context adapter"
+    ],
+    "dsh goal tests": [
+      "dsh goal tests"
+    ],
+    "dsh goal tool": [
+      "dsh_goal tool"
     ],
     "dsh guards": [
       "dsh guards"
@@ -43227,6 +43828,12 @@
     "dsh implementation template": [
       "dsh implementation template"
     ],
+    "dsh injection screen": [
+      "dsh injection screen"
+    ],
+    "dsh injection screen tests": [
+      "dsh injection screen tests"
+    ],
     "dsh json event stream": [
       "dsh json event stream"
     ],
@@ -43238,6 +43845,9 @@
     ],
     "dsh lineage command": [
       "dsh lineage command"
+    ],
+    "dsh lineage leaf": [
+      "dsh lineage leaf"
     ],
     "dsh lineage leaf marker": [
       "dsh lineage leaf marker"
@@ -43263,8 +43873,14 @@
     "dsh live contract pin tasks": [
       "dsh live contract pin tasks"
     ],
+    "dsh live follow": [
+      "dsh live follow"
+    ],
     "dsh llm gateway route": [
       "dsh llm gateway route"
+    ],
+    "dsh loader test": [
+      "dsh loader test"
     ],
     "dsh manual testing playbook": [
       "dsh manual testing playbook"
@@ -43297,7 +43913,11 @@
       "dsh mcp patch"
     ],
     "dsh mcp route guard": [
+      "dsh mcp route guard",
       "dsh mcp-route-guard"
+    ],
+    "dsh mcp route guard tests": [
+      "dsh mcp route guard tests"
     ],
     "dsh mirror generators": [
       "dsh mirror generators"
@@ -43341,11 +43961,35 @@
     "dsh opencode go route": [
       "dsh opencode go route"
     ],
+    "dsh overlay guard": [
+      "dsh overlay guard"
+    ],
+    "dsh overlay guard tests": [
+      "dsh overlay guard tests"
+    ],
+    "dsh package loader": [
+      "dsh package loader"
+    ],
     "dsh packet goal bridge": [
       "dsh packet goal bridge"
     ],
     "dsh patches folder": [
       "dsh patches folder"
+    ],
+    "dsh plugin test helpers": [
+      "dsh plugin test helpers"
+    ],
+    "dsh post edit quality": [
+      "dsh post edit quality"
+    ],
+    "dsh post execute checks": [
+      "dsh post execute checks"
+    ],
+    "dsh pre execute deny": [
+      "dsh pre execute deny"
+    ],
+    "dsh primary reconcile": [
+      "dsh primary reconcile"
     ],
     "dsh prompt advisor": [
       "dsh prompt advisor"
@@ -43358,6 +44002,9 @@
     ],
     "dsh prompt templates": [
       "dsh prompt templates"
+    ],
+    "dsh quality context": [
+      "dsh quality context"
     ],
     "dsh release probe": [
       "dsh release probe"
@@ -43431,6 +44078,18 @@
     "dsh session lifecycle": [
       "dsh session lifecycle"
     ],
+    "dsh session lifecycle tests": [
+      "dsh session lifecycle tests"
+    ],
+    "dsh session prime": [
+      "dsh session prime"
+    ],
+    "dsh shared helpers": [
+      "dsh shared helpers"
+    ],
+    "dsh shared tests": [
+      "dsh shared tests"
+    ],
     "dsh skill advisor hook": [
       "dsh skill advisor hook"
     ],
@@ -43443,8 +44102,26 @@
     "dsh spec gate": [
       "dsh spec gate"
     ],
+    "dsh spec gate enforce": [
+      "dsh spec gate enforce"
+    ],
+    "dsh subagent hand off": [
+      "dsh subagent hand off"
+    ],
     "dsh sync manifest": [
       "dsh sync manifest"
+    ],
+    "dsh task dispatch guard": [
+      "dsh task dispatch guard"
+    ],
+    "dsh tools post execute": [
+      "dsh tools post-execute"
+    ],
+    "dsh tools pre execute": [
+      "dsh tools pre execute"
+    ],
+    "dsh turn stopping sentinel": [
+      "dsh turn stopping sentinel"
     ],
     "dtype embedding profile key": [
       "dtype embedding profile key"
@@ -45601,6 +46278,9 @@
     "evaluate tool permissions": [
       "evaluate tool permissions"
     ],
+    "evaluatecommand commit message": [
+      "evaluateCommand commit message"
+    ],
     "evaluator canary promotion events": [
       "evaluator canary promotion events"
     ],
@@ -47329,6 +48009,9 @@
     "fail fast model routing": [
       "fail-fast model routing"
     ],
+    "fail open coverage": [
+      "fail open coverage"
+    ],
     "fail open kill switch": [
       "fail open kill switch"
     ],
@@ -48452,6 +49135,9 @@
     ],
     "fetched text injection screen summary": [
       "fetched text injection screen summary"
+    ],
+    "fetched text screen": [
+      "fetched text screen"
     ],
     "fewer skills safer paths": [
       "fewer skills safer paths"
@@ -52454,6 +53140,9 @@
     "git hook drift": [
       "git hook drift"
     ],
+    "git hook drift warning": [
+      "git hook drift warning"
+    ],
     "git hook embedded heredoc duplication": [
       "git hook embedded heredoc duplication"
     ],
@@ -52850,6 +53539,9 @@
     "go no go protocol": [
       "go no-go protocol"
     ],
+    "goal adapter coverage": [
+      "goal adapter coverage"
+    ],
     "goal adapter isolation plan": [
       "goal adapter isolation plan"
     ],
@@ -52976,6 +53668,9 @@
     "goal cjs packet": [
       "goal.cjs packet"
     ],
+    "goal cjs status envelope": [
+      "goal.cjs status envelope"
+    ],
     "goal cli workspace required": [
       "goal cli workspace required"
     ],
@@ -53047,6 +53742,9 @@
     ],
     "goal contradiction register": [
       "goal contradiction register"
+    ],
+    "goal core": [
+      "goal core"
     ],
     "goal core and state": [
       "goal core and state"
@@ -53600,6 +54298,9 @@
     "goal phase continuation": [
       "goal phase continuation"
     ],
+    "goal pi command": [
+      "goal-pi command"
+    ],
     "goal pi goal opencode goal cursor goal devin": [
       "goal-pi goal-opencode goal-cursor goal-devin"
     ],
@@ -53812,6 +54513,9 @@
     ],
     "goal shape validator restore": [
       "goal shape validator restore"
+    ],
+    "goal slice": [
+      "goal slice"
     ],
     "goal standards acceptance": [
       "goal standards acceptance"
@@ -55198,6 +55902,9 @@
     "handoff gate exemptions tasks": [
       "handoff gate exemptions tasks"
     ],
+    "handoff record command": [
+      "handoff record command"
+    ],
     "handover": [
       "handover"
     ],
@@ -56009,6 +56716,9 @@
     "hermes plugins": [
       "hermes plugins"
     ],
+    "hermes pre llm call": [
+      "hermes pre llm call"
+    ],
     "hermes pre verify": [
       "hermes pre_verify"
     ],
@@ -56108,11 +56818,15 @@
     "hermes runtime research": [
       "hermes runtime research"
     ],
+    "hermes session end arm": [
+      "hermes session end arm"
+    ],
     "hermes session id self presence": [
       "HERMES_SESSION_ID self presence"
     ],
     "hermes session relaunch": [
-      "Hermes session relaunch"
+      "Hermes session relaunch",
+      "hermes session relaunch"
     ],
     "hermes shell hooks": [
       "hermes shell hooks"
@@ -56975,6 +57689,9 @@
     ],
     "hop history implementation summary": [
       "hop history implementation summary"
+    ],
+    "hop history log": [
+      "hop history log"
     ],
     "hop history plan": [
       "hop history plan"
@@ -58551,6 +59268,9 @@
     "injectable project root": [
       "injectable project root"
     ],
+    "injection advisory line": [
+      "injection advisory line"
+    ],
     "injection bar and refusals": [
       "injection bar and refusals"
     ],
@@ -58650,11 +59370,20 @@
     "injection screen label tasks": [
       "injection screen label tasks"
     ],
+    "injection screen library": [
+      "injection screen library"
+    ],
     "injection screen measurement": [
       "injection screen measurement"
     ],
+    "injection screen parity tests": [
+      "injection screen parity tests"
+    ],
     "injection screen plan": [
       "injection screen plan"
+    ],
+    "injection screen plugin": [
+      "injection screen plugin"
     ],
     "injection screen research": [
       "injection screen research"
@@ -58763,6 +59492,9 @@
     ],
     "install codex hooks": [
       "install codex hooks"
+    ],
+    "install codex hooks check": [
+      "install codex hooks check"
     ],
     "install cupt": [
       "install cupt"
@@ -62649,6 +63381,9 @@
     "literal versus natural": [
       "literal versus natural"
     ],
+    "live branch convergence": [
+      "live branch convergence"
+    ],
     "live branch default on": [
       "live branch default on"
     ],
@@ -63419,6 +64154,9 @@
     ],
     "loop lock two winners": [
       "loop lock two winners"
+    ],
+    "loop repeat state": [
+      "loop repeat state"
     ],
     "loop termination cause event": [
       "loop termination cause event"
@@ -65946,9 +66684,18 @@
     "mcp retrieval review tasks": [
       "mcp retrieval review tasks"
     ],
+    "mcp route decision": [
+      "mcp route decision"
+    ],
     "mcp route guard": [
       "mcp route guard",
       "mcp-route-guard"
+    ],
+    "mcp route guard core": [
+      "mcp route guard core"
+    ],
+    "mcp route guard test": [
+      "mcp route guard test"
     ],
     "mcp routing advisory": [
       "mcp routing advisory"
@@ -69193,6 +69940,9 @@
     "message contract shipped": [
       "message contract shipped"
     ],
+    "message contract test": [
+      "message contract test"
+    ],
     "message identity resolver": [
       "message identity resolver"
     ],
@@ -71367,6 +72117,9 @@
     ],
     "native first shim": [
       "native first shim"
+    ],
+    "native goal tools": [
+      "native goal tools"
     ],
     "native host advisor evidence": [
       "native host advisor evidence"
@@ -73860,6 +74613,9 @@
     "opencode advisor plugin loads": [
       "opencode advisor plugin loads"
     ],
+    "opencode advisor status tool": [
+      "opencode advisor status tool"
+    ],
     "opencode agent delegation": [
       "opencode agent delegation"
     ],
@@ -73932,6 +74688,12 @@
     "opencode compatibility shape commit": [
       "opencode compatibility shape commit"
     ],
+    "opencode completion evidence": [
+      "opencode completion evidence"
+    ],
+    "opencode completion sentinel": [
+      "opencode completion sentinel"
+    ],
     "opencode config checklist": [
       "opencode config checklist"
     ],
@@ -73947,6 +74709,9 @@
     "opencode context budget": [
       "opencode context budget"
     ],
+    "opencode context nudge": [
+      "opencode context nudge"
+    ],
     "opencode conversation scenarios": [
       "OpenCode conversation scenarios"
     ],
@@ -73961,6 +74726,9 @@
     ],
     "opencode deep loop dispatch safety": [
       "opencode deep-loop dispatch safety"
+    ],
+    "opencode deep loop guard": [
+      "opencode deep loop guard"
     ],
     "opencode default model llmgateway flash": [
       "opencode default model llmgateway flash"
@@ -73986,8 +74754,17 @@
     "opencode devin live capture tasks": [
       "opencode devin live capture tasks"
     ],
+    "opencode dispatch audit": [
+      "opencode dispatch audit"
+    ],
     "opencode dispatch framework precedence": [
       "opencode dispatch framework precedence"
+    ],
+    "opencode dispatch preflight": [
+      "opencode dispatch preflight"
+    ],
+    "opencode dist freshness": [
+      "opencode dist freshness"
     ],
     "opencode dual compat doc findings": [
       "opencode dual compat doc findings"
@@ -74019,11 +74796,17 @@
     "opencode full runtime dispatch": [
       "opencode full runtime dispatch"
     ],
+    "opencode gate 3 transform": [
+      "opencode gate 3 transform"
+    ],
     "opencode git message gate": [
       "opencode git message gate"
     ],
     "opencode git preflight": [
       "opencode git preflight"
+    ],
+    "opencode git preflight advisory": [
+      "opencode git preflight advisory"
     ],
     "opencode go cache compat": [
       "opencode-go cache compat"
@@ -74071,6 +74854,9 @@
     "opencode goal optimization tasks": [
       "opencode goal optimization tasks"
     ],
+    "opencode goal plugin": [
+      "opencode goal plugin"
+    ],
     "opencode goal state migration": [
       "opencode goal state migration"
     ],
@@ -74091,6 +74877,9 @@
     ],
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
+    ],
+    "opencode injection screen": [
+      "opencode injection screen"
     ],
     "opencode install": [
       "opencode install"
@@ -74133,6 +74922,9 @@
     ],
     "opencode live run fixes": [
       "OpenCode live run fixes"
+    ],
+    "opencode mcp route guard": [
+      "opencode mcp route guard"
     ],
     "opencode memory epilogue": [
       "opencode memory epilogue"
@@ -74230,6 +75022,9 @@
     "opencode plugin hooks": [
       "opencode plugin hooks"
     ],
+    "opencode plugin link": [
+      "opencode plugin link"
+    ],
     "opencode plugin loader": [
       "opencode plugin loader"
     ],
@@ -74269,6 +75064,9 @@
     "opencode plugin transport diagnostic": [
       "opencode plugin transport diagnostic"
     ],
+    "opencode post edit quality": [
+      "opencode post edit quality"
+    ],
     "opencode prompt quality card": [
       "opencode prompt quality card"
     ],
@@ -74296,8 +75094,17 @@
     "opencode python style guide": [
       "opencode python style guide"
     ],
+    "opencode quality plugin": [
+      "opencode quality plugin"
+    ],
+    "opencode relaunch plugin": [
+      "opencode relaunch plugin"
+    ],
     "opencode route line bounding": [
       "opencode route line bounding"
+    ],
+    "opencode routing advisory": [
+      "opencode routing advisory"
     ],
     "opencode run": [
       "opencode run"
@@ -74344,8 +75151,12 @@
     "opencode self invocation guard": [
       "opencode self-invocation guard"
     ],
+    "opencode session cleanup": [
+      "opencode session cleanup"
+    ],
     "opencode session relaunch": [
-      "OpenCode session relaunch"
+      "OpenCode session relaunch",
+      "opencode session relaunch"
     ],
     "opencode session sweep": [
       "opencode session sweep"
@@ -74386,8 +75197,17 @@
     "opencode source root blockers": [
       "opencode source root blockers"
     ],
+    "opencode spec gate enforce": [
+      "opencode spec gate enforce"
+    ],
     "opencode spec gate plugin": [
       "opencode spec gate plugin"
+    ],
+    "opencode stale build warning": [
+      "opencode stale build warning"
+    ],
+    "opencode startup guards": [
+      "opencode startup guards"
     ],
     "opencode stdin dev null rule": [
       "opencode stdin dev null rule"
@@ -74409,6 +75229,21 @@
     ],
     "opencode system code": [
       "opencode system code"
+    ],
+    "opencode system context findings": [
+      "opencode system context findings"
+    ],
+    "opencode system transform advisor": [
+      "opencode system transform advisor"
+    ],
+    "opencode task dispatch guard": [
+      "opencode task dispatch guard"
+    ],
+    "opencode task execute before": [
+      "opencode task execute before"
+    ],
+    "opencode teardown plugin": [
+      "opencode teardown plugin"
     ],
     "opencode temp worker reaping": [
       "opencode temp worker reaping"
@@ -74512,8 +75347,14 @@
     "opencode version drift": [
       "opencode version drift"
     ],
+    "opencode version resolver": [
+      "opencode version resolver"
+    ],
     "opencode vs sibling cli skills": [
       "opencode vs sibling cli skills"
+    ],
+    "opencode webfetch screen": [
+      "opencode webfetch screen"
     ],
     "opencode worker farm dispatch": [
       "opencode worker farm dispatch"
@@ -74619,6 +75460,9 @@
     ],
     "operator answer queue": [
       "operator answer queue"
+    ],
+    "operator answer queue core": [
+      "operator answer queue core"
     ],
     "operator answers in decision record": [
       "operator answers in decision record"
@@ -75784,6 +76628,9 @@
     "overlay engine goal": [
       "overlay engine goal"
     ],
+    "overlay engine guard query": [
+      "overlay engine guard query"
+    ],
     "overlay engine implementation summary": [
       "overlay engine implementation summary"
     ],
@@ -75802,11 +76649,35 @@
     "overlay guard": [
       "overlay guard"
     ],
+    "overlay guard core": [
+      "overlay guard core"
+    ],
     "overlay guard hook": [
       "overlay guard hook"
     ],
+    "overlay guard test": [
+      "overlay guard test"
+    ],
     "overlay owned file": [
       "overlay owned file"
+    ],
+    "overlay owned file cursor": [
+      "overlay owned file cursor"
+    ],
+    "overlay owned file deny": [
+      "overlay owned file deny"
+    ],
+    "overlay owned file devin": [
+      "overlay owned file devin"
+    ],
+    "overlay owned file dsh": [
+      "overlay owned file dsh"
+    ],
+    "overlay owned file pi": [
+      "overlay owned file pi"
+    ],
+    "overlay owned path": [
+      "overlay owned path"
     ],
     "overlay repin": [
       "overlay repin"
@@ -76310,6 +77181,12 @@
     "packet goal blank": [
       "packet goal blank"
     ],
+    "packet goal frontmatter": [
+      "packet goal frontmatter"
+    ],
+    "packet goal injection": [
+      "packet goal injection"
+    ],
     "packet goal single source": [
       "packet goal single source"
     ],
@@ -76393,6 +77270,9 @@
     ],
     "packet setup": [
       "packet setup"
+    ],
+    "packet slice test": [
+      "packet slice test"
     ],
     "packet uses flat resources": [
       "packet uses flat resources"
@@ -80612,6 +81492,9 @@
     "pi and opencode adapters plan": [
       "Pi and OpenCode adapters plan"
     ],
+    "pi answer reminder": [
+      "pi answer reminder"
+    ],
     "pi api key": [
       "pi api key"
     ],
@@ -80818,14 +81701,32 @@
     "pi cli flags": [
       "pi cli flags"
     ],
+    "pi code mode routing": [
+      "pi code mode routing"
+    ],
     "pi coding agent": [
       "pi coding agent"
     ],
     "pi coding agent 1 4 0 bump": [
       "pi-coding-agent 1.4.0 bump"
     ],
+    "pi comment hygiene": [
+      "pi comment hygiene"
+    ],
+    "pi compaction context": [
+      "pi compaction context"
+    ],
     "pi compaction dedup reset": [
       "pi compaction dedup reset"
+    ],
+    "pi compaction pointer": [
+      "pi compaction pointer"
+    ],
+    "pi completion claim check": [
+      "pi completion claim check"
+    ],
+    "pi completion evidence": [
+      "pi completion evidence"
     ],
     "pi contract pin": [
       "pi contract pin"
@@ -80833,8 +81734,14 @@
     "pi cross ai dispatch": [
       "pi cross-ai dispatch"
     ],
+    "pi decision capture": [
+      "pi decision capture"
+    ],
     "pi dedup reset after compaction": [
       "pi dedup reset after compaction"
+    ],
+    "pi deep loop guard": [
+      "pi deep loop guard"
     ],
     "pi default transport": [
       "pi default transport"
@@ -80908,8 +81815,12 @@
     "pi directives only fix plan": [
       "pi directives-only fix plan"
     ],
+    "pi dispatch audit": [
+      "pi dispatch audit"
+    ],
     "pi dispatch authorization": [
-      "Pi dispatch authorization"
+      "Pi dispatch authorization",
+      "pi dispatch authorization"
     ],
     "pi dispatch authorization bypass": [
       "pi dispatch authorization bypass"
@@ -80946,6 +81857,9 @@
     ],
     "pi dispatch lint context stack scanner": [
       "pi dispatch lint context stack scanner"
+    ],
+    "pi dispatch preflight": [
+      "pi dispatch preflight"
     ],
     "pi dispatch prompt discipline": [
       "pi dispatch prompt discipline"
@@ -81026,11 +81940,17 @@
     "pi fast mode zero flag": [
       "pi fast mode zero flag"
     ],
+    "pi fetch content screen": [
+      "pi fetch_content screen"
+    ],
     "pi first jev transport": [
       "pi-first jev transport"
     ],
     "pi fork fix plan": [
       "pi fork fix plan"
+    ],
+    "pi gate 3 classifier": [
+      "pi gate 3 classifier"
     ],
     "pi gate 3 live proof": [
       "pi gate-3 live proof"
@@ -81044,6 +81964,9 @@
     "pi git preflight": [
       "pi git preflight"
     ],
+    "pi git preflight advisory": [
+      "pi git preflight advisory"
+    ],
     "pi goal binding status": [
       "pi goal binding status"
     ],
@@ -81052,6 +81975,9 @@
     ],
     "pi goal confusion": [
       "pi goal confusion"
+    ],
+    "pi goal context": [
+      "pi goal context"
     ],
     "pi goal extension": [
       "pi goal extension"
@@ -81140,6 +82066,9 @@
     "pi hook latency handover": [
       "pi hook latency handover"
     ],
+    "pi injection screen": [
+      "pi injection screen"
+    ],
     "pi input latency": [
       "pi input latency"
     ],
@@ -81176,6 +82105,9 @@
     "pi lineage orphan requeue": [
       "pi lineage orphan requeue"
     ],
+    "pi live follow": [
+      "pi live follow"
+    ],
     "pi live run verification": [
       "pi live-run verification"
     ],
@@ -81193,6 +82125,9 @@
     ],
     "pi mcp extension": [
       "pi-mcp-extension"
+    ],
+    "pi mcp route guard": [
+      "pi mcp route guard"
     ],
     "pi model provider mapping": [
       "pi model provider mapping"
@@ -81245,14 +82180,23 @@
     "pi openrouter roster": [
       "pi openrouter roster"
     ],
+    "pi overlay guard": [
+      "pi overlay guard"
+    ],
     "pi paid retry loop guard": [
       "pi paid retry loop guard"
     ],
     "pi passthrough model selection": [
       "pi passthrough model selection"
     ],
+    "pi post edit quality": [
+      "pi post edit quality"
+    ],
     "pi preflight lint test hooks vitest config": [
       "pi preflight lint test hooks vitest config"
+    ],
+    "pi primary reconcile": [
+      "pi primary reconcile"
     ],
     "pi print mode": [
       "pi print mode"
@@ -81305,8 +82249,14 @@
     "pi providers and models": [
       "pi providers and models"
     ],
+    "pi question capture": [
+      "pi question capture"
+    ],
     "pi recommendation dedup receipt": [
       "pi recommendation dedup receipt"
+    ],
+    "pi relaunch extension": [
+      "pi relaunch extension"
     ],
     "pi remote detection and sk code mobile cli references": [
       "PI_REMOTE Detection and sk-code-mobile-cli References"
@@ -81345,7 +82295,11 @@
       "pi session lifecycle"
     ],
     "pi session relaunch": [
-      "Pi session relaunch"
+      "Pi session relaunch",
+      "pi session relaunch"
+    ],
+    "pi session start context": [
+      "pi session start context"
     ],
     "pi session start restore": [
       "pi session start restore"
@@ -81411,6 +82365,9 @@
     "pi subagent dispatch shrink": [
       "pi subagent dispatch shrink"
     ],
+    "pi subagent guard": [
+      "pi subagent guard"
+    ],
     "pi subagents capsule": [
       "pi-subagents capsule"
     ],
@@ -81435,11 +82392,20 @@
     "pi subagents package removal": [
       "pi-subagents package removal"
     ],
+    "pi task dispatch guard": [
+      "pi task dispatch guard"
+    ],
     "pi thinking reasoning effort": [
       "pi thinking reasoning effort"
     ],
     "pi third party package": [
       "pi third-party package"
+    ],
+    "pi tool call advisory": [
+      "pi tool call advisory"
+    ],
+    "pi tool call block": [
+      "pi tool call block"
     ],
     "pi tool call coverage": [
       "Pi tool_call coverage"
@@ -81452,6 +82418,12 @@
     ],
     "pi tool call matrix": [
       "Pi tool_call matrix"
+    ],
+    "pi tool result findings": [
+      "pi tool result findings"
+    ],
+    "pi tool result injection check": [
+      "pi tool result injection check"
     ],
     "pi tool surface": [
       "pi tool surface"
@@ -81539,6 +82511,9 @@
     ],
     "pi turn end event probe": [
       "pi turn end event probe"
+    ],
+    "pi turn end sentinel": [
+      "pi turn end sentinel"
     ],
     "pi typecheck gate": [
       "pi typecheck gate"
@@ -82434,6 +83409,9 @@
     "plugin manifest reference": [
       "plugin manifest reference"
     ],
+    "plugin mirror link": [
+      "plugin mirror link"
+    ],
     "plugin operation logic": [
       "plugin operation logic"
     ],
@@ -82878,6 +83856,9 @@
     "post dispatch validation taxonomy drift": [
       "post-dispatch validation taxonomy drift"
     ],
+    "post edit adapter tests": [
+      "post edit adapter tests"
+    ],
     "post edit hook dead": [
       "post-edit hook dead"
     ],
@@ -82885,8 +83866,17 @@
       "post edit quality",
       "post-edit-quality"
     ],
+    "post edit quality core": [
+      "post edit quality core"
+    ],
     "post edit quality router": [
       "post edit quality router"
+    ],
+    "post edit quality tests": [
+      "post edit quality tests"
+    ],
+    "post edit router": [
+      "post edit router"
     ],
     "post extraction sdk dependency": [
       "post-extraction sdk dependency"
@@ -83162,6 +84152,12 @@
     ],
     "post work review tasks": [
       "post work review tasks"
+    ],
+    "posttooluse injection check": [
+      "posttooluse injection check"
+    ],
+    "posttooluse quality check": [
+      "posttooluse quality check"
     ],
     "posttooluse quality hook": [
       "posttooluse quality hook"
@@ -83642,6 +84638,15 @@
     ],
     "pressure test plan with council": [
       "pressure-test plan with council"
+    ],
+    "pretooluse additional context": [
+      "pretooluse additional context"
+    ],
+    "pretooluse deny envelope": [
+      "pretooluse deny envelope"
+    ],
+    "pretooluse mcp advisory": [
+      "pretooluse mcp advisory"
     ],
     "preview completion": [
       "preview completion"
@@ -85036,6 +86041,9 @@
     ],
     "quality block gate": [
       "quality block gate"
+    ],
+    "quality checker dispatch": [
+      "quality checker dispatch"
     ],
     "quality checklist": [
       "quality checklist"
@@ -88258,6 +89266,12 @@
     "relaunch model and effort tasks": [
       "relaunch model and effort tasks"
     ],
+    "relaunch prepare claim": [
+      "relaunch prepare claim"
+    ],
+    "relaunch record state": [
+      "relaunch record state"
+    ],
     "relaunch research remediation": [
       "relaunch research remediation"
     ],
@@ -90216,11 +91230,20 @@
     "repo guards manifest author line": [
       "repo-guards manifest author line"
     ],
+    "repo guards message contract": [
+      "repo-guards message contract"
+    ],
     "repo guards plugin": [
       "repo-guards plugin"
     ],
+    "repo guards post execute": [
+      "repo-guards post execute"
+    ],
     "repo guards project plugin": [
       "repo-guards project plugin"
+    ],
+    "repo guards session start": [
+      "repo-guards session start"
     ],
     "repo hygiene and residue": [
       "repo hygiene and residue"
@@ -91535,6 +92558,9 @@
     ],
     "research verification checklist": [
       "research verification checklist"
+    ],
+    "resend reminder": [
+      "resend reminder"
     ],
     "resend the goal": [
       "resend the goal"
@@ -98673,6 +99699,9 @@
     "session data interface": [
       "session data interface"
     ],
+    "session decision sweep": [
+      "session decision sweep"
+    ],
     "session deduplication": [
       "session deduplication"
     ],
@@ -98684,6 +99713,9 @@
     ],
     "session goal isolation": [
       "session goal isolation"
+    ],
+    "session goal scope flags": [
+      "session goal scope flags"
     ],
     "session goal state architecture": [
       "session goal state architecture"
@@ -98717,6 +99749,9 @@
     ],
     "session lifecycle hooks": [
       "session lifecycle hooks"
+    ],
+    "session lifecycle test": [
+      "session lifecycle test"
     ],
     "session lineage": [
       "session lineage"
@@ -98796,6 +99831,9 @@
     "session relaunch claude": [
       "session-relaunch-claude"
     ],
+    "session relaunch cli": [
+      "session relaunch cli"
+    ],
     "session relaunch closure checklist": [
       "session relaunch closure checklist"
     ],
@@ -98807,6 +99845,9 @@
     ],
     "session relaunch conformance suite": [
       "session relaunch conformance suite"
+    ],
+    "session relaunch core": [
+      "session relaunch core"
     ],
     "session relaunch default off": [
       "session relaunch default off"
@@ -98899,6 +99940,9 @@
     "session snapshot stale ready gate": [
       "session-snapshot stale ready gate"
     ],
+    "session start advisories": [
+      "session start advisories"
+    ],
     "session start artifact path": [
       "session-start artifact path"
     ],
@@ -98959,8 +100003,26 @@
     "sessions that hand themselves over": [
       "sessions that hand themselves over"
     ],
+    "sessionstart checkout follower": [
+      "sessionstart checkout follower"
+    ],
+    "sessionstart git reconcile": [
+      "sessionstart git reconcile"
+    ],
+    "sessionstart goal brief": [
+      "sessionstart goal brief"
+    ],
+    "sessionstart hook drift": [
+      "sessionstart hook drift"
+    ],
+    "sessionstart hook guard": [
+      "sessionstart hook guard"
+    ],
     "sessionstart hook wiring plan": [
       "SessionStart hook wiring plan"
+    ],
+    "sessionstart isolation guard": [
+      "sessionstart isolation guard"
     ],
     "sessionstart wiring task": [
       "SessionStart wiring task"
@@ -99546,6 +100608,12 @@
     ],
     "shared frontmatter value warning": [
       "shared frontmatter value warning"
+    ],
+    "shared git message gate": [
+      "shared git message gate"
+    ],
+    "shared git preflight hook": [
+      "shared git preflight hook"
     ],
     "shared helper extraction steps": [
       "shared helper extraction steps"
@@ -106351,6 +107419,15 @@
     "sk git 1 9 9 0": [
       "sk-git 1.9.9.0"
     ],
+    "sk git advisory context": [
+      "sk-git advisory context"
+    ],
+    "sk git advisory extension": [
+      "sk-git advisory extension"
+    ],
+    "sk git advisory plugin": [
+      "sk-git advisory plugin"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -106410,6 +107487,9 @@
     ],
     "sk git live benchmark": [
       "sk-git live benchmark"
+    ],
+    "sk git message contract": [
+      "sk-git message contract"
     ],
     "sk git plan": [
       "sk git plan"
@@ -107194,6 +108274,9 @@
     "skgit advisory": [
       "SKGIT_ADVISORY"
     ],
+    "skgit advisory skip": [
+      "SKGIT_ADVISORY_SKIP"
+    ],
     "skill advisor": [
       "skill advisor"
     ],
@@ -107252,6 +108335,9 @@
     "skill advisor changelog alignment": [
       "skill advisor changelog alignment"
     ],
+    "skill advisor claude hook": [
+      "skill advisor claude hook"
+    ],
     "skill advisor cli": [
       "skill advisor cli",
       "skill-advisor cli"
@@ -107274,6 +108360,9 @@
     "skill advisor cli research changelog": [
       "skill advisor cli research changelog"
     ],
+    "skill advisor codex hook": [
+      "skill advisor codex hook"
+    ],
     "skill advisor compat": [
       "skill advisor compat"
     ],
@@ -107291,6 +108380,9 @@
     ],
     "skill advisor cross session reconnect": [
       "skill advisor cross session reconnect"
+    ],
+    "skill advisor cursor hook": [
+      "skill advisor cursor hook"
     ],
     "skill advisor daemon restart after rebuild": [
       "skill advisor daemon restart after rebuild"
@@ -107319,6 +108411,9 @@
     "skill advisor descriptors": [
       "skill advisor descriptors"
     ],
+    "skill advisor devin hook": [
+      "skill advisor devin hook"
+    ],
     "skill advisor dist json copy": [
       "skill-advisor dist json copy"
     ],
@@ -107342,6 +108437,9 @@
     ],
     "skill advisor documentation bugs": [
       "skill-advisor documentation bugs"
+    ],
+    "skill advisor dsh hook": [
+      "skill advisor dsh hook"
     ],
     "skill advisor embedder registry": [
       "skill-advisor embedder registry"
@@ -107487,6 +108585,9 @@
     "skill advisor no match diagnostic": [
       "skill advisor no-match diagnostic"
     ],
+    "skill advisor opencode plugin": [
+      "skill advisor opencode plugin"
+    ],
     "skill advisor orphan references": [
       "skill-advisor orphan references"
     ],
@@ -107510,6 +108611,9 @@
     ],
     "skill advisor phase 3 changelog": [
       "skill-advisor phase 3 changelog"
+    ],
+    "skill advisor pi hook": [
+      "skill advisor pi hook"
     ],
     "skill advisor plan": [
       "skill advisor plan"
@@ -110593,14 +111697,32 @@
     "spec gate archive": [
       "spec gate archive"
     ],
+    "spec gate claude hook": [
+      "spec gate claude hook"
+    ],
     "spec gate closure gate": [
       "spec gate closure gate"
+    ],
+    "spec gate codex hook": [
+      "spec gate codex hook"
     ],
     "spec gate core port": [
       "spec gate core port"
     ],
+    "spec gate cursor hook": [
+      "spec gate cursor hook"
+    ],
     "spec gate deferral": [
       "spec gate deferral"
+    ],
+    "spec gate devin hook": [
+      "spec gate devin hook"
+    ],
+    "spec gate dsh hook": [
+      "spec gate dsh hook"
+    ],
+    "spec gate dsh tests": [
+      "spec gate dsh tests"
     ],
     "spec gate enforce": [
       "spec gate enforce"
@@ -110608,8 +111730,14 @@
     "spec gate migration tasks": [
       "spec gate migration tasks"
     ],
+    "spec gate opencode plugin": [
+      "spec gate opencode plugin"
+    ],
     "spec gate orchestration extraction": [
       "spec gate orchestration extraction"
+    ],
+    "spec gate pi hook": [
+      "spec gate pi hook"
     ],
     "spec gate port objective": [
       "spec gate port objective"
@@ -110637,6 +111765,9 @@
     ],
     "spec gate tests": [
       "spec gate tests"
+    ],
+    "spec gate throw policy test": [
+      "spec gate throw policy test"
     ],
     "spec gate tmp exemption": [
       "spec gate tmp exemption"
@@ -111966,6 +113097,9 @@
     ],
     "speckit deterministic ranking graduation": [
       "SPECKIT_DETERMINISTIC_RANKING graduation"
+    ],
+    "speckit directive boundary": [
+      "speckit directive boundary"
     ],
     "speckit directive lifecycle dedup": [
       "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP"
@@ -116998,6 +118132,9 @@
     "system speckit completion": [
       "system-speckit-completion"
     ],
+    "system speckit completion tool": [
+      "system speckit completion tool"
+    ],
     "system speckit track heal": [
       "system-speckit track heal"
     ],
@@ -117203,8 +118340,14 @@
     "task details mcp": [
       "task details mcp"
     ],
+    "task dispatch dsh tests": [
+      "task dispatch dsh tests"
+    ],
     "task dispatch guard": [
       "task dispatch guard"
+    ],
+    "task dispatch throw policy": [
+      "task dispatch throw policy"
     ],
     "task duration bars": [
       "task duration bars"
@@ -118977,6 +120120,9 @@
     "tool api drift remediation": [
       "tool api drift remediation"
     ],
+    "tool call block": [
+      "tool_call block"
+    ],
     "tool call deny": [
       "tool_call deny"
     ],
@@ -119072,6 +120218,9 @@
     ],
     "tool resource routing evidence": [
       "tool resource routing evidence"
+    ],
+    "tool result advisory": [
+      "tool result advisory"
     ],
     "tool routing fallback": [
       "tool routing fallback"
@@ -120169,6 +121318,9 @@
     ],
     "turn close out": [
       "turn close-out"
+    ],
+    "turn end verify nudge": [
+      "turn end verify nudge"
     ],
     "turn off the ci": [
       "turn off the ci"
@@ -121418,6 +122570,9 @@
     "userpromptsubmit": [
       "userpromptsubmit"
     ],
+    "userpromptsubmit goal brief": [
+      "userpromptsubmit goal brief"
+    ],
     "utcp cli transport": [
       "utcp cli transport"
     ],
@@ -121426,6 +122581,9 @@
     ],
     "utcp config json template": [
       "utcp config json template"
+    ],
+    "utcp manifest families": [
+      "utcp manifest families"
     ],
     "utcp wiring already registered": [
       "utcp wiring already registered"
