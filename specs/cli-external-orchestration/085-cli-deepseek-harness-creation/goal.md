@@ -141,6 +141,7 @@ and findings belong here.
 | Criteria 1-3 ticked | Done | C1 013/evidence/route-llmgateway.stdout.jsonl (exit 0, completed, Go explicit-only). C2 013/evidence/fanout-lineage.md (dsh-live-2 clean). C3 014/evidence/final-gate-2026-11-06-r6.txt, 015/evidence/gates-2026-11-06.txt |
 | 015 follow-up drift fixes | Done | Spec gate classifies only operator prompts, advisor reports runtime dsh, leaves have no native goal tools, orphan sweeper keeps DSH session helpers, /doctor:git setup checks the DSH row. Bundle 78/78, setup check 78/78, advisor 1373 pass. Evidence: 015-dsh-hook-parity/evidence/followup-fixes-2026-11-06.txt |
 | Goal amendment | Done | D3 now covers interactive hook parity, 015 bound by its spec.md, slice 3727 of 4000 |
+| Criteria re-proof on 485864e769 | Green | strict recursive exit 0 with 16 RESULT PASSED, generators 56/45/11, rules 50/50, guards 78/78, audit 128/128, executor and stress 534 pass 9 skip, 8 modes, canary to cli-opencode, routing 48/48 |
 
 ### Deviations and findings
 
