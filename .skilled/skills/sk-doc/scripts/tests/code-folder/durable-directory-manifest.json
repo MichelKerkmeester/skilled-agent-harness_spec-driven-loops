@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 784,
+  "derived_count": 783,
   "directories": [
     ".",
     ".claude",
@@ -10,7 +10,6 @@
     ".dsh/patches",
     ".dsh/plugins/repo-guards",
     ".dsh/plugins/repo-guards/adapters",
-    ".dsh/plugins/repo-guards/tests",
     ".github/workflows",
     ".pi",
     ".pi/extensions",

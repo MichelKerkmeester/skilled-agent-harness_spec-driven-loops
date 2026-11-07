@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Repo Guards Tests - MCP Route Guard (node --test)
+// MODULE: DSH Adapter Tests - MCP Route Guard (node --test)
 // ───────────────────────────────────────────────────────────────────
 //
 // Covers the Code Mode mount allowlist, the core kill switch, the fail-closed
@@ -11,9 +11,9 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import guardCore from '../../../../.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs';
+import guardCore from '../lib/mcp-route-guard.cjs';
 
-import { ERROR_POLICY, registerMcpRouteGuard } from '../adapters/mcp-route-guard.mjs';
+import { ERROR_POLICY, registerMcpRouteGuard } from '../dsh/mcp-route-guard.mjs';
 
 const enabled = () => true;
 const allow = async () => ({ kind: 'allow' });

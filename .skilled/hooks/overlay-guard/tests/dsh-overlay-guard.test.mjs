@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Repo Guards Tests - Overlay Guard (node --test)
+// MODULE: DSH Adapter Tests - Overlay Guard (node --test)
 // ───────────────────────────────────────────────────────────────────
 //
 // Covers the deny for an overlay-owned write, apply_patch path reading, note
@@ -8,10 +8,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import overlayCore from '../../../../.skilled/hooks/overlay-guard/lib/overlay-guard.cjs';
+import overlayCore from '../lib/overlay-guard.cjs';
 
-import { ERROR_POLICY, registerOverlayGuard } from '../adapters/overlay-guard.mjs';
-import { disabled, enabled, pluginHarness } from './harness.mjs';
+import { ERROR_POLICY, registerOverlayGuard } from '../dsh/overlay-guard.mjs';
+import { disabled, enabled, pluginHarness } from '../../shared/tests/dsh-plugin-harness.mjs';
 
 const allow = async () => ({ kind: 'allow' });
 

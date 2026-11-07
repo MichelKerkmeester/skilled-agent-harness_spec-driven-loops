@@ -1,7 +1,7 @@
 ---
 title: "GRD-001 -- Repo-guards plugin suite"
 description: "This scenario validates that the repo-guards plugin test suite passes with no adapter, policy or loader failure for `GRD-001`."
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # GRD-001 -- Repo-guards plugin suite
@@ -44,7 +44,7 @@ The guards patch can load the bundle and still leave a broken adapter. The suite
 ### Commands
 
 ```bash
-node --test .dsh/plugins/repo-guards/tests/
+node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/
 ```
 
 ### Recorded Result
@@ -52,11 +52,11 @@ node --test .dsh/plugins/repo-guards/tests/
 - Verdict: `PASS`.
 - Observed: exit `0`, 78 tests, 78 pass, 0 fail, 0 skipped, 0 todo.
 - The bundle README and this run both report 78 tests. Grade on `fail 0`, not on a fixed number.
-- The suite holds seven test files: the main adapter suite, `mcp-route-guard`, `overlay-guard`, `decision-capture`, `goal-manage`, `session-lifecycle` and `session-role`, with `harness.mjs` as their shared fixture.
+- The suite holds sixteen test files: one `dsh-<concern>.test.mjs` in each concern's `tests/` folder, plus `bundle.test.mjs` for the bundle itself, with `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs` as their shared fixture.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GRD-001 | Repo-guards plugin suite | Prove every adapter test passes | `Run the repo-guards plugin test suite and tell me whether every adapter test passes. Do not change the plugin.` | 1. `node --test .dsh/plugins/repo-guards/tests/` -> 2. read the summary block -> 3. record the pass, fail and skipped counts with the exit code | Step 1: exit `0`. Step 2: 78 tests, 78 pass, 0 fail, 0 skipped | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0`. FAIL if any test fails or the runner cannot load the tests | 1. Read the first failing test name and its assertion. 2. Check whether a shared guard core export changed. 3. For `ERR_MODULE_NOT_FOUND`, run `sync-runtime-mirrors.cjs --check` to find a missing or stale adapter link. 4. Run the suite from the repository root so the anchored loader resolves |
+| GRD-001 | Repo-guards plugin suite | Prove every adapter test passes | `Run the repo-guards plugin test suite and tell me whether every adapter test passes. Do not change the plugin.` | 1. `node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/` -> 2. read the summary block -> 3. record the pass, fail and skipped counts with the exit code | Step 1: exit `0`. Step 2: 78 tests, 78 pass, 0 fail, 0 skipped | The observed runner transcript with the summary counts and exit code | PASS if the suite exits `0` with `fail 0`. FAIL if any test fails or the runner cannot load the tests | 1. Read the first failing test name and its assertion. 2. Check whether a shared guard core export changed. 3. For `ERR_MODULE_NOT_FOUND`, run `sync-runtime-mirrors.cjs --check` to find a missing or stale adapter link. 4. Run the suite from the repository root so the anchored loader resolves |
 
 ---
 
@@ -78,8 +78,10 @@ node --test .dsh/plugins/repo-guards/tests/
 | `.dsh/plugins/repo-guards/index.mjs` | Registers the adapter set |
 | `.dsh/plugins/repo-guards/adapters/` | One link per adapter into `.skilled/hooks/<concern>/dsh/` or a skill's `hooks/dsh/` folder |
 | `.dsh/plugins/repo-guards/lineage-leaf.mjs` | Leaf marker the lineage patch inserts |
-| `.dsh/plugins/repo-guards/tests/repo-guards.test.mjs` | Main adapter suite |
-| `.dsh/plugins/repo-guards/tests/` | The other six adapter suites and `harness.mjs` |
+| `.dsh/plugins/repo-guards/tests/bundle.test.mjs` | Bundle suite: patches, lineage-leaf plugin, advisor row flag and adapter links |
+| `.skilled/hooks/*/tests/dsh-*.test.mjs` | One adapter suite per concern, including the shared `dsh-llm` loader |
+| `.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs` | Prompt advisor suite |
+| `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs` | Shared fake plugin context and agent |
 
 ---
 

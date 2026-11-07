@@ -1,7 +1,7 @@
 ---
 title: "cli-deepseek-harness: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-deepseek-harness skill."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # cli-deepseek-harness: Manual Testing Playbook
@@ -260,7 +260,7 @@ The `cli-deepseek-harness` packet owns the dispatch contract around the `dsh` bi
 | `.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs` | Generated skill-link farm, `--check` drift mode | `MIR-001` |
 | `.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs` | Generated prompt stubs, `--check` drift mode | `MIR-001` |
 | `.skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs` | Generated persona patches, `--check` drift mode | `MIR-001` |
-| `.dsh/plugins/repo-guards/tests/` | Fourteen adapter contracts, error policies and the anchored message loader | `GRD-001` |
+| `.skilled/hooks/*/tests/dsh-*.test.mjs`, `.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs` and `.dsh/plugins/repo-guards/tests/` | Fourteen adapter contracts, error policies and the anchored message loader | `GRD-001` |
 | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Thirteen dsh hard rules, repo-root refusal, roster and home checks | `CLI-002`, `GRD-002` |
 | `.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-deepseek-harness.vitest.ts` | Fourteen manifest-indexed hermetic adapter stress cells | `EC-001` to `EC-014` |
 | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | LLM Gateway provider row and default model row | `PAT-001`, `MDL-001` |

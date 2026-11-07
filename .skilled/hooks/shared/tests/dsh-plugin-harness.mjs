@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Repo Guards Test Harness
+// MODULE: DSH Plugin Test Harness
 // ───────────────────────────────────────────────────────────────────
 
 import { mkdtempSync, rmSync } from 'node:fs';
@@ -35,6 +35,31 @@ export function pluginHarness() {
     return list[0](...args);
   };
   return { ctx, handlers, commands, logs, fire };
+}
+
+/**
+ * Build a fake plugin context that keeps one handler per event, the last one registered.
+ *
+ * Suites that test a single adapter read its handler straight from `handlers.get(name)`.
+ *
+ * @returns {{ctx: object, handlers: Map<string, Function>, logs: object[]}}
+ */
+export function adapterHarness() {
+  const handlers = new Map();
+  const logs = [];
+  return {
+    handlers,
+    logs,
+    ctx: {
+      on(name, handler) {
+        handlers.set(name, handler);
+      },
+      logger: {
+        warn(message) { logs.push({ level: 'warn', message }); },
+        error(message) { logs.push({ level: 'error', message }); },
+      },
+    },
+  };
 }
 
 /**
@@ -93,3 +118,8 @@ export const enabled = () => true;
 export const disabled = () => false;
 export const leaf = () => true;
 export const interactive = () => false;
+
+/** A downstream post-execute handler that accepts the tool result. */
+export const accept = async () => ({ kind: 'accept', content: [] });
+/** A downstream pre-execute handler that allows the call. */
+export const allow = async () => ({ kind: 'allow' });

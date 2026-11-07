@@ -7,7 +7,7 @@ trigger_phrases:
   - "operator decisions"
   - "capture askuserquestion answers"
   - "verbatim operator answers"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Operator decision capture
@@ -90,7 +90,7 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | `.skilled/hooks/decision-capture/bin/sweep-codex.test.mjs` | Automated test | Codex rollout reader on a redacted live sample. |
 | `.skilled/hooks/decision-capture/bin/sweep-pi.test.mjs` | Automated test | Pi session reader on a redacted live sample. |
 | `.skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs` | Automated test | DSH session-log reader, late replies and multi-frame logs. |
-| `.dsh/plugins/repo-guards/tests/decision-capture.test.mjs` | Automated test | DSH adapter capture, late reply, nudge and kill switch. |
+| `.skilled/hooks/decision-capture/tests/dsh-decision-capture.test.mjs` | Automated test | DSH adapter capture, late reply, nudge and kill switch. |
 | `.skilled/hooks/decision-capture/pi/decision-capture.test.ts` | Automated test | Pi extension, kill switch and same-key dedup with the sweep. |
 | `.opencode/plugins/tests/decision-capture.test.cjs` | Automated test | OpenCode plugin capture, kill switch, dedup with the sweep and the nudge line. |
 | `.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.test.mjs` | Automated test | Devin adapter on a redacted live payload, both producer orders, kill switch and refusals. |

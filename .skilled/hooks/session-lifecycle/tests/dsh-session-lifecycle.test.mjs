@@ -1,9 +1,10 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Repo Guards Tests - Session Lifecycle (node --test)
+// MODULE: DSH Adapter Tests - Session Lifecycle (node --test)
 // ───────────────────────────────────────────────────────────────────
 //
-// Covers the session-start advisories, the post-compaction re-prime and the
-// session-stop autosave, each with its leaf gate, concern switch and fail-open policy.
+// Covers the session-start context and advisories, the post-compaction re-prime
+// and the session-stop autosave, each with its leaf gate, concern switch and
+// fail-open policy.
 
 import assert from 'node:assert/strict';
 import path from 'node:path';
@@ -14,15 +15,26 @@ import {
   ERROR_POLICY as advisoriesPolicy,
   advisoryCommand,
   registerSessionStartAdvisories,
-} from '../adapters/session-start-advisories.mjs';
-import { ERROR_POLICY as compactPolicy, registerSessionCompactContext } from '../adapters/session-compact-context.mjs';
+} from '../dsh/session-start-advisories.mjs';
+import { ERROR_POLICY as sessionStartPolicy, registerSessionStartContext } from '../dsh/session-start-context.mjs';
+import { ERROR_POLICY as compactPolicy, registerSessionCompactContext } from '../dsh/session-compact-context.mjs';
 import {
   ERROR_POLICY as stopPolicy,
   SESSION_STOP_PATH,
   registerSessionStopContext,
   runSessionStop,
-} from '../adapters/session-stop-context.mjs';
-import { disabled, enabled, fakeAgent, interactive, leaf, noticeText, plainNotice, pluginHarness } from './harness.mjs';
+} from '../dsh/session-stop-context.mjs';
+import {
+  adapterHarness,
+  disabled,
+  enabled,
+  fakeAgent,
+  interactive,
+  leaf,
+  noticeText,
+  plainNotice,
+  pluginHarness,
+} from '../../shared/tests/dsh-plugin-harness.mjs';
 
 const REPO = '/fixture/checkout';
 
@@ -187,4 +199,51 @@ test('throw policy: stop context fails open and logs; its concern switch removes
   const off = pluginHarness();
   registerSessionStopContext(off.ctx, { isEnabled: disabled });
   assert.equal(off.handlers.size, 0);
+});
+
+test('session-start context injects the session-prime output on agent creation', async () => {
+  const { ctx, handlers } = adapterHarness();
+  const injected = [];
+  const calls = [];
+  registerSessionStartContext(ctx, {
+    core: {
+      runSessionPrime(input) {
+        calls.push(input);
+        return 'Session context fixture';
+      },
+    },
+    isEnabled: enabled,
+    createNotice: async (text) => ({ role: 'user', content: [{ type: 'text', text }] }),
+  });
+  await handlers.get('agent/created')({
+    agent: {
+      session: { id: 'session-start-fixture', header: { cwd: '/fixture/workspace' } },
+      inject(message) { injected.push(message); },
+    },
+    source: 'resume',
+  });
+  assert.deepEqual(calls, [{
+    sessionId: 'session-start-fixture',
+    projectDir: '/fixture/workspace',
+    source: 'resume',
+  }]);
+  assert.equal(injected[0].content[0].text, 'Session context fixture');
+});
+
+test('session-start context logs and continues when session-prime throws', async () => {
+  assert.equal(sessionStartPolicy, 'fail-open');
+  const { ctx, handlers, logs } = adapterHarness();
+  registerSessionStartContext(ctx, {
+    core: { runSessionPrime() { throw new Error('fixture failure'); } },
+    isEnabled: enabled,
+  });
+  const result = await handlers.get('agent/created')({
+    agent: {
+      session: { id: 'session-start-throw' },
+      inject() { assert.fail('a failed session read must not inject'); },
+    },
+    source: 'startup',
+  });
+  assert.equal(result, undefined);
+  assert.equal(logs.length, 1);
 });

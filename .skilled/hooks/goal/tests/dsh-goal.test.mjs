@@ -1,12 +1,17 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Repo Guards Tests - Goal Manage (node --test)
+// MODULE: DSH Adapter Tests - Goal (node --test)
 // ───────────────────────────────────────────────────────────────────
 //
 // Covers the goal command and tool over the shared manage CLI, the per-turn
-// brief, the verify note for the next operator turn, and the leaf and kill-switch gates.
+// brief, the verify note for the next operator turn, and the leaf and kill-switch gates,
+// plus the goal-context adapter's packet slice and its throw policy.
 
 import assert from 'node:assert/strict';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 
 import {
   ERROR_POLICY,
@@ -15,8 +20,21 @@ import {
   GOAL_TOOL_NAME,
   goalCliArgs,
   registerGoalManage,
-} from '../adapters/goal-manage.mjs';
-import { fakeAgent, humanMessage, interactive, leaf, noticeText, plainNotice, pluginHarness } from './harness.mjs';
+} from '../dsh/goal-manage.mjs';
+import goalCore from '../lib/goal-core.cjs';
+import { ERROR_POLICY as goalPolicy, registerGoalContext } from '../dsh/goal-context.mjs';
+import {
+  adapterHarness,
+  cleanup,
+  fakeAgent,
+  humanMessage,
+  interactive,
+  leaf,
+  noticeText,
+  plainNotice,
+  pluginHarness,
+  tempDir,
+} from '../../shared/tests/dsh-plugin-harness.mjs';
 
 const ROOT = '/fixture/repo';
 const SCOPE = ['--runtime', 'dsh', '--session', 'session-goal', '--workspace', ROOT];
@@ -166,4 +184,81 @@ test('the goal surface stays dark in a leaf and when the goal concern is off', a
   registerGoalManage(off.ctx, { core: stubCore({ isPluginDisabled: () => true }) });
   assert.equal(off.handlers.size, 0);
   assert.equal(off.commands.length, 0);
+});
+
+test('goal context injects the exact CLI chat slice without frontmatter', async () => {
+  const directory = tempDir();
+  try {
+    execFileSync('git', ['-C', directory, 'init', '-q'], { stdio: 'ignore' });
+    const packetRelative = path.join(['spec', 's'].join(''), 'fixture-track', '001-goal-context');
+    const packetDirectory = path.join(directory, packetRelative);
+    mkdirSync(packetDirectory, { recursive: true });
+    writeFileSync(path.join(packetDirectory, 'goal.md'), [
+      '---',
+      'title: Fixture Goal',
+      'status: active',
+      '---',
+      '# Goal: Fixture',
+      '',
+      '## DURABLE DIRECTIVE',
+      '',
+      '**Objective:** Keep this exact directive in model context.',
+      '',
+    ].join('\n'));
+
+    const cliPath = fileURLToPath(new URL(
+      '../bin/goal.cjs',
+      import.meta.url,
+    ));
+    const cli = spawnSync(process.execPath, [
+      cliPath,
+      'packet',
+      packetRelative.split(path.sep).join('/'),
+      '--workspace',
+      directory,
+    ], { cwd: directory, encoding: 'utf8' });
+    assert.equal(cli.status, 0, cli.stderr);
+    const sliceLine = cli.stdout.split(/\r?\n/).find((line) => line.startsWith('chat_slice='));
+    assert.ok(sliceLine, cli.stdout);
+    const expectedSlice = JSON.parse(sliceLine.slice('chat_slice='.length));
+    assert.doesNotMatch(expectedSlice, /^---$/m);
+
+    const { ctx, handlers } = adapterHarness();
+    const injected = [];
+    registerGoalContext(ctx, {
+      core: goalCore,
+      env: { DSH_SPEC_FOLDER: packetRelative },
+      cwd: directory,
+      createNotice: async (text) => ({ role: 'user', content: [{ type: 'text', text }] }),
+    });
+    await handlers.get('agent/created')({
+      agent: {
+        session: { id: 'goal-context-fixture', header: { cwd: directory } },
+        inject(message) { injected.push(message); },
+      },
+      source: 'startup',
+    });
+    const injectedText = injected[0].content[0].text;
+    assert.equal(injectedText, expectedSlice);
+    assert.doesNotMatch(injectedText, /^---$/m);
+  } finally {
+    cleanup(directory);
+  }
+});
+
+test('goal context logs and continues when its core throws', async () => {
+  assert.equal(goalPolicy, 'fail-open');
+  const { ctx, handlers, logs } = adapterHarness();
+  registerGoalContext(ctx, {
+    core: { describePacketGoal() { throw new Error('fixture failure'); } },
+    env: { DSH_SPEC_FOLDER: 'fixture-track/001-goal-context' },
+    createNotice: async () => assert.fail('a failed goal read must not inject'),
+  });
+  const result = await handlers.get('agent/created')({
+    agent: { session: { id: 'goal-context-throw' }, inject() { assert.fail('unexpected injection'); } },
+    source: 'startup',
+  });
+  assert.equal(result, undefined);
+  assert.equal(logs.length, 1);
+  assert.equal(handlers.has('tools/pre-execute'), false);
 });

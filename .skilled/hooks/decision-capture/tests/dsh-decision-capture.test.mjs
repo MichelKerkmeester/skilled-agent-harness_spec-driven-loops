@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Repo Guards Tests - Decision Capture (node --test)
+// MODULE: DSH Adapter Tests - Decision Capture (node --test)
 // ───────────────────────────────────────────────────────────────────
 //
 // Covers live and late-reply answer capture under the key a sweep would use,
@@ -8,10 +8,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { dshAnswerRecords } from '../../../../.skilled/hooks/decision-capture/bin/sweep-dsh.mjs';
+import { dshAnswerRecords } from '../bin/sweep-dsh.mjs';
 
-import { ERROR_POLICY, registerDecisionCapture } from '../adapters/decision-capture.mjs';
-import { disabled, enabled, fakeAgent, noticeText, plainNotice, pluginHarness } from './harness.mjs';
+import { ERROR_POLICY, registerDecisionCapture } from '../dsh/decision-capture.mjs';
+import { disabled, enabled, fakeAgent, noticeText, plainNotice, pluginHarness } from '../../shared/tests/dsh-plugin-harness.mjs';
 
 const QUESTIONS = [{
   id: 'engine',

@@ -64,12 +64,11 @@ repo-guards/
 |   +-- task-dispatch-guard.mjs
 |   `-- dsh-llm.mjs, session-role.mjs (shared helpers in .skilled/hooks/shared/dsh/)
 +-- tests/
-|   +-- harness.mjs           # fake plugin context and agent
-|   +-- repo-guards.test.mjs, mcp-route-guard.test.mjs
-|   +-- overlay-guard.test.mjs, decision-capture.test.mjs, goal-manage.test.mjs
-|   `-- session-lifecycle.test.mjs, session-role.test.mjs
+|   `-- bundle.test.mjs       # patches, lineage-leaf plugin, advisor row flag, adapter links
 `-- README.md
 ```
+
+Each adapter's tests sit in its concern's `tests/` folder as `dsh-<concern>.test.mjs`, such as `.skilled/hooks/goal/tests/dsh-goal.test.mjs`. The prompt advisor's are in `.skilled/skills/system-skill-advisor/hooks/tests/`. They share the fake plugin context in `.skilled/hooks/shared/tests/dsh-plugin-harness.mjs`.
 
 ---
 
@@ -131,7 +130,7 @@ Each session-start guard answers to its own switch: `SYSTEM_GIT_WORKTREE_GUARD_D
 Run these commands from the repository root.
 
 ```sh
-node --test .dsh/plugins/repo-guards/tests/
+node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/
 ```
 
 Expected result: 78 tests pass.

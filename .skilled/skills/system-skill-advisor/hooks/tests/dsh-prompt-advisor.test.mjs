@@ -1,19 +1,18 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Repo Guards Tests - Session Role (node --test)
+// MODULE: DSH Adapter Tests - Prompt Advisor (node --test)
 // ───────────────────────────────────────────────────────────────────
 //
-// Covers the guards and lineage patches, the lineage-leaf marker, and the prompt
-// advisor's runtime label, leaf silence and directive lifecycle.
+// Covers the advisor brief on the pre-step waterfall, its dsh runtime label,
+// leaf silence, operator-only prompts, the directive lifecycle and the throw policy.
 
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { isLineageLeaf } from '../adapters/session-role.mjs';
-import { ADVISOR_RUNTIME, registerPromptAdvisor, runAdvisor } from '../adapters/prompt-advisor.mjs';
-import { apply as applyLineageLeaf, name as lineageLeafName } from '../lineage-leaf.mjs';
+import { ADVISOR_RUNTIME, ERROR_POLICY as advisorPolicy, registerPromptAdvisor, runAdvisor } from '../dsh/prompt-advisor.mjs';
 import {
+  adapterHarness,
   disabled,
   enabled,
   fakeAgent,
@@ -23,17 +22,11 @@ import {
   noticeText,
   plainNotice,
   pluginHarness,
-} from './harness.mjs';
-
-const LEAF_MARKER = Symbol.for('skilled.repo-guards.lineage-leaf');
-
-function readPatch(fileName) {
-  return readFileSync(fileURLToPath(new URL(`../../../patches/${fileName}`, import.meta.url)), 'utf8');
-}
+} from '../../../../hooks/shared/tests/dsh-plugin-harness.mjs';
 
 function advisorRuntimeValues() {
   const source = readFileSync(fileURLToPath(new URL(
-    '../../../../.skilled/skills/system-skill-advisor/runtime/lib/advisor-runtime-values.ts',
+    '../../runtime/lib/advisor-runtime-values.ts',
     import.meta.url,
   )), 'utf8');
   const tuple = source.match(/ADVISOR_RUNTIME_VALUES\s*=\s*\[([^\]]*)\]/);
@@ -53,19 +46,35 @@ async function step(fire, agent, messages) {
   return fire('agent/pre-step', { agent, messages }, async () => ({ kind: 'enter', messages: [] }));
 }
 
-test('the guards patch turns the advisor on and only the lineage patch marks a fan-out leaf', () => {
-  assert.match(readPatch('guards.patch.yml'), /promptAdvisor:\s*true/);
-  const lineage = readPatch('lineage.patch.yml');
-  assert.match(lineage, /id:\s*repo-guards-lineage-leaf/);
-  assert.match(lineage, /name:\s*\.\.\/plugins\/repo-guards\/lineage-leaf\.mjs/);
-  assert.doesNotMatch(readPatch('guards.patch.yml'), /lineage-leaf/);
+test('prompt advisor appends returned context on the pre-step waterfall', async () => {
+  const { ctx, handlers } = adapterHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    core: { runAdvisor: async () => ({ hookSpecificOutput: { additionalContext: 'Advisor fixture' } }) },
+    createNotice: async (text) => ({ role: 'user', content: [{ type: 'text', text }] }),
+  });
+  const result = await handlers.get('agent/pre-step')({
+    agent: { session: { id: 'advisor-fixture', header: { cwd: '/fixture/workspace' } } },
+    messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: 'Help me choose.' }] }],
+  }, async () => ({ kind: 'enter', messages: [] }));
+  assert.equal(result.kind, 'enter');
+  assert.equal(result.messages[0].content[0].text, 'Advisor fixture');
 });
 
-test('the lineage patch also turns off the native goal tools a leaf cannot use', () => {
-  const lineage = readPatch('lineage.patch.yml');
-  assert.match(lineage, /- id:\s*tool-goal\s*\n\s*disabled:\s*true/);
-  assert.match(lineage, /- id:\s*goal-round-driver\s*\n\s*disabled:\s*true/);
-  assert.match(lineage, /- id:\s*command-goal\s*\n\s*disabled:\s*true/);
+test('prompt advisor logs and continues when its core throws', async () => {
+  assert.equal(advisorPolicy, 'fail-open');
+  const { ctx, handlers, logs } = adapterHarness();
+  registerPromptAdvisor(ctx, {
+    enabled: true,
+    core: { runAdvisor() { throw new Error('fixture failure'); } },
+  });
+  const downstream = { kind: 'enter', messages: [] };
+  const result = await handlers.get('agent/pre-step')({
+    agent: { session: { id: 'advisor-throw' } },
+    messages: [{ role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: 'Continue.' }] }],
+  }, async () => downstream);
+  assert.equal(result, downstream);
+  assert.equal(logs.length, 1);
 });
 
 test('the prompt advisor reports itself as dsh, a runtime the advisor accepts', async () => {
@@ -79,19 +88,6 @@ test('the prompt advisor reports itself as dsh, a runtime the advisor accepts', 
     },
   }));
   assert.deepEqual(seen, ['dsh']);
-});
-
-test('the lineage leaf plugin marks the process as a fan-out leaf', () => {
-  const previous = globalThis[LEAF_MARKER];
-  try {
-    globalThis[LEAF_MARKER] = undefined;
-    assert.equal(isLineageLeaf(), false);
-    assert.equal(lineageLeafName, 'repo-guards-lineage-leaf');
-    applyLineageLeaf();
-    assert.equal(isLineageLeaf(), true);
-  } finally {
-    globalThis[LEAF_MARKER] = previous;
-  }
 });
 
 test('the prompt advisor stays silent in a fan-out leaf', async () => {
