@@ -6,11 +6,15 @@
 // rule, so a track's children_ids can drift from what is actually on disk with
 // nothing else reporting it. This sweep walks every track root that carries a
 // graph-metadata.json, compares the declared children_ids with the numbered
-// child directories, and prints one line per track.
+// child directories, and prints one line per track. A declared sub-track is
+// swept the same way, under its "<track>/<sub>" identity.
 //
 // A track matches only when the declared set equals the on-disk set and no entry
 // hangs off another identity. Counting alone is not enough: a packet renamed on
 // disk leaves both counts where they were.
+//
+// An undeclared non-numbered folder and a symlinked sub-track each print one
+// diagnostic. Diagnostics are advisory and never change the exit code.
 //
 // With --rev <commit> the sweep reads that commit instead of the working tree.
 // The pre-push gate uses it, because a shared checkout carries other sessions'
@@ -64,19 +68,24 @@ function main() {
 
   let tracks;
   let skipped = [];
+  let diagnostics = [];
   if (rev) {
     try {
-      ({ tracks, skipped } = readCommitTracks(specsRoot, rev));
+      ({ tracks, skipped, diagnostics } = readCommitTracks(specsRoot, rev));
     } catch (error) {
       process.stderr.write(`${SCRIPT}: cannot read specs/ at ${rev}: ${error instanceof Error ? error.message.split('\n')[0] : String(error)}\n`);
       process.exit(2);
     }
   } else {
     tracks = readWorkingTreeTracks(specsRoot);
+    diagnostics = tracks.diagnostics;
   }
 
   if (skipped.length > 0) {
     process.stdout.write(`symlinked tracks skipped at ${rev}: ${skipped.join(', ')}\n`);
+  }
+  for (const diagnostic of diagnostics) {
+    process.stdout.write(`${diagnostic}\n`);
   }
   if (tracks.length === 0) {
     process.stdout.write(`${SCRIPT}: no track roots with graph-metadata.json found\n`);

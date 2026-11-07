@@ -8,6 +8,14 @@
 // sweep that reports drift and the writer that repairs it share this module, so
 // both judge a track, its packets and a match by the same rules.
 //
+// A declared sub-track is a direct child of a track with description.json
+// level "sub-track" and no spec.md of its own. It behaves like a track root
+// inside its parent: its identity is "<track>/<sub>", its metadata declares
+// its immediate numbered packets, and its parent's children_ids lists it by
+// folder name. An archive folder (z_*) is never read, and a symlinked
+// sub-track is skipped, because its files belong to another repository. A
+// non-numbered folder without the declaration is reported and never promoted.
+//
 // A track is read from the working tree or from a commit. The commit view
 // exists for the pre-push gate: in a shared checkout the working tree carries
 // other sessions' unfinished packets, and the pushed commit is what matters.
@@ -21,54 +29,143 @@ import path from 'node:path';
 export const SPEC_LEAF_SEGMENT_PATTERN = /^\d{3}(?:[-_].+)?$/;
 
 const GRAPH_METADATA = 'graph-metadata.json';
+const DESCRIPTION = 'description.json';
+const SUB_TRACK_LEVEL = 'sub-track';
 
 function isCandidateTrackName(name) {
   return !name.startsWith('.') && name !== 'node_modules' && !SPEC_LEAF_SEGMENT_PATTERN.test(name);
 }
 
+function isArchiveName(name) {
+  return name.startsWith('z_');
+}
+
+function isSubTrackCandidateName(name) {
+  return isCandidateTrackName(name) && !isArchiveName(name);
+}
+
+function compareNames(a, b) {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+
+function byFolderName(a, b) {
+  return compareNames(a.name, b.name);
+}
+
 // ───────────────────────────────────────────────────────────────────
-// 1. WORKING-TREE VIEW
+// 1. DECLARED SUB-TRACKS
+// ───────────────────────────────────────────────────────────────────
+
+function parseObject(raw) {
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function readOptionalText(filePath) {
+  try {
+    return fs.readFileSync(filePath, 'utf8');
+  } catch {
+    return null;
+  }
+}
+
+function isDeclaredSubTrack(description) {
+  return description !== null && description.level === SUB_TRACK_LEVEL;
+}
+
+function numberedChildren(directory) {
+  return fs.readdirSync(directory, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && SPEC_LEAF_SEGMENT_PATTERN.test(entry.name))
+    .map((entry) => entry.name)
+    .sort();
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 2. WORKING-TREE VIEW
 // ───────────────────────────────────────────────────────────────────
 
 /**
  * List the track roots in a specs directory that carry a graph-metadata.json,
  * each with the raw metadata text (null when absent) and its packets on disk.
+ * A declared sub-track is listed after its track as an entry of its own. The
+ * result also carries the advisory diagnostics for undeclared folders and
+ * skipped symlinked sub-tracks; they never affect a caller's exit code.
  * A symlinked track is followed and marked, since its files live elsewhere.
  */
 export function readWorkingTreeTracks(specsRoot) {
-  return fs.readdirSync(specsRoot, { withFileTypes: true })
+  const tracks = [];
+  const diagnostics = [];
+  const roots = fs.readdirSync(specsRoot, { withFileTypes: true })
     .map((entry) => entry.name)
     .filter(isCandidateTrackName)
-    .sort()
-    .flatMap((name) => {
-      const trackPath = path.join(specsRoot, name);
-      let stat;
-      try {
-        stat = fs.statSync(trackPath);
-      } catch {
-        return [];
+    .sort();
+
+  for (const name of roots) {
+    const trackPath = path.join(specsRoot, name);
+    let stat;
+    try {
+      stat = fs.statSync(trackPath);
+    } catch {
+      continue;
+    }
+    if (!stat.isDirectory() || fs.existsSync(path.join(trackPath, 'spec.md'))) continue;
+    const metadataPath = path.join(trackPath, GRAPH_METADATA);
+    if (!fs.existsSync(metadataPath)) continue;
+
+    const track = {
+      name,
+      metadataPath,
+      rawMetadata: fs.readFileSync(metadataPath, 'utf8'),
+      children: numberedChildren(trackPath),
+      symlinked: fs.lstatSync(trackPath).isSymbolicLink(),
+    };
+    tracks.push(track);
+
+    const containers = fs.readdirSync(trackPath, { withFileTypes: true })
+      .filter((entry) => isSubTrackCandidateName(entry.name))
+      .sort(byFolderName);
+    for (const entry of containers) {
+      const id = `${name}/${entry.name}`;
+      if (entry.isSymbolicLink()) {
+        diagnostics.push(`${id}: symlinked folder skipped, not followed`);
+        continue;
       }
-      if (!stat.isDirectory() || fs.existsSync(path.join(trackPath, 'spec.md'))) return [];
-      const metadataPath = path.join(trackPath, GRAPH_METADATA);
-      if (!fs.existsSync(metadataPath)) return [];
-      // Real directories only, as in a commit, where a linked packet is a link
-      // entry rather than a tree; the two views must count the same packets.
-      const children = fs.readdirSync(trackPath, { withFileTypes: true })
-        .filter((entry) => entry.isDirectory() && SPEC_LEAF_SEGMENT_PATTERN.test(entry.name))
-        .map((entry) => entry.name)
-        .sort();
-      return [{
-        name,
-        metadataPath,
-        rawMetadata: fs.readFileSync(metadataPath, 'utf8'),
-        children,
-        symlinked: fs.lstatSync(trackPath).isSymbolicLink(),
-      }];
-    });
+      // Real directories only, as in a commit, where a file or a link is not
+      // a container. A folder that does not declare itself stays a diagnostic.
+      if (!entry.isDirectory()) continue;
+      const subPath = path.join(trackPath, entry.name);
+      // A commit stores a linked description as its link text, which never parses,
+      // so a link is refused here too and both views reach the same answer.
+      const descriptionPath = path.join(subPath, DESCRIPTION);
+      const linkedDescription = fs.lstatSync(descriptionPath, { throwIfNoEntry: false })?.isSymbolicLink() === true;
+      const description = linkedDescription ? null : parseObject(readOptionalText(descriptionPath) ?? '');
+      if (!isDeclaredSubTrack(description) || fs.existsSync(path.join(subPath, 'spec.md'))) {
+        diagnostics.push(`${id}: undeclared folder ignored`);
+        continue;
+      }
+      track.children.push(entry.name);
+      tracks.push({
+        name: id,
+        metadataPath: path.join(subPath, GRAPH_METADATA),
+        rawMetadata: readOptionalText(path.join(subPath, GRAPH_METADATA)),
+        children: numberedChildren(subPath),
+        symlinked: false,
+      });
+    }
+    track.children.sort(compareNames);
+  }
+
+  tracks.sort(byFolderName);
+  tracks.diagnostics = diagnostics.sort(compareNames);
+  return tracks;
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 2. COMMIT VIEW
+// 3. COMMIT VIEW
 // ───────────────────────────────────────────────────────────────────
 
 // A push from a linked worktree runs its hooks with GIT_DIR exported and no
@@ -81,6 +178,10 @@ function gitEnv() {
   const env = { ...process.env };
   for (const key of REPOSITORY_ENV_KEYS) delete env[key];
   return env;
+}
+
+function readBlob(repoTop, object) {
+  return execFileSync('git', ['-C', repoTop, 'cat-file', 'blob', object], { encoding: 'utf8', env: gitEnv() });
 }
 
 function lsTree(repoTop, rev, treePath) {
@@ -96,10 +197,19 @@ function lsTree(repoTop, rev, treePath) {
   });
 }
 
+function numberedTreeChildren(entries) {
+  return entries
+    .filter((item) => item.type === 'tree' && SPEC_LEAF_SEGMENT_PATTERN.test(item.name))
+    .map((item) => item.name)
+    .sort();
+}
+
 /**
  * List the track roots in a commit's specs directory, like the working-tree view.
  * A symlinked track is a single link entry in the commit, holding none of the
- * other repository's files, so it is reported as skipped rather than read.
+ * other repository's files, so it is reported as skipped rather than read. A
+ * symlinked sub-track is skipped the same way, with a diagnostic, so both views
+ * agree on what a track holds.
  */
 export function readCommitTracks(specsRoot, rev) {
   const repoTop = execFileSync('git', ['-C', specsRoot, 'rev-parse', '--show-toplevel'], { encoding: 'utf8', env: gitEnv() }).trim();
@@ -107,7 +217,9 @@ export function readCommitTracks(specsRoot, rev) {
   const entries = lsTree(repoTop, rev, specsPath);
   const tracks = [];
   const skipped = [];
-  for (const entry of entries.filter((item) => isCandidateTrackName(item.name)).sort((a, b) => (a.name < b.name ? -1 : 1))) {
+  const diagnostics = [];
+
+  for (const entry of entries.filter((item) => isCandidateTrackName(item.name)).sort(byFolderName)) {
     if (entry.mode === '120000') {
       skipped.push(entry.name);
       continue;
@@ -117,32 +229,56 @@ export function readCommitTracks(specsRoot, rev) {
     if (inside.some((item) => item.name === 'spec.md' && item.type === 'blob')) continue;
     const metadata = inside.find((item) => item.name === GRAPH_METADATA && item.type === 'blob');
     if (!metadata) continue;
-    tracks.push({
+
+    const track = {
       name: entry.name,
       metadataPath: `${specsPath}/${entry.name}/${GRAPH_METADATA}`,
-      rawMetadata: execFileSync('git', ['-C', repoTop, 'cat-file', 'blob', metadata.object], { encoding: 'utf8', env: gitEnv() }),
-      children: inside
-        .filter((item) => item.type === 'tree' && SPEC_LEAF_SEGMENT_PATTERN.test(item.name))
-        .map((item) => item.name)
-        .sort(),
+      rawMetadata: readBlob(repoTop, metadata.object),
+      children: numberedTreeChildren(inside),
       symlinked: false,
-    });
+    };
+    tracks.push(track);
+
+    const containers = inside.filter((item) => isSubTrackCandidateName(item.name)).sort(byFolderName);
+    for (const sub of containers) {
+      const id = `${entry.name}/${sub.name}`;
+      if (sub.mode === '120000') {
+        diagnostics.push(`${id}: symlinked folder skipped, not followed`);
+        continue;
+      }
+      if (sub.type !== 'tree') continue;
+      const subInside = lsTree(repoTop, rev, `${specsPath}/${entry.name}/${sub.name}`);
+      const description = subInside.find((item) => item.name === DESCRIPTION && item.type === 'blob');
+      const declared = isDeclaredSubTrack(description ? parseObject(readBlob(repoTop, description.object)) : null);
+      if (!declared || subInside.some((item) => item.name === 'spec.md' && item.type === 'blob')) {
+        diagnostics.push(`${id}: undeclared folder ignored`);
+        continue;
+      }
+      track.children.push(sub.name);
+      const subMetadata = subInside.find((item) => item.name === GRAPH_METADATA && item.type === 'blob');
+      tracks.push({
+        name: id,
+        metadataPath: `${specsPath}/${entry.name}/${sub.name}/${GRAPH_METADATA}`,
+        rawMetadata: subMetadata ? readBlob(repoTop, subMetadata.object) : null,
+        children: numberedTreeChildren(subInside),
+        symlinked: false,
+      });
+    }
+    track.children.sort(compareNames);
   }
-  return { tracks, skipped };
+
+  tracks.sort(byFolderName);
+  diagnostics.sort(compareNames);
+  return { tracks, skipped, diagnostics };
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 3. COMPARISON
+// 4. COMPARISON
 // ───────────────────────────────────────────────────────────────────
 
 /** Parse a track's metadata, or return null when it is empty or not JSON. */
 export function parseTrackMetadata(rawMetadata) {
-  try {
-    const parsed = JSON.parse(rawMetadata);
-    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null;
-  } catch {
-    return null;
-  }
+  return parseObject(rawMetadata);
 }
 
 /** The identity children_ids entries hang off: the declared packet_id, else the folder name. */

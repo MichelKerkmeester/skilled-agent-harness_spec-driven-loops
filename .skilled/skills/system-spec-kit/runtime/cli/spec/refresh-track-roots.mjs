@@ -8,6 +8,10 @@
 // packets no longer on disk and entries under an earlier identity are dropped,
 // because a track's children are exactly the packet folders it holds.
 //
+// A declared sub-track is refreshed by its own identity, "<track>/<sub>", and
+// lists only its immediate numbered packets. Refreshing every track also
+// refreshes every sub-track; naming one track leaves its sub-tracks alone.
+//
 // Dry by default: it prints what each track would gain and lose. --apply writes.
 // A track whose graph-metadata.json is empty or not JSON is reported and left
 // alone, since rewriting one field of a record that cannot be read would mean
@@ -17,7 +21,7 @@
 // a new packet is declared the moment it exists.
 //
 // Usage:
-//   node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs [--specs <dir>] [--track <name>]... [--apply]
+//   node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs [--specs <dir>] [--track <name|track/sub>]... [--apply]
 //
 // Exit codes: 0 = nothing left to change (after --apply: every change written),
 //             1 = changes pending (dry run only),

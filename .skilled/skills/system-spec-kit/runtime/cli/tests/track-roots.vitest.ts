@@ -7,6 +7,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+// @ts-expect-error -- source module is plain ESM without declaration files.
+import { readCommitTracks, readWorkingTreeTracks } from '../lib/track-roots.mjs';
+// @ts-expect-error -- fixture helper is plain ESM without declaration files.
+import { buildFlatTree, buildSubtrackTree } from './fixtures/subtrack-tree.mjs';
 
 const SPEC_DIR = path.resolve(__dirname, '../spec');
 const SWEEP = path.join(SPEC_DIR, 'sweep-track-roots.mjs');
@@ -50,6 +54,19 @@ function run(script: string, args: string[]) {
   return spawnSync(process.execPath, [script, '--specs', specs, ...args], { cwd: repo, encoding: 'utf8' });
 }
 
+function commitFixture() {
+  git('add', '-A');
+  git('commit', '--quiet', '-m', 'fixture');
+}
+
+function summarizeTracks(tracks: Array<{ name: string, children: string[] }>) {
+  return tracks.map(({ name, children }) => ({ name, children }));
+}
+
+function diagnosticsFromTracks(tracks: unknown): string[] {
+  return (tracks as { diagnostics: string[] }).diagnostics;
+}
+
 beforeEach(() => {
   repo = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'track-roots-')));
   specs = path.join(repo, 'specs');
@@ -61,6 +78,54 @@ beforeEach(() => {
 
 afterEach(() => {
   fs.rmSync(repo, { recursive: true, force: true });
+});
+
+describe('track-root discovery', () => {
+  // A commit stores a linked description.json as its link text, which never
+  // parses, so the working tree must refuse the link too or the two views split
+  // and the pre-push gate blocks a tree the refresh just wrote.
+  it('treats a linked sub-track description the same in both views', () => {
+    const { entries } = buildSubtrackTree(repo);
+    const real = path.join(repo, 'outside-description.json');
+    fs.renameSync(path.join(entries.sub, 'description.json'), real);
+    fs.symlinkSync(real, path.join(entries.sub, 'description.json'));
+    const working = readWorkingTreeTracks(specs);
+    commitFixture();
+    const committed = readCommitTracks(specs, 'HEAD');
+
+    expect(summarizeTracks(working)).toEqual(summarizeTracks(committed.tracks));
+    expect(summarizeTracks(working).map((track) => track.name)).not.toContain('demo/sub');
+  });
+
+  // The declaration is one exact word everywhere, so a differently cased level
+  // is not a sub-track in any tool.
+  it('does not accept a differently cased level as a declaration', () => {
+    const { entries } = buildSubtrackTree(repo);
+    const file = path.join(entries.sub, 'description.json');
+    fs.writeFileSync(file, `${JSON.stringify({ ...JSON.parse(fs.readFileSync(file, 'utf8')), level: 'Sub-Track' }, null, 2)}\n`);
+    expect(summarizeTracks(readWorkingTreeTracks(specs)).map((track) => track.name)).not.toContain('demo/sub');
+  });
+
+  it('returns the same declared sub-tracks from the working tree and commit', () => {
+    buildSubtrackTree(repo);
+    const working = readWorkingTreeTracks(specs);
+    commitFixture();
+    const committed = readCommitTracks(specs, 'HEAD');
+
+    const expected = [
+      { name: 'demo', children: ['001-flat-probe', 'sub'] },
+      { name: 'demo/sub', children: ['001-nested-probe'] },
+    ];
+    expect(Array.isArray(working)).toBe(true);
+    expect(summarizeTracks(working)).toEqual(expected);
+    expect(summarizeTracks(committed.tracks)).toEqual(expected);
+    expect(diagnosticsFromTracks(working)).toEqual([
+      'demo/linked: symlinked folder skipped, not followed',
+      'demo/loose: undeclared folder ignored',
+    ]);
+    expect(committed.diagnostics).toEqual(diagnosticsFromTracks(working));
+    expect(committed.skipped).toEqual([]);
+  });
 });
 
 describe('sweep-track-roots', () => {
@@ -176,10 +241,70 @@ describe('refresh-track-roots', () => {
     expect(readChildren('alpha')).toEqual(['alpha/001-a', 'alpha/002-gone', 'old-name/004-c']);
   });
 
+  it('refreshes the immediate numbered children of a sub-track', () => {
+    buildSubtrackTree(repo, { declared: false });
+    const result = run(REFRESH, ['--track', 'demo/sub', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(JSON.parse(fs.readFileSync(path.join(specs, 'demo', 'sub', 'graph-metadata.json'), 'utf8')).children_ids)
+      .toEqual(['demo/sub/001-nested-probe']);
+    expect(JSON.parse(fs.readFileSync(path.join(specs, 'demo', 'graph-metadata.json'), 'utf8')).children_ids)
+      .toEqual([]);
+  });
+
+  it('reports a missing sub-track path and exits with usage status', () => {
+    buildSubtrackTree(repo);
+    const result = run(REFRESH, ['--track', 'demo/missing', '--apply']);
+
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain('demo/missing');
+  });
+
   it('leaves the sweep clean once every readable track is refreshed', () => {
     fs.rmSync(path.join(specs, 'delta'), { recursive: true });
     run(REFRESH, ['--apply']);
     const sweep = run(SWEEP, []);
     expect(sweep.status, sweep.stdout).toBe(0);
+  });
+
+});
+
+describe('flat-tree refresh compatibility', () => {
+  it('keeps flat-tree metadata byte-identical after refresh', () => {
+    buildFlatTree(repo);
+    const before = ['alpha', 'beta'].map((name) => fs.readFileSync(path.join(specs, name, 'graph-metadata.json'), 'utf8'));
+    const result = run(REFRESH, ['--apply']);
+    const after = ['alpha', 'beta'].map((name) => fs.readFileSync(path.join(specs, name, 'graph-metadata.json'), 'utf8'));
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(after).toEqual(before);
+  });
+});
+
+describe('sweep-track-roots with sub-tracks', () => {
+  it('reports the undeclared folder and symlink once without changing either view result', () => {
+    buildSubtrackTree(repo);
+    commitFixture();
+
+    const working = run(SWEEP, []);
+    const committed = run(SWEEP, ['--rev', 'HEAD']);
+    for (const result of [working, committed]) {
+      expect(result.status, result.stdout + result.stderr).toBe(0);
+      expect(result.stdout.match(/demo\/linked: symlinked folder skipped, not followed/g)).toHaveLength(1);
+      expect(result.stdout.match(/demo\/loose: undeclared folder ignored/g)).toHaveLength(1);
+      expect(result.stdout).toContain('demo/sub: declared=1 actual=1');
+    }
+    expect(committed.stdout).toBe(working.stdout);
+  });
+
+  it('detects drift in a declared sub-track', () => {
+    buildSubtrackTree(repo, { declared: false });
+    const result = run(SWEEP, []);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('demo: declared=0 actual=2');
+    expect(result.stdout).toContain('demo/sub: declared=0 actual=1');
+    expect(result.stdout.match(/demo\/linked: symlinked folder skipped, not followed/g)).toHaveLength(1);
+    expect(result.stdout.match(/demo\/loose: undeclared folder ignored/g)).toHaveLength(1);
   });
 });
