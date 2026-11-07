@@ -6,15 +6,17 @@
     "phase",
     "overlay-engine"
   ],
-  "lastUpdated": "2026-11-06T08:54:35.658Z",
+  "lastUpdated": "2026-11-07T05:11:49.656Z",
   "specId": "002",
   "folderSlug": "overlay-engine",
   "parentChain": [
     "system-skilled-doctor",
     "001-skill-and-overlay-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "06-11-26_09-54__phase-002-built-the-overlay-engine-ported-from.md"
+    "06-11-26_09-54__phase-002-built-the-overlay-engine-ported-from.md",
+    "07-11-26_06-11__recorded-the-operator-answer-on-token-named-files.md",
+    "07-11-26_06-11__recorded-the-operator-answer-on-token-named-files.md"
   ]
 }

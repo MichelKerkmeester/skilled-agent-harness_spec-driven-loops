@@ -6,15 +6,17 @@
     "phase",
     "skill-and-tag-move"
   ],
-  "lastUpdated": "2026-11-06T07:49:16.527Z",
+  "lastUpdated": "2026-11-07T05:11:47.653Z",
   "specId": "001",
   "folderSlug": "skill-and-tag-move",
   "parentChain": [
     "system-skilled-doctor",
     "001-skill-and-overlay-build"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "06-11-26_08-49__built-system-skilled-doctor-and-moved-ten-doctor.md"
+    "06-11-26_08-49__built-system-skilled-doctor-and-moved-ten-doctor.md",
+    "07-11-26_06-11__recorded-the-operator-answers-given-during-the.md",
+    "07-11-26_06-11__recorded-the-operator-answers-given-during-the.md"
   ]
 }

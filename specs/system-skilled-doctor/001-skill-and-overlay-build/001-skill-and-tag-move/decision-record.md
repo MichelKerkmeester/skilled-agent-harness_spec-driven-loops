@@ -134,6 +134,7 @@ The design rulings that bind this phase are recorded in `../research/design-deci
 | OD-001 | The build packet is a new track, `specs/system-skilled-doctor/001-skill-and-overlay-build/` | Recommended option | - | The packet location |
 | OD-002 | The build happens in a git worktree | Recommended option; the main checkout is shared with another session | - | `worktrees/320-system-skilled-doctor` |
 | OD-003 | Job d005a is left alone | It belongs to another session's packet | - | Not carried |
+| Q001 | Update the doctor routing gold set so the bare "doctor" control row expects system-skilled-doctor. | Not stated. | None | implementation-summary.md Verification |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -146,6 +147,27 @@ Each appendix item uses the same id as its operator decision. The options are in
 - **OD-001.** Question: where should the build packet go. Options: New track (Recommended), Under 003 in specs/other, Under system-speckit. Answer: "New track (Recommended)".
 - **OD-002.** Question: where should the build happen. Options: Create a git worktree (Recommended), Work on current branch. Answer: "Create a git worktree (Recommended)".
 - **OD-003.** Question: what to do with job d005a. Options: Leave it (Recommended), Rerun it here. Answer: "Leave it (Recommended)".
+
+### Q001
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01PN6s1A5Fu6Yj6ZCdsbwGuH:0 -->
+
+Question:
+```text
+The doctor routing gold set has a control row, "my doctor update came in", that should route to nothing: the word 'doctor' in its everyday sense. Since system-skilled-doctor exists, that prompt routes to it at 0.82, purely on the 'doctor' in the skill's name. Every other doctor row passes after my fixes. How should this be handled?
+```
+
+Options:
+```text
+Update the gold row (Recommended)
+Suppress name-only matches
+Add a negative phrase boost
+```
+
+Answer:
+```text
+Update the gold row (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---

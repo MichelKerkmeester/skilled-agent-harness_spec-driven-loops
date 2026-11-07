@@ -18,7 +18,7 @@ _memory:
       - ".skilled/skills/system-skilled-doctor/README.md"
       - ".skilled/commands/doctor/install.md"
     session_dedup:
-      fingerprint: "sha256:dd1ebcc5b1178c48c4431178d8f2ba8dd6b936c50ecee97460a0d595652a6e3d"
+      fingerprint: "sha256:5f31a9282d03a92adab26f396601e3e82ccf2392d0c05cc4b180d3f3051d435b"
       session_id: "scaffold-001-skill-and-tag-move"
       parent_session_id: null
     completion_pct: 100

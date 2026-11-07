@@ -158,7 +158,7 @@
     ],
     "causal_summary": "A project that vendors Skilled by archive, as Barter does, keeps its local changes across a new pin only through a private overlay engine, guard adapters in each runtime, a manual runbook and scratch scripts written for each re-pin",
     "created_at": "2026-11-06T07:23:07Z",
-    "last_save_at": "2026-11-06T09:58:15.115Z",
+    "last_save_at": "2026-11-07T05:11:49.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,7 +171,7 @@
       "spec.md": "9ae8ef0c5b7aa447aeae7cd83b2c62b9f292c09d5c952d312719347ffb9e078d",
       "research/research.md": "b0650e10ec6e394fc1bd35c7d7dca9abc4e629f88b8512927b5d085859dd24c8"
     },
-    "last_active_child_id": "system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook",
-    "last_active_at": "2026-11-06T09:57:50.825Z"
+    "last_active_child_id": "system-skilled-doctor/001-skill-and-overlay-build/002-overlay-engine",
+    "last_active_at": "2026-11-07T05:11:49.685Z"
   }
 }
