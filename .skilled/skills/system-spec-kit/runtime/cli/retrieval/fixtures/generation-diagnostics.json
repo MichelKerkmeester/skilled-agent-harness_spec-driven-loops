@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7421,
-    "ok": 17489,
+    "ok": 17493,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28459,
+  "documentsScanned": 28463,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "34fa78dc646710a2955c2504074ec948e411cdb9549de50e6800f4baff13c48c",
+  "manifestHash": "be72d2c2787ba5f9d0f3822d99fac6c3eb11227fcf88cd5cd313bbd1338223ed",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41895,
+      "ok": 41902,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -70274,6 +70274,10 @@
     },
     {
       "path": "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/scratch",
       "reason": "excluded directory"
     },
     {

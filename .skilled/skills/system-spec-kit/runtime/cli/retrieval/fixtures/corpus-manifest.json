@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f714a8c9ea8fc5075c6dc4d473e50579ef36305fbfc3330b8c71e54cfac0a950",
+  "corpusHash": "6abbe72dc75b8cc4922c2b3be8599f16eb91ae2eabc879250d9e5fd071eefd15",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28459,
+  "includedPathCount": 28463,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9290,6 +9290,10 @@
     "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/plan.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/spec.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/tasks.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/implementation-summary.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/plan.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/spec.md",
+    "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/tasks.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/changelog/changelog-016-003-agents-md-delivery-prefix.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/changelog/changelog-016-004-rule-delivery-instrumentation.md",
     "specs/agents-md/012-repo-rule-advisor-surfacing/changelog/changelog-016-005-trigger-coverage-check.md",
@@ -28490,7 +28494,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "34fa78dc646710a2955c2504074ec948e411cdb9549de50e6800f4baff13c48c",
+  "manifestHash": "be72d2c2787ba5f9d0f3822d99fac6c3eb11227fcf88cd5cd313bbd1338223ed",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29350,6 +29354,10 @@
     },
     {
       "path": "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/011-decisions-rule-delivery/scratch",
       "reason": "excluded directory"
     },
     {

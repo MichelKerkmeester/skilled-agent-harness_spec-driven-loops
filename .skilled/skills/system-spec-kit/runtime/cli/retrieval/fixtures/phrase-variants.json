@@ -1,5 +1,5 @@
 {
-  "manifestHash": "34fa78dc646710a2955c2504074ec948e411cdb9549de50e6800f4baff13c48c",
+  "manifestHash": "be72d2c2787ba5f9d0f3822d99fac6c3eb11227fcf88cd5cd313bbd1338223ed",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -33805,6 +33805,18 @@
     "decisions notes system": [
       "decisions notes system"
     ],
+    "decisions rule delivery": [
+      "decisions rule delivery"
+    ],
+    "decisions rule delivery implementation summary": [
+      "decisions rule delivery implementation summary"
+    ],
+    "decisions rule delivery plan": [
+      "decisions rule delivery plan"
+    ],
+    "decisions rule delivery tasks": [
+      "decisions rule delivery tasks"
+    ],
     "decisions system analysis": [
       "decisions system analysis"
     ],
@@ -52421,6 +52433,9 @@
     ],
     "gate 3 re ask": [
       "gate 3 re-ask"
+    ],
+    "gate 3 recommend one option": [
+      "gate 3 recommend one option"
     ],
     "gate 3 relay implementation summary": [
       "gate 3 relay implementation summary"
@@ -72439,6 +72454,9 @@
     "neutral delegation wording": [
       "neutral delegation wording"
     ],
+    "neutral menu spec folder question": [
+      "neutral menu spec folder question"
+    ],
     "never fatal untracked": [
       "never fatal untracked"
     ],
@@ -79137,6 +79155,9 @@
     ],
     "phase 11 ci health followups": [
       "phase 11 ci health followups"
+    ],
+    "phase 11 decisions rule delivery": [
+      "phase 11 decisions rule delivery"
     ],
     "phase 11 gateway enforcement": [
       "phase 11 gateway enforcement"
