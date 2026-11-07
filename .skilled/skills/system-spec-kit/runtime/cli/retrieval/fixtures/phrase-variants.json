@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a7f1eb3a8c84cce1ca2c60b81caecffaf2caa070805f9ae1055aeb7b8923cd87",
+  "manifestHash": "81ce9aa6ed76155a7d7cdcb38d0d367bcafa2c8ba9289fc4a4c34395bb8bf339",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -33853,6 +33853,9 @@
     "declared signal closure": [
       "declared signal closure"
     ],
+    "declared sub track container": [
+      "declared sub-track container"
+    ],
     "declared surfaces parity": [
       "declared surfaces parity"
     ],
@@ -57729,6 +57732,12 @@
     "host queue dependency": [
       "host queue dependency"
     ],
+    "host repository trigger index": [
+      "host repository trigger index"
+    ],
+    "host repository trigger index mode": [
+      "host repository trigger index mode"
+    ],
     "hostile locale child vitest": [
       "hostile locale child vitest"
     ],
@@ -72016,6 +72025,27 @@
     "named refusal not raw errno": [
       "named refusal not raw errno"
     ],
+    "named sub track research": [
+      "named sub-track research"
+    ],
+    "named sub track support in spec kit plus": [
+      "named sub track support in spec kit plus"
+    ],
+    "named subtracks and host repos": [
+      "named subtracks and host repos"
+    ],
+    "named subtracks and host repos implementation summary": [
+      "named subtracks and host repos implementation summary"
+    ],
+    "named subtracks and host repos plan": [
+      "named subtracks and host repos plan"
+    ],
+    "named subtracks and host repos tasks": [
+      "named subtracks and host repos tasks"
+    ],
+    "named subtracks closure gate": [
+      "named subtracks closure gate"
+    ],
     "namespace command example": [
       "namespace command example"
     ],
@@ -85091,6 +85121,9 @@
     ],
     "project milestones": [
       "project milestones"
+    ],
+    "project owned doctor entry": [
+      "project owned doctor entry"
     ],
     "project plan roadmap": [
       "project plan roadmap"
@@ -112469,6 +112502,9 @@
     "spec kit skill graph sqlite collision": [
       "spec-kit skill-graph sqlite collision"
     ],
+    "spec kit sub track design": [
+      "spec-kit sub-track design"
+    ],
     "spec kit tasks": [
       "spec-kit tasks"
     ],
@@ -115323,6 +115359,12 @@
     ],
     "sub folder versioning": [
       "sub-folder versioning"
+    ],
+    "sub track acceptance criteria": [
+      "sub-track acceptance criteria"
+    ],
+    "sub track implementation plan": [
+      "sub-track implementation plan"
     ],
     "subagent": [
       "subagent"

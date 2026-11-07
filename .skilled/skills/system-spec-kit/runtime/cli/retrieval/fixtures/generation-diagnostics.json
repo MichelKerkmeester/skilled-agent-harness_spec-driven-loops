@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7422,
-    "ok": 17495,
+    "missing-frontmatter": 7430,
+    "ok": 17502,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28466,
+  "documentsScanned": 28481,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a7f1eb3a8c84cce1ca2c60b81caecffaf2caa070805f9ae1055aeb7b8923cd87",
+  "manifestHash": "81ce9aa6ed76155a7d7cdcb38d0d367bcafa2c8ba9289fc4a4c34395bb8bf339",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41908,
+      "ok": 41922,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -69427,6 +69427,54 @@
       "line": 1,
       "path": "specs/system-speckit/043-decision-capture/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     }
   ],
   "skippedPaths": [
@@ -77768,6 +77816,10 @@
     },
     {
       "path": "specs/system-speckit/043-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/scratch",
       "reason": "excluded directory"
     },
     {
