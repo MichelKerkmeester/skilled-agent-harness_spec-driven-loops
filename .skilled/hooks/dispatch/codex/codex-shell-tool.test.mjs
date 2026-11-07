@@ -6,18 +6,30 @@
 // adapters must keep firing under either name and either response shape.
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { delimiter, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { describe, it, expect } from 'vitest';
+import { afterAll, describe, it, expect } from 'vitest';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, '..', '..', '..', '..');
 const LINT = join(HERE, 'dispatch-preflight-lint.mjs');
 const AUDIT = join(HERE, 'dispatch-audit-posttooluse.mjs');
 const FLAGGED_DISPATCH = 'opencode run -m p/m --agent general "x" </dev/null';
+
+// The lint picks its OpenCode rule set by asking the first `opencode` on PATH for
+// its version, and the rule this suite expects applies to OpenCode 1 only. A stub
+// that answers as OpenCode 1 keeps the result the same on a machine with OpenCode 2.
+const STUB_BIN = mkdtempSync(join(tmpdir(), 'codex-shell-tool-bin-'));
+const STUB_OPENCODE = join(STUB_BIN, 'opencode');
+writeFileSync(STUB_OPENCODE, '#!/bin/sh\necho 1.19.4\n');
+chmodSync(STUB_OPENCODE, 0o755);
+
+afterAll(() => {
+  rmSync(STUB_BIN, { recursive: true, force: true });
+});
 
 function hookEnv() {
   const env = { ...process.env };
@@ -31,6 +43,7 @@ function hookEnv() {
   ]) {
     delete env[name];
   }
+  env.PATH = [STUB_BIN, process.env.PATH ?? ''].join(delimiter);
   return env;
 }
 
