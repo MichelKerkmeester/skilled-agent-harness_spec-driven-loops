@@ -20,7 +20,7 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 **Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
 
-**Delegation Tool Per Runtime**: The delegation tool is named differently in each runtime — `task` in OpenCode, `Agent` in Claude Code, `spawn_agent` in Codex, `subagent` in Pi, `run_subagent` in Devin, `Task` in Cursor, `delegate_task` in Hermes — and each runtime mirror declares the name that applies to it.
+**Delegation Tool Per Runtime**: The delegation tool is named differently in each runtime — `task` in OpenCode, `Agent` in Claude Code, `spawn_agent` in Codex, `subagent` in Pi, `run_subagent` in Devin, `Task` in Cursor — and each runtime mirror declares the name that applies to it.
 Delegate through the active runtime's name, and treat a mirror that declares no delegation tool as unable to dispatch.
 
 **Agent I/O Contract**: When helpful, include an `AGENT_IO_DISPATCH v1` header in delegated prompts and accept optional `AGENT_IO_RESULT v1` envelopes appended to native agent output. The contract is advisory only; missing headers or envelopes are never a rejection reason.
@@ -475,7 +475,7 @@ TASK #2: Implement Notification System
 
 ### Rule 7: External CLI Delegation — Explicit User Request Only
 
-**Trigger:** The user names an external CLI executor in their own words, one of the eight `cli-external-orchestration` executor modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`, `cli-deepseek-harness`. A DeepSeek model named with another runtime names that runtime, so "use cli-opencode with deepseek-v4.1-flash" is `cli-opencode`. Only harness words such as `dsh`, `dsh headless`, `deepseek harness` or `delegate to dsh` name `cli-deepseek-harness`, an experimental mode with no route proven live yet.
+**Trigger:** The user names an external CLI executor in their own words, one of the seven `cli-external-orchestration` executor modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`. A DeepSeek model named with another runtime names that runtime, so "use cli-opencode with deepseek-v4.1-flash" is `cli-opencode`. Only harness words such as `dsh`, `dsh headless`, `deepseek harness` or `delegate to dsh` name `cli-deepseek-harness`, an experimental mode with no route proven live yet.
 
 The transport that answers a typed judgment question lives in the classifier hub: mode `cli-jev` of `.skilled/skills/cli-classifier/`, over the packet `cli-jev`. It runs nothing, so it is never a delegation target, though it can be named the same way — as the object of a request for a judgment rather than for work — and its contract is dispatchable only when the user asks for a judgment.
 
@@ -876,6 +876,6 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - `.skilled/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
 - `.skilled/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
 - `.skilled/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
-- `.skilled/skills/cli-external-orchestration/SKILL.md`: the hub that routes the eight external CLI executor modes and owns their invariants (§4 Rule 7).
+- `.skilled/skills/cli-external-orchestration/SKILL.md`: the hub that routes the seven external CLI executor modes and owns their invariants (§4 Rule 7).
 - `.skilled/skills/cli-classifier/SKILL.md` — the hub whose `cli-jev` mode carries the `cli-jev` transport, the judgment-only mode that runs nothing (§4 Rule 7).
 - `.skilled/repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.

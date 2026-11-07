@@ -183,10 +183,6 @@ workflow:
         when: "Always."
         command: "node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check"
         repair: "With approval, run node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs with no arguments, then rerun --check."
-      - name: hermes_prompts
-        when: "Always."
-        command: "node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check"
-        repair: "With approval, run node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs with no arguments, then rerun --check."
       - name: hook_installers
         when: "Only when followUps.reinstallHooks is true."
         commands:

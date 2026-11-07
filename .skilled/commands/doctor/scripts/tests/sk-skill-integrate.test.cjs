@@ -7,11 +7,11 @@
 /**
  * Proves the integration rows a conversion ends with: the advisor scan and its
  * manual fallback, the compiled skill graph, the reach and budget report, the
- * regression cases, the Hermes mirror and the changelog link. Every case builds
+ * regression cases, the runtime mirrors and the changelog link. Every case builds
  * its own repository under the OS temp directory, so no case can read or write
- * this checkout: the advisor, the compiler and the Hermes sync are stand-in
- * scripts inside that temporary tree, spawned for real so the argv the rows build
- * is the argv a run uses. Two cases close the loop with real tools: the freshness
+ * this checkout: the advisor and the compiler are stand-in scripts inside that
+ * temporary tree, spawned for real so the argv the rows build is the argv a run
+ * uses. Two cases close the loop with real tools: the freshness
  * panel reads the graph the row compiled, and the package check reads the skill
  * after the rows wrote into it.
  */
@@ -123,27 +123,6 @@ graph = {
 with open(os.path.join(here, 'skill-graph.json'), 'w', encoding='utf-8') as handle:
     json.dump(graph, handle)
 print('Compiled skill-graph.json: %d skills' % len(signals))
-`;
-
-const HERMES_STUB = `'use strict';
-const fs = require('node:fs');
-const path = require('node:path');
-const log = process.env.INTEGRATE_TEST_LOG;
-const argv = process.argv.slice(2);
-if (log) fs.appendFileSync(log, JSON.stringify({ tool: 'hermes', argv }) + '\\n');
-const check = argv.includes('--check');
-const exitCode = Number(process.env[check ? 'INTEGRATE_TEST_HERMES_CHECK_EXIT' : 'INTEGRATE_TEST_HERMES_SYNC_EXIT'] || 0);
-// A sync writes the copy folder; a --check only reads it. The write toggle keeps
-// the "sync reported success but wrote nothing" case reachable.
-if (!check && exitCode === 0 && process.env.INTEGRATE_TEST_HERMES_WRITE !== '0') {
-  const output = process.env.HERMES_SKILLS_OUTPUT_DIR || path.join(process.cwd(), '.hermes', 'skills');
-  fs.mkdirSync(output, { recursive: true });
-  fs.writeFileSync(path.join(output, 'copied.txt'), 'copy\\n');
-}
-process.stdout.write(check
-  ? (exitCode === 0 ? 'PASS: in sync\\n' : 'DRIFT demo-skill\\n')
-  : 'SYNCED\\n');
-process.exit(exitCode);
 `;
 
 const REACH_ADVISOR_STUB = `'use strict';
@@ -351,10 +330,6 @@ function writeStubs(repoRoot) {
   writeFile(
     path.join(repoRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'scripts', 'skill_graph_compiler.py'),
     COMPILER_STUB,
-  );
-  writeFile(
-    path.join(repoRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'hermes', 'sync-skills-hermes.cjs'),
-    HERMES_STUB,
   );
 }
 
@@ -742,96 +717,20 @@ test('the printed dataset command runs the skill-local cases', (t) => {
 // 9. I5 RUNTIME MIRRORS
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('I5 reports n/a and creates nothing when .hermes is absent', (t) => {
+test('I5 reports n/a and plans no write, since every skills mirror is a link', (t) => {
   const repo = makeRepo(t);
 
   const result = apply(repo);
-
-  assert.equal(outcomeOf(result, 'I5').status, 'N/A');
-  assert.ok(!fs.existsSync(path.join(repo.repoRoot, '.hermes')), '.hermes was created');
-  assert.ok(!callLog(repo.repoRoot).some((call) => call.tool === 'hermes'), 'the sync ran with no mirror to sync');
-  assert.match(bodyLines(plan(repo).lines), /I5 runtime mirrors: n\/a/);
-});
-
-test('I5 records the override folder the copies land in', (t) => {
-  const repo = makeRepo(t);
-  const output = path.join(repo.repoRoot, 'hermes-output');
-
-  const result = apply(repo, { env: { HERMES_SKILLS_OUTPUT_DIR: output } });
-
-  assert.equal(outcomeOf(result, 'I5').status, 'DONE');
-  const hermes = callLog(repo.repoRoot).filter((call) => call.tool === 'hermes');
-  assert.deepEqual(hermes.map((call) => call.argv), [[], ['--check']]);
-  assert.ok(!fs.existsSync(path.join(repo.repoRoot, '.hermes')), '.hermes was created');
-  const write = outcomeOf(result, 'I5').writes[0];
-  assert.equal(write.file, output, 'the row records a folder other than the one the sync writes');
-  assert.equal(write.kind, 'create');
-  assert.equal(write.directory, true);
-  assert.equal(write.backup, undefined);
-});
-
-test('I5 backs up an existing mirror before the sync replaces it', (t) => {
-  const repo = makeRepo(t);
-  const output = path.join(repo.repoRoot, 'hermes-output');
-  writeFile(path.join(output, 'kept.txt'), 'operator copy\n');
-  const backupDirectory = path.join(repo.repoRoot, 'backups');
-
-  const result = apply(repo, { env: { HERMES_SKILLS_OUTPUT_DIR: output }, backupDirectory });
-
-  assert.equal(outcomeOf(result, 'I5').status, 'DONE');
-  const write = outcomeOf(result, 'I5').writes[0];
-  assert.equal(write.kind, 'overwrite');
-  assert.ok(write.backup, 'the existing mirror was not backed up');
-  assert.equal(fs.readFileSync(path.join(write.backup, 'kept.txt'), 'utf8'), 'operator copy\n');
-  assert.equal(fs.readFileSync(path.join(output, 'kept.txt'), 'utf8'), 'operator copy\n');
-});
-
-test('I5 records no write when the sync reports success but writes nothing', (t) => {
-  const repo = makeRepo(t);
-  const output = path.join(repo.repoRoot, 'hermes-output');
-
-  const result = apply(repo, {
-    env: { HERMES_SKILLS_OUTPUT_DIR: output, INTEGRATE_TEST_HERMES_WRITE: '0' },
-  });
-
-  assert.equal(outcomeOf(result, 'I5').status, 'DONE');
-  assert.ok(!fs.existsSync(output));
-  assert.deepEqual(outcomeOf(result, 'I5').writes, [], 'a folder the run never wrote was recorded');
-});
-
-test('I5 records the Hermes skills folder and not the runtime folder above it', (t) => {
-  const repo = makeRepo(t);
-  fs.mkdirSync(path.join(repo.repoRoot, '.hermes'), { recursive: true });
-  const mirror = path.join(repo.repoRoot, '.hermes', 'skills');
-
-  const result = apply(repo);
-
-  assert.equal(outcomeOf(result, 'I5').status, 'DONE');
-  // The sync regenerates <repo>/.hermes/skills, so an undo built from the ledger has
-  // to name that folder: the runtime folder holds more than the row ever wrote.
-  assert.deepEqual(
-    outcomeOf(result, 'I5').writes.map((write) => write.file),
-    [mirror],
-    'the row records a folder the sync never writes',
-  );
-  assert.deepEqual(
-    plan(repo).writes.filter((write) => write.file.includes('.hermes')).map((write) => write.file),
-    [mirror],
-    'the plan declares a folder the sync never writes',
-  );
-});
-
-test('I5 fails when the Hermes check reports drift', (t) => {
-  const repo = makeRepo(t);
-
-  const result = apply(repo, {
-    env: { HERMES_SKILLS_OUTPUT_DIR: path.join(repo.repoRoot, 'hermes-output'), INTEGRATE_TEST_HERMES_CHECK_EXIT: '1' },
-  });
 
   const row = outcomeOf(result, 'I5');
-  assert.equal(row.status, 'FAILED');
-  assert.match(bodyLines(row.lines), /DRIFT/);
-  assert.equal(result.ok, false);
+  assert.equal(row.status, 'N/A');
+  assert.deepEqual(row.writes, [], 'the mirror row recorded a write');
+  const planned = plan(repo);
+  assert.deepEqual(planned.rows.find((entry) => entry.id === 'I5').writes, [], 'the mirror row planned a write');
+  assert.match(
+    bodyLines(planned.lines),
+    /I5 runtime mirrors: n\/a - Claude, OpenCode, Pi, Devin are whole-directory links/,
+  );
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

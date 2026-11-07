@@ -385,8 +385,8 @@ EOF
 PGREP_ANCESTOR_FLAG=""
 [[ "$(uname -s)" = "Darwin" ]] && PGREP_ANCESTOR_FLAG="-a"
 
-# Build the live operator-session process tree across all eight AI CLI runtimes the repo
-# drives (claude, opencode, codex, pi, hermes, devin, cursor-agent and dsh), not just Claude
+# Build the live operator-session process tree across all seven AI CLI runtimes the repo
+# drives (claude, opencode, codex, pi, devin, cursor-agent and dsh), not just Claude
 # Code. Any MCP helper descended from one of them belongs to an active operator session
 # and must be preserved. An operator's `opencode run` or `pi` session falls outside a
 # Claude-only tree and would otherwise be swept after ORPHAN_AGE_MIN_SEC.
@@ -400,7 +400,7 @@ build_session_trees() {
       append_descendants "$pid"
     fi
   done <<EOF
-$(pgrep $PGREP_ANCESTOR_FLAG -f '(^|/)(claude|opencode|codex|pi|hermes|devin|cursor-agent|dsh)( |$)|Claude Code' 2>/dev/null || true)
+$(pgrep $PGREP_ANCESTOR_FLAG -f '(^|/)(claude|opencode|codex|pi|devin|cursor-agent|dsh)( |$)|Claude Code' 2>/dev/null || true)
 EOF
 }
 

@@ -34,7 +34,7 @@ This command never runs a target that writes, and never adds an argument to a pr
 - `_routes.yaml` is the canonical routing and mutation-class manifest, and this command owns the route whose `command` is `/doctor:install`.
 - `execution_mode` is always `INTERACTIVE`. No `:auto` or `:confirm` suffix is supported.
 - The route's target is `guide` and it is never typed: `/doctor:install` alone binds it. A second positional token is an argument failure.
-- `--root <dir>` is the target repo's absolute path. `--runtimes <list>` is a comma list drawn from `claude`, `opencode`, `codex`, `cursor`, `devin`, `pi` and `hermes`; without it the engine keeps the runtimes its own detection finds in the root. `--json` prints one JSON object and nothing else.
+- `--root <dir>` is the target repo's absolute path. `--runtimes <list>` is a comma list drawn from `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`; without it the engine keeps the runtimes its own detection finds in the root. `--json` prints one JSON object and nothing else.
 - `list`, `?` and `menu` as the whole argument print the ordered steps from the presentation and stop, so no workflow loads and nothing is inspected.
 - The link shape and the instruction choice have no flag, so both are always answered at the prompt. A `--root` or `--runtimes` already passed drops its own question and nothing else.
 - The YAML owns workflow behavior; the presentation text owns visible wording and layout.

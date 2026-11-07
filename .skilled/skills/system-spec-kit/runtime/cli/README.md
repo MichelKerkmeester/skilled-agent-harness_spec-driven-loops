@@ -75,7 +75,6 @@ runtime/cli/
 +-- observability/         # Smart-router telemetry recording and measurement
 +-- codex/                 # Codex CLI agent/prompt mirror generators and drift checks
 +-- dsh/                   # DSH skill, prompt and agent mirror generators and drift checks
-+-- hermes/                # Hermes prompt and skill mirror generators and drift checks
 +-- pi/                    # Pi CLI agent/prompt mirror generators and drift checks
 +-- runtime-mirrors/       # Cross-runtime command/agent/hook mirror policy and synchronizer
 +-- optimizer/             # Offline loop optimizer for deep research/review replay data
@@ -125,7 +124,6 @@ Disallowed direction:
 | `observability/` | Records and measures smart-router resource-routing telemetry (live wrapper plus static corpus harness). See `observability/README.md`. |
 | `codex/` | Generates `.codex/agents` and `.codex/prompts` from their `.skilled/` canonical sources and checks command-router drift. See `codex/README.md`. |
 | `dsh/` | Generates `.dsh/skills`, `.dsh/prompts` and `.dsh/agents` from their `.skilled/` sources and checks mirror drift. See `dsh/README.md`. |
-| `hermes/` | Generates `.hermes/prompts` and `.hermes/skills` from their `.skilled/` canonical sources and checks mirror drift. See `hermes/README.md`. |
 | `pi/` | Generates `.pi/agents` and `.pi/prompts` from their `.skilled/` canonical sources. See `pi/README.md`. |
 | `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |
 | `spec/repair-derived.cjs` | Repairs the packet facts that are recomputable from disk, recorded location, declared level, generated-metadata fingerprint, and refuses everything else, reporting it by rule. Reporting is the default; `--apply` writes. Skips archived, scratch and pre-rename snapshot trees. See `spec/README-repair-derived.md` for the derived-versus-authored boundary. |

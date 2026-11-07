@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh sync manifest"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DeepSeek Harness - Runtime Folder and Sync
@@ -54,7 +54,7 @@ The offline contract pin ran all its probes under disposable homes, and a listin
 
 ### Fresh Homes Carry Keys
 
-Unlike Hermes, a fresh dsh home works for a dispatch, because headless reads keys from the launch environment. The env allowlist carries the route's key variable into a fresh home, and nothing else is needed.
+A fresh dsh home works for a dispatch, because headless reads keys from the launch environment. The env allowlist carries the route's key variable into a fresh home, and nothing else is needed.
 
 ---
 

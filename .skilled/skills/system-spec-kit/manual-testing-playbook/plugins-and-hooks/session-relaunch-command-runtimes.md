@@ -1,31 +1,29 @@
 ---
-title: "Codex, Cursor, Hermes and Devin Session Relaunch"
-description: "Automatable and live scenarios for the Codex and Hermes session-relaunch adapters, the Cursor and Devin command-trigger runtimes, the hop history and calling off a prepared hand-over."
+title: "Codex, Cursor and Devin Session Relaunch"
+description: "Automatable and live scenarios for the Codex session-relaunch adapter, the Cursor and Devin command-trigger runtimes, the hop history and calling off a prepared hand-over."
 trigger_phrases:
   - "Codex session relaunch"
   - "Cursor session relaunch"
-  - "Hermes session relaunch"
   - "Devin session relaunch"
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
-  - "skilled-loop hermes"
-version: 1.0.14.0
+version: 1.0.15.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
 ---
 
-# Codex, Cursor, Hermes and Devin Session Relaunch
+# Codex, Cursor and Devin Session Relaunch
 
 ---
 
 ## 1. OVERVIEW
 
-This scenario covers Codex and Hermes automatic adapters and the Cursor and Devin `/speckit:handoff` command-trigger paths. Automatable checks cover the Codex and Hermes adapter suites, the shared nudge suite and the stub-runtime wrapper suite. Live tmux checks observe a handoff through each runtime.
+This scenario covers the Codex automatic adapter and the Cursor and Devin `/speckit:handoff` command-trigger paths. Automatable checks cover the Codex adapter suite, the shared nudge suite, the stub-runtime wrapper suite and the shell shim suite. Live tmux checks observe a handoff through each runtime.
 
 ### Why This Matters
 
-Each runtime uses a different seed argument form, and only two of the four have an automatic arm event. A live run confirms the host delivers the events each adapter needs and the restarted runtime claims the prepared handoff, or that the command-trigger path gives the operator a working manual hop.
+Each runtime uses a different seed argument form, and only one of the three has an automatic arm event. A live run confirms the host delivers the events each adapter needs and the restarted runtime claims the prepared handoff, or that the command-trigger path gives the operator a working manual hop.
 
 ---
 
@@ -33,12 +31,12 @@ Each runtime uses a different seed argument form, and only two of the four have 
 
 This scenario defines four automatable checks and one live check per runtime. The recorded-results table below captures the operator outcomes from 2026-10-18. A live check marked SKIP was omitted by operator decision.
 
-- Objective: Verify Codex and Hermes adapter loading, event handling, seed injection and matching record arming, verify the Cursor and Devin wrapper arms plus the `/speckit:handoff` command-trigger hop, and verify that a Codex operator prompt or `cancel` calls off a prepared hand-over and that the hop history records the hop.
-- Real user request: Carry a short task through a context handoff in Codex or Hermes, or through the handoff command in Cursor or Devin, then finish it in the new session.
+- Objective: Verify Codex adapter loading, event handling, seed injection and matching record arming, verify the Cursor and Devin wrapper arms plus the `/speckit:handoff` command-trigger hop, and verify that a Codex operator prompt or `cancel` calls off a prepared hand-over and that the hop history records the hop.
+- Real user request: Carry a short task through a context handoff in Codex, or through the handoff command in Cursor or Devin, then finish it in the new session.
 - Prompt: `Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready.`
-- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` for the runtime under test (`CODEX`, `HERMES`, `CURSOR` or `DEVIN`) overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps that runtime silent. Unset it before a run. Another runtime's flag does not reach these checks, so `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0`, which keeps Claude Code off, leaves these four runtimes on. That includes the `/speckit:handoff` hops on Cursor and Devin, because `prepare` refuses inside the loop while the concern is off. The goal carry-over runs need it in the environment their scripts start from. The `node --test` suites set their own environment.
-- Expected execution process: Run the Codex and Hermes adapter suites, the shared nudge suite and the stub-runtime wrapper suite. Then start each runtime in its own tmux session with a low hop cap and follow the generated handoff. The nudge's prepare command includes `--runtime <name>`. On Cursor and Devin, run `/speckit:handoff` and start the hop with the selected runtime's claim command printed by the CLI.
-- Expected signals: Automatable commands exit 0. The stub-runtime suite records `codex --no-daemon -m <model> <seed>`, `cursor-agent --model <model> <seed>`, `hermes chat --provider <p> -m <model> -q <seed>` and `devin --model <model> -- <seed>` on relaunch, with valid model and provider values carried on every hop and no resume-family flag passed. Model, name, Pi extension and Pi or Hermes provider scans leave values equal to `--` or starting with `-` in the first launch's arguments and leave them out of relaunch arguments. Each live automatic run arms its matching record and restarts with the claim seed. Each command-trigger run produces a note, a pending record and a runtime-specific manual claim command. If a runtime exits with a record still pending, the wrapper prints its runtime-specific manual command, consumes the record and preserves the runtime exit code. If it cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record` and consumes the record. On an approved hop the wrapper relaunches the runtime with the seed. It exits 1 for an unreadable or empty record, which prints no manual claim command. It also exits 1 for an empty cwd, a line break in the cwd or handoff path, or a failed `cd`, and prints the manual claim command in those cases. A runtime exit of 130 prints the manual claim command and exits 130. On a decline the wrapper exits with the runtime's own exit code and prints the manual claim command only for the `not-armed`, `stale` and `hop-cap` reasons. A `withdrawn` decline, where the session called its hand-over off, prints one warning line and no manual claim command. On Codex an operator prompt withdraws an armed record, `should-relaunch` reports `withdrawn`, the session earns one more nudge a step above its fill and `history` shows a `withdrawn` line. A hop shows `handed-over (hop 1)`, `claimed ... by <id>` and `done`. Keep `SESSION_RELAUNCH_THRESHOLD` well above a fresh session's startup fill plus its remaining work. Codex live runs chained at `0.12` because each fresh session reached about 10% on startup alone. `SESSION_RELAUNCH_MAX_HOPS` caps completed relaunches.
+- Precondition: the session-relaunch hooks ship off. Every check that expects a nudge, an arm or a hop runs with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in its environment or in `.skilled/hooks/hook-flags.env`, and the commands below set it inline. A non-empty `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` for the runtime under test (`CODEX`, `CURSOR` or `DEVIN`) overrides that flag, so a `0` there in the environment or in `hook-flags.env` keeps that runtime silent. Unset it before a run. Another runtime's flag does not reach these checks, so `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0`, which keeps Claude Code off, leaves these three runtimes on. That includes the `/speckit:handoff` hops on Cursor and Devin, because `prepare` refuses inside the loop while the concern is off. The goal carry-over runs need it in the environment their scripts start from. The `node --test` suites set their own environment.
+- Expected execution process: Run the Codex adapter suite, the shared nudge suite, the stub-runtime wrapper suite and the shell shim suite. Then start each runtime in its own tmux session with a low hop cap and follow the generated handoff. The nudge's prepare command includes `--runtime <name>`. On Cursor and Devin, run `/speckit:handoff` and start the hop with the selected runtime's claim command printed by the CLI.
+- Expected signals: Automatable commands exit 0. The stub-runtime suite records `codex --no-daemon -m <model> <seed>`, `cursor-agent --model <model> <seed>` and `devin --model <model> -- <seed>` on relaunch, with valid model values carried on every hop and no resume-family flag passed. Model, name, Pi extension and Pi provider scans leave values equal to `--` or starting with `-` in the first launch's arguments and leave them out of relaunch arguments. Each live automatic run arms its matching record and restarts with the claim seed. Each command-trigger run produces a note, a pending record and a runtime-specific manual claim command. If a runtime exits with a record still pending, the wrapper prints its runtime-specific manual command, consumes the record and preserves the runtime exit code. If it cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record` and consumes the record. On an approved hop the wrapper relaunches the runtime with the seed. It exits 1 for an unreadable or empty record, which prints no manual claim command. It also exits 1 for an empty cwd, a line break in the cwd or handoff path, or a failed `cd`, and prints the manual claim command in those cases. A runtime exit of 130 prints the manual claim command and exits 130. On a decline the wrapper exits with the runtime's own exit code and prints the manual claim command only for the `not-armed`, `stale` and `hop-cap` reasons. A `withdrawn` decline, where the session called its hand-over off, prints one warning line and no manual claim command. On Codex an operator prompt withdraws an armed record, `should-relaunch` reports `withdrawn`, the session earns one more nudge a step above its fill and `history` shows a `withdrawn` line. A hop shows `handed-over (hop 1)`, `claimed ... by <id>` and `done`. Keep `SESSION_RELAUNCH_THRESHOLD` well above a fresh session's startup fill plus its remaining work. Codex live runs chained at `0.12` because each fresh session reached about 10% on startup alone. `SESSION_RELAUNCH_MAX_HOPS` caps completed relaunches.
 - Desired user-visible outcome: The receiving session claims the same handoff and continues the unfinished task.
 - Pass/fail: PASS if all four automatable checks pass and each live run that was run shows the matching runtime restart and claim seed, or the command-trigger hop delivering the claim seed by hand, and the Codex checks CX-1 to CX-5 meet their signals. Record an operator-directed SKIP for a live check that was not run. FAIL if a smoke or suite exits non-zero, the wrapper uses the wrong runtime arguments, a live run does not reach the expected handoff or an operator prompt leaves an armed Codex record in place.
 
@@ -50,7 +48,7 @@ This scenario defines four automatable checks and one live check per runtime. Th
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|---|
-| session-relaunch-command-runtimes | Codex, Cursor, Hermes and Devin session relaunch | Run four automatable checks and one live check per runtime. | Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready. | Codex adapter suite -> Hermes adapter suite -> shared nudge suite -> stub-runtime wrapper suite -> live Codex tmux hop -> live Hermes tmux hop -> live Cursor command hop -> live Devin command hop | Automatable commands exit 0. The stub suite records the four relaunch argv forms with valid model and provider values carried and no resume flags. Codex and Hermes live runs arm the matching record and restart with the claim seed. Cursor and Devin produce a note, a pending record and a printed runtime-specific manual command. | Capture command output and exit codes. For each live run capture the tmux transcript, runtime log entries and handoff status from open through claimed. | PASS when every automated check exits 0 and each live check reaches the claim seed by its runtime's trigger. FAIL when an automated check fails, a runtime is mismatched or a live claim seed is not delivered. | 1. Confirm the adapter path and host smoke command. 2. Check adapter event logs and the matching runtime field in the pending record. 3. Check the killer result, hop limit and runtime-specific seed arguments. 4. On command-only runtimes, confirm prepare printed the manual claim command. |
+| session-relaunch-command-runtimes | Codex, Cursor and Devin session relaunch | Run four automatable checks and one live check per runtime. | Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready. | Codex adapter suite -> shared nudge suite -> stub-runtime wrapper suite -> shell shim suite -> live Codex tmux hop -> live Cursor command hop -> live Devin command hop | Automatable commands exit 0. The stub suite records the three relaunch argv forms with valid model values carried and no resume flags. The Codex live run arms the matching record and restart with the claim seed. Cursor and Devin produce a note, a pending record and a printed runtime-specific manual command. | Capture command output and exit codes. For each live run capture the tmux transcript, runtime log entries and handoff status from open through claimed. | PASS when every automated check exits 0 and each live check reaches the claim seed by its runtime's trigger. FAIL when an automated check fails, a runtime is mismatched or a live claim seed is not delivered. | 1. Confirm the adapter path and host smoke command. 2. Check adapter event logs and the matching runtime field in the pending record. 3. Check the killer result, hop limit and runtime-specific seed arguments. 4. On command-only runtimes, confirm prepare printed the manual claim command. |
 
 ### Automatable Checks
 
@@ -61,14 +59,6 @@ node --test .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs
 ~~~
 
 Evidence: the suite covers the `UserPromptSubmit` seed path with the carried spec folder, the once-at-threshold and threshold-plus-0.05 nudges on `PostToolUse`, the nudge that stays silent while this session already has a prepared handoff or at the hop limit, unique adapter registration per event, `Stop` arming with the rollout transcript and the kill switch. PASS when every case passes.
-
-#### Hermes adapter suite (Automatable)
-
-~~~bash
-node --test .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs
-~~~
-
-Evidence: the suite covers the captured payload fixtures, the Hermes usage fill that counts input and cache tokens and never output, the seed first turn, threshold levels, window-source resolution, `on_session_end` arming with the ancestor pid lookup, pending restore on a failed killer spawn and the kill switch. PASS when every case passes.
 
 #### Shared nudge suite (Automatable)
 
@@ -84,7 +74,7 @@ Evidence: the suite covers the shared handoff and seed text, the level rule and 
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 ~~~
 
-Evidence: the suite installs stub executables for `claude`, `pi`, `opencode`, `codex`, `cursor-agent`, `hermes` and `devin` into a sandbox bin directory, then records each launch's runtime, arguments and loop environment in `runtime-record.jsonl`. The command-runtime cases assert `codex --no-daemon -m <model> <seed>`, `cursor-agent --model <model> <seed>`, `hermes chat --provider <provider> -m <model> -q <seed>` and `devin --model <model> -- <seed>` on relaunch, valid model and provider values carried on every hop, and none of `resume`, `fork`, `exec`, `queue`, `--resume`, `-r`, `--continue`, `-c`, `--session`, `--create-if-missing`, `--in`, `--no-restore-cwd`, `ls` or a name flag reaching the relaunch arguments. PASS when every case passes.
+Evidence: the suite installs stub executables for `claude`, `pi`, `opencode`, `codex`, `cursor-agent` and `devin` into a sandbox bin directory, then records each launch's runtime, arguments and loop environment in `runtime-record.jsonl`. The command-runtime cases assert `codex --no-daemon -m <model> <seed>`, `cursor-agent --model <model> <seed>` and `devin --model <model> -- <seed>` on relaunch, valid model values carried on every hop, and none of `resume`, `fork`, `exec`, `queue`, `--resume`, `-r`, `--continue`, `-c`, `--session`, `--create-if-missing`, `--in`, `--no-restore-cwd`, `ls` or a name flag reaching the relaunch arguments. PASS when every case passes.
 
 #### Shell shim resolution (Automatable)
 
@@ -92,7 +82,7 @@ Evidence: the suite installs stub executables for `claude`, `pi`, `opencode`, `c
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 18 tests pass under bash and zsh (nine cases, each run under both shells), including the case where only a wrapped `hermes` launch gets `HERMES_ENABLE_PROJECT_PLUGINS=1`. Plain `codex`, `codex resume --last`, `hermes`, `hermes chat -q <prompt>`, `cursor-agent`, `cursor-agent agent <prompt>`, `devin` and `devin -- <prompt>` resolve the wrapper through a symlinked `.skilled`. `codex exec`, `codex review`, `hermes -z`, `hermes chat --oneshot`, `hermes setup`, `cursor-agent -p`, `cursor-agent login`, `devin -p`, `devin doctor` and `devin <path>` resolve nothing. `cursor-agent` resolves to the wrapper's `cursor` arm. PASS when the run reports 0 failures.
+Evidence: every test passes under bash and zsh, with each case run under both shells. Plain `codex`, `codex resume --last`, `cursor-agent`, `cursor-agent agent <prompt>`, `devin` and `devin -- <prompt>` resolve the wrapper through a symlinked `.skilled`. `codex exec`, `codex review`, `cursor-agent -p`, `cursor-agent login`, `devin -p`, `devin doctor` and `devin <path>` resolve nothing. `cursor-agent` resolves to the wrapper's `cursor` arm. PASS when the run reports 0 failures.
 
 ### Live Checks
 
@@ -100,12 +90,11 @@ The example launches override the threshold and window-token limit. `SESSION_REL
 
 #### Recorded Results
 
-Two 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for the Codex live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed. A third record, [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md), covers the run with no Gate 3 answer on Claude, Pi and OpenCode, not Codex. Codex and Devin passed live checks. Hermes and Cursor were not run by operator decision.
+Two 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for the Codex live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed. A third record, [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md), covers the run with no Gate 3 answer on Claude, Pi and OpenCode, not Codex. Codex and Devin passed live checks. Cursor was not run by operator decision.
 
 | Runtime | Run date | Result | `relaunch.log` evidence | Operator inputs |
 |---|---|---|---|---|
 | Codex | 2026-10-18 | PASS | Two hops, each note `open -> claimed -> done`, claimed unaided with Gate 3 Skip carried | Threshold `0.25` |
-| Hermes | Not run | SKIP | Not run by operator decision | Operator decision |
 | Cursor | Not run | SKIP | Not run by operator decision | Operator decision |
 | Devin | 2026-10-18 | PASS | Handoff note moved `open -> claimed -> done` | Model `swe-2-max` |
 
@@ -123,21 +112,6 @@ tmux attach -t "$session_name"
 ~~~
 
 Observe the `UserPromptSubmit` or `PostToolUse` nudge, `Stop` arming with the rollout transcript, the killer ending the Codex process and the wrapper restarting `codex --no-daemon -m <model> "<seed>"`. The check's recorded run used Codex's own context window and completed two hops, and each of its notes went `open -> claimed -> done` without operator help and with Gate 3 Skip carried. An earlier run at `0.12` chained four hops but never finished the task, because each fresh session's startup alone reached about 10%. A re-nudge keeps the note path the session already has open, so the follow-up instructions name an existing open note instead of a fresh path. If a hook cannot resolve its adapter, the event still answers. Every session-relaunch Codex registration carries a drift fallback: `Stop` prints `{"systemMessage": ...}` and the prompt and tool-use hooks keep `hookSpecificOutput`, because Codex rejects an unknown key such as `mkHookDrift`.
-
-#### Live Hermes hop in tmux (Live, SKIP 2026-10-18)
-
-Operator decision: this live check was not run. For a future run, start from the repository root. Hermes needs `HERMES_ENABLE_PROJECT_PLUGINS=1` and `repo-guards` under `plugins.enabled` in the user config, the same operator steps `.hermes/SYNC.md` documents.
-
-~~~bash
-set -euo pipefail
-repo_root=$PWD
-session_name="session-relaunch-hermes-$$"
-tmux_command="cd '$repo_root' && PATH='$repo_root/.skilled/bin':\$PATH HERMES_ENABLE_PROJECT_PLUGINS=1 SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 skilled-loop hermes chat --provider llmgateway -m deepseek-v4.1-flash-1017"
-tmux new-session -d -s "$session_name" "$tmux_command"
-tmux attach -t "$session_name"
-~~~
-
-Observe `post_api_request` usage recording, the `pre_llm_call` nudge on the next prompt, `on_session_end` arming after a message ends and the wrapper restarting `hermes chat --provider llmgateway -m <model> -q "<seed>"`. Confirm the receiving session claims the note and continues the task.
 
 #### Live Cursor hop by command (Live, SKIP 2026-10-18)
 
@@ -177,12 +151,12 @@ Build a repository that links this checkout's `.skilled` and the runtime's confi
 repo_root="$(git rev-parse --show-toplevel)"
 linked_repo="$(mktemp -d)/linked-repo"
 mkdir -p "$linked_repo" && git -C "$linked_repo" init -q
-for folder in .skilled .codex .hermes .cursor .devin; do ln -s "$repo_root/$folder" "$linked_repo/$folder"; done
+for folder in .skilled .codex .cursor .devin; do ln -s "$repo_root/$folder" "$linked_repo/$folder"; done
 tmux new-session -d -s shim-codex "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.25 SESSION_RELAUNCH_MAX_HOPS=1 && codex -m gpt-6-luna'"
 tmux attach -t shim-codex
 ~~~
 
-Repeat with `hermes chat --provider llmgateway -m deepseek-v4.1-flash-1017`, which the shim starts with `HERMES_ENABLE_PROJECT_PLUGINS=1`, `cursor-agent` and `devin --model swe-2-max` in place of the Codex command. Codex and Hermes hop on their own: the nudge arrives, the record arms and the wrapper restarts the runtime with the claim seed in the same pane. Cursor and Devin are command-only: run `/speckit:handoff`, end the session and confirm the wrapper prints the manual claim command when the runtime exits, which proves the plain command started under the wrapper. In every case the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`. PASS when Codex and Hermes reach a done note and Cursor and Devin print the wrapper's manual claim command at exit. FAIL when `SKILLED_LOOP_ID` is empty or prepare exits 3. Record a runtime as SKIP when its credentials block the launch.
+Repeat with `cursor-agent` and `devin --model swe-2-max` in place of the Codex command. Codex hops on its own: the nudge arrives, the record arms and the wrapper restarts the runtime with the claim seed in the same pane. Cursor and Devin are command-only: run `/speckit:handoff`, end the session and confirm the wrapper prints the manual claim command when the runtime exits, which proves the plain command started under the wrapper. In every case the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`. PASS when Codex reaches a done note and Cursor and Devin print the wrapper's manual claim command at exit. FAIL when `SKILLED_LOOP_ID` is empty or prepare exits 3. Record a runtime as SKIP when its credentials block the launch.
 
 ### Codex Withdraw, Cancel And History Checks
 
@@ -193,7 +167,6 @@ What applies to each runtime in this file:
 | Runtime | Prompt withdraws a hand-over | `cancel` | Notes |
 |---|---|---|---|
 | Codex | Yes, an armed record, on any prompt that is not a seed | Yes | Codex delivers no background-task completions as prompts, so there is no `<task-notification>` case |
-| Hermes | No, its adapter does not withdraw | Yes | Its hand-over is armed at session end, so `cancel` is the only way to call it off |
 | Cursor and Devin | Not applicable, nothing arms the record | Yes | A cancelled pending record makes the wrapper print the withdrawn warning instead of the manual claim command |
 
 #### CX-0 Live setup shared by CX-1 to CX-3 (Live)
@@ -422,7 +395,6 @@ A hand-over note can carry the sender's goal as a `goal_packet` line, and `skill
 | Codex | No: its goal store holds the objective text and a status with no packet, so a Codex note carries none | Yes | Not applicable, no packet arrives | GR-C1, control only |
 | Devin | From its goal record, once a goal is bound | No: nothing arms the record, so the wrapper never relaunches it | Yes, from the variable | GR-C2, receiver half only |
 | Cursor | From its goal record | No, same reason | Yes, from the variable | GR-C3, SKIP |
-| Hermes | From its goal record | Yes, through the plugin adapter | Yes, `skilled-loop` exports the packet as `HERMES_SPEC_FOLDER` | GR-C3, SKIP |
 
 #### GR-C1 A Codex hop carries no goal packet (Live, control)
 
@@ -452,9 +424,9 @@ Evidence: the reply is an `[active_goal:<id>]` line and `goal-records.txt` holds
 
 PASS when the three runs match. FAIL when a control binds a goal or the packet run binds none.
 
-#### GR-C3 Cursor and Hermes (Live, SKIP 2026-10-25)
+#### GR-C3 Cursor (Live, SKIP 2026-10-25)
 
-Cursor: `cursor-agent about` printed `User Email         Not logged in`, so no session could start. Hermes: a one-shot `hermes chat -Q --oneshot` probe on `--provider llmgateway` exited 1 with `Billing or credits exhausted: HTTP 402: You've reached the daily pacing allowance on the pro plan.` The unit proof for both stands: the `a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes` and `a Hermes hop restores the operator folder once a hop carries no goal` cases in `skilled-loop.test.cjs`, and `goal-cursor.test.mjs`. Neither check is a live pass.
+`cursor-agent about` printed `User Email         Not logged in`, so no session could start. The unit proof stands in `goal-cursor.test.mjs`. The check is not a live pass.
 
 #### GR-C4 Goal carry-over suites (Automatable)
 
@@ -466,7 +438,7 @@ node --test \
   .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
 ~~~
 
-Evidence: exit code 0. PASS when it exits 0 and the Hermes cases named under GR-C3 ran. FAIL when a case is missing or fails.
+Evidence: exit code 0. PASS when it exits 0 and the Cursor cases named under GR-C3 ran. FAIL when a case is missing or fails.
 
 #### Recorded Results, 2026-10-25
 
@@ -477,7 +449,7 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks/023-session-rel
 | Codex hop (GR-C1) | Pass, control only | Note carried no packet, `GOALENV.marker` is `EMPTY`, note `done`. A first run was discarded because the sender judged the task short and finished it without a hand-over | `codex-c-no-goal/`, `codex-c-discarded-run1/` |
 | Devin goal (GR-C2) | Pass, receiver half only | Reply `[active_goal:...]`, one `runtime=devin` record | `devin-receiver-a-goal/` |
 | Devin switch off and no packet (GR-C2) | Pass, receiver half only | Reply `NONE`, no record | `devin-receiver-b-switch-off/`, `devin-receiver-c-no-goal/` |
-| Cursor and Hermes (GR-C3) | SKIP | Not logged in, and HTTP 402 | `availability/` |
+| Cursor (GR-C3) | SKIP | Not logged in | `availability/` |
 
 ---
 
@@ -492,7 +464,6 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks/023-session-rel
 | `../../../../hooks/session-relaunch/README.md` | Runtime adapter matrix, launch syntax and command-only reasons. |
 | `../../../../../specs/hooks/023-session-relaunch-loop/scratch/contracts/interface-contract.md` | Section 12 contract for the four runtimes. |
 | `../../../../../specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-codex.md` | Codex spike verdict and captured payloads. |
-| `../../../../../specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-cursor-hermes.md` | Cursor and Hermes spike verdicts and caveats. |
 | `../../../../../specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-devin.md` | Devin spike verdict and unverified items. |
 
 ### Implementation And Test Anchors
@@ -504,14 +475,10 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks/023-session-rel
 | `.skilled/hooks/session-relaunch/codex/shared.mjs` | Shared Codex payload, threshold and emit logic, and the withdraw of an armed record on an operator prompt. |
 | `.skilled/hooks/session-relaunch/lib/withdraw.cjs` | Calls off a prepared hand-over for every runtime and `cancel`: a guarded disarm, the extra nudge and the withdrawn history line. |
 | `.skilled/hooks/session-relaunch/codex/stop-arm.mjs` | Codex `Stop` arm and killer spawn. |
-| `.skilled/hooks/session-relaunch/hermes/context-nudge.mjs` | Hermes `pre_llm_call` bridge target. |
-| `.skilled/hooks/session-relaunch/hermes/session-end-arm.mjs` | Hermes `on_session_end` arm and killer spawn. |
-| `.hermes/plugins/repo-guards/__init__.py` | Plugin bridge and per-session usage records. |
 | `.skilled/bin/skilled-loop` | Runtime selection, environment export and relaunch arguments. |
-| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `codex`, `hermes`, `cursor-agent` or `devin` launch under the nearest wrapper, a symlinked `.skilled` included. |
+| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `codex`, `cursor-agent` or `devin` launch under the nearest wrapper, a symlinked `.skilled` included. |
 | `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |
 | `.skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs` | Codex adapter regression suite. |
-| `.skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs` | Hermes adapter regression suite. |
 | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs` | Shared nudge text and level suite. |
 | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Stub-runtime wrapper relaunch argument tests. |
 | `.skilled/hooks/session-relaunch/tests/withdraw.test.cjs` | Shared withdraw helper tests. |

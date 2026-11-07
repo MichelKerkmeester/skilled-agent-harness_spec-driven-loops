@@ -11,7 +11,7 @@
  * omits is the failure mode worth a test, because a local run then reports in
  * sync while the remote run fails on the same tree.
  *
- * Hermes and DSH checks are asserted in the shape their neighbours use,
+ * DSH checks are asserted in the shape their neighbours use,
  * including the n/a rule: an absent runtime tree is reported as n/a rather than
  * created, so a read-only diagnostic never has a write side effect.
  *
@@ -41,21 +41,6 @@ const ROUTE_TARGET = 'runtime-mirrors';
 
 // Each mirror check names its surface, runtime tree and upstream_assets key. The
 // surface and tree are asserted so the diagnostic says what it checks and skips.
-const HERMES_CHECKS = [
-  {
-    key: 'hermes_skills',
-    script: '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs',
-    surface: '.hermes/skills',
-    tree: '.hermes/',
-  },
-  {
-    key: 'hermes_prompts',
-    script: '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs',
-    surface: '.hermes/prompts',
-    tree: '.hermes/',
-  },
-];
-
 const DSH_CHECKS = [
   {
     key: 'dsh_skills',
@@ -76,7 +61,7 @@ const DSH_CHECKS = [
     tree: '.dsh/',
   },
 ];
-const MIRROR_CHECKS = [...HERMES_CHECKS, ...DSH_CHECKS];
+const MIRROR_CHECKS = DSH_CHECKS;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. READERS AND SMALL HELPERS
@@ -191,7 +176,7 @@ function repairGaps(workflowText) {
 // 4. THE MANIFEST AND WORKFLOW AS THEY SHIP
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the route declares all Hermes and DSH checks in their check-only form', () => {
+test('the route declares all DSH checks in their check-only form', () => {
   assert.deepEqual(routeGaps(read(ROUTES_PATH)), []);
 });
 

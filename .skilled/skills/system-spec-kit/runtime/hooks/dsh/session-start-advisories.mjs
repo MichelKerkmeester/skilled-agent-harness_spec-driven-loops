@@ -17,8 +17,8 @@ const MAX_BUFFER_BYTES = 262_144;
 
 export const ERROR_POLICY = 'fail-open';
 
-// The same warn-only, exit-0 scripts the Pi extension and the Hermes plugin run at
-// session start. Each one answers to its own concern switch.
+// The same warn-only, exit-0 scripts the Pi extension runs at session start.
+// Each one answers to its own concern switch.
 export const ADVISORY_CHECKS = Object.freeze([
   { label: 'git-worktree-guard', concern: 'git-worktree-guard', command: 'bash', script: '.skilled/bin/worktree-guard.sh', args: [] },
   { label: 'check-git-hooks', concern: 'git-hooks-check', command: 'bash', script: '.skilled/bin/check-git-hooks.sh', args: [] },

@@ -46,7 +46,6 @@ const TOOL_FILES = {
   cursor: '.cursor/hooks.json',
   opencode: '.opencode/plugins/sk-git-preflight-advisory.js',
   pi: '.pi/extensions/git-preflight-advisory.ts',
-  hermes: '.hermes/plugins/repo-guards/__init__.py',
   dsh: '.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs',
 };
 
@@ -1686,33 +1685,6 @@ test('opencode and pi fail an adapter whose git-rule-checks.mjs import does not 
   }
 });
 
-test('hermes passes the repo-guards plugin that runs the advisory and fails one that does not register it', (t) => {
-  const f = fixture(t);
-  fs.symlinkSync(OWN_ROOT, path.join(f.repo, '.skilled'), 'dir');
-  const source = path.join(path.dirname(OWN_ROOT), TOOL_FILES.hermes);
-  const target = path.join(f.repo, TOOL_FILES.hermes);
-  fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.copyFileSync(source, target);
-
-  const registered = rowOf(reportOf(f.run(['--tool', 'hermes', '--json'])), 'ai-tool-hooks');
-  assert.equal(registered.result, 'PASS', registered.details.join(' | '));
-
-  const plugin = fs.readFileSync(target, 'utf8');
-  const unregisteredPlugin = plugin.replace(
-    /^[ \t]*ctx\.register_hook\(["']transform_tool_result["'],\s*transform_tool_result\)\r?\n/gm,
-    '',
-  );
-  assert.notEqual(unregisteredPlugin, plugin, 'fixture must remove the result-hook registration');
-  fs.writeFileSync(target, unregisteredPlugin);
-
-  const unregistered = rowOf(reportOf(f.run(['--tool', 'hermes', '--json'])), 'ai-tool-hooks');
-  assert.equal(unregistered.result, 'FAIL', unregistered.details.join(' | '));
-  assert.ok(
-    unregistered.details.some((detail) => detail.includes('does not register transform_tool_result')),
-    unregistered.details.join(' | '),
-  );
-});
-
 test('dsh passes only when the bundle registers the linked advisory adapter', (t) => {
   const realIndex = fs.readFileSync(path.join(path.dirname(OWN_ROOT), DSH_BUNDLE), 'utf8');
   const row = (f) => rowOf(reportOf(f.run(['--tool', 'dsh', '--json'])), 'ai-tool-hooks');
@@ -2059,7 +2031,7 @@ test('round trip: the suppression repairs turn the row PASS, from the environmen
 test('round trip: registering the advisory as README section 3 shows turns ai-tool-hooks PASS for every runtime', (t) => {
   const REAL_ROOT = path.dirname(OWN_ROOT);
 
-  for (const tool of ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'hermes', 'dsh']) {
+  for (const tool of ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'dsh']) {
     const f = fixture(t);
     // A registration counts only when the file it runs exists.
     fs.symlinkSync(OWN_ROOT, path.join(f.repo, '.skilled'), 'dir');

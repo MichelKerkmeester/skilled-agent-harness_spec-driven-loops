@@ -1,17 +1,17 @@
 ---
 name: cli-external-orchestration
-description: "Parent hub for external CLI dispatch: routes to eight workflow modes through mode-registry.json; dispatches by workflowMode."
+description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.8.0.0
 metadata:
   family: cli
 ---
 
-<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cli-hermes, hermes-cli, hermes-agent, nous-hermes, cli-deepseek-harness, dsh, dsh-headless, deepseek-harness, cross-ai, agent-delegation, executor-delegation -->
+<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cli-deepseek-harness, dsh, dsh-headless, deepseek-harness, cross-ai, agent-delegation, executor-delegation -->
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, eight workflow modes, and one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo.
+One skill, seven workflow modes, and one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo.
 Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`.
 This hub holds NO per-mode logic. Each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet. The hub routes by `workflowMode`.
 
@@ -29,7 +29,6 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 | **cli-cursor** | workflow | Cursor CLI orchestration: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when `cursor-agent` is absent | `cli-external-orchestration/cli-cursor/` |
 | **cli-devin** | workflow | Devin CLI orchestration: Cognition-backed coding, cloud handoff, subagent delegation, MCP host integration; fails closed when `devin` is absent | `cli-external-orchestration/cli-devin/` |
 | **cli-pi** | workflow | Pi CLI orchestration: guarded headless print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when `pi` is absent | `cli-external-orchestration/cli-pi/` |
-| **cli-hermes** | workflow | Hermes Agent CLI orchestration: quiet oneshot chat dispatch, LLM Gateway model routing, project skills and plugins, cross-AI validation; fails closed when `hermes` is absent or when no provider is configured | `cli-external-orchestration/cli-hermes/` |
 | **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: LLM Gateway is verified. OpenCode Go is configured but not verified. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
 
 ### When NOT to Use
@@ -62,14 +61,14 @@ Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selectin
 ### Terms
 
 - **`workflowMode`**: the public mode key this hub resolves to one CLI packet.
-- **`packetKind`**: the axis a mode sits on, and every mode here is `workflow` because all eight orchestrate a CLI binary.
+- **`packetKind`**: the axis a mode sits on, and every mode here is `workflow` because all seven orchestrate a CLI binary.
 - **`backendKind`**: which backend runs the mode, recorded per mode in `mode-registry.json`.
 - **`toolSurface`**: the tools a mode may and may not use, together with its `mutatesWorkspace` flag.
 - **`advisorRouting`**: how the advisor finds the mode, which is `routingClass: "metadata"` throughout this hub, so the advisor routes the hub and the hub picks the mode.
 - **`mode-registry.json`**: the registry that owns each mode's discriminator, packet folder, aliases and `advisorRouting`, plus the executor-delegation scorer's one list of CLI executors.
 - **`hub-router.json`**: stage one's `routerPolicy`, `routerSignals` and `vocabularyClasses`.
 - **`vocabularyClasses`**: the authored mode vocabulary that `routerSignals` are scored against.
-- **`tieBreak`**: the `routerPolicy` order that ranks the eight modes when scores are close.
+- **`tieBreak`**: the `routerPolicy` order that ranks the seven modes when scores are close.
 - **leaf resource**: a packet-qualified file that a selected mode loads, named in `RESOURCE_MAP` and dual-read to a typed pair through `leaf-manifest.json`.
 - **`orderedBundle`**: the outcome where several explicitly requested executors route in `tieBreak` order.
 - **`defer`**: the outcome where unclear or contradictory dispatch intent asks for disambiguation instead of defaulting to `cli-opencode`.
@@ -131,14 +130,6 @@ cli-external-orchestration/
     manual-testing-playbook/
     changelog/
   cli-pi/
-    SKILL.md
-    ROUTER.md
-    README.md
-    references/
-    assets/
-    manual-testing-playbook/
-    changelog/
-  cli-hermes/
     SKILL.md
     ROUTER.md
     README.md
@@ -219,7 +210,7 @@ The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to
 - Surface router: `ROUTER.md`.
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
-- Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-hermes/SKILL.md`, `cli-deepseek-harness/SKILL.md`.
+- Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-deepseek-harness/SKILL.md`.
 - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
 - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: Read the target mode's `SKILL.md` before composing any dispatch prompt.

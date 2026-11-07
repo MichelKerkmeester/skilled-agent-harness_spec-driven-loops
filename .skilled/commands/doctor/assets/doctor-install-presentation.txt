@@ -55,7 +55,7 @@ Ask every answer that is still missing in one prompt, then wait. This follows th
 Where should Skilled go? Answer any or all in one reply, for example "/Users/me/code/my-app, claude and codex, auto, embed".
 
 1) Target repo: the absolute path, for example /Users/me/code/my-app
-2) Runtimes: claude, opencode, codex, cursor, devin, pi, hermes, or "the ones already there"
+2) Runtimes: claude, opencode, codex, cursor, devin, pi, or "the ones already there"
 3) Link shape: auto / whole / merge   (auto unless a real folder already sits where a link would go)
 4) Instruction file: embed / link   (embed keeps the repo's own AGENTS.md; link points AGENTS.md, CLAUDE.md and REPO RULES.md at the checkout's copies)
 ```

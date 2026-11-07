@@ -108,7 +108,7 @@ Supported runtime files:
 | `pi` | `.pi/mcp.json` |
 | `devin` | `.devin/mcp_config.json` |
 
-For a Codex TOML config, Python `tomllib` validates when available. If unavailable, report `UNVALIDATED` and do not claim a validation pass. Hermes registration is user-level in `~/.hermes/config.yaml` and is not checked.
+For a Codex TOML config, Python `tomllib` validates when available. If unavailable, report `UNVALIDATED` and do not claim a validation pass.
 
 ## Debug
 

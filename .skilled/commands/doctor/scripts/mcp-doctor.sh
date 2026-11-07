@@ -337,9 +337,6 @@ detect_and_check_configs() {
         ;;
     esac
   done
-
-  record_info "config" "hermes_registration" "User-level in ~/.hermes/config.yaml; not checked"
-  _log log_info "Hermes registration is user-level in ~/.hermes/config.yaml and is not checked"
 }
 
 # ───────────────────────────────────────────────────────────────

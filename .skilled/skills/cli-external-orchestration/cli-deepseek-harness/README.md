@@ -6,7 +6,7 @@ trigger_phrases:
   - "dsh headless"
   - "delegate to dsh"
   - "deepseek harness cli"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # cli-deepseek-harness
@@ -129,7 +129,6 @@ Use cli-deepseek-harness when the request names DeepSeek Harness, `dsh`, `dsh he
 | Skill | Relationship |
 |---|---|
 | cli-pi | Pi's coding agent. It also reaches DeepSeek models, through its own provider flags |
-| cli-hermes | Hermes Agent quiet one-shot dispatch over LLM Gateway |
 | cli-opencode | Full OpenCode runtime, plugins and detached sessions |
 | cli-claude-code, cli-codex, cli-cursor, cli-devin | Their own vendors' CLIs and model families |
 

@@ -13,8 +13,7 @@ name: OpenCode Plugin Tests
 # workflow either: vitest skips those files because they run on their own, and the
 # dispatch guard runs only its rule-check suite. They import the hook libraries and
 # spawn the hook scripts, and the installer test provisions throwaway repositories,
-# so this job provisions once and runs them beside the plugin suites. It also runs
-# on any change under .hermes, whose skill and prompt copies the hooks read.
+# so this job provisions once and runs them beside the plugin suites.
 on:
   pull_request:
     branches: [main, 'skilled/**']
@@ -26,7 +25,6 @@ on:
       - '.codex/**'
       - '.cursor/**'
       - '.devin/**'
-      - '.hermes/**'
       - '.env.example'
       - 'specs/system-deep-loop/z_archive/026-goal-opencode-plugin/**'
       - 'esbuild.config.mjs'
@@ -45,7 +43,6 @@ on:
       - '.codex/**'
       - '.cursor/**'
       - '.devin/**'
-      - '.hermes/**'
       - '.env.example'
       - 'specs/system-deep-loop/z_archive/026-goal-opencode-plugin/**'
       - 'esbuild.config.mjs'

@@ -200,4 +200,4 @@ sk-code owns code verification. system-spec-kit owns Gate 3, spec folders and co
 
 Start with the CLI reference and the prompt-quality card, then load only the references matching the task. The router discovers markdown resources inside this packet.
 
-Related skills: cli-pi, cli-hermes, cli-opencode, cli-claude-code, cli-codex, cli-cursor and cli-devin for sibling CLI dispatch, sk-code for code standards, system-deep-loop for lineage execution and system-spec-kit for packet handback.
+Related skills: cli-pi, cli-opencode, cli-claude-code, cli-codex, cli-cursor and cli-devin for sibling CLI dispatch, sk-code for code standards, system-deep-loop for lineage execution and system-spec-kit for packet handback.

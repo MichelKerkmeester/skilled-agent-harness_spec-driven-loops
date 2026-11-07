@@ -7,8 +7,7 @@
     "codex":    [{ "name": ".codex", "kind": "dir" }],
     "cursor":   [{ "name": ".cursor", "kind": "dir" }],
     "devin":    [{ "name": ".devin", "kind": "dir" }],
-    "pi":       [{ "name": ".pi", "kind": "dir" }],
-    "hermes":   [{ "name": ".hermes", "kind": "dir" }]
+    "pi":       [{ "name": ".pi", "kind": "dir" }]
   },
   "extras": {
     "repo-rules": [{ "name": "repo-rules", "kind": "dir" }],

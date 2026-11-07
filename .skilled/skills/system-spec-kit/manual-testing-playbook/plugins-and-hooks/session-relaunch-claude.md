@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.14.0
+version: 1.0.15.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -313,7 +313,7 @@ Run the Claude adapter suite. A Stop that finds an armed record with no live kil
 node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 ~~~
 
-Evidence: `stop-arm respawns one killer for an armed record whose killer is gone` passes. The Codex, Hermes, Pi and OpenCode suites carry the same respawn case for their arm events. PASS when the test passes. FAIL when a Stop leaves an armed record with no killer. FAIL also when a Stop spawns a second killer while one owns the lock.
+Evidence: `stop-arm respawns one killer for an armed record whose killer is gone` passes. The Codex, Pi and OpenCode suites carry the same respawn case for their arm events. PASS when the test passes. FAIL when a Stop leaves an armed record with no killer. FAIL also when a Stop spawns a second killer while one owns the lock.
 
 #### relaunch.log line integrity (Automatable)
 
@@ -381,7 +381,7 @@ Run the adapter conformance cases for a session that has no `SKILLED_LOOP_ID`. E
 node --test --test-name-pattern="outside skilled-loop" .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs
 ~~~
 
-Evidence: the Claude, Codex, Hermes and OpenCode cases named `a nudge outside skilled-loop asks for keep and never prepare` pass. PASS when all four pass. FAIL when any adapter emits a `prepare` command without a loop id, or emits nothing.
+Evidence: the Claude, Codex and OpenCode cases named `a nudge outside skilled-loop asks for keep and never prepare` pass. PASS when all three pass. FAIL when any adapter emits a `prepare` command without a loop id, or emits nothing.
 
 #### Keep and the open-notes line (Automatable)
 

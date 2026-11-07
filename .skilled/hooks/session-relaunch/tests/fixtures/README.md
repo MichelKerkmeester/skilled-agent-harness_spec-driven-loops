@@ -1,6 +1,6 @@
 ---
 title: "Session Relaunch: Test Fixtures"
-description: "Payload, rollout, usage and helper fixtures that drive the session-relaunch suites for Claude, Codex, Hermes, Pi and OpenCode."
+description: "Payload, rollout, usage and helper fixtures that drive the session-relaunch suites for Claude, Codex, Pi and OpenCode."
 trigger_phrases:
   - "session relaunch fixtures"
   - "runtime payload fixtures"
@@ -26,13 +26,6 @@ version: 1.0.0.0
 | [`codex-spawn-recorder.cjs`](./codex-spawn-recorder.cjs) | Spawn recorder | Replaces `child_process.spawn` so a killer launch writes its command, arguments and options to `CODEX_KILLER_ARGS_FILE`. | Returns a stub with `unref()` for the killer and passes every other call through. |
 | [`codex-stop.json`](./codex-stop.json) | Codex Stop payload | `hook_event_name: Stop` with a transcript path, a cwd and `stop_hook_active: false`. | Inert data. |
 | [`codex-user-prompt-submit.json`](./codex-user-prompt-submit.json) | Codex prompt payload | `hook_event_name: UserPromptSubmit` with a prompt. | Inert data. |
-| [`hermes-on-session-end.json`](./hermes-on-session-end.json) | Hermes end payload | `on_session_end` with turn outcome fields and a model. | Inert data. |
-| [`hermes-on-session-finalize.json`](./hermes-on-session-finalize.json) | Hermes finalize payload | `on_session_finalize` with an empty `extra`. | Inert data. |
-| [`hermes-on-session-start.json`](./hermes-on-session-start.json) | Hermes start payload | `on_session_start` with an empty `extra`. | Inert data. |
-| [`hermes-post-api-request.json`](./hermes-post-api-request.json) | Hermes usage payload | `post_api_request` with a model, a provider and a `usage` object. | Inert data. |
-| [`hermes-pre-api-request.json`](./hermes-pre-api-request.json) | Hermes request payload | `pre_api_request` with model metadata and token estimates. | Inert data. |
-| [`hermes-pre-verify.json`](./hermes-pre-verify.json) | Hermes verify payload | `pre_verify` with `changed_paths`. | Inert data. |
-| [`hermes-usage.json`](./hermes-usage.json) | Hermes usage record | Input, output, cache read, cache write, reasoning and total token counts with a model and provider. | Inert data. |
 | [`nested-run.cjs`](./nested-run.cjs) | Ancestry helper | Runs a command through an outer runtime and a nested shell so the ppid chain the killer reads can be reproduced. Exports `runNested()`. | Rejects on a spawn error, otherwise returns the child exit code, stdout and stderr. |
 | [`opencode-assistant-message-updated.json`](./opencode-assistant-message-updated.json) | OpenCode fill fixture | A `message.updated` event with `tokens`, `modelID` and `providerID`. | Inert data. |
 | [`payload-post-tool-use.json`](./payload-post-tool-use.json) | Claude PostToolUse payload | A `Bash` call with a tool response and an effort level. | Inert data. |

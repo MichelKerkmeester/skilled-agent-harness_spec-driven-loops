@@ -19,7 +19,6 @@ const STATE_ENV_BY_KIND = Object.freeze({
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-devin': 'SPECKIT_DEVIN_STATE_DIR',
   'cli-cursor': 'SPECKIT_CURSOR_STATE_DIR',
-  'cli-hermes': 'SPECKIT_HERMES_STATE_DIR',
 });
 
 function runAdapterShim(kind) {
@@ -63,9 +62,6 @@ function runAdapterShim(kind) {
         DEVIN_API_KEY: process.env.DEVIN_API_KEY || null,
         CURSOR_AUTH_TOKEN: process.env.CURSOR_AUTH_TOKEN || null,
         LLMGATEWAY_API_KEY: process.env.LLMGATEWAY_API_KEY || null,
-        HERMES_SPEC_FOLDER: process.env.HERMES_SPEC_FOLDER || null,
-        SPECKIT_HERMES_READ_ONLY: process.env.SPECKIT_HERMES_READ_ONLY || null,
-        HERMES_ENABLE_PROJECT_PLUGINS: process.env.HERMES_ENABLE_PROJECT_PLUGINS || null,
       },
       ...extra,
     })}\n`, 'utf8');

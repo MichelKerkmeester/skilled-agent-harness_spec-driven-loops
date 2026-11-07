@@ -303,7 +303,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     category: 'command',
     name: '/doctor:runtime-mirrors',
     description: '',
-    keywords: ['runtime mirror drift', 'agent command mirror parity', 'command catalog drift', 'cursor devin codex sync check', 'discovery mirror out of sync', 'hermes prompt copy drift', 'runtime copies drift from source', 'runtime prompts out of date after a pull', 'check the runtime mirrors match skilled', 'runtime mirrors match .skilled'],
+    keywords: ['runtime mirror drift', 'agent command mirror parity', 'command catalog drift', 'cursor devin codex sync check', 'discovery mirror out of sync', 'runtime copies drift from source', 'runtime prompts out of date after a pull', 'check the runtime mirrors match skilled', 'runtime mirrors match .skilled'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:runtime-mirrors'],
     readOnly: true,

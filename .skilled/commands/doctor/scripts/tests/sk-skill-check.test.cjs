@@ -58,8 +58,6 @@ function makeContext({
   derivedCode = 0,
   advisorCode = 75,
   advisorPayload = { status: 'unavailable', data: { recommendations: [] } },
-  hermesCode = 0,
-  hermesOutput = 'PASS: in sync\n',
   auditCode = 0,
   auditPayload = { items: [] },
   pythonProbeResult = { code: 0, stdout: '', stderr: '', error: null },
@@ -153,9 +151,6 @@ function makeContext({
     }
     if (script.endsWith('skill-advisor.cjs')) {
       return { code: advisorCode, stdout: JSON.stringify(advisorPayload), stderr: '', error: null };
-    }
-    if (script.endsWith('sync-skills-hermes.cjs')) {
-      return { code: hermesCode, stdout: hermesOutput, stderr: '', error: null };
     }
     if (script.endsWith('audit_descriptions.py')) {
       return { code: auditCode, stdout: JSON.stringify(auditPayload), stderr: '', error: null };
@@ -450,7 +445,6 @@ test('outside-root and nested packet fixtures report their locations', () => {
   assert.ok(!outside.invocations.some(({ args }) => (
     args[0].endsWith('audit_descriptions.py')
     || args[0].endsWith('skill-advisor.cjs')
-    || args[0].endsWith('sync-skills-hermes.cjs')
   )));
 
   const nested = reportFor('skills/nested-packets/hub/modes/fixture-nested-mode');
@@ -817,22 +811,6 @@ test('bare skill names report every match when direct and nested roots collide',
   }
 });
 
-test('Hermes drift in another skill does not fail the requested skill', () => {
-  const unrelated = reportFor('skills/canon', {
-    fileSystem: withoutRuntimeMirrors(),
-    hermesCode: 1,
-    hermesOutput: 'DRIFT another-skill\nFAIL: 1 drifted, 0 stale\n',
-  });
-  assert.equal(getRow(unrelated.report, 'C9').status, 'PASS');
-
-  const matching = reportFor('skills/canon', {
-    fileSystem: withoutRuntimeMirrors(),
-    hermesCode: 1,
-    hermesOutput: 'DRIFT fixture-canon\nFAIL: 1 drifted, 0 stale\n',
-  });
-  assert.equal(getRow(matching.report, 'C9').status, 'FINDING');
-});
-
 test('argument parse errors retain the usage code', () => {
   assert.throws(() => parseArguments(['--json', '--json']), (error) => error.code === 'USAGE');
   assert.throws(() => parseArguments(['one', 'two']), (error) => error.code === 'USAGE');
@@ -963,10 +941,9 @@ test('missing machine-router resolver exits 2 with a named cause and provision c
   assert.match(stderr, /worktree-naming\.sh provision/);
 });
 
-test('missing shared parser and Hermes dependency exit 2 with their provision commands', () => {
+test('missing shared parser exits 2 with its provision command', () => {
   const failures = [
     ['@spec-kit/shared/frontmatter/parse-frontmatter.js', 'SHARED_NOT_BUILT', /worktree-naming\.sh provision/],
-    ['@spec-kit/shared/workspace/repo-root.mjs', 'HERMES_SHARED_MISSING', /npm install --prefix/],
   ];
   for (const [missingModule, codeName, provision] of failures) {
     const { context } = makeContext({ preflight: true });

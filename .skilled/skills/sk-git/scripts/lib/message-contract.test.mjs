@@ -345,9 +345,8 @@ test('a scope alias must point at a scope the pattern accepts, never at another 
 test('restated subject lengths must match the rules block, in the template and in SKILL.md', () => {
   const contract = extractContract(fs.readFileSync(path.join(ASSETS, TEMPLATE_FILES.commit), 'utf8'));
   assert.deepEqual(lengthLiteralErrors('Aim for 81 characters (`subject.length-target`).', contract).length, 1);
-  for (const skill of [path.resolve(HERE, '../../SKILL.md'), path.resolve(HERE, '../../../../../.hermes/skills/sk-git/SKILL.md')]) {
-    assert.deepEqual(lengthLiteralErrors(fs.readFileSync(skill, 'utf8'), contract), [], skill);
-  }
+  const skill = path.resolve(HERE, '../../SKILL.md');
+  assert.deepEqual(lengthLiteralErrors(fs.readFileSync(skill, 'utf8'), contract), [], skill);
 });
 
 test('skgit.contractDir pointing nowhere is an error, not an opt-out', () => {

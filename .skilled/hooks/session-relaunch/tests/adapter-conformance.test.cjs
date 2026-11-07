@@ -251,37 +251,6 @@ const ADAPTERS = {
       return spawns;
     },
   },
-  hermes: {
-    runtime: 'hermes',
-    seed: async ({ env, root }, prompt) => JSON.parse(await runHook(
-      path.join(HOOK_ROOT, 'hermes', 'context-nudge.mjs'),
-      env,
-      { session_id: SESSION_ID, cwd: root, is_first_turn: true, user_message: prompt },
-      root,
-    )).context,
-    nudge: async ({ env, root }) => JSON.parse(await runHook(
-      path.join(HOOK_ROOT, 'hermes', 'context-nudge.mjs'),
-      env,
-      {
-        session_id: SESSION_ID,
-        cwd: root,
-        is_first_turn: false,
-        user_message: 'continue',
-        usage: { input_tokens: FILL_TOKENS },
-      },
-      root,
-    )).context,
-    killerTarget: '60',
-    arm: async ({ env }, { cwd, processTable }) => {
-      const spawns = [];
-      const { armPendingRecord } = await importAdapter('hermes', 'session-end-arm.mjs');
-      await armPendingRecord(
-        { hook_event_name: 'on_session_end', session_id: SESSION_ID, cwd },
-        { env, pid: ARM_HOOK_PID, processTable, spawn: recordSpawns(spawns) },
-      );
-      return spawns;
-    },
-  },
   opencode: {
     runtime: 'opencode',
     seed: ({ env, root }, prompt) => withProcessEnv(env, async () => {
@@ -532,8 +501,6 @@ const ENTRYPOINTS = [
   ['codex', 'context-nudge.mjs'],
   ['codex', 'prompt-seed.mjs'],
   ['codex', 'stop-arm.mjs'],
-  ['hermes', 'context-nudge.mjs'],
-  ['hermes', 'session-end-arm.mjs'],
 ];
 
 for (const segments of ENTRYPOINTS) {

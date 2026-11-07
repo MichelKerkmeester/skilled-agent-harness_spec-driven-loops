@@ -99,7 +99,6 @@ workflow:
       - "When --runtime is unset, register all seven project config files. When set, limit registration to that runtime; claude covers both .mcp.json and .claude/mcp.json. Preserve unrelated entries."
       - "Parse JSON runtime files with node. Parse Codex TOML with Python tomllib when available; if unavailable, report unvalidated and do not claim validation passed."
       - "Request explicit approval for each runtime file before editing it."
-    user_level_note: "Hermes registration is user-level in ~/.hermes/config.yaml and is not checked."
 
   step_6_verify:
     purpose: Recheck the resulting Code Mode installation and report its state

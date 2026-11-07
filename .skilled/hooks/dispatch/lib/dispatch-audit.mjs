@@ -63,10 +63,6 @@ export const DISPATCH_SHAPES = [
   { test: /\bdevin\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-devin', packetPath: 'cli-external-orchestration/cli-devin' },
   { test: /\bcursor-agent\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-cursor', packetPath: 'cli-external-orchestration/cli-cursor' },
   { test: /\bpi\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-pi', packetPath: 'cli-external-orchestration/cli-pi' },
-  // Hermes has no print flag: its headless forms are `hermes chat` with a query flag
-  // (`-q`, `--query`, `--query-file`, or the non-TTY `--oneshot`) and the top-level `-z`
-  // oneshot. A bare `hermes chat` or a management subcommand is not a dispatch.
-  { test: /\bhermes\s+chat\b[^\n;&|]*\s(-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s(-z)\b/, skill: 'cli-hermes', packetPath: 'cli-external-orchestration/cli-hermes' },
   // Expanded DSH arguments obscure direct parsing, so the profile shape still routes them to its hard rules.
   {
     test: DSH_HEADLESS_SHAPE,
@@ -87,7 +83,6 @@ const EXECUTOR_BASENAMES = new Set([
   'devin',
   'cursor-agent',
   'pi',
-  'hermes',
   'dsh',
   'jev',
   'jev-mcp',
@@ -106,7 +101,6 @@ const EXECUTOR_SKILLS = new Map([
   ['cursor-agent', 'cli-cursor'],
   ['cursor', 'cli-cursor'],
   ['pi', 'cli-pi'],
-  ['hermes', 'cli-hermes'],
   ['dsh', 'cli-deepseek-harness'],
   ['jev', 'cli-classifier'],
   ['jev-mcp', 'cli-classifier'],
@@ -115,9 +109,6 @@ const EXECUTOR_SKILLS = new Map([
 // than a map key owns its skill name.
 const OPENCODE_SKILL = 'cli-opencode';
 const PRINT_FLAGS = new Set(['-p', '--print']);
-// Hermes's equivalents of a print flag, scoped to the hermes branch so `-q` on any other
-// command (grep, curl) never reads as dispatch evidence.
-const HERMES_QUERY_FLAGS = new Set(['-q', '--query', '--query-file', '--oneshot', '-z']);
 const SEPARATORS = new Set(['&&', '||', ';', '|', '&']);
 
 function basename(value) {
@@ -384,15 +375,6 @@ function directExecutor(tokens) {
       ? EXECUTOR_SKILLS.get(binary)
       : null;
   }
-  if (binary === 'hermes') {
-    const rest = tokens.slice(start.index + 1);
-    const isChat = rest[0]?.value === 'chat';
-    const hasQueryFlag = rest.some((token) => HERMES_QUERY_FLAGS.has(token.value));
-    // `hermes chat` plus a query flag, or the top-level `-z` oneshot, dispatches; a bare
-    // `hermes chat`, `hermes status` or `hermes skills list` does not.
-    if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return EXECUTOR_SKILLS.get(binary);
-    return null;
-  }
   if (binary === 'dsh') {
     // DSH task profiles carry dispatch intent without the print flags other runtimes use.
     const rest = tokens.slice(start.index + 1);
@@ -423,8 +405,6 @@ function hasDispatchText(value) {
     /\bopencode\d*\s+run\b/.test(value)
     || /\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b/.test(value)
     || /\bcodex\s+exec\b/.test(value)
-    || /\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b/.test(value)
-    || /\bhermes\b[^\n;&|]*\s-z\b/.test(value)
     || DSH_HEADLESS_SHAPE.test(value)
     || /\bjev\s+(?:noul|choice|score|run)\b/.test(value)
   );
@@ -853,7 +833,7 @@ function executedHeredocBodies(command) {
 
 // Split on shell separators that sit outside quotes. A wrapper unwrap is anchored to the
 // start of what it is given, so it only works once each segment is considered on its own:
-// `cd /tmp && perl ... -- hermes chat ...` has the dispatch in the second segment.
+// `cd /tmp && perl ... -- pi -p ...` has the dispatch in the second segment.
 //
 // `tokenizeShell` above already segments quote-aware, and reusing it was the cheaper move.
 // It fails here because it returns each segment as an array of parsed TOKENS with quoting

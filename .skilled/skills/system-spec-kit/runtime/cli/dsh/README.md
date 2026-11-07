@@ -66,6 +66,6 @@ node --test .skilled/skills/system-spec-kit/runtime/cli/tests/sync-*-dsh.test.mj
 
 ## 5. RELATED
 
-- [`Hermes mirror generators`](../hermes/README.md) use the sibling runtime-mirror pattern.
+- [`Codex mirror generators`](../codex/README.md) use the sibling runtime-mirror pattern.
 - [`Pi prompt generator`](../pi/sync-prompts-pi.cjs) shares the command walk and flat naming convention.
 - [`Parent CLI README`](../README.md) lists the other runtime CLI tools.

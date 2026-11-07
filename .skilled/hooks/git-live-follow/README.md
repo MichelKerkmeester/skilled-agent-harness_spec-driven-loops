@@ -50,8 +50,6 @@ One real script backs the wired runtimes. Claude, Codex, Cursor, Devin, and Pi c
 | **Pi** | bundled into `.pi/extensions/session-start-advisories.ts` (`ctx.exec()`) | `session_start`, concern `live-sync` | Same script, `--start`; any status text surfaces through `ctx.ui.notify()` instead of the raw stderr line |
 | **OpenCode** | launched by `.opencode/plugins/session-cleanup.js` | Plugin `event` on `session.created` | Same script, backgrounded by the session-start plugin; no per-runtime symlink adapter |
 
-Hermes runs the same script as one of its session-start guards in the `repo-guards` plugin.
-
 ---
 
 ## 4. DIRECTORY TREE

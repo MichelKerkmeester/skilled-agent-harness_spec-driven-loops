@@ -1207,7 +1207,6 @@
             "command catalog drift",
             "cursor devin codex sync check",
             "discovery mirror out of sync",
-            "hermes prompt copy drift",
             "runtime copies drift from source",
             "runtime prompts out of date after a pull",
             "check the runtime mirrors match skilled",

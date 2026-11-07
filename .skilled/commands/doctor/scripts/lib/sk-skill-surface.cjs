@@ -30,7 +30,6 @@ const PYTHON_MISSING_PROVISION = 'Install Python 3 and make python3 available on
 // Assemble the reserved prefix so tracked source does not spell out a private skill name.
 const RESERVED_PREFIX = ['lo', 'cal', String.fromCharCode(45)].join('');
 const SHARED_PROVISION = 'bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .';
-const HERMES_PROVISION = 'npm install --prefix .skilled/skills/system-spec-kit/runtime';
 // `.state` holds converter backups and other run records. A backup copies SKILL.md
 // verbatim, so walking it would read one skill's own backup as a second skill
 // declaring the same name.
@@ -83,7 +82,6 @@ function pathsFor(repoRoot) {
     regressionRunner: path.join(advisorScripts, 'skill_advisor_regression.py'),
     skillGraphJson: path.join(advisorScripts, 'skill-graph.json'),
     graphFreshness: path.join(skilledScripts, 'skill-graph-freshness.cjs'),
-    hermesSync: path.join(runtimeCli, 'hermes', 'sync-skills-hermes.cjs'),
     auditDescriptions: path.join(skilledScripts, 'audit_descriptions.py'),
   };
 }
@@ -334,15 +332,6 @@ function ensurePreconditions(context, { requireRouter = true } = {}) {
       'SHARED_NOT_BUILT',
       'The root metadata validator cannot load its built shared frontmatter parser.',
       SHARED_PROVISION,
-    );
-  }
-  try {
-    moduleResolver('@spec-kit/shared/workspace/repo-root.mjs', paths.hermesSync);
-  } catch {
-    throw new CheckError(
-      'HERMES_SHARED_MISSING',
-      'Hermes sync cannot load @spec-kit/shared.',
-      HERMES_PROVISION,
     );
   }
 }
@@ -1294,15 +1283,6 @@ function runSkillGraphCompiler(context) {
   return runChild(context, pythonCommand(context), [context.paths.skillGraphCompiler, '--export-json']);
 }
 
-// Hermes keeps generated copies by frontmatter name while every other runtime
-// links the skills root whole, so it is the only mirror with a write to run and a
-// drift check to read back.
-function runHermesSync(context, { check = false } = {}) {
-  const args = [context.paths.hermesSync];
-  if (check) args.push('--check');
-  return runChild(context, process.execPath, args);
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1354,6 +1334,5 @@ module.exports = {
   inspectCollisions,
   pythonCommand,
   runAdvisorScan,
-  runHermesSync,
   runSkillGraphCompiler,
 };

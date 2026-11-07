@@ -7,7 +7,7 @@ trigger_phrases:
   - "jev audit shape"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # Dispatch guards
@@ -24,7 +24,7 @@ code that reads as coverage. Both directions are asserted by the repository's ow
 | Aspect | Value |
 |---|---|
 | Module | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` |
-| Registry row | `DISPATCH_SHAPES` — a `jev` entry alongside the eight executors |
+| Registry row | `DISPATCH_SHAPES` — a `jev` entry alongside the seven executors |
 | Command-position branch | `directExecutor()` returns `cli-classifier` for the `jev` and `jev-mcp` basenames |
 | Executor set | `EXECUTOR_BASENAMES` includes both basenames |
 | Text fallback | `hasDispatchText()` accepts the jev forms, so an embedded invocation is not missed |

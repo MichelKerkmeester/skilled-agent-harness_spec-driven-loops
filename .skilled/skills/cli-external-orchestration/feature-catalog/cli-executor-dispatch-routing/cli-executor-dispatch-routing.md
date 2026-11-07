@@ -1,21 +1,21 @@
 ---
 title: "CLI Executor Two-Axis Dispatch Routing"
-description: "`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's eight modes."
+description: "`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's seven modes."
 trigger_phrases:
   - "cli executor two-axis dispatch routing"
   - "cli-external-orchestration hub-router scoring"
   - "cli-opencode cli-claude-code cli-codex cli-cursor dispatch"
   - "cli-external-orchestration smart routing"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # CLI Executor Two-Axis Dispatch Routing (cli-external-orchestration)
 
 ## 1. OVERVIEW
 
-`cli-external-orchestration` is registry-driven: `mode-registry.json` lists all eight modes in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
+`cli-external-orchestration` is registry-driven: `mode-registry.json` lists all seven modes in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
 
-The eight executor packets, `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`, are `packetKind: "workflow"`. Each one classifies dispatch intent, chooses or confirms a provider and conducts the dispatched session. `cli-deepseek-harness` stays experimental: its LLM Gateway route passed a keyed run, and its OpenCode Go route is configured, not verified. The transport this hub used to declare, `cli-jev`, now lives in the `cli-classifier` hub (`.skilled/skills/cli-classifier/`) as mode `cli-jev` over the `cli-jev` packet: it returns one typed judgment from a state and runs nothing, and that hub's `transport-axis` extension names it.
+The seven executor packets, `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`, are `packetKind: "workflow"`. Each one classifies dispatch intent, chooses or confirms a provider and conducts the dispatched session. `cli-deepseek-harness` stays experimental: its LLM Gateway route passed a keyed run, and its OpenCode Go route is configured, not verified. The transport this hub used to declare, `cli-jev`, now lives in the `cli-classifier` hub (`.skilled/skills/cli-classifier/`) as mode `cli-jev` over the `cli-jev` packet: it returns one typed judgment from a state and runs nothing, and that hub's `transport-axis` extension names it.
 
 ---
 
@@ -23,7 +23,7 @@ The eight executor packets, `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli
 
 ### Two-Axis Model
 
-Every workflow packet orchestrates a CLI binary whose dispatched writes land in this repository's own workspace (`mutatesWorkspace: true`). The eight workflows are primary, independently-routable dispatch workflows rather than variants layered on a shared backend, and `tieBreak` lists all eight, with no transport to order after them.
+Every workflow packet orchestrates a CLI binary whose dispatched writes land in this repository's own workspace (`mutatesWorkspace: true`). The seven workflows are primary, independently-routable dispatch workflows rather than variants layered on a shared backend, and `tieBreak` lists all seven, with no transport to order after them.
 
 ### Routing Rule
 
@@ -46,7 +46,7 @@ The router resolves to `single` (one dominant executor signal routes to one mode
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/cli-external-orchestration/ROUTER.md` | Shared | §5 states the two-axis model, routing rule, and outcome set. |
-| `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the eight executor packets. The `transport-axis` extension left with the mode it named, so this registry declares no extension and the `cli-classifier` hub declares the axis. |
+| `.skilled/skills/cli-external-orchestration/mode-registry.json` | Shared | Declarative registry for the seven executor packets. The `transport-axis` extension left with the mode it named, so this registry declares no extension and the `cli-classifier` hub declares the axis. |
 | `.skilled/skills/cli-external-orchestration/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 
 ### Validation And Tests

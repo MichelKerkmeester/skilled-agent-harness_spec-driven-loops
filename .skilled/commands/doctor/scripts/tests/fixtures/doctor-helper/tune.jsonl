@@ -32,7 +32,6 @@
 {"prompt": "are the runtime mirrors in sync", "expected": "/doctor:runtime-mirrors"}
 {"prompt": "one mirror differs from .skilled", "expected": "/doctor:runtime-mirrors"}
 {"prompt": "claude commands mirror is missing a file", "expected": "/doctor:runtime-mirrors"}
-{"prompt": "the hermes prompt copies are stale", "expected": "/doctor:runtime-mirrors"}
 {"prompt": "the sk-code setup battery fails on the doctor leg", "expected": "/doctor:sk-code setup"}
 {"prompt": "finish the sk-code provisioning", "expected": "/doctor:sk-code setup"}
 {"prompt": "which quality config does the gate read", "expected": "/doctor:sk-code quality"}

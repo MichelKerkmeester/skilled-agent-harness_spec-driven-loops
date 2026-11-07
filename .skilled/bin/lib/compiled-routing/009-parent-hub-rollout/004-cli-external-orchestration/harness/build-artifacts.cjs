@@ -94,11 +94,6 @@ function sourceInputs() {
       'cli-pi',
       'SKILL.md',
     ),
-    'cli-external-orchestration/cli-hermes/SKILL.md': path.join(
-      SKILL_ROOT,
-      'cli-hermes',
-      'SKILL.md',
-    ),
     'cli-external-orchestration/cli-deepseek-harness/SKILL.md': path.join(
       SKILL_ROOT,
       'cli-deepseek-harness',

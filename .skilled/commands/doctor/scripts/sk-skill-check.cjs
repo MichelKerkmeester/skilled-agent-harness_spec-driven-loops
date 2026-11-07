@@ -104,7 +104,6 @@ const ROW_TOOL_KEYS = {
   C6: ['regenerateDerived'],
   C7: ['routerReplay'],
   C8: ['advisor', 'skillGraphCompiler', 'graphFreshness'],
-  C9: ['hermesSync'],
   C11: ['auditDescriptions'],
   C13: ['regressionCorpus', 'goldenCorpus'],
 };
@@ -405,7 +404,7 @@ function checkRuntimeMirrors(skillName, location, context) {
     ['Devin', path.join(context.repoRoot, '.devin', 'skills')],
   ];
   if (location.kind === 'outside') {
-    const mirrors = [...runtimes.map(([name]) => `${name}:not-included`), 'Hermes:not-included', 'Codex:not-included', 'Cursor:not-included'];
+    const mirrors = [...runtimes.map(([name]) => `${name}:not-included`), 'Codex:not-included', 'Cursor:not-included'];
     return {
       status: 'INFO',
       detail: `Runtime mirror status: ${mirrors.join(', ')}.`,
@@ -433,18 +432,6 @@ function checkRuntimeMirrors(skillName, location, context) {
     }
   }
 
-  const hermes = runValidator(
-    context,
-    'sync-skills-hermes.cjs --check',
-    process.execPath,
-    [context.paths.hermesSync, '--check'],
-  );
-  const hermesHasTargetIssue = String(hermes.result.stdout || '').split(/\r?\n/).some((line) => {
-    const match = line.match(/^(?:DRIFT|STALE)\s+(.+)$/);
-    return match && match[1] === skillName;
-  });
-  if (hermesHasTargetIssue) findings.push('Hermes');
-  checked.push(`Hermes:${hermesHasTargetIssue ? 'finding' : 'pass'}`);
   checked.push('Codex:n/a', 'Cursor:n/a');
   return {
     status: findings.length ? 'FINDING' : 'PASS',

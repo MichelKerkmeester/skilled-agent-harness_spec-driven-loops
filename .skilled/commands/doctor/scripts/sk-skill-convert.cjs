@@ -1566,8 +1566,8 @@ function applyPlan(plan, context) {
       writeApprovedEdgesFile(plan.skillRoot, plan, fileSystem);
     }
     // The format work is done, so the same rows the plain path ends with run here: a
-    // converted skill whose Hermes copy drifts or whose compiled graph is stale is not
-    // wired, and the backup beside this one is what makes their overwrites undoable. A
+    // converted skill whose compiled graph is stale is not wired, and the backup
+    // beside this one is what makes their overwrites undoable. A
     // frontmatter-only normalisation moves no router, so it wires nothing.
     const integration = plan.frontmatterOnly
       ? null

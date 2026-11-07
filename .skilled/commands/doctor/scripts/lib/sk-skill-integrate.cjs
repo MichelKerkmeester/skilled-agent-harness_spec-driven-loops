@@ -19,8 +19,8 @@ const surface = require('./sk-skill-surface.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 // A skill that passes the format gate can still be unreachable: the advisor has
-// not scanned it, the compiled graph is stale, no regression row names it, the
-// Hermes copy is missing and no changelog link points at it. These rows are the
+// not scanned it, the compiled graph is stale, no regression row names it and no
+// changelog link points at it. These rows are the
 // writes no create script owns, so they carry the whole distance between valid
 // and reachable. A failing row reports and lets the others run: each surface is
 // independent, and the caller decides what a partial wiring means.
@@ -39,7 +39,6 @@ const PROBE_LIMIT = 3;
 const DESCRIPTION_BUDGET = 130;
 const DEFAULT_VERSION = '1.0.0.0';
 const FOUR_PART_VERSION = /^\d+(?:\.\d+){3}$/;
-const HERMES_DIRECTORY = '.hermes';
 const CHANGELOG_INDEX = ['.skilled', 'changelog'];
 const SKILL_GRAPH_LABEL = '.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json';
 const FRAMEWORK_CORPUS_LABEL =
@@ -611,64 +610,11 @@ function integrateI4RegressionCases(options) {
   }, { writes: plannedWrites });
 }
 
-function integrateI5RuntimeMirrors(options) {
-  const { context, fileSystem, backupDirectory } = options;
-  const hermesDirectory = path.join(context.repoRoot, HERMES_DIRECTORY);
-  const outputOverride = context.env && context.env.HERMES_SKILLS_OUTPUT_DIR;
-  // The override names where the copies land, so that is the path a caller has to
-  // undo; without it the sync regenerates the copy folder inside the runtime's
-  // directory, and that folder is the write rather than the directory holding it.
-  const hermesTarget = outputOverride
-    ? path.resolve(context.repoRoot, outputOverride)
-    : path.join(hermesDirectory, 'skills');
-  const hermesLabel = pathLabel(context.repoRoot, context.paths.hermesSync);
-  if (!fileSystem.existsSync(hermesDirectory) && !outputOverride) {
-    return makeRow('I5', [
-      `I5 ${ROW_TITLES.I5}: n/a - ${HERMES_DIRECTORY}/ does not exist and HERMES_SKILLS_OUTPUT_DIR is unset; nothing is created.`,
-    ], () => ({ status: 'N/A', lines: [] }), { status: 'N/A' });
-  }
-  const planKind = fileSystem.existsSync(hermesTarget) ? 'overwrite' : 'create';
-  return makeRow('I5', [
-    `I5 ${ROW_TITLES.I5}: run node ${hermesLabel}, then node ${hermesLabel} --check for Hermes.`,
-    `I5 ${ROW_TITLES.I5}: ${LINKED_RUNTIMES.join(', ')} are whole-directory links to .skilled/skills and need no write.`,
-  ], () => {
-    const existedBefore = fileSystem.existsSync(hermesTarget);
-    const backup = existedBefore
-      ? backupBeforeWrite({ fileSystem, backupDirectory, target: hermesTarget })
-      : null;
-    const synced = surface.runHermesSync(context);
-    if (synced.code !== 0) {
-      const reason = firstLine(synced.stderr) || firstLine(synced.stdout);
-      return {
-        status: 'FAILED',
-        lines: [`I5 ${ROW_TITLES.I5}: FAILED - Hermes sync exited ${synced.code}${reason ? `: ${reason}` : ''}.`],
-      };
-    }
-    const checked = surface.runHermesSync(context, { check: true });
-    const detail = firstLine(checked.stdout) || firstLine(checked.stderr);
-    if (checked.code !== 0) {
-      return {
-        status: 'FAILED',
-        lines: [`I5 ${ROW_TITLES.I5}: FAILED - Hermes --check exited ${checked.code}${detail ? `: ${detail}` : ''}.`],
-      };
-    }
-    return {
-      status: 'DONE',
-      lines: [`I5 ${ROW_TITLES.I5}: Hermes synced and checked${detail ? ` (${detail})` : ''}.`],
-      // A sync that reports success without writing anything has no path to undo.
-      writes: fileSystem.existsSync(hermesTarget)
-        ? [recordWrite({
-          fileSystem,
-          target: hermesTarget,
-          existedBefore,
-          backup,
-          detail: 'Hermes skill copies regenerated.',
-        })]
-        : [],
-    };
-  }, {
-    writes: [{ kind: planKind, file: hermesTarget, detail: 'Regenerate the Hermes skill copies and check them.' }],
-  });
+// Every runtime skills mirror is a whole-directory link to the canonical root, so
+// a converted skill needs no mirror write and the row only records that.
+function integrateI5RuntimeMirrors() {
+  const line = `I5 ${ROW_TITLES.I5}: n/a - ${LINKED_RUNTIMES.join(', ')} are whole-directory links to .skilled/skills and need no write.`;
+  return makeRow('I5', [line], () => ({ status: 'N/A', lines: [line] }), { status: 'N/A' });
 }
 
 // A compact changelog entry that satisfies the versioned-doc contract: the file

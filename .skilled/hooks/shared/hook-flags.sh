@@ -96,7 +96,7 @@ hook_enabled() {
       __hf_rt=${__hf_rt#"${__hf_rt%%[![:space:]]*}"}
       __hf_rt=${__hf_rt%"${__hf_rt##*[![:space:]]}"}
       case "$__hf_rt" in
-        claude|codex|pi|opencode|hermes|cursor|devin)
+        claude|codex|pi|opencode|cursor|devin)
           __hf_rv=$(__hook_flags_resolve "SYSTEM_SESSION_RELAUNCH_$(printf '%s' "$__hf_rt" | tr 'a-z' 'A-Z')_ENABLED")
           __hf_rv_trim=${__hf_rv#"${__hf_rv%%[![:space:]]*}"}
           if [ -n "$__hf_rv_trim" ]; then

@@ -224,11 +224,10 @@ sweep-reports/
 # A local-* skill belongs to the operator, not to this repository. No trailing
 # slash: git treats a symlink as a file, so a trailing slash would miss a symlink
 # to a repository outside this checkout. The runtime roots that link to .skilled/skills need no rule
-# of their own, because git cannot stage a path beneath a symlink. .hermes/skills,
-# .codex/skills and .cursor/skills are real directories when they exist, so each
-# carries its own rule.
+# of their own, because git cannot stage a path beneath a symlink. .codex/skills
+# and .cursor/skills are real directories when they exist, so each carries its
+# own rule.
 /.skilled/skills/local-*
-/.hermes/skills/local-*
 /.codex/skills/local-*
 /.cursor/skills/local-*
 /.dsh/skills/local-*
@@ -252,7 +251,6 @@ sweep-reports/
 /.cursor/commands/local-*
 /.codex/prompts/local-*
 /.pi/prompts/local-*
-/.hermes/prompts/local-*
 
 # ───────────────────────────────────────────
 # Runtime state leaked into nested trees

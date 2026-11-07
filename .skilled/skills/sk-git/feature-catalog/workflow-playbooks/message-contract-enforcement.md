@@ -7,7 +7,7 @@ trigger_phrases:
   - "validate-message.mjs"
   - "commit message gate"
 importance_tier: "important"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Template-driven message contract (validate-message.mjs)
@@ -62,7 +62,6 @@ In range mode the validator reads every message with one `git log` call. A `Spec
 | `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | Agent hook | PreToolUse gate for Claude, Codex, Cursor and Devin, and the `evaluateCommand` the other runtimes import |
 | `.opencode/plugins/sk-git-message-gate.js` | OpenCode plugin | Throws the gate's refusal from `tool.execute.before` |
 | `.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.ts` | Pi extension | Returns `{ block: true, reason }` from `tool_call` |
-| `.hermes/plugins/repo-guards/__init__.py` | Hermes plugin | Blocks from `pre_tool_call` on the core's deny |
 | `.skilled/scripts/git-hooks/commit-msg` | Git hook | Shim that runs the validator on the commit message |
 | `.skilled/scripts/git-hooks/pre-push` | Git hook | Gate 6 runs the validator over the pushed range and new branch names |
 | `.skilled/scripts/git-hooks/lib/message-contract-gate.sh` | Hook library | Validator lookup and the node-free "is a rules block declared" check |
@@ -80,7 +79,6 @@ In range mode the validator reads every message with one `git log` call. A `Spec
 | `.skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh` | Automated test | Gate 6 against a real bare remote |
 | `.opencode/plugins/tests/sk-git-message-gate.test.cjs` | Node test | The OpenCode plugin refuses, passes and fails closed on a broken block |
 | `.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts` | Vitest | The Pi extension's `.block` verdicts |
-| `.hermes/plugins/repo-guards/tests/test_repo_guards.py` | Unit | The Hermes block, including one run of the real core |
 
 ---
 

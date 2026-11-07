@@ -1,6 +1,6 @@
 ---
 title: "Cross-CLI Runtime Map"
-description: "How the seven CLI runtime directories derive from .skilled: which surfaces are symlinks that cannot drift, which are generator output that can, which files are authored in one runtime and exist nowhere else, and why each runtime needs a different shape."
+description: "How the six CLI runtime directories derive from .skilled: which surfaces are symlinks that cannot drift, which are generator output that can, which files are authored in one runtime and exist nowhere else, and why each runtime needs a different shape."
 trigger_phrases:
   - "cross cli runtime map"
   - "which runtime symlinks what"
@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/` holds the authored tree. Seven runtime directories sit beside it, one per CLI, and each holds what that CLI reads, at the path it reads it, in the dialect it parses. Almost none of it is authored twice.
+`.skilled/` holds the authored tree. Six runtime directories sit beside it, one per CLI, and each holds what that CLI reads, at the path it reads it, in the dialect it parses. Almost none of it is authored twice.
 
 Three mechanisms do the work, and telling them apart is the whole point of this document:
 
@@ -38,11 +38,10 @@ A real file is therefore not automatically authored content — most of them are
 | `.codex/` | agents, prompts, hooks | 22 hooks, `repo-rules`, playbook | `agents/` (11 TOML), `prompts/` (38) | `config.toml`, `hooks.json` |
 | `.cursor/` | agents, commands, rules, hooks | `agents/` (11), 38 commands, 22 hooks, 1 rule, `repo-rules`, playbook | — | `hooks.json`, `mcp.json`, `rules/skill-routing.md`, 2 commands |
 | `.devin/` | agents, skills, hooks | `agents/*/AGENT.md` (11), `skills`, 25 hooks, `repo-rules`, playbook | — | `config.json`, `hooks.v1.json`, `mcp_config.json` |
-| `.hermes/` | skills, plugins | `agents`, `repo-rules`, playbook | `skills/` (65 copies), `prompts/` (38) | `plugins/` (1: `repo-guards`) |
 | `.pi/` | agents, prompts, skills, extensions | `skills`, 18 extensions plus one shared adapter under `extensions/lib/`, `repo-rules`, playbook | `agents/` (11), `prompts/` (38) | `models.json`, `settings.json`, `mcp.json`, `PLUGINS.md`, `custom-providers.md`, `statusline.sh`, `prompts/goal-pi.md`, `extensions/README.md`, `extensions/lib/README.md`, `pi-blackhole-config.json`, `pi-cache-optimizer-config.json`, `types/`, `npm/`, `git/`, 2 authored extension directories (pi-cache-optimizer, pi-fast-mode-w-subagent-support) |
 | `.dsh/` | Skills, prompt stubs, agent patches and repo-guard plugin for the external DeepSeek Harness target | None | skills, prompts and agents from three DSH generators | `patches/`, `plugins/repo-guards/`, `README.md`, `SYNC.md` |
 
-The seven repository-opening runtimes author their own `SYNC.md`. Every `hooks/` directory authors its own `README.md`. `.dsh/` is an external run surface, not another directory for opening the repository in. Its `SYNC.md` records the separate contract: run from a scratch working directory outside the checkout, set a disposable `DSH_HOME`, choose `read-only` or `workspace-write` deliberately and treat `--approval-policy never` as approval handling rather than filesystem confinement. The documented scratch-cwd launch path keeps the repository-root `.env` out of dsh's search path. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
+The six repository-opening runtimes author their own `SYNC.md`. Every `hooks/` directory authors its own `README.md`. `.dsh/` is an external run surface, not another directory for opening the repository in. Its `SYNC.md` records the separate contract: run from a scratch working directory outside the checkout, set a disposable `DSH_HOME`, choose `read-only` or `workspace-write` deliberately and treat `--approval-policy never` as approval handling rather than filesystem confinement. The documented scratch-cwd launch path keeps the repository-root `.env` out of dsh's search path. `.claude/settings.local.json` is a per-machine file that git ignores, so it is not part of the map.
 
 ---
 
@@ -60,7 +59,6 @@ The seven repository-opening runtimes author their own `SYNC.md`. Every `hooks/`
 
 **`.codex/` and `.pi/` generate rather than link** because neither reads the authored dialect. Codex wants TOML personas and flat prompt stubs; Pi wants its own agent and prompt trees. Both are compiler output — editing them by hand is lost on the next generator run and caught by that generator's `--check`.
 
-**`.hermes/` copies rather than links** because Hermes does not follow symlinks into a skill tree, so its 68 skills are real generated copies. Two more things are unusual here: Hermes reads only `skills/` (after a trust grant for the directory) and `plugins/` (behind an opt-in variable), and it has no agent flag at all — so each agent is additionally mirrored as a preloadable skill named `agent-<name>`, and a dispatch binds one by preloading that skill.
 
 ---
 
@@ -75,19 +73,18 @@ Each generator rebuilds its tree and takes `--check` to assert freshness without
 | `sync-gate1-pointers.cjs` | the root instruction files' lookup pointer |
 | `sync-agents.cjs`, `sync-prompts.cjs` | `.codex/agents/`, `.codex/prompts/` |
 | `sync-agents-pi.cjs`, `sync-prompts-pi.cjs` | `.pi/agents/`, `.pi/prompts/` |
-| `sync-skills-hermes.cjs`, `sync-prompts-hermes.cjs` | `.hermes/skills/`, `.hermes/prompts/` |
 | `sync-skills-dsh.cjs`, `sync-prompts-dsh.cjs`, `sync-agents-dsh.cjs` | `.dsh/skills/`, `.dsh/prompts/`, `.dsh/agents/` |
 | `generate-command-routers.cjs` | the command router tables |
 
 The counts here and in section 2 drift as surfaces are added. Each generator's `--check` prints the live count, so trust its output over these numbers.
 
-They live under `.skilled/skills/system-spec-kit/runtime/cli/`, in `runtime-mirrors/`, `codex/`, `pi/`, `hermes/` and `dsh/`.
+They live under `.skilled/skills/system-spec-kit/runtime/cli/`, in `runtime-mirrors/`, `codex/`, `pi/` and `dsh/`.
 
 ```bash
 # every generator, freshness only
 for g in runtime-mirrors/sync-runtime-mirrors runtime-mirrors/sync-hook-registrations \
          runtime-mirrors/sync-gate1-pointers codex/sync-agents codex/sync-prompts \
-         pi/sync-agents-pi pi/sync-prompts-pi hermes/sync-prompts-hermes hermes/sync-skills-hermes; do
+         pi/sync-agents-pi pi/sync-prompts-pi; do
   node ".skilled/skills/system-spec-kit/runtime/cli/$g.cjs" --check
 done
 
@@ -108,6 +105,6 @@ node .skilled/bin/check-agent-mirror-sync.cjs
 
 ## 6. RELATED
 
-- Each repository runtime has its own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.hermes/SYNC.md`, `.opencode/SYNC.md` and `.pi/SYNC.md`. The external DSH run-surface contract is in `.dsh/SYNC.md`.
+- Each repository runtime has its own contract: `.claude/SYNC.md`, `.codex/SYNC.md`, `.cursor/SYNC.md`, `.devin/SYNC.md`, `.opencode/SYNC.md` and `.pi/SYNC.md`. The external DSH run-surface contract is in `.dsh/SYNC.md`.
 - [`AGENTS.md`](../AGENTS.md) — the runtime instruction file
 - [`README.md`](../README.md) — repository overview

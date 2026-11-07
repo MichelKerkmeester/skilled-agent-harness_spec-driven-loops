@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- `adapter-shim-core.cjs` holds the shared behavior. The six thin shims are one call each into `runAdapterShim(kind)`.
+- `adapter-shim-core.cjs` holds the shared behavior. The five thin shims are one call each into `runAdapterShim(kind)`.
 - `dsh-shim.cjs` has its own runner because dsh needs JSON events and a separate process exit status.
 - `codex-shim.cjs` does not use the core. It keeps its own mode switch, writes its last message to the `-o` output path, and doubles as a `pkill` stand-in.
 - The mode resolves from `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`.
@@ -35,7 +35,6 @@ Current state:
 | `claude-code-shim.cjs` | Calls `runAdapterShim('cli-claude-code')`. |
 | `devin-shim.cjs` | Calls `runAdapterShim('cli-devin')`. |
 | `cursor-shim.cjs` | Calls `runAdapterShim('cli-cursor')`. |
-| `hermes-shim.cjs` | Calls `runAdapterShim('cli-hermes')`. |
 | `dsh-shim.cjs` | Stand-in for `cli-deepseek-harness`. Emits DSH JSON events and controls the process exit status independently. |
 | `codex-shim.cjs` | Self-contained codex stand-in with its own mode switch, last-message output path and `pkill` forwarding. |
 
@@ -43,7 +42,7 @@ Current state:
 
 ## 3. SHIM MODES
 
-Core modes, used by the six shims that call `adapter-shim-core.cjs`:
+Core modes, used by the five shims that call `adapter-shim-core.cjs`:
 
 | Mode | Behavior |
 |---|---|
@@ -82,7 +81,7 @@ DSH modes use newline-delimited JSON. The shim never invokes the installed dsh b
 | Shim mode | `mode` in `~/.cli-adapter-control.json`, then `CLI_ADAPTER_SHIM_MODE`, then `success`. |
 | Capture path | `capturePath` in the control file, then `CLI_ADAPTER_SHIM_CAPTURE`. The core appends one JSON record per run with kind, pid, cwd, args, stdin and selected environment values. Codex writes a single record instead. |
 | Pid path | `pidPath` in the control file, then `CLI_ADAPTER_SHIM_PID_FILE`. Holds the root pid, plus child and grandchild pids for `orphan-tree`. |
-| Artifact location | The parent of the state directory named by the per-kind variable (`SPECKIT_OPENCODE_STATE_DIR`, `SPECKIT_PI_STATE_DIR`, `SPECKIT_CLAUDE_CODE_STATE_DIR`, `SPECKIT_DEVIN_STATE_DIR`, `SPECKIT_CURSOR_STATE_DIR`, `SPECKIT_HERMES_STATE_DIR`, `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR`), otherwise the current working directory. |
+| Artifact location | The parent of the state directory named by the per-kind variable (`SPECKIT_OPENCODE_STATE_DIR`, `SPECKIT_PI_STATE_DIR`, `SPECKIT_CLAUDE_CODE_STATE_DIR`, `SPECKIT_DEVIN_STATE_DIR`, `SPECKIT_CURSOR_STATE_DIR`, `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR`), otherwise the current working directory. |
 | Reap capture | `CLI_ADAPTER_REAP_CAPTURE`, codex only. Records the arguments when codex is invoked as `pkill`, then forwards to `/usr/bin/pkill` or `/bin/pkill`. |
 
 ---

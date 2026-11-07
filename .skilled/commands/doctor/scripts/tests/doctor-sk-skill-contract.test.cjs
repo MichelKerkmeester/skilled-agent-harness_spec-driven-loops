@@ -165,7 +165,6 @@ test('the convert route names every place the engine writes and nothing else', (
     /skill-graph\.sqlite/,
     /skill-graph\.json/,
     /advisor cases/,
-    /\.hermes\/skills/,
   ]) {
     assert.match(location, expected);
   }
@@ -556,7 +555,6 @@ test('the convert workflow declares every variable its route resolves and what i
     /skill-graph\.sqlite/,
     /skill-graph\.json/,
     /advisor cases file/,
-    /\.hermes\/skills/,
     // The one scratch root the plain path uses is a write the run owns and deletes.
     /\.state\/doctor-sk-skill\/<name>\/scratch\//,
   ]) {

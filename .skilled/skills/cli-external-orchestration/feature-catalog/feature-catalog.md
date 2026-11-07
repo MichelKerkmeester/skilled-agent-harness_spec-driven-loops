@@ -9,15 +9,14 @@ trigger_phrases:
   - "cli-cursor hooks"
   - "Cursor CLI spec-gate integration"
   - "cross-runtime goal isolation"
-  - "cli-hermes dispatch"
   - "DeepSeek Harness Dispatch Mode"
 last_updated: "2026-11-06"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # cli-external-orchestration: Feature Catalog
 
-This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of eight CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`, `cli-deepseek-harness`), each independently classifying intent, choosing or confirming a provider and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
+This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of seven CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`), each independently classifying intent, choosing or confirming a provider and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -33,11 +32,11 @@ Use this catalog as the current-state inventory for the `cli-external-orchestrat
 
 #### Description
 
-`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's eight modes.
+`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's seven modes.
 
 #### Current Reality
 
-The eight workflow packets are `packetKind: "workflow"`. Each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
+The seven workflow packets are `packetKind: "workflow"`. Each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
 
 #### Source Files
 
@@ -87,7 +86,7 @@ See [`cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md`](cursor-hooks-an
 
 #### Description
 
-One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all eight executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms and the `dsh` headless forms.
+One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the `dsh` headless forms.
 
 #### Current Reality
 

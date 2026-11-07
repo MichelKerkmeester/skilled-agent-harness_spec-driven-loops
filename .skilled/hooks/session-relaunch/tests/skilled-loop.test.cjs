@@ -91,43 +91,6 @@ const RUNTIME_RELAUNCH_CASES = [
     buildRelaunchArguments: (seed, model) => ['--model', model, seed],
   },
   {
-    runtime: 'hermes',
-    model: 'hermes model',
-    modelArgumentVariants: [
-      ['-m', 'hermes model'],
-      ['--model', 'hermes model'],
-      ['--model=hermes model'],
-    ],
-    provider: 'hermes-provider',
-    providerArgumentVariants: [
-      ['--provider', 'hermes-provider'],
-      ['--provider=hermes-provider'],
-    ],
-    passthroughArguments: [
-      '--resume',
-      'old-session',
-      '-r',
-      'old-session',
-      '--continue',
-      'old-session',
-      '-c',
-      'old-session',
-      '--create-if-missing',
-      '--in',
-      './old-session',
-      '--no-restore-cwd',
-      '--name',
-      'Hermes session',
-    ],
-    forbiddenArguments: [
-      '--resume', '-r', '--continue', '-c', '--create-if-missing',
-      '--in', '--no-restore-cwd', '--name', '-n',
-    ],
-    buildRelaunchArguments: (seed, model, provider) => [
-      'chat', '--provider', provider, '-m', model, '-q', seed,
-    ],
-  },
-  {
     runtime: 'devin',
     model: 'devin model',
     modelArgumentVariants: [
@@ -171,9 +134,7 @@ const record = {
     SESSION_RELAUNCH_GOAL_PACKET: process.env.SESSION_RELAUNCH_GOAL_PACKET || "",
     hasGoalPacket: Object.hasOwn(process.env, "SESSION_RELAUNCH_GOAL_PACKET"),
     SKILLED_LOOP_CLAIM_SEED: process.env.SKILLED_LOOP_CLAIM_SEED || "",
-    hasClaimSeed: Object.hasOwn(process.env, "SKILLED_LOOP_CLAIM_SEED"),
-    HERMES_SPEC_FOLDER: process.env.HERMES_SPEC_FOLDER || "",
-    hasHermesSpecFolder: Object.hasOwn(process.env, "HERMES_SPEC_FOLDER")
+    hasClaimSeed: Object.hasOwn(process.env, "SKILLED_LOOP_CLAIM_SEED")
   }
 };
 fs.appendFileSync(recordPath, JSON.stringify(record) + "\\n");
@@ -262,7 +223,6 @@ function createSandbox(t) {
     'SESSION_RELAUNCH_GOAL',
     'SESSION_RELAUNCH_GOAL_PACKET',
     'SKILLED_LOOP_CLAIM_SEED',
-    'HERMES_SPEC_FOLDER',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, binDir, recordedCwd, env };
@@ -294,7 +254,7 @@ export SESSION_RELAUNCH_TEST_COMMAND="\${0##*/}"
 node -e '${RUNTIME_SOURCE}' -- "$@"
 `;
   for (const runtime of [
-    'claude', 'pi', 'opencode', 'codex', 'cursor-agent', 'hermes', 'devin',
+    'claude', 'pi', 'opencode', 'codex', 'cursor-agent', 'devin',
   ]) {
     fs.writeFileSync(path.join(sandbox.binDir, runtime), shellProgram, { mode: 0o755 });
   }
@@ -1309,12 +1269,6 @@ const EFFORT_CARRY_CASES = [
     first: ['--model', 'm', '--thinking', 'high', 'p'],
     relaunch: (seed) => ['--model', 'm', '--thinking', 'high', seed],
   },
-  {
-    name: 'hermes chat --reasoning',
-    runtime: 'hermes',
-    first: ['chat', '--reasoning', 'ultra', '-m', 'm', '-q', 'p'],
-    relaunch: (seed) => ['chat', '-m', 'm', '--reasoning', 'ultra', '-q', seed],
-  },
 ];
 
 for (const effortCase of EFFORT_CARRY_CASES) {
@@ -1382,24 +1336,6 @@ test('a Pi sender live provider, model and thinking level replace the launch val
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(readRecords(recordPath)[1].args, [
     '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'high', `${SEED} ${handoffPath}`,
-  ]);
-});
-
-test('a Hermes sender live provider and model replace the launch values', (t) => {
-  const sandbox = createSandbox(t);
-  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
-    markers: '1',
-    RECORD_MODEL: 'gpt-6-luna',
-    RECORD_PROVIDER: 'openai',
-  });
-  const result = runWrapper(sandbox, [
-    'hermes', 'chat', '--provider', 'anthropic', '-m', 'claude-sonnet-5-5', '--reasoning', 'low',
-  ]);
-
-  assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(readRecords(recordPath)[1].args, [
-    'chat', '--provider', 'openai', '-m', 'gpt-6-luna', '--reasoning', 'low', '-q',
-    `${SEED} ${handoffPath}`,
   ]);
 });
 
@@ -1558,22 +1494,6 @@ test('a Pi live provider that differs from the launch provider drops the launch 
   assert.deepEqual(readRecords(kept.recordPath)[1].args, [
     '--provider', 'openai', '--model', 'gpt-6-luna', '--thinking', 'low',
     `${SEED} ${kept.handoffPath}`,
-  ]);
-});
-
-test('a Hermes live model with no live effort keeps the launch reasoning', (t) => {
-  const sandbox = createSandbox(t);
-  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
-    markers: '1',
-    RECORD_MODEL: 'gpt-6-luna',
-  });
-  const result = runWrapper(sandbox, [
-    'hermes', 'chat', '-m', 'claude-sonnet-5-5', '--reasoning', 'high',
-  ]);
-
-  assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(readRecords(recordPath)[1].args, [
-    'chat', '-m', 'gpt-6-luna', '--reasoning', 'high', '-q', `${SEED} ${handoffPath}`,
   ]);
 });
 
@@ -1798,12 +1718,6 @@ test('multi-hop relaunches carry each runtime model and provider on every invoca
       model: 'cursor-model',
     },
     {
-      runtime: 'hermes',
-      arguments: ['--provider', 'hermes-provider', '--model', 'hermes-model'],
-      model: 'hermes-model',
-      provider: 'hermes-provider',
-    },
-    {
       runtime: 'devin',
       arguments: ['--model', 'devin-model', '--', 'initial prompt'],
       model: 'devin-model',
@@ -1944,7 +1858,7 @@ test('wrapper names pi in the manual command after runtime exit 130', (t) => {
   assert.ok(result.stdout.includes(manualCommand), result.stderr);
 });
 
-for (const runtime of ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']) {
+for (const runtime of ['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin']) {
   test(`declined relaunch prints the ${runtime} manual claim command`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = path.join(sandbox.root, 'handoff-!.md');
@@ -2086,27 +2000,6 @@ const FLAG_VALUE_CASES = [
     runtime: 'pi',
     arguments: ['--provider=--'],
   },
-  {
-    name: 'Hermes space provider before a model option',
-    runtime: 'hermes',
-    arguments: ['--provider', '-m', 'model'],
-    model: 'model',
-  },
-  {
-    name: 'Hermes space provider before the end-of-options marker',
-    runtime: 'hermes',
-    arguments: ['--provider', '--', '--resume'],
-  },
-  {
-    name: 'Hermes equals provider before a resume flag',
-    runtime: 'hermes',
-    arguments: ['--provider=--resume'],
-  },
-  {
-    name: 'Hermes equals provider before the end-of-options marker',
-    runtime: 'hermes',
-    arguments: ['--provider=--'],
-  },
 ];
 
 for (const testCase of FLAG_VALUE_CASES) {
@@ -2116,11 +2009,6 @@ for (const testCase of FLAG_VALUE_CASES) {
     const result = runWrapper(sandbox, [testCase.runtime, ...testCase.arguments]);
     const records = readRecords(recordPath);
     const expectedArguments = [];
-    if (testCase.runtime === 'hermes') {
-      expectedArguments.push('chat');
-      if (testCase.model) expectedArguments.push('-m', testCase.model);
-      expectedArguments.push('-q');
-    }
     if (testCase.runtime === 'codex') expectedArguments.push('--no-daemon');
     expectedArguments.push(`${SEED} ${handoffPath}`);
     const expectedFirstArguments = testCase.runtime === 'codex'
@@ -2470,10 +2358,6 @@ test('manual commands preserve carried flags and match automatic relaunch argv',
     { runtime: 'opencode', arguments: ['--model', 'opencode-model', 'initial prompt'] },
     { runtime: 'codex', arguments: ['--model', 'codex-model', 'initial prompt'] },
     { runtime: 'cursor', arguments: ['--model', 'cursor-model', 'initial prompt'] },
-    {
-      runtime: 'hermes',
-      arguments: ['--provider', 'hermes-provider', '--model', 'hermes-model'],
-    },
     { runtime: 'devin', arguments: ['--model', 'devin-model', '--', 'initial prompt'] },
   ];
 
@@ -3125,7 +3009,7 @@ test('wrapper drops the previous hop goal packet when the next note carries none
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GOAL START PROMPT AND HERMES EXPORT
+// GOAL START PROMPT
 // ─────────────────────────────────────────────────────────────────────────────
 
 function claimSeedFor(handoffPath) {
@@ -3206,7 +3090,6 @@ test('a hop on another runtime keeps its claim seed and gets no claim variable',
     assert.ok(records[1].args.includes(claimSeedFor(handoffPath)), runtime);
     assert.ok(!records[1].args.some((argument) => argument.startsWith('/goal')), runtime);
     assert.equal(records[1].env.hasClaimSeed, false, runtime);
-    assert.equal(records[1].env.hasHermesSpecFolder, false, runtime);
     assert.deepEqual(warningLines(result), [], runtime);
   }
 });
@@ -3233,63 +3116,6 @@ test('the claim variable never leaks from an outer session or into the next hop'
   assert.equal(records[1].env.SKILLED_LOOP_CLAIM_SEED, claimSeedFor(handoffPath));
   assert.equal(records[2].env.hasClaimSeed, false);
   assert.ok(records[2].args[0].startsWith(SEED));
-});
-
-test('a Hermes hop with a goal gets HERMES_SPEC_FOLDER and nothing else changes', (t) => {
-  const sandbox = createSandbox(t);
-  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
-  writeGoalNote(sandbox, handoffPath);
-
-  const result = runWrapper(sandbox, ['hermes', 'chat']);
-
-  assert.equal(result.status, 0, result.stderr);
-  const records = readRecords(recordPath);
-  assert.equal(records.length, 2);
-  assert.equal(records[0].env.hasHermesSpecFolder, false);
-  assert.equal(records[1].env.HERMES_SPEC_FOLDER, GOAL_PACKET);
-  assert.deepEqual(records[1].args, ['chat', '-q', claimSeedFor(handoffPath)]);
-  assert.equal(records[1].env.hasClaimSeed, false);
-});
-
-test('a Hermes hop exports no folder with the switch off or without a packet', (t) => {
-  for (const [label, env, noteWithoutGoal] of [
-    ['switch off', { SESSION_RELAUNCH_GOAL: '0' }, false],
-    ['no packet', {}, true],
-  ]) {
-    const sandbox = createSandbox(t);
-    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1', ...env });
-    if (noteWithoutGoal) writeSpecFolderNote(handoffPath, GOAL_PACKET);
-    else writeGoalNote(sandbox, handoffPath);
-
-    assert.equal(runWrapper(sandbox, ['hermes']).status, 0, label);
-
-    const records = readRecords(recordPath);
-    assert.equal(records.length, 2, label);
-    assert.equal(records[1].env.hasHermesSpecFolder, false, label);
-  }
-});
-
-test('a Hermes hop restores the operator folder once a hop carries no goal', (t) => {
-  const sandbox = createSandbox(t);
-  const nextNote = path.join(sandbox.root, 'next-note.md');
-  writeSpecFolderNote(nextNote, GOAL_PACKET);
-  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
-    markers: '*',
-    SESSION_RELAUNCH_MAX_HOPS: '2',
-    HERMES_SPEC_FOLDER: 'specs/operator-chosen',
-    NOTE_REWRITE_ON_INVOCATION: '2',
-    NOTE_REWRITE_SOURCE: nextNote,
-  });
-  writeGoalNote(sandbox, handoffPath);
-
-  const result = runWrapper(sandbox, ['hermes']);
-
-  assert.equal(result.status, 0, result.stderr);
-  const records = readRecords(recordPath);
-  assert.equal(records.length, 3);
-  assert.equal(records[0].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
-  assert.equal(records[1].env.HERMES_SPEC_FOLDER, GOAL_PACKET);
-  assert.equal(records[2].env.HERMES_SPEC_FOLDER, 'specs/operator-chosen');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -3328,7 +3154,6 @@ test('manual first launch with a claim seed exports the note goal packet', (t) =
     assert.deepEqual(record.args, expected(seed), runtime);
     assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET, runtime);
     assert.equal(record.env.hasClaimSeed, false, runtime);
-    assert.equal(record.env.hasHermesSpecFolder, false, runtime);
   }
 });
 
@@ -3341,18 +3166,6 @@ test('a seeded Claude first launch starts on the goal command with the seed in p
   assert.equal(record.env.SKILLED_LOOP_CLAIM_SEED, seed);
   assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
   assert.deepEqual(warningLines(result), []);
-});
-
-test('a seeded Hermes first launch after -q binds the packet as its spec folder', (t) => {
-  const { record, seed } = runSeededFirstLaunch(
-    t, (claimSeed) => ['hermes', 'chat', '-m', 'm1', '-q', claimSeed],
-    { env: { HERMES_SPEC_FOLDER: 'specs/operator-chosen' } },
-  );
-
-  assert.deepEqual(record.args, ['chat', '-m', 'm1', '-q', seed]);
-  assert.equal(record.env.HERMES_SPEC_FOLDER, GOAL_PACKET);
-  assert.equal(record.env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
-  assert.equal(record.env.hasClaimSeed, false);
 });
 
 test('a seeded OpenCode 2 first launch finds the seed after the prepended --standalone', (t) => {
@@ -3394,7 +3207,7 @@ test('manual first launch ignores a seed for a claimed or outside note', (t) => 
     )],
     ['missing note', (sandbox, handoffPath) => fs.rmSync(handoffPath)],
   ];
-  for (const runtime of ['claude', 'hermes']) {
+  for (const runtime of ['claude']) {
     for (const [label, note] of cases) {
       const { record, seed } = runSeededFirstLaunch(t, (claimSeed) => [runtime, claimSeed], {
         note,
@@ -3402,7 +3215,6 @@ test('manual first launch ignores a seed for a claimed or outside note', (t) => 
       assert.deepEqual(record.args, [seed], `${runtime}: ${label}`);
       assert.equal(record.env.hasGoalPacket, false, `${runtime}: ${label}`);
       assert.equal(record.env.hasClaimSeed, false, `${runtime}: ${label}`);
-      assert.equal(record.env.hasHermesSpecFolder, false, `${runtime}: ${label}`);
     }
   }
 

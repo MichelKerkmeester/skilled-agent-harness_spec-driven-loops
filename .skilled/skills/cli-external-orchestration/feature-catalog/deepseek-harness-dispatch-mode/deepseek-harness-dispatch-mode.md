@@ -7,7 +7,7 @@ trigger_phrases:
   - "dsh headless"
   - "delegate to dsh"
   - "cli-deepseek-harness"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DeepSeek Harness Dispatch Mode (dsh)
@@ -69,5 +69,5 @@ The LLM Gateway route answered a keyed run on 2026-11-06 with exit 0 and a `comp
 - Feature file path: `deepseek-harness-dispatch-mode/deepseek-harness-dispatch-mode.md`
 
 Related references:
-- [cli-executor-dispatch-routing.md](../cli-executor-dispatch-routing/cli-executor-dispatch-routing.md) - the hub routing that selects this mode among the eight.
+- [cli-executor-dispatch-routing.md](../cli-executor-dispatch-routing/cli-executor-dispatch-routing.md) - the hub routing that selects this mode among the seven.
 - [cli-dispatch-authorization.md](../cli-dispatch-authorization/cli-dispatch-authorization.md) - the inspector and rule engine that judge a dsh command before it runs.

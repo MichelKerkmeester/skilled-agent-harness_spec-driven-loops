@@ -21,7 +21,6 @@ function readWorkspaceFile(relativePath: string): string {
 describe('claude code native dispatch docs', () => {
   const skillDocs = [
     '.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md',
-    '.hermes/skills/cli-claude-code/SKILL.md',
   ];
 
   it('says a subagent inherits the session effort and cites the official page', () => {

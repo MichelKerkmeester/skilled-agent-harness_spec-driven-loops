@@ -54,7 +54,7 @@ Load the presentation contract before showing the menu, a report, a plan, a dige
 |----------|------------|--------|
 | `--json` | `check` | Print the engine's JSON report and nothing else |
 | `--root <dir>` | `check`, `link` | Work on that repository. Without it the run asks for the path rather than guess one |
-| `--runtimes <list>` | `check`, `link` | Link only these runtimes, from `claude,opencode,codex,cursor,devin,pi,hermes`. `.skilled` is always included |
+| `--runtimes <list>` | `check`, `link` | Link only these runtimes, from `claude,opencode,codex,cursor,devin,pi`. `.skilled` is always included |
 | `--include <list>` | `check`, `link` | Opt-in extras: `repo-rules`, `github`, `utcp`, `env` |
 | `--link-instructions` | `check`, `link` | Link `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` too, instead of leaving them to `/doctor:agents-md` |
 | `--mode <shape>` | `link` | `auto` decides per entry, `whole` links each name as one folder, `merge` builds the real folder and links each entry inside it |

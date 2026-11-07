@@ -8,7 +8,7 @@
 #
 # Usage: source /abs/path/.skilled/bin/skilled-loop-shell.sh
 #
-# Defines claude, pi, opencode, codex, hermes, devin and cursor-agent. Each one runs
+# Defines claude, pi, opencode, codex, devin and cursor-agent. Each one runs
 # `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when stdin and stdout are a
 # terminal, no loop is running yet, the arguments open an interactive session, and a
 # wrapper sits in $PWD or a parent; otherwise it runs the binary itself. A linked
@@ -35,7 +35,7 @@ skilled_loop_resolve() (
     shift
   fi
   case "$runtime" in
-    claude|pi|opencode|codex|hermes|devin|cursor) ;;
+    claude|pi|opencode|codex|devin|cursor) ;;
     *) exit 0 ;;
   esac
   # A session the loop started already relaunches through its own wrapper.
@@ -84,13 +84,6 @@ skilled_loop_first_word_passes() {
       codex:features|codex:help)
       return 0
       ;;
-    # Hermes takes no top-level prompt, so every word but chat is a subcommand.
-    hermes:chat|hermes:-*)
-      return 1
-      ;;
-    hermes:*)
-      return 0
-      ;;
     # A leading Devin word is a subcommand or a path for the desktop app; the
     # terminal prompt only follows `--`.
     devin:-*)
@@ -129,10 +122,6 @@ skilled_loop_flag_passes() {
       return 0
       ;;
     codex:-V|codex:--version|codex:-h|codex:--help)
-      return 0
-      ;;
-    hermes:-z*|hermes:--oneshot|hermes:--oneshot=*|hermes:-Q|hermes:--quiet|\
-      hermes:-V|hermes:--version|hermes:-h|hermes:--help)
       return 0
       ;;
     devin:-p|devin:--print|devin:--print=*|devin:-V|devin:--version|devin:-h|\
@@ -196,11 +185,7 @@ skilled_loop_launch() {
   if [ -t 0 ] && [ -t 1 ]; then
     wrapper=$(skilled_loop_resolve "$runtime" "$@")
   fi
-  if [ -n "$wrapper" ] && [ "$runtime" = 'hermes' ]; then
-    # Hermes reaches the relaunch bridge only through a project plugin, which it loads
-    # behind this switch; the prefix scopes it to the wrapped launch alone.
-    HERMES_ENABLE_PROJECT_PLUGINS=1 bash "$wrapper" "$runtime" "$@"
-  elif [ -n "$wrapper" ]; then
+  if [ -n "$wrapper" ]; then
     bash "$wrapper" "$runtime" "$@"
   else
     command "$binary" "$@"
@@ -213,6 +198,5 @@ function claude { skilled_loop_launch claude claude "$@"; }
 function pi { skilled_loop_launch pi pi "$@"; }
 function opencode { skilled_loop_launch opencode opencode "$@"; }
 function codex { skilled_loop_launch codex codex "$@"; }
-function hermes { skilled_loop_launch hermes hermes "$@"; }
 function devin { skilled_loop_launch devin devin "$@"; }
 function cursor-agent { skilled_loop_launch cursor cursor-agent "$@"; }

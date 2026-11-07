@@ -30,7 +30,7 @@ Report it through GitHub's private vulnerability reporting: open the repository'
 Include what you can of the following:
 
 - The affected file, hook, command or skill, with the commit SHA you tested against
-- The runtime or run surface and its version: Claude Code, Codex, OpenCode, Pi, Devin, Cursor, Hermes or DeepSeek Harness (dsh)
+- The runtime or run surface and its version: Claude Code, Codex, OpenCode, Pi, Devin, Cursor or DeepSeek Harness (dsh)
 - Every setting you changed from the shipped defaults: the permission mode, any dispatch flag and any hook switch set in your shell or in `.skilled/hooks/hook-flags.env`
 - Steps to reproduce, or a proof of concept
 - The impact you expect, such as code execution, credential exposure or a sandbox escape
@@ -89,7 +89,7 @@ Each risk below names the file that sets the behavior, so you can check it yours
 
 ### Dispatched CLIs Auto-Approve
 
-The `cli-*` skills start other AI CLIs without a terminal. A lane that may write runs with approval switched off. The deep-loop fan-out runner in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` passes `--permission-mode dangerous` to Devin and `--yolo` to Hermes for any lane that may write. An OpenCode lane with full access gets `--dangerously-skip-permissions`. `cli-devin` uses `--permission-mode dangerous` for a single dispatch too, unless you name another mode. The DeepSeek Harness route also disables approval for dispatch, but its `--approval-policy never` flag does not confine filesystem access. Select `read-only` or `workspace-write` deliberately, use a disposable `DSH_HOME` and scratch working directory outside the checkout and do not run a dsh dispatch from the repository root. The documented scratch-cwd launch path keeps the repository-root `.env` out of its search path. A dispatched lane learns from its prompt which paths it may write, and nothing in its sandbox enforces that list. In one recorded incident, a review dispatch running with `--dangerously-skip-permissions` deleted 44 files across two phase folders.
+The `cli-*` skills start other AI CLIs without a terminal. A lane that may write runs with approval switched off. The deep-loop fan-out runner in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` passes `--permission-mode dangerous` to Devin for any lane that may write. An OpenCode lane with full access gets `--dangerously-skip-permissions`. `cli-devin` uses `--permission-mode dangerous` for a single dispatch too, unless you name another mode. The DeepSeek Harness route also disables approval for dispatch, but its `--approval-policy never` flag does not confine filesystem access. Select `read-only` or `workspace-write` deliberately, use a disposable `DSH_HOME` and scratch working directory outside the checkout and do not run a dsh dispatch from the repository root. The documented scratch-cwd launch path keeps the repository-root `.env` out of its search path. A dispatched lane learns from its prompt which paths it may write, and nothing in its sandbox enforces that list. In one recorded incident, a review dispatch running with `--dangerously-skip-permissions` deleted 44 files across two phase folders.
 
 ### Installs Run Without A Separate Prompt
 
@@ -142,7 +142,7 @@ In OpenCode, change `"bash"` and `"edit"` under `permission` in `opencode.json` 
 
 ### Choose Dispatch Modes Deliberately
 
-Use a read-only mode for review and research: `--permission-mode plan` for Claude Code and `--mode plan` or `--mode ask` for Cursor. `codex exec` is read-only unless you pass `--sandbox workspace-write`. When a dispatch must write, run it in a fresh git worktree so a stray delete hits a tree you can throw away. `cli-devin` and `cli-hermes` approve tool calls by default, so name a narrower mode when you dispatch them.
+Use a read-only mode for review and research: `--permission-mode plan` for Claude Code and `--mode plan` or `--mode ask` for Cursor. `codex exec` is read-only unless you pass `--sandbox workspace-write`. When a dispatch must write, run it in a fresh git worktree so a stray delete hits a tree you can throw away. `cli-devin` approves tool calls by default, so name a narrower mode when you dispatch it.
 
 ### Pin And Trim MCP Servers
 

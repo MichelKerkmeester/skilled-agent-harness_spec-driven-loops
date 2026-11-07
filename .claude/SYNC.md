@@ -44,7 +44,7 @@ There is no `CLAUDE.md` here or at the repository root. Claude Code reads the ro
 ## 3. WHEN TO SYNC
 
 - An agent changes in `.skilled/agents/` → the `.claude/agents/` twin must be updated in the same commit, or the pre-commit gate blocks you.
-- A new agent is added → add it to both trees and to `agents/README.txt`. Then run the mirror generator so Cursor and Devin pick it up, and the Codex, Pi, Hermes and DeepSeek Harness agent generators for the rest.
+- A new agent is added → add it to both trees and to `agents/README.txt`. Then run the mirror generator so Cursor and Devin pick it up, and the Codex, Pi and DeepSeek Harness agent generators for the rest.
 - A hook is added or rebound → edit `hook-registry.json`, run `sync-hook-registrations.cjs` to render the `hooks` key of `settings.json`, then run the mirror generator to add the matching `hooks/` symlink.
 - A command is added, removed, or changes runtime scope → run the mirror generator; ordinary edits to an already-linked command need no relink.
 - Skills or specs change → nothing to do; they are whole-directory symlinks.
@@ -92,7 +92,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 
 - The same agents, by name, in every runtime that carries agents.
 - Every shared command reachable from Claude's repository command tree. OpenCode-only commands are excluded. The drift check below is authoritative.
-- An agent added here must reach `.skilled/agents`, `.codex/agents`, `.cursor/agents`, `.devin/agents`, `.pi/agents`, `.dsh/agents` and the `agent-<name>` copies in `.hermes/skills`.
+- An agent added here must reach `.skilled/agents`, `.codex/agents`, `.cursor/agents`, `.devin/agents`, `.pi/agents` and `.dsh/agents`.
 - `agents/README.txt` lists every agent present in the directory.
 
 ---

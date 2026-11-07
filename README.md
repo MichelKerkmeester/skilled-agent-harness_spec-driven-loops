@@ -13,7 +13,7 @@ An assistant framework that gives your AI coding agent a memory, a paper trail a
 
 All of it lives inside your own repository, as files you can read and diff.
 
-Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor and Hermes CLI
+Built for Claude Code, Codex, OpenCode, Pi Agent, Devin and Cursor CLI
 
 **What's inside**
 
@@ -64,11 +64,11 @@ Type a prompt and the matching expertise loads before any tool runs. No memorizi
 
 ### 🤖 Agent Library
 
-Eleven specialized agents own focused roles. Eight CLI bridges let a runtime dispatch other AI CLIs as sub-tools, including the experimental DeepSeek Harness target.
+Eleven specialized agents own focused roles. Seven CLI bridges let a runtime dispatch other AI CLIs as sub-tools, including the experimental DeepSeek Harness target.
 
 - A review can fan out across several models at once, with the safest verdict winning
 - The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns
-- The seven bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh target is a separate run surface, for a headless dispatch or an interactive session such as `dsh web`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops
+- The six bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh target is a separate run surface, for a headless dispatch or an interactive session such as `dsh web`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops
 
 ### 🧩 Plugin & Extension Library
 
@@ -175,7 +175,7 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 ### Check The Setup
 
-Open the repository in any of the seven runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes. Then run:
+Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cursor, Devin or Pi. Then run:
 
 ```
 /doctor:setup
@@ -195,7 +195,7 @@ You can also keep Skilled in this one checkout and link it into your own project
 
 This creates a spec folder, plans the work, builds it and saves the session context into the folder as it goes. Add `:with-research` to research before planning. In a later session, `/speckit:resume` picks up where the last one stopped.
 
-Codex, Cursor and Pi spell commands with a hyphen, as in `/speckit-complete`. Hermes runs them from `.hermes/prompts/`, and Devin reaches the same workflow through its `/system-spec-kit` skill.
+Codex, Cursor and Pi spell commands with a hyphen, as in `/speckit-complete`. Devin reaches the same workflow through its `/system-spec-kit` skill.
 
 ### Git Hooks
 
@@ -236,7 +236,7 @@ Open this checkout in your runtime and run:
 It checks that the Spec Kit and Skill Advisor builds exist, and asks four things in one prompt:
 
 1. **Target repo:** the absolute path of your project, for example `/Users/me/code/my-app`
-2. **Runtimes:** any of `claude`, `opencode`, `codex`, `cursor`, `devin`, `pi` and `hermes`, or the ones already in the repo
+2. **Runtimes:** any of `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`, or the ones already in the repo
 3. **Link shape:** `auto`, `whole` or `merge` (see below). `auto` is the one to pick
 4. **Instruction file:** `embed` keeps your repo's own `AGENTS.md` and adds the shipped sections to it, and `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at this checkout's copies
 
@@ -261,7 +261,7 @@ A missing build adds a step 0 with the four `npm` commands from [Install](#insta
 
 ### What Gets Linked
 
-`.skilled` is always linked. Each runtime you pick adds its own folder: `.claude` (plus `.mcp.json`), `.opencode`, `.codex`, `.cursor`, `.devin`, `.pi` or `.hermes`. You can add `repo-rules`, `.github`, `.utcp_config.json` and `.env` with `--include`. Linking `.env` shares this checkout's secrets with every tool started in the project, and the plan says so before you approve it.
+`.skilled` is always linked. Each runtime you pick adds its own folder: `.claude` (plus `.mcp.json`), `.opencode`, `.codex`, `.cursor`, `.devin` or `.pi`. You can add `repo-rules`, `.github`, `.utcp_config.json` and `.env` with `--include`. Linking `.env` shares this checkout's secrets with every tool started in the project, and the plan says so before you approve it.
 
 Each folder gets one of two shapes:
 
@@ -667,7 +667,7 @@ Every loop keeps its progress in files, not in the chat, and those files are the
 
 A loop can spread its iterations across several AI models at once, then merge what they find. Bind executors on the command and each one becomes its own lineage.
 
-- **Many models, one loop:** run the same review or research across native agents and CLI bridges (Codex, Claude Code, OpenCode, Cursor, Devin, Pi, Hermes and DeepSeek Harness) in parallel, each lineage on its own state, with a pool that caps how many run at once
+- **Many models, one loop:** run the same review or research across native agents and CLI bridges (Codex, Claude Code, OpenCode, Cursor, Devin, Pi and DeepSeek Harness) in parallel, each lineage on its own state, with a pool that caps how many run at once
 - **Strongest-restriction merge:** for a review, any lineage that reports an active P0 pulls the merged verdict to FAIL, so the safest reading wins rather than the average one
 - **Supervised, not unattended:** a stall watchdog aborts a lineage that stops emitting progress, a per-lineage cost cap bounds spend, and a dead or rate-limited lineage is tolerated without failing the whole run
 - **One adapter:** every executor kind dispatches through the same shared runner, selected per lineage, so adding a model is a list edit rather than new plumbing. A Cursor, Pi or Devin model must be on the runner's allowlist. DeepSeek Harness accepts only models in its two-route roster
@@ -886,13 +886,13 @@ Run **cross-CLI agent teams from supported runtimes**. Claude Code, OpenCode or 
 
 - **Any model the CLI supports.** Point a bridge at another provider or model and the next dispatch uses it
 - **Built for deep-loop fan-out.** Bind several bridges to one research, review or council run, and each becomes its own lineage with its own state, budget and stall watchdog. The safest verdict wins the merge
-- **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config, and commit hooks plus a CI check keep those mirrors in step with `.skilled/`. Each runtime folder's README says what is generated there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md) and [Hermes](.hermes/README.md)
+- **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config, and commit hooks plus a CI check keep those mirrors in step with `.skilled/`. Each runtime folder's README says what is generated there: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md) and [Devin](.devin/README.md)
 - **Checks before it runs.** A bridge confirms its CLI is installed and usable, so a missing tool stops the route up front
 - **No self-dispatch.** Every bridge but `cli-pi` refuses to dispatch the runtime it runs in, so delegation never loops
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill with eight bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run, and its OpenCode Go route is configured but not verified. All eight bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
+One skill with seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run, and its OpenCode Go route is configured but not verified. All seven bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
 
 &nbsp;
 
@@ -970,7 +970,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 
 ## 10. 🤖 AGENT LIBRARY
 
-11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode and Hermes read `.opencode/agents/` and `.hermes/agents/`, which link to the same `.skilled/agents/` source.
+11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
 
 #### AGENT ORCHESTRATION
 
@@ -1011,7 +1011,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 **Prompt-Improver** - strengthens high-stakes prompts
 
 - Picks the best `sk-prompt` framework, applies DEPTH at the right energy and validates with CLEAR
-- Returns a structured package (`FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, `ESCALATION_NOTES`). Used by the CLI mirror-card pipeline and by `/prompt:improve --agent` (`/prompt-improve` on Codex, Cursor, Pi and Hermes) when inline prompting is too weak
+- Returns a structured package (`FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, `ESCALATION_NOTES`). Used by the CLI mirror-card pipeline and by `/prompt:improve --agent` (`/prompt-improve` on Codex, Cursor and Pi) when inline prompting is too weak
 
 **Design** - owns design decisions and artifacts
 
@@ -1051,7 +1051,7 @@ OpenCode, Pi and Devin inject the slice on every turn, and Cursor injects it at 
 
 - **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the parent `goal.md`'s chat slice to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal. `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal. Show, pause, clear and complete run through the `opencode_goal` tools
-- **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same objective slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
+- **Pi, Cursor, Devin:** the shared core under `.skilled/hooks/goal/` injects the same objective slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, and Devin injects without a management surface. Cursor and Devin still record a turn on the bound record, so neither is read-only
 - **DeepSeek Harness:** `DSH_SPEC_FOLDER` names the packet whose slice the session gets at start. An interactive session also manages the goal through `/goal-dsh` and the `dsh_goal` tool over the same shared core
 - **Guarded by the validator:** a phase parent or top-level packet goal has one limit, 4,000 characters, and fails only past it. A phase child whose goal has no binding row fails too
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.skilled/hooks/goal/README.md` for the model and `.skilled/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
@@ -1061,7 +1061,7 @@ OpenCode, Pi and Devin inject the slice on every turn, and Cursor injects it at 
 
 In-session handover ships off, and nothing about your sessions changes until you turn it on.
 
-When it is on, a session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Hermes hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`.
+When it is on, a session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi and OpenCode hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`.
 
 To turn it on for every runtime, set the flag in `.skilled/hooks/hook-flags.env`, which git ignores, or export it from your shell profile:
 
@@ -1075,9 +1075,8 @@ Then add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute pa
 source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
 ```
 
-- **Per runtime:** `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `HERMES`, `CURSOR` or `DEVIN`, overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off, so `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` hands over everywhere except Claude Code
+- **Per runtime:** `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` or `DEVIN`, overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off, so `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` hands over everywhere except Claude Code
 - **Off:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While it is off, `/speckit:handoff` refuses and the runtime's own auto-compaction handles a full context window
-- **Hermes** also needs `repo-guards` listed under `plugins.enabled` in `~/.hermes/config.yaml`
 
 The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
 
@@ -1127,17 +1126,6 @@ Other entries in `.pi/extensions/`:
 - **`pi-fast-mode-w-subagent-support`** - fast mode with subagent support
 - **Guard bridges:** symlinked entries that run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the in-session handover relaunch
 - **Community packages** via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`, `pi-claude-code-ui`
-
-&nbsp;
-#### Hermes Plugin
-
-Hermes keeps shell hooks in your user-level config, so a repository cannot ship them. It ships one project plugin instead, `.hermes/plugins/repo-guards/`, which runs the same shared cores as the other runtimes and maps their answers onto Hermes's own hook events.
-
-- **Before a tool call, able to stop it:** dispatch preflight, the git message gate and the subagent dispatch guard
-- **After a tool call, as advice on its result:** post-edit quality, the spec-folder notice, the git advisory, the MCP route advisory and the web-page injection screen on `web_extract` results
-- **Each turn and at session start:** the skill advisor brief, the spec-folder gate, the session context, the named persona, the bound packet goal and the worktree, dist-freshness, git-hook and live-sync guards
-- **Before the final answer:** the completion-evidence nudge
-- **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. A `hermes` launch that the shell shim wraps gets the variable set for it, see [In-Session Handover](#in-session-handover). See [`.hermes/SYNC.md`](.hermes/SYNC.md)
 
 &nbsp;
 #### DeepSeek Harness Bundle
@@ -1224,7 +1212,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 **`/speckit:handoff`** - hand the work to a fresh session now
 
 - Writes the handoff note and prepares the relaunch record. Under the wrapper the runtime then restarts in the same terminal and the new session claims the note
-- The only trigger on Cursor and Devin. Claude Code, Codex, Pi, OpenCode and Hermes reach the same steps on their own near the context limit. It refuses while in-session handover is off, see [In-Session Handover](#in-session-handover)
+- The only trigger on Cursor and Devin. Claude Code, Codex, Pi and OpenCode reach the same steps on their own near the context limit. It refuses while in-session handover is off, see [In-Session Handover](#in-session-handover)
 - Outside the wrapper it prints the command that continues the work in a new session
 
 **`/speckit:search`**
@@ -1547,7 +1535,7 @@ The repo runs a live-sync loop around the worktree-per-session model.
 
 **Switches**
 
-- The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. The follower starts with Claude Code, Codex, Cursor, Devin, OpenCode, Pi, Hermes and interactive DeepSeek Harness sessions
+- The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. The follower starts with Claude Code, Codex, Cursor, Devin, OpenCode, Pi and interactive DeepSeek Harness sessions
 - `SYSTEM_LIVE_SYNC_DISABLED=1` disables the whole loop
 - `SPECKIT_AUTOSYNC=0` for the publish leg, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for the reconcile step
 - See `.skilled/skills/sk-git/references/continuous-integration.md` for the full model
@@ -1606,7 +1594,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`cli-external-orchestration`** - ✅ codebase-agnostic
 
-- Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness`. Stack-independent
+- Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Stack-independent
 
 **`cli-classifier`** - ✅ codebase-agnostic
 
@@ -1660,7 +1648,7 @@ The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack)
 - **`opencode.json`** - permissions, the `code_mode` MCP binding and one experimental flag. Used by OpenCode
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only
-- **Runtime folders** - `.claude/`, `.codex/`, `.opencode/`, `.cursor/`, `.pi/`, `.devin/` and `.hermes/`. Each holds a README that separates what is generated from `.skilled/` from what is authored there, and names the command that checks its mirrors: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md), [Hermes](.hermes/README.md)
+- **Runtime folders** - `.claude/`, `.codex/`, `.opencode/`, `.cursor/`, `.pi/` and `.devin/`. Each holds a README that separates what is generated from `.skilled/` from what is authored there, and names the command that checks its mirrors: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md)
 
 &nbsp;
 ### Environment Settings

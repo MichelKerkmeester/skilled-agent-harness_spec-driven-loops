@@ -41,7 +41,7 @@ The 41 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 
 | Check id | Satisfied when |
 |---|---|
-| `stdin-redirect-required` | A headless dispatch (`opencode run`, `pi -p`, `claude -p`, `codex exec`, `devin -p`, `cursor-agent -p`, `hermes chat`, `hermes -z`) closes or redirects stdin (`</dev/null`, heredoc, herestring, a pipe feeding the CLI, or `--query-file` on `hermes chat`); every dispatch in a chain needs its own, and a redirect inside a quoted prompt does not count |
+| `stdin-redirect-required` | A headless dispatch (`opencode run`, `pi -p`, `claude -p`, `codex exec`, `devin -p`, `cursor-agent -p`) closes or redirects stdin (`</dev/null`, heredoc, herestring, or a pipe feeding the CLI); every dispatch in a chain needs its own, and a redirect inside a quoted prompt does not count |
 | `explicit-model-required` | An `opencode run` command passes `-m`/`--model`; every dispatch in a chain needs its own, and a flag inside a quoted prompt does not count |
 | `no-bare-agent-general` | No bare top-level `--agent general` (opencode rejects it at runtime) |
 | `command-flag-for-slash-prompt` | A slash-command-shaped prompt (`/<family>:<name> ...`) is paired with `--command` |
@@ -53,13 +53,6 @@ The 41 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 | `command-v-cursor-agent-required` | A command invoking `cursor-agent` resolves a `cursor-agent` executable on `PATH` |
 | `command-v-devin-required` | A command invoking `devin` resolves a `devin` executable on `PATH` |
 | `command-v-pi-required` | A command invoking `pi` resolves a `pi` executable on `PATH` |
-| `command-v-hermes-required` | A command invoking `hermes` resolves a `hermes` executable on `PATH` |
-| `hermes-yolo-required-for-writes` | A `hermes chat` run whose toolset can execute commands or write (`terminal`, `coding`, `code_execution`, `browser`) passes `--yolo` |
-| `hermes-ignore-rules-required` | Every `hermes chat` command passes `--ignore-rules` |
-| `hermes-explicit-toolsets-required` | `hermes chat` names an explicit `-t`/`--toolsets` list that includes `file` and excludes `delegation` and `memory` |
-| `hermes-no-worktree-flag` | No `--worktree` flag present |
-| `hermes-mcp-config-operator-required` | No `hermes mcp add`/`remove`/`rm`/`install` (an operator step, not a dispatch) |
-| `hermes-hooks-user-level` | No `--accept-hooks` flag present |
 | `jev-stdin-bounded` | A judgment whose state comes from stdin also feeds or closes stdin (`</dev/null`, a pipe, or a heredoc) |
 | `jev-choice-option-cardinality` | A `jev choice` command passes at least two `-o`/`--option` values |
 | `jev-score-level-cardinality` | A `jev score` command passes at least two `-l`/`--level` values |

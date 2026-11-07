@@ -11,7 +11,6 @@
       "cli-cursor",
       "cli-devin",
       "cli-pi",
-      "cli-hermes",
       "cli-deepseek-harness"
     ],
     "outcomes": {
@@ -89,16 +88,6 @@
       ],
       "resources": [
         "cli-pi/SKILL.md"
-      ]
-    },
-    "cli-hermes": {
-      "weight": 4,
-      "classes": [
-        "cli-hermes-aliases",
-        "hermes-dispatch"
-      ],
-      "resources": [
-        "cli-hermes/SKILL.md"
       ]
     },
     "cli-deepseek-harness": {
@@ -251,29 +240,6 @@
         "cli dispatch",
         "cross-ai delegation",
         "executor delegation"
-      ]
-    },
-    "cli-hermes-aliases": {
-      "keywords": [
-        "hermes cli",
-        "hermes agent",
-        "delegate to hermes",
-        "nous hermes",
-        "hermes chat",
-        "cli-hermes",
-        "cli hermes",
-        "hermes coding agent",
-        "hermes headless"
-      ]
-    },
-    "hermes-dispatch": {
-      "keywords": [
-        "hermes dispatch",
-        "hermes oneshot",
-        "hermes query-file",
-        "hermes yolo dispatch",
-        "hermes second opinion",
-        "nous research agent dispatch"
       ]
     },
     "cli-deepseek-harness-aliases": {

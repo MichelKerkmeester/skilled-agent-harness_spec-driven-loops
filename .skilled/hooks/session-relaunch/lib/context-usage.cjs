@@ -388,13 +388,6 @@ function fillFromOpenCodeTokens(tokens) {
     + tokenCount(tokens?.cache?.write);
 }
 
-/** Sum Hermes prompt and cache tokens without counting completion tokens. */
-function fillFromHermesUsage(usage) {
-  return tokenCount(usage?.input_tokens)
-    + tokenCount(usage?.cache_read_tokens ?? usage?.cache_read_input_tokens)
-    + tokenCount(usage?.cache_write_tokens ?? usage?.cache_creation_input_tokens);
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -407,7 +400,6 @@ module.exports = {
   fillRatio,
   fillFromPiUsage,
   fillFromOpenCodeTokens,
-  fillFromHermesUsage,
   readCodexUsage,
   resolveCodexWindow,
 };

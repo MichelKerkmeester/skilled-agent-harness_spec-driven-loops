@@ -1,6 +1,6 @@
 ---
 title: "Shared Dispatch Inspector And Pi Authorization Gate"
-description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all eight executors plus the `cli-jev` judgment shapes, including the print-flagless `cli-hermes` forms and the `dsh` headless forms."
+description: "One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous` or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. Claude, Codex, Devin and Pi call the shared cores directly, Cursor translates its hook events through Claude adapters, and DeepSeek Harness calls the same preflight and audit cores from its repo-guards adapters. It recognizes all seven executors plus the `cli-jev` judgment shapes, including the `dsh` headless forms."
 trigger_phrases:
   - "cli dispatch authorization"
   - "dispatch inspector classification"

@@ -1,5 +1,5 @@
 {
-  "count": 997,
+  "count": 989,
   "mode": "readme",
   "results": [
     {
@@ -107,16 +107,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".github/workflows/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".hermes/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -2281,93 +2271,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-external-orchestration/cli-devin/benchmark/reports/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-external-orchestration/cli-hermes/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-first-pass/README.md",
-      "return_code": 0,
-      "total_issues": 1,
-      "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 11,
-          "line_number": 11,
-          "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
-          "severity": "warning",
-          "type": "render_overview_orientation"
-        }
-      ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-second-pass/README.md",
-      "return_code": 0,
-      "total_issues": 1,
-      "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 11,
-          "line_number": 11,
-          "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
-          "severity": "warning",
-          "type": "render_overview_orientation"
-        }
-      ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-15-phase-008-third-pass/README.md",
-      "return_code": 0,
-      "total_issues": 1,
-      "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 11,
-          "line_number": 11,
-          "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
-          "severity": "warning",
-          "type": "render_overview_orientation"
-        }
-      ]
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -8014,16 +7917,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-spec-kit/runtime/cli/graph/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-spec-kit/runtime/cli/hermes/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

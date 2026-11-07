@@ -91,7 +91,7 @@ Do not invoke the same CLI from within itself, and do not assume auth propagates
 
 The nine executor kinds are owned by `runtime/lib/deep-loop/executor-config.ts`.
 The inline research YAML carries branches for `native`, `cli-claude-code`, `cli-opencode` and `cli-codex`.
-`cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes` and `cli-deepseek-harness` are handled by the shared fan-out adapters.
+`cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` are handled by the shared fan-out adapters.
 Flag compatibility remains in [loop-protocol.md §3](references/protocol/loop-protocol.md).
 
 Executor invariants:

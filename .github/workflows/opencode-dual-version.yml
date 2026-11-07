@@ -30,7 +30,6 @@ on:
       - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
       - '.skilled/skills/cli-external-orchestration/**/*.md'
       - '.opencode/skills/cli-external-orchestration/**/*.md'
-      - '.hermes/skills/cli-opencode/**'
       - '.github/actions/**'
       - '.github/workflows/opencode-dual-version.yml'
   push:
@@ -56,7 +55,6 @@ on:
       - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
       - '.skilled/skills/cli-external-orchestration/**/*.md'
       - '.opencode/skills/cli-external-orchestration/**/*.md'
-      - '.hermes/skills/cli-opencode/**'
       - '.github/actions/**'
       - '.github/workflows/opencode-dual-version.yml'
   workflow_dispatch:

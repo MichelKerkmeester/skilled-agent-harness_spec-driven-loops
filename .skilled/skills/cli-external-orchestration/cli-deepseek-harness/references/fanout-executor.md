@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh deep-loop lineage"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # DeepSeek Harness - Fan-Out Executor
@@ -74,7 +74,7 @@ The harness has no turn or time budget in headless, so the runner's timeout is t
 
 | Entry | Why |
 |---|---|
-| Prefix `LLMGATEWAY_` | The LLM Gateway route's key, the precedent cli-pi and cli-hermes already use |
+| Prefix `LLMGATEWAY_` | The LLM Gateway route's key, the precedent cli-pi already uses |
 | Single key `OPENCODE_API_KEY` | The OpenCode Go route's key |
 
 Every kind also passes the common set: `PATH`, `HOME`, `LANG`, `TMPDIR`, `NODE_PATH`, `TERM`, `USER`, `LOGNAME`, `__CF_USER_TEXT_ENCODING`, `SYSTEM_SPEC_GATE_ENFORCE`, `AI_SESSION_CHILD` and any `LC_*` key. `DSH_HOME` is not in that set on purpose. The runner gives every lineage a fresh home and adds it after the filter, so an inherited one cannot point a leaf at the operator's harness state. The same pass sets the lineage markers the child needs, including `SPECKIT_DEEPSEEK_HARNESS_STATE_DIR` and `SYSTEM_SPEC_GATE_DISABLED`.

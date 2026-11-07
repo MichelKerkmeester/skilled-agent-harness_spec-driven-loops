@@ -40,7 +40,7 @@ Routes two models through the operator's **DevPass** subscription at LLM Gateway
 pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4.1-flash-1017 --thinking max
 ```
 
-Swap the id for `glm-5.3-flash`. Pi no longer carries the 2026-09-10 release; reproduce it through OpenCode or Hermes. GPT-6 Luna is not on this route: Pi reaches it only through the `openai` provider.
+Swap the id for `glm-5.3-flash`. Pi no longer carries the 2026-09-10 release; reproduce it through OpenCode. GPT-6 Luna is not on this route: Pi reaches it only through the `openai` provider.
 
 ### Thinking And Effort
 
@@ -95,7 +95,7 @@ pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4.1-flash-10
 pi -p "reply OK" --provider llmgateway --model llmgateway/glm-5.3-flash --thinking max --mode text
 ```
 
-Expected: the list shows the two `llmgateway` rows, and each dispatch returns a model reply rather than a `400 Provider llmgateway does not support model …` or a `401 Unauthorized`. The older `deepseek-v4.1-flash` is no longer registered here, so pin it on OpenCode or Hermes when a run must reproduce the 2026-09-10 release.
+Expected: the list shows the two `llmgateway` rows, and each dispatch returns a model reply rather than a `400 Provider llmgateway does not support model …` or a `401 Unauthorized`. The older `deepseek-v4.1-flash` is no longer registered here, so pin it on OpenCode when a run must reproduce the 2026-09-10 release.
 
 `pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value, including an unresolved placeholder that the provider will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 

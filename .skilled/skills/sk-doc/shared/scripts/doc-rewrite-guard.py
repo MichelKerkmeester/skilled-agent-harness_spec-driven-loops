@@ -52,7 +52,7 @@ DESCRIPTION = (
 )
 
 CHANGELOG_SEGMENT = '/changelog/'
-SKIP_PREFIXES = ('specs/', '.hermes/')
+SKIP_PREFIXES = ('specs/',)
 # Names that recur in every skill, so a bare mention of one is not evidence that a
 # reference is about this file rather than another skill's copy of it.
 GENERIC_DOC_NAMES = frozenset({'SKILL.md', 'README.md', 'ROUTER.md'})

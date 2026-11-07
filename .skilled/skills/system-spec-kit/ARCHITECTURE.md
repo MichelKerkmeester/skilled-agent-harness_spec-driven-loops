@@ -8,7 +8,7 @@ trigger_phrases:
   - "resume ladder"
   - "spec-kit runtime subsystems"
 importance_tier: "important"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Architecture: system-spec-kit
@@ -78,7 +78,6 @@ system-spec-kit/
 ├── runtime/                # Spec-kit engine plus the CLI workspace
 │   ├── api/                # Public barrel for the CLI workspace
 │   ├── cli/                # CLI generation, validation, retrieval index, sync
-│   │   ├── hermes/         # Hermes prompt and skill-copy generators
 │   │   └── tests/          # CLI suites and golden snapshots (tests/snapshots/)
 │   ├── core/               # Runtime path and config resolution
 │   ├── data/               # Committed trigger index the Gate 1 lookup reads

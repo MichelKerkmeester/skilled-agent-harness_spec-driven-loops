@@ -286,7 +286,6 @@ Post-apply checks
 | Runtime mirrors | [PASS|FAIL] | [output tail] |
 | Codex prompts | [PASS|FAIL] | [output tail] |
 | Pi prompts | [PASS|FAIL] | [output tail] |
-| Hermes prompts | [PASS|FAIL] | [output tail] |
 | Hook installers | [PASS|FAIL|not applicable] | [output tail] |
 ```
 

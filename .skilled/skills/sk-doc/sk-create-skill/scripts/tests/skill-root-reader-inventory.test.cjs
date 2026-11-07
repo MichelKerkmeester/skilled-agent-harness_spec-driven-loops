@@ -36,7 +36,6 @@ const RULED = {
   '.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts': 'include',
   '.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs': 'include',
   '.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py': 'exclude',
-  '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs': 'exclude',
   '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs': 'exclude',
   '.skilled/commands/doctor/scripts/skill-graph-freshness.cjs': 'exclude',
   '.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs': 'exclude',

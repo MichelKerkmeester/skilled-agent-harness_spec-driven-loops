@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 `hooks/classifier-injection-screen/devin/` holds the Devin CLI adapter for the injection screen concern. The adapter runs at `PostToolUse` for the `webfetch` tool. It screens the page text and writes one advisory line to `hookSpecificOutput.additionalContext` when a section flags. The fetch result always reaches the model unchanged.
 
-Devin loads the hook from the registration that `sync-hook-registrations.cjs` renders out of `hook-registry.json`. The Hermes `repo-guards` plugin also runs this adapter for its `web_extract` tool through `transform_tool_result`.
+Devin loads the hook from the registration that `sync-hook-registrations.cjs` renders out of `hook-registry.json`.
 
 ---
 

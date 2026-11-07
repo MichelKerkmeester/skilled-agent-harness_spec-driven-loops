@@ -241,7 +241,6 @@ Dispatch `@prompt-improver`, or run this skill inline, only on an eligible (mode
 | `cli-codex` | GPT Luna | Yes | — |
 | `cli-pi` | any model except Luna | Yes | — |
 | `cli-opencode` | any model except Luna | Yes | — |
-| `cli-hermes` | `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash` or `glm-5.3-flash` through `llmgateway` | Yes | The Hermes roster is closed at these ids; none is Luna, Opus or Fable |
 | `cli-deepseek-harness` | DeepSeek V4.1 Flash through the LLM Gateway or OpenCode Go route patch | No | Experimental mode: no pair is admitted yet. The LLM Gateway route answered a keyed run on 2026-11-06, and OpenCode Go is configured, not verified. The roster is closed at these two routes, and neither is Luna, Opus or Fable |
 | `cli-pi` or `cli-opencode` | Luna | No | Intentional asymmetry: Luna is eligible through `cli-codex` only |
 

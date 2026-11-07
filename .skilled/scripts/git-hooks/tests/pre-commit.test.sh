@@ -763,19 +763,19 @@ else
   echo "FAIL  the authored manifest at the moved path was not staged"; FAIL=$((FAIL + 1))
 fi
 
-# ── 49. the Hermes copy checks run in the mirror gate ──
+# ── 49. the Codex copy checks run in the mirror gate ──
 setup_gate_fixture toolchain
-HERMES_STUBS="$TMP/.opencode/skills/system-spec-kit/runtime/cli/hermes"
-mkdir -p "$HERMES_STUBS"
-printf '%s\n' 'console.log("DRIFT demo-skill"); process.exit(1);' > "$HERMES_STUBS/sync-skills-hermes.cjs"
-printf '%s\n' 'require("fs").appendFileSync("hermes-prompt-calls.log", process.argv.slice(2).join(" ") + "\n");' > "$HERMES_STUBS/sync-prompts-hermes.cjs"
+CODEX_STUBS="$TMP/.opencode/skills/system-spec-kit/runtime/cli/codex"
+mkdir -p "$CODEX_STUBS"
+printf '%s\n' 'console.log("DRIFT demo-agent"); process.exit(1);' > "$CODEX_STUBS/sync-agents.cjs"
+printf '%s\n' 'require("fs").appendFileSync("codex-prompt-calls.log", process.argv.slice(2).join(" ") + "\n");' > "$CODEX_STUBS/sync-prompts.cjs"
 stage_new "notes.md" "note"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
-check "a drifted Hermes skill copy blocks the mirror gate" 1 "$RC" "sync-skills-hermes.cjs failed"
-if grep -qx -- '--check' "$TMP/hermes-prompt-calls.log" 2>/dev/null; then
-  echo "PASS  the Hermes prompt copy check receives --check"; PASS=$((PASS + 1))
+check "a drifted Codex agent copy blocks the mirror gate" 1 "$RC" "sync-agents.cjs failed"
+if grep -qx -- '--check' "$TMP/codex-prompt-calls.log" 2>/dev/null; then
+  echo "PASS  the Codex prompt copy check receives --check"; PASS=$((PASS + 1))
 else
-  echo "FAIL  the Hermes prompt copy check did not receive --check"; FAIL=$((FAIL + 1))
+  echo "FAIL  the Codex prompt copy check did not receive --check"; FAIL=$((FAIL + 1))
 fi
 
 # ══ skill authoring gate ════════════════════════════════════════════════════
@@ -871,13 +871,13 @@ fi
 
 # ── 58. a failed mirror check names the exact node repair ──
 setup_gate_fixture toolchain
-HERMES_STUBS="$TMP/.opencode/skills/system-spec-kit/runtime/cli/hermes"
-mkdir -p "$HERMES_STUBS"
-printf '%s\n' 'console.log("STUB drift"); process.exit(1);' > "$HERMES_STUBS/sync-skills-hermes.cjs"
+REGISTRATION_STUBS="$TMP/.opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors"
+mkdir -p "$REGISTRATION_STUBS"
+printf '%s\n' 'console.log("STUB drift"); process.exit(1);' > "$REGISTRATION_STUBS/sync-hook-registrations.cjs"
 stage_new "notes.md" "note"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a failed mirror check names its exact repair" 1 "$RC" \
-  "Fix: node .*sync-skills-hermes[.]cjs, then git add its output"
+  "Fix: node .*sync-hook-registrations[.]cjs, then git add its output"
 
 # ══ skill authoring gate: index-versus-tree and tool availability ═════════════
 # A restricted PATH of symlinks lets a case remove exactly one tool while every
@@ -1072,7 +1072,7 @@ check "the printed repair clears the block" 0 "$RC"
 
 # ── 76. every guarded skill root and a nested private file are refused ──
 setup_gate_fixture
-for ROOT in .skilled .opencode .claude .pi .devin .hermes .codex .cursor; do
+for ROOT in .skilled .opencode .claude .pi .devin .codex .cursor; do
   stage_new "$ROOT/skills/local-probe/SKILL.md" "private"
 done
 stage_new ".skilled/skills/local-probe/references/deep.md" "private"
@@ -1082,7 +1082,7 @@ if [[ "$RC" -ne 1 ]]; then
 else
   echo "PASS  a private skill under every guarded root is refused"; PASS=$((PASS + 1))
 fi
-for ROOT in .skilled .opencode .claude .pi .devin .hermes .codex .cursor; do
+for ROOT in .skilled .opencode .claude .pi .devin .codex .cursor; do
   if grep -qF "$ROOT/skills/local-probe/SKILL.md" "$TMP/out.log"; then
     echo "PASS  the refusal names $ROOT"; PASS=$((PASS + 1))
   else echo "FAIL  the refusal never named $ROOT"; FAIL=$((FAIL + 1)); fi
@@ -1151,7 +1151,6 @@ PRIVATE_COMMAND_PATHS=(
   ".cursor/commands/local-probe.md"
   ".codex/prompts/local-probe.md"
   ".pi/prompts/local-probe.md"
-  ".hermes/prompts/local-probe.md"
 )
 setup_gate_fixture
 for P in "${PRIVATE_COMMAND_PATHS[@]}"; do stage_new "$P" "private"; done
@@ -1177,7 +1176,7 @@ fi
 
 # ── 84. the doc-version raise runs before the gates that regenerate from doc bytes ──
 # A version raised after the mirror-parity or re-mint gate changes bytes those gates
-# already approved, so the commit ships a stale Hermes copy or a stale manifest.
+# already approved, so the commit ships a stale mirror copy or a stale manifest.
 DOCV_LINE="$(grep -n '^# --- Doc version bump' "$HOOK" | cut -d: -f1)"
 MIRROR_LINE="$(grep -n '^# --- Mirror parity gate' "$HOOK" | cut -d: -f1)"
 REMINT_LINE="$(grep -n '^# --- Compiled-routing auto re-mint' "$HOOK" | cut -d: -f1)"

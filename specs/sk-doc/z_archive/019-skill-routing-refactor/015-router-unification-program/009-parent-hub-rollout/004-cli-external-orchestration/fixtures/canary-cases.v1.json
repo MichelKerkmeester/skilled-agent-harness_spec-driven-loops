@@ -66,21 +66,6 @@
       }
     },
     {
-      "id": "hermes-single",
-      "prompt": "delegate to hermes",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "cli-hermes"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "cli-hermes"
-        ],
-        "expectedResources": []
-      }
-    },
-    {
       "id": "dsh-headless-single",
       "prompt": "run this task through dsh headless",
       "expectedAction": "route",
@@ -212,16 +197,16 @@
       }
     },
     {
-      "id": "hermes-alias-with-intervening-word",
-      "prompt": "delegate this to hermes",
+      "id": "codex-alias-with-intervening-word",
+      "prompt": "delegate this to codex",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedModes": [
-        "cli-hermes"
+        "cli-codex"
       ],
       "gold": {
         "expectedIntents": [
-          "cli-hermes"
+          "cli-codex"
         ],
         "expectedResources": []
       },

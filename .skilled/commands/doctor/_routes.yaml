@@ -234,8 +234,6 @@ routes:
       - 'node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check'
-      - 'node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check  # n/a, not run, while .hermes/ is absent'
-      - 'node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check  # n/a, not run, while .hermes/ is absent'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check  # n/a, not run, while .dsh/ is absent'
@@ -248,7 +246,6 @@ routes:
       - "command catalog drift"
       - "cursor devin codex sync check"
       - "discovery mirror out of sync"
-      - "hermes prompt copy drift"
       - "runtime copies drift from source"
       - "runtime prompts out of date after a pull"
       - "check the runtime mirrors match skilled"
@@ -337,7 +334,7 @@ routes:
     default_target: true
     yaml: doctor-git-setup.yaml
     setup_vars: [execution_mode, tool]
-    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi|hermes|dsh>"]
+    allowed_flags: ["--tool=<claude|codex|devin|cursor|opencode|pi|dsh>"]
     mutating: read-only
     gate3_location: "n/a (read-only setup battery; inspects each sk-git surface in its check-only form and prints repair commands, writes nothing)"
     mcp_tools: []   # script-only battery; no MCP calls
@@ -469,7 +466,7 @@ routes:
     setup_vars: [execution_mode, skill_target, dry_run, scratch_dir]
     allowed_flags: ["--dry-run"]
     mutating: mutates
-    gate3_location: "the staged or converted skill folder .skilled/skills/<name>/ (its SKILL.md, ROUTER.md, graph-metadata.json, leaf-manifest.config.json, scaffold files and renamed resources, or an in-place SKILL.md rewrite beside a new sibling ROUTER.md and the approved edge in its own graph-metadata.json), its backups under .skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/, the one scratch root the plain-skill path uses beside them at .skilled/skills/.state/doctor-sk-skill/<name>/scratch/ and deletes, the skill's changelog folder with its .skilled/changelog/<name> link, and the integration targets the plan records: the advisor graph .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, the compiled skill-graph.json, the advisor cases file and the .hermes/skills mirror"
+    gate3_location: "the staged or converted skill folder .skilled/skills/<name>/ (its SKILL.md, ROUTER.md, graph-metadata.json, leaf-manifest.config.json, scaffold files and renamed resources, or an in-place SKILL.md rewrite beside a new sibling ROUTER.md and the approved edge in its own graph-metadata.json), its backups under .skilled/skills/.state/doctor-sk-skill/<name>/<timestamp>/, the one scratch root the plain-skill path uses beside them at .skilled/skills/.state/doctor-sk-skill/<name>/scratch/ and deletes, the skill's changelog folder with its .skilled/changelog/<name> link, and the integration targets the plan records: the advisor graph .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, the compiled skill-graph.json and the advisor cases file"
     mcp_tools: []   # script-only; no MCP calls
     script_invocations:
       - 'node .skilled/commands/doctor/scripts/sk-skill-convert.cjs plan "{skill_target}"  # read-only: resolves the target, classifies the input and prints the plan, the follow-ups and the backup folder; a plain skill refuses here until its intent phrases are approved'

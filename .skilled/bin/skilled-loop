@@ -214,10 +214,6 @@ effort_is_valid() {
     pi:off|pi:minimal|pi:low|pi:medium|pi:high|pi:xhigh|pi:max)
       return 0
       ;;
-    hermes:none|hermes:minimal|hermes:low|hermes:medium|hermes:high|hermes:xhigh|hermes:max|\
-      hermes:ultra)
-      return 0
-      ;;
   esac
   return 1
 }
@@ -233,7 +229,7 @@ model_is_valid() {
 # An effort belongs to the model it was chosen for, so a hop onto a different model without a
 # usable effort of its own must not replay the launch effort: some models reject an effort
 # chosen for another, and the runtime default is the safe fallback. An empty launch model proves
-# no switch. Hermes is exempt because its sender records a live model but never an effort.
+# no switch.
 # Pi accepts `provider/model` on its launch line but records the bare id beside its provider,
 # so that spelling of the same model is no switch either. One Pi model id under another
 # provider is a different model, so a recorded provider that differs from the launch provider
@@ -244,7 +240,6 @@ model_is_valid() {
 live_model_voids_launch_effort() {
   local runtime_name="$1" launch_model="$2" live_model="$3" live_effort="$4"
   local live_provider="${5:-}" launch_provider="${6:-}"
-  [[ "$runtime_name" != 'hermes' ]] || return 1
   [[ -n "$launch_model" && -n "$live_model" ]] || return 1
   if [[ "$live_model" == "$launch_model" ]]; then
     [[ "$runtime_name" == 'pi' && -n "$live_provider" && -n "$launch_provider" \
@@ -296,7 +291,7 @@ apply_consumed_live_settings() {
     SKILLED_LOOP_MODEL="$accepted_model"
     changed=0
   fi
-  if [[ "$runtime" == 'pi' || "$runtime" == 'hermes' ]] \
+  if [[ "$runtime" == 'pi' ]] \
     && [[ -n "$consumed_live_provider" && -n "$accepted_model" ]] \
     && model_is_valid "$consumed_live_provider"; then
     SKILLED_LOOP_PROVIDER="$consumed_live_provider"
@@ -327,9 +322,6 @@ append_effort_arguments() {
       ;;
     pi)
       launch_arguments+=(--thinking "$SKILLED_LOOP_EFFORT")
-      ;;
-    hermes)
-      launch_arguments+=(--reasoning "$SKILLED_LOOP_EFFORT")
       ;;
   esac
 }
@@ -542,18 +534,6 @@ build_relaunch_arguments() {
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
-    hermes)
-      launch_arguments=(chat)
-      if [[ -n "${SKILLED_LOOP_PROVIDER:-}" ]]; then
-        launch_arguments+=(--provider "$SKILLED_LOOP_PROVIDER")
-      fi
-      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
-        launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
-      fi
-      append_effort_arguments
-      launch_arguments+=(-q "$seed")
-      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
-      ;;
     devin)
       if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
         launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
@@ -610,7 +590,7 @@ runtime=claude
 runtime_command=claude
 if [[ $# -gt 0 ]]; then
   case "$1" in
-    claude|pi|opencode|codex|hermes|devin)
+    claude|pi|opencode|codex|devin)
       runtime="$1"
       runtime_command="$1"
       shift
@@ -637,14 +617,6 @@ opencode_server_seen=0
 # first launch.
 unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER SKILLED_LOOP_EFFORT \
   SESSION_RELAUNCH_GOAL_PACKET SKILLED_LOOP_CLAIM_SEED
-# A Hermes receiver binds the goal packet from this variable, so the operator's own value is
-# kept to put back on a hop that carries no goal.
-hermes_spec_folder_set=0
-hermes_spec_folder_value=''
-if [[ -n "${HERMES_SPEC_FOLDER+x}" ]]; then
-  hermes_spec_folder_set=1
-  hermes_spec_folder_value=$HERMES_SPEC_FOLDER
-fi
 index=0
 option_scan_stopped=0
 skip_next_option=0
@@ -679,8 +651,7 @@ while ((index < original_argument_count)); do
 
       case "$runtime:$argument" in
         claude:--model|pi:--model|opencode:--model|opencode:-m|\
-          codex:-m|codex:--model|cursor:--model|hermes:-m|hermes:--model|\
-          devin:--model)
+          codex:-m|codex:--model|cursor:--model|devin:--model)
           if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
             SKILLED_LOOP_MODEL="$next_argument"
             export SKILLED_LOOP_MODEL
@@ -688,33 +659,33 @@ while ((index < original_argument_count)); do
           fi
           ;;
         claude:--model=*|pi:--model=*|opencode:--model=*|\
-          codex:--model=*|cursor:--model=*|hermes:--model=*|devin:--model=*)
+          codex:--model=*|cursor:--model=*|devin:--model=*)
           if [[ "${argument#--model=}" != -* ]]; then
             SKILLED_LOOP_MODEL="${argument#--model=}"
             export SKILLED_LOOP_MODEL
           fi
           ;;
-        pi:--provider|hermes:--provider)
+        pi:--provider)
           if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
             SKILLED_LOOP_PROVIDER="$next_argument"
             export SKILLED_LOOP_PROVIDER
             skip_next_option=1
           fi
           ;;
-        pi:--provider=*|hermes:--provider=*)
+        pi:--provider=*)
           if [[ "${argument#--provider=}" != -* ]]; then
             SKILLED_LOOP_PROVIDER="${argument#--provider=}"
             export SKILLED_LOOP_PROVIDER
           fi
           ;;
-        claude:--effort|pi:--thinking|hermes:--reasoning)
+        claude:--effort|pi:--thinking)
           if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
             SKILLED_LOOP_EFFORT="$next_argument"
             export SKILLED_LOOP_EFFORT
             skip_next_option=1
           fi
           ;;
-        claude:--effort=*|pi:--thinking=*|hermes:--reasoning=*)
+        claude:--effort=*|pi:--thinking=*)
           if [[ "${argument#*=}" != -* ]]; then
             SKILLED_LOOP_EFFORT="${argument#*=}"
             export SKILLED_LOOP_EFFORT
@@ -810,9 +781,7 @@ for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
     goal_packet=$(seeded_goal_packet "$first_launch_seed")
     if [[ -n "$goal_packet" ]]; then
       export SESSION_RELAUNCH_GOAL_PACKET="$goal_packet"
-      if [[ "$runtime" == 'hermes' ]]; then
-        export HERMES_SPEC_FOLDER="$goal_packet"
-      elif [[ "$runtime" == 'claude' ]] && goal_slice=$(render_goal_slice "$goal_packet"); then
+      if [[ "$runtime" == 'claude' ]] && goal_slice=$(render_goal_slice "$goal_packet"); then
         # Claude takes its goal from a start prompt that is the goal command alone, so the
         # seed moves to the environment for the start hook, as it does on a hop.
         launch_arguments[index]="/goal $goal_slice"
@@ -986,15 +955,6 @@ while true; do
         SKILLED_LOOP_CLAIM_SEED="$seed"
         export SKILLED_LOOP_CLAIM_SEED
       fi
-      if [[ "$runtime" == 'hermes' ]]; then
-        if [[ -n "$goal_packet" ]]; then
-          export HERMES_SPEC_FOLDER="$goal_packet"
-        elif ((hermes_spec_folder_set == 1)); then
-          export HERMES_SPEC_FOLDER="$hermes_spec_folder_value"
-        else
-          unset HERMES_SPEC_FOLDER
-        fi
-      fi
       # The sender's own latest turn beats what the launch line said, and a value that does
       # not pass the runtime's check leaves the launch value in place.
       launch_model="${SKILLED_LOOP_MODEL:-}"
@@ -1013,10 +973,10 @@ while true; do
             "$live_model" >&2
         fi
       fi
-      # Only Pi and Hermes take a provider beside the model, and a model from one provider is
-      # not valid under another, so the two move together.
+      # Only Pi takes a provider beside the model, and a model from one provider is not valid
+      # under another, so the two move together.
       live_provider=$(consumed_field provider)
-      if [[ "$runtime" == 'pi' || "$runtime" == 'hermes' ]] \
+      if [[ "$runtime" == 'pi' ]] \
         && [[ -n "$live_provider" && "$live_model_accepted" == 1 ]]; then
         if model_is_valid "$live_provider"; then
           SKILLED_LOOP_PROVIDER="$live_provider"

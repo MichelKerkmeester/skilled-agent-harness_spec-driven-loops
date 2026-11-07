@@ -1302,11 +1302,11 @@ test('prepare names the selected runtime in its exit-three command', (t) => {
   assert.ok(result.stdout.includes(manualCommand), result.stdout);
 });
 
-test('prepare prints the hermes chat form as its exit-three command', (t) => {
+test('prepare prints the devin seed form as its exit-three command', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
   sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
-  sandbox.env.SKILLED_LOOP_RUNTIME = 'hermes';
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'devin';
 
   const result = runCli(sandbox, [
     'prepare',
@@ -1316,7 +1316,7 @@ test('prepare prints the hermes chat form as its exit-three command', (t) => {
     SESSION_ID,
   ]);
   const manualCommand = [
-    'skilled-loop hermes chat -q "[session-relaunch] ',
+    'skilled-loop devin -- "[session-relaunch] ',
     `claim and continue handoff ${handoffPath}${SPEC_FOLDER_SUFFIX}"`,
   ].join('');
 
@@ -1324,7 +1324,7 @@ test('prepare prints the hermes chat form as its exit-three command', (t) => {
   assert.equal(result.stdout, `${manualCommand}\n`);
 });
 
-test('prepare --runtime hermes prints the hermes manual claim command', (t) => {
+test('prepare --runtime devin prints the devin manual claim command', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
 
@@ -1335,10 +1335,10 @@ test('prepare --runtime hermes prints the hermes manual claim command', (t) => {
     '--session',
     SESSION_ID,
     '--runtime',
-    'hermes',
+    'devin',
   ]);
   const manualCommand = [
-    'skilled-loop hermes chat -q "[session-relaunch] ',
+    'skilled-loop devin -- "[session-relaunch] ',
     `claim and continue handoff ${handoffPath}${SPEC_FOLDER_SUFFIX}"`,
   ].join('');
 
@@ -1363,10 +1363,10 @@ test('prepare exits two when --runtime conflicts with the loop runtime', (t) => 
   sandbox.env.SKILLED_LOOP_RUNTIME = 'codex';
   sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
 
-  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--runtime', 'hermes']);
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--runtime', 'devin']);
 
   assert.equal(result.status, 2, result.stderr);
-  assert.match(result.stderr, /--runtime hermes conflicts with SKILLED_LOOP_RUNTIME codex/);
+  assert.match(result.stderr, /--runtime devin conflicts with SKILLED_LOOP_RUNTIME codex/);
 });
 
 test('should-relaunch exits zero and prints JSON for an armed fresh record', (t) => {
@@ -2181,7 +2181,7 @@ test('claim refuses a handoffs directory whose parent links outside the reposito
 const GOAL_PACKET = SPEC_FOLDER;
 const GOAL_HEADLINE = '# Goal: Session relaunch loop';
 const GOAL_CLAIM_LINE = `Goal packet: ${GOAL_PACKET}`;
-const GOAL_RECORD_RUNTIMES = ['opencode', 'pi', 'devin', 'cursor', 'hermes'];
+const GOAL_RECORD_RUNTIMES = ['opencode', 'pi', 'devin', 'cursor'];
 
 function writeGoalFile(root, packet = GOAL_PACKET) {
   fs.mkdirSync(path.join(root, packet), { recursive: true });

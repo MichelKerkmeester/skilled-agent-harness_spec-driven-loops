@@ -32,7 +32,7 @@ const SPEC_FOLDER_PATTERN =
 const NOTE_STATUSES = Object.freeze(['open', 'claimed', 'done']);
 // The runtimes skilled-loop can launch. The CLI refuses any other, so a runtime the wrapper
 // gains has to be added here or prepare refuses the loops that run it.
-const RUNTIMES = Object.freeze(['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']);
+const RUNTIMES = Object.freeze(['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin']);
 // A record disarmed for either reason means the operator kept the session going after its
 // hand-over was prepared, so the note it names stopped matching the work.
 const WITHDRAWN_DISARM_REASONS = new Set(['cancelled', 'user-message']);
@@ -51,7 +51,7 @@ const CLAIM_SEED_PREFIX = '[session-relaunch] claim and continue handoff ';
 const GOAL_FILENAME = 'goal.md';
 // Runtimes whose goal record names the packet the session is bound to; the lookup differs
 // only in how the record is keyed.
-const GOAL_RECORD_RUNTIMES = Object.freeze(['opencode', 'pi', 'devin', 'cursor', 'hermes']);
+const GOAL_RECORD_RUNTIMES = Object.freeze(['opencode', 'pi', 'devin', 'cursor']);
 // The packet a Claude goal names is read from a bounded tail of the session log, so a long
 // session costs the same as a short one.
 const GOAL_LOG_TAIL_BYTES = 262144;
@@ -63,16 +63,13 @@ const GOAL_SWITCH_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
 const DEFAULT_MAX_HOPS = 10;
 const DEFAULT_MAX_AGE_MIN = 10;
 // How each hook runtime reads a payload that names no event. Claude infers it from the
-// payload's shape; Hermes takes it as its own event, because its plugin bridge can omit
-// the name; Codex refuses it, because every Codex payload names its event.
+// payload's shape; Codex refuses it, because every Codex payload names its event.
 const MISSING_EVENT_POLICIES = Object.freeze({
   claude: 'infer',
-  hermes: 'accept',
   codex: 'refuse',
 });
 const RUNTIME_SEED_OPTIONS = Object.freeze({
   opencode: '--prompt',
-  hermes: 'chat -q',
   devin: '--',
 });
 
@@ -682,7 +679,7 @@ function safeDirectory(directory) {
  * Find the model and effort the sending session is using now, so the relaunched session can
  * start on them. Claude is read from the last main-chain assistant entry, Codex from the last
  * turn context, and Cursor from a CLI config change made during this hop, whose effort rides
- * inside the model. Pi and Hermes hand their values over when they arm. Every reader fails
+ * inside the model. Pi hands its values over when it arms. Every reader fails
  * closed, since a hand-over never fails for want of a setting, and an empty string means the
  * value is not proven.
  *
@@ -1362,8 +1359,6 @@ function payloadEventName(payload, { runtime, expected } = {}) {
   if (policy === 'infer') {
     return matches(typeof payload?.prompt === 'string' ? 'UserPromptSubmit' : 'PostToolUse');
   }
-  // Only a payload that leaves the field out names no event; a present empty one is malformed.
-  if (policy === 'accept' && payload && value === undefined) return expected ?? null;
   return null;
 }
 

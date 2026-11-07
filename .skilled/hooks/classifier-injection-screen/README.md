@@ -17,7 +17,7 @@ trigger_phrases:
 
 The hook runs only when `jev` is on PATH and `jev auth status` passes, so a machine without a stored Jev key never calls the service.
 
-One shared library backs every adapter. Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin, and Pi screens `fetch_content` at `tool_result`; Hermes runs the Devin adapter from its `repo-guards` plugin for `web_extract`. Cursor and Codex carry no adapter: Cursor's `Fetch` post-tool payload carries no page text, and Codex's only web tool runs on the model provider's side.
+One shared library backs every adapter. Claude Code screens `WebFetch` at `PostToolUse`, Devin screens `webfetch` at `PostToolUse`, OpenCode screens `webfetch` in its plugin, and Pi screens `fetch_content` at `tool_result`. Cursor and Codex carry no adapter: Cursor's `Fetch` post-tool payload carries no page text, and Codex's only web tool runs on the model provider's side.
 
 ---
 
@@ -80,7 +80,6 @@ classifier-injection-screen/
 | Devin | `devin/classifier-injection-screen-posttooluse.mjs` | `PostToolUse`, matcher `^webfetch$` | `webfetch` (the page text rides `tool_response.output`) | `hookSpecificOutput.additionalContext` |
 | OpenCode | `.opencode/plugins/classifier-injection-screen.js` (the hub's `opencode/` entry is a browsability symlink) | `tool.execute.after` + `experimental.chat.system.transform` | `webfetch` | Buffered per session, drained on the next transform — the model call that reads the fetch result |
 | Pi | `pi/classifier-injection-screen.ts` (symlinked from `.pi/extensions/`) | `tool_result` | `fetch_content` (registered by the `pi-web-access` package; Pi has no built-in fetch tool) | Advisory text block appended to the tool result |
-| Hermes | the `repo-guards` plugin runs the Devin adapter | `transform_tool_result` | `web_extract` | Advisory appended to the tool result |
 
 Registration lives in `system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json`, and `sync-hook-registrations.cjs` renders it into each runtime's config. Cursor and Codex stay unregistered: Cursor's `Fetch` post-tool payload carries only `url`, `status_code` and `content_length`, and Codex's hosted `web_search` never crosses a local hook.
 
@@ -97,9 +96,6 @@ npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/classifie
 
 # OpenCode plugin suite
 node --test .opencode/plugins/tests/classifier-injection-screen.test.cjs
-
-# Hermes bridge case
-python3 .hermes/plugins/repo-guards/tests/test_repo_guards.py
 
 # registrations match the runtime configs
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check

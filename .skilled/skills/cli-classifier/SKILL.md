@@ -108,7 +108,7 @@ cli-classifier/
 
 `benchmark/injection-screen/score-injection-screen.mjs` measures one question offline: whether Jev's `noul` spots text that tries to instruct an agent better than flag-nothing or a fixed lexical screen. Its default run makes zero model calls, and `--jev` runs the hosted classifier only after its gate passes.
 
-The injection screen runs that measured question as an advisory on Claude Code, Devin, OpenCode, Pi and Hermes. It adds one line when a fetched section reads as instructions aimed at an agent, and never blocks the fetch.
+The injection screen runs that measured question as an advisory on Claude Code, Devin, OpenCode and Pi. It adds one line when a fetched section reads as instructions aimed at an agent, and never blocks the fetch.
 
 `shared/scripts/jev-transport.mjs` answers `choice` and `noul` questions through Pi's classifier runtime first when no transport is named, and through the `jev` CLI wherever Pi's preflight fails. `JEV_TRANSPORT=jev` forces the CLI. `shared/scripts/tests/jev-transport.test.mjs` pins both paths with stubs and no socket.
 

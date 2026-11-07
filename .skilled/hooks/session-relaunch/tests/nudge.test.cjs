@@ -292,7 +292,7 @@ test('handoff text keeps /speckit:save for the claude runtime only', () => {
   assert.ok(claude.includes('`/speckit:save`'));
   assert.equal(claude.includes('generate-context.js'), false);
 
-  for (const runtime of ['pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']) {
+  for (const runtime of ['pi', 'opencode', 'codex', 'cursor', 'devin']) {
     const text = handoffText({
       notePath: NOTE_PATH,
       sessionId: SESSION_ID,

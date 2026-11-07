@@ -7,7 +7,7 @@ trigger_phrases:
   - "spawn fanout lineages"
   - "per-kind state-dir isolation"
   - "cli subprocess fanout dispatch"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Fan-out CLI lineage driver
@@ -37,7 +37,7 @@ the post-subprocess salvage step.
 
 ## 2. HOW IT WORKS
 
-Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`, and `cli-deepseek-harness` (experimental).
+Fully shipped. Supports every CLI executor kind (`EXECUTOR_KINDS` in `lib/deep-loop/executor-config.ts`): `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-deepseek-harness` (experimental).
 Per-lineage subprocess timeout = `min(iterations *
 timeoutSeconds * 2, 4h)`. TSX bootstrap (mirrors `convergence.cjs` pattern) ensures
 TypeScript imports (`parseFanoutConfig`, `expandLineages`) resolve in the CJS context. Exit

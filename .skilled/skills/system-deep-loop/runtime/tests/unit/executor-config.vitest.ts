@@ -29,9 +29,6 @@ import {
   PI_SUPPORTED_MODELS,
   PI_DEFAULT_MODEL,
   isPiModelAllowed,
-  HERMES_SUPPORTED_MODELS,
-  HERMES_DEFAULT_MODEL,
-  isHermesModelAllowed,
   DSH_SUPPORTED_MODELS,
   DSH_DEFAULT_MODEL,
   isDshModelAllowed,
@@ -44,8 +41,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
 
 describe('executor-config', () => {
-  it('defines nine executor kinds including the experimental cli-deepseek-harness kind', () => {
-    expect(EXECUTOR_KINDS).toHaveLength(9);
+  it('defines eight executor kinds including the experimental cli-deepseek-harness kind', () => {
+    expect(EXECUTOR_KINDS).toHaveLength(8);
     expect([...EXECUTOR_KINDS]).toEqual([
       'native',
       'cli-codex',
@@ -54,7 +51,6 @@ describe('executor-config', () => {
       'cli-cursor',
       'cli-devin',
       'cli-pi',
-      'cli-hermes',
       'cli-deepseek-harness',
     ]);
     expect([...EXPERIMENTAL_EXECUTOR_KINDS]).toEqual(['cli-deepseek-harness']);
@@ -82,19 +78,6 @@ describe('executor-config', () => {
       .toThrow(/not supported by executor kind 'cli-deepseek-harness'/);
     expect(() => parseExecutorConfig({ kind: 'cli-deepseek-harness', configDir: '/tmp/dsh-home' }))
       .toThrow(/not supported by executor kind 'cli-deepseek-harness'/);
-  });
-
-  it('allows only confirmed-safe cli-hermes fields', () => {
-    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-hermes']).toEqual(['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona']);
-    expect(parseExecutorConfig({
-      kind: 'cli-hermes',
-      model: 'candidate-model',
-      reasoningEffort: 'max',
-      timeoutSeconds: 120,
-      liveTools: { webSearch: 'live' },
-    })).toMatchObject({ kind: 'cli-hermes', model: 'candidate-model', reasoningEffort: 'max', timeoutSeconds: 120 });
-    expect(() => parseExecutorConfig({ kind: 'cli-hermes', sandboxMode: 'read-only' })).toThrow(/not supported by executor kind 'cli-hermes'/);
-    expect(() => parseExecutorConfig({ kind: 'cli-hermes', configDir: '/tmp/hermes-home' })).toThrow(/not supported by executor kind 'cli-hermes'/);
   });
 
   it('allows only confirmed-safe cli-pi fields', () => {
@@ -374,17 +357,6 @@ describe('executor-config', () => {
 });
 
 describe('executor MCP server list', () => {
-  it('accepts server names on cli-hermes and defaults the list to empty', () => {
-    const config = parseExecutorConfig({
-      kind: 'cli-hermes',
-      model: 'glm-5.3-flash',
-      liveTools: { mcpServers: ['code_mode', 'gitkraken'] },
-    });
-    expect(config.liveTools).toEqual({ webSearch: 'inherit', mcpServers: ['code_mode', 'gitkraken'] });
-    expect(() => assertExecutorMcpServerCapability(config)).not.toThrow();
-    expect(parseExecutorConfig({ kind: 'cli-hermes' }).liveTools.mcpServers).toEqual([]);
-  });
-
   it('lets cli-deepseek-harness mount code_mode and nothing else', () => {
     const mounted = parseExecutorConfig({ kind: 'cli-deepseek-harness', liveTools: { mcpServers: ['code_mode'] } });
     expect(() => assertExecutorMcpServerCapability(mounted)).not.toThrow();
@@ -392,22 +364,21 @@ describe('executor MCP server list', () => {
     expect(() => assertExecutorMcpServerCapability(other)).toThrow(/may name only code_mode; got gitkraken/);
   });
 
-  it('rejects a name that cannot be a Hermes toolset', () => {
+  it('rejects a name that cannot be a toolset name', () => {
     expect(() => parseExecutorConfig({
-      kind: 'cli-hermes',
+      kind: 'cli-deepseek-harness',
       liveTools: { mcpServers: ['code mode'] },
     })).toThrow(ExecutorConfigError);
   });
 
-  it('refuses a non-empty list on every other executor kind and any reserved toolset name', () => {
-    const perLineageKinds = ['cli-hermes', 'cli-deepseek-harness'];
-    for (const kind of EXECUTOR_KINDS.filter((candidate) => !perLineageKinds.includes(candidate))) {
+  it('refuses a non-empty list on every kind but cli-deepseek-harness and rejects names outside its roster', () => {
+    for (const kind of EXECUTOR_KINDS.filter((candidate) => candidate !== 'cli-deepseek-harness')) {
       const config = parseExecutorConfig({ kind, liveTools: { mcpServers: ['code_mode'] } });
-      expect(() => assertExecutorMcpServerCapability(config, ['lineages', 0])).toThrow(/only cli-hermes and cli-deepseek-harness name MCP servers/);
+      expect(() => assertExecutorMcpServerCapability(config, ['lineages', 0])).toThrow(/only cli-deepseek-harness names MCP servers/);
     }
     for (const reserved of ['delegation', 'Memory', 'clarify']) {
-      const config = parseExecutorConfig({ kind: 'cli-hermes', liveTools: { mcpServers: [reserved] } });
-      expect(() => assertExecutorMcpServerCapability(config)).toThrow(/reserved toolset/);
+      const config = parseExecutorConfig({ kind: 'cli-deepseek-harness', liveTools: { mcpServers: [reserved] } });
+      expect(() => assertExecutorMcpServerCapability(config)).toThrow(ExecutorConfigError);
     }
   });
 });
@@ -437,8 +408,8 @@ describe('executor web-search policy', () => {
 
   it('carries an agent persona only for the kind that declares it', () => {
     expect(parseExecutorConfig({
-      kind: 'cli-hermes',
-      model: 'glm-5.3-flash',
+      kind: 'cli-deepseek-harness',
+      model: 'deepseek-v4.1-flash-1017',
       agentPersona: 'markdown',
     }).agentPersona).toBe('markdown');
     // A kind without persona support must reject the field rather than imply it was applied.
@@ -447,7 +418,7 @@ describe('executor web-search policy', () => {
       model: 'deepseek-v4.1-flash-1017',
       agentPersona: 'markdown',
     })).toThrowError(/agentPersona.*not supported by executor kind 'cli-pi'/);
-    expect(parseExecutorConfig({ kind: 'cli-hermes', model: 'glm-5.3-flash' }).agentPersona).toBeNull();
+    expect(parseExecutorConfig({ kind: 'cli-deepseek-harness', model: 'deepseek-v4.1-flash-1017' }).agentPersona).toBeNull();
   });
 
   it('declares every executor-kind by policy cell explicitly', () => {
@@ -463,7 +434,6 @@ describe('executor web-search policy', () => {
       'cli-cursor': { inherit: true, disabled: false, cached: false, live: false },
       'cli-devin': { inherit: true, disabled: false, cached: false, live: false },
       'cli-pi': { inherit: true, disabled: false, cached: false, live: false },
-      'cli-hermes': { inherit: true, disabled: true, cached: false, live: true },
       'cli-deepseek-harness': { inherit: true, disabled: false, cached: false, live: false },
     });
   });
@@ -482,11 +452,10 @@ describe('executor web-search policy', () => {
       'cli-cursor': true,
       'cli-devin': false,
       'cli-pi': false,
-      'cli-hermes': false,
       'cli-deepseek-harness': true,
     });
-    // Devin, Pi, Hermes, and OpenCode have no preventive OS sandbox.
-    expect(['cli-devin', 'cli-pi', 'cli-hermes', 'cli-opencode'].every(
+    // Devin, Pi, and OpenCode have no preventive OS sandbox.
+    expect(['cli-devin', 'cli-pi', 'cli-opencode'].every(
       (kind) => EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY[kind as keyof typeof EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY] === false,
     )).toBe(true);
     // Every kind that accepts sandboxMode as a supported field but has no preventive
@@ -1075,47 +1044,6 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   it('rejects the retired Cline and MiMo v2.6 routes', () => {
     for (const model of ['cline-pass/deepseek-v4.1-flash', 'mimo-v2.6-pro', 'mimo-v2.6-flash']) {
       expect(isPiModelAllowed(model)).toBe(false);
-    }
-  });
-});
-
-describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
-  // Hermes and Pi reach the same gateway account, so the rosters share their bare literals,
-  // except that Hermes keeps the undated DeepSeek release, which pi no longer registers.
-  it('lists the gateway bare literals, keeps the undated DeepSeek release and keeps the retired MiMo id out', () => {
-    expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual([
-      'deepseek-v4.1-flash', 'deepseek-v4.1-flash-1017', 'glm-5.3-flash',
-      'minimax-m3', 'qwen3.8-max',
-    ]);
-    expect(isHermesModelAllowed('mimo-v2.6-pro')).toBe(false);
-    // GPT models run only on the GPT provider, never through the gateway Hermes is pinned to.
-    expect(isHermesModelAllowed('gpt-6-luna')).toBe(false);
-    expect(isHermesModelAllowed('gpt-6-sol')).toBe(false);
-  });
-
-  it('defaults to deepseek-v4.1-flash-1017, which is itself an allowed model', () => {
-    expect(HERMES_DEFAULT_MODEL).toBe('deepseek-v4.1-flash-1017');
-    expect(isHermesModelAllowed(HERMES_DEFAULT_MODEL)).toBe(true);
-  });
-
-  it('accepts every allowlisted id and rejects out-of-roster ids, aliases and provider-prefixed forms', () => {
-    for (const model of HERMES_SUPPORTED_MODELS) {
-      expect(isHermesModelAllowed(model)).toBe(true);
-    }
-    expect(isHermesModelAllowed('gpt-3.5-turbo')).toBe(false);
-    expect(isHermesModelAllowed('auto')).toBe(false);
-    expect(isHermesModelAllowed('llmgateway/deepseek-v4.1-flash')).toBe(false);
-  });
-
-  // The two flash families are served only at their max thinking tier, so a requested effort
-  // is pinned up for them. The rest of the roster honours the effort a lineage asks for, and
-  // asserting otherwise would silently upgrade every dispatch to the most expensive tier.
-  it('pins the flash families to max and leaves the rest of the roster alone', () => {
-    for (const model of ['deepseek-v4.1-flash', 'glm-5.3-flash']) {
-      expect(pinReasoningEffortForModel(model, 'high')).toBe('max');
-    }
-    for (const model of ['minimax-m3', 'qwen3.8-max']) {
-      expect(pinReasoningEffortForModel(model, 'high')).toBe('high');
     }
   });
 });

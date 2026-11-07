@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
   - "jev judgment hub"
-version: 0.8.5.0
+version: 0.8.6.0
 ---
 
 # cli-classifier
@@ -71,7 +71,7 @@ Once `jev auth status` passes, two features ask Jev on their own:
 | Feature | Where it runs | Turn it off |
 |---|---|---|
 | Citation drift advisory | End of `validate_document.py`'s human report | `JEV_FEATURE_CITE_DRIFT=0` |
-| Injection screen | Claude Code, Devin, OpenCode, Pi, and Hermes, after each fetched page | `JEV_FEATURE_INJECTION_SCREEN=0` |
+| Injection screen | Claude Code, Devin, OpenCode and Pi, after each fetched page | `JEV_FEATURE_INJECTION_SCREEN=0` |
 
 `JEV_FEATURES=0` turns both off. A switch is read from the environment first and then from `.skilled/hooks/hook-flags.env`. None of them blocks work, and a failed call leaves the path as it would be without Jev.
 

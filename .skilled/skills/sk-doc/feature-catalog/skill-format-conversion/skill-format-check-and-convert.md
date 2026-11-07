@@ -6,7 +6,7 @@ trigger_phrases:
   - "how far is a skill from the skilled format"
   - "convert a skill in place"
   - "/doctor:sk-skill"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Skill Format Check And Convert (/doctor:sk-skill)
@@ -33,7 +33,7 @@ For an older Skilled skill the write moves the trailing `MACHINE ROUTER` section
 
 For a plain skill the run stages the source under its own frontmatter name, renders `ROUTER.md` from the router template with one intent and a resource map built from the `references/` links the body already carries, and lets the workflow reshape `SKILL.md` into WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and REFERENCES. A preservation check then proves that every original non-blank, non-heading body line appears in the new `SKILL.md`, in `ROUTER.md` or in a reference file, and a lost line stops the run. The agent output, the preservation snapshot and the staging copy share one scratch root under `.skilled/skills/.state/`, in `doctor-sk-skill/<name>/scratch/`, which the run deletes when a question is declined and again once it has reported. The reference and asset markdown gain the five-field frontmatter plus a version, and a non-kebab path is renamed with its links rewritten. The root metadata comes from the scaffolder and is copied only where it is absent, so an authored file is never overwritten, and the intent signals are the phrases the operator approved rather than the slug defaults. Fewer than eight approved phrases stops the plan.
 
-The last steps run the root metadata generator, regenerate the derived blocks, then run the strict format gate and the completion gate. Integration runs only after both gates pass: the advisor scan, the compiled skill graph, a warm routing probe on three approved phrases plus the description budget row, proposed regression rows, the Hermes skill mirror and the changelog file and link. A runtime directory that is absent reports `n/a` and is never created.
+The last steps run the root metadata generator, regenerate the derived blocks, then run the strict format gate and the completion gate. Integration runs only after both gates pass: the advisor scan, the compiled skill graph, a warm routing probe on three approved phrases plus the description budget row, proposed regression rows and the changelog file and link. The runtime mirror row reports `n/a`, because every runtime skills mirror is a whole-directory link to the canonical root.
 
 A conversion refuses a hub candidate rather than guessing. A `mode-registry.json` or `hub-router.json` declaration, a nested packet `SKILL.md`, a `local-` prefixed name, an `agent-` prefixed name, a name that collides with another root and a description past 130 characters each stop the run with its own reason and no write, and the hub refusal prints the `/create:skill-parent` line because hub structure belongs to that command. A skill whose `ROUTER.md` already declares the router skips the move entirely and receives the frontmatter normalization alone, and a run on an already converted skill reports that no conversion is needed.
 

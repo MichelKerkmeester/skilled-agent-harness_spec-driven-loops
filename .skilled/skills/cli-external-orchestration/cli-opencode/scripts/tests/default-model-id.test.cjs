@@ -26,10 +26,7 @@ const SKILL_ROOT = path.resolve(__dirname, '..', '..');
 const ROSTER = path.join(SKILL_ROOT, 'references', 'providers-and-models.md');
 const SKILL = path.join(SKILL_ROOT, 'SKILL.md');
 
-// The generated runtime copies ship outside the skill root, so they are found and
-// reported from the repository root instead.
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
-const HERMES_SKILL = path.join(REPO_ROOT, '.hermes', 'skills', 'cli-opencode', 'SKILL.md');
 
 // The repository's own OpenCode config, which selects the model every dispatch in this
 // checkout runs unless a flag overrides it.
@@ -169,10 +166,6 @@ function relativeToSkillRoot(file) {
   return path.relative(SKILL_ROOT, file).split(path.sep).join('/');
 }
 
-function relativeToRepoRoot(file) {
-  return path.relative(REPO_ROOT, file).split(path.sep).join('/');
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. THE ROSTER IS THE SINGLE SOURCE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -264,10 +257,6 @@ test('no current doc names the retired opencode-go id or its bare slug', () => {
   };
 
   for (const file of documents(SKILL_ROOT)) scan(file, relativeToSkillRoot(file));
-
-  // The Hermes runtime carries a generated copy of this skill, so the same id must not
-  // reappear there; a checkout that has not built it yet has nothing to scan.
-  if (fs.existsSync(HERMES_SKILL)) scan(HERMES_SKILL, relativeToRepoRoot(HERMES_SKILL));
 
   assert.equal(
     offenders.join('\n'),

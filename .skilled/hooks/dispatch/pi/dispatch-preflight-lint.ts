@@ -47,7 +47,7 @@ const MAX_CAPTURED_SESSIONS = 64;
 // `blocklist`, `denylist`) refuse without any verb, and `w/o` refuses because a reader expands
 // it to `without`; it is matched as a token, so the slash is never read as a word boundary.
 const REFUSAL_PATTERN = /\b(?:\w*n't|do not|don'?t|dont|never|avoid|avoids|avoided|avoiding|without|not|cannot|can not|must not|mustn't|should not|shouldn't|will not|won't|stop|stops|stopped|stopping|skip|skips|skipped|skipping|refuse|refuses|refused|refusing|ban|bans|banned|banning|drop|drops|dropped|dropping|forget|forgets|forgot|forgetting|exclude|excludes|excluded|excluding|forbid|forbids|forbade|forbidding|forbidden|prohibit|prohibits|prohibited|prohibiting|disallow|disallows|disallowed|disallowing|block|blocks|blocked|blocking|prevent|prevents|prevented|preventing|reject|rejects|rejected|rejecting|deny|denies|denied|denying|veto|vetoes|vetoed|vetoing|cease|ceases|ceased|ceasing|quit|quits|quitting|nobody|no one|none|no|nor|neither|instead of|rather than|except|other than|apart from|aside from|besides|off-limits|off limits|anything but|everything but|all but|prohibition|prohibitions|blocklist|blocklisted|blacklist|blacklisted|denylist|denylisted|w\/o|nope|nah|scratch that|never mind|cancel|cancelled|canceled)\b/i;
-const EXECUTOR_NAME_SOURCE = '(?:cli-[\\w-]+|cursor-agent|opencode|claude|codex|devin|cursor|pi|hermes|jev)';
+const EXECUTOR_NAME_SOURCE = '(?:cli-[\\w-]+|cursor-agent|opencode|claude|codex|devin|cursor|pi|jev)';
 // The only sentences that both refuse and still authorize: `not <other>, use <executor>` and
 // `not <other> but <executor>`, matched whole so a further clause or list item refuses again.
 // The refused name is any single word, because the registry below decides which words are

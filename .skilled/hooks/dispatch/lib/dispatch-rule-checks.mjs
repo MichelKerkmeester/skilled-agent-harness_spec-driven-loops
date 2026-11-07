@@ -71,7 +71,7 @@ const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; //
 // closes no stdin of its own must be covered by one.
 const PIPE_FED_DISPATCH = new RegExp(
   String.raw`\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|`
-    + String.raw`cursor-agent|hermes|dsh|npx)\b`,
+    + String.raw`cursor-agent|dsh|npx)\b`,
   'g',
 );
 
@@ -180,10 +180,6 @@ const HEADLESS_DISPATCH_SHAPES = [
   /\bcodex\s+exec\b/,
   /\bdevin\s+(?:[^|;&]*\s)?-p\b/,
   /\bcursor-agent\s+(?:[^|;&]*\s)?-p\b/,
-  // Hermes has no print flag; its headless forms are `hermes chat` with a query flag and
-  // the top-level `-z` oneshot.
-  /\bhermes\s+chat\b(?:[^|;&]*\s)?(?:-q|--query|--query-file|--oneshot)\b/,
-  /\bhermes\s+(?:[^|;&]*\s)?-z\b/,
   DSH_HEADLESS_SHAPE,
   DSH_NPX_HEADLESS_SHAPE,
 ];
@@ -491,19 +487,8 @@ function dshPackageVersions(command) {
   return versions;
 }
 
-const HERMES_CHAT = /\bhermes\s+chat\b/;
 // Pi's headless shape, reused by the two pi-specific checks below.
 const PI_PRINT = /\bpi\s+(?:[^|;&]*\s)?(?:-p|--print)\b/;
-// `--query-file` is Hermes's own stdin contract: `-` reads the prompt from stdin and a
-// path reads a file, and either way the run never waits on an inherited terminal stdin.
-const HERMES_STDIN_HANDLED = /--query-file(\s|=)/;
-// Toolsets whose presence means the run can execute commands, so `--yolo` is needed: only a
-// flagged terminal or code action hits Hermes's approval gate. `file` is deliberately absent
-// because ordinary file writes are never gated and a read-only leaf keeps `file` for reading.
-const HERMES_WRITE_TOOLSETS = /(?:^|[\s=,])(?:terminal|coding|code_execution|browser)(?:[\s,]|$)/;
-// Hermes reads files only through the `file` toolset; `search` is web search. A list without
-// it yields a leaf that cannot read anything and still exits 0 with empty stdout.
-const HERMES_FILE_TOOLSET = /(?:^|,)file(?:,|$)/;
 
 // Jev's judgment shapes. `jev` has no print flag and no headless subcommand: the subcommand IS the
 // dispatch, exactly as `codex exec` is for codex, so membership here is the evidence.
@@ -523,22 +508,6 @@ const JEV_INLINE_STATE = /(?:^|\s)(?:-s|--state)(?:\s+|=)(?!(?:-|$))[^\s"']+/;
 function repeatedFlagCount(command, names) {
   const pattern = new RegExp(`(?:^|\\s)(?:${names})(?:\\s+|=)`, 'g');
   return (command.match(pattern) || []).length;
-}
-
-// Some checks have a legitimate negative control: a scenario proving the refusal exists must
-// issue the shape that gets refused. Testing the delegation guard needs the delegation
-// toolset; proving a read-nothing leaf needs no reader; proving the approval gate needs a
-// write toolset without the approval flag. Without a way to say so, those scenarios are
-// permanently un-runnable, and an operator who cannot run the guard's own proof stops
-// trusting the guard. The marker is an explicit env prefix, so it cannot appear by accident
-// and `grep` finds every use. The command text is model-writable, so the marker counts only
-// when the operator opts the guard's own process in; a dispatch alone never can.
-const NEGATIVE_CONTROL = /(?:^|\s)SPECKIT_DISPATCH_NEGATIVE_CONTROL=1(?:\s|$)/;
-const NEGATIVE_CONTROL_ALLOW_ENV = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED';
-
-/** A negative control counts only when the operator allowed it for the guard's own process. */
-function negativeControlActive(cmd) {
-  return process.env[NEGATIVE_CONTROL_ALLOW_ENV] === '1' && NEGATIVE_CONTROL.test(cmd);
 }
 
 /**
@@ -603,9 +572,7 @@ export const CHECKS = {
     const texts = dispatchArgumentTexts(cmd);
     const headless = texts.filter((text) => HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(text)));
     const held = headless.length > 0 ? headless : [blankQuotedSpans(cmd)];
-    // Hermes reads its prompt through --query-file (a path, or `-` for stdin), never waiting on a terminal.
-    const unclosed = held.filter((text) => !STDIN_REDIRECT.test(text)
-      && !(HERMES_CHAT.test(text) && HERMES_STDIN_HANDLED.test(text)));
+    const unclosed = held.filter((text) => !STDIN_REDIRECT.test(text));
     // One pipe can feed only one run, so more unclosed runs than pipes means at least one run
     // inherits an open stdin and can hang with no output.
     return unclosed.length <= pipeFed;
@@ -658,46 +625,7 @@ export const CHECKS = {
   'command-v-cursor-agent-required': binaryOnPathCheck('cursor-agent', /\bcursor-agent\s+/),
   'command-v-devin-required': binaryOnPathCheck('devin', /\bdevin\s+/),
   'command-v-pi-required': binaryOnPathCheck('pi', /\bpi\s+/),
-  'command-v-hermes-required': binaryOnPathCheck('hermes', /\bhermes\s+/),
   'command-v-dsh-required': binaryOnPathCheck('dsh', /(?:^|[\s;&|(])dsh\s+/),
-  // A headless `hermes chat` without --yolo blocks any tool call Hermes flags as dangerous
-  // (nobody is present to approve it), so a run given a write-capable toolset could fail a
-  // flagged step mid-task. Ordinary writes run either way; read-only runs (no write toolset
-  // named) are the intended --yolo-less shape and pass.
-  'hermes-yolo-required-for-writes': (cmd) => {
-    if (!HERMES_CHAT.test(cmd)) return true;
-    if (negativeControlActive(cmd)) return true; // a scenario proving the gate must trip it
-    const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
-    if (!toolsets) return true; // no explicit list: the toolset rule reports that case
-    if (!HERMES_WRITE_TOOLSETS.test(toolsets[1])) return true;
-    return /(^|\s)--yolo(\s|$)/.test(cmd);
-  },
-  // Without --ignore-rules Hermes injects SOUL.md, its memories, session search and the CWD
-  // instruction files into the leaf prompt, bleeding prior sessions into the task.
-  // A live A/B under --ignore-rules proved the skill preload survives the flag: with -s the
-  // session quoted the preloaded text, without it the same prompt returned no preload. The
-  // former carve-out for -s therefore sanctioned the exact context bleed this rule prevents.
-  'hermes-ignore-rules-required': (cmd) => !HERMES_CHAT.test(cmd)
-    || /(^|\s)--ignore-rules(\s|$)/.test(cmd),
-  // Hermes's stock roster enables `delegation` and `memory`; a leaf must name its toolsets and
-  // leave both out, or it can spawn sub-agents outside the runner's boundary and write memories.
-  'hermes-explicit-toolsets-required': (cmd) => {
-    if (!HERMES_CHAT.test(cmd)) return true;
-    if (negativeControlActive(cmd)) return true; // a scenario proving the refusal must trip it
-    const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
-    if (!toolsets) return false;
-    if (/(?:^|,)(?:delegation|memory)(?:,|$)/.test(toolsets[1])) return false;
-    return HERMES_FILE_TOOLSET.test(toolsets[1]);
-  },
-  // --worktree runs `git worktree add` inside the repository, which the fan-out
-  // write-containment guard attributes to the lineage and reverts.
-  'hermes-no-worktree-flag': (cmd) => !HERMES_CHAT.test(cmd) || !/(^|\s)--worktree(\s|$)/.test(cmd),
-  // MCP servers are configured only in the user-level config; a dispatch that adds one is
-  // performing an operator step, not a task.
-  'hermes-mcp-config-operator-required': (cmd) => !/\bhermes\s+mcp\s+(?:add|remove|rm|install)\b/.test(cmd),
-  // Shell hooks are user-level with a consent allowlist; --accept-hooks blesses whatever the
-  // operator's config declares, so a dispatch never passes it.
-  'hermes-hooks-user-level': (cmd) => !/\bhermes\b/.test(cmd) || !/(^|\s)--accept-hooks(\s|$)/.test(cmd),
   // Jev reads its state from stdin by default, so a dispatch that neither passes an inline state
   // nor redirects stdin blocks on a terminal that will never produce the EOF it waits for.
   'jev-stdin-bounded': (cmd) => {

@@ -1442,7 +1442,7 @@ test('killer timeout notification uses the runtime seed form', async (t) => {
   const target = startPersistentProcess(sandbox);
   await new Promise((resolve) => target.once('spawn', resolve));
   sandbox.env.SKILLED_LOOP_ID = loopId;
-  createRelaunchRecord(sandbox, loopId, 'hermes', handoffPath);
+  createRelaunchRecord(sandbox, loopId, 'devin', handoffPath);
 
   const realSpawnSync = childProcess.spawnSync;
   const notifications = [];
@@ -1471,7 +1471,7 @@ test('killer timeout notification uses the runtime seed form', async (t) => {
     );
     assert.ok(notification, 'osascript should receive a quoted notification string');
     const expected = [
-      'skilled-loop hermes chat -q "[session-relaunch] ',
+      'skilled-loop devin -- "[session-relaunch] ',
       `claim and continue handoff ${handoffPath}${SPEC_FOLDER_SUFFIX}"`,
     ].join('');
     assert.equal(JSON.parse(notification[1]), expected);

@@ -48,10 +48,6 @@ const VERSION_CORPUS = JSON.parse(
   fs.readFileSync(path.join(HERE, 'opencode-version-corpus.json'), 'utf8'),
 );
 
-// The correct Hermes headless prefix, and the same one missing the rules flag. Assembled
-// rather than written whole so the fixtures below read as one difference each.
-const HERMES_NO_RULES = 'hermes chat -Q --oneshot --query-file p.md --source tool';
-const HERMES_BASE = `${HERMES_NO_RULES} --ignore-rules`;
 const evaluateV1 = (command, rules) => evaluate(command, rules, { version: 'v1' });
 
 function writeExecutable(directory, name, lines) {
@@ -608,48 +604,12 @@ test('predicate bypasses: equals-form flags and unquoted slash prompts are caugh
   assert.deepEqual(ids('opencode run -m p/m "read /tmp/x:y" </dev/null'), []);
 });
 
-test('hermes headless shapes need stdin handled: --query-file counts, a bare -q does not', () => {
-  const stdin = CHECKS['stdin-redirect-required'];
-  assert.equal(stdin('hermes chat -Q --oneshot -q "task"'), false);
-  assert.equal(stdin('hermes chat -Q --oneshot -q "task" </dev/null'), true);
-  assert.equal(stdin('hermes chat -Q --oneshot --query-file prompt.md --yolo'), true);
-  assert.equal(stdin('cat prompt.md | hermes chat -Q --oneshot --query-file -'), true);
-  assert.equal(stdin('hermes -z "task"'), false);
-  assert.equal(stdin('hermes skills list'), true); // not a dispatch shape
-});
-
 test('dsh prompt text does not hide another headless runtime missing stdin handling', () => {
   const stdin = CHECKS['stdin-redirect-required'];
   assert.equal(stdin('opencode run "explain dsh --profile headless"'), false);
   assert.equal(stdin('claude -p "explain dsh --profile headless"'), false);
   assert.equal(stdin('npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -'), false);
   assert.equal(stdin('cat prompt.md | npx -y @deepseek-ai/dsh@0.2.2-rc.1 --profile headless --json -'), true);
-});
-
-test('hermes rules discriminate on the flags the packet contract pins', () => {
-  const CH = path.join(CLI_ORCHESTRATION, 'cli-hermes/SKILL.md');
-  const rules = readHardRules(CH).filter((r) => r.check !== 'command-v-hermes-required');
-  const ids = (cmd) => evaluateV1(cmd, rules).map((v) => v.id).sort();
-  const good = 'hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --ignore-rules --source tool -t terminal,file,skills,todo,web --yolo';
-  assert.deepEqual(ids(good), []);
-  // A read-only run names no terminal toolset, so it may omit --yolo; `file` alone is reading.
-  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --ignore-rules -t file,todo'), []);
-  // Preloading a project skill does NOT excuse --ignore-rules: a live A/B proved the preload
-  // survives the flag, so the old carve-out sanctioned the context bleed the rule prevents.
-  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md -s cli-hermes --source tool -t file,todo'), ['ignore-rules-required']);
-  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --skills=cli-hermes -t file,todo'), ['ignore-rules-required']);
-  // A preloading dispatch that also passes the flag is the correct shape and stays clean.
-  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --ignore-rules -s cli-hermes --source tool -t file,todo'), []);
-  // `search` is web search, so a list without `file` yields a leaf that reads nothing.
-  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --ignore-rules -t search,todo'), ['explicit-toolsets-required']);
-  assert.deepEqual(ids(good.replace(' --yolo', '')), ['yolo-required-for-writes']);
-  assert.deepEqual(ids(good.replace(' --ignore-rules', '')), ['ignore-rules-required']);
-  assert.deepEqual(ids(good.replace(' -t terminal,file,skills,todo,web', '')), ['explicit-toolsets-required']);
-  assert.deepEqual(ids(good.replace('todo,web', 'todo,web,delegation')), ['explicit-toolsets-required']);
-  assert.deepEqual(ids(`${good} --worktree`), ['no-worktree-flag']);
-  assert.deepEqual(ids(`${good} --accept-hooks`), ['hooks-user-level']);
-  assert.deepEqual(ids('hermes mcp add code_mode --command node'), ['mcp-config-operator-required']);
-  assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
 });
 
 test('dsh hard rules accept a complete isolated, pipe-fed dispatch', () => {
@@ -791,38 +751,6 @@ test('pinned-version-required evaluates npx DSH dispatches and rejects other ver
   assert.equal(violations('npx -y @deepseek-ai/dsh --profile headless --json -').length, 1);
 });
 
-// The marker arrives inside the command, which a model writes, so it must not disarm a rule by
-// itself. Both directions are asserted: unset, the marker is inert text; only an operator-exported
-// variable in the guard's own process makes the control runnable.
-test('the negative-control marker only counts when the guard process allows it', () => {
-  const ALLOW = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED';
-  const saved = process.env[ALLOW];
-  const withAllow = (value, fn) => {
-    if (value === undefined) delete process.env[ALLOW];
-    else process.env[ALLOW] = value;
-    try {
-      return fn();
-    } finally {
-      if (saved === undefined) delete process.env[ALLOW];
-      else process.env[ALLOW] = saved;
-    }
-  };
-  const marker = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL=1';
-  const writeWithoutYolo = `${marker} ${HERMES_BASE} -t terminal,file,todo`;
-  const delegating = `${marker} ${HERMES_BASE} -t delegation,todo`;
-  const yolo = CHECKS['hermes-yolo-required-for-writes'];
-  const toolsets = CHECKS['hermes-explicit-toolsets-required'];
-
-  withAllow(undefined, () => {
-    assert.equal(yolo(writeWithoutYolo), false);
-    assert.equal(toolsets(delegating), false);
-  });
-  withAllow('1', () => {
-    assert.equal(yolo(writeWithoutYolo), true);
-    assert.equal(toolsets(delegating), true);
-  });
-});
-
 test('fail-open: a check that throws never produces a violation', () => {
   const throwing = [{ id: 'boom', check: 'boom', message: 'x', severity: 'block' }];
   const saved = CHECKS.boom;
@@ -899,7 +827,6 @@ test('every runtime dispatch shape resolves to its skill (mutation-proof)', () =
     ['devin -p "task" </dev/null', 'cli-devin'],
     ['cursor-agent -p "task" </dev/null', 'cli-cursor'],
     ['pi -p --offline "task" </dev/null', 'cli-pi'],
-    ['hermes chat -Q --oneshot --query-file p.md </dev/null', 'cli-hermes'],
   ];
   for (const [cmd, skill] of documented) {
     const shape = DISPATCH_SHAPES.find((d) => d.test.test(cmd));
@@ -960,30 +887,6 @@ const CHECK_FIXTURES = {
     satisfied: 'pi -p --offline --model llmgateway/glm-5.3-flash "task" </dev/null',
     violated: 'pi -p --offline --model glm-5.3-flash "task" </dev/null',
   },
-  'hermes-yolo-required-for-writes': {
-    satisfied: `${HERMES_BASE} -t terminal,file,todo --yolo`,
-    violated: `${HERMES_BASE} -t terminal,file,todo`,
-  },
-  'hermes-ignore-rules-required': {
-    satisfied: `${HERMES_BASE} -t file,todo`,
-    violated: `${HERMES_NO_RULES} -s cli-hermes -t file,todo`,
-  },
-  'hermes-explicit-toolsets-required': {
-    satisfied: `${HERMES_BASE} -t file,todo`,
-    violated: `${HERMES_BASE} -t search,todo`,
-  },
-  'hermes-no-worktree-flag': {
-    satisfied: `${HERMES_BASE} -t file,todo`,
-    violated: `${HERMES_BASE} -t file,todo --worktree`,
-  },
-  'hermes-mcp-config-operator-required': {
-    satisfied: 'hermes mcp list </dev/null',
-    violated: 'hermes mcp add code_mode --command node </dev/null',
-  },
-  'hermes-hooks-user-level': {
-    satisfied: `${HERMES_BASE} -t file,todo`,
-    violated: `${HERMES_BASE} -t file,todo --accept-hooks`,
-  },
   'non-interactive-permission-mode-risk': {
     satisfied: 'claude -p "task" --dangerously-skip-permissions </dev/null',
     violated: 'claude -p "task" </dev/null',
@@ -994,7 +897,6 @@ const CHECK_FIXTURES = {
   'command-v-cursor-agent-required': { satisfied: 'npm test', violated: 'cursor-agent -p "task"', emptyPath: true },
   'command-v-devin-required': { satisfied: 'npm test', violated: 'devin -p "task"', emptyPath: true },
   'command-v-pi-required': { satisfied: 'npm test', violated: 'pi -p "task"', emptyPath: true },
-  'command-v-hermes-required': { satisfied: 'npm test', violated: 'hermes chat -q "task"', emptyPath: true },
   'command-v-dsh-required': { satisfied: 'ls .dsh/patches', violated: 'printf x | dsh --profile headless --json -', emptyPath: true },
   'command-v-jev-required': { satisfied: 'npm test', violated: 'jev noul -q "Is it urgent?" -s @state.txt', emptyPath: true },
   // Jev reads stdin when the state flag carries no inline value, so the satisfied case is the one
@@ -1084,19 +986,19 @@ const CHECK_FIXTURES = {
 // quoting one -- was refused as if it were one. Enforcement must read the command, not
 // the characters in it, while still seeing a dispatch a shell wrapper hides.
 test('a dispatch is resolved from the command, not from text that merely contains one', () => {
-  const dispatch = `${HERMES_BASE} -t file,todo`;
+  const dispatch = 'pi -p --offline --model llmgateway/glm-5.3-flash task.md';
   const govern = [
     ['plain', `${dispatch} </dev/null`],
     ['wrapped in bash -c', `bash -c "${dispatch} </dev/null"`],
     ['wrapped in sh -c', `sh -c '${dispatch} </dev/null'`],
-    ['prompt piped in', 'cat p.md | hermes chat -Q --oneshot --query-file - --ignore-rules -t file,todo'],
+    ['prompt piped in', 'cat p.md | pi -p --offline --model llmgateway/glm-5.3-flash'],
     // Exec wrappers run the real command in their own process, so the tokenizer reads the
     // wrapper as the executor and stops. These are the shapes this repo actually dispatches
     // through: every playbook scenario uses the perl one as its portable timeout, so missing
     // them left the guard enforcing nothing on the standard form.
     ['perl alarm wrapper', `perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
     ['env prefix', `env -u AI_SESSION_CHILD ${dispatch} </dev/null`],
-    ['env then perl', `env HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
+    ['env then perl', `env AI_SESSION_CHILD=1 perl -e 'alarm 300; exec @ARGV' -- ${dispatch} </dev/null`],
     ['timeout wrapper', `timeout 300 ${dispatch} </dev/null`],
     // A wrapper unwrap is anchored to the start of what it is given, so a dispatch preceded
     // by ANY other statement escaped enforcement entirely. Every scenario in this repo's
@@ -1120,7 +1022,7 @@ test('a dispatch is resolved from the command, not from text that merely contain
     ['second heredoc on a line is the stdin', `bash <<'ONE' <<'TWO'\ntrue\nONE\n${dispatch} </dev/null\nTWO`],
   ];
   for (const [label, cmd] of govern) {
-    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-hermes', `should govern (${label}): ${cmd}`);
+    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-pi', `should govern (${label}): ${cmd}`);
   }
 
   const doNotGovern = [

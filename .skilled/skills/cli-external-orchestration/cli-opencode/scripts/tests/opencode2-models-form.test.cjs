@@ -28,10 +28,8 @@ const SKILL_ROOT = path.resolve(__dirname, '..', '..');
 // rather than at this skill alone.
 const CLI_ROOT = path.resolve(SKILL_ROOT, '..');
 
-// The generated runtime copies ship outside the skill root, so they are found and
-// reported from the repository root instead.
+// Offenders are reported from the repository root, since the scan spans sibling skills.
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
-const HERMES_SKILL = path.join(REPO_ROOT, '.hermes', 'skills', 'cli-opencode', 'SKILL.md');
 
 const CLI_REFERENCE = path.join(SKILL_ROOT, 'references', 'cli-reference.md');
 
@@ -752,14 +750,6 @@ test('no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches
 
   for (const file of documents(CLI_ROOT)) scan(file);
 
-  // The Hermes runtime carries a generated copy of this skill, so the same form must
-  // not reappear there, and a missing copy is a build that was never finished.
-  assert.ok(
-    fs.existsSync(HERMES_SKILL),
-    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
-  );
-  scan(HERMES_SKILL);
-
   assert.equal(
     offenders.join('\n'),
     '',
@@ -777,14 +767,6 @@ test('every opencode models command names OpenCode 1, since a v2-only layout nam
   };
 
   for (const file of documents(CLI_ROOT)) scan(file);
-
-  // The Hermes runtime carries a generated copy of this skill, so the same unlabelled
-  // form must not reappear there, and a missing copy is a build that was never finished.
-  assert.ok(
-    fs.existsSync(HERMES_SKILL),
-    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
-  );
-  scan(HERMES_SKILL);
 
   assert.equal(
     offenders.join('\n'),
@@ -1124,14 +1106,6 @@ test('no prose line carries an unquoted listing command', () => {
 
   for (const file of documents(CLI_ROOT)) scan(file);
 
-  // The Hermes runtime carries a generated copy of this skill, so the same prose command
-  // must not reappear there, and a missing copy is a build that was never finished.
-  assert.ok(
-    fs.existsSync(HERMES_SKILL),
-    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
-  );
-  scan(HERMES_SKILL);
-
   assert.equal(
     offenders.join('\n'),
     '',
@@ -1149,14 +1123,6 @@ test('a note that sends a reader to the standalone listing names the prefix', ()
   };
 
   for (const file of documents(CLI_ROOT)) scan(file);
-
-  // The Hermes runtime carries a generated copy of this skill, so the same unprefixed
-  // note must not reappear there, and a missing copy is a build that was never finished.
-  assert.ok(
-    fs.existsSync(HERMES_SKILL),
-    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
-  );
-  scan(HERMES_SKILL);
 
   assert.equal(
     offenders.join('\n'),

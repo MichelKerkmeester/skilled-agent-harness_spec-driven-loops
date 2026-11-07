@@ -99,7 +99,7 @@ The bind covers the one session that was relaunched. Pi, Devin and Cursor key th
 
 A failed bind never blocks a session: Devin and Cursor write one stderr line for an unusable packet or an unexpected error, OpenCode writes a debug line under `OPENCODE_GOAL_DEBUG`, and Pi stays silent.
 
-Hermes carries no new code here. Its plugin already binds the packet in `HERMES_SPEC_FOLDER` to a session that has no goal, so a Hermes receiver binds when the launcher exports that variable as the packet. Claude and Codex have no goal record to bind and are handled by their own commands.
+Claude and Codex have no goal record to bind and are handled by their own commands.
 
 OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/opencode-goal.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/goal-context.ts` lives here, and `.pi/extensions/` holds the relative symlink Pi discovers.
 

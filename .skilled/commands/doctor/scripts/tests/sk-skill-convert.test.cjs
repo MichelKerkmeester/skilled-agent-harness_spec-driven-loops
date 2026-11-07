@@ -204,36 +204,16 @@ with open(os.path.join(here, 'skill-graph.json'), 'w', encoding='utf-8') as hand
 print('Compiled skill-graph.json: %d skills' % len(signals))
 `;
 
-const CONVERT_HERMES_STUB = `'use strict';
-const fs = require('node:fs');
-const path = require('node:path');
-const argv = process.argv.slice(2);
-if (!argv.includes('--check')) {
-  const output = process.env.HERMES_SKILLS_OUTPUT_DIR || path.join(process.cwd(), '.hermes', 'skills');
-  fs.mkdirSync(output, { recursive: true });
-}
-process.stdout.write(argv.includes('--check') ? 'PASS: in sync\\n' : 'SYNCED\\n');
-process.exit(0);
-`;
-
-// A conversion writes a skill root, a compiled graph, a Hermes copy and a
-// changelog link, so a case that lets the integration rows run owns a whole
-// temporary repository: the advisor, the compiler and the Hermes sync are
-// stand-ins inside it, and nothing outside it is read as the repo root.
+// A conversion writes a skill root, a compiled graph and a changelog link, so a
+// case that lets the integration rows run owns a whole temporary repository: the
+// advisor and the compiler are stand-ins inside it, and nothing outside it is
+// read as the repo root.
 function makeIntegrationContext(tempRoot, options = {}) {
   writeTree(tempRoot, {
     '.skilled/bin/skill-advisor.cjs': CONVERT_ADVISOR_STUB,
     '.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py': CONVERT_COMPILER_STUB,
-    '.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs': CONVERT_HERMES_STUB,
   });
   fs.chmodSync(path.join(tempRoot, '.skilled', 'bin', 'skill-advisor.cjs'), 0o755);
-  // The check's preflight resolves the shared package from the Hermes sync path,
-  // so the temporary repository carries the same link its own runtime would.
-  const sharedLink = path.join(
-    tempRoot, '.skilled', 'skills', 'system-spec-kit', 'node_modules', '@spec-kit', 'shared',
-  );
-  fs.mkdirSync(path.dirname(sharedLink), { recursive: true });
-  fs.symlinkSync(path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'shared'), sharedLink, 'dir');
   const scripts = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts');
   // The converted skill ranks first, so a case that wants an edge proposal adds the
   // skills it expects the advisor to rank beside it and gets them back in that order.
@@ -251,7 +231,6 @@ function makeIntegrationContext(tempRoot, options = {}) {
     env: {
       ...environment(),
       CONVERT_TEST_SCENARIO: JSON.stringify(scenario),
-      HERMES_SKILLS_OUTPUT_DIR: path.join(tempRoot, 'hermes-out'),
     },
     paths: {
       packageSkill: path.join(scripts, 'package_skill.py'),
@@ -266,9 +245,6 @@ function makeIntegrationContext(tempRoot, options = {}) {
       ),
       skillGraphJson: path.join(
         tempRoot, '.skilled', 'skills', 'system-skill-advisor', 'runtime', 'scripts', 'skill-graph.json',
-      ),
-      hermesSync: path.join(
-        tempRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'hermes', 'sync-skills-hermes.cjs',
       ),
       regressionCorpus: path.join(tempRoot, 'no-framework-corpus.jsonl'),
       resolver: path.join(
@@ -961,7 +937,7 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   }
   assert.match(applied.stdout, /I1 advisor discovery: scanned/);
   assert.match(applied.stdout, /I2 compiled skill graph: recompiled/);
-  assert.match(applied.stdout, /I5 runtime mirrors: Hermes synced and checked/);
+  assert.match(applied.stdout, /I5 runtime mirrors: n\/a - Claude, OpenCode, Pi, Devin are whole-directory links/);
   assert.equal(hashTree(sourceRoot), sourceBefore);
   assert.ok(scaffoldTempParent);
   assert.ok(!fs.existsSync(scaffoldTempParent));
@@ -982,8 +958,8 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   assert.ok(router.indexOf('lantern sample review') < router.indexOf('route lantern requests'));
   assert.match(router, /"references\/field-notes\.md"/);
 
-  // A converted root ends reachable: the compiled graph is current, the Hermes
-  // copy is in sync and the changelog index resolves to the skill's own folder.
+  // A converted root ends reachable: the compiled graph is current and the
+  // changelog index resolves to the skill's own folder.
   const freshness = spawnSync(process.execPath, [
     path.join(REPO_ROOT, '.skilled', 'commands', 'doctor', 'scripts', 'skill-graph-freshness.cjs'), '--strict',
   ], {
@@ -998,14 +974,6 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   assert.equal(freshness.status, 0, `${freshness.stdout}\n${freshness.stderr}`);
   assert.match(freshness.stdout, /STALE COMPILED: none/);
   t.diagnostic(`skill-graph-freshness.cjs --strict exit ${freshness.status}: ${freshness.stdout.trim()}`);
-
-  const hermesCheck = spawnSync(process.execPath, [
-    path.join(tempRoot, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'hermes', 'sync-skills-hermes.cjs'),
-    '--check',
-  ], { cwd: tempRoot, encoding: 'utf8', env: environment() });
-  assert.equal(hermesCheck.status, 0, `${hermesCheck.stdout}\n${hermesCheck.stderr}`);
-  assert.match(hermesCheck.stdout, /PASS: in sync/);
-  t.diagnostic(`sync-skills-hermes.cjs --check exit ${hermesCheck.status}: ${hermesCheck.stdout.trim()}`);
 
   const changelogIndex = path.join(tempRoot, '.skilled', 'changelog', 'brindle-lantern');
   assert.equal(fs.readlinkSync(changelogIndex), '../skills/brindle-lantern/changelog');
@@ -1036,7 +1004,6 @@ test('plain apply stages a copy, preserves the source, generates metadata, and p
   assert.ok(applied.stdout.includes(`  rm "${changelogIndex}"`), applied.stdout);
   assert.ok(applied.stdout.includes(`  rm "${context.paths.skillGraphJson}"`), applied.stdout);
   assert.ok(applied.stdout.includes(`  rm -r "${skillRoot}"`), applied.stdout);
-  assert.ok(applied.stdout.includes(`  rm -r "${path.join(tempRoot, 'hermes-out')}"`), applied.stdout);
   assert.ok(!/git -c core\.fsmonitor=false restore/.test(applied.stdout), applied.stdout);
 
   const snapshot = applied.stdout.match(/^Snapshot: (.+)$/m);
@@ -1099,9 +1066,9 @@ test('a failing strict package check stops before the second package validator',
   const validateScript = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'validate_skill_package.py');
   assert.ok(!invokedCommands.some((entry) => entry.args.includes(validateScript)));
   // A format gate that fails never reaches the integration rows: no scan, no
-  // compile and no Hermes sync is spawned by the run.
+  // compile is spawned by the run.
   const integrationSpawns = invokedCommands.filter((entry) => (
-    /skill-advisor\.cjs|skill_graph_compiler\.py|sync-skills-hermes\.cjs/.test([entry.command, ...entry.args].join(' '))
+    /skill-advisor\.cjs|skill_graph_compiler\.py/.test([entry.command, ...entry.args].join(' '))
   ));
   assert.deepEqual(integrationSpawns, []);
 });
@@ -2483,13 +2450,12 @@ test('the older Skilled apply runs the integration rows, keeps a satisfied one, 
   for (const id of ['I1', 'I2', 'I3', 'I4', 'I5', 'I6']) {
     assert.match(applied.stdout, new RegExp(`^${id} `, 'm'), `the run omits row ${id}`);
   }
-  assert.match(applied.stdout, /I5 runtime mirrors: Hermes synced and checked/);
+  assert.match(applied.stdout, /I5 runtime mirrors: n\/a - Claude, OpenCode, Pi, Devin are whole-directory links/);
   assert.match(applied.stdout, /I6 changelog: .*already exists and was left as it is/);
   assert.equal(fs.readFileSync(entry, 'utf8'), 'kept entry\n');
 
   const undo = applied.stdout.slice(applied.stdout.indexOf('Undo:'));
   assert.ok(undo.includes(`  rm "${context.paths.skillGraphJson}"`), undo);
-  assert.ok(undo.includes(`  rm -r "${path.join(tempRoot, 'hermes-out')}"`), undo);
   assert.ok(undo.includes(`  rm "${path.join(fs.realpathSync(skillRoot), 'ROUTER.md')}"`), undo);
   assert.ok(!undo.includes(`  rm "${indexLink}"`), undo);
   t.diagnostic(`in-place undo: ${undo.split('\n').slice(0, 6).join(' | ')}`);

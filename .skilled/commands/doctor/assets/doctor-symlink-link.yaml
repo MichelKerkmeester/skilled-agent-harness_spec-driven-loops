@@ -50,7 +50,7 @@ inputs:
   execution_mode: "INTERACTIVE"
   root: "Required target project repository, passed as --root <dir>. The engine requires it to exist and be a directory."
   source: "Optional Skilled checkout path, passed as --source <dir>. When omitted, the engine resolves its checkout root from its own script path."
-  runtimes: "Optional comma-separated runtime names: claude,opencode,codex,cursor,devin,pi,hermes. When omitted, the engine selects runtimes whose primary entry already exists in the target root. The core entry is always included."
+  runtimes: "Optional comma-separated runtime names: claude,opencode,codex,cursor,devin,pi. When omitted, the engine selects runtimes whose primary entry already exists in the target root. The core entry is always included."
   mode: "Optional layout mode: auto, whole or merge. The default is auto."
   include: "Optional comma-separated extras: repo-rules,github,utcp,env."
   link_instructions: "When true, pass --link-instructions to include AGENTS.md, CLAUDE.md and REPO RULES.md."

@@ -21,7 +21,7 @@
 // Usage: node git-setup-check.cjs [--repo <dir>] [--tool <name>] [--json]
 //   --repo  repository to inspect (default: the current directory)
 //   --tool  the AI tool running the check: claude, codex, devin, cursor,
-//           opencode, pi, hermes or dsh. Without it, claude is assumed when CLAUDECODE is
+//           opencode, pi or dsh. Without it, claude is assumed when CLAUDECODE is
 //           set; no other environment variable is consulted.
 //   --json  print one JSON object instead of the human report
 // Exit 0 when every check passed or skipped, 3 (DEGRADED) when none failed
@@ -59,9 +59,9 @@ const GIT_HOOK_NAMES = new Set([
   'p4-post-changelist', 'p4-pre-submit', 'post-index-change',
 ]);
 
-const USAGE = 'Usage: node .skilled/commands/doctor/scripts/git-setup-check.cjs [--repo <dir>] [--tool <claude|codex|devin|cursor|opencode|pi|hermes|dsh>] [--json]';
+const USAGE = 'Usage: node .skilled/commands/doctor/scripts/git-setup-check.cjs [--repo <dir>] [--tool <claude|codex|devin|cursor|opencode|pi|dsh>] [--json]';
 
-const TOOLS = ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'hermes', 'dsh'];
+const TOOLS = ['claude', 'codex', 'devin', 'cursor', 'opencode', 'pi', 'dsh'];
 
 // Where each runtime reads its git-preflight advisory registration from.
 const TOOL_FILES = {
@@ -71,7 +71,6 @@ const TOOL_FILES = {
   cursor: '.cursor/hooks.json',
   opencode: '.opencode/plugins/sk-git-preflight-advisory.js',
   pi: '.pi/extensions/git-preflight-advisory.ts',
-  hermes: '.hermes/plugins/repo-guards/__init__.py',
   dsh: '.dsh/plugins/repo-guards/adapters/git-preflight-advisory.mjs',
 };
 
@@ -1488,36 +1487,6 @@ function checkAiToolHooks(ctx) {
       if (tool === active) broken.push(tool);
       continue;
     }
-    if (tool === 'hermes') {
-      const read = readRepoFile(path.join(ctx.repoRoot, rel));
-      if (read.text === null) {
-        details.push(`${label}: cannot read ${rel}: ${read.problem || 'missing'}`);
-        broken.push(tool);
-        continue;
-      }
-      // Hermes loads project plugins only, so this plugin file is its registration.
-      // Read the path expression without executing the plugin.
-      const code = read.text.replace(/(^|\s)#.*$/gm, '$1');
-      const assignment = code.match(/\bGIT_PREFLIGHT_ADVISORY\s*=\s*REPO_ROOT((?:\s*\/\s*(?:'[^'\r\n]+'|"[^"\r\n]+"))+)(?=\s*(?:\r?\n|$))/);
-      const segments = assignment
-        ? Array.from(assignment[1].matchAll(/\/\s*(?:'([^'\r\n]+)'|"([^"\r\n]+)")/g), (match) => match[1] || match[2])
-        : [];
-      const advisoryPath = segments.length > 0 ? path.join(ctx.repoRoot, ...segments) : null;
-      if (advisoryPath !== null && !fs.existsSync(advisoryPath)) {
-        details.push(`${label}: ${rel} runs ${segments.join('/')}, which does not exist`);
-        broken.push(tool);
-      } else if (
-        advisoryPath !== null
-        && /_run_core\(\s*GIT_PREFLIGHT_ADVISORY\b/.test(code)
-        && /register_hook\(\s*["']transform_tool_result["']/.test(code)
-      ) {
-        details.push(`${label}: registered (${rel})`);
-      } else {
-        details.push(`${label}: ${rel} does not register transform_tool_result with the git-preflight advisory`);
-        broken.push(tool);
-      }
-      continue;
-    }
     if (tool === 'opencode' || tool === 'pi') {
       const read = readRepoFile(path.join(ctx.repoRoot, rel));
       if (read.text === null) {
@@ -1589,7 +1558,7 @@ function checkAiToolHooks(ctx) {
   if (broken.length > 0) return fail(source, details, broken.map(advisoryRepair).join(', then '));
   if (active === null) {
     return unknown(source, [
-      'no active AI tool detected: pass --tool <claude|codex|devin|cursor|opencode|pi|hermes|dsh>',
+      'no active AI tool detected: pass --tool <claude|codex|devin|cursor|opencode|pi|dsh>',
       ...details,
     ]);
   }

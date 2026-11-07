@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/086-cli-hermes-deprecation/001-runtime-code-and-tests",
+  "spec_folder": "cli-external-orchestration/086-cli-hermes-deprecation/001-runtime-code-and-tests",
+  "parent_id": "cli-external-orchestration/086-cli-hermes-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remove cli-hermes executor code",
+      "hermes runtime removal tests"
+    ],
+    "key_topics": [
+      "remove",
+      "cli-hermes",
+      "executor",
+      "code",
+      "hermes",
+      "runtime",
+      "removal",
+      "tests",
+      "carried",
+      "full",
+      "fan-out",
+      "command"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-session.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Hermes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Removal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Hermes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remove Hermes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Runtime code carried a full Hermes executor: a fan-out command builder, executor config and audit tables, session-relaunch adapters, dispatch lint rules, a launcher arm and a shell function",
+    "created_at": "2026-11-07T10:34:39Z",
+    "last_save_at": "2026-11-07T14:00:43.726Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9299a7667e46791107a9b0d44d453398a2ddb344fd9147fe151e3deaeaf4aebc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bf6f8c9ef32698b5a9db9327bc9435d431be0d5f4cc3411b342dc1a1aa536e00",
+      "plan.md": "aff68b76dbf6d431ed1f37136b165561e43b45b126d131477b6bac01b63ccc0e",
+      "tasks.md": "d3a6720de3b46fc7c85e0d23a8e264faa0b192d2c781c0b59c961356cd6ce241",
+      "implementation-summary.md": "75f80df719ba2c7196371cecc7a4b39cd53b39d78601c33482c078a610cb8663"
+    },
+    "last_active_at": null
+  }
+}

@@ -136,7 +136,7 @@ In-flight state preserves the active work the next session must not lose, includ
 node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
 ```
 
-Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `--runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor`, `hermes` or `devin`. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
+Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `--runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor` or `devin`. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
 
 ### Step 5: Report By Exit Code
 
@@ -152,7 +152,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
   Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback.
   Both cases print the claim command for the selected runtime.
   Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
-  For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` launch starts under it.
+  For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `devin` or `cursor-agent` launch starts under it.
 
 | Runtime | Printed command |
 |---|---|
@@ -161,7 +161,6 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
 | OpenCode | `skilled-loop opencode --prompt "[session-relaunch] claim and continue handoff <path>"` |
 | Codex | `skilled-loop codex "[session-relaunch] claim and continue handoff <path>"` |
 | Cursor | `skilled-loop cursor "[session-relaunch] claim and continue handoff <path>"` |
-| Hermes | `skilled-loop hermes chat -q "[session-relaunch] claim and continue handoff <path>"` |
 | Devin | `skilled-loop devin -- "[session-relaunch] claim and continue handoff <path>"` |
 
 The CLI and wrapper place each path `!` in single quotes outside the seed's double quotes. For example, they print `skilled-loop claude "[session-relaunch] claim and continue handoff /tmp/han"'!'"doff.md"`. Interactive Bash keeps that path intact when history expansion is on.

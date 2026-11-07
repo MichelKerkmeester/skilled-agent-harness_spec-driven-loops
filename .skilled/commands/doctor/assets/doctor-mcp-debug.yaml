@@ -69,7 +69,6 @@ workflow:
       - "Display one Code Mode row with PASS, WARN, or FAIL and a concise summary."
       - "List each failed or warning check with its detail."
       - "Explain that stale build status is determined by source timestamps and that a present dist/index.js is syntax-checked."
-      - "Show the INFO result that Hermes registration is user-level in ~/.hermes/config.yaml and is not checked."
       - "When --fix is absent, offer to explain repair steps without making changes."
       - "When --fix is present, offer repair actions one at a time and wait for approval for each."
     checkpoint:

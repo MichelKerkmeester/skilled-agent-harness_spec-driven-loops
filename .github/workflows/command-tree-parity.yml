@@ -16,7 +16,6 @@ on:
       - '.devin/agents/**'
       - '.skilled/skills/**/SKILL.md'
       - '.opencode/skills/**/SKILL.md'
-      - '.hermes/**'
       - '.dsh/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.opencode/skills/system-spec-kit/**'
@@ -43,7 +42,6 @@ on:
       - '.devin/agents/**'
       - '.skilled/skills/**/SKILL.md'
       - '.opencode/skills/**/SKILL.md'
-      - '.hermes/**'
       - '.dsh/**'
       - '.skilled/skills/system-spec-kit/**'
       - '.opencode/skills/system-spec-kit/**'
@@ -98,30 +96,6 @@ jobs:
             exit 1
           fi
           echo "Command trees are byte-identical."
-
-  hermes-mirror:
-    # The Hermes runtime reads generated copies of every skill's SKILL.md, of the agent
-    # personas and of the command prompts. The filter above names each of those sources,
-    # so an edit to any of them runs this job; a missed input is what lets a stale copy
-    # land green, which is the failure this job exists to catch.
-    name: Hermes skill and prompt copies match their sources
-    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_TESTS != 'off'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version: '20'
-      - name: Install the spec-kit workspace
-        run: |
-          set -euo pipefail
-          npm --prefix .opencode/skills/system-spec-kit ci
-      - name: Compare the Hermes copies with their sources
-        run: |
-          set -euo pipefail
-          node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
-          node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check
 
   dsh-mirror:
     # The DSH runtime reads generated skill, agent and prompt copies. Its source and

@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 783,
+  "derived_count": 776,
   "directories": [
     ".",
     ".claude",
@@ -225,12 +225,6 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/benchmark/reports/2026-08-09--manual-testing-playbook--commands-and-skills",
     ".skilled/skills/cli-external-orchestration/cli-devin/benchmark/reports/2026-08-09--manual-testing-playbook--hooks",
     ".skilled/skills/cli-external-orchestration/cli-devin/benchmark/reports/2026-08-09--manual-testing-playbook--subagents",
-    ".skilled/skills/cli-external-orchestration/cli-hermes",
-    ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark",
-    ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports",
-    ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-first-pass",
-    ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-14-phase-008-second-pass",
-    ".skilled/skills/cli-external-orchestration/cli-hermes/benchmark/reports/2026-09-15-phase-008-third-pass",
     ".skilled/skills/cli-external-orchestration/cli-opencode",
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark",
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports",
@@ -701,7 +695,6 @@
     ".skilled/skills/system-spec-kit/runtime/cli/evals",
     ".skilled/skills/system-spec-kit/runtime/cli/extractors",
     ".skilled/skills/system-spec-kit/runtime/cli/graph",
-    ".skilled/skills/system-spec-kit/runtime/cli/hermes",
     ".skilled/skills/system-spec-kit/runtime/cli/lib",
     ".skilled/skills/system-spec-kit/runtime/cli/loaders",
     ".skilled/skills/system-spec-kit/runtime/cli/observability",

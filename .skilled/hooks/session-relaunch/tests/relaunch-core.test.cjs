@@ -1035,7 +1035,6 @@ test('manualClaimCommand places the quoted seed where each runtime expects it', 
     opencode: `skilled-loop opencode --prompt ${seed}`,
     codex: `skilled-loop codex ${seed}`,
     cursor: `skilled-loop cursor ${seed}`,
-    hermes: `skilled-loop hermes chat -q ${seed}`,
     devin: `skilled-loop devin -- ${seed}`,
   };
   for (const [runtime, expected] of Object.entries(commands)) {
@@ -1747,7 +1746,7 @@ test('armableRecord gives every arm path one verdict, ownership before state', (
   assert.deepEqual(armableRecord({ ...mine, runtime: 'claude' }, caller), refused('other-runtime'));
   // A caller that names no runtime takes any; a record without one was prepared for Claude.
   assert.deepEqual(
-    armableRecord({ ...mine, runtime: 'hermes' }, { ...caller, runtime: undefined }),
+    armableRecord({ ...mine, runtime: 'devin' }, { ...caller, runtime: undefined }),
     { armable: true, reason: 'pending' },
   );
   const unnamed = { ...mine };
@@ -1779,7 +1778,7 @@ test('the core owns the handoff sections and the runtime list as frozen exports'
   assert.equal(Object.isFrozen(relaunchCore.HANDOFF_SECTIONS), true);
   assert.deepEqual(
     relaunchCore.RUNTIMES,
-    ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin'],
+    ['claude', 'pi', 'opencode', 'codex', 'cursor', 'devin'],
   );
   assert.equal(Object.isFrozen(relaunchCore.RUNTIMES), true);
 });
@@ -1852,7 +1851,7 @@ test('manualTemplateProblem names a template the manual command has to fall back
 
 test("payloadEventName applies each runtime's rule for a payload that names no event", () => {
   const { payloadEventName } = relaunchCore;
-  for (const runtime of ['claude', 'codex', 'hermes']) {
+  for (const runtime of ['claude', 'codex']) {
     assert.equal(
       payloadEventName({ hook_event_name: 'Stop' }, { runtime, expected: 'Stop' }),
       'Stop',
@@ -1873,11 +1872,6 @@ test("payloadEventName applies each runtime's rule for a payload that names no e
     'UserPromptSubmit',
   );
   assert.equal(payloadEventName({}, { runtime: 'claude' }), 'PostToolUse');
-  // Hermes takes an omitted name as its event, never a present malformed one.
-  const sessionEnd = { runtime: 'hermes', expected: 'on_session_end' };
-  assert.equal(payloadEventName({}, sessionEnd), 'on_session_end');
-  assert.equal(payloadEventName({ hook_event_name: null }, sessionEnd), null);
-  assert.equal(payloadEventName({ hook_event_name: '' }, sessionEnd), null);
   // Codex refuses a payload that names no event.
   assert.equal(payloadEventName({}, { runtime: 'codex', expected: 'Stop' }), null);
   assert.equal(payloadEventName(null, { runtime: 'codex', expected: 'Stop' }), null);
@@ -2251,7 +2245,7 @@ test('goalSwitchOn is on unless the operator turns it off', () => {
   assert.equal(goalSwitchOn({}), true);
 });
 
-for (const runtime of ['opencode', 'pi', 'devin', 'cursor', 'hermes']) {
+for (const runtime of ['opencode', 'pi', 'devin', 'cursor']) {
   test(`resolveGoalPacket reads the ${runtime} goal record`, (t) => {
     const sandbox = createSandbox(t);
     writeGoalPacket(sandbox.repoRoot);

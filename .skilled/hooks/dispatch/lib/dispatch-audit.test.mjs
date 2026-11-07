@@ -547,7 +547,7 @@ ENDMARK`;
 describe('DISPATCH_SHAPES', () => {
   it('exposes the skill + packetPath pairs the preflight lint twin resolves SKILL.md from', () => {
     expect(DISPATCH_SHAPES.map((shape) => shape.skill)).toEqual([
-      'cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-devin', 'cli-cursor', 'cli-pi', 'cli-hermes', 'cli-deepseek-harness',
+      'cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-devin', 'cli-cursor', 'cli-pi', 'cli-deepseek-harness',
       'cli-classifier',
     ]);
     expect(DISPATCH_SHAPES.every((shape) => typeof shape.packetPath === 'string' && shape.test instanceof RegExp)).toBe(true);
@@ -570,11 +570,6 @@ describe('DISPATCH_SHAPES', () => {
     expect(skillFor('codex exec --full-auto -p "x"')).toBe('cli-codex');
     expect(skillFor('devin -p "x" </dev/null')).toBe('cli-devin');
     expect(skillFor('cursor-agent -p "x" --model composer-2.5')).toBe('cli-cursor');
-    expect(skillFor('hermes chat -Q --oneshot --query-file - --yolo </dev/null')).toBe('cli-hermes');
-    expect(skillFor('hermes chat -q "x" </dev/null')).toBe('cli-hermes');
-    expect(skillFor('hermes -z "x"')).toBe('cli-hermes');
-    expect(skillFor('hermes chat')).toBeNull();
-    expect(skillFor('hermes skills list')).toBeNull();
     expect(skillFor('grep -q pattern file.txt')).toBeNull();
     expect(skillFor('pi --offline -p "x" </dev/null')).toBe('cli-pi');
     // A bare interactive launch (no print flag) or unrelated bash is never a dispatch.
@@ -614,7 +609,6 @@ describe('executorSkill', () => {
       ['cursor-agent', 'cli-cursor'],
       ['cursor', 'cli-cursor'],
       ['cli-cursor', 'cli-cursor'],
-      ['hermes', 'cli-hermes'],
       ['jev', 'cli-classifier'],
       ['jev-mcp', 'cli-classifier'],
       ['cli-jev', 'cli-classifier'],

@@ -135,7 +135,7 @@ describe('orphan sweeper session tree', () => {
 
   it('searches every session runtime the repo drives, not only Claude Code', () => {
     const args = pgrepArguments('Darwin');
-    expect(args).toContain('pi|hermes|devin|cursor-agent');
+    expect(args).toContain('pi|devin|cursor-agent');
   });
 });
 

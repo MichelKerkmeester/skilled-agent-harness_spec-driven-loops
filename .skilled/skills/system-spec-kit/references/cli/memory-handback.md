@@ -1,6 +1,6 @@
 ---
 title: Memory Handback Protocol for cli-* Skills
-description: Canonical 7-step Memory Handback procedure shared across the seven cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
+description: Canonical 7-step Memory Handback procedure shared across the six cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
 trigger_phrases:
   - "memory handback protocol"
   - "memory handback extraction"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "structured json handback"
 importance_tier: normal
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Memory Handback Protocol (cli-* family)
 
-When a calling AI delegates to one of the seven cli-* skills and needs to preserve the resulting session context, the agent runs the same 7-step procedure below. Four prompt templates include both `<!-- MEMORY_HANDBACK_START -->` and `<!-- MEMORY_HANDBACK_END -->`: cli-claude-code, cli-codex, cli-devin, and cli-opencode. The other three do not. Section 4 maps each packet reference to its actual template section and marker status.
+When a calling AI delegates to one of the six cli-* skills and needs to preserve the resulting session context, the agent runs the same 7-step procedure below. Four prompt templates include both `<!-- MEMORY_HANDBACK_START -->` and `<!-- MEMORY_HANDBACK_END -->`: cli-claude-code, cli-codex, cli-devin, and cli-opencode. The other two do not. Section 4 maps each packet reference to its actual template section and marker status.
 
 ---
 
@@ -21,19 +21,19 @@ When a calling AI delegates to one of the seven cli-* skills and needs to preser
 
 ### Purpose
 
-Canonical 7-step Memory Handback procedure shared across the seven cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the save gates that run after normalization.
+Canonical 7-step Memory Handback procedure shared across the six cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the save gates that run after normalization.
 
 ### When to Use
 
-- Use when a calling AI delegates to one of the seven cli-* skills and needs to preserve the resulting session context.
+- Use when a calling AI delegates to one of the six cli-* skills and needs to preserve the resulting session context.
 
-Four prompt templates include both `<!-- MEMORY_HANDBACK_START -->` and `<!-- MEMORY_HANDBACK_END -->`: cli-claude-code, cli-codex, cli-devin, and cli-opencode. The other three do not. Section 4 maps each packet reference to its actual template section and marker status.
+Four prompt templates include both `<!-- MEMORY_HANDBACK_START -->` and `<!-- MEMORY_HANDBACK_END -->`: cli-claude-code, cli-codex, cli-devin, and cli-opencode. The other two do not. Section 4 maps each packet reference to its actual template section and marker status.
 
 ---
 
 ## 2. PROCEDURE (7 STEPS)
 
-1. **Include epilogue**: Use the template section listed for the selected packet in §4 when it exists. `cli-hermes` has no handback section, so compose its epilogue from this procedure.
+1. **Include epilogue**: Use the template section listed for the selected packet in §4 when it exists.
 2. **Extract section**: Extract `MEMORY_HANDBACK` with the paired HTML-comment markers when the selected template includes them. If it does not, follow Caveats §3 and build the payload by hand.
 3. **Convert to structured JSON**: Build the JSON-primary payload that `generate-context.js` documents. Use `specFolder`, `user_prompts`, `observations`, and `recent_context` as the canonical field names in new examples. Add `FILES`, `sessionSummary`, `keyDecisions`, `nextSteps`, `triggerPhrases`, `toolCalls`, `exchanges`, `preflight`, and `postflight` when the delegated run produced that evidence.
 4. **Redact and scrub**: Remove secrets, tokens, credentials, and any unnecessary sensitive values before writing the JSON file or sending the payload to the save script.
@@ -68,7 +68,7 @@ Four prompt templates include both `<!-- MEMORY_HANDBACK_START -->` and `<!-- ME
 
 ## 4. PER-SKILL TEMPLATE MAP
 
-The table gives each packet's `SKILL.md` citation beside the actual template heading, for all seven packets.
+The table gives each packet's `SKILL.md` citation beside the actual template heading, for all six packets.
 
 | Packet | `SKILL.md` handback reference | `assets/prompt-templates.md` section | Marker pair |
 |---|---|---|---|
@@ -76,6 +76,5 @@ The table gives each packet's `SKILL.md` citation beside the actual template hea
 | `cli-codex` | §13 | §13 MEMORY EPILOGUE | Both |
 | `cli-cursor` | File link only; no section number | §8 MEMORY EPILOGUE (HANDBACK) | Neither |
 | `cli-devin` | §12 | §12 MEMORY EPILOGUE | Both |
-| `cli-hermes` | No Memory Handback Protocol | No handback section | Neither |
 | `cli-opencode` | §14 | §14 TEMPLATE 13: MEMORY EPILOGUE (REUSABLE TAIL) | Both |
 | `cli-pi` | No Memory Handback Protocol; general file link only | §10 STRUCTURED HANDBACK | Neither |

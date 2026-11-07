@@ -110,7 +110,7 @@ const DEFAULT_OFF = {
 // enable switch, SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED, which answers before
 // the global one whenever it holds a value. A caller names its runtime explicitly;
 // the resolver never guesses it from the environment.
-const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "hermes", "cursor", "devin"]);
+const RUNTIMES = Object.freeze(["claude", "codex", "pi", "opencode", "cursor", "devin"]);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS

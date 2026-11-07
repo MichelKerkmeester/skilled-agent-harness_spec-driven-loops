@@ -11,7 +11,7 @@ trigger_phrases:
   - "council strategy count"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 # AI Council Seat Diversity Patterns
@@ -74,7 +74,6 @@ Vantage = the CLI whose model bench supplies the round's seats. Each row below i
 | `cli-cursor` | external Cursor runtime | Cursor's allowlisted model ids | Alternate implementation and UI-agent perspective | Holistic or Pragmatic |
 | `cli-devin` | external Devin runtime | Devin's curated model ids | Autonomous implementation and validation | Pragmatic or Critical |
 | `cli-pi` | external Pi runtime | Pi's allowlisted model ids | Lightweight alternate reasoning path | Analytical or Research |
-| `cli-hermes` | external Hermes Agent runtime | `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash` or `glm-5.3-flash` through the operator's `llmgateway` provider | Read-only quiet oneshot seat, prompt on stdin | Analytical or Research |
 
 The resolver source is `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:175`; do not add `cli-codex` or `cli-claude-code` to this table because the resolver rejects them.
 

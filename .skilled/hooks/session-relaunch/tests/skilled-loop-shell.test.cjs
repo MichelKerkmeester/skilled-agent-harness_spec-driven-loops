@@ -29,7 +29,6 @@ const INTERACTIVE = {
   pi: [[], ['--model', 'sonnet:high', 'Read package.json'], ['--continue']],
   opencode: [[], ['-m', 'provider/model'], ['--prompt', 'hello']],
   codex: [[], ['-m', 'o3', 'explain this repo'], ['resume', '--last'], ['-p', 'work-profile']],
-  hermes: [[], ['chat'], ['chat', '-q', 'hello'], ['--tui', '-c']],
   devin: [[], ['--model', 'opus'], ['--', 'fix the bug']],
   cursor: [[], ['agent', 'hello'], ['--model', 'gpt-5', 'hello'], ['resume']],
 };
@@ -42,10 +41,6 @@ const PASSTHROUGH = {
     ['api'], ['service'], ['reload'], ['pair'], ['mini'],
   ],
   codex: [['exec', 'hi'], ['e', 'hi'], ['review'], ['login'], ['--version'], ['-V'], ['--help']],
-  hermes: [
-    ['-z', 'hi'], ['--oneshot', 'hi'], ['setup'], ['gateway'], ['--version'],
-    ['chat', '-q', 'hi', '--oneshot'], ['chat', '-Q', '-q', 'hi'], ['chat', '-h'],
-  ],
   devin: [['-p', 'hi'], ['--print'], ['doctor'], ['some/path'], ['-V'], ['--cloud']],
   cursor: [['-p', 'hi'], ['--print'], ['login'], ['status'], ['--list-models'], ['-v']],
 };
@@ -138,7 +133,7 @@ function stubBin(root) {
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin);
   const stubs = {
-    bash: 'printf "WRAPPED %s\\n" "$*"; if [ -n "${HERMES_ENABLE_PROJECT_PLUGINS:-}" ]; then printf "PLUGINS %s\\n" "$HERMES_ENABLE_PROJECT_PLUGINS"; fi',
+    bash: 'printf "WRAPPED %s\\n" "$*"',
     claude: 'printf "DIRECT claude %s\\n" "$*"',
     pi: 'printf "DIRECT pi %s\\n" "$*"',
     'cursor-agent': 'printf "DIRECT cursor-agent %s\\n" "$*"',
@@ -232,24 +227,6 @@ for (const shell of SHELLS) {
     assert.match(output, /^DIRECT claude -p hi$/m);
     assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} cursor --model gpt-5$`, 'm'));
     assert.match(output, /^DIRECT cursor-agent login$/m);
-  });
-
-  // Hermes loads the relaunch bridge only as a project plugin, so a wrapped Hermes launch
-  // needs the switch while every other launch and the caller's shell stay without it.
-  test(`${shell.name}: a wrapped hermes launch alone enables project plugins`, {
-    skip: !HAS_SCRIPT && 'script(1) is unavailable',
-  }, (t) => {
-    const box = sandbox(t);
-    const bin = stubBin(box.root);
-    const output = launch(
-      shell,
-      box,
-      bin,
-      'hermes chat; claude --model opus; printf "AFTER %s\\n" "${HERMES_ENABLE_PROJECT_PLUGINS:-unset}"',
-      { tty: true },
-    );
-    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} hermes chat\\nPLUGINS 1$`, 'm'));
-    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} claude --model opus\\nAFTER unset$`, 'm'));
   });
 
   test(`${shell.name}: runtime functions still work after a snapshot drops single-underscore functions`, (t) => {
