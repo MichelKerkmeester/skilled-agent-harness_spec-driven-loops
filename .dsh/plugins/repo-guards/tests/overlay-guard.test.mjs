@@ -1,3 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Guards Tests - Overlay Guard (node --test)
+// ───────────────────────────────────────────────────────────────────
+//
+// Covers the deny for an overlay-owned write, apply_patch path reading, note
+// logging, the kill switch and the fail-open throw policy.
+
 import assert from 'node:assert/strict';
 import test from 'node:test';
 

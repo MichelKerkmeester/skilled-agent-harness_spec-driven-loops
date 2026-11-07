@@ -1,3 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Guards Tests - MCP Route Guard (node --test)
+// ───────────────────────────────────────────────────────────────────
+//
+// Covers the Code Mode mount allowlist, the core kill switch, the fail-closed
+// throw policy and deny-reason parity with the Pi extension.
+
 import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';

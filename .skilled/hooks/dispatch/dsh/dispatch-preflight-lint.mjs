@@ -29,6 +29,13 @@ function logAdvisory(ctx, message) {
   }
 }
 
+/**
+ * Deny a bash dispatch that breaks a target skill's blocking hard rules, and log
+ * the rules it only warns on.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, kill-switch resolver and checkout root for tests.
+ */
 export function registerDispatchPreflightLint(ctx, {
   core = { evaluateDispatch },
   isEnabled = isHookEnabled,

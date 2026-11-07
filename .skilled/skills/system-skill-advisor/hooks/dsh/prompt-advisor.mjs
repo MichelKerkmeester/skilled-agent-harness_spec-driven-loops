@@ -2,9 +2,17 @@
 // MODULE: Prompt Advisor Adapter
 // ───────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { isHookEnabled } from '../../../../hooks/shared/hook-flags.mjs';
 import { loadDshLlm } from '../../../../hooks/shared/dsh/dsh-llm.mjs';
 import { isLineageLeaf } from '../../../../hooks/shared/dsh/session-role.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const ADVISOR_MODULE_URL = new URL(
   '../../runtime/dist/hooks/claude/user-prompt-submit.js',
@@ -20,6 +28,10 @@ const RECEIPTS = Symbol.for('skilled.repo-guards.directive-receipts');
 export const ERROR_POLICY = 'fail-open';
 // The advisor keys its metrics and outcome records by runtime and drops a label it does not list.
 export const ADVISOR_RUNTIME = 'dsh';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function contentText(content) {
   if (typeof content === 'string') return content;
@@ -95,6 +107,10 @@ async function makeNotice(text) {
     source: { kind: 'repo-guards' },
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Run the shared advisor hook for one operator prompt under the DSH runtime label.

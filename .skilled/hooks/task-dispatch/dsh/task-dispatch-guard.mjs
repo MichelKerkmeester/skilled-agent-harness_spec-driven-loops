@@ -23,6 +23,14 @@ function logFailure(ctx, error) {
   }
 }
 
+/**
+ * Write the shared dispatch-guard warnings and audits for a new subagent hand-off.
+ *
+ * The guard only records: the hand-off always proceeds.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, kill-switch resolver, environment and cwd for tests.
+ */
 export function registerTaskDispatchGuard(ctx, {
   core = dispatchCore,
   isEnabled = isHookEnabled,

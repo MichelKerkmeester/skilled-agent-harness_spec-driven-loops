@@ -1,3 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Guards Tests - Session Role (node --test)
+// ───────────────────────────────────────────────────────────────────
+//
+// Covers the guards and lineage patches, the lineage-leaf marker, and the prompt
+// advisor's runtime label, leaf silence and directive lifecycle.
+
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';

@@ -31,6 +31,13 @@ async function makeNotice(text) {
   });
 }
 
+/**
+ * Screen fetched web and MCP results for prompt injection and attach the
+ * advisory as extra context on an accepted result.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, kill-switch resolver and notice factory for tests.
+ */
 export function registerClassifierInjectionScreen(ctx, {
   core = { fetchedText, screenAdvisory },
   isEnabled = isHookEnabled,

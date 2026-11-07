@@ -1,3 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Guards Tests - Decision Capture (node --test)
+// ───────────────────────────────────────────────────────────────────
+//
+// Covers live and late-reply answer capture under the key a sweep would use,
+// the idle save reminder, and the fail-open throw policy and kill switch.
+
 import assert from 'node:assert/strict';
 import test from 'node:test';
 

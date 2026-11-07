@@ -1,3 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Guards Tests - Goal Manage (node --test)
+// ───────────────────────────────────────────────────────────────────
+//
+// Covers the goal command and tool over the shared manage CLI, the per-turn
+// brief, the verify note for the next operator turn, and the leaf and kill-switch gates.
+
 import assert from 'node:assert/strict';
 import test from 'node:test';
 

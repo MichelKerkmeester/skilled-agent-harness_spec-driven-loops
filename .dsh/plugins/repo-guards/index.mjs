@@ -33,6 +33,12 @@ function withServices(ctx, services, register) {
   else register(ctx);
 }
 
+/**
+ * Register every repo guard adapter on the dsh plugin context.
+ *
+ * @param {Object} ctx - dsh plugin context with `on`, `commands`, `logger` and, in a real run, `inject`.
+ * @param {Object} [config] - Plugin row config; `adapters` holds each adapter's options.
+ */
 export function apply(ctx, config = {}) {
   const options = config.adapters ?? {};
   registerDispatchAudit(ctx, options.dispatchAudit);

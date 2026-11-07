@@ -28,6 +28,13 @@ function logFailure(ctx, error) {
   }
 }
 
+/**
+ * Deny a write, edit, patch or bash call the shared spec gate blocks, and ask
+ * before a write or edit while the gate is open and its notice is undelivered.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, environment and cwd for tests.
+ */
 export function registerSpecGateEnforce(ctx, {
   core = { resolveSessionKey, runEnforceGate },
   env = runtimeEnv,

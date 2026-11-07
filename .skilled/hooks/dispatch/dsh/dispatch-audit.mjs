@@ -23,6 +23,14 @@ function logFailure(ctx, error) {
   }
 }
 
+/**
+ * Record each bash command in the shared dispatch audit log after it runs.
+ *
+ * The record is a side effect only: the tool result passes through unchanged.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, kill-switch resolver and checkout root for tests.
+ */
 export function registerDispatchAudit(ctx, {
   core = { recordDispatch },
   isEnabled = isHookEnabled,

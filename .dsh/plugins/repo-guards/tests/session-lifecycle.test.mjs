@@ -1,3 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Guards Tests - Session Lifecycle (node --test)
+// ───────────────────────────────────────────────────────────────────
+//
+// Covers the session-start advisories, the post-compaction re-prime and the
+// session-stop autosave, each with its leaf gate, concern switch and fail-open policy.
+
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import test from 'node:test';

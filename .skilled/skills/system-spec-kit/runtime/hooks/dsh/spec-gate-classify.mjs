@@ -51,6 +51,13 @@ async function makeNotice(text) {
   });
 }
 
+/**
+ * Classify each operator prompt with the shared spec gate and add the deferred
+ * Gate 3 instruction to the step when the gate opens.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, notice factory, environment and cwd for tests.
+ */
 export function registerSpecGateClassify(ctx, {
   core = {
     resolveSessionKey,

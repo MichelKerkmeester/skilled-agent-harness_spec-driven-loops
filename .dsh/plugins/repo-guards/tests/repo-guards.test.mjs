@@ -1,3 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Guards Tests - Guard Adapter Parity (node --test)
+// ───────────────────────────────────────────────────────────────────
+//
+// Covers shared-core parity and the throw policy of each guard adapter, plus
+// the anchored dsh-llm loader every adapter builds its notices through.
+
 import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';

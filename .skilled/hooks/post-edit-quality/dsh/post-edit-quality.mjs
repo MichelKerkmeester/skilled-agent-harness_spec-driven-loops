@@ -36,6 +36,13 @@ async function makeNotice(text) {
   });
 }
 
+/**
+ * Run the shared post-edit checks on a written file and attach their findings,
+ * with any dist-staleness banner, as extra context on an accepted result.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, kill-switch resolver, notice factory and cwd for tests.
+ */
 export function registerPostEditQuality(ctx, {
   core = qualityCore,
   isEnabled = isHookEnabled,

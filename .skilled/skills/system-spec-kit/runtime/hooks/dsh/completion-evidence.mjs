@@ -48,6 +48,13 @@ async function makeNotice(text) {
   });
 }
 
+/**
+ * When a stopping turn claims completion for a spec folder, run the shared
+ * evidence check and inject its advisory.
+ *
+ * @param {Object} ctx - dsh plugin context with `on` and `logger`.
+ * @param {Object} [options] - Shared core, kill-switch resolver, notice factory, environment and cwd for tests.
+ */
 export function registerCompletionEvidence(ctx, {
   core = completionCore,
   isEnabled = isHookEnabled,

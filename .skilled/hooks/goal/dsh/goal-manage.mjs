@@ -2,12 +2,20 @@
 // MODULE: Goal Manage Adapter
 // ───────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
 import goalCore from '../lib/goal-core.cjs';
 import { loadDshLlm, loadDshTools } from '../../shared/dsh/dsh-llm.mjs';
 import { isLineageLeaf } from '../../shared/dsh/session-role.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const RUNTIME = 'dsh';
 const RUNTIME_LABEL = 'DSH';
@@ -22,6 +30,10 @@ export const GOAL_ACTIONS = Object.freeze([
   'set', 'bind', 'unbind', 'resent', 'log', 'packet', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health',
 ]);
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 // The manage CLI splits a log row on `|`, so a field may not carry one of its own.
 function logField(value) {
   return String(value ?? '').replaceAll('|', '/').trim();
@@ -29,25 +41,6 @@ function logField(value) {
 
 function withBudget(argv, tokenBudget) {
   return Number.isInteger(tokenBudget) ? [...argv, '--budget', String(tokenBudget)] : argv;
-}
-
-/**
- * Map one goal tool call onto the manage CLI's positional grammar.
- *
- * @param {Object} input - Tool arguments: an action and the fields it reads.
- * @returns {string[]} CLI arguments before the scope flags.
- * @throws {Error} For an action the CLI does not own.
- */
-export function goalCliArgs({ action, objective, packetPath, item, state, evidence, reason, tokenBudget } = {}) {
-  if (!GOAL_ACTIONS.includes(action)) throw new Error(`Unknown goal action: ${String(action)}`);
-  switch (action) {
-    case 'set': return withBudget(objective ? ['set', objective] : ['set'], tokenBudget);
-    case 'bind': return withBudget(packetPath ? ['bind', packetPath] : ['bind'], tokenBudget);
-    case 'packet': return packetPath ? ['packet', packetPath] : ['packet'];
-    case 'log': return ['log', [item, state, evidence].map(logField).join(' | ')];
-    case 'pause': return reason ? ['pause', reason] : ['pause'];
-    default: return [action];
-  }
 }
 
 function runManageCli(argv, { cwd }) {
@@ -105,6 +98,29 @@ function turnEvidence(agent, turn) {
   }
   const assistantText = replies.filter(Boolean).join('\n');
   return { transcriptText: [...tools, assistantText].filter(Boolean).join('\n'), assistantText };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Map one goal tool call onto the manage CLI's positional grammar.
+ *
+ * @param {Object} input - Tool arguments: an action and the fields it reads.
+ * @returns {string[]} CLI arguments before the scope flags.
+ * @throws {Error} For an action the CLI does not own.
+ */
+export function goalCliArgs({ action, objective, packetPath, item, state, evidence, reason, tokenBudget } = {}) {
+  if (!GOAL_ACTIONS.includes(action)) throw new Error(`Unknown goal action: ${String(action)}`);
+  switch (action) {
+    case 'set': return withBudget(objective ? ['set', objective] : ['set'], tokenBudget);
+    case 'bind': return withBudget(packetPath ? ['bind', packetPath] : ['bind'], tokenBudget);
+    case 'packet': return packetPath ? ['packet', packetPath] : ['packet'];
+    case 'log': return ['log', [item, state, evidence].map(logField).join(' | ')];
+    case 'pause': return reason ? ['pause', reason] : ['pause'];
+    default: return [action];
+  }
 }
 
 /**
