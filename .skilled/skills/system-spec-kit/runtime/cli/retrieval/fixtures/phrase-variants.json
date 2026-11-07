@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5f0229a2514f3a93402d6dc41b56be401b3e21ab80059d40f594828156b39cd4",
+  "manifestHash": "ae86dc03da3d697a4c6ae237d1233fc2b871bb1defec0f6651d733ee0f1bbc1b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13592,6 +13592,9 @@
     ],
     "backendkind embeddermanifest": [
       "BackendKind EmbedderManifest"
+    ],
+    "backfill changed count": [
+      "backfill changed count"
     ],
     "backfill delta counting decision": [
       "backfill delta counting decision"
@@ -117119,6 +117122,9 @@
     "system spec kit 2 12 35 0": [
       "system-spec-kit 2.12.35.0"
     ],
+    "system spec kit 2 12 35 1": [
+      "system-spec-kit 2.12.35.1"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -117691,6 +117697,9 @@
     ],
     "system spec kit v2 12 35 0": [
       "system-spec-kit v2.12.35.0"
+    ],
+    "system spec kit v2 12 35 1": [
+      "system-spec-kit v2.12.35.1"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
