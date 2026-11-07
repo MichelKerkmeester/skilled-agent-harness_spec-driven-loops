@@ -844,16 +844,62 @@ function resolveSpecFolderPath(specFolderPath: string): string {
   return path.basename(specFolderPath);
 }
 
-function resolveParentId(specFolder: string): string | null {
+// A named sub-track carries no number, so its segments alone cannot mark it as a
+// parent. The declaration in the container's own description.json is the only
+// evidence that it is one: shape is not enough, because an undeclared folder must
+// never be promoted to a parent just for sitting between a track and a packet.
+const SUBTRACK_LEVEL = 'sub-track';
+
+/** Whether a folder declares itself a named sub-track container. */
+function isDeclaredSubtrackFolder(folderPath: string): boolean {
+  const name = path.basename(folderPath);
+  if (name.startsWith('z_') || isSpecLeafSegment(name) || isSymbolicLink(folderPath)) {
+    return false;
+  }
+  const descriptionPath = path.join(folderPath, 'description.json');
+  if (isSymbolicLink(descriptionPath)) {
+    return false;
+  }
+  try {
+    const parsed: unknown = JSON.parse(fs.readFileSync(descriptionPath, 'utf-8'));
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return false;
+    }
+    const level = (parsed as { level?: unknown }).level;
+    return level === SUBTRACK_LEVEL;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The parent a spec folder's location implies.
+ *
+ * A numbered parent is readable from the id alone. A declared sub-track is not,
+ * so that case consults the parent folder on disk; without it a packet filed in a
+ * sub-track re-derives as parentless and the merge keeps a stale parent flagged
+ * for review after a move.
+ *
+ * @param specFolder - Specs-root-relative folder id
+ * @param specFolderPath - Absolute path used to inspect the parent folder
+ * @returns The parent id, or null when the folder sits at a root or under an undeclared segment
+ */
+function resolveParentId(specFolder: string, specFolderPath: string): string | null {
   const segments = specFolder.split('/').filter(Boolean);
   if (segments.length < 2) {
     return null;
   }
   const parentLeaf = segments[segments.length - 2] ?? '';
-  if (!isSpecLeafSegment(parentLeaf)) {
+  if (isSpecLeafSegment(parentLeaf)) {
+    return segments.slice(0, -1).join('/');
+  }
+  // A sub-track sits directly in its track, so only a packet three segments deep
+  // can have one as its parent.
+  if (segments.length !== 3) {
     return null;
   }
-  return segments.slice(0, -1).join('/');
+  const parentFolder = path.dirname(path.resolve(specFolderPath));
+  return isDeclaredSubtrackFolder(parentFolder) ? segments.slice(0, -1).join('/') : null;
 }
 
 /** Resolve the specs-root-relative children_ids for a spec folder from its on-disk phase children. */
@@ -894,7 +940,14 @@ interface BuildIdentity {
 function resolveBuildIdentity(specFolderPath: string): BuildIdentity {
   if (isIdentityMergeSafetyEnabled()) {
     try {
-      return resolveSpecFolderIdentity(specFolderPath);
+      const identity = resolveSpecFolderIdentity(specFolderPath);
+      return {
+        ...identity,
+        // The shared resolver still reads a parent from numbered segments only, so a
+        // packet directly inside a declared sub-track comes back parentless. Fill that
+        // one gap from the folder layout; every parent it already found stays untouched.
+        parentId: identity.parentId ?? resolveParentId(identity.specFolder, specFolderPath),
+      };
     } catch (error) {
       if (!(error instanceof SpecFolderIdentityError)) {
         throw error;
@@ -905,7 +958,7 @@ function resolveBuildIdentity(specFolderPath: string): BuildIdentity {
   const specFolder = resolveSpecFolderPath(specFolderPath);
   return {
     specFolder,
-    parentId: resolveParentId(specFolder),
+    parentId: resolveParentId(specFolder, specFolderPath),
     childrenIds: resolveChildrenIds(specFolderPath, specFolder),
   };
 }

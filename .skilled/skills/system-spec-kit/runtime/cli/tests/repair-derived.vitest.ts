@@ -17,6 +17,8 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
+import { buildSubtrackTree } from './fixtures/subtrack-tree.mjs';
+
 const TOOL_TREE = path.resolve(__dirname, '../../../../../..');
 const TOOL = '.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs';
 
@@ -243,6 +245,84 @@ function summaryDoc(pointer: string, specFolder: string): string {
   ].join('\n');
 }
 
+function createSubtrackTree() {
+  const tree = buildSubtrackTree(ROOT);
+  created.push(path.join(tree.specs, 'demo'));
+  created.push(path.join(ROOT, 'linked-target'));
+  return tree;
+}
+
+function seedPacketGraph(folder: string, parentId: string | null): void {
+  const specFolder = path.relative(SPECS, folder).split(path.sep).join('/');
+  fs.writeFileSync(path.join(folder, 'description.json'), `${JSON.stringify({
+    level: 1,
+    specFolder,
+    title: 'Fixture packet',
+  }, null, 2)}\n`);
+  const now = new Date().toISOString();
+  fs.writeFileSync(path.join(folder, 'graph-metadata.json'), `${JSON.stringify({
+    schema_version: 1,
+    packet_id: specFolder,
+    spec_folder: specFolder,
+    parent_id: parentId,
+    children_ids: [],
+    manual: { depends_on: [], supersedes: [], related_to: [] },
+    derived: {
+      trigger_phrases: [specFolder],
+      key_topics: [],
+      importance_tier: 'normal',
+      status: 'planned',
+      key_files: [],
+      entities: [],
+      causal_summary: 'Fixture packet for parent repair.',
+      created_at: now,
+      last_save_at: now,
+      save_lineage: 'graph_only',
+      last_accessed_at: null,
+      source_docs: ['spec.md'],
+      last_active_child_id: null,
+      last_active_at: null,
+    },
+  }, null, 2)}\n`);
+}
+
+function addDeclaredSubtrack(tree: { specs: string }): string {
+  const folder = path.join(tree.specs, 'demo', 'other');
+  const specFolder = 'demo/other';
+  fs.mkdirSync(folder, { recursive: true });
+  fs.writeFileSync(path.join(folder, 'description.json'), `${JSON.stringify({
+    level: 'sub-track',
+    specFolder,
+    description: 'Fixture sub-track.',
+  }, null, 2)}\n`);
+  fs.writeFileSync(path.join(folder, 'graph-metadata.json'), `${JSON.stringify({
+    schema_version: 1,
+    packet_id: specFolder,
+    spec_folder: specFolder,
+    parent_id: 'demo',
+    children_ids: [],
+    manual: { depends_on: [], supersedes: [], related_to: [] },
+    derived: { trigger_phrases: [], key_topics: [specFolder], causal_summary: 'Fixture sub-track.' },
+  }, null, 2)}\n`);
+
+  const trackGraphPath = path.join(tree.specs, 'demo', 'graph-metadata.json');
+  const trackGraph = JSON.parse(fs.readFileSync(trackGraphPath, 'utf8')) as { children_ids: string[] };
+  trackGraph.children_ids.push(specFolder);
+  fs.writeFileSync(trackGraphPath, `${JSON.stringify(trackGraph, null, 2)}\n`);
+  return folder;
+}
+
+function moveAndRepair(source: string, destination: string): Record<string, unknown> {
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.renameSync(source, destination);
+  const target = path.relative(ROOT, destination).split(path.sep).join('/');
+  const result = run(['--folder', target, '--apply']);
+  expect(result.status).not.toBe(2);
+  const graph = JSON.parse(fs.readFileSync(path.join(destination, 'graph-metadata.json'), 'utf8')) as Record<string, unknown>;
+  expect(graph.spec_folder).toBe(path.relative(SPECS, destination).split(path.sep).join('/'));
+  return graph;
+}
+
 describe('repair-derived', () => {
   it('refuses a target outside the packet tree', () => {
     const outside = run(['--folder', '.skilled/skills']);
@@ -367,6 +447,68 @@ describe('repair-derived', () => {
     expect(graph.parent_id).toBeNull();
     expect(graph.parent_id_review_required).toBeUndefined();
     expect(fs.readFileSync(path.join(dir, 'implementation-summary.md'), 'utf8')).toContain(`packet_pointer: "${expected}"`);
+  });
+
+  it('sets the declared sub-track parent when a flat packet moves into a sub-track', () => {
+    const tree = createSubtrackTree();
+    seedPacketGraph(tree.entries.flat, null);
+    const destination = path.join(tree.entries.sub, '002-flat-probe');
+
+    const graph = moveAndRepair(tree.entries.flat, destination);
+
+    expect(graph.parent_id).toBe('demo/sub');
+    expect(graph.parent_id_review_required).toBeUndefined();
+  });
+
+  it('clears the old parent when a packet moves from a sub-track into its track root', () => {
+    const tree = createSubtrackTree();
+    seedPacketGraph(tree.entries.nested, 'demo/sub');
+    const destination = path.join(tree.specs, 'demo', '003-from-subtrack');
+
+    const graph = moveAndRepair(tree.entries.nested, destination);
+
+    expect(graph.parent_id).toBeNull();
+    expect(graph.parent_id_review_required).toBeUndefined();
+  });
+
+  it('updates the parent when a packet moves between declared sub-tracks', () => {
+    const tree = createSubtrackTree();
+    seedPacketGraph(tree.entries.nested, 'demo/sub');
+    const other = addDeclaredSubtrack(tree);
+    const destination = path.join(other, '001-moved-probe');
+
+    const graph = moveAndRepair(tree.entries.nested, destination);
+
+    expect(graph.parent_id).toBe('demo/other');
+    expect(graph.parent_id_review_required).toBeUndefined();
+  });
+
+  // A flat packet that stores its track as parent, with the merge's review flag
+  // set, is waiting for a person: a repair that touches nothing of a sub-track
+  // must leave both the parent and the flag exactly as they were.
+  it('leaves a flat packet parent and its review flag alone after a rename inside its track', () => {
+    const tree = createSubtrackTree();
+    seedPacketGraph(tree.entries.flat, 'demo');
+    const graphPath = path.join(tree.entries.flat, 'graph-metadata.json');
+    const seeded = JSON.parse(fs.readFileSync(graphPath, 'utf8'));
+    fs.writeFileSync(graphPath, `${JSON.stringify({ ...seeded, parent_id_review_required: true }, null, 2)}\n`);
+    const destination = path.join(tree.specs, 'demo', '004-renamed-probe');
+
+    const graph = moveAndRepair(tree.entries.flat, destination);
+
+    expect(graph.parent_id).toBe('demo');
+    expect(graph.parent_id_review_required).toBe(true);
+  });
+
+  it('keeps an old parent flagged for review when a packet moves to an undeclared folder', () => {
+    const tree = createSubtrackTree();
+    seedPacketGraph(tree.entries.nested, 'demo/sub');
+    const destination = path.join(tree.entries.loose, '001-moved-probe');
+
+    const graph = moveAndRepair(tree.entries.nested, destination);
+
+    expect(graph.parent_id).toBe('demo/sub');
+    expect(graph.parent_id_review_required).toBe(true);
   });
 
   it('leaves a packet alone when nothing derived is wrong', () => {

@@ -11,6 +11,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { loadGraphMetadata } from '../../lib/graph/graph-metadata-parser.js';
 import { refreshGraphMetadata } from '../../api/graph-refresh.js';
+import { buildSubtrackTree } from './fixtures/subtrack-tree.mjs';
 
 const createdRoots = new Set<string>();
 
@@ -100,6 +101,39 @@ afterEach(() => {
 });
 
 describe('graph metadata refresh path', () => {
+  it('derives a declared sub-track parent and keeps a phase child parent', () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-subtrack-'));
+    createdRoots.add(root);
+    const { entries } = buildSubtrackTree(path.join(root, '.opencode'));
+
+    refreshGraphMetadata(entries.nested);
+    const nested = loadGraphMetadata(path.join(entries.nested, 'graph-metadata.json'));
+    expect(nested?.parent_id).toBe('demo/sub');
+
+    refreshGraphMetadata(entries.phase);
+    const phase = loadGraphMetadata(path.join(entries.phase, 'graph-metadata.json'));
+    expect(phase?.parent_id).toBe('demo/sub/001-nested-probe');
+  });
+
+  // A packet's parent is a sub-track only under the exact declaration and only
+  // directly below a track, matching the track reader, so the two never disagree.
+  it('derives no sub-track parent from a differently cased level or an archive folder', () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'graph-metadata-subtrack-'));
+    createdRoots.add(root);
+    const { entries, specs } = buildSubtrackTree(path.join(root, '.opencode'));
+    const file = path.join(entries.sub, 'description.json');
+    fs.writeFileSync(file, `${JSON.stringify({ ...JSON.parse(fs.readFileSync(file, 'utf8')), level: 'Sub-Track' }, null, 2)}\n`);
+    refreshGraphMetadata(entries.nested);
+    expect(loadGraphMetadata(path.join(entries.nested, 'graph-metadata.json'))?.parent_id ?? null).toBeNull();
+
+    const archived = path.join(specs, 'demo', 'z_archive', 'old');
+    fs.mkdirSync(path.join(archived, '001-kept'), { recursive: true });
+    fs.writeFileSync(path.join(archived, 'description.json'), `${JSON.stringify({ level: 'sub-track', specFolder: 'demo/z_archive/old' })}\n`);
+    fs.writeFileSync(path.join(archived, '001-kept', 'spec.md'), '# Kept\n');
+    refreshGraphMetadata(path.join(archived, '001-kept'));
+    expect(loadGraphMetadata(path.join(archived, '001-kept', 'graph-metadata.json'))?.parent_id ?? null).toBeNull();
+  });
+
   it('refreshes a graph-metadata.json file from canonical docs and preserves manual fields', () => {
     const specFolder = createSpecFolder();
     const source = fs.readFileSync(

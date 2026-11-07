@@ -312,6 +312,84 @@ function readForWrite(file) {
 // 4. DERIVED REPAIRS
 // ───────────────────────────────────────────────────────────────────
 
+// A sub-track has no number to mark it, so only the declaration in its own
+// description.json makes it a parent. Shape alone is never enough: an undeclared
+// folder must not be promoted just because it sits between a track and a packet.
+const SUBTRACK_LEVEL = 'sub-track';
+
+/** Whether a folder declares itself a named sub-track container. */
+function declaresSubtrack(folder) {
+  const name = path.basename(folder);
+  if (name.startsWith('z_') || PACKET_NAME_RE.test(name) || isSymbolicLink(folder)) return false;
+  const file = path.join(folder, 'description.json');
+  if (isSymbolicLink(file)) return false;
+  const text = readIfPresent(file);
+  if (text === null) return false;
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    return false;
+  }
+  return Boolean(
+    data
+    && typeof data === 'object'
+    && !Array.isArray(data)
+    && typeof data.level === 'string'
+    && data.level === SUBTRACK_LEVEL,
+  );
+}
+
+// Resolve a packet's specs-root-relative segments through links, so the canonical
+// `specs` spelling and its `.opencode/specs` alias name the same tree. Null when
+// the folder does not sit under the root.
+function specsSegments(folder) {
+  try {
+    const root = fs.realpathSync(path.join(REPO, 'specs'));
+    const relative = path.relative(root, fs.realpathSync(path.resolve(REPO, folder)));
+    if (!relative || relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+      return null;
+    }
+    return { root, segments: relative.split(path.sep).filter(Boolean) };
+  } catch {
+    return null;
+  }
+}
+
+// What parent_id the packet's current location implies, when a sub-track or an
+// archive is involved. Every other location is left to the re-derive and the
+// merge exactly as before: a flat packet's stored parent and its review flag wait
+// for a person, so this repair never decides them. A move into an undeclared
+// folder names nothing either, and the merge keeps the old parent flagged.
+function expectedParentId(folder, recordedParent) {
+  const resolved = specsSegments(folder);
+  if (!resolved) return { known: false };
+  const { root, segments } = resolved;
+  if (segments.length < 2) return { known: false };
+  const parentLeaf = segments[segments.length - 2];
+  const parentId = segments.slice(0, -1).join('/');
+  // A packet sitting directly in an archive has no parent packet.
+  if (parentLeaf === 'z_archive') return { known: true, parentId: null, archived: true };
+  // A declared container's own parent is its track.
+  if (segments.length === 2 && declaresSubtrack(path.join(root, ...segments))) {
+    return { known: true, parentId: segments[0] };
+  }
+  if (segments.length === 3 && declaresSubtrack(path.join(root, ...segments.slice(0, -1)))) {
+    return { known: true, parentId };
+  }
+  // A packet moved out of a sub-track into its track still names that sub-track.
+  // The recorded id is stored text, so it must be exactly "<track>/<sub>" before it
+  // names a folder to read.
+  const recordedSegments = typeof recordedParent === 'string' ? recordedParent.split('/') : [];
+  if (segments.length === 2 && recordedSegments.length === 2
+    && recordedSegments[0] === segments[0]
+    && recordedSegments.every((segment) => segment !== '' && segment !== '.' && segment !== '..')
+    && declaresSubtrack(path.join(root, ...recordedSegments))) {
+    return { known: true, parentId: null };
+  }
+  return { known: false };
+}
+
 // A repair rewrites a document a person wrote. Writing in place truncates the
 // file first, so an interrupt between the truncate and the write leaves that
 // document empty — an outcome worse than the failure being repaired. Writing a
@@ -436,12 +514,14 @@ function fixRecordedLocation(folder) {
     }
   }
 
-  // A packet sitting directly in an archive has no parent packet: z_archive is
-  // not one, and a re-derive computes null. The graph merge keeps a stored
-  // parent over a null re-derive and flags it for review, so after a move the
-  // parent the packet was archived from would survive and fail the path check.
+  // The graph merge keeps a stored parent over a null re-derive and flags it for
+  // review, so a packet moved out of a sub-track would keep its old parent, and one
+  // moved between sub-tracks would keep the wrong one. Record the parent the new
+  // location names before the re-derive runs: a numbered packet or declared
+  // sub-track owns it, a track root or archive owns none. A move into an undeclared
+  // folder names nothing, so that one is left for the merge to flag.
   const graph = path.join(folder, 'graph-metadata.json');
-  const graphText = path.basename(path.dirname(path.resolve(REPO, folder))) === 'z_archive' ? readIfPresent(graph) : null;
+  const graphText = readIfPresent(graph);
   if (graphText !== null) {
     let data = null;
     try {
@@ -449,17 +529,24 @@ function fixRecordedLocation(folder) {
     } catch {
       // A graph file that cannot be read is the re-derive's to report.
     }
-    if (data && typeof data === 'object' && !Array.isArray(data) && data.parent_id) {
-      actions.push({
-        file: graph,
-        what: `graph parent ${data.parent_id} -> none, the packet is archived`,
-        apply: () => {
-          const current = JSON.parse(readForWrite(graph));
-          current.parent_id = null;
-          delete current.parent_id_review_required;
-          writeAtomic(graph, `${JSON.stringify(current, null, 2)}\n`);
-        },
-      });
+    // A stored parent id is sometimes the literal text "null" rather than JSON null.
+    const recorded = data && typeof data === 'object' && !Array.isArray(data)
+      ? (typeof data.parent_id === 'string' && data.parent_id.trim().toLowerCase() === 'null' ? null : data.parent_id ?? null)
+      : undefined;
+    const expected = recorded === undefined ? { known: false } : expectedParentId(folder, recorded);
+    if (expected.known) {
+      if (recorded !== expected.parentId || (!expected.archived && data.parent_id_review_required === true)) {
+        actions.push({
+          file: graph,
+          what: `graph parent ${recorded ?? 'none'} -> ${expected.parentId ?? 'none'}`,
+          apply: () => {
+            const current = JSON.parse(readForWrite(graph));
+            current.parent_id = expected.parentId;
+            delete current.parent_id_review_required;
+            writeAtomic(graph, `${JSON.stringify(current, null, 2)}\n`);
+          },
+        });
+      }
     }
   }
 
