@@ -1,5 +1,5 @@
 {
-  "corpusHash": "cafd25801079500c023b15434f1d8cabec545aaa9bf5dcd027e4dd8e9c29ab0a",
+  "corpusHash": "383af6d96929943703dac063d7ce2bcae3cd745f09a02fde88ba71d13d6fdf7c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28463,
+  "includedPathCount": 28466,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8714,6 +8714,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.32.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.33.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.34.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.35.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -8779,6 +8780,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/draft-auto-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/example-drift-guard.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/graph-metadata-write-guard.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md",
@@ -8868,6 +8870,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/graph-metadata-write-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/heal-spec-docs-lane-modes.md",
@@ -28494,7 +28497,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "468f236750db21f9c18ae5f6f3a352c0ca06aeca7c75eadceac2917616331ba8",
+  "manifestHash": "a7f1eb3a8c84cce1ca2c60b81caecffaf2caa070805f9ae1055aeb7b8923cd87",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

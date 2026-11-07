@@ -1,5 +1,5 @@
 {
-  "manifestHash": "468f236750db21f9c18ae5f6f3a352c0ca06aeca7c75eadceac2917616331ba8",
+  "manifestHash": "a7f1eb3a8c84cce1ca2c60b81caecffaf2caa070805f9ae1055aeb7b8923cd87",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -55332,6 +55332,9 @@
     "graph metadata json": [
       "graph-metadata.json"
     ],
+    "graph metadata json linked specs root": [
+      "graph-metadata.json linked specs root"
+    ],
     "graph metadata json skill advisor": [
       "graph-metadata.json skill advisor"
     ],
@@ -63237,6 +63240,9 @@
     ],
     "linked projects share decision capture state": [
       "linked projects share decision capture state"
+    ],
+    "linked specs folder saves": [
+      "linked specs folder saves"
     ],
     "links and generated state implementation summary": [
       "links and generated state implementation summary"
@@ -88785,6 +88791,9 @@
     "refuses symlink traversal at open": [
       "refuses symlink traversal at open"
     ],
+    "refusing graph metadata outside a configured specs root": [
+      "refusing graph metadata outside a configured specs root"
+    ],
     "refuted research finding record": [
       "refuted research finding record"
     ],
@@ -113536,6 +113545,9 @@
     "specs folder research": [
       "specs folder research"
     ],
+    "specs folder symlink graph metadata": [
+      "specs folder symlink graph metadata"
+    ],
     "specs move to the top level": [
       "specs move to the top level"
     ],
@@ -117451,6 +117463,9 @@
     "system spec kit 2 12 34 0": [
       "system-spec-kit 2.12.34.0"
     ],
+    "system spec kit 2 12 35 0": [
+      "system-spec-kit 2.12.35.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -118020,6 +118035,9 @@
     ],
     "system spec kit v2 12 34 0": [
       "system-spec-kit v2.12.34.0"
+    ],
+    "system spec kit v2 12 35 0": [
+      "system-spec-kit v2.12.35.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"

@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7421,
-    "ok": 17493,
+    "missing-frontmatter": 7422,
+    "ok": 17495,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28463,
+  "documentsScanned": 28466,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "468f236750db21f9c18ae5f6f3a352c0ca06aeca7c75eadceac2917616331ba8",
+  "manifestHash": "a7f1eb3a8c84cce1ca2c60b81caecffaf2caa070805f9ae1055aeb7b8923cd87",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41902,
+      "ok": 41908,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -34264,6 +34264,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/graph-metadata-write-guard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
