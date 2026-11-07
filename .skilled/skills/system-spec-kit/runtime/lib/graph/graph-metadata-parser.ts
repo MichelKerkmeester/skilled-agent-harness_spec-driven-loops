@@ -1823,11 +1823,12 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
  */
 function isWithinConfiguredSpecsRoot(candidate: string): boolean {
   const target = path.resolve(candidate);
-  // Roots come from the destination, not from the calling process. The process
-  // is the workspace the caller happens to be running in, which is not where
-  // the bytes land: a hook launched from the home directory, or a fixture
-  // repository built under a temporary directory, resolves a different root and
-  // every write is refused - including writes into the real repository.
+  // Roots come first from the destination. The process is the workspace the
+  // caller happens to be running in, which is not where the bytes land: a hook
+  // launched from the home directory, or a fixture repository built under a
+  // temporary directory, resolves a different root, so the process alone would
+  // refuse writes into the real repository. It joins only the real-location
+  // check below, as a second source of roots.
   //
   // This does not let a destination authorize itself. A root counts only when
   // it exists on disk and its workspace is anchored on a real `.opencode`

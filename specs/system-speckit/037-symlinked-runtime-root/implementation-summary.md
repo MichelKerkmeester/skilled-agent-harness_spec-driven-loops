@@ -162,7 +162,7 @@ Two plan entries changed. `workflow.ts` stayed untouched, for the reason under E
 | Reopened: `npx vitest run tests/graph-metadata-schema.vitest.ts` in `runtime` | `Tests 59 passed (59)` against a baseline of `54 passed (54)`, a delta of the 5 new cases. Each project-layout case fails without its change |
 | Reopened: backfill and save from a scratch project whose `specs` links into another workspace | Before: backfill exit 1 with the configured-root refusal. After: backfill exit 0 with `"failed": []`; `generate-context.js` save exit 0 with `Created graph-metadata.json` at the canonical track path |
 | Reopened: full runtime suite | `Tests 9 failed \| 4269 passed \| 22 skipped (4300)`. None of the nine touches graph metadata; seven pass when rerun alone, and the other two fail identically with this change reverted |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/037-symlinked-runtime-root --strict` | The rules over the five documents pass, including `STATUS_CROSS_DOC_CONSISTENCY`, `AC_COVERAGE` at 8/8 and `AC_CLOSURE` at 8/8. The overall result is `RESULT: FAILED` on two `GENERATED_METADATA_*` errors: `description.json` and `graph-metadata.json` are stale against the edited docs, and `repair-derived.cjs` rewrites them |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/037-symlinked-runtime-root --strict` | 2026-11-07, after the reopening and `repair-derived.cjs --apply`: `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`, with acceptance coverage and closure at 11 of 11. The 2026-10-31 run before it read `RESULT: FAILED` on two stale generated-metadata files, which the repair rewrote |
 <!-- /ANCHOR:verification -->
 
 ---

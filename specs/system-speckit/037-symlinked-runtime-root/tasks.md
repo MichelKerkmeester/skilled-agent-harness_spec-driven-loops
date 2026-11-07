@@ -73,6 +73,7 @@ contextType: "implementation"
 - [x] T021 Add the linked-root, project-layout and stray-destination cases (`runtime/tests/graph-metadata-schema.vitest.ts`) — evidence: `Tests 59 passed (59)`
 - [x] T022 Rebuild and rerun the reproduction and a continuity save through the link — evidence: `npm run build` exit 0; backfill exit 0 with `"failed": []`; `generate-context.js` save through `specs/900-linked-specs-root-graph-write` exit 0 with `Created graph-metadata.json` at the canonical track path
 - [x] T023 Run typecheck, lint on the changed files and the full runtime suite from the final state — evidence: `npm run typecheck` exit 0; `eslint` on both changed files exit 0; comment hygiene exit 0. Full suite `Tests 9 failed \| 4269 passed \| 22 skipped (4300)`: none touches graph metadata. Rerun alone, seven pass; the other two (`hook-adapter-path-parity` cursor drift marker, `deep-research-ledger-schema` timeout) fail the same way with this change reverted. No baseline of the full suite was taken before the change
+- [x] T024 Act on the alignment run over the fix commit — evidence: the guard's comment now names the process roots; a CLI save case through a `specs` folder linked into another workspace (`runtime/cli/tests/symlinked-project-root.vitest.ts`) fails against the old guard with `Tests 1 failed` and passes after, `Tests 11 passed (11)`; a `system-spec-kit` changelog entry `v2.12.35.0` with the `SKILL.md` version raised to match; a feature-catalog entry and a playbook scenario for the linked-root write. The open Skilled release notes were left alone because `v4.0.2.0` is already tagged
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,7 +81,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]` — T001 to T023
+- [x] All tasks marked `[x]` — T001 to T024
 - [x] No `[B]` blocked tasks remaining
 - [x] Every acceptance row Met — 11 of 11 in `acceptance-criteria.md`
 <!-- /ANCHOR:completion -->
