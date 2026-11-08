@@ -1,7 +1,7 @@
 ---
 title: "MDL-001 -- LLM Gateway route"
 description: "This scenario validates that a keyed request over the LLM Gateway route exits 0 and ends on a completed final event for `MDL-001`."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MDL-001 -- LLM Gateway route
@@ -16,7 +16,7 @@ This scenario validates the first roster route end to end. It focuses on the com
 
 ### Why This Matters
 
-The harness owns model selection, so the route patch is the model choice. The keyed LLM Gateway run completed on 2026-11-06 with exit 0, a `completed` final reason and empty stderr.
+The harness owns model selection, so the route patch is the model choice. A keyed LLM Gateway run ends with exit 0, a `completed` final reason and empty stderr.
 
 ---
 

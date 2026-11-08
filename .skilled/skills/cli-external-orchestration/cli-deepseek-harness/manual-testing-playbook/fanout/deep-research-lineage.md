@@ -1,7 +1,7 @@
 ---
 title: "FAN-001 -- Deep-research lineage"
 description: "This scenario validates a research lineage on the cli-deepseek-harness executor kind, including its lineage command, isolated home and completion check for `FAN-001`."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # FAN-001 -- Deep-research lineage
@@ -28,7 +28,7 @@ The packet must not grow a second spawn path. The runner owns the version probe,
 - Expected execution process: Name the kind and model explicitly -> let the runner probe `dsh` and the pinned version in a throwaway home -> create disposable `dsh-home-*` under the OS temp directory, outside the checkout and lineage, and remove it after the run -> build the argv with the route, lineage and guards patches -> write the prompt to stdin and close it -> apply `timeoutSeconds` -> read the result and the containment scan.
 - Expected signals: The cwd is the lineage directory, never the repository root. `DSH_HOME` points to disposable `dsh-home-*` under the OS temp directory, outside the checkout and lineage, and the runner removes it after the run. The argv carries the route patch mapped from `deepseek-v4.1-flash-1017`, the lineage patch and the guards patch. Exit is `0`, the last line is a `final` event with `reason.kind` `completed`, stderr has no `did not activate` line and the containment scan finds no write outside the lineage.
 - Desired user-visible outcome: A completed research lineage with a recorded executable version, invocation fingerprint and attempt outcome.
-- Pass/fail: PASS if the runner builds the documented command and the run ends on exit `0` with `completed`. FAIL if the runner omits a required patch, starts in the checkout, inherits `DSH_HOME` or grades a non-zero exit as complete. SKIP if the route key is absent.
+- Pass/fail: PASS if the runner builds the documented command and the run ends on exit `0` with `completed`. FAIL if the runner omits a required patch, starts in the checkout, inherits `DSH_HOME` or grades a non-zero exit as complete. SKIP if the route key is missing from the environment, and name that blocker.
 
 ---
 
@@ -53,7 +53,7 @@ bash: read the lineage result and confirm exit 0, a last final event with reason
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Observed: the clean LLM Gateway deep-research lineage completed on 2026-11-06 with exit 0 and a `completed` final event. Its containment scan reported zero advisory events and no quarantine.
+- Observed: the clean LLM Gateway deep-research lineage completed with exit 0 and a `completed` final event. Its containment scan reported zero advisory events and no quarantine.
 - Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage.md`, `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.exit.txt` and `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.stdout.txt`.
 - OpenCode Go remains configured, not verified, and stays out of default allowlists while its key is unset.
 

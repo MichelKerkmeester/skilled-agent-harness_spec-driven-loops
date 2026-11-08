@@ -1,7 +1,7 @@
 ---
 title: "PAT-002 -- Guards patch boot"
 description: "This scenario validates that the guards patch loads the repo-guards bundle with no failed plugin entry and reaches the provider call for `PAT-002`."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # PAT-002 -- Guards patch boot
@@ -60,7 +60,7 @@ tail -n 1 stdout.jsonl
 - Observed: exit `1`, stderr names `LLMGATEWAY_API_KEY` with `MISSING_CREDENTIAL`, `grep -c "did not activate"` returns `0`, and the last event is a `final` event with `reason.kind` `error`.
 - The same capture records the plugin suite run in that packet, but this scenario grades the boot only. The current suite count lives in `GRD-001`.
 - Note: the saved capture omits `--permission-mode`. The command above adds the read-only preset for a dispatch that could reach a tool.
-- Rerun after hook parity, 2026-11-06: both compositions exit `1` with `MISSING_CREDENTIAL` and print no `did not activate` line. The interactive boot, with the route and guards patches only, also carried the skill-advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context. Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`.
+- Rerun after hook parity: both compositions exit `1` with `MISSING_CREDENTIAL` and print no `did not activate` line. The interactive boot, with the route and guards patches only, also carried the skill-advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context. Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
