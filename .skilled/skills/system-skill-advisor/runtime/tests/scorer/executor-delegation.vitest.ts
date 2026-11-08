@@ -206,6 +206,28 @@ describe('executor-delegation resolver (pure detector)', () => {
   it.each(proseHandoffs)('does not treat ordinary prose as an executor handoff: %s', (prompt) => {
     expect(resolveExecutorDelegation(prompt, table)).toBeNull();
   });
+
+  const runtimeSurfaces = [
+    'make the claude code stop hook return a block decision',
+    'add the dsh agent/turn-stopping guard so it steers the agent',
+    'write the pi agent_end guard so it sends one follow-up turn',
+    'regenerate the devin hook configs',
+  ];
+
+  it.each(runtimeSurfaces)('reads a runtime named as a surface owner as no handoff: %s', (prompt) => {
+    expect(resolveExecutorDelegation(prompt, table)).toBeNull();
+  });
+
+  it('still routes a handoff that sits beside a runtime surface', () => {
+    const decision = resolveExecutorDelegation('use codex to fix the claude code stop hook', table);
+    expect(decision?.action).toBe('route');
+    expect(decision?.executorSkillId).toBe('cli-codex');
+  });
+
+  it('keeps a runtime named without a surface noun as a handoff', () => {
+    const decision = resolveExecutorDelegation('ask claude code to review this module', table);
+    expect(decision?.executorSkillId).toBe('cli-claude-code');
+  });
 });
 
 describe('executor-delegation shared fixture (TS native + Python parity)', () => {

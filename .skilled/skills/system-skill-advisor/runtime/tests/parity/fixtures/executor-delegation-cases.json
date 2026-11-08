@@ -109,6 +109,18 @@
       "prompt": "create a spec folder for this feature and use cli-codex to write the code",
       "expectedTop": "system-spec-kit",
       "branch": "workflow-owner"
+    },
+    {
+      "id": "runtime-surface-claude-code-stop-hook",
+      "prompt": "Make the Claude Code Stop hook return a block decision with a reason when the turn ended in a prose menu, and do nothing when stop_hook_active is true",
+      "expectedTop": "sk-code",
+      "branch": "runtime-surface"
+    },
+    {
+      "id": "runtime-surface-beside-codex-handoff",
+      "prompt": "use codex to fix the Claude Code Stop hook",
+      "expectedTop": "cli-external-orchestration",
+      "branch": "runtime-surface"
     }
   ]
 }

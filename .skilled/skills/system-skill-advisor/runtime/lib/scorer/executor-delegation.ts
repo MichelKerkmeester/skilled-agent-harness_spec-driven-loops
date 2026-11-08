@@ -106,6 +106,14 @@ const SPLIT_HANDOFF_TARGET_LEAD = String.raw`(?:(?:the|an?)\s+)?`;
 // executor handoff, so they must never lift an executor.
 const NEGATIVE_GUARD = /\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.(?:opencode|skilled)\//;
 
+// A runtime named as the owner of a surface being built ("the Claude Code Stop
+// hook", "the Pi agent_end guard") is the subject of the code, not an executor
+// to hand work to. The surface noun may sit up to two words after the runtime,
+// so an event name fits between them, and sentence punctuation ends the reach.
+// Only that mention is masked: a separate hand-off in the same prompt ("use
+// codex to fix the Claude Code Stop hook") still routes.
+const RUNTIME_SURFACE_TAIL = String.raw`\s+(?:[^\s.,;:!?]+\s+){0,2}?(?:hooks?|plugins?|extensions?|adapters?|guards?)(?!\w)`;
+
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
@@ -389,6 +397,41 @@ function matchesSplitHandoff(promptLower: string, noun: string): boolean {
   return delegate.test(promptLower) || handOff.test(promptLower);
 }
 
+// Blanks every runtime-surface mention of a known alias or noun, so alias
+// matching sees only the mentions that could still be a hand-off.
+function maskRuntimeSurfaces(promptLower: string, phrases: Iterable<string>): string {
+  let masked = promptLower;
+  for (const phrase of phrases) {
+    const pattern = new RegExp(String.raw`(?<!\w)${escapeRegExp(phrase)}${RUNTIME_SURFACE_TAIL}`, 'g');
+    masked = masked.replace(pattern, ' ');
+  }
+  return masked;
+}
+
+// The phrases a runtime-surface mention is judged against: every executor alias,
+// orchestrator noun and retired alias the table knows.
+function surfacePhrases(table: ExecutorAliasTable): string[] {
+  return [...table.activeAliases.keys(), ...table.orchestratorNouns.keys(), ...table.suppressedAliases];
+}
+
+// When no hand-off resolved but the prompt named a runtime as a surface owner,
+// the CLI hub's lead rests on that name alone: its author lane matched the
+// runtime, not a request to run it. The hub drops below the next passing
+// candidate so the work routes by what it is. A literal `cli-*` id is an
+// explicit choice of the hub and keeps it in place.
+function demoteSurfaceOnlyHub(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+  table: ExecutorAliasTable,
+): AdvisorScoredRecommendation[] {
+  if (ranked[0]?.skill !== CLI_HUB_SKILL_ID || /(?<!\w)cli-[a-z]/.test(promptLower)) return [...ranked];
+  if (maskRuntimeSurfaces(promptLower, surfacePhrases(table)) === promptLower) return [...ranked];
+  const [hub, ...others] = ranked;
+  const next = others.findIndex((rec) => rec.passes_threshold);
+  if (next === -1) return [...ranked];
+  return [...others.slice(0, next + 1), hub, ...others.slice(next + 1)];
+}
+
 function longestPhraseMatch(promptLower: string, phrases: Iterable<[string, string]>): { phrase: string; value: string } | null {
   let best: { phrase: string; value: string } | null = null;
   for (const [phrase, value] of phrases) {
@@ -410,25 +453,27 @@ export function resolveExecutorDelegation(
   // Highest precedence: the code hub's opencode surface is not a handoff.
   if (table.negativeGuard.test(promptLower)) return null;
 
+  const scoped = maskRuntimeSurfaces(promptLower, surfacePhrases(table));
+
   // A retired executor named explicitly must abstain, never fall back.
   for (const alias of table.suppressedAliases) {
-    if (matchesPhraseBoundary(promptLower, alias)) {
+    if (matchesPhraseBoundary(scoped, alias)) {
       return { executorSkillId: null, action: 'abstain', evidence: `suppressed-executor:${alias}` };
     }
   }
 
   // A direct, unambiguous alias routes without needing a separate cue.
-  const directMatch = longestPhraseMatch(promptLower, table.activeAliases.entries());
+  const directMatch = longestPhraseMatch(scoped, table.activeAliases.entries());
   if (directMatch) {
     return { executorSkillId: directMatch.value, action: 'route', evidence: `executor-alias:${directMatch.phrase}` };
   }
 
   // Otherwise an orchestrator noun co-occurring with a delegation cue routes,
   // and so does one that is the target of a split "delegate/hand ... to" handoff.
-  const cueHit = table.delegationCues.test(promptLower);
+  const cueHit = table.delegationCues.test(scoped);
   const nouns = Array.from(table.orchestratorNouns.entries())
-    .filter(([noun]) => cueHit || matchesSplitHandoff(promptLower, noun));
-  const orchestratorMatch = longestPhraseMatch(promptLower, nouns);
+    .filter(([noun]) => cueHit || matchesSplitHandoff(scoped, noun));
+  const orchestratorMatch = longestPhraseMatch(scoped, nouns);
   if (orchestratorMatch) {
     return {
       executorSkillId: orchestratorMatch.value,
@@ -496,7 +541,7 @@ export function applyExecutorDelegationOverride(
 ): AdvisorScoredRecommendation[] {
   const table = buildExecutorAliasTable(ctx.projection, ctx.workspaceRoot);
   const decision = resolveExecutorDelegation(ctx.promptLower, table);
-  if (!decision) return [...ranked];
+  if (!decision) return demoteSurfaceOnlyHub(ranked, ctx.promptLower, table);
 
   if (decision.action === 'abstain') {
     // A named retired executor cannot be honored and must not silently reroute:

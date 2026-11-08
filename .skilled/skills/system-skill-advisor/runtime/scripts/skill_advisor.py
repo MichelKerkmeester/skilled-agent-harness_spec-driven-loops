@@ -4156,6 +4156,11 @@ _SPLIT_HANDOFF_VERB_RE = re.compile(r"\b(?:delegate|hand)\b")
 EXECUTOR_NEGATIVE_GUARD_RE = re.compile(
     r"\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.(?:opencode|skilled)/"
 )
+# A runtime named as the owner of a surface being built ("the Claude Code Stop
+# hook") is the subject of the code, not an executor to hand work to. The
+# surface noun may sit up to two words after the runtime, and sentence
+# punctuation ends the reach. A separate hand-off in the same prompt still routes.
+_RUNTIME_SURFACE_TAIL = r"\s+(?:[^\s.,;:!?]+\s+){0,2}?(?:hooks?|plugins?|extensions?|adapters?|guards?)(?!\w)"
 # The skills that own the workflows an executor CLI runs inside. The executor is
 # the HOW of such a workflow, so a prompt that names both never lets the CLI hub
 # take the route from its owner.
@@ -4398,6 +4403,15 @@ def _match_phrase_boundary(prompt_lower: str, phrase: str) -> bool:
     return re.search(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", prompt_lower) is not None
 
 
+def _mask_runtime_surfaces(prompt_lower: str, phrases) -> str:
+    """Blank each runtime-surface mention of a known alias or noun."""
+    masked = prompt_lower
+    for phrase in phrases:
+        if phrase:
+            masked = re.sub(r"(?<!\w)" + re.escape(phrase) + _RUNTIME_SURFACE_TAIL, " ", masked)
+    return masked
+
+
 def _matches_split_handoff(prompt_lower: str, noun: str) -> bool:
     """True when "delegate <object> to <noun>" or "hand <object> off to <noun>" appears."""
     if not _SPLIT_HANDOFF_VERB_RE.search(prompt_lower):
@@ -4419,6 +4433,10 @@ def _resolve_executor_delegation(prompt_lower: str) -> Optional[tuple]:
     if EXECUTOR_NEGATIVE_GUARD_RE.search(prompt_lower):
         return None
     table = _build_executor_alias_table()
+    prompt_lower = _mask_runtime_surfaces(
+        prompt_lower,
+        [*table["active"].keys(), *table["orchestrator"].keys(), *table["suppressed"]],
+    )
     for alias in table["suppressed"]:
         if _match_phrase_boundary(prompt_lower, alias):
             return (None, "abstain")
