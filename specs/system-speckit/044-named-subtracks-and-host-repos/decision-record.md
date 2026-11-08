@@ -36,7 +36,7 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | A new host gets .skilled/ built in place, so .skilled/specs points at the host specs/ folder or is omitted, instead of one whole link to the checkout. | The operator chose the recommended option: a whole link resolves .skilled/specs into the Skilled checkout own specs, the wrong tree for a host. | None | REQ-010, AC-010, T015, implementation-summary.md Key Decisions |
 | Q002 | create.sh refuses an undeclared two-level --track instead of creating an unlisted packet. | Not stated. | None | 001-create-track-fixes/spec.md D-001, create.sh, create-track-refresh.vitest.ts |
-| Q003 | Every remaining phase decision (D-002a to D-005c) takes its recommended option. | Not stated. | None | 002-005 spec.md section 7 |
+| Q003 | Take every recommended option for the nine smaller design choices D-002a/b, D-003a/b, D-004a/b and D-005a/b/c. | Not stated. | None | Phase decision records D-002 to D-005, phases 002-005 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---

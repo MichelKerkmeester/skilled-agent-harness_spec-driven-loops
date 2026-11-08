@@ -18,6 +18,7 @@
       "create track fixes plan",
       "create.sh track guard plan",
       "create track fixes tasks",
+      "001-create-track-fixes operator decisions",
       "create track fixes implementation summary",
       "create.sh sub-track guard"
     ],
@@ -31,27 +32,24 @@
       "plan",
       "guard",
       "tasks",
-      "implementation",
-      "summary",
-      "writes"
+      "001-create-track-fixes",
+      "operator",
+      "decisions"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-refresh.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-track-containment.vitest.ts",
       "scratch/baseline.txt",
-      "scratch/red-T004.log",
-      "scratch/red-T007.log",
       "runtime/cli/tests/fixtures/subtrack-tree.mjs",
-      "runtime/cli/spec/create.sh",
-      "scratch/red-T005.log",
-      "scratch/red-T006.log"
+      "runtime/cli/spec/create.sh"
     ],
     "entities": [
       {
@@ -70,6 +68,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -103,33 +107,9 @@
         "source": "derived"
       },
       {
-        "name": "red-T004.log",
-        "kind": "file",
-        "path": "scratch/red-T004.log",
-        "source": "derived"
-      },
-      {
-        "name": "red-T007.log",
-        "kind": "file",
-        "path": "scratch/red-T007.log",
-        "source": "derived"
-      },
-      {
         "name": "subtrack-tree.mjs",
         "kind": "file",
         "path": "runtime/cli/tests/fixtures/subtrack-tree.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "red-T005.log",
-        "kind": "file",
-        "path": "scratch/red-T005.log",
-        "source": "derived"
-      },
-      {
-        "name": "red-T006.log",
-        "kind": "file",
-        "path": "scratch/red-T006.log",
         "source": "derived"
       },
       {
@@ -197,26 +177,46 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`create.sh --track <track>/<sub-track>/` with a trailing slash writes the packet and skips both track-root refreshes, so the sub-track and its track drift with no warning (F-P1-1, `review-report.md` section 3)",
     "created_at": "2026-11-07T20:27:52Z",
-    "last_save_at": "2026-11-07T21:23:08.978Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-08T14:48:49.898Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46dd5b1d2ee3ff5d6e0e1cf762a5d0b7f607047037279dd0166d36664e2ed422",
+    "source_fingerprint": "sha256:b16ac9a256bb8eeb53431190a5a659652b05f0af989040b82dde3dc762690bbf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16ae049d69103e1b687006596942f9cb268e0190327ce4815dfe403db20bb641",
       "plan.md": "da36032b798b979e142266fcf60df00fdc0618e824f25604436702840f38bd2f",
       "tasks.md": "5012eb1a39621d6204645e87e0c150fe0de22b913d1a2ed1aa58f0c3557a951e",
-      "implementation-summary.md": "c1820b9b61597e98036c108719d8e8ef617116fd5e3bc47baeda6c8e8f9c125c"
+      "decision-record.md": "7551243a636edd27b55b7d81ad966985308f1ffac865bfef31843bf172958ecc",
+      "implementation-summary.md": "89e0af50a3979e700bc8a57213e141211b6a142275cf516b46b55eb4418ff2d4"
     },
     "last_active_at": null
   }

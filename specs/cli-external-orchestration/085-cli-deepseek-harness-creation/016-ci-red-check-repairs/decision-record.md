@@ -37,6 +37,7 @@ _memory:
 | Q001 | Repair every red check, the system-skilled-doctor playbook included, despite its live worktrees 320 and 324. | Not stated. | None | 016-ci-red-check-repairs spec.md section 3, tasks.md T004 |
 | Q002 | The DSH plugin tests move into per-concern tests/ folders. | Not stated. | None | commit add85004bd |
 | Q003 | Drop the phrase isolated chrome from mcp-tooling's hub-router.json and correct the v1.9.7.0 changelog line that listed it. | Carrying it into ROUTER.md also carries it into the advisor signals, where the native scorer sent an sk-git prompt about an isolated lane to mcp-tooling; no test or playbook used the phrase. | None | .skilled/skills/mcp-tooling/hub-router.json, changelog/v1.9.7.0.md, commit 9932b52352 |
+| Q004 | Merge origin/main into the main checkout, keep both sides of the playbook index, regenerate the generated files and push. | Not stated. | None | Merge commit f552900fd7, push 2ac785ba1e |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -104,6 +105,26 @@ Leave it red
 Answer:
 ```text
 Drop the phrase (Recommended)
+```
+
+### Q004
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_014RCcYJLaYaqA1msatPCeAZ:0 -->
+
+Question:
+```text
+All uncommitted work is now 11 local commits on main in your checkout (the hooks track rename, the ask-surface guard and its rule change, 044 review artifacts, chores, trigger index). Syncing with origin/main (49 commits ahead) hits 6 merge conflicts in a dry run, all mechanical: 4 generated trigger-index files, the generated agents-md-manifest.json, and the system-spec-kit playbook index where each side added its own scenario rows. Your standing rule says halt on a merge conflict. How should I proceed?
+```
+
+Options:
+```text
+Resolve, merge, push (Recommended)
+Resolve and merge, no push
+Stop here
+```
+
+Answer:
+```text
+Resolve, merge, push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
