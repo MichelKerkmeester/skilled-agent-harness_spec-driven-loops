@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a1f00e84bdb0af7bbd4bb0eeb20b10bc43d7372b9905938024b2d11fbbe5104d",
+  "manifestHash": "df44bf02f2c09c83cf8db88a654db1e3c67446b8dbc7fde515a9c5653f8d43f3",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17649,7 +17649,11 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/implementation-summary.md",
     "specs/system-speckit/045-upgrade-level-anchor-insert/plan.md",
     "specs/system-speckit/045-upgrade-level-anchor-insert/spec.md",
-    "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
+    "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md",
+    "specs/system-speckit/046-create-path-track-refresh/implementation-summary.md",
+    "specs/system-speckit/046-create-path-track-refresh/plan.md",
+    "specs/system-speckit/046-create-path-track-refresh/spec.md",
+    "specs/system-speckit/046-create-path-track-refresh/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -50903,6 +50907,18 @@
     "create parse frontmatter test": [
       16479
     ],
+    "create path track refresh": [
+      17642
+    ],
+    "create path track refresh implementation summary": [
+      17640
+    ],
+    "create path track refresh plan": [
+      17641
+    ],
+    "create path track refresh tasks": [
+      17643
+    ],
     "create pull request programmatically": [
       2227,
       2243
@@ -50995,6 +51011,9 @@
     ],
     "create sh parent packet corruption review": [
       15518
+    ],
+    "create sh path refreshes the track root": [
+      17642
     ],
     "create sh path symlink": [
       3057

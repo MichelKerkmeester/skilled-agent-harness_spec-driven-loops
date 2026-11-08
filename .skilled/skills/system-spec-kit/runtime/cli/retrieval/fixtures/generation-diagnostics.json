@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7404,
-    "ok": 17591,
+    "ok": 17595,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28544,
+  "documentsScanned": 28548,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a1f00e84bdb0af7bbd4bb0eeb20b10bc43d7372b9905938024b2d11fbbe5104d",
+  "manifestHash": "df44bf02f2c09c83cf8db88a654db1e3c67446b8dbc7fde515a9c5653f8d43f3",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 42017,
+      "ok": 42022,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -77760,6 +77760,10 @@
     },
     {
       "path": "specs/system-speckit/045-upgrade-level-anchor-insert/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/046-create-path-track-refresh/scratch",
       "reason": "excluded directory"
     },
     {

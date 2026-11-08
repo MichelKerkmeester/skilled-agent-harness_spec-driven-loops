@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a1f00e84bdb0af7bbd4bb0eeb20b10bc43d7372b9905938024b2d11fbbe5104d",
+  "manifestHash": "df44bf02f2c09c83cf8db88a654db1e3c67446b8dbc7fde515a9c5653f8d43f3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -31347,6 +31347,18 @@
     "create parse frontmatter test": [
       "create parse-frontmatter test"
     ],
+    "create path track refresh": [
+      "create path track refresh"
+    ],
+    "create path track refresh implementation summary": [
+      "create path track refresh implementation summary"
+    ],
+    "create path track refresh plan": [
+      "create path track refresh plan"
+    ],
+    "create path track refresh tasks": [
+      "create path track refresh tasks"
+    ],
     "create pull request programmatically": [
       "create pull request programmatically"
     ],
@@ -31433,6 +31445,9 @@
     ],
     "create sh parent packet corruption review": [
       "create.sh parent packet corruption review"
+    ],
+    "create sh path refreshes the track root": [
+      "create sh path refreshes the track root"
     ],
     "create sh path symlink": [
       "create.sh path symlink"

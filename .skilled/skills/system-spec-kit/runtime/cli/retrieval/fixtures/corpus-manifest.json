@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6352920d9403c5f1ecfa8a0f8197ab5c55c65ae845e478b3b67b6d5a803824ef",
+  "corpusHash": "d3aae68a99a4ebda092f13652e685401f6239f9eadf8993819894c402b5b52f6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28544,
+  "includedPathCount": 28548,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28572,10 +28572,14 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/implementation-summary.md",
     "specs/system-speckit/045-upgrade-level-anchor-insert/plan.md",
     "specs/system-speckit/045-upgrade-level-anchor-insert/spec.md",
-    "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
+    "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md",
+    "specs/system-speckit/046-create-path-track-refresh/implementation-summary.md",
+    "specs/system-speckit/046-create-path-track-refresh/plan.md",
+    "specs/system-speckit/046-create-path-track-refresh/spec.md",
+    "specs/system-speckit/046-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a1f00e84bdb0af7bbd4bb0eeb20b10bc43d7372b9905938024b2d11fbbe5104d",
+  "manifestHash": "df44bf02f2c09c83cf8db88a654db1e3c67446b8dbc7fde515a9c5653f8d43f3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37023,6 +37027,10 @@
     },
     {
       "path": "specs/system-speckit/045-upgrade-level-anchor-insert/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/046-create-path-track-refresh/scratch",
       "reason": "excluded directory"
     },
     {
