@@ -1,5 +1,5 @@
 {
-  "manifestHash": "13923eb142cf82841a5ea992f54ac45962cb2b110b5444b7d046545d19ff2998",
+  "manifestHash": "6754bb89796bbef3468a55bfa6b6419b861c791e6ffc4d6cb266bbb53e130e45",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13838,6 +13838,9 @@
     ],
     "barter frontend proposals for skilled": [
       "barter frontend proposals for skilled"
+    ],
+    "barter handover items": [
+      "barter handover items"
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
@@ -90727,6 +90730,9 @@
     "remove lane modes mode flag": [
       "remove lane modes mode flag"
     ],
+    "remove list live edited": [
+      "remove list live-edited"
+    ],
     "remove llama cpp references": [
       "remove llama-cpp references"
     ],
@@ -90828,6 +90834,21 @@
     ],
     "remove voyage cohere reranker": [
       "remove voyage cohere reranker"
+    ],
+    "removed folder classification": [
+      "removed folder classification"
+    ],
+    "removed folder classification implementation summary": [
+      "removed folder classification implementation summary"
+    ],
+    "removed folder classification plan": [
+      "removed folder classification plan"
+    ],
+    "removed folder classification tasks": [
+      "removed folder classification tasks"
+    ],
+    "removed folder overlay": [
+      "removed folder overlay"
     ],
     "removed process derived root source": [
       "removed process-derived root source"
@@ -117309,6 +117330,9 @@
     "system skilled doctor 1 1 1 0": [
       "system-skilled-doctor 1.1.1.0"
     ],
+    "system skilled doctor 1 1 2 0": [
+      "system-skilled-doctor 1.1.2.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -117356,6 +117380,9 @@
     ],
     "system skilled doctor v1 1 1 0": [
       "system-skilled-doctor v1.1.1.0"
+    ],
+    "system skilled doctor v1 1 2 0": [
+      "system-skilled-doctor v1.1.2.0"
     ],
     "system spec gate": [
       "system-spec-gate"

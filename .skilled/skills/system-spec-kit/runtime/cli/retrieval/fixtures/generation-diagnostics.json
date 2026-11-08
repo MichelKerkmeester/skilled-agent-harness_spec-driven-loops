@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7392,
-    "ok": 17580,
+    "ok": 17585,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28521,
+  "documentsScanned": 28526,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "13923eb142cf82841a5ea992f54ac45962cb2b110b5444b7d046545d19ff2998",
+  "manifestHash": "6754bb89796bbef3468a55bfa6b6419b861c791e6ffc4d6cb266bbb53e130e45",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 42000,
+      "ok": 42009,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -75060,6 +75060,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/003-removed-folder-classification/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c7ca47de781c0ad5cfc48a2672ceaaf59b9b99901b856fa57da241d83d3cccf6",
+  "corpusHash": "b3ad108eba6461f162ffea01497e403313347184055b0d62595b8fcd0f39936a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28521,
+  "includedPathCount": 28526,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8344,6 +8344,7 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.0.0.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.2.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
@@ -18587,6 +18588,10 @@
     "specs/system-skilled-doctor/002-symlink-first-link/plan.md",
     "specs/system-skilled-doctor/002-symlink-first-link/spec.md",
     "specs/system-skilled-doctor/002-symlink-first-link/tasks.md",
+    "specs/system-skilled-doctor/003-removed-folder-classification/implementation-summary.md",
+    "specs/system-skilled-doctor/003-removed-folder-classification/plan.md",
+    "specs/system-skilled-doctor/003-removed-folder-classification/spec.md",
+    "specs/system-skilled-doctor/003-removed-folder-classification/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -28552,7 +28557,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "13923eb142cf82841a5ea992f54ac45962cb2b110b5444b7d046545d19ff2998",
+  "manifestHash": "6754bb89796bbef3468a55bfa6b6419b861c791e6ffc4d6cb266bbb53e130e45",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34372,6 +34377,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/003-removed-folder-classification/scratch",
       "reason": "excluded directory"
     },
     {
