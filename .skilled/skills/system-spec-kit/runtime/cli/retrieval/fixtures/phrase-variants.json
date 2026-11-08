@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4a8d046486ab2ac61776dfe92028fe2fe0c7eee8512df636d3b350c9e1525278",
+  "manifestHash": "506d2273bbe16d099c26243751ba7447add9117e764ecdb3b1dbc116af51478f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -27735,6 +27735,12 @@
     ],
     "compaction history lookup": [
       "compaction history lookup"
+    ],
+    "compaction history recall baseline conversation": [
+      "compaction history recall baseline conversation"
+    ],
+    "compaction history recall conversation": [
+      "compaction history recall conversation"
     ],
     "compaction pointer staleness": [
       "compaction pointer staleness"
@@ -56923,6 +56929,12 @@
     ],
     "history lookup core": [
       "history lookup core"
+    ],
+    "history lookup recall baseline": [
+      "history lookup recall baseline"
+    ],
+    "history lookup recall with lookup": [
+      "history lookup recall with lookup"
     ],
     "history rewrite": [
       "history rewrite"

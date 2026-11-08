@@ -1,5 +1,5 @@
 {
-  "corpusHash": "bf1caaf18b6ceffdf3b4285e139bbfafd9aabfd709d83c4628a264a4be01f2f4",
+  "corpusHash": "a76d9d8d2face1142f04b562fe03797270ebdeae31892979e2d5d5449826c268",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28435,
+  "includedPathCount": 28437,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8738,6 +8738,8 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-baseline-conversation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
@@ -28466,7 +28468,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4a8d046486ab2ac61776dfe92028fe2fe0c7eee8512df636d3b350c9e1525278",
+  "manifestHash": "506d2273bbe16d099c26243751ba7447add9117e764ecdb3b1dbc116af51478f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
