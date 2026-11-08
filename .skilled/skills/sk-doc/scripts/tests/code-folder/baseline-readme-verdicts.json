@@ -411,8 +411,8 @@
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 279,
-          "line_number": 279,
+          "line": 280,
+          "line_number": 280,
           "message": "\"RELATED\" must be the last H2; it is followed by \"COVERAGE MATRIX\".",
           "severity": "warning",
           "type": "render_section_order"
