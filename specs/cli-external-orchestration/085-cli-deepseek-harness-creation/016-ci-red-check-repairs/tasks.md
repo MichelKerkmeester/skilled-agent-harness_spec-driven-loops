@@ -51,6 +51,7 @@ contextType: "implementation"
 
 - [x] T006 Run the sk-doc runner as CI does. Verify: no `FAIL` line. Evidence: `implementation-summary.md` Verification.
 - [x] T007 Confirm the five workflows on the pushed commit. Verify: each reports success. Evidence: `implementation-summary.md` Verification.
+- [x] T008 After later commits moved the hooks README warning to line 281 and added three folders, compare README verdicts without finding positions, and refresh the directory manifest again (`.skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py`, `code-folder/durable-directory-manifest.json`). Verify: the plain run drops from 1 diff to 0, and a changed finding message still fails. Evidence: `diff_entries=1` before, `PARITY PASS: verdict diff is empty` after; the mutated message gave `diff_entries=1`; manifest `directories=922`, the count CI derived; runner 55 of 55.
 <!-- /ANCHOR:phase-3 -->
 
 ---

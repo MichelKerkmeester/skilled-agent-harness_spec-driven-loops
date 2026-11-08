@@ -84,6 +84,7 @@ Each cause was read from its workflow log and reproduced locally first: the disp
 |----------|-----|
 | Ignore the private DSH prompt rather than teach the generator to follow links | Every other runtime's private mirror is already ignored; once the stub is untracked, nothing is left to report |
 | Patch one verdict line rather than rewrite the baseline | `--write` would freeze 152 new verdicts for READMEs added since, any of which could differ on a runner, to fix a one-line drift |
+| Compare README verdicts without line numbers | Two later commits moved the hooks README warning down a line and turned CI red again; where a finding sits is not what the baseline guards, while a changed finding still fails it |
 | Refresh the directory manifest with `--write` | Its 143 new folders are the deliberate hook reorganisation, and the refreshed count, 919, equals what CI derived |
 | Leave the doctor playbook to worktree 324 | The operator chose the full scope, but that session committed the same two fixes at 09:10, with version bumps; a second copy on main would only make its branch conflict |
 <!-- /ANCHOR:decisions -->
@@ -110,7 +111,8 @@ Each cause was read from its workflow log and reproduced locally first: the disp
 ## Known Limitations
 
 1. **A checkout that holds the private command loses its DSH stub on the next pull.** Git deletes a file that stops being tracked. Run `node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-prompts-dsh.cjs` there; it writes the stub back as an ignored file.
-2. **The README verdict baseline still covers 989 of 1,141 tracked READMEs.** It predates the rest. Rebuilding it is a separate decision for the sk-doc owner.
+2. **The directory manifest still needs `--write` whenever a durable folder is added.** That is its purpose: it lists the folders a README must cover.
+3. **The README verdict baseline still covers 989 of 1,141 tracked READMEs.** It predates the rest. Rebuilding it is a separate decision for the sk-doc owner.
 <!-- /ANCHOR:limitations -->
 
 ---

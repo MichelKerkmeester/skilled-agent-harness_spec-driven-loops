@@ -42,9 +42,11 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".dsh/prompts/local-skilled-alignment.md",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json"
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py"
     ],
     "entities": [
       {
@@ -78,6 +80,12 @@
         "source": "derived"
       },
       {
+        "name": "local-skilled-alignment.md",
+        "kind": "doc",
+        "path": ".dsh/prompts/local-skilled-alignment.md",
+        "source": "derived"
+      },
+      {
         "name": "dispatch-rule-checks.test.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
@@ -93,6 +101,12 @@
         "name": "baseline-readme-verdicts.json",
         "kind": "config",
         "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "test_readme_verdict_parity.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.dsh/prompts/local-skilled-alignment.md` was committed although its source, the operator's private command, is gitignored, so CI and every new worktree reported it as an extra prompt",
     "created_at": "2026-11-08T08:54:12Z",
-    "last_save_at": "2026-11-08T09:09:50.361Z",
+    "last_save_at": "2026-11-08T10:52:37.756Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27a14684164fbd4e02569af80a8797cf7e6b1a15f4aeea2d8844ee7589f11d64",
+    "source_fingerprint": "sha256:db14d43240b8a2e510052efc9b50641e0641d10cf5c8c7565e4d10b5258c521b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1ddb179e2db7bf71fce665e9b63161216335dd5737769077d06ff6cc60cf91a",
       "plan.md": "f03cdd83114270146e2acf501eea768caca30dd7da08a09857df952df11ce22f",
-      "tasks.md": "3bda40168b707ef44154bb0c575c30edcc7771b8370d4e0778ca8b0654781a00",
+      "tasks.md": "d53323071046e9da11441e57eb0bf9488b6c14a18044bbb8017ea0a56ea0652c",
       "decision-record.md": "58e02636cc9bfb2a9abc024f9e7c71d6eaab3e2f280a5a21b8bf74080056744c",
-      "implementation-summary.md": "792d7694060972e9757d6eb85657a5e00bec3613edf07e74b1f94ff1948768bc"
+      "implementation-summary.md": "4036564108e99b67f2e9272856a9fb32e8dc054106966823f98756f687d2b421"
     },
     "last_active_at": null
   }
