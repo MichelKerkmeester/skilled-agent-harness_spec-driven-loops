@@ -18,7 +18,8 @@
     "cli-external-orchestration/085-cli-deepseek-harness-creation/012-deep-loop-modes-and-commands",
     "cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin",
     "cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout",
-    "cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity"
+    "cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity",
+    "cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs"
   ],
   "manual": {
     "depends_on": [],
@@ -219,7 +220,7 @@
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-07T06:15:06.401Z",
+    "last_save_at": "2026-11-08T09:08:21.268Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,13 +228,13 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:af7fd2cb4388812773295398ea4d9c9ae001da0e4a28cfd30d9aac2b8326f2c2",
+    "source_fingerprint": "sha256:97b2bda3b76372b7bb95292c866348afae9f4794fba76323069b660edb63c50e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e553687b67b85fbf3c2b823d1aa8f813a75fd875f420ee9364107fab0ac261e2",
+      "spec.md": "455f22d6726c1dbfae53f91bbe43066c142333d11de1d9f496dd5be1534debfd",
       "handover.md": "9c49e425e654489b56a9bbcc2745ee3f97c298e44323ee88738d8c3e3fb4df31"
     },
-    "last_active_child_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity",
-    "last_active_at": "2026-11-07T05:12:37.755Z"
+    "last_active_child_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs",
+    "last_active_at": "2026-11-08T09:05:30.287Z"
   }
 }

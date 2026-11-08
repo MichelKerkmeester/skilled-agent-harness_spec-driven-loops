@@ -20,7 +20,7 @@ _memory:
       - ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts"
       - ".skilled/commands/doctor/scripts/symlink-engine.cjs"
     session_dedup:
-      fingerprint: "sha256:84d173bf899905826de79fb872806f4a16aecc0a3537a860a2561dec5175ff5d"
+      fingerprint: "sha256:bb5db22ec6a183584eec3729bbe64e3ca9fd4bec53dc5dcc66a3244962a7593b"
       session_id: "scaffold-044-named-subtracks-and-host-repos"
       parent_session_id: null
     completion_pct: 90
@@ -98,7 +98,7 @@ The baseline came first: 145 vitest cases across eight files and 46 doctor node 
 | Undeclared and symlinked folders get advisory diagnostics only | A push that passed before must not start failing; REQ-008's "exits 1" contradicted T006, the risk table and the open question, so it was corrected to advisory |
 | A new host gets `.skilled/` built in place when the source holds a host-relative link | A whole link resolves `.skilled/specs` into the Skilled checkout's own specs, the wrong tree for a host. The operator chose this default change on 2026-11-07 |
 | A sub-track counts as a packet home only directly below its track | A folder deeper down that shares a sub-track's name must not become an archive home |
-| Every copy of the sub-track check uses the exact word and the same location rules | The review found the parser accepting a differently cased level and an archive folder that the track reader refused, which would split `parent_id` from `children_ids` |
+| Declared sub-tracks follow the reader's candidate-name and filesystem rules | `subtrack-predicate-parity.vitest.ts` checks numbered, hidden, `node_modules`, archive, symlinked and packet-shaped folders across validation, archive and graph-parent consumers |
 | Recursive validation reaches a sub-track's packets, not their phases | A flat track's run stops at its packets, so a packet's result does not depend on whether it sits in a sub-track |
 | `repair-derived` writes a parent only where a sub-track or an archive is involved | After a move the merge kept a stale parent flagged for review. A flat packet's stored parent and its review flag are left alone, because they wait for a person; the review gate caught an earlier version that rewrote them |
 <!-- /ANCHOR:decisions -->
@@ -126,9 +126,9 @@ The baseline came first: 145 vitest cases across eight files and 46 doctor node 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **One level only.** A sub-track holds numbered packets, not another sub-track. A deeper layout is reported as an undeclared folder.
+1. **One level only.** A sub-track holds numbered packets, not another sub-track. A deeper layout is not reported: discovery never looks inside a sub-track, so it produces no diagnostic.
 2. **A symlinked sub-track is never followed.** Copy or move the folder into the track and declare it, and the tools pick it up.
-3. **A fresh `/doctor:symlink` now builds `.skilled/` as a real folder** with a link per child, where it used to make one whole link. An existing whole-link install still checks as linked and is left alone.
+3. **A fresh `/doctor:symlink` now builds `.skilled/` as a real folder** with a link per child, where it used to make one whole link. An existing whole-link install still checks as linked and is left alone, but a whole-linked `.skilled` reads the checkout's `specs/` through `.skilled/specs`, not the host's; relink with `--mode merge` when the host's own `specs/` must stay reachable.
 <!-- /ANCHOR:limitations -->
 
 ---

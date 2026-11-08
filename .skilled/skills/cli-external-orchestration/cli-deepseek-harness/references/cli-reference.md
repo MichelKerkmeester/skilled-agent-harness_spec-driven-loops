@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh launcher patch flag"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DeepSeek Harness CLI - Headless Command Reference
@@ -41,7 +41,7 @@ Keeps the observed dsh headless contract in one place: which options exist, whic
 | Keyless run | The failure stream and exit code | `.../002-dsh-offline-contract-pin/evidence/missing-credential.stdout.jsonl`, `missing-credential.stderr.txt`, `exit.txt` |
 | Plugin boot | A relative plugin loads before the provider call | `.../002-dsh-offline-contract-pin/evidence/plugin-boot.txt` |
 
-Keyed results are route-specific. The LLM Gateway result is verified below. OpenCode Go and behaviors outside the saved probes remain unverified with their evidence gaps named.
+Keyed results are route-specific. The LLM Gateway result is verified below, and OpenCode Go was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`. Behaviors outside the saved probes remain UNKNOWN with their evidence gaps named.
 
 ---
 
@@ -176,7 +176,7 @@ The `session` event's `cwd` is the process cwd, so it is a cheap check that the 
 | Outcome | Exit | Last stdout line | Status |
 |---|---|---|---|
 | No key for the route | `1` | `final` with `reason.kind` `error` and `error.code` `MISSING_CREDENTIAL` | Observed (`exit.txt`, `missing-credential.stdout.jsonl`) |
-| Completed task | `0` | `final` with `reason.kind` `completed` | Verified for LLM Gateway on 2026-11-06. OpenCode Go is configured, not verified. See `013-dsh-live-contract-pin/evidence/route-llmgateway.*` and `latency-and-tokens.md` |
+| Completed task | `0` | `final` with `reason.kind` `completed` | Verified for LLM Gateway on 2026-11-06. OpenCode Go answered a keyed session on 2026-11-07 against `https://opencode.ai/zen/go/v1`. See `013-dsh-live-contract-pin/evidence/route-llmgateway.*` and `latency-and-tokens.md` |
 | Failure outside a turn | `1` | an `error` event and no `final` | UNKNOWN. No saved run produced this failure shape |
 
 Count a run complete only on exit `0` AND a last `final` line whose `reason.kind` is `completed`. A missing `final`, a line that does not parse, an `error` event or any other reason is a failure, whatever the exit code says.

@@ -11,7 +11,7 @@ import fs, {
   unlinkSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { basename, join } from 'node:path';
+import { basename, isAbsolute, join, relative } from 'node:path';
 
 import { z } from 'zod';
 import {
@@ -22,6 +22,7 @@ import {
 
 import { hookLog } from './shared.js';
 import { assertNever } from '../../lib/utils/exhaustiveness.js';
+import { fitsHistoryLookupOffer } from '../lib/history/lookup-offer.js';
 import { RECOVERED_TRANSCRIPT_STRIP_PATTERNS } from '../shared-provenance.js';
 
 import type { SharedPayloadEnvelope } from '../../lib/context/shared-payload.js';
@@ -221,6 +222,122 @@ const PendingCompactPrimeSchema = z.object({
   }
 });
 
+export const HISTORY_LOCATOR_VERSION = 1 as const;
+
+/** Each runtime declares the one locator kind its reader accepts. */
+export const HISTORY_LOCATOR_KINDS = {
+  claude: 'transcript_path',
+  codex: 'transcript_path',
+  pi: 'live_branch_or_session_log',
+  devin: 'transcript_file',
+  dsh: 'session_log',
+  opencode: 'session-store',
+} as const;
+
+export type HistoryLocatorRuntime = keyof typeof HISTORY_LOCATOR_KINDS;
+export type HistoryLocatorKind = (typeof HISTORY_LOCATOR_KINDS)[HistoryLocatorRuntime];
+
+const HISTORY_LOCATOR_RUNTIMES = ['claude', 'codex', 'pi', 'devin', 'dsh', 'opencode'] as const;
+const HISTORY_LOCATOR_KIND_VALUES = [
+  'transcript_path',
+  'live_branch_or_session_log',
+  'transcript_file',
+  'session_log',
+  'session-store',
+] as const;
+
+/**
+ * A session id names one store key and may be printed inside a shell command.
+ * Separators, a parent segment and control characters cannot name a stored
+ * session, so the schema rejects them before either use. An ordinary space or
+ * quote is allowed because the command builder quotes the value.
+ */
+function isSafeLocatorSessionId(value: string): boolean {
+  return !value.includes('..')
+    && !value.includes('/')
+    && !value.includes('\\')
+    && !/[\u0000-\u001f\u007f]/.test(value);
+}
+
+/**
+ * A workspace names the project root a locator belongs to and is joined into
+ * reader paths, so the schema admits only an absolute path without control
+ * characters.
+ */
+function isSafeLocatorWorkspace(value: string): boolean {
+  return isAbsolute(value) && !/[\u0000-\u001f\u007f]/.test(value);
+}
+
+function isStrictlyInside(child: string, parent: string): boolean {
+  const offset = relative(parent, child);
+  return offset !== '' && !offset.startsWith('..') && !isAbsolute(offset);
+}
+
+/**
+ * A closed, versioned pointer to one runtime store. The handle is an opaque
+ * adapter-minted digest, never a path a model could author, and the object is
+ * strict so an unknown field cannot survive a schema round trip.
+ *
+ * The session id is bounded because it is printed inside the lookup offer's
+ * shell command; a longer value could not fit the offer without cutting the
+ * command.
+ */
+export const HistoryLocatorSchema = z.object({
+  version: z.literal(HISTORY_LOCATOR_VERSION),
+  runtime: z.enum(HISTORY_LOCATOR_RUNTIMES),
+  sessionId: z.string().min(1).refine(fitsHistoryLookupOffer, {
+    message: 'sessionId is too long for the lookup offer once shell-quoted',
+  }).refine(isSafeLocatorSessionId, {
+    message: 'sessionId must be one safe store key: no path separators, no "..", no control characters',
+  }),
+  workspace: z.string().min(1).refine(isSafeLocatorWorkspace, {
+    message: 'workspace must be an absolute path without control characters',
+  }),
+  // The folder the session ran in, kept only when it sits below the checkout
+  // root the workspace names: the reader proves the session by that folder,
+  // while the CLI and the saved state are keyed by the root.
+  sessionDirectory: z.string().min(1).refine(isSafeLocatorWorkspace, {
+    message: 'sessionDirectory must be an absolute path without control characters',
+  }).optional(),
+  locatorKind: z.enum(HISTORY_LOCATOR_KIND_VALUES),
+  handle: z.string().regex(/^hl1_[a-f0-9]{32}$/),
+  mintedAt: z.string().min(1),
+  provenance: z.object({
+    source: z.enum(['precompact', 'post_compaction']),
+    capturedAt: z.string().min(1),
+  }).strict(),
+}).strict().superRefine((value, ctx) => {
+  if (value.sessionDirectory !== undefined && !isStrictlyInside(value.sessionDirectory, value.workspace)) {
+    ctx.addIssue({
+      code: 'custom',
+      message: 'sessionDirectory must be a folder below the workspace',
+      path: ['sessionDirectory'],
+    });
+  }
+  if (HISTORY_LOCATOR_KINDS[value.runtime] !== value.locatorKind) {
+    ctx.addIssue({
+      code: 'custom',
+      message: `locatorKind ${value.locatorKind} does not belong to runtime ${value.runtime}`,
+      path: ['locatorKind'],
+    });
+  }
+});
+
+export type HistoryLocator = z.output<typeof HistoryLocatorSchema>;
+
+/**
+ * The Claude adapter also serves Codex, and the transport labels which runtime
+ * invoked it. Any other label (Devin, Cursor) has no locator contract,
+ * so it stays unlabeled rather than minting a Claude locator it cannot own.
+ */
+export function detectHistoryRuntime(
+  runtime: string | undefined = process.env.SPECKIT_RUNTIME,
+): HistoryLocatorRuntime | null {
+  if (runtime === undefined || runtime === '' || runtime === 'claude') return 'claude';
+  if (runtime === 'codex') return 'codex';
+  return null;
+}
+
 export const HookStateSchema = z.object({
   schemaVersion: z.literal(CURRENT_HOOK_STATE_SCHEMA_VERSION).optional().default(CURRENT_HOOK_STATE_SCHEMA_VERSION),
   claudeSessionId: z.string().min(1),
@@ -231,6 +348,9 @@ export const HookStateSchema = z.object({
     extractedAt: z.string().min(1),
   }).nullable(),
   pendingCompactPrime: PendingCompactPrimeSchema.nullable(),
+  // A malformed locator is inert, not fatal: the compact summary it travelled
+  // with must survive, so this field degrades to null instead of poisoning state.
+  historyLocator: HistoryLocatorSchema.nullable().default(null).catch(null),
   producerMetadata: HookProducerMetadataSchema.nullable(),
   metrics: z.object({
     estimatedPromptTokens: z.number().finite().nonnegative(),
@@ -414,6 +534,7 @@ function prepareStateForPersist(
     lastSpecFolder: null,
     sessionSummary: null,
     pendingCompactPrime: null,
+    historyLocator: null,
     producerMetadata: null,
     ...existing,
     ...restState,
@@ -955,6 +1076,11 @@ export function clearCompactPrime(
     return null;
   }
 
+  // The locator outlives the cache it was minted with: SessionStart(compact)
+  // prints a redemption command the model runs after this clear, and the
+  // locator's own 30-minute TTL is what retires it. A later PreCompact
+  // overwrites it at the next boundary, so leaving it here cannot outlive its
+  // usefulness.
   const nextState = updateState(sessionId, { pendingCompactPrime: null });
   if (!nextState.persisted) {
     hookLog('warn', 'state', `Failed to clear pending compact payload for session ${sessionId}`);

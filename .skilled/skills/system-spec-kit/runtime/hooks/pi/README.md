@@ -16,7 +16,25 @@ trigger_phrases:
 
 ---
 
-## 2. WHAT EACH ONE DOES AND INJECTS
+## 2. DIRECTORY TREE
+
+```text
+pi/
+├── lib/
+│   └── claude-hook-adapter.ts  # Spawn proxy into the compiled Claude hook outputs
+├── completion-evidence.ts      # Advisory completion-evidence check at turn end
+├── session-compact-context.ts  # Post-compaction context, locator offer and recovery pointer
+├── session-start-advisories.ts # Warn-only session-start guards
+├── session-start-context.ts    # Session-start context bridge
+├── session-stop-context.ts     # Autosave and state cleanup on quit
+├── spec-gate-classify.ts       # Gate-3 classification on input
+├── spec-gate-enforce.ts        # Gate-3 enforcement on tool calls
+└── README.md
+```
+
+---
+
+## 3. WHAT EACH ONE DOES AND INJECTS
 
 | File | Pi event | Behavior and injected text |
 |---|---|---|
@@ -26,14 +44,14 @@ trigger_phrases:
 | `completion-evidence.ts` | `turn_end` | Evaluates the same advisory-only sentinel as Claude against the ending assistant message, delegating policy to `../lib/completion-evidence-sentinel.cjs`. Never blocks. |
 | `session-start-advisories.ts` | `session_start` | Runs the 4 warn-only CLI checks (worktree guard, git-hooks check, dist staleness, codex-hooks drift) and surfaces failures via `ctx.ui.notify()` (a no-op in print mode). |
 | `session-stop-context.ts` | `session_shutdown` (`quit`) | Fire-and-forget bridge to `session-stop.js`'s autosave/state cleanup. Injects nothing. |
-| `session-compact-context.ts` | `session_compact` | Rehydrates spec-folder continuity after a compaction (summary retention, shared state file, bounded CLI fallback) and injects the recovered context. |
-| `lib/claude-hook-adapter.ts` | (library) | `spawnSync` proxy into this skill's compiled `dist/hooks/claude/*.js` plus the JSON-envelope parser; imported by the session bridges and the advisor's `prompt-advisor.ts`. |
+| `session-compact-context.ts` | `session_compact` | Rehydrates spec-folder continuity after a compaction (summary retention, shared state file, bounded CLI fallback). It mints a `live_branch_or_session_log` locator, persists it, and appends the bounded `## History Lookup` section only when the write succeeded and the Pi reader is `ready`. Every message ends with the `## Recovery` pointer that names `/speckit:resume`. |
+| `lib/claude-hook-adapter.ts` | (library) | `spawnSync` proxy into this skill's compiled Claude hook outputs plus the JSON-envelope parser. It is imported by the session bridges and the advisor's `prompt-advisor.ts`. |
 
 Exact injected strings and per-runtime visibility: [`injection-contract.md`](../../../../../hooks/injection-contract.md).
 
 ---
 
-## 3. RELATED
+## 4. RELATED
 
 - [`lib/README.md`](lib/README.md): the Claude-adapter proxy the session bridges call into.
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md): the shared Gate-3 policy core these bridges call.

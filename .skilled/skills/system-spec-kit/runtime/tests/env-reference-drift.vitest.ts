@@ -36,6 +36,8 @@ const INTENTIONALLY_INTERNAL = new Set<string>([
   'SPECKIT_TEST', // hooks/claude/session-stop.ts
   // Autosave-script override honored only in test mode; ignored in production.
   'SPECKIT_GENERATE_CONTEXT_SCRIPT', // hooks/claude/session-stop.ts
+  // Set by the codex/cursor/devin bridges to label the Claude adapter they spawn.
+  'SPECKIT_RUNTIME', // hooks/claude/hook-state.ts
 ]);
 
 // Directory/file segments whose env reads are harness scaffolding, not runtime

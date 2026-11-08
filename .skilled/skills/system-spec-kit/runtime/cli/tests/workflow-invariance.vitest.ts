@@ -157,6 +157,11 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md')) {
     return /\.kind\b/u.test(hit.text);
   }
+  // The history-lookup scenario prints the session readers' real `capabilities` export. Only the
+  // line that reads that export is exempt, so taxonomy words in the scenario's prose still fail.
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md')) {
+    return /\bm\.capabilities\b/u.test(hit.text);
+  }
   // The era report's `layout.kind` JSON field (values v3, v4 or both) is the real name these docs describe.
   if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md')) return true;

@@ -1,0 +1,40 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/subtrack-predicate-parity.vitest.ts (5 tests | 1 failed | 4 skipped) 1625ms
+     × keeps recursive validation aligned with the reader across the case matrix 1624ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps recursive validation aligned with the reader across the case matrix
+AssertionError: expected [ …(3) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ".hidden: expected false, received true",
++   "node_modules: expected false, received true",
++   "linked-description: expected false, received true",
++ ]
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:254:24
+    252|       if (recognized !== expected) mismatches.push(`${entry.name}: exp…
+    253|     }
+    254|     expect(mismatches).toEqual([]);
+       |                        ^
+    255|   });
+    256|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  22:54:30
+   Duration  1.82s (transform 74ms, setup 16ms, import 112ms, tests 1.63s, environment 0ms)
+

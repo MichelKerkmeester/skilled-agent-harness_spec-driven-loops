@@ -2,12 +2,14 @@
 // MODULE: SessionStart Hook
 // ───────────────────────────────────────────────────────────────────
 import { spawnSync } from 'node:child_process';
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { afterAll, describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { ensureStateDir, saveState, getStatePath, type HookState } from '../hooks/claude/hook-state.js';
+import { ensureStateDir, saveState, getStatePath, HISTORY_LOCATOR_VERSION, type HookState, type HistoryLocator } from '../hooks/claude/hook-state.js';
 import { createSharedPayloadEnvelope } from '../lib/context/shared-payload.js';
+import { checkoutRoot } from './_support/history-fixtures.js';
+import { buildHistoryLookupSection, runSessionStartHook } from '../hooks/claude/session-prime.js';
 import {
   CANONICAL_FOLD_VERSION,
   getUnicodeRuntimeFingerprint,
@@ -45,6 +47,9 @@ function testPayloadContract(payload: string, sourceSurface = 'test-compact-cach
     },
   });
 }
+
+const WORKSPACE = checkoutRoot();
+afterAll(() => rmSync(WORKSPACE, { recursive: true, force: true }));
 
 describe('session-prime hook', () => {
   const testSessionId = 'test-session-prime';
@@ -158,6 +163,150 @@ describe('session-prime hook', () => {
       expect(parsed.pendingCompactPrime).toBeNull();
     });
 
+  });
+
+  describe('history lookup offer', () => {
+    const nowMs = Date.parse('2026-11-07T12:00:00.000Z');
+
+    function locator(overrides: Partial<HistoryLocator> = {}): HistoryLocator {
+      const mintedAt = new Date(nowMs).toISOString();
+      return {
+        version: HISTORY_LOCATOR_VERSION,
+        runtime: 'claude',
+        sessionId: testSessionId,
+        workspace: WORKSPACE,
+        locatorKind: 'transcript_path',
+        handle: 'hl1_0123456789abcdef0123456789abcdef',
+        mintedAt,
+        provenance: { source: 'precompact', capturedAt: mintedAt },
+        ...overrides,
+      };
+    }
+
+    function expectation(overrides: Record<string, unknown> = {}) {
+      return {
+        sessionId: testSessionId,
+        runtime: 'claude' as const,
+        workspace: WORKSPACE,
+        provenanceSource: 'precompact' as const,
+        nowMs,
+        ...overrides,
+      };
+    }
+
+    it('offers the bounded section for a fresh locator', () => {
+      const section = buildHistoryLookupSection(locator(), expectation(), true);
+      expect(section).not.toBeNull();
+      expect(section!.title).toBe('History Lookup');
+      expect(section!.content).toContain('hl1_0123456789abcdef0123456789abcdef');
+      expect(section!.content).toContain(`load '{"historyIds":["<id>"]}'`);
+      expect(section!.content).toContain(
+        'node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+      );
+      expect(section!.content).toContain("--session 'test-session-prime'");
+      expect(section!.content).toContain("--handle 'hl1_0123456789abcdef0123456789abcdef'");
+      expect(section!.content.length).toBeLessThanOrEqual(600);
+    });
+
+    it('quotes a session id that carries a space and a single quote', () => {
+      const hostileSessionId = "session one's id";
+      const section = buildHistoryLookupSection(
+        locator({ sessionId: hostileSessionId }),
+        expectation({ sessionId: hostileSessionId }),
+        true,
+      );
+
+      expect(section).not.toBeNull();
+      expect(section!.content).toContain(`--session 'session one'\\''s id'`);
+      expect(section!.content).not.toContain("--session session one's id");
+      expect(section!.content).toContain("--handle 'hl1_0123456789abcdef0123456789abcdef'");
+    });
+
+    it('names the runtime label a Codex session must pass to the CLI', () => {
+      const section = buildHistoryLookupSection(
+        locator({ runtime: 'codex' }),
+        expectation({ runtime: 'codex' }),
+        true,
+      );
+      expect(section).not.toBeNull();
+      expect(section!.content).toContain('SPECKIT_RUNTIME=codex');
+    });
+
+    it('offers no section once the locator is 30 minutes old', () => {
+      expect(buildHistoryLookupSection(
+        locator(),
+        expectation({ nowMs: nowMs + 30 * 60 * 1000 }),
+        true,
+      )).toBeNull();
+    });
+
+    it('offers no section when provenance does not match', () => {
+      expect(buildHistoryLookupSection(
+        locator({ runtime: 'devin', locatorKind: 'transcript_file' }),
+        expectation(),
+        true,
+      )).toBeNull();
+    });
+
+    it('offers no section when the runtime reader capability is off', () => {
+      expect(buildHistoryLookupSection(locator(), expectation(), false)).toBeNull();
+    });
+
+    it('keeps the current fallback text unchanged and names /speckit:resume', () => {
+      const fallback = formatHookOutput([{
+        title: 'Context Recovery',
+        content: 'Context was compacted. Run `/speckit:resume` against the active packet to recover session state.',
+      }]);
+      expect(fallback).toContain('/speckit:resume');
+      expect(fallback).not.toContain('History Lookup');
+    });
+
+    it('keeps the lookup section when a near-budget recovered brief would truncate it', async () => {
+      vi.stubEnv('SPECKIT_RUNTIME', 'claude');
+      // The hook checks the locator against its own working folder, which must
+      // be a checkout root for the offer to print.
+      const original = process.cwd();
+      process.chdir(WORKSPACE);
+      ensureStateDir();
+      try {
+        const now = new Date().toISOString();
+        const payload = 'x'.repeat(15_600);
+        saveState(testSessionId, {
+          claudeSessionId: testSessionId,
+          speckitSessionId: null,
+          lastSpecFolder: null,
+          sessionSummary: null,
+          pendingCompactPrime: {
+            payload,
+            cachedAt: now,
+            payloadContract: testPayloadContract(payload),
+          },
+          historyLocator: locator({
+            mintedAt: now,
+            provenance: { source: 'precompact', capturedAt: now },
+          }),
+          producerMetadata: null,
+          metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        let output = '';
+        await runSessionStartHook(
+          { source: 'compact', session_id: testSessionId },
+          async (text) => { output = text; },
+        );
+
+        expect(output).toContain('## History Lookup');
+        expect(output).toContain('hl1_0123456789abcdef0123456789abcdef');
+        expect(output).toContain('[...truncated to fit token budget]');
+        expect(output).not.toContain(payload);
+      } finally {
+        rmSync(getStatePath(testSessionId), { force: true });
+        process.chdir(original);
+        vi.unstubAllEnvs();
+      }
+    });
   });
 
   describe('output formatting', () => {

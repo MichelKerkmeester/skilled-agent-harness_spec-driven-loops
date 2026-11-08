@@ -84,6 +84,7 @@ describe('create.sh refuses a --track that leaves specs/', () => {
     ['an absolute path', () => path.join(sandbox, 'absolute-track')],
     ['.', () => '.'],
     ['an empty segment', () => 'demo//sub'],
+    ['a slash-only value', () => '/'],
   ];
 
   for (const [label, value] of refused) {
@@ -95,6 +96,15 @@ describe('create.sh refuses a --track that leaves specs/', () => {
       expect(listing()).toEqual(before);
     });
   }
+
+  it('shows the original track value when refusing a trailing empty segment', () => {
+    const before = listing();
+    const result = create('demo//');
+
+    expect(result.status, result.stdout).not.toBe(0);
+    expect(result.stderr).toContain("Error: --track 'demo//'");
+    expect(listing()).toEqual(before);
+  });
 });
 
 describe('create.sh keeps every track that stays inside specs/', () => {
@@ -105,6 +115,19 @@ describe('create.sh keeps every track that stays inside specs/', () => {
   });
 
   it('creates specs/demo/sub/001-probe for demo/sub', () => {
+    const demo = path.join(workspace, 'specs', 'demo');
+    const subtrack = path.join(demo, 'sub');
+    fs.mkdirSync(subtrack, { recursive: true });
+    fs.writeFileSync(
+      path.join(demo, 'graph-metadata.json'),
+      `${JSON.stringify({ schema_version: 1, packet_id: 'demo', spec_folder: 'demo', parent_id: null, children_ids: [] }, null, 2)}\n`,
+    );
+    fs.writeFileSync(path.join(subtrack, 'description.json'), `${JSON.stringify({ level: 'sub-track' })}\n`);
+    fs.writeFileSync(
+      path.join(subtrack, 'graph-metadata.json'),
+      `${JSON.stringify({ schema_version: 1, packet_id: 'demo/sub', spec_folder: 'demo/sub', parent_id: 'demo', children_ids: [] }, null, 2)}\n`,
+    );
+
     const result = create('demo/sub');
     expect(result.status, result.stderr).toBe(0);
     expect(fs.existsSync(path.join(workspace, 'specs', 'demo', 'sub', '001-probe', 'spec.md'))).toBe(true);

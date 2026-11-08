@@ -40,7 +40,7 @@ This packet fixes the argv shape, names the two routes that may run and states t
 
 ### Status
 
-LLM Gateway `deepseek-v4.1-flash-1017` is verified on dsh 0.2.2-rc.1 (2026-11-06) and is the default route. OpenCode Go `deepseek-v4.1-flash` is configured, not verified, and stays out of defaults. The executor kind remains experimental while OpenCode Go is unverified.
+LLM Gateway `deepseek-v4.1-flash-1017` is verified on dsh 0.2.2-rc.1 (2026-11-06) and is the default route. OpenCode Go `deepseek-v4.1-flash` was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out of defaults. The executor kind remains experimental while dsh is a release candidate.
 
 ---
 
@@ -174,7 +174,7 @@ A: Every profile-scoped command initializes profile files in the home it resolve
 
 **Q: Is the OpenCode Go route ready?**
 
-A: It is configured, not verified. No request was sent because its key was unset, so which documented endpoint authenticates remains UNKNOWN. Keep it out of defaults.
+A: It is proven. A keyed run on 2026-11-07 answered against `https://opencode.ai/zen/go/v1`, which settles the endpoint for this harness. Keep it out of defaults.
 
 ---
 

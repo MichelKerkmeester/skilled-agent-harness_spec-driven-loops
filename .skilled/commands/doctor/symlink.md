@@ -57,7 +57,7 @@ Load the presentation contract before showing the menu, a report, a plan, a dige
 | `--runtimes <list>` | `check`, `link` | Link only these runtimes, from `claude,opencode,codex,cursor,devin,pi`. `.skilled` is always included |
 | `--include <list>` | `check`, `link` | Opt-in extras: `repo-rules`, `github`, `utcp`, `env` |
 | `--link-instructions` | `check`, `link` | Link `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` too, instead of leaving them to `/doctor:agents-md` |
-| `--mode <shape>` | `link` | `auto` decides per entry, `whole` links each name as one folder, `merge` builds the real folder and links each entry inside it |
+| `--mode <shape>` | `link` | `auto` decides per entry, `whole` links each name as one folder, `merge` builds the real folder and links each entry inside it. A whole-linked `.skilled` reads the checkout's `specs/` through `.skilled/specs`, so use `merge` when the host's own `specs/` must stay reachable |
 | `--ignore <where>` | `link` | Where the ignore lines go: `exclude` for `<git-dir>/info/exclude`, `gitignore`, or `none`. Default `exclude` |
 | `--dry-run` | `link`, `unlink` | Print the plan, and the digest on `link`, then ask nothing and write nothing |
 | `--plan-digest <digest>` | `link` | The digest the plan printed, which the apply repeats before it writes anything |

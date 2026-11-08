@@ -318,9 +318,18 @@ function readForWrite(file) {
 const SUBTRACK_LEVEL = 'sub-track';
 
 /** Whether a folder declares itself a named sub-track container. */
+function isContainerName(name) {
+  return !name.startsWith('.') && name !== 'node_modules' && !name.startsWith('z_') && !PACKET_NAME_RE.test(name);
+}
+
+// The track it sits in must be one the track reader reads, so a declared folder
+// under a numbered, hidden, archive or packet-shaped folder is never a parent.
 function declaresSubtrack(folder) {
   const name = path.basename(folder);
-  if (name.startsWith('z_') || PACKET_NAME_RE.test(name) || isSymbolicLink(folder)) return false;
+  const track = path.dirname(folder);
+  if (!isContainerName(name) || !isContainerName(path.basename(track))
+    || fs.existsSync(path.join(folder, 'spec.md')) || fs.existsSync(path.join(track, 'spec.md'))
+    || isSymbolicLink(folder)) return false;
   const file = path.join(folder, 'description.json');
   if (isSymbolicLink(file)) return false;
   const text = readIfPresent(file);

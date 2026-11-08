@@ -141,6 +141,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 13 | 013-dsh-live-contract-pin/ | Keyed live pin on both routes, gated on the operator key | Planned |
 | 14 | 014-playbook-docs-and-closeout/ | Playbook, docs reconciliation, recursive strict validation | In Progress |
 | 15 | 015-dsh-hook-parity/ | Hook and plugin parity with OpenCode and Pi, interactive and leaf split, hook library layout | Complete |
+| 16 | 016-ci-red-check-repairs/ | Repair the five CI workflows left red: the committed private DSH prompt, the dsh-on-PATH dispatch test, playbook contract violations and two stale sk-doc baselines | Complete |
 
 ### Phase Transition Rules
 
@@ -167,6 +168,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 012-deep-loop-modes-and-commands | 013-dsh-live-contract-pin | Commands accept the kind | compiled contracts regenerate clean |
 | 013-dsh-live-contract-pin | 014-playbook-docs-and-closeout | Keyed routes verified or marked | route status recorded in the packet |
 | 014-playbook-docs-and-closeout | 015-dsh-hook-parity | Playbook and docs reconciled for the dsh release | repo-guards, sweep, mirror and matrix suites pass, and both keyless compositions are recorded in `015/evidence/` |
+| 015-dsh-hook-parity | 016-ci-red-check-repairs | Phase 015 is Complete and the five workflows name their causes | `validate.sh` on `016-ci-red-check-repairs` prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -84,7 +84,7 @@ A row is a pass only when it reads `linked-whole` or `linked-merge`. Every other
 
 | Status | What it means |
 |--------|---------------|
-| `linked-whole` | The name is a link to the checkout, as asked |
+| `linked-whole` | The name is a link to the checkout, as asked. A name inside it reads the checkout's copy, so a whole-linked `.skilled` resolves `.skilled/specs` to the checkout's `specs/`, not the host's; use `--mode merge` when the host's own `specs/` must stay reachable |
 | `linked-merge` | A real folder whose entries link into the checkout, with no broken link into it |
 | `partial-merge` | A real folder missing some entries, or holding broken links into the checkout |
 | `missing` | Nothing sits at that name |

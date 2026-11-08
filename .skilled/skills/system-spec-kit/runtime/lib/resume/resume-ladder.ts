@@ -675,7 +675,10 @@ function parseHandoverSignal(snapshot: StableDocumentSnapshot): ResumeSignal | n
 }
 
 function parseContinuitySignal(snapshot: StableDocumentSnapshot): ResumeSignal | null {
-  const continuity = readThinContinuityRecord(snapshot.content);
+  // Resume treats a malformed session_ref as absent: the reader drops only that
+  // object so the rest of the continuity block still loads and the brief stays
+  // unchanged. The writer leaves the option off so its carry path can name the drop.
+  const continuity = readThinContinuityRecord(snapshot.content, { ignoreInvalidSessionRef: true });
 
   // A continuity block that fails strict validation (a malformed
   // session_dedup.fingerprint, an out-of-shape session_id, or any other

@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.28.0
+version: 2.7.29.0
 ---
 
 # System Spec Kit
@@ -79,7 +79,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 |---|---|
 | **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running |
 | **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple |
-| **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` |
+| **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` and kept as the primary recovery path, plus one bounded history lookup a compaction may add when a fresh locator verifies |
 | **Session relaunch** | Relaunches a near-limit session in a fresh runtime in the same terminal, gated per runtime and carrying a handoff note |
 | **Decision capture** | Queues the answers you give to the AI's questions and writes them into the bound packet's `decision-record.md` on a full-auto save |
 | **Declared loss** | semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are retired with no successor |

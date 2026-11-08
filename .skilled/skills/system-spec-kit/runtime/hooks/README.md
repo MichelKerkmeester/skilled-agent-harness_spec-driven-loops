@@ -50,7 +50,7 @@ Current state:
                          │ evidence sentinel  │
                          └────────────────────┘
 
-Dependency direction: runtime folders ───▶ hooks/lib ───▶ filesystem and shared session state.
+Dependency direction: runtime folders ───▶ hooks/lib ───▶ filesystem and shared session state. The one reverse edge is the history CLI, which imports the Claude hook-state module for the canonical locator vocabulary and the stored-locator reader.
 ```
 
 ---
@@ -100,6 +100,7 @@ The completion-evidence policy each runtime's Stop-equivalent adapter calls live
 | Lifecycle semantics | State and transcript semantics stay owned by the Claude adapters so the transports cannot drift apart. |
 | Fail-open | Every entrypoint resolves to approve on a missing or invalid payload. |
 | Evidence sentinel | Completion-evidence checks read recorded artifacts only. They never run a test, a build or `validate.sh`. |
+| Continuity pointer | `session_ref` is a save-only field owned by the continuity writer. Hook adapters mint the separate, per-session compaction locator, and no hook reads `session_ref` as a locator. |
 
 Main flow:
 

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs",
+  "description": "Phase 16: ci-red-check-repairs",
+  "keywords": [
+    "phase",
+    "ci-red-check-repairs"
+  ],
+  "lastUpdated": "2026-11-08T09:05:30.244Z",
+  "specId": "016",
+  "folderSlug": "ci-red-check-repairs",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-11-26_10-05__repaired-the-four-causes-behind-five-red-ci.md"
+  ]
+}

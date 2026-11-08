@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ed28ddc2094fff6b8c3da81901a1012aca661f91dc601df59e47fad1d82b51f5",
+  "manifestHash": "75392b1a5953da1c61c76ccfa9d8c2e09a86158aa307c1490fad439a4d4751bc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3636,6 +3636,9 @@
     "016 013 ollama and bge promotion": [
       "016/013 ollama and bge promotion"
     ],
+    "016 ci red check repairs operator decisions": [
+      "016-ci-red-check-repairs operator decisions"
+    ],
     "016 decision record": [
       "016 decision record"
     ],
@@ -6917,6 +6920,9 @@
     "043 tasks": [
       "043 tasks"
     ],
+    "044 doc drift remediation": [
+      "044 doc drift remediation"
+    ],
     "044 implementation plan": [
       "044 implementation plan"
     ],
@@ -6925,6 +6931,9 @@
     ],
     "044 named subtracks and host repos operator decisions": [
       "044-named-subtracks-and-host-repos operator decisions"
+    ],
+    "044 review remediation handoff": [
+      "044 review remediation handoff"
     ],
     "044 suite revalidation": [
       "044 suite revalidation"
@@ -12354,6 +12363,12 @@
     "archive multipliers decay fix": [
       "ARCHIVE_MULTIPLIERS decay fix"
     ],
+    "archive parent derivation negative control": [
+      "archive parent derivation negative control"
+    ],
+    "archive parent derivation test cannot fail": [
+      "archive parent derivation test cannot fail"
+    ],
     "archive path follow ups": [
       "archive path follow ups"
     ],
@@ -12392,6 +12407,9 @@
     ],
     "archive root graph node tasks": [
       "archive root graph node tasks"
+    ],
+    "archive seeds sub track metadata": [
+      "archive seeds sub-track metadata"
     ],
     "archive sh track": [
       "archive.sh track"
@@ -15029,6 +15047,9 @@
     ],
     "bounded git hooks": [
       "bounded git hooks"
+    ],
+    "bounded history retrieval": [
+      "bounded history retrieval"
     ],
     "bounded jsonl atomic trim": [
       "bounded jsonl atomic trim"
@@ -20899,6 +20920,9 @@
     "cli codex 1 9 14 0": [
       "cli-codex 1.9.14.0"
     ],
+    "cli codex 1 9 15 0": [
+      "cli-codex 1.9.15.0"
+    ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
     ],
@@ -21117,6 +21141,9 @@
     ],
     "cli codex v1 9 14 0": [
       "cli-codex v1.9.14.0"
+    ],
+    "cli codex v1 9 15 0": [
+      "cli-codex v1.9.15.0"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -26393,8 +26420,11 @@
     "codex cursor devin hook wiring": [
       "codex cursor devin hook wiring"
     ],
-    "codex default model gpt 5 5": [
-      "codex default model gpt-5.5"
+    "codex default model gpt 6 luna": [
+      "codex default model gpt-6-luna"
+    ],
+    "codex default model luna": [
+      "codex default model luna"
     ],
     "codex devin adapter crash": [
       "codex devin adapter crash"
@@ -27729,6 +27759,9 @@
     ],
     "compaction fixtures canary": [
       "compaction fixtures canary"
+    ],
+    "compaction history lookup": [
+      "compaction history lookup"
     ],
     "compaction pointer staleness": [
       "compaction pointer staleness"
@@ -31353,8 +31386,20 @@
     "create sh sibling listing plan": [
       "create.sh sibling listing plan"
     ],
+    "create sh sub track guard": [
+      "create.sh sub-track guard"
+    ],
+    "create sh symlinked sub track": [
+      "create.sh symlinked sub-track"
+    ],
+    "create sh track guard plan": [
+      "create.sh track guard plan"
+    ],
     "create sh track traversal fix": [
       "create.sh track traversal fix"
+    ],
+    "create sh trailing slash track": [
+      "create.sh trailing slash track"
     ],
     "create sh unknown option": [
       "create.sh unknown option"
@@ -31424,6 +31469,18 @@
     ],
     "create task comment": [
       "create task comment"
+    ],
+    "create track fixes": [
+      "create track fixes"
+    ],
+    "create track fixes implementation summary": [
+      "create track fixes implementation summary"
+    ],
+    "create track fixes plan": [
+      "create track fixes plan"
+    ],
+    "create track fixes tasks": [
+      "create track fixes tasks"
     ],
     "create wiki": [
       "create wiki"
@@ -33756,6 +33813,9 @@
     ],
     "declared sub track container": [
       "declared sub-track container"
+    ],
+    "declared sub track rule parity": [
+      "declared sub-track rule parity"
     ],
     "declared surfaces parity": [
       "declared surfaces parity"
@@ -40825,6 +40885,9 @@
     "dispatch shapes deny": [
       "dispatch shapes deny"
     ],
+    "dispatch test stub dsh path": [
+      "dispatch test stub dsh path"
+    ],
     "dispatch to opencode 1 or 2": [
       "dispatch to opencode 1 or 2"
     ],
@@ -41406,6 +41469,18 @@
     ],
     "docs and stress test refresh root changelog": [
       "docs and stress test refresh root changelog"
+    ],
+    "docs and tests": [
+      "docs and tests"
+    ],
+    "docs and tests implementation": [
+      "docs and tests implementation"
+    ],
+    "docs and tests plan": [
+      "docs and tests plan"
+    ],
+    "docs and tests tasks": [
+      "docs and tests tasks"
     ],
     "docs catalogs phase parent": [
       "docs catalogs phase parent"
@@ -42693,6 +42768,18 @@
     "doctor surface authoring handover": [
       "doctor surface authoring handover"
     ],
+    "doctor symlink gaps": [
+      "doctor symlink gaps"
+    ],
+    "doctor symlink gaps plan": [
+      "doctor symlink gaps plan"
+    ],
+    "doctor symlink gaps summary": [
+      "doctor symlink gaps summary"
+    ],
+    "doctor symlink gaps tasks": [
+      "doctor symlink gaps tasks"
+    ],
     "doctor symlink install phase parent spec": [
       "doctor symlink install phase parent spec"
     ],
@@ -43909,6 +43996,9 @@
     ],
     "dsh prompt framework selection": [
       "dsh prompt framework selection"
+    ],
+    "dsh prompt local stub untracked": [
+      "dsh prompt local stub untracked"
     ],
     "dsh prompt quality card": [
       "dsh prompt quality card"
@@ -46527,6 +46617,9 @@
     ],
     "exact match row applier": [
       "exact match row applier"
+    ],
+    "exact session id reader": [
+      "exact session id reader"
     ],
     "exact sha acceptance gate plan": [
       "exact-SHA acceptance gate plan"
@@ -56863,6 +56956,16 @@
     "historical benchmark contract": [
       "historical benchmark contract"
     ],
+    "history lookup after compaction": [
+      "history lookup after compaction"
+    ],
+    "history lookup cli": [
+      "history lookup CLI",
+      "history lookup cli"
+    ],
+    "history lookup core": [
+      "history lookup core"
+    ],
     "history rewrite": [
       "history rewrite"
     ],
@@ -57426,6 +57529,15 @@
     ],
     "host queue dependency": [
       "host queue dependency"
+    ],
+    "host relative alias decision plan": [
+      "host-relative alias decision plan"
+    ],
+    "host relative alias ignore decision": [
+      "host-relative alias ignore decision"
+    ],
+    "host relative link ignore bookkeeping": [
+      "host-relative link ignore bookkeeping"
     ],
     "host repository trigger index": [
       "host repository trigger index"
@@ -63706,6 +63818,9 @@
     "location based validation": [
       "location-based validation"
     ],
+    "locator freshness": [
+      "locator freshness"
+    ],
     "lock guarded jsonl append": [
       "lock-guarded jsonl append"
     ],
@@ -69836,6 +69951,18 @@
     "metadata status derivation tasks": [
       "metadata status derivation tasks"
     ],
+    "metadata write safety": [
+      "metadata write safety"
+    ],
+    "metadata write safety implementation": [
+      "metadata write safety implementation"
+    ],
+    "metadata write safety plan": [
+      "metadata write safety plan"
+    ],
+    "metadata write safety tasks": [
+      "metadata write safety tasks"
+    ],
     "metal context race spec kit memory": [
       "metal context race spec-kit-memory"
     ],
@@ -70216,6 +70343,9 @@
     ],
     "missing stress fixture root tasks": [
       "missing stress fixture root tasks"
+    ],
+    "missing sub track metadata seed": [
+      "missing sub-track metadata seed"
     ],
     "missing value file behavior": [
       "missing value file behavior"
@@ -71738,6 +71868,9 @@
     "named sub track support in spec kit plus": [
       "named sub track support in spec kit plus"
     ],
+    "named sub track validation": [
+      "named sub-track validation"
+    ],
     "named subtracks and host repos": [
       "named subtracks and host repos"
     ],
@@ -72049,6 +72182,9 @@
     ],
     "negative control task": [
       "negative control task"
+    ],
+    "negative control test repair plan": [
+      "negative control test repair plan"
     ],
     "negative knowledge": [
       "negative knowledge"
@@ -74211,6 +74347,9 @@
     ],
     "op 003": [
       "op-003"
+    ],
+    "opaque history handle": [
+      "opaque history handle"
     ],
     "open a note in the already running obsidian app": [
       "open a note in the already-running Obsidian app"
@@ -78716,6 +78855,9 @@
     "phase 1 compiled route manifest suite": [
       "phase 1 compiled route manifest suite"
     ],
+    "phase 1 create track fixes": [
+      "phase 1 create track fixes"
+    ],
     "phase 1 deep research": [
       "phase 1 deep research"
     ],
@@ -79157,6 +79299,9 @@
     "phase 16 align sk design": [
       "phase 16 align sk design"
     ],
+    "phase 16 ci red check repairs": [
+      "phase 16 ci red check repairs"
+    ],
     "phase 16 cli codex": [
       "phase 16 cli codex"
     ],
@@ -79435,6 +79580,9 @@
     ],
     "phase 2 skill and routing rename": [
       "phase 2 skill and routing rename"
+    ],
+    "phase 2 subtrack predicate": [
+      "phase 2 subtrack predicate"
     ],
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
@@ -79730,6 +79878,9 @@
     "phase 3 mcp chrome devtools": [
       "phase 3 mcp chrome devtools"
     ],
+    "phase 3 metadata write safety": [
+      "phase 3 metadata write safety"
+    ],
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
     ],
@@ -79888,6 +80039,9 @@
     ],
     "phase 4 doctor playbook": [
       "phase 4 doctor playbook"
+    ],
+    "phase 4 doctor symlink gaps": [
+      "phase 4 doctor symlink gaps"
     ],
     "phase 4 doctrine": [
       "phase 4 doctrine"
@@ -80071,6 +80225,9 @@
     ],
     "phase 5 doc claims hardening": [
       "phase 5 doc claims hardening"
+    ],
+    "phase 5 docs and tests": [
+      "phase 5 docs and tests"
     ],
     "phase 5 dsh mirror generators": [
       "phase 5 dsh mirror generators"
@@ -80317,6 +80474,9 @@
     ],
     "phase 6 research lineage reducer path": [
       "phase 6 research lineage reducer path"
+    ],
+    "phase 6 review follow ups": [
+      "phase 6 review follow ups"
     ],
     "phase 6 review remediation": [
       "phase 6 review remediation"
@@ -83602,6 +83762,9 @@
     "post compaction recovery snapshot": [
       "post-compaction recovery snapshot"
     ],
+    "post compaction transcript lookup": [
+      "post-compaction transcript lookup"
+    ],
     "post consolidation hardening train": [
       "post-consolidation hardening train"
     ],
@@ -85548,6 +85711,9 @@
     "public docs": [
       "public docs"
     ],
+    "public projection": [
+      "public projection"
+    ],
     "public repo security audit": [
       "Public repo security audit"
     ],
@@ -86729,6 +86895,9 @@
     ],
     "read path soft continuation": [
       "read-path soft continuation"
+    ],
+    "read session history": [
+      "read session history"
     ],
     "read task": [
       "read task"
@@ -88518,6 +88687,15 @@
     ],
     "refresh track roots": [
       "refresh-track-roots"
+    ],
+    "refresh track roots symlink guard": [
+      "refresh track roots symlink guard"
+    ],
+    "refresh track roots symlinked metadata": [
+      "refresh track roots symlinked metadata"
+    ],
+    "refresh track roots write guard plan": [
+      "refresh track roots write guard plan"
     ],
     "refreshgraphmetadata reindexspecdocs runenrichmentbackfill": [
       "refreshgraphmetadata reindexspecdocs runenrichmentbackfill"
@@ -93943,6 +94121,18 @@
     ],
     "review folders under spec tree root": [
       "review folders under spec-tree root"
+    ],
+    "review follow ups": [
+      "review follow ups"
+    ],
+    "review follow ups implementation summary": [
+      "review follow ups implementation summary"
+    ],
+    "review follow ups plan": [
+      "review follow ups plan"
+    ],
+    "review follow ups tasks": [
+      "review follow ups tasks"
     ],
     "review gate follows severity": [
       "review gate follows severity"
@@ -99609,6 +99799,12 @@
     ],
     "session process cleanup": [
       "session process cleanup"
+    ],
+    "session reader capabilities": [
+      "session reader capabilities"
+    ],
+    "session readers": [
+      "session readers"
     ],
     "session recovery": [
       "session recovery"
@@ -115103,8 +115299,26 @@
     "sub track acceptance criteria": [
       "sub-track acceptance criteria"
     ],
+    "sub track doc corrections": [
+      "sub-track doc corrections"
+    ],
     "sub track implementation plan": [
       "sub-track implementation plan"
+    ],
+    "sub track parity verification": [
+      "sub-track parity verification"
+    ],
+    "sub track predicate implementation": [
+      "sub-track predicate implementation"
+    ],
+    "sub track rule parity plan": [
+      "sub-track rule parity plan"
+    ],
+    "sub track track segment alignment": [
+      "sub-track track segment alignment"
+    ],
+    "sub track track segment parity": [
+      "sub-track track segment parity"
     ],
     "subagent": [
       "subagent"
@@ -115264,6 +115478,15 @@
     ],
     "subsystem decommission": [
       "subsystem decommission"
+    ],
+    "subtrack predicate": [
+      "subtrack predicate"
+    ],
+    "subtrack predicate plan": [
+      "subtrack predicate plan"
+    ],
+    "subtrack predicate tasks": [
+      "subtrack predicate tasks"
     ],
     "subtree root scan deletion": [
       "subtree root scan deletion"
@@ -115726,6 +115949,9 @@
     ],
     "sweep track roots": [
       "sweep-track-roots"
+    ],
+    "sweep unreadable sub track metadata repair": [
+      "sweep unreadable sub-track metadata repair"
     ],
     "sweep verification checklist": [
       "sweep verification checklist"
@@ -123295,6 +123521,9 @@
     "validate strict nested packet": [
       "validate-strict nested packet"
     ],
+    "validate symlinked description sub track": [
+      "validate symlinked description sub-track"
+    ],
     "validate ts hex mismatch": [
       "validate.ts hex mismatch"
     ],
@@ -125451,6 +125680,9 @@
     ],
     "whole index freshness check": [
       "whole index freshness check"
+    ],
+    "whole linked skilled specs limit": [
+      "whole-linked skilled specs limit"
     ],
     "whole system gate": [
       "whole system gate",

@@ -116,6 +116,7 @@ export { resolvePhaseParentPointerHop } from '../lib/resume/resume-ladder.js';
 // ladder uses, so every block a save writes is one a resume can read back.
 export {
   readThinContinuityRecord,
+  SESSION_REF_RUNTIME_LOCATOR_KINDS,
   upsertThinContinuityInMarkdown,
 } from '../lib/continuity/thin-continuity-record.js';
 export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';

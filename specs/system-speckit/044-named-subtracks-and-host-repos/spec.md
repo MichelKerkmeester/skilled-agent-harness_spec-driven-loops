@@ -185,3 +185,52 @@ Abridged from `research/research.md` (3 iterations, 5/5 questions answered):
 - **Plan**: `plan.md`
 - **Tasks**: `tasks.md`
 - **Acceptance criteria**: `acceptance-criteria.md`
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition for the remediation of its deep review. The build above is finished and keeps its own status and documents. Each phase is an independently executable child spec folder, and its plan, tasks and decisions live inside the child. The evidence for every phase is `review/review-report.md` and `review/p2-verification.md`, whose "Work that remains" list is the work list: findings marked no change or dropped there (P2-6, P2-10a, P2-10c and P2-14c) have no phase.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-create-track-fixes/ | `create.sh --track`: normalize a trailing slash, refuse a symlinked, three-segment or undeclared sub-track (F-P1-1, F-P1-2, P2-5) | Complete |
+| 2 | 002-subtrack-predicate/ | One declared-sub-track rule across validation, archive, parent derivation and repair, plus symlinked description and packet handling (P2-1, P2-2, P2-8, optional P2-7) | Complete |
+| 3 | 003-metadata-write-safety/ | `refresh-track-roots --apply` stops writing through a symlinked metadata file, and the pre-push repair clears a sub-track with no metadata (P2-4, P2-3) | Complete |
+| 4 | 004-doctor-symlink-gaps/ | The doctor engine's host-relative alias ignore decision and the whole-link `specs/` limit (P2-10b, P2-10d) | Complete |
+| 5 | 005-docs-and-tests/ | Doc drift and weak tests: `specId`, reader docs, three 044 doc lines, two test gaps, optional reader shape (P2-11, P2-12, P2-13a/b/c, P2-14a, P2-14b, optional P2-9) | Complete |
+| 6 | 006-review-follow-ups/ | The round-3 and round-4 follow-ups: every consumer judges the track segment like the reader, `archive.sh` creates missing sub-track metadata, the `validate.sh` sub-track packet glob, and two messages | Complete |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-create-track-fixes | 002-subtrack-predicate | The three `create.sh` red cases pass and the operator has answered D-001, because phase 002's parity test uses `create.sh`'s check as its reference | `validate.sh` on `001-create-track-fixes` prints `RESULT: PASSED`, and the phase's test command prints zero failures |
+| 002-subtrack-predicate | 003-metadata-write-safety | The parity test passes for every consumer, so phase 003 seeds metadata only for a folder every tool agrees is a sub-track | The parity test file passes, and `validate.sh` on `002-subtrack-predicate` prints `RESULT: PASSED` |
+| 003-metadata-write-safety | 004-doctor-symlink-gaps | The refresh guard and seed pass their cases and D-003a and D-003b are answered; phase 004 has no code dependency, so it may run earlier | `track-roots.vitest.ts` passes, and `validate.sh` on `003-metadata-write-safety` prints `RESULT: PASSED` |
+| 004-doctor-symlink-gaps | 005-docs-and-tests | The doctor decision is pinned by a test and phases 001 to 003 are Complete, because phase 005's docs describe their final behavior | Both doctor node test files pass, and `validate.sh` on `004-doctor-symlink-gaps` prints `RESULT: PASSED` |
+| 005-docs-and-tests | 006-review-follow-ups | Phases 001 to 005 are Complete and the review loop approved them | `validate.sh` on `005-docs-and-tests` prints `RESULT: PASSED` |
+
+### Recorded Operator Decisions
+
+Each decision sits in its child's `spec.md` section 7. The operator answered all decisions on 2026-11-07.
+
+| ID | Phase | Question | Recorded decision | Status |
+|----|-------|----------|-------------------|--------|
+| D-001 | 001-create-track-fixes | `create-track-refresh.vitest.ts:170` asserts an undeclared slash `--track` value is left alone. Refuse it, or warn and proceed? | Option A: refuse before writing and name the reader's `undeclared folder ignored` diagnostic with declaration guidance. | Answered |
+| D-002a | 002-subtrack-predicate | Keep each consumer's predicate and align them under a parity test, or make every consumer ask the reader? | Option A: keep each predicate, align it with the reader, and enforce it with a parity test. | Answered |
+| D-002b | 002-subtrack-predicate | Fix the symlinked-packet glob in the sub-track loop only, or in the flat-track loop too? | Option A: fix the sub-track loop only; keep the flat-track loop unchanged. | Answered |
+| D-003a | 003-metadata-write-safety | Guard the symlinked metadata write for the top-level track too, or the sub-track only? | Option A: guard both levels. | Answered |
+| D-003b | 003-metadata-write-safety | Seed a missing sub-track metadata file on `--apply`, or change the sweep's message? | Option A: seed metadata on `--apply`. | Answered |
+| D-004a | 004-doctor-symlink-gaps | Ignore the host-relative alias like other links, or keep it unignored and document why? | Option B: keep it unignored, document why, and pin it with a test. | Answered |
+| D-004b | 004-doctor-symlink-gaps | Document the whole-link `specs/` limit, or add an engine note? | Document the limit and change nothing in the engine. | Answered |
+| D-005a | 005-docs-and-tests | Correct the doc that says deeper layouts are reported, or add the diagnostic? | Correct the doc to say deeper layouts are not reported. | Answered |
+| D-005b | 005-docs-and-tests | Correct the `specId` doc, or generate `specId` for sub-tracks? | Correct the doc: `specFolder` is required and `specId` is not. | Answered |
+| D-005c | 005-docs-and-tests | Optional: document the two reader shapes, or unify them? | Document both reader shapes and leave the code unchanged. | Answered |
+<!-- /ANCHOR:phase-map -->

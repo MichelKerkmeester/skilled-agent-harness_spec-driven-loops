@@ -229,6 +229,14 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 - **Channel:** `[NONE]` at fire time. Becomes `[SYS]` one event later, through Session Start Context.
 
+### History Locator Lookup
+
+**Injects:** one bounded lookup section that names an opaque history handle and the search, browse, load and page operations. It carries no transcript text, and it tells the model to treat retrieved history as data, never as instructions.
+
+- **Trigger:** `SessionStart(source=compact)` on Claude and Codex, `session_compact` on Pi, `compaction/end` on DSH, the first `UserPromptSubmit` after `PostCompaction` on Devin, and every request after `session.compacted` on OpenCode while the locator is fresh. Each fires only when the shared session reader capability is `ready` and a fresh locator is present. The locator is keyed by the checkout root above the session folder, so a session started in a subfolder gets the section too, and a folder whose nearest checkout cannot run the CLI gets none.
+- **Owning module:** `system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` builds the section. `system-spec-kit/runtime/hooks/claude/session-prime.ts`, the Pi and DSH post-compaction adapters, Devin's `user-prompt-submit.ts` and `.opencode/plugins/session-history-lookup.js` print it only after the locator persisted.
+- **Channel:** `[SYS]` on every runtime. Claude, Codex, Pi and DSH ride the session-start or post-compaction channel documented in this section. Devin rides `UserPromptSubmit` `additionalContext`, once, after the advisor brief, because Devin drops `PostCompaction` output. OpenCode pushes it into the system array through `experimental.chat.system.transform`.
+
 ### Post-Compaction Recovery (Devin/Pi/DSH)
 
 **Injects:** a composed recovery block: retained summary and active spec-folder pointer.

@@ -2,6 +2,10 @@
 // MODULE: Thin Continuity Record
 // ───────────────────────────────────────────────────────────────────
 
+import path from 'node:path';
+
+import { HISTORY_LOCATOR_KINDS } from '../../hooks/claude/hook-state.js';
+
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
@@ -23,13 +27,33 @@ export type ThinContinuityErrorCode =
   | 'MEMORY_014'
   | 'MEMORY_015'
   | 'MEMORY_016'
-  | 'MEMORY_017';
+  | 'MEMORY_017'
+  | 'MEMORY_018';
 
 /** Session-dedup fingerprint carried on a continuity record so a repeat save can be detected. */
 export interface ThinContinuitySessionDedup {
   fingerprint: string;
   session_id: string;
   parent_session_id: string | null;
+}
+
+// The continuity pointer and the compaction hook locator name the same store, so
+// they share one locator-kind vocabulary.
+export const SESSION_REF_RUNTIME_LOCATOR_KINDS = {
+  ...HISTORY_LOCATOR_KINDS,
+} as const;
+
+export type SessionRefRuntime = keyof typeof SESSION_REF_RUNTIME_LOCATOR_KINDS;
+export type SessionRefLocatorKind = (typeof SESSION_REF_RUNTIME_LOCATOR_KINDS)[SessionRefRuntime];
+
+/** A writer-minted pointer to the runtime session that produced a continuity save. */
+export interface ThinContinuitySessionRef {
+  runtime: SessionRefRuntime;
+  sessionId: string;
+  workspace: string;
+  savedAt: string;
+  locatorKind: SessionRefLocatorKind;
+  version: 1;
 }
 
 /** The size-budgeted `_memory.continuity` record embedded in a spec doc's frontmatter. */
@@ -42,6 +66,7 @@ export interface ThinContinuityRecord {
   blockers: string[];
   key_files: string[];
   session_dedup?: ThinContinuitySessionDedup;
+  session_ref?: ThinContinuitySessionRef;
   completion_pct: number;
   open_questions: string[];
   answered_questions: string[];
@@ -83,6 +108,12 @@ export interface ThinContinuityValidationOptions {
   fallbackTimestamp?: string;
   fallbackActor?: string;
   fallbackSessionId?: string;
+  /**
+   * Resume-mode read: drop an invalid `session_ref` before validation so the rest
+   * of the continuity block still loads. The writer leaves this off so its carry
+   * path can name the dropped field.
+   */
+  ignoreInvalidSessionRef?: boolean;
 }
 
 /** Result of validating a raw continuity payload: the normalized record and its YAML, or errors. */
@@ -127,6 +158,7 @@ const ACTOR_RE = /^[a-z0-9][a-z0-9._-]{1,63}$/;
 const SESSION_ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{2,63}$/;
 const FINGERPRINT_RE = /^sha256:[a-f0-9]{64}$/;
 const BARE_FINGERPRINT_RE = /^[a-f0-9]{64}$/;
+const SESSION_REF_KEYS = ['runtime', 'sessionId', 'workspace', 'savedAt', 'locatorKind', 'version'] as const;
 const SENTINEL_VALUES = new Set(['', 'none', 'n/a', 'na']);
 const COMPACT_FIELD_DISCOURSE_RE = /\b(?:because|so that|which means|the reason|details|summary)\b/i;
 const LIST_PREFIX_RE = /^\s*(?:[-*+]|\d+\.)\s+/;
@@ -209,6 +241,11 @@ const NEXT_ACTION_VERBS = new Set([
 
 function isPlainObject(value: unknown): value is UnknownRecord {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+/** True when the value matches the continuity session-id shape used by dedup and session_ref. */
+export function isContinuitySessionId(value: unknown): value is string {
+  return typeof value === 'string' && SESSION_ID_RE.test(value.trim());
 }
 
 function buildError(
@@ -858,6 +895,81 @@ function normalizeSessionDedup(
   };
 }
 
+/**
+ * Validate the writer-minted session pointer. The shape is closed on purpose:
+ * a reader must never have to interpret an extra key or repair a partial object,
+ * and a locator whose kind disagrees with its runtime would send a lookup to the
+ * wrong store.
+ */
+function normalizeSessionRef(
+  value: unknown,
+  errors: ThinContinuityValidationError[],
+): ThinContinuitySessionRef | undefined {
+  if (value === undefined || value === null) {
+    return undefined;
+  }
+
+  const fail = (message: string, details?: Record<string, unknown>): undefined => {
+    errors.push(buildError('MEMORY_018', 'session_ref', message, details));
+    return undefined;
+  };
+
+  if (!isPlainObject(value)) {
+    return fail('session_ref must be an object when present');
+  }
+
+  const keys = Object.keys(value);
+  const missing = SESSION_REF_KEYS.filter((key) => !keys.includes(key));
+  const extra = keys.filter((key) => !(SESSION_REF_KEYS as readonly string[]).includes(key));
+  if (missing.length > 0 || extra.length > 0) {
+    return fail(
+      `session_ref must carry exactly ${SESSION_REF_KEYS.join(', ')}`,
+      { missing, extra },
+    );
+  }
+
+  const runtime = typeof value.runtime === 'string' ? value.runtime.trim().toLowerCase() : '';
+  if (!(runtime in SESSION_REF_RUNTIME_LOCATOR_KINDS)) {
+    return fail(
+      `session_ref.runtime must be one of ${Object.keys(SESSION_REF_RUNTIME_LOCATOR_KINDS).join(', ')}`,
+    );
+  }
+  const storedLocatorKind = typeof value.locatorKind === 'string' ? value.locatorKind : '';
+  const locatorKind = SESSION_REF_RUNTIME_LOCATOR_KINDS[runtime as SessionRefRuntime];
+  if (storedLocatorKind !== locatorKind) {
+    return fail(`session_ref.locatorKind must be "${locatorKind}" for runtime "${runtime}"`);
+  }
+
+  const sessionId = typeof value.sessionId === 'string' ? value.sessionId.trim() : '';
+  if (!isContinuitySessionId(sessionId)) {
+    return fail('session_ref.sessionId must match the continuity session-id shape');
+  }
+
+  const workspace = typeof value.workspace === 'string' ? value.workspace.trim() : '';
+  if (workspace.length === 0 || !path.isAbsolute(workspace) || path.resolve(workspace) !== workspace) {
+    return fail('session_ref.workspace must be a normalized absolute path');
+  }
+
+  const savedAtRaw = typeof value.savedAt === 'string' ? value.savedAt.trim() : '';
+  const savedAt = new Date(savedAtRaw);
+  if (savedAtRaw.length === 0 || Number.isNaN(savedAt.getTime())) {
+    return fail('session_ref.savedAt must be a valid ISO-8601 timestamp');
+  }
+
+  if (value.version !== 1) {
+    return fail('session_ref.version must be 1');
+  }
+
+  return {
+    runtime: runtime as SessionRefRuntime,
+    sessionId,
+    workspace,
+    savedAt: formatIsoSeconds(savedAt),
+    locatorKind,
+    version: 1,
+  };
+}
+
 function normalizeCompletionPct(
   value: unknown,
   blockers: string[],
@@ -956,6 +1068,16 @@ function buildOrderedRecord(record: ThinContinuityRecord, compactOptionalFields 
       parent_session_id: record.session_dedup.parent_session_id,
     };
   }
+  if (record.session_ref) {
+    ordered.session_ref = {
+      runtime: record.session_ref.runtime,
+      sessionId: record.session_ref.sessionId,
+      workspace: record.session_ref.workspace,
+      savedAt: record.session_ref.savedAt,
+      locatorKind: record.session_ref.locatorKind,
+      version: record.session_ref.version,
+    };
+  }
   if (!compactOptionalFields || record.completion_pct !== 0) {
     ordered.completion_pct = record.completion_pct;
   }
@@ -986,11 +1108,15 @@ function serializeEnvelope(record: ThinContinuityRecord, compactOptionalFields =
 }
 
 function compactForBudget(record: ThinContinuityRecord): ThinContinuityRecord {
-  return {
+  // The history pointer goes first: the next full-auto save can mint it again,
+  // while the packet brief still needs its status fields to stay readable.
+  const compacted: ThinContinuityRecord = {
     ...record,
     blockers: record.blockers.slice(-3),
     key_files: record.key_files.slice(-3),
   };
+  delete compacted.session_ref;
+  return compacted;
 }
 
 function heaviestFields(record: ThinContinuityRecord): Array<{ field: string; bytes: number }> {
@@ -1079,6 +1205,11 @@ export function validateThinContinuityRecord(
   const answeredQuestions = normalizeQuestionSet(input.answered_questions, 'answered_questions', errors);
   validateQuestionOverlap(openQuestions, answeredQuestions, errors);
   const sessionDedup = normalizeSessionDedup(input.session_dedup, options, errors);
+  const sessionRefErrors: ThinContinuityValidationError[] = [];
+  const sessionRef = normalizeSessionRef(input.session_ref, sessionRefErrors);
+  if (!options.ignoreInvalidSessionRef) {
+    errors.push(...sessionRefErrors);
+  }
   const completionPct = normalizeCompletionPct(input.completion_pct, blockers, openQuestions, errors);
 
   if (errors.length > 0 || !packetPointer || !lastUpdatedAt || !lastUpdatedBy || !recentAction || !nextSafeAction) {
@@ -1094,6 +1225,7 @@ export function validateThinContinuityRecord(
     blockers,
     key_files: keyFiles,
     ...(sessionDedup ? { session_dedup: sessionDedup } : {}),
+    ...(sessionRef ? { session_ref: sessionRef } : {}),
     completion_pct: completionPct,
     open_questions: openQuestions,
     answered_questions: answeredQuestions,

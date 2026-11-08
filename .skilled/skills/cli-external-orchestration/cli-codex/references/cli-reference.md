@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex session resume fork"
 importance_tier: important
 contextType: implementation
-version: 1.9.2.0
+version: 1.9.3.0
 ---
 
 # Codex CLI - Complete Command Reference
@@ -35,7 +35,7 @@ Be the single source a dispatcher checks before running Codex, so every option a
 
 ### Core Principle
 
-Codex CLI is OpenAI's terminal-based AI coding agent powered by `gpt-5.5`, a balanced model used across code generation, review, architecture analysis, and research. The skill dispatches `gpt-5.5` at `medium` reasoning on the `fast` service tier by default; users can override reasoning effort (e.g. "Use gpt 5.5 high fast"). It provides direct access to OpenAI's capabilities from the command line, including code generation, file manipulation, shell execution, web browsing, and multi-turn sessions, all governed by configurable sandbox modes.
+Codex CLI is OpenAI's terminal-based AI coding agent powered by `gpt-6-luna`, a balanced model used across code generation, review, architecture analysis, and research. The skill dispatches `gpt-6-luna` at `medium` reasoning on the `fast` service tier by default; users can override reasoning effort (e.g. "Use gpt 6 luna high fast"). It provides direct access to OpenAI's capabilities from the command line, including code generation, file manipulation, shell execution, web browsing, and multi-turn sessions, all governed by configurable sandbox modes.
 
 ### Key Sources
 
@@ -64,7 +64,7 @@ Codex CLI is OpenAI's terminal-based AI coding agent powered by `gpt-5.5`, a bal
 | Linux | Full support |
 | Windows (WSL) | Experimental — use WSL 2 for best results |
 
-After installation, run `codex` for the full-screen TUI or `codex exec "prompt" --model gpt-5.5` for non-interactive use.
+After installation, run `codex` for the full-screen TUI or `codex exec "prompt" --model gpt-6-luna` for non-interactive use.
 
 ---
 
@@ -95,7 +95,7 @@ codex logout
 
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
-| `--model` | `-m` | `gpt-5.5` | Model to use — `gpt-5.5` (default), `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra`, `gpt-6-sol` |
+| `--model` | `-m` | `gpt-6-luna` | Model to use — `gpt-6-luna` (default), `gpt-5.5`, `gpt-5.6-terra`, `gpt-6.1-terra`, `gpt-6-sol` |
 | `--config` | `-c` | `key=value` | Override a config.toml value (e.g., `-c model_reasoning_effort="high"`) |
 | `--sandbox` | `-s` | `read-only`, `workspace-write`, `danger-full-access` | Sandbox mode controlling file/shell access |
 | `--ask-for-approval` | `-a` | `untrusted`, `on-request`, `never` | Top-level approval policy; place `-a` before `exec` when using the headless form |
@@ -134,10 +134,10 @@ The `-c` / `--config` flag overrides any `config.toml` value at runtime. Uses do
 
 ```bash
 # Override reasoning effort
-codex exec "Analyze this architecture" -m gpt-5.5 -c model_reasoning_effort="high"
+codex exec "Analyze this architecture" -m gpt-6-luna -c model_reasoning_effort="high"
 
 # Override model via -c
-codex exec "Review code" -c model="gpt-5.5"
+codex exec "Review code" -c model="gpt-6-luna"
 
 # Multiple overrides
 codex exec "Task" -c model_reasoning_effort="xhigh" -c sandbox_mode="read-only"
@@ -150,25 +150,25 @@ codex exec "Task" -c model_reasoning_effort="xhigh" -c sandbox_mode="read-only"
 codex
 
 # Non-interactive: exec subcommand
-codex exec "Refactor utils.ts to use async/await" --model gpt-5.5
+codex exec "Refactor utils.ts to use async/await" --model gpt-6-luna
 
 # With sandbox mode
-codex exec "Add error handling to auth.ts" --sandbox workspace-write --model gpt-5.5
+codex exec "Add error handling to auth.ts" --sandbox workspace-write --model gpt-6-luna
 
 # With approval control (top-level flag before exec)
-codex -a untrusted exec "Clean up deprecated files" --model gpt-5.5
+codex -a untrusted exec "Clean up deprecated files" --model gpt-6-luna
 
 # Headless no-prompt mode
-codex -a never exec "Run the test suite and fix failures" --model gpt-5.5
+codex -a never exec "Run the test suite and fix failures" --model gpt-6-luna
 
 # Attach an image
-codex exec "Implement this UI component" --image wireframe.png --model gpt-5.5
+codex exec "Implement this UI component" --image wireframe.png --model gpt-6-luna
 
 # Enable web search
-codex --search exec "Research and implement OAuth2 PKCE flow" --model gpt-5.5
+codex --search exec "Research and implement OAuth2 PKCE flow" --model gpt-6-luna
 
 # Load a named profile
-codex exec "Review this PR" --profile review --model gpt-5.5
+codex exec "Review this PR" --profile review --model gpt-6-luna
 
 # Use local OSS model via Ollama
 codex exec "Refactor this function" --oss
@@ -178,7 +178,8 @@ codex exec "Refactor this function" --oss
 
 ## 5. MODEL SELECTION
 
-Default: `gpt-5.5` at `-c model_reasoning_effort="medium"` on the `fast` service tier (`-c service_tier="fast"`). Set reasoning effort with the config override **`-c model_reasoning_effort="<level>"`** — there is **no `--reasoning-effort` CLI flag** — and keep it within the chosen model's ceiling.
+Default: `gpt-6-luna` at `-c model_reasoning_effort="medium"` on the `fast` service tier (`-c service_tier="fast"`). Set reasoning effort with the config override **`-c model_reasoning_effort="<level>"`** — there is **no `--reasoning-effort` CLI flag** — and keep it within the chosen model's ceiling.
+A ChatGPT-account login accepts only the models its plan lists, so pass `-m <model>` explicitly when in doubt.
 
 **Full model roster, per-model effort ceilings, and the 8-level effort ladder → [providers-and-models.md](./providers-and-models.md).**
 
@@ -207,28 +208,28 @@ The 8-level effort ladder and its per-model ceilings live in [providers-and-mode
 | Documentation | `medium` (default) | Efficient for structured doc generation |
 | Trivial lookups / formatting | `low` / `minimal` | Minimize cost and latency |
 
-Always specify `--model` explicitly in scripts for predictability (`gpt-5.5` is the skill default); omitting it relies on the CLI default, which may change across versions. When a task wants reasoning past `xhigh`, escalate the model — see the roster and ceilings in [providers-and-models.md](./providers-and-models.md).
+Always specify `--model` explicitly in scripts for predictability (`gpt-6-luna` is the skill default); omitting it relies on the CLI default, which may change across versions. When a task wants reasoning past `xhigh`, raise the effort to `max` or switch to a model with a higher ceiling — see the roster and ceilings in [providers-and-models.md](./providers-and-models.md).
 
 ### Command-Line Specification
 
 ```bash
 # Reasoning-heavy tasks — raise reasoning_effort
-codex exec "Analyze this architecture and identify coupling issues" --model gpt-5.5 -c model_reasoning_effort="high"
-codex exec "Security audit of @./src/auth.ts" --model gpt-5.5 -c model_reasoning_effort="high"
+codex exec "Analyze this architecture and identify coupling issues" --model gpt-6-luna -c model_reasoning_effort="high"
+codex exec "Security audit of @./src/auth.ts" --model gpt-6-luna -c model_reasoning_effort="high"
 
 # Code-focused tasks — medium is fine
-codex exec "Write unit tests for user.ts" --model gpt-5.5 -c model_reasoning_effort="medium"
-codex exec "Generate a rate limiter middleware" --model gpt-5.5 -c model_reasoning_effort="medium"
+codex exec "Write unit tests for user.ts" --model gpt-6-luna -c model_reasoning_effort="medium"
+codex exec "Generate a rate limiter middleware" --model gpt-6-luna -c model_reasoning_effort="medium"
 ```
 
 ### Agent TOML Configuration
 
 ```toml
 # .codex/agents/my-agent.toml — reasoning-heavy agent
-model = "gpt-5.5"
+model = "gpt-6-luna"
 
 # .codex/agents/my-codegen-agent.toml — code-focused agent
-model = "gpt-5.5"
+model = "gpt-6-luna"
 model_reasoning_effort = "xhigh"
 ```
 
@@ -243,17 +244,17 @@ model_reasoning_effort = "xhigh"
 ```bash
 # Capture to file
 codex exec "Generate a TypeScript interface for the User model" \
-  --model gpt-5.5 > /tmp/user-interface.ts
+  --model gpt-6-luna > /tmp/user-interface.ts
 
 # Capture to variable
-RESULT=$(codex exec "List all exported functions in src/" --model gpt-5.5)
+RESULT=$(codex exec "List all exported functions in src/" --model gpt-6-luna)
 echo "$RESULT"
 
 # Pipe to another command
-codex exec "Generate SQL schema for users table" --model gpt-5.5 | psql -d mydb -f -
+codex exec "Generate SQL schema for users table" --model gpt-6-luna | psql -d mydb -f -
 
 # Redirect stderr separately
-codex exec "Analyze auth flow" --model gpt-5.5 > /tmp/analysis.txt 2>/tmp/errors.txt
+codex exec "Analyze auth flow" --model gpt-6-luna > /tmp/analysis.txt 2>/tmp/errors.txt
 ```
 
 ### Requesting JSON Output
@@ -263,7 +264,7 @@ Codex provides native structured output. Use `--json` for the JSONL event stream
 ```bash
 # Emit JSONL events and validate the final response
 codex exec --json --output-schema /tmp/analysis-schema.json \
-  "Analyze src/auth.ts" --model gpt-5.5 > /tmp/analysis.jsonl
+  "Analyze src/auth.ts" --model gpt-6-luna > /tmp/analysis.jsonl
 
 # Parse with jq
 jq 'select(.type == "turn.completed")' /tmp/analysis.jsonl
@@ -310,11 +311,11 @@ Codex supports `@file` references to include file contents in the prompt context
 
 ```bash
 # Single file
-codex exec "@src/utils.ts Explain this file" --model gpt-5.5
+codex exec "@src/utils.ts Explain this file" --model gpt-6-luna
 
 # Multiple files
 codex exec "@src/auth.ts @src/session.ts Find the circular dependency" \
-  --model gpt-5.5
+  --model gpt-6-luna
 
 # In the TUI
 # Type: @src/utils.ts refactor this to use the repository pattern
@@ -326,15 +327,15 @@ Use standard shell mechanisms to combine Codex with other tools:
 
 ```bash
 # Pass git diff as context
-git diff HEAD~1 | codex exec "Summarize these changes" --model gpt-5.5
+git diff HEAD~1 | codex exec "Summarize these changes" --model gpt-6-luna
 
 # Combine file content with prompt
 cat src/auth.ts | codex exec "Add input validation to all functions" \
-  --model gpt-5.5
+  --model gpt-6-luna
 
 # Pass error output for debugging
 npm test 2>&1 | codex exec "Fix these failing tests" --sandbox workspace-write \
-  --model gpt-5.5
+  --model gpt-6-luna
 ```
 
 ### instructions.md Context File
@@ -378,7 +379,7 @@ CODEX_HOME/
 
 ```toml
 # $CODEX_HOME/config.toml
-model = "gpt-5.5"
+model = "gpt-6-luna"
 model_reasoning_effort = "xhigh"
 sandbox_mode = "workspace-write"
 ask_for_approval = "on-request"
@@ -392,7 +393,7 @@ Each agent is a `.toml` file in `.codex/agents/`. Fields:
 # .codex/agents/example.toml
 
 # Model configuration
-model = "gpt-5.5"
+model = "gpt-6-luna"
 model_reasoning_effort = "xhigh"
 
 # Sandbox mode for this agent
@@ -409,14 +410,14 @@ You are a specialized agent for [purpose].
 
 ```bash
 # Named profile via -p / --profile flag
-codex exec -p review "Review src/auth.ts for security issues" --model gpt-5.5
+codex exec -p review "Review src/auth.ts for security issues" --model gpt-6-luna
 
 # Git diff review via built-in subcommand
-codex exec review "Focus on security issues" --commit HEAD --model gpt-5.5
+codex exec review "Focus on security issues" --commit HEAD --model gpt-6-luna
 codex review --uncommitted  # top-level shorthand
 
 # Profile with sandbox override
-codex exec -p debug "Fix the auth bug" -s workspace-write --model gpt-5.5
+codex exec -p debug "Fix the auth bug" -s workspace-write --model gpt-6-luna
 ```
 
 ### Profile Configuration
@@ -435,7 +436,7 @@ model_reasoning_effort = "xhigh"
 
 ```bash
 # Use a named profile
-codex exec -p review "Audit this codebase" --model gpt-5.5
+codex exec -p review "Audit this codebase" --model gpt-6-luna
 ```
 
 **Note:** The `.codex/agents/*.toml` files define agent personas for the interactive multi-agent TUI feature (requires `multi_agent` feature flag). They are not loaded by the `-p` profile flag. Keep profile settings in the corresponding `$CODEX_HOME/<name>.config.toml` file.
@@ -459,15 +460,15 @@ Sandbox modes control what Codex is permitted to do during execution. Always cho
 ```bash
 # SAFE: Read-only for analysis
 codex exec "Map the authentication flow" \
-  --sandbox read-only --model gpt-5.5
+  --sandbox read-only --model gpt-6-luna
 
 # STANDARD: Workspace-write for code changes
 codex exec "Add error handling to all API routes" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 
 # ELEVATED RISK: Full access — use only when necessary and review all changes
 codex exec "Migrate database schema and update all dependent files" \
-  --sandbox danger-full-access --ask-for-approval untrusted --model gpt-5.5
+  --sandbox danger-full-access --ask-for-approval untrusted --model gpt-6-luna
 ```
 
 ### Mode Selection Heuristic
@@ -499,12 +500,12 @@ Running `codex` without arguments opens the full-screen TUI with a session picke
 ```bash
 # Resume a known session ID non-interactively
 codex exec resume abc123 "Continue implementing the rate limiter" \
-  --model gpt-5.5
+  --model gpt-6-luna
 
 # Fork a session before a risky operation
 FORK_ID=$(codex fork abc123)
 codex exec resume "$FORK_ID" "Attempt the migration" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 ```
 
 ### When to Use Each Operation
@@ -556,7 +557,7 @@ codex exec resume "$FORK_ID" "Attempt the migration" \
 
 | Variable | Purpose | Example |
 |----------|---------|---------|
-| `CODEX_MODEL` | Default model override | `gpt-5.5` |
+| `CODEX_MODEL` | Default model override | `gpt-6-luna` |
 | `CODEX_SANDBOX` | Default sandbox mode | `read-only`, `workspace-write`, `danger-full-access` |
 | `CODEX_APPROVAL` | Default approval mode | `untrusted`, `on-request`, `never` |
 | `NO_COLOR` | Disable colored output | `1` |

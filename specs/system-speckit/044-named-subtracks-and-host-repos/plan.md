@@ -81,7 +81,7 @@ Setup records the baseline and builds the red fixture. Implementation turns each
 Run from `.skilled/skills/system-spec-kit/runtime/cli` after `npm run build` in `runtime/`. The runtime's default vitest config excludes `runtime/cli/**`, so the cli project config is named explicitly:
 
 ```bash
-npx vitest run --config ../../vitest.config.ts --project cli tests/track-roots.vitest.ts tests/create-track-refresh.vitest.ts tests/create-track-containment.vitest.ts tests/create-root-numbering.vitest.ts tests/archive-track.vitest.ts tests/repair-derived.vitest.ts tests/graph-metadata-refresh.vitest.ts tests/validate-recursive-artifact-skip.vitest.ts tests/subtrack-fixture.vitest.ts
+npx vitest run --config ../../vitest.config.ts --project cli tests/track-roots.vitest.ts tests/create-track-refresh.vitest.ts tests/create-track-containment.vitest.ts tests/create-root-numbering.vitest.ts tests/archive-track.vitest.ts tests/repair-derived.vitest.ts tests/graph-metadata-refresh.vitest.ts tests/validate-recursive-artifact-skip.vitest.ts tests/subtrack-fixture.vitest.ts tests/validate-subtrack.vitest.ts
 node --test ../../../../commands/doctor/scripts/tests/symlink-engine.test.cjs ../../../../commands/doctor/scripts/tests/doctor-symlink-contract.test.cjs
 ```
 

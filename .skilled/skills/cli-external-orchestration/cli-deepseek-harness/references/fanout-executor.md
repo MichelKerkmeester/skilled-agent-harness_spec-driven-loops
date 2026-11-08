@@ -1,6 +1,6 @@
 ---
 title: "DeepSeek Harness - Fan-Out Executor"
-description: "The cli-deepseek-harness executor kind in the shared deep-loop runner: its lineage command, env allowlist, per-lineage DSH_HOME, recursion refusal, result validation and why it remains experimental while OpenCode Go is unverified."
+description: "The cli-deepseek-harness executor kind in the shared deep-loop runner: its lineage command, env allowlist, per-lineage DSH_HOME, recursion refusal, result validation and why it remains experimental while dsh is a release candidate."
 trigger_phrases:
   - "dsh fan-out executor"
   - "dsh lineage command"
@@ -32,7 +32,7 @@ Describes how the shared runner builds, runs and judges a dsh lineage, so a call
 
 ### Status
 
-`cli-deepseek-harness` is in `EXECUTOR_KINDS`, and `buildDshLineageCommand` builds its command. `EXPERIMENTAL_EXECUTOR_KINDS` lists it for information only. LLM Gateway `deepseek-v4.1-flash-1017` completed a keyed lineage and is the default model. OpenCode Go `deepseek-v4.1-flash` is configured, not verified, and stays out of defaults because no request was sent for it. This packet must not add a wrapper, spawn path or command builder of its own.
+`cli-deepseek-harness` is in `EXECUTOR_KINDS`, and `buildDshLineageCommand` builds its command. `EXPERIMENTAL_EXECUTOR_KINDS` lists it for information only. LLM Gateway `deepseek-v4.1-flash-1017` completed a keyed lineage and is the default model. OpenCode Go `deepseek-v4.1-flash` was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out of defaults. This packet must not add a wrapper, spawn path or command builder of its own.
 
 ---
 
@@ -100,7 +100,7 @@ Two entries are refused:
 | Executor field | dsh mapping |
 |---|---|
 | `model` | Selects one of two route patches. `deepseek-v4.1-flash-1017` maps to `route-llmgateway-deepseek.patch.yml`, `deepseek-v4.1-flash` to `route-opencode-go-deepseek.patch.yml`, and any other id is refused |
-| `reasoningEffort` | Pinned to `max` for both dsh models. The Gateway route accepted `max` in the saved run. OpenCode Go has not been called, so its support remains unverified |
+| `reasoningEffort` | Pinned to `max` for both dsh models. The Gateway route accepted `max` in the saved run. OpenCode Go's support remains UNKNOWN |
 | `timeoutSeconds` | Runner-owned, dsh has no timeout option |
 | `agentPersona` | Selects `.dsh/agents/<persona>.patch.yml`, which the builder requires to exist |
 | Preventive sandbox capability | True for the observed dsh `workspace-write` boundary: a file write under `$HOME` outside the cwd was denied. OS temp paths remain writable, including another lineage's disposable `DSH_HOME`, so separate temp homes are not an enforced boundary between lineages |

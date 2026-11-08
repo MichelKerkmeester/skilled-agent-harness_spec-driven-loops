@@ -32,16 +32,11 @@ const GRAPH_METADATA = 'graph-metadata.json';
 const DESCRIPTION = 'description.json';
 const SUB_TRACK_LEVEL = 'sub-track';
 
+// An archive folder (z_*) holds packets that are done, so it is never a track
+// or a sub-track at either level.
 function isCandidateTrackName(name) {
-  return !name.startsWith('.') && name !== 'node_modules' && !SPEC_LEAF_SEGMENT_PATTERN.test(name);
-}
-
-function isArchiveName(name) {
-  return name.startsWith('z_');
-}
-
-function isSubTrackCandidateName(name) {
-  return isCandidateTrackName(name) && !isArchiveName(name);
+  return !name.startsWith('.') && name !== 'node_modules' && !name.startsWith('z_')
+    && !SPEC_LEAF_SEGMENT_PATTERN.test(name);
 }
 
 function compareNames(a, b) {
@@ -126,7 +121,7 @@ export function readWorkingTreeTracks(specsRoot) {
     tracks.push(track);
 
     const containers = fs.readdirSync(trackPath, { withFileTypes: true })
-      .filter((entry) => isSubTrackCandidateName(entry.name))
+      .filter((entry) => isCandidateTrackName(entry.name))
       .sort(byFolderName);
     for (const entry of containers) {
       const id = `${name}/${entry.name}`;
@@ -143,8 +138,12 @@ export function readWorkingTreeTracks(specsRoot) {
       const descriptionPath = path.join(subPath, DESCRIPTION);
       const linkedDescription = fs.lstatSync(descriptionPath, { throwIfNoEntry: false })?.isSymbolicLink() === true;
       const description = linkedDescription ? null : parseObject(readOptionalText(descriptionPath) ?? '');
-      if (!isDeclaredSubTrack(description) || fs.existsSync(path.join(subPath, 'spec.md'))) {
+      if (!isDeclaredSubTrack(description)) {
         diagnostics.push(`${id}: undeclared folder ignored`);
+        continue;
+      }
+      if (fs.existsSync(path.join(subPath, 'spec.md'))) {
+        diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
         continue;
       }
       track.children.push(entry.name);
@@ -239,7 +238,7 @@ export function readCommitTracks(specsRoot, rev) {
     };
     tracks.push(track);
 
-    const containers = inside.filter((item) => isSubTrackCandidateName(item.name)).sort(byFolderName);
+    const containers = inside.filter((item) => isCandidateTrackName(item.name)).sort(byFolderName);
     for (const sub of containers) {
       const id = `${entry.name}/${sub.name}`;
       if (sub.mode === '120000') {
@@ -250,8 +249,12 @@ export function readCommitTracks(specsRoot, rev) {
       const subInside = lsTree(repoTop, rev, `${specsPath}/${entry.name}/${sub.name}`);
       const description = subInside.find((item) => item.name === DESCRIPTION && item.type === 'blob');
       const declared = isDeclaredSubTrack(description ? parseObject(readBlob(repoTop, description.object)) : null);
-      if (!declared || subInside.some((item) => item.name === 'spec.md' && item.type === 'blob')) {
+      if (!declared) {
         diagnostics.push(`${id}: undeclared folder ignored`);
+        continue;
+      }
+      if (subInside.some((item) => item.name === 'spec.md' && item.type === 'blob')) {
+        diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
         continue;
       }
       track.children.push(sub.name);

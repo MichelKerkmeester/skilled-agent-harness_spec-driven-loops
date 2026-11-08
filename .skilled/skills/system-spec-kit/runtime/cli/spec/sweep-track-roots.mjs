@@ -96,7 +96,8 @@ function main() {
   for (const track of tracks) {
     const metadata = parseTrackMetadata(track.rawMetadata);
     if (!metadata) {
-      process.stdout.write(`${track.name}: declared=? actual=? (graph-metadata.json is unreadable)\n`);
+      const problem = track.rawMetadata === null ? 'missing' : 'unreadable';
+      process.stdout.write(`${track.name}: declared=? actual=? (graph-metadata.json is ${problem})\n`);
       drifted += 1;
       continue;
     }

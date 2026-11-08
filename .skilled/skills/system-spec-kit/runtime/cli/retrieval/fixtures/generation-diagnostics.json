@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7375,
-    "ok": 17509,
+    "missing-frontmatter": 7377,
+    "ok": 17544,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28433,
+  "documentsScanned": 28470,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ed28ddc2094fff6b8c3da81901a1012aca661f91dc601df59e47fad1d82b51f5",
+  "manifestHash": "75392b1a5953da1c61c76ccfa9d8c2e09a86158aa307c1490fad439a4d4751bc",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41853,
+      "ok": 41930,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -2138,13 +2138,13 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/explicit-fast-service-tier.md",
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/default-model-lock.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/gpt-5-5-model-lock.md",
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/explicit-fast-service-tier.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69145,6 +69145,18 @@
       "line": 2,
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/p2-verification.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -70990,6 +71002,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/scratch",
       "reason": "excluded directory"
     },
     {
@@ -77522,6 +77538,30 @@
     },
     {
       "path": "specs/system-speckit/043-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

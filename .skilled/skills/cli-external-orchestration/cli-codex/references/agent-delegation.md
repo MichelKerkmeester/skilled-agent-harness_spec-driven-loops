@@ -9,7 +9,7 @@ trigger_phrases:
   - "codex agent catalog"
 importance_tier: normal
 contextType: implementation
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Codex Agent Delegation Reference
@@ -69,26 +69,26 @@ Codex CLI tasks are routed using the `-p` / `--profile` flag with a profile name
 ```bash
 # Profile-based delegation via exec (non-interactive)
 codex exec -p review "Review src/auth.ts for security issues" \
-  --model gpt-5.5
+  --model gpt-6-luna
 
 # Git diff review via built-in subcommand
-codex exec review "Focus on security" --commit HEAD --model gpt-5.5
+codex exec review "Focus on security" --commit HEAD --model gpt-6-luna
 
 # With sandbox override
 codex exec -p debug -s workspace-write \
-  "Fix the authentication bug in src/auth/handler.ts" --model gpt-5.5
+  "Fix the authentication bug in src/auth/handler.ts" --model gpt-6-luna
 
 # With file context
 codex exec -p review "@src/utils.ts @src/auth.ts Review these files for bugs" \
-  --model gpt-5.5
+  --model gpt-6-luna
 
 # With web search enabled
 codex --search exec -p research \
-  "Research and document the best OAuth2 PKCE patterns" --model gpt-5.5
+  "Research and document the best OAuth2 PKCE patterns" --model gpt-6-luna
 
 # Capture output to file
 codex exec -p context "Map the dependency graph for src/" \
-  --model gpt-5.5 > /tmp/context-map.txt
+  --model gpt-6-luna > /tmp/context-map.txt
 ```
 
 ### Profile Setup
@@ -122,7 +122,7 @@ For example, `$CODEX_HOME/review.config.toml` contains `sandbox_mode = "read-onl
 
 ### Reasoning Effort Selection for Agents
 
-All agents dispatch `gpt-5.5`. Tune only reasoning effort per agent type:
+All agents dispatch `gpt-6-luna`, the model pinned in `.codex/agents/*.toml`. A ChatGPT-account login accepts only the models its plan lists, so pass `-m` when in doubt. Tune only reasoning effort per agent type:
 
 | Agent Type | Recommended Effort | Rationale |
 |-----------|-------------------|-----------|
@@ -140,7 +140,7 @@ All agents dispatch `gpt-5.5`. Tune only reasoning effort per agent type:
 | Property           | Value                          |
 | ------------------ | ------------------------------ |
 | **Role**           | Read-only codebase exploration |
-| **Model**          | gpt-5.5 (reasoning effort: `high` recommended) |
+| **Model**          | gpt-6-luna (reasoning effort: `high` recommended) |
 | **Sandbox Mode**   | read-only                      |
 | **Modifies Files** | Never                          |
 
@@ -151,7 +151,7 @@ All agents dispatch `gpt-5.5`. Tune only reasoning effort per agent type:
 ```bash
 codex exec -p context \
   "Map all authentication-related files and their dependencies" \
-  -s read-only --model gpt-5.5 > /tmp/context-map.txt
+  -s read-only --model gpt-6-luna > /tmp/context-map.txt
 ```
 
 ---
@@ -161,7 +161,7 @@ codex exec -p context \
 | Property           | Value                                       |
 | ------------------ | ------------------------------------------- |
 | **Role**           | Systematic debugging with fresh perspective |
-| **Model**          | gpt-5.5 (reasoning effort: `medium` for fixes, `high` for analysis) |
+| **Model**          | gpt-6-luna (reasoning effort: `medium` for fixes, `high` for analysis) |
 | **Sandbox Mode**   | workspace-write                             |
 | **Modifies Files** | Yes (bug fixes)                             |
 
@@ -174,7 +174,7 @@ codex exec -p context \
 ```bash
 codex exec -p debug -s workspace-write \
   "Login returns 401 despite valid credentials. Error at src/auth/handler.ts:45. Prior attempts: verified token expiry, checked DB connection, confirmed env vars." \
-  --model gpt-5.5
+  --model gpt-6-luna
 ```
 
 ---
@@ -184,7 +184,7 @@ codex exec -p debug -s workspace-write \
 | Property           | Value                                           |
 | ------------------ | ----------------------------------------------- |
 | **Role**           | Multi-agent coordination and task decomposition |
-| **Model**          | gpt-5.5 (reasoning effort: `medium`)             |
+| **Model**          | gpt-6-luna (reasoning effort: `medium`)             |
 | **Sandbox Mode**   | read-only                                       |
 | **Modifies Files** | Never (delegates to sub-agents)                 |
 
@@ -197,7 +197,7 @@ codex exec -p debug -s workspace-write \
 ```bash
 codex exec -p orchestrate \
   "Analyze this codebase: explore structure, review code quality, and produce a research document" \
-  -s read-only --model gpt-5.5
+  -s read-only --model gpt-6-luna
 ```
 
 ---
@@ -207,7 +207,7 @@ codex exec -p orchestrate \
 | Property           | Value                                                           |
 | ------------------ | --------------------------------------------------------------- |
 | **Role**           | Iterative evidence gathering, feasibility analysis, technology comparison |
-| **Model**          | gpt-5.5 (reasoning effort: `high` recommended for synthesis)    |
+| **Model**          | gpt-6-luna (reasoning effort: `high` recommended for synthesis)    |
 | **Sandbox Mode**   | workspace-write                                                 |
 | **Modifies Files** | Yes (research.md)                                               |
 
@@ -220,7 +220,7 @@ codex exec -p orchestrate \
 ```bash
 codex --search exec -p research -s workspace-write \
   "Research the latest Next.js 15 App Router migration patterns. Compare with current Remix approach in this codebase." \
-  --model gpt-5.5
+  --model gpt-6-luna
 ```
 
 ---
@@ -230,7 +230,7 @@ codex --search exec -p research -s workspace-write \
 | Property           | Value                                                 |
 | ------------------ | ----------------------------------------------------- |
 | **Role**           | Code review, quality scoring (0-100), security audits |
-| **Model**          | gpt-5.5 (reasoning effort: `high` for deep review/security, `medium` for standard review) |
+| **Model**          | gpt-6-luna (reasoning effort: `high` for deep review/security, `medium` for standard review) |
 | **Sandbox Mode**   | read-only                                             |
 | **Modifies Files** | Never                                                 |
 
@@ -241,7 +241,7 @@ codex --search exec -p research -s workspace-write \
 ```bash
 codex exec -p review \
   "@src/auth/handler.ts @src/auth/middleware.ts Review these files for security vulnerabilities and code quality" \
-  -s read-only --model gpt-5.5 > /tmp/review-output.txt
+  -s read-only --model gpt-6-luna > /tmp/review-output.txt
 ```
 
 ---
@@ -251,7 +251,7 @@ codex exec -p review \
 | Property           | Value                                                |
 | ------------------ | ---------------------------------------------------- |
 | **Role**           | Multi-strategy planning with diverse thinking lenses |
-| **Model**          | gpt-5.5 (reasoning effort: `high` / `xhigh` for complex planning) |
+| **Model**          | gpt-6-luna (reasoning effort: `high` / `xhigh` for complex planning) |
 | **Sandbox Mode**   | read-only                                            |
 | **Modifies Files** | Never                                                |
 
@@ -262,7 +262,7 @@ codex exec -p review \
 ```bash
 codex exec -p ai-council -s read-only \
   "Design the caching strategy for this API. Consider Redis, in-memory, and CDN approaches." \
-  --model gpt-5.5 > /tmp/ai-council-output.txt
+  --model gpt-6-luna > /tmp/ai-council-output.txt
 ```
 
 ---
@@ -273,11 +273,11 @@ codex exec -p ai-council -s read-only \
 ```bash
 # Capture to file
 codex exec -p review "@src/auth.ts Review for issues" \
-  --model gpt-5.5 > /tmp/review.txt
+  --model gpt-6-luna > /tmp/review.txt
 
 # Capture to variable
 RESULT=$(codex exec -p context "List all exported functions" \
-  --model gpt-5.5)
+  --model gpt-6-luna)
 
 # Check result
 if [ $? -eq 0 ]; then
@@ -293,7 +293,7 @@ fi
 # Ask for JSON in the prompt (no native --output flag)
 codex exec -p review \
   "@src/auth.ts Review and return JSON: {score: number, issues: [{line, severity, description}]}" \
-  --model gpt-5.5 > /tmp/review.json
+  --model gpt-6-luna > /tmp/review.json
 
 # Parse with jq
 jq '.issues[] | select(.severity == "critical")' /tmp/review.json

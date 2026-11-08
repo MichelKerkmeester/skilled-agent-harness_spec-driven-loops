@@ -1,6 +1,6 @@
 ---
 title: "Shared: Hook Adapter Helpers"
-description: "Shared kill-switch resolver APIs and fail-open adapter plumbing, kept local so the tree has zero out-of-tree dependencies."
+description: "Shared hook plumbing: the kill-switch resolver, fail-open stdin/JSON helpers and the read-only per-runtime session readers, kept local so the tree has zero out-of-tree dependencies."
 trigger_phrases:
   - "hook adapter shared"
   - "hooks shared helpers"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder injects nothing into any AI session, it is pure plumbing for the adapters that do. Two concerns live here: the kill-switch resolver that every adapter calls before doing anything, and the fail-open stdin/JSON helpers that the CommonJS and ESM adapters share. Keeping local copies is deliberate, it is what makes every adapter under `.skilled/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
+This folder injects nothing into any AI session, it is pure plumbing for the adapters that do. Three concerns live here: the kill-switch resolver that every adapter calls before doing anything, the fail-open stdin/JSON helpers that the CommonJS and ESM adapters share and the read-only session reader package that resolves one exact session id per runtime. Keeping local copies is deliberate, it is what makes every adapter under `.skilled/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
 
 A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-spec-kit/runtime/hooks/lib/` for that skill's own spec-gate adapters, which are not part of the fully-portable set. The two are allowed to drift in principle; in practice the file is small and stable enough that they shouldn't.
 
@@ -27,6 +27,8 @@ Flags resolve from two sources: the live environment, and an optional operator c
 At load, `hook-flags.cjs` calls `env-aliases.cjs.applyEnvAliases()`, which copies every legacy `MK_*` env value forward onto its new name (only when the new name is unset: a value set explicitly under the new name always wins). This bridges the rename from the opaque `MK_` prefix to self-describing prefixes that name the owning skill or surface.
 
 **Adapter plumbing.** `hook-adapter-shared.cjs` provides `readStdin({ timeoutMs })` (stdin collection that resolves at a 3000 ms deadline with the bytes read so far, and rejects on a stream error) and `parseJsonFailOpen(raw)` (JSON parsing that resolves to `null` instead of throwing). CommonJS adapters `require()` the file and ESM adapters import both names from it, which Node reads from its `module.exports` object literal. Byte-identical behavior for every consumer.
+
+**Session readers.** `session-readers/` resolves one exact session id per runtime, projects the store's records into the shared `HistoryEntry` list and writes nothing. Its `capabilities` export is the source of truth for which runtimes are `ready`, and Cursor stays `gated` until its PreCompact delivery is confirmed.
 
 **POSIX mirror.** `hook-flags.sh` exposes `hook_enabled <concern>` for shell entrypoints. It resolves the config file at source time (explicit `HOOK_FLAGS_CONFIG`, then `__hf_root`, then `git rev-parse --show-toplevel`). It checks the master switch and the default-shape `SYSTEM_<CONCERN>_DISABLED` only: it does not carry the `CONCERN_CANONICAL` overrides or `LEGACY_ALIASES`, so shell entrypoints that need those must use the Node resolver instead. `hook_flag_on <name>` checks one named switch with the same precedence, and refuses any name that is not a plain variable name before the resolver's `eval` sees it.
 
@@ -61,7 +63,8 @@ shared/
 +-- env-aliases.cjs             # back-compat bridge: copies MK_* env values forward to new names at load
 +-- hook-adapter-shared.cjs     # readStdin() + parseJsonFailOpen() for CommonJS and ESM adapters
 +-- hook-adapter-shared.test.cjs   # node --test suite: stdin deadline and whole-input read
-`-- hook-stdin-deadline.test.mjs # node --test suite: every ESM adapter exits at the stdin deadline
++-- hook-stdin-deadline.test.mjs   # node --test suite: every ESM adapter exits at the stdin deadline
+`-- session-readers/               # read-only per-runtime session readers (see session-readers/index.mjs)
 ```
 
 ---
@@ -78,6 +81,7 @@ shared/
 | `hook-flags.test.cjs` | `node --test` suite: default-on, master switch, per-concern switch, `concernFlag` derivation, config-file merge, legacy-alias parity, named-switch precedence in both resolvers, trailing comments in all four readers of the file. |
 | `hook-adapter-shared.test.cjs` | `node --test` suite: a never-closed stdin resolves at the deadline and its process exits; complete input comes back whole. |
 | `hook-stdin-deadline.test.mjs` | `node --test` suite: with stdin left open and never written, each of the seventeen ESM adapters that import `readStdin` exits 0 at the deadline with its fail-open output, and the seven adapters no other suite spawns still answer a normal payload. |
+| `session-readers/` | Read-only session reader package: `readSession()` resolves one exact session id per runtime (Claude, Codex, Pi, OpenCode, Devin and DSH are ready, and Cursor is gated), projects the result into the shared `HistoryEntry` list and writes nothing, while the six decision-capture sweeps remain the writers. See [`session-readers/index.mjs`](./session-readers/index.mjs). |
 
 ---
 
@@ -144,6 +148,14 @@ node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/sh
 ```
 
 Expected result: all tests pass. The second suite takes about 3 seconds because it waits out the reader's deadline.
+
+The session readers have their own suite:
+
+```bash
+node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs
+```
+
+Expected result: all 67 tests pass, including the store-unchanged check that every reader leaves the seven fixture stores untouched.
 
 ---
 

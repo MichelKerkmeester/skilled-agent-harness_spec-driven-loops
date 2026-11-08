@@ -1,0 +1,1 @@
+description.json created in /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate

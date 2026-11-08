@@ -360,6 +360,8 @@ while [[ $i -le $# ]]; do
     i=$((i + 1))
 done
 
+RAW_TRACK_VALUE="$TRACK"
+TRACK="${TRACK%/}"
 FEATURE_DESCRIPTION="${ARGS[*]:-$EXPLICIT_NAME}"
 if [[ -z "$FEATURE_DESCRIPTION" ]]; then
     echo "Usage: $0 [--json] [--short-name <name>] [--number N] <feature_description>" >&2
@@ -1004,12 +1006,15 @@ backfill_graph_metadata() {
 # A track root declares its packets in children_ids, and a declared sub-track
 # does the same for its own. The pre-push gate blocks a commit whose list
 # disagrees with the folders it holds, so every level the new packet touches is
-# refreshed here. A level with no graph-metadata.json declares nothing.
+# refreshed here. Flat roots without metadata are not discoverable, but a
+# declared sub-track can seed its own record through the refresh command.
 refresh_track_level() {
     local specs_root="$1"
     local track="$2"
     local refresh_script="$SCRIPT_DIR/refresh-track-roots.mjs"
-    [[ -f "$specs_root/$track/graph-metadata.json" ]] || return 0
+    if [[ "$track" != */* && ! -f "$specs_root/$track/graph-metadata.json" ]]; then
+        return 0
+    fi
     if [[ ! -f "$refresh_script" ]]; then
         report_missing_generator "track root refresh" "$refresh_script" "Restore it from the repository."
         return 0
@@ -1020,21 +1025,75 @@ refresh_track_level() {
     fi
 }
 
-# A declared sub-track is a track root inside its parent. It is judged here by
-# the same reader the writer uses, so the two tools never disagree about which
-# folders are containers. Anything else with a slash keeps the earlier skip.
-is_declared_subtrack() {
+# The reader omits tracks without graph metadata, so inspect the declaration directly.
+inspect_subtrack() {
     local specs_root="$1"
     local track="$2"
-    local reader="${SCRIPT_DIR}/../lib/track-roots.mjs"
-    [[ -f "$reader" ]] || return 1
-    node --input-type=module - "$reader" "$specs_root" "$track" <<'NODE' >/dev/null 2>&1
-import { pathToFileURL } from 'node:url';
+    node --input-type=module - "$specs_root" "$track" <<'NODE'
+import fs from 'node:fs';
+import path from 'node:path';
 
-const [readerPath, specsRoot, trackName] = process.argv.slice(2);
-const { readWorkingTreeTracks } = await import(pathToFileURL(readerPath).href);
-process.exit(readWorkingTreeTracks(specsRoot).some((track) => track.name === trackName) ? 0 : 1);
+const [specsRoot, trackName] = process.argv.slice(2);
+const [parentName, subName, ...extraSegments] = trackName.split('/');
+const packetPattern = /^\d{3}(?:[-_].+)?$/;
+const isCandidateTrackName = (name) =>
+  !name.startsWith('.') && name !== 'node_modules' && !packetPattern.test(name);
+const isSubTrackCandidateName = (name) =>
+  isCandidateTrackName(name) && !name.startsWith('z_');
+const reject = (diagnostic = 'undeclared folder ignored') => {
+  process.stdout.write(`${trackName}: ${diagnostic}`);
+  process.exitCode = 1;
+};
+
+if (
+  extraSegments.length > 0
+  || !parentName
+  || !subName
+  || !isCandidateTrackName(parentName)
+  || !isSubTrackCandidateName(subName)
+) {
+  reject();
+} else {
+  const parentPath = path.join(specsRoot, parentName);
+  const parentStat = fs.statSync(parentPath, { throwIfNoEntry: false });
+  if (!parentStat?.isDirectory() || fs.existsSync(path.join(parentPath, 'spec.md'))) {
+    reject();
+  } else {
+    const subPath = path.join(parentPath, subName);
+    const subStat = fs.lstatSync(subPath, { throwIfNoEntry: false });
+    if (subStat?.isSymbolicLink()) {
+      reject('symlinked folder skipped, not followed');
+    } else if (!subStat?.isDirectory()) {
+      reject();
+    } else {
+      const descriptionPath = path.join(subPath, 'description.json');
+      const descriptionStat = fs.lstatSync(descriptionPath, { throwIfNoEntry: false });
+      let description = null;
+      if (descriptionStat?.isFile() && !descriptionStat.isSymbolicLink()) {
+        try {
+          const parsed = JSON.parse(fs.readFileSync(descriptionPath, 'utf8'));
+          if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) description = parsed;
+        } catch {
+          description = null;
+        }
+      }
+      if (!description || description.level !== 'sub-track') {
+        reject();
+      } else if (fs.existsSync(path.join(subPath, 'spec.md'))) {
+        reject('declared folder has spec.md and cannot be a sub-track');
+      }
+    }
+  }
+}
 NODE
+}
+
+is_declared_subtrack() {
+    inspect_subtrack "$1" "$2" >/dev/null
+}
+
+subtrack_diagnostic() {
+    inspect_subtrack "$1" "$2" || true
 }
 
 # A packet filed in a declared sub-track is listed by the sub-track, while the
@@ -1048,6 +1107,8 @@ refresh_track_root() {
         local parent="${track%%/*}"
         local sub="${track#*/}"
         [[ "$sub" != */* ]] || return 0
+        # The reader cannot expose a child root unless its parent metadata exists.
+        [[ -f "$specs_root/$parent/graph-metadata.json" ]] || return 0
         is_declared_subtrack "$specs_root" "$track" || return 0
         refresh_track_level "$specs_root" "$track"
         refresh_track_level "$specs_root" "$parent"
@@ -1172,11 +1233,13 @@ is_path_within() {
 # resolved: an existing track may be a deliberate symlink to another tree, and
 # resolving it would refuse that link. An empty value means no track.
 validate_track_value() {
-    local track="${1%/}"
-    [[ -z "$1" ]] && return 0
+    local track="$1"
+    local display_track="${2:-$track}"
+    [[ -z "$track" ]] && return 0
     case "/$track/" in
         //*|*"/../"*|*"/./"*|*"//"*)
-            echo "Error: --track '$1' must name a folder under specs/, such as 'demo' or 'demo/sub'. An absolute path, '.', '..' and an empty segment are refused." >&2
+            echo "Error: --track '$display_track' must name a folder under specs/, such as 'demo' or declared sub-track 'demo/sub'." >&2
+            echo "An absolute path, '.', '..' and an empty segment are refused." >&2
             exit 1
             ;;
     esac
@@ -1337,9 +1400,33 @@ cd "$REPO_ROOT"
 # New packets always go to the canonical specs/ root. The legacy .opencode/specs
 # link is gone, so writing there leaves a packet in a tree nothing reads.
 SPECS_DIR="$REPO_ROOT/specs"
-validate_track_value "$TRACK"
+if [[ -n "$RAW_TRACK_VALUE" && -z "$TRACK" ]]; then
+    validate_track_value "$RAW_TRACK_VALUE"
+fi
+validate_track_value "$TRACK" "$RAW_TRACK_VALUE"
 if [[ -n "$TRACK" ]]; then
     SPECS_DIR="$SPECS_DIR/$TRACK"
+    if [[ "$TRACK" == */*/* ]]; then
+        echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' has more than two path segments; use a track or one declared sub-track such as 'demo/sub'." >&2
+        exit 1
+    fi
+    if [[ "$TRACK" == */* ]]; then
+        if [[ -L "$SPECS_DIR" ]]; then
+            echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK: symlinked folder skipped, not followed." >&2
+            echo "Use a real sub-track directory such as specs/demo/sub/." >&2
+            exit 1
+        fi
+        if [[ ! -d "$SPECS_DIR" ]] || ! is_declared_subtrack "$REPO_ROOT/specs" "$TRACK"; then
+            TRACK_DIAGNOSTIC="$(subtrack_diagnostic "$REPO_ROOT/specs" "$TRACK" 2>/dev/null || true)"
+            if [[ -n "$TRACK_DIAGNOSTIC" ]]; then
+                echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK_DIAGNOSTIC" >&2
+            else
+                echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK: undeclared folder ignored." >&2
+                echo "Declare its description.json with level 'sub-track' in a real directory, such as specs/demo/sub/." >&2
+            fi
+            exit 1
+        fi
+    fi
 fi
 mkdir -p "$SPECS_DIR"
 

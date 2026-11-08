@@ -1,0 +1,7 @@
+# Baseline 2026-11-07, HEAD 230d22ba88
+# Command: node --test .skilled/commands/doctor/scripts/tests/<file>
+symlink-engine.test.cjs pass=16 fail=0
+doctor-symlink-contract.test.cjs pass=34 fail=0
+# combined: pass=50 fail=0
+# Packet vitest baseline (10 files): pass=178 fail=0
+# validate.sh --strict: RESULT: PASSED

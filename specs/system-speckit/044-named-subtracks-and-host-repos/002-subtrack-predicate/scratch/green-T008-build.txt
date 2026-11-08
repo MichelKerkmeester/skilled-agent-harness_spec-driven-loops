@@ -1,0 +1,10 @@
+
+> @spec-kit/runtime@1.8.0 build
+> npm run prepare-build && tsc --build && node scripts/finalize-dist.mjs
+
+
+> @spec-kit/runtime@1.8.0 prepare-build
+> node cli/lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime --entry default && node cli/lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime --entry validation-orchestrator
+
+@spec-kit/runtime dist build preparation recorded
+@spec-kit/runtime dist build preparation recorded

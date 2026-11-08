@@ -41,8 +41,13 @@ interface ParsedCliArguments {
   specFolderArg: string | null;
   collectedData: StructuredCollectedData | null;
   sessionId: string | null;
+  runtime: string | null;
   plannerMode: 'plan-only' | 'full-auto' | 'hybrid';
 }
+
+// cursor is accepted as a known runtime but cannot mint a locator while its
+// compaction trigger stays unconfirmed, so the writer omits the pointer for it.
+const KNOWN_RUNTIMES = ['claude', 'codex', 'opencode', 'pi', 'devin', 'dsh', 'cursor'] as const;
 
 // ───────────────────────────────────────────────────────────────────
 // 2. INTERFACES
@@ -81,7 +86,12 @@ Options:
   --help, -h        Show this help message
   --stdin           Read structured JSON from stdin (preferred when a caller already has curated session data)
   --json <string>   Read structured JSON from an inline string (preferred when structured data is available)
-  --session-id <uuid>  Explicit session ID to attach to the saved memory metadata
+  --session-id <id>    Explicit session ID to attach to the saved memory metadata
+                       and to the writer-owned continuity session_ref pointer
+  --runtime <slug>     Runtime that produced the session: claude, codex, opencode,
+                       pi, devin, dsh or cursor. Given with --session-id on a
+                       --full-auto save, the writer mints session_ref; cursor is
+                       accepted but never mints one
   --planner-mode <mode>  plan-only (default), hybrid or full-auto. Every mode refreshes
                          description.json, graph-metadata.json and the phase-parent pointers;
                          only full-auto writes the continuity fields. hybrid behaves like plan-only.
@@ -170,6 +180,10 @@ JSON Data Format (with preflight/postflight, session/git, and tool/exchange enri
   - The writer sets last_updated_at and last_updated_by and upserts the block into the
     leaf's implementation-summary.md. A field the payload leaves out keeps its stored
     value while that value validates; a stored value that fails is dropped and named.
+  - session_ref is writer-owned: a --full-auto save with --session-id and --runtime
+    mints it from those inputs, the repository root and the save time. A payload
+    session_ref is ignored, and an un-mintable input set omits it without failing
+    the save.
   - A payload value the validator rejects fails the save before any file is written.
   - Aimed at a phase parent, the save writes into the leaf holding the work: payload
     paths inside one child choose it, and a level with no such path follows the
@@ -935,6 +949,7 @@ async function parseStructuredModeArguments(
       _source: 'file',
     },
     sessionId: null,
+    runtime: null,
     plannerMode: 'plan-only',
   };
 }
@@ -946,8 +961,9 @@ async function parseArguments(
   argv: string[] = process.argv.slice(2),
   stdinReader: (stdin?: NodeJS.ReadStream) => Promise<string> = readAllStdin,
 ): Promise<ParsedCliArguments> {
-  // Extract --session-id <uuid> from argv before positional parsing
+  // Extract --session-id <uuid> and --runtime <slug> from argv before positional parsing
   let sessionId: string | null = null;
+  let runtime: string | null = null;
   let plannerMode: 'plan-only' | 'full-auto' | 'hybrid' = 'plan-only';
   const filteredArgv: string[] = [];
   // The complete option set of this CLI: the loop branches below plus the
@@ -959,6 +975,7 @@ async function parseArguments(
     '--help',
     '-h',
     '--session-id',
+    '--runtime',
     '--planner-mode',
     '--full-auto',
   ]);
@@ -970,6 +987,15 @@ async function parseArguments(
       }
       sessionId = candidate.trim();
       i++; // skip the value
+      continue;
+    }
+    if (argv[i] === '--runtime') {
+      const candidate = argv[i + 1]?.trim().toLowerCase();
+      if (!candidate || !(KNOWN_RUNTIMES as readonly string[]).includes(candidate)) {
+        throw new Error(`--runtime requires one of: ${KNOWN_RUNTIMES.join(', ')}`);
+      }
+      runtime = candidate;
+      i++;
       continue;
     }
     if (argv[i] === '--planner-mode') {
@@ -1000,12 +1026,12 @@ async function parseArguments(
 
   const [primaryArg, secondaryArg] = filteredArgv;
   if (!primaryArg) {
-    return { dataFile: null, specFolderArg: null, collectedData: null, sessionId, plannerMode };
+    return { dataFile: null, specFolderArg: null, collectedData: null, sessionId, runtime, plannerMode };
   }
 
   if (primaryArg === '--stdin' || primaryArg === '--json') {
     const structured = await parseStructuredModeArguments(primaryArg, filteredArgv, stdinReader);
-    return { ...structured, sessionId, plannerMode };
+    return { ...structured, sessionId, runtime, plannerMode };
   }
 
   const resolvedSpecFolder = resolveCliSpecFolderReference(primaryArg);
@@ -1021,6 +1047,7 @@ async function parseArguments(
     specFolderArg: secondaryArg || null,
     collectedData: null,
     sessionId,
+    runtime,
     plannerMode,
   };
 }
@@ -1225,6 +1252,7 @@ async function main(
           : () => loadCollectedData({}),
         collectSessionDataFn: collectSessionData,
         sessionId: parsed.sessionId ?? undefined,
+        runtime: parsed.runtime ?? undefined,
         plannerMode: parsed.plannerMode,
       });
       // The workflow stamps the completion fingerprint and moves the phase-parent
@@ -1235,7 +1263,7 @@ async function main(
     }
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
-    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires|project-root|Continuity rejected/.test(errMsg);
+    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires|runtime requires|project-root|Continuity rejected/.test(errMsg);
 
     if (isExpected) {
       console.error(`\nError: ${errMsg}`);

@@ -117,6 +117,16 @@ function assertNoPlanAction(plan, operations, entryPath) {
   }
 }
 
+function ignoreEntries(plan) {
+  const entries = [];
+  for (const line of plan.output.split(/\r?\n/)) {
+    const match = line.match(/^ignore-add .*: (.*)$/);
+    if (!match) continue;
+    entries.push(...match[1].split(',').map((entry) => entry.trim()));
+  }
+  return entries;
+}
+
 function checkReport(source, root) {
   const result = runRoot(source, root, 'check', ['--json']);
   assertStatus(result, 0, 'JSON check should run');
@@ -537,4 +547,20 @@ test('a second plan after a first link adds nothing', () => {
 
   const second = planFor(source, root);
   assertNoPlanAction(second, ['link'], '.claude/skills');
+});
+
+test('setup keeps a host-relative specs alias out of the ignore list', () => {
+  const { source, root } = buildFixture({ git: true });
+  fs.symlinkSync('../specs', path.join(source, '.skilled/specs'));
+  writeFile(path.join(root, 'specs/host-packet/spec.md'), '# Host packet\n');
+  const plan = planFor(source, root);
+
+  assertPlanAction(plan, 'link', '.skilled/specs');
+  const ignored = ignoreEntries(plan);
+  assert.ok(ignored.includes('/.skilled/agents'), `ignore bookkeeping should run\n${plan.output}`);
+  assert.equal(
+    ignored.includes('/.skilled/specs'),
+    false,
+    `the host-relative alias should stay visible to git\n${plan.output}`
+  );
 });

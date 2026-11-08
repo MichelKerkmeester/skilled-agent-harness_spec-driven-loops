@@ -71,6 +71,7 @@ function buildImplementationSummary(options: {
   keyFiles?: string[];
   completionPct?: number;
   bodyLines?: string[];
+  sessionRef?: Record<string, unknown> | null;
 }): string {
   const blockers = options.blockers ?? ['Awaiting regression confirmation'];
   const keyFiles = options.keyFiles ?? ['runtime/lib/resume/resume-ladder.ts'];
@@ -98,12 +99,33 @@ function buildImplementationSummary(options: {
     ...blockers.map((entry) => `      - "${entry}"`),
     keyFiles.length === 0 ? '    key_files: []' : '    key_files:',
     ...keyFiles.map((entry) => `      - "${entry}"`),
+    ...(options.sessionRef
+      ? [
+        '    session_ref:',
+        ...Object.entries(options.sessionRef).map(([key, value]) => `      ${key}: ${JSON.stringify(value)}`),
+      ]
+      : []),
     `    completion_pct: ${options.completionPct ?? 72}`,
     '    open_questions: []',
     '    answered_questions: []',
     '---',
     ...bodyLines,
   ].join('\n');
+}
+
+function validSessionRef(
+  workspacePath: string,
+  overrides: Record<string, unknown> = {},
+): Record<string, unknown> {
+  return {
+    runtime: 'opencode',
+    sessionId: 'prior-session-42',
+    workspace: workspacePath,
+    savedAt: new Date().toISOString(),
+    locatorKind: 'session-store',
+    version: 1,
+    ...overrides,
+  };
 }
 
 function buildSpecDoc(title: string, body: string): string {
@@ -524,5 +546,67 @@ describe('resume-ladder', () => {
     expect(result.source).toBe('handover');
     expect(result.freshnessWinner).toBe('handover');
     expect(result.recentAction).toBe('Verified handover wins on freshness');
+  });
+});
+
+describe('resume-ladder session_ref handling', () => {
+  it('keeps a verified pointer internal instead of advertising a lookup resume cannot run', () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    const specFolder = 'system-spec-kit/026-root/004-gate-d';
+
+    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary({
+      packetPointer: specFolder,
+      keyFiles: [],
+      sessionRef: validSessionRef(workspacePath, { sessionId: 'prior-session-42' }),
+    }));
+
+    const result = buildResumeLadder({ specFolder, workspacePath });
+    const output = JSON.stringify(result);
+
+    expect(result.source).toBe('continuity');
+    expect(result.recentAction).toBe('Recorded continuity for the resume ladder');
+    expect(result).not.toHaveProperty('sessionRefOffer');
+    expect(output).not.toContain('sessionRefOffer');
+    expect(output).not.toContain('prior-session-42');
+    expect(output).not.toContain('lookup available');
+  });
+
+  it('keeps the rest of the continuity block when only session_ref is malformed', () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    const specFolder = 'system-spec-kit/026-root/004-gate-d';
+
+    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary({
+      packetPointer: specFolder,
+      keyFiles: ['runtime/lib/resume/resume-ladder.ts'],
+      blockers: ['Awaiting regression confirmation'],
+      sessionRef: validSessionRef(workspacePath, { version: 2 }),
+    }));
+
+    const result = buildResumeLadder({ specFolder, workspacePath });
+
+    expect(result.source).toBe('continuity');
+    expect(result.recentAction).toBe('Recorded continuity for the resume ladder');
+    expect(result.nextSafeAction).toBe('Review the fixture continuity state');
+    expect(result.blockers).toEqual(['Awaiting regression confirmation']);
+    expect(result).not.toHaveProperty('sessionRefOffer');
+  });
+
+  it('reads the packet without writing it', () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    const specFolder = 'system-spec-kit/026-root/004-gate-d';
+    const summary = buildImplementationSummary({
+      packetPointer: specFolder,
+      keyFiles: [],
+      sessionRef: validSessionRef(workspacePath),
+    });
+    writeDoc(workspacePath, specFolder, 'implementation-summary.md', summary);
+
+    const result = buildResumeLadder({ specFolder, workspacePath });
+
+    expect(fs.readFileSync(path.join(specFolderPath(workspacePath, specFolder), 'implementation-summary.md'), 'utf8')).toBe(summary);
+    expect(result.source).toBe('continuity');
   });
 });

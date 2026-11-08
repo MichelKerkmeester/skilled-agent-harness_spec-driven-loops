@@ -132,14 +132,14 @@ Free-text retrieval uses the literal ripgrep recipes in [`references/retrieval/r
 The trailing positional path scopes them by track and packet. The recipes are precise only because the corpus is regular.
 [`references/structure/grep-convention.md`](references/structure/grep-convention.md) holds the frontmatter, anchor, naming and body-preservation rules. `validate.sh` enforces them on every spec document.
 
-Recovery follows the continuity ladder rather than inferring a session:
+Recovery follows the continuity ladder, which stays the primary path, rather than inferring a session:
 
 1. `handover.md`
 2. The `_memory.continuity` frontmatter block
 3. Packet-first spec docs
 4. The bounded context recipe
 
-`/speckit:resume` owns the ladder.
+`/speckit:resume` owns the ladder. A compaction may add one bounded `## History Lookup` section when a fresh locator verifies, and that lookup never replaces the ladder.
 Saves go through `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked by `/speckit:save`.
 The writer updates the packet's continuity surfaces in place.
 

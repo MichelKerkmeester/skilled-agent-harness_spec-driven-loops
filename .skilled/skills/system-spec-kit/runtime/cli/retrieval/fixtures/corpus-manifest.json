@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c3508ec5923bb3e6f83e7ad211172e80661d7e9470c50528c29a41a66c3d4d65",
+  "corpusHash": "be6e9c6587b1324d3d1727cec7e05c7c73d27fd9830beec4a3153153ac8a40bd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28433,
+  "includedPathCount": 28470,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -242,6 +242,7 @@
     ".skilled/hooks/session-relaunch/tests/README.md",
     ".skilled/hooks/shared/README.md",
     ".skilled/hooks/shared/dsh/README.md",
+    ".skilled/hooks/shared/session-readers/README.md",
     ".skilled/hooks/shared/tests/README.md",
     ".skilled/hooks/skill-advisor/claude/README.md",
     ".skilled/hooks/skill-advisor/codex/README.md",
@@ -780,6 +781,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.12.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.13.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.14.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
@@ -798,8 +800,8 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/built-in-tools/search-exec-mode.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/codex-exec-review.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/default-invocation.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/default-model-lock.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/explicit-fast-service-tier.md",
-    ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/gpt-5-5-model-lock.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/codex-cloud/codex-cloud-dispatch.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/integration-patterns/generate-review-fix-cycle.md",
@@ -8663,6 +8665,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.9.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.9.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
@@ -8741,6 +8744,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
@@ -8923,6 +8927,7 @@
     ".skilled/skills/system-spec-kit/runtime/hooks/devin/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/dsh/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/opencode/README.md",
@@ -10567,6 +10572,11 @@
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/spec.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/tasks.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/timeline.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/decision-record.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/implementation-summary.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/plan.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/spec.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/tasks.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/spec.md",
@@ -28442,9 +28452,34 @@
     "specs/system-speckit/043-decision-capture/review/fanout-attribution.md",
     "specs/system-speckit/043-decision-capture/review/review-report.md",
     "specs/system-speckit/043-decision-capture/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/tasks.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/morning-handoff.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/plan.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-dashboard.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-strategy.md",
@@ -28456,6 +28491,8 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/prompts/iteration-3.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/research.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/resource-map.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/review/p2-verification.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/review/review-report.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/spec.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md",
     "specs/system-speckit/045-upgrade-level-anchor-insert/implementation-summary.md",
@@ -28464,7 +28501,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ed28ddc2094fff6b8c3da81901a1012aca661f91dc601df59e47fad1d82b51f5",
+  "manifestHash": "75392b1a5953da1c61c76ccfa9d8c2e09a86158aa307c1490fad439a4d4751bc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30316,6 +30353,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36848,6 +36889,30 @@
     },
     {
       "path": "specs/system-speckit/043-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

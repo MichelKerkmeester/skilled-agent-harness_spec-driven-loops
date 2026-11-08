@@ -96,6 +96,6 @@ Expected result: every listed Vitest file passes (session-prime, compact-inject,
 ## 7. DESIGN PRINCIPLE
 
 Hooks are transport reliability, not separate business logic. An adapter normalizes a payload, calls a shared implementation, and formats the runtime's envelope; it owns no policy of its own.
-For packet work, the operator-facing recovery surface remains `/speckit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.
+For packet work, `/speckit:resume` remains the primary recovery surface, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`. A compaction may add one bounded `## History Lookup` section when a fresh locator verifies.
 
 The prompt-time advisor contract lives at `../../../../system-skill-advisor/hooks/skill-advisor-hook.md`.

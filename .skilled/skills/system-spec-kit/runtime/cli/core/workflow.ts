@@ -65,7 +65,7 @@ import type { ThinFileInput } from './tree-thinning.js';
 import { getSourceCapabilities } from '../utils/source-capabilities.js';
 import { normalizeInputData } from '../utils/input-normalizer.js';
 import type { OperatorDecisionPayload } from '../utils/input-normalizer.js';
-import { readThinContinuityRecord, upsertThinContinuityInMarkdown, writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError } from '@spec-kit/runtime/api';
+import { readThinContinuityRecord, SESSION_REF_RUNTIME_LOCATOR_KINDS, upsertThinContinuityInMarkdown, writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError } from '@spec-kit/runtime/api';
 import type { ThinContinuityValidationError } from '@spec-kit/runtime/api';
 import type { RawInputData } from '../utils/input-normalizer.js';
 import { resolveSaveMode, SaveMode } from '../types/save-mode.js';
@@ -380,6 +380,9 @@ async function refreshPhaseParentPointersAfterSave(
 }
 
 const CONTINUITY_WRITER_ACTOR = 'generate-context';
+// The continuity validator owns this shape, and a pointer it rejects fails the
+// whole save, so the same shape is checked before the pointer is minted.
+const CONTINUITY_SESSION_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{2,63}$/;
 // The validator requires both action fields, so a stored value that fails it cannot
 // be dropped the way an optional field can: the payload has to supply a new one.
 const REQUIRED_CONTINUITY_FIELDS = new Set(['recent_action', 'next_safe_action']);
@@ -392,7 +395,56 @@ const CARRIED_CONTINUITY_FIELDS = [
   'open_questions',
   'answered_questions',
   'session_dedup',
+  'session_ref',
 ] as const;
+
+/** The pointer a full-auto save mints from its own inputs, never from the payload. */
+interface MintedSessionRef {
+  runtime: string;
+  sessionId: string;
+  workspace: string;
+  savedAt: string;
+  locatorKind: string;
+  version: number;
+}
+
+/**
+ * Mint the session pointer from inputs the save already owns. The schema module
+ * stays the only authority on which locator a runtime can mint: the runtime's
+ * canonical kind is read from the same map the continuity validator enforces.
+ */
+function mintSessionRef(params: {
+  runtime?: string;
+  sessionId?: string;
+  projectRoot: string;
+  now: Date;
+}): { ref?: MintedSessionRef; skipped?: string } {
+  const runtime = params.runtime?.trim().toLowerCase() ?? '';
+  if (runtime.length === 0) {
+    return { skipped: 'no --runtime supplied' };
+  }
+  const sessionId = params.sessionId?.trim() ?? '';
+  if (sessionId.length === 0) {
+    return { skipped: 'no explicit --session-id supplied' };
+  }
+  if (!CONTINUITY_SESSION_ID_PATTERN.test(sessionId)) {
+    return { skipped: 'session id does not match the continuity shape' };
+  }
+  if (!(runtime in SESSION_REF_RUNTIME_LOCATOR_KINDS)) {
+    return { skipped: `runtime "${runtime}" has no supported locator` };
+  }
+
+  return {
+    ref: {
+      runtime,
+      sessionId,
+      workspace: params.projectRoot,
+      savedAt: params.now.toISOString(),
+      locatorKind: SESSION_REF_RUNTIME_LOCATOR_KINDS[runtime as keyof typeof SESSION_REF_RUNTIME_LOCATOR_KINDS],
+      version: 1,
+    },
+  };
+}
 
 /** The continuity block a save writes into a leaf's host doc, or why it cannot. */
 type SaveContinuityUpdate =
@@ -789,6 +841,8 @@ export interface WorkflowOptions {
   silent?: boolean;
   /** Optional session ID forwarded from CLI --session-id flag. */
   sessionId?: string;
+  /** Optional runtime slug forwarded from CLI --runtime; only a supported runtime can mint session_ref. */
+  runtime?: string;
   /** Requested canonical save planner mode forwarded from the CLI wrapper. */
   plannerMode?: 'plan-only' | 'full-auto' | 'hybrid';
 }
@@ -1918,6 +1972,32 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     warn(message);
     workflowWarnings.push(message.trim());
   };
+  // The session pointer is writer-owned: a payload value never reaches the block,
+  // and an input set that cannot mint one omits the field instead of failing the
+  // save. Injection happens before planning so a save with no other continuity
+  // field still writes the block.
+  if (Object.prototype.hasOwnProperty.call(collectedData, 'session_ref')) {
+    warn('   Ignoring payload-supplied session_ref: the continuity pointer is writer-owned');
+  }
+  if (options.plannerMode === 'full-auto' && collectedData._continuity) {
+    const continuityPatch = { ...collectedData._continuity };
+    delete continuityPatch.session_ref;
+    collectedData._continuity = continuityPatch;
+  }
+  if (options.plannerMode === 'full-auto') {
+    const { canonicalPath } = await import('../continuity/generate-context.js');
+    const minted = mintSessionRef({
+      runtime: options.runtime,
+      sessionId: options.sessionId,
+      projectRoot: canonicalPath(CONFIG.PROJECT_ROOT),
+      now: new Date(),
+    });
+    if (minted.ref) {
+      collectedData._continuity = { ...(collectedData._continuity ?? {}), session_ref: minted.ref };
+    } else if (options.runtime || options.sessionId) {
+      log(`   session_ref skipped: ${minted.skipped}`);
+    }
+  }
   // Planned before any write, so a continuity value the validator rejects fails
   // the save while every file is still untouched.
   const continuityPlan = await planContinuityWrite({

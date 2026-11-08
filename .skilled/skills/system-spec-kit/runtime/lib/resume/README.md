@@ -20,6 +20,7 @@ Current state:
 - `resume-ladder.ts` is the only implementation file in this folder.
 - A resume for a phase-parent folder first resolves the phase parent's current active child (via the index-layer access-telemetry store, gated by `SPECKIT_GENERATOR_HARDENING`) before building the ladder.
 - The result includes a size-budgeted restore panel: recovered continuity facets (goal, decision, progress, gotcha) trimmed to an item and character budget, with omissions reported by reason.
+- `session_ref` is a save-only field. The ladder reads continuity with `ignoreInvalidSessionRef` so a malformed pointer is dropped without thinning the rest of the block, and it exposes no offer and prints no `History:` line.
 
 ---
 
@@ -51,6 +52,7 @@ Dependency direction:
 resume-ladder.ts → lib/discovery/, lib/continuity/thin-continuity-record.ts,
                     lib/config/capability-flags.ts, lib/graph/access-telemetry.ts,
                     lib/spec/is-phase-parent.ts
+thin-continuity-record.ts → hooks/claude/hook-state.ts (HISTORY_LOCATOR_KINDS)
 ```
 
 ---
@@ -59,7 +61,7 @@ resume-ladder.ts → lib/discovery/, lib/continuity/thin-continuity-record.ts,
 
 | File | Responsibility |
 |---|---|
-| `resume-ladder.ts` | Resolves the target spec folder, redirects a phase parent to its active child, trust-ranks handover.md against `_memory.continuity` (falling back to canonical spec docs when both are absent), and builds the size-budgeted restore panel. |
+| `resume-ladder.ts` | Resolves the target spec folder, redirects a phase parent to its active child, trust-ranks handover.md against `_memory.continuity` (falling back to canonical spec docs when both are absent), drops a malformed `session_ref` without exposing an offer, and builds the size-budgeted restore panel. |
 
 ---
 
@@ -70,6 +72,7 @@ resume-ladder.ts → lib/discovery/, lib/continuity/thin-continuity-record.ts,
 | Ladder ownership | This folder owns precedence and redirect logic. It does not own the `_memory.continuity` record shape (`lib/continuity/thin-continuity-record.ts` does) or spec-document discovery (`lib/discovery/` does). |
 | Writes | This folder only reads. `lib/continuity/authored-continuity-snapshot.ts` is the caller that writes the resulting snapshot back into markdown. |
 | Phase-parent redirect | Only applied when `SPECKIT_GENERATOR_HARDENING` is on; otherwise the ladder resolves the requested folder directly. |
+| Session reference | `session_ref` stays save-only. The ladder passes `ignoreInvalidSessionRef` to the continuity reader, and it never attaches `sessionRefOffer` or a `History:` row to the result. |
 
 Main flow:
 

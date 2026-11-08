@@ -12,6 +12,7 @@ import {
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, SESSION_PRIME_TOKEN_BUDGET,
   calculatePressureAdjustedBudget, sanitizeRecoveredPayload, wrapRecoveredCompactPayload,
   getRequiredSessionId, forkCompactedRecently,
+  type HookInput,
   type OutputSection,
 } from './shared.js';
 import {
@@ -19,8 +20,18 @@ import {
   loadState,
   readCompactPrime,
   clearCompactPrime,
+  detectHistoryRuntime,
+  HistoryLocatorSchema,
   validatePendingCompactPrimeSemantics,
+  type HistoryLocator,
+  type HistoryLocatorRuntime,
 } from './hook-state.js';
+import {
+  HISTORY_LOOKUP_TITLE,
+  buildHistoryLookupBody,
+  lookupRunsFrom,
+  placeLookup,
+} from '../lib/history/lookup-offer.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
 import { SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
@@ -44,17 +55,92 @@ function sessionLifecycleHookEnabled(): boolean {
 
 const CACHE_TTL_MS = 30 * 60 * 1000;
 const IS_CLI_ENTRY = isMainModule(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────────
+// 1b. HISTORY LOOKUP OFFER
+// ───────────────────────────────────────────────────────────────────
+
+export interface HistoryLookupExpectation {
+  sessionId: string;
+  runtime: HistoryLocatorRuntime;
+  workspace: string;
+  provenanceSource: 'precompact' | 'post_compaction';
+  nowMs?: number;
+}
+
+function parseHistoryLocator(candidate: unknown): HistoryLocator | null {
+  const parsed = HistoryLocatorSchema.safeParse(candidate);
+  return parsed.success ? parsed.data : null;
+}
+
+/**
+ * Build the one bounded lookup section, or nothing.
+ *
+ * A missing, malformed, stale, foreign or unsupported locator returns null so
+ * the caller keeps today's summary and `/speckit:resume` surface unchanged.
+ * The shared builder owns the command text; the session id is schema-bounded
+ * so the command is never cut by a length cap.
+ */
+export function buildHistoryLookupSection(
+  candidate: unknown,
+  expected: HistoryLookupExpectation,
+  historyCapability: boolean,
+): OutputSection | null {
+  if (!historyCapability) return null;
+  const locator = parseHistoryLocator(candidate);
+  if (!locator) return null;
+  if (locator.sessionId !== expected.sessionId) return null;
+  if (locator.runtime !== expected.runtime) return null;
+  if (locator.workspace !== expected.workspace) return null;
+  if (locator.provenance.source !== expected.provenanceSource) return null;
+  if (!lookupRunsFrom(locator.workspace)) return null;
+
+  const mintedAtMs = Date.parse(locator.mintedAt);
+  const ageMs = (expected.nowMs ?? Date.now()) - mintedAtMs;
+  // A future timestamp is a clock skew, not freshness, so it counts as stale.
+  if (!Number.isFinite(mintedAtMs) || ageMs < 0 || ageMs >= CACHE_TTL_MS) return null;
+
+  return { title: HISTORY_LOOKUP_TITLE, content: buildHistoryLookupBody(locator) };
+}
+
+type HistoryCapabilityTable = Record<string, { status?: string } | undefined>;
+
+/**
+ * Read the reader capability declaration, never a hardcoded guess.
+ *
+ * The hook runs from source under Vitest and from `dist` in production, so the
+ * module URL is tried at both depths and an unreadable table stays gated off.
+ */
+async function loadHistoryCapability(runtime: HistoryLocatorRuntime): Promise<boolean> {
+  const candidates = [
+    new URL('../../../../../hooks/shared/session-readers/index.mjs', import.meta.url),
+    new URL('../../../../../../hooks/shared/session-readers/index.mjs', import.meta.url),
+  ];
+  for (const candidate of candidates) {
+    try {
+      const readers = await import(candidate.href) as { capabilities?: HistoryCapabilityTable };
+      return readers.capabilities?.[runtime]?.status === 'ready';
+    } catch {
+      continue;
+    }
+  }
+  return false;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. SOURCE HANDLERS
 // ───────────────────────────────────────────────────────────────────
 
 /** Handle source=compact: inject cached PreCompact payload (from 3-source merger) */
-function handleCompact(sessionId: string): OutputSection[] {
+async function handleCompact(sessionId: string): Promise<OutputSection[]> {
   const stateResult = loadState(sessionId);
   const state = stateResult.ok ? stateResult.state : null;
   const pendingCompactPrime = readCompactPrime(sessionId);
   if (!pendingCompactPrime) {
     hookLog('warn', 'session-prime', `No cached compact payload for session ${sessionId}`);
+    // The locator outlives the cache: a post-compaction adapter persists it
+    // immediately before running this prime. Its own TTL retires it, and the
+    // next PreCompact overwrites it, so this branch leaves it in place.
     return [{
       title: 'Context Recovery',
       content: 'Context was compacted. Run `/speckit:resume` against the active packet to recover session state.',
@@ -108,6 +194,23 @@ function handleCompact(sessionId: string): OutputSection[] {
       title: 'Active Spec Folder',
       content: `Last active: ${state.lastSpecFolder}`,
     });
+  }
+
+  const historyRuntime = detectHistoryRuntime();
+  const historyLookup = historyRuntime
+    ? buildHistoryLookupSection(
+      state?.historyLocator ?? null,
+      {
+        sessionId,
+        runtime: historyRuntime,
+        workspace: placeLookup(process.cwd())?.workspace ?? process.cwd(),
+        provenanceSource: 'precompact',
+      },
+      state?.historyLocator ? await loadHistoryCapability(historyRuntime) : false,
+    )
+    : null;
+  if (historyLookup) {
+    sections.push(historyLookup);
   }
 
   return sections;
@@ -202,23 +305,41 @@ function writeHookOutput(output: string): Promise<void> {
   });
 }
 
+/**
+ * Format sections under a token budget while keeping the bounded lookup offer.
+ *
+ * The offer is a fixed-size footer, so a plain tail cut spends the budget on
+ * the recovered brief and drops the offer entirely. Its bytes are reserved
+ * first and the brief absorbs the remaining budget.
+ */
+function formatBudgetedHookOutput(sections: OutputSection[], maxTokens: number): string {
+  const reserved = sections.filter((section) => section.title === HISTORY_LOOKUP_TITLE);
+  if (reserved.length === 0) {
+    return truncateToTokenBudget(formatHookOutput(sections), maxTokens);
+  }
+
+  const rest = sections.filter((section) => section.title !== HISTORY_LOOKUP_TITLE);
+  const reservedText = formatHookOutput(reserved);
+  const remainingTokens = Math.max(1, maxTokens - Math.ceil(reservedText.length / 4));
+  const restText = truncateToTokenBudget(formatHookOutput(rest), remainingTokens);
+  return restText.length > 0 ? `${restText}\n\n${reservedText}` : reservedText;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 4. MAIN
 // ───────────────────────────────────────────────────────────────────
 
-async function main(): Promise<void> {
-  if (!sessionLifecycleHookEnabled()) return;
-  ensureStateDir();
-
-  // Claude kills SessionStart hooks after 3 seconds, so the read ends early
-  // enough to leave that budget to the work after it.
-  const input = await withTimeout(parseHookStdin(SHORT_HOST_STDIN_TIMEOUT_MS), HOOK_TIMEOUT_MS, null);
-  if (!input) {
-    notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'startup' });
-    hookLog('warn', 'session-prime', 'No stdin input received');
-    return;
-  }
-
+/**
+ * Run one SessionStart event after its stdin payload was parsed.
+ *
+ * Exported so the compact-to-redemption path can be exercised without a child
+ * process: the output write happens before the cache clear, and the caller
+ * controls both.
+ */
+export async function runSessionStartHook(
+  input: HookInput,
+  writeOutput: (output: string) => Promise<void> = writeHookOutput,
+): Promise<void> {
   const source = input.source ?? 'startup';
   const rawSessionId = typeof input.session_id === 'string' ? input.session_id.trim() : '';
   notifyDirectiveLifecycleBoundary({
@@ -246,7 +367,7 @@ async function main(): Promise<void> {
   switch (source) {
     case 'compact':
       compactIdentity = readCompactPrimeIdentity(sessionId);
-      sections = handleCompact(sessionId);
+      sections = await handleCompact(sessionId);
       budget = COMPACTION_TOKEN_BUDGET;
       break;
     case 'startup':
@@ -276,16 +397,32 @@ async function main(): Promise<void> {
     hookLog('info', 'session-prime', `Token pressure: budget ${budget} → ${adjustedBudget} (window ${input.context_window_tokens}/${input.context_window_max})`);
   }
 
-  const output = truncateToTokenBudget(formatHookOutput(sections), adjustedBudget);
+  const output = formatBudgetedHookOutput(sections, adjustedBudget);
 
   // Write to stdout for Claude Code to inject into conversation.
   // Clear compact payload only after the write callback confirms the
   // output was handed off, so compact recovery cannot be dropped early.
-  await writeHookOutput(output);
+  await writeOutput(output);
   if (source === 'compact') {
     clearCompactPrime(sessionId, compactIdentity ?? undefined);
   }
   hookLog('info', 'session-prime', `Output ${output.length} chars for source=${source}`);
+}
+
+async function main(): Promise<void> {
+  if (!sessionLifecycleHookEnabled()) return;
+  ensureStateDir();
+
+  // Claude kills SessionStart hooks after 3 seconds, so the read ends early
+  // enough to leave that budget to the work after it.
+  const input = await withTimeout(parseHookStdin(SHORT_HOST_STDIN_TIMEOUT_MS), HOOK_TIMEOUT_MS, null);
+  if (!input) {
+    notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'startup' });
+    hookLog('warn', 'session-prime', 'No stdin input received');
+    return;
+  }
+
+  await runSessionStartHook(input);
 }
 
 // ───────────────────────────────────────────────────────────────────

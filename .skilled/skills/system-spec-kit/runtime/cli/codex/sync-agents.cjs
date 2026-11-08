@@ -21,8 +21,11 @@ const REPO_ROOT = findRepoRoot(__dirname);
 const SOURCE_DIR = path.join(REPO_ROOT, '.skilled', 'agents');
 const OUTPUT_DIR = path.join(REPO_ROOT, '.codex', 'agents');
 const WRITABLE_TOOLS = new Set(['write', 'edit', 'bash']);
+// The model a ChatGPT-account Codex login accepts; an account refuses a model
+// its plan does not list, and an agent pinned to one fails before it starts.
+const DEFAULT_MODEL = 'gpt-6-luna';
 const DEFAULT_SETTINGS = Object.freeze({
-  model: 'gpt-5.5',
+  model: DEFAULT_MODEL,
   modelReasoningEffort: 'high',
 });
 
@@ -32,14 +35,14 @@ const HISTORICAL_SETTINGS = Object.freeze({
   code: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   // Context gathering reads and summarises; it does not decide. The cheap tier is the
   // point of dispatching it at all, so it does not inherit the default.
-  context: { sandboxMode: 'read-only', model: 'gpt-5.5', modelReasoningEffort: 'low' },
+  context: { sandboxMode: 'read-only', model: DEFAULT_MODEL, modelReasoningEffort: 'low' },
   debug: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-research': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-review': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   design: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   markdown: {
     sandboxMode: 'workspace-write',
-    model: 'gpt-5.5',
+    model: DEFAULT_MODEL,
     modelReasoningEffort: 'medium',
   },
   // The orchestrator fixes small things inline rather than dispatching for them, so it writes.

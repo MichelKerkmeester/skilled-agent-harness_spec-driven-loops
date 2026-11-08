@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 ---
 
-## 2. WHAT EACH ONE DOES AND INJECTS
+## 2. FILES AND WHAT EACH ONE DOES
 
 | File | DSH event | Behavior | On error |
 |---|---|---|---|
@@ -26,7 +26,7 @@ version: 1.0.0.0
 | `spec-gate-enforce.mjs` | `tools/pre-execute` | Runs `evaluateMutation()` on a write, edit, patch or bash call and asks or denies by the shared core's verdict. | Fails closed |
 | `completion-evidence.mjs` | `agent/turn-stopping` | Holds a completion claim in the ending reply to its evidence with the shared sentinel. Advisory only. | Fails open |
 | `session-start-context.mjs` | `agent/created` | Injects `session-prime.js` output for a startup or resumed session. Exports `runSessionPrime` for the compaction adapter. | Fails open |
-| `session-compact-context.mjs` | `session/event` (`compaction/end`) | Re-primes the agent after a completed compaction with session-prime's `compact` source. A failed compaction gets nothing. | Fails open |
+| `session-compact-context.mjs` | `session/event` (`compaction/end`) | Re-primes the agent after a completed compaction with session-prime's `compact` source. It mints a `session_log` locator from `session.id` and the header `cwd`, persists it, and appends the bounded `## History Lookup` section only when the write succeeded and the DSH reader is `ready`. Every injected compaction notice ends with the `## Recovery` pointer that names `/speckit:resume`. A failed compaction gets nothing. | Fails open |
 | `session-start-advisories.mjs` | `agent/created` (`startup`) | Runs the warn-only session-start guards from this checkout and injects one notice with their warnings. Each guard answers to its own concern switch. | Fails open |
 | `session-stop-context.mjs` | `agent/disposed` | Runs `session-stop.js` with the Stop payload Pi sends on quit. Injects nothing. | Fails open |
 

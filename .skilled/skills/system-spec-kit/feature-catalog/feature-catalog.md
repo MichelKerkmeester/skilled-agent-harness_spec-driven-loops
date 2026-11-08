@@ -1013,6 +1013,22 @@ See [context-preservation/session-relaunch-loop.md](context-preservation/session
 
 ---
 
+### Compaction history lookup
+
+#### Description
+
+Offers one bounded, read-only history lookup after a compaction when the runtime hook minted a fresh locator and the session reader is ready.
+
+#### Current Reality
+
+The compaction hooks mint an opaque locator for the exact session and may inject a `## History Lookup` section that names the handle plus one runnable, read-only command. A missing, malformed, stale, foreign or unsupported locator leaves the recovery ladder unchanged, and the locator expires after 30 minutes.
+
+#### Source Files
+
+See [context-preservation/compaction-history-lookup.md](context-preservation/compaction-history-lookup.md) for implementation and test file listings.
+
+---
+
 ## 10. CONFIGURATION CONTRACTS
 
 ### Runtime config contract

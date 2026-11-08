@@ -7,7 +7,7 @@ trigger_phrases:
   - "deepseek harness live contract"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DeepSeek Harness Route Re-pin Runbook
@@ -20,13 +20,13 @@ Use fresh homes and separate output captures for each route and safety probe. Cr
 
 ### Purpose
 
-Repeat the route and safety probes after changing the pinned dsh release. Keep each result tied to the route and behavior that the probe exercised. LLM Gateway `deepseek-v4.1-flash-1017` is the verified default. OpenCode Go `deepseek-v4.1-flash` remains configured, not verified, until its own keyed run completes.
+Repeat the route and safety probes after changing the pinned dsh release. Keep each result tied to the route and behavior that the probe exercised. LLM Gateway `deepseek-v4.1-flash-1017` is the verified default. OpenCode Go `deepseek-v4.1-flash` was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`.
 
 ### When to Use
 
 Use this runbook after re-pinning dsh and before changing route defaults or relying on behavior from the new release.
 
-Never read or print a key. The process receives it through the launch environment. If a route key is absent, record the route as configured, not verified, and send no request.
+Never read or print a key. The process receives it through the launch environment. If a route key is absent, record that route as untested on the new release and send no request.
 
 ---
 
@@ -79,9 +79,9 @@ Record the configured provider, model and endpoint from the route patch and the 
 
 ### T005: OpenCode Go
 
-Check whether `OPENCODE_API_KEY` is present without printing its value. If it is absent, do not dispatch. Record the route as configured, not verified, with no request sent and the endpoint still UNKNOWN. If it is present, repeat the T004 command shape with `route-opencode-go-deepseek.patch.yml`, a new scratch cwd and a new `DSH_HOME`.
+Check whether `OPENCODE_API_KEY` is present without printing its value. If it is absent, do not dispatch. Record the route as unproven for this release, with no request sent. If it is present, repeat the T004 command shape with `route-opencode-go-deepseek.patch.yml`, a new scratch cwd and a new `DSH_HOME`, and check the exit against `https://opencode.ai/zen/go/v1`, the endpoint a keyed run settled on 2026-11-07.
 
-Keep OpenCode Go out of every default until its own run exits `0` with a final `completed` event.
+Keep OpenCode Go out of every default. A re-pin needs its own run that exits `0` with a final `completed` event.
 
 ---
 
@@ -160,4 +160,4 @@ printf '%s\n' "$rc" >"$EVIDENCE_DIR/$RUN_ID.exit.txt"
 
 The JSON placeholder must resolve to one lineage with `kind` `cli-deepseek-harness`, model `deepseek-v4.1-flash-1017` and one iteration. Save the lineage completion and containment scan. A clean lineage reports completion with no out-of-lineage write.
 
-After all probes, compare the operator's `~/.dsh` listing with the baseline, scan the evidence directory for credential values and update the route status. A route with no request stays configured, not verified.
+After all probes, compare the operator's `~/.dsh` listing with the baseline, scan the evidence directory for credential values and update the route status. A route with no request stays untested on the new release.

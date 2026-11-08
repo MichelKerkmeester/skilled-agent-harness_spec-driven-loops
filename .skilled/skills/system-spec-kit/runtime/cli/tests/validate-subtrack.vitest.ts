@@ -97,6 +97,32 @@ describe('recursive validation for declared sub-tracks', () => {
     expect(result.stderr.match(/Skipped symlinked sub-track/g) ?? []).toHaveLength(1);
   });
 
+  it('finds every packet name the track reader counts inside a sub-track', () => {
+    const { entries, specs } = buildSubtrackTree(root);
+    for (const name of ['002_underscored', '003', '004x']) {
+      fs.mkdirSync(path.join(entries.sub, name), { recursive: true });
+      fs.writeFileSync(path.join(entries.sub, name, 'spec.md'), '# Probe\n');
+    }
+    const result = runValidate(path.join(specs, 'demo'), ['--recursive', '--json']);
+    const folders = relativeFolders(specs, result.stdout);
+
+    expect(folders).toContain('demo/sub/002_underscored');
+    expect(folders).toContain('demo/sub/003');
+    expect(folders).not.toContain('demo/sub/004x');
+  });
+
+  it('skips a symlinked numbered packet inside a sub-track', () => {
+    const { entries, specs } = buildSubtrackTree(root);
+    const outsidePacket = path.join(root, 'outside-packet');
+    fs.mkdirSync(outsidePacket, { recursive: true });
+    fs.writeFileSync(path.join(outsidePacket, 'spec.md'), '# Outside packet\n');
+    fs.symlinkSync(outsidePacket, path.join(entries.sub, '002-linked'));
+
+    const result = runValidate(path.join(specs, 'demo'), ['--recursive', '--json']);
+
+    expect(relativeFolders(specs, result.stdout)).not.toContain('demo/sub/002-linked');
+  });
+
   it('keeps the flat-track recursive folder list unchanged', () => {
     const { specs } = buildFlatTree(root);
     const result = runValidate(path.join(specs, 'alpha'), ['--recursive', '--json']);

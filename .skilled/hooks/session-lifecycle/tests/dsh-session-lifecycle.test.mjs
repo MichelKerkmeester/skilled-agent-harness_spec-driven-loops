@@ -120,7 +120,7 @@ test('session-start advisories register nothing when the session-lifecycle conce
   assert.equal(handlers.size, 0);
 });
 
-test('compaction context runs session-prime for a completed compaction and injects its output', async () => {
+test('compaction context runs session-prime for a completed compaction and injects its output with the recovery pointer', async () => {
   const runs = [];
   const { ctx, fire } = pluginHarness();
   const { agent, injected } = fakeAgent({ id: 'session-compact', cwd: '/fixture/workspace' });
@@ -132,7 +132,10 @@ test('compaction context runs session-prime for a completed compaction and injec
   });
   await fire('session/event', agent.session, { type: 'compaction/end', data: { compactionId: 'c1', turn: 4 } });
   assert.deepEqual(runs, [{ sessionId: 'session-compact', projectDir: '/fixture/workspace', source: 'compact' }]);
-  assert.equal(noticeText(injected[0]), 'Context was compacted.');
+  assert.equal(
+    noticeText(injected[0]),
+    'Context was compacted.\n\n## Recovery\nRun `/speckit:resume` against the active packet to recover session state.',
+  );
 
   await fire('session/event', agent.session, { type: 'compaction/end', data: { compactionId: 'c2', turn: 5, error: 'boom' } });
   await fire('session/event', agent.session, { type: 'compaction/summary', data: { compactionId: 'c3' } });

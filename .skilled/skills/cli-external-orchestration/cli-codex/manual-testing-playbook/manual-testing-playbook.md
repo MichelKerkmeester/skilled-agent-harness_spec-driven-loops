@@ -1,7 +1,7 @@
 ---
 title: "cli-codex: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-codex skill."
-version: 1.9.6.0
+version: 1.9.7.0
 ---
 
 # cli-codex: Manual Testing Playbook
@@ -41,7 +41,7 @@ Canonical package artifacts:
 
 This playbook provides 43 deterministic scenarios across 11 categories validating the `cli-codex` skill surface. Each feature keeps its global `CX-NNN` ID (or `cli-codex-EC-NNN` for the hermetic stress-matrix category) and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` + `medium` reasoning + `service_tier="fast"`), every documented sandbox mode, every reasoning_effort level, every agent profile (`review`, `context`, `research`, `write`, `debug`, `ai-council`), session continuity surfaces (`--full-auto`, native hooks, resume, fork), unique built-in capabilities (`/review`, `--search`, `--image`, `codex mcp`), prompt-template usage with the CLEAR quality card and cross-AI delegation patterns. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
+Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-6-luna` + `medium` reasoning + `service_tier="fast"`), every documented sandbox mode, every reasoning_effort level, every agent profile (`review`, `context`, `research`, `write`, `debug`, `ai-council`), session continuity surfaces (`--full-auto`, native hooks, resume, fork), unique built-in capabilities (`/review`, `--search`, `--image`, `codex mcp`), prompt-template usage with the CLEAR quality card and cross-AI delegation patterns. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
 > **Guard-hook parity (cross-cutting, not a `CX-NNN` scenario):** the Codex-side guard adapters that make a live Codex session honor the same spec-gate / dispatch / freshness / post-edit / completion guardrails as Claude and OpenCode are runtime infrastructure, not `cli-codex` dispatch features, so they are validated in the hub's shared plugins-and-hooks playbook rather than this scored corpus — see [`../../manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md`](../../manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md).
 
@@ -69,7 +69,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` +
 3. Codex CLI is authenticated via ChatGPT OAuth: `codex login` has succeeded (ChatGPT Plus/Pro/Business/Edu/Enterprise account).
 4. The active runtime is NOT Codex CLI itself - the self-invocation guard in ../ROUTER.md §3 must not trip. Verify by running `env | grep -i codex_` and confirming no `CODEX_SESSION_ID` or `CODEX_*` vars are set.
 5. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-codex/{references,assets}/` so prompt-quality and template scenarios resolve.
-6. `gpt-5.5` is the documented default model; `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra`, and `gpt-6-sol` are the documented alternates (each with its own reasoning-effort ceiling — see SKILL.md §3 / `references/cli-reference.md` §5). Use the model a scenario names; do not substitute IDs outside this roster.
+6. `gpt-6-luna` is the documented default model; `gpt-5.5`, `gpt-5.6-terra`, `gpt-6.1-terra`, and `gpt-6-sol` are the documented alternates (each with its own reasoning-effort ceiling — see SKILL.md §3 / `references/cli-reference.md` §5). Use the model a scenario names; do not substitute IDs outside this roster. A ChatGPT-account login accepts only the models its plan lists, so pass `-m` when in doubt.
 7. `service_tier="fast"` MUST be passed explicitly on every `codex exec` invocation in this playbook (per the auto-memory rule). Never rely on a global config default.
 8. Destructive scenario `CX-007` (danger-full-access) MUST run only against rebuildable, non-production data and requires explicit human approval before execution.
 
@@ -188,17 +188,17 @@ This section records wave planning and capacity guidance for the manual testing 
 
 This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
-### CX-001 | Default invocation (gpt-5.5 medium fast)
+### CX-001 | Default invocation (gpt-6-luna medium fast)
 
 #### Description
 
-Verify the canonical zero-input default dispatch (`gpt-5.5` + `medium` reasoning + `service_tier="fast"`) returns a usable code-generation answer with exit code 0.
+Verify the canonical zero-input default dispatch (`gpt-6-luna` + `medium` reasoning + `service_tier="fast"`) returns a usable code-generation answer with exit code 0.
 
 #### Scenario Contract
 
 Prompt: `Generate a TypeScript fizzbuzz function with the documented cli-codex default and report model, effort, tier, exit code, and PASS/FAIL.`
 
-Expected signals: `codex exec` exits 0. Stdout contains a TypeScript function named `fizzbuzz`. Output references `n`, `Fizz`, `Buzz`, `FizzBuzz` semantics. The dispatched command line includes `--model gpt-5.5`, `-c model_reasoning_effort="medium"` and `-c service_tier="fast"`.
+Expected signals: `codex exec` exits 0. Stdout contains a TypeScript function named `fizzbuzz`. Output references `n`, `Fizz`, `Buzz`, `FizzBuzz` semantics. The dispatched command line includes `--model gpt-6-luna`, `-c model_reasoning_effort="medium"` and `-c service_tier="fast"`.
 
 Desired user-visible outcome: A working `fizzbuzz` function generated by Codex via the documented skill default, with operator-readable evidence that the default invocation pattern was used verbatim.
 
@@ -206,23 +206,23 @@ Desired user-visible outcome: A working `fizzbuzz` function generated by Codex v
 
 > **Feature File:** [CX-001](../manual-testing-playbook/cli-invocation/default-invocation.md)
 
-### CX-002 | gpt-5.5 default model + Luna/Terra/Sol roster
+### CX-002 | gpt-6-luna default model + alternate roster
 
 #### Description
 
-Verify `gpt-5.5` is the documented default and that explicit `--model gpt-5.5` produces a successful response, then confirm the documented Luna/Terra/Sol roster (`gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra`, `gpt-6-sol`) is callable via `--model`.
+Verify `gpt-6-luna` is the documented default and that explicit `--model gpt-6-luna` produces a successful response, then confirm the documented alternate roster (`gpt-5.5`, `gpt-5.6-terra`, `gpt-6.1-terra`, `gpt-6-sol`) is callable via `--model`.
 
 #### Scenario Contract
 
-Prompt: `Confirm the cli-codex gpt-5.5 default pin works and the documented Luna/Terra/Sol roster is callable.`
+Prompt: `Confirm the cli-codex gpt-6-luna default pin works and the documented alternate roster is callable.`
 
-Expected signals: The `gpt-5.5` dispatch exits 0 with `--model gpt-5.5` explicitly passed and returns coherent prose. Each Luna/Terra/Sol smoke dispatch exits 0 and returns a reply. The skill reference (`references/providers-and-models.md` §2) lists all five models with per-model reasoning-effort ceilings.
+Expected signals: The `gpt-6-luna` dispatch exits 0 with `--model gpt-6-luna` explicitly passed and returns coherent prose. Each alternate smoke dispatch exits 0 and returns a reply. The skill reference (`references/providers-and-models.md` §2) lists all five models with per-model reasoning-effort ceilings.
 
 Desired user-visible outcome: Confirmation that the documented default works and every documented roster model is genuinely callable — no phantom model IDs in the docs.
 
 #### Test Execution
 
-> **Feature File:** [CX-002](../manual-testing-playbook/cli-invocation/gpt-5-5-model-lock.md)
+> **Feature File:** [CX-002](../manual-testing-playbook/cli-invocation/default-model-lock.md)
 
 ### CX-003 | codex exec review subcommand
 
@@ -763,8 +763,8 @@ There is no automated coverage for default-invocation, sandbox-mode, reasoning_e
 
 ### CLI INVOCATION
 
-- CX-001: [Default invocation (gpt-5.5 medium fast)](../manual-testing-playbook/cli-invocation/default-invocation.md)
-- CX-002: [gpt-5.5 default model + Luna/Terra/Sol roster](../manual-testing-playbook/cli-invocation/gpt-5-5-model-lock.md)
+- CX-001: [Default invocation (gpt-6-luna medium fast)](../manual-testing-playbook/cli-invocation/default-invocation.md)
+- CX-002: [gpt-6-luna default model + alternate roster](../manual-testing-playbook/cli-invocation/default-model-lock.md)
 - CX-003: [codex exec review subcommand](../manual-testing-playbook/cli-invocation/codex-exec-review.md)
 - CX-004: [Explicit fast service tier](../manual-testing-playbook/cli-invocation/explicit-fast-service-tier.md)
 

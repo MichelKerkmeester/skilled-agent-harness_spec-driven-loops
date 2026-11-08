@@ -474,6 +474,20 @@ function isWholeLink(rootPath, sourcePath, entry, linkText) {
 }
 
 /**
+ * Report whether a path resolves to a location inside a directory.
+ * @param {string} target
+ * @param {string} directory
+ * @returns {boolean}
+ */
+function resolvesInto(target, directory) {
+  try {
+    return isWithin(fs.realpathSync(target), fs.realpathSync(directory));
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Return true if following a symlink reaches an existing target.
  * @param {string} target
  * @returns {boolean}
@@ -834,13 +848,18 @@ function planMergeTree(root, source, rootRelative, sourceRelative, entrySource, 
     if (isHostRelativeLink(childSource, entrySource)) {
       const linkText = fs.readlinkSync(childSource);
       const hostTarget = path.resolve(path.dirname(childRoot), linkText);
-      // Only a host sibling that exists or is planned receives the alias; it is never a link into the checkout.
-      // A host sibling counts when it exists or when this same plan creates it,
-      // so a first link into a new project does not need a second run.
-      if (!isWithin(hostTarget, root) || !(linkTargetExists(hostTarget) || planCreates(actions, root, hostTarget))) continue;
+      // Only a host sibling receives the alias; it is never a link into the checkout. The
+      // sibling counts when it exists or when this same plan creates it, so a first link
+      // into a new project does not need a second run.
+      const targetPlanned = !linkTargetExists(hostTarget) && planCreates(actions, root, hostTarget);
+      if (!isWithin(hostTarget, root) || !(linkTargetExists(hostTarget) || targetPlanned)) continue;
       if (!rootStat) {
+        // The alias text stays relative, so an alias to real host content is portable and a
+        // host may commit it. An alias whose target is a link this plan creates resolves only
+        // on this machine, as does one whose target already resolves into the checkout, so
+        // either joins the machine-local links in the ignore file.
         actions.push({ op: 'link', path: childRootRelative, target: linkText });
-        ignoreCandidates.push(childRootRelative);
+        if (targetPlanned || resolvesInto(hostTarget, source)) ignoreCandidates.push(childRootRelative);
       }
       continue;
     }

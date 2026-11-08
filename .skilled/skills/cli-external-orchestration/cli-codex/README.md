@@ -70,7 +70,7 @@ If nothing prints, install it with `npm i -g @openai/codex`.
 
 ```bash
 codex exec \
-  --model gpt-5.5 \
+  --model gpt-6-luna \
   -c model_reasoning_effort="medium" \
   -c service_tier="fast" \
   -c approval_policy=never \
@@ -85,7 +85,7 @@ You get the file edited in place inside your workspace, ending with a cost summa
 
 ```bash
 codex --search exec \
-  --model gpt-5.5 \
+  --model gpt-6-luna \
   -c service_tier="fast" \
   --sandbox read-only \
   "What changed in the Express.js 5.x release? Search the web for current details." \
@@ -97,7 +97,7 @@ You get a response sourced from live web results, not a static training cutoff.
 **Step 4: Run a diff-aware code review.**
 
 ```bash
-codex exec review "Focus on security vulnerabilities" --commit HEAD --model gpt-5.5
+codex exec review "Focus on security vulnerabilities" --commit HEAD --model gpt-6-luna
 ```
 
 You get a structured review of the latest commit's diff, scoped to the focus area you named.
@@ -150,7 +150,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 | `ai-council` | Multi-strategy planning | `--sandbox read-only` |
 | `design` | Design values, Style Reference measurement, charts and diagrams | `--sandbox workspace-write` |
 
-`gpt-5.5` at `medium` is the skill default. Five GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra` and `gpt-6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. Each model has an effort ceiling:
+`gpt-6-luna` at `medium` is the skill default. Five GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra` and `gpt-6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. A ChatGPT-account login accepts only the models its plan lists, so pass `-m <model>` explicitly when in doubt. Each model has an effort ceiling:
 
 | Model | Effort ceiling |
 |---|---|
@@ -160,7 +160,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 | `gpt-6.1-terra` | `ultra` |
 | `gpt-6-sol` | `ultra` |
 
-The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch with `--model` when a GPT-6, GPT-6.1 Terra or GPT-5.6 Terra model fits the task better, for example `gpt-6-luna max` for implementation or `gpt-6-sol ultra` for verification.
+The `.codex/agents/*.toml` roster above pins `gpt-6-luna`. Override per dispatch with `--model` when another model fits the task better, for example `gpt-5.6-terra high` for implementation speed or `gpt-6-sol ultra` for verification.
 
 ### Auth Pre-Flight And Memory Handback
 
@@ -282,7 +282,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-codex/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md` |
-| Default dispatch | `codex exec "Say hello" --model gpt-5.5 -c service_tier="fast" --sandbox read-only` returns a greeting |
+| Default dispatch | `codex exec "Say hello" --model gpt-6-luna -c service_tier="fast" --sandbox read-only` returns a greeting |
 
 ---
 

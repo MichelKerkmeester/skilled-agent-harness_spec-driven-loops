@@ -42,13 +42,29 @@ A token-pressure adjustment shrinks the budget when the context window is fillin
 - Claude/Codex/Cursor `PreCompact` (before compaction): `compact-inject` precomputes a merged context via the merge pipeline (active files + session-state attention signals), runs an anti-feedback guard that strips recovered hook-cache markers from the transcript tail before summarization, and **caches** the result to per-session hook state. It deliberately emits no stdout on PreCompact: the cache is delivered by the next `SessionStart(source=compact)`. An optional authored-continuity-snapshot worker runs in a bounded child process.
 - Devin `PostCompaction` / Pi `session_compact` (after compaction): a bespoke recovery chain (retain summary → rehydrate spec-folder continuity from the shared tmpdir state file → provenance/length filtering → emit `additionalContext` directly), because these runtimes give no transcript path and no guaranteed follow-up event to defer to.
 
+**History locator offer.** A compaction path may append one bounded recovery section built from an adapter-minted, versioned history locator: the opaque handle names the exact session store and the section lists the search, browse, load and page operations. The offer is capability-gated on the shared session readers, and a missing, stale, malformed, unsupported or unreadable locator leaves the existing summary plus `/speckit:resume` unchanged. Retrieved history is untrusted input. Locator kinds are `transcript_path` for Claude and Codex, `live_branch_or_session_log` for Pi, `transcript_file` for Devin and `session_log` for DSH.
+
+**Reader capability matrix.** The locator offer is served by the shared, read-only reader package at [`../shared/session-readers/index.mjs`](../shared/session-readers/index.mjs). Its `capabilities` export is the source of truth, and this table mirrors it. A reader resolves one exact session id, returns the shared `HistoryEntry` list and writes nothing. The six decision-capture sweeps remain the writers.
+
+| Runtime | Status | Locator kind | Store root |
+|---|---|---|---|
+| Claude | `ready` | `transcript_path` | `~/.claude/projects` |
+| Codex | `ready` | `transcript_path` | `$CODEX_HOME/sessions` |
+| Pi | `ready` | `live_branch_or_session_log` | `~/.pi/agent/sessions` |
+| OpenCode | `ready` | `session-store` | `$XDG_DATA_HOME/opencode/opencode.db` |
+| Devin | `ready` | `transcript_file` | `$XDG_DATA_HOME/devin/cli/sessions.db` |
+| DSH | `ready` | `session_log` | `$DSH_HOME/sessions` |
+| Cursor | `gated` | `capability_flag` | `(unconfirmed)` |
+
+Cursor stays gated because PreCompact delivery is unconfirmed, so `readSession` returns `capability_gated` before it reads anything. A runtime outside the table returns `capability_gated` too, never a guessed store.
+
 **Session stop (`session-stop` / `session-end` / `session_shutdown`).** Parses the transcript tail for token usage (incremental from the last offset), builds producer metadata (transcript fingerprint, cache tokens), auto-detects/retargets the active spec folder from transcript paths, extracts a ≤200-char session summary, and writes all of it in **one atomic `updateState()` call** (no torn-state window). It then runs a bounded context autosave (`generate-context.js`) from the in-memory merged state: never a disk reload, and a shadow-only true-citation emit. A `--finalize` mode cleans stale states older than 24h. The `stop_hook_active` re-entrant case is skipped.
 
 ---
 
 ## 3. PER-RUNTIME DELIVERY
 
-Every runtime's start/stop adapter bridges into the same compiled Claude hooks (`session-prime.js`, `session-stop.js`, `compact-inject.js`) or, for Pi and Devin's post-compaction, a native recovery chain. What differs is the lifecycle-event vocabulary, the payload shape each runtime's event carries, and the channel the recovered context is handed back through.
+Every runtime's start/stop adapter bridges into the same compiled Claude hooks (`session-prime.js`, `session-stop.js`, `compact-inject.js`). Pi and Devin run a native post-compaction recovery chain, and DSH re-primes from the session-prime `compact` output. What differs is the lifecycle-event vocabulary, the payload shape each runtime's event carries, and the channel the recovered context is handed back through.
 
 | Runtime | Adapters | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
@@ -56,6 +72,7 @@ Every runtime's start/stop adapter bridges into the same compiled Claude hooks (
 | **Codex** | `codex/session-start.ts`, `codex/session-stop.ts`, `codex/compact-inject.ts` | `SessionStart`, `Stop`, `PreCompact` in `.codex/hooks.json`; thin adapters via `readCodexHookInput` + `runClaudeHookAdapter` | Reshapes Codex stdin into Claude shape; delegates to `session-prime.js`/`session-stop.js`/`compact-inject.js` (bounded 2.8s start/compact, 10s stop) | `emitCodexContext` envelope (`hookSpecificOutput.additionalContext`) |
 | **Cursor** | `cursor/session-start.ts`, `cursor/session-end.ts`, `cursor/precompact.ts` | `sessionStart`, `sessionEnd`, `preCompact` in `.cursor/hooks.json`; `sessionEnd` substitutes for `stop` (which never fires under `cursor-agent -p`) | `toClaudeShape` reshapes Cursor's payload; `sessionEnd` has no permission decision (session over) | `emitCursorResponse` with `permission: allow` + `agent_message` for start; plain allow for precompact; no envelope for end |
 | **Devin** | `devin/session-start.ts`, `devin/session-stop.ts`, `devin/post-compaction.cjs` | `SessionStart`, `Stop`, `PostCompaction` in `.devin/hooks.v1.json`; start/stop delegate to Claude hooks; post-compaction is a bespoke CommonJS adapter (no `.ts` build) | Start/stop reshape via `readDevinHookInput`; PostCompaction carries only `session_id` + a possibly-null `summary` (no transcript, no trigger): handled by the 5-step native chain | `emitDevinContext` for start; PostCompaction emits `hookSpecificOutput.additionalContext` directly |
+| **DSH** | `dsh/session-start-context.mjs`, `dsh/session-stop-context.mjs`, `dsh/session-compact-context.mjs`, `dsh/session-start-advisories.mjs` | `agent/created`, `agent/disposed` and `session/event` `compaction/end` through `.dsh/plugins/repo-guards/adapters/`. Start and stop spawn the compiled Claude hooks | No transcript path and no PreCompact event, so the compaction adapter reuses the session-prime `compact` output | `agent.inject` of a repo-guards user message |
 | **Pi** | `pi/session-start-context.ts`, `pi/session-stop-context.ts`, `pi/session-compact-context.ts`, `pi/session-start-advisories.ts` (real files; `.pi/extensions/` symlinks here) | `session_start`, `session_shutdown` (reason `quit`), `session_compact` via `.pi/extensions/` | Native TS extensions; start/stop bridge to `session-prime.js`/`session-stop.js` via `runClaudeHookAdapter`; compact is a native port of Devin's chain reading `compactionEntry.summary`; `session-start-advisories` runs the same warn-only startup guard scripts Cursor/Devin wire in | `pi.sendMessage({ customType, display: false })` for context; `ctx.ui.notify` for advisory warnings |
 | **OpenCode** | (by-design) | — | by-design: session events run inside the owning `system-skill-advisor`, `opencode-goal`, etc. plugins | by-design |
 
@@ -73,6 +90,8 @@ session-lifecycle/
 +-- codex/    compact-inject.{ts,js}, session-start.{ts,js}, session-stop.{ts,js}   # .js -> dist/hooks/codex/
 +-- cursor/   precompact.{ts,js}, session-end.{ts,js}, session-start.{ts,js}        # .js -> dist/hooks/cursor/
 +-- devin/    post-compaction.cjs, session-start.{ts,js}, session-stop.{ts,js}      # .js -> dist/hooks/devin/
++-- dsh/      session-compact-context.mjs, session-start-advisories.mjs,
+              session-start-context.mjs, session-stop-context.mjs                  # .mjs -> system-spec-kit runtime hooks
 `-- pi/       session-compact-context.ts, session-start-advisories.ts,
               session-start-context.ts, session-stop-context.ts                    # real files; .pi/extensions/ symlinks here
 ```

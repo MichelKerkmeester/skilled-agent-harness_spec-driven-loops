@@ -35,6 +35,8 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | A new host gets .skilled/ built in place, so .skilled/specs points at the host specs/ folder or is omitted, instead of one whole link to the checkout. | The operator chose the recommended option: a whole link resolves .skilled/specs into the Skilled checkout own specs, the wrong tree for a host. | None | REQ-010, AC-010, T015, implementation-summary.md Key Decisions |
+| Q002 | create.sh refuses an undeclared two-level --track instead of creating an unlisted packet. | Not stated. | None | 001-create-track-fixes/spec.md D-001, create.sh, create-track-refresh.vitest.ts |
+| Q003 | Every remaining phase decision (D-002a to D-005c) takes its recommended option. | Not stated. | None | 002-005 spec.md section 7 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -62,6 +64,44 @@ Defer REQ-010
 Answer:
 ```text
 Keep D's merge build (Recommended)
+```
+
+### Q002
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01Mrb8q8T8e6RHMc1CM3Ez5z:0 -->
+
+Question:
+```text
+Phase 001: create.sh currently creates a packet under an undeclared two-level --track (e.g. demo/x where x has no sub-track description.json) and silently skips the listing refresh; a test asserts that. What should it do?
+```
+
+Options:
+```text
+Refuse it (Recommended)
+Warn and proceed
+```
+
+Answer:
+```text
+Refuse it (Recommended)
+```
+
+### Q003
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_01Mrb8q8T8e6RHMc1CM3Ez5z:1 -->
+
+Question:
+```text
+The phase docs record nine smaller design choices (D-002a/b, D-003a/b, D-004a/b, D-005a/b/c), each with a recommended option: one shared parity test for the sub-track rule, skip symlinked packets in sub-tracks only, guard symlinked metadata writes for top-level tracks too, let refresh create a missing sub-track metadata file, keep the host-relative link un-ignored and pin it with a test, and fix docs rather than add features. Take all the recommendations?
+```
+
+Options:
+```text
+Take all recommended
+Let me review first
+```
+
+Answer:
+```text
+Take all recommended
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -185,7 +185,12 @@ function buildWorkspace(): string {
   return workspace;
 }
 
-async function save(target: string, payload: Record<string, unknown>, fullAuto = true): Promise<void> {
+async function save(
+  target: string,
+  payload: Record<string, unknown>,
+  fullAuto = true,
+  extraArgs: string[] = [],
+): Promise<void> {
   const { main } = await import('../continuity/generate-context');
   const argv = ['--json', JSON.stringify({
     specFolder: target,
@@ -201,6 +206,7 @@ async function save(target: string, payload: Record<string, unknown>, fullAuto =
   if (fullAuto) {
     argv.push('--full-auto');
   }
+  argv.push(...extraArgs);
   await main(argv, undefined, root);
 }
 
@@ -462,6 +468,187 @@ describe('save writer continuity write', () => {
     const { checkGeneratedMetadataIntegrity } = await import('../../api');
     const report = checkGeneratedMetadataIntegrity(path.join(root, LEAF));
     expect(report.violations.map((violation) => violation.code)).not.toContain('SOURCE_FINGERPRINT_MISMATCH');
+  });
+});
+
+describe('save writer session_ref', () => {
+  const SESSION_ID = 'session-abc-123';
+  const RUNTIME = 'opencode';
+
+  async function storedRef(folder: string): Promise<Record<string, unknown> | undefined> {
+    const { readThinContinuityRecord } = await import('@spec-kit/runtime/api');
+    return readThinContinuityRecord(read(`${folder}/implementation-summary.md`)).record?.session_ref as
+      | Record<string, unknown>
+      | undefined;
+  }
+
+  it('mints exactly the six pointer keys from the explicit inputs', async () => {
+    await save(LEAF, { recent_action: 'Minted the session pointer' }, true, [
+      '--session-id', SESSION_ID,
+      '--runtime', RUNTIME,
+    ]);
+
+    const ref = await storedRef(LEAF);
+    expect(Object.keys(ref ?? {}).sort()).toEqual([
+      'locatorKind',
+      'runtime',
+      'savedAt',
+      'sessionId',
+      'version',
+      'workspace',
+    ]);
+    expect(ref).toMatchObject({
+      runtime: RUNTIME,
+      sessionId: SESSION_ID,
+      locatorKind: 'session-store',
+      version: 1,
+    });
+    expect(fs.realpathSync(String(ref?.workspace))).toBe(fs.realpathSync(root));
+  });
+
+  it.each([
+    ['claude', 'transcript_path'],
+    ['devin', 'transcript_file'],
+    ['pi', 'live_branch_or_session_log'],
+    ['dsh', 'session_log'],
+  ])('mints the canonical %s locator kind directly', async (runtime, locatorKind) => {
+    await save(LEAF, { recent_action: 'Minted a runtime-specific pointer' }, true, [
+      '--session-id', SESSION_ID,
+      '--runtime', runtime,
+    ]);
+
+    expect(await storedRef(LEAF)).toMatchObject({
+      runtime,
+      sessionId: SESSION_ID,
+      locatorKind,
+      version: 1,
+    });
+  });
+
+  it('carries the stored pointer on a later save that cannot mint a new one', async () => {
+    await save(LEAF, { recent_action: 'Minted the session pointer' }, true, [
+      '--session-id', SESSION_ID,
+      '--runtime', RUNTIME,
+    ]);
+    const minted = continuityBlock(read(`${LEAF}/implementation-summary.md`));
+    const savedAt = /savedAt: "([^"]+)"/.exec(minted)?.[1];
+    expect(savedAt).toBeTruthy();
+
+    await save(LEAF, { recent_action: 'Second save without the pointer inputs' });
+
+    const carried = continuityBlock(read(`${LEAF}/implementation-summary.md`));
+    expect(carried).toContain(`sessionId: "${SESSION_ID}"`);
+    expect(carried).toContain('recent_action: "Second save without the pointer inputs"');
+    expect(carried).toContain(`savedAt: "${savedAt}"`);
+  });
+
+  it.each([
+    ['plan-only', false, [] as string[]],
+    ['hybrid', false, ['--planner-mode', 'hybrid']],
+  ])('writes no pointer on a %s save', async (_label, fullAuto, extraArgs) => {
+    const before = continuityBlock(read(`${LEAF}/implementation-summary.md`));
+
+    await save(
+      LEAF,
+      { recent_action: 'No pointer on this save' },
+      fullAuto,
+      ['--session-id', SESSION_ID, '--runtime', RUNTIME, ...extraArgs],
+    );
+
+    expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).toBe(before);
+  });
+
+  it('omits the pointer and names the reason when --runtime is given without --session-id', async () => {
+    await save(LEAF, { recent_action: 'No explicit session id' }, true, ['--runtime', RUNTIME]);
+
+    expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).not.toContain('session_ref:');
+    expect(stderr).toContain('session_ref skipped: no explicit --session-id supplied');
+  });
+
+  it('omits the pointer and names the reason when the session id fails the continuity shape', async () => {
+    await save(LEAF, { recent_action: 'Skipped a session id the validator would reject' }, true, [
+      '--session-id', 'session/abc',
+      '--runtime', 'claude',
+    ]);
+
+    const block = continuityBlock(read(`${LEAF}/implementation-summary.md`));
+    expect(block).toContain('recent_action: "Skipped a session id the validator would reject"');
+    expect(block).not.toContain('session_ref:');
+    expect(stderr).toContain('session_ref skipped: session id does not match the continuity shape');
+  });
+
+  it('omits the pointer for a known runtime without a locator', async () => {
+    await save(LEAF, { recent_action: 'Cursor has no locator' }, true, [
+      '--session-id', SESSION_ID,
+      '--runtime', 'cursor',
+    ]);
+
+    expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).not.toContain('session_ref:');
+    expect(stderr).toContain('session_ref skipped');
+    expect(stderr).toContain('no supported locator');
+  });
+
+  it('ignores a payload-supplied pointer, names it and mints its own', async () => {
+    const payloadRef = {
+      runtime: 'claude',
+      sessionId: 'payload-session-999',
+      workspace: '/payload/workspace',
+      savedAt: '2020-01-01T00:00:00Z',
+      locatorKind: 'transcript_path',
+      version: 1,
+    };
+
+    await save(
+      LEAF,
+      { recent_action: 'Ignored the payload pointer', session_ref: payloadRef },
+      true,
+      ['--session-id', SESSION_ID, '--runtime', RUNTIME],
+    );
+
+    const block = continuityBlock(read(`${LEAF}/implementation-summary.md`));
+    expect(block).toContain(`sessionId: "${SESSION_ID}"`);
+    expect(block).not.toContain('payload-session-999');
+    expect(stderr).toContain('Ignoring payload-supplied session_ref');
+  });
+
+  it('never writes a payload-supplied pointer when the writer cannot mint one', async () => {
+    const payloadRef = {
+      runtime: 'claude',
+      sessionId: 'payload-session-999',
+      workspace: '/payload/workspace',
+      savedAt: '2020-01-01T00:00:00Z',
+      locatorKind: 'transcript_path',
+      version: 1,
+    };
+
+    await save(LEAF, { recent_action: 'Ignored the payload pointer', session_ref: payloadRef });
+
+    const block = continuityBlock(read(`${LEAF}/implementation-summary.md`));
+    expect(block).not.toContain('session_ref:');
+    expect(block).not.toContain('payload-session-999');
+  });
+
+  it('drops a stored pointer that fails validation and names the field', async () => {
+    const malformed = summaryDoc(LEAF).replace(
+      '    completion_pct: 40',
+      [
+        '    session_ref:',
+        '      runtime: "opencode"',
+        '      sessionId: "bad-session"',
+        '      workspace: "/tmp/another-checkout"',
+        '      savedAt: "2026-09-01T00:00:00Z"',
+        '      locatorKind: "transcript"',
+        '      version: 2',
+        '    completion_pct: 40',
+      ].join('\n'),
+    );
+    writeFile(`${LEAF}/implementation-summary.md`, malformed);
+
+    await save(LEAF, { recent_action: 'Dropped the malformed pointer' });
+
+    expect(stderr).toContain('Dropped stored continuity fields that fail validation');
+    expect(stderr).toContain('session_ref');
+    expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).not.toContain('session_ref:');
   });
 });
 

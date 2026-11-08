@@ -4,7 +4,7 @@
 
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -107,6 +107,32 @@ test('--check reports missing, stale, and extra prompts without writing', () => 
     assert.equal(repaired.status, 0, repaired.stderr);
     assert.equal(existsSync(extra), false);
     assert.equal(run(env, ['--check']).status, 0);
+  } finally {
+    rmSync(env.root, { recursive: true, force: true });
+  }
+});
+
+// A linked worktree reaches the operator's private command, and that command's
+// prompt, through links to the primary checkout. Neither link is this repository's
+// output, so the check must not report the prompt as extra or prune it.
+test('leaves a linked private prompt alone when its command is linked too', () => {
+  const env = fixture();
+  try {
+    writeCommand(env.source, 'tools/audit.md', '# Audit\n');
+    const primary = join(env.root, 'primary');
+    mkdirSync(primary, { recursive: true });
+    writeFileSync(join(primary, 'local-private.md'), '# Private\n');
+    writeFileSync(join(primary, 'local-private-prompt.md'), 'private prompt\n');
+    symlinkSync(join(primary, 'local-private.md'), join(env.source, 'local-private.md'));
+    assert.equal(run(env).status, 0);
+    const linkedPrompt = join(env.output, 'local-private.md');
+    symlinkSync(join(primary, 'local-private-prompt.md'), linkedPrompt);
+
+    const check = run(env, ['--check']);
+    assert.equal(check.status, 0, check.stdout + check.stderr);
+
+    assert.equal(run(env).status, 0);
+    assert.equal(lstatSync(linkedPrompt).isSymbolicLink(), true);
   } finally {
     rmSync(env.root, { recursive: true, force: true });
   }

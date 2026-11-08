@@ -286,6 +286,200 @@ function makeContinuityMarkdown(fields: Record<string, string>): string {
   ].join('\n');
 }
 
+describe('thin continuity session_ref', () => {
+  const VALID_SESSION_REF = {
+    runtime: 'opencode' as const,
+    sessionId: 'session-ref-fixture-001',
+    workspace: '/workspace/session-ref-fixture',
+    savedAt: '2026-11-06T10:00:00.000Z',
+    locatorKind: 'session-store' as const,
+    version: 1 as const,
+  };
+
+  function makeContinuityInput(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+    return {
+      packet_pointer: 'track/004-session-ref',
+      last_updated_at: '2026-11-06T10:00:00Z',
+      last_updated_by: 'session-ref-test',
+      recent_action: 'Recorded the fixture continuity state',
+      next_safe_action: 'Verify the fixture continuity state',
+      blockers: [],
+      key_files: [],
+      session_dedup: {
+        fingerprint: VALID_FINGERPRINT,
+        session_id: 'session-ref-fixture-001',
+        parent_session_id: null,
+      },
+      completion_pct: 40,
+      open_questions: [],
+      answered_questions: [],
+      ...overrides,
+    };
+  }
+
+  it('accepts a valid six-key object and serializes it between session_dedup and completion_pct', () => {
+    const result = validateThinContinuityRecord(makeContinuityInput({ session_ref: VALID_SESSION_REF }));
+
+    expect(result.ok).toBe(true);
+    expect(result.record?.session_ref).toEqual({
+      ...VALID_SESSION_REF,
+      savedAt: '2026-11-06T10:00:00Z',
+    });
+
+    const yaml = result.yaml ?? '';
+    expect(yaml.indexOf('session_ref:')).toBeGreaterThan(yaml.indexOf('session_dedup:'));
+    expect(yaml.indexOf('session_ref:')).toBeLessThan(yaml.indexOf('completion_pct:'));
+
+    const roundTrip = upsertThinContinuityInMarkdown(
+      makeFrontmatterMarkdown(),
+      makeContinuityInput({ session_ref: VALID_SESSION_REF }),
+    );
+    expect(roundTrip.ok).toBe(true);
+    expect(readThinContinuityRecord(roundTrip.markdown!).record?.session_ref).toEqual({
+      ...VALID_SESSION_REF,
+      savedAt: '2026-11-06T10:00:00Z',
+    });
+  });
+
+  it.each([
+    ['claude', 'transcript_path'],
+    ['codex', 'transcript_path'],
+    ['pi', 'live_branch_or_session_log'],
+    ['devin', 'transcript_file'],
+    ['dsh', 'session_log'],
+  ])('accepts the shared locator-kind vocabulary for %s', (runtime, locatorKind) => {
+    const result = validateThinContinuityRecord(makeContinuityInput({
+      session_ref: {
+        runtime,
+        sessionId: 'session-ref-fixture-001',
+        workspace: '/workspace/session-ref-fixture',
+        savedAt: '2026-11-06T10:00:00.000Z',
+        locatorKind,
+        version: 1,
+      },
+    }));
+
+    expect(result.ok).toBe(true);
+    expect(result.record?.session_ref?.locatorKind).toBe(locatorKind);
+  });
+
+  it.each([
+    ['claude', 'transcript'],
+    ['codex', 'transcript'],
+    ['pi', 'session-store'],
+    ['devin', 'transcript'],
+    ['dsh', 'session-store'],
+  ])('rejects the retired %s locator alias %s', (runtime, legacyLocatorKind) => {
+    const result = validateThinContinuityRecord(makeContinuityInput({
+      session_ref: {
+        runtime,
+        sessionId: 'session-ref-fixture-001',
+        workspace: '/workspace/session-ref-fixture',
+        savedAt: '2026-11-06T10:00:00.000Z',
+        locatorKind: legacyLocatorKind,
+        version: 1,
+      },
+    }));
+
+    expect(result.ok).toBe(false);
+    expect(result.errors).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: 'MEMORY_018', field: 'session_ref' }),
+      ]),
+    );
+  });
+
+  it.each([
+    ['devin', 'transcript_path'],
+    ['pi', 'session_log'],
+    ['claude', 'session-store'],
+    ['dsh', 'transcript_file'],
+  ])('rejects the %s locator kind %s when it belongs to another runtime', (runtime, locatorKind) => {
+    const result = validateThinContinuityRecord(makeContinuityInput({
+      session_ref: {
+        runtime,
+        sessionId: 'session-ref-fixture-001',
+        workspace: '/workspace/session-ref-fixture',
+        savedAt: '2026-11-06T10:00:00.000Z',
+        locatorKind,
+        version: 1,
+      },
+    }));
+
+    expect(result.ok).toBe(false);
+    expect(result.errors).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: 'MEMORY_018', field: 'session_ref' }),
+      ]),
+    );
+  });
+
+  it.each([
+    ['an extra key', { ...VALID_SESSION_REF, extra: true }],
+    ['a missing key', { ...VALID_SESSION_REF, workspace: undefined }],
+    ['a mismatched locator kind', { ...VALID_SESSION_REF, locatorKind: 'transcript' }],
+    ['a relative workspace', { ...VALID_SESSION_REF, workspace: 'relative/workspace' }],
+    ['a traversing workspace', { ...VALID_SESSION_REF, workspace: '/workspace/../etc' }],
+    ['an unsupported version', { ...VALID_SESSION_REF, version: 2 }],
+    ['a malformed session id', { ...VALID_SESSION_REF, sessionId: '!' }],
+    ['a malformed savedAt', { ...VALID_SESSION_REF, savedAt: 'not-a-date' }],
+  ])('rejects %s with MEMORY_018', (_label, sessionRef) => {
+    const result = validateThinContinuityRecord(makeContinuityInput({ session_ref: sessionRef }));
+
+    expect(result.ok).toBe(false);
+    expect(result.errors).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ code: 'MEMORY_018', field: 'session_ref' }),
+      ]),
+    );
+  });
+
+  it('drops only an invalid session_ref when the reader ignores it', () => {
+    const valid = upsertThinContinuityInMarkdown(
+      makeFrontmatterMarkdown(),
+      makeContinuityInput({ session_ref: VALID_SESSION_REF }),
+    );
+    const malformed = valid.markdown!.replace('version: 1', 'version: 2');
+
+    const strict = readThinContinuityRecord(malformed);
+    expect(strict.ok).toBe(false);
+    expect(strict.errors.map((error) => error.code)).toContain('MEMORY_018');
+
+    const tolerant = readThinContinuityRecord(malformed, { ignoreInvalidSessionRef: true });
+    expect(tolerant.ok).toBe(true);
+    expect(tolerant.record?.session_ref).toBeUndefined();
+    expect(tolerant.record?.recent_action).toBe('Recorded the fixture continuity state');
+    expect(tolerant.record?.completion_pct).toBe(40);
+  });
+
+  it('drops session_ref first when the block exceeds the byte budget', () => {
+    const longPointer = Array.from({ length: 24 }, (_, index) => `segment-${String(index).padStart(2, '0')}-canonical-continuity`)
+      .join('/');
+    const result = validateThinContinuityRecord(makeContinuityInput({
+      packet_pointer: longPointer,
+      blockers: [
+        'awaiting-template-continuity-validation-pass-and-a-longer-suffix',
+        'awaiting-shadow-compare-verification-pass-and-a-longer-suffix',
+        'awaiting-integration-smoke-test-verification-and-a-longer-suffix',
+        'awaiting-parity-dashboard-refresh-and-a-longer-suffix',
+        'awaiting-post-save-fingerprint-review-and-a-longer-suffix',
+      ],
+      key_files: Array.from({ length: 5 }, (_, index) => (
+        'very/long/path/' + index + '/' + 'phase-018-continuity/'.repeat(6) + 'artifact-' + index + '.md'
+      )),
+      session_ref: {
+        ...VALID_SESSION_REF,
+        workspace: '/' + 'workspace-segment/'.repeat(12) + 'fixture',
+      },
+    }));
+
+    expect(result.ok).toBe(true);
+    expect(result.record?.session_ref).toBeUndefined();
+    expect(result.yaml).not.toContain('session_ref:');
+    expect(result.record?.blockers.length).toBeLessThanOrEqual(3);
+  });
+});
+
 describe('hand-written continuity blocks', () => {
   it('reads one-level flow lists as lists, keeping commas inside quotes', () => {
     const result = readThinContinuityRecord(makeContinuityMarkdown({
