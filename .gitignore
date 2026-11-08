@@ -251,6 +251,7 @@ sweep-reports/
 /.cursor/commands/local-*
 /.codex/prompts/local-*
 /.pi/prompts/local-*
+/.dsh/prompts/local-*
 
 # ───────────────────────────────────────────
 # Runtime state leaked into nested trees
