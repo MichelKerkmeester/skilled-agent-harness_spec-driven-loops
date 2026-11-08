@@ -217,7 +217,7 @@
     ],
     "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
     "created_at": "2026-11-07T12:11:59Z",
-    "last_save_at": "2026-11-08T14:48:49.947Z",
+    "last_save_at": "2026-11-08T14:50:02.436Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,13 +229,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4cd017f4609f9d4b9e31ba44a8835d7690ceede104c10041fcb36a4defcbc603",
+    "source_fingerprint": "sha256:c2259c49e12cc6bf03187c8c4e9eb59ba79e4f2010bb47c185f0252a2d7eca44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c30b7055b92b2b2163e5ac5e83a9ea5b679379ead50fb4a5ca8453fee98d519b",
       "plan.md": "922f5f592c2ffe8955f154fe4a16a827aba1c482fac6d823065d6d835a2d8596",
       "tasks.md": "1802664bfc30d6ff81073e89c67e30ee8d78075b69c543f88adf458bd9dd83ec",
-      "decision-record.md": "40e06d681c515a04ddd0fcf2a9bb2f0835b828703fd2f4995cded768458a106e",
+      "decision-record.md": "983a6ee2af74f6033271e79b73b60b05db778a5b986d0e78c15f186fea5b1bb0",
       "implementation-summary.md": "6a35121e5b73da7ebda57ed0395905c891e468ebc16e3c8212b77cc7348c95ca",
       "research/research.md": "b11898910b2446c7e3cab618b2b105dcb93da1ccc09273ab3b9687a376e0225f"
     },
