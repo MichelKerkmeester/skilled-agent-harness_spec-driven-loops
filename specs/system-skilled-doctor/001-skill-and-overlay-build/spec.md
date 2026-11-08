@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Build system-skilled-doctor and the doctor overlay command"
-description: "A project that vendors Skilled keeps its local changes only through private scripts, and ten Skilled integration doctor commands are credited to skills whose purpose does not cover them. These five phases add system-skilled-doctor, which owns those commands and a new /doctor:overlay command that applies, checks and re-pins a vendored copy's overlays, then fit the engine to a real vendoring project with its own overlay folder."
+description: "A project that vendors Skilled keeps its local changes only through private scripts, and ten Skilled integration doctor commands are credited to skills whose purpose does not cover them. These six phases add system-skilled-doctor, which owns those commands and a new /doctor:overlay command that applies, checks and re-pins a vendored copy's overlays, then fit the engine to a real vendoring project with its own overlay folder."
 trigger_phrases:
   - "skill and overlay build phase parent spec"
   - "system skilled doctor build"
@@ -44,7 +44,7 @@ _memory:
 | **Parent Packet** | system-skilled-doctor |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | All five children pass `validate.sh --strict`, and their acceptance criteria are Met |
+| **Handoff Criteria** | All six children pass `validate.sh --strict`, and their acceptance criteria are Met |
 <!-- /ANCHOR:metadata -->
 
 ---

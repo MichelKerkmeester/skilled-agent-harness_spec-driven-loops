@@ -140,10 +140,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | A re-pin copies `.dsh` by default | With no `repin.runtimeFolders`, an upstream `.dsh` file is copied and counted |
-| REQ-005 | A re-pin lists what it leaves out | Upstream changes under `repin.exclude` or a real top-level path outside the roots print as `not-copied` and land in `report.notCopied`; a top-level link is skipped |
+| REQ-005 | A re-pin lists what it leaves out | Upstream changes under `repin.exclude` or a real top-level path outside the roots print as `not-copied` and land in `report.notCopied`. A top-level link is skipped |
 | REQ-006 | A stage says what it skipped | A stage with regenerate or verify steps prints `stage skipped <n> regenerate and <n> verify step(s)` |
 | REQ-007 | A re-pin over a refused overlay stops before its backup | Exit 2, a `refuse:` line, no `repin-runs` folder and an unchanged tree |
-| REQ-008 | A missing setting is diagnosable | With no setting file the missing-manifest error names `.skilled-overlays.json`; with one it keeps the plain message |
+| REQ-008 | A missing setting is diagnosable | With no setting file the missing-manifest error names `.skilled-overlays.json`. With one it keeps the plain message |
 | REQ-009 | Adoption is documented and routed | The overlays reference has an adoption section, and the three adoption phrases reach `command-doctor-overlay-status` in `doctor-phrase-reach.cjs` |
 <!-- /ANCHOR:requirements -->
 
@@ -199,7 +199,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Dimension | Score | Notes |
 |-----------|-------|-------|
 | Scope | 12/25 | One engine file, three test files, eight doc and routing files, two generated files |
-| Risk | 12/25 | Changes a refusal contract and a re-pin precondition; Barter's real tree is untracked |
+| Risk | 12/25 | Changes a refusal contract and a re-pin precondition. Barter's real tree is untracked |
 | Research | 14/20 | Five-iteration research run plus a live adoption test on Barter |
 | **Total** | **38/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->

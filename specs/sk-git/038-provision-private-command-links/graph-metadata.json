@@ -142,7 +142,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Make",
+        "name": "Overview Change",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`worktree-naming.sh provision` linked each private `local-` command into a new worktree as an absolute link to the primary checkout",
     "created_at": "2026-11-08T08:54:40Z",
-    "last_save_at": "2026-11-08T09:39:21.042Z",
+    "last_save_at": "2026-11-08T12:29:51.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,11 +201,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06b3d0cb6047bc2d97ff5a6b0f616182d52537e50312a02bd858ccdc0adf71e0",
+    "source_fingerprint": "sha256:d11d6681f54dfa1165b6ac7f35994528d9719a34d8e8512d1e813ad9c7e954bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f70c75cb5d73df87c65ce7c7ad243c26c25c7ba852c6dc77f3a6c87069e5631",
-      "plan.md": "d574a8225d9b000c89c8d1e0d28c03dc461328d61658125acbe01af4797e86e0",
+      "plan.md": "2994adec9ab362ae6608d98f6f6a19dbe592192078bd04744eb9640a3dc2d1f3",
       "tasks.md": "e67e162fb5dfccd88f32f3e64ec23fe29ba9a8af51a0d4330cac965b5985b121",
       "implementation-summary.md": "177c4c7bb2af02b4286a2cb7f2802a6fbdfff09bf1e4b4450a5dda1b5db23a52"
     },

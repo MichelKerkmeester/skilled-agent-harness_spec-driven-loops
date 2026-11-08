@@ -68,7 +68,7 @@ unowned edit       refuse: unowned .skilled/skills/sk-git/SKILL.md differs from 
 - Link the guide from the root README's related documents and the system-skilled-doctor README.
 
 ### Out of Scope
-- Fixing the two link rough edges the tests found: the first `link` leaves runtime folders `partial-merge`, and relative links get no ignore line. The guide documents both, and the fix is its own change.
+- Fixing the two link rough edges the tests found: the first `link` leaves runtime folders `partial-merge`, and relative links receive no ignore line. The guide documented both until `002-symlink-first-link` fixed them as its own change.
 - The Install section of the root README, which stays where it is.
 
 ### Files to Change

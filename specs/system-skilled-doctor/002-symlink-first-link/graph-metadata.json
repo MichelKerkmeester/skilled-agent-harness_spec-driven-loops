@@ -190,7 +190,7 @@
     ],
     "causal_summary": "On a new project the first `/doctor:symlink link` left `.claude` and `.opencode` as `partial-merge`",
     "created_at": "2026-11-08T11:02:53Z",
-    "last_save_at": "2026-11-08T11:09:50.087Z",
+    "last_save_at": "2026-11-08T12:29:49.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1ab62777057104712a2d88f18a0e5a5516f92b397adf57e9f3ef4cfe22ee952",
+    "source_fingerprint": "sha256:973630280075d57cc1d419f58d8a12c540e7059e2222175a3ce2de7bf4eae527",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "365ea83c9e639a71d13e3e15ed9befcd20f66f792ffb188fae9ba48b55b4b4ab",
-      "plan.md": "dfda9c10a866f48bbe37813426e651eb7e80a985e5a7810ac62ed837e0fe04d9",
+      "spec.md": "03082791a7dbba3235b7c3a5ca665afce2e9651345633a08ee64cd42c4822fc8",
+      "plan.md": "82547a6b1990405fb5c22b6b7d00f00b7e7a496adf619baac891aa089662bf2c",
       "tasks.md": "a28ba67f2b19bcc2d5f0052775205a46896f3b09419404b69780f0670df77732",
-      "implementation-summary.md": "fb2e32ef793d96708603c4fe1f6fffa1245753a19775f97de50974064d1238e1"
+      "implementation-summary.md": "f5122255484283aa4c3f620faf5ebcb60a420a3f9030320dd7300739cf45c50d"
     },
     "last_active_at": null
   }

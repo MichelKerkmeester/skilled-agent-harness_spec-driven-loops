@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Insert Level 2 sections above the questions anchor on upgrade"
-description: "Make the Level 2 insertion in `upgrade-level.sh` split above the questions anchor when the anchor sits directly above the OPEN QUESTIONS heading, and pin it with one vitest case."
+description: "Change the Level 2 insertion in `upgrade-level.sh` to split above the questions anchor when the anchor sits directly above the OPEN QUESTIONS heading, and pin it with one vitest case."
 trigger_phrases:
   - "upgrade level anchor insert plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | vitest (`cli` project) and `test-upgrade-level.sh` |
 
 ### Overview
-Make the Level 2 insertion in `upgrade-level.sh` split above the questions anchor when the anchor sits directly above the OPEN QUESTIONS heading, and pin it with one vitest case.
+Change the Level 2 insertion in `upgrade-level.sh` to split above the questions anchor when the anchor sits directly above the OPEN QUESTIONS heading, and pin it with one vitest case.
 <!-- /ANCHOR:summary -->
 
 ---

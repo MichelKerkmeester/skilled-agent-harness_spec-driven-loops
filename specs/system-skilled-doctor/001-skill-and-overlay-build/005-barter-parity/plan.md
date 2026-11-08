@@ -55,7 +55,7 @@ The engine gains a per-entry protected-path block, `.dsh` in its default runtime
 Single CLI engine.
 
 ### Key Components
-- **`overlay-engine.cjs`**: plans, classifies, applies and re-pins overlays; every change in this phase lands here.
+- **`overlay-engine.cjs`**: plans, classifies, applies and re-pins overlays. Every change in this phase lands here.
 - **`/doctor:overlay` assets**: the workflow YAML and presentation text that turn engine lines into the operator's plan and results.
 - **`_routes.yaml` and the derived advisor bridges**: route a described problem to the command.
 

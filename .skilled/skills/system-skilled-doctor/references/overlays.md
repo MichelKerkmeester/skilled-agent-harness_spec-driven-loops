@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Vendored Skilled Overlays
@@ -45,7 +45,7 @@ A file an overlay owns is edited in its overlay, never in the live copy. The nex
 The engine reads one setting file at the root of the vendored tree, `.skilled-overlays.json`:
 
 ```json
-{ "overlayDir": "barter-overlays" }
+{ "overlayDir": "team-overlays" }
 ```
 
 The value is a path relative to the tree root. With no setting file the folder is `skilled-overlays/`. The folder holds:
@@ -98,7 +98,7 @@ The engine never reads a `.env` file, even one a manifest entry names. A file wh
   "scope": "directory",
   "source": "sk-code/sk-code-frontend",
   "destination": ".skilled/skills/sk-code/sk-code-frontend",
-  "protectedPaths": ["assets/tokens.css", "references/barter-design-tokens.md"]
+  "protectedPaths": ["assets/tokens.css", "references/team-design-tokens.md"]
 }
 ```
 

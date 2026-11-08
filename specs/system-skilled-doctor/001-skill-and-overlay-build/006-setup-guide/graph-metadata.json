@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The root README held about 160 lines of setup detail written as reference",
     "created_at": "2026-11-08T10:47:42Z",
-    "last_save_at": "2026-11-08T11:17:23.385Z",
+    "last_save_at": "2026-11-08T12:29:48.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86bc2882bbf6fbbc8fe421d0cc1bc294b22cea644a1e9a7d7dcb230ef6dd028c",
+    "source_fingerprint": "sha256:e8c95c9ced432cc29213ff99200b1cc31b487e7a459392b339f690004eb1a25e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e1fe46ed43341de787dfdfa5c98ccc389b8b7db4335bc9f34d71f21d4c9b409",
+      "spec.md": "02a7619d4eebe06ec5ffb2a9b955c79bcea8c8b1ce34c4517fb319561b8ea9f2",
       "plan.md": "7b855a9d94c853f78dff8540657e6bed85b41a7f864aa6782026893f29049829",
       "tasks.md": "d8a419a085c2e96cf598c489d2780208d8dd1c08cd5175dee92637923da7b4c4",
-      "implementation-summary.md": "76b544f84974e375b3dbc8a71466e9c8bf9295b6dfb03cca54fd3b504604c120"
+      "implementation-summary.md": "5ef5e50856d7def77fd2b7f00170b7dac1c5a7c596394cf4ba5b1bd80c1db073"
     },
     "last_active_at": null
   }

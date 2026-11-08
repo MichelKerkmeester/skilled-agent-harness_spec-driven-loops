@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Link everything on the first symlink run and keep its relative links ignored"
-description: "Let planMergeTree count a relative link target that the same plan creates, ignore every relative link it makes, and pin both with tests."
+description: "Let planMergeTree count a relative link target that the same plan creates, ignore each relative link whose target is machine-local, and pin both with tests."
 trigger_phrases:
   - "symlink first link plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `node --test` on the symlink engine tests and the whole doctor suite |
 
 ### Overview
-Let planMergeTree count a relative link target that the same plan creates, ignore every relative link it makes, and pin both with tests.
+Let planMergeTree count a relative link target that the same plan creates, ignore each relative link whose target is machine-local, and pin both with tests.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -57,7 +57,7 @@ Single function change
 - **`planMergeTree` in `symlink-engine.cjs`**: plans the per-entry links of a merged folder
 
 ### Data Flow
-For each relative link in a source folder, the planner resolves its target in the project and plans the link when that target exists or an earlier action in the same plan creates it, then adds the link to the ignore list.
+For each relative link in a source folder, the planner resolves its target in the project and plans the link when that target exists or an earlier action in the same plan creates it, then adds the link to the ignore list when its target is a link the plan creates or already resolves into the checkout. An alias to the project's own folder, such as `.skilled/specs`, stays out of the ignore list.
 <!-- /ANCHOR:architecture -->
 
 

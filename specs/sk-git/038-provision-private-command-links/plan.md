@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Provision private local commands in the form the primary checkout holds them"
-description: "Make `_wn_link_local_commands` recreate each private entry in the form the primary checkout holds it, and pin each form in the provisioning test."
+description: "Change `_wn_link_local_commands` to recreate each private entry in the form the primary checkout holds it, and pin each form in the provisioning test."
 trigger_phrases:
   - "provision private command links plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `worktree-naming.test.sh` |
 
 ### Overview
-Make `_wn_link_local_commands` recreate each private entry in the form the primary checkout holds it, and pin each form in the provisioning test.
+Change `_wn_link_local_commands` to recreate each private entry in the form the primary checkout holds it, and pin each form in the provisioning test.
 <!-- /ANCHOR:summary -->
 
 ---

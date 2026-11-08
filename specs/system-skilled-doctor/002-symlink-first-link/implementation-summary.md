@@ -51,7 +51,7 @@ Linking Skilled into a new project now takes one run. The first `link` used to l
 
 ### One Run Links Everything
 
-A relative link inside a runtime folder, such as `.claude/skills` pointing at `.skilled/skills`, is now planned when the same run creates its target, so it no longer waits for a second run. Each such link gets an ignore line like every other link, so nothing new shows in `git status`. A link whose target the project lacks and the plan does not create is still skipped.
+A relative link inside a runtime folder, such as `.claude/skills` pointing at `.skilled/skills`, is now planned when the same run creates its target, so it no longer waits for a second run. Each such link gets an ignore line, so nothing new shows in `git status`. The ignore line goes only to a link whose target the plan creates or that already resolves into the checkout. An alias to the project's own content, such as `.skilled/specs -> ../specs`, stays visible so the project can commit it. A link whose target the project lacks and the plan does not create is still skipped.
 
 ### Files Changed
 
@@ -78,7 +78,7 @@ A DeepSeek V4.1 Flash worker on `opencode-go` made the change from a short liter
 | Decision | Why |
 |----------|-----|
 | Count a planned `mkdir` only as an exact match | An empty folder does not create what is under it, so an alias to a deeper path would dangle |
-| Ignore every relative link the merge makes | They sit inside framework folders that are themselves ignored, so a teammate without the link would get broken links |
+| Ignore a relative link only when its target is machine-local | A link into the checkout breaks for a teammate without one. An alias to the project's own folder works for everyone, so it stays committable |
 <!-- /ANCHOR:decisions -->
 
 ---

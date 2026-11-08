@@ -13,7 +13,7 @@ You can set up a project in one of two ways. Pick one per project.
 | | Link | Copy |
 | --- | --- | --- |
 | **How it works** | Your project links to your Skilled checkout | Your project commits its own copy of Skilled |
-| **Updates** | One `git pull` in the checkout updates every linked project | You re-pin the copy to a newer commit |
+| **Updates** | One `git pull` in the checkout updates every linked project | You re-pin the copy: move it from the commit it came from to a newer one |
 | **Your changes** | Live in your project's own files, next to the links | Live in an overlay folder that goes back on the copy after each update |
 | **Teammates** | Each one keeps their own Skilled checkout | Everyone gets Skilled from the project repo |
 | **Choose it when** | You work alone, or every teammate keeps a checkout | The team needs one pinned version, or you change Skilled's own files |
@@ -35,8 +35,8 @@ Open your Skilled checkout in your runtime and run:
 It asks four questions in one prompt:
 
 1. **Target repo:** the absolute path of your project.
-2. **Runtimes:** any of `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`.
-3. **Link shape:** choose `auto`.
+2. **Runtimes:** the AI coding tools you use. Pick any of `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`.
+3. **Link shape:** choose `auto`. [What Gets Linked](#what-gets-linked) explains the shapes.
 4. **Instruction file:** `embed` adds the shipped sections to your project's own `AGENTS.md`. `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at the checkout's copies.
 
 <!-- readme-check
@@ -51,9 +51,11 @@ The guide writes nothing. It prints the steps below with your paths filled in.
 | --- | --- | --- | --- |
 | 1 | `/doctor:symlink link --root <dir> --runtimes <list> --mode auto` | the checkout | Links `.skilled` and your runtime folders into the project |
 | 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md`. Skip it if you chose `link` |
-| 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode |
+| 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode, the bridge your runtime uses to call MCP tools |
 | 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings |
 | 5 | `/doctor:setup` | your project | Confirms the whole setup works |
+
+If you chose `link` for the instruction file, step 1 also carries `--link-instructions` and step 2 drops out.
 
 ### Step 3: Check the Links
 
@@ -67,28 +69,36 @@ Each folder should read `linked-whole` or `linked-merge`. A folder that reads `p
 
 - **Always:** `.skilled`.
 - **Per runtime:** `.claude` with `.mcp.json`, `.opencode`, `.codex`, `.cursor`, `.devin` or `.pi`.
-- **On request:** `--include` adds `repo-rules`, `.github`, `.utcp_config.json` or `.env`.
+- **On request:** `--include` takes `repo-rules`, `github`, `utcp` or `env`. They add the `repo-rules` folder, `.github`, `.utcp_config.json` and `.env`.
 - **Secrets:** linking `.env` shares the checkout's secrets with every tool in the project. The plan warns you before you approve it.
 
-A folder your project already has stays a real folder. Each entry inside it becomes its own link, and your own files there stay untouched.
+The link shape decides how each folder is linked:
 
-A folder your project lacks becomes one link. The exception is a folder that holds links of its own, such as `.claude/skills` pointing at `.skilled/skills`. The engine builds that folder entry by entry instead.
+- **`whole`:** each folder becomes one link to the checkout where it can.
+- **`merge`:** the folder stays a real folder, and each entry inside it becomes its own link.
+- **`auto`:** picks per folder, as described below.
+
+With `auto`, a folder your project already has stays a real folder. Each entry inside it becomes its own link, and your own files there stay untouched.
+
+A folder your project lacks becomes one link. The exception is a folder that holds a link to a sibling folder, such as `.skilled` (its `specs` link) or `.claude` (its `skills` link). The engine builds that folder entry by entry instead.
 
 ### Keep the Links Out of Git
 
-The links point at your machine's checkout, so never commit them. `link` writes an ignore line for each one to `.git/info/exclude`. Git reads that file but never commits it, so `git status` stays clean. Pass `--ignore gitignore` to write `.gitignore` instead.
+Most links point at your machine's checkout, so never commit them. `link` writes an ignore line for each of those to `.git/info/exclude`. Git reads that file but never commits it. Pass `--ignore gitignore` to write `.gitignore` instead.
+
+One link is different. When your project has its own `specs/` folder, `.skilled/specs` links to it with a relative path. That link works on any machine, so it receives no ignore line and you can commit it.
 
 ### Undo a Link
 
 Each `link` run ends by printing its undo command:
 
 ```
-/doctor:symlink unlink --run <run dir> --dry-run
+node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <run dir> --dry-run
 ```
 
-Drop `--dry-run` to run it for real. Unlink removes only what that run created. It restores only what that run replaced, and it removes the run's ignore lines. After several `link` runs, undo the newest first.
+`/doctor:symlink unlink --run <run dir>` does the same. Drop `--dry-run` to run it for real. Unlink removes only what that run created. It restores only what that run replaced, and it removes the run's ignore lines. After several `link` runs, undo the newest first.
 
-> **Context saves.** A save goes to the `specs/` folder of the repo you run it from. Run `/doctor:setup` and your saves from your project, not from the checkout.
+> **Context saves.** `/speckit:save` records your session's progress in the `specs/` folder of the repo you run it from. Run `/doctor:setup` and every save from your project, not from the checkout.
 
 ---
 
@@ -205,7 +215,7 @@ A re-pin moves your copy to a newer commit and applies your overlays again. It r
 3. **You approve.** The live run backs up every path it touches. Then it copies, moves the pin and applies the overlays.
 4. **It checks the result.** The run ends with `RESULT: PASSED` and the new pin in your manifest.
 
-A re-pin copies `.skilled` and the runtime folders. It never copies a root file such as `AGENTS.md`, so your project's version survives. Each upstream change it skips prints as a `not-copied` line. Copy those over by hand if you want them.
+A re-pin copies `.skilled` and the runtime folders. It never copies a root file such as `AGENTS.md`, so your project's version survives. Each upstream change it skips prints as a `not-copied` line. Copy those over by hand if you want them. A top-level link, such as `specs`, is skipped without a line.
 
 A re-pin refuses to start when someone edited a file in place that no overlay owns, because the new copy would erase that edit. The refusal names the file. Move the edit into an overlay or add the path to the manifest's `repin.exclude` list. You can also restore the file from your pin.
 
@@ -213,8 +223,8 @@ A re-pin refuses to start when someone edited a file in place that no overlay ow
 
 Each live run saves a backup in `skilled-overlays/repin-runs/<run-id>/` and prints the run id. Undo it with:
 
-```bash
-node .skilled/commands/doctor/scripts/overlay-engine.cjs repin --rollback <run-id>
+```
+/doctor:overlay repin --rollback <run-id>
 ```
 
 Rollback restores every backed-up file byte for byte. It removes the files the run added and sets the old pin back. Run `/doctor:overlay status` afterwards to confirm.
@@ -244,7 +254,8 @@ Already keep overlays with a script of your own? The engine reads the same manif
 | `no overlay manifest at skilled-overlays/overlay-manifest.json` | The engine found no overlay folder | Create one (section 3, step 2), or name yours in `.skilled-overlays.json` |
 | `overlay-edited` | An overlay changed and the copy lags behind | Run `/doctor:overlay apply` |
 | `live-edited` | Someone edited the copy directly | Run `/doctor:overlay apply --capture <path>` |
-| `both-changed` or `upstream-moved` | Two versions of one change disagree | Read both, update the overlay by hand and run `status` again |
+| `both-changed` | The overlay and the copy both changed since the last apply | Read both, update the overlay by hand and run `status` again |
+| `upstream-moved` | The pin moved, and the file matches neither the old copy nor your overlay | Update the overlay to fit the new upstream file and run `status` again |
 | `refusing to inspect a protected path` | An overlay walks a file with `token` in its name | Add that file to the overlay's `protectedPaths`, as the line says |
 | `refuse: unowned <path> differs from the old pin` | Someone edited a file in place that no overlay owns | Move the edit into an overlay, or restore the file from your pin |
 | A held `.build-lock` | Another `apply` is running, or one crashed | Once no run is active, delete the lock file the message names |

@@ -69,12 +69,12 @@ A token-named file the engine may not read used to stop the whole report, so one
 | `.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json` | Modified | Regenerated from the routes |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts` | Modified | Regenerated from the routes |
 | `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | Per-entry refusal, re-pin copy set and not-copied list, adoption section |
-| `README.md` | Modified | §5 names the re-pin copy set, the not-copied list and adoption |
+| `README.md` | Modified | §5 named the re-pin copy set, the not-copied list and adoption. That detail now lives in `SETUP.md`, and §5 points there |
 | `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml` | Modified | Treats a protected-path `MISS` line as a blocked entry |
 | `.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md` | Created | Scenario SKD-004: the per-entry protected-file refusal |
 | `.skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md` | Modified | Indexes SKD-004 |
-| Barter `skilled/.skilled-overlays.json` | Created | Names `barter-overlays`; untracked in Barter, not committed |
-| Barter `skilled/barter-overlays/overlay-manifest.json` | Modified | `protectedPaths` on `repo-frontend` and a `repin` block; untracked in Barter, not committed |
+| Barter `skilled/.skilled-overlays.json` | Created | Names `barter-overlays`. Untracked in Barter, not committed |
+| Barter `skilled/barter-overlays/overlay-manifest.json` | Modified | `protectedPaths` on `repo-frontend` and a `repin` block. Untracked in Barter, not committed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -108,11 +108,11 @@ A five-iteration deep-research run on pi with DeepSeek V4.1 Flash at `--thinking
 |-------|--------|
 | Upstream `status --root barter/ai-speckit/skilled` | PASS: `checked=132 ok=132 miss=0`, `RESULT: PASSED` (was exit 2) |
 | Barter `replay.cjs --check` and `sync.cjs --status` | PASS: `checked=132 ok=132 miss=0`, `in-sync=468` |
-| Doctor suite | 1,069 tests, 1,069 pass, 0 fail (base: 1,065, 1,059, 6; the six agents-md failures came from the stale manifest history and are fixed) |
-| Mutation pass | Each of four removed behaviors fails its test; engine restored byte-identical |
+| Doctor suite | 1,069 tests, 1,069 pass, 0 fail (base: 1,065, 1,059, 6. The six agents-md failures came from the stale manifest history and are fixed) |
+| Mutation pass | Each of four removed behaviors fails its test. Engine restored byte-identical |
 | `doctor-phrase-reach.cjs` | PASS: `STATUS=OK phrases=228 bridges=35` |
 | Advisor vitest suite | PASS: 160 files, 1,373 tests, 8 skipped |
-| Staged re-pin of Barter onto `c29f26ded8` | PASS: exit 0, `checked=132 ok=132 miss=0`, `RESULT: STAGED`, no blocked overlay; listed `README.md` as not copied, skipped 9 regenerate and 10 verify steps, and found 8 overlays that now equal upstream |
+| Staged re-pin of Barter onto `c29f26ded8` | PASS: exit 0, `checked=132 ok=132 miss=0`, `RESULT: STAGED`, no blocked overlay. Listed `README.md` as not copied, skipped 9 regenerate and 10 verify steps, and found 8 overlays that now equal upstream |
 <!-- /ANCHOR:verification -->
 
 ---

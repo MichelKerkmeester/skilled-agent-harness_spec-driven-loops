@@ -56,7 +56,7 @@ git status  ?? .claude/manual-testing-playbook  ?? .claude/repo-rules  ?? .claud
 
 ### In Scope
 - Count a relative link's target as present when the same plan creates it.
-- Add each relative link the merge creates to the ignore list.
+- Add each relative link the merge creates to the ignore list when its target is a link the same plan creates or one that already resolves into the checkout. An alias to the project's own content, such as `.skilled/specs -> ../specs`, stays visible so the project can commit it.
 - Remove the two workaround notes from `SETUP.md`.
 
 ### Out of Scope

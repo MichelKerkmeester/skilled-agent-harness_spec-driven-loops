@@ -51,7 +51,7 @@ Setting Skilled up in your own project now has one guide. `SETUP.md` helps you c
 
 ### One Guide for Both Setups
 
-The link path follows `/doctor:install` and `/doctor:symlink` from plan to undo. The copy path starts from nothing: make the copy, write the manifest, add a first `file` and `directory` overlay, apply it, handle a live edit, re-pin and roll back. A health table and a troubleshooting table close it, each row a line you would see and the fix.
+The link path follows `/doctor:install` and `/doctor:symlink` from plan to undo. The copy path starts from nothing: create the copy, write the manifest, add a first `file` and `directory` overlay, apply it, handle a live edit, re-pin and roll back. A health table and a troubleshooting table close it, each row a line you would see and the fix.
 
 ### Files Changed
 
@@ -77,7 +77,7 @@ Every step was run before it was written. The link path ran on an empty git repo
 
 | Decision | Why |
 |----------|-----|
-| Write the two link rough edges as they behave | The guide must match the engine today, and fixing the engine is a separate change |
+| Document the two link rough edges until they were fixed | The guide had to match the engine of the day. `002-symlink-first-link` later fixed both and removed the notes |
 | Keep Install in the root README | Installing this checkout comes before either setup path, and the guide links to it |
 | Show only `file` and `directory` overlays as examples | Most projects need only those, and the reference covers the rest |
 <!-- /ANCHOR:decisions -->

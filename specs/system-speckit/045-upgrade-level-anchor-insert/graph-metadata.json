@@ -136,7 +136,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Make",
+        "name": "Overview Change",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`upgrade-level.sh` inserted the Level 2 sections directly above the `## N",
     "created_at": "2026-11-08T08:54:39Z",
-    "last_save_at": "2026-11-08T09:39:17.567Z",
+    "last_save_at": "2026-11-08T12:29:53.048Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,11 +201,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f78be4e282c1f855904d566b7c11ae66fe57648656b00714c1f0d44b403188cd",
+    "source_fingerprint": "sha256:5a50458b93d3fb2c98745d342f90e4da2ff627480de79fa5a55f2592acb3aa46",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f96c2ef7763c6b1c31bb135b69560131e568286ddec77b17035500579de5bca",
-      "plan.md": "18e160d24e9e89b0ae0c03bc369d240c1d785f4c4e6184babebed71fa4f45440",
+      "plan.md": "ddd3e67b028f14652fb0272ab21286656121f25ef57714bd833a626ce68c8470",
       "tasks.md": "a342b8b575dda73a366cb41bef4d3e701725c4afeedee136323e101d26ec9e9d",
       "implementation-summary.md": "fd889b22f6336273dd842642ada8c21bc1b62bff1b77113838f30161d0d39b1c"
     },
