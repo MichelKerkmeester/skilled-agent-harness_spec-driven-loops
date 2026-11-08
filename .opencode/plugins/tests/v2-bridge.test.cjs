@@ -136,6 +136,7 @@ test('session.messages adapts v2 context entries to the v1 data envelope', async
       content: [
         { type: 'reasoning', text: 'Private reasoning' },
         { type: 'text', text: 'First answer' },
+        { type: 'tool', id: 'call_1', name: 'question', state: { status: 'completed' } },
         { type: 'text', text: 'Second answer' },
       ],
     },
@@ -169,6 +170,7 @@ test('session.messages adapts v2 context entries to the v1 data envelope', async
         info: { id: 'message_assistant', role: 'assistant', sessionID: 'session_1' },
         parts: [
           { type: 'text', text: 'First answer' },
+          { type: 'tool', tool: 'question', callID: 'call_1', state: { status: 'completed' } },
           { type: 'text', text: 'Second answer' },
         ],
       },

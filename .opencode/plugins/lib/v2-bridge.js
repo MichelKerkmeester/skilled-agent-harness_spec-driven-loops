@@ -204,6 +204,11 @@ function toV1Message(message, sessionID) {
       if (part?.type === 'text' && typeof part.text === 'string') {
         parts.push({ type: 'text', text: part.text });
       }
+      // OpenCode 2 names a tool call's tool `name` where a v1 part uses `tool`,
+      // so a plugin reading v1 parts can still see which tools a turn called.
+      if (part?.type === 'tool' && typeof part.name === 'string') {
+        parts.push({ type: 'tool', tool: part.name, callID: part.id, state: part.state });
+      }
     }
   }
 
