@@ -8,7 +8,7 @@ import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { ERROR_POLICY, isHeadlessSession, registerAskSurfaceGuard } from './ask-surface-guard.mjs';
+import { ERROR_POLICY, isHeadlessSession, registerAskSurfaceGuard } from '../dsh/ask-surface-guard.mjs';
 import { cleanup, disabled, enabled, fakeAgent, interactive, leaf, noticeText, plainNotice, pluginHarness, tempDir } from '../../shared/tests/dsh-plugin-harness.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));

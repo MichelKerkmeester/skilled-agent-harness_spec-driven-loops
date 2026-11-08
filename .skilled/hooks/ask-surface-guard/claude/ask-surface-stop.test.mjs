@@ -68,6 +68,18 @@ test('an AskUserQuestion call earlier in the turn passes the menu', (t) => {
   assert.deepEqual(run({ stop_hook_active: false, transcript_path: file, last_assistant_message: menu }), { status: 0, stdout: '' });
 });
 
+test('a slash command opens a turn, so an ask call before it does not excuse this one', (t) => {
+  const file = transcript(t, [
+    { type: 'user', message: { content: 'first task' } },
+    { type: 'assistant', message: { content: [{ type: 'tool_use', id: 't1', name: 'AskUserQuestion', input: {} }] } },
+    { type: 'user', message: { content: '<command-message>speckit:plan</command-message>\n<command-name>/speckit:plan</command-name>' } },
+    { type: 'user', message: { content: [{ type: 'text', text: '<system-reminder>harness note</system-reminder>' }] } },
+    { type: 'assistant', message: { content: [{ type: 'text', text: menu }] } },
+  ]);
+  const envelope = JSON.parse(run({ stop_hook_active: false, transcript_path: file }).stdout);
+  assert.equal(envelope.decision, 'block');
+});
+
 test('an ask call in an earlier turn does not excuse this one', (t) => {
   const file = transcript(t, [
     { type: 'assistant', message: { content: [{ type: 'tool_use', id: 't1', name: 'AskUserQuestion', input: {} }] } },

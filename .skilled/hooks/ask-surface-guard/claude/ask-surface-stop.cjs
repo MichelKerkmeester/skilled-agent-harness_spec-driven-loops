@@ -44,12 +44,17 @@ function blocksOf(entry) {
 }
 
 // A typed operator prompt opens a turn. Tool results and harness notes also
-// arrive as user entries, so they do not.
+// arrive as user entries, so they do not. A slash command is typed too, but
+// it is stored wrapped in tags, so its command-name tag marks it.
+function isOperatorText(text) {
+  return typeof text === 'string' && (!text.startsWith('<') || text.includes('<command-name>'));
+}
+
 function isTypedPrompt(entry) {
   if (entry?.type !== 'user' || entry.isMeta === true || entry.isCompactSummary === true) return false;
   const content = entry?.message?.content;
-  if (typeof content === 'string') return !content.startsWith('<');
-  return blocksOf(entry).some((block) => block.type === 'text' && typeof block.text === 'string' && !block.text.startsWith('<'));
+  if (typeof content === 'string') return isOperatorText(content);
+  return blocksOf(entry).some((block) => block.type === 'text' && isOperatorText(block.text));
 }
 
 function readTurn(entries) {

@@ -2,7 +2,8 @@
 // MODULE: Pi Ask Surface Guard Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -27,7 +28,7 @@ function fakePi() {
   return { pi, handlers, sent };
 }
 
-const context = { sessionManager: { getSessionId: () => 'session-pi' } };
+const context = { hasUI: true, cwd: tmpdir(), sessionManager: { getSessionId: () => 'session-pi' } };
 const userThenMenu = [
   { role: 'user', content: 'pick one' },
   { role: 'assistant', content: [{ type: 'text', text: menu }] },
@@ -35,21 +36,46 @@ const userThenMenu = [
 
 describe('pi ask-surface guard', () => {
   const saved = { ...process.env };
+  let markerDir = '';
   beforeEach(() => {
+    markerDir = mkdtempSync(join(tmpdir(), 'ask-surface-pi-'));
     process.env.HOOK_FLAGS_CONFIG = '/nonexistent/hook-flags.env';
     delete process.env.SYSTEM_ASK_SURFACE_DISABLED;
     delete process.env.SYSTEM_HOOKS_DISABLED;
   });
-  afterEach(() => { process.env = { ...saved }; });
+  afterEach(() => {
+    process.env = { ...saved };
+    rmSync(markerDir, { recursive: true, force: true });
+  });
 
-  it('starts one follow-up turn for a run ending in a prose menu, and skips the run it started', async () => {
+  it('starts one follow-up turn for a run ending in a prose menu', async () => {
     const { pi, handlers, sent } = fakePi();
-    askSurfaceGuard(pi);
-    await handlers.get('agent_end')!({ messages: userThenMenu }, context);
+    askSurfaceGuard(pi, { markerDir });
     await handlers.get('agent_end')!({ messages: userThenMenu }, context);
     expect(sent).toHaveLength(1);
     expect(sent[0].options).toEqual({ deliverAs: 'followUp', triggerTurn: true });
     expect(JSON.stringify(sent[0].message)).toContain('ask_user_question');
+  });
+
+  it('sends one operator turn back once, however many agent loops end in the menu', async () => {
+    const { pi, handlers, sent } = fakePi();
+    askSurfaceGuard(pi, { markerDir });
+    const followUp = { role: 'custom', customType: 'ask-surface-guard', content: 'ask through the tool' };
+    let messages: unknown[] = userThenMenu;
+    for (let loop = 0; loop < 5; loop += 1) {
+      await handlers.get('agent_end')!({ messages }, context);
+      messages = [...messages, followUp, { role: 'assistant', content: [{ type: 'text', text: menu }] }];
+    }
+    expect(sent).toHaveLength(1);
+    await handlers.get('agent_end')!({ messages: [...messages, { role: 'user', content: 'next task' }, { role: 'assistant', content: [{ type: 'text', text: menu }] }] }, context);
+    expect(sent).toHaveLength(2);
+  });
+
+  it('never sends a run without a UI back, since no question tool can run there', async () => {
+    const { pi, handlers, sent } = fakePi();
+    askSurfaceGuard(pi, { markerDir });
+    await handlers.get('agent_end')!({ messages: userThenMenu }, { ...context, hasUI: false });
+    expect(sent).toHaveLength(0);
   });
 
   it('passes a run that asked through a question tool', async () => {
