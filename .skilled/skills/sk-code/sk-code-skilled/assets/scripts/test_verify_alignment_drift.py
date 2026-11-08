@@ -117,6 +117,19 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             findings = self.module.check_file(str(file_path))
             self.assertFalse(any(item.rule_id == "TS-MODULE-HEADER" for item in findings))
 
+    def test_compiler_emitted_declarations_skip_ts_module_header(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            emitted = root / "reader.d.mts"
+            self.write_file(emitted, "export function read(): string;\n//# sourceMappingURL=reader.d.mts.map\n")
+            authored = root / "shim.d.ts"
+            self.write_file(authored, "export function shim(): string;\n")
+
+            emitted_findings = self.module.check_file(str(emitted))
+            authored_findings = self.module.check_file(str(authored))
+            self.assertFalse(any(item.rule_id == "TS-MODULE-HEADER" for item in emitted_findings))
+            self.assertTrue(any(item.rule_id == "TS-MODULE-HEADER" for item in authored_findings))
+
     def test_warning_only_exit_code_is_zero_by_default(self) -> None:
         # JS-USE-STRICT is intentionally kept as WARN (not promoted to ERROR).
         with tempfile.TemporaryDirectory() as temp_dir:
