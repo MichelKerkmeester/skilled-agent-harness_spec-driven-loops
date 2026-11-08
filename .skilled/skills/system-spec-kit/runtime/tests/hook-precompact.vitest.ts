@@ -4,11 +4,25 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
-import { buildCompactContext, detectSpecFolder, isSubagentPayload, tailFile } from '../hooks/claude/compact-inject.js';
+import {
+  buildCompactContext,
+  buildMergedCompactResult,
+  detectSpecFolder,
+  isSubagentPayload,
+  mintHistoryLocator,
+  persistCompactResult,
+  tailFile,
+  type CompactResult,
+} from '../hooks/claude/compact-inject.js';
 import { ensureStateDir, loadState, updateState, getStatePath, type PersistedHookState } from '../hooks/claude/hook-state.js';
 import { truncateToTokenBudget, COMPACTION_TOKEN_BUDGET } from '../hooks/claude/shared.js';
+import { createSharedPayloadEnvelope } from '../lib/context/shared-payload.js';
+import {
+  CANONICAL_FOLD_VERSION,
+  getUnicodeRuntimeFingerprint,
+} from '../cli/lib/unicode-normalization';
 
 function loadPersistedState(sessionId: string): PersistedHookState | null {
   const result = loadState(sessionId);
@@ -54,6 +68,66 @@ describe('precompact hook', () => {
 
       const state = loadPersistedState(testSessionId);
       expect(state!.pendingCompactPrime!.payload).toBe('new');
+    });
+  });
+
+  describe('history locator persistence', () => {
+    function compactResult(text: string): CompactResult {
+      const now = new Date().toISOString();
+      return {
+        text,
+        payloadContract: createSharedPayloadEnvelope({
+          kind: 'compaction',
+          sections: [{ key: 'test', title: 'Test Compact Context', content: text, source: 'session' }],
+          summary: 'Test compact payload',
+          provenance: {
+            producer: 'compact_merger',
+            sourceSurface: 'test-compact-cache',
+            trustState: 'cached',
+            generatedAt: now,
+            lastUpdated: null,
+            sourceRefs: ['test-compact-cache', 'hook-state'],
+            sanitizerVersion: CANONICAL_FOLD_VERSION,
+            runtimeFingerprint: getUnicodeRuntimeFingerprint(),
+          },
+        }),
+      };
+    }
+
+    it('persists the locator beside the compact cache in the same state write', () => {
+      const root = mkdtempSync(join(tmpdir(), 'precompact-locator-'));
+      const transcriptPath = join(root, `${testSessionId}.jsonl`);
+      try {
+        writeFileSync(transcriptPath, `${JSON.stringify({ type: 'user', message: { content: 'hello' } })}\n`);
+        const timestamp = new Date().toISOString();
+        const locator = mintHistoryLocator({
+          sessionId: testSessionId,
+          transcriptPath,
+          workspace: process.cwd(),
+          runtime: 'claude',
+          mintedAt: timestamp,
+        });
+
+        expect(locator).not.toBeNull();
+        expect(persistCompactResult(testSessionId, compactResult('## Active Files\n- /test.ts'), timestamp, locator)).toBe(true);
+
+        const state = loadPersistedState(testSessionId);
+        expect(state).not.toBeNull();
+        expect(state!.pendingCompactPrime?.cachedAt).toBe(timestamp);
+        expect(state!.historyLocator?.handle).toBe(locator!.handle);
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
+    });
+
+    it('writes no locator when the payload has no transcript path', () => {
+      const timestamp = new Date().toISOString();
+      expect(persistCompactResult(testSessionId, compactResult('summary only'), timestamp, null)).toBe(true);
+
+      const state = loadPersistedState(testSessionId);
+      expect(state).not.toBeNull();
+      expect(state!.pendingCompactPrime).not.toBeNull();
+      expect(state!.historyLocator).toBeNull();
     });
   });
 
@@ -126,6 +200,47 @@ describe('precompact hook', () => {
       expect(detectSpecFolder([
         `Continue in ${folder}`,
       ])).toBe(folder);
+    });
+  });
+
+  describe('recovered context brief', () => {
+    const projectRoot = resolve(import.meta.dirname, '../../../../..');
+    const commentHygiene = '.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh';
+    const historyFixture = '.skilled/skills/system-spec-kit/runtime/tests/_support/history-fixtures.ts';
+    const transcript = [
+      JSON.stringify({ message: { content: `Read ${commentHygiene}` } }),
+      JSON.stringify({ message: { content: `Read ${join(projectRoot, historyFixture)}` } }),
+      JSON.stringify({ message: { content: 'Read sk-code-quality/scripts/check-comment-hygiene.sh' } }),
+      // Each word repeats so the pre-filter frequency floor surfaces it.
+      JSON.stringify({
+        message: {
+          content: 'Users saw The regression. Users saw The regression. Development reviewed it. '
+            + 'Development approved. Fixed the reader. Fixed the writer. RESULT: PASSED. RESULT: PASSED.',
+        },
+      }),
+      JSON.stringify({ message: { content: 'Reference /tmp/MEGA/catalog.json and again in reference/MEGA/catalog.json' } }),
+      JSON.stringify({ message: { content: 'buildMergedContext( runs twice; buildMergedContext( is hot' } }),
+    ];
+
+    it('keeps each path whole and drops a fragment of the same file', async () => {
+      const result = await buildMergedCompactResult(transcript, projectRoot);
+      const activeFiles = result.payloadContract.sections
+        .find((section) => section.source === 'code-graph')?.content ?? '';
+
+      expect(activeFiles).toContain(`- ${commentHygiene}`);
+      expect(activeFiles).toContain(`- ${historyFixture}`);
+      expect(activeFiles).not.toContain('- /skills/sk-code/');
+      expect(activeFiles).not.toContain('- /_support/history-fixtures.ts');
+      expect(activeFiles.match(/check-comment-hygiene\.sh/g) ?? []).toHaveLength(1);
+    });
+
+    it('keeps paths and prose out of the attention topics', async () => {
+      const result = await buildMergedCompactResult(transcript, projectRoot);
+
+      for (const topic of ['Users', 'The', 'Development', 'Fixed', 'RESULT', 'PASSED', 'MEGA', 'Read', 'Reference']) {
+        expect(result.text).not.toContain(`- ${topic} (referenced`);
+      }
+      expect(result.text).toContain('- buildMergedContext (referenced 2x)');
     });
   });
 

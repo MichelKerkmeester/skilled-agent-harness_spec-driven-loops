@@ -279,6 +279,7 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 
 | Playbook ID | Scenario | Scenario File | Catalog Entry |
 |---|---|---|---|
+| compaction-history-lookup | Compaction history lookup: fresh locator, missing or stale locator, unsupported runtime, printed command and the 30-minute TTL | [compaction-history-lookup](plugins-and-hooks/compaction-history-lookup.md) | [compaction-history-lookup](../feature-catalog/context-preservation/compaction-history-lookup.md) |
 | completion-evidence-sentinel | Completion evidence sentinel | [completion-evidence-sentinel](plugins-and-hooks/completion-evidence-sentinel.md) | — |
 | decision-capture-claude-hook | Decision capture Claude hook: one queued record per answered AskUserQuestion, registry and mirror wiring, kill switch | [decision-capture-claude-hook](plugins-and-hooks/decision-capture-claude-hook.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
 | decision-capture-transcript-sweeps | Decision capture transcript sweeps for Claude, OpenCode and Devin, each answer queued once | [decision-capture-transcript-sweeps](plugins-and-hooks/decision-capture-transcript-sweeps.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
