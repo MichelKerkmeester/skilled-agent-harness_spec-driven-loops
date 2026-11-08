@@ -220,7 +220,7 @@
     ],
     "causal_summary": "DeepSeek Harness is installed on this machine (`dsh` 0.2.2-rc.1) but the repository cannot dispatch to it",
     "created_at": "2026-11-05T21:56:17Z",
-    "last_save_at": "2026-11-08T14:48:55.705Z",
+    "last_save_at": "2026-11-08T17:09:32.558Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -235,6 +235,6 @@
       "handover.md": "9c49e425e654489b56a9bbcc2745ee3f97c298e44323ee88738d8c3e3fb4df31"
     },
     "last_active_child_id": "cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs",
-    "last_active_at": "2026-11-08T14:48:55.705Z"
+    "last_active_at": "2026-11-08T17:09:32.558Z"
   }
 }

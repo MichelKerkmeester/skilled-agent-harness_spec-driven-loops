@@ -6,17 +6,18 @@
     "phase",
     "ci-red-check-repairs"
   ],
-  "lastUpdated": "2026-11-08T14:48:55.660Z",
+  "lastUpdated": "2026-11-08T17:09:32.536Z",
   "specId": "016",
   "folderSlug": "ci-red-check-repairs",
   "parentChain": [
     "cli-external-orchestration",
     "085-cli-deepseek-harness-creation"
   ],
-  "memorySequence": 3,
+  "memorySequence": 4,
   "memoryNameHistory": [
     "08-11-26_10-05__repaired-the-four-causes-behind-five-red-ci.md",
     "08-11-26_13-33__second-round-of-ci-red-check-repairs-history.md",
-    "08-11-26_15-48__records-the-operator-decision-to-resolve-and-push.md"
+    "08-11-26_15-48__records-the-operator-decision-to-resolve-and-push.md",
+    "08-11-26_18-09__deep-research-5-iterations-cli-opencode-opencode.md"
   ]
 }
