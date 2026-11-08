@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The executor-delegation resolver treats any bare executor alias as a hand-off, so \"Make the Claude Code Stop hook return a block\" routes to `cli-claude-code` at confidence 0.95 and caps `sk-code` below it",
     "created_at": "2026-11-08T16:20:14Z",
-    "last_save_at": "2026-11-08T17:10:39.414Z",
+    "last_save_at": "2026-11-08T17:39:12.323Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9368bbd17deb35521861b0f86f2b540cb75e5eb37c1e20ab2df091be0b6184aa",
+    "source_fingerprint": "sha256:588578df4316dd00dc75bd107673fdd70cda14d4d5f1f124bd46f03c21946db0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "098bf6889fa2511c8168a56647c44cd31f8d10bfc5939784131ff56d0c4eb1f8",
       "plan.md": "fda2c1ac6330bb32ff97a69f76d69ca70226812aa885ca7906d56fa7802092e2",
       "tasks.md": "afa945c65bc3e6daa4b970cd902514ee73fea7ae1974417103d33c85439f7dfa",
       "decision-record.md": "1a192a0a7c170d6bd89ab3b5f2ba4d86a708936e202406a70064d7656808dd51",
-      "implementation-summary.md": "bc8f2b1a08a23ab77b7e401eb38f7d3c646a98421d3dd679746cbc9463495557"
+      "implementation-summary.md": "fb53cb0ed2ecb0e99b6be1d7993a83650cb4416ff331d255bf2cfaa9622ff8fe"
     },
     "last_active_at": null
   }

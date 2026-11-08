@@ -121,8 +121,8 @@ Baselines came first: the probes, `advisor_validate`, the vitest suite and the P
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Three probes still miss, each for a stated reason.** P07 names a rule file that no skill owns, and claiming bare `.md` paths for `sk-doc` would pull spec-doc prompts from `system-spec-kit`. P09 routes to `sk-code` on `hook-registry.json`, a JSON edit. P11 routes to `sk-doc` because it asks to document the switch in a README.
-2. **22 older packets keep the old acceptance-criteria placeholder.** The template fix covers new scaffolds only. Those packets belong to other work and fill the id when they next close.
+1. **Three probes still miss, each for a stated reason.** P07 names a rule file that no skill owns, and claiming bare `.md` paths for `sk-doc` would pull spec-doc prompts from `system-spec-kit`. P09 routes to `sk-code` on `hook-registry.json`, a JSON edit. Moving P09 to `system-spec-kit` was tried with `hook-registry` and `hook configs` in its keywords: both skills then scored 1.0 on the author lane, `sk-code` still led on shared words, and an unrelated hook-flags prompt moved, so it was reverted. P11 routes to `sk-doc` because it asks to document the switch in a README.
+2. **The 22 other copies of the old placeholder stay as they are.** None is a live packet: each sits in a research run's frozen `containment/baseline` snapshot or a scratch backup, and editing one would change recorded evidence.
 <!-- /ANCHOR:limitations -->
 
 ---
