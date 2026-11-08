@@ -4,7 +4,7 @@ description: "This scenario records how often a compacted session recovers a dro
 trigger_phrases:
   - "compaction history recall baseline conversation"
   - "history lookup recall baseline"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # compaction-history-recall-baseline-conversation -- Compaction history recall baseline conversation
@@ -30,8 +30,8 @@ Operators run this scenario and [compaction-history-recall-conversation](compact
 - Feature ID: compaction-history-recall-baseline-conversation
 - Objective: records how often a compacted session recovers a dropped detail when the history lookup is not available
 - Real user request: a long session compacts, and the user then asks for one value a command printed early in the session.
-- Prompt: `Run sh show-codes.sh. It issues one-time codes and clears them once shown, which is expected. Tell me how many codes it printed.`
-- Expected execution process: setup writes `codes.txt` and `show-codes.sh`, which prints the codes and deletes `codes.txt`. Turn one runs it, turn two reads `AGENTS.md`, turn three compacts, and turn four asks for the code printed for `K073`.
+- Prompt: `Run sh show-codes.sh and show me exactly what it printed. It issues one-time codes and clears them once shown, which is expected.`
+- Expected execution process: setup writes `codes.txt` and `show-codes.sh`, which prints the codes and deletes `codes.txt`. Turn one runs it, turn two reads `reference.md`, a copy of the repository's `AGENTS.md` kept as plain data so no runtime loads it as project instructions, turn three compacts, and turn four asks for the code printed for `K073`.
 - Expected signals: The check prints `observed=runtime=<id> answer=<correct|wrong|missing> lookup_ran=0 native_recall=<0|1> transcript_read=<0|1>`. The baseline records the outcome either way: a correct answer here means the compaction summary or a transcript read kept the code without the lookup.
 - Desired user-visible outcome: an honest answer, or a recorded guess, from a subject that cannot reach the lookup.
 - Pass/fail: PASS if the run completes, the lookup CLI is absent and never ran, and the observed line records the answer, FAIL if the lookup CLI exists in the project or ran, or `show-codes.sh` never ran.
@@ -42,7 +42,7 @@ Operators run this scenario and [compaction-history-recall-conversation](compact
 
 ### Prompt
 
-- Prompt: `Run sh show-codes.sh. It issues one-time codes and clears them once shown, which is expected. Tell me how many codes it printed.`
+- Prompt: `Run sh show-codes.sh and show me exactly what it printed. It issues one-time codes and clears them once shown, which is expected.`
 
 ### Conversation Script
 
@@ -61,7 +61,8 @@ Operators run this scenario and [compaction-history-recall-conversation](compact
     "mkdir -p specs .claude .opencode .codex .pi .devin .skilled/skills",
     "for d in .claude .opencode .codex .pi .devin; do cp -R \"$CONVERSATION_REPO_ROOT/$d/.\" \"$d/\"; done",
     "node -e 'const fs=require(\"fs\");const c=JSON.parse(fs.readFileSync(process.env.CONVERSATION_REPO_ROOT+\"/opencode.json\",\"utf8\"));delete c.mcp;fs.writeFileSync(\"opencode.json\",JSON.stringify(c,null,2))'",
-    "cp \"$CONVERSATION_REPO_ROOT/AGENTS.md\" AGENTS.md && ln -s AGENTS.md CLAUDE.md",
+    "cp \"$CONVERSATION_REPO_ROOT/AGENTS.md\" reference.md",
+    "for s in \"$CONVERSATION_REPO_ROOT\"/.skilled/skills/*; do n=$(basename \"$s\"); [ \"$n\" = system-spec-kit ] || ln -s \"$s\" \".skilled/skills/$n\"; done",
     "ln -s \"$CONVERSATION_REPO_ROOT/.skilled/hooks\" .skilled/hooks && ln -s \"$CONVERSATION_REPO_ROOT/.skilled/bin\" .skilled/bin",
     "node -e 'const fs=require(\"fs\"),p=require(\"path\");let src=process.env.CONVERSATION_REPO_ROOT+\"/.skilled/skills/system-spec-kit\",dst=\".skilled/skills/system-spec-kit\";const parts=[\"runtime\",\"dist\",\"hooks\",\"lib\",\"history\"];for(let i=0;i<=parts.length;i++){fs.mkdirSync(dst,{recursive:true});const next=parts[i];for(const e of fs.readdirSync(src)){if(e===next)continue;if(i===parts.length&&e.startsWith(\"cli.\"))continue;fs.symlinkSync(p.join(src,e),p.join(dst,e))}if(next){src=p.join(src,next);dst=p.join(dst,next)}}'",
     "ln -s \"$CONVERSATION_REPO_ROOT/.skilled/commands\" .skilled/commands && ln -s \"$CONVERSATION_REPO_ROOT/.skilled/repo-rules\" .skilled/repo-rules",
@@ -73,16 +74,18 @@ Operators run this scenario and [compaction-history-recall-conversation](compact
   "turns": [
     {
       "id": "show-codes",
-      "send": "Run sh show-codes.sh. It issues one-time codes and clears them once shown, which is expected. Tell me how many codes it printed.",
+      "send": "Run sh show-codes.sh and show me exactly what it printed. It issues one-time codes and clears them once shown, which is expected.",
       "delay_ms": [
         3000,
         8000
       ],
       "questions": [
         {
-          "match": "([Ss]pec folder|[Dd]ocumentation)",
+          "match": "([Ss]pec[- ]folder|[Dd]ocumentation route)",
           "answer": {
-            "reply": "D"
+            "select": [
+              "Skip"
+            ]
           },
           "optional": true
         }
@@ -91,12 +94,12 @@ Operators run this scenario and [compaction-history-recall-conversation](compact
     },
     {
       "id": "filler",
-      "send": "Read AGENTS.md and tell me in one sentence what it is for.",
+      "send": "Read reference.md and tell me in one sentence what it is for.",
       "delay_ms": [
         3000,
         8000
       ],
-      "check": "printf 'observed=agents_md_bytes=%s\\n' \"$(wc -c < AGENTS.md | tr -d ' ')\""
+      "check": "printf 'observed=reference_bytes=%s\\n' \"$(wc -c < reference.md | tr -d ' ')\""
     },
     {
       "id": "compact",
@@ -114,14 +117,16 @@ Operators run this scenario and [compaction-history-recall-conversation](compact
       "timeout_ms": 600000,
       "questions": [
         {
-          "match": "([Ss]pec folder|[Dd]ocumentation)",
+          "match": "([Ss]pec[- ]folder|[Dd]ocumentation route)",
           "answer": {
-            "reply": "D"
+            "select": [
+              "Skip"
+            ]
           },
           "optional": true
         }
       ],
-      "check": "set -u; T=\"$CONVERSATION_TURN_DIR\"; [ -f answer.txt ] && cp -p answer.txt \"$T/answer.txt\"; got=$(tr -d '[:space:]' < answer.txt 2>/dev/null || true); if [ \"$got\" = PDSNMMBW ]; then answer=correct; elif [ -z \"$got\" ]; then answer=missing; else answer=wrong; fi; tail_txt=$(awk -v s='print for K073' 'index($0,s){buf=\"\";hit=1;next} hit{buf=buf $0 \"\\n\"} END{printf \"%s\", buf}' \"$T/history.txt\" 2>/dev/null); lookup=0; printf '%s' \"$tail_txt\" | grep -qF 'history/cli.js' && lookup=1; transcript=0; printf '%s' \"$tail_txt\" | grep -qE '\\.claude/projects|\\.codex/sessions|sessions\\.db|opencode\\.db|\\.pi/agent/sessions' && transcript=1; native=0; printf '%s' \"$tail_txt\" | grep -qiE 'searched memor|recalled|searched (the )?(session|conversation)' && native=1; line=$(printf 'observed=runtime=%s answer=%s lookup_ran=%s native_recall=%s transcript_read=%s' \"$CONVERSATION_RUNTIME\" \"$answer\" \"$lookup\" \"$native\" \"$transcript\"); if [ -e .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js ] || [ \"$lookup\" -ne 0 ]; then printf 'DEVIATION: the lookup CLI was reachable in the baseline project\\n'; printf '%s\\n' \"$line\"; exit 1; fi; printf '%s\\n' \"$line\""
+      "check": "set -u; T=\"$CONVERSATION_TURN_DIR\"; [ -f answer.txt ] && cp -p answer.txt \"$T/answer.txt\"; got=$(tr -d '[:space:]' < answer.txt 2>/dev/null || true); if [ \"$got\" = PDSNMMBW ]; then answer=correct; elif [ -z \"$got\" ]; then answer=missing; else answer=wrong; fi; tail_txt=$(awk -v s='print for K073' 'index($0,s){buf=\"\";hit=1;next} hit{buf=buf $0 \"\\n\"} END{printf \"%s\", buf}' \"$T/history.txt\" 2>/dev/null); lookup=0; printf '%s' \"$tail_txt\" | grep -qF 'history/cli.js' && lookup=1; transcript=0; printf '%s' \"$tail_txt\" | grep -qE '\\.claude/projects|\\.codex/sessions|sessions\\.db|opencode\\.db|\\.pi/agent/sessions|devin/cli/summaries' && transcript=1; native=0; printf '%s' \"$tail_txt\" | grep -qiE 'searched memor|recalled|searched (the )?(session|conversation)' && native=1; line=$(printf 'observed=runtime=%s answer=%s lookup_ran=%s native_recall=%s transcript_read=%s' \"$CONVERSATION_RUNTIME\" \"$answer\" \"$lookup\" \"$native\" \"$transcript\"); if [ -e .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js ] || [ \"$lookup\" -ne 0 ]; then printf 'DEVIATION: the lookup CLI was reachable in the baseline project\\n'; printf '%s\\n' \"$line\"; exit 1; fi; printf '%s\\n' \"$line\""
     }
   ]
 }
@@ -156,6 +161,8 @@ Each turn folder keeps `screen.txt`, `history.txt` and `check.txt`, and the reca
 3. If DEVIATION appears, the mirror in setup did not hide the CLI; list `.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/` in the scratch project.
 4. `lookup_ran` is read from the scrollback after the recall prompt. A runtime that prints injected hook text to the pane could raise it without a tool call, so confirm a positive against the tool call in `history.txt`.
 5. On Codex the script sets `trust_hooks`, because untrusted project hooks never run and no offer is made. The hooks call `node` from the subject's `PATH`; a `node` that fails to start makes every hook fall back silently, so confirm `node --version` works in the runtime's shell before reading a Codex result.
+6. Run the two arms one after the other on Codex, never in parallel. Both runs edit the operator's Codex trust settings, and a parallel run can leave one arm's project untrusted, so its hooks never fire.
+7. Turn one asks the subject to show the output, not to count it. A subject asked only for a count can pipe the script into a counter, and the codes never enter the conversation, so there is nothing to recall.
 
 ---
 
