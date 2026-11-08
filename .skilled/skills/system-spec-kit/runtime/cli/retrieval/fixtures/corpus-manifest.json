@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ac55865be62d430521ec9b3adc6f39005d879105eaf141a982a598559e6c4b17",
+  "corpusHash": "25ae088301a63833e6e59a2f50ada4306d9bcf515c4fc6e2a35f1fb4f4ee0314",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28430,
+  "includedPathCount": 28435,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -242,6 +242,7 @@
     ".skilled/hooks/session-relaunch/tests/README.md",
     ".skilled/hooks/shared/README.md",
     ".skilled/hooks/shared/dsh/README.md",
+    ".skilled/hooks/shared/session-readers/README.md",
     ".skilled/hooks/shared/tests/README.md",
     ".skilled/hooks/skill-advisor/claude/README.md",
     ".skilled/hooks/skill-advisor/codex/README.md",
@@ -780,6 +781,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.12.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.13.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.14.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
@@ -798,8 +800,8 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/built-in-tools/search-exec-mode.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/codex-exec-review.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/default-invocation.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/default-model-lock.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/explicit-fast-service-tier.md",
-    ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/cli-invocation/gpt-5-5-model-lock.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/codex-cloud/codex-cloud-dispatch.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/integration-patterns/generate-review-fix-cycle.md",
@@ -8656,6 +8658,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.9.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.9.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
@@ -8734,6 +8737,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
@@ -8916,6 +8920,7 @@
     ".skilled/skills/system-spec-kit/runtime/hooks/devin/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/dsh/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/workspace/README.md",
     ".skilled/skills/system-spec-kit/runtime/hooks/opencode/README.md",
@@ -28461,7 +28466,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cf35e00b192565f5223cdf7c45394cdcca72a7906812fb743d448f91df881237",
+  "manifestHash": "1a6d076a806f3a0b78cba930e363adc74d63dcad831e2d81664dae5b82332b00",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cf35e00b192565f5223cdf7c45394cdcca72a7906812fb743d448f91df881237",
+  "manifestHash": "1a6d076a806f3a0b78cba930e363adc74d63dcad831e2d81664dae5b82332b00",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15027,6 +15027,9 @@
     "bounded git hooks": [
       "bounded git hooks"
     ],
+    "bounded history retrieval": [
+      "bounded history retrieval"
+    ],
     "bounded jsonl atomic trim": [
       "bounded jsonl atomic trim"
     ],
@@ -20896,6 +20899,9 @@
     "cli codex 1 9 14 0": [
       "cli-codex 1.9.14.0"
     ],
+    "cli codex 1 9 15 0": [
+      "cli-codex 1.9.15.0"
+    ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
     ],
@@ -21114,6 +21120,9 @@
     ],
     "cli codex v1 9 14 0": [
       "cli-codex v1.9.14.0"
+    ],
+    "cli codex v1 9 15 0": [
+      "cli-codex v1.9.15.0"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -26384,8 +26393,11 @@
     "codex cursor devin hook wiring": [
       "codex cursor devin hook wiring"
     ],
-    "codex default model gpt 5 5": [
-      "codex default model gpt-5.5"
+    "codex default model gpt 6 luna": [
+      "codex default model gpt-6-luna"
+    ],
+    "codex default model luna": [
+      "codex default model luna"
     ],
     "codex devin adapter crash": [
       "codex devin adapter crash"
@@ -27720,6 +27732,9 @@
     ],
     "compaction fixtures canary": [
       "compaction fixtures canary"
+    ],
+    "compaction history lookup": [
+      "compaction history lookup"
     ],
     "compaction pointer staleness": [
       "compaction pointer staleness"
@@ -46570,6 +46585,9 @@
     "exact match row applier": [
       "exact match row applier"
     ],
+    "exact session id reader": [
+      "exact session id reader"
+    ],
     "exact sha acceptance gate plan": [
       "exact-SHA acceptance gate plan"
     ],
@@ -56896,6 +56914,16 @@
     "historical benchmark contract": [
       "historical benchmark contract"
     ],
+    "history lookup after compaction": [
+      "history lookup after compaction"
+    ],
+    "history lookup cli": [
+      "history lookup CLI",
+      "history lookup cli"
+    ],
+    "history lookup core": [
+      "history lookup core"
+    ],
     "history rewrite": [
       "history rewrite"
     ],
@@ -63735,6 +63763,9 @@
     ],
     "location based validation": [
       "location-based validation"
+    ],
+    "locator freshness": [
+      "locator freshness"
     ],
     "lock guarded jsonl append": [
       "lock-guarded jsonl append"
@@ -74254,6 +74285,9 @@
     "op 003": [
       "op-003"
     ],
+    "opaque history handle": [
+      "opaque history handle"
+    ],
     "open a note in the already running obsidian app": [
       "open a note in the already-running Obsidian app"
     ],
@@ -83650,6 +83684,9 @@
     "post compaction recovery snapshot": [
       "post-compaction recovery snapshot"
     ],
+    "post compaction transcript lookup": [
+      "post-compaction transcript lookup"
+    ],
     "post consolidation hardening train": [
       "post-consolidation hardening train"
     ],
@@ -85578,6 +85615,9 @@
     "public docs": [
       "public docs"
     ],
+    "public projection": [
+      "public projection"
+    ],
     "public repo security audit": [
       "Public repo security audit"
     ],
@@ -86756,6 +86796,9 @@
     ],
     "read path soft continuation": [
       "read-path soft continuation"
+    ],
+    "read session history": [
+      "read session history"
     ],
     "read task": [
       "read task"
@@ -99654,6 +99697,12 @@
     ],
     "session process cleanup": [
       "session process cleanup"
+    ],
+    "session reader capabilities": [
+      "session reader capabilities"
+    ],
+    "session readers": [
+      "session readers"
     ],
     "session recovery": [
       "session recovery"
