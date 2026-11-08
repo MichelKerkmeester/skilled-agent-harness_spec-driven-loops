@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
+  "manifestHash": "fc38e99d0bbb05aca2bc0754d35562e03fceaef4defb7e2e59e1e40449f1e5e1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12795,6 +12795,9 @@
     "ask surface enforcement tasks": [
       "ask surface enforcement tasks"
     ],
+    "ask surface guard": [
+      "ask surface guard"
+    ],
     "ask surface guard devin advisory": [
       "ask surface guard devin advisory"
     ],
@@ -20968,6 +20971,9 @@
     "cli codex 1 9 15 0": [
       "cli-codex 1.9.15.0"
     ],
+    "cli codex 1 9 15 1": [
+      "cli-codex 1.9.15.1"
+    ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
     ],
@@ -21189,6 +21195,9 @@
     ],
     "cli codex v1 9 15 0": [
       "cli-codex v1.9.15.0"
+    ],
+    "cli codex v1 9 15 1": [
+      "cli-codex v1.9.15.1"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -26813,6 +26822,9 @@
     ],
     "codex task dispatch payload": [
       "codex task dispatch payload"
+    ],
+    "codex templates fast tier": [
+      "codex templates fast tier"
     ],
     "codex timeout stale marker": [
       "Codex timeout stale marker"
@@ -85557,6 +85569,9 @@
     "prose lines and bullet lists": [
       "prose lines and bullet lists"
     ],
+    "prose option menu guard": [
+      "prose option menu guard"
+    ],
     "prose option menu live test": [
       "prose option menu live test"
     ],
@@ -86544,6 +86559,9 @@
     ],
     "question origin provenance": [
       "question origin provenance"
+    ],
+    "question tool enforcement": [
+      "question tool enforcement"
     ],
     "question tool enforcement scenario": [
       "question tool enforcement scenario"
@@ -121908,6 +121926,9 @@
     ],
     "typed mode migration contract": [
       "typed mode migration contract"
+    ],
+    "typed option menu": [
+      "typed option menu"
     ],
     "typed predicates": [
       "typed predicates"

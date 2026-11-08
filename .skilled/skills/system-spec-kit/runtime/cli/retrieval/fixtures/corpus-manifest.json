@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f314ccf5442b89b0976db02cdfe791bd529d56d38badda396232b83ef5b6fd0a",
+  "corpusHash": "957529a097f1f26ae91813acbc084c827e7f7f515469d607f16ec10bf119534d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28496,
+  "includedPathCount": 28498,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -782,6 +782,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.13.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.14.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.1.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
@@ -8737,6 +8738,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-downgrades-report.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/upgrade-legacy-reversibility-manifest.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/ask-surface-guard.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
@@ -28527,7 +28529,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
+  "manifestHash": "fc38e99d0bbb05aca2bc0754d35562e03fceaef4defb7e2e59e1e40449f1e5e1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31190,6 +31192,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
       "reason": "excluded directory"
     },
@@ -31999,6 +32005,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7380,
-    "ok": 17567,
+    "ok": 17569,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28496,
+  "documentsScanned": 28498,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
+  "manifestHash": "fc38e99d0bbb05aca2bc0754d35562e03fceaef4defb7e2e59e1e40449f1e5e1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41975,
+      "ok": 41982,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -71831,6 +71831,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
       "reason": "excluded directory"
     },
@@ -72640,6 +72644,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
