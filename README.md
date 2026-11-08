@@ -594,7 +594,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
 - A save that is not `--full-auto` ends its summary with `Continuity fields not written: plan-only save; pass --full-auto to write them`, so a plan-only save no longer looks like a full one
-- Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup
+- Recovery stays with the continuity ladder that `/speckit:resume` owns as the primary recovery path, and the compaction path may add one bounded history lookup when a fresh locator verifies
 - `/speckit:search` runs the two lexical lanes
 - `/doctor:speckit` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
