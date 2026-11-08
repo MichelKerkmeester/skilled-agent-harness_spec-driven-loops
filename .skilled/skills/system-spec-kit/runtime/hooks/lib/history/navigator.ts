@@ -427,7 +427,8 @@ export class HistoryNavigator {
     const groups = queryGroups(input.query);
     // A query with no terms and no filter would just list the oldest turns,
     // which browse already does. A filter-only search still lists its matches.
-    if (groups.length === 0 && (input.query.length > 0 || !hasFilters(input))) return [];
+    // A query of punctuation alone has no terms either, so it counts as empty.
+    if (groups.length === 0 && !hasFilters(input)) return [];
     const searchDocuments = this.searchDocuments ?? this.buildSearchIndex();
     const totalDocuments = searchDocuments.length;
 

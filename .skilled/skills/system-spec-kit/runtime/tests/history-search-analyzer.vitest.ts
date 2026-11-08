@@ -134,6 +134,7 @@ describe('search: empty queries', () => {
     ];
     const navigator = new HistoryNavigator(projectHistoryEntries(entries));
     expect(navigator.search({ query: '', files: ['docs/a.md'] }).map((reference) => reference.historyId)).toEqual(['a']);
+    expect(navigator.search({ query: '---', files: ['docs/a.md'] }).map((reference) => reference.historyId)).toEqual(['a']);
   });
 });
 

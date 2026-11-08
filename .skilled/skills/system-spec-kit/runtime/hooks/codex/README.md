@@ -18,10 +18,10 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 | File | Purpose |
 |------|---------|
 | `shared.ts` | Reads and validates a bounded Codex hook payload, spawns the matching `../claude/*.js` adapter and emits Codex's `hookSpecificOutput` response envelope. Sets `SPECKIT_RUNTIME=codex` for the adapter it spawns so advisor diagnostics are labeled `codex`. |
-| `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. |
+| `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. After a compaction that context can end with the bounded `## History Lookup` section, when the locator the `PreCompact` adapter stored is still fresh. |
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Codex envelope. |
 | `session-stop.ts` | `Stop` adapter. Delegates to `session-stop.js`. |
-| `compact-inject.ts` | `PreCompact` adapter. Delegates to `compact-inject.js`. |
+| `compact-inject.ts` | `PreCompact` adapter. Delegates to `compact-inject.js`, which also stores a `transcript_file` history locator for the Codex session so the next `SessionStart` can offer the lookup. |
 | `completion-evidence-stop.cjs` | Standalone Codex `Stop` sentinel. Reads the last-spec-folder state written by the lifecycle hooks, resolves the active packet and calls `../lib/completion-evidence-sentinel.cjs` for an advisory-only completion-evidence check. Never blocks the turn. |
 
 ---
@@ -65,3 +65,10 @@ This folder also holds the Codex CLI side of the Gate-3 spec-folder discipline, 
 - [`../README.md`](../README.md)
 - [`../lib/completion-evidence-sentinel.cjs`](../lib/completion-evidence-sentinel.cjs)
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md)
+
+<!-- readme-check
+allow-ref hooks/codex/ | this folder, named from the runtime root
+allow-ref ../claude/*.js | the compiled Claude adapters, a glob over the build output
+allow-ref dist/hooks/codex/*.js | the compiled adapters under the runtime build output, which is not committed
+allow-ref tests/hook-adapter-runtime-label.vitest.ts | a test path from the runtime root, where section 4 says to run the commands
+-->

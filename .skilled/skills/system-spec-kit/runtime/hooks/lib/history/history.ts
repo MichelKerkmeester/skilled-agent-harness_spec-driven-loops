@@ -327,12 +327,17 @@ export function projectHistoryEntries(
 // 5. PUBLIC PREDICATES
 // ───────────────────────────────────────────────────────────────────
 
-// The lookup CLI's path as every printed offer names it. A shell call that runs
-// it is the model paging its own history, the same as a dedicated pager tool.
-const LOOKUP_CLI_MARKER = 'hooks/lib/history/cli.js';
+// The lookup CLI run by node, as every printed offer writes it. A shell call that
+// runs it is the model paging its own history, the same as a dedicated pager
+// tool. A call that only names the file, such as reading its source, is not.
+const LOOKUP_CLI_RUN = /\bnode\b[^\n]*hooks\/lib\/history\/cli\.js/;
 
 function invokesLookupCli(value: unknown, depth = 0): boolean {
-  if (typeof value === 'string') return value.includes(LOOKUP_CLI_MARKER);
+  if (typeof value === 'string') return LOOKUP_CLI_RUN.test(value);
+  // A runtime may pass the command as an argument vector instead of one string.
+  if (Array.isArray(value) && value.every((part) => typeof part === 'string')) {
+    return LOOKUP_CLI_RUN.test(value.join(' '));
+  }
   if (depth > 3 || typeof value !== 'object' || value === null) return false;
   return Object.values(value).some((child) => invokesLookupCli(child, depth + 1));
 }
