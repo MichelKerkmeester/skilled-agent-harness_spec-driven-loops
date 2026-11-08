@@ -146,6 +146,6 @@ Five research iterations on DeepSeek V4.1 Flash, run through opencode-go after D
 
 1. **No live run has exercised the send-back, before or after the fixes.** Every live run recorded fires=0, because each model used the question tool on its own, even when the prompt asked for lettered options. The send-back is proven by the adapter tests only. When a real turn trips the guard, `.skilled/skills/.state/ask-surface/fires.jsonl` records it. Use that line to rerun the live scenario on that runtime.
 2. **Codex is untested live.** No Codex usage was available, so the Codex adapter is covered by its unit test only.
-3. **The hooks node:test lane has 27 goal-hook failures this work did not cause.** `goal-core.test.cjs` fails 27 of 98 alone; nothing under `.skilled/hooks/goal` changed in this work, and the lane passed earlier the same day, before 64 commits from another session landed.
+3. **Implementation prompts that name a runtime still route to its CLI executor.** Eight of the eleven alignment probes miss: "Make the Claude Code Stop hook…" goes to `cli-claude-code` rather than `sk-code`, because the `cli-external-orchestration` hub's author keywords outscore it. That is the shared advisor scorer, not this guard, so it is left to an advisor packet.
 4. **A turn sent back can still end in prose.** The guard sends a turn back once, so a model that ignores the instruction ends its turn normally, and the menu stays on screen. The fire line still records it.
 <!-- /ANCHOR:limitations -->

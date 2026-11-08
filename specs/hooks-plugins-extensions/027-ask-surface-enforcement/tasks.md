@@ -77,6 +77,8 @@ contextType: "general"
 - [x] T025 Carry OpenCode 2 tool parts through the v2 bridge (`.opencode/plugins/lib/v2-bridge.js`). Verify: the bridge test maps a `question` tool part. Evidence: OpenCode plugin suites 572/572.
 - [x] T026 Close the alignment run's doc gaps: feature-catalog entry, plugin and extension inventories, DSH adapter table, env references, injection contract, the hooks README core table, scenario setup and matcher, and the `/create:*` startup forms that §4 now contradicts. Verify: catalog, playbook, README, mirror and command checks pass. Evidence: each exits 0; the playbook package reports 0 violations.
 - [x] T027 Rerun the live scenario and the Devin advisory on the fixed code (`run-conversation-scenario.cjs`). Verify: each check passes. Evidence: tool=1 on Claude Code, OpenCode and Pi, with the runner's REPO_CHANGED caused by other sessions' writes; Devin PASS.
+- [x] T028 Keep the Pi guard test's fire log inside its own temp folder (`.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.test.ts`). Its context `cwd` was the shared temp root, so each run wrote `$TMPDIR/.skilled/`, and `goal-core.test.cjs` then resolved that folder as its repository root. Verify: a full guard run leaves no `.skilled` in the temp root, and goal-core passes. Evidence: temp root clean; goal-core 98/98, up from 71/98; Pi vitest 6/6.
+- [x] T029 Describe the guard in the v4.0.2.0 release entry (`.skilled/changelog/skilled/v4.0.2.0.md`). Verify: shape, voice and document checks pass. Evidence: shape PASS at the 26-item ceiling, voice 0 hard blockers with deductions unchanged at -5, document VALID.
 - [x] T019 Validate the packet (`spec folder`). Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: Errors 0, Warnings 1, `RESULT: PASSED`, exit 0.
 <!-- /ANCHOR:phase-3 -->
 
@@ -86,7 +88,7 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [x] All tasks marked `[x]`: T001 to T027 are checked
+- [x] All tasks marked `[x]`: T001 to T029 are checked
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: 12 live conversation runs PASS, report `.skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard/`
 <!-- /ANCHOR:completion -->

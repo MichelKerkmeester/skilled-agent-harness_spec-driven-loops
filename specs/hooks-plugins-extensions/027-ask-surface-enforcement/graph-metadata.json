@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Agents end turns with a prose menu of lettered options and a closing question instead of calling the runtime's ask-question tool, so the operator has to type an answer to a question the runtime could have asked as a structured choice",
     "created_at": "2026-11-08T10:05:12Z",
-    "last_save_at": "2026-11-08T14:58:51.462Z",
+    "last_save_at": "2026-11-08T16:08:01.178Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a3097c19630d96adfc8ff25d2fa353e3253c0f7e9f88551cc2c947752a3765b",
+    "source_fingerprint": "sha256:2d3877af6de125d554c65de628bac7ae8ec4e81cae3c72f95fedd0d9f1a6be44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1e660abcd145b3d5e1151a8018b95cccecc1971878637bc959c3fef724d3aec5",
       "plan.md": "2a3bb9069e7187abc040232c8a38d4c5c5f2b152d389ab8598f8af6a818751eb",
-      "tasks.md": "73ab5c505370e7bce6f198dc6d406d89648cbb34e3b2461ed576fcb75952efb9",
+      "tasks.md": "d961c536545db69cac21880dee966fe6fdcc041ed65034b1138021a783340815",
       "decision-record.md": "656f8a28e6d26114237259f421ffbbf92e9b9dfb9e13389509fd3963dc53d012",
-      "implementation-summary.md": "632e6008a6749545960f65fbea3d5f92f41d1aff162d08ac0d64f3befade010f"
+      "implementation-summary.md": "83743cc4dec6759c8a044b30a5beffd76e23ec7a169666966d02b15376030af1"
     },
     "last_active_at": null
   }
