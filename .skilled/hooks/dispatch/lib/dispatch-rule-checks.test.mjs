@@ -722,11 +722,23 @@ test('a variable directory with a literal patch file name and a variable DSH_HOM
     + '--patch "$REPO/.dsh/patches/route-llmgateway-deepseek.patch.yml" '
     + '--patch "$REPO/.dsh/patches/lineage.patch.yml" --patch "$REPO/.dsh/patches/guards.patch.yml" '
     + '--json --approval-policy never -';
-  // evaluateDispatch reports only dispatches with violations, so a clean dsh dispatch is absent.
-  const dsh = evaluateDispatch(command, skillsRoot).find(({ skill }) => skill === 'cli-deepseek-harness');
-  assert.deepEqual((dsh?.violations ?? []).map(({ check }) => check), []);
-  assert.ok(evaluateDispatch(command.replace('--approval-policy never ', ''), skillsRoot)
-    .some(({ skill }) => skill === 'cli-deepseek-harness'), 'the same dispatch did not resolve as dsh');
+  // The binary rule reads PATH, so a stub dsh keeps this case about the command shape on a
+  // machine that has no DeepSeek Harness installed, such as a CI runner.
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-dsh-bin-'));
+  const previousPath = process.env.PATH;
+  try {
+    writeExecutable(directory, 'dsh', ['exit 0']);
+    process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
+    // evaluateDispatch reports only dispatches with violations, so a clean dsh dispatch is absent.
+    const dsh = evaluateDispatch(command, skillsRoot).find(({ skill }) => skill === 'cli-deepseek-harness');
+    assert.deepEqual((dsh?.violations ?? []).map(({ check }) => check), []);
+    assert.ok(evaluateDispatch(command.replace('--approval-policy never ', ''), skillsRoot)
+      .some(({ skill }) => skill === 'cli-deepseek-harness'), 'the same dispatch did not resolve as dsh');
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
 
   assert.equal(CHECKS['dsh-home-isolated']('DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --json -'), true);
   assert.equal(CHECKS['dsh-home-isolated']('DSH_HOME="$HOME/.dsh" dsh --profile headless --json -'), false);
