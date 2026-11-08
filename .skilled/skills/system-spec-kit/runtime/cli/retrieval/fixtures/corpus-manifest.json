@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f0887150c61a18f7c4afea717c19f9150d045859f917187a40ecb40ea2fd4531",
+  "corpusHash": "b862da2cfca51e15b0e40831ab282d84deeb340133a8ae37b54e7ccff954fd01",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28485,
+  "includedPathCount": 28486,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6695,6 +6695,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.9.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -28516,7 +28517,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fc008d49467d5c2676d5fdc981e0b031988f3d03bd16be23024a4c43bfc6ea29",
+  "manifestHash": "755310e39055686a72153fef19d39ec05f6a728ee90bed54d9a7132d836781b5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31179,10 +31180,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
       "reason": "excluded directory"
     },
@@ -31992,14 +31989,6 @@
     },
     {
       "path": "specs/sk-code/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

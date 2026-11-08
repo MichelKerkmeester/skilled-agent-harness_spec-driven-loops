@@ -572,16 +572,16 @@ workflow:
 
           COMPACT FORMAT:
             ## What's New at a Glance
-            - **{The change, stated as a short sentence.}** {One plain sentence that adds what the bold one does not say.}
+            - **{The change, stated as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.}
 
           EXPANDED FORMAT:
             ## Why This Release
             ## What's New at a Glance
-              - **{The theme, stated as a short sentence.}** {One plain sentence that adds what the bold one does not say.} <!-- section: {Topical Domain} -->
+              - **{The theme, stated as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.} <!-- section: {Topical Domain} -->
               (one bullet per theme, tagged with the topical section it summarizes, in section order)
             ## {Topical Domain}
               #### {Benefit-led heading, usually 2-7 words}
-              {One paragraph of three sentences at most, or two for a breaking change: what was broken, what changed, why it matters. Start where the glance bullet stopped}
+              {One paragraph of short sentences, about 60 words, or two when the item needs it: what was broken, what changed, why it matters. Start where the glance bullet stopped}
               (inline **Breaking:** markers where a change breaks something)
               #### Smaller Fixes
               - **{The fix.}** {One sentence on what the reader now sees.}
@@ -662,7 +662,7 @@ workflow:
             [ ] No release tag v{next_version} exists yet
       - |
         CONTENT CHECKS:
-          [ ] Compact summary within 3 sentences, expanded opening within 5 paragraphs
+          [ ] Compact summary near 60 words, expanded opening within 5 paragraphs, short sentences preferred
           [ ] Each at-a-glance bullet opens with a bold lead-in sentence
           [ ] H4 headings 10 words at most, H4 items one paragraph, two only for a breaking change or the coverage sentence
           [ ] Omission rules applied (no file inventories, test counts, process detail or housekeeping items)

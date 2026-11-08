@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # create-changelog
@@ -256,7 +256,7 @@ Global changelog checks:
 6. No Files Changed, Test Impact or Schema Changes section. Any table passes the earned-evidence rule.
 7. Omission applied: no file inventories, test counts, process detail or housekeeping items. No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) appear outside the spec-folder line.
 8. Each fact appears once: no sentence restates one from another section, and each glance bullet adds something the summary did not.
-9. The template's ceilings hold: summary within 3 sentences, opening within 5 paragraphs, Why This Release within 3 short paragraphs or 4 sentences, at most 12 glance bullets, H4 items within one paragraph and two for a breaking change or the coverage sentence, H4 headings within 10 words, compact files within 40 prose lines, expanded files within 240 lines below the frontmatter and expanded entries within 26 H4 items.
+9. The template's ceilings hold: opening within 5 paragraphs, prose near its word budgets (guidance, counted in words, never sentences), at most 12 glance bullets, H4 headings within 10 words, compact files within 40 prose lines, expanded files within 240 lines below the frontmatter and expanded entries within 26 H4 items.
 10. H4 headings are benefit-led and never numbered or sentence-length, and no H3 sits inside a topical section.
 11. `scripts/check_changelog_shape.py` passes the draft. It fails an expanded entry past 240 lines or 26 H4 items, more than 12 glance bullets, tagged glance bullets out of section order and a spec-folder line with a level label.
 

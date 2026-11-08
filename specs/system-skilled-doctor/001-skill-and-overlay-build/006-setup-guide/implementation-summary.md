@@ -57,7 +57,7 @@ The link path follows `/doctor:install` and `/doctor:symlink` from plan to undo.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `SETUP.md` | Created | The setup guide |
+| `SETUP.md` | Created | The setup guide. Later renamed `INSTALL-SKILLED.md`, when it also took over installing the Skilled checkout from the root README |
 | `README.md` | Modified | Section 5 is a short pointer, the Quick Start paragraph and four command entries link the guide, and the related documents list it |
 | `.skilled/skills/system-skilled-doctor/README.md` | Modified | Its related documents list the guide |
 <!-- /ANCHOR:what-built -->

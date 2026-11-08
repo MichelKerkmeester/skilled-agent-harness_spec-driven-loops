@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fc008d49467d5c2676d5fdc981e0b031988f3d03bd16be23024a4c43bfc6ea29",
+  "manifestHash": "755310e39055686a72153fef19d39ec05f6a728ee90bed54d9a7132d836781b5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17465,6 +17465,9 @@
     ],
     "changelog version keys tasks": [
       "changelog version keys tasks"
+    ],
+    "changelog word budgets": [
+      "changelog word budgets"
     ],
     "changelogs are global only": [
       "changelogs are global only"
@@ -104459,6 +104462,9 @@
     "sk create changelog 1 4 1 0": [
       "sk-create-changelog 1.4.1.0"
     ],
+    "sk create changelog 1 4 2 0": [
+      "sk-create-changelog 1.4.2.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -104557,6 +104563,9 @@
     ],
     "sk create changelog v1 4 1 0": [
       "sk-create-changelog v1.4.1.0"
+    ],
+    "sk create changelog v1 4 2 0": [
+      "sk-create-changelog v1.4.2.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"

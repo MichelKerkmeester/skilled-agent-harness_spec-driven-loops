@@ -1,10 +1,10 @@
-# Use Skilled in Your Own Project
+# Install Skilled
 
 ## 1. OVERVIEW
 
-This guide sets up Skilled in one of your project repositories. You run each step as a `/doctor` command from the `system-skilled-doctor` skill. A command that writes shows you a plan first and waits for your yes.
+This guide installs Skilled and then sets it up in your own project repositories. Section 2 installs and checks a Skilled checkout. Sections 3 and 4 bring that checkout into a project, by linking it or by copying it in.
 
-You need a working Skilled checkout before you start. The root README's [Install](README.md#install) section lists the build commands. Run `/doctor:setup` in the checkout to confirm the install.
+From section 3 on, you run each step as a `/doctor` command from the `system-skilled-doctor` skill. A command that writes shows you a plan first and waits for your yes.
 
 ### Link or Copy
 
@@ -22,7 +22,69 @@ Linking is simpler. Choose a copy only when you need one of its two reasons.
 
 ---
 
-## 2. LINK IT INTO YOUR PROJECT
+## 2. INSTALL A SKILLED CHECKOUT
+
+### Prerequisites
+
+You need Node.js 24, `npm`, `git` and a POSIX shell. Node 24 is the one version every part of the framework accepts.
+
+### Clone and Build
+
+Clone the repository and step into it:
+
+```bash
+git clone https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops.git
+cd skilled-agent-harness_spec-driven-loops
+```
+
+Build the Spec Kit first. The runtimes' session hooks load this build.
+
+```bash
+npm --prefix .skilled/skills/system-spec-kit install
+npm --prefix .skilled/skills/system-spec-kit run build
+```
+
+Then build the Skill Advisor. Its build uses the Spec Kit's TypeScript compiler, so it comes second. The last command checks the advisor's CLI. `list-tools` answers offline, with no daemon running.
+
+```bash
+npm --prefix .skilled/skills/system-skill-advisor/runtime install
+npm --prefix .skilled/skills/system-skill-advisor/runtime run build
+node .skilled/bin/skill-advisor.cjs list-tools --format json
+```
+
+### Check the Install
+
+Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cursor, Devin or Pi. Then run:
+
+```
+/doctor:setup
+```
+
+It checks the install without changing anything. It names one repair command for each failure.
+
+Codex, Cursor and Pi spell commands with a hyphen, as in `/doctor-setup`. Devin reaches the spec-kit workflows through its `/system-spec-kit` skill.
+
+### Add Code Mode
+
+Code Mode is the bridge your runtime uses to call external MCP tools. It builds separately from the two builds above. Run:
+
+```
+/doctor:mcp install
+```
+
+It installs the dependencies and builds Code Mode when its `dist` is missing or stale. It configures the `.utcp_config.json` manuals. It registers Code Mode in the seven project config files, two of them for Claude. Each write waits for its own approval. Add `--runtime <name>` to register one runtime only: `opencode`, `claude`, `codex`, `cursor`, `pi` or `devin`.
+
+To check Code Mode later, run `/doctor:mcp debug`. It reports PASS, WARN or FAIL per check, and `--fix` adds guided repair. Provider keys live in `.env`, which only Code Mode reads. Section 1 of [`.env.example`](.env.example) lists them. The [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md) covers the manual steps.
+
+### Git Hooks
+
+The first AI session installs the repository's git hooks. The root README's [Git Hooks](README.md#git-hooks) section says what each hook blocks. `/doctor:git setup` checks the hooks and the sk-git settings.
+
+Your checkout is ready once `/doctor:setup` passes. Run `/doctor:setup` again whenever something looks wrong. To use Skilled in a project of your own, pick a way in below.
+
+---
+
+## 3. LINK IT INTO YOUR PROJECT
 
 ### Step 1: Run the Install Guide
 
@@ -102,7 +164,7 @@ node .skilled/commands/doctor/scripts/symlink-engine.cjs unlink --run <run dir> 
 
 ---
 
-## 3. COPY IT INTO YOUR PROJECT
+## 4. COPY IT INTO YOUR PROJECT
 
 A re-pin replaces your copy whole with a newer commit. A change you made to the copy would be lost, so each change lives in an overlay instead. An overlay is a file in your project's overlay folder. `/doctor:overlay` applies it on top of the copy.
 
@@ -235,7 +297,7 @@ Already keep overlays with a script of your own? The engine reads the same manif
 
 ---
 
-## 4. KEEP IT HEALTHY
+## 5. KEEP IT HEALTHY
 
 | When | Linked project | Copied project |
 | --- | --- | --- |
@@ -246,12 +308,12 @@ Already keep overlays with a script of your own? The engine reads the same manif
 
 ---
 
-## 5. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | You see | Cause | Fix |
 | --- | --- | --- |
 | `partial-merge` in `/doctor:symlink check` | The checkout gained entries since your last `link` | Run `link` again |
-| `no overlay manifest at skilled-overlays/overlay-manifest.json` | The engine found no overlay folder | Create one (section 3, step 2), or name yours in `.skilled-overlays.json` |
+| `no overlay manifest at skilled-overlays/overlay-manifest.json` | The engine found no overlay folder | Create one (section 4, step 2), or name yours in `.skilled-overlays.json` |
 | `overlay-edited` | An overlay changed and the copy lags behind | Run `/doctor:overlay apply` |
 | `live-edited` | Someone edited the copy directly | Run `/doctor:overlay apply --capture <path>` |
 | `both-changed` | The overlay and the copy both changed since the last apply | Read both, update the overlay by hand and run `status` again |
@@ -262,9 +324,10 @@ Already keep overlays with a script of your own? The engine reads the same manif
 
 ---
 
-## 6. RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 - [system-skilled-doctor README](.skilled/skills/system-skilled-doctor/README.md): every doctor command in this guide.
 - [Overlays reference](.skilled/skills/system-skilled-doctor/references/overlays.md): sync states, refusals, re-pins and adoption in full.
 - [overlay-guard README](.skilled/hooks/overlay-guard/README.md): the hook that protects overlay-owned files.
-- [Root README](README.md): what Skilled is and how to install it.
+- [Root README](README.md): what Skilled is and what each part does.
+- [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md): the manual Code Mode setup.

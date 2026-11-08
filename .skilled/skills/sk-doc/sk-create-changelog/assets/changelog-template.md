@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -55,7 +55,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 
-{Summary: 1-3 sentences on what the release does for the reader and why it matters.}
+{Summary: a few short sentences, about 60 words in all, on what the release does for the reader and why it matters.}
 
 > Spec folder: `{path}`
 
@@ -63,7 +63,7 @@ contextType: "general"
 
 ## What's New at a Glance
 
-- **{The change, as a short sentence.}** {One plain sentence that adds what the bold one does not say.}
+- **{The change, as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.}
 
 &nbsp;
 
@@ -72,7 +72,7 @@ contextType: "general"
 {The action the reader must take, or "No migration required."}
 ```
 
-Include the spec-folder line only when the release has a spec folder. Add a `## Why This Release` section of 2-4 sentences after the summary only when the summary does not already say why, with an `&nbsp;` line before it like every other H2.
+Include the spec-folder line only when the release has a spec folder. Add a short `## Why This Release` section after the summary only when the summary does not already say why, with an `&nbsp;` line before it like every other H2.
 
 ### Expanded Format (10+ changes, major or breaking)
 
@@ -93,17 +93,17 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 ## What's New at a Glance
 
-- **{The theme, as a short sentence.}** {One plain sentence that adds what the bold one does not say.} <!-- section: {Topical Domain} -->
+- **{The theme, as a short sentence.}** {One or two short plain sentences that add what the bold one does not say.} <!-- section: {Topical Domain} -->
 
 &nbsp;
 
 ## {Topical Domain}
 
-{Optional 1-2 sentence introduction.}
+{Optional short introduction.}
 
 #### {Benefit-led heading, usually 2-7 words}
 
-{One paragraph of three sentences at most: what was broken, what changed and why it matters. Start where the glance bullet stopped. A second paragraph is for a breaking change, whose exact step must stand apart.}
+{One paragraph of short sentences, about 60 words: what was broken, what changed and why it matters. Start where the glance bullet stopped. Add a second paragraph when the item needs it. A breaking change always gets its own, so its exact step stands apart.}
 
 #### {Next heading}
 
@@ -111,7 +111,7 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 #### Smaller Fixes
 
-- **{The fix, as a short sentence.}** {One sentence on what the reader now sees.}
+- **{The fix, as a short sentence.}** {One or two short sentences on what the reader now sees.}
 
 &nbsp;
 
@@ -200,6 +200,7 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 - Lead with why the release matters, never with technical stats.
 - Explain each change as what was broken, what changed and why it matters.
 - One idea per sentence, active voice, no hedging.
+- Prefer short sentences, about 10-15 words. When a sentence runs long, split it rather than cut a fact.
 - Define a technical term on first use, such as "BM25 (exact word matching)".
 - Name an identifier (a skill, a path or a command) only where the reader acts on it, the way the v4.0.0.0 entry names `mode-registry.json` where it explains dispatch.
 - No Oxford commas, em dashes or semicolons, per `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`.
@@ -215,18 +216,18 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 
 | Element | Usually | Ceiling |
 |---|---|---|
-| Summary paragraph | 1-2 sentences | 3 sentences |
+| Summary paragraph | 1-3 short sentences | About 60 words |
 | Expanded opening narrative | 1-3 paragraphs | 5 paragraphs |
-| Why This Release | 1-2 short paragraphs | 3 short paragraphs or 4 sentences, gain bullets allowed |
+| Why This Release | 1-3 short paragraphs | About 120 words, gain bullets allowed |
 | What's New at a Glance | 3-6 bullets compact, 5-9 expanded | 12 bullets, one line each |
-| Glance bullet | A bold sentence and one plain sentence | A bold sentence and three plain sentences |
-| H4 item narrative | 1 paragraph | 2 paragraphs, only for a breaking change or the coverage sentence |
+| Glance bullet | A bold sentence and one short plain sentence | A bold sentence and about 30 words |
+| H4 item narrative | 1 paragraph, about 60 words | 2 paragraphs, about 120 words |
 | H4 heading | 2-7 words | 10 words |
 | Compact file total | 10-25 lines of prose | 40 lines of prose |
 | Expanded file total | 120-180 lines below the frontmatter | 240 lines below the frontmatter |
 | Expanded H4 items | 12-22 | 26 |
 
-Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the expanded file total, the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. The usual column is the target. A release with one fix reads short.
+Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the expanded file total, the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. The usual column is the target. A release with one fix reads short. Word counts are guidance, not gates: count words, never sentences, so more short sentences are always fine. Go past a word budget when a reader needs the fact, and record why.
 
 ---
 
