@@ -320,7 +320,8 @@ const SUBTRACK_LEVEL = 'sub-track';
 /** Whether a folder declares itself a named sub-track container. */
 function declaresSubtrack(folder) {
   const name = path.basename(folder);
-  if (name.startsWith('z_') || PACKET_NAME_RE.test(name) || isSymbolicLink(folder)) return false;
+  if (name.startsWith('.') || name === 'node_modules' || name.startsWith('z_')
+    || PACKET_NAME_RE.test(name) || fs.existsSync(path.join(folder, 'spec.md')) || isSymbolicLink(folder)) return false;
   const file = path.join(folder, 'description.json');
   if (isSymbolicLink(file)) return false;
   const text = readIfPresent(file);

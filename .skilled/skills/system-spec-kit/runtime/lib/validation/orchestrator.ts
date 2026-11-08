@@ -210,7 +210,7 @@ function entry(rule: string, status: ValidationEntry['status'], message: string,
   return { rule, status, message, details };
 }
 
-const PACKET_FOLDER_RE = /^\d{3}-[a-z0-9-]+$/u;
+const PACKET_FOLDER_RE = /^\d{3}(?:[-_].+)?$/u;
 
 // A track sits directly inside the specs root, is named for the track rather
 // than numbered like a packet, and has no spec of its own — it is the drawer,
@@ -228,6 +228,7 @@ function hasSubTrackLevel(folder: string): boolean {
   if (!fs.existsSync(descriptionPath)) return false;
 
   try {
+    if (fs.lstatSync(descriptionPath).isSymbolicLink()) return false;
     const description = JSON.parse(fs.readFileSync(descriptionPath, 'utf8')) as Record<string, unknown>;
     return description.level === 'sub-track';
   } catch {
@@ -239,7 +240,7 @@ function isDeclaredSubTrack(folder: string): boolean {
   const resolved = path.resolve(folder);
   const name = path.basename(resolved);
   if (!fs.existsSync(resolved) || fs.lstatSync(resolved).isSymbolicLink()) return false;
-  if (name.startsWith('z_') || PACKET_FOLDER_RE.test(name)) return false;
+  if (name.startsWith('.') || name === 'node_modules' || name.startsWith('z_') || PACKET_FOLDER_RE.test(name)) return false;
   if (fs.existsSync(path.join(resolved, 'spec.md'))) return false;
   if (!isTrackRoot(path.dirname(resolved))) return false;
   return hasSubTrackLevel(resolved);

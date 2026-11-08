@@ -198,9 +198,10 @@ is_declared_subtrack() {
     [[ "$(dirname "$(dirname "$folder")")" == "$specs_root" ]] || return 1
     name="$(basename "$folder")"
     track="$(basename "$(dirname "$folder")")"
-    [[ "$name" != z_* && "$name" != .* && "$track" != z_* && "$track" != .* ]] || return 1
-    [[ ! "$name" =~ ^[0-9]{3} && ! "$track" =~ ^[0-9]{3} ]] || return 1
+    [[ "$name" != z_* && "$name" != .* && "$name" != node_modules && "$track" != z_* && "$track" != .* && "$track" != node_modules ]] || return 1
+    [[ ! "$name" =~ ^[0-9]{3}([-_].+)?$ && ! "$track" =~ ^[0-9]{3}([-_].+)?$ ]] || return 1
     [[ ! -f "$folder/spec.md" && ! -f "$(dirname "$folder")/spec.md" ]] || return 1
+    [[ ! -L "$folder/description.json" ]] || return 1
     [[ -f "$folder/description.json" ]] || return 1
     node -e '
 const fs = require("fs");

@@ -8,6 +8,8 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+// @ts-expect-error -- the reader is a plain ESM module without declaration files.
+import { readWorkingTreeTracks } from '../lib/track-roots.mjs';
 import { buildSubtrackTree } from './fixtures/subtrack-tree.mjs';
 
 const CLI_DIR = path.resolve(__dirname, '..');
@@ -167,18 +169,134 @@ describe('create.sh --track refreshes a declared sub-track and its track', () =>
     expect(children(trackMetadata)).not.toContain('demo/sub/002-second-probe');
   });
 
-  it('leaves an undeclared slash value alone', () => {
+  it('normalizes a trailing slash before refreshing both roots', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const result = create(['--track', 'demo/sub/', '--short-name', 'slash-probe', 'Slash probe']);
+    expect(result.status, result.stderr).toBe(0);
+
+    expect(children(path.join(specs, 'demo', 'sub', 'graph-metadata.json')))
+      .toEqual(['demo/sub/001-nested-probe', 'demo/sub/002-slash-probe']);
+
+    const trackMetadata = path.join(specs, 'demo', 'graph-metadata.json');
+    expect(children(trackMetadata)).toEqual(['demo/001-flat-probe', 'demo/sub']);
+    expect(children(trackMetadata).filter((entry) => entry === 'demo/sub')).toHaveLength(1);
+    expect(result.stderr).not.toContain('was not refreshed');
+  });
+
+  it('seeds missing metadata while scaffolding in the declared sub-track and keeps the sweep clean', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const subMetadata = path.join(specs, 'demo', 'sub', 'graph-metadata.json');
+    fs.rmSync(subMetadata);
+
+    const result = create(['--track', 'demo/sub', '--short-name', 'no-metadata-probe', 'No metadata probe']);
+    const sweep = spawnSync(
+      process.execPath,
+      [path.join(CLI_DIR, 'spec', 'sweep-track-roots.mjs'), '--specs', specs],
+      { cwd: workspace, encoding: 'utf8' },
+    );
+    const hasSubMetadata = fs.existsSync(subMetadata);
+    const subChildren = hasSubMetadata ? children(subMetadata) : null;
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', '002-no-metadata-probe', 'spec.md'))).toBe(true);
+    expect(result.stderr).not.toContain('was not refreshed');
+    expect(hasSubMetadata).toBe(true);
+    expect(subChildren).toEqual(['demo/sub/001-nested-probe', 'demo/sub/002-no-metadata-probe']);
+    expect(sweep.status, sweep.stdout + sweep.stderr).toBe(0);
+    expect(sweep.stdout).toContain('sweep-track-roots: all track roots match their declared children');
+  });
+
+  it('reports missing sub-track metadata as a pending dry-run change and names --apply as the creation path', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const subMetadata = path.join(specs, 'demo', 'sub', 'graph-metadata.json');
+    fs.rmSync(subMetadata);
+    const refreshScript = path.join(fixtureCli, 'spec', 'refresh-track-roots.mjs');
+
+    const result = spawnSync(process.execPath, [refreshScript, '--specs', specs, '--track', 'demo/sub'], {
+      cwd: workspace,
+      encoding: 'utf8',
+    });
+
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout).toContain('demo/sub: graph-metadata.json is missing, not written; pass --apply to create it');
+    expect(fs.existsSync(subMetadata)).toBe(false);
+  });
+
+  it('warns when the sub-track metadata cannot be refreshed and leaves it unchanged', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const subMetadata = path.join(specs, 'demo', 'sub', 'graph-metadata.json');
+    fs.writeFileSync(subMetadata, '{ not json');
+
+    const result = create(['--track', 'demo/sub', '--short-name', 'broken-metadata-probe', 'Broken metadata probe']);
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'demo', 'sub', '002-broken-metadata-probe', 'spec.md'))).toBe(true);
+    expect(result.stderr).toContain('demo/sub/graph-metadata.json was not refreshed');
+    expect(fs.readFileSync(subMetadata, 'utf8')).toBe('{ not json');
+  });
+
+  it('refuses an undeclared sub-track before writing a packet', () => {
     const { specs } = buildSubtrackTree(workspace);
     const loose = path.join(specs, 'demo', 'loose');
     const trackMetadata = path.join(specs, 'demo', 'graph-metadata.json');
-    const before = fs.readFileSync(trackMetadata, 'utf8');
+    const looseBefore = fs.readdirSync(loose).sort();
+    const trackMetadataBefore = fs.readFileSync(trackMetadata, 'utf8');
 
     const result = create(['--track', 'demo/loose', '--short-name', 'loose-probe', 'Loose packet']);
 
+    expect(result.status, result.stderr).not.toBe(0);
+    expect(result.stderr).toContain('demo/loose: undeclared folder ignored');
+    expect(fs.readdirSync(loose).sort()).toEqual(looseBefore);
+    expect(fs.readFileSync(trackMetadata, 'utf8')).toBe(trackMetadataBefore);
+  });
+
+  it('refreshes a flat track when --track has a trailing slash', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const trackMetadata = path.join(specs, 'demo', 'graph-metadata.json');
+    const result = create(['--track', 'demo/', '--short-name', 'flat-slash-probe', 'Flat slash probe']);
+
     expect(result.status, result.stderr).toBe(0);
-    expect(fs.existsSync(path.join(loose, 'graph-metadata.json'))).toBe(false);
-    expect(fs.readFileSync(trackMetadata, 'utf8')).toBe(before);
+    expect(children(trackMetadata)).toContain('demo/002-flat-slash-probe');
+    expect(children(trackMetadata).filter((entry) => entry === 'demo/sub')).toHaveLength(1);
     expect(result.stderr).not.toContain('was not refreshed');
+  });
+});
+
+describe('create.sh refuses sub-track values the reader skips', () => {
+  it('reports the reader diagnostic when a declared sub-track owns spec.md', () => {
+    const { specs } = buildSubtrackTree(workspace);
+    const subtrack = path.join(specs, 'demo', 'sub');
+    fs.writeFileSync(path.join(subtrack, 'spec.md'), '# Not a container\n');
+    const diagnostics = (readWorkingTreeTracks(specs) as Array<{ name: string }> & { diagnostics: string[] })
+      .diagnostics;
+    const expectedDiagnostic = diagnostics.find((diagnostic) => diagnostic.startsWith('demo/sub:'));
+
+    const result = create(['--track', 'demo/sub', '--short-name', 'owned-spec-probe', 'Owned spec probe']);
+
+    expect(result.status, result.stderr).not.toBe(0);
+    expect(expectedDiagnostic).toBe('demo/sub: declared folder has spec.md and cannot be a sub-track');
+    expect(result.stderr).toContain(expectedDiagnostic);
+    expect(fs.existsSync(path.join(subtrack, '002-owned-spec-probe', 'spec.md'))).toBe(false);
+  });
+
+  it('refuses a symlinked sub-track before writing through it', () => {
+    const { entries } = buildSubtrackTree(workspace);
+    const target = fs.realpathSync(entries.linked);
+    const before = fs.readdirSync(target).sort();
+
+    const result = create(['--track', 'demo/linked', '--short-name', 'linked-probe', 'Linked probe']);
+
+    expect(result.status, result.stderr).not.toBe(0);
+    expect(result.stderr).toContain('demo/linked: symlinked folder skipped, not followed');
+    expect(fs.readdirSync(target).sort()).toEqual(before);
+  });
+
+  it('refuses a track with three path segments before creating specs/a', () => {
+    const result = create(['--track', 'a/b/c', '--short-name', 'deep-probe', 'Deep probe']);
+
+    expect(result.status, result.stderr).not.toBe(0);
+    expect(result.stderr).toContain('has more than two path segments');
+    expect(fs.existsSync(path.join(workspace, 'specs', 'a'))).toBe(false);
   });
 });
 

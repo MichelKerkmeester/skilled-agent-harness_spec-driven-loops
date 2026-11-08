@@ -106,6 +106,20 @@ describe('track-root discovery', () => {
     expect(summarizeTracks(readWorkingTreeTracks(specs)).map((track) => track.name)).not.toContain('demo/sub');
   });
 
+  it('distinguishes a declared folder that also holds its own spec in both views', () => {
+    const { entries } = buildSubtrackTree(repo);
+    fs.writeFileSync(path.join(entries.sub, 'spec.md'), '# Packet-shaped folder\n');
+    const working = readWorkingTreeTracks(specs);
+    commitFixture();
+    const committed = readCommitTracks(specs, 'HEAD');
+    const expected = 'demo/sub: declared folder has spec.md and cannot be a sub-track';
+
+    expect(diagnosticsFromTracks(working)).toContain(expected);
+    expect(committed.diagnostics).toContain(expected);
+    expect(diagnosticsFromTracks(working)).not.toContain('demo/sub: undeclared folder ignored');
+    expect(committed.diagnostics).not.toContain('demo/sub: undeclared folder ignored');
+  });
+
   it('returns the same declared sub-tracks from the working tree and commit', () => {
     buildSubtrackTree(repo);
     const working = readWorkingTreeTracks(specs);
@@ -236,6 +250,54 @@ describe('refresh-track-roots', () => {
     expect(readChildren('alpha')).toEqual(['alpha/001-a', 'alpha/003-b']);
   });
 
+  it('refuses a symlinked sub-track metadata file and preserves its target', () => {
+    const { entries } = buildSubtrackTree(repo);
+    const metadataPath = path.join(entries.sub, 'graph-metadata.json');
+    const outsidePath = path.join(repo, 'outside-sub-metadata.json');
+    const outsideMetadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+    outsideMetadata.children_ids = [];
+    fs.writeFileSync(outsidePath, `${JSON.stringify(outsideMetadata, null, 2)}\n`);
+    fs.unlinkSync(metadataPath);
+    fs.symlinkSync(outsidePath, metadataPath);
+    const before = fs.readFileSync(outsidePath, 'utf8');
+
+    const result = run(REFRESH, ['--track', 'demo/sub', '--apply']);
+
+    expect({
+      status: result.status,
+      stdout: result.stdout,
+      targetBytes: fs.readFileSync(outsidePath, 'utf8'),
+    }).toEqual({
+      status: 2,
+      stdout: 'demo/sub: graph-metadata.json is a symlink, not written\n',
+      targetBytes: before,
+    });
+  });
+
+  it('refuses a symlinked top-level metadata file and preserves its target', () => {
+    buildSubtrackTree(repo);
+    const metadataPath = path.join(specs, 'demo', 'graph-metadata.json');
+    const outsidePath = path.join(repo, 'outside-track-metadata.json');
+    const outsideMetadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+    outsideMetadata.children_ids = [];
+    fs.writeFileSync(outsidePath, `${JSON.stringify(outsideMetadata, null, 2)}\n`);
+    fs.unlinkSync(metadataPath);
+    fs.symlinkSync(outsidePath, metadataPath);
+    const before = fs.readFileSync(outsidePath, 'utf8');
+
+    const result = run(REFRESH, ['--track', 'demo', '--apply']);
+
+    expect({
+      status: result.status,
+      stdout: result.stdout,
+      targetBytes: fs.readFileSync(outsidePath, 'utf8'),
+    }).toEqual({
+      status: 2,
+      stdout: 'demo: graph-metadata.json is a symlink, not written\n',
+      targetBytes: before,
+    });
+  });
+
   it('touches only the track named by --track', () => {
     run(REFRESH, ['--track', 'beta', '--apply']);
     expect(readChildren('alpha')).toEqual(['alpha/001-a', 'alpha/002-gone', 'old-name/004-c']);
@@ -250,6 +312,66 @@ describe('refresh-track-roots', () => {
       .toEqual(['demo/sub/001-nested-probe']);
     expect(JSON.parse(fs.readFileSync(path.join(specs, 'demo', 'graph-metadata.json'), 'utf8')).children_ids)
       .toEqual([]);
+  });
+
+  it('seeds missing sub-track metadata so the sweep passes', () => {
+    for (const name of ['alpha', 'beta', 'delta']) {
+      fs.rmSync(path.join(specs, name), { recursive: true, force: true });
+    }
+    const { entries } = buildSubtrackTree(repo);
+    const metadataPath = path.join(entries.sub, 'graph-metadata.json');
+    fs.unlinkSync(metadataPath);
+
+    const refresh = run(REFRESH, ['--track', 'demo/sub', '--apply']);
+    const sweep = run(SWEEP, []);
+    const metadata = fs.existsSync(metadataPath)
+      ? JSON.parse(fs.readFileSync(metadataPath, 'utf8'))
+      : null;
+
+    expect({
+      refreshStatus: refresh.status,
+      refreshStdout: refresh.stdout,
+      sweepStatus: sweep.status,
+      sweepStdout: sweep.stdout,
+      metadata,
+    }).toEqual({
+      refreshStatus: 0,
+      refreshStdout: 'demo/sub: add 001-nested-probe (written)\n',
+      sweepStatus: 0,
+      sweepStdout: 'demo/linked: symlinked folder skipped, not followed\ndemo/loose: undeclared folder ignored\ndemo: declared=2 actual=2\ndemo/sub: declared=1 actual=1\n\nsweep-track-roots: all track roots match their declared children\n',
+      metadata: {
+        schema_version: 1,
+        packet_id: 'demo/sub',
+        spec_folder: 'demo/sub',
+        parent_id: 'demo',
+        children_ids: ['demo/sub/001-nested-probe'],
+        manual: { depends_on: [], supersedes: [], related_to: [] },
+        derived: {
+          trigger_phrases: [],
+          key_topics: ['demo/sub'],
+          causal_summary: 'Container folder for demo/sub.',
+        },
+      },
+    });
+  });
+
+  it('leaves invalid sub-track metadata unchanged', () => {
+    const { entries } = buildSubtrackTree(repo);
+    const metadataPath = path.join(entries.sub, 'graph-metadata.json');
+    const corrupt = '{"packet_id":"demo/sub","children_ids":[not-json]}\n';
+    fs.writeFileSync(metadataPath, corrupt);
+
+    const result = run(REFRESH, ['--track', 'demo/sub', '--apply']);
+
+    expect({
+      status: result.status,
+      stdout: result.stdout,
+      metadataBytes: fs.readFileSync(metadataPath, 'utf8'),
+    }).toEqual({
+      status: 2,
+      stdout: 'demo/sub: graph-metadata.json is unreadable, not written\n',
+      metadataBytes: corrupt,
+    });
   });
 
   it('reports a missing sub-track path and exits with usage status', () => {

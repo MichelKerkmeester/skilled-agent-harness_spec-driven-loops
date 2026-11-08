@@ -185,7 +185,7 @@ is_track_root_folder() {
     local folder_name
     folder_name=$(basename "$folder")
     [[ "$(basename "$(dirname "$folder")")" == "specs" ]] || return 1
-    [[ ! "$folder_name" =~ ^[0-9]{3}-[a-z0-9-]+$ ]] || return 1
+    [[ ! "$folder_name" =~ ^[0-9]{3}([-_].+)?$ ]] || return 1
     [[ ! -f "$folder/spec.md" ]]
 }
 
@@ -194,8 +194,10 @@ has_subtrack_declaration() {
     local folder_name
     folder_name=$(basename "$folder")
     [[ "$folder_name" != z_* ]] || return 1
-    [[ ! "$folder_name" =~ ^[0-9]{3}-[a-z0-9-]+$ ]] || return 1
+    [[ "$folder_name" != .* && "$folder_name" != node_modules ]] || return 1
+    [[ ! "$folder_name" =~ ^[0-9]{3}([-_].+)?$ ]] || return 1
     [[ ! -f "$folder/spec.md" ]] || return 1
+    [[ ! -L "$folder/description.json" ]] || return 1
     [[ -f "$folder/description.json" ]] || return 1
     node -e '
 const fs = require("fs");
@@ -375,7 +377,7 @@ collect_phase_dirs() {
             # own packets, so a packet's result never depends on which it sits in.
             PHASE_DIRS+=("$subtrack_folder")
             for packet_dir in "$subtrack_folder"/[0-9][0-9][0-9]-*/; do
-                [[ -d "$packet_dir" ]] && PHASE_DIRS+=("${packet_dir%/}")
+                [[ -d "$packet_dir" && ! -L "${packet_dir%/}" ]] && PHASE_DIRS+=("${packet_dir%/}")
             done
         done
     fi

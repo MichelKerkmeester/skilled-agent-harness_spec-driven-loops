@@ -143,8 +143,12 @@ export function readWorkingTreeTracks(specsRoot) {
       const descriptionPath = path.join(subPath, DESCRIPTION);
       const linkedDescription = fs.lstatSync(descriptionPath, { throwIfNoEntry: false })?.isSymbolicLink() === true;
       const description = linkedDescription ? null : parseObject(readOptionalText(descriptionPath) ?? '');
-      if (!isDeclaredSubTrack(description) || fs.existsSync(path.join(subPath, 'spec.md'))) {
+      if (!isDeclaredSubTrack(description)) {
         diagnostics.push(`${id}: undeclared folder ignored`);
+        continue;
+      }
+      if (fs.existsSync(path.join(subPath, 'spec.md'))) {
+        diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
         continue;
       }
       track.children.push(entry.name);
@@ -250,8 +254,12 @@ export function readCommitTracks(specsRoot, rev) {
       const subInside = lsTree(repoTop, rev, `${specsPath}/${entry.name}/${sub.name}`);
       const description = subInside.find((item) => item.name === DESCRIPTION && item.type === 'blob');
       const declared = isDeclaredSubTrack(description ? parseObject(readBlob(repoTop, description.object)) : null);
-      if (!declared || subInside.some((item) => item.name === 'spec.md' && item.type === 'blob')) {
+      if (!declared) {
         diagnostics.push(`${id}: undeclared folder ignored`);
+        continue;
+      }
+      if (subInside.some((item) => item.name === 'spec.md' && item.type === 'blob')) {
+        diagnostics.push(`${id}: declared folder has spec.md and cannot be a sub-track`);
         continue;
       }
       track.children.push(sub.name);

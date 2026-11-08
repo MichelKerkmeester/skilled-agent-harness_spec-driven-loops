@@ -126,9 +126,11 @@ describe('graph metadata refresh path', () => {
     refreshGraphMetadata(entries.nested);
     expect(loadGraphMetadata(path.join(entries.nested, 'graph-metadata.json'))?.parent_id ?? null).toBeNull();
 
-    const archived = path.join(specs, 'demo', 'z_archive', 'old');
+    // Three segments, so the archive-name check is the one that decides; a
+    // four-segment identity returns at the depth guard before that check runs.
+    const archived = path.join(specs, 'demo', 'z_old');
     fs.mkdirSync(path.join(archived, '001-kept'), { recursive: true });
-    fs.writeFileSync(path.join(archived, 'description.json'), `${JSON.stringify({ level: 'sub-track', specFolder: 'demo/z_archive/old' })}\n`);
+    fs.writeFileSync(path.join(archived, 'description.json'), `${JSON.stringify({ level: 'sub-track', specFolder: 'demo/z_old' })}\n`);
     fs.writeFileSync(path.join(archived, '001-kept', 'spec.md'), '# Kept\n');
     refreshGraphMetadata(path.join(archived, '001-kept'));
     expect(loadGraphMetadata(path.join(archived, '001-kept', 'graph-metadata.json'))?.parent_id ?? null).toBeNull();
