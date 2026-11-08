@@ -1,0 +1,44 @@
+{
+  "runtime": "opencode",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 27,
+  "socket": "conv-97166-opencode",
+  "session_id": "99e3c173-109f-41cc-a908-41211ec66dfc",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-kill-switch-conversation-r3/scratch/opencode",
+  "started_at": "2026-11-08T12:51:47.609Z",
+  "finished_at": "2026-11-08T12:54:01.007Z",
+  "adapter": {
+    "bin": "opencode",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=opencode tool=1 fires=0 teal=1",
+      "evidence": "turns/S1"
+    }
+  ]
+}

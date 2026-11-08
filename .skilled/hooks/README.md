@@ -21,7 +21,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/` is the single home for every "hook" concept in the repo. Nine concern folders hold AI-runtime lifecycle hooks as real code here: `dispatch/`, `mcp-route-guard/`, `overlay-guard/`, `post-edit-quality/`, `task-dispatch/`, `classifier-injection-screen/`, `decision-capture/`, `goal/` and `session-relaunch/`, plus their shared helpers and session readers in `shared/`. Four of them (`dispatch/`, `mcp-route-guard/`, `post-edit-quality/` and `task-dispatch/`) have no real dependency on the skill they used to live inside, and each was originally nested under a domain skill's own tree (`cli-opencode/scripts/`, `mcp-code-mode/runtime/`, `sk-code/sk-code-quality/scripts/`, `system-deep-loop/runtime/lib/deep-loop/`). `overlay-guard/` and `classifier-injection-screen/` were written here from the start. The classifier reaches into `cli-classifier` for its Jev gate, transport and measured question. Moving those four out means a user can adopt or remove the enforcement layer independently of the skill's own knowledge and reference content.
+`.skilled/hooks/` is the single home for every "hook" concept in the repo. Ten concern folders hold AI-runtime lifecycle hooks as real code here: `ask-surface-guard/`, `dispatch/`, `mcp-route-guard/`, `overlay-guard/`, `post-edit-quality/`, `task-dispatch/`, `classifier-injection-screen/`, `decision-capture/`, `goal/` and `session-relaunch/`, plus their shared helpers and session readers in `shared/`. Four of them (`dispatch/`, `mcp-route-guard/`, `post-edit-quality/` and `task-dispatch/`) have no real dependency on the skill they used to live inside, and each was originally nested under a domain skill's own tree (`cli-opencode/scripts/`, `mcp-code-mode/runtime/`, `sk-code/sk-code-quality/scripts/`, `system-deep-loop/runtime/lib/deep-loop/`). `overlay-guard/` and `classifier-injection-screen/` were written here from the start. The classifier reaches into `cli-classifier` for its Jev gate, transport and measured question. Moving those four out means a user can adopt or remove the enforcement layer independently of the skill's own knowledge and reference content.
 
 A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime sibling of the OpenCode `opencode-goal` plugin. It binds a session to a spec packet whose `goal.md` is the directive, renders that file's durable slice with the frontmatter stripped, on every turn where that runtime injects at all (OpenCode, Pi, Devin and DSH per turn, Cursor at session start), and keeps only the pointer, liveness and telemetry per session. Pi, Cursor, Devin and DSH reach it through native session identity. OpenCode keeps using `opencode-goal` directly, which imports the same slice module.
 
@@ -45,6 +45,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `spec-gate` | `SYSTEM_SPEC_GATE_DISABLED` | `SPECKIT_SPEC_GATE_DISABLED` | enabled | notice / deny | wired |
 | `completion` | `SYSTEM_COMPLETION_DISABLED` | `SYSTEM_COMPLETION_SENTINEL_DISABLED`, `SYSTEM_SPECKIT_COMPLETION_DISABLED` | enabled | warn | wired |
 | `decision-capture` | `SYSTEM_DECISION_CAPTURE_DISABLED` | none | enabled | queue (local, for the next save) | wired |
+| `ask-surface` | `SYSTEM_ASK_SURFACE_DISABLED` | none | enabled | re-prompt (Claude, DSH, OpenCode, Pi) / warn (Codex, Devin) | wired |
 | `codex-watchdog` | `CODEX_HOOKS_WATCHDOG_DISABLED` | `CODEX_WATCHDOG_DISABLED` | enabled | warn | wired |
 | `permission-policy` | `SYSTEM_PERMISSION_POLICY_DISABLED` | none | enabled | deny | wired |
 | `directive-lifecycle` | `SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED` | none | enabled | inject cadence | wired |
@@ -159,6 +160,14 @@ hooks/
 |   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
 |   +-- dsh/      post-edit-quality.mjs (real file; the DSH adapters folder symlinks to it)
 |   `-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> .opencode/plugins/)
++-- ask-surface-guard/                          # Sends a turn ending in a prose option menu back to the question tool
+|   +-- lib/      ask-surface-core.cjs (detector, verdict, per-turn marker), advisory-stop.cjs (+ tests)
+|   +-- fixtures/ ten verdict fixtures the detector test reads
+|   +-- claude/   ask-surface-stop.cjs (+ test; synchronous Stop, blocks once)
+|   +-- codex/    ask-surface-stop.cjs (advisory)
+|   +-- devin/    ask-surface-stop.cjs (advisory)
+|   +-- pi/       ask-surface-guard.ts (+ test; `.pi/extensions/` symlinks to it)
+|   `-- dsh/      ask-surface-guard.mjs (+ test; the DSH adapters folder symlinks to it)
 +-- classifier-injection-screen/                # Jev screen of fetched web text for instructions aimed at an agent
 |   +-- lib/  classifier-injection-advisory.mjs, classifier-screen-fetched-text.mjs
 |   |           (+ a co-located test per module)
@@ -213,6 +222,7 @@ DSH follows Pi's layout. Each real adapter lives in a per-concern `dsh/` subfold
 | `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`) | `classifier-injection-screen.js` |
 | `task-dispatch` | claude, cursor, devin, pi (symlinked), dsh (symlinked) | `system-deep-loop-guard.js` |
 | `goal` | cursor, devin, pi (symlinked), dsh (`goal-context.mjs` and `goal-manage.mjs`, symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
+| `ask-surface` | claude (blocking Stop), codex and devin (advisory Stop), pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), plus the `lib/` detector and its fixtures | `ask-surface-guard.js` |
 | `decision-capture` | claude and devin (PostToolUse), pi (symlinked from `.pi/extensions/`), dsh (symlinked from `.dsh/plugins/repo-guards/adapters/`), plus save-time sweeps in `bin/` that read the Claude, Devin, Pi and DSH sessions, Codex rollouts and OpenCode's SQLite store | `decision-capture.js` (no `opencode/` mirror in this tree) |
 | session-relaunch | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop, compact-pointer on SessionStart after a compaction, and subagent-guard on PreToolUse (Bash), which denies relaunch lifecycle commands run from a sub-agent. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `prompt-seed.mjs` on UserPromptSubmit, `context-nudge.mjs` on PostToolUse, `stop-arm.mjs` on Stop. Cursor, Devin and DSH run the `/speckit:handoff` command trigger only | `session-relaunch.js` (real OpenCode adapter) |
 
@@ -300,6 +310,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 | Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi | DSH |
 |---|---|---|---|---|---|---|---|
 | `codex-watchdog` | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | ✓ covered | by-design: one `install-codex-hooks.mjs --check` at session start, no long-lived poll | by-design: one `install-codex-hooks.mjs --check` at session start, no long-lived poll |
+| `ask-surface` | ✓ covered | ~ partial: advisory only, Codex Stop documents no block | n/a: Cursor has no question tool | ~ partial: advisory only, Devin Stop documents no block | ✓ covered | ✓ covered | ✓ covered |
 | `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `decision-capture` | ✓ covered | by-design: the save-time rollout sweep already reads every answer, so a live hook would add a mapping for a reminder only | unverified: no answered question tool call was found to probe | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `directive-lifecycle` | ✓ covered | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in `system-skill-advisor` lifecycle state | by-design: embedded in `prompt-advisor.ts` directive de-dup | by-design: embedded in `prompt-advisor.mjs` directive de-dup |

@@ -1,0 +1,50 @@
+   Demo widget status badge colo +                                                                                                                                                                      
+     ┃ But should I ask via question tool? The thing I need is a decision: apply now or leave it. But the user hasn't asked for work. Keep┃                                                          ┃  
+     ┃ or two lines. Asking "want me to apply it?" is a question that changes what I do next, but the standing instruction says don't chan┃  Plugin failed: /private/tmp/claude-     › Open plugins  ┃  
+     ┃ brief prose line is fine; the handoff rule says ask as structured choice when alternatives are nameable and answer changes next act┃  501/-Users-michelkerkmeester-MEGA-                      ┃  
+     ┃ is borderline. A single question "want it applied?" isn't a fork with nameable alternatives beyond yes/no. I'll keep it prose and s┃  Development-Skilled/37344d65-539c-                      ┃  
+     ┃                                                                                                                                    ┃  401d-8341-c9b769fd34a7/scratchpad/                      ┃  
+     ┃ Actually — the user might be annoyed if I just repeat. Let me be efficient: "Teal is the pick, nothing changed. Tell me to apply it┃  conv/ask-surface-guard-kill-switch-                     ┃  
+     ┃ about the spec folder first, then wire the token." Short.                                                                          ┃  conversation-r3/scratch/opencode/.                      ┃  
+     ┃                                                                                                                                    ┃  opencode/plugins/system-skill-advisor.                  ┃  
+     ┃ Gate 6 applies again: read communication rules — already in context, not re-read. Gate 1 requires the trigger lookup on each new us┃  js                                                      ┃  
+     ┃ It's a one-word message. Trivial? "Teal" alone. It's a trivial confirmation. Gate 1 says each new user message. I'll skip the looku┃                                                          ┃  
+     ┃ The rule says skip Gate 2 for trivial only. Gate 1 has no skip clause, but running a lookup on "Teal" would return nothing. Let me ┃  Run /plugins to view details.                           ┃  
+     ┃ quickly to be compliant — it's cheap.                                                                                              ┃                                                          ┃  
+     ┃                                                                                                                                                                                                  
+     ┃ Hmm, "Teal" as query, truncated tokens. It'd be a no-hit. Let me run it to be safe.                                                                                                              
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  $ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "teal badge colour confirmed" 2>&1 |                                                
+  ┃  tail -5; echo "EXIT:${PIPESTATUS[0]}"                                                                                                                                                              
+  ┃                                                                                                                                                                                                     
+  ┃  "colour",                                                                                                                                                                                          
+  ┃      "confirmed"                                                                                                                                                                                    
+  ┃    ],                                                                                                                                                                                               
+  ┃    "truncated": false                                                                                                                                                                               
+  ┃  }                                                                                                                                                                                                  
+  ┃  EXIT:                                                                                                                                                                                              
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 766ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ No hits (results presumably empty). Fine.                                                                                                                                                        
+     ┃                                                                                                                                                                                                  
+     ┃ Now respond briefly. Teal confirmed, no files changed, standing instruction. Ask if they want it applied — but that's an operator action? No,                                                    
+     ┃ applying is my work; I just need their go-ahead because they told me not to change files. That's a legitimate blocker.                                                                           
+     ┃                                                                                                                                                                                                  
+     ┃ Keep it to two or three lines. Avoid repeating the trade-off.                                                                                                                                    
+                                                                                                                                                           ▄                                            
+     Teal is locked in as the choice, and no files have changed.                                                                                           █                                            
+                                                                                                                                                           █                                            
+     Tell me to apply it and I'll ask about the spec folder first, then wire the badge to teal.                                                            █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash · 7.6s · 98.4 tok/s                                                                                                       █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go · max                                                                                                                                                 
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-kill-switch-conversation-r3/scratch/opencode:main    28.3K (3%)  ctrl+p commands    /…/ask-surface-…/scratch/opencode:main  
+                                                                                                                                                                                                        

@@ -197,6 +197,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/skills/system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs'",
           "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/ask-surface-guard/devin/ask-surface-stop.cjs'",
+          "timeout": 5
         }
       ]
     }

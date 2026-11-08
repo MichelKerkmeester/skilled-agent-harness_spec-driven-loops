@@ -1,0 +1,44 @@
+{
+  "runtime": "opencode",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 27,
+  "socket": "conv-58222-opencode",
+  "session_id": "eadfc85c-abd9-4cf4-8c2b-357952863519",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-no-false-positive-conversation-r4/scratch/opencode",
+  "started_at": "2026-11-08T13:00:22.975Z",
+  "finished_at": "2026-11-08T13:01:06.734Z",
+  "adapter": {
+    "bin": "opencode",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=opencode fires=0 listed=1",
+      "evidence": "turns/S1"
+    }
+  ]
+}

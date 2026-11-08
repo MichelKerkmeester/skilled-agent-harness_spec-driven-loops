@@ -1,0 +1,5 @@
+{
+  "expected": "pass",
+  "askToolCalled": false,
+  "lastMessage": "The detector fires on this shape:\n\n```text\nWhich one?\nA) First\nB) Second\n```\n\nIs that the shape you saw?"
+}

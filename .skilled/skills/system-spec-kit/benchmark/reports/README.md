@@ -24,6 +24,7 @@ Each row below is one immutable run folder. Rows are written by the benchmark ru
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-11-08 | [`2026-11-08--manual-testing-playbook--ask-surface-guard/`](./2026-11-08--manual-testing-playbook--ask-surface-guard/) | claude, opencode, pi, devin ask-surface guard live conversations | 12 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-11-02 | [`2026-11-02--manual-testing-playbook--decision-capture-live-conversation/`](./2026-11-02--manual-testing-playbook--decision-capture-live-conversation/) | claude, opencode, codex, pi, devin decision-capture live conversations | 11 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-10-25 | [`2026-10-25--model-eval--authoring-baseline/`](./2026-10-25--model-eval--authoring-baseline/) | cli-devin swe-2-max (first set) and deepseek-v4-1-flash-1017-max (second set and two fresh sets), frozen Level 3 authoring brief | 4 final sets of 3 runs, 2 baselines of 3 runs, 5 metrics | **PASS** on the deciding second fresh set, **FAIL** on the three earlier sets | `054-weak-model-spec-authoring` |
 | 2026-10-25 | [`2026-10-25--manual-testing-playbook--weak-model-authoring/`](./2026-10-25--manual-testing-playbook--weak-model-authoring/) | conductor manual-testing-playbook | 8 PASS, 0 FAIL | **PASS** | `manual-testing-playbook` |

@@ -1,0 +1,44 @@
+{
+  "runtime": "devin",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 27,
+  "socket": "conv-54616-devin",
+  "session_id": "b6368ace-8b80-439a-8948-b5b59463908a",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-no-false-positive-conversation/scratch/devin",
+  "started_at": "2026-11-08T12:20:29.391Z",
+  "finished_at": "2026-11-08T12:22:00.845Z",
+  "adapter": {
+    "bin": "devin",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=devin fires=0 listed=1",
+      "evidence": "turns/S1"
+    }
+  ]
+}

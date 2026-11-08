@@ -1,0 +1,2 @@
+{"runtime":"pi","time":"2026-11-08T12:14:17.609Z","turn":"S1","kind":"send","steps":[{"text":"The demo widget needs a status badge colour. Give me amber, teal and slate as options A, B and C with one trade-off each, then ask me which one I want."},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-08T12:14:41.159Z","turn":"S1","kind":"question","steps":[{"key":"Down"},{"key":"Enter"}]}

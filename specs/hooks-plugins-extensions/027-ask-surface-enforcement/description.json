@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/027-ask-surface-enforcement",
+  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "yourvaluehere",
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-11-08T13:06:53.117Z",
+  "specId": "027",
+  "folderSlug": "ask-surface-enforcement",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "08-11-26_11-44__researched-ask-surface-enforcement-over-five.md",
+    "08-11-26_14-05__built-the-ask-surface-guard-a-shared-prose-menu.md",
+    "08-11-26_14-06__built-the-ask-surface-guard-a-shared-prose-menu.md"
+  ]
+}

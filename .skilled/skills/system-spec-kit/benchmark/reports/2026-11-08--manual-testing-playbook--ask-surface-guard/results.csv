@@ -1,0 +1,13 @@
+scenario_id,runtime,run,evidence_class,verdict
+ask-surface-guard-live-conversation,claude-code,1,manual-testing-playbook,PASS
+ask-surface-guard-live-conversation,opencode,1,manual-testing-playbook,PASS
+ask-surface-guard-live-conversation,pi,1,manual-testing-playbook,PASS
+ask-surface-guard-devin-advisory-conversation,devin,1,manual-testing-playbook,PASS
+ask-surface-guard-kill-switch-conversation,claude-code,1,manual-testing-playbook,PASS
+ask-surface-guard-kill-switch-conversation,opencode,1,manual-testing-playbook,PASS
+ask-surface-guard-kill-switch-conversation,pi,1,manual-testing-playbook,PASS
+ask-surface-guard-kill-switch-conversation,devin,1,manual-testing-playbook,PASS
+ask-surface-guard-no-false-positive-conversation,claude-code,1,manual-testing-playbook,PASS
+ask-surface-guard-no-false-positive-conversation,opencode,1,manual-testing-playbook,PASS
+ask-surface-guard-no-false-positive-conversation,pi,1,manual-testing-playbook,PASS
+ask-surface-guard-no-false-positive-conversation,devin,1,manual-testing-playbook,PASS

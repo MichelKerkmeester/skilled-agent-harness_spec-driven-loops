@@ -1631,6 +1631,51 @@
       "pi": {
         "extension": "session-start-advisories.ts"
       }
+    },
+    {
+      "id": "ask-surface-guard",
+      "concern": "Send a turn that ends in a prose option menu back to be asked through the question tool",
+      "bindings": {
+        "claude": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 3,
+            "matcher": "",
+            "runner": "node",
+            "script": ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 3,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/hooks/ask-surface-guard/codex/ask-surface-stop.cjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 2,
+            "matcher": "",
+            "runner": "node",
+            "script": ".skilled/hooks/ask-surface-guard/devin/ask-surface-stop.cjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "ask-surface-guard.ts"
+      }
     }
   ]
 }

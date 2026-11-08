@@ -1,0 +1,5 @@
+{
+  "expected": "fire",
+  "askToolCalled": false,
+  "lastMessage": "Two ways forward.\n\n**A)** Ship the rule text now and the hook next week.\n**B)** Ship both together.\n\nWhich do you prefer?"
+}

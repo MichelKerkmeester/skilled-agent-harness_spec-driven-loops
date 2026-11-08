@@ -1,0 +1,50 @@
+{
+  "topic": "Research how to make an agent ask the operator for a decision through its runtime's native ask-question tool instead of ending a turn with a prose A/B/C option menu. The runtimes in scope are Claude Code (AskUserQuestion), Codex (request_user_input), Pi (the @juicesharp/rpiv-ask-user-question extension), OpenCode (its built-in question tool) and every other cli runtime in this repo that has one: Devin, Cursor, DSH (DeepSeek Harness) and Hermes. Prove for each runtime whether a tool exists and give its exact name. Read-only: write only under the research artifact directory. Cite file:line, or a binary or doc source, for every finding.",
+  "research_topic": "Make an agent ask the operator through its runtime's native ask-question tool instead of ending a turn with a prose A/B/C option menu: prove the tool and the enforceable turn-end event for Claude Code, Codex, Pi, OpenCode, Devin, Cursor, DSH and Hermes, define a low-false-positive detector, wire it through the hook registry, and amend the rule text.",
+  "specFolder": "specs/hooks-plugins-extensions/027-ask-surface-enforcement",
+  "artifactDir": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/research/lineages/deepseek",
+  "fanout_lineage_artifact_dir": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/research/lineages/deepseek",
+  "loopType": "research",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "createdAt": "2026-11-08T10:19:14Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "timeoutSeconds": 2400
+  },
+  "lineage": {
+    "label": "deepseek",
+    "sessionId": "fanout-deepseek-1794132897320-q8eip1",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "resource_map": {
+    "emit": true,
+    "resource_map_present": false
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

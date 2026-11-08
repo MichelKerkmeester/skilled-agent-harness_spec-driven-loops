@@ -1,0 +1,2 @@
+{"runtime":"claude-code","time":"2026-11-08T12:59:42.157Z","turn":"startup","kind":"startup","steps":[{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-08T12:59:53.795Z","turn":"S1","kind":"send","steps":[{"text":"Summarise what is in the notes folder as a numbered list."},{"key":"Enter"}]}

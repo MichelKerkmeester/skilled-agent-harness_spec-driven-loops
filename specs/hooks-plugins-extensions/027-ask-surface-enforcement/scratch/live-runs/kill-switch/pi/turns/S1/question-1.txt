@@ -1,0 +1,51 @@
+   stay neutral and say so honestly: the answer depends on facts I don't have.                                                                                                                          
+                                                                                                                                                                                                        
+   First line: "The choice turns on one thing I cannot see from here: the widget's existing palette and which statuses the badge shows."                                                                
+                                                                                                                                                                                                        
+   That's a payload-bearing first line and it's honest.                                                                                                                                                 
+                                                                                                                                                                                                        
+   Then options. Then caveat, then ask.                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Keep it tight.                                                                                                                                                                                       
+
+ ● The choice turns on two things I cannot see from here: the widget's existing palette and which statuses that badge shows. Against an unknown palette, here is the one trade-off that decides each.   
+                                                                                                                                                                                                        
+   A) Amber reads as pending or needs attention without the alarm of red. The cost: it sits next to a warning colour, so if the widget also shows an error state, both compete for the same signal and  
+   the badge stops meaning one thing.                                                                                                                                                                   
+                                                                                                                                                                                                        
+   B) Teal is not on a typical status scale, so the badge reads as its own object rather than a fifth severity. The cost: teal on a white or light card often lands under the contrast floor, so you owe
+   it a darker shade or a border to stay legible.                                                                                                                                                       
+                                                                                                                                                                                                        
+   C) Slate is neutral, so it never fights a red or green semantic colour elsewhere in the widget. The cost: it is quiet enough to be mistaken for a disabled control, so the badge may read as "off"   
+   rather than "this is the status".                                                                                                                                                                    
+                                                                                                                                                                                                        
+   If the badge shows a single neutral status next to other coloured elements, slate avoids the collisions. If it shows one of several statuses, amber only works when nothing else in the widget is    
+   amber or red, and teal is the safer pick as long as you check contrast.                                                                                                                              
+                                                                                                                                                                                                        
+   No files were read or changed.                                                                                                                                                                       
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ✶ Waiting for your answer… (thought for 8s · ↓ 2,597 tokens · 47s)                                                                                                                                     
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Badge colour                                                                                                                                                                                          
+
+ Which status badge colour do you want for the demo widget?                                                                                                                                             
+
+❯ 1. A) Amber
+     Reads as pending or needs attention at a glance. Trade-off: competes with any warning or error colour already in the widget.
+  2. B) Teal
+     Distinct from a typical status scale, so the badge reads as its own object. Trade-off: often under the contrast floor on white, needs a darker shade or border.
+  3. C) Slate
+     Neutral, never fights a red or green semantic colour. Trade-off: quiet enough to be mistaken for a disabled control.
+  4. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash | ctx: 97% left | used: 25.8k tok | $0.01
+

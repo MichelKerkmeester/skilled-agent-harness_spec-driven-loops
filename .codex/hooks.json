@@ -168,6 +168,11 @@
             "type": "command",
             "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-relaunch/codex/stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=Stop adapter=stop-arm.mjs\" >&2; printf %s \"{\\\"systemMessage\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}\"; }'",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/ask-surface-guard/codex/ask-surface-stop.cjs || { printf \"%s\\n\" \"mk-hook-drift host=codex event=Stop adapter=ask-surface-stop.cjs\" >&2; printf %s \"{\\\"systemMessage\\\":\\\"mk codex hook could not resolve; build the spec-kit runtime (npm --prefix .skilled/skills/system-spec-kit run build) or restore the missing adapter\\\"}\"; }'",
+            "timeout": 5
           }
         ]
       },

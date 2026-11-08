@@ -1,0 +1,5 @@
+{
+  "expected": "fire",
+  "askToolCalled": false,
+  "lastMessage": "Every mirror except this false positive was confirmed by hand, so the commit is ready.\n\nHow do you want past the false positive?\n- **A) Fix the root cause first (recommended).** One small commit makes the DSH sync count a symlinked command\n  source as a source, with a test that fails first.\n- **B) Allow the one-time bypass.** Add a permission rule for `SPECKIT_SKIP_MIRROR_PARITY=1 git commit`, or run the\n  commits yourself with `!`.\n- **C) Commit from the main checkout instead.** I'm advising against it: main has unrelated uncommitted\n  deletions that look like another session's work."
+}

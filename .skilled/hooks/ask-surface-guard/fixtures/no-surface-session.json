@@ -1,0 +1,6 @@
+{
+  "expected": "pass",
+  "askToolCalled": false,
+  "surfaceAvailable": false,
+  "lastMessage": "Which spec folder?\nA) Existing\nB) New"
+}

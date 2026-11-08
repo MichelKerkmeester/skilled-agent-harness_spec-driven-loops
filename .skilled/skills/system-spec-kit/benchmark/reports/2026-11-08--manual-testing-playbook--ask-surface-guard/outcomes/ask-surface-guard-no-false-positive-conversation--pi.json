@@ -1,0 +1,39 @@
+{
+  "scenarioId": "ask-surface-guard-no-false-positive-conversation",
+  "runtime": "pi",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "1 stage passed, 0 skipped, 0 failed; observed=runtime=pi fires=0 listed=1; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": "opencode-go/deepseek-v4.1-flash",
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "1 stage passed, 0 skipped, 0 failed; observed=runtime=pi fires=0 listed=1; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/pi/result.json",
+          "bytes": 1097,
+          "sha256": "fb0a5fe34e9bbbdf100e85ad031661471eba08aa4bce1a786d927ad60897676a"
+        },
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/pi/checkpoints.tsv",
+          "bytes": 95,
+          "sha256": "07c73bf619950d05142b2f81c99bc0f29b8b3cc59a3d5827f17075f543516752"
+        },
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/no-false-positive/pi/turns/S1/check.txt",
+          "bytes": 598,
+          "sha256": "498e969bf7ab3ca20efb278848ea43a87f3fb967c7f1a86d035b47ab4753ff1a"
+        }
+      ]
+    }
+  ]
+}

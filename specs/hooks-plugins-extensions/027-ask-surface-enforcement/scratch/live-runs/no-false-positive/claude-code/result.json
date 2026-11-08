@@ -1,0 +1,44 @@
+{
+  "runtime": "claude-code",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 27,
+  "socket": "conv-58222-claude-code",
+  "session_id": "02757d3c-0a55-473b-a8fe-1ef1fd98be97",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-no-false-positive-conversation-r4/scratch/claude-code",
+  "started_at": "2026-11-08T12:59:39.990Z",
+  "finished_at": "2026-11-08T13:00:22.974Z",
+  "adapter": {
+    "bin": "claude",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=claude-code fires=0 listed=1",
+      "evidence": "turns/S1"
+    }
+  ]
+}

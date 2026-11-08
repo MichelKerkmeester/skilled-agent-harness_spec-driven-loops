@@ -1,0 +1,5 @@
+{
+  "expected": "pass",
+  "askToolCalled": true,
+  "lastMessage": "Which spec folder?\nA) Existing\nB) New\nC) Related\nD) Skip"
+}

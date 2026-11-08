@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-11-07"
-version: 2.1.16.0
+version: 2.1.17.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -280,6 +280,10 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 | Playbook ID | Scenario | Scenario File | Catalog Entry |
 |---|---|---|---|
 | compaction-history-lookup | Compaction history lookup: fresh locator, missing or stale locator, unsupported runtime, printed command and the 30-minute TTL | [compaction-history-lookup](plugins-and-hooks/compaction-history-lookup.md) | [compaction-history-lookup](../feature-catalog/context-preservation/compaction-history-lookup.md) |
+| ask-surface-guard-live-conversation | Ask-surface guard live conversation: a live colour decision reaches the question tool on Claude Code, OpenCode and Pi, with the guard's fires counted | [ask-surface-guard-live-conversation](plugins-and-hooks/ask-surface-guard-live-conversation.md) | — |
+| ask-surface-guard-devin-advisory-conversation | Ask-surface guard Devin advisory conversation: on Devin the guard only logs an advisory and the colour decision still reaches the pane | [ask-surface-guard-devin-advisory-conversation](plugins-and-hooks/ask-surface-guard-devin-advisory-conversation.md) | — |
+| ask-surface-guard-kill-switch-conversation | Ask-surface guard kill-switch conversation: SYSTEM_ASK_SURFACE_DISABLED=1 leaves no guard fire | [ask-surface-guard-kill-switch-conversation](plugins-and-hooks/ask-surface-guard-kill-switch-conversation.md) | — |
+| ask-surface-guard-no-false-positive-conversation | Ask-surface guard no false positive: a numbered summary records no fire | [ask-surface-guard-no-false-positive-conversation](plugins-and-hooks/ask-surface-guard-no-false-positive-conversation.md) | — |
 | completion-evidence-sentinel | Completion evidence sentinel | [completion-evidence-sentinel](plugins-and-hooks/completion-evidence-sentinel.md) | — |
 | decision-capture-claude-hook | Decision capture Claude hook: one queued record per answered AskUserQuestion, registry and mirror wiring, kill switch | [decision-capture-claude-hook](plugins-and-hooks/decision-capture-claude-hook.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
 | decision-capture-transcript-sweeps | Decision capture transcript sweeps for Claude, OpenCode and Devin, each answer queued once | [decision-capture-transcript-sweeps](plugins-and-hooks/decision-capture-transcript-sweeps.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |

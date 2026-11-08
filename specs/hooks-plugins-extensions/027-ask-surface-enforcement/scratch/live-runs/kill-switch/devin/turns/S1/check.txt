@@ -1,0 +1,3 @@
+$ F="$PWD/.skilled/skills/.state/ask-surface/fires.jsonl"; T="$CONVERSATION_TURN_DIR"; mkdir -p "$T"; fires=0; if [ -f "$F" ]; then cp -p "$F" "$T/"; fires=$(wc -l < "$F" | tr -d ' '); fi; Q="$PWD/.skilled/skills/.state/decision-capture"; tool=0; if [ -d "$Q" ] && find "$Q" -type f -name '*.jsonl' -exec grep -l '"session_id"' {} + 2>/dev/null | xargs grep -l 'Teal' >/dev/null 2>&1; then tool=1; fi; teal=0; grep -Fq 'Teal' "$T/history.txt" 2>/dev/null && teal=1; obs="observed=runtime=$CONVERSATION_RUNTIME tool=$tool fires=$fires teal=$teal"; if [ "$fires" -ne 0 ] || [ "$teal" -ne 1 ]; then printf 'DEVIATION: the guard fired while disabled, or the answer is missing\n%s\n' "$obs"; exit 1; fi; printf '%s\n' "$obs"
+observed=runtime=devin tool=1 fires=0 teal=1
+[exit 0]

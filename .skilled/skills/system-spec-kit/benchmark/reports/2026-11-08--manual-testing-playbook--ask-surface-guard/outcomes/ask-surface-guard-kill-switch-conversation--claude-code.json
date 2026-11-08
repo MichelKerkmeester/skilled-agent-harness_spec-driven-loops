@@ -1,0 +1,39 @@
+{
+  "scenarioId": "ask-surface-guard-kill-switch-conversation",
+  "runtime": "claude-code",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "1 stage passed, 0 skipped, 0 failed; observed=runtime=claude-code tool=1 fires=0 teal=1; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": "Opus 5.5 (account default, medium effort)",
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "1 stage passed, 0 skipped, 0 failed; observed=runtime=claude-code tool=1 fires=0 teal=1; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/claude-code/result.json",
+          "bytes": 1136,
+          "sha256": "9f78600ed18c2284b2cb76fd2b36b8b93f385e107aca0972f2960cab860869dd"
+        },
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/claude-code/checkpoints.tsv",
+          "bytes": 109,
+          "sha256": "5b3df0545ee9839a6fe3edd0b22ce233d7016997ebcbd063f0cca5d2a2874b8a"
+        },
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/kill-switch/claude-code/turns/S1/check.txt",
+          "bytes": 780,
+          "sha256": "11426507a6f3cf02eace88ba1ce57eaede78e5a4b51930997f063f73e484706f"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+   Add the path so reader can act? Path is useful: notes/. Keep it minimal.                                                                                                                             
+                                                                                                                                                                                                        
+   No trailing offer/farewell. Keep it short.                                                                                                                                                           
+                                                                                                                                                                                                        
+   Format: numbered list with the filename and its content. Two registers: clipped while working. This is a boundary-ish simple answer. Keep plain.                                                     
+                                                                                                                                                                                                        
+   Let me write:                                                                                                                                                                                        
+                                                                                                                                                                                                        
+   "The notes folder contains three short files, each a single line about the same badge feature:                                                                                                       
+                                                                                                                                                                                                        
+   1. notes/colours.md: badge colours still under review are amber, teal and slate.                                                                                                                     
+   2. notes/placement.md: the badge goes beside the widget title.                                                                                                                                       
+   3. notes/release.md: release target is the next demo build.                                                                                                                                          
+                                                                                                                                                                                                        
+   Read as one set, they describe an unfinished decision on the badge's look, where it sits and when it ships."                                                                                         
+                                                                                                                                                                                                        
+   That last line carries information forward (relation). Good. But is it too much? It's one line of synthesis, adds value. Keep it.                                                                    
+                                                                                                                                                                                                        
+   No em dash. Check: I used none. No semicolons. Serial comma: "amber, teal and slate" — no serial comma, and also I put "are amber, teal and slate" — fine.                                           
+                                                                                                                                                                                                        
+   First line carries payload. Good.                                                                                                                                                                    
+                                                                                                                                                                                                        
+   Do I need a "the one thing that is the operator's to do"? Three.js — communication-handoff §1. This is a trivial read-only summary. Hmm, "Close substantive turns with honest status. Then name the  
+   one thing that is the operator's to do, or say nothing is." A summary of a notes folder is a substantive reply. But adding a handback to a trivial 3-file listing would be filler, and               
+   communication.md §5 says delete closing lines that add nothing. The notes do name an open decision (badge colours under review), so I could name that. My synthesis line already does that           
+   implicitly.                                                                                                                                                                                          
+                                                                                                                                                                                                        
+   I'll keep it as is — but let me reconsider whether I should mention that colours are still "under review", i.e. undecided. My synthesis covers it.                                                   
+                                                                                                                                                                                                        
+   Trim slightly.                                                                                                                                                                                       
+
+ ● The notes folder holds three short files, each a single line about one badge feature:                                                                                                                
+                                                                                                                                                                                                        
+   1. notes/colours.md - badge colours still under review are amber, teal and slate.                                                                                                                    
+   2. notes/placement.md - the badge sits beside the widget title.                                                                                                                                      
+   3. notes/release.md - the release target is the next demo build.                                                                                                                                     
+                                                                                                                                                                                                        
+   Taken together they describe an open decision on how the badge looks, where it sits and when it ships, with the colour choice the only part not yet settled.                                         
+
+ ✻ Turn took 24s (Total time 40s · 1 turn)                                                                                                                                                              
+
+ Observational memory: observer skipping llmgateway/deepseek-v4.1-flash-1017 (cooldown — details in cooldown log)                                                                                       
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash [opencode-go] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash | ctx: 97% left | used: 26.8k tok | $0.01
+

@@ -1,0 +1,14 @@
+Research how to make an agent ask the operator for a decision through its runtime's native ask-question tool instead of ending a turn with a prose A/B/C option menu. The runtimes in scope are Claude Code (AskUserQuestion), Codex (request_user_input), Pi (the @juicesharp/rpiv-ask-user-question extension), OpenCode (its built-in question tool) and every other cli runtime in this repo that has one: Devin, Cursor, DSH (DeepSeek Harness) and Hermes. Prove for each runtime whether a tool exists and give its exact name. Read-only: write only under the research artifact directory. Cite file:line, or a binary or doc source, for every finding.
+
+Known failure evidence, which the research must verify, not assume:
+(1) .skilled/repo-rules/communication-handoff.md §4 says "Ask as a structured choice", and its §5 fallback, "a numbered list of named options with the recommendation marked", literally allows a prose menu.
+(2) AGENTS.md Gate 3 teaches a prose "A) Existing B) New C) Related D) Skip" format, and that file is always loaded.
+(3) Nothing enforces the rule. The Claude Stop hooks in .claude/settings.json are all async.
+
+Questions:
+Q1. Per runtime: does an ask tool exist, what is its exact name, and is it always available or gated by a mode or flag?
+Q2. Per runtime: which hook or plugin event can deterministically detect a turn that ends in a prose option menu with no ask-tool call, and block or re-prompt it? Candidates: Claude Stop with decision:block, Codex Stop, Pi and OpenCode plugin events, Devin Stop, Cursor afterAgentResponse, DSH and Hermes equivalents. Say which events can only observe and cannot block.
+Q3. What detector heuristic works (lettered or numbered option list plus a question near the end of the last assistant message, with no ask-tool call in the turn), and what is its false-positive risk on ordinary numbered steps, summaries and code blocks? Give a test-fixture set.
+Q4. How should this be wired through .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json, sync-hook-registrations.cjs and the .skilled/hooks/<name>/<runtime>/ layout? Reuse the per-runtime adapters and transcript readers in .skilled/hooks/decision-capture/. Also: the loop guard (stop_hook_active), sync versus async, and the escape hatch.
+Q5. What exact rule-text amendments should go into communication-handoff.md §4/§5 and AGENTS.md Gate 3, kept inside the REPO RULES.md "ask-surface carve-out"? Should the prose fallback stay for runtimes without a tool?
+End with a ranked, phase-able implementation plan.

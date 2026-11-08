@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/027-ask-surface-enforcement",
+  "spec_folder": "hooks-plugins-extensions/027-ask-surface-enforcement",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ask surface enforcement",
+      "enforce asking operator decisions through each runtime s",
+      "ask surface enforcement plan",
+      "ask surface enforcement tasks",
+      "ask surface enforcement acceptance criteria",
+      "027-ask-surface-enforcement operator decisions",
+      "ask surface enforcement implementation summary"
+    ],
+    "key_topics": [
+      "ask",
+      "surface",
+      "enforcement",
+      "enforce",
+      "asking",
+      "operator",
+      "decisions",
+      "runtime",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
+      ".skilled/hooks/ask-surface-guard/lib/advisory-stop.cjs",
+      ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs",
+      ".skilled/hooks/ask-surface-guard/codex/ask-surface-stop.cjs",
+      ".skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs",
+      ".skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts",
+      ".opencode/plugins/ask-surface-guard.js",
+      ".pi/extensions/ask-surface-guard.ts",
+      ".dsh/plugins/repo-guards/adapters/ask-surface-guard.mjs",
+      ".dsh/plugins/repo-guards/index.mjs",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".devin/hooks.v1.json",
+      ".skilled/repo-rules/communication-handoff.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-stop.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/lib/advisory-stop.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-stop.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/ask-surface-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "communication-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Agents",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Agents end turns with a prose menu of lettered options and a closing question instead of calling the runtime's ask-question tool, so the operator has to type an answer to a question the runtime could have asked as a structured choice",
+    "created_at": "2026-11-08T10:05:12Z",
+    "last_save_at": "2026-11-08T13:06:53.117Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f17a605fc54ee47ef3da07e49fb7d728b701ea89d3630108539362fa1b3991f5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1e660abcd145b3d5e1151a8018b95cccecc1971878637bc959c3fef724d3aec5",
+      "plan.md": "2a3bb9069e7187abc040232c8a38d4c5c5f2b152d389ab8598f8af6a818751eb",
+      "tasks.md": "790ca97f47549c7563dffdb1df5398e224077b86dd8b22e69d61408b3b2af5b3",
+      "decision-record.md": "8a8f04eb3b77e8ee18877241897ffe75dcae575ada2f03935c63291b1fddf0d9",
+      "implementation-summary.md": "6362fb247b53e019e31fea4bcf1ba57ca8691a1627fd69155138ce870ff6aa47"
+    },
+    "last_active_at": null
+  }
+}

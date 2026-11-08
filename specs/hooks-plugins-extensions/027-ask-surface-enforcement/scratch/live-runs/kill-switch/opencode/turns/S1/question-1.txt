@@ -1,0 +1,51 @@
+ ? Demo widget status badge colo +                                                                                                                                                                      
+     ┃ Let me do that.                                                                                                                                                                                  
+     ┃                                                                                                                                                          Demo widget status badge colours        
+     ┃ One more consideration: the compliance lines. I'll add a compact final line: "No files changed." plus skill routing/no-hit? The framework wants                                                  
+     ┃ these outputs. I'll include a short parenthetical at the end perhaps. Hmm, the repo rules say the reply ends when the answer is done and no              Context                                 
+     ┃ farewell. I'll add a single short line before the question: "Read-only: no files created or changed." That's the status. And I'll note gate              16,902 tokens                           
+     ┃ routing minimally in that same line? That would be noise.                                                                                                2% used                                 
+     ┃                                                                                                                                                                                                  
+     ┃ The framework's Gate outputs are instructions to me for audit. I think emitting "SKILL ROUTING: none (trivial decision query)" etc. adds noise                                                   
+     ┃ that the communication rules forbid. But the AGENTS.md is the higher authority and says "Output: SKILL ROUTING: result". Compliance beats style                                                  
+     ┃ per "Voice is not a performance: when a delivery rule would weaken the answer, keep the answer." The line doesn't weaken the answer. I'll include                                                
+     ┃ a compact audit line at the end. Hmm, but it also risks looking odd to the demo user.                                                                                                            
+     ┃                                                                                                                                                                                                  
+     ┃ I'll include one short line at the bottom: SKILL ROUTING: none (decision question, no artifact written) · REPO RULES: none in this repository · no                                               
+     ┃ files changed. That satisfies the gates in one line.                                                                                                                                             
+     ┃                                                                                                                                                                                                  
+     ┃ Let me write the final text now, with the question tool call.                                                                                                                                    
+                                                                                                                                                                                                        
+     Pick by what the badge has to say, because a status badge is read before its label.                                                                                                                
+                                                                                                                                                                                                        
+     A) Amber — Earns attention, which is what a badge is for, but it reads as caution, so a state that is merely in progress will look like a problem.                                                 
+     On a light surface the amber text also needs a tinted fill and dark text to stay legible at small sizes.                                                                                           
+                                                                                                                                                                                                        
+     B) Teal — Sits outside the red/green warning vocabulary, so it suits neutral-positive states and holds up on both light and dark themes, but readers                                               
+     have no built-in meaning for it and must read the label to interpret it.                                                                                                                           
+                                                                                                                                                                                                        
+     C) Slate — Never competes with the real semantic colours and looks deliberate in a dense UI, but it has the least salience and can read as disabled                                                
+     or inactive even when the state is live.                                                                                                                                                           
+                                                                                                                                                           ▄                                            
+     I would take A if the badge's job is to pull the eye to something that needs a look, B if the badge marks a healthy or active state, C if the badge   █                                            
+     is only metadata.                                                                                                                                     █                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Which badge colour do you want for the demo widget?                                                                                                                                                
+  ┃                                                                                                                                                                                                     
+  ┃  1. A) Amber (Recommended)                                                                                                                                                                          
+  ┃     Highest salience, reads as caution. Needs a tinted fill and dark text on light backgrounds to keep contrast at small sizes.                                                                     
+  ┃  2. B) Teal                                                                                                                                                                                         
+  ┃     Theme-neutral and outside the warning palette, but carries no built-in meaning, so the label has to do the work.                                                                                
+  ┃  3. C) Slate                                                                                                                                                                                        
+  ┃     Quietest and never clashes with semantic colours, but low salience can make a live state read as disabled.                                                                                      
+  ┃  4. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/ask-surface-…/scratch/opencode:main  
+                                                                                                                                                                                                        
+

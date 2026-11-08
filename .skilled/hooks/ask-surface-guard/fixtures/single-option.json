@@ -1,0 +1,5 @@
+{
+  "expected": "pass",
+  "askToolCalled": false,
+  "lastMessage": "One path is left:\n\nA) Rerun the suite after the fix.\n\nShall I go ahead?"
+}

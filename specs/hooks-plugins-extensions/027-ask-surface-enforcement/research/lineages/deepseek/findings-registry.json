@@ -1,0 +1,1021 @@
+{
+  "sessionId": "fanout-deepseek-1794132897320-q8eip1",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-08T10:30:02.429Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-per-runtime-does-an-ask-tool-exist-what-is-its-exact-name-and-is-it-always-avail",
+      "inboxId": null,
+      "text": "Per runtime: does an ask tool exist, what is its exact name, and is it always available or gated by a mode or flag?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-2-per-runtime-which-hook-or-plugin-event-can-deterministically-detect-a-turn-that-",
+      "inboxId": null,
+      "text": "Per runtime: which hook or plugin event can deterministically detect a turn that ends in a prose option menu with no ask-tool call, and block or re-prompt it? Which events can only observe?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-detector-heuristic-works-lettered-or-numbered-option-list-plus-a-question-n",
+      "inboxId": null,
+      "text": "What detector heuristic works (lettered or numbered option list plus a question near the end of the last assistant message, with no ask-tool call in the turn), and what is its false-positive risk on ordinary numbered steps, summaries and code blocks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-should-this-be-wired-through-hook-registry-json-sync-hook-registrations-cjs-",
+      "inboxId": null,
+      "text": "How should this be wired through hook-registry.json, sync-hook-registrations.cjs and the .skilled/hooks/<name>/<runtime>/ layout, reusing the decision-capture adapters, with the loop guard, sync versus async, and the escape hatch?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-exact-rule-text-amendments-should-go-into-communication-handoff-md-4-5-and-",
+      "inboxId": null,
+      "text": "What exact rule-text amendments should go into communication-handoff.md §4/§5 and AGENTS.md Gate 3 inside the REPO RULES.md ask-surface carve-out, and should the prose fallback stay for runtimes without a tool?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-per-runtime-does-an-ask-tool-exist-what-is-its-exact-name-and-is-it-always-avail",
+      "inboxId": null,
+      "text": "Per runtime: does an ask tool exist, what is its exact name, and is it always available or gated by a mode or flag?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-2-per-runtime-which-hook-or-plugin-event-can-deterministically-detect-a-turn-that-",
+      "inboxId": null,
+      "text": "Per runtime: which hook or plugin event can deterministically detect a turn that ends in a prose option menu with no ask-tool call, and block or re-prompt it? Which events can only observe?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-3-what-detector-heuristic-works-lettered-or-numbered-option-list-plus-a-question-n",
+      "inboxId": null,
+      "text": "What detector heuristic works (lettered or numbered option list plus a question near the end of the last assistant message, with no ask-tool call in the turn), and what is its false-positive risk on ordinary numbered steps, summaries and code blocks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-4-how-should-this-be-wired-through-hook-registry-json-sync-hook-registrations-cjs-",
+      "inboxId": null,
+      "text": "How should this be wired through hook-registry.json, sync-hook-registrations.cjs and the .skilled/hooks/<name>/<runtime>/ layout, reusing the decision-capture adapters, with the loop guard, sync versus async, and the escape hatch?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-5-what-exact-rule-text-amendments-should-go-into-communication-handoff-md-4-5-and-",
+      "inboxId": null,
+      "text": "What exact rule-text amendments should go into communication-handoff.md §4/§5 and AGENTS.md Gate 3 inside the REPO RULES.md ask-surface carve-out, and should the prose fallback stay for runtimes without a tool?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-askuserquestion-is-gated-out-of-every-subagent-so-only-the-main-conversation-can",
+      "text": "**`AskUserQuestion` is gated out of every subagent, so only the main conversation can ask.** The subagent tool filter removes `AskUserQuestion` \"even when listed in the `tools` field\", alongside `Agent`, `EndConversation`, `EnterPlanMode`, `ExitPlanMode`, `ScheduleWakeup`, `WaitForMcpServers` and `Workflow`. A dispatched worker therefore cannot satisfy an ask-the-operator obligation, which matters for fan-out lineages. [SOURCE: https://code.claude.com/docs/en/sub-agents.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://code.claude.com/docs/en/tools-reference.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks",
+        "https://code.claude.com/docs/en/sub-agents.md",
+        ".claude/settings.json",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs"
+      ]
+    },
+    {
+      "id": "finding-1-3-a-question-can-auto-close-which-changes-what-asked-means-askuserquestiontimeout-",
+      "text": "**A question can auto-close, which changes what \"asked\" means.** `askUserQuestionTimeout` accepts `60s`, `5m` or `10m`; after that the dialog submits any selected options and tells Claude the operator may be away. It never starts in background sessions, screen-reader mode or Remote Control. [SOURCE: https://code.claude.com/docs/en/tools-reference.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://code.claude.com/docs/en/tools-reference.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks",
+        "https://code.claude.com/docs/en/sub-agents.md",
+        ".claude/settings.json",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs"
+      ]
+    },
+    {
+      "id": "finding-1-7-blocking-is-a-registry-field-not-a-settings-file-edit-hook-registry-json-is-the-",
+      "text": "**Blocking is a registry field, not a settings-file edit.** `hook-registry.json` is the canonical hook set, and `sync-hook-registrations.cjs` renders `hook.async = true` only when the binding sets `async`. Dropping `async` from a Claude binding and re-running the synchronizer is the whole wiring change; the generated settings file must not be hand-edited. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:160] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://code.claude.com/docs/en/tools-reference.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks",
+        "https://code.claude.com/docs/en/sub-agents.md",
+        ".claude/settings.json",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs"
+      ]
+    },
+    {
+      "id": "finding-1-1-claude-code-s-native-ask-tool-is-askuserquestion-it-asks-multiple-choice-questio",
+      "text": "**Claude Code's native ask tool is `AskUserQuestion`.** It asks multiple-choice questions to gather requirements or clarify ambiguity, and it requires no permission (`Permission required: No`). The exact string is the one permission rules, subagent tool lists and hook matchers use. [SOURCE: https://code.claude.com/docs/en/tools-reference.md] [SOURCE: .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://code.claude.com/docs/en/tools-reference.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks",
+        "https://code.claude.com/docs/en/sub-agents.md",
+        ".claude/settings.json",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs"
+      ]
+    },
+    {
+      "id": "finding-1-5-every-claude-stop-hook-in-this-repository-is-async-so-none-of-them-can-block-tod",
+      "text": "**Every Claude Stop hook in this repository is async, so none of them can block today.** `.claude/settings.json` registers three `Stop` handlers (`session-stop`, `completion-evidence-stop`, `stop-arm`) and all three carry `\"async\": true`; the docs define async as running in the background without blocking. The known failure evidence is therefore confirmed, not assumed. [SOURCE: .claude/settings.json:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://code.claude.com/docs/en/tools-reference.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks",
+        "https://code.claude.com/docs/en/sub-agents.md",
+        ".claude/settings.json",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-claude-stop-hook-is-the-deterministic-turn-end-enforcement-point-and-it-can-",
+      "text": "**The Claude `Stop` hook is the deterministic turn-end enforcement point and it can block.** `decision: \"block\"` prevents Claude from stopping, `reason` is required with it, and `last_assistant_message` carries the final assistant text without reading the transcript. `stop_hook_active` is `true` when Claude is already continuing from a prior Stop block, and Claude Code caps consecutive continuations at 8. [SOURCE: https://docs.claude.com/en/docs/claude-code/hooks]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://code.claude.com/docs/en/tools-reference.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks",
+        "https://code.claude.com/docs/en/sub-agents.md",
+        ".claude/settings.json",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-existing-completion-evidence-stop-sentinel-is-the-reusable-shape-and-it-deli",
+      "text": "**The existing completion-evidence Stop sentinel is the reusable shape, and it deliberately never blocks.** It reads its own stdin payload, no-ops on `stop_hook_active === true`, detects a completion claim in `last_assistant_message`, and is documented as advisory-only: \"NEVER emits {decision:\\\"block\\\"}\" for the whole v1 rollout. An ask-surface guard can copy this adapter and change exactly one branch. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs:19] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs:112]",
+      "addedAtIteration": 1,
+      "sources": [
+        "https://code.claude.com/docs/en/tools-reference.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks",
+        "https://code.claude.com/docs/en/sub-agents.md",
+        ".claude/settings.json",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs"
+      ]
+    },
+    {
+      "id": "finding-2-7-codex-request-user-input-is-auto-allowed-and-reaches-pretooluse-while-the-operat",
+      "text": "**Codex `request_user_input` is auto-allowed and reaches `PreToolUse` while the operator is deciding.** That makes `PreToolUse` a reliable *positive* signal that an ask happened, and useless as a negative one: a turn that never asks produces no tool event. [SOURCE: specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts:114]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-2-8-codex-s-stop-hook-exists-and-is-wired-but-this-repository-documents-no-block-con",
+      "text": "**Codex's `Stop` hook exists and is wired, but this repository documents no block contract for it.** The hook contract says only `UserPromptSubmit` exit 2 blocks a turn, every other non-zero exit fails open, and a Stop hook's stdout is parsed as a response envelope — which is why the existing Stop sentinel is labelled advisory. Treat Codex Stop as observe-only until a Codex release documents a block decision. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md:119] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md:204]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-2-6-codex-s-ask-tool-is-request-user-input-and-it-is-gated-the-sweep-names-the-const",
+      "text": "**Codex's ask tool is `request_user_input`, and it is gated.** The sweep names the constant, `.codex/config.toml` sets `default_mode_request_user_input = true` and `hooks = true`, and the handoff rule records the narrower truth: Plan mode has it, Default mode only behind that feature, and `codex exec` never. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:38] [SOURCE: .codex/config.toml:1] [SOURCE: .skilled/repo-rules/communication-handoff.md:152]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-2-3-opencode-cannot-block-a-turn-end-only-tool-execute-before-can-deny-anything-the-",
+      "text": "**OpenCode cannot block a turn end; only `tool.execute.before` can deny anything.** The plugin bridge documents that `tool.execute.before` denies the call on a throw, while `event` is a subscription that replays events. The repository's own completion sentinel consumes `session.idle` and is advisory-only, which confirms the event leg has no blocking channel. [SOURCE: .opencode/plugins/ARCHITECTURE.md:128] [SOURCE: .opencode/plugins/system-completion-sentinel.js:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-2-2-opencode-s-question-tool-is-built-in-and-not-gated-by-a-mode-or-flag-in-this-rep",
+      "text": "**OpenCode's `question` tool is built in and not gated by a mode or flag in this repo.** No agent definition under `.opencode/agents/` sets a `tools:` block, and the `permission:` blocks do not mention `question`, so nothing in the repository removes it. That is an absence of evidence for gating, not proof the host always exposes it to subagents. [SOURCE: .opencode/agents/code.md:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-2-1-opencode-s-built-in-ask-tool-is-named-question-the-decision-capture-sweep-keys-o",
+      "text": "**OpenCode's built-in ask tool is named `question`.** The decision-capture sweep keys on `part.tool === 'question'` and normalizes its `questions` input, so the name is proven against real session storage rather than assumed. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:46]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-2-5-pi-cannot-block-a-turn-end-the-published-extension-types-give-agent-end-no-resul",
+      "text": "**Pi cannot block a turn end.** The published extension types give `agent_end` no result type, so a handler's return value is discarded; `message_end` may only replace the finalized message; only `tool_call` has a blocking result, which the overlay guard uses as `{ block: true, reason }`. A Pi ask-surface guard therefore has no turn-end enforcement point. [SOURCE: .pi/types/pi-coding-agent.d.ts:136] [SOURCE: .pi/types/pi-coding-agent.d.ts:129] [SOURCE: .skilled/hooks/overlay-guard/pi/overlay-guard.ts:24]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-2-4-pi-has-no-built-in-question-tool-its-two-ask-surfaces-are-extensions-ask-user-qu",
+      "text": "**Pi has no built-in question tool; its two ask surfaces are extensions.** `ask_user_question` comes from `@juicesharp/rpiv-ask-user-question` and `question` from `pi-plan-build`; the sweep accepts either because a session may install both. `.pi/settings.json` enables the rpiv package and `pi-plan-build`, so both names are live in this repository. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:32] [SOURCE: .pi/settings.json:1] [SOURCE: .pi/PLUGINS.md:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".opencode/plugins/ARCHITECTURE.md",
+        ".opencode/plugins/system-completion-sentinel.js",
+        ".opencode/agents/code.md",
+        ".pi/types/pi-coding-agent.d.ts",
+        ".pi/settings.json",
+        ".pi/PLUGINS.md",
+        ".skilled/hooks/overlay-guard/pi/overlay-guard.ts",
+        ".codex/config.toml",
+        ".skilled/repo-rules/communication-handoff.md",
+        ".skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md",
+        "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/shared/agent-hook-listener/providers/codex-events.ts"
+      ]
+    },
+    {
+      "id": "finding-3-3-cursor-has-no-evidenced-ask-tool-the-cursor-skill-s-tool-reference-documents-wor",
+      "text": "**Cursor has no evidenced ask tool.** The Cursor skill's tool reference documents worktrees, the cloud worker, the plugin marketplace and MCP, but no question tool; `.skilled/hooks/decision-capture/` has no Cursor adapter; and no `ask_user_question`-style name appears in the Cursor references. Treat Cursor as a runtime without a native ask surface until a tool name is proven. [SOURCE: .skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md:1] [SOURCE: .skilled/hooks/decision-capture/bin/README.md:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-3-4-cursor-s-turn-end-events-are-post-hoc-afteragentresponse-and-stop-are-listed-as-",
+      "text": "**Cursor's turn-end events are post-hoc.** `afterAgentResponse` and `stop` are listed as documented agent events, and the response envelope carries `permission: allow | deny | ask`, but the envelope is a gate for the action a hook intercepts; the repository's Cursor completion adapter returns no decision at all and is advisory. Cursor turn-end blocking is therefore unproven, and the honest classification is observe-only. [SOURCE: .skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md:83] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-3-1-devin-s-ask-tool-is-ask-user-question-and-it-is-not-available-to-subagents-the-t",
+      "text": "**Devin's ask tool is `ask_user_question`, and it is not available to subagents.** The tool inventory lists it under clarification with the explicit parenthetical \"not available to subagents\", and the decision-capture sweep keys on the same name. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md:212] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-devin.mjs:41]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-3-2-devin-s-only-block-capable-event-in-this-repository-is-permissionrequest-not-sto",
+      "text": "**Devin's only block-capable event in this repository is `PermissionRequest`, not `Stop`.** The permission policy emits `{decision: 'block', reason, hookSpecificOutput.permissionDecision}`, while the Stop registrations run the advisory session-stop and completion-evidence adapters. A Devin turn-end guard would observe, not block, on today's contract. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs:102] [SOURCE: .devin/hooks.v1.json:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-3-6-dsh-is-the-only-non-claude-runtime-with-a-genuine-turn-end-block-seam-agent-turn",
+      "text": "**DSH is the only non-Claude runtime with a genuine turn-end block seam.** `agent/turn-stopping` is documented as \"Force another step before the turn ends\", and the repository's own completion-evidence adapter is attached there — but with the error policy \"Log and continue\", so it observes. The seam exists; the policy is what would change. [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md:53] [SOURCE: .dsh/plugins/repo-guards/README.md:84]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-3-5-dsh-s-ask-tool-is-ask-user-question-and-headless-runs-have-no-question-tool-the-",
+      "text": "**DSH's ask tool is `ask_user_question`, and headless runs have no question tool.** The repo-guards adapter table says so in the decision-capture row: \"runs, headless has no question tool\". Since fan-out lineages are headless, a DSH worker cannot satisfy an ask-the-operator obligation. [SOURCE: .dsh/plugins/repo-guards/README.md:94] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-dsh.mjs:33]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-3-7-hermes-is-no-longer-a-runtime-in-this-repository-the-v4-0-2-0-changelog-states-t",
+      "text": "**Hermes is no longer a runtime in this repository.** The v4.0.2.0 changelog states that `cli-hermes`, the `.hermes/` folder and the `hermes` launcher function are gone, `.hermes/` is absent from the checkout, and the CLI hub's mode registry holds seven modes with no `cli-hermes` entry. Any rule text or hook wiring that still names Hermes is stale. [SOURCE: .skilled/changelog/skilled/v4.0.2.0.md:47] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-runtime-matrix-resolves-into-three-classes-blocking-turn-end-seams-exist-on-",
+      "text": "**The runtime matrix resolves into three classes.** Blocking turn-end seams exist on Claude Code (`Stop`, `decision: \"block\"`) and DSH (`agent/turn-stopping`, \"force another step\"). Codex, Cursor and Devin have turn-end events with no documented block contract in this repository, so they are observe-only in practice. OpenCode and Pi have no turn-end seam at all. Hermes is out of scope. [INFERENCE: from findings 1-7 above]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs",
+        ".devin/hooks.v1.json",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
+        ".dsh/plugins/repo-guards/README.md",
+        ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        ".skilled/hooks/decision-capture/bin/sweep-dsh.mjs",
+        ".skilled/changelog/skilled/v4.0.2.0.md",
+        ".skilled/skills/cli-external-orchestration/mode-registry.json"
+      ]
+    },
+    {
+      "id": "finding-4-9-a-fixture-base-already-exists-and-needs-negatives-not-positives-the-tree-holds-p",
+      "text": "**A fixture base already exists and needs negatives, not positives.** The tree holds positive ask fixtures for Claude, Codex, OpenCode, Pi and Devin, plus 13 detector tests; what it lacks is the negative set a guard must not fire on: numbered steps, a summary question with no options, a fenced code menu, a blockquoted menu, a single option, and a question already asked through the tool. [SOURCE: .skilled/hooks/decision-capture/bin/fixtures/claude-chat-questions.jsonl] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.test.mjs:10]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-1-a-question-detector-already-exists-and-is-close-to-the-needed-shape-chat-questio",
+      "text": "**A question detector already exists and is close to the needed shape.** `chat-questions.mjs` reads the closing paragraph, requires a `?` in prose, collects lettered options from that paragraph or an immediately following options-only paragraph, and skips process questions. The ask-surface guard can reuse it instead of inventing a second parser. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:120] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:277]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-8-claude-s-stop-payload-cannot-prove-the-negative-by-itself-last-assistant-message",
+      "text": "**Claude's Stop payload cannot prove the negative by itself.** `last_assistant_message` carries the text, but whether an ask tool ran in the turn lives in the transcript, so the Claude guard needs the payload for the text and `transcript_path` for the tool-use scan. [SOURCE: https://docs.claude.com/en/docs/claude-code/hooks]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-2-its-option-grammar-is-too-narrow-for-enforcement-option-line-accepts-only-a-thro",
+      "text": "**Its option grammar is too narrow for enforcement.** `OPTION_LINE` accepts only `A)` through `D)`, optionally bulleted or bolded. A numbered menu (`1)`, `2)`), an `A.` style, or an `Option 1:` label is invisible to it, so a guard built on the constant alone would miss real prose menus. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:28]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-4-ordinary-numbered-steps-are-a-low-false-positive-risk-the-gate-is-the-option-lis",
+      "text": "**Ordinary numbered steps are a low false-positive risk.** The gate is the option list, not the number, and step lists use `1.` at the margin while the option matcher requires an `A)`-shaped marker. A reply can be a numbered plan and still contain no candidate. [INFERENCE: from the option regex at chat-questions.mjs:28 and the numbered-line regex at chat-questions.mjs:49]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-5-summaries-are-a-low-risk-only-while-a-question-mark-is-required-a-closing-anythi",
+      "text": "**Summaries are a low risk only while a question mark is required.** A closing \"Anything else?\" has no option list, so it fails the option gate. A summary that both asks a question and prints four `A)`-shaped lines would fire, which is the intended behavior but also the residual false positive. [INFERENCE: from the candidate rule at chat-questions.mjs:277]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-no-ask-tool-call-in-the-turn-half-is-already-implemented-per-runtime-claude-",
+      "text": "**The \"no ask-tool call in the turn\" half is already implemented per runtime.** Claude's transcript sweep keys on `AskUserQuestion`, Codex on `request_user_input`, OpenCode on `question`, Pi on `ask_user_question` or `question`, Devin and DSH on `ask_user_question`. A guard can reuse those readers to prove the negative. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-transcript.mjs:41] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:38] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:46] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:35]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-prose-stripper-is-the-anti-code-block-defense-before-testing-for-a-question-",
+      "text": "**The prose stripper is the anti-code-block defense.** Before testing for a question mark, it removes fenced code, inline code, straight and curly quotes, and blockquote, table and heading lines. A `?` inside a code sample or a quoted transcript therefore cannot open a candidate. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:118]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-4-6-two-real-false-positive-vectors-remain-options-only-code-blocks-and-blockquoted-",
+      "text": "**Two real false-positive vectors remain: options-only code blocks and blockquoted menus.** `isOptionsOnly` and `optionLabelsOf` read raw lines, while only the question test is prose-stripped. A paragraph that is entirely a code block of `A)` lines, or a quoted menu inside a blockquote, can satisfy the option half. The guard must strip fences and quotes before option extraction, not only before the question test. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:133]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.test.mjs",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/fixtures/",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-9-5-is-stale-in-two-places-and-permissive-in-a-third-its-opencode-row-says-a-built",
+      "text": "**§5 is stale in two places and permissive in a third.** Its OpenCode row says \"a built-in equivalent — Operator-reported, name not recorded here\" when the name is `question`, and its fallback sentence makes a prose numbered list the sanctioned answer for \"anything else\", which is the exact behavior this research is meant to end. [SOURCE: .skilled/repo-rules/communication-handoff.md:148] [SOURCE: .skilled/repo-rules/communication-handoff.md:156]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-1-hook-registry-json-is-the-canonical-set-for-four-runtimes-plus-pi-not-for-every-",
+      "text": "**`hook-registry.json` is the canonical set for four runtimes plus Pi, not for every runtime.** The synchronizer renders `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`, and verifies Pi extensions as symlinks. DSH registers through `.dsh/plugins/repo-guards/index.mjs` and OpenCode through `.opencode/plugins/`, so a complete ask-surface guard needs three registration surfaces, not one. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:30] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json:1] [SOURCE: .dsh/plugins/repo-guards/README.md:9]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-2-a-new-hook-is-one-registry-entry-with-per-runtime-bindings-and-the-generated-fil",
+      "text": "**A new hook is one registry entry with per-runtime bindings, and the generated files must never be hand-edited.** Each binding carries `event`, `group`, `slot`, `matcher`, `runner`, `script`, `timeout` and `fallback`; the synchronizer owns the rendered files and `--check` reports drift. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:158]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-3-blocking-is-the-absence-of-async-and-async-is-defined-as-running-in-the-backgrou",
+      "text": "**Blocking is the absence of `async`, and async is defined as running in the background without blocking.** The renderer emits `hook.async = true` only when the binding sets it, so the Claude binding for an enforcing guard must omit `async` and carry a short timeout. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:160] [SOURCE: https://docs.claude.com/en/docs/claude-code/hooks]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-8-naming-a-tool-in-agents-md-gate-3-would-breach-the-ask-surface-carve-out-the-car",
+      "text": "**Naming a tool in `AGENTS.md` Gate 3 would breach the ask-surface carve-out.** The carve-out says `communication-handoff.md` \"is the one rule on this side of that line, its §5 is the only place a tool name appears\". Gate 3 lives in `AGENTS.md`, not in a rule file, so the safe amendment has Gate 3 *reference* §5's surface and keep the A/B/C/D text only as option labels. [SOURCE: REPO RULES.md:103]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-fallback-field-is-where-per-runtime-drift-behaviour-is-encoded-envelope-prin",
+      "text": "**The `fallback` field is where per-runtime drift behaviour is encoded.** `envelope` prints a hook-shaped message so a broken adapter cannot break the host, and the grammar differs by runtime: Codex rejects unknown `hookSpecificOutput` keys on Stop and takes a plain `systemMessage`, while Cursor's envelope is `{permission: \"allow\", agent_message, mkHookDrift}`. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:63] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs:107]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-adapter-layout-is-skilled-hooks-concern-runtime-with-pi-and-dsh-as-real-file",
+      "text": "**The adapter layout is `.skilled/hooks/<concern>/<runtime>/`, with Pi and DSH as real files behind symlinks.** Pi's `.ts` file is the real implementation and `.pi/extensions/` symlinks to it; DSH's `.mjs` file is real and `.dsh/plugins/repo-guards/adapters/` symlinks to it. A new `ask-surface-guard` concern follows the same shape. [SOURCE: .skilled/hooks/README.md:135]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-10-the-amendment-set-that-satisfies-all-four-constraints-4-keep-the-three-condition",
+      "text": "**The amendment set that satisfies all four constraints.** §4: keep the three-condition test and add \"ask it through the surface §5 names for this runtime\". §5: update the OpenCode row to `question`, add Devin `ask_user_question`, add DSH `ask_user_question` with the headless exception, mark Cursor as no evidenced surface, and replace the fallback sentence with \"only when the runtime has no surface, or the surface is unavailable in this session\". Gate 3: \"Ask through the surface `communication-handoff.md` §5 names for this runtime; the A/B/C/D lines below are the option labels you pass to it, printed as prose only under §5's fallback.\" [INFERENCE: composed from findings 1-9 and the carve-out text]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-escape-hatch-already-exists-as-the-concern-kill-switch-ishookenabled-ask-sur",
+      "text": "**The escape hatch already exists as the concern kill switch.** `isHookEnabled('ask-surface')` resolves `SYSTEM_ASK_SURFACE_DISABLED`, the master `SYSTEM_HOOKS_DISABLED` disables every hook, the environment wins over `hook-flags.env`, and a hook is enabled by default. No new switch mechanism is needed. [SOURCE: .skilled/hooks/shared/hook-flags.cjs:27]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-loop-guard-is-stop-hook-active-plus-a-per-turn-marker-claude-sets-stop-hook-",
+      "text": "**The loop guard is `stop_hook_active` plus a per-turn marker.** Claude sets `stop_hook_active` on a continuation caused by a Stop block and caps consecutive continuations at 8, so the adapter must approve immediately when it is true; a small per-session, per-turn marker file makes the guard block at most once per turn even if the model repeats the menu. [SOURCE: https://docs.claude.com/en/docs/claude-code/hooks]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/shared/hook-flags.cjs",
+        ".skilled/repo-rules/communication-handoff.md",
+        "REPO RULES.md",
+        ".dsh/plugins/repo-guards/README.md",
+        "https://docs.claude.com/en/docs/claude-code/hooks"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-1ba17b8d0ae7",
+      "text": "**Blocking from `PostToolUse` on `AskUserQuestion`.** That event proves an ask happened but",
+      "contentHash": "1ba17b8d0ae7",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b02b148aefc3",
+      "text": "**Reading `transcript_path` to recover the last message.** The hooks reference states the",
+      "contentHash": "b02b148aefc3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6fa86a092b3b",
+      "text": "None this iteration. The Claude path is fully evidenced.",
+      "contentHash": "6fa86a092b3b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1231fb0267d4",
+      "text": "**Assuming Pi `turn_end` is a supported blocking event.** `goal-context.ts` registers a",
+      "contentHash": "1231fb0267d4",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-34ad4617441d",
+      "text": "**Blocking an OpenCode turn end from the `event` hook.** The architecture table and the",
+      "contentHash": "34ad4617441d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-16239d418337",
+      "text": "**Treating Codex `PreToolUse` as the enforcement point.** It fires only when a tool runs, so",
+      "contentHash": "16239d418337",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-60f999e00882",
+      "text": "Codex Stop blocking: no repository contract, and a web search for the upstream hook contract",
+      "contentHash": "60f999e00882",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-64bf9713be93",
+      "text": "**Cursor as a runtime with a native ask tool.** No tool name, no sweep, no adapter. Naming",
+      "contentHash": "64bf9713be93",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-201df0a69c5e",
+      "text": "**Devin `Stop` as a blocking guard.** The repository uses Devin's blocking decision on",
+      "contentHash": "201df0a69c5e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-946c1e375ef3",
+      "text": "**Keeping Hermes in the matrix.** Verified removed, so the honest answer is \"out of scope\",",
+      "contentHash": "946c1e375ef3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-d36bb4d361b6",
+      "text": "Cursor turn-end blocking: the hook contract documents the envelope but not which post-hoc",
+      "contentHash": "d36bb4d361b6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0c90cb3c1a90",
+      "text": "**A pure `last_assistant_message` check with no tool scan.** It cannot distinguish a turn",
+      "contentHash": "0c90cb3c1a90",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f3f700c7dee6",
+      "text": "**Reusing `isProcessQuestion` as the guard's filter.** It suppresses scope, permission, gate",
+      "contentHash": "f3f700c7dee6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4e0785c2fce0",
+      "text": "None. The detector's limits are documented in its own constants and tests.",
+      "contentHash": "4e0785c2fce0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3a4c5c320163",
+      "text": "**A blocking guard on every runtime.** Only Claude Code and DSH expose a turn-end seam; the",
+      "contentHash": "3a4c5c320163",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-fa8422653682",
+      "text": "**Naming the tool in `AGENTS.md`.** It would breach the carve-out and duplicate a table that",
+      "contentHash": "fa8422653682",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-0e07dd60b432",
+      "text": "**Removing the prose fallback entirely.** Claude subagents, DSH headless runs and",
+      "contentHash": "0e07dd60b432",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-bb06ffd24e61",
+      "text": "None. The wiring surface is fully mapped.",
+      "contentHash": "bb06ffd24e61",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 42,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "code.claude.com": 2,
+      "docs.claude.com": 1,
+      "other": 39
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/hooks-plugins-extensions/027-ask-surface-enforcement/research/lineages/deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -1,0 +1,44 @@
+{
+  "runtime": "pi",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 27,
+  "socket": "conv-58222-pi",
+  "session_id": "94c75844-69ba-489b-b32f-7e3e154fd59d",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-no-false-positive-conversation-r4/scratch/pi",
+  "started_at": "2026-11-08T13:01:06.734Z",
+  "finished_at": "2026-11-08T13:01:53.261Z",
+  "adapter": {
+    "bin": "pi",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=pi fires=0 listed=1",
+      "evidence": "turns/S1"
+    }
+  ]
+}

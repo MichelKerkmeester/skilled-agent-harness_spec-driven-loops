@@ -1,0 +1,5 @@
+{
+  "expected": "fire",
+  "askToolCalled": false,
+  "lastMessage": "The run failed on quota. Which route should the rerun take?\n\n1) opencode-go, the same model on another provider\n2) The DeepSeek Harness executor\n3) Wait for the credit to renew"
+}

@@ -212,6 +212,11 @@
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/session-relaunch/claude/stop-arm.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=stop-arm.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
             "timeout": 10,
             "async": true
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=Stop adapter=ask-surface-stop.cjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"Stop\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+            "timeout": 5
           }
         ]
       }

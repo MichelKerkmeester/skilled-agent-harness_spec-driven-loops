@@ -1,0 +1,51 @@
+   Notes folder summary          +                                                                                                                                                                      
+     ┃                                                                                                                                    ┃                                                          ┃  
+     ┃ Gate 2 output: SKILL ROUTING. Hmm, the framework requires outputting "SKILL ROUTING: result". Trivial query? "Skip: trivial queries┃  Plugin failed: /private/tmp/claude-     › Open plugins  ┃  
+     ┃ greetings, single-line questions)." This is arguably trivial. But to be safe and compliant, I'll include a one-line routing note. A┃  501/-Users-michelkerkmeester-MEGA-                      ┃  
+     ┃ including scaffolding lines like "SKILL ROUTING:" adds noise. But the framework demands it as output. It's part of the operational ┃  Development-Skilled/37344d65-539c-                      ┃  
+     ┃ — but the communication rule says leaked scaffolding shouldn't appear. There's tension. The AGENTS.md requires the output prefix. I┃  401d-8341-c9b769fd34a7/scratchpad/                      ┃  
+     ┃ compactly, since it's mandated.                                                                                                    ┃  conv/ask-surface-guard-no-false-                        ┃  
+     ┃                                                                                                                                    ┃  positive-conversation-r4/scratch/                       ┃  
+     ┃ Actually, let me reconsider: this is a trivial read-only question about a tiny folder. Gate 2 Skip clause: "Skip: trivial queries o┃  opencode/.opencode/plugins/system-                      ┃  
+     ┃ single-line questions)." This is a single-line question. So skip. I'll omit the routing line. Hmm, but it's not a greeting or singl┃  skill-advisor.js                                        ┃  
+     ┃ in the sense of a trivial ask... it is a single-line question requiring file reads. Borderline.                                    ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  Run /plugins to view details.                           ┃  
+     ┃ I'll include a brief routing line to be safe but keep it minimal — no. The instruction says the output is SKILL ROUTING: [result]. ┃                                                          ┃  
+     ┃ this repo would include it. I'll include it as a short trailing line rather than leading noise? It should come before... it doesn't specify                                                      
+     ┃ position.                                                                                                                                                                                        
+     ┃                                                                                                                                                                                                  
+     ┃ I'll keep it minimal and put it at the end as a status note with the read-only statement. Actually cleaner: just give the answer and a short                                                     
+     ┃ status line "Read-only: three files... nothing is blocked on you."                                                                                                                               
+     ┃                                                                                                                                                                                                  
+     ┃ Let me be decisive: answer + status. Include rule-load note? Gate 5 doesn't fire (read-only). Gate 6 loaded.                                                                                     
+     ┃                                                                                                                                                                                                  
+     ┃ Final answer:                                                                                                                                                                                    
+     ┃                                                                                                                                                                                                  
+     ┃ "notes/ holds three one-line Markdown notes about the badge widget:                                                                                                                              
+     ┃                                                                                                                                                                                                  
+     ┃ 1. colours.md: the badge colours under review are amber, teal and slate.                                                                                                                         
+     ┃ 2. placement.md: the badge sits beside the widget title.                                                                                                                                         
+     ┃ 3. release.md: the release target is the next demo build.                                                                                                                                        
+     ┃                                                                                                                                                                                                  
+     ┃ Read-only turn: I listed the folder and read all three files. Nothing was written. Nothing is blocked on you."                                      ▄                                            
+     ┃                                                                                                                                                     █                                            
+     ┃ That's good.                                                                                                                                        █                                            
+                                                                                                                                                           █                                            
+     The notes/ folder holds three one-line Markdown notes, all about the badge widget:                                                                    █                                            
+                                                                                                                                                           █                                            
+     1. colours.md records that the badge colours under review are amber, teal and slate.                                                                  █                                            
+     2. placement.md records that the badge sits beside the widget title.                                                                                  █                                            
+     3. release.md records that the release target is the next demo build.                                                                                 █                                            
+                                                                                                                                                           █                                            
+     Read-only turn: I listed the folder and read all three files, which are the only entries. Nothing was written and nothing is blocked on you.          █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash · 32.1s · 69.8 tok/s                                                                                                      █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go · max                                                                                                                                                 
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/37344d65-539c-401d-8341-c9b769f…/scratchpad/conv/ask-surface-guard-no-false-positive-conversation-r4/scratch/opencode:main  33.7K (3%)  ctrl+p commands    /…/ask-surface-…/scratch/opencode:main  
+                                                                                                                                                                                                        
+

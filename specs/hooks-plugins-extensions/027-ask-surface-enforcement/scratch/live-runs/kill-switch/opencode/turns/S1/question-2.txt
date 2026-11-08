@@ -1,0 +1,51 @@
+   Demo widget status badge colo +                                                                                                                                                                      
+     ┃ I'll include one short line at the bottom: SKILL ROUTING: none (decision question, no artifact written) · REPO RULES: none in this ┃                                                          ┃  
+     ┃ files changed. That satisfies the gates in one line.                                                                               ┃  Plugin failed: /private/tmp/claude-     › Open plugins  ┃  
+     ┃                                                                                                                                    ┃  501/-Users-michelkerkmeester-MEGA-                      ┃  
+     ┃ Let me write the final text now, with the question tool call.                                                                      ┃  Development-Skilled/37344d65-539c-                      ┃  
+                                                                                                                                          ┃  401d-8341-c9b769fd34a7/scratchpad/                      ┃  
+     Pick by what the badge has to say, because a status badge is read before its label.                                                  ┃  conv/ask-surface-guard-kill-switch-                     ┃  
+                                                                                                                                          ┃  conversation-r3/scratch/opencode/.                      ┃  
+     A) Amber — Earns attention, which is what a badge is for, but it reads as caution, so a state that is merely in progress will look li┃  opencode/plugins/system-skill-advisor.                  ┃  
+     On a light surface the amber text also needs a tinted fill and dark text to stay legible at small sizes.                             ┃  js                                                      ┃  
+                                                                                                                                          ┃                                                          ┃  
+     B) Teal — Sits outside the red/green warning vocabulary, so it suits neutral-positive states and holds up on both light and dark them┃  Run /plugins to view details.                           ┃  
+     have no built-in meaning for it and must read the label to interpret it.                                                             ┃                                                          ┃  
+                                                                                                                                                                                                        
+     C) Slate — Never competes with the real semantic colours and looks deliberate in a dense UI, but it has the least salience and can read as disabled                                                
+     or inactive even when the state is live.                                                                                                                                                           
+                                                                                                                                                                                                        
+     I would take A if the badge's job is to pull the eye to something that needs a look, B if the badge marks a healthy or active state, C if the badge                                                
+     is only metadata.                                                                                                                                                                                  
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  # Questions                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Which badge colour do you want for the demo widget?                                                                                                                                                
+  ┃  B) Teal                                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 1.0s                                                                                                                                                                                    
+                                                                                                                                                                                                        
+     ┃ User chose B) Teal. Nothing to change (they said don't change files). So I just acknowledge and note it's not applied yet since no files may                                                     
+     ┃ change. Handback: nothing needed from them, or one line.                                                                                                                                         
+     ┃                                                                                                                                                                                                  
+     ┃ Keep it short.                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     Teal it is. That suits a healthy or active state, and it holds contrast on both light and dark themes, so the label can stay plain text.                                                           
+                                                                                                                                                           █                                            
+     Nothing was changed: the choice is recorded here only, and no files were touched as instructed. Say the word when you want it applied and I will ask  █                                            
+     about a spec folder first.                                                                                                                            █                                            
+                                                                                                                                                           █                                            
+     SKILL ROUTING: none (decision question, no artifact written) · REPO RULES: none in this repository                                                    █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash · 33.7s · 102.2 tok/s                                                                                                     █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go · max                                                                                                                                                 
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-kill-switch-conversation-r3/scratch/opencode:main    27.6K (3%)  ctrl+p commands    /…/ask-surface-…/scratch/opencode:main  
+                                                                                                                                                                                                        
+

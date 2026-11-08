@@ -1,0 +1,50 @@
+   Demo widget status badge colo   Demo widget status badge colo +                                                                                                                                      
+     ┃ output SKILL ROUTING. Hmm. It says Output: SKILL ROUTING: [result]. But it also says skip for trivial queries. This is arguably tri┃                                                          ┃  
+     ┃ no doc. I'll omit to keep the reply clean, since the user asked for a compact answer. Actually, the framework is pretty insistent. ┃  Plugin failed: /private/tmp/claude-     › Open plugins  ┃  
+     ┃ "Restraint" and "no leaked scaffolding" rules say don't leak runtime scaffolding into the reply. The routing line is a framework ar┃  501/-Users-michelkerkmeester-MEGA-                      ┃  
+     ┃ information for the reader. The communication rule §3 explicitly calls "Leaked scaffolding" a filler offender. So omit.            ┃  Development-Skilled/37344d65-539c-                      ┃  
+     ┃                                                                                                                                    ┃  401d-8341-c9b769fd34a7/scratchpad/                      ┃  
+     ┃ Let me call the question tool.                                                                                                     ┃  conv/ask-surface-guard-live-                            ┃  
+                                                                                                                                          ┃  conversation/scratch/opencode/.                         ┃  
+     Teal (B) is my pick: the badge sits beside the widget title, and teal reads as an accent without borrowing a status meaning it does n┃  opencode/plugins/system-skill-advisor.                  ┃  
+                                                                                                                                          ┃  js                                                      ┃  
+     - A) Amber: highest salience, so it holds attention against the title. Trade-off: amber is the standard warning colour, so a neutral ┃                                                          ┃  
+       read as a problem.                                                                                                                 ┃  Run /plugins to view details.                           ┃  
+     - B) Teal: calm, distinct from the usual red/amber/green set, and keeps contrast next to slate text. Trade-off: it has no conventiona┃                                                          ┃  
+       meaning, so the label has to carry the message.                                                                                                                                                  
+     - C) Slate: neutral and quiet, so it sits naturally in the surrounding chrome. Trade-off: it recedes beside the title and is easily mistaken for a                                                 
+       disabled or muted state.                                                                                                                                                                         
+                                                                                                                                                                                                        
+     Assumption: one fixed accent colour for the badge, not a colour that changes per status. If the badge does change by state, this ranking shifts.                                                   
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  # Questions                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Which badge colour do you want for the demo widget?                                                                                                                                                
+  ┃  B) Teal (Recommended)                                                                                                                                                                              
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 1.3s                                                                                                                                                                                    
+                                                                                                                                                                                                        
+     ┃ The user picked teal. Nothing to write (no request to implement yet). Just confirm in one line. No file changes, so no Gate 3.                                                                   
+     ┃                                                                                                                                                                                                  
+     ┃ Keep it short: "Teal it is." Then what's next? The badge sits beside the title. Nothing blocked. Maybe say the next step is applying it when they                                                
+     ┃ want.                                                                                                                                                                                            
+     ┃                                                                                                                                                     █                                            
+     ┃ Per handoff: end by naming what's the operator's to do, or say nothing is. Here nothing is blocked on them. Say: "Nothing blocked on you; say the   █                                            
+     ┃ word when you want it applied to the widget."                                                                                                       █                                            
+     ┃                                                                                                                                                     █                                            
+     ┃ That's a bit of an offer but one line, fine.                                                                                                        █                                            
+                                                                                                                                                           █                                            
+     Teal it is: the badge stays beside the widget title and takes teal as its accent. Nothing is blocked on you; say when you want the colour applied to  █                                            
+     the widget and I will wire it in.                                                                                                                     █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash · 29.0s · 103.6 tok/s                                                                                                     █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash OpenCode Go · max                                                                                                                                                 
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-mic…/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-live-conversation/scratch/opencode:main  38.3K (4%)  ctrl+p commands    /…/ask-surface-…/scratch/opencode:main  
+                                                                                                                                                                                                        

@@ -2,6 +2,7 @@
 // MODULE: Repo Guards Plugin Bundle
 // ───────────────────────────────────────────────────────────────────
 
+import { registerAskSurfaceGuard } from './adapters/ask-surface-guard.mjs';
 import { registerCompletionEvidence } from './adapters/completion-evidence.mjs';
 import { registerClassifierInjectionScreen } from './adapters/classifier-injection-screen.mjs';
 import { registerDecisionCapture } from './adapters/decision-capture.mjs';
@@ -52,6 +53,7 @@ export function apply(ctx, config = {}) {
   registerSessionStartContext(ctx, options.sessionStartContext);
   registerSpecGateEnforce(ctx, options.specGateEnforce);
   registerCompletionEvidence(ctx, options.completionEvidence);
+  registerAskSurfaceGuard(ctx, options.askSurfaceGuard);
   registerTaskDispatchGuard(ctx, options.taskDispatchGuard);
   registerPostEditQuality(ctx, options.postEditQuality);
   registerClassifierInjectionScreen(ctx, options.classifierInjectionScreen);

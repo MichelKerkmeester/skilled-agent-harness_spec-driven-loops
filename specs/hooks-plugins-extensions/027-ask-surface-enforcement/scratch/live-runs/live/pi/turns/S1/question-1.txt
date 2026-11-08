@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+   Then ask.                                                                                                                                                                                            
+                                                                                                                                                                                                        
+   I'll use ask_user_question. Header ≤16 chars: "Badge colour".                                                                                                                                        
+                                                                                                                                                                                                        
+   Note Gate 3 doesn't fire — no file write. Good.                                                                                                                                                      
+                                                                                                                                                                                                        
+   Also I should mention nothing about the spec folder. Fine.                                                                                                                                           
+                                                                                                                                                                                                        
+   Let me write the reply then the question tool call. The tool call comes with the message.                                                                                                            
+                                                                                                                                                                                                        
+   Actually the ask_user_question is the tool; I'll write the trade-offs in the message text and then call the tool with short descriptions. But does the message text get shown before the question?   
+   Yes, text then tool call.                                                                                                                                                                            
+                                                                                                                                                                                                        
+   Let me keep the message tight and put trade-offs there, with the options in the tool being concise labels + descriptions.                                                                            
+
+ ● C (slate) is the safe default if the badge reports a neutral status, since it never implies an alarm. If the state genuinely means "needs attention", A wins.                                        
+                                                                                                                                                                                                        
+   ◉ A) Amber. Trade-off: it borrows the caution signal everyone already knows, which is also the problem. An informational state will read as a problem, and amber text fails contrast on white at     
+     small sizes.                                                                                                                                                                                       
+   ◉ B) Teal. Trade-off: it sits outside the red/green/amber status set, so it never collides with an alarm or success colour. It also carries no inherited meaning, so the badge needs a text label and
+     users have to learn it, and it can be mistaken for a brand accent.                                                                                                                                 
+   ◉ C) Slate. Trade-off: neutral and readable at small sizes, and it never implies alarm. It is low salience, so it recedes into surrounding grey chrome and is easy to miss when scanning.            
+                                                                                                                                                                                                        
+   Assumption stated: I am treating this as an informational badge, not an error or warning state. If it flags something the user must act on, that changes the answer.                                 
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ✻ Waiting for your answer… (thought for 11s · ↓ 2,085 tokens · 19s)                                                                                                                                    
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Badge colour                                                                                                                                                                                          
+
+ Which badge colour do you want?                                                                                                                                                                        
+
+❯ 1. A) Amber
+     Conventional caution signal, understood without a legend. Reads as a problem even when the state is informational, and has weak text contrast on white at small sizes.
+  2. B) Teal
+     Clear of the red/green/amber status set, so it never collides with alarm or success. Carries no inherited meaning, so it needs a label and users must learn it.
+  3. C) Slate (Recommended)
+     Neutral, no alarm meaning, readable at small sizes. Low salience, so it recedes into grey UI and is easy to miss when scanning.
+  4. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash | ctx: 98% left | used: 18.1k tok | $0.00
+

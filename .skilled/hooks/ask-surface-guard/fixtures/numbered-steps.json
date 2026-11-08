@@ -1,0 +1,5 @@
+{
+  "expected": "pass",
+  "askToolCalled": false,
+  "lastMessage": "Done. What changed:\n\n1. Read the registry.\n2. Added the binding.\n3. Regenerated the configs.\n4. Ran the sync check.\n5. Ran the tests."
+}

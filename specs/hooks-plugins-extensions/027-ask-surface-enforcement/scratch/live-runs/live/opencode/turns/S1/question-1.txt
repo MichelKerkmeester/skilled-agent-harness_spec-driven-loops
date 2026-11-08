@@ -1,0 +1,51 @@
+   Demo widget status badge colo ? Demo widget status badge colo +                                                                                                                                      
+     ┃ muted state.                                                                                                                       ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  Plugin failed: /private/tmp/claude-     › Open plugins  ┃  
+     ┃ Assumption: one fixed accent colour for the badge, not a per-state colour set. If the badge changes colour by state, the answer is ┃  501/-Users-michelkerkmeester-MEGA-                      ┃  
+     ┃                                                                                                                                    ┃  Development-Skilled/37344d65-539c-                      ┃  
+     ┃ Then the question tool. Hmm — but the tool call comes after text. That's fine.                                                     ┃  401d-8341-c9b769fd34a7/scratchpad/                      ┃  
+     ┃                                                                                                                                    ┃  conv/ask-surface-guard-live-                            ┃  
+     ┃ Gate 6 handoff: the question is the handback. No status needed for a purely conversational turn? The handoff rule says every substa┃  conversation/scratch/opencode/.                         ┃  
+     ┃ with honest status. But this is a simple choice; the question is the handback. I'll keep it minimal.                               ┃  opencode/plugins/system-skill-advisor.                  ┃  
+     ┃                                                                                                                                    ┃  js                                                      ┃  
+     ┃ Also the user asked "ask me which one I want" — the question tool is exactly that.                                                 ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  Run /plugins to view details.                           ┃  
+     ┃ One concern: the AGENTS framework requires skill routing output line. Gate 2 skip: trivial queries only. This is a trivial conversa┃                                                          ┃  
+     ┃ no artifact. But to be safe, I can note nothing. Adding "SKILL ROUTING: skipped (conversational, no artifact)" would be noise. The rules say                                                     
+     ┃ output SKILL ROUTING. Hmm. It says Output: SKILL ROUTING: [result]. But it also says skip for trivial queries. This is arguably trivial — no code,                                               
+     ┃ no doc. I'll omit to keep the reply clean, since the user asked for a compact answer. Actually, the framework is pretty insistent. But the                                                       
+     ┃ "Restraint" and "no leaked scaffolding" rules say don't leak runtime scaffolding into the reply. The routing line is a framework artifact, not                                                   
+     ┃ information for the reader. The communication rule §3 explicitly calls "Leaked scaffolding" a filler offender. So omit.                                                                          
+     ┃                                                                                                                                                                                                  
+     ┃ Let me call the question tool.                                                                                                                                                                   
+                                                                                                                                                                                                        
+     Teal (B) is my pick: the badge sits beside the widget title, and teal reads as an accent without borrowing a status meaning it does not have.                                                      
+                                                                                                                                                                                                        
+     - A) Amber: highest salience, so it holds attention against the title. Trade-off: amber is the standard warning colour, so a neutral status will                                                   
+       read as a problem.                                                                                                                                                                               
+     - B) Teal: calm, distinct from the usual red/amber/green set, and keeps contrast next to slate text. Trade-off: it has no conventional status                                                      
+       meaning, so the label has to carry the message.                                                                                                     █                                            
+     - C) Slate: neutral and quiet, so it sits naturally in the surrounding chrome. Trade-off: it recedes beside the title and is easily mistaken for a    █                                            
+       disabled or muted state.                                                                                                                            █                                            
+                                                                                                                                                           █                                            
+     Assumption: one fixed accent colour for the badge, not a colour that changes per status. If the badge does change by state, this ranking shifts.      █                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Which badge colour do you want for the demo widget?                                                                                                                                                
+  ┃                                                                                                                                                                                                     
+  ┃  1. B) Teal (Recommended)                                                                                                                                                                           
+  ┃     Accent colour that stays legible beside the title without implying a warning.                                                                                                                   
+  ┃  2. A) Amber                                                                                                                                                                                        
+  ┃     Maximum salience, at the cost of reading as a warning state.                                                                                                                                    
+  ┃  3. C) Slate                                                                                                                                                                                        
+  ┃     Neutral and unobtrusive, at the cost of low salience and possible confusion with disabled states.                                                                                               
+  ┃  4. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/ask-surface-…/scratch/opencode:main  
+                                                                                                                                                                                                        
+

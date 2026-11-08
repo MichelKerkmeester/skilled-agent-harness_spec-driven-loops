@@ -1,0 +1,44 @@
+{
+  "runtime": "pi",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 27,
+  "socket": "conv-97166-pi",
+  "session_id": "79cfd0ec-e47e-453c-9bc9-eadb09a43b40",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/37344d65-539c-401d-8341-c9b769fd34a7/scratchpad/conv/ask-surface-guard-kill-switch-conversation-r3/scratch/pi",
+  "started_at": "2026-11-08T12:47:08.568Z",
+  "finished_at": "2026-11-08T12:49:35.931Z",
+  "adapter": {
+    "bin": "pi",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=pi tool=1 fires=0 teal=1",
+      "evidence": "turns/S1"
+    }
+  ]
+}

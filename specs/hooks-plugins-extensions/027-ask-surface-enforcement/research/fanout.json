@@ -1,0 +1,1 @@
+{"concurrency":1,"executors":[{"kind":"cli-opencode","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","label":"deepseek","iterations":5,"timeoutSeconds":2400}]}

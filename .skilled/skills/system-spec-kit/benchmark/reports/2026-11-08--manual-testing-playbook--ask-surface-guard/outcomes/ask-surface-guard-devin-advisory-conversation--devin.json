@@ -1,0 +1,39 @@
+{
+  "scenarioId": "ask-surface-guard-devin-advisory-conversation",
+  "runtime": "devin",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "1 stage passed, 0 skipped, 0 failed; observed=runtime=devin fires=0 advise=0 teal=1; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": "deepseek-v4-1-flash-1017-max",
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "1 stage passed, 0 skipped, 0 failed; observed=runtime=devin fires=0 advise=0 teal=1; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/devin-advisory/devin/result.json",
+          "bytes": 1113,
+          "sha256": "cdf80bc8cf58661effd809213b340a1faedac663f7714d6f56a40131ef8ded65"
+        },
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/devin-advisory/devin/checkpoints.tsv",
+          "bytes": 105,
+          "sha256": "07b80e8dee50fdff5820eb1831deb783426dfc1cc4a6a9f7e34b718bdf6ff22e"
+        },
+        {
+          "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch/live-runs/devin-advisory/devin/turns/S1/check.txt",
+          "bytes": 633,
+          "sha256": "a8cb5ee3cf9742392a35f2f5a81a587da67efb4f54347f16658881dc2331e758"
+        }
+      ]
+    }
+  ]
+}

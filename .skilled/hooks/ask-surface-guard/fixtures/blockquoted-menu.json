@@ -1,0 +1,5 @@
+{
+  "expected": "pass",
+  "askToolCalled": false,
+  "lastMessage": "Your earlier message asked:\n\n> Which route?\n> A) opencode-go\n> B) dsh\n\nI took A. Does that still hold?"
+}

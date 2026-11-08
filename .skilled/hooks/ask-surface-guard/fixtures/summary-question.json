@@ -1,0 +1,5 @@
+{
+  "expected": "pass",
+  "askToolCalled": false,
+  "lastMessage": "The guard is wired and every test passes. Anything else you want checked?"
+}
