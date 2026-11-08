@@ -1,0 +1,2692 @@
+{
+  "sessionId": "2026-11-08T19:56:59.168Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-does-the-gate-3-classifier-in-skilled-skills-system-spec-kit-shared-gate-3-class",
+      "inboxId": null,
+      "text": "Does the Gate 3 classifier in .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts classify the same prompts as the Gate 3 text in AGENTS.md and the v4.0.0.1 note section The Gate That Asks Once, and which prompt does it misclassify?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-validate-sh-rules-named-in-the-v4-0-0-0-and-v4-0-0-5-notes-exist-in-runtim",
+      "inboxId": null,
+      "text": "Which validate.sh rules named in the v4.0.0.0 and v4.0.0.5 notes exist in runtime/cli/rules and the validation orchestrator, and does any rule pass on a packet it should fail?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-does-the-trigger-index-lookup-and-build-runtime-cli-retrieval-match-retrieval-co",
+      "inboxId": null,
+      "text": "Does the trigger index lookup and build (runtime/cli/retrieval/) match retrieval-conventions.md and the release notes on rebuild, staleness and exit codes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-continuity-save-and-resume-generate-context-js-speckit-save-speckit-resume-",
+      "inboxId": null,
+      "text": "Does continuity save and resume (generate-context.js, /speckit:save, /speckit:resume) route content where the v4.0.0.13, v4.0.0.14 and v4.0.1.0 notes say it does?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-does-the-goal-system-shipped-in-v4-0-0-2-goal-md-template-goal-cjs-the-4-000-cha",
+      "inboxId": null,
+      "text": "Does the goal system shipped in v4.0.0.2 (goal.md template, goal.cjs, the 4,000-character slice budget) behave as its docs say, and where is the budget enforced?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-6-do-upgrade-preview-and-rollback-doctor-update-check-align-apply-rollback-from-v4",
+      "inboxId": null,
+      "text": "Do upgrade, preview and rollback (/doctor:update check, align, apply, rollback from v4.0.0.3 and v4.0.0.5) hold up when read end to end and run only in check, preview or dry-run modes, and which step has no test?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-7-do-create-sh-and-the-level-templates-produce-a-packet-that-passes-validate-sh-st",
+      "inboxId": null,
+      "text": "Do create.sh and the level templates produce a packet that passes validate.sh --strict without hand edits, and do template fill notes agree with sk-doc and the template canon?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-8-which-spec-kit-changes-in-v4-0-0-13-to-v4-0-2-0-handover-environment-settings-de",
+      "inboxId": null,
+      "text": "Which spec-kit changes in v4.0.0.13 to v4.0.2.0 (handover, environment settings, Decisions Through the Question Tool) are missing or stale in system-spec-kit SKILL.md and references?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-9-which-spec-kit-scripts-rules-or-options-have-no-caller-no-test-or-duplicate-anot",
+      "inboxId": null,
+      "text": "Which spec-kit scripts, rules or options have no caller, no test, or duplicate another, and what breaks if each is removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-10-what-friction-do-the-operator-and-the-ai-user-hit-in-validate-sh-create-sh-and-t",
+      "inboxId": null,
+      "text": "What friction do the operator and the AI user hit in validate.sh, create.sh and the speckit commands: error text, exit codes, required flags, output length?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-11-where-do-system-spec-kit-code-and-docs-depart-from-sk-code-standards-and-sk-doc-",
+      "inboxId": null,
+      "text": "Where do system-spec-kit code and docs depart from sk-code standards and sk-doc skill format?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-12-what-concrete-extensions-to-the-gate-3-classifier-validate-rules-trigger-index-c",
+      "inboxId": null,
+      "text": "What concrete extensions to the Gate 3 classifier, validate rules, trigger index, continuity and goal features would close a gap found in this run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-6-do-upgrade-preview-and-rollback-doctor-update-check-align-apply-rollback-from-v4",
+      "inboxId": null,
+      "text": "Do upgrade, preview and rollback (/doctor:update check, align, apply, rollback from v4.0.0.3 and v4.0.0.5) hold up when read end to end and run only in check, preview or dry-run modes, and which step has no test?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-do-create-sh-and-the-level-templates-produce-a-packet-that-passes-validate-sh-st",
+      "inboxId": null,
+      "text": "Do create.sh and the level templates produce a packet that passes validate.sh --strict without hand edits, and do template fill notes agree with sk-doc and the template canon?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-does-the-gate-3-classifier-in-skilled-skills-system-spec-kit-shared-gate-3-class",
+      "inboxId": null,
+      "text": "Does the Gate 3 classifier in .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts classify the same prompts as the Gate 3 text in AGENTS.md and the v4.0.0.1 note section The Gate That Asks Once, and which prompt does it misclassify?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-validate-sh-rules-named-in-the-v4-0-0-0-and-v4-0-0-5-notes-exist-in-runtim",
+      "inboxId": null,
+      "text": "Which validate.sh rules named in the v4.0.0.0 and v4.0.0.5 notes exist in runtime/cli/rules and the validation orchestrator, and does any rule pass on a packet it should fail?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-does-the-trigger-index-lookup-and-build-runtime-cli-retrieval-match-retrieval-co",
+      "inboxId": null,
+      "text": "Does the trigger index lookup and build (runtime/cli/retrieval/) match retrieval-conventions.md and the release notes on rebuild, staleness and exit codes?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-does-continuity-save-and-resume-generate-context-js-speckit-save-speckit-resume-",
+      "inboxId": null,
+      "text": "Does continuity save and resume (generate-context.js, /speckit:save, /speckit:resume) route content where the v4.0.0.13, v4.0.0.14 and v4.0.1.0 notes say it does?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-does-the-goal-system-shipped-in-v4-0-0-2-goal-md-template-goal-cjs-the-4-000-cha",
+      "inboxId": null,
+      "text": "Does the goal system shipped in v4.0.0.2 (goal.md template, goal.cjs, the 4,000-character slice budget) behave as its docs say, and where is the budget enforced?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-8-which-spec-kit-changes-in-v4-0-0-13-to-v4-0-2-0-handover-environment-settings-de",
+      "inboxId": null,
+      "text": "Which spec-kit changes in v4.0.0.13 to v4.0.2.0 (handover, environment settings, Decisions Through the Question Tool) are missing or stale in system-spec-kit SKILL.md and references?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-9-which-spec-kit-scripts-rules-or-options-have-no-caller-no-test-or-duplicate-anot",
+      "inboxId": null,
+      "text": "Which spec-kit scripts, rules or options have no caller, no test, or duplicate another, and what breaks if each is removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-10-what-friction-do-the-operator-and-the-ai-user-hit-in-validate-sh-create-sh-and-t",
+      "inboxId": null,
+      "text": "What friction do the operator and the AI user hit in validate.sh, create.sh and the speckit commands: error text, exit codes, required flags, output length?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-11-where-do-system-spec-kit-code-and-docs-depart-from-sk-code-standards-and-sk-doc-",
+      "inboxId": null,
+      "text": "Where do system-spec-kit code and docs depart from sk-code standards and sk-doc skill format?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-12-what-concrete-extensions-to-the-gate-3-classifier-validate-rules-trigger-index-c",
+      "inboxId": null,
+      "text": "What concrete extensions to the Gate 3 classifier, validate rules, trigger index, continuity and goal features would close a gap found in this run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Questions 3–12 remain untouched: trigger index and retrieval, continuity save/resume routing, goal budget, upgrade preview/rollback, create.sh and level templates, v4.0.0.13–v4.0.2.0 doc drift, dead scripts, operator friction, sk-code/sk-doc conformance, extensions.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Question 2 is only half answered: the inventory is compared, but no packet with a known defect was run through `validate.sh --strict` to prove a rule does not pass when it should fail.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Residual on Q3: whether the lookup should expose a freshness signal, and whether `retrieval-conventions.md` should carry the `--check` contract.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4–Q12 remain: continuity save/resume routing, the goal budget, upgrade preview/rollback, `create.sh` and the level templates, the v4.0.0.13–v4.0.2.0 doc drift, dead scripts, operator friction, sk-code/sk-doc conformance, and concrete extensions.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Residual on Q2: the other four named rules were inventoried but not each executed with a failing fixture; the phase-parent exemption and the structure-parser divergence need a decision.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 residual: whether the trigger index should expose a freshness signal, and whether `retrieval-conventions.md` should carry the `--check` contract. The resume workflow runs the lookup without a freshness gate [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:75], so a stale index can still return hits; this is recorded as a residual, not a new finding, because it may overlap the Q3 work.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 residual: v4.0.2.0 says “if anything is missing or stale, the lookup section is left out” [SOURCE: .skilled/changelog/skilled/v4.0.2.0.md:98]; the resume YAML handles no-hit and error exits but does not gate on staleness before running the lookup.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 residual: whether bind and packet should refuse an over-budget goal, or whether the current warn-and-report split is the intended contract.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6–Q12 remain: upgrade preview/rollback, `create.sh` and level templates, v4.0.0.13–v4.0.2.0 doc drift, dead scripts, operator friction, sk-code/sk-doc conformance, and concrete extensions.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 residual unchanged (freshness signal; `--check` contract in retrieval-conventions.md). Q4 residual unchanged (stale-index gate absent from the resume YAML).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8-Q12 untouched: v4.0.0.13-v4.0.2.0 doc drift, dead scripts, operator friction across the speckit commands, sk-code/sk-doc conformance, concrete extensions.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6 residual: only `check` was executed. `align --dry-run`, `apply --dry-run`, `rollback --dry-run` and `compat --dry-run` were read (update.md §§3-7, the compat YAML's phase list and command table [SOURCE: .skilled/commands/doctor/assets/doctor-update-compat-action.yaml:36]) but not run, so the dry-run preview path is unverified end to end.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "F2 needs one more probe: whether the divergence is the unresolved-budget case only, or every check whose `options` differ between corpus and packet paths.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7 residual: the template fill-note question against sk-doc canon, and the `MEASURED_BEHAVIOR` rule's source file.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10–Q12 untouched by this iteration's findings: operator friction across the speckit commands (F2 is adjacent but is a self-count, not command friction), sk-code/sk-doc conformance, and concrete extensions beyond F5.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "F3 depends on one missing probe (canonical `ENV-REFERENCE.md` location and coverage).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8 residual: the **Decisions Through the Question Tool** limb (v4.0.2.0) and the v4.0.1.0 \"answers reach the decision record\" limb were read in the notes only. Neither was grepped against `SKILL.md`/`references`. Also unverified: whether a repo-root `ENV-REFERENCE.md` (named in the v4.0.0.13 note) exists and covers the relaunch switches.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q9 residual: the rules/options limb. `runtime/cli/rules` carries paired `.sh`/`.cjs` implementations (`check-canonical-save-*`, `check-frontmatter*`, `check-graph-metadata*`); whether each pair is a thin shim or a duplicate implementation was not read, and neither was whether every registered rule has a failing fixture.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 residual unchanged:** the template fill-note comparison against sk-doc canon, and the `MEASURED_BEHAVIOR` rule's source file.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F8:** whether the module header appears on line 2 of those 14 files (which would make them conforming under a reasonable reading) — only line 1 was measured.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 residual unchanged:** only `check` was executed for `/doctor:update`; `align`, `apply`, `rollback` and `compat` were read, not run.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F9:** the three vitest project prefixes were read from a cached results file; the config that declares them was not opened, so \"three roots\" is observed output, not declared intent.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q12 partial:** the trigger-index and continuity extension limbs remain — F5–F7 cover the classifier, validate rules and goal only.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F2:** whether the `9-command` self-count was ever correct (at v4.0.0.0 the family may have had nine commands including two `/deep` entries), which would make this a stale count rather than a wrong one. Needs the v4.0.0.0 note read against the then-current table.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried:** Q3 freshness signal, Q4 stale-index gate, Q5 over-budget bind, Q9 rules/options pairs, Q10–Q12.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F2:** whether a v3-era memory daemon used to provide the router (the `LLM_REFORMULATION_ENDPOINT` name suggests it). `git log -S` showed a single docs commit for the section, so the code was never in this tree — but the docs commit could have migrated text from `.opencode/skill/...`. Unverified.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 (upgrade preview/rollback)** — unchanged residual: only `check` has been executed; `align`, `apply`, `rollback`, `compat` are read but unrun.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F4:** whether `usesSpecKit()` accepts a project that only carries a `specs/` folder — the scratch repo *had* `specs/001-probe` and was still rejected, so the marker is something else (unread). That is the difference between \"fallback for a non-skilled project\" and \"fallback for a project that merely looks wrong\", and only the first is defensible.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 (create.sh + level templates)** — unchanged; the fill-note comparison against sk-doc canon is still open.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F1:** whether any consumer (hook, CI job, resume YAML) ever reads the `--check` exit status.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F6:** whether the four other runtimes' capture hooks are documented anywhere outside the",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6** — `align`, `apply`, `rollback`, `compat` still unrun. Third iteration carrying this.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F7:** whether `runtime/dist` is rebuilt at release time by CI or hand-committed; that decides",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 residual from iteration 5 closed:** `check-measured-behavior.sh` is the `MEASURED_BEHAVIOR` rule's source",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7** — blocked on F5: no preview mode exists, so \"does the scaffold pass `--strict` without hand edits\" can",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 (`/doctor:update` preview/rollback)** — unchanged, and now the oldest open item: only `check` has ever been",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Untouched:** Q3 freshness signal, Q4 stale-index gate, Q5 over-budget bind, Q8 doc drift across",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 (`create.sh` + level templates)** — still blocked: no preview mode exists, so \"does the scaffold pass",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Residual from W1:** whether the 43 stale rows match the untracked docs one-for-one. I counted 566 untracked",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Residual from F1:** whether the order asymmetry also suppresses the `memory_save_match` / `resume_match`",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Residual from F3:** whether the skip is triggered by the packet living outside the repository or by cwd being",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q8–Q12** — v4.0.0.13–v4.0.2.0 doc drift (partly advanced by F1), dead scripts, operator friction,",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F6:** whether `measure-cold-lookup.mjs` is meant to price the *shipped* corpus or a",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7** — `create.sh` + level templates: blocked on F5-of-iteration-9 (no preview mode exists), so \"does the",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6** — `align`, `apply`, `rollback`, `compat` remain unrun. Fourth iteration carrying this. It is now",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F2:** whether the manifest should exclude `specs/**/research/**` (making the index",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 (`/doctor:update`)** — `align`, `apply`, `rollback`, `compat` still unrun. Fifth iteration. It is",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 (`create.sh` + level templates)** — the scaffold-vs-`--strict` half still blocked on \"no preview",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q8–Q12** — the v4.0.0.13–v4.0.2.0 doc-drift remainder, dead scripts, operator friction across the",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open from F8**: what a consumer is supposed to do with `corpusHash`. If nothing reads it, the field",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Open from F4**: whether other `sk-doc` scripts share the module-relative `getDefaultWorkspaceRoot`",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F5**: what `usesSpecKit` requires, given that a scratch repo carrying `specs/` was still rejected (iteration 8). That decides whether the fallback fires only for non-skilled projects or also for skilled-looking ones.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F6**: whether `create.sh:1219`'s global read can precede all three assignments on any path; if it can, the template root is empty there and `copy_template` fails with an argument error rather than a root error.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried:** Q3 freshness signal, Q4 stale-index gate, Q5 over-budget bind, Q8 doc-drift remainder, Q10 operator friction, Q11 sk-code/sk-doc conformance, Q12 extensions for trigger index, continuity and goal.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6** — `align`, `apply`, `rollback`, `compat` unrun. Sixth iteration carrying this; it is the oldest open item and the only one where the read path is complete and only execution is missing.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F2**: whether `phase-parent.spec.md.tmpl` in fact defines anchors. If it defines none, the phase exemption is harmless today and only becomes wrong when the template gains an anchor — which changes F2 from \"silently passing bad input\" to \"a latent trap\".",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7** — still blocked on the missing preview mode: whether a `create.sh` scaffold passes `validate.sh --strict` without hand edits is unverified, and the fill-note comparison against sk-doc canon is untouched. F6 improves the failure mode, not the answer.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New residual from F3**: whether `scanWorkspace` already exposes a per-packet `passed` flag that the corpus ladder simply ignores — if so F3 is a one-line change, not a signature change.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6** — `align`, `apply`, `rollback`, `compat` still unrun. Seventh iteration carrying this. Nothing in this pass blocked it; the budget went to the coverage and UX work instead.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried**: Q3 freshness signal, Q4 stale-index gate (F1 sharpens it — a typo'd resume prompt now yields 20 noise rows with exit 0), Q5 over-budget bind, Q8 doc-drift remainder, Q10 operator friction (F1, F4, F5 are three concrete instances), Q11 sk-code/sk-doc conformance, Q12 extensions for trigger index, continuity and goal.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F2**: whether the generated-metadata rules could compare against the *declared* packet id rather than the on-disk path, which is what makes copies fail.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F2**: whether `report.passed` is meant to ignore warn-level skips by design, or whether any consumer (hook, CI, resume) treats `Warnings: 1` as failure. That decides whether F2 is \"the gate lies\" or \"the gate is right and only the `RESULT:` line overstates\".",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F6**: whether `derived.created_at` is rewritten by `repair-derived.cjs --apply`, which would pull old packets into the 14-day window.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7** — the fill-note comparison against sk-doc canon is untouched, and the strict-pass half now has a method requirement (scratch repo, not a copy).",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7** — `create.sh` scaffold versus `validate.sh --strict` still unverified, and the template fill-note comparison against sk-doc canon untouched.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1(b):** whether the wrapper's broader doc reach is load-bearing anywhere — a hand-written `handover.md` or `context-save.md` carrying a token is flagged by the hook and ignored by the validator, and the reverse (a doc the validator reads that the wrapper's `find` misses) cannot happen, so the divergence is one-directional.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6** — `align`, `apply`, `rollback`, `compat` still unrun. Eighth iteration carrying this; it remains the oldest open item with a complete read path and no execution.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1:** whether any *other* hook-consumed script likewise reimplements a rule it could call. `rules/*.sh` has paired `.sh`/`.cjs` implementations per the iteration-6 residual; the wrapper-to-lib pairing here is the first case found where the pair diverges behaviourally rather than stylistically.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried:** Q3 freshness signal, Q4 stale-index gate, Q5 over-budget bind, Q8 doc-drift remainder, Q9 rules/options pairs, Q10 operator friction, Q11 sk-code/sk-doc conformance, Q12 extensions for trigger index, continuity and goal.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F3:** whether the level decision is ever taken from `--loc` alone in practice, which decides if the \"required\" label is merely stale or actively misleading.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 `create.sh` + level templates** — the scaffold-versus-`--strict` half still needs a scratch repo plus a real (non-dry) scaffold, and the template fill-note comparison against sk-doc canon is untouched.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 `/doctor:update`** — `align`, `apply`, `rollback`, `compat` still unrun. Ninth iteration carrying this; the read path is complete and only execution is missing.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried** — Q3 freshness signal, Q4 stale-index gate, Q5 over-budget bind, Q8 doc-drift remainder, Q9 rules/options pairs, Q10 operator friction, Q11 sk-code/sk-doc conformance, Q12 extensions for trigger index, continuity and goal.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from V11** — the v4.0.0.15 draft-auto-repair limb (\"never runs in CI\", \"never for a non-draft\"): `orchestrator.ts` carries a `REPAIR_DERIVED_REL` spawn and a five-minute hang guard, but the CI/non-draft gates were only grepped, not executed.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from V4/F2** — why the corpus path reports `parent-budget` where the packet path reports none: whether corpus passes an unresolved budget through, and whether that same split exists for the other four checks.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from V6** — whether any `.js` consumer actually calls `resolveProjectRoot` from `dist/core/config.js`; if one does, it throws today, which would make V6 a crash rather than a wrong root.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 `create.sh` + level templates** — unchanged; the scaffold-versus-`--strict` half still needs a",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F3:** whether adding the alignment eval to CI is even the right fix, given F2 says it",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1:** what a consumer of a packet's `_memory.continuity` can do to identify the writer",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 `/doctor:update`** — `align`, `apply`, `rollback`, `compat` still unrun. Tenth iteration",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried** — Q3 freshness signal, Q4 stale-index gate, Q5 over-budget bind, Q8 doc-drift remainder,",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1:** whether the doctor/upgrade path provisions `cli/dist` when it aligns a project. If",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 `/doctor:update`** — `align`, `apply`, `rollback`, `compat` still unrun. Eleventh iteration carrying",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried:** Q3 freshness signal, Q4 stale-index gate, Q5 over-budget bind, Q7 `create.sh` + level",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1:** whether `runtime/cli/dist` also ships `match-decision-table.js`, which `save.md:71` and",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F3:** what `finalize-dist.mjs`'s \"checker-origin cache\" (its own words, line 70) actually stores,",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1:** do the upstream `runtime/dist` and `runtime/cli/dist` ever diverge in content, or is",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q7 `create.sh` + level templates** — unchanged: the scaffold-versus-`--strict` half needs a scratch repo and a real scaffold, and the fill-note comparison against sk-doc canon is untouched.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1/F2**: whether a *project* install (as opposed to this repo) always ships `.skilled/hooks/shared/hook-flags.cjs`. If doctor can align the gate without the hub, then three of the four documented disable values and the whole documented alias are inert in that project.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F5**: whether `runtime/ENV-REFERENCE.md` is the right home for names whose readers are all outside `runtime/`. The measured 191/251 mismatch is a placement question as much as a guard question, and the answer decides whether the fix is a wider guard or a split document.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3/Q4/Q5/Q8/Q9/Q10/Q11/Q12** — carried unchanged.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F3**: whether any adapter passes `projectDir` as `undefined` in practice. `evaluateMutation` defends against it (line 1777) and `runEnforceGate` does not (line 1876), so the two disagree about whether the parameter can be absent; if no adapter can omit it, F3's destructive path needs a different trigger (unwritable state dir, `ENOTDIR` on the way to `.state`).",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q6 `/doctor:update`** — `align`, `apply`, `rollback`, `compat` still unrun. Twelfth iteration carrying it; nothing blocked it here, the budget went to the hook surface.",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F2**: whether `usesSpecKit` is intentionally `.skilled`-only as a migration stance. If it",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F4**: whether any code compares a `findRepoRoot` result to a `resolveProjectRoot` result",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F3**: whether any real caller can be more than 14 levels below the sentinel. A vendored",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried, now the oldest open item (13th iteration)**: `/doctor:update` — `align`, `apply`,",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New from F1**: does any other writer bind `CONFIG.PROJECT_ROOT` from a source that bypasses",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Carried**: Q7 `create.sh` + level templates (scaffold-versus-`--strict`, fill-note canon);",
+      "addedAtIteration": 20,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Do upgrade, preview and rollback (/doctor:update check, align, apply, rollback from v4.0.0.3 and v4.0.0.5) hold up when read end to end and run only in check, preview or dry-run modes, and which step has no test?",
+    "Do create.sh and the level templates produce a packet that passes validate.sh --strict without hand edits, and do template fill notes agree with sk-doc and the template canon?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-2-9-o1-the-anchor-claims-hold-for-numbered-levels-tmp-dr2-nested-fails-with-spec-md-",
+      "text": "**O1 — The anchor claims hold for numbered levels.** `/tmp/dr2-nested` fails with `\"spec.md: anchor 'probe-inner' is opened inside 'probe-outer'\"` and exit 2; `/tmp/dr2-inline` passes; `/tmp/dr2-adr` passes. This matches the v4.0.0.5 note's three statements (nested anchors error, inline code ignored by the nesting check, decision-record child allowed).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-o2-the-retrieval-exit-codes-match-their-headers-no-hit-lookup-exits-1-a-lookup-w",
+      "text": "**O2 — The retrieval exit codes match their headers.** No-hit lookup exits 1; a lookup with no prompt exits 2; a missing index exits 2; `--check` on a stale corpus exits 1. This matches `lookup-trigger-index.mjs:26` and `generate-trigger-index.mjs:39`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-o3-the-commit-and-pull-request-gates-exist-and-match-the-note-skilled-scripts-gi",
+      "text": "**O3 — The commit and pull-request gates exist and match the note.** `.skilled/scripts/git-hooks/pre-commit:225` runs the template-phrase lint, blocks with `BLOCKED [gate:template-phrase-lint]` at `:234`, and names `SPECKIT_SKIP_PHRASE_LINT=1` at `:235`. `.github/workflows/changed-packet-validation.yml:166` compares head against the merge base, `:227` fails closed when the base cannot be materialised, and `:287` reports no regressions when every failing packet also failed at the base.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-o4-validate-sh-s-exit-code-matches-its-help-a-validation-error-exits-2-as-valida",
+      "text": "**O4 — `validate.sh`'s exit code matches its help.** A validation error exits 2, as `validate.sh:82` states.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-source-cursor-rules-skill-routing-md-25-the-generated-mirror-repeats-the-same-se",
+      "text": "`[SOURCE: .cursor/rules/skill-routing.md:25]` — the generated mirror repeats the same sentence.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-source-skilled-skills-system-spec-kit-runtime-lib-validation-orchestrator-ts-192",
+      "text": "`[SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:192]` — a folder with phase children resolves to `phase`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-source-skilled-skills-system-spec-kit-runtime-lib-validation-orchestrator-ts-936",
+      "text": "`[SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:936]` — `anchor '${id}' is opened inside '${top}'`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-source-skilled-skills-system-spec-kit-runtime-lib-validation-orchestrator-ts-975",
+      "text": "`[SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:975]` — `if (level === 'phase' && isPhaseParent(folder)) {`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-source-skilled-skills-system-spec-kit-runtime-lib-validation-orchestrator-ts-976",
+      "text": "`[SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:976]` — `return entry('ANCHORS_VALID', 'pass', 'Phase parent lean document set accepted');`",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-source-skilled-skills-system-spec-kit-runtime-lib-validation-spec-doc-structure-",
+      "text": "`[SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:588]` — `parseAnchors`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-source-skilled-skills-system-spec-kit-runtime-lib-validation-spec-doc-structure-",
+      "text": "`[SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:620]` — it reports a nested anchor only when the same id is already in the stack; a different id opened inside another is accepted.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-source-agents-md-51-it-reads-the-committed-index-exit-1-with-no-rows-is-a-clean-",
+      "text": "`[SOURCE: AGENTS.md:51]` — \"It reads the committed index; exit 1 with no rows is a clean no-hit\".",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-confidence-high",
+      "text": "**Confidence:** high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-confidence-high",
+      "text": "**Confidence:** high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-confidence-high",
+      "text": "**Confidence:** high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-25-confidence-high",
+      "text": "**Confidence:** high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-32-confidence-high",
+      "text": "**Confidence:** high",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-33-evidence-goaloptions-defaults-workspace-to-process-cwd-source-skilled-hooks-goal",
+      "text": "**Evidence:** `goalOptions` defaults `workspace` to `process.cwd()` [SOURCE: .skilled/hooks/goal/bin/goal.cjs:74], and `packet` is in `actionsWithoutScope`, so the `MISSING_WORKSPACE` guard is skipped [SOURCE: .skilled/hooks/goal/bin/goal.cjs:406]. The packet path is then resolved against that workspace.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-26-evidence-runpacket-prints-packet-budget-source-skilled-hooks-goal-bin-goal-cjs-2",
+      "text": "**Evidence:** `runPacket` prints `packet_budget` [SOURCE: .skilled/hooks/goal/bin/goal.cjs:215] and then `chat_slice` [SOURCE: .skilled/hooks/goal/bin/goal.cjs:218] with no branch on `budgetState`. The budget state itself is computed in `budgetState` [SOURCE: .skilled/hooks/goal/lib/goal-slice.cjs:428] from the manifest limit [SOURCE: .skilled/skills/system-spec-kit/templates/spec-kit-docs.json:24].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-evidence-walkgoalfiles-excludes-only-z-archive-source-skilled-skills-sk-doc-sk-c",
+      "text": "**Evidence:** `walkGoalFiles` excludes only `z_archive` [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:456]. The run's 472 missing-binding-row findings include repeated paths under `specs/**/review/lineages/**/containment/baseline/specs/...` and `review-archive/**`, which are frozen copies of packets, not active work.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-evidence-the-corpus-branch-returns-report-errors-length-0-0-2-and-never-reads-re",
+      "text": "**Evidence:** the corpus branch returns `report.errors.length === 0 ? 0 : 2` and never reads `report.findings` [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:703]. The per-packet branch does gate on findings with `result.passed ? 0 : 1` [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:715]. The corpus report carries findings separately [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:466].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-evidence-the-release-note-says-up-to-4-000-characters-passes-and-past-it-fails-s",
+      "text": "**Evidence:** the release note says “up to 4,000 characters passes and past it fails” [SOURCE: .skilled/changelog/skilled/v4.0.0.2.md:110]. `goal.cjs bind` only appends a warning when `packet_budget=over` and still prints `STATUS=OK` [SOURCE: .skilled/hooks/goal/bin/goal.cjs:169]. `goal.cjs packet` prints `chat_slice` and exits 0 regardless of `packet_budget` [SOURCE: .skilled/hooks/goal/bin/goal.cjs:211]. The only hard failure is the per-packet `check-goal` path, whose `parent-budget` finding drives exit 1 [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:345] [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:715].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-27-extension-when-packet-budget-over-omit-chat-slice-or-exit-2-so-the-safe-path-is-",
+      "text": "**Extension:** when `packet_budget=over`, omit `chat_slice` (or exit 2) so the safe path is the only path. This closes the gap F3 describes without changing the budget.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-34-impact-running-the-documented-send-rule-command-from-a-subdirectory-for-example-",
+      "text": "**Impact:** running the documented send-rule command from a subdirectory (for example `specs/`) returns `PACKET_GOAL_NOT_FOUND` unless the caller adds `--workspace <repo root>`, which the goal-posture rule does not mention.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-impact-the-all-count-is-dominated-by-duplicates-so-an-operator-cannot-read-it-as",
+      "text": "**Impact:** the `--all` count is dominated by duplicates, so an operator cannot read it as a work queue.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-impact-the-send-rule-send-only-at-packet-budget-ok-is-prose-in-the-agents-goal-p",
+      "text": "**Impact:** the send rule (“send only at packet_budget=ok”) is prose in the AGENTS goal-posture rule and in `renderResendReminderText` [SOURCE: .skilled/hooks/goal/lib/goal-slice.cjs:241], not a writer refusal. A caller that reads only the envelope can bind and paste an over-budget goal.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-release-v4-0-0-2",
+      "text": "**Release:** v4.0.0.2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-release-v4-0-0-2",
+      "text": "**Release:** v4.0.0.2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-release-v4-0-0-2",
+      "text": "**Release:** v4.0.0.2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-24-release-v4-0-0-2",
+      "text": "**Release:** v4.0.0.2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-31-release-v4-0-0-2",
+      "text": "**Release:** v4.0.0.2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-repro-run-node-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-all-p",
+      "text": "**Repro run:** `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all` printed `goals_scanned=1263`, `missing-binding-row_findings=472`, `placeholder_findings=121`, `criteria-count_findings=40`, and one broken-fence error, then `EXIT=2`. The exit 2 came from the single read error; the same 633 findings with no read error would return 0. This is a false green for any CI gate that uses `--all`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-severity-p1",
+      "text": "**Severity:** P1",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-23-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-30-severity-p2",
+      "text": "**Severity:** P2",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-type-bug",
+      "text": "**Type:** bug",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-type-drift",
+      "text": "**Type:** drift",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-type-extension",
+      "text": "**Type:** extension",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-type-ux",
+      "text": "**Type:** UX",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-29-type-ux",
+      "text": "**Type:** UX",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-verify-node-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-all-rg-r",
+      "text": "**Verify:** `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all | rg 'review/lineages|review-archive' | wc -l`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-verify-bind-a-packet-whose-durable-slice-exceeds-4-000-characters-observe-status",
+      "text": "**Verify:** bind a packet whose durable slice exceeds 4,000 characters; observe `STATUS=OK` plus `warning=...`, then run `packet` and observe exit 0.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-35-verify-from-specs-run-node-skilled-hooks-goal-bin-goal-cjs-packet-system-speckit",
+      "text": "**Verify:** from `specs/`, run `node ../.skilled/hooks/goal/bin/goal.cjs packet system-speckit/047-v4-release-line-research/001-spec-kit-core`; rerun with `--workspace ..` and compare.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-verify-remove-or-repair-the-one-broken-fence-goal-md-named-in-the-error-rerun-th",
+      "text": "**Verify:** remove or repair the one `broken-fence/goal.md` named in the error, rerun the command, and observe exit 0 with the same findings.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-28-verify-run-packet-against-an-over-budget-packet-and-inspect-whether-chat-slice-i",
+      "text": "**Verify:** run `packet` against an over-budget packet and inspect whether `chat_slice` is present and the exit status is 0.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-5-28-confidence-0-75",
+      "text": "confidence: 0.75",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-45-confidence-0-85",
+      "text": "confidence: 0.85",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-confidence-0-9",
+      "text": "confidence: 0.9",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-37-confidence-0-9",
+      "text": "confidence: 0.9",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-confidence-0-95",
+      "text": "confidence: 0.95",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-20-confidence-0-95",
+      "text": "confidence: 0.95",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-46-evidence-ran-check-repo-offline-json-exits-0-and-prints-upstream-status-unknown-",
+      "text": "evidence (ran): `check --repo . --offline --json` exits 0 and prints `\"upstream\": {\"status\": \"unknown\", \"error\": \"offline mode\"}`, `\"checkout\": {\"position\": \"ahead\", \"aheadBy\": 1, \"behindBy\": 0, \"dirty\": true}`, and a top-level `\"status\": \"unknown\"` alongside 30-plus fully classified units.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-21-evidence-templates-base-speckit-templates-base-repo-root-skilled-skills-system-s",
+      "text": "evidence: `TEMPLATES_BASE=\"${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.skilled/skills/system-spec-kit/templates}\"` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2253], with the same expression repeated at [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1477] and [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1665], and the failure text `Error: Templates directory not found at $TEMPLATES_BASE` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:2260].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-29-evidence-both-probes-end-summary-errors-0-warnings-2-result-passed-the-warnings-",
+      "text": "evidence: both probes end `Summary: Errors: 0 Warnings: 2` / `RESULT: PASSED`. The warnings are `! MEASURED_BEHAVIOR: Measured behavior block holds no command output and no N/A: line with a reason — spec.md: the measured-behavior block is empty` and `+ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity normalization drift detected (soft detector) — identity=scaffold/001-no-track / identity=001-no-track`. In the same run `+ METADATA_DISK_PATH_CONSISTENCY` passes with the note \"metadata paths carry the scaffold marker; the packet is not filed yet\", and `graph-metadata.json` carries `\"packet_id\": \"other/001-probe-packet\"` while the warning compares against `scaffold/other/001-probe-packet` (the pointer written at [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:944]).",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-evidence-corpus-mode-reports-finding-parent-budget-specs-other-001-alpha-configu",
+      "text": "evidence: corpus mode reports `FINDING parent-budget specs/other/001-alpha: configured durable-slice budget could not be resolved` from the finding text at [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:351]; the per-packet path routes the same check through `runOneCheck('parent-budget', ...)` [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:641] and prints `4/5 PASS parent-budget findings=0` for the identical directory content.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-evidence-the-corpus-branch-returns-on-errors-only-return-report-errors-length-0-",
+      "text": "evidence: the corpus branch returns on errors only — `return report.errors.length === 0 ? 0 : 2;` [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:703]. The single-packet branch below it returns 1 for \"findings, no errors\": `if (result.errors.length > 0) return 2; return result.passed ? 0 : 1;` [SOURCE: .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:714].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-38-evidence-the-router-resolves-check-align-apply-rollback-record-base-or-compat-so",
+      "text": "evidence: the router resolves `check`, `align`, `apply`, `rollback`, `record-base` or `compat` [SOURCE: .skilled/commands/doctor/update.md:38] and lists `compat` as an action accepting `--dry-run` and `--offline` [SOURCE: .skilled/commands/doctor/update.md:44]. The engine's USAGE line is `<check|align|decide|apply|rollback|record-base|unlock>` [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:54] — it has no `compat`, and it has `decide` and `unlock`, which the router never mentions.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-39-how-the-router-covers-the-gap-compat-is-a-yaml-only-workflow-whose-phases-call-u",
+      "text": "how the router covers the gap: `compat` is a YAML-only workflow whose phases call `upgrade-legacy.mjs` and use the engine only for `check`; `decide` and `unlock` are invoked from inside the align and apply YAMLs, which is why the router's human-facing action list does not need them. So the action sets differ by design, and the doc is right about what an operator may type.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-19-release-introduced-not-isolated-present-at-v4-0-2-0",
+      "text": "release introduced: not isolated (present at v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-27-release-introduced-not-isolated-present-at-v4-0-2-0",
+      "text": "release introduced: not isolated (present at v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-release-introduced-v4-0-0-2",
+      "text": "release introduced: v4.0.0.2",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-release-introduced-v4-0-0-2-goal-system",
+      "text": "release introduced: v4.0.0.2 (goal system)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-44-release-introduced-v4-0-0-3",
+      "text": "release introduced: v4.0.0.3",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-36-release-introduced-v4-0-0-3-the-release-aware-update-workflow",
+      "text": "release introduced: v4.0.0.3 (the release-aware update workflow)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-repro-ran-fixture-corpus-at-tmp-goalcorpus-with-two-packets-output-parent-budget",
+      "text": "repro (ran): fixture corpus at `/tmp/goalcorpus` with two packets; output `parent-budget_findings=2` and two `FINDING parent-budget` lines, `ALL_EXIT=0`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-22-repro-ran-from-an-empty-git-repo-at-tmp-iter5-probe-create-sh-short-name-probe-p",
+      "text": "repro (ran): from an empty git repo at `/tmp/iter5-probe`, `create.sh --short-name probe-packet --level 2 --track other \"probe packet\"` printed `Error: Templates directory not found at /private/tmp/iter5-probe/.skilled/skills/system-spec-kit/templates`, exit 1. Copying only `templates/` into that path made the identical command succeed, exit 0.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-14-repro-ran-the-two-runs-at-the-end-of-actions-taken-same-fixture-all-exit-0-versu",
+      "text": "repro (ran): the two runs at the end of ACTIONS TAKEN, same fixture, `ALL_EXIT=0` versus `ONE_EXIT=0` with `RESULT: PASSED (5/5 checks)`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-32-residual-i-did-not-read-the-rule-source-for-measured-behavior-no-template-under-",
+      "text": "residual: I did not read the rule source for `MEASURED_BEHAVIOR`. No template under `templates/level-1/` or `templates/level-2/` contains the phrase \"measured\", so the block the rule wants is not scaffolded by `create.sh`; confirming which file the rule reads is the next step.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-severity-p1",
+      "text": "severity: P1",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-severity-p1",
+      "text": "severity: P1",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-18-severity-p1-for-a-first-time-external-user-p2-inside-this-repo",
+      "text": "severity: P1 for a first-time external user, P2 inside this repo",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-26-severity-p2",
+      "text": "severity: P2",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-35-severity-p2",
+      "text": "severity: P2",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-43-severity-p2",
+      "text": "severity: P2",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-type-bug",
+      "text": "type: bug",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-type-bug",
+      "text": "type: bug",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-17-type-bug-ux-for-the-operator",
+      "text": "type: bug (UX for the operator)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-34-type-drift",
+      "text": "type: drift",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-25-type-misalignment-validate-rule-pair-disagree-ux",
+      "text": "type: misalignment (validate rule pair disagree) + UX",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-42-type-ux",
+      "text": "type: ux",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-24-verify-cd-tmp-mkdir-p-probe0-cd-probe0-git-init-q-bash-repo-skilled-skills-syste",
+      "text": "verify: `cd /tmp && mkdir -p probe0 && cd probe0 && git init -q && bash <repo>/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --short-name x --level 1 \"x\"; echo \"exit=$?\"`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-33-verify-cd-tmp-iter5-probe-bash-repo-skilled-skills-system-spec-kit-runtime-cli-s",
+      "text": "verify: `cd /tmp/iter5-probe && bash <repo>/.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/001-no-track --strict | grep -E \"MEASURED_BEHAVIOR|CANONICAL_SAVE_PACKET_IDENTITY|METADATA_DISK_PATH\"`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-41-verify-node-skilled-commands-doctor-scripts-release-update-cjs-help-head-1-versu",
+      "text": "verify: `node .skilled/commands/doctor/scripts/release-update.cjs --help | head -1` versus `grep -n \"accepts\" .skilled/commands/doctor/update.md`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-48-verify-node-skilled-commands-doctor-scripts-release-update-cjs-check-repo-offlin",
+      "text": "verify: `node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --offline --json | grep -E '\"status\"|\"position\"'`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-verify-node-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-all-root",
+      "text": "verify: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all --root /tmp/goalcorpus; echo \"exit=$?\"`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-16-verify-node-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-tmp-goal",
+      "text": "verify: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs /tmp/goalcorpus/specs/other/001-alpha | grep parent-budget`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-30-what-the-answer-to-q7-actually-is-yes-create-sh-plus-the-shipped-level-1-and-lev",
+      "text": "what the answer to Q7 actually is: yes, `create.sh` plus the shipped Level 1 and Level 2 templates produce a packet that passes `validate.sh --strict` with zero errors and no hand edits. The 37 `[YOUR_VALUE_HERE:]` tokens in Level 1 are reported by `! PLACEHOLDER_FILLED` as a warning only while the packet is Draft, which is the intended contract and clears as the operator fills them.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-40-why-it-matters-anyway-the-flag-matrix-in-the-router-3-lines-39-44-is-a-hand-main",
+      "text": "why it matters anyway: the flag matrix in the router (§3, lines 39-44) is a hand-maintained second copy of `FLAG_SETS` [SOURCE: .skilled/commands/doctor/scripts/release-update.cjs:62] with no cross-check. `align` is documented as accepting `--dry-run` and the engine's align set does contain `dry_run`; nothing in the contract test compares the two lists — the test reads the router only to confirm each action owns a workflow YAML [SOURCE: .skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs:49]. A new engine flag would ship undocumented and no test would notice.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-47-why-it-matters-offline-is-the-only-mode-a-hook-or-an-air-gapped-operator-can-use",
+      "text": "why it matters: `--offline` is the only mode a hook or an air-gapped operator can use, and it collapses a known, actionable answer (\"ahead by 1, dirty\") into the same token as \"cannot tell\". The dashboard has to choose between showing the position the engine already computed and obeying `status`. A separate `upstreamStatus` field, or falling back to the checkout position when upstream is unknown, would keep both.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-15-why-it-matters-an-unresolvable-budget-is-the-one-condition-an-operator-most-need",
+      "text": "why it matters: an unresolvable budget is the one condition an operator most needs told, and the per-packet form — the one a human runs — reports it as a pass. F1 and F2 together mean the corpus mode is the only mode that can see the condition, and it is the mode that cannot fail a gate.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-why-it-matters-any-ci-or-hook-that-gates-on-the-all-exit-status-is-green-while-t",
+      "text": "why it matters: any CI or hook that gates on the `--all` exit status is green while the printed report lists findings. The two entry points answer \"are there findings?\" with different exit vocabularies.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-23-why-it-matters-the-script-s-own-shared-libraries-resolve-from-script-dir-it-sour",
+      "text": "why it matters: the script's own shared libraries resolve from `SCRIPT_DIR` (it sources `../lib/shell-common.sh`, `../lib/git-branch.sh`, `../lib/template-utils.sh` relative to itself), so one half of the script is location-relative and the other half is cwd-relative. A user who runs the shipped script against another checkout gets a template-not-found error naming a path they never mentioned. `SPECKIT_TEMPLATES_BASE` is the undocumented escape hatch — it appears in no help text.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-31-why-it-matters-the-two-warnings-are-unfixable-at-scaffold-time-canonical-save-ne",
+      "text": "why it matters: the two warnings are unfixable at scaffold time — `CANONICAL_SAVE_*` needs a canonical save, `MEASURED_BEHAVIOR` needs a measured run — so every new packet opens on a yellow report. A warning that every packet carries regardless of quality trains the operator to read warnings as noise, which is the same failure mode as a check that cannot fail (F1).",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-16-claim-references-config-environment-variables-md-presents-itself-as-the-referenc",
+      "text": "**Claim:** `references/config/environment-variables.md` presents itself as the reference for Spec Kit environment variables and carries zero `SESSION_RELAUNCH` entries, while `.env.example` carries 20.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-36-claim-sync-phase-map-status-ts-has-no-caller-anywhere-outside-its-own-readme-and",
+      "text": "**Claim:** `sync-phase-map-status.ts` has no caller anywhere outside its own README and vitest suite, while the phase workflow instructs the agent to fill the parent `Phase Documentation Map` manually.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-claim-adding-handoff-to-the-family-left-the-readme-s-structural-comment-stating-",
+      "text": "**Claim:** adding `handoff` to the family left the README's structural comment stating a nine-command index.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-25-claim-the-script-is-documented-as-a-runnable-ts-entry-and-imports-lib-esm-entry-",
+      "text": "**Claim:** the script is documented as a runnable `.ts` entry and imports `../lib/esm-entry.js`, which exists only under `dist/`. Run from source, node raises `ERR_MODULE_NOT_FOUND` and exits 1.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-claim-v4-0-0-13-shipped-a-new-speckit-command-and-a-cross-runtime-session-relaun",
+      "text": "**Claim:** v4.0.0.13 shipped a new speckit command and a cross-runtime session-relaunch loop. The command family's own index knows about it; `system-spec-kit`'s `SKILL.md` and `references/**` do not mention it once.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-17-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-26-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-37-evidence",
+      "text": "**Evidence:**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-evidence-readme-txt-line-116-reads-this-file-9-command-index-and-workflow-guide-",
+      "text": "**Evidence:** `README.txt` line 116 reads \"This file, 9-command index and workflow guide\" [SOURCE: .skilled/commands/speckit/README.txt:116], while the COMMANDS table carries a `handoff` row and `grep -c '^| \\*\\*'` on the same file returns 12 bold rows across the table set.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-42-extension-concrete-call-the-script-from-the-phase-workflow-s-fill-step-dry-run-f",
+      "text": "**Extension (concrete):** call the script from the phase workflow's fill step, dry-run first, and add a `PHASE_MAP_IN_SYNC` validate rule that fails on a row/child status mismatch and warns on the blank-line truncation. That turns a canon requirement into a gated one and gives the orphan script the caller it is missing.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-30-repro-ran",
+      "text": "**Repro (ran):**",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-23-residual-whether-a-repo-root-env-reference-md-named-by-the-v4-0-0-13-note-covers",
+      "text": "**Residual:** whether a repo-root `ENV-REFERENCE.md` (named by the v4.0.0.13 note) covers the same switches was **not** confirmed this iteration; `find` returned only vendored copies inside spec packets before truncation. Treat the canonical doc's coverage as unverified, not as absent.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-24-type-bug-severity-p2-release-present-at-v4-0-2-0-not-isolated-to-a-tag-confidenc",
+      "text": "**Type:** bug · **Severity:** P2 · **Release:** present at v4.0.2.0 (not isolated to a tag) · **Confidence:** high (reproduced)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-type-bug-doc-self-count-severity-p2-release-v4-0-0-13-the-count-was-correct-befo",
+      "text": "**Type:** bug (doc self-count) · **Severity:** P2 · **Release:** v4.0.0.13 (the count was correct before `handoff` was appended) · **Confidence:** high",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-type-drift-severity-p2-release-v4-0-0-13-untouched-by-v4-0-0-14-which-only-added",
+      "text": "**Type:** drift · **Severity:** P2 · **Release:** v4.0.0.13 (untouched by v4.0.0.14, which only added the switch) · **Confidence:** high",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-15-type-drift-severity-p2-release-v4-0-0-13-variable-added-v4-0-0-14-default-flippe",
+      "text": "**Type:** drift · **Severity:** P2 · **Release:** v4.0.0.13 (variable added), v4.0.0.14 (default flipped to off — the release that makes the omission matter) · **Confidence:** high",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-35-type-over-engineering-extension-severity-p2-release-present-at-v4-0-2-0-confiden",
+      "text": "**Type:** over-engineering / extension · **Severity:** P2 · **Release:** present at v4.0.2.0 · **Confidence:** high",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-22-verify-grep-c-session-relaunch-skilled-skills-system-spec-kit-references-config-",
+      "text": "**Verify:** `grep -c SESSION_RELAUNCH .skilled/skills/system-spec-kit/references/config/environment-variables.md .env.example` → `0` and `20`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-43-verify-rg-l-fixed-strings-sync-phase-map-status-skilled-github-package-json-grep",
+      "text": "**Verify:** `rg -l --fixed-strings \"sync-phase-map-status\" .skilled .github package.json | grep -v dist/` → README, source, tests only; then `rg -n \"Phase Documentation Map\" .skilled/commands/speckit/assets/*.yaml` → the by-hand activities.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-verify-rg-n-speckit-handoff-session-relaunch-system-session-relaunch-skilled-ski",
+      "text": "**Verify:** `rg -n \"speckit:handoff|session-relaunch|SYSTEM_SESSION_RELAUNCH\" .skilled/skills/system-spec-kit/SKILL.md .skilled/skills/system-spec-kit/references` (expect no output) versus `rg -n \"handoff\" .skilled/commands/speckit/README.txt` (expect the command row).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-verify-sed-n-116p-skilled-commands-speckit-readme-txt-awk-2-commands-anchor-comm",
+      "text": "**Verify:** `sed -n '116p' .skilled/commands/speckit/README.txt; awk '/^## 2\\. COMMANDS/,/^<!-- \\/ANCHOR:commands -->/' .skilled/commands/speckit/README.txt | grep -c '^| \\*\\*'` → `9-command index` versus `10`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-34-verify-the-two-commands-above-compare-exit-statuses",
+      "text": "**Verify:** the two commands above; compare exit statuses.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-41-what-breaks-if-removed-the-vitest-suite-and-one-readme-row-nothing-in-any-workfl",
+      "text": "**What breaks if removed:** the vitest suite and one README row. Nothing in any workflow, hook or CI stops working — which is the over-engineering half of the finding. But the two defects it detects (a map row whose status disagrees with its child; a blank line that silently truncates the table) have **no** counterpart in `validate.sh`, so removal also deletes the only check for a canon-required table.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-why-it-matters-system-spec-kit-is-the-skill-that-owns-spec-folder-continuity-and",
+      "text": "**Why it matters:** `system-spec-kit` is the skill that owns spec-folder continuity, and its `handover.md` row in the intent table says \"continue later / pass context / ending session\" routes to `/speckit:save` handover maintenance. A model asked to continue a long session therefore reaches for the packet doc and never learns that a runtime relaunch loop exists, that it ships **off**, or that `/speckit:handoff` is the manual trigger. The two surfaces answer the same operator request and only one is routed.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-21-why-it-matters-an-operator-or-model-reading-the-skill-s-own-reference-cannot-dis",
+      "text": "**Why it matters:** an operator or model reading the skill's own reference cannot discover why no session hands over, and v4.0.0.14's change is precisely a silent default. The v4.0.0.13 note points at `/doctor:env` and `.env.example`, so the setting is documented outside the skill — the skill's reference is the stale copy, not the only copy. That is the drift: one reference claims the setting space and does not cover it.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-33-why-it-matters-the-readme-documents-the-source-path-as-the-entry-so-the-document",
+      "text": "**Why it matters:** the README documents the source path as the entry, so the documented command is the broken one. A model following the README gets a module-resolution trace, not the report — and reads it as \"the tool is broken\" rather than \"run the build output\". Every other sibling script in the same directory is invoked by its `.sh`/`.mjs` path.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-why-it-matters-the-readme-is-the-machine-read-inventory-for-the-family-skill-md-",
+      "text": "**Why it matters:** the README is the machine-read inventory for the family (SKILL.md and the AGENTS command table both point at this folder). A stale count is small, but it is the exact field a reader uses to know whether a command is missing.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-19-env-example-grep-c-session-relaunch-20",
+      "text": "`.env.example` `grep -c SESSION_RELAUNCH` → 20.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-29-dist-lib-esm-entry-js-exists-so-the-compiled-copy-resolves",
+      "text": "`dist/lib/esm-entry.js` exists, so the compiled copy resolves.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-32-node-skilled-skills-system-spec-kit-runtime-cli-dist-spec-sync-phase-map-status-",
+      "text": "`node .skilled/skills/system-spec-kit/runtime/cli/dist/spec/sync-phase-map-status.js --dry-run specs/system-speckit/047-v4-release-line-research` → `DIST_EXIT=0`, printing `directChildren: 5`, `phaseMapRowsCorrected: 0`, `completionPctMismatchesFound: 0`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-31-node-skilled-skills-system-spec-kit-runtime-cli-spec-sync-phase-map-status-ts-dr",
+      "text": "`node .skilled/skills/system-spec-kit/runtime/cli/spec/sync-phase-map-status.ts --dry-run specs/system-speckit/047-v4-release-line-research` → `NODE_EXIT=1`, `Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.../runtime/cli/lib/esm-entry.js'`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-rg-n-speckit-handoff-session-relaunch-system-session-relaunch-relaunch-skill-md-",
+      "text": "`rg -n \"speckit:handoff|session-relaunch|SYSTEM_SESSION_RELAUNCH|relaunch\" SKILL.md` → no output; the same grep over `references/` → no output.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-38-caller-scan-across-skilled-github-and-package-json-for-the-script-name-returned-",
+      "text": "Caller scan across `.skilled`, `.github` and `package.json` for the script name returned only `runtime/cli/spec/README.md`, its own source, its vitest file, `runtime/cli/tests/fixtures/README.md` and build output under `dist/`. No YAML, no command doc, no CI entry.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-27-documented-as-an-executable-sync-phase-map-status-ts-sync-a-phase-parent-s-map-t",
+      "text": "Documented as an executable: `sync-phase-map-status.ts # Sync a phase parent's map table; report completion mismatches` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:74], listed again with a behaviour description at line 114.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-18-file-title-description-environment-variables-reference-configuration-options-via",
+      "text": "File title/description: \"Environment Variables Reference … Configuration options via environment variables for the Spec Kit system\" [SOURCE: .skilled/skills/system-spec-kit/references/config/environment-variables.md:2], 211 lines total, `grep -c SESSION_RELAUNCH` → 0.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-40-the-canon-requires-the-table-the-parent-folder-adds-a-phase-documentation-map-se",
+      "text": "The canon requires the table: \"The parent folder adds a **Phase Documentation Map** section to its spec.md\", which \"tracks all child phases, their status, and their descriptions\" [SOURCE: .skilled/skills/system-spec-kit/references/templates/template-guide.md:1127].",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-the-command-exists-and-distinguishes-the-two-artifacts-explicitly-the-note-this-",
+      "text": "The command exists and distinguishes the two artifacts explicitly: \"The note this command writes is gitignored runtime state for the next session, not a spec packet's `handover.md`\" [SOURCE: .skilled/commands/speckit/handoff.md:2].",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-the-command-index-lists-it-as-a-first-class-command-delegating-to-session-relaun",
+      "text": "The command index lists it as a first-class command, delegating to `session-relaunch.cjs prepare` [SOURCE: .skilled/commands/speckit/README.txt:116].",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-28-the-import-import-ismainmodule-from-lib-esm-entry-js-the-only-ts-in-runtime-cli-",
+      "text": "The import: `import { isMainModule } from '../lib/esm-entry.js';` — the only `.ts` in `runtime/cli/spec` that imports it (`is-phase-parent.ts` imports bare `fs`/`path` and runs fine).",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-the-only-trace-in-skill-md-is-the-word-handover-in-the-keyword-list-source-skill",
+      "text": "The only trace in `SKILL.md` is the word `handover` in the keyword list [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:8], which names the packet's `handover.md` doc, a different artifact.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-39-the-phase-workflow-s-activity-list-fill-parent-phase-documentation-map-source-sk",
+      "text": "The phase workflow's activity list: `\"Fill parent Phase Documentation Map\"` [SOURCE: .skilled/commands/speckit/assets/speckit-plan.yaml:98], repeated at `speckit-complete.yaml:159`.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-20-v4-0-0-14-turns-the-behaviour-off-by-default-and-adds-per-runtime-switches-no-se",
+      "text": "v4.0.0.14 turns the behaviour off by default and adds per-runtime switches: \"no session changes until you set `SYSTEM_SESSION_RELAUNCH_ENABLED=1`\".",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-9-assets-drawn-vs-on-disk-the-tree-closes-the-assets-branch-at-search-presentation",
+      "text": "**Assets drawn vs on disk:** the tree closes the assets branch at `└── search-presentation.txt` [SOURCE: .skilled/commands/speckit/README.txt:132] after drawing eight files, but the directory holds twelve. The four omitted are `speckit-complete-presentation.txt`, `speckit-implement-presentation.txt`, `speckit-plan-presentation.txt`, `speckit-resume-presentation.txt`. This contradicts the file's own naming explanation, which says only save and search \"drop the family prefix because the bare command name already reads unambiguously, unlike `plan`, `implement`, `complete` and `resume`, which need the `speckit-` prefix\" [SOURCE: .skilled/commands/speckit/README.txt:148] — those four prefixed presentation files exist and are simply not drawn.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-files-on-disk-7-complete-md-handoff-md-implement-md-plan-md-resume-md-save-md-se",
+      "text": "**Files on disk:** 7 — `complete.md`, `handoff.md`, `implement.md`, `plan.md`, `resume.md`, `save.md`, `search.md`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-self-count-readme-txt-this-file-9-command-index-and-workflow-guide-source-skille",
+      "text": "**Self-count:** `├── README.txt # This file, 9-command index and workflow guide` [SOURCE: .skilled/commands/speckit/README.txt:116].",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-8-table-rows-10-and-the-table-mixes-families-it-opens-at-command-invocation-steps-",
+      "text": "**Table rows:** 10, and the table mixes families — it opens at `| Command | Invocation | Steps | Description |` [SOURCE: .skilled/commands/speckit/README.txt:67] and includes two `/deep:*` commands plus `plan --intake-only` as a separate row. So 10 rows are not 10 speckit commands; 8 distinct `/speckit:*` invocations are named (7 files + the intake-only variant).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-type-bug-corrected-severity-p2-release-present-at-v4-0-2-0-confidence-high-two-r",
+      "text": "**Type:** bug (corrected) · **Severity:** P2 · **Release:** present at v4.0.2.0 · **Confidence:** high (two runners probed, exit codes captured)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-10-type-bug-drift-severity-p2-release-v4-0-0-13-handoff-appended-neither-count-nor-",
+      "text": "**Type:** bug (drift) · **Severity:** P2 · **Release:** v4.0.0.13 (handoff appended; neither count nor tree updated) · **Confidence:** high",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-26-type-drift-naming-severity-p2-low-release-present-at-v4-0-2-0-confidence-high-bo",
+      "text": "**Type:** drift (naming) · **Severity:** P2 (low) · **Release:** present at v4.0.2.0 · **Confidence:** high (both sides read)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-16-type-extension-severity-p2-confidence-medium-branch-order-read-no-misclassificat",
+      "text": "**Type:** extension · **Severity:** P2 · **Confidence:** medium (branch order read; no misclassification golden produced this iteration)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-20-type-extension-severity-p2-confidence-medium-high",
+      "text": "**Type:** extension · **Severity:** P2 · **Confidence:** medium-high",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-18-type-extension-severity-p2-release-present-at-v4-0-2-0-confidence-medium",
+      "text": "**Type:** extension · **Severity:** P2 · **Release:** present at v4.0.2.0 · **Confidence:** medium",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-22-type-misalignment-with-sk-code-severity-p2-release-present-at-v4-0-2-0-confidenc",
+      "text": "**Type:** misalignment (with sk-code) · **Severity:** P2 · **Release:** present at v4.0.2.0 · **Confidence:** high (counted with a loop, offenders listed)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-24-type-misalignment-with-sk-code-severity-p2-release-present-at-v4-0-2-0-confidenc",
+      "text": "**Type:** misalignment (with sk-code) · **Severity:** P2 · **Release:** present at v4.0.2.0 · **Confidence:** medium (standards side read in full; project prefixes read from the cached vitest results, not from the config)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-12-type-ux-severity-p2-release-present-at-v4-0-2-0-confidence-high-both-messages-ca",
+      "text": "**Type:** UX · **Severity:** P2 · **Release:** present at v4.0.2.0 · **Confidence:** high (both messages captured verbatim)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-14-type-ux-improvement-severity-p2-release-present-at-v4-0-2-0-confidence-high-ever",
+      "text": "**Type:** UX (improvement) · **Severity:** P2 · **Release:** present at v4.0.2.0 · **Confidence:** high (every cell measured)",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-13-verify-bash-skilled-skills-system-spec-kit-runtime-cli-spec-validate-sh-level-9-",
+      "text": "**Verify:** `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --level 9 x; echo $?` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 9 \"x\"; echo $?`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-19-verify-grep-ce-phase-parent-anchor-skilled-skills-system-spec-kit-runtime-cli-ru",
+      "text": "**Verify:** `grep -cE 'phase|parent|ANCHOR' .skilled/skills/system-spec-kit/runtime/cli/rules/check-spec-doc-integrity.sh` → 0",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-27-verify-grep-ne-skilled-skills-system-spec-kit-skill-md-and-compare-against-the-c",
+      "text": "**Verify:** `grep -nE '^## ' .skilled/skills/system-spec-kit/SKILL.md` and compare against the canon sentence at `creation-workflow.md:133`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-21-verify-grep-ne-return-0-9-process-exitcode-skilled-skills-sk-doc-sk-create-goal-",
+      "text": "**Verify:** `grep -nE 'return [0-9]|process.exitCode' .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-11-verify-ls-1-skilled-commands-speckit-md-wc-l-7-ls-1-skilled-commands-speckit-ass",
+      "text": "**Verify:** `ls -1 .skilled/commands/speckit/*.md | wc -l` → 7; `ls -1 .skilled/commands/speckit/assets | wc -l` → 12; `sed -n '116,132p' .skilled/commands/speckit/README.txt`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-verify-npx-tsx-skilled-skills-system-spec-kit-runtime-cli-spec-sync-phase-map-st",
+      "text": "**Verify:** `npx tsx .skilled/skills/system-spec-kit/runtime/cli/spec/sync-phase-map-status.ts --help; echo $?` then `node .skilled/skills/system-spec-kit/runtime/cli/spec/sync-phase-map-status.ts --dry-run; echo $?`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-25-verify-rg-n-colocat-co-locat-tests-directory-placement-skilled-skills-sk-code-sk",
+      "text": "**Verify:** `rg -n \"colocat|co-locat|tests/ directory|placement\" .skilled/skills/sk-code/sk-code-skilled/references/typescript/` → only the `.d.ts` hit at line 294; `rg -n \"root:|projects\" .skilled/skills/system-spec-kit/runtime/cli/vitest.config.*`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-17-verify-rg-n-hasnegatedwriteaction-ispromptonlygeneration-hasmixedwritetail-skill",
+      "text": "**Verify:** `rg -n \"hasNegatedWriteAction|isPromptOnlyGeneration|hasMixedWriteTail\" .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-15-verify-rerun-the-four-probes-and-diff-the-codes-against-the-table",
+      "text": "**Verify:** rerun the four probes and diff the codes against the table.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-23-verify-rerun-the-loop-for-each-ts-under-runtime-cli-minus-dist-tests-node-module",
+      "text": "**Verify:** rerun the loop: for each `.ts` under `runtime/cli` minus `dist|tests|node_modules`, print the first non-blank line.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-the-runtime-readme-never-documents-an-invocation-for-this-file-at-all-it-appears",
+      "text": "The runtime README never documents an invocation for this file at all. It appears twice: once in the directory tree as `+-- sync-phase-map-status.ts # Sync a phase parent's map table; report completion mismatches` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:74] and once in the script table as a behaviour description [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md:114]. Neither line names a runner.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-under-npx-tsx-the-module-graph-resolves-and-the-argument-parser-runs-sync-phase-",
+      "text": "Under `npx tsx`, the module graph resolves and the argument parser runs: `sync-phase-map-status: unknown argument: --help`, `EXIT=1`. That is the parser rejecting a flag, not a resolution failure.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-under-plain-node-native-type-stripping-resolution-fails-before-any-code-runs-err",
+      "text": "Under plain `node` (native type-stripping), resolution fails before any code runs: `Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.../runtime/cli/lib/esm-entry.js' imported from '.../sync-phase-map-status.ts'`, `EXIT=1`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-11-note-with-project-root-tmp-iter8-probe-the-same-payload-gets-past-the-guard-and-",
+      "text": "note: with `--project-root /tmp/iter8-probe` the same payload gets past the guard and fails later on the quality gate (`INSUFFICIENT_CONTEXT_ABORT`, exit 1, no files written) — the guard path and the quality path are distinguishable, so the fallback, not the guard, is the defect.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-18-overlap-iteration-6-f6-covered-speckit-handoff-discoverability-from-the-handover",
+      "text": "overlap: iteration 6 F6 covered `/speckit:handoff` discoverability from the `handover.md` intent-table row; this is the writer half — the row above claims a save-time write path that does not exist.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-type-bug-dead-check-severity-p1-release-present-at-v4-0-2-0-outlet-path-added-pr",
+      "text": "type: bug (dead check) · severity: P1 · release: present at v4.0.2.0, outlet path added pre-v4 · confidence: high",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-type-bug-write-escape-default-severity-p1-release-pre-v4-live-at-v4-0-2-0-confid",
+      "text": "type: bug (write-escape default) · severity: P1 · release: pre-v4, live at v4.0.2.0 · confidence: high (observed output)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-17-type-drift-severity-p2-release-handover-claims-entered-at-v4-0-0-13-unchanged-th",
+      "text": "type: drift · severity: P2 · release: handover claims entered at v4.0.0.13, unchanged through v4.0.2.0 · confidence: high for absence, medium for attribution",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-type-drift-docs-vs-code-severity-p1-release-introduced-in-commit-5399875c9e-docs",
+      "text": "type: drift (docs vs code) · severity: P1 · release: introduced in commit `5399875c9e` (`docs(026)`), still unfixed at v4.0.2.0 · confidence: high",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-type-misalignment-doc-vocabulary-vs-code-vocabulary-severity-p2-release-pre-v4-0",
+      "text": "type: misalignment (doc vocabulary vs code vocabulary) · severity: P2 · release: pre-v4.0.0.0, live at v4.0.2.0 · confidence: high (both tables read)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-14-type-over-engineering-severity-p2-release-pre-v4-live-at-v4-0-2-0-confidence-hig",
+      "text": "type: over-engineering · severity: P2 · release: pre-v4, live at v4.0.2.0 · confidence: high",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-12-type-ux-operator-ai-reader-severity-p2-release-pre-v4-live-at-v4-0-2-0-confidenc",
+      "text": "type: ux (operator + AI reader) · severity: P2 · release: pre-v4, live at v4.0.2.0 · confidence: high for the classification (list read), medium for the \"misleading\" reading (only one probe)",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-verify-grep-n-routeas-skilled-skills-system-spec-kit-runtime-cli-continuity-gene",
+      "text": "verify: `grep -n \"routeAs\" .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` → one hit, line 168. `git log --oneline -S \"LLM_REFORMULATION_ENDPOINT\" -- .skilled/skills/system-spec-kit/references/memory/save-workflow.md` → one doc commit.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-verify-grep-rn-contaminationplan-skilled-skills-system-spec-kit-runtime-cli-incl",
+      "text": "verify: `grep -rn \"contaminationPlan\" .skilled/skills/system-spec-kit/runtime/cli --include=*.ts | grep -v tests/` → empty.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-19-verify-grep-rn-handover-skilled-skills-system-spec-kit-runtime-cli-continuity-ge",
+      "text": "verify: `grep -rn \"handover\" .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts | wc -l` → 0; `ls -d specs/*/*/handover.md | wc -l` → 12.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-16-verify-grep-rn-plannermode-skilled-skills-system-spec-kit-runtime-cli-core-workf",
+      "text": "verify: `grep -rn \"plannerMode\" .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts` → six comparisons, all against `full-auto`.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-verify-sed-n-174-186p-skilled-skills-system-spec-kit-runtime-lib-validation-spec",
+      "text": "verify: `sed -n '174,186p' .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts` and compare with `sed -n '419,426p' .skilled/skills/system-spec-kit/references/memory/save-workflow.md`.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-verify-the-command-above-then-find-tmp-iter8-probe-name-json-newer-tmp-iter8-pay",
+      "text": "verify: the command above; then `find /tmp/iter8-probe -name \"*.json\" -newer /tmp/iter8-payload.json` → nothing written.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-13-verify-the-f4-repro-and-grep-n-isexpected-skilled-generate-context-ts",
+      "text": "verify: the F4 repro, and `grep -n \"isExpected\" .skilled/.../generate-context.ts`.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-15-what-breaks-if-removed-two-union-members-one-cli-validation-entry-two-help-lines",
+      "text": "what breaks if removed: two union members, one CLI validation entry, two help lines, one doc sentence. Nothing branches on it, so nothing stops working — which is the finding. A caller who passes `hybrid` expecting the \"merge\" the name implies gets a plan-only response with no notice.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-why-it-matters-the-q9-iteration-6-reading-of-this-rule-a-rule-exists-is-true-at-",
+      "text": "why it matters: the Q9/iteration-6 reading of this rule (\"a rule exists\") is true at the registry level and false in practice. This is the mirror image of the iteration-5 finding that a rule cannot fail (F1, `MEASURED_BEHAVIOR`): here the rule cannot run.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-why-it-matters-this-is-the-section-speckit-save-sends-a-model-to-for-routing-dec",
+      "text": "why it matters: this is the section `/speckit:save` sends a model to for routing decisions. A model that reads it will try `routeAs` and believe the category was honoured; the writer will accept the payload and write nothing to that category.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-json-exit-2-means-the-json-path-is-broken-rejected-exit-2-is-the-documented-vali",
+      "text": "**\"`--json` exit 2 means the JSON path is broken.\"** Rejected: exit 2 is the documented validation-error code and",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-bare-continuity-words-resume-are-a-gate-3-gap-rejected-as-a-finding-row-8-return",
+      "text": "**\"Bare continuity words (`resume`) are a Gate 3 gap.\"** Rejected as a finding: row 8 returned `no_match`, which",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-the-registry-s-42-rules-contradict-the-note-s-forty-rules-are-registered-rejecte",
+      "text": "**\"The registry's 42 rules contradict the note's 'Forty rules are registered'.\"** Rejected: the note is the",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-the-single-source-skip-means-the-packet-has-no-research-artifact-to-scan-rejecte",
+      "text": "**\"The single `[SOURCE:]` skip means the packet has no research artifact to scan.\"** Rejected: `v1` *added*",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-ac-closure-at-info-does-not-fail-a-run-so-0-1-criteria-settled-coexists-with-a-s",
+      "text": "`AC_CLOSURE` at `info` does not fail a run, so 0/1 criteria settled coexists with a `--strict` verdict driven",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-ac-coverage-s-on-by-default-the-note-s-word-is-true-and-vacuous-at-level-2-draft",
+      "text": "`AC_COVERAGE`'s \"on by default\" (the note's word) is true and vacuous at Level 2 Draft: the rule is registered",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-the-draft-qualifier-is-doing-real-work-i-did-not-test-a-packet-whose-status-is-c",
+      "text": "The `Draft` qualifier is doing real work — I did not test a packet whose status is `Complete`, so I do not claim",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-the-one-word-status-warn-is-the-same-word-the-rule-uses-for-a-dead-citation-so-a",
+      "text": "The one-word status `warn` is the same word the rule uses for a dead citation, so a caller cannot tell \"I checked",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-the-rule-s-own-contract-a-pass-means-the-cited-path-and-line-exist-it-never-says",
+      "text": "The rule's own contract — \"A pass means the cited path and line exist; it never says the lines support the",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-12-18-extension-that-follows-excluding-specs-research-from-the-manifest-costs-no-index",
+      "text": "extension that follows: excluding `specs/**/research/**` from the manifest costs no index coverage",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-9-fix-shape-reuse-resolveprojectroot-from-runtime-cli-core-config-ts-or-make-root-",
+      "text": "fix shape: reuse `resolveProjectRoot` from `runtime/cli/core/config.ts`, or make `--root` default to `git rev-parse --show-toplevel` of cwd",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-1-type-bug-severity-p1-release-introduced-pre-v4-0-0-0-live-at-v4-0-2-0-confidence",
+      "text": "type: bug · severity: P1 · release: introduced pre-v4.0.0.0, live at v4.0.2.0 · confidence: high (ran it)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-14-type-bug-severity-p1-release-pre-v4-live-at-v4-0-2-0-confidence-high-code-prior-",
+      "text": "type: bug · severity: P1 · release: pre-v4, live at v4.0.2.0 · confidence: high (code) / prior repro",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-7-type-bug-severity-p1-release-pre-v4-live-at-v4-0-2-0-confidence-high-ran-it",
+      "text": "type: bug · severity: P1 · release: pre-v4, live at v4.0.2.0 · confidence: high (ran it)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-5-type-bug-severity-p1-release-present-at-v4-0-2-0-confidence-high-ran-both-direct",
+      "text": "type: bug · severity: P1 · release: present at v4.0.2.0 · confidence: high (ran both directions)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-10-type-bug-dead-check-severity-p1-release-present-at-v4-0-2-0-confidence-high",
+      "text": "type: bug (dead check) · severity: P1 · release: present at v4.0.2.0 · confidence: high",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-12-type-bug-write-escape-default-severity-p1-release-pre-v4-live-at-v4-0-2-0-confid",
+      "text": "type: bug (write-escape default) · severity: P1 · release: pre-v4, live at v4.0.2.0 · confidence: high",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-16-type-drift-measurement-semantics-severity-p2-release-v4-0-0-12-confidence-high-f",
+      "text": "type: drift (measurement semantics) · severity: P2 · release: v4.0.0.12 · confidence: high (four numbers, one probe)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-3-type-drift-release-note-vs-code-severity-p1-release-v4-0-0-5-confidence-high-ran",
+      "text": "type: drift (release note vs code) · severity: P1 · release: v4.0.0.5 · confidence: high (ran it)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-20-type-misalignment-sk-doc-canon-severity-p2-release-pre-v4-corpus-live-at-v4-0-2-",
+      "text": "type: misalignment (sk-doc canon) · severity: P2 · release: pre-v4 corpus, live at v4.0.2.0 · confidence: high on the counts, medium on severity",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-19-type-ruled-out-release-n-a-confidence-high-ran-it-grepped-it",
+      "text": "type: ruled_out · release: n/a · confidence: high (ran it, grepped it)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-15-verify-cd-tmp-mkdir-p-p-cd-p-git-init-q-bash-repo-skilled-skills-system-spec-kit",
+      "text": "verify: `cd /tmp && mkdir -p p && cd p && git init -q . && bash <repo>/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --short-name x --level 1 \"x\"; echo exit=$?`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-8-verify-cd-tmp-mkdir-p-x-specs-y-printf-g-n-x-specs-y-goal-md-cd-x-git-init-q-nod",
+      "text": "verify: `cd /tmp && mkdir -p x/specs/y && printf '# g\\n' > x/specs/y/goal.md && cd x && git init -q . && node <repo>/.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all | head -1`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-21-verify-for-f-in-skilled-skills-system-spec-kit-references-md-do-printf-s-s-n-rg-",
+      "text": "verify: `for f in .skilled/skills/system-spec-kit/references/*/*.md; do printf '%s %s\\n' \"$(rg -c '^# ' \"$f\")\" \"$f\"; done | sort -rn | head`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-17-verify-node-e-const-i-require-skilled-skills-system-spec-kit-runtime-data-trigge",
+      "text": "verify: `node -e \"const i=require('./.skilled/skills/system-spec-kit/runtime/data/trigger-index.json'),m=require('./.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json'); console.log(i.manifestHash===m.manifestHash, m.includedPathCount, i.paths.length, i.paths.filter(p=>p.includes('047-v4-release-line-research')).length)\"`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-2-verify-npx-tsx-e-import-classifyprompt-from-skilled-skills-system-spec-kit-share",
+      "text": "verify: `npx tsx -e \"import {classifyPrompt} from './.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts'; console.log(classifyPrompt('Update the README and review the result.'))\"`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-11-verify-rg-l-contaminationplan-skilled-glob-node-modules-2-files-neither-a-produc",
+      "text": "verify: `rg -l 'contaminationPlan' .skilled --glob '!node_modules'` → 2 files, neither a producer",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-13-verify-sed-n-98-100p-skilled-skills-system-spec-kit-runtime-cli-core-config-ts-t",
+      "text": "verify: `sed -n '98,100p' .skilled/skills/system-spec-kit/runtime/cli/core/config.ts`; then the iteration-8 `/tmp/iter8-probe` command",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-6-verify-as-above-compare-with-node-repo-skilled-skills-sk-doc-sk-create-goal-scri",
+      "text": "verify: as above; compare with `node <repo>/.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all; echo exit=$?` in this repo (2, from errors)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-4-verify-the-two-printf-cp-lines-above-then-speckit-rules-anchors-valid-bash-skill",
+      "text": "verify: the two `printf`/`cp` lines above, then `SPECKIT_RULES=ANCHORS_VALID bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/v12-phase-parent --strict --json`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-13-30-change-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-58-60-call-th",
+      "text": "**Change**: `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:58-60` — call the spec-kit resolver (with the module-relative path as a last resort), so both entry points agree.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-9-change-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-700-704-mirro",
+      "text": "**Change**: `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:700-704` — mirror the packet ladder (`errors > 0 → 2`, else `passed ? 0 : 1`) and surface a `passed` flag from `scanWorkspace` alongside `errors`/`warnings`.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-13-change-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-706-resolve-o",
+      "text": "**Change**: `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:706` — resolve `options.packetArg` against `process.cwd()` when that resolution exists, and fall back to `workspaceRoot` only otherwise.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-17-change-skilled-skills-system-spec-kit-runtime-cli-core-config-ts-131-147-throw-o",
+      "text": "**Change**: `.skilled/skills/system-spec-kit/runtime/cli/core/config.ts:131-147` — throw (or return a discriminated miss) when no override was supplied, and let the CLI surface a one-line error naming the `--root`/env escape hatch.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-21-change-skilled-skills-system-spec-kit-runtime-cli-spec-create-sh-1409-one-readon",
+      "text": "**Change**: `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1409` — one `readonly TEMPLATES_BASE=\"${SPECKIT_TEMPLATES_BASE:-$REPO_ROOT/.skilled/skills/system-spec-kit/templates}\"` immediately after `REPO_ROOT` is resolved, plus the `-d` check there and there only; delete the three later assignments.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-25-change-skilled-skills-system-spec-kit-runtime-lib-validation-orchestrator-ts-107",
+      "text": "**Change**: `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:107` and `:452` — drop `'skip'` from the union and the guard, or add the producer (a documented way to retire a rule without deleting its script).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-27-change-skilled-skills-system-spec-kit-runtime-lib-validation-orchestrator-ts-138",
+      "text": "**Change**: `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1383` — `const level = detectLevel(folder);`, and if the intent was ever \"strict judges a phase parent as a phase\", write the assertion as a comment with the test that proves it rather than a ternary that cannot fail.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-change-skilled-skills-system-spec-kit-runtime-lib-validation-orchestrator-ts-975",
+      "text": "**Change**: `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:975-977` — keep the exemption scoped to the *requirement*, not the *integrity*: skip the `no anchors found` finding and the required-template-section list for a phase parent, but still run duplicate / unbalanced / nest-detection over whatever anchors it authored.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-change-skilled-skills-system-spec-kit-shared-gate-3-classifier-ts-841-845-delete",
+      "text": "**Change**: `.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:841-845` — delete the read-only override from the resume branch and return `{ triggersGate3: true, reason: 'resume_match', ... }` exactly as the memory-save branch does.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-31-expected-after-fix-root-cwd-discovery-and-the-vendored-default-resolve-through-o",
+      "text": "**Expected after fix**: `--root`, cwd discovery and the vendored default resolve through one function; the `packet=` label in the report stops depending on where the script sits.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-14-expected-after-fix-cd-specs-track-packet-check-goal-cjs-checks-that-packet-not-t",
+      "text": "**Expected after fix**: `cd specs/<track>/<packet> && check-goal.cjs .` checks that packet, not the whole workspace; `check-goal.cjs specs/...` from the repo root is unchanged.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-10-expected-after-fix-check-goal-cjs-all-and-check-goal-cjs-packet-agree-on-every-p",
+      "text": "**Expected after fix**: `check-goal.cjs --all` and `check-goal.cjs <packet>` agree on every packet, so a sweep cannot green a packet the single check reds.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-expected-after-fix-a-phase-parent-that-authored-a-anchor-x-without-its-closer-re",
+      "text": "**Expected after fix**: a phase parent that authored a `<ANCHOR:x>` without its closer reports an anchor integrity issue; a lean phase parent with no anchors at all still passes.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-expected-after-fix-every-resume-phrase-triggers-gate-3-read-only-override-become",
+      "text": "**Expected after fix**: every resume phrase triggers Gate 3; `read_only_override` becomes reachable only from the file-write branch, which is where the doc block puts it.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-22-expected-after-fix-one-value-one-validation-and-a-bad-root-fails-before-the-firs",
+      "text": "**Expected after fix**: one value, one validation, and a bad root fails before the first `mkdir` instead of part-way through the scaffold. `create.sh` loses 6 lines net and one class of partial-folder failure.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-18-expected-after-fix-running-a-spec-kit-cli-outside-a-spec-kit-repository-fails-lo",
+      "text": "**Expected after fix**: running a spec-kit CLI outside a spec-kit repository fails loudly instead of writing into the runtime repository; a caller that genuinely wants the runtime repo opts in explicitly.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-19-verify-cd-tmp-node-tmp-copy-skilled-skills-system-spec-kit-runtime-cli-continuit",
+      "text": "**Verify**: `cd /tmp && node /tmp/<copy>/.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.js --help` (read-only) and check whether the resolved root is `/tmp` or the skill tree.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-15-verify-cd-tmp-copy-specs-packet-node-tmp-copy-skilled-skills-sk-doc-sk-create-go",
+      "text": "**Verify**: `cd /tmp/<copy>/specs/<packet> && node /tmp/<copy>/.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs .` — expect `packet=<that packet>`.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-verify-node-e-const-classifyprompt-require-skilled-skills-system-spec-kit-runtim",
+      "text": "**Verify**: `node -e \"const {classifyPrompt}=require('./.skilled/skills/system-spec-kit/runtime/dist/shared/gate-3-classifier.js'); console.log(classifyPrompt('review the validation rules then resume the packet').reason)\"` — today prints a suppressing reason, after the fix prints `resume_match`.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-11-verify-node-skilled-skills-sk-doc-sk-create-goal-scripts-check-goal-cjs-all-echo",
+      "text": "**Verify**: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all; echo $?` and the same packet by name — today the code paths disagree on warnings-only packets.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-23-verify-speckit-templates-base-nope-bash-skilled-skills-system-spec-kit-runtime-c",
+      "text": "**Verify**: `SPECKIT_TEMPLATES_BASE=/nope bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --path specs/_probe --level 1 --dry-run`-style inspection of argument order; or trace with `bash -x` that today the failure comes from `copy_template`, after the fix from the root check.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-7-verify-copy-a-phase-parent-to-tmp-delete-one-anchor-line-run-bash-skilled-skills",
+      "text": "**Verify**: copy a phase parent to `/tmp`, delete one `<!-- /ANCHOR:... -->` line, run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/<packet> --strict` — expect `ANCHORS_VALID` to fail (today: `pass`).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-8-release-v4-0-0-0-validator-orchestrator-rewrite-that-moved-rule-decisions-out-of",
+      "text": "Release: v4.0.0.0 (validator-orchestrator rewrite that moved rule decisions out of `validate.sh`). Confidence 0.85.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-20-release-v4-0-0-0-confidence-0-8-the-fallback-is-deliberate-per-the-message-text-",
+      "text": "Release: v4.0.0.0. Confidence 0.8 — the \"fallback\" is deliberate per the message text, which is why this is an improvement rather than a bug.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-26-release-v4-0-0-0-confidence-0-9",
+      "text": "Release: v4.0.0.0. Confidence 0.9.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-28-release-v4-0-0-0-confidence-0-9",
+      "text": "Release: v4.0.0.0. Confidence 0.9.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-29-release-v4-0-0-0-confidence-0-95",
+      "text": "Release: v4.0.0.0. Confidence 0.95.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-release-v4-0-0-1-classifier-introduction-attribution-inherited-from-the-run-regi",
+      "text": "Release: v4.0.0.1 (classifier introduction; attribution inherited from the run registry, not re-derived this iteration). Confidence 0.9.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-12-release-v4-0-0-2-goal-system-confidence-0-85",
+      "text": "Release: v4.0.0.2 (goal system). Confidence 0.85.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-32-release-v4-0-0-2-confidence-0-8",
+      "text": "Release: v4.0.0.2. Confidence 0.8.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-16-release-v4-0-0-2-confidence-0-9",
+      "text": "Release: v4.0.0.2. Confidence 0.9.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-24-release-v4-0-0-3-explicit-path-work-added-the-later-site-confidence-0-85",
+      "text": "Release: v4.0.0.3 (explicit-path work added the later site). Confidence 0.85.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-14-7-change-print-the-absolute-folder-the-validator-was-given-the-report-already-carr",
+      "text": "Change: print the absolute folder the validator was given (the report already carries `report.folder` [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:1495]) instead of a cwd-relative rendering.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-12-change-when-rows-length-0-because-every-candidate-was-skipped-rather-than-absent",
+      "text": "Change: when `rows.length === 0` because every candidate was skipped rather than absent, say so; keep the metadata read to fill the date and description, not to decide membership.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-4-release-live-at-v4-0-2-0-the-warn-on-unreadable-repo-branch-predates-v4-and-was-",
+      "text": "Release: live at v4.0.2.0; the warn-on-unreadable-repo branch predates v4 and was not isolated to a release this iteration. Confidence 0.9.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-9-release-pre-v4-live-at-v4-0-2-0-confidence-0-95",
+      "text": "Release: pre-v4, live at v4.0.2.0. Confidence 0.95.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-2-release-pre-v4-0-0-0-7f1e0e8878-2026-09-27-introduced-scoringonly-by-git-log-s-s",
+      "text": "Release: pre-v4.0.0.0 (`7f1e0e8878`, 2026-09-27, introduced `scoringOnly` by `git log -S`); still live at v4.0.2.0. Confidence 0.95.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-11-release-the-unknown-option-refusal-shipped-in-the-v4-0-0-8-batch-per-its-note-li",
+      "text": "Release: the unknown-option refusal shipped in the v4.0.0.8 batch per its note; line-level attribution was not isolated this iteration. Confidence 0.85.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-14-release-v4-0-0-4-confidence-0-75-read-not-run",
+      "text": "Release: v4.0.0.4. Confidence 0.75 (read, not run).",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-6-release-v4-0-0-4-confidence-0-9",
+      "text": "Release: v4.0.0.4. Confidence 0.9.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-8-verify-bash-skilled-skills-system-spec-kit-runtime-cli-spec-validate-sh-tmp-l14u",
+      "text": "Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/l14ux/l1 --strict | tail -8` and read the `--folder` argument.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-3-verify-cp-r-specs-agents-md-016-doctor-agents-md-tmp-pp-bash-skilled-skills-syst",
+      "text": "Verify: `cp -R specs/agents-md/016-doctor-agents-md /tmp/pp && bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/pp --strict | tail -4` → warning above `RESULT: PASSED`.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-5-verify-git-show-2c761d5e36-stat-one-file-8-and-the-empty-grep-above",
+      "text": "Verify: `git show 2c761d5e36 --stat` (one file, +8) and the empty grep above.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-1-verify-node-skilled-skills-system-spec-kit-runtime-cli-retrieval-lookup-trigger-",
+      "text": "Verify: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs -- \"validaton rulles strict\"; echo \"EXIT=$?\"` → 20 rows at 0.000, `EXIT=0`.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-10-verify-node-skilled-skills-system-spec-kit-runtime-cli-retrieval-lookup-trigger-",
+      "text": "Verify: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --bogus-flag -- x; echo \"EXIT=$?\"` → one line, `EXIT=2`.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-13-verify-build-a-tmp-specs-track-001-x-with-only-spec-md-next-to-a-freshly-create-",
+      "text": "Verify: build a `/tmp/specs/<track>/001-x` with only `spec.md` next to a freshly `create.sh`-made sibling and run a scaffold in a copy — the hand-authored sibling never appears.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-15-1-generate-context-ts-documents-project-root-dir-source-skilled-skills-system-spec",
+      "text": "`generate-context.ts` documents `--project-root <dir>` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:99] and it is **not** in `knownOptions` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:973], which reads like the exact bug this focus asked for. It is not: `takeProjectRootOption` splits the flag out of argv before `parseArguments` sees it [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:1172], [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:1225], and validates existence, directory-ness and containment [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts:1206]. Two parsers over one argv is fragile, but the pre-strip is deliberate and the ordering is documented at the call site.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-2-generate-trigger-index-mjs-s-parseargs-refuses-an-unknown-argument-with-exit-2-s",
+      "text": "`generate-trigger-index.mjs`'s `parseArgs` refuses an unknown argument with exit 2 [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:583], refuses a flag whose value starts with `--`, and additionally refuses write-only flags under `--check` rather than silently ignoring them [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:692]. `DEFAULT_REPO_ROOT` is resolved by walking up from the script for a `.git`/`specs` marker rather than a fixed hop count, with the silent-narrowing failure it avoids written out [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:101], and a caller indexing another checkout is warned on stderr. This surface is the most defensively argued of the four.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-16-2-v4-0-0-11-is-genuinely-out-of-scope-its-content-is-doctor-git-eleven-read-only-g",
+      "text": "**v4.0.0.11 is genuinely out of scope**: its content is `/doctor:git` (eleven read-only git checks) [SOURCE: .skilled/changelog/skilled/v4.0.0.11.md:19], not `/doctor:update`.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-1-v4-0-0-15-is-in-scope-and-unaudited-its-note-opens-a-spec-kit-section-source-ski",
+      "text": "**v4.0.0.15 is in scope and unaudited.** Its note opens a `## Spec Kit` section [SOURCE: .skilled/changelog/skilled/v4.0.0.15.md:40] covering templates-that-teach, `[YOUR_VALUE_HERE:]` status-dependent severity, single-run remediation, draft metadata auto-repair, three retired add-ons, and `--track`/`--path` containment. I probed the containment claim and it **holds**: `--track /tmp/abs` and `--track ../escape` both exit 1 with `Error: --track '<value>' must name a folder under specs/ …` and create nothing. Zero findings for this release is a coverage gap, not a clean bill of health — the template and draft-repair limbs remain unread.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-3-v4-0-0-6-v4-0-0-7-carry-code-skill-repo-rules-deep-loop-modes-and-skill-routing-",
+      "text": "**v4.0.0.6 / v4.0.0.7** carry Code Skill, Repo Rules, Deep Loop Modes and Skill Routing sections; none is a surface in this child's scope.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-4-v4-0-0-9-v4-0-0-10-v4-0-0-16-were-not-read-this-iteration-they-share-commit-4d8f",
+      "text": "**v4.0.0.9 / v4.0.0.10 / v4.0.0.16** were **not read** this iteration (they share commit `4d8f403355`), so their restraint is unverified rather than justified.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-17-1-source-skilled-commands-speckit-save-md-19-explicit-apply-runs",
+      "text": "[SOURCE: .skilled/commands/speckit/save.md:19] — explicit apply runs",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-2-source-skilled-skills-system-spec-kit-references-memory-memory-system-md-39-name",
+      "text": "[SOURCE: .skilled/skills/system-spec-kit/references/memory/memory-system.md:39] — names the same",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-6-runtime-cli-core-config-ts-is-a-jsonc-config-loader-exporting-gittoplevel-resolv",
+      "text": "`runtime/cli/core/config.ts` is a JSONC config loader exporting `gitTopLevel`, `resolveProjectRoot`,",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-8-runtime-dist-core-config-js-is-a-different-program-it-opens-with-server-dir",
+      "text": "`runtime/dist/core/config.js` is a different program: it opens with `SERVER_DIR`,",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-7-its-real-compiled-output-is-runtime-cli-dist-core-config-js-which-does-export-th",
+      "text": "Its real compiled output is `runtime/cli/dist/core/config.js`, which **does** export the function",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-5-neither-the-runtime-nor-the-cli-manifest-carries-a-prepare-postinstall-or-prepac",
+      "text": "Neither the runtime nor the CLI manifest carries a `prepare`, `postinstall` or `prepack` hook, so a",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-4-the-root-build-is-source-skilled-skills-system-spec-kit-runtime-package-json-17",
+      "text": "The root build is [SOURCE: .skilled/skills/system-spec-kit/runtime/package.json:17] —",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-3-three-yaml-assets-carry-the-identical-invocation",
+      "text": "Three YAML assets carry the identical invocation:",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-18-2-confidence-0-95-reproduced-end-to-end",
+      "text": "**Confidence:** 0.95 — reproduced end to end.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-1-type-bug-with-ux-limb-severity-p1-release-v4-0-0-0-330427cf30-source-root-move",
+      "text": "**Type:** bug (with UX limb) · **Severity:** P1 · **Release:** v4.0.0.0 (`330427cf30`, source-root move)",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-12-type-drift-severity-p2-release-v4-0-0-0-confidence-0-85-counted",
+      "text": "**Type:** drift · **Severity:** P2 · **Release:** v4.0.0.0 · **Confidence:** 0.85, counted.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-6-type-drift-severity-p2-release-v4-0-0-0-confidence-0-85-read-one-executed",
+      "text": "**Type:** drift · **Severity:** P2 · **Release:** v4.0.0.0 · **Confidence:** 0.85, read + one executed.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-8-type-over-engineering-severity-p2-release-v4-0-0-0-330427cf30-confidence-0-9",
+      "text": "**Type:** over-engineering · **Severity:** P2 · **Release:** v4.0.0.0 (`330427cf30`) · **Confidence:** 0.9.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-4-type-ux-severity-p1-release-v4-0-0-0-330427cf30-confidence-0-95-measured",
+      "text": "**Type:** ux · **Severity:** P1 · **Release:** v4.0.0.0 (`330427cf30`) · **Confidence:** 0.95, measured.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-10-type-ux-severity-p2-release-v4-0-1-0-28b388e81b-add-doctor-symlink-and",
+      "text": "**Type:** ux · **Severity:** P2 · **Release:** v4.0.1.0 (`28b388e81b`, \"add /doctor:symlink and",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-13-verify-for-f-in-skilled-commands-speckit-md-do-echo-grep-c-runtime-cli-dist-f-f-",
+      "text": "**Verify:** `for f in .skilled/commands/speckit/*.md; do echo \"$(grep -c 'runtime/cli/dist' $f) $f\"; done | sort -rn`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-3-verify-git-clone-depth-1-file-pwd-tmp-x-cd-tmp-x-npm-prefix-skilled-skills-syste",
+      "text": "**Verify:** `git clone --depth 1 file://$PWD /tmp/x && cd /tmp/x && npm --prefix .skilled/skills/system-spec-kit install && npm --prefix .skilled/skills/system-spec-kit/runtime run build && ls .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-5-verify-git-clone-depth-1-file-pwd-tmp-y-cd-tmp-y-node-skilled-skills-system-spec",
+      "text": "**Verify:** `git clone --depth 1 file://$PWD /tmp/y && cd /tmp/y && node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --help; echo $?`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-9-verify-git-clone-depth-1-file-pwd-tmp-z-ls-tmp-z-skilled-skills-system-spec-kit-",
+      "text": "**Verify:** `git clone --depth 1 file://$PWD /tmp/z && ls /tmp/z/.skilled/skills/system-spec-kit/runtime/node_modules 2>&1`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-11-verify-grep-c-runtime-dist-skilled-commands-doctor-setup-md-skilled-commands-doc",
+      "text": "**Verify:** `grep -c \"runtime/dist\" .skilled/commands/doctor/setup.md .skilled/commands/doctor/install.md` → `0` / `0`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-7-verify-in-a-fresh-clone-npm-prefix-skilled-skills-system-spec-kit-install-npm-pr",
+      "text": "**Verify:** in a fresh clone, `npm --prefix .skilled/skills/system-spec-kit install && npm --prefix .skilled/skills/system-spec-kit run build && node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check --package system-spec-kit/runtime --entry validation-orchestrator; echo \"exit=$?\"`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-20-5-confidence-high-both-resolvers-executed-on-the-same-scratch-trees",
+      "text": "Confidence: high — both resolvers executed on the same scratch trees",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-2-confidence-high-both-sides-of-the-asymmetry-read-the-producing-side-executed",
+      "text": "Confidence: high — both sides of the asymmetry read, the producing side executed",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-11-confidence-high-both-strings-printed-in-one-run",
+      "text": "Confidence: high — both strings printed in one run",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-14-confidence-high-executed",
+      "text": "Confidence: high — executed",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-8-confidence-high-the-failing-pair-executed-the-passing-pair-executed-as-control",
+      "text": "Confidence: high — the failing pair executed, the passing pair executed as control",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-17-confidence-high-on-the-depth-arithmetic-executed-medium-on-the-claim-that-no-oth",
+      "text": "Confidence: high on the depth arithmetic (executed); medium on the claim that no other caller depends",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-20-confidence-high-on-the-mechanism-read-the-extension-is-a-proposal-not-a-measurem",
+      "text": "Confidence: high on the mechanism (read); the extension is a proposal, not a measurement",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-7-release-introduced-v4-0-0-0-330427cf30-the-same-commit-that-introduced-default-m",
+      "text": "Release introduced: `v4.0.0.0` (`330427cf30`, the same commit that introduced `DEFAULT_MAX_DEPTH`)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-19-release-introduced-v4-0-0-0-the-shape-has-been-unchanged-since-introduction",
+      "text": "Release introduced: `v4.0.0.0` (the shape has been unchanged since introduction)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-16-release-introduced-v4-0-0-10-d65d4128c6",
+      "text": "Release introduced: `v4.0.0.10` (`d65d4128c6`)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-13-release-introduced-v4-0-1-0",
+      "text": "Release introduced: `v4.0.1.0`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-1-release-introduced-v4-0-1-0-6f42c7b169-introduced-resolveprojectroot-the-asymmet",
+      "text": "Release introduced: `v4.0.1.0` (`6f42c7b169` introduced `resolveProjectRoot`; the asymmetry dates from it)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-10-release-introduced-v4-0-1-0-6f42c7b169-made-a-second-spelling-reachable",
+      "text": "Release introduced: `v4.0.1.0` (`6f42c7b169` made a second spelling reachable)",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-4-release-introduced-v4-0-1-0-6f42c7b169-the-opencode-skilled-move-that-created-th",
+      "text": "Release introduced: `v4.0.1.0` (`6f42c7b169`); the `.opencode` → `.skilled` move that created the",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-6-verify-grep-n-function-usesspeckit-a2-skilled-skills-system-spec-kit-runtime-cli",
+      "text": "Verify: `grep -n \"function usesSpecKit\" -A2 .skilled/skills/system-spec-kit/runtime/cli/core/config.ts`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-21-verify-grep-rn-workspace-repo-root-skilled-skills-system-spec-kit-include-ts-inc",
+      "text": "Verify: `grep -rn \"workspace/repo-root\" .skilled/skills/system-spec-kit --include=*.ts --include=*.mjs --include=*.cjs -l | wc -l`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-9-verify-node-input-type-module-e-import-findreporoot-from-skilled-skills-system-s",
+      "text": "Verify: `node --input-type=module -e \"import {findRepoRoot} from './.skilled/skills/system-spec-kit/shared/workspace/repo-root.mjs'; console.log(findRepoRoot('/tmp/rr-probe/deep2/d1/d2/d3/d4/d5/d6/d7/d8/d9/d10/d11/d12/d13/d14/d15'))\"`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-3-verify-node-input-type-module-e-import-resolveprojectroot-from-skilled-skills-sy",
+      "text": "Verify: `node --input-type=module -e \"import {resolveProjectRoot} from './.skilled/skills/system-spec-kit/runtime/cli/dist/core/config.js'; console.log(resolveProjectRoot('/tmp/rr-probe/bare/nested'))\"`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-18-verify-node-e-console-log-require-path-resolve-p-skilled-skills-sk-create-goal-s",
+      "text": "Verify: `node -e \"console.log(require('path').resolve('/p/.skilled/skills/sk-create-goal/scripts','../../../../../'))\"`",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-15-verify-resolveprojectroot-tmp-rr-probe-bare-missing-and-read-stderr",
+      "text": "Verify: `resolveProjectRoot('/tmp/rr-probe/bare/missing')` and read stderr",
+      "addedAtIteration": 20,
+      "sources": []
+    },
+    {
+      "id": "finding-20-12-verify-the-f2-scratch-tree-plus-resolveprojectroot-tmp-rr-probe-sib-linked-specs",
+      "text": "Verify: the F2 scratch tree plus `resolveProjectRoot('/tmp/rr-probe/sib-linked/specs/001-p')`",
+      "addedAtIteration": 20,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 2,
+    "resolvedQuestions": 10,
+    "carriedForwardOpenQuestions": 99,
+    "keyFindings": 308,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.62,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

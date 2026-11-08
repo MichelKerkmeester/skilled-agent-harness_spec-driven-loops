@@ -1,0 +1,81 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/MEGA/Development/Skilled
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+Spec folder: specs/system-speckit/047-v4-release-line-research (pre-approved, skip Gate 3).
+Your write authority is NONE: this is a read-only verification task. Write nothing anywhere in
+the repository. Scratch files, if you need any, go only under /tmp. Proceed directly to the
+work. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+PERSONA (condensed from .skilled/agents/review.md; full file not inlined because this is a
+focused factual verification): You are a code-review verifier. Findings are hypotheses until
+you open the cited line or run a check. You never fix, edit, format or commit. You cite
+`path:line` for every verdict. You report the evidence you observed, not what you expected.
+
+TASK
+Verify each finding below against the repository at HEAD. For each one:
+1. Open every cited file at the cited lines (use `sed -n 'A,Bp'`, `rg -n`, `ls -l`, `git`).
+   Line numbers may have drifted; search nearby by symbol before concluding.
+2. Where a cheap read-only probe settles it, run it: `--help`, `--check`, `--status`,
+   `--dry-run`, a query, `git check-ignore`, `git ls-files`, a `node -e`/`bun -e` import that
+   only calls a pure function. You may copy files into /tmp and run probes there.
+3. NEVER run generators, packagers, installers, create.sh, save or continuity writers,
+   `--write`, `--apply`, `--fix`, `npm install`, `npm run build`, or package_skill.py without
+   `--check`. Never run anything that writes inside the repository. If the only proof needs a
+   write, say so and judge from code reading.
+4. Decide: CONFIRMED (the claim holds as stated), REFUTED (the claim is false; say why),
+   or CHANGED (the core defect is real but a detail, count, line, mechanism or severity is
+   wrong; state the corrected claim).
+5. Severity: say whether you agree with the given severity (P0 = observed breakage of a
+   shipped path, P1 = real defect a user or CI will hit, P2 = minor/doc/edge). Disagree only
+   with a reason.
+
+RETURN SHAPE (exactly this, one block per finding, nothing else before or after except a
+final line `BATCH DONE`):
+
+### <ID>
+VERDICT: CONFIRMED | REFUTED | CHANGED
+SEVERITY: <agree P?> | <propose P? because ...>
+EVIDENCE: <path:line> - <the line or output you observed, quoted briefly>
+COMMAND: <the command you ran or "read only"> -> exit <code>
+CORRECTED CLAIM: <only for CHANGED, else "-">
+
+FINDINGS
+
+- V17 [P1] (introduced: v4.0.0.x)
+  CLAIM: The gateway refresh drops writer rows: after four iterations a state log held containment rows but no iteration_start rows.
+  CITES / CHECKS: system-deep-loop runtime gateway/append path; any child deep-research-state.jsonl and observability-events.jsonl (look for iteration_start)
+
+- V18 [P1] (introduced: v4.0.0.x)
+  CLAIM: The Pi classifier route pins PI_PACKAGE_VERSION = '0.99.2' and compares exactly; installed Pi is newer, so the documented Pi-first route never runs and fallback to the jev CLI is silent.
+  CITES / CHECKS: .skilled/skills/cli-classifier/**/jev-transport.mjs:36, :374; `pi --version`
+
+- V19 [P1] (introduced: v4.0.0.x)
+  CLAIM: Three advertised Jev phrases appear in both ROUTER.md files and zero times in cli-classifier/hub-router.json, so stage-one routing cannot reach them.
+  CITES / CHECKS: .skilled/skills/cli-classifier/ROUTER.md; hub-router.json
+
+- V20 [P1] (introduced: v4.0.0.x)
+  CLAIM: Hub intent vocabulary exists as three unjoined copies (ROUTER.md INTENT_SIGNALS, hub-router.json vocabularyClasses, mode-registry.json aliases), and advisor_recommend on 'opencode go route this task' ranks sk-code above cli-external-orchestration.
+  CITES / CHECKS: .skilled/skills/cli-external-orchestration/{ROUTER.md,hub-router.json,mode-registry.json}; `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"opencode go route this task"}' --format json`
+
+- V21 [P1] (introduced: v4.0.0.x)
+  CLAIM: cli-external-orchestration/SKILL.md requires the resolved persona on every dispatch, but the deep-loop prompt-pack template carries only a route line, no persona.
+  CITES / CHECKS: .skilled/skills/cli-external-orchestration/SKILL.md:189, :217; system-deep-loop prompt-pack-iteration.md.tmpl
+
+- V22 [P1] (introduced: v4.0.0.x)
+  CLAIM: The leaf tool-call budget is a static line in the prompt-pack template while config.maxToolCallsPerIteration exists and is never rendered.
+  CITES / CHECKS: system-deep-loop **/prompt-pack-iteration.md.tmpl:36; grep maxToolCallsPerIteration
+
+- V23 [P1] (introduced: v4.0.0.x)
+  CLAIM: runtime/lib/branch-leases-waves has ~3,117 non-test lines and only two type-only importers; no runtime importer.
+  CITES / CHECKS: system-deep-loop/runtime/lib/branch-leases-waves; importers substrate-ports.ts:10, conditional-fanin/types.ts:19
+
+- V24 [P1] (introduced: v4.0.x)
+  CLAIM: Researchers ran writers outside their folders: package_skill.py --strict without --check packages and writes <skill>.zip into the cwd (three zips landed in the repo root), and a create.sh probe created specs/001-test-feature/; containment only recorded these.
+  CITES / CHECKS: .skilled/skills/sk-doc/**/package_skill.py (argument handling of --strict vs --check); specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/decision-record.md D-08; 001-spec-kit-core/decision-record.md row 7. READ ONLY: do not run package_skill.py without --check.

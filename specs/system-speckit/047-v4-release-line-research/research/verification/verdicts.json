@@ -1,0 +1,327 @@
+{
+ "V01": {
+  "luna": "CHANGED",
+  "final_severity": "P0",
+  "note": "Luna sandbox could not start opencode (EPERM); lead observed 'Unrecognized flag: --pure' exit 1 on OpenCode v2.2.5, so P0 stands"
+ },
+ "V02": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V03": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "research YAMLs only; review YAMLs use kind"
+ },
+ "V04": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V05": {
+  "luna": "CONFIRMED",
+  "final_severity": "P2",
+  "note": "Luna: unreachable, no supported config breaks"
+ },
+ "V06": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "YAML implements stop policy and min-iteration floor; gap is code ownership only"
+ },
+ "V07": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V08": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "15 of 27 scripts check, not 7"
+ },
+ "V09": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V10": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V11": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "path is deep-research/scripts/reduce-state.cjs"
+ },
+ "V12": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V13": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "full record survives in delta file"
+ },
+ "V14": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V15": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "confirm validates session hierarchy pre-dispatch"
+ },
+ "V16": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V17": {
+  "luna": "REFUTED",
+  "final_severity": null,
+  "note": "iteration rows present; iteration_start is not a canonical row"
+ },
+ "V18": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "package resolution fails before version compare; fallback is reported"
+ },
+ "V19": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "'jev probability' exists inside a longer keyword; all three standalone phrases defer"
+ },
+ "V20": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "advisor returns only sk-code; compiled route misroutes to cli-deepseek-harness"
+ },
+ "V21": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V22": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V23": {
+  "luna": "CONFIRMED",
+  "final_severity": "P2",
+  "note": "dead code, no user-facing failure"
+ },
+ "V24": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "lead keeps P1 against Luna P2: writes escaped a research-only packet unreverted; create.sh attribution circumstantial"
+ },
+ "V25": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V26": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "quoted phrase is not a resume trigger; recognized resume triggers are still suppressed by a read-only word"
+ },
+ "V27": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V28": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V29": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V30": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "README.md:303 documents the exemption; release note omits it"
+ },
+ "V31": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V32": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "exits 0 only when findings and no errors"
+ },
+ "V33": {
+  "luna": "REFUTED",
+  "final_severity": null,
+  "note": "absent at HEAD in this repo; original /tmp repro not rerun -> needs confirmation"
+ },
+ "V34": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "--help itself is rejected"
+ },
+ "V35": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "standalone CLI --contamination-json can run it"
+ },
+ "V36": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V37": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "wrapper excludes backup/memory/scratch/research/review dirs"
+ },
+ "V38": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V39": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V40": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V41": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "also detects compiled siblings; no freshness check"
+ },
+ "V42": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "strict missing-ROUTER check reachable once frontmatter passes"
+ },
+ "V43": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "5 missing: 3 in shared/references, 1 in shared/assets, 1 in sk-create-with-human-voice"
+ },
+ "V44": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V45": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V46": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V47": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V48": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": "lead: failure line is the history body; Hermes text is stale content"
+ },
+ "V49": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V50": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "advisor ran degraded, zero recommendations"
+ },
+ "V51": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "argument/context errors still exit non-zero"
+ },
+ "V52": {
+  "luna": "REFUTED",
+  "final_severity": null,
+  "note": "shared core.hooksPath is a documented accepted install; residual P2 wording"
+ },
+ "V53": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V54": {
+  "luna": "CHANGED",
+  "final_severity": "P1",
+  "note": "lead keeps P1 against Luna P2: opencode arm self-compares, gate covers 2 real trees of 7"
+ },
+ "V55": {
+  "luna": "CONFIRMED",
+  "final_severity": "P2",
+  "note": "misleading status only"
+ },
+ "V56": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V57": {
+  "luna": "CONFIRMED",
+  "final_severity": "P2",
+  "note": "target is the source checkout"
+ },
+ "V58": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "shipped sk-git/assets fallback still enforces rules"
+ },
+ "V59": {
+  "luna": "REFUTED",
+  "final_severity": null,
+  "note": "both resolve sk-git/assets"
+ },
+ "V60": {
+  "luna": "REFUTED",
+  "final_severity": null,
+  "note": "CI catches mirror-only claude files; Explore allowlisted"
+ },
+ "V61": {
+  "luna": "CONFIRMED",
+  "final_severity": "P1",
+  "note": ""
+ },
+ "V62": {
+  "luna": "CONFIRMED",
+  "final_severity": "P2",
+  "note": "label confusion"
+ },
+ "V63": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "per-command contracts documented"
+ },
+ "V64": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "separate mirror checkers exist"
+ },
+ "V65": {
+  "luna": "CHANGED",
+  "final_severity": "P2",
+  "note": "checkers are read-only by default"
+ }
+}

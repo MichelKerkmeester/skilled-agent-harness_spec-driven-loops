@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/047-v4-release-line-research/002-authoring-hubs",
+  "description": "Phase 2: authoring-hubs",
+  "keywords": [
+    "phase",
+    "authoring-hubs"
+  ],
+  "lastUpdated": "2026-11-08T22:35:38.318Z",
+  "specId": "002",
+  "folderSlug": "authoring-hubs",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "08-11-26_22-26__deep-research-completed-for-002-authoring-hubs-11.md",
+    "08-11-26_23-34__deep-research-completed-for-002-authoring-hubs-11.md",
+    "08-11-26_23-35__deep-research-completed-for-002-authoring-hubs-11.md"
+  ]
+}

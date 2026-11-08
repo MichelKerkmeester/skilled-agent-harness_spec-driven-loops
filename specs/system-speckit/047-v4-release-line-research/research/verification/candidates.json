@@ -1,0 +1,522 @@
+[
+ {
+  "id": "V01",
+  "sev": "P0",
+  "sources": "003 B3",
+  "release": "v4.0.0.13",
+  "claim": "The single-executor if_cli_opencode branch in the deep research/review auto and confirm YAMLs passes --pure unconditionally and hardcodes command 'opencode'; the installed OpenCode rejects --pure ('Unrecognized flag: --pure'), so every dispatch on that branch fails.",
+  "cites": ".skilled/commands/deep/assets/deep-research-auto.yaml:1619; deep-review-auto.yaml:1547; both *-confirm.yaml; fanout-run.cjs:2391 resolves the binary. Check: `opencode --version`; `cd $(mktemp -d) && opencode run --pure 'say PONG' </dev/null` (only if cheap, else `opencode run --help`)"
+ },
+ {
+  "id": "V02",
+  "sev": "P1",
+  "sources": "003 B1; 001/002/005 executor-switch records",
+  "release": "v4.0.2.0",
+  "claim": "cli-deepseek-harness is an admitted executor kind but the single-executor YAML has no if_cli_deepseek_harness branch (six if_cli_* keys, no default) and the shared builder throws 'cli-deepseek-harness requires a lineage directory' when called without a lineageDir.",
+  "cites": ".skilled/commands/deep/assets/deep-research-auto.yaml:1579; .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3002; executor-config.ts EXECUTOR_KINDS"
+ },
+ {
+  "id": "V03",
+  "sev": "P1",
+  "sources": "003 Strongest 2",
+  "release": "v4.0.0.3",
+  "claim": "Branch gates in the deep YAMLs read config.executor.type while the config template and runtime reader use kind (type is only a deprecated alias in normalizeExecutorConfigInput).",
+  "cites": "deep-research-auto.yaml:1198, :1204, :1248; system-deep-loop runtime executor-config.ts normalizeExecutorConfigInput"
+ },
+ {
+  "id": "V04",
+  "sev": "P1",
+  "sources": "003 B2",
+  "release": "v4.0.0.3",
+  "claim": "Three dispatch ids use bare {generation} while the rest of the file uses {config.lineage.generation}; {generation} is bound only at :329.",
+  "cites": "deep-research-auto.yaml:1327, :1428, :1530 vs :1253, :1816, :329"
+ },
+ {
+  "id": "V05",
+  "sev": "P1",
+  "sources": "003 O2",
+  "release": "v4.0.0.x",
+  "claim": "if_cli_copilot branches exist in deep YAMLs but no EXECUTOR_KINDS member can select them (dead branches).",
+  "cites": "deep-review-auto.yaml:1239; deep-review-confirm.yaml:1317; deep-research-confirm.yaml:1190; executor-config.ts EXECUTOR_KINDS"
+ },
+ {
+  "id": "V06",
+  "sev": "P1",
+  "sources": "003 M1 + Strongest 5",
+  "release": "v4.0.0.3",
+  "claim": "minIterations and the single-executor stopPolicy have no code owner: convergence.cjs has zero references to either; only fanout-run.cjs owns stopPolicy for fan-out.",
+  "cites": "system-deep-loop/runtime/scripts/convergence.cjs (rg -c 'stopPolicy|minIterations'); fanout-run.cjs normalizeStopPolicy"
+ },
+ {
+  "id": "V07",
+  "sev": "P1",
+  "sources": "003 B5",
+  "release": "v4.0.0.x",
+  "claim": "A fan-out launched with stopPolicy=max-iterations and no per-lineage cap is rejected only after the lineage has run: findMaxIterationsPolicyViolation is called only after the lineage result returns.",
+  "cites": "fanout-run.cjs:1125 (definition), :4036 (only call site)"
+ },
+ {
+  "id": "V08",
+  "sev": "P1",
+  "sources": "003 Strongest 4 / D3",
+  "release": "v4.0.0.8",
+  "claim": "The v4.0.0.8 note says every deep-loop script refuses unknown options; only ~7 of 27 do, and append-mode-event.cjs accepts any --key.",
+  "cites": ".skilled/changelog/skilled/v4.0.0.8.md:69; system-deep-loop/runtime/scripts/append-mode-event.cjs:58-72; `node status.cjs --bogus-flag`"
+ },
+ {
+  "id": "V09",
+  "sev": "P1",
+  "sources": "003 Strongest 3 + lead process finding",
+  "release": "v4.0.0.16",
+  "claim": "Write containment snapshots git status over the whole repository, so a sibling run's write lands in this run's quarantine (cli-classifier.zip appears in quarantine manifests of children 001, 003, 005); containment records out-of-folder writes after the fact and does not prevent them.",
+  "cites": "system-deep-loop runtime write-containment.ts:1133-1143; specs/system-speckit/047-v4-release-line-research/00*/research/containment/ manifests (grep cli-classifier.zip)"
+ },
+ {
+  "id": "V10",
+  "sev": "P1",
+  "sources": "003 B9",
+  "release": "v4.0.0.x",
+  "claim": "In confirm mode the only lock refresh runs before the operator gates, and a transient lock expires after twice its 30-minute TTL, so an operator waiting >60 min at a gate lets another run reclaim the packet.",
+  "cites": ".skilled/commands/deep/assets/deep-research-confirm.yaml:633 (refresh) vs :1109 (gate_pre_iteration); system-deep-loop runtime loop-lock.ts:640-641"
+ },
+ {
+  "id": "V11",
+  "sev": "P1",
+  "sources": "003 B14 + 004 observation",
+  "release": "v4.0.0.x",
+  "claim": "The reducer counts iteration rows, not distinct iterations, and takes the last appended row as latest, so a redispatch inflates the count (child 004 state log has 22 iteration rows for 20 distinct iterations).",
+  "cites": "system-deep-loop/runtime/scripts/reduce-state.cjs:2610, :2520; specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/research/deep-research-state.jsonl"
+ },
+ {
+  "id": "V12",
+  "sev": "P1",
+  "sources": "003 B15",
+  "release": "v4.0.0.x",
+  "claim": "Delta-file corruption is fail-open (warns and pads with null rows) while state-log corruption fails closed with exit 2.",
+  "cites": "reduce-state.cjs:1656-1663"
+ },
+ {
+  "id": "V13",
+  "sev": "P1",
+  "sources": "003 D1 + U2 + 004 open question",
+  "release": "v4.0.0.x",
+  "claim": "The canonical state-log iteration row keeps ~7 fields of the 14-field leaf record, so focus, mode and answeredQuestions vanish (rows read focus 'undefined'), and the summary's last_focus has no producer.",
+  "cites": "deep-research-auto.yaml:619 (last_focus); specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/research/deep-research-state.jsonl (inspect iteration row keys / focus values)"
+ },
+ {
+  "id": "V14",
+  "sev": "P1",
+  "sources": "003 B12",
+  "release": "v4.0.0.x",
+  "claim": "deep-review-auto.yaml passes {release_readiness_state} to the closeout but nothing binds it; config writes releaseReadinessState 'in-progress' once, so a review never reports readiness.",
+  "cites": ".skilled/commands/deep/assets/deep-review-auto.yaml:2490, :541"
+ },
+ {
+  "id": "V15",
+  "sev": "P1",
+  "sources": "003 B13",
+  "release": "v4.0.0.x",
+  "claim": "deep-ai-council-confirm.yaml has no post_dispatch_validate block while the auto twin has one, so confirm-mode council rounds run unvalidated.",
+  "cites": ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml vs deep-ai-council-auto.yaml (grep post_dispatch_validate)"
+ },
+ {
+  "id": "V16",
+  "sev": "P1",
+  "sources": "003 U1 + lead (Devin quota)",
+  "release": "v4.0.0.x",
+  "claim": "An executor quota error is recorded as a canonical 'error' iteration that counts toward maxIterations (Devin resource_exhausted consumed an iteration in children 001, 002, 005 and 003 gen 1).",
+  "cites": "specs/system-speckit/047-v4-release-line-research/00{1,2,5}-*/research/deep-research-state.jsonl (status error rows); reduce-state.cjs / deep-research-auto.yaml iteration counting"
+ },
+ {
+  "id": "V17",
+  "sev": "P1",
+  "sources": "003 D2",
+  "release": "v4.0.0.x",
+  "claim": "The gateway refresh drops writer rows: after four iterations a state log held containment rows but no iteration_start rows.",
+  "cites": "system-deep-loop runtime gateway/append path; any child deep-research-state.jsonl and observability-events.jsonl (look for iteration_start)"
+ },
+ {
+  "id": "V18",
+  "sev": "P1",
+  "sources": "003 B11",
+  "release": "v4.0.0.x",
+  "claim": "The Pi classifier route pins PI_PACKAGE_VERSION = '0.99.2' and compares exactly; installed Pi is newer, so the documented Pi-first route never runs and fallback to the jev CLI is silent.",
+  "cites": ".skilled/skills/cli-classifier/**/jev-transport.mjs:36, :374; `pi --version`"
+ },
+ {
+  "id": "V19",
+  "sev": "P1",
+  "sources": "003 M2",
+  "release": "v4.0.0.x",
+  "claim": "Three advertised Jev phrases appear in both ROUTER.md files and zero times in cli-classifier/hub-router.json, so stage-one routing cannot reach them.",
+  "cites": ".skilled/skills/cli-classifier/ROUTER.md; hub-router.json"
+ },
+ {
+  "id": "V20",
+  "sev": "P1",
+  "sources": "003 M3",
+  "release": "v4.0.0.x",
+  "claim": "Hub intent vocabulary exists as three unjoined copies (ROUTER.md INTENT_SIGNALS, hub-router.json vocabularyClasses, mode-registry.json aliases), and advisor_recommend on 'opencode go route this task' ranks sk-code above cli-external-orchestration.",
+  "cites": ".skilled/skills/cli-external-orchestration/{ROUTER.md,hub-router.json,mode-registry.json}; `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"opencode go route this task\"}' --format json`"
+ },
+ {
+  "id": "V21",
+  "sev": "P1",
+  "sources": "003 M4",
+  "release": "v4.0.0.x",
+  "claim": "cli-external-orchestration/SKILL.md requires the resolved persona on every dispatch, but the deep-loop prompt-pack template carries only a route line, no persona.",
+  "cites": ".skilled/skills/cli-external-orchestration/SKILL.md:189, :217; system-deep-loop prompt-pack-iteration.md.tmpl"
+ },
+ {
+  "id": "V22",
+  "sev": "P1",
+  "sources": "003 M5",
+  "release": "v4.0.0.x",
+  "claim": "The leaf tool-call budget is a static line in the prompt-pack template while config.maxToolCallsPerIteration exists and is never rendered.",
+  "cites": "system-deep-loop **/prompt-pack-iteration.md.tmpl:36; grep maxToolCallsPerIteration"
+ },
+ {
+  "id": "V23",
+  "sev": "P1",
+  "sources": "003 O1",
+  "release": "v4.0.0.x",
+  "claim": "runtime/lib/branch-leases-waves has ~3,117 non-test lines and only two type-only importers; no runtime importer.",
+  "cites": "system-deep-loop/runtime/lib/branch-leases-waves; importers substrate-ports.ts:10, conditional-fanin/types.ts:19"
+ },
+ {
+  "id": "V24",
+  "sev": "P1",
+  "sources": "lead process finding + 003 B7 + 001 DR row 7",
+  "release": "v4.0.x",
+  "claim": "Researchers ran writers outside their folders: package_skill.py --strict without --check packages and writes <skill>.zip into the cwd (three zips landed in the repo root), and a create.sh probe created specs/001-test-feature/; containment only recorded these.",
+  "cites": ".skilled/skills/sk-doc/**/package_skill.py (argument handling of --strict vs --check); specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/decision-record.md D-08; 001-spec-kit-core/decision-record.md row 7. READ ONLY: do not run package_skill.py without --check."
+ },
+ {
+  "id": "V25",
+  "sev": "P1",
+  "sources": "001 f-iter001-001, 010-001, 012-001",
+  "release": "pre-v4.0.0.0 (v4.0.0.1 note)",
+  "claim": "Gate 3 classifier depends on word order: 'Update the README and review the result.' returns triggersGate3=false (read_only_override) while 'Review the README and update it.' returns true, contradicting AGENTS.md ('A read-only word next to a write trigger does not disqualify it').",
+  "cites": ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:718, :731; AGENTS.md Gate 3. Check: `bun -e \"import {classifyPrompt} from './.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts'; for (const p of ['Update the README and review the result.','Review the README and update it.','Create a review checklist for the release.']) console.log(p, JSON.stringify(classifyPrompt(p)))\"` (or npx tsx)"
+ },
+ {
+  "id": "V26",
+  "sev": "P1",
+  "sources": "001 f-iter013-001",
+  "release": "v4.0.0.1",
+  "claim": "The resume branch of the Gate 3 classifier applies a read-only override that the module's own decision order (resume/memory_save always required) forbids: 'review the packet then resume it' suppresses Gate 3.",
+  "cites": "gate-3-classifier.ts:786, :837, :843; run classifyPrompt('review the packet then resume it')"
+ },
+ {
+  "id": "V27",
+  "sev": "P1",
+  "sources": "001 f-iter017-001, 018-001",
+  "release": "v4.0.2.0",
+  "claim": "/speckit:save's writer runtime/cli/dist/continuity/generate-context.js is gitignored and untracked; /doctor:install probes runtime/dist, not runtime/cli/dist; the repair validate.sh prints (cd runtime && npm run build) does not build runtime/cli because runtime/tsconfig.json references only ../shared.",
+  "cites": ".gitignore:60; `git check-ignore -v .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`; `git ls-files .skilled/skills/system-spec-kit/runtime/cli/dist | wc -l`; .skilled/commands/doctor/assets/doctor-install.yaml:34; runtime/tsconfig.json; validate.sh:409,432; runtime/cli/package.json:13"
+ },
+ {
+  "id": "V28",
+  "sev": "P1",
+  "sources": "001 f-iter008-004, 011-005, 012-006, 013-005, 020-001",
+  "release": "v4.0.1.0",
+  "claim": "resolveProjectRoot falls back to the shared runtime checkout (with one stderr line) when the caller's repo does not carry .skilled/skills/system-spec-kit, and binds it into STATIC_CONFIG.PROJECT_ROOT, so a save from an unrecognised project targets this repository; introduced by commit 6f42c7b169.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts:98-100, :131-147, :355; generate-context.ts:99; `git log -1 --format=%H%n%ad%n%s 6f42c7b169`"
+ },
+ {
+  "id": "V29",
+  "sev": "P1",
+  "sources": "001 f-iter005-003, 012-007, 013-006",
+  "release": "pre-v4.0.0.0",
+  "claim": "create.sh resolves TEMPLATES_BASE from the target repo ($REPO_ROOT, cwd git top-level) at three sites rather than its own location, while its libs are sourced location-relative; SPECKIT_TEMPLATES_BASE is undocumented in help.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1406, :1477, :1665, :2253, :2259. READ ONLY: do not run create.sh."
+ },
+ {
+  "id": "V30",
+  "sev": "P1",
+  "sources": "001 f-iter002-001, 012-002, 013-002",
+  "release": "v4.0.0.5",
+  "claim": "Strict validation returns pass for a phase parent's ANCHORS_VALID before parsing any anchor, so nested/unclosed anchors in a phase-parent spec.md never fail, contradicting the v4.0.0.5 note.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:969-977; v4.0.0.5.md. Optional check on a /tmp copy only: a phase-parent folder with nested anchors, `SPECKIT_RULES=ANCHORS_VALID bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/<dir> --strict --json`"
+ },
+ {
+  "id": "V31",
+  "sev": "P1",
+  "sources": "001 f-iter014-001",
+  "release": "pre-v4.0.0.0 (v4.0.0.3)",
+  "claim": "The trigger lookup answers a misspelled query with 20 rows scored 0.000 and exit 0 unless --scoring-only is passed; the zero-score filter sits only in the scoringOnly branch.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:203-204; run `node ... lookup-trigger-index.mjs --json -- 'validaton rulles strict'; echo $?` and with --scoring-only"
+ },
+ {
+  "id": "V32",
+  "sev": "P1",
+  "sources": "001 f-iter003-001, 005-001, 012-003, 013-003",
+  "release": "v4.0.0.2",
+  "claim": "check-goal.cjs --all (corpus mode) exits on report.errors only and never reads report.findings, so a sweep with findings exits 0, while packet mode returns 1 on a failed check.",
+  "cites": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:703, :714, :718"
+ },
+ {
+  "id": "V33",
+  "sev": "P1",
+  "sources": "001 f-iter005-002, 016-002",
+  "release": "v4.0.0.2",
+  "claim": "check-goal corpus and packet modes disagree on the same packet: corpus reports a parent-budget finding ('configured durable-slice budget could not be resolved') while packet mode reports parent-budget findings=0.",
+  "cites": "check-goal.cjs:351, :641"
+ },
+ {
+  "id": "V34",
+  "sev": "P1",
+  "sources": "001 f-iter012-004, 013-004, 020-006",
+  "release": "pre-v4.0.0.0",
+  "claim": "check-goal.cjs resolves the workspace root from its own module location (path.resolve(__dirname,'../../../../../')) not the caller's cwd, and resolves a relative packet argument against that root; --root exists but --help lists no root line.",
+  "cites": "check-goal.cjs:59, :568, :698, :706; `node check-goal.cjs --help`"
+ },
+ {
+  "id": "V35",
+  "sev": "P1",
+  "sources": "001 f-iter008-001, 012-005",
+  "release": "pre-v4.0.0.0",
+  "claim": "CROSS_ANCHOR_CONTAMINATION is a registered validate rule that can never run: it skips when no contamination plan is supplied and no non-test producer of contaminationPlan exists.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1289; `rg -l contaminationPlan .skilled`; validator-registry.json"
+ },
+ {
+  "id": "V36",
+  "sev": "P1",
+  "sources": "001 f-iter011-002 (with 009-001 downgraded and 012-008 mechanism)",
+  "release": "v4.0.0.12",
+  "claim": "The trigger-index corpus manifest does not exclude specs/**/research/**, so research output enters the corpus and corpusHash moves every time a research run writes, staling the index Gate 1 reads.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/ (generate-trigger-index.mjs manifest/exclude globs, fixtures manifest); `node .../generate-trigger-index.mjs --check` (check mode only, never write)"
+ },
+ {
+  "id": "V37",
+  "sev": "P1",
+  "sources": "001 f-iter015-001",
+  "release": "v4.0.0.14",
+  "claim": "The post-edit placeholder wrapper check-placeholders.sh reports FAIL exit 1 on a Draft folder whose PLACEHOLDER_FILLED rule only warns, and globs every *.md while the rule reads a fixed seven-name list.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh:9, :127, :134, :159; runtime/cli/rules/check-placeholders.sh:146, :153, :185, :196; orchestrator.ts:891"
+ },
+ {
+  "id": "V38",
+  "sev": "P1",
+  "sources": "001 f-iter001-002, 010-002",
+  "release": "v4.0.0.0",
+  "claim": "The v4.0.0.0 note says the completion gate grew a SCOPE_ADHERENCE check driven by SYSTEM_SCOPE_CHANGED_FILES and SYSTEM_SCOPE_BASE; no such rule exists in validator-registry.json and .skilled has no producer of those env vars.",
+  "cites": ".skilled/changelog/skilled/v4.0.0.0.md:91-93; validator-registry.json; `rg -n 'SCOPE_ADHERENCE|SYSTEM_SCOPE_CHANGED_FILES' .skilled`"
+ },
+ {
+  "id": "V39",
+  "sev": "P1",
+  "sources": "001 f-iter008-002",
+  "release": "pre-v4.0.0.0",
+  "claim": "save-workflow.md documents a live three-tier save router (Tier 3 via LLM_REFORMULATION_ENDPOINT, pending-route-<hash>.json drop refusal, routeAs forcing) that has no code.",
+  "cites": ".skilled/skills/system-spec-kit/references/memory/save-workflow.md:413-437; `rg -n 'LLM_REFORMULATION_ENDPOINT|pending-route' .skilled --glob '!*.md'`"
+ },
+ {
+  "id": "V40",
+  "sev": "P1",
+  "sources": "001 f-iter014-002",
+  "release": "v4.0.2.0",
+  "claim": "validate.sh --strict prints RESULT: PASSED while SOURCE_TAGS reports it could not run (outside a git repo the rule degrades to warn), because RESULT derives from report.passed alone.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh:31; validate.sh RESULT derivation"
+ },
+ {
+  "id": "V41",
+  "sev": "P1",
+  "sources": "001 f-iter017-002",
+  "release": "pre-v4.0.0.0",
+  "claim": "check-source-dist-alignment.ts detects orphan dist files only; it does no mtime/content comparison, so a stale dist that predates its source passes.",
+  "cites": ".skilled/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts:256, :380"
+ },
+ {
+  "id": "V42",
+  "sev": "P1",
+  "sources": "002 f-iter007-003, 007-004, 007-005",
+  "release": "pre-v4.0.0.0 (v4.0.1.0 claim)",
+  "claim": "validate_skill_package.py shells out to package_skill.py --check and prints only the first frontmatter error, so reference/link and routing-shape checks never run on a skill with a frontmatter error; the v4.0.1.0 claim that a missing ROUTER.md fails --strict is unobservable on a fresh skill.",
+  "cites": ".skilled/skills/sk-doc/scripts/validate_skill_package.py:202; package_skill.py; .skilled/changelog/skilled/v4.0.1.0.md. Check only on a /tmp skill copy with `--check`; never package."
+ },
+ {
+  "id": "V43",
+  "sev": "P1",
+  "sources": "002 f-iter001-001",
+  "release": "v4.0.0.0",
+  "claim": "sk-doc leaf-manifest.json lists five sk-create-quality-control leaves as packet-local paths that do not exist; the files live under sk-doc/shared/references.",
+  "cites": ".skilled/skills/sk-doc/leaf-manifest.json:125; test -e each path"
+ },
+ {
+  "id": "V44",
+  "sev": "P1",
+  "sources": "004 B1",
+  "release": "ask-surface guard release",
+  "claim": "The ask-surface prose-menu detector misses '1./2./3.' numbered menus, fires on '1)' how-to steps that end in a yes/no question, and its digit branch is single-digit ('10)' matches neither).",
+  "cites": ".skilled/hooks/**/ask-surface-core.cjs:39 (OPTION_LINE), detectProseMenu; fixtures/prose-menu-numbered.json"
+ },
+ {
+  "id": "V45",
+  "sev": "P1",
+  "sources": "004 B2",
+  "release": "v4.0.0.8",
+  "claim": "The Claude ask-surface Stop hook and advisory-stop.cjs read stdin with a bare blocking readFileSync(0) and no deadline, unlike the shared deadline reader.",
+  "cites": "ask-surface-stop.cjs:83; advisory-stop.cjs:44; hook-adapter-shared.cjs stdin deadline reader"
+ },
+ {
+  "id": "V46",
+  "sev": "P1",
+  "sources": "004 B3",
+  "release": "ask-surface guard release",
+  "claim": "The 'sent back once' promise is per assistant message on OpenCode (marker keyed on messageId) and per turn counter on dsh, not per operator turn as on Pi and Claude.",
+  "cites": ".opencode/plugins/ask-surface-guard.js:102; .pi ask-surface-guard.ts; dsh adapter"
+ },
+ {
+  "id": "V47",
+  "sev": "P1",
+  "sources": "004 B11 / Strongest 3",
+  "release": "dispatch-audit release",
+  "claim": "Dispatch-audit hooks resolve their log path against payload.cwd before CLAUDE_PROJECT_DIR, so audit records scatter into nested gitignored .skilled/logs folders (one exists inside specs/system-speckit/047-v4-release-line-research/).",
+  "cites": "dispatch-audit-posttooluse.mjs:56-57; `ls specs/system-speckit/047-v4-release-line-research/.skilled/logs`; `git check-ignore -v` on it; .gitignore:263"
+ },
+ {
+  "id": "V48",
+  "sev": "P1",
+  "sources": "004 D2 + 005 f-iter013-001",
+  "release": "v4.0.2.0",
+  "claim": "agents-md-manifest.cjs --check exits 1 at HEAD: the doctor AGENTS.md manifest still carries Hermes and its derived.history records a body that is no longer released (AGENTS.md edited without regenerating).",
+  "cites": ".skilled/commands/doctor/assets/agents-md-manifest.json:13, :1068; `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check; echo $?` (never --write)"
+ },
+ {
+  "id": "V49",
+  "sev": "P1",
+  "sources": "005 f-iter013-002, 015-004 (+ 015-009)",
+  "release": "v4.0.1.0",
+  "claim": "No .github/workflows file runs agents-md-manifest --check, so the red AGENTS.md canary ships unseen.",
+  "cites": "`grep -rln 'agents-md' .github/workflows/`; contrast .github/workflows/agent-mirror-sync.yml:57"
+ },
+ {
+  "id": "V50",
+  "sev": "P1",
+  "sources": "004 D3",
+  "release": "v4.0.1.0",
+  "claim": "v4.0.1.0 says the advisor suggests doctor commands for a described problem; 'my hooks are not firing, what do I run' returns no doctor command (top three below 0.13).",
+  "cites": "`node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"my hooks are not firing, what do I run\"}' --format json`; .skilled/changelog/skilled/v4.0.1.0.md"
+ },
+ {
+  "id": "V51",
+  "sev": "P1",
+  "sources": "005 Strongest 1, f-iter012-003, 015-001 (011-002)",
+  "release": "v4.0.1.0",
+  "claim": "symlink-engine check builds a drift report and returns a literal 0 unconditionally, so /doctor:symlink check can never fail.",
+  "cites": ".skilled/commands/doctor/scripts/symlink-engine.cjs:1791-1801; run `node symlink-engine.cjs check --root $(mktemp -d); echo $?` (check mode only)"
+ },
+ {
+  "id": "V52",
+  "sev": "P1",
+  "sources": "005 Strongest 2, f-iter012-001, 015-002",
+  "release": "v4.0.0.3",
+  "claim": "git-setup-check's hooks leg resolves hooks via git rev-parse --git-path hooks, which honours a global core.hooksPath, so a repo with nothing installed reports PASS when the global hooks dir links into this checkout.",
+  "cites": ".skilled/commands/doctor/scripts/git-setup-check.cjs:367, :384-399; `git config --global core.hooksPath`"
+ },
+ {
+  "id": "V53",
+  "sev": "P1",
+  "sources": "005 Strongest 3, f-iter008-001, 012-004, 015-003, 018-001",
+  "release": "v4.0.0.13",
+  "claim": "The sk-git CI job runs one test suite of five; commit-id-naming, migrate-legacy-branch-names, stamp-branch and validate-message-git-timeout suites run in no workflow.",
+  "cites": ".github/workflows/sk-git-script-tests.yml:51; `ls .skilled/skills/sk-git/scripts/tests/`; grep .github for each suite name"
+ },
+ {
+  "id": "V54",
+  "sev": "P1",
+  "sources": "005 Strongest 4, f-iter014-001, 015-005, 016-002",
+  "release": "v4.0.0.0",
+  "claim": "The agent body-parity gate lists 3 of 7 runtime trees (opencode, claude, codex) and its required opencode arm compares each canonical file with itself because .opencode/agents is a symlink to .skilled/agents; .pi/agents files differ in bytes and are unchecked.",
+  "cites": ".skilled/bin/lib/mirror-sync-verify.cjs:50-54, :285; `ls -ld .opencode/agents`; `wc -c .skilled/agents/code.md .claude/agents/code.md .pi/agents/code.md`"
+ },
+ {
+  "id": "V55",
+  "sev": "P1",
+  "sources": "005 Strongest 5, f-iter019-001, 021-001",
+  "release": "v4.0.2.0",
+  "claim": "install-git-hooks.sh --status marks correctly installed hooks SHADOWED ('resolves outside this checkout') because the installed links reach the same file through the .opencode/scripts alias and resolve_target compares strings without canonicalising.",
+  "cites": ".skilled/scripts/install-git-hooks.sh:96-110; `ls -l .git/hooks/commit-msg`; `GIT_CONFIG_GLOBAL=/dev/null bash .skilled/scripts/install-git-hooks.sh --status` (status only)"
+ },
+ {
+  "id": "V56",
+  "sev": "P1",
+  "sources": "005 f-iter002-001",
+  "release": "v4.0.0.3",
+  "claim": "/doctor:runtime-mirrors never runs check-agent-mirror-sync.cjs --all, the only .skilled-to-.claude agent body and tool-surface parity checker; its roster checker treats .claude/agents as canonical and checks coverage only.",
+  "cites": ".skilled/commands/doctor/runtime-mirrors.md:6; .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml; grep check-agent-mirror-sync"
+ },
+ {
+  "id": "V57",
+  "sev": "P1",
+  "sources": "005 f-iter010-002",
+  "release": "v4.0.0.8",
+  "claim": "The documented install inspection (install.md step 3, doctor-install.yaml) runs symlink-engine.cjs check --root <dir> with no --source, and inside the Skilled checkout the engine exits 2 with 'root and source must not contain one another', naming no remedy.",
+  "cites": ".skilled/commands/doctor/install.md:74; doctor-install.yaml; `node symlink-engine.cjs check --root $PWD; echo $?`"
+ },
+ {
+  "id": "V58",
+  "sev": "P1",
+  "sources": "005 f-iter006-001, 010-008",
+  "release": "v4.0.2.0 / v4.0.0.3",
+  "claim": "/doctor:install's ordered checklist never names /doctor:git standards init, and the commit-msg hook exits 0 when the repository declares no commit rules, so a freshly linked project with the global hooks accepts any commit message.",
+  "cites": "INSTALL-SKILLED.md; .skilled/commands/doctor/install.md; .opencode/scripts/git-hooks/commit-msg:26 (same file as .skilled/scripts/git-hooks/commit-msg)"
+ },
+ {
+  "id": "V59",
+  "sev": "P1",
+  "sources": "005 f-iter006-002",
+  "release": "v4.0.0.3",
+  "claim": "Inside the Skilled checkout (no .sk-git/, no skgit.contractDir) the commit-msg hook enforces only the Commit-Id trailer while validate-message.mjs --explain resolves .skilled/skills/sk-git/assets/ and reports commit rules as enforced: two contract resolutions disagree.",
+  "cites": ".skilled/scripts/git-hooks/commit-msg; sk-git validate-message.mjs (--explain); `ls -d .sk-git`; `git config skgit.contractDir`"
+ },
+ {
+  "id": "V60",
+  "sev": "P1",
+  "sources": "005 f-iter011-001, 014-002, 015-006",
+  "release": "v4.0.0.0 / v4.0.2.0",
+  "claim": "The canonical agent root is ambiguous: check-agent-mirror-sync.cjs treats .opencode/agents (=.skilled/agents) as canonical while sync-runtime-mirrors.cjs sources Cursor/Devin from .claude/agents; .cursor/agents/* link into .claude/agents (copies), and .claude/agents/Explore.md has no canonical source yet the gate never sees mirror-only files.",
+  "cites": ".skilled/bin/check-agent-mirror-sync.cjs:6; sync-runtime-mirrors.cjs CLAUDE_AGENTS; `ls -l .cursor/agents | head`; `ls .claude/agents .skilled/agents`; .skilled/agents/README.txt:9"
+ },
+ {
+  "id": "V61",
+  "sev": "P1",
+  "sources": "005 f-iter003-001",
+  "release": "pre-v4.0.0.0",
+  "claim": "Devin injects only the first 16,384 bytes of AGENTS.md (~27.6 KB), cutting inside section 3 and dropping sections 5-10 and the repository-specific block.",
+  "cites": "`wc -c AGENTS.md`; `head -c 16384 AGENTS.md | tail -5`; any Devin config/doc stating the injection cap (grep -rn 16384 .devin .skilled/skills/cli-external-orchestration/cli-devin)"
+ },
+ {
+  "id": "V62",
+  "sev": "P1",
+  "sources": "005 f-iter010-003",
+  "release": "v4.0.1.0",
+  "claim": "parent-skill-check prints 'INFO: Advisory findings: FAIL. Hard failures always FAIL.' in the first lines of a run that ends 'OK ... all hard invariants passed' and exits 0.",
+  "cites": ".skilled/commands/doctor/scripts/parent-skill-check.cjs; run it read-only (`node parent-skill-check.cjs --help` first, then its check form) and read first 5 lines + exit"
+ },
+ {
+  "id": "V63",
+  "sev": "P1",
+  "sources": "005 f-iter010-001",
+  "release": "v4.0.2.0",
+  "claim": "Doctor has no shared exit-code contract: route-validate.sh publishes 0/1/2/3 while release-update.cjs check --offline exits 0 with every unit 'unknown (ancestry)' and no RESULT line.",
+  "cites": ".skilled/commands/doctor/scripts/route-validate.sh:17; `node .skilled/commands/doctor/scripts/release-update.cjs check --offline; echo $?` (check only)"
+ },
+ {
+  "id": "V64",
+  "sev": "P1",
+  "sources": "005 f-iter010-006, 010-007 (+012-005 P2)",
+  "release": "v4.0.0.1",
+  "claim": "The runtime-mirrors hook battery is existence-only (66 file_exists rows) and the degraded verdict is a model instruction, not a script; most mirror hosts are copies (.pi, .codex, .dsh), so a stale body passes every existence check.",
+  "cites": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml:59, :148 (count `type:` values); `find .pi -type l | wc -l`; `find .pi -name '*.md' -type f | wc -l`"
+ },
+ {
+  "id": "V65",
+  "sev": "P2",
+  "sources": "005 exec summary + f-iter022-004 (P2)",
+  "release": "v4.0.0.0",
+  "claim": "agent-roster-mirror-check.cjs and command-catalog-mirror-check.cjs both reject --check (exit 2) although doctor-runtime-mirrors.yaml says every upstream checker runs in its check-only form; and orphan-process-check.cjs returns 0 on both scan-failure branches while its README says it exits 1 on an unexpected error.",
+  "cites": ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs, command-catalog-mirror-check.cjs (run each with --check; echo $?); .skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml mutation_boundaries; orphan-process-check.cjs:558-568; doctor scripts README.markdown:126"
+ }
+]

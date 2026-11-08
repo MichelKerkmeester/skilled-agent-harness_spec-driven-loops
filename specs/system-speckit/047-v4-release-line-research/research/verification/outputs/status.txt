@@ -1,0 +1,9 @@
+batch 4 exit 0 secs 339
+batch 1 exit 0 secs 517
+batch 3 exit 0 secs 531
+batch 2 exit 0 secs 562
+batch 5 exit 0 secs 457
+batch 7 exit 0 secs 385
+batch 6 exit 0 secs 474
+batch 8 exit 0 secs 473
+batch 9 exit 0 secs 331

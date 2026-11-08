@@ -1,0 +1,217 @@
+{
+  "phase": "saved",
+  "ceiling": 21,
+  "iterations": {
+    "1": {
+      "quality": "Deep: 3 findings, classifier code read and run, 9 cites resolve",
+      "checks": "gate-3-classifier.ts:731/849 CONFIRMED by running classifyPrompt ('Update the README and review the result.' returns false, read_only_override); v4.0.0.0.md:93 scope-adherence CONFIRMED absent (rg finds SCOPE_ADHERENCE only in changelogs)",
+      "next_focus": "key questions 2 and 3"
+    },
+    "2": {
+      "quality": "Deep: 3 findings with a validate repro, 13 cites resolve",
+      "checks": "orchestrator.ts:975-976 CONFIRMED: phase parent returns ANCHORS_VALID pass before any anchor scan; lookup-trigger-index.mjs:26 CONFIRMED exit-code comment (1 = no candidates) matches the stale-vs-absent ambiguity claim",
+      "next_focus": "key questions 4 and 5"
+    },
+    "3": {
+      "quality": "Deep: 5 goal-system findings, 13 cites resolve",
+      "checks": "check-goal.cjs:703 logic CONFIRMED by text; PARTIAL on behaviour: my run of check-goal.cjs --all exits 2 (corpus has errors), so the findings-but-exit-0 path was not reproduced; goal.cjs:211-218 prints chat_slice after packet_budget CONFIRMED by text",
+      "next_focus": "key questions 6 and 7, and reproduce the check-goal exit claim on a fixture corpus with findings but no errors (under /tmp) to settle it"
+    },
+    "4": {
+      "quality": "Error: no research done; dispatch failed twice",
+      "checks": "None: no iteration file was written",
+      "next_focus": "Same focus carried to iteration 5"
+    },
+    "5": {
+      "quality": "Deep: 7 findings with /tmp repros, first cli-pi iteration, 13 cites resolve",
+      "checks": "check-goal.cjs:703 vs :714 DERIVED-CONFIRMED (corpus returns 0 whenever errors is empty, per-packet returns 1 on findings); create.sh:2253 TEMPLATES_BASE from REPO_ROOT CONFIRMED; release-update.cjs:54 USAGE vs update.md:38 action sets CONFIRMED",
+      "next_focus": "key questions 8 and 9 plus the small releases"
+    },
+    "6": {
+      "quality": "Adequate: 5 findings but only 7 cites; one claim overstated, one unverified",
+      "checks": "environment-variables.md 0 SESSION_RELAUNCH matches CONFIRMED; sync-phase-map-status.ts PARTIAL: plain node exits ERR_MODULE_NOT_FOUND, tsx runs it (prints unknown argument); README.txt:116 '9-command' vs 'ten' UNVERIFIED: .skilled/commands/speckit holds 7 command .md files",
+      "next_focus": "key questions 10, 11 and 12"
+    },
+    "7": {
+      "quality": "Deep: 10 findings incl. two self-corrections, UX error texts run; SCOPE VIOLATION found later: an untracked specs/001-test-feature/ (created 21:27, inside this iteration window, matching its create.sh probes) sits outside the run directory; left in place for the operator because deleting an untracked folder needs their yes, and no containment event recorded it",
+      "checks": "validate.sh:104 unknown-option exit 1 CONFIRMED by text; README.txt:116/:67 inventory mismatch CONFIRMED against 7 .md files on disk; module-header sweep (f-iter007-008) not re-run by orchestrator",
+      "next_focus": "key question 4, still unprobed: continuity save and resume"
+    },
+    "8": {
+      "quality": "Deep: 7 continuity findings from generate-context.ts and save-workflow.md; 6 unique cites, below the 10 floor",
+      "checks": "spec-doc-structure.ts:1289 skip path CONFIRMED by my strict validate run printing 'No routing payload supplied; contamination check skipped'; save-workflow.md:426/:432 router text CONFIRMED",
+      "next_focus": "releases with no finding yet in this cluster: v4.0.0.15 (Spec Kit), v4.0.0.16, v4.0.1.0 (Spec Kit, Manual Testing Playbooks, Retired Surfaces) and v4.0.2.0 (Dec"
+    },
+    "9": {
+      "quality": "Deep but one overstated P1 and typed fields dropped again; 7 unique cites",
+      "checks": "f-iter009-001 DOWNGRADED: generate-trigger-index --check exits 1, but the 43 stale rows are 38 docs of this in-progress research packet plus 5 in specs/001-test-feature/, an untracked folder created 21:27 that matches iteration 7's create.sh probes, so 'clean checkout' is false; orchestrator records the stray folder for the lead; MEASURED_BEHAVIOR registry rows :239/:243 CONFIRMED",
+      "next_focus": "REQUIRED: every delta finding row carries findingType and release (iteration 9 dropped both)"
+    },
+    "10": {
+      "quality": "Deep: 5 findings including the order-asymmetry root cause of the Gate 3 bug; 7 cites",
+      "checks": "gate-3-classifier.ts:731/:735 forward-only span and :854 read_only_override CONFIRMED by text and by my own classifyPrompt run in iteration 1 review",
+      "next_focus": "an attribution pass over every finding this run has logged (read all deltas/iter-*.jsonl finding rows)"
+    },
+    "11": {
+      "quality": "Deep: attribution pass (28 rows, 0 unplaced) plus 6 new findings incl. a corrected release; 5 cites",
+      "checks": "attribution rows read and folded into the coverage table; f-iter011-005 correction cites git log -S result 6f42c7b169 (2026-10-31), consistent with v4.0.1.0; extract-from-evidence.cjs:549 strip call CONFIRMED by text",
+      "next_focus": "verification of the run's P1 findings, since new P1s are still appearing: for each P1 in the registry (Gate 3 order asymmetry, ANCHORS_VALID phase-parent skip, "
+    },
+    "12": {
+      "quality": "deep: 10 findings, 19 unique cites, four P1 repros confirmed in /tmp, trigger-index P1 downgraded with mechanism",
+      "checks": "opened check-goal.cjs:59 (path.resolve(__dirname,'../../../../../')) and config.ts:99 (usesSpecKit tests .skilled/skills/system-spec-kit): both match the claims",
+      "next_focus": "Improvement and over-engineering pass, the two thinnest types (2 and 4 rows)"
+    },
+    "13": {
+      "quality": "deep: 10 findings, 32 unique cites, a fix row for each confirmed P1, three over-engineering rows with counts",
+      "checks": "node read of validator-registry.json gives 42 rules {error 32, warn 8, info 2}, no skip (confirms f-iter013-007); gate-3-classifier.ts:840-842 shows the resume branch can return triggersGate3 false despite the ':835 ALWAYS required' comment (confirms f-iter013-001); orchestrator.ts:192 returns 'phase' for a phase parent (confirms f-iter013-008) Lead correction: the cli-classifier.zip containment quarantine entry seen after this iteration came from a sibling orchestrator executor running package_skill.py without --check at the repo root, not from this child; from here on every focus restricts generators, packagers, create.sh and save scripts to check or dry-run mode or /tmp copies.",
+      "next_focus": "Release-coverage and UX pass"
+    },
+    "14": {
+      "quality": "deep: 6 findings, 18 unique cites, two P1 UX rows with live repros and one release-note omission found by diff",
+      "checks": "re-ran lookup-trigger-index.mjs -- 'validaton rulles strict': 20 rows all 0.000, exit 0, while --json --scoring-only exits 1 (confirms f-iter014-001); check-source-tags.sh:28-33 degrades a helper failure to warn and returns 0, and orchestrator.ts:1508 prints RESULT from report.passed alone (confirms the mechanism of f-iter014-002)",
+      "next_focus": "Bug and extension pass on surfaces not yet read"
+    },
+    "15": {
+      "quality": "deep: 5 findings, 23 unique cites, one new P1 (post-edit placeholder wrapper fails where the rule only warns) with a mechanism traced across both scripts",
+      "checks": "recommend-level.sh --files 5 prints Recommended Level: 0, Score 7/100 despite :172-173 marking both inputs required (confirms f-iter015-003); grep -ci draft on the wrapper finds only its header comment while the rule script has 16 draft references, so the wrapper has no Draft deferral (confirms the mechanism of f-iter015-001)",
+      "next_focus": "Verification pass before the depth checkpoint"
+    },
+    "16": {
+      "quality": "deep: verification table for ten P1s plus 6 findings, 20 unique cites; one new P1 (check-goal corpus and packet paths disagree on a finding); V8 ruled out a different scenario than iteration 15 claimed",
+      "checks": "require(runtime/dist/core/config.js).resolveProjectRoot is undefined (confirms f-iter016-005); orchestrator reproduced f-iter015-001 on a /tmp Draft packet: the wrapper exits 1 with FAIL while validate.sh --strict shows PLACEHOLDER_FILLED as a warn, so V8 (a non-Draft handover token) does not refute it. Checkpoint 2 scored below bar, ceiling raised to 21",
+      "next_focus": "Dist-versus-source drift pass"
+    },
+    "17": {
+      "quality": "deep: 6 findings, 23 unique cites; its P0 is lowered to P1 by the orchestrator, and it corrects iteration 16's config.js claim as a path collision",
+      "checks": "git check-ignore -v shows .gitignore:60 dist/ ignoring runtime/cli/dist/continuity/generate-context.js and git ls-files on runtime/cli/dist returns 0 (confirms the core of f-iter017-001); doctor-install.yaml:34 probes runtime/dist, not runtime/cli/dist, while cli/package.json:13 has a build script, so the orchestrator lowered it to P1; require of runtime/cli/dist/core/config.js shows resolveProjectRoot is a function (confirms f-iter017-004)",
+      "next_focus": "Fresh-clone path pass"
+    },
+    "18": {
+      "quality": "deep: 6 findings, 21 unique cites; its first P1 sharpens f-iter017-001 (folded in), its second P1 lowered to P2 on evidence",
+      "checks": "runtime/tsconfig.json references only ../shared while the skill-root tsconfig.json:18-20 lists shared, runtime and runtime/cli, so the repair line validate.sh prints at :409/:432 does not build runtime/cli/dist (confirms f-iter018-001); node on a missing path prints Cannot find module '<exact path>', so f-iter018-002 is diagnosable and lowered to P2",
+      "next_focus": "New ground: the shared/ package and the session hooks"
+    },
+    "19": {
+      "quality": "deep: 6 findings, 24 unique cites on the spec gate hooks; its P1 lowered to P2 on evidence, so no new verified P1 (second clean iteration after 17)",
+      "checks": "spec-gate-core.mjs:400/:1624/:1769 compare SYSTEM_SPEC_GATE_DISABLED to '1' only while ENV-REFERENCE.md:248 documents 1/true/yes/on (confirms f-iter019-001); f-iter019-003 lowered: resolveGuardPaths already applies projectDir||process.cwd() at :806 and appendWarningLog catches its own errors at :978-987, so the unguarded second call at :1876 repeats a call that just succeeded",
+      "next_focus": "Repo-root resolution, one more surface"
+    }
+  },
+  "switches": [
+    {
+      "when": "Before iteration 5 (2026-11-08)",
+      "from": "cli-devin deepseek-v4-1-flash-max",
+      "to": "cli-pi opencode-go/deepseek-v4.1-flash, thinking max (dsh skipped)",
+      "evidence": "devin stderr 'Your daily usage quota has been exhausted' (cognition.ai/errorKind resource_exhausted) on dispatch and redispatch of iteration 4; dsh skipped because buildLineageCommand throws 'cli-deepseek-harness requires a lineage directory' in the single-executor path (no lineageDir passed, and the YAML has no dsh branch); pi probe answered 'ok' exit 0. Config stays immutable; the executor is applied at dispatch time and recorded in each iteration's executor provenance."
+    }
+  ],
+  "extensions": [
+    {
+      "when": "Mid-run, after the quota error (lead instruction)",
+      "score": "One iteration was a dispatch error with no research, so ten state-log rows would give nine productive iterations",
+      "decision": "Ceiling raised from 10 to 11 rows so ten productive iterations run before the depth bar is scored; applied at dispatch time, config untouched"
+    },
+    {
+      "when": "Checkpoint 1, after 10 productive iterations (11 rows)",
+      "score": "Releases: all 13 ranges plus pre-v4 hold a finding after the attribution pass (0 unplaced of 59); types: all seven present, misalignment thin (1 placed); strongest claims opened, two corrected; new P0/P1 in iterations 9-11: 5 (1, 2, 2)",
+      "decision": "Below bar: still finding new P1s. Extend by five to 16 rows"
+    },
+    {
+      "when": "Checkpoint 2, after 16 rows (15 productive)",
+      "score": "Releases: each v4.0.x.y release read and either holds a finding or is stated empty in scope (v4.0.0.15 added by iteration 16); types: all seven present; strongest claims: iteration 16 re-ran ten P1 repros (7 confirmed, 2 changed, 1 ruled out by a different scenario) and the orchestrator re-ran three; new P1s in iterations 14-16: 14 had two (trigger lookup score-0 rows, SOURCE_TAGS skip printing PASSED), 15 one (placeholder wrapper vs Draft rule), 16 one (check-goal corpus and packet paths disagree on a finding)",
+      "decision": "Below bar: new P1s still appear in each of the last three iterations. Extend by five to 21 rows"
+    },
+    {
+      "when": "Close, after 20 rows (19 productive)",
+      "score": "Releases: every coverage row from pre-v4.0.0.0 to v4.0.2.0 holds at least one finding (v4.0.0.4 to .10 share one commit, read in iteration 14); types: all seven present in most release rows; strongest claims: iteration 16 re-ran ten P1 repros and the orchestrator re-ran the top five at close; new verified P0 or P1 in iterations 18, 19 and 20: none (18's first P1 folded into f-iter017-001 and its second lowered to P2; 19's P1 lowered to P2 on code evidence; 20's two P1s are new angles on f-iter012-006, one lowered to P2)",
+      "decision": "Bar met: three consecutive productive iterations clean and the coverage items hold. Close at 20 rows under the lead's early-close ruling; ceiling 21 not used"
+    }
+  ],
+  "top_findings": [
+    {
+      "finding": "Gate 3 depends on word order: 'Update the README and review the result.' does not fire it while 'Review the README and update it.' does, because the read-only override wins when the write verb comes first",
+      "type": "bug",
+      "sev": "P1",
+      "release": "pre-v4.0.0.0",
+      "source": ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:731",
+      "verified": "Orchestrator ran classifyPrompt on both prompts in iteration 1: false with read_only_override, then true with file_write_match"
+    },
+    {
+      "finding": "The continuity writer /speckit:save runs is gitignored and untracked, and /doctor:install probes runtime/dist, not runtime/cli/dist, while the repair line validate.sh prints builds a tsconfig that never compiles runtime/cli",
+      "type": "bug",
+      "sev": "P1",
+      "release": "v4.0.2.0",
+      "source": ".skilled/commands/doctor/assets/doctor-install.yaml:34",
+      "verified": "Orchestrator: git check-ignore -v gives .gitignore:60 dist/ for runtime/cli/dist/continuity/generate-context.js, git ls-files runtime/cli/dist is 0, runtime/tsconfig.json references only ../shared"
+    },
+    {
+      "finding": "A project that is not recognised as using spec-kit silently gets the shared runtime checkout as its project root, so a save run from it writes into this repository after one stderr line",
+      "type": "bug",
+      "sev": "P1",
+      "release": "v4.0.1.0",
+      "source": ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts:146",
+      "verified": "Orchestrator at close: resolveProjectRoot('/tmp/rr-o/bare/nested') printed the stderr note and returned /Users/michelkerkmeester/MEGA/Development/Skilled"
+    },
+    {
+      "finding": "Strict validation passes a phase parent's ANCHORS_VALID before parsing any anchor, so broken nesting in a phase-parent spec.md never fails",
+      "type": "drift",
+      "sev": "P1",
+      "release": "v4.0.0.5",
+      "source": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:975",
+      "verified": "Orchestrator read :975-976 (pass returned on level phase and isPhaseParent before any scan); iteration 12 reproduced exit 0 on nested anchors"
+    },
+    {
+      "finding": "The trigger lookup answers a misspelled query with 20 rows scored 0.000 and exit 0 unless --scoring-only is passed, so a Gate 1 caller without the flag cannot tell a typo from a hit",
+      "type": "ux",
+      "sev": "P1",
+      "release": "v4.0.0.3",
+      "source": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:204",
+      "verified": "Orchestrator ran the lookup on 'validaton rulles strict': 20 rows at 0.000, exit 0; with --json --scoring-only, exit 1"
+    }
+  ],
+  "executors_used": [
+    "cli-devin deepseek-v4-1-flash-max (iterations before the switch)",
+    "cli-pi opencode-go/deepseek-v4.1-flash thinking max (after)"
+  ],
+  "recent_action": "Run closed after the depth bar cleared at iteration 20; research.md synthesized",
+  "next_action": "Parent synthesis reads research/research.md",
+  "finding_notes": {
+    "f-iter015-001": "Reproduced by the orchestrator on a /tmp Draft packet with [YOUR_VALUE_HERE: owner] in plan.md: the wrapper prints FAIL and exits 1, while validate.sh --strict reports PLACEHOLDER_FILLED as a warn for a Draft packet. Iteration 16 V8 tested a handover token in a non-Draft packet, a different case, so it does not refute this",
+    "f-iter016-005": "Corrected by iteration 17 (f-iter017-004) and re-checked by the orchestrator: config.ts compiles to runtime/cli/dist/core/config.js, where resolveProjectRoot is a function; runtime/dist/core/config.js is a different module, so this is a path collision, not drift",
+    "f-iter017-001": "Partly confirmed, severity lowered P0 to P1: .gitignore:60 dist/ ignores runtime/cli/dist/continuity/generate-context.js (git check-ignore), git ls-files runtime/cli/dist is 0, and save.md:19 runs that path. A build script exists (cli/package.json:13), and /doctor:install probes runtime/dist, not runtime/cli/dist (doctor-install.yaml:34), so a clone can pass the install probe and still lack the save writer. Not P0 because a documented build produces it; the gap is the probe and the absence of a clear error",
+    "f-iter018-001": "Confirmed and folded into f-iter017-001: runtime/tsconfig.json references only ../shared, while the skill-root tsconfig.json:18-20 references shared, runtime and runtime/cli, so the repair validate.sh prints (validate.sh:409,432: cd runtime && npm run build) does not build runtime/cli/dist. Same defect as f-iter017-001, not counted as a separate new P1",
+    "f-iter018-002": "Lowered P1 to P2: running node on a missing path prints Cannot find module with the exact path, so the failure is diagnosable though it names no fix; the root cause is f-iter017-001",
+    "f-iter019-003": "Lowered P1 to P2 on evidence: resolveGuardPaths itself applies projectDir || process.cwd() (spec-gate-core.mjs:806), so the second call has the same fallback, and appendWarningLog catches its own errors (:978-987). The second resolveGuardPaths call in runEnforceGate (:1876) is outside a try, but it repeats with the same inputs a call evaluateMutation already completed inside its try, so a throw there needs a state change between two adjacent calls. The stdin repro shows fail-open on invalid payloads, a different path",
+    "f-iter019-001": "Confirmed: spec-gate-core.mjs:400, :1624 and :1769 compare SYSTEM_SPEC_GATE_DISABLED to the exact string 1, while ENV-REFERENCE.md:248 documents 1, true, yes or on",
+    "f-iter019-006": "Severity P3 is outside the run scale; read as P2",
+    "f-iter020-001": "Reproduced by the orchestrator: resolveProjectRoot(/tmp/.../bare/nested) returns this repository. Same defect as f-iter012-006 and f-iter013-005 (the fallback returns the runtime repo and the writer targets it); the asymmetry with --project-root validation is a new angle on it, not a new P1",
+    "f-iter020-002": "Folded into f-iter012-006 and lowered P1 to P2 as a standalone row: the directory test is real (config.ts:98-100) and .skilled-only, but its only consequence is the same fallback; the self-perpetuation worry does not apply here because the gate state lives under .skilled/skills/.state (spec-gate-core.mjs:71), not under .skilled/skills/system-spec-kit",
+    "f-iter009-001": "Lowered P1 to P2: the 43 stale rows are 38 docs of this in-progress research packet plus 5 in the stray untracked specs/001-test-feature/, so the checkout was not clean; iteration 12 (f-iter012-008) confirmed index.manifestHash equals the manifest hash and replaced the mechanism with corpusHash churn",
+    "f-iter006-004": "Partly confirmed: plain node exits ERR_MODULE_NOT_FOUND, but tsx runs it (prints unknown argument), so the documented invocation fails only without a TS loader"
+  },
+  "severity_overrides": {
+    "f-iter017-001": "P1",
+    "f-iter018-002": "P2",
+    "f-iter019-003": "P2",
+    "f-iter019-006": "P2",
+    "f-iter020-002": "P2",
+    "f-iter009-001": "P2"
+  },
+  "checkpoint_rule": "Lead ruling: no close at the ceiling. At each ceiling, if the last three productive iterations hold a new P0 or P1 that survived orchestrator verification, extend by five and score again; close only when three in a row are clean. A P1 lowered on evidence does not count. Lead confirmation: close as soon as three consecutive productive iterations hold no new verified P0 or P1 and the coverage items of the bar hold (every release read, all seven types probed, strongest claims verified); an extension need not run to its ceiling. The score is recorded at close.",
+  "excluded_findings": [
+    "f-iter016-005"
+  ],
+  "excluded_reasons": {
+    "f-iter016-005": "Refuted by iteration 17 and the orchestrator: config.ts compiles to runtime/cli/dist/core/config.js, which exports resolveProjectRoot as a function; runtime/dist/core/config.js is a different module, so there is no missing export",
+    "f-iter016-005_iter": "016"
+  },
+  "summary": "Spec-kit core mostly enforces what its notes promise, but several gates fail open or give a different answer depending on how they are called. Gate 3 depends on word order, the resume branch can skip it despite its own always-required comment, and a phase parent passes ANCHORS_VALID without any anchor being read. Root resolution is the widest risk: four resolvers disagree, and the continuity writer falls back to the shared runtime checkout when a project is not recognised, writing there after one stderr line. The save writer itself is an untracked build output that the install probe does not check and the printed repair does not build. Exit codes are the most common UX defect: check-goal --all, the trigger lookup and the post-edit placeholder check each return a status that disagrees with the result they print.",
+  "recommendations": "1. Make gate-3-classifier.ts treat any write trigger as a write regardless of its position (:731), and make the resume branch honour its always-required contract (:840-842).\n2. Have resolveProjectRoot refuse, not fall back, when the project is not recognised (config.ts:142-146), and test usesSpecKit on the authored SKILL.md sentinel under either .skilled or .opencode.\n3. Track or build-check runtime/cli/dist: point /doctor:install at runtime/cli/dist/continuity/generate-context.js and change the repair line in validate.sh to the skill-root build that includes runtime/cli.\n4. Parse anchors for phase parents in ANCHORS_VALID instead of returning pass at orchestrator.ts:975.\n5. Align exit codes with printed results: check-goal --all (:703), the unfiltered trigger lookup (:204), and the post-edit placeholder wrapper against the Draft deferral in the rule.\n6. Keep research and review folders out of the trigger corpus hash so an in-progress packet does not churn it.",
+  "open_questions": [
+    "Should create.sh resolve templates from the runtime checkout rather than the target repo, or is per-repo template override the intended contract?",
+    "Is SCOPE_ADHERENCE, named in the v4.0.0.0 note but absent from the validator registry, retired or never built?"
+  ],
+  "hook": "This phase ran a forced-depth research loop over spec-kit core: 20 state rows, 19 productive iterations after one Devin quota failure, two +5 extensions, closed when iterations 18 to 20 held no new verified P1. The strongest findings are fail-open gates and a continuity writer that can fall back to the shared runtime checkout.",
+  "validate_line": "Summary: Errors: 0  Warnings: 2 / RESULT: PASSED (SOURCE_TAGS: 4 citations inside a containment quarantine copy of a sibling child iteration; LEVEL_MATCH: decision-record.md at Level 1)"
+}

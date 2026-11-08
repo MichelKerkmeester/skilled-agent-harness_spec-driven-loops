@@ -1,0 +1,676 @@
+{
+  "sessionId": "2026-11-08T19:56:53.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-hermes-removal-v4-0-2-0-which-live-references-to-cli-hermes-hermes-or-the-hermes",
+      "inboxId": null,
+      "text": "Hermes removal (v4.0.2.0): which live references to cli-hermes, .hermes/ or the hermes shell function remain in .skilled/skills/cli-external-orchestration/**, .skilled/skills/system-deep-loop/** or .skilled/commands/deep/**?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-deepseek-harness-v4-0-2-0-does-skilled-skills-cli-external-orchestration-cli-dee",
+      "inboxId": null,
+      "text": "DeepSeek Harness (v4.0.2.0): does .skilled/skills/cli-external-orchestration/cli-deepseek-harness/** match its release-note claims (thirteen dispatch rules, three patches, pinned dsh release, two-id model roster) and the cli-deepseek-harness builder in .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-fan-out-parity-v4-0-0-0-v4-0-0-16-for-each-executor-kind-do-lineage-command-adap",
+      "inboxId": null,
+      "text": "Fan-out parity (v4.0.0.0, v4.0.0.16): for each executor kind, do LINEAGE_COMMAND_ADAPTERS in fanout-run.cjs, EXECUTOR_KINDS, EXECUTOR_KIND_FLAG_SUPPORT and the model allowlists in runtime/lib/deep-loop/executor-config.ts, and each cli-*/SKILL.md agree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-single-executor-dispatch-which-if-cli-branches-in-skilled-commands-deep-assets-d",
+      "inboxId": null,
+      "text": "Single-executor dispatch: which if_cli_* branches in .skilled/commands/deep/assets/deep-research-auto.yaml and deep-review-auto.yaml carry placeholder, field-name or ordering defects that would break or mislabel a run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-mode-retirement-v4-0-0-7-which-remnants-of-agent-improvement-or-model-benchmark-",
+      "inboxId": null,
+      "text": "Mode retirement (v4.0.0.7): which remnants of agent-improvement or model-benchmark survive in system-deep-loop runtime code, mode-registry.json, /deep:* commands or tests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-convergence-v4-0-0-3-v4-0-0-16-do-runtime-scripts-convergence-cjs-and-deep-resea",
+      "inboxId": null,
+      "text": "Convergence (v4.0.0.3, v4.0.0.16): do runtime/scripts/convergence.cjs and deep-research/scripts/reduce-state.cjs honor stopPolicy, minIterations and the four convergence modes as deep-research/references/convergence/convergence.md documents?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-7-write-containment-and-lane-resume-v4-0-0-16-does-runtime-lib-deep-loop-write-con",
+      "inboxId": null,
+      "text": "Write containment and lane resume (v4.0.0.16): does runtime/lib/deep-loop/write-containment.ts and the fan-out resume path do what the v4.0.0.16 note claims?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-8-cli-classifier-and-cli-jev-v4-0-0-2-v4-0-0-3-v4-0-1-0-do-the-router-phrases-jev-",
+      "inboxId": null,
+      "text": "cli-classifier and cli-jev (v4.0.0.2, v4.0.0.3, v4.0.1.0): do the router phrases, Jev feature switches and stored-key behavior in .skilled/skills/cli-classifier/** match the notes and their own hub-router.json, mode-registry.json and ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-9-hub-canon-v4-0-1-0-do-the-cli-external-orchestration-and-cli-classifier-hubs-and",
+      "inboxId": null,
+      "text": "Hub canon (v4.0.1.0): do the cli-external-orchestration and cli-classifier hubs and every mode follow the parent-hub canon and the rule that each skill routes from its own ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-10-over-engineering-which-system-deep-loop-runtime-surfaces-divergent-pivot-legacy-",
+      "inboxId": null,
+      "text": "Over-engineering: which system-deep-loop runtime surfaces (divergent pivot, legacy projection, idea lifecycle, observability, wave planner) have no live caller or test, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-11-ux-which-steps-of-deep-research-auto-yaml-deep-research-presentation-txt-or-the-",
+      "inboxId": null,
+      "text": "UX: which steps of deep-research-auto.yaml, deep-research-presentation.txt or the cli-*/SKILL.md dispatch rules are unclear, contradictory or impossible to execute for the operator or an AI user?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-12-extension-which-concrete-extensions-of-the-fan-out-runner-the-executor-registry-",
+      "inboxId": null,
+      "text": "Extension: which concrete extensions of the fan-out runner, the executor registry or ai-council would remove the manual steps and defects found in this cluster?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-3-fan-out-parity-v4-0-0-0-v4-0-0-16-for-each-executor-kind-do-lineage-command-adap",
+      "inboxId": null,
+      "text": "Fan-out parity (v4.0.0.0, v4.0.0.16): for each executor kind, do LINEAGE_COMMAND_ADAPTERS in fanout-run.cjs, EXECUTOR_KINDS, EXECUTOR_KIND_FLAG_SUPPORT and the model allowlists in runtime/lib/deep-loop/executor-config.ts, and each cli-*/SKILL.md agree?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-single-executor-dispatch-which-if-cli-branches-in-skilled-commands-deep-assets-d",
+      "inboxId": null,
+      "text": "Single-executor dispatch: which if_cli_* branches in .skilled/commands/deep/assets/deep-research-auto.yaml and deep-review-auto.yaml carry placeholder, field-name or ordering defects that would break or mislabel a run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-mode-retirement-v4-0-0-7-which-remnants-of-agent-improvement-or-model-benchmark-",
+      "inboxId": null,
+      "text": "Mode retirement (v4.0.0.7): which remnants of agent-improvement or model-benchmark survive in system-deep-loop runtime code, mode-registry.json, /deep:* commands or tests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-convergence-v4-0-0-3-v4-0-0-16-do-runtime-scripts-convergence-cjs-and-deep-resea",
+      "inboxId": null,
+      "text": "Convergence (v4.0.0.3, v4.0.0.16): do runtime/scripts/convergence.cjs and deep-research/scripts/reduce-state.cjs honor stopPolicy, minIterations and the four convergence modes as deep-research/references/convergence/convergence.md documents?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-write-containment-and-lane-resume-v4-0-0-16-does-runtime-lib-deep-loop-write-con",
+      "inboxId": null,
+      "text": "Write containment and lane resume (v4.0.0.16): does runtime/lib/deep-loop/write-containment.ts and the fan-out resume path do what the v4.0.0.16 note claims?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-cli-classifier-and-cli-jev-v4-0-0-2-v4-0-0-3-v4-0-1-0-do-the-router-phrases-jev-",
+      "inboxId": null,
+      "text": "cli-classifier and cli-jev (v4.0.0.2, v4.0.0.3, v4.0.1.0): do the router phrases, Jev feature switches and stored-key behavior in .skilled/skills/cli-classifier/** match the notes and their own hub-router.json, mode-registry.json and ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-9-hub-canon-v4-0-1-0-do-the-cli-external-orchestration-and-cli-classifier-hubs-and",
+      "inboxId": null,
+      "text": "Hub canon (v4.0.1.0): do the cli-external-orchestration and cli-classifier hubs and every mode follow the parent-hub canon and the rule that each skill routes from its own ROUTER.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-over-engineering-which-system-deep-loop-runtime-surfaces-divergent-pivot-legacy-",
+      "inboxId": null,
+      "text": "Over-engineering: which system-deep-loop runtime surfaces (divergent pivot, legacy projection, idea lifecycle, observability, wave planner) have no live caller or test, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-11-ux-which-steps-of-deep-research-auto-yaml-deep-research-presentation-txt-or-the-",
+      "inboxId": null,
+      "text": "UX: which steps of deep-research-auto.yaml, deep-research-presentation.txt or the cli-*/SKILL.md dispatch rules are unclear, contradictory or impossible to execute for the operator or an AI user?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-12-extension-which-concrete-extensions-of-the-fan-out-runner-the-executor-registry-",
+      "inboxId": null,
+      "text": "Extension: which concrete extensions of the fan-out runner, the executor registry or ai-council would remove the manual steps and defects found in this cluster?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-hermes-removal-v4-0-2-0-which-live-references-to-cli-hermes-hermes-or-the-hermes",
+      "inboxId": null,
+      "text": "Hermes removal (v4.0.2.0): which live references to cli-hermes, .hermes/ or the hermes shell function remain in .skilled/skills/cli-external-orchestration/**, .skilled/skills/system-deep-loop/** or .skilled/commands/deep/**?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-deepseek-harness-v4-0-2-0-does-skilled-skills-cli-external-orchestration-cli-dee",
+      "inboxId": null,
+      "text": "DeepSeek Harness (v4.0.2.0): does .skilled/skills/cli-external-orchestration/cli-deepseek-harness/** match its release-note claims (thirteen dispatch rules, three patches, pinned dsh release, two-id model roster) and the cli-deepseek-harness builder in .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What are the exact members of `DSH_ALLOWED_MODELS` and the value of `DSH_DEFAULT_MODEL`? Does the default match the verified LLM Gateway id?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the deep-loop prompt builder load the packet's `cli-reference.md` and `prompt-quality-card.md` as SKILL.md §2 says every run does?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are there live Hermes references outside the three focus directories, e.g. in `.skilled/hooks/**`, runtime mirrors, root commands or generated `.dsh/` adapters?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can any caller pass a `lineageDir` that resolves to the repository root, making F1's missing guard reachable?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `hard-rules.json` contain exactly thirteen entries, and does the fan-out builder enforce all thirteen or a subset?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can any caller pass a `lineageDir` that resolves to the repository root, making F4's missing guard reachable?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `opencode.json` carry the same default on both OpenCode versions, as the v4.0.0.13 note also claims?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the deep-loop prompt builder load the packet's `cli-reference.md` and `prompt-quality-card.md` as `SKILL.md` §2 says every run does?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is the `options.repoRoot` override on the DSH builder reachable from a production caller, or is it a test seam only?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Single-executor dispatch, mode retirement, convergence, write containment, cli-classifier/cli-jev, hub canon, over-engineering, UX and extension remain open from the strategy.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Fan-out parity: for every executor kind, do `LINEAGE_COMMAND_ADAPTERS`, `EXECUTOR_KINDS`, `EXECUTOR_KIND_FLAG_SUPPORT`, the model allowlists in `executor-config.ts`, and each `cli-*/SKILL.md` agree? (next focus)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Fan-out parity (v4.0.0.0, v4.0.0.16): for each executor kind, do LINEAGE_COMMAND_ADAPTERS in fanout-run.cjs, EXECUTOR_KINDS, EXECUTOR_KIND_FLAG_SUPPORT and the model allowlists in runtime/lib/deep-loop/executor-config.ts, and each cli-*/SKILL.md agree?",
+    "Single-executor dispatch: which if_cli_* branches in .skilled/commands/deep/assets/deep-research-auto.yaml and deep-review-auto.yaml carry placeholder, field-name or ordering defects that would break or mislabel a run?",
+    "Mode retirement (v4.0.0.7): which remnants of agent-improvement or model-benchmark survive in system-deep-loop runtime code, mode-registry.json, /deep:* commands or tests?",
+    "Convergence (v4.0.0.3, v4.0.0.16): do runtime/scripts/convergence.cjs and deep-research/scripts/reduce-state.cjs honor stopPolicy, minIterations and the four convergence modes as deep-research/references/convergence/convergence.md documents?",
+    "Write containment and lane resume (v4.0.0.16): does runtime/lib/deep-loop/write-containment.ts and the fan-out resume path do what the v4.0.0.16 note claims?",
+    "cli-classifier and cli-jev (v4.0.0.2, v4.0.0.3, v4.0.1.0): do the router phrases, Jev feature switches and stored-key behavior in .skilled/skills/cli-classifier/** match the notes and their own hub-router.json, mode-registry.json and ROUTER.md?",
+    "Hub canon (v4.0.1.0): do the cli-external-orchestration and cli-classifier hubs and every mode follow the parent-hub canon and the rule that each skill routes from its own ROUTER.md?",
+    "Over-engineering: which system-deep-loop runtime surfaces (divergent pivot, legacy projection, idea lifecycle, observability, wave planner) have no live caller or test, and what would break if each were removed?",
+    "UX: which steps of deep-research-auto.yaml, deep-research-presentation.txt or the cli-*/SKILL.md dispatch rules are unclear, contradictory or impossible to execute for the operator or an AI user?",
+    "Extension: which concrete extensions of the fan-out runner, the executor registry or ai-council would remove the manual steps and defects found in this cluster?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-7-confidence-high-that-the-three-texts-disagree-medium-that-the-missing-root-check",
+      "text": "Confidence: high that the three texts disagree; medium that the missing root check is reachable from a real caller.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-confidence-high",
+      "text": "Confidence: high.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-19-confidence-high",
+      "text": "Confidence: high.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-impact-an-operator-auditing-by-the-release-note-would-flag-every-normal-fan-out-",
+      "text": "Impact: an operator auditing by the release note would flag every normal fan-out run as non-compliant; conversely, a malformed `lineageDir` that resolves to the checkout root would dispatch from the root because the builder does not refuse it. The normal caller supplies a lineage directory, so the guard gap is defense-in-depth, not a demonstrated live failure.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-impact-low-the-sentence-describes-the-core-three-and-does-not-say-only-it-still-",
+      "text": "Impact: low; the sentence describes the core three and does not say \"only\". It still understates the argv an operator sees in a persona or MCP run.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-release-introduced-v4-0-2-0",
+      "text": "Release introduced: v4.0.2.0.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-release-introduced-v4-0-2-0",
+      "text": "Release introduced: v4.0.2.0.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-release-introduced-v4-0-2-0",
+      "text": "Release introduced: v4.0.2.0.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-the-builder-always-adds-the-route-lineage-and-guards-patches-then-optionally-add",
+      "text": "The builder always adds the route, lineage and guards patches, then optionally adds a persona patch [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3021] and an MCP patch [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3039]. A run with both carries five patches.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-the-builder-checks-the-route-patch-and-the-lineage-patch-in-one-condition-and-th",
+      "text": "The builder checks the route patch and the lineage patch in one condition and throws `cli-deepseek-harness route or lineage patch is missing` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3011] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3012]. A missing route patch and a missing lineage patch are indistinguishable, so the operator must inspect both paths.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-the-builder-sets-cwd-path-resolve-options-lineagedir-source-skilled-skills-syste",
+      "text": "The builder sets `cwd: path.resolve(options.lineageDir)` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3056]. It has `repoRoot` in scope [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3005] but never compares the resolved cwd to it, so the packet's narrower \"never the repository root\" rule is not enforced on the fan-out path.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-the-note-says-three-small-config-files-called-patches-shape-each-run-source-skil",
+      "text": "The note says \"Three small config files, called patches, shape each run\" [SOURCE: .skilled/changelog/skilled/v4.0.2.0.md:106].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-the-packet-documents-a-narrower-rule-and-an-explicit-fan-out-exception-a-single-",
+      "text": "The packet documents a narrower rule and an explicit fan-out exception: a single dispatch uses a scratch cwd outside the checkout, but deep-loop fan-out \"runs with `cwd` set to its lineage directory and a disposable `DSH_HOME` under the OS temp directory\" [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md:105]. The packet's NEVER list forbids only the repository root as cwd [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md:116].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-the-release-note-says-every-dsh-command-must-use-a-throwaway-home-folder-and-sta",
+      "text": "The release note says every `dsh` command \"must use a throwaway home folder and start outside the repository\" [SOURCE: .skilled/changelog/skilled/v4.0.2.0.md:114].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-type-drift-release-note-vs-code",
+      "text": "Type: drift (release note vs code).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-type-drift-release-note-vs-packet-vs-code-missing-guard-bug-class",
+      "text": "Type: drift (release note vs packet vs code); missing guard (bug class).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-type-improvement-operator-ux",
+      "text": "Type: improvement (operator UX).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-verify-rg-n-route-or-lineage-patch-is-missing-skilled-skills-system-deep-loop-ru",
+      "text": "Verify: `rg -n \"route or lineage patch is missing\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-verify-rg-n-start-outside-the-repository-skilled-changelog-skilled-v4-0-2-0-md-r",
+      "text": "Verify: `rg -n \"start outside the repository\" .skilled/changelog/skilled/v4.0.2.0.md`; `rg -n \"cwd: path.resolve\\\\(options.lineageDir\\\\)\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`; `rg -n \"Never start dsh with the repository root\" .skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-verify-rg-n-three-small-config-files-skilled-changelog-skilled-v4-0-2-0-md-rg-n-",
+      "text": "Verify: `rg -n \"Three small config files\" .skilled/changelog/skilled/v4.0.2.0.md`; `rg -n \"personaPatch|mcpPatch\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-cli-opencode-skill-md-states-the-same-default-variant-and-format-for-both-versio",
+      "text": "`cli-opencode/SKILL.md` states the same default, variant and format for both versions [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:103].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-executor-config-ts-exports-dsh-supported-models-with-exactly-two-ids-and-dsh-def",
+      "text": "`executor-config.ts` exports `DSH_SUPPORTED_MODELS` with exactly two ids and `DSH_DEFAULT_MODEL` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:264] [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:270], plus `isDshModelAllowed` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:272]. It exports no `DSH_VERSION`; the pin lives only in the runner [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2948] and the packet [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/cli-reference.md:53].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-hard-rules-json-contains-exactly-13-entries-source-skilled-skills-cli-external-o",
+      "text": "`hard-rules.json` contains exactly 13 entries [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json:1], and the packet calls them \"the thirteen rules this shape satisfies\" [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/cli-reference.md:201].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-23-confidence-high-for-the-note-skill-builder-parity",
+      "text": "Confidence: high for the note/SKILL/builder parity.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-confidence-high-that-the-constants-agree-medium-on-how-much-the-split-matters-op",
+      "text": "Confidence: high that the constants agree; medium on how much the split matters operationally.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-confidence-high-all-13-ids-were-checked-against-the-builder-body",
+      "text": "Confidence: high. All 13 ids were checked against the builder body.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-impact-no-live-behavior-is-wrong-a-registry-consumer-cannot-validate-the-binary-",
+      "text": "Impact: no live behavior is wrong. A registry consumer cannot validate the binary pin without importing the 4,327-line runner, and a roster edit that misses the runner literal is caught only by the unit test.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-impact-the-packet-s-thirteen-rules-this-shape-satisfies-overstates-enforcement-b",
+      "text": "Impact: the packet's \"thirteen rules this shape satisfies\" overstates enforcement by one. The normal fan-out caller passes a lineage directory under `specs/`, so the gap is defense-in-depth, not a demonstrated live failure.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-release-introduced-v4-0-0-13",
+      "text": "Release introduced: v4.0.0.13.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-release-introduced-v4-0-2-0",
+      "text": "Release introduced: v4.0.2.0.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-release-introduced-v4-0-2-0",
+      "text": "Release introduced: v4.0.2.0.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-21-the-builder-agrees-opencode-default-model-is-llmgateway-deepseek-v4-1-flash-1017",
+      "text": "The builder agrees: `OPENCODE_DEFAULT_MODEL` is `llmgateway/deepseek-v4.1-flash-1017` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2604]; `pinReasoningEffortForModel` returns `max` for the V4.1 Flash regex [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2457] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2462]; OpenCode 2 appends `#max` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2522], and OpenCode 1 pushes `--variant max` [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2499].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-the-builder-duplicates-the-roster-in-dsh-allowed-models-and-does-not-call-the-re",
+      "text": "The builder duplicates the roster in `DSH_ALLOWED_MODELS` and does not call the registry predicate [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2943]. `isDshModelAllowed` is exercised only by unit tests [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts:1058]; a test does assert that the two rosters and defaults are equal [SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:1870].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-the-builder-enforces-twelve-of-them-the-mapping-is",
+      "text": "The builder enforces twelve of them. The mapping is:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-22-the-note-also-claims-opencode-json-sets-the-same-default-for-both-versions-that-",
+      "text": "The note also claims `opencode.json` sets the same default for both versions. That file was not opened this iteration, so the claim is UNKNOWN, not contradicted.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-the-note-says-the-unpinned-default-is-llmgateway-deepseek-v4-1-flash-1017-at-its",
+      "text": "The note says the unpinned default is `llmgateway/deepseek-v4.1-flash-1017` at its `max` variant, with `#max` on OpenCode 2 and `--variant max` on OpenCode 1 [SOURCE: .skilled/changelog/skilled/v4.0.0.13.md:103].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-the-three-sources-agree-today-packet-roster-deepseek-v4-1-flash-1017-and-deepsee",
+      "text": "The three sources agree today: packet roster `deepseek-v4.1-flash-1017` and `deepseek-v4.1-flash` [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md:45], registry roster and default [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:264], runner roster and default [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2943]. The installed binary reports `0.2.2-rc.1`, matching the pin.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-the-unenforced-rule-is-the-same-cwd-gap-iteration-1-recorded-as-f1-this-iteratio",
+      "text": "The unenforced rule is the same cwd gap iteration 1 recorded as F1. This iteration ties it to the rule inventory: `no-repo-root-dotenv` [SOURCE: .skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json:69] has no corresponding check in the builder.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-type-drift-docs-vs-code-plus-an-unenforced-guard-bug-class",
+      "text": "Type: drift (docs vs code) plus an unenforced guard (bug class).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-type-drift-check-no-defect-found",
+      "text": "Type: drift check; no defect found.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-type-improvement-parity-and-maintainability",
+      "text": "Type: improvement (parity and maintainability).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-verify-node-e-console-log-require-skilled-skills-cli-external-orchestration-cli-",
+      "text": "Verify: `node -e \"console.log(require('./.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json').length)\"` prints 13; `rg -n \"cwd: path.resolve\\\\(options.lineageDir\\\\)\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-verify-rg-n-dsh-version-skilled-skills-system-deep-loop-runtime-lib-deep-loop-ex",
+      "text": "Verify: `rg -n \"DSH_VERSION\" .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` returns no match; `rg -n \"DSH_ALLOWED_MODELS|DSH_VERSION\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-24-verify-rg-n-opencode-default-model-skilled-skills-system-deep-loop-runtime-scrip",
+      "text": "Verify: `rg -n \"OPENCODE_DEFAULT_MODEL\" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`; `rg -n \"llmgateway/deepseek-v4.1-flash-1017\" .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`.",
+      "addedAtIteration": 2,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 10,
+    "resolvedQuestions": 2,
+    "carriedForwardOpenQuestions": 11,
+    "keyFindings": 44,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

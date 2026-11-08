@@ -1,0 +1,161 @@
+{
+  "phase": "saved",
+  "ceiling": 11,
+  "iterations": {
+    "1": {
+      "quality": "Deep: 4 findings, manifest and router read, 12 cites resolve",
+      "checks": "leaf-manifest.json:125-133 CONFIRMED: test -e shows the leaves missing under sk-create-quality-control and present in sk-doc/shared/references; v4.0.0.0.md:278 CONFIRMED the note names sk-code-skilled (registry side not re-checked)",
+      "next_focus": "key questions 3 and 4"
+    },
+    "2": {
+      "quality": "Adequate: 3 findings, 5 cites, validators partly run; delta rows omitted findingType and release",
+      "checks": "forty-of-fifty-threshold.md:82 CONFIRMED: sk-prompt/manual-testing-playbook.md does not exist; sk-code.md:3/35 CONFIRMED: only --dry-run documented for quality, no --apply",
+      "next_focus": "key questions 5 and 6, plus finish question 3"
+    },
+    "3": {
+      "quality": "Deep: 6 findings across 13 create commands, typed rows present, 13 cites resolve",
+      "checks": "README.txt:50 says 21 forms vs sk-design-chart/SKILL.md:114 twenty-nine CONFIRMED; changelog.md:3 four bump values vs sk-create-changelog/SKILL.md:64 five CONFIRMED",
+      "next_focus": "key questions 7, 8 and 9, with exact release attribution: use git log --format='%h %cs %s' -- <file> to name the release that introduced each finding instead of"
+    },
+    "4": {
+      "quality": "Deep: 4 findings, sk-prompt and validator code read, 10 cites resolve",
+      "checks": "v4.0.0.0.md:400 DEPTH claim vs sk-prompt/changelog/v4.0.0.0.md:13 removal CONFIRMED; cli-prompt-quality-card.md:192 names cli-opencode twice CONFIRMED; :211 ../../../cli-claude-code from sk-prompt/assets resolves to .skilled/cli-claude-code, DERIVED missing",
+      "next_focus": "key question 10 (over-engineering) and the unread releases v4.0.0.13, v4.0.0.14, v4.0.0.15 and v4.0.2.0"
+    },
+    "5": {
+      "quality": "Error: no research done; dispatch failed twice",
+      "checks": "None: no iteration file was written",
+      "next_focus": "Same focus carried to iteration 6"
+    },
+    "6": {
+      "quality": "Shallow: 2 findings, ratio 0.18; over-engineering question from the focus not answered",
+      "checks": "v4.0.0.13.md:122 rename vs sk-code/hub-router.json:73 'opencode' keyword CONFIRMED by text; mode-registry.json:74 alias CONFIRMED",
+      "next_focus": "REDO key question 10 with a concrete method: for each of sk-doc, sk-code, sk-design and sk-prompt, list every file under references/ and assets/ (find), then fo"
+    },
+    "7": {
+      "quality": "Deep: 7 findings with validator probes, over-engineering done with a reference count",
+      "checks": "palette-sheet-ordered/categorical CONFIRMED: rg finds only the files themselves and sk-design/leaf-manifest.json; validate_skill_package.py CONFIRMED by my own probe: only the first frontmatter error (allowed-tools) prints, the dangling link is never reported",
+      "next_focus": "release coverage, which is still empty for v4.0.0.1 to v4.0.0.12, v4.0.0.14 and v4.0.0.16 in this cluster, and the misalignment type, which has no finding yet"
+    },
+    "8": {
+      "quality": "Deep: 7 findings across v4.0.0.2/.10/.16/v4.0.1.0, misalignment now probed; 6 unique cites",
+      "checks": "parent-skill-check.cjs:1187 requires only single/orderedBundle/defer CONFIRMED; parent-hub-router-schema.md:96 outcome rule CONFIRMED by text",
+      "next_focus": "releases v4.0.0.1, v4.0.0.3, v4.0.0.11, v4.0.0.12 and v4.0.0.14, still empty for this cluster: find each release's commits touching the four hubs with git log -"
+    },
+    "9": {
+      "quality": "Adequate: 5 findings, repo-rule checker code read; 7 unique cites; several releases tagged 'present at' instead of a release",
+      "checks": "check-repo-rules.cjs:40 COVERAGE_THRESHOLD 0.3 and :272-275 divide by bullet word count CONFIRMED by text; git status shows no new write outside the packet",
+      "next_focus": "REQUIRED: the release field must be one tag (v4.0.0.N or v4.0.N.0) found with git log --format='%h %cs %s' --follow -- <file>, never 'present at'"
+    },
+    "10": {
+      "quality": "Deep: 6 findings on v4.0.0.11/.12/.6, typed with single release tags; 7 cites",
+      "checks": "sk-prompt hub-router.json/mode-registry.json/description.json absence CONFIRMED by ls; whether sk-prompt should be a hub is judgment, UNVERIFIED; prompt/improve.md:31 ROUTER CONTRACT heading position CONFIRMED by text",
+      "next_focus": "an attribution pass over every finding this run has logged (read all deltas/iter-*.jsonl finding rows)"
+    },
+    "11": {
+      "quality": "Adequate: attribution done by restating releases (unplaced 6 to 3), 5 findings incl. retractions; one retraction is wrong",
+      "checks": "f-iter011-001 retraction REJECTED: v4.0.0.16.md:338 says 'run /doctor:sk-code quality, then --apply' while _routes.yaml quality target allows only --dry-run (engine --apply runs internally after approval), so f-iter002-002 stands as an operator-facing drift; leaf-manifest.json:137 packet name CONFIRMED",
+      "next_focus": "Checkpoint scored; run closed"
+    }
+  },
+  "switches": [
+    {
+      "when": "Before iteration 6 (2026-11-08)",
+      "from": "cli-devin deepseek-v4-1-flash-max",
+      "to": "cli-pi opencode-go/deepseek-v4.1-flash, thinking max (dsh skipped)",
+      "evidence": "devin stderr 'Your daily usage quota has been exhausted' (cognition.ai/errorKind resource_exhausted) on dispatch and redispatch of iteration 5; dsh skipped because buildLineageCommand throws 'cli-deepseek-harness requires a lineage directory' in the single-executor path (no lineageDir passed, and the YAML has no dsh branch); pi probe answered 'ok' exit 0. Config stays immutable; the executor is applied at dispatch time and recorded in each iteration's executor provenance."
+    }
+  ],
+  "extensions": [
+    {
+      "when": "Mid-run, after the quota error (lead instruction)",
+      "score": "One iteration was a dispatch error with no research, so ten state-log rows would give nine productive iterations",
+      "decision": "Ceiling raised from 10 to 11 rows so ten productive iterations run before the depth bar is scored; applied at dispatch time, config untouched"
+    },
+    {
+      "when": "Checkpoint 1, after 10 productive iterations (11 rows)",
+      "score": "Releases: all 13 ranges plus pre-v4 hold a finding (3 of 49 rows unplaced); types: all seven present (misalignment 4, extension 3); strongest claims opened, one wrong retraction rejected; new P0/P1 in iterations 9-11: 0 (0, 0, 0)",
+      "decision": "Clears the bar. No extension; close the run and synthesize"
+    }
+  ],
+  "top_findings": [
+    {
+      "finding": "validate_skill_package.py prints only the first frontmatter error and never reaches reference checks, so a dangling link in a skill is never reported",
+      "type": "bug",
+      "sev": "P1",
+      "release": "pre-v4.0.0.0",
+      "source": ".skilled/skills/sk-doc/scripts/validate_skill_package.py:202",
+      "verified": "Orchestrator probe on a /tmp skill with a missing allowed-tools field and a link to references/missing-file.md: one error printed, the link never mentioned"
+    },
+    {
+      "finding": "sk-doc leaf-manifest.json lists sk-create-quality-control leaves that do not exist under that packet; they live in sk-doc/shared/",
+      "type": "bug",
+      "sev": "P1",
+      "release": "v4.0.0.0",
+      "source": ".skilled/skills/sk-doc/leaf-manifest.json:125",
+      "verified": "test -e: missing under the packet, present under shared/references"
+    },
+    {
+      "finding": "The v4.0.0.16 note tells operators to run /doctor:sk-code quality then --apply, but the quality route accepts only --dry-run",
+      "type": "drift",
+      "sev": "P2",
+      "release": "v4.0.0.16",
+      "source": ".skilled/changelog/skilled/v4.0.0.16.md:338",
+      "verified": "grep of the note and _routes.yaml allowed_flags for the quality target"
+    },
+    {
+      "finding": "The /create command index advertises 21 chart forms while the chart catalog and /design:chart ship 29, and lists chart.md and diagram.md under create/",
+      "type": "drift",
+      "sev": "P2",
+      "release": "pre-v4.0.0.0",
+      "source": ".skilled/commands/create/README.txt:50",
+      "verified": "Read README.txt:50 and sk-design-chart/SKILL.md:114"
+    },
+    {
+      "finding": "The sk-prompt playbook's File table links ../../manual-testing-playbook.md, which resolves to a file that does not exist",
+      "type": "bug",
+      "sev": "P2",
+      "release": "pre-v4.0.0.0",
+      "source": ".skilled/skills/sk-prompt/manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md:82",
+      "verified": "ls: sk-prompt/manual-testing-playbook.md missing; the page is manual-testing-playbook/manual-testing-playbook.md"
+    }
+  ],
+  "executors_used": [
+    "cli-devin deepseek-v4-1-flash-max (iterations before the switch)",
+    "cli-pi opencode-go/deepseek-v4.1-flash thinking max (after)"
+  ],
+  "recent_action": "Run closed after checkpoint 1 cleared; research.md synthesized",
+  "next_action": "Parent synthesis reads research/research.md",
+  "excluded_findings": [
+    "f-iter011-001"
+  ],
+  "excluded_reasons": {
+    "f-iter011-001": "Retraction of f-iter002-002 rejected: v4.0.0.16.md:338 tells the operator to run quality then --apply, and the route's quality target allows only --dry-run",
+    "f-iter011-001_iter": "11"
+  },
+  "finding_notes": {
+    "f-iter001-001": "CONFIRMED: test -e shows the leaves missing under sk-create-quality-control and present in sk-doc/shared/references; iteration 11 disputes whether the manifest ever meant packet-local paths",
+    "f-iter001-002": "CONFIRMED: v4.0.0.0.md:278 names sk-code-skilled",
+    "f-iter002-001": "CONFIRMED: sk-prompt/manual-testing-playbook.md does not exist",
+    "f-iter002-002": "CONFIRMED: v4.0.0.16.md:338 says then --apply; _routes.yaml quality allows only --dry-run",
+    "f-iter003-001": "CONFIRMED: README.txt:50 says 21 forms, sk-design-chart/SKILL.md:114 says twenty-nine",
+    "f-iter003-005": "CONFIRMED: changelog.md:3 four bump values vs sk-create-changelog/SKILL.md:64 five",
+    "f-iter004-001": "CONFIRMED text conflict; iteration 11 dates the SKILL.md removal to 0628c398a4 (2026-10-30)",
+    "f-iter004-002": "CONFIRMED: cli-prompt-quality-card.md:192 names cli-opencode twice",
+    "f-iter004-003": "DERIVED: ../../../cli-claude-code from sk-prompt/assets resolves to .skilled/cli-claude-code, which does not exist",
+    "f-iter006-001": "CONFIRMED: sk-code/hub-router.json:73 keyword opencode after the v4.0.0.13 rename",
+    "f-iter007-001": "CONFIRMED: rg finds the palette sheets only in themselves and leaf-manifest.json",
+    "f-iter007-003": "CONFIRMED by orchestrator probe: only the allowed-tools error printed",
+    "f-iter007-004": "CONFIRMED by orchestrator probe: dangling references/missing-file.md never reported",
+    "f-iter008-002": "CONFIRMED: parent-skill-check.cjs:1187 requires only single, orderedBundle, defer",
+    "f-iter009-001": "CONFIRMED: check-repo-rules.cjs:40 threshold 0.3 and :272-275 divide by bullet word count",
+    "f-iter010-005": "CONFIRMED absence by ls; whether sk-prompt should carry hub files is judgment, UNVERIFIED"
+  },
+  "summary": "The four authoring hubs mostly do what their notes say, but their own validators are weaker than the release line claims. The skill validator stops at the first frontmatter error, so link and routing checks never run on a broken skill, and the v4.0.1.0 claim that a missing ROUTER.md fails cannot be observed on a fresh skill. Most other defects are stale indexes and counts (chart forms, command trees, agent and card mirrors) and command hints that advertise flags no asset reads. Over half of the attributable code-level defects predate v4.0.0.0; the v4 line carried them rather than introduced them.",
+  "recommendations": "1. Make validate_skill_package.py collect every frontmatter error and continue to reference and routing checks (fixes the top P1 and makes the v4.0.1.0 ROUTER.md claim observable).\n2. Correct leaf-manifest.json to the shared/ leaf paths, or teach the manifest a shared alias, and add a manifest-vs-disk test.\n3. Add one command-contract lint that checks argument-hint flags against the assets that consume them (--output, --benchmark-id, --bump, quality --apply).\n4. Regenerate count claims (chart forms, agent rosters, cli card mirrors) from the catalogs instead of prose.\n5. Agree one exit-code contract (0 pass, 1 finding, 2 precondition) across sk-doc, sk-code and doctor validators.",
+  "open_questions": [
+    "Should sk-prompt be a parent hub with hub-router.json and mode-registry.json, or is it now a single skill? The run found the files absent but did not settle intent."
+  ],
+  "hook": "This phase ran a forced-depth research loop over the four authoring hubs: 11 state rows, 10 productive iterations after one Devin quota failure, 48 surviving findings. The strongest is that the skill validator stops at the first frontmatter error, so link and routing checks never run on a broken skill.",
+  "validate_line": "Summary: Errors: 0  Warnings: 2 / RESULT: PASSED (after save; warnings SOURCE_TAGS from containment quarantine copies and LEVEL_MATCH for decision-record at Level 1)"
+}

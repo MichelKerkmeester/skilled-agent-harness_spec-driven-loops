@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/047-v4-release-line-research",
+  "spec_folder": "system-speckit/047-v4-release-line-research",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/047-v4-release-line-research/001-spec-kit-core",
+    "system-speckit/047-v4-release-line-research/002-authoring-hubs",
+    "system-speckit/047-v4-release-line-research/003-cli-and-deep-loop",
+    "system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch",
+    "system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 release line research phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "v4 release line research synthesis",
+      "v4 remediation phases"
+    ],
+    "key_topics": [
+      "release",
+      "line",
+      "research",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "research/research.md",
+      "specs/system-speckit/graph-metadata.json",
+      "runtime/cli/dist/continuity/generate-context.js",
+      "shared/gate-3-classifier.ts",
+      "runtime/cli/core/config.ts",
+      "runtime/tsconfig.json",
+      "retrieval/lib/corpus.mjs",
+      ".skilled/changelog/skilled/v4.0.0.0.md",
+      "references/memory/save-workflow.md",
+      ".opencode/plugins/ask-surface-guard.js",
+      ".devin/SYNC.md",
+      ".github/workflows/sk-git-script-tests.yml",
+      ".skilled/commands/create/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/system-speckit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "runtime/cli/dist/continuity/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": "shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "runtime/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": "retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": "references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/ask-surface-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-git-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nineteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "verified",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nineteen releases shipped between v4.0.0.0 (2026-09-21) and v4.0.2.0 (2026-11-08): 3,687 commits across spec kit, the authoring hubs, the CLI executors, the deep loops, the skill advisor, hooks, doctor commands and git tooling",
+    "created_at": "2026-11-08T19:49:04Z",
+    "last_save_at": "2026-11-08T23:36:24.362Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5b8975740ffa3cdb79fb9df14ea7f97f67fc42a5b02fcb58586f2403c7bc2931",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1747af60b4197b50151d7020002978bec13c1116e6e4995c9dc0ccdf1e92e046",
+      "research/research.md": "12682bd016fa7179f71e23cffa6aa65f5ae689e6a331bd86649f58576f8b4a55"
+    },
+    "last_active_child_id": "system-speckit/047-v4-release-line-research/003-cli-and-deep-loop",
+    "last_active_at": "2026-11-08T23:08:32.193Z"
+  }
+}

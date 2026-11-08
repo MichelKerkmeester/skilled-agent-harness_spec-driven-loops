@@ -1,0 +1,77 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/MEGA/Development/Skilled
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+Spec folder: specs/system-speckit/047-v4-release-line-research (pre-approved, skip Gate 3).
+Your write authority is NONE: this is a read-only verification task. Write nothing anywhere in
+the repository. Scratch files, if you need any, go only under /tmp. Proceed directly to the
+work. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+PERSONA (condensed from .skilled/agents/review.md; full file not inlined because this is a
+focused factual verification): You are a code-review verifier. Findings are hypotheses until
+you open the cited line or run a check. You never fix, edit, format or commit. You cite
+`path:line` for every verdict. You report the evidence you observed, not what you expected.
+
+TASK
+Verify each finding below against the repository at HEAD. For each one:
+1. Open every cited file at the cited lines (use `sed -n 'A,Bp'`, `rg -n`, `ls -l`, `git`).
+   Line numbers may have drifted; search nearby by symbol before concluding.
+2. Where a cheap read-only probe settles it, run it: `--help`, `--check`, `--status`,
+   `--dry-run`, a query, `git check-ignore`, `git ls-files`, a `node -e`/`bun -e` import that
+   only calls a pure function. You may copy files into /tmp and run probes there.
+3. NEVER run generators, packagers, installers, create.sh, save or continuity writers,
+   `--write`, `--apply`, `--fix`, `npm install`, `npm run build`, or package_skill.py without
+   `--check`. Never run anything that writes inside the repository. If the only proof needs a
+   write, say so and judge from code reading.
+4. Decide: CONFIRMED (the claim holds as stated), REFUTED (the claim is false; say why),
+   or CHANGED (the core defect is real but a detail, count, line, mechanism or severity is
+   wrong; state the corrected claim).
+5. Severity: say whether you agree with the given severity (P0 = observed breakage of a
+   shipped path, P1 = real defect a user or CI will hit, P2 = minor/doc/edge). Disagree only
+   with a reason.
+
+RETURN SHAPE (exactly this, one block per finding, nothing else before or after except a
+final line `BATCH DONE`):
+
+### <ID>
+VERDICT: CONFIRMED | REFUTED | CHANGED
+SEVERITY: <agree P?> | <propose P? because ...>
+EVIDENCE: <path:line> - <the line or output you observed, quoted briefly>
+COMMAND: <the command you ran or "read only"> -> exit <code>
+CORRECTED CLAIM: <only for CHANGED, else "-">
+
+FINDINGS
+
+- V25 [P1] (introduced: pre-v4.0.0.0 (v4.0.0.1 note))
+  CLAIM: Gate 3 classifier depends on word order: 'Update the README and review the result.' returns triggersGate3=false (read_only_override) while 'Review the README and update it.' returns true, contradicting AGENTS.md ('A read-only word next to a write trigger does not disqualify it').
+  CITES / CHECKS: .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:718, :731; AGENTS.md Gate 3. Check: `bun -e "import {classifyPrompt} from './.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts'; for (const p of ['Update the README and review the result.','Review the README and update it.','Create a review checklist for the release.']) console.log(p, JSON.stringify(classifyPrompt(p)))"` (or npx tsx)
+
+- V26 [P1] (introduced: v4.0.0.1)
+  CLAIM: The resume branch of the Gate 3 classifier applies a read-only override that the module's own decision order (resume/memory_save always required) forbids: 'review the packet then resume it' suppresses Gate 3.
+  CITES / CHECKS: gate-3-classifier.ts:786, :837, :843; run classifyPrompt('review the packet then resume it')
+
+- V27 [P1] (introduced: v4.0.2.0)
+  CLAIM: /speckit:save's writer runtime/cli/dist/continuity/generate-context.js is gitignored and untracked; /doctor:install probes runtime/dist, not runtime/cli/dist; the repair validate.sh prints (cd runtime && npm run build) does not build runtime/cli because runtime/tsconfig.json references only ../shared.
+  CITES / CHECKS: .gitignore:60; `git check-ignore -v .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`; `git ls-files .skilled/skills/system-spec-kit/runtime/cli/dist | wc -l`; .skilled/commands/doctor/assets/doctor-install.yaml:34; runtime/tsconfig.json; validate.sh:409,432; runtime/cli/package.json:13
+
+- V28 [P1] (introduced: v4.0.1.0)
+  CLAIM: resolveProjectRoot falls back to the shared runtime checkout (with one stderr line) when the caller's repo does not carry .skilled/skills/system-spec-kit, and binds it into STATIC_CONFIG.PROJECT_ROOT, so a save from an unrecognised project targets this repository; introduced by commit 6f42c7b169.
+  CITES / CHECKS: .skilled/skills/system-spec-kit/runtime/cli/core/config.ts:98-100, :131-147, :355; generate-context.ts:99; `git log -1 --format=%H%n%ad%n%s 6f42c7b169`
+
+- V29 [P1] (introduced: pre-v4.0.0.0)
+  CLAIM: create.sh resolves TEMPLATES_BASE from the target repo ($REPO_ROOT, cwd git top-level) at three sites rather than its own location, while its libs are sourced location-relative; SPECKIT_TEMPLATES_BASE is undocumented in help.
+  CITES / CHECKS: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1406, :1477, :1665, :2253, :2259. READ ONLY: do not run create.sh.
+
+- V30 [P1] (introduced: v4.0.0.5)
+  CLAIM: Strict validation returns pass for a phase parent's ANCHORS_VALID before parsing any anchor, so nested/unclosed anchors in a phase-parent spec.md never fail, contradicting the v4.0.0.5 note.
+  CITES / CHECKS: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:969-977; v4.0.0.5.md. Optional check on a /tmp copy only: a phase-parent folder with nested anchors, `SPECKIT_RULES=ANCHORS_VALID bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/<dir> --strict --json`
+
+- V31 [P1] (introduced: pre-v4.0.0.0 (v4.0.0.3))
+  CLAIM: The trigger lookup answers a misspelled query with 20 rows scored 0.000 and exit 0 unless --scoring-only is passed; the zero-score filter sits only in the scoringOnly branch.
+  CITES / CHECKS: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:203-204; run `node ... lookup-trigger-index.mjs --json -- 'validaton rulles strict'; echo $?` and with --scoring-only

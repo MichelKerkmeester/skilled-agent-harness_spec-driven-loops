@@ -1,0 +1,2160 @@
+{
+  "sessionId": "2026-11-08T20:14:40.000Z",
+  "parentSessionId": "2026-11-08T20:14:40.000Z",
+  "lineageMode": "restart",
+  "generation": 2,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-advisor-transport-v4-0-0-0-v4-0-0-16-is-the-mcp-transport-fully-gone-and-do-degr",
+      "inboxId": null,
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16): is the MCP transport fully gone, and do degraded local scoring and the shared daemon behave as documented in system-skill-advisor/SKILL.md and ARCHITECTURE.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-advisor-parity-v4-0-0-7-is-the-python-vs-node-advisor-parity-check-still-wired-i",
+      "inboxId": null,
+      "text": "Advisor parity (v4.0.0.7): is the Python vs Node advisor parity check still wired into CI, and do the two advisors disagree on any prompt today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-advisor-prompt-hook-v4-0-0-1-v4-0-0-2-v4-0-2-0-does-every-runtime-adapter-claude",
+      "inboxId": null,
+      "text": "Advisor prompt hook (v4.0.0.1, v4.0.0.2, v4.0.2.0): does every runtime adapter (.claude/hooks, .codex/hooks, .cursor/hooks, .devin/hooks, .opencode/plugins, .pi/extensions, .dsh/plugins) deliver the advisor brief from the single source in .skilled/hooks/skill-advisor, within its time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-hermes-removal-v4-0-2-0-which-hook-plugin-advisor-or-routing-files-still-referen",
+      "inboxId": null,
+      "text": "Hermes removal (v4.0.2.0): which hook, plugin, advisor or routing files still reference Hermes, .hermes/ or a hermes runtime flag?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-5-session-relaunch-v4-0-0-13-v4-0-0-14-do-skilled-hooks-session-relaunch-and-its-r",
+      "inboxId": null,
+      "text": "Session relaunch (v4.0.0.13, v4.0.0.14): do .skilled/hooks/session-relaunch and its runtime adapters implement the per-runtime SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED flags, the 80 percent trigger and the model, effort and goal carry-over as the notes claim?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-6-history-after-compaction-v4-0-2-0-does-the-session-history-lookup-opencode-plugi",
+      "inboxId": null,
+      "text": "History after compaction (v4.0.2.0): does the session history lookup (.opencode/plugins/session-history-lookup.js and its counterparts) stay read-only and work on each runtime the note names?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-7-question-tool-capture-v4-0-2-0-do-skilled-hooks-ask-surface-guard-and-skilled-ho",
+      "inboxId": null,
+      "text": "Question-tool capture (v4.0.2.0): do .skilled/hooks/ask-surface-guard and .skilled/hooks/decision-capture detect typed option menus as the fixtures claim, and where do they false-positive or false-negative?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-8-hook-safety-v4-0-0-8-v4-0-0-16-do-all-hook-entry-points-honor-the-three-second-s",
+      "inboxId": null,
+      "text": "Hook safety (v4.0.0.8, v4.0.0.16): do all hook entry points honor the three-second stdin deadline and the git-call time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-9-over-engineering-which-per-runtime-hook-copies-mirrors-and-generated-artifacts-c",
+      "inboxId": null,
+      "text": "Over-engineering: which per-runtime hook copies, mirrors and generated artifacts could collapse into one source, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-10-ux-and-extension-what-blocks-the-operator-or-ai-user-when-enabling-relaunch-read",
+      "inboxId": null,
+      "text": "UX and extension: what blocks the operator or AI user when enabling relaunch, reading the advisor brief or recovering history, and which concrete extensions would remove those blocks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-11-advisor-follow-ups-from-generation-1-does-the-sk-doc-mode-registry-shared-packet",
+      "inboxId": null,
+      "text": "Advisor follow-ups from generation 1: does the sk-doc mode-registry shared-packet entry (sk-create-skill-parent) and the duplicate package_skill.py cause any routing or package-check defect when the advisor routes a /create:skill-parent request?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-advisor-transport-v4-0-0-0-v4-0-0-16-is-the-mcp-transport-fully-gone-and-do-degr",
+      "inboxId": null,
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16): is the MCP transport fully gone, and do degraded local scoring and the shared daemon behave as documented in system-skill-advisor/SKILL.md and ARCHITECTURE.md?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-ux-and-extension-what-blocks-the-operator-or-ai-user-when-enabling-relaunch-read",
+      "inboxId": null,
+      "text": "UX and extension: what blocks the operator or AI user when enabling relaunch, reading the advisor brief or recovering history, and which concrete extensions would remove those blocks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-11-advisor-follow-ups-from-generation-1-does-the-sk-doc-mode-registry-shared-packet",
+      "inboxId": null,
+      "text": "Advisor follow-ups from generation 1: does the sk-doc mode-registry shared-packet entry (sk-create-skill-parent) and the duplicate package_skill.py cause any routing or package-check defect when the advisor routes a /create:skill-parent request?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-advisor-parity-v4-0-0-7-is-the-python-vs-node-advisor-parity-check-still-wired-i",
+      "inboxId": null,
+      "text": "Advisor parity (v4.0.0.7): is the Python vs Node advisor parity check still wired into CI, and do the two advisors disagree on any prompt today?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-advisor-prompt-hook-v4-0-0-1-v4-0-0-2-v4-0-2-0-does-every-runtime-adapter-claude",
+      "inboxId": null,
+      "text": "Advisor prompt hook (v4.0.0.1, v4.0.0.2, v4.0.2.0): does every runtime adapter (.claude/hooks, .codex/hooks, .cursor/hooks, .devin/hooks, .opencode/plugins, .pi/extensions, .dsh/plugins) deliver the advisor brief from the single source in .skilled/hooks/skill-advisor, within its time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-hermes-removal-v4-0-2-0-which-hook-plugin-advisor-or-routing-files-still-referen",
+      "inboxId": null,
+      "text": "Hermes removal (v4.0.2.0): which hook, plugin, advisor or routing files still reference Hermes, .hermes/ or a hermes runtime flag?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-5-session-relaunch-v4-0-0-13-v4-0-0-14-do-skilled-hooks-session-relaunch-and-its-r",
+      "inboxId": null,
+      "text": "Session relaunch (v4.0.0.13, v4.0.0.14): do .skilled/hooks/session-relaunch and its runtime adapters implement the per-runtime SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED flags, the 80 percent trigger and the model, effort and goal carry-over as the notes claim?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-6-history-after-compaction-v4-0-2-0-does-the-session-history-lookup-opencode-plugi",
+      "inboxId": null,
+      "text": "History after compaction (v4.0.2.0): does the session history lookup (.opencode/plugins/session-history-lookup.js and its counterparts) stay read-only and work on each runtime the note names?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-7-question-tool-capture-v4-0-2-0-do-skilled-hooks-ask-surface-guard-and-skilled-ho",
+      "inboxId": null,
+      "text": "Question-tool capture (v4.0.2.0): do .skilled/hooks/ask-surface-guard and .skilled/hooks/decision-capture detect typed option menus as the fixtures claim, and where do they false-positive or false-negative?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-8-hook-safety-v4-0-0-8-v4-0-0-16-do-all-hook-entry-points-honor-the-three-second-s",
+      "inboxId": null,
+      "text": "Hook safety (v4.0.0.8, v4.0.0.16): do all hook entry points honor the three-second stdin deadline and the git-call time limit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-9-over-engineering-which-per-runtime-hook-copies-mirrors-and-generated-artifacts-c",
+      "inboxId": null,
+      "text": "Over-engineering: which per-runtime hook copies, mirrors and generated artifacts could collapse into one source, and what would break if each were removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Whether the top-ranked recommendation carrying a *lower* score than the runner-up (sk-doc 0.347 above system-spec-kit 0.579 under `--trusted`) is intended precedence or a sort defect. Recorded as an observation, not a finding, because I cannot establish intent from output order alone.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** stays open on its second half. MCP removal is confirmed. The degraded-mode and shared-daemon behavior is *not*: I read the launcher's lease and lock-dir surface but never exercised the daemon-down path or the two-simultaneous-launchers race, so \"behaves as documented\" is untested rather than confirmed.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which layer drops the redirect: is it the CLI handler's post-scoring step, the shim's `recommend_with_native_advisor()` options, or the trust default of f-iter001-003? A root-cause pass on `handlers/advisor-recommend.ts` against `lib/compat/` would close f-iter001-001.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does `SYSTEM_SKILL_ADVISOR_BRIDGE_TIMEOUT_MS` behave as the *undocumented* control implies on a real OpenCode timeout — does any stale brief survive, or does the turn always lose the brief?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which layer drops the redirect between the CLI handler and the shim's `recommend_with_native_advisor()` (carried from iteration 1).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hook safety (v4.0.0.8, v4.0.0.16): the three-second stdin deadline and the git-call time limit across every hook entry point.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16): the shared daemon's degraded path and the two-launcher race are still unexercised (carried from iteration 1).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: is dsh's `message.source?.kind === 'user'` provenance shape stable in current dsh, or does the adapter silently skip prompts when the shape changes? The test fixture proves only the fixture.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: measure the Codex hook wall time on a cold daemon to decide whether f-iter002-003 stays P2.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does OpenCode, Cursor or Devin expose an effort flag at launch at all? That single fact decides",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which layer supplies `SKILLED_LOOP_RUNTIME` for a session started before the shell line — is",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the killer treat a `runtime: 'claude'` record written by a Pi sender differently from a",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: hook safety (three-second stdin deadline, git-call time limit) is still unexamined.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Question-tool capture (`ask-surface-guard`, `decision-capture`) is entirely unexamined.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Still untouched from earlier iterations: the three-second stdin deadline and the git-call time limit",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "f-iter004-005 needs one live Codex compaction to close.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Still open: which layer drops the advisor redirect (CLI handler vs the shim), and whether",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hermes removal (v4.0.2.0): untouched.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Advisor follow-ups from generation 1: not reached.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: which layer drops the advisor redirect (CLI handler vs shim).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does `hook-flags.env` (live) actually carry `SYSTEM_ASK_SURFACE_DISABLED`, or only `hook-flags.env.example` [SOURCE: .skilled/hooks/hook-flags.env.example:26]? Killed-switch reachability is unverified.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Hook safety (v4.0.0.8, v4.0.0.16): the three-second stdin deadline and git-call time limit are still unexamined — note the Claude ask-surface adapter reads stdin with a plain blocking `readFileSync(0)` and no deadline.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: where do the `node:test` hook suites run in CI, if anywhere?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Over-engineering: six runtime copies of one detector call; four different send-back mechanisms.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16): degraded local scoring + shared daemon still unexercised (carried, 3 iterations).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "UX and extension: not reached.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does `hook-flags.env` (live) carry `SYSTEM_ASK_SURFACE_DISABLED`, or only the `.example`? A disabled ask-surface switch would make f-iter006-001 unreachable in practice — unverified either way, and it decides f-iter006-001's real severity.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Advisor transport (v4.0.0.0, v4.0.0.16): degraded local scoring and the shared daemon are still unexercised — carried four iterations now, and this iteration did not touch them.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: where the `node:test` hook suites actually run in CI, if anywhere. f-iter006-004's redundant suites only cost something if one of them is executed; if neither runs, the cost is larger and different.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "UX and extension: never reached.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does the doctor actually read `agents-md-manifest.json` verbatim into `AGENTS.md`, or transform it? That is the gap between f-iter006-002's \"string exists\" and \"vendored repos get Hermes text\".",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which layer drops the advisor redirect, CLI handler or the shim's `recommend_with_native_advisor()` — carried unchanged.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Advisor follow-ups from generation 1: the sk-doc `sk-create-skill-parent` shared-packet entry and duplicate `package_skill.py` — never reached.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Which layer drops the advisor redirect** (CLI handler vs the shim's `recommend_with_native_advisor()`) — carried unchanged.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hook safety (v4.0.0.8, v4.0.0.16)** — the *git-call* time limit half is still unexamined; the stdin half is now measured and has one gap.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** does `hook-flags.sh`'s 113-line table actually disagree with `hook-flags.cjs` today? A one-shot differential (resolve every flag through both, diff) would turn f-iter007-004's drift *risk* into a yes/no, and is cheap.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — the sk-doc `sk-create-skill-parent` shared-packet entry and duplicate `package_skill.py`. Touched only tangentially via `create-skill-parent-auto.yaml:240`; not assessed.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension** — never reached, seventh iteration running.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** which of the 132 non-shared adapters import the flag module vs hand-roll their own env reads? That is the pre-condition for sizing f-iter007-002's cut.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**f-iter007-003** needs one live Claude turn-end hang, or the `timeout` repro run, to settle P1-vs-P2.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** is `leaf-scopes.json` optional for a single-mode skill (f-iter007-006)? One generator run settles it.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared daemon lease/race are still unexercised. Carried **five** iterations now. This is the largest untested claim in the run.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension** proper — the relaunch-enable, brief-reading and history-recovery blocks. Only reached sideways.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared daemon lease/race remain unexercised. **Six** iterations carried. Still the largest untested claim in the run.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: which of the 132 non-shared adapters import the flag module vs hand-roll env reads; `leaf-scopes.json` optionality; `f-iter007-003` live Claude hang; `f-iter004-005` live Codex compaction.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** why does the hook brief for this same phrase render `/doctor:env list` at `0.82/0.28` against `sk-code 0.95/0.16`, while a direct CLI call scores `/doctor:env` `0.8962/0.16` against `system-spec-kit 0.8794/0.12`? Recorded as an observation only: the hook scores the whole iteration prompt, not the phrase, so the divergence is confounded and proves nothing yet.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — the sk-doc `sk-create-skill-parent` shared-packet entry and the duplicate `package_skill.py`. Untouched, eighth iteration.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** does `hook-flags.sh`'s 113-line table drift from `hook-flags.cjs` today (one-shot differential)?",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** what are `STRONG_PROBLEM_CUE` / `WEAK_PROBLEM_CUE` word lists, and does `matchDoctorProblem` on the hooks prompt clear `DOCTOR_HELPER_UNCUED_MIN_SCORE`? That single read converts f-iter008-001 from \"inferred clause\" to a located line, and would show whether the fix is the cue list or the `skillPasses` guard.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Hook safety (v4.0.0.8, v4.0.0.16)** — the git-call time-limit half is still unexamined.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — the sk-doc `sk-create-skill-parent` shared-packet entry and the duplicate `package_skill.py`. Untouched, ninth iteration; now the oldest open item after the transport question.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared daemon lease/race remain unexercised. Carried **seven** iterations. Still the largest untested claim in the run.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does the \"OpenCode Plugin Tests\" CI job actually gate this suite?** A red suite at HEAD is only possible if the job is skipped for these paths or not required. That decides whether f-iter009-001 is a code bug or a governance bug.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried: the hook git-call time limit; whether `hook-flags.sh`'s table drifts from `hook-flags.cjs`; which of the 132 non-shared adapters import the flag module; `leaf-scopes.json` optionality; the live Claude turn-end hang; the live Codex compaction.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension** proper: with f-iter009-001 understood, the remaining blocks are reading the advisor brief and recovering history, neither of which this iteration reached.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Is the 27-failure red state a regression or a resolution failure?** The discriminator: run `session-relaunch.test.cjs` once with the plugin loading its compiled core from `.skilled/.../dist` and once with the source core. If the nudge appears only in one, the fault is the adapter-root resolution, not the nudge logic.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**`hook-flags.sh` vs `hook-flags.cjs` one-shot differential** — cheap, still unrun, and f-iter010-003's step table depends on the resolver being the single truth.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**History recovery as an operator path** — untouched. The concrete question: after compaction, which command returns the pre-compaction turn, and does `session-history-lookup` have an operator entry point at all, or only a plugin callback?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**The shared daemon and degraded scoring (v4.0.0.0/.16)** — still unexercised, now across **eight** iterations and the run's largest untested claim. Everything in the transport question except \"MCP is gone\" is inference from reading.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — the sk-doc `sk-create-skill-parent` shared-packet entry and the duplicate `package_skill.py`. Untouched for the tenth iteration and now the oldest open item.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**The advisor brief reader path** — open `.skilled/skills/system-skill-advisor/SKILL.md` and `hooks/skill-advisor-hook.md` and decide whether f-iter010-004 is a real doc gap or an artifact of where I looked.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried, all still open: the hook git-call time limit; which of the non-shared adapters import the flag module; `leaf-scopes.json` optionality; the live Claude turn-end hang; the live Codex compaction.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Which layer drops the advisor redirect** (CLI handler vs the shim's `recommend_with_native_advisor()`) — carried unchanged since iteration 1; `handlers/advisor-recommend.ts` against `lib/compat/` is the pass that closes it.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Was `passes_threshold` true in that run?** Cheapest closure: temporarily surface it, or run the fusion function in a vitest harness with the same prompt. This is now the single fact that decides whether f-iter011-001 is a bug or a documented predicate doing something surprising.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Generation-1 advisor follow-ups** — the sk-doc `sk-create-skill-parent` shared-packet entry and the duplicate `package_skill.py`. Eleventh iteration untouched.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried, unchanged: advisor transport degraded path and the shared-daemon lease/race (**nine** iterations now); the hook git-call time limit; which non-shared adapters import the flag module; `leaf-scopes.json` optionality; the live Claude turn-end hang; the live Codex compaction; `hook-flags.sh` vs `hook-flags.cjs` differential; history recovery as an operator path; the advisor brief reader path.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**v4.0.0.10 hook claims** — untrusted repositories resolving helpers under `/dev/null`, and the Commit-Id allocator fallback. Both are security-shaped and unopened; the `/dev/null` claim in particular deserves a read against the hook helper resolver.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**v4.0.0.5 pre-commit phrase check** — fail-open when node, the linter, its YAML library or git is missing. A gate that silently passes on a missing dependency is worth one read.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Which process answered?** The response reports `trustState.generation` and `freshness: live`, but no build path. Locate the build root, then re-run the f-iter011-001 probe against the built artifact and against `tsx`-style direct source execution — the differential names the layer and closes f-iter011-001's mechanism half.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**v4.0.0.11 `/doctor:git setup`** — eleven checks, seven tools, and the claim that a hook counts only when the script it runs exists.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried unchanged: the degraded daemon path; the duplicate `package_skill.py`; `hook-flags.sh` vs",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does the bounded-git claim hold for `pre-push`?** Only four `git_bounded` calls there, with plain",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared-daemon",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does the phrase linter's git-unavailable path exit non-zero?** One sandboxed run closes",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension** — relaunch enable, brief reading, history recovery. Never reached; twelfth",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does any CI gate run `agents-md-manifest.cjs --check`?** It exits 1 at HEAD. A red consistency check that nobody runs is a governance gap, not a code gap, and that discriminates f-iter013-001's true severity.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension proper** — reading the advisor brief and recovering history after compaction. f-iter013-004 now covers the relaunch/ask-surface *enablement* surface only; the other two blocks are untouched, thirteenth iteration.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried unchanged: the hook git-call time limit; `hook-flags.sh` vs `hook-flags.cjs` differential; which non-shared adapters import the flag module; `leaf-scopes.json` optionality; the live Claude turn-end hang; the live Codex compaction; which layer drops the advisor redirect.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — the respawn half is now verified. Degraded local scoring and the shared-daemon lease/race remain unexercised, **eight** iterations carried. Still the largest untested claim in the run.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** `v4.0.0.9`'s routing claim (mode aliases lowercase and listed among router keywords) — one generator or doctor run settles it.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — the sk-doc `sk-create-skill-parent` shared-packet entry and duplicate `package_skill.py`. Untouched, thirteenth iteration.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried unchanged: which layer drops the advisor redirect (CLI handler vs shim); the hook git-call time limit; which non-shared adapters import the flag module; `leaf-scopes.json` optionality; the live Claude turn-end hang; the live Codex compaction.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where does \"a recommendation that rotates mid-session\" actually rotate? Not in `prompt-advisor.ts`.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — sk-doc's `sk-create-skill-parent` shared-packet entry and the duplicate `package_skill.py`. Untouched, fourteenth iteration; oldest open item.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**`hook-flags.sh` vs `hook-flags.cjs` one-shot differential** — still unrun.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared-daemon lease/race remain unexercised. **Nine** iterations carried; still the largest untested claim in the run.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `SPECKIT_PI_DIRECTIVE_DEDUP` appear in `hook-flags.env` / `hook-flags.env.example`, and does any doc describe the suppression? Unchecked.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension proper** — enabling relaunch, reading the advisor brief, recovering history. Only ever",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**History recovery as an operator path** — after compaction, which command returns the pre-compaction turn,",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**The two front doors on one prompt** — the Python half still needs one run, now without `timeout`.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** should the state-log projection carry `focus` and `answeredQuestions`, or is the delta file the",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Which layer drops the advisor redirect** (CLI handler vs the shim's `recommend_with_native_advisor()`) —",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New — is the rank-1 anomaly a defect or an exposed-lane precedence rule?** One read of the fusion/ordering",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** what is the stated basis for the \"181 adapters\" figure? Two passes have now measured two different",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Live confirmations still owed:** the Claude turn-end hang, one Codex compaction, `leaf-scopes.json`",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared-daemon lease/race are",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — sk-doc's `sk-create-skill-parent` shared-packet entry and the",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does the steered dsh message carry `source.kind: 'repo-guards'` into `readTurn`?** If it does, a one-line provenance filter is the whole fix.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension proper** — enabling relaunch, reading the advisor brief, recovering history. Fifteenth iteration unreached.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor follow-ups from generation 1** — sk-doc's `sk-create-skill-parent` shared-packet entry and the duplicate `package_skill.py`. Fifteenth iteration untouched, and now adjacent to f-iter017-005's generator finding.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Shared daemon lease and two-launcher race** — the surviving half of question 63, ten iterations carried, now the run's largest untested claim.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Is the dsh steer loop real?** f-iter017-003 needs the two-turn harness described above to move from inferred to measured.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension proper** — enabling relaunch, reading the advisor brief, recovering history — still unreached after fifteen iterations. This iteration produced an extension and a UX finding, but in the hook-telemetry cluster, and they should not be counted against that question.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried and untouched: the advisor degraded-daemon path and the two-launcher race (now the run's oldest unexercised claim); which layer drops the advisor redirect; `hook-flags.sh` vs `hook-flags.cjs` differential; `leaf-scopes.json` optionality; the live Claude turn-end hang; the live Codex compaction; the generation-1 advisor follow-ups (`sk-create-skill-parent` shared-packet entry, duplicate `package_skill.py`).",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does anything read the canonical log and act on its absence?** f-iter018-001's severity rests on it. A read of `completion-sentinel` and any receipt/liveness check that tails `.skilled/logs/cli-dispatch-audit.log` would settle P1-vs-P2, and this iteration did not check.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**The two anchors that are already right are the answer to the fix.** `.skilled/hooks/goal/lib/goal-core.cjs:175` (`resolveRepoRoot`) and `:193` (`join(repoRoot, STATE_SUBDIR)`) anchor the goal state; `.skilled/hooks/goal/lib/goal-slice.cjs:253` walks upward testing for `.git` or `.skilled/skills`. Decision-capture anchors through git itself, with environment scrubbing and a fallback: `.skilled/hooks/decision-capture/lib/capture-core.mjs:242` through `:268`. Three concerns in this cluster solved the same problem three ways and only the dispatch adapters skipped it. Whether the goal and decision-capture implementations agree on a non-git directory is unread.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Do the Codex and Devin payloads actually drift the way Claude's does?** The Claude drift is evidenced by a file on disk; for the other two it is inferred from identical source shape. A Cursor adapter, by contrast, uses `payload?.workspace_roots?.[0]` (`.skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs:70`) and is likely immune — worth one read to confirm which adapters share the class.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Are the two `findRepoRoot` bodies identical?** f-iter018-005 depends on it.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** does sk-create-goal's goal.md template put its authoring instructions in HTML comments",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** does dsh register its goal plugin through a manifest rather than `.dsh/plugins`? One",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** is the absence of a Claude/Codex goal adapter deliberate (the native goal tools named in",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New:** should `budgetState` gain a fourth state separating \"no manifest\" from \"phase child, no",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried and untouched: the advisor degraded-daemon path and the two-launcher race (now the",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension proper** — enabling relaunch, reading the advisor brief, recovering history after compaction. Sixteenth iteration unreached as a whole; this iteration produced UX findings only inside the hook cluster (f-iter021-003) and they should not be counted against it.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New — which install routes reproduce `.dsh/patches/guards.patch.yml`?** This decides whether f-iter021-003 is a silent-loss bug or a non-issue for every supported install. `.dsh/README.md` and `.dsh/SYNC.md` are the two documents to read.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New — does the decision-capture queue ever get consumed for a session whose reader runs from a different checkout?** `projectToken` hashes the canonical root path, so a second clone of the same repository gets a different token and cannot see the first clone's queue. Whether a worktree counts as the same project is the untested case.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New — is `ask-surface-guard/`'s missing concern README the same gap as f-iter021-001, or deliberate?** The two README-less concerns are exactly the two whose coverage tables live in the registry README. One read of either folder's docs plan settles whether the omission was a decision.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared-daemon lease/two-launcher race remain unexercised. Now carried across **eleven** iterations of the run and still the largest untested claim in it.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried unchanged: which layer drops the advisor redirect (CLI handler vs `recommend_with_native_advisor()`); the generation-1 advisor follow-ups (`sk-create-skill-parent` shared-packet entry, duplicate `package_skill.py`); the hook git-call time limit; `hook-flags.sh` vs `hook-flags.cjs` differential; `leaf-scopes.json` optionality; the live Claude turn-end hang; the live Codex compaction.",
+      "addedAtIteration": 21,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**UX and extension proper** — enabling relaunch, reading the advisor brief, recovering history after compaction. Seventeenth iteration unreached as a whole. f-iter022-003 is adjacent (the relaunch README an operator reads first is broken) but was found by a convention sweep, not by the UX question, and should not be counted against it.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Advisor transport (v4.0.0.0, v4.0.0.16)** — degraded local scoring and the shared-daemon lease/two-launcher race remain unexercised. Now carried across twelve iterations and still the largest untested claim in the run. Everything except \"MCP is gone\" is inference from reading.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New — was the scratch spike tree deleted deliberately, or did the track rename orphan it?** f-iter022-003's remediation differs: restore five files versus rewrite five table rows. `git log --diff-filter=D -- 'specs/hooks-plugins-extensions/023-session-relaunch-loop/*/scratch/spike/*'` settles it, path-limited as the run config requires.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New — which is the canon, `MODULE` or `COMPONENT`?** f-iter022-004 records the split but not the decision. `sk-code`'s module-header reference is the arbiter; if it says `MODULE`, the 4 files are the defect, and if it says nothing, the finding is the missing rule rather than the 4 files.",
+      "addedAtIteration": 22,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Advisor transport (v4.0.0.0, v4.0.0.16): is the MCP transport fully gone, and do degraded local scoring and the shared daemon behave as documented in system-skill-advisor/SKILL.md and ARCHITECTURE.md?",
+    "UX and extension: what blocks the operator or AI user when enabling relaunch, reading the advisor brief or recovering history, and which concrete extensions would remove those blocks?",
+    "Advisor follow-ups from generation 1: does the sk-doc mode-registry shared-packet entry (sk-create-skill-parent) and the duplicate package_skill.py cause any routing or package-check defect when the advisor routes a /create:skill-parent request?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f-iter001-001-p1-bug-the-two-front-doors-disagree-on-the-same-prompt-and-the-div",
+      "text": "f-iter001-001 — P1, bug: the two front doors disagree on the same prompt, and the divergence is not in the approved ledger",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-f-iter001-002-p1-bug-gate-gap-the-ci-parity-ratchet-is-wired-but-it-cannot-see-a",
+      "text": "f-iter001-002 — P1, bug (gate gap): the CI parity ratchet is wired, but it cannot see a front-door divergence",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-f-iter001-003-p2-over-engineering-inconsistent-policy-surface-two-front-doors-on",
+      "text": "f-iter001-003 — P2, over-engineering / inconsistent policy surface: two front doors, one applies repo policy defaults",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-f-iter001-004-p2-canon-misalignment-a-comment-hygiene-violation-survives-the-com",
+      "text": "f-iter001-004 — P2, canon misalignment: a comment-hygiene violation survives the comment-hygiene gate",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-f-iter001-005-p2-drift-release-note-vs-code",
+      "text": "f-iter001-005 — P2, drift (release note vs code)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-f-iter002-001-p2-drift-the-maintained-advisor-matrix-is-stale-in-two-directions-",
+      "text": "f-iter002-001 — P2, drift: the maintained advisor matrix is stale in two directions, and one documented path cannot exist",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-f-iter002-002-p2-drift-the-documented-opencode-timeout-control-is-never-read-and",
+      "text": "f-iter002-002 — P2, drift: the documented OpenCode timeout control is never read, and the real one has a different default",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-f-iter002-003-p2-bug-codex-s-wrapper-budget-plus-the-inner-start-margin-exceeds-",
+      "text": "f-iter002-003 — P2, bug: Codex's wrapper budget plus the inner start margin exceeds the host's 3,000 ms deadline",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-f-iter002-004-p2-bug-dsh-awaits-the-advisor-with-no-deadline-unlike-pi",
+      "text": "f-iter002-004 — P2, bug: dsh awaits the advisor with no deadline, unlike Pi",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-confidence-high-on-the-code-the-parity-sentence-is-scope-ambiguous-so-i-read-the",
+      "text": "Confidence: high on the code; the parity sentence is scope-ambiguous, so I read the gap as a",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-confidence-high-that-the-code-covers-three-runtimes-medium-on-which-side-is-wron",
+      "text": "Confidence: high that the code covers three runtimes; medium on which side is wrong.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-confidence-high-the-ternary-and-the-default-are-both-in-the-cited-lines",
+      "text": "Confidence: high; the ternary and the default are both in the cited lines.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-confidence-high",
+      "text": "Confidence: high.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-iter003-001-effort-carry-over-exists-for-3-of-the-6-runtimes-the-wrapper-launc",
+      "text": "f-iter003-001 — Effort carry-over exists for 3 of the 6 runtimes the wrapper launches (P2, drift)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-f-iter003-002-outside-the-loop-prepare-assumes-claude-when-runtime-is-omitted-p2",
+      "text": "f-iter003-002 — Outside the loop, `prepare` assumes `claude` when `--runtime` is omitted (P2, bug)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-f-iter003-003-v4-0-0-14-still-names-hermes-as-one-of-the-seven-per-runtime-flags",
+      "text": "f-iter003-003 — v4.0.0.14 still names `HERMES` as one of the seven per-runtime flags (P2, drift)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-f-iter003-004-dsh-is-absent-from-the-relaunch-runtime-set-so-system-session-rela",
+      "text": "f-iter003-004 — `dsh` is absent from the relaunch runtime set, so `SYSTEM_SESSION_RELAUNCH_DSH_ENABLED` is a no-op (P2, extension gap)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-release-v4-0-0-14",
+      "text": "Release: v4.0.0.14",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-release-v4-0-0-14-the-runtime-flag-was-introduced-here",
+      "text": "Release: v4.0.0.14 (the runtime flag was introduced here)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-release-v4-0-2-0",
+      "text": "Release: v4.0.2.0",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-release-v4-0-2-0-the-removal-against-v4-0-0-14-the-text",
+      "text": "Release: v4.0.2.0 (the removal) against v4.0.0.14 (the text)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-the-pending-record-is-written-with-runtime-claude-so-a-later-adapter-or-the-kill",
+      "text": "the pending record is written with `runtime: 'claude'`, so a later adapter or the killer",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-the-per-runtime-flag-consulted-is-system-session-relaunch-claude-enabled-so",
+      "text": "the per-runtime flag consulted is `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED`, so",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-verify-grep-n-hermes-skilled-changelog-skilled-v4-0-0-14-md-one-line",
+      "text": "Verify: `grep -n \"HERMES\" .skilled/changelog/skilled/v4.0.0.14.md` → one line;",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-verify-grep-n-opencode-cursor-devin-skilled-bin-skilled-loop-grep-i-effort-no-ma",
+      "text": "Verify: `grep -n \"opencode\\|cursor\\|devin\" .skilled/bin/skilled-loop | grep -i effort` → no match,",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-verify-node-e-const-f-require-skilled-hooks-shared-hook-flags-cjs-console-log-f-",
+      "text": "Verify: `node -e 'const f=require(\"./.skilled/hooks/shared/hook-flags.cjs\"); console.log(f.RUNTIMES, f.runtimeEnableFlag(\"session-relaunch\",\"dsh\"))'`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-verify-run",
+      "text": "Verify: run",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-f-iter004-001-the-offer-commands-a-gitignored-build-artifact-so-an-unbuilt-copy-",
+      "text": "f-iter004-001 — The offer commands a gitignored build artifact, so an unbuilt copy silently has no feature",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-f-iter004-002-the-help-line-s-operations-cannot-run-as-printed-and-the-cli-refus",
+      "text": "f-iter004-002 — The help line's operations cannot run as printed, and the CLI refuses on both missing pieces",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-f-iter004-003-two-producers-duplicate-the-same-dynamic-support-probe",
+      "text": "f-iter004-003 — Two producers duplicate the same dynamic support probe",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-f-iter004-004-the-runtime-label-set-is-enumerated-twice-and-can-disagree",
+      "text": "f-iter004-004 — The runtime label set is enumerated twice and can disagree",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-f-iter004-005-codex-is-marked-ready-but-its-offer-depends-on-a-field-its-own-ada",
+      "text": "f-iter004-005 — Codex is marked ready, but its offer depends on a field its own adapter does not require (hypothesis)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-f-iter004-006-the-section-s-size-bound-is-asserted-by-a-test-not-enforced-by-the",
+      "text": "f-iter004-006 — The section's size bound is asserted by a test, not enforced by the builder",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-answer-queue-project-root-skilled-skills-state-decision-capture-projecttoken-ses",
+      "text": "Answer queue: `<project root>/.skilled/skills/.state/decision-capture/<projectToken>/<sessionToken>.jsonl`, plus a `.nudge` sibling and a `<sessionToken>.lock` under a lock subdir [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:40], [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:284], [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:288], [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:302]. A legacy directory is still read at save time [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:379].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-14-both-sit-under-skilled-skills-state-the-gitignored-runtime-state-gate-3-exempts-",
+      "text": "Both sit under `.skilled/skills/.state/`, the gitignored runtime state Gate 3 exempts — consistent, no canon breach.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-claude-stop-hook-active-only-source-claude-hooks-ask-surface-stop-cjs-92-source-",
+      "text": "Claude: `stop_hook_active` only [SOURCE: .claude/hooks/ask-surface-stop.cjs:92] / [SOURCE: .skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs:92] — one block per Stop, no marker write.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-dsh-marker-keyed-on-dsh-session-turn-source-skilled-hooks-ask-surface-guard-dsh-",
+      "text": "DSH: marker keyed on `dsh:<session>:<turn>` [SOURCE: .skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs:108] then `agent.steer` [SOURCE: .skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs:111] — one per turn counter, so a repeated menu in the next turn is sent back again.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-f-iter005-001-numbered-instruction-lists-written-1-fire-as-menus-p1-bug-v4-0-2-0",
+      "text": "f-iter005-001 — Numbered instruction lists written `1)` fire as menus (P1, bug, v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-f-iter005-002-the-commonest-numbered-menu-form-1-is-never-detected-p1-bug-drift-",
+      "text": "f-iter005-002 — The commonest numbered-menu form, `1.`, is never detected (P1, bug/drift, v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-f-iter005-003-a-menu-inside-an-indented-code-block-fires-p2-bug-v4-0-2-0",
+      "text": "f-iter005-003 — A menu inside an indented code block fires (P2, bug, v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-f-iter005-004-a-question-more-than-three-non-blank-lines-above-the-menu-escapes-",
+      "text": "f-iter005-004 — A question more than three non-blank lines above the menu escapes (P2, bug, v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-f-iter005-005-sent-back-once-is-enforced-per-message-on-opencode-per-turn-on-dsh",
+      "text": "f-iter005-005 — \"Sent back once\" is enforced per message on OpenCode, per turn on DSH (P1, bug/parity, v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-f-iter005-006-the-claude-adapter-never-tells-the-core-whether-a-question-tool-ex",
+      "text": "f-iter005-006 — The Claude adapter never tells the core whether a question tool exists (P2, bug/parity, v4.0.2.0)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-f-iter005-007-an-untracked-skilled-logs-tree-was-created-inside-a-hook-source-fo",
+      "text": "f-iter005-007 — An untracked `.skilled/logs` tree was created inside a hook source folder (P2, bug/artifact hygiene)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-fire-log-project-skilled-skills-state-ask-surface-fires-jsonl-source-skilled-hoo",
+      "text": "Fire log: `<project>/.skilled/skills/.state/ask-surface/fires.jsonl` [SOURCE: .skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs:206].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-opencode-marker-keyed-on-opencode-session-messageid-lastmessage-source-opencode-",
+      "text": "OpenCode: marker keyed on `opencode:<session>:<messageId || lastMessage>` [SOURCE: .opencode/plugins/ask-surface-guard.js:102]. The plugin's send-back is `promptAsync`, which starts a *new* assistant message with a *new* id [SOURCE: .opencode/plugins/ask-surface-guard.js:105]. If the agent answers the re-prompt with the same menu again, the key differs and the guard fires again — an unbounded ping-pong guarded only by the agent's compliance. The code comment claims the opposite (\"the same reply is never sent back twice\", [SOURCE: .opencode/plugins/ask-surface-guard.js:101]) — it is keyed on the message, so the same *text* in a new message is not protected.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-pi-marker-keyed-on-pi-session-operatorkey-source-pi-extensions-ask-surface-guard",
+      "text": "Pi: marker keyed on `pi:<session>:<operatorKey>` [SOURCE: .pi/extensions/ask-surface-guard.ts:107] — one send-back per operator turn. Correct.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-skilled-hooks-shared-hook-adapter-shared-cjs",
+      "text": "`.skilled/hooks/shared/hook-adapter-shared.cjs`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-skilled-hooks-shared-hook-stdin-deadline-test-mjs",
+      "text": "`.skilled/hooks/shared/hook-stdin-deadline.test.mjs`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-skilled-skills-system-spec-kit-runtime-hooks-lib-hook-adapter-shared-mjs",
+      "text": "`.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-skilled-skills-system-spec-kit-runtime-hooks-lib-hook-stdin-deadline-test-mjs",
+      "text": "`.skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs`",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-a-dispatch-binds-one-by-preloading-that-skill-and-naming-it-in-hermes-agent-pers",
+      "text": "`a dispatch binds one by preloading that skill and naming it in `HERMES_AGENT_PERSONA`. The `cli-hermes` packet owns the mechanics.` [SOURCE: .skilled/commands/doctor/assets/agents-md-manifest.json]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-ts-codex-agents-cursor-agents-pi-agents-devin-agents-or-hermes-agents-and-stay-w",
+      "text": "`ts/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/`, `.devin/agents/` or `.hermes/agents/`, and stay with the workflow phase.`\\n\\n`Hermes is the exception w` [SOURCE: .skilled/commands/doctor/assets/agents-md-manifest.json]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-f-iter006-001-p1-the-claude-ask-surface-stop-hook-blocks-on-stdin-with-no-deadli",
+      "text": "f-iter006-001 — P1 — The Claude ask-surface Stop hook blocks on stdin with no deadline, and it is registered",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-f-iter006-002-p1-the-doctor-s-agents-md-manifest-still-ships-hermes-persona-text",
+      "text": "f-iter006-002 — P1 — The doctor's AGENTS.md manifest still ships Hermes persona text into vendored repos",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-f-iter006-003-p2-the-stdin-deadline-is-not-one-number-so-three-seconds-describes",
+      "text": "f-iter006-003 — P2 — The stdin deadline is not one number, so \"three seconds\" describes only part of the surface",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-f-iter006-004-p2-two-parallel-shared-reader-implementations-and-two-parallel-dea",
+      "text": "f-iter006-004 — P2 — Two parallel shared-reader implementations and two parallel deadline test suites",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-f-iter006-005-p2-the-gate-1-trigger-index-still-returns-paths-into-the-removed-c",
+      "text": "f-iter006-005 — P2 — The Gate-1 trigger index still returns paths into the removed `cli-hermes` packet",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-f-iter007-001-the-runtime-mirrored-copies-are-symlinks-there-is-nothing-to-cut-a",
+      "text": "f-iter007-001 — The runtime \"mirrored copies\" are symlinks. There is nothing to cut and no sync check is owed.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-f-iter007-002-181-per-runtime-adapters-share-one-module-that-exports-two-functio",
+      "text": "f-iter007-002 — 181 per-runtime adapters share one module that exports two functions.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-f-iter007-003-two-hook-sources-bypass-the-shared-stdin-deadline-with-a-blocking-",
+      "text": "f-iter007-003 — Two hook sources bypass the shared stdin deadline with a blocking read, and one of them is the newest surface in the release line.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-f-iter007-004-hook-flags-is-one-implementation-plus-shims-not-four-copies-only-t",
+      "text": "f-iter007-004 — `hook-flags` is one implementation plus shims, not four copies. Only the shell variant is a genuine second implementation, and it is the drift risk.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-f-iter007-005-the-5-637-line-python-advisor-is-not-vestigial-three-production-su",
+      "text": "f-iter007-005 — The 5,637-line Python advisor is not vestigial: three production surfaces still call it, so \"delete Python\" breaks the OpenCode plugin, the doctor and `create:skill-parent`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-f-iter007-006-leaf-scopes-json-for-a-single-mode-skill-restates-roots-the-config",
+      "text": "f-iter007-006 — `leaf-scopes.json` for a single-mode skill restates roots the config already declares. Candidate, not a confirmed cut.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-plugin-half-of-v4-0-0-6-also-holds-advisorclirequest-spreads-the-hint-only-when-",
+      "text": "**Plugin half of v4.0.0.6 also holds.** `advisorCliRequest` spreads the hint only when truthy (`...(surfaceHint ? { surfaceHint } : {})`) so a null detection sends no hint at all rather than an empty one [SOURCE: .opencode/plugins/system-skill-advisor.js:869]; `detectWorkspaceSurface` returns a specific surface when the workspace holds its path/file markers and falls back to hub-registry order, with OpenCode only for a workspace inside this repository's `.skilled` folder [SOURCE: .opencode/plugins/system-skill-advisor.js:852]. Matches the release note's wording exactly.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-v4-0-0-12-first-two-claims-hold-help-me-set-up-skilled-command-doctor-setup-sole",
+      "text": "**v4.0.0.12 first two claims hold.** \"help me set up skilled\" → `command-doctor-setup` sole recommendation, 0.7 / confidence 0.8962, `ambiguous: false`. \"check my environment variables\" → `command-doctor-env` first at 0.7 / 0.8962, `system-spec-kit` second at 0.668667 — top route correct, but `ambiguous: true` because the gap is ~0.03. Worth noting for UX: the right answer arrives wearing an ambiguity flag.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-v4-0-0-6-surfacehint-bounds-hold-end-to-end-surfacehint-advisor-recommend-option",
+      "text": "**v4.0.0.6 surfaceHint bounds hold end to end.** `surfaceHint: ''` → `\"advisor_recommend.options.surfaceHint must be at least 1 character(s)\"`; 65 chars → `\"must be at most 64 character(s)\"`; both exit 64. Bounds declared three times consistently [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:290] [SOURCE: .skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts:24]. Release claim verified, not drifted.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-f-iter008-001-p1-drift-operator-ux-a-problem-worded-doctor-question-reaches-no-d",
+      "text": "f-iter008-001 — P1 — drift + operator UX: a problem-worded doctor question reaches no doctor command",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-f-iter008-002-p2-drift-readme-vs-schema-the-option-names-in-the-readme-are-rejec",
+      "text": "f-iter008-002 — P2 — drift (README vs schema): the option names in the README are rejected at top level",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-f-iter008-003-p2-drift-risk-doctor-command-routing-is-duplicated-across-a-genera",
+      "text": "f-iter008-003 — P2 — drift risk: doctor-command routing is duplicated across a generated table and the scorer projection",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-cascade-not-27-causes-four-failures-report-typeerror-cannot-read-properties-of-u",
+      "text": "**Cascade, not 27 causes:** four failures report `TypeError: Cannot read properties of undefined (reading 'match')` and two report a string argument receiving `undefined`, which is what a destructure of a failed `startLoopNudge` produces. The rest are `0 !== 1` on the same helper.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-13-confidence-high-on-the-counts-and-the-removal-the-exact-ship-release-of-the-remo",
+      "text": "**Confidence:** high on the counts and the removal; the exact ship release of the removal is inferred from commit order, not read from a changelog line this iteration.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-confidence-high-on-the-red-state-and-the-failing-assertion-not-established-wheth",
+      "text": "**Confidence:** high on the red state and the failing assertion; **not established** whether the cause is a real plugin regression or a stale compiled core resolved through the adapter root (`source-root-consumers.test.cjs` exists precisely to police that) — a discriminator is named in the next-focus note.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-20-confidence-medium-the-two-texts-do-disagree-whether-hook-flags-env-is-tracked-or",
+      "text": "**Confidence:** medium. The two texts do disagree; whether `hook-flags.env` is tracked or machine-local was **not** established, so which side is authoritative is undetermined and is recorded as such.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-19-consequence-on-a-copy-carrying-that-file-pi-opencode-codex-and-hermes-relaunch-i",
+      "text": "**Consequence:** on a copy carrying that file, Pi, OpenCode, Codex and Hermes relaunch is on by inheritance while the reference says the feature ships off. An operator reading the contract to confirm \"is this on?\" gets the wrong answer.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-17-doc-every-concern-except-session-relaunch-is-default-on-relaunch-ships-off-and-a",
+      "text": "**Doc:** every concern except session relaunch is default-on; relaunch \"ships off\", and a runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` decides for that runtime while `SYSTEM_SESSION_RELAUNCH_ENABLED` decides otherwise. [SOURCE: .skilled/hooks/injection-contract.md:20]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-evidence-node-test-opencode-plugins-tests-test-cjs-tests-572-pass-545-fail-27-sk",
+      "text": "**Evidence:** `node --test .opencode/plugins/tests/*.test.cjs` → `ℹ tests 572 / ℹ pass 545 / ℹ fail 27 / ℹ skipped 0`, exit status non-zero. The first assertion to fail is inside the shared helper `startLoopNudge`, where `transform()` must return one nudge entry at 90% fill and returns none. [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:182]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-18-live-file-system-session-relaunch-enabled-1-with-system-session-relaunch-claude-",
+      "text": "**Live file:** `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` and every other runtime flag commented out, i.e. empty and inheriting the master. [SOURCE: .skilled/hooks/hook-flags.env:54] [SOURCE: .skilled/hooks/hook-flags.env:55]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-10-note-text-all-17-plugins-the-agents-and-the-commands-run-on-opencode-2-all-17-pl",
+      "text": "**Note text:** \"All 17 plugins, the agents and the commands run on OpenCode 2 ... All 17 plugins run on both versions, sixteen through one shared adapter and sk-vision on its own.\" [SOURCE: .skilled/changelog/skilled/v4.0.0.13.md:3]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-11-tree-today-19-plugin-modules-in-opencode-plugins-all-19-import-dualplugin-git-lo",
+      "text": "**Tree today:** 19 plugin modules in `.opencode/plugins`; all 19 import `dualPlugin`; `git log 42b41dd286..HEAD -- .opencode/plugins` contains `f2c4ce5a91 chore(repo)!: remove the mcp-magicpath mode and the sk-vision skill`, so the named exception is gone.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-type-bug-with-a-drift-consequence-for-the-release-note-s-ci-claim-release-v4-0-0",
+      "text": "**Type:** bug (with a drift consequence for the release note's CI claim). **Release:** v4.0.0.13 introduced the dual-compat plugin set and the \"OpenCode Plugin Tests\" CI job; the red state is at HEAD, so the introducing release for the failure itself is later or the gate does not run.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-16-type-drift-doc-vs-config-release-the-relaunch-default-language-arrived-with-the-",
+      "text": "**Type:** drift (doc vs config). **Release:** the relaunch default language arrived with the v4.0.0.13 relaunch loop and was refined by the v4.0.0.14 opt-in-per-runtime work.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-9-type-drift-release-note-vs-code-release-v4-0-0-13-invalidated-by-the-later-remov",
+      "text": "**Type:** drift (release note vs code). **Release:** v4.0.0.13, invalidated by the later removal of the skill.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-21-verify-git-ls-files-error-unmatch-skilled-hooks-hook-flags-env-a-hit-makes-the-d",
+      "text": "**Verify:** `git ls-files --error-unmatch .skilled/hooks/hook-flags.env` — a hit makes the doc wrong, a miss makes the observation a local-machine fact only.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-14-verify-ls-opencode-plugins-js-wc-l-and-grep-l-dualplugin-opencode-plugins-js-wc-",
+      "text": "**Verify:** `ls .opencode/plugins/*.js | wc -l` and `grep -l dualPlugin .opencode/plugins/*.js | wc -l` (expect 19 and 19).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-7-verify-node-test-opencode-plugins-tests-session-relaunch-test-cjs-2-1-grep-e-pas",
+      "text": "**Verify:** `node --test .opencode/plugins/tests/session-relaunch.test.cjs 2>&1 | grep -E '^. (pass|fail) '` — then, to separate environment from regression, `git stash list` is irrelevant; instead run the same file at tag `22c3a9b2c7` (v4.0.0.15) and at `51f70a0317` (v4.0.2.0) and compare the fail count.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-12-why-it-costs-something-the-note-is-the-audit-trail-for-the-shim-decision-a-reade",
+      "text": "**Why it costs something:** the note is the audit trail for the shim decision. A reader today cannot use it to find the one plugin that bypasses `v2-bridge`, because there is none, and the 17-versus-19 gap invites the wrong inference that two plugins are unwired. [SOURCE: .opencode/plugins/ask-surface-guard.js:11]",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-why-p1-the-relaunch-nudge-is-the-operator-s-only-in-session-signal-that-a-hand-o",
+      "text": "**Why P1:** the relaunch nudge is the operator's only in-session signal that a hand-over is due, and the live flags file has the loop enabled. [SOURCE: .skilled/hooks/hook-flags.env:54] A green suite is the only thing standing between a silent nudge failure and a session that quietly auto-compacts instead of handing over.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-f-iter009-001-p1-bug-the-opencode-plugin-suite-is-red-at-head-entirely-in-the-re",
+      "text": "f-iter009-001 — P1 — bug — the OpenCode plugin suite is red at HEAD, entirely in the relaunch nudge path",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-8-f-iter009-002-p2-drift-the-17-plugin-and-sk-vision-sentence-describes-a-tree-tha",
+      "text": "f-iter009-002 — P2 — drift — the 17-plugin and sk-vision sentence describes a tree that no longer exists",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-15-f-iter009-003-p2-drift-the-injection-contract-and-the-live-flags-file-disagree-o",
+      "text": "f-iter009-003 — P2 — drift — the injection contract and the live flags file disagree on the relaunch default",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-nudgedecision-returns-quiet-child-session-before-any-ratio-check-source-skilled-",
+      "text": "`nudgeDecision()` returns `quiet('child-session')` before any ratio check `[SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:569]`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-every-cli-dispatch-in-this-repository-exports-ai-session-child-1-the-repo-s-own-",
+      "text": "Every CLI dispatch in this repository exports `AI_SESSION_CHILD=1` (the repo's own dispatch audit log records it in the dispatched command lines), so a test runner started from inside any dispatched session — including a deep-research child like this one — runs the suite with the marker set.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-f-iter010-001-the-relaunch-nudge-is-silently-off-for-a-whole-test-process-that-i",
+      "text": "f-iter010-001 — The relaunch nudge is silently off for a whole test process that inherits `AI_SESSION_CHILD` (bug, **P1**)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-f-iter010-002-the-child-session-predicate-belongs-to-the-goal-concern-and-is-loa",
+      "text": "f-iter010-002 — The child-session predicate belongs to the goal concern and is loaded lazily from the nudge path (misalignment / over-engineering, **P2**)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-f-iter010-003-the-enable-relaunch-recipe-has-no-single-owner-and-the-file-it-tel",
+      "text": "f-iter010-003 — The enable-relaunch recipe has no single owner, and the file it tells you to edit does not exist in a fresh clone (UX, **P2**)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-f-iter010-004-the-advisor-appears-in-the-operator-surface-only-as-a-kill-switch-",
+      "text": "f-iter010-004 — The advisor appears in the operator surface only as a kill switch (UX, **P2**, confidence medium)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-13-f-iter010-005-extension-generate-per-runtime-adapters-and-their-readmes-from-one",
+      "text": "f-iter010-005 — Extension: generate per-runtime adapters and their READMEs from one hook manifest (extension, **P2**)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-14-f-iter010-006-extension-one-shared-detector-corpus-across-runtimes-run-under-a-h",
+      "text": "f-iter010-006 — Extension: one shared detector corpus across runtimes, run under a hostile ambient env (extension, **P1**)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-15-f-iter010-007-extension-drive-the-doctor-s-concern-report-from-the-flag-resolver",
+      "text": "f-iter010-007 — Extension: drive the doctor's concern report from the flag resolver (extension, **P2**)",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-one-line-in-the-plugin-suite-add-ai-session-child-to-env-keys-source-opencode-pl",
+      "text": "One line in the plugin suite: add `'AI_SESSION_CHILD'` to `ENV_KEYS` `[SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:37]` so the after-hook restores the shell's value instead of deleting it for the rest of the process.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-one-line-in-the-shared-fixture-add-ai-session-child-to-hermetic-drop-keys-in-ski",
+      "text": "One line in the shared fixture: add `'AI_SESSION_CHILD'` to `HERMETIC_DROP_KEYS` in `.skilled/hooks/session-relaunch/tests/fixtures/relaunch-env.cjs`. That single edit covers both victim suites, because both clear through `clearRelaunchSwitches()`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-safe-to-drop-unconditionally-the-suites-that-need-the-child-path-set-it-explicit",
+      "text": "Safe to drop unconditionally: the suites that need the child path set it explicitly per case (`nudge.test.cjs:1131`, `claude-adapters.test.cjs:1543`), so a cleared ambient value changes nothing for them.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-the-hermetic-fixture-drops-relaunch-switches-goal-switches-and-hook-flags-config",
+      "text": "The hermetic fixture drops relaunch switches, goal switches and `HOOK_FLAGS_CONFIG` — never the child marker `[SOURCE: .skilled/hooks/session-relaunch/tests/fixtures/relaunch-env.cjs]`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-the-opencode-plugin-hands-it-process-env-at-every-call-site-source-opencode-plug",
+      "text": "The OpenCode plugin hands it `process.env` at every call site `[SOURCE: .opencode/plugins/session-relaunch.js:183]`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-the-suite-s-env-keys-does-not-name-it-either-so-nothing-clears-or-restores-it-so",
+      "text": "The suite's `ENV_KEYS` does not name it either, so nothing clears or restores it `[SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:37]`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-14-confidence-high-on-the-absence-observed-in-two-separate-responses",
+      "text": "Confidence: high on the absence (observed in two separate responses)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-4-confidence-high-on-the-observation-medium-on-the-mechanism",
+      "text": "Confidence: high on the observation, medium on the mechanism",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-9-confidence-medium-absence-at-one-guessed-path-is-not-proof-of-absence-everywhere",
+      "text": "Confidence: medium — absence at one guessed path is not proof of absence everywhere, which is the finding",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-f-iter011-001-p1-bug-drift-the-doctor-bridge-ordering-contract-is-contradicted-o",
+      "text": "f-iter011-001 — P1 — bug + drift — the doctor-bridge ordering contract is contradicted on the live `advisor_recommend` surface",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-6-f-iter011-002-p2-drift-ux-no-locateable-build-artifact-answers-advisor-recommend",
+      "text": "f-iter011-002 — P2 — drift/UX — no locateable build artifact answers `advisor_recommend`, so \"stale build fails loudly\" is unverifiable",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-11-f-iter011-003-p2-improvement-ux-the-response-omits-passes-threshold-the-one-fiel",
+      "text": "f-iter011-003 — P2 — improvement/UX — the response omits `passes_threshold`, the one field that makes the ordering claim checkable",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-introduced-by-v4-0-0-12",
+      "text": "Introduced by: v4.0.0.12",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-13-introduced-by-v4-0-0-12-same-ordering-work-pre-existing-in-the-payload-shape",
+      "text": "Introduced by: v4.0.0.12 (same ordering work), pre-existing in the payload shape",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-8-introduced-by-v4-0-0-12-the-promise-compounded-by-the-layout",
+      "text": "Introduced by: v4.0.0.12 (the promise), compounded by the layout",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-type-bug-live-behaviour-drift-release-note-vs-code-vs-served-output",
+      "text": "Type: bug (live behaviour), drift (release note vs code vs served output)",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-7-type-drift-release-note-vs-observable-tree-operator-ux",
+      "text": "Type: drift (release note vs observable tree), operator UX",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-12-type-improvement-ai-user-and-operator-ux",
+      "text": "Type: improvement / AI-user and operator UX",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-10-verify-ls-skilled-skills-system-skill-advisor-runtime-dist-lib-scorer-2-1-and-ls",
+      "text": "Verify: `ls .skilled/skills/system-skill-advisor/runtime/dist/lib/scorer/ 2>&1` and `ls .skilled/skills/system-skill-advisor/runtime/dist | head`",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-15-verify-node-skilled-bin-skill-advisor-cjs-advisor-recommend-json-prompt-help-me-",
+      "text": "Verify: `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"help me set up skilled\"}' --format json | grep -c passes_threshold` → 0",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-5-verify-node-skilled-bin-skill-advisor-cjs-advisor-recommend-json-prompt-sk-doc-c",
+      "text": "Verify: `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"sk-doc create a new skill and then check my environment variables\"}' --format json` — first `skillId` must be a skill, not `command-doctor-*`",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-12-15-confidence-high-all-three-read-from-source",
+      "text": "Confidence: high (all three read from source)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-3-confidence-high-on-the-code-path-the-20s-bound-is-confirmed-as",
+      "text": "Confidence: high on the code path; the 20s bound is confirmed as",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-19-confidence-medium-the-routing-half-is-observed-the-delegation-half-is-unread",
+      "text": "Confidence: medium — the routing half is observed, the delegation half is unread.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-7-confidence-medium-high-the-message-conflation-is-confirmed-by-reading-that-a-mis",
+      "text": "Confidence: medium-high. The message conflation is confirmed by reading; that a missing `git`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-1-f-iter012-001-v4-0-0-16-s-every-git-call-in-the-commit-and-push-hooks-is-false-f",
+      "text": "f-iter012-001 — v4.0.0.16's \"every git call in the commit and push hooks\" is false for the gate v4.0.0.5 added (drift, P2)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-5-f-iter012-002-any-non-zero-linter-exit-is-reported-to-the-operator-as-a-trigger-",
+      "text": "f-iter012-002 — any non-zero linter exit is reported to the operator as a trigger-phrase violation (bug, P2)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-9-f-iter012-003-v4-0-0-15-s-ambiguity-change-is-real-and-the-never-past-the-owner-",
+      "text": "f-iter012-003 — v4.0.0.15's ambiguity change is real, and the \"never past the owner\" rule is two exceptions, not one (verified, no defect)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-10-f-iter012-004-one-bound-two-names-and-a-documented-fail-open-the-message-stream-",
+      "text": "f-iter012-004 — one bound, two names, and a documented fail-open the message stream hides (improvement, P2)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-17-f-iter012-005-the-create-skill-parent-route-is-not-defective-at-the-top-recommen",
+      "text": "f-iter012-005 — the `/create:skill-parent` route is not defective at the top recommendation (generation-1 follow-up, narrowed)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-13-if-the-helper-file-itself-is-unreadable-pre-commit-substitutes-an-unbounded-git-",
+      "text": "If the helper file itself is unreadable, `pre-commit` substitutes an unbounded `git_bounded` and",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-18-release-n-a-pre-existing",
+      "text": "Release: n/a (pre-existing)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-14-release-v4-0-0-16",
+      "text": "Release: v4.0.0.16",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-2-release-v4-0-0-16-claim-v4-0-0-5-the-unbounded-path",
+      "text": "Release: v4.0.0.16 (claim), v4.0.0.5 (the unbounded path)",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-6-release-v4-0-0-5",
+      "text": "Release: v4.0.0.5",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-11-two-env-names-set-one-bound-git-bound-seconds-and-speckit-git-timeout",
+      "text": "Two env names set one bound, `GIT_BOUND_SECONDS` and `SPECKIT_GIT_TIMEOUT`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-8-verify-grep-n-catch-process-exit-skilled-skills-system-spec-kit-runtime-cli-spec",
+      "text": "Verify: `grep -n \"catch\\|process.exit\" .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-16-verify-grep-n-git-bound-seconds-speckit-git-timeout-skilled-scripts-git-hooks-li",
+      "text": "Verify: `grep -n \"GIT_BOUND_SECONDS\\|SPECKIT_GIT_TIMEOUT\" .skilled/scripts/git-hooks/lib/bounded-git.sh`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-4-verify-grep-n-timeout-skilled-skills-system-spec-kit-runtime-cli-spec-template-p",
+      "text": "Verify: `grep -n \"timeout\" .skilled/skills/system-spec-kit/runtime/cli/spec/template-phrase-lint.mjs`",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-20-verify-repeat-the-probe-then-read-sk-create-skill-router-for-the-skill-parent-le",
+      "text": "Verify: repeat the probe, then read `sk-create-skill` ROUTER for the `skill-parent` lead phrase.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-12-without-perl-on-path-the-bound-silently-does-not-exist-the-helper-runs-the-comma",
+      "text": "Without `perl` on PATH the bound silently does not exist — the helper runs the command unbounded",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-f-iter013-001-p1-bug-the-shipped-agents-md-manifest-is-stale-and-still-carries-h",
+      "text": "f-iter013-001 — P1, bug: the shipped AGENTS.md manifest is stale and still carries Hermes doctrine",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-f-iter013-002-p2-drift-doctor-git-setup-s-tool-enum-is-dsh-the-release-note-says",
+      "text": "f-iter013-002 — P2, drift: `/doctor:git setup`'s tool enum is `dsh`, the release note says Hermes",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-f-iter013-003-p2-bug-the-pi-ask-surface-adapter-is-authored-destination-relative",
+      "text": "f-iter013-003 — P2, bug: the Pi ask-surface adapter is authored destination-relative, unlike every sibling",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-f-iter013-004-p2-operator-ux-the-live-hook-flags-env-never-receives-the-ask-surf",
+      "text": "f-iter013-004 — P2, operator UX: the live `hook-flags.env` never receives the ask-surface switch",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-14-5-the-claude-and-codex-hooks-send-no-hint-verified-by-absence-no-surfacehint-occur",
+      "text": "**\"The Claude and Codex hooks send no hint\" — verified by absence**: no `surfaceHint` occurrence anywhere under `.claude/` or `.codex/`. The note omits that the Pi extension also sends none, even though Pi routes through the same shared advisor hook module — a one-word doc gap, not a defect.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-6-v4-0-0-10-verified-empty-for-this-cluster-its-hook-claims-are-all-git-hook-trust",
+      "text": "**v4.0.0.10 — verified-empty for this cluster**: its hook claims are all git-hook trust and Commit-Id, which belong to the skipped cluster.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-4-v4-0-0-6-surfacehint-verified-end-to-end-the-schema-bounds-it-1-64-in-three-plac",
+      "text": "**v4.0.0.6 `surfaceHint` — verified end to end.** The schema bounds it 1..64 in three places (`z.string().min(1).max(64).optional()` plus both CLI manifests' `minLength: 1, maxLength: 64`); the handler forwards it as `--surface-hint`; the OpenCode plugin sends it from `detectWorkspaceSurface(projectDir)`. The \"OpenCode only inside `.skilled`\" half is exact: the fallback surface is selected only when `insideHub`, and `insideHub` is computed against `resolveHubSkilledRoot()`, which resolves to `<repo>/.skilled`.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-1-f-iter014-001-p2-drift-ai-user-ux-the-pi-brief-is-silently-suppressed-on-a-repea",
+      "text": "f-iter014-001 — P2 — drift / AI-user UX — the Pi brief is silently suppressed on a repeat prompt (v4.0.0.1 claim)",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-2-f-iter014-002-p2-drift-v4-0-0-9-s-alias-claim-has-no-field-to-be-true-about-and-",
+      "text": "f-iter014-002 — P2 — drift — v4.0.0.9's alias claim has no field to be true about, and the natural checker passes vacuously",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-3-f-iter014-003-p2-improvement-ux-the-surface-hint-is-cached-per-directory-for-the",
+      "text": "f-iter014-003 — P2 — improvement / UX — the surface hint is cached per directory for the life of the plugin process",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-15-3-bug-strongest-f-iter005-002-the-1-form-is-the-default-numbered-list-form-in-the-",
+      "text": "**Bug — strongest:** f-iter005-002. The `1.` form is *the* default numbered-list form in the model output",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-1-drift-strongest-the-agents-md-manifest-still-ships-hermes-doctrine-into-vendored",
+      "text": "**Drift — strongest:** the AGENTS.md manifest still ships Hermes doctrine into vendored repos while the docs",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-7-extension-strongest-one-shared-detector-corpus-per-concern-run-under-a-hostile-a",
+      "text": "**Extension — strongest:** one shared detector corpus per concern, run under a hostile ambient env, so that",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-4-improvement-strongest-adopt-the-shared-stdin-deadline-in-the-claude-ask-surface-",
+      "text": "**Improvement — strongest:** adopt the shared stdin deadline in the Claude ask-surface Stop hook. The",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-2-misalignment-with-canon-strongest-f-iter008-001-the-doctor-surface-is-organised-",
+      "text": "**Misalignment with canon — strongest:** f-iter008-001. The doctor surface is organised as one command per",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-5-operator-and-ai-user-ux-strongest-f-iter005-005-a-guard-that-sends-a-turn-back-o",
+      "text": "**Operator and AI-user UX — strongest:** f-iter005-005. A guard that sends a turn back once per message on",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-6-over-engineering-strongest-one-option-line-regex-and-one-shared-core-re-exposed-",
+      "text": "**Over-engineering — strongest:** one option-line regex and one shared core re-exposed through every",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-17-11-claude-not-pinnable-locally-claude-ask-surface-stop-test-mjs-49-asserts-the-guar",
+      "text": "**Claude — not pinnable locally.** `claude/ask-surface-stop.test.mjs:49` asserts the guard *respects* `stop_hook_active: true`; nothing asserts the host sets it for the second Stop inside one operator turn. The once-per-operator-turn behaviour on Claude is therefore a host contract, not a repo contract.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-9-core-marker-pinned-but-only-for-the-key-it-is-handed-lib-ask-surface-core-test-m",
+      "text": "**Core marker — pinned, but only for the key it is handed.** `lib/ask-surface-core.test.mjs:62`: \"markTurn is true once per turn key, then false\".",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-10-dsh-not-pinned-tests-dsh-ask-surface-guard-test-mjs-36-bounds-itself-to-one-turn",
+      "text": "**dsh — not pinned.** `tests/dsh-ask-surface-guard.test.mjs:36` bounds itself to one turn number (see f-iter017-003).",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-8-pi-pinned-pi-ask-surface-guard-test-ts-64-sends-one-operator-turn-back-once-howe",
+      "text": "**Pi — pinned.** `pi/ask-surface-guard.test.ts:64`: \"sends one operator turn back once, however many agent loops end in the menu\". This is the only test in the cluster that asserts the operator-turn contract.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-2-skilled-bin-skill-advisor-cjs-contains-no-occurrence-of-python-skill-advisor-or-",
+      "text": "`.skilled/bin/skill-advisor.cjs` contains no occurrence of `python`, `skill_advisor` or `degraded`.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-3-skilled-bin-system-skill-advisor-launcher-cjs-likewise-no-python-no-py-no-degrad",
+      "text": "`.skilled/bin/system-skill-advisor-launcher.cjs` likewise: no `python`, no `.py`, no `degraded`.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-1-f-iter017-001-falsified-the-documented-degraded-local-scoring-has-no-caller-p1-d",
+      "text": "f-iter017-001 — FALSIFIED: the documented degraded local scoring has no caller (P1, drift doc-vs-code)",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-5-f-iter017-002-confirmed-the-once-guard-is-four-different-contracts-p2-drift-over",
+      "text": "f-iter017-002 — CONFIRMED: the \"once\" guard is four different contracts (P2, drift / over-engineering)",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-6-f-iter017-003-narrowed-then-confirmed-as-a-bug-dsh-s-turn-key-changes-when-the-g",
+      "text": "f-iter017-003 — NARROWED then CONFIRMED as a bug: dsh's turn key changes when the guard steers (P1, bug)",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-7-f-iter017-004-confirmed-which-adapters-have-a-test-that-pins-once-per-operator-t",
+      "text": "f-iter017-004 — CONFIRMED: which adapters have a test that pins once-per-operator-turn (P2, verification gap)",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-12-f-iter017-005-confirmed-the-python-advisor-reaches-no-operator-visible-ranking-p",
+      "text": "f-iter017-005 — CONFIRMED: the Python advisor reaches no operator-visible ranking (P1, over-engineering + drift)",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-17-4-the-two-remaining-in-repo-mentions-are-signature-inputs-not-execution-sites-skil",
+      "text": "The two remaining in-repo mentions are **signature inputs, not execution sites**: `.skilled/skills/system-skill-advisor/runtime/lib/freshness.ts:105` lists `skill_advisor.py` among files whose mtime/hash decides freshness, and `.opencode/plugins/system-skill-advisor.js:152` declares `ADVISOR_SCRIPT_RELATIVE_PATHS` which is only consumed by the cache-signature loop at `.opencode/plugins/system-skill-advisor.js:355`.",
+      "addedAtIteration": 17,
+      "sources": []
+    },
+    {
+      "id": "finding-18-4-claude-skilled-hooks-dispatch-claude-dispatch-audit-posttooluse-mjs-56-const-pro",
+      "text": "Claude: `.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs:56` → `const projectDir = payload?.cwd || process.env.CLAUDE_PROJECT_DIR || process.cwd();`, joined at `:57`.",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-6-codex-skilled-hooks-dispatch-codex-dispatch-audit-posttooluse-mjs-62-const-proje",
+      "text": "Codex: `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:62` → `const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-7-devin-skilled-hooks-dispatch-devin-dispatch-audit-posttooluse-mjs-61-const-proje",
+      "text": "Devin: `.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:61` → `const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()` … `:63` → `: (process.env.DEVIN_PROJECT_DIR || process.cwd());`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-3-dsh-skilled-hooks-dispatch-dsh-dispatch-audit-mjs-51-logpath-join-reporoot-defau",
+      "text": "dsh: `.skilled/hooks/dispatch/dsh/dispatch-audit.mjs:51` → `logPath: join(repoRoot, DEFAULT_LOG_RELATIVE_PATH),`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-1-f-iter018-001-p1-bug-four-of-six-audit-adapters-root-the-log-at-the-session-cwd-",
+      "text": "f-iter018-001 — P1, bug: four of six audit adapters root the log at the session cwd, not the repository root",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-8-f-iter018-002-p1-bug-the-sibling-claude-preflight-reads-the-same-field-in-the-op",
+      "text": "f-iter018-002 — P1, bug: the sibling Claude preflight reads the same field in the opposite priority order",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-9-f-iter018-003-p2-over-engineering-masked-by-a-gitignore-the-nested-trees-are-exp",
+      "text": "f-iter018-003 — P2, over-engineering masked by a gitignore: the nested trees are *expected* rather than prevented",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-10-f-iter018-004-p2-drift-the-log-readme-describes-one-location-for-a-log-that-has-",
+      "text": "f-iter018-004 — P2, drift: the log README describes one location for a log that has five",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-11-f-iter018-005-p2-improvement-move-the-root-decision-into-the-shared-core-once",
+      "text": "f-iter018-005 — P2, improvement: move the root decision into the shared core, once",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-12-f-iter018-006-p2-extension-a-doctor-check-that-fails-on-a-nested-skilled-logs-tr",
+      "text": "f-iter018-006 — P2, extension: a doctor check that fails on a nested `.skilled/logs` tree",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-13-f-iter018-007-p2-operator-ux-telemetry-loss-is-silent-in-both-directions",
+      "text": "f-iter018-007 — P2, operator UX: telemetry loss is silent in both directions",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-2-opencode-opencode-plugins-cli-dispatch-audit-js-59-const-projectdir-findreporoot",
+      "text": "OpenCode: `.opencode/plugins/cli-dispatch-audit.js:59` → `const projectDir = findRepoRoot(ctx?.directory || process.cwd());`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-18-5-pi-skilled-hooks-dispatch-pi-dispatch-audit-ts-32-logpath-join-ctx-cwd-audit-def",
+      "text": "Pi: `.skilled/hooks/dispatch/pi/dispatch-audit.ts:32` → `logPath: join(ctx.cwd, audit.DEFAULT_LOG_RELATIVE_PATH),`",
+      "addedAtIteration": 18,
+      "sources": []
+    },
+    {
+      "id": "finding-19-1-f-iter019-001-packet-budget-unknown-is-a-permanent-silent-send-block-p2-bug-ux",
+      "text": "f-iter019-001 — `packet_budget=unknown` is a permanent, silent send-block (P2, bug + UX)",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-2-f-iter019-002-prose-template-instructions-survive-renderchatslice-contradicting-",
+      "text": "f-iter019-002 — Prose template instructions survive `renderChatSlice`, contradicting the stated contract (P2, drift)",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-3-f-iter019-003-4000-characters-is-hardcoded-prose-while-the-limit-is-data-driven-",
+      "text": "f-iter019-003 — \"4000 characters\" is hardcoded prose while the limit is data-driven (P2, drift)",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-4-f-iter019-004-the-claude-code-goal-rule-is-unenforceable-no-claude-goal-adapter-",
+      "text": "f-iter019-004 — The Claude Code goal rule is unenforceable: no Claude goal adapter exists (P1, drift/misalignment)",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-5-f-iter019-005-v4-0-2-0-claims-dsh-goal-support-but-dsh-plugins-carries-no-goal-e",
+      "text": "f-iter019-005 — v4.0.2.0 claims dsh goal support, but `.dsh/plugins` carries no goal entry (P2, drift)",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-6-f-iter019-006-the-packet-report-omits-the-number-the-operator-needs-to-act-p2-op",
+      "text": "f-iter019-006 — The `packet` report omits the number the operator needs to act (P2, operator UX, improvement)",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-21-1-f-iter021-001-p2-the-decision-capture-concern-has-no-readme-and-the-shipped-guar",
+      "text": "f-iter021-001 — P2 — the decision-capture concern has no README, and the shipped guard cannot notice",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-2-f-iter021-002-p2-a-test-seam-with-no-writer",
+      "text": "f-iter021-002 — P2 — a test seam with no writer",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-21-3-f-iter021-003-p2-the-dsh-advisor-is-the-one-opt-in-guard-and-its-only-switch-is-",
+      "text": "f-iter021-003 — P2 — the DSH advisor is the one opt-in guard, and its only switch is a patch file",
+      "addedAtIteration": 21,
+      "sources": []
+    },
+    {
+      "id": "finding-22-8-source-skilled-hooks-dispatch-claude-dispatch-audit-posttooluse-mjs-3",
+      "text": "[SOURCE: .skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs:3]",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-9-source-skilled-hooks-dispatch-claude-dispatch-preflight-lint-mjs-3",
+      "text": "[SOURCE: .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:3]",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-10-source-skilled-hooks-dispatch-cursor-dispatch-preflight-lint-mjs-3",
+      "text": "[SOURCE: .skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs:3]",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-11-source-skilled-hooks-post-edit-quality-claude-claude-posttooluse-cjs-3",
+      "text": "[SOURCE: .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:3]",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-5-const-spec-folder-specs-hooks-023-session-relaunch-loop-at-source-skilled-hooks-",
+      "text": "`const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop';` at [SOURCE: .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:25]",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-3-const-spec-folder-specs-hooks-023-session-relaunch-loop-002-pi-opencode-adapters",
+      "text": "`const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters';` at [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:45]",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-1-f-iter022-001-the-comment-hygiene-convention-holds-in-this-cluster-p2-drift-conf",
+      "text": "f-iter022-001 — The comment-hygiene convention holds in this cluster (P2, drift, confidence high)",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-2-f-iter022-002-three-test-constants-name-a-spec-track-that-does-not-exist-p2-drif",
+      "text": "f-iter022-002 — Three test constants name a spec track that does not exist (P2, drift, confidence high)",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-6-f-iter022-003-five-of-six-runtime-rows-in-the-relaunch-readme-link-to-evidence-f",
+      "text": "f-iter022-003 — Five of six runtime rows in the relaunch README link to evidence files that are gone (P2, drift, operator-facing, confidence high)",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-7-f-iter022-004-two-module-header-dialects-84-versus-4-with-no-canon-and-no-enforc",
+      "text": "f-iter022-004 — Two module-header dialects, 84 versus 4, with no canon and no enforcement (P2, misalignment, confidence high)",
+      "addedAtIteration": 22,
+      "sources": []
+    },
+    {
+      "id": "finding-22-4-the-seed-string-spec-folder-specs-hooks-023-session-relaunch-loop-002-pi-opencod",
+      "text": "the seed string `+ ' | Spec folder: specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters'` at [SOURCE: .opencode/plugins/tests/session-relaunch.test.cjs:699]",
+      "addedAtIteration": 22,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 22,
+    "openQuestions": 3,
+    "resolvedQuestions": 8,
+    "carriedForwardOpenQuestions": 123,
+    "keyFindings": 203,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.3,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

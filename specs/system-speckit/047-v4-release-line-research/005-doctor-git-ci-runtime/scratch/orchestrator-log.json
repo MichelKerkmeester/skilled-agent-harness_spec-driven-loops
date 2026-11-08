@@ -1,0 +1,228 @@
+{
+  "phase": "saved",
+  "ceiling": 26,
+  "iterations": {
+    "1": {
+      "quality": "Deep: 7 findings, doctor routes and scripts read and run, 26 cites resolve",
+      "checks": "route-validate.sh CONFIRMED: exit 0 with 11 WARN lines; symlink-engine.cjs --help CONFIRMED: 'ERROR: unknown flag: --help', exit 2",
+      "next_focus": "key questions 3 and 4"
+    },
+    "2": {
+      "quality": "Deep: 3 findings plus sk-git hook reading, 18 cites resolve; delta rows omitted findingType and release",
+      "checks": "doctor-runtime-mirrors.yaml/_routes.yaml/runtime-mirrors.md CONFIRMED 0 references to check-agent-mirror-sync; agent-mirror-crosswalk.md:16 'twelve' vs 11 .skilled/agents/*.md CONFIRMED; .dsh exists CONFIRMED",
+      "next_focus": "key questions 5 and 6, and the sk-git repro left open"
+    },
+    "3": {
+      "quality": "Thin: 2 findings, CI workflows barely read; release field malformed",
+      "checks": "AGENTS.md 27,587 bytes, head -c 16384 ends at line 179 CONFIRMED; .opencode/skills is a symlink to .skilled/skills, so chart-corpus.yml:47 path resolves (not a finding)",
+      "next_focus": "redo key question 5 properly: list every file in .github/workflows, and for each name its trigger, the scripts and paths it runs (check each exists), its switch"
+    },
+    "4": {
+      "quality": "Adequate: 5 findings, mostly agent-count drift in cli-* docs (overlaps sibling 003 cluster), 5 cites",
+      "checks": "claude-tools.md:247 and agent-delegation.md:3 count claims CONFIRMED by text against 11 files in .skilled/agents; ci.json:20 exempt list CONFIRMED",
+      "next_focus": "key questions 2 and 4, which no iteration has covered yet"
+    },
+    "5": {
+      "quality": "Error: no research done; dispatch failed twice",
+      "checks": "None: no iteration file was written",
+      "next_focus": "Same focus carried to iteration 6"
+    },
+    "6": {
+      "quality": "Deep but one wrong finding: 4 findings with hook repros on cli-pi; f-iter006-003 is FALSE",
+      "checks": "f-iter006-003 REFUTED: .opencode/scripts is a symlink to ../.skilled/scripts, so the 'two byte-identical hook trees' is one tree; f-iter006-001/002 premise CONFIRMED: no .sk-git/ and git config skgit.contractDir unset (exit 1); commit-msg:14/23 CONFIRMED 'no rules block is not checked'",
+      "next_focus": "correct the record first: state in Findings that f-iter006-003 is withdrawn because .opencode/scripts is a symlink (ls -la .opencode/scripts), and always check "
+    },
+    "7": {
+      "quality": "Adequate: 4 findings, 11 cites, code read",
+      "checks": ".env.example banners 1-14 then 16-19 CONFIRMED (no 15); validate.sh:132-135 returns before sourcing hook-flags.sh with only a warning CONFIRMED; README.md:179 vs plugin import :21 CONFIRMED by text",
+      "next_focus": "read code and diffs, not notes"
+    },
+    "8": {
+      "quality": "Deep: 6 findings from overlay engine, CI and ci-toggle code, 13 cites",
+      "checks": "sk-git-script-tests.yml has one run step (:51) while sk-git/scripts/tests holds five suites CONFIRMED by ls and grep; overlay-engine.cjs:433 vs :437 two message variants CONFIRMED by text",
+      "next_focus": "the repo-rules half of key question 6 and key question 11 (misalignment, nearly empty)"
+    },
+    "9": {
+      "quality": "Deep: 6 findings on command format and repo-rules; 6 unique cites",
+      "checks": "ci.md:4 grants Write CONFIRMED; command-template.md has 0 skill_agent mentions CONFIRMED",
+      "next_focus": "key questions 10 and 12 and the v4.0.0.11/v4.0.0.12 releases"
+    },
+    "10": {
+      "quality": "Deep: 10 findings from running every doctor engine; one count claim refuted; 7 unique cites",
+      "checks": "f-iter010-007 REFUTED in part: find -type l gives .pi 58, .codex 26, .dsh 79, .opencode 23 symlinks, not 0 (copied .md files do exist); install.md:73-74 vs doctor-install.yaml:59 --root binding CONFIRMED by text; route-validate.sh:17-18 exit taxonomy CONFIRMED",
+      "next_focus": "first correct f-iter010-007 with find <dir> -type l counts per runtime folder and say which mirrored kinds (agents, commands, prompts, skills) are copies vs lin"
+    },
+    "11": {
+      "quality": "Deep: 4 findings from symlink-engine and git-setup-check code, 9 cites",
+      "checks": ".claude/agents 13 files 0 links and .cursor/agents links into it CONFIRMED by find/ls; symlink-engine.cjs:1795-1801 returns 0 after emit CONFIRMED",
+      "next_focus": "bugs with repros, the thinnest type: take the P1 findings already logged (install-checklist fail-open commit-msg, symlink-engine check always exit 0, /doctor:ru"
+    },
+    "12": {
+      "quality": "Deep: 7 findings with /tmp repros, P1s re-verified; 7 cites",
+      "checks": "git-setup-check.cjs:354-368 resolves hooks via git rev-parse --git-path hooks CONFIRMED by text, and the global core.hooksPath (~/.config/git/hooks) that makes it PASS on a hookless repo CONFIRMED by git config --global; symlink-engine.cjs:1801 return 0 CONFIRMED earlier",
+      "next_focus": "an attribution pass over every finding this run has logged (read all deltas/iter-*.jsonl finding rows)"
+    },
+    "13": {
+      "quality": "Deep: attribution pass (12 rows, 0 unplaced) plus 4 findings incl. a red AGENTS.md canary; 5 cites",
+      "checks": "agents-md-manifest.cjs --check prints FAIL 'the recorded body 865f058927ed is no longer released' CONFIRMED by my run; no .github/workflows file names agents-md-manifest CONFIRMED by grep; f-iter013-004 narrows f-iter002-001 (agent-mirror-sync.yml runs the checker in CI)",
+      "next_focus": "run the body-parity checkers that exist and report real drift: node .skilled/bin/check-agent-mirror-sync.cjs --all, each sync script in doctor-runtime-mirrors.y"
+    },
+    "14": {
+      "quality": "deep: 5 findings, 28 unique cites, two P1 drift rows; f-iter014-004 used an out-of-scale severity P3, read as P2",
+      "checks": "ran agent-roster-mirror-check.cjs --check and command-catalog-mirror-check.cjs --check: both exit 2 (confirms f-iter014-003); wc -c code.md gives 49002/48781/48863 and mirror-sync-verify.cjs:50-54 lists only opencode, claude, codex (confirms f-iter014-001)",
+      "next_focus": "Improvement, over-engineering and extension pass, with a concrete fix per confirmed P1"
+    },
+    "15": {
+      "quality": "deep: 10 findings, 18 unique cites, every confirmed P1 now has a fix row; one over-engineering row refuted (the third symlink-resolution error in this child)",
+      "checks": "sed -n 51p sk-git-script-tests.yml runs only worktree-naming.test.sh against 5 suites on disk (confirms f-iter015-003); f-iter015-007 REFUTED: .opencode/bin is a symlink to ../.skilled/bin (git ls-files mode 120000) and cmp says identical, so CI runs the canonical checker, not a copy Lead correction: the cli-classifier.zip containment quarantine entry seen after this iteration came from a sibling orchestrator executor running package_skill.py without --check at the repo root, not from this child; from here on every focus restricts generators, packagers, create.sh and save scripts to check or dry-run mode or /tmp copies.",
+      "next_focus": "Final pass for this child: verification and the release gaps"
+    },
+    "16": {
+      "quality": "solid: 4 rows, 14 unique cites, one new P1 (the opencode arm compares a file with itself) and a release-range attribution confirmed; f-iter016-001 is a withdrawal row, excluded as a finding",
+      "checks": "ls -ld .opencode/agents shows a symlink to ../.skilled/agents, git ls-files -s mode 120000 (confirms f-iter016-002); git rev-list -n1 for v4.0.0.4, v4.0.0.7 and v4.0.0.10 all give 4d8f403355 (confirms f-iter016-003). Checkpoint 2 scored below bar, ceiling raised to 21",
+      "next_focus": "Bug pass on doctor routes this child has cited least"
+    },
+    "17": {
+      "quality": "deep: 7 findings, 34 unique cites, all P2 (first iteration since the extension with no new P1); every finding pairs a route asset line with the script line that contradicts it",
+      "checks": "ran ci-report.cjs --no-gh --sha=<40 uppercase hex>: prints usage and exits 2 (confirms f-iter017-002); release-update.cjs:2642 maps every non-usage error to exit 1 while doctor-update-check.yaml:127 documents only 0 and 2 (confirms f-iter017-001); ENV-REFERENCE.md:131 carries the third header shape 'Variable | Set to | Read by' (confirms the mechanism of f-iter017-003)",
+      "next_focus": "CI workflow pass"
+    },
+    "18": {
+      "quality": "solid: 5 findings, 11 unique cites (just over the floor); its P1 restates f-iter015-003 at tree scope, so no new P1 class: second iteration in a row without one",
+      "checks": "grep -rl over .github finds 0 references to stamp-branch, migrate-legacy-branch-names and validate-message-git-timeout, and the single commit-id-naming hit is broken-move-drill.sh naming the script, not the test (confirms f-iter018-001); ls .github/workflows counts 32 .yml against '33 workflows' at v4.0.0.16.md:58 (confirms f-iter018-003)",
+      "next_focus": "Final sweep before the depth checkpoint: hooks and runtime wiring"
+    },
+    "19": {
+      "quality": "deep: 4 findings, 16 unique cites, one new P1 reproduced live (hook status reports SHADOWED for hooks reached through the .opencode/scripts alias), so the depth bar is not met at 19",
+      "checks": "ran GIT_CONFIG_GLOBAL=/dev/null install-git-hooks.sh --status: 6 SHADOWED lines (the iteration said 7), and .git/hooks/commit-msg links to .opencode/scripts/git-hooks/commit-msg, the same file via the symlink; resolve_target at install-git-hooks.sh:99-110 follows one hop and compares strings (confirms f-iter019-001)",
+      "next_focus": "Symlink-alias sweep: f-iter019-001 shows that comparing paths as strings across the .opencode -> .skilled aliases produces false results"
+    },
+    "20": {
+      "quality": "deep: 6 findings, 25 unique cites, all P2, and eight path comparisons audited and cleared; no new P1, the first clean iteration after 19",
+      "checks": "ls -ld shows .opencode/agents a symlink and .opencode/commands a real directory (confirms f-iter020-002); worktree-status.sh:72 strips MAIN_ROOT with no separator and a bash repro maps /Users/dev/Skilled-old/work/wt2 to -old/work/wt2 (confirms f-iter020-003)",
+      "next_focus": "Last iteration of this child: consolidation and extension"
+    },
+    "21": {
+      "quality": "deep: 5 findings, 15 unique cites; re-ran the six P1 repros, corrected iteration 19's mechanism (same defect), and ranked three fixes; its extension P1 lowered to P2",
+      "checks": "the orchestrator's earlier run matches f-iter021-001 (6 SHADOWED lines, .git/hooks/prepare-commit-msg absent per ls -ld); f-iter021-003 is a ranking, not a defect, so lowered to P2. Checkpoint 3 below bar under the lead's ruling, ceiling raised to 26",
+      "next_focus": "Uncited doctor scripts"
+    }
+  },
+  "switches": [
+    {
+      "when": "Before iteration 6 (2026-11-08)",
+      "from": "cli-devin deepseek-v4-1-flash-max",
+      "to": "cli-pi opencode-go/deepseek-v4.1-flash, thinking max (dsh skipped)",
+      "evidence": "devin stderr 'Your daily usage quota has been exhausted' (cognition.ai/errorKind resource_exhausted) on dispatch and redispatch of iteration 5; dsh skipped because buildLineageCommand throws 'cli-deepseek-harness requires a lineage directory' in the single-executor path (no lineageDir passed, and the YAML has no dsh branch); pi probe answered 'ok' exit 0. Config stays immutable; the executor is applied at dispatch time and recorded in each iteration's executor provenance."
+    }
+  ],
+  "extensions": [
+    {
+      "when": "Mid-run, after the quota error (lead instruction)",
+      "score": "One iteration was a dispatch error with no research, so ten state-log rows would give nine productive iterations",
+      "decision": "Ceiling raised from 10 to 11 rows so ten productive iterations run before the depth bar is scored; applied at dispatch time, config untouched"
+    },
+    {
+      "when": "Checkpoint 1, after 10 productive iterations (11 rows)",
+      "score": "Releases: v4.0.0.12 has no finding; types: all seven present but bug thin among release-placed rows (10 of 51 rows unplaced); strongest claims: opened and confirmed, two refuted and corrected; new P0/P1 in iterations 9-11: 7 (0, 6, 1)",
+      "decision": "Below bar: still finding new P1s. Extend by five to 16 rows"
+    },
+    {
+      "when": "Checkpoint 2, after 16 rows (15 productive)",
+      "score": "Releases: v4.0.0.4 to v4.0.0.10 share one commit (4d8f403355, a trigger-index rebuild) with nothing in scope, confirmed by git rev-list; all seven types present; strongest P1s re-run with exit codes and opened by the orchestrator; new P1s in iterations 14-16: 14 had two (RUNTIME_MIRRORS misses .pi, two canonical agent roots), 15 added RUNTIME_MIRRORS covering 3 of 7 trees, 16 added the opencode arm comparing a file with itself",
+      "decision": "Below bar: new P1s still appear in each of the last three iterations. Extend by five to 21 rows"
+    },
+    {
+      "when": "Checkpoint 3, after 21 rows (20 productive)",
+      "score": "Releases: iteration 21 read v4.0.0.5 to .7 and found in-scope changes with no finding (recorded as drift); all seven types present; the six strongest P1s re-run read-only and confirmed; new P1s in iterations 19-21: 19 one (hook --status SHADOWED via the alias, reproduced by the orchestrator), 20 none, 21 none (f-iter021-001 corrects 19's mechanism and is the same defect; f-iter021-003 is an extension ranking, lowered to P2)",
+      "decision": "Below bar under the lead's no-close-at-ceiling ruling: iteration 19's P1 survived verification. Extend by five to 26 rows and score after each iteration; close once three productive iterations in a row hold no new verified P0 or P1"
+    },
+    {
+      "when": "Close, after 22 rows (21 productive)",
+      "score": "Releases: every row of the coverage table from pre-v4.0.0.0 to v4.0.1.0 holds at least one finding, v4.0.0.4 to .10 share one commit and iteration 21 named the in-scope changes in .5 to .7; types: all seven present; strongest claims: the six P1 repros re-run by iteration 21 and the top five re-checked by the orchestrator at close; new verified P0 or P1 in iterations 20, 21 and 22: none (21's P1 rows are a corrected restatement of 19 and an extension ranking lowered to P2; 22 is all P2)",
+      "decision": "Bar met: three consecutive productive iterations clean and the coverage items hold. Close at 22 rows under the lead's early-close ruling; ceiling 26 not used"
+    }
+  ],
+  "top_findings": [
+    {
+      "finding": "symlink-engine check reports missing, broken and foreign links and then exits 0 unconditionally, so /doctor:symlink check can never fail a CI step or a script",
+      "type": "bug",
+      "sev": "P1",
+      "release": "v4.0.1.0",
+      "source": ".skilled/commands/doctor/scripts/symlink-engine.cjs:1801",
+      "verified": "Orchestrator read :1791-1801 at close: the check branch builds the report, emits it, and returns a literal 0"
+    },
+    {
+      "finding": "The hooks leg of the git setup check passes through a machine-wide core.hooksPath, so a repository with nothing installed reports PASS when the global hooks dir links into this checkout",
+      "type": "bug",
+      "sev": "P1",
+      "release": "v4.0.0.3",
+      "source": ".skilled/commands/doctor/scripts/git-setup-check.cjs:387",
+      "verified": "Orchestrator: git config --global core.hooksPath is ~/.config/git/hooks, whose commit-msg links into .skilled/scripts/git-hooks; :384-399 accepts any hook realpath that equals the own source dir"
+    },
+    {
+      "finding": "The sk-git CI job runs one test suite of five and no workflow anywhere runs stamp-branch, migrate-legacy-branch-names, commit-id-naming or validate-message-git-timeout",
+      "type": "bug",
+      "sev": "P1",
+      "release": "v4.0.0.13",
+      "source": ".github/workflows/sk-git-script-tests.yml:51",
+      "verified": "Orchestrator: sed -n 51p runs only worktree-naming.test.sh; grep -rl over .github finds no reference to the other four suites (the single commit-id-naming hit names the script, not its test)"
+    },
+    {
+      "finding": "The agent body-parity gate checks 3 of 7 runtime trees, and its required opencode arm compares each canonical file with itself because .opencode/agents is a symlink to .skilled/agents",
+      "type": "drift",
+      "sev": "P1",
+      "release": "v4.0.0.0",
+      "source": ".skilled/bin/lib/mirror-sync-verify.cjs:51",
+      "verified": "Orchestrator: :50-54 lists opencode, claude and codex only; ls -ld .opencode/agents shows a symlink, git mode 120000; .pi/agents/code.md is 48863 B against 49002 and 48781 with no check"
+    },
+    {
+      "finding": "install-git-hooks.sh --status marks correctly installed hooks SHADOWED ('resolves outside this checkout') when they link through the .opencode/scripts alias, because it compares two spellings of one file as strings",
+      "type": "bug",
+      "sev": "P1",
+      "release": "v4.0.2.0",
+      "source": ".skilled/scripts/install-git-hooks.sh:99",
+      "verified": "Orchestrator: GIT_CONFIG_GLOBAL=/dev/null install-git-hooks.sh --status prints 6 SHADOWED lines; .git/hooks/commit-msg links to .opencode/scripts/git-hooks/commit-msg, the same file"
+    }
+  ],
+  "executors_used": [
+    "cli-devin deepseek-v4-1-flash-max (iterations before the switch)",
+    "cli-pi opencode-go/deepseek-v4.1-flash thinking max (after)"
+  ],
+  "recent_action": "Run closed after the depth bar cleared at iteration 22; research.md synthesized",
+  "next_action": "Parent synthesis reads research/research.md",
+  "excluded_findings": [
+    "f-iter015-007",
+    "f-iter016-001",
+    "f-iter006-003"
+  ],
+  "excluded_reasons": {
+    "f-iter015-007": "Refuted: .opencode/bin is a symlink to ../.skilled/bin (git mode 120000), so the CI checker path resolves to the same file, not a copy; ls -l on the file shows the target, not a link, because the link is the parent directory",
+    "f-iter015-007_iter": "015",
+    "f-iter016-001": "Not a finding: a withdrawal row for f-iter015-007, filed as P1 drift; the withdrawal is recorded under f-iter015-007",
+    "f-iter016-001_iter": "016",
+    "f-iter006-003": "Refuted: claimed two byte-identical git hook trees ship; .opencode/scripts is a symlink to ../.skilled/scripts (git mode 120000), so they are one tree",
+    "f-iter006-003_iter": "006"
+  },
+  "finding_notes": {
+    "f-iter016-002": "Confirmed: .opencode/agents is a symlink to ../.skilled/agents (git mode 120000), so the required opencode arm reads the canonical file itself",
+    "f-iter018-001": "Confirmed: grep -rl over .github finds no reference to stamp-branch, migrate-legacy-branch-names or validate-message-git-timeout; the one commit-id-naming hit is broken-move-drill.sh naming the script, not its test. Same defect as f-iter015-003, sharpened from one job to the whole tree, so it is not counted as a new P1 at the depth checkpoint",
+    "f-iter018-003": "Confirmed: ls .github/workflows counts 32 .yml files; v4.0.0.16.md:58 says 33",
+    "f-iter019-001": "Reproduced: GIT_CONFIG_GLOBAL=/dev/null install-git-hooks.sh --status prints SHADOWED for 6 hooks (the iteration said 7); .git/hooks/commit-msg links to .opencode/scripts/git-hooks/commit-msg, the same file through the .opencode/scripts symlink, and resolve_target (install-git-hooks.sh:99-110) follows one hop and compares strings. New P1 at iteration 19, so the depth bar is not met",
+    "f-iter021-001": "Same defect as f-iter019-001 with the mechanism corrected: readlink returns an absolute .opencode/scripts path, so resolve_target follows zero hops; the orchestrator saw 6 SHADOWED lines and .git/hooks/prepare-commit-msg absent, matching this row. Not a new P1",
+    "f-iter021-003": "Lowered P1 to P2: an extension ranking, not a defect; the findings it would close carry their own severities",
+    "f-iter022-004": "Confirmed: orphan-process-check.cjs:558-568 returns 0 on both scan failures while README.markdown:126 says it exits 1 on an unexpected error"
+  },
+  "checkpoint_rule": "Lead ruling: no close at the ceiling. At each ceiling, if the last three productive iterations hold a new P0 or P1 that survived orchestrator verification, extend by five and score again; close only when three in a row are clean. A P1 lowered on evidence does not count. Lead confirmation: close as soon as three consecutive productive iterations hold no new verified P0 or P1 and the coverage items of the bar hold (every release read, all seven types probed, strongest claims verified); an extension need not run to its ceiling. The score is recorded at close.",
+  "severity_overrides": {
+    "f-iter021-003": "P2"
+  },
+  "summary": "The doctor, git, CI and runtime-mirror surfaces report healthier than they are. Several checkers cannot fail: symlink-engine check exits 0 on any drift, the orphan-process check exits 0 when it cannot scan, and two doctor checkers reject the --check flag their own route passes. Coverage gates are narrower than their names: the sk-git CI job runs one suite of five, agents-md-manifest --check fails today and no workflow runs it, and the agent parity gate checks three of seven runtime trees with its opencode arm comparing a file with itself. The .opencode to .skilled symlink aliases are the most common source of both real defects (hook status SHADOWED) and false findings: three iteration claims of duplicate files were refuted because the parent directory is a symlink.",
+  "recommendations": "1. Give symlink-engine check a non-zero exit on any drift status (symlink-engine.cjs:1801) and make orphan-process-check return 1 on scan failure (:560, :568).\n2. Add the four missing sk-git suites and node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check as steps in sk-git-script-tests.yml, and rename the job to what it runs.\n3. Extend RUNTIME_MIRRORS to every runtime tree that ships agents and drop or repoint the opencode arm, which reads the canonical file through a symlink.\n4. Compare hook paths by realpath in install-git-hooks.sh resolve_target and in git-setup-check checkHooks, and make checkHooks ignore a global core.hooksPath unless the repo opted into it.\n5. Accept --check in agent-roster-mirror-check.cjs and command-catalog-mirror-check.cjs, or drop it from doctor-runtime-mirrors.yaml.\n6. Before filing any duplicate-file finding, test inode identity (stat dev and ino) rather than readlink on the file.",
+  "open_questions": [
+    "Should .claude/agents keep 13 real copies (Explore.md has no canonical source), or become links like .opencode/agents?",
+    "Is a machine-wide core.hooksPath into this checkout the intended install, given that it makes this working tree load-bearing for every repository on the machine?"
+  ],
+  "hook": "This phase ran a forced-depth research loop over doctor, git, CI and runtime mirrors: 22 state rows, 21 productive iterations after one Devin quota failure, two +5 extensions, closed when iterations 20 to 22 held no new verified P1. The strongest findings are checkers that cannot fail and CI gates narrower than their names.",
+  "validate_line": "Summary: Errors: 0  Warnings: 2 / RESULT: PASSED (SOURCE_TAGS: 4 iteration-010 citations through the .opencode/scripts alias that the redirect table reports as moved, plus one containment quarantine copy of a sibling child; LEVEL_MATCH: decision-record.md at Level 1)"
+}
