@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 919,
+  "derived_count": 922,
   "directories": [
     ".",
     ".claude",
@@ -189,7 +189,9 @@
     ".skilled/hooks/session-relaunch/tests",
     ".skilled/hooks/shared",
     ".skilled/hooks/shared/dsh",
+    ".skilled/hooks/shared/session-readers",
     ".skilled/hooks/shared/tests",
+    ".skilled/hooks/shared/tests/session-readers",
     ".skilled/hooks/skill-advisor",
     ".skilled/hooks/skill-advisor/claude",
     ".skilled/hooks/skill-advisor/codex",
@@ -869,6 +871,7 @@
     ".skilled/skills/system-spec-kit/runtime/hooks/cursor",
     ".skilled/skills/system-spec-kit/runtime/hooks/devin",
     ".skilled/skills/system-spec-kit/runtime/hooks/dsh",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/history",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate",
     ".skilled/skills/system-spec-kit/runtime/hooks/lib/workspace",
     ".skilled/skills/system-spec-kit/runtime/hooks/opencode",
