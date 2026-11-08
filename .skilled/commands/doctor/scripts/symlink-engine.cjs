@@ -817,6 +817,8 @@ function planMergeTree(root, source, rootRelative, sourceRelative, entrySource, 
       // Only a host sibling that already exists receives the alias; it is never a link into the checkout.
       if (!isWithin(hostTarget, root) || !linkTargetExists(hostTarget)) continue;
       if (!rootStat) {
+        // The host-relative alias keeps its text relative, so it is portable and a host may
+        // commit it. Only the machine-local absolute links below belong in the ignore file.
         actions.push({ op: 'link', path: childRootRelative, target: linkText });
       }
       continue;
