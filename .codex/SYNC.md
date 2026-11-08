@@ -81,7 +81,7 @@ Agents are TOML with the body carried in a triple-quoted string:
 name = "review"
 description = "Code review specialist with pattern validation, quality scoring, and standards enforcement"
 sandbox_mode = "read-only"
-model = "gpt-5.5"
+model = "gpt-6-luna"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

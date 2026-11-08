@@ -349,4 +349,5 @@ The `session-lifecycle/` and `skill-advisor/` subfolders of Claude, Codex, Curso
 <!-- readme-check
 allow-ref mcp-code-mode/runtime/ | a former location these hooks moved out of
 allow-ref runtime-hooks/ | the sibling directory name the operator rejected in favour of one tree
+allow-ref hooks/dsh/ | a folder name inside each owning skill, not a path from here; the same sentence names the full paths
 -->

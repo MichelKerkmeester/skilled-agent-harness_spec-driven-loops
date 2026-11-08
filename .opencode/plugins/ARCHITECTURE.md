@@ -58,12 +58,15 @@ The diagram shows the bridged plugins. Every entry file in the folder is one.
 
 ```text
 .opencode/plugins/
-├── classifier-injection-screen.js   # every entry from here to system-speckit-completion.js is built with dualPlugin, each default-exporting { id, setup, server }
+├── ask-surface-guard.js             # every entry from here to system-speckit-completion.js is built with dualPlugin, each default-exporting { id, setup, server }
+├── classifier-injection-screen.js
 ├── cli-dispatch-audit.js
 ├── codex-hooks-watchdog.js
+├── decision-capture.js
 ├── mcp-route-guard.js
 ├── opencode-goal.js
 ├── session-cleanup.js
+├── session-history-lookup.js
 ├── session-relaunch.js
 ├── sk-code-post-edit-quality.js
 ├── sk-git-message-gate.js

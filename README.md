@@ -861,7 +861,7 @@ A bridge checks before it runs. It confirms its CLI is installed and usable, so 
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill with seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run, and its OpenCode Go route is configured but not verified. All seven bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
+One skill with seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`. Each bridge checks a dispatch against the rules in its own `hard-rules.json` before the command runs, and the `dsh` bridge carries 13 of them. That bridge is experimental. Its LLM Gateway `deepseek-v4.1-flash-1017` route passed a keyed run on 2026-11-06 and is the default. Its OpenCode Go route passed one on 2026-11-07 and runs only when you name it. All seven bridges are also deep-loop fan-out executors, so a research, review or council run can bind any of them as a lineage.
 
 &nbsp;
 
@@ -1076,12 +1076,12 @@ In linked projects, each project keeps its answers in its own folder under `.ski
 
 #### OpenCode Plugins
 
-Seventeen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
+Nineteen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
 - **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit and a screen for instructions hidden in fetched web pages
-- **Sessions:** the goal plugin, session cleanup and the in-session handover relaunch
+- **Sessions:** the goal plugin, session cleanup, the in-session handover relaunch and the history lookup offer after a compaction
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
 
