@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-07"
-version: 2.1.21.0
+version: 2.1.22.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1064,6 +1064,22 @@ See [`feature-flag-reference/filter-config-contract.md`](feature-flag-reference/
 ---
 
 ## 11. UX HOOKS
+
+### Ask-surface guard
+
+#### Description
+
+Sends a turn that ends in a typed option menu, with no question-tool call, back once to ask through the runtime's question tool, and logs an advisory where a runtime cannot send a turn back.
+
+#### Current Reality
+
+Claude Code, DSH, OpenCode and Pi send the turn back once; Codex and Devin write an advisory to stderr. Every fire is logged to `.skilled/skills/.state/ask-surface/fires.jsonl`, and `SYSTEM_ASK_SURFACE_DISABLED=1` turns the guard off.
+
+#### Source Files
+
+See [`ux-hooks/ask-surface-guard.md`](ux-hooks/ask-surface-guard.md) for full implementation and test file listings.
+
+---
 
 ### Cross-runtime directive-lifecycle dedup
 

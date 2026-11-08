@@ -4,7 +4,7 @@ description: "This scenario validates that on Devin, where Stop cannot block, th
 trigger_phrases:
   - "ask surface guard devin advisory"
   - "devin prose menu advisory test"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # ask-surface-guard-devin-advisory-conversation -- Ask-surface guard Devin advisory conversation
@@ -62,15 +62,13 @@ Operators run this scenario in its own runner invocation and scratch project.
   },
   "setup": [
     "git init -q",
-    "mkdir -p .claude .opencode .pi .devin .skilled/skills/.state notes",
+    "mkdir -p .claude .opencode .pi .devin notes",
     "for d in .claude .opencode .pi .devin; do cp -R \"$CONVERSATION_REPO_ROOT/$d/.\" \"$d/\"; done",
     "node -e 'const fs=require(\"fs\");const c=JSON.parse(fs.readFileSync(process.env.CONVERSATION_REPO_ROOT+\"/opencode.json\",\"utf8\"));delete c.mcp;c.model=\"opencode-go/deepseek-v4.1-flash\";for(const a of Object.values(c.agent||{}))a.model=c.model;fs.writeFileSync(\"opencode.json\",JSON.stringify(c,null,2))'",
     "node -e 'const fs=require(\"fs\");const p=\".pi/settings.json\";const c=JSON.parse(fs.readFileSync(p,\"utf8\"));c.defaultProvider=\"opencode-go\";c.defaultModel=\"deepseek-v4.1-flash\";fs.writeFileSync(p,JSON.stringify(c,null,2))'",
     "node -e 'const fs=require(\"fs\");const p=\".devin/config.json\";const c=JSON.parse(fs.readFileSync(p,\"utf8\"));c.agent={...(c.agent||{}),model:\"deepseek-v4-1-flash-1017-max\"};fs.writeFileSync(p,JSON.stringify(c,null,2))'",
     "cp \"$CONVERSATION_REPO_ROOT/AGENTS.md\" AGENTS.md && ln -s AGENTS.md CLAUDE.md",
-    "ln -s \"$CONVERSATION_REPO_ROOT/.skilled/hooks\" .skilled/hooks && ln -s \"$CONVERSATION_REPO_ROOT/.skilled/bin\" .skilled/bin && ln -s \"$CONVERSATION_REPO_ROOT/.skilled/skills/system-spec-kit\" .skilled/skills/system-spec-kit",
-    "ln -s \"$CONVERSATION_REPO_ROOT/.skilled/commands\" .skilled/commands && ln -s \"$CONVERSATION_REPO_ROOT/.skilled/repo-rules\" .skilled/repo-rules",
-    "ln -s \"$CONVERSATION_REPO_ROOT/.skilled/scripts\" .skilled/scripts && for s in sk-code sk-git; do ln -s \"$CONVERSATION_REPO_ROOT/.skilled/skills/$s\" \".skilled/skills/$s\"; done",
+    "cp -R \"$CONVERSATION_REPO_ROOT/.skilled\" .skilled && rm -rf .skilled/skills/.state && mkdir -p .skilled/skills/.state",
     "printf 'Badge colours under review: amber, teal, slate.\\n' > notes/colours.md && printf 'The badge sits beside the widget title.\\n' > notes/placement.md && printf 'Release target: the next demo build.\\n' > notes/release.md"
   ],
   "turns": [
@@ -84,7 +82,7 @@ Operators run this scenario in its own runner invocation and scratch project.
       "timeout_ms": 600000,
       "questions": [
         {
-          "match": "([Ww]hich|[Pp]ick|[Cc]hoose|[Pp]refer|[Gg]o with)",
+          "match": "([Ww]hich (status|colou?r|badge|option)|[Ww]hat colou?r|[Pp]ick|[Cc]hoose|[Pp]refer|[Gg]o with|[Ss]elect)",
           "optional": true,
           "answer": {
             "select": [
