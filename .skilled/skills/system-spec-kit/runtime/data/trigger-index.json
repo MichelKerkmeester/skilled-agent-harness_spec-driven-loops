@@ -1,5 +1,5 @@
 {
-  "manifestHash": "df44bf02f2c09c83cf8db88a654db1e3c67446b8dbc7fde515a9c5653f8d43f3",
+  "manifestHash": "6fa203b1020a34367237eea589a533dea78722b521c9997525f4941727e6751a",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -145779,6 +145779,9 @@
     ],
     "test support": [
       3288
+    ],
+    "test temp folder isolation": [
+      1481
     ],
     "test validation": [
       3252
