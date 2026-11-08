@@ -80,6 +80,9 @@ dist/
 .skilled/skills/system-skill-advisor/runtime/schemas/**/*.d.ts
 .opencode/skills/system-skill-advisor/runtime/schemas/**/*.d.ts.map
 .skilled/skills/system-skill-advisor/runtime/schemas/**/*.d.ts.map
+# The spec-kit runtime build writes these declarations beside the shared hook helpers.
+.skilled/hooks/shared/*.d.cts
+.skilled/hooks/shared/*.d.cts.map
 
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-spec-kit
