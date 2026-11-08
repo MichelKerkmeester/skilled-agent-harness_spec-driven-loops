@@ -8,7 +8,7 @@ trigger_phrases:
   - "codex clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Codex CLI — Prompt Quality Card
@@ -37,7 +37,7 @@ The 7-framework selection table, the task-to-framework map, the pre-planning-den
 
 ## 3. CODEX MODEL OVERRIDES
 
-No per-model overrides are recorded here. Codex CLI dispatches `gpt-5.5` by default; reasoning effort is tuned via `-c model_reasoning_effort` (see SKILL.md §3). No profiled small model is dispatched through this executor.
+No per-model overrides are recorded here. Codex CLI dispatches `gpt-6-luna` by default; reasoning effort is tuned via `-c model_reasoning_effort` (see SKILL.md §3). A ChatGPT-account login accepts only the models its plan lists, so pass `-m` when in doubt. No profiled small model is dispatched through this executor.
 
 ---
 

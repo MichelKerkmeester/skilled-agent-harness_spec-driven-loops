@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex validation pipeline"
 importance_tier: normal
 contextType: planning
-version: 1.9.2.0
+version: 1.9.3.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Codex CLI
@@ -55,7 +55,7 @@ Calling AI (plan) --> Codex CLI (generate) --> Calling AI (review) --> Codex CLI
 # Step 1: Codex generates the code
 codex exec \
   "Create a rate limiter middleware for Express with sliding window algorithm. Output only the code, no explanation." \
-  --sandbox workspace-write --model gpt-5.5 > /tmp/rate-limiter.ts
+  --sandbox workspace-write --model gpt-6-luna > /tmp/rate-limiter.ts
 
 # Step 2: Calling AI reviews (done within the calling AI session)
 # Read /tmp/rate-limiter.ts, identify issues, write review to /tmp/review.md
@@ -63,7 +63,7 @@ codex exec \
 # Step 3: Codex fixes based on review
 codex exec \
   "@/tmp/rate-limiter.ts Fix these issues: $(cat /tmp/review.md)" \
-  --sandbox workspace-write --model gpt-5.5 > /tmp/rate-limiter-v2.ts
+  --sandbox workspace-write --model gpt-6-luna > /tmp/rate-limiter-v2.ts
 ```
 
 ### When to Use
@@ -90,7 +90,7 @@ codex exec \
 # Request JSON explicitly in the prompt (Codex has no --output json flag)
 codex exec \
   "Analyze src/auth.ts and return JSON with: {functions: [{name, params, returnType, complexity}], issues: [{line, severity, description}]}" \
-  --sandbox read-only --model gpt-5.5 > /tmp/analysis.json
+  --sandbox read-only --model gpt-6-luna > /tmp/analysis.json
 
 # Parse with jq
 jq '.issues[] | select(.severity == "high")' /tmp/analysis.json
@@ -122,7 +122,7 @@ Codex has no native JSON output wrapper — it outputs plain text to stdout. Whe
 # Prompt that avoids code fences
 codex exec \
   "Analyze src/auth.ts. Return ONLY raw JSON (no markdown, no explanation): {issues: [{line, severity, description}]}" \
-  --sandbox read-only --model gpt-5.5 > /tmp/analysis.json
+  --sandbox read-only --model gpt-6-luna > /tmp/analysis.json
 
 jq '.issues' /tmp/analysis.json
 ```
@@ -169,11 +169,11 @@ grep -oE 'Verdict: (PASS|FAIL)' transcript.md | tail -1                      # �
 ```bash
 # Launch multiple Codex tasks in background
 codex exec "Review src/api/ for security vulnerabilities. Return JSON." \
-  --sandbox read-only --model gpt-5.5 > /tmp/security-review.txt 2>&1 &
+  --sandbox read-only --model gpt-6-luna > /tmp/security-review.txt 2>&1 &
 PID1=$!
 
 codex exec "Generate unit tests for src/utils.ts" \
-  --sandbox workspace-write --model gpt-5.5 > /tmp/generated-tests.ts 2>&1 &
+  --sandbox workspace-write --model gpt-6-luna > /tmp/generated-tests.ts 2>&1 &
 PID2=$!
 
 # Calling AI continues other work...
@@ -274,11 +274,11 @@ done < input.jsonl
 
 ## 5. MODEL SELECTION STRATEGY
 
-**Codex CLI dispatches `gpt-5.5` by default. Choose reasoning effort by task type.**
+**Codex CLI dispatches `gpt-6-luna` by default. Choose reasoning effort by task type.** A ChatGPT-account login accepts only the models its plan lists, so pass `-m` when in doubt.
 
 ### Decision Matrix
 
-All tasks dispatch `--model gpt-5.5`. Tune reasoning effort per task type:
+All tasks dispatch `--model gpt-6-luna`. Tune reasoning effort per task type:
 
 | Task Type | Reasoning Effort | Flag | Rationale |
 |-----------|-----------------|------|-----------|
@@ -298,24 +298,24 @@ All tasks dispatch `--model gpt-5.5`. Tune reasoning effort per task type:
 ```bash
 # Reasoning-heavy tasks — raise reasoning_effort to high
 codex exec "Review the authentication architecture for security gaps" \
-  --sandbox read-only --model gpt-5.5 -c model_reasoning_effort="high"
+  --sandbox read-only --model gpt-6-luna -c model_reasoning_effort="high"
 
 codex exec "Plan the migration from REST to GraphQL" \
-  --sandbox read-only --model gpt-5.5 -c model_reasoning_effort="high"
+  --sandbox read-only --model gpt-6-luna -c model_reasoning_effort="high"
 
 # Code-focused tasks — medium is fine
 codex exec "Write tests for utils.ts" \
-  --sandbox workspace-write --model gpt-5.5 -c model_reasoning_effort="medium"
+  --sandbox workspace-write --model gpt-6-luna -c model_reasoning_effort="medium"
 
 codex exec "Generate a rate limiter middleware" \
-  --sandbox workspace-write --model gpt-5.5 -c model_reasoning_effort="medium"
+  --sandbox workspace-write --model gpt-6-luna -c model_reasoning_effort="medium"
 
 # Mixed workflow: analyze at high, implement at medium
 codex exec "Analyze src/ for N+1 query patterns" \
-  --sandbox read-only --model gpt-5.5 -c model_reasoning_effort="high" > /tmp/analysis.txt
+  --sandbox read-only --model gpt-6-luna -c model_reasoning_effort="high" > /tmp/analysis.txt
 
 codex exec "Fix the N+1 patterns identified: $(cat /tmp/analysis.txt)" \
-  --sandbox workspace-write --model gpt-5.5 -c model_reasoning_effort="medium"
+  --sandbox workspace-write --model gpt-6-luna -c model_reasoning_effort="medium"
 ```
 
 ### Why Explicit Model Specification Matters
@@ -326,7 +326,7 @@ codex exec "Fix the N+1 patterns identified: $(cat /tmp/analysis.txt)" \
 
 ```toml
 # .codex/config.toml - sets default for all invocations
-model = "gpt-5.5"
+model = "gpt-6-luna"
 model_reasoning_effort = "xhigh"
 ```
 
@@ -354,24 +354,24 @@ Task type?
 ```bash
 # Analysis: read-only
 codex exec "Identify all N+1 query patterns in src/" \
-  --sandbox read-only --model gpt-5.5
+  --sandbox read-only --model gpt-6-luna
 
 # Code generation: workspace-write
 codex exec "Add retry logic to all API calls in src/api/" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 
 # System migration: danger-full-access with explicit approval
 codex exec "Migrate the database schema from v1 to v2" \
   --sandbox danger-full-access \
   --ask-for-approval untrusted \
-  --model gpt-5.5
+  --model gpt-6-luna
 
 # Preview before committing: read-only first, workspace-write after review
 codex exec "List all files that would be changed by the auth refactor" \
-  --sandbox read-only --model gpt-5.5 > /tmp/files-to-change.txt
+  --sandbox read-only --model gpt-6-luna > /tmp/files-to-change.txt
 # Review /tmp/files-to-change.txt, then proceed:
 codex exec "@/tmp/files-to-change.txt Apply the auth refactor to these files" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 ```
 
 ### Sandbox Combinations to Avoid
@@ -393,11 +393,11 @@ codex exec "@/tmp/files-to-change.txt Apply the auth refactor to these files" \
 ```bash
 # Single file context
 codex exec "@src/database.ts Refactor to use the repository pattern" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 
 # Multiple files for cross-file understanding
 codex exec "@src/auth.ts @src/user.ts @src/session.ts These files have a circular dependency. Fix it." \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 ```
 
 ### Project Context via instructions.md
@@ -430,7 +430,7 @@ is not being rotated on use, allowing token replay attacks."
 
 codex exec \
   "@src/auth/tokens.ts Fix this security issue. Context from prior analysis: $CLAUDE_ANALYSIS" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 ```
 
 ### Web Search for Current Information
@@ -439,7 +439,7 @@ codex exec \
 # Enable live web browsing with --search
 codex --search exec \
   "Research the current best practices for refresh token rotation in Express.js. Implement the recommended pattern in src/auth/tokens.ts" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 ```
 
 ---
@@ -453,21 +453,21 @@ codex --search exec \
 ```bash
 # Stage 1: Generate
 codex exec "Create a webhook handler for Stripe events" \
-  --sandbox workspace-write --model gpt-5.5 > /tmp/webhook.ts
+  --sandbox workspace-write --model gpt-6-luna > /tmp/webhook.ts
 
 # Stage 2: Syntax check
 npx tsc --noEmit /tmp/webhook.ts 2>/tmp/syntax-errors.txt
 if [ $? -ne 0 ]; then
   codex exec \
     "@/tmp/webhook.ts Fix these TypeScript errors: $(cat /tmp/syntax-errors.txt)" \
-    --sandbox workspace-write --model gpt-5.5 > /tmp/webhook-fixed.ts
+    --sandbox workspace-write --model gpt-6-luna > /tmp/webhook-fixed.ts
   cp /tmp/webhook-fixed.ts /tmp/webhook.ts
 fi
 
 # Stage 3: Security scan
 codex exec \
   "@/tmp/webhook.ts Audit this code for security issues. Focus on: input validation, injection attacks, authentication bypasses. Return JSON: {issues: [{severity, line, description, fix}]}" \
-  --sandbox read-only --model gpt-5.5 > /tmp/security-scan.txt
+  --sandbox read-only --model gpt-6-luna > /tmp/security-scan.txt
 
 # Stage 4: Functional check (calling AI reviews the result)
 # Read /tmp/webhook.ts and /tmp/security-scan.txt within the calling AI
@@ -475,18 +475,18 @@ codex exec \
 # Stage 5: Style alignment
 codex exec \
   "@/tmp/webhook.ts Reformat to match project conventions. Functional style, Result<T,E> error handling, JSDoc on exports." \
-  --sandbox workspace-write --model gpt-5.5 > /tmp/webhook-final.ts
+  --sandbox workspace-write --model gpt-6-luna > /tmp/webhook-final.ts
 ```
 
 ### Pipeline Stages (Recommended Order)
 
 | Stage | Purpose | Tool |
 |-------|---------|------|
-| 1. Generate | Create initial artifact | Codex (`gpt-5.5` @ `medium`, `workspace-write`) |
+| 1. Generate | Create initial artifact | Codex (`gpt-6-luna` @ `medium`, `workspace-write`) |
 | 2. Syntax | Verify it compiles/parses | Language toolchain (tsc, eslint, etc.) |
-| 3. Security | Check for vulnerabilities | Codex (`gpt-5.5` @ `high`, `read-only`) |
+| 3. Security | Check for vulnerabilities | Codex (`gpt-6-luna` @ `high`, `read-only`) |
 | 4. Functional | Verify correctness | Calling AI review or tests |
-| 5. Style | Match project conventions | Codex (`gpt-5.5` @ `medium`, `workspace-write`) |
+| 5. Style | Match project conventions | Codex (`gpt-6-luna` @ `medium`, `workspace-write`) |
 
 ### When to Use
 
@@ -506,7 +506,7 @@ codex exec \
 # Stage 1: Type definitions (read-only analysis + workspace-write output)
 codex exec \
   "Create the type definitions and function signatures for a task queue system. Types only, no implementation. Export all types." \
-  --sandbox workspace-write --model gpt-5.5 > src/task-queue/types.ts
+  --sandbox workspace-write --model gpt-6-luna > src/task-queue/types.ts
 
 # Verify stage 1
 npx tsc --noEmit src/task-queue/types.ts
@@ -514,7 +514,7 @@ npx tsc --noEmit src/task-queue/types.ts
 # Stage 2: Core implementation
 codex exec \
   "@src/task-queue/types.ts Implement the core TaskQueue class using these types. Handle enqueue, dequeue, retry with exponential backoff." \
-  --sandbox workspace-write --model gpt-5.5 > src/task-queue/queue.ts
+  --sandbox workspace-write --model gpt-6-luna > src/task-queue/queue.ts
 
 # Verify stage 2
 npx tsc --noEmit src/task-queue/queue.ts
@@ -522,7 +522,7 @@ npx tsc --noEmit src/task-queue/queue.ts
 # Stage 3: Tests
 codex exec \
   "@src/task-queue/types.ts @src/task-queue/queue.ts Write comprehensive tests for the TaskQueue. Cover: enqueue, dequeue, retry logic, concurrency limits, error handling." \
-  --sandbox workspace-write --model gpt-5.5 > src/task-queue/__tests__/queue.test.ts
+  --sandbox workspace-write --model gpt-6-luna > src/task-queue/__tests__/queue.test.ts
 
 # Verify stage 3
 npx jest src/task-queue/__tests__/queue.test.ts
@@ -533,7 +533,7 @@ npx jest src/task-queue/__tests__/queue.test.ts
 1. Never proceed to the next stage if the current stage has errors.
 2. Each stage gets the output of all previous stages as `@file` context.
 3. Keep stages small enough that they can be fully reviewed.
-4. Use `gpt-5.5` for all stages; tune reasoning effort per stage (e.g., `high` for design, `medium` for implementation).
+4. Use `gpt-6-luna` for all stages; tune reasoning effort per stage (e.g., `high` for design, `medium` for implementation).
 
 ### When to Use
 
@@ -554,7 +554,7 @@ npx jest src/task-queue/__tests__/queue.test.ts
 # Then Codex reviews it:
 codex exec \
   "@src/newly-generated-module.ts Review this code for: correctness, edge cases, performance issues, and adherence to SOLID principles. Be critical. Return findings as JSON." \
-  --sandbox read-only --model gpt-5.5 > /tmp/codex-review.txt
+  --sandbox read-only --model gpt-6-luna > /tmp/codex-review.txt
 ```
 
 ### Codex Generates, Claude Reviews
@@ -562,7 +562,7 @@ codex exec \
 ```bash
 # Codex generates
 codex exec "Create a caching layer with TTL support and LRU eviction" \
-  --sandbox workspace-write --model gpt-5.5 > /tmp/cache.ts
+  --sandbox workspace-write --model gpt-6-luna > /tmp/cache.ts
 
 # Calling AI reviews within the session (read /tmp/cache.ts and analyze)
 ```
@@ -611,7 +611,7 @@ codex fork <session-id>
 # Non-interactive resume and continue
 codex exec --session-id <id> \
   "Continue implementing the rate limiter from where we left off" \
-  --model gpt-5.5
+  --model gpt-6-luna
 ```
 
 ### Multi-Turn Scripted Workflow
@@ -619,21 +619,21 @@ codex exec --session-id <id> \
 ```bash
 # Turn 1: Analysis - capture session ID from output if available
 codex exec "Analyze src/auth/ architecture. List 5 improvements." \
-  --sandbox read-only --model gpt-5.5 > /tmp/analysis.txt
+  --sandbox read-only --model gpt-6-luna > /tmp/analysis.txt
 # Note the session ID displayed in TUI or output
 
 # Turn 2: Implement first improvement (in same session)
 SESSION_ID="<id-from-turn-1>"
 codex exec --session-id "$SESSION_ID" \
   "Implement improvement #1 from your analysis" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 
 # Fork before trying a risky approach
 codex fork "$SESSION_ID"
 FORK_ID="<fork-id>"
 codex exec --session-id "$FORK_ID" \
   "Attempt the aggressive refactor approach" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 ```
 
 ### When to Use Each Operation
@@ -665,7 +665,7 @@ codex exec "Clean up the codebase" --full-auto  # May delete or alter files unex
 
 # GOOD: Review plan first, then execute specific steps
 codex exec "List files that could be cleaned up. Do not delete anything." \
-  --sandbox read-only --model gpt-5.5
+  --sandbox read-only --model gpt-6-luna
 # Review the list, then selectively execute
 ```
 
@@ -674,22 +674,22 @@ codex exec "List files that could be cleaned up. Do not delete anything." \
 ```bash
 # BAD: Unrestricted access with no human checkpoint
 codex exec "Migrate the database" \
-  --sandbox danger-full-access --ask-for-approval never --model gpt-5.5
+  --sandbox danger-full-access --ask-for-approval never --model gpt-6-luna
 
 # GOOD: Full access with explicit approval required
 codex exec "Migrate the database" \
-  --sandbox danger-full-access --ask-for-approval untrusted --model gpt-5.5
+  --sandbox danger-full-access --ask-for-approval untrusted --model gpt-6-luna
 ```
 
 ### 3. Trusting Output Blindly
 
 ```bash
 # BAD: Direct pipe to production
-codex exec "Generate migration SQL" --sandbox read-only --model gpt-5.5 \
+codex exec "Generate migration SQL" --sandbox read-only --model gpt-6-luna \
   | psql production_db
 
 # GOOD: Generate, review, test, then apply
-codex exec "Generate migration SQL" --sandbox read-only --model gpt-5.5 \
+codex exec "Generate migration SQL" --sandbox read-only --model gpt-6-luna \
   > /tmp/migration.sql
 # Review /tmp/migration.sql
 # Test on staging: psql staging_db -f /tmp/migration.sql
@@ -702,11 +702,11 @@ codex exec "Generate migration SQL" --sandbox read-only --model gpt-5.5 \
 # BAD: Everything at once
 codex exec "Create a complete REST API with auth, CRUD for users/posts/comments, \
   rate limiting, caching, logging, monitoring, tests, and deployment config" \
-  --model gpt-5.5
+  --model gpt-6-luna
 
 # GOOD: Incremental (Pattern 9)
 codex exec "Create type definitions for a blog API: User, Post, Comment" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 # Then build on top incrementally
 ```
 
@@ -714,14 +714,14 @@ codex exec "Create type definitions for a blog API: User, Post, Comment" \
 
 ```bash
 # BAD: Parallel writes to overlapping files
-codex exec "Fix auth" --sandbox workspace-write --model gpt-5.5 &
-codex exec "Fix auth tests" --sandbox workspace-write --model gpt-5.5 &
+codex exec "Fix auth" --sandbox workspace-write --model gpt-6-luna &
+codex exec "Fix auth tests" --sandbox workspace-write --model gpt-6-luna &
 # Race condition: both modify src/auth/ simultaneously
 
 # GOOD: Background only for independent, read-only analysis
-codex exec "Review src/auth/" --sandbox read-only --model gpt-5.5 \
+codex exec "Review src/auth/" --sandbox read-only --model gpt-6-luna \
   > /tmp/auth-review.txt &
-codex exec "Review src/payments/" --sandbox read-only --model gpt-5.5 \
+codex exec "Review src/payments/" --sandbox read-only --model gpt-6-luna \
   > /tmp/pay-review.txt &
 wait
 ```
@@ -730,11 +730,11 @@ wait
 
 ```bash
 # BAD: OSS models in automated pipelines (unpredictable quality)
-codex exec "Fix the authentication bug" --oss --model gpt-5.5
+codex exec "Fix the authentication bug" --oss --model gpt-6-luna
 
 # GOOD: Use --oss only for local experimentation
-# For production workflows, always use gpt-5.5 with ChatGPT OAuth (codex login)
-codex exec "Fix the authentication bug" --model gpt-5.5
+# For production workflows, always use gpt-6-luna with ChatGPT OAuth (codex login)
+codex exec "Fix the authentication bug" --model gpt-6-luna
 ```
 
 ### 7. Backgrounding codex exec Inside Shell Scripts Called by Another AI
@@ -758,11 +758,11 @@ This is the most common false-completion trap in cross-AI orchestration. The orc
 
 ```bash
 # BAD: Follow-up without re-providing context
-codex exec "Analyze src/auth.ts" --model gpt-5.5  # Turn 1
-codex exec "Now fix the issue you found" --model gpt-5.5  # Turn 2: Codex has no memory of Turn 1
+codex exec "Analyze src/auth.ts" --model gpt-6-luna  # Turn 1
+codex exec "Now fix the issue you found" --model gpt-6-luna  # Turn 2: Codex has no memory of Turn 1
 
 # GOOD: Re-provide context or use session resume
-codex exec "Analyze src/auth.ts" --model gpt-5.5 > /tmp/analysis.txt
+codex exec "Analyze src/auth.ts" --model gpt-6-luna > /tmp/analysis.txt
 codex exec "@src/auth.ts Fix the issues identified: $(cat /tmp/analysis.txt)" \
-  --sandbox workspace-write --model gpt-5.5
+  --sandbox workspace-write --model gpt-6-luna
 ```

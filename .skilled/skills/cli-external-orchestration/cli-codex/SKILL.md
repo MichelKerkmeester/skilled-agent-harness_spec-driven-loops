@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.9.14.0
+version: 1.9.15.0
 ---
 
 # Codex CLI Orchestrator - Cross-AI Task Delegation
@@ -83,7 +83,7 @@ echo "$CODEX_AUTH" | grep -qi "logged in\|chatgpt-oauth" && CODEX_OAUTH_OK=1 || 
 
 | State | CODEX_OAUTH_OK | Action |
 |-------|----------------|--------|
-| OAuth ready | 1 | Proceed with `codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"` |
+| OAuth ready | 1 | Proceed with `codex exec --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast"` |
 | Not logged in | 0 | **ASK user** to run `codex login` — surface the command, do NOT dispatch. Never substitute an API key or a different model. |
 
 **User prompt template — not logged in:**
@@ -98,13 +98,14 @@ then confirm when login finishes — the skill will retry the original dispatch.
 
 ### Default Invocation (Skill Default)
 
-**Default model + effort + tier**: `gpt-5.5` · `medium` reasoning · `fast` service tier. Balances speed, cost, and quality for the typical delegation.
+**Default model + effort + tier**: `gpt-6-luna` · `medium` reasoning · `fast` service tier. Balances speed, cost, and quality for the typical delegation.
+A ChatGPT-account login accepts only the models its plan lists, so pass `-m <model>` explicitly when in doubt.
 
 > **Fan-out fallback:** a deep-loop lineage that pins no model runs **GPT Luna**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
 ```bash
 codex exec \
-  --model gpt-5.5 \
+  --model gpt-6-luna \
   -c model_reasoning_effort="medium" \
   -c service_tier="fast" \
   -c approval_policy=never \
@@ -118,25 +119,25 @@ The trailing `</dev/null` is not optional in a non-interactive dispatch; Rule 6 
 
 | User says | Resolve to |
 |-----------|------------|
-| (nothing specified) | `--model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"` |
-| "Use gpt 5.5 high fast" | `--model gpt-5.5 -c model_reasoning_effort="high" -c service_tier="fast"` |
-| "Use gpt 5.5 low" | `--model gpt-5.5 -c model_reasoning_effort="low" -c service_tier="fast"` (fast stays unless user drops it) |
-| "Use gpt 5.5 xhigh" | `--model gpt-5.5 -c model_reasoning_effort="xhigh" -c service_tier="fast"` |
+| (nothing specified) | `--model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast"` |
+| "Use gpt 6 luna high fast" | `--model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast"` |
+| "Use gpt 6 luna low" | `--model gpt-6-luna -c model_reasoning_effort="low" -c service_tier="fast"` (fast stays unless user drops it) |
+| "Use gpt 6 luna xhigh" | `--model gpt-6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast"` |
 | "Use gpt 6 luna max" | `--model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast"` |
 | "Use gpt 5.6 terra high" | `--model gpt-5.6-terra -c model_reasoning_effort="high" -c service_tier="fast"` |
 | "Use gpt 6.1 terra high" | `--model gpt-6.1-terra -c model_reasoning_effort="high" -c service_tier="fast"` |
 | "Use gpt 6 sol ultra" | `--model gpt-6-sol -c model_reasoning_effort="ultra" -c service_tier="fast"` |
 
-Honor whichever dimensions the user names. Model stays on `gpt-5.5` and service tier stays on `fast` unless the user explicitly names a different model or tier; keep the reasoning effort within the chosen model's ceiling (see Model Selection below and the roster in [references/providers-and-models.md](references/providers-and-models.md)).
+Honor whichever dimensions the user names. Model stays on `gpt-6-luna` and service tier stays on `fast` unless the user explicitly names a different model or tier; keep the reasoning effort within the chosen model's ceiling (see Model Selection below and the roster in [references/providers-and-models.md](references/providers-and-models.md)).
 
 ### Model Selection
 
-`gpt-5.5` at `medium` on the `fast` service tier (`-c service_tier="fast"`) is the skill default for cross-AI delegation.
-Alternates are `gpt-6-luna` (≤ `max`), and `gpt-5.6-terra`, `gpt-6.1-terra` and `gpt-6-sol` (≤ `ultra`).
+`gpt-6-luna` at `medium` on the `fast` service tier (`-c service_tier="fast"`) is the skill default for cross-AI delegation.
+Alternates are `gpt-5.5` (≤ `xhigh`), and `gpt-5.6-terra`, `gpt-6.1-terra` and `gpt-6-sol` (≤ `ultra`).
 [references/providers-and-models.md](references/providers-and-models.md) holds the full roster, the per-model effort ceilings and the 8-level effort ladder.
 Set effort with `-c model_reasoning_effort="<level>"`. There is **no `--reasoning-effort` flag**.
 
-**Selection Strategy**: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh`; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `gpt-6-luna medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; take the default model to `max`, or switch to `gpt-6-sol`, when the task wants reasoning past `xhigh`; drop to `low` / `minimal` for trivial lookups. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Codex Agent Delegation
 
@@ -180,7 +181,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 6. **Redirect codex stdin from `/dev/null` on EVERY non-interactive dispatch**, not only inside a `while read` loop. Pattern: `codex exec "$PROMPT" > "$LOG" 2>&1 </dev/null &`.
    Without `</dev/null`, the backgrounded codex process inherits the loop's stdin, the file after `done < input.jsonl`, and silently consumes the remaining lines. The loop then exits after 3-6 iterations with no error.
    See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
-7. **Specify model + effort + service tier explicitly** — never rely on caller environment. Default: `--model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"`. Honor user overrides verbatim. Use `high`/`xhigh` for reasoning-heavy tasks (architecture, security, deep planning).
+7. **Specify model + effort + service tier explicitly** — never rely on caller environment. Default: `--model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast"`. Honor user overrides verbatim. Use `high`/`xhigh` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate `-p <profile>` when the task matches a specialization (see Section 3 routing table); use `codex exec review` (built-in subcommand) for git diff reviews.
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in non-interactive mode.
 10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 2-tier rule canonical in `../../sk-prompt/assets/cli-prompt-quality-card.md`:

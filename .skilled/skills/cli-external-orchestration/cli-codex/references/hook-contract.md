@@ -8,7 +8,7 @@ trigger_phrases:
   - "codex advisor brief"
 importance_tier: important
 contextType: implementation
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Codex CLI Hook Contract
@@ -149,7 +149,7 @@ field names and reject unknown properties.
   "transcript_path": null,
   "cwd": "/workspace",
   "hook_event_name": "SessionStart",
-  "model": "gpt-5.5",
+  "model": "gpt-6-luna",
   "permission_mode": "default",
   "source": "startup"
 }
@@ -166,7 +166,7 @@ field names and reject unknown properties.
   "transcript_path": null,
   "cwd": "/workspace",
   "hook_event_name": "UserPromptSubmit",
-  "model": "gpt-5.5",
+  "model": "gpt-6-luna",
   "permission_mode": "default",
   "prompt": "user prompt"
 }
@@ -221,7 +221,7 @@ Installed paths:
 Manual smoke checks:
 
 ```bash
-printf '%s\n' '{"session_id":"s1","hook_event_name":"SessionStart","source":"startup","cwd":"'"$PWD"'","model":"gpt-5.5","permission_mode":"default"}' \
+printf '%s\n' '{"session_id":"s1","hook_event_name":"SessionStart","source":"startup","cwd":"'"$PWD"'","model":"gpt-6-luna","permission_mode":"default"}' \
   | node .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/session-start.js
 ```
 

@@ -55,7 +55,7 @@ bash: read the lineage result and confirm exit 0, a last final event with reason
 - Verdict: `PASS`.
 - Observed: the clean LLM Gateway deep-research lineage completed with exit 0 and a `completed` final event. Its containment scan reported zero advisory events and no quarantine.
 - Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage.md`, `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.exit.txt` and `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/fanout-lineage-clean.stdout.txt`.
-- OpenCode Go remains configured, not verified, and stays out of default allowlists while its key is unset.
+- OpenCode Go was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out of default allowlists.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

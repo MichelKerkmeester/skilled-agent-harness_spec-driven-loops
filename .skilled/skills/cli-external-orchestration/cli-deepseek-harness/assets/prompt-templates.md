@@ -8,7 +8,7 @@ trigger_phrases:
   - "dsh dispatch template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DeepSeek Harness CLI Prompt Templates
@@ -32,7 +32,7 @@ Gives each common dsh dispatch one tested shape, so a caller never improvises th
 
 ### Status
 
-The `.dsh/patches/` files these templates name exist in the checkout. The LLM Gateway `deepseek-v4.1-flash-1017` run completed on 2026-11-06. OpenCode Go remains unverified because its key is not set.
+The `.dsh/patches/` files these templates name exist in the checkout. The LLM Gateway `deepseek-v4.1-flash-1017` run completed on 2026-11-06, and OpenCode Go was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`.
 
 ---
 
@@ -160,4 +160,4 @@ Ask every child for this shape, and check each claim against the diff and the st
 
 ## 8. SOURCE AND CONFIDENCE
 
-The argv, the option set, the stream order and the keyless failure come from the offline contract pin under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/`. The LLM Gateway `deepseek-v4.1-flash-1017` answer and completed-run path are observed from 2026-11-06. OpenCode Go remains unverified because its key is not set. The sandbox boundary remains documented, unconfirmed.
+The argv, the option set, the stream order and the keyless failure come from the offline contract pin under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/`. The LLM Gateway `deepseek-v4.1-flash-1017` answer and completed-run path are observed from 2026-11-06. OpenCode Go was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`. The sandbox boundary remains documented, unconfirmed.

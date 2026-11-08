@@ -1,14 +1,14 @@
 ---
 title: "cli-deepseek-harness: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-deepseek-harness skill."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # cli-deepseek-harness: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Live dsh scenarios use the real binary and never a mock. The CLI adapter stress matrix runs checked-in Vitest tests against shims and fixtures; those cells do not start dsh or contact a provider. A scenario that already holds a saved capture cites and records that basis. The only allowed verdicts are `PASS`, `FAIL` and `SKIP`. The OpenCode Go follow-up records `SKIP` while `OPENCODE_API_KEY` is unset.
 
-> **RECURSION BOUNDS**: A dsh dispatch is refused inside a dsh child and inside a fan-out lineage. The fan-out scenario also needs a runtime that carries the `cli-deepseek-harness` executor kind. The LLM Gateway lineage is verified. The executor kind remains experimental while OpenCode Go is configured but not verified.
+> **RECURSION BOUNDS**: A dsh dispatch is refused inside a dsh child and inside a fan-out lineage. The fan-out scenario also needs a runtime that carries the `cli-deepseek-harness` executor kind. The LLM Gateway lineage is verified. The executor kind remains experimental while dsh is a release candidate.
 
 This document is the operator directory and package-level validation contract for the `cli-deepseek-harness` skill. It defines the realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors and links to the 25 canonical scenario files.
 
@@ -245,7 +245,7 @@ This category covers one keyed request per roster route. Each run must exit 0 an
 
 The keyless contract is observed. Both roster routes exit 1 with `MISSING_CREDENTIAL` and name their own key variable. The LLM Gateway `deepseek-v4.1-flash-1017` keyed run completed on 2026-11-06 with exit 0, a `completed` final reason and empty stderr.
 
-OpenCode Go `deepseek-v4.1-flash` remains configured, not verified, because `OPENCODE_API_KEY` is unset. Its endpoint is UNKNOWN, so it stays out of every default allowlist. `MDL-002` is the only key-gated scenario still recorded as `SKIP`. The patch scenario verdicts may be judged from saved captures. Their command blocks reproduce the runs.
+OpenCode Go `deepseek-v4.1-flash` was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out of every default allowlist. `MDL-002` remains recorded as `SKIP` from a keyless environment and is worth re-running now that the route is proven. The patch scenario verdicts may be judged from saved captures. Their command blocks reproduce the runs.
 
 The hub routes to this mode only on harness vocabulary. The shared runtime carries its executor kind, and `.dsh/` contains all five patches. One LLM Gateway research lineage also completed with a clean containment scan.
 
@@ -272,7 +272,7 @@ The `cli-deepseek-harness` packet owns the dispatch contract around the `dsh` bi
 | `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Root and scenario markdown structure | This root playbook |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | Five-section scenario contract, verdicts, index bijection | This package |
 
-No automated test covers a keyed model turn, a live research lineage or an endpoint for the OpenCode Go route. Those stay manual and key-gated.
+No automated test covers a keyed model turn, a live research lineage or the OpenCode Go route. Those stay manual.
 
 The operator validator checks structure, verdict vocabulary, prompt synchronization and local links. It does not execute a scenario or judge whether an answer is useful, so the recorded result and its cited evidence carry that part of the verdict.
 

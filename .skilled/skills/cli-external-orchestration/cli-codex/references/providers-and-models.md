@@ -5,14 +5,14 @@ trigger_phrases:
   - "codex providers and models"
   - "which model for codex dispatch"
   - "codex reasoning effort lever"
-  - "codex default model gpt-5.5"
+  - "codex default model gpt-6-luna"
   - "codex gpt-6 luna sol"
   - "codex gpt-5.6 terra"
   - "codex gpt-6.1 terra"
   - "codex exec model reasoning effort"
 importance_tier: normal
 contextType: implementation
-version: 1.9.5.0
+version: 1.9.6.0
 ---
 
 # cli-codex Providers, Models & Invocation
@@ -55,8 +55,8 @@ cli-codex is backed by a single provider — **OpenAI**, authenticated through C
 
 | Model id | Default? | Effort ceiling / notes |
 |----------|----------|------------------------|
-| `gpt-5.5` | **Default** | Ceiling `xhigh`; default effort `medium`. General delegation — generation, review, docs, architecture, research |
-| `gpt-6-luna` | — | Ceiling `max`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
+| `gpt-5.5` | — | Ceiling `xhigh`; default effort `medium`. General delegation — generation, review, docs, architecture, research |
+| `gpt-6-luna` | **Default** | Ceiling `max`; default effort `medium`. Implementation-heavy work wanting deeper reasoning; the `luna-impl` profile pins `max` |
 | `gpt-5.6-terra` | — | Ceiling `ultra`. GPT-5.6 fast sibling; no dedicated config profile — call directly via `-m gpt-5.6-terra` |
 | `gpt-6.1-terra` | — | Ceiling `ultra`. The newest Terra model, which the Codex catalog lists as GPT-6.1 Terra with efforts `low` through `ultra`. No dedicated config profile, so call it directly via `-m gpt-6.1-terra` |
 | `gpt-6-sol` | — | Ceiling `ultra`. Verification / review and the hardest planning; shares the `ultra` ceiling with Terra; the `sol-verify` profile pins `xhigh` |
@@ -71,14 +71,14 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `gpt-5.5` |
+| Default model | `gpt-6-luna` |
 | Default effort | `-c model_reasoning_effort="medium"` |
 | Service tier | `-c service_tier="fast"` |
 | Default sandbox | `--sandbox workspace-write` (for edits) / `read-only` (for review/analysis) |
 
 ```bash
 codex exec \
-  --model gpt-5.5 \
+  --model gpt-6-luna \
   -c model_reasoning_effort="medium" \
   -c service_tier="fast" \
   -c approval_policy=never \
@@ -86,7 +86,7 @@ codex exec \
   "<prompt>"
 ```
 
-Honor explicit user phrasing verbatim ("Use gpt 5.5 high fast", "Use gpt 6 sol ultra"). Model stays on `gpt-5.5` and service tier stays on `fast` unless the user names a different one; keep the effort within the chosen model's ceiling (§4). If Codex is not authenticated, the mode ASKS the user to run `codex login` — it never substitutes an API key or a different model. See the auth pre-flight decision tree in [../SKILL.md](../SKILL.md) §3.
+Honor explicit user phrasing verbatim ("Use gpt 6 luna high fast", "Use gpt 6 sol ultra"). Model stays on `gpt-6-luna` and service tier stays on `fast` unless the user names a different one; keep the effort within the chosen model's ceiling (§4). A ChatGPT-account login accepts only the models its plan lists, so pass `-m <model>` explicitly when in doubt. If Codex is not authenticated, the mode ASKS the user to run `codex login` — it never substitutes an API key or a different model. See the auth pre-flight decision tree in [../SKILL.md](../SKILL.md) §3.
 
 ---
 
@@ -100,17 +100,17 @@ Per-model ceilings — set the effort within the chosen model's cap:
 
 | Model | Effort ceiling | Notes |
 |-------|----------------|-------|
-| `gpt-5.5` | `xhigh` | Default effort `medium` |
-| `gpt-6-luna` | `max` | `luna-impl` profile pins `max` |
+| `gpt-5.5` | `xhigh` | Callable via `-m gpt-5.5` when the plan lists it |
+| `gpt-6-luna` | `max` | `luna-impl` profile pins `max`; default effort `medium` |
 | `gpt-5.6-terra` | `ultra` | Callable directly; no dedicated profile |
 | `gpt-6.1-terra` | `ultra` | Callable directly; no dedicated profile |
 | `gpt-6-sol` | `ultra` | `sol-verify` profile pins `xhigh` |
 
 Selection heuristic:
 
-- Default `gpt-5.5 medium`.
+- Default `gpt-6-luna medium`.
 - Raise to `high` / `xhigh` for architecture, security, and complex planning.
-- Escalate the model when the task wants reasoning past `xhigh`: `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review.
+- Escalate the reasoning effort on the default model when the task wants depth: `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review.
 - Drop to `low` / `minimal` for trivial lookups.
 
 Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort`; see [cli-reference.md](./cli-reference.md) §5.
@@ -124,7 +124,7 @@ Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mod
 `codex exec` defaults to `--sandbox read-only`, so file-modification tasks silently no-op unless you add `--sandbox workspace-write` (or `--full-auto`). See [integration-patterns.md](./integration-patterns.md).
 
 ```bash
-codex exec --model gpt-5.5 -c model_reasoning_effort="high" "<prompt>"
+codex exec --model gpt-6-luna -c model_reasoning_effort="high" "<prompt>"
 ```
 
 ### Dispatch envelope (child / detached sessions)
@@ -132,7 +132,7 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 
 ```bash
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 codex exec \
-  --model gpt-5.5 -c model_reasoning_effort="high" -c service_tier="fast" \
+  --model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast" \
   -c approval_policy=never --sandbox workspace-write \
   "<prompt>" </dev/null > stdout.log 2>&1
 ```

@@ -8,13 +8,13 @@ version: 1.0.0.0
 # DeepSeek Harness CLI Orchestrator - Cross-AI Task Delegation
 
 > **Experimental executor kind.** LLM Gateway `deepseek-v4.1-flash-1017` is verified on dsh
-> 0.2.2-rc.1 (2026-11-06) and is the default route. OpenCode Go `deepseek-v4.1-flash` is
-> configured, not verified, and stays out of defaults. Its endpoint and authentication remain
-> UNKNOWN because no request was sent while `OPENCODE_API_KEY` was unset.
+> 0.2.2-rc.1 (2026-11-06) and is the default route. OpenCode Go `deepseek-v4.1-flash` was
+> proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out
+> of defaults.
 
 Orchestrate DeepSeek Harness (`dsh`, npm `@deepseek-ai/dsh`) for one-task headless runs: a read-only review, a single scoped implementation or an independent second opinion, with the model fixed by a checked-in route patch.
 The offline contract pin is the source for every flag and failure shape: [contract pin evidence](../../../../specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/headless-help.txt).
-Each live result applies only to the route and behavior the saved probe exercised. Keep OpenCode Go and untested behavior marked UNKNOWN with the reason.
+Each live result applies only to the route and behavior the saved probe exercised. Keep every behavior outside the saved probes marked UNKNOWN with the reason.
 
 **Core principle**: the harness owns model selection, so the caller owns composition. Every dispatch names exactly one roster route patch, the lineage patch and the guards patch, runs from a scratch cwd with a disposable `DSH_HOME`, and counts as complete only on exit 0 plus a `completed` final event.
 
@@ -34,14 +34,14 @@ Each live result applies only to the route and behavior the saved probe exercise
 - `dsh` is not on PATH, or `dsh --version` is not the pinned version.
 - The task needs a model outside the two-route roster, a GLM or official DeepSeek route, or a provider the roster does not list.
 - The task needs an interactive session, a human answer mid-run, plan mode or native goal rounds.
-- The task requires OpenCode Go, whose route is configured but not verified.
+- The task requires OpenCode Go and `OPENCODE_API_KEY` is not set.
 - The only cwd available is the repository root.
 
 ---
 
 ## 2. SMART ROUTING
 
-The `cli-external-orchestration` hub routes a dsh dispatch here when the request names DeepSeek Harness, `dsh`, `dsh headless` or says "delegate to dsh". LLM Gateway is verified. OpenCode Go remains configured, not verified.
+The `cli-external-orchestration` hub routes a dsh dispatch here when the request names DeepSeek Harness, `dsh`, `dsh headless` or says "delegate to dsh". LLM Gateway is verified. OpenCode Go is proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`.
 `command -v dsh` and the pinned `dsh --version` decide whether a local dispatch can run, and both run before every dispatch.
 Every run loads `references/cli-reference.md` and `assets/prompt-quality-card.md` first, before any intent selection.
 Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources, and open only the matched files.
@@ -53,7 +53,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources, and open
 ### Execution Ownership
 
 This packet owns the dispatch contract: the hard rules, the roster, the argv shape and the prompt mechanics.
-For research and review lineages, the shared deep-loop runtime owns process construction through the experimental `cli-deepseek-harness` executor kind, described in [fanout-executor.md](./references/fanout-executor.md). The verified LLM Gateway route is the default. OpenCode Go remains explicit-only until a keyed run verifies it.
+For research and review lineages, the shared deep-loop runtime owns process construction through the experimental `cli-deepseek-harness` executor kind, described in [fanout-executor.md](./references/fanout-executor.md). The verified LLM Gateway route is the default. OpenCode Go is proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and remains explicit-only.
 Do not add a packet-local wrapper, spawn path or command builder.
 
 **Closed roster: non-roster routes are FORBIDDEN.** Two routes exist, LLM Gateway and OpenCode Go, both serving DeepSeek V4.1 Flash. [providers-and-models.md](./references/providers-and-models.md) section 2 is the one place the ids, endpoints and key variables are recorded. dsh validates no catalog membership, so a patch naming any other model would run. The preflight is the only gate.
@@ -108,7 +108,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 7. Compose every dispatch as `{resolved agent persona + task prompt}`, inlining the persona block, because dsh has no agent-file loader. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
 8. Set `AI_SESSION_CHILD=1` in the child's environment and copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of the prompt.
 9. Give a build dispatch one change per brief: the file, the edit and the check that proves it.
-10. Keep route status specific: LLM Gateway is verified, OpenCode Go is configured, not verified, and unresolved behaviors remain UNKNOWN with their evidence gap.
+10. Keep route status specific: LLM Gateway is verified, OpenCode Go is proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`, and unresolved behaviors remain UNKNOWN with their evidence gap.
 
 ### ⛔ NEVER
 
@@ -128,7 +128,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 1. `dsh` is missing from PATH or reports a version other than the pin.
 2. The task needs a keyed dispatch and the route's key variable is not set.
 3. A `--dump-config` run prints any stderr line, which can mean a patch target row was renamed.
-4. The task needs the OpenCode Go route, which is configured, not verified, and has an UNKNOWN endpoint.
+4. The task needs the OpenCode Go route on a provider endpoint other than `https://opencode.ai/zen/go/v1`.
 5. The task depends on behavior still marked UNKNOWN.
 
 ---
@@ -169,7 +169,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 ### Packet Quality
 
 - Every flag the references name appears in the captured help text or in the launcher table that grounds it separately.
-- LLM Gateway is listed as verified, OpenCode Go as configured, not verified, and every remaining UNKNOWN has a reason.
+- LLM Gateway is listed as verified, OpenCode Go as proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`, and every remaining UNKNOWN has a reason.
 - No nested advisor identity is introduced under this packet.
 
 ---
@@ -178,7 +178,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 
 ### Hub Integration
 
-The hub owns advisor identity, mode registration and router policy. This packet owns only the dsh dispatch contract, and it must not add `description.json` or `graph-metadata.json`. The hub already registers and routes this mode, and the shared runtime carries its executor kind. LLM Gateway is verified. OpenCode Go remains configured, not verified.
+The hub owns advisor identity, mode registration and router policy. This packet owns only the dsh dispatch contract, and it must not add `description.json` or `graph-metadata.json`. The hub already registers and routes this mode, and the shared runtime carries its executor kind. LLM Gateway is verified. OpenCode Go is proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`.
 
 ### Deep-Loop Integration
 

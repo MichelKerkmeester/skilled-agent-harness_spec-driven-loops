@@ -1,7 +1,7 @@
 ---
 title: "MDL-002 -- OpenCode Go route"
-description: "This scenario validates that a keyed request over the OpenCode Go route exits 0 and ends on a completed final event for `MDL-002`, with the endpoint still unresolved."
-version: 1.0.0.0
+description: "This scenario validates that a keyed request over the OpenCode Go route exits 0 and ends on a completed final event for `MDL-002`, and records the endpoint it answers on."
+version: 1.0.1.0
 ---
 
 # MDL-002 -- OpenCode Go route
@@ -16,7 +16,7 @@ This scenario validates the second roster route end to end. It focuses on the co
 
 ### Why This Matters
 
-Two endpoints are documented for OpenCode Go and no source settles which one authenticates for this harness. The route patch composes, but composition proves only that the YAML binds. A keyed request is the only evidence that answers the endpoint question. Until then the endpoint stays UNKNOWN and the route stays out of every default allowlist.
+Two endpoints are documented for OpenCode Go, and a keyed session through the checked-in patch answered on `https://opencode.ai/zen/go/v1`. The route patch composes, but composition proves only that the YAML binds. A keyed request is the evidence that settles an endpoint, so a re-run after a re-pin still records which URL it reached.
 
 ---
 
@@ -59,8 +59,9 @@ tail -n 1 stdout.jsonl
 - Verdict: `SKIP`.
 - Blocker: no provider key is available in this environment, so the keyed request cannot run.
 - Key gate: blocked until `OPENCODE_API_KEY` exists in the dispatch environment. That is separate setup work, not a defect in the route patch.
-- What is already known: `--dump-config` names `opencode-go` and `deepseek-v4.1-flash`, and the keyless run exits `1` with `MISSING_CREDENTIAL` for `OPENCODE_API_KEY`. The checked-in patch carries `https://opencode.ai/zen/go/v1`. The endpoint is UNKNOWN, so a keyed request must record which URL it reached.
+- What is already known: `--dump-config` names `opencode-go` and `deepseek-v4.1-flash`, and the keyless run exits `1` with `MISSING_CREDENTIAL` for `OPENCODE_API_KEY`. The checked-in patch carries `https://opencode.ai/zen/go/v1`, the endpoint a keyed session answered on. A re-run must still record which URL it reached.
 - Re-run condition: the key variable is set and the operator records the endpoint in the patch beside the result.
+- Later evidence: a keyed session ran through this route against `https://opencode.ai/zen/go/v1`, so the re-run condition is met.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -75,7 +76,7 @@ tail -n 1 stdout.jsonl
 | File | Role |
 |---|---|
 | [manual-testing-playbook.md](../manual-testing-playbook.md) | Key gate, command notation and verdict rules |
-| `../../SKILL.md` | Dispatch shape, completion contract and the unknown endpoint |
+| `../../SKILL.md` | Dispatch shape, completion contract and the settled endpoint |
 | `../../references/providers-and-models.md` | Roster row, key variable and the two documented endpoints |
 | `../../references/cli-reference.md` | Exit contract and JSON stream |
 | `../../hard-rules.json` | `closed-roster`, `lineage-patch-required`, `guards-patch-required`, `json-final-and-exit-required` and `pinned-version-required` |
