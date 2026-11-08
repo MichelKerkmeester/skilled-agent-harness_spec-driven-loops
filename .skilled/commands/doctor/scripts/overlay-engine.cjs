@@ -2952,7 +2952,6 @@ function notCopiedChanges(ctx, job) {
   const { roots, exclude } = job.settings;
   const holdsRealTopLevel = (relativePath) => {
     const top = relativePath.split('/')[0];
-    if (top === ctx.overlayLabel.split('/')[0]) return false;
     try {
       return !fs.lstatSync(path.join(ctx.root, top)).isSymbolicLink();
     } catch {
@@ -2960,8 +2959,9 @@ function notCopiedChanges(ctx, job) {
     }
   };
   return diffNames(job.upstream, job.oldCommit, job.newCommit, 'AMTD', [])
-    .filter((relativePath) => isUnderAny(relativePath, exclude) ||
-      (!isUnderAny(relativePath, roots) && holdsRealTopLevel(relativePath)))
+    .filter((relativePath) => !isUnderAny(relativePath, [ctx.overlayLabel]) &&
+      (isUnderAny(relativePath, exclude) ||
+        (!isUnderAny(relativePath, roots) && holdsRealTopLevel(relativePath))))
     .sort();
 }
 

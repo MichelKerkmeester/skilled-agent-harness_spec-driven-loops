@@ -157,7 +157,7 @@ function skipRunState(rel) {
  * @returns {object} Fixture paths, commits and a `run` helper.
  */
 function createRepinFixture(t, options = {}) {
-  const fixture = createWorkspace(t, 'overlay-engine-repin-');
+  const fixture = createWorkspace(t, 'overlay-engine-repin-', { overlayFolder: options.overlayFolder });
   const { workspace, tree, overlayDir } = fixture;
   const upstream = path.join(workspace, 'upstream');
   fs.mkdirSync(upstream);
@@ -565,6 +565,19 @@ test('a re-pin lists upstream changes it does not copy and skips a top-level lin
   // The project's own copy of a root file is never overwritten.
   assert.equal(read(fixture.tree, 'AGENTS.md'), 'upstream agents\n');
   assert.equal(fs.existsSync(path.join(fixture.tree, 'repo-rules/new-rule.md')), false);
+});
+
+test('a nested overlay folder hides only its own paths from the not-copied list', (t) => {
+  const fixture = createRepinFixture(t, {
+    overlayFolder: 'project/overlays',
+    newEntries: { 'project/README.md': 'readme\n', 'project/overlays/upstream.md': 'x\n' },
+  });
+
+  const result = fixture.repin(['--json']);
+  assert.equal(result.code, 0, result.output);
+  const report = JSON.parse(result.stdout);
+  assert.ok(report.notCopied.includes('project/README.md'), report.notCopied.join('\n'));
+  assert.equal(report.notCopied.includes('project/overlays/upstream.md'), false, report.notCopied.join('\n'));
 });
 
 test('a re-pin over a refused overlay stops before the backup and writes nothing', (t) => {

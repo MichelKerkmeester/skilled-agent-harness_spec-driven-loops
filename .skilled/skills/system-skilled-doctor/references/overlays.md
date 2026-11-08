@@ -6,15 +6,13 @@ trigger_phrases:
   - "adopt the overlay engine"
   - "migrate my overlay folder"
   - "my changes vanish on update"
-  - "overlay sync state"
   - "doctor overlay status"
   - "edit the overlay not the live file"
-  - "overlay folder setting"
   - "re-pin vendored skilled"
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Vendored Skilled Overlays
@@ -126,7 +124,7 @@ A re-pin replaces the vendored copy with a newer upstream commit and puts the ov
 
 A path in the manifest's `repin.exclude` list is never copied over, which keeps a project's real folder where upstream ships a link. Root files such as `AGENTS.md` and `REPO RULES.md` are never copied, so a re-pin never overwrites the project's own copy.
 
-What a re-pin leaves out, it lists. Each upstream change under `repin.exclude`, or under a top-level file or folder of the copy outside the copied roots, prints as a `not-copied` line, and `report.json` keeps the full list. A top-level link, such as a `specs` link to the project's own folder, is skipped. Carry each listed change over by hand when it applies. For the shipped `AGENTS.md` sections, `/doctor:agents-md` owns that merge.
+What a re-pin leaves out, it lists. Each upstream change under `repin.exclude`, or under a top-level file or folder of the copy outside the copied roots, prints as a `not-copied` line, up to 20, then one line with the count of the rest. `report.json` keeps the full list. A top-level link, such as a `specs` link to the project's own folder, is skipped. Carry each listed change over by hand when it applies. For the shipped `AGENTS.md` sections, `/doctor:agents-md` owns that merge.
 
 ```json
 "repin": {

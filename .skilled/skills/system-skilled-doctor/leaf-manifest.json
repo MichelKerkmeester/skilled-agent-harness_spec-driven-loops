@@ -2,6 +2,7 @@
   "modes": [
     {
       "leaves": [
+        "manual-testing-playbook/overlays/adopt-with-protected-file.md",
         "manual-testing-playbook/overlays/status-without-overlays.md",
         "manual-testing-playbook/routing/integration-request-routing.md",
         "manual-testing-playbook/routing/moved-command-contract.md",

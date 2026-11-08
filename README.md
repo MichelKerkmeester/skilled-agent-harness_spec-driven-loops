@@ -304,7 +304,7 @@ Some projects copy Skilled in instead of linking it. A new upstream release then
 - **`apply --capture <path>`** moves an edit made in the live copy into its overlay instead
 - **`repin`** moves the copy to a newer upstream commit. It shows a staged result first and backs up every path before it writes. `repin --rollback <run-id>` restores that backup
 
-A re-pin copies `.skilled` and the runtime folders, `.dsh` included, and never a root file such as `AGENTS.md`, so your own copy of it survives. Each upstream change it leaves out is listed as a `not-copied` line, so you can carry it over by hand.
+A re-pin copies `.skilled` and the runtime folders, `.dsh` included, and never a root file such as `AGENTS.md`, so your own copy of it survives. Each upstream change it leaves out is listed as a `not-copied` line, the first 20 on screen and all of them in `report.json`, so you can carry it over by hand.
 
 Already keeping your changes in an overlay folder with a script of your own? The engine reads the same manifest and state shapes, so the folder stays where it is. Name it in `.skilled-overlays.json`, run `status`, and follow the fix each line names. The overlays reference has the [adoption steps](.skilled/skills/system-skilled-doctor/references/overlays.md#6-adopting-the-engine-with-existing-overlays).
 
