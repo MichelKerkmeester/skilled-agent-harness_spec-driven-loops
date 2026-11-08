@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/007-fable-governor-pi-hook/002-governor-parity",
+  "spec_folder": "hooks-plugins-extensions/007-fable-governor-pi-hook/002-governor-parity",
+  "parent_id": "hooks-plugins-extensions/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "governor parity",
+      "bridge fallback proof",
+      "governor parity plan",
+      "governor parity tasks",
+      "governor parity summary"
+    ],
+    "key_topics": [
+      "governor",
+      "parity",
+      "bridge",
+      "fallback",
+      "proof",
+      "plan",
+      "tasks",
+      "summary",
+      "per-turn",
+      "capsule",
+      "inconsistent",
+      "across"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/injection-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Governor Capsule Parity Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-agnostic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The per-turn governor capsule is inconsistent across runtimes: canonical composition points carry hygiene + governor + proof-over-appearance (`render.ts:53-69,204-215`, `mk-skill-advisor.js:48-52`), but the OpenCode bridge's inline fallback omits the proof directive (`mk-skill-advisor-bridge.mjs:319-373`), and its fallback branch falls back to drift-prone inline code (`:376-379`)",
+    "created_at": "2026-08-04T12:04:52Z",
+    "last_save_at": "2026-11-08T13:10:23.564Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ad2cddac51eef86d7e4fb3d907f36d63bd69c363099ad742efbeab7742c41757",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1e81485af41af3d633cbccd1d6b34675176309d421f33cd424eacb1dc68e875e",
+      "plan.md": "15b3b03fe9c5fe30eca19b69a2eadfd8aea0989c2acefca0501bd8e9b1d385f0",
+      "tasks.md": "b1dc13388b83b3d8cd709cdb56cf20a756173a3c6430fe8d8b2f8ae133c77db4",
+      "implementation-summary.md": "cf422ac9b88651c5418e5bb3a25ac7a6bd2a9c3b6b6907a082013106907bb097"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

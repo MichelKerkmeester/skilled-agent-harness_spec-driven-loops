@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/002-injection-bloat-reduction/005-gate3-relay-edge-triggering",
+  "spec_folder": "hooks-plugins-extensions/002-injection-bloat-reduction/005-gate3-relay-edge-triggering",
+  "parent_id": "hooks-plugins-extensions/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate 3 relay suppression",
+      "edge-triggered gate delivery",
+      "gate open-epoch dedup",
+      "suppress repeated gate question",
+      "gate 3 relay plan",
+      "edge-triggered gate delivery plan",
+      "gate matrix negative controls",
+      "gate 3 relay tasks",
+      "edge-triggered gate delivery tasks",
+      "gate 3 relay implementation summary",
+      "edge-triggered gate delivery implemented"
+    ],
+    "key_topics": [
+      "gate",
+      "relay",
+      "suppression",
+      "edge-triggered",
+      "delivery",
+      "open-epoch",
+      "dedup",
+      "suppress",
+      "repeated",
+      "question",
+      "plan",
+      "matrix"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relay Edge",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Predicate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Triggered Suppression",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Gate-3 relay (`GATE3QUESTION` in `spec-gate-core.mjs`) re-delivers the identical question on every mutation-positive turn while gate state remains open, even when nothing about the task, scope, or answer state has changed since the last ask",
+    "created_at": "2026-08-06T11:02:30.631Z",
+    "last_save_at": "2026-11-08T13:10:19.736Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ae610dec62e487ab2100234a62f53b139a452fb45d059264d33bf9f4f25d1538",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d3b5b58d496f30a711189ddd5d1609c2d8f9ca996b9920e4b08321cef0fbae62",
+      "plan.md": "a0518766089f0be3fd43ca85bc36edf33cd2012286d443ebc42a9b939e829c3d",
+      "tasks.md": "2e0dde5a0d03c5d6cf1ce962f650db846a13257fbd757f1732dedb34a7488e5c",
+      "implementation-summary.md": "fe369912987035795c1401521f5bc9a88a1eac7768bf3440fedaebf1f641d565"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/023-session-relaunch-loop",
+  "description": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
+  "keywords": [
+    "session",
+    "near",
+    "context",
+    "limit",
+    "needs",
+    "write",
+    "handoff",
+    "note",
+    "end",
+    "restart",
+    "same",
+    "terminal"
+  ],
+  "lastUpdated": "2026-10-25T12:14:21.913Z",
+  "specId": "023",
+  "folderSlug": "session-relaunch-loop",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "25-10-26_13-14__ten-iteration-deep-research-cli-codex-gpt-6-luna.md"
+  ]
+}

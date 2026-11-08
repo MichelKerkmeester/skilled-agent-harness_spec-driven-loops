@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/012-pi-extension-playbooks/001-cache-optimizer-playbook",
+  "spec_folder": "hooks-plugins-extensions/012-pi-extension-playbooks/001-cache-optimizer-playbook",
+  "parent_id": "hooks-plugins-extensions/012-pi-extension-playbooks",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cache-optimizer playbook",
+      "pi-cache-optimizer manual testing",
+      "cache-optimizer playbook plan",
+      "cache-optimizer playbook tasks",
+      "cache-optimizer playbook implementation summary"
+    ],
+    "key_topics": [
+      "cache-optimizer",
+      "playbook",
+      "pi-cache-optimizer",
+      "manual",
+      "testing",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "unit",
+      "tests",
+      "operator-facing"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Register",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`pi-cache-optimizer` has 53 unit tests but no operator-facing manual-testing playbook, so there is no reproducible way to validate its `/cache-optimizer` command surface or the `promptcachekey` injection that makes caching effective",
+    "created_at": "2026-08-17T14:15:15.506Z",
+    "last_save_at": "2026-11-08T13:10:31.889Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e573a70177e1a0b39b2c3af397b7c81dbe5a42b6357724f8bd9f4381ab52d9d3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "72dd86e8574135e7f0900f6cd55575aa1ba84fc5547daaa0f9f8817b75586e4d",
+      "plan.md": "c5ef98c3bd711599ebdf503b07bd2c77ad1a913d2a574b78c07b701c6b218cc3",
+      "tasks.md": "1c88d689ae029e4e1c20f5a9c341f6e9f045a1ea92bb6c387974e47c15fd6a23",
+      "implementation-summary.md": "4d5d3480ad8f4d2e5b62d3002213e027662a24691137a0b360e853bb0773ed76"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/012-pi-extension-playbooks",
+  "spec_folder": "hooks-plugins-extensions/012-pi-extension-playbooks",
+  "parent_id": null,
+  "children_ids": [
+    "hooks-plugins-extensions/012-pi-extension-playbooks/001-cache-optimizer-playbook",
+    "hooks-plugins-extensions/012-pi-extension-playbooks/002-deep-pi-playbook"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi extension playbooks",
+      "cache-optimizer deep-pi manual testing",
+      "pi extension benchmark runs"
+    ],
+    "key_topics": [
+      "extension",
+      "playbooks",
+      "cache-optimizer",
+      "deep-pi",
+      "manual",
+      "testing",
+      "benchmark",
+      "runs",
+      "pi-cache-optimizer",
+      "extensions",
+      "ship",
+      "unit"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "001-cache-optimizer-playbook/spec.md",
+      "002-deep-pi-playbook/spec.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `pi-cache-optimizer` and `deep-pi` Pi extensions ship unit tests but no operator-facing manual-testing playbook, unlike `pi-fast-mode-w-subagent-support`",
+    "created_at": "2026-08-17T14:14:59.868Z",
+    "last_save_at": "2026-11-08T13:10:31.820Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:218c78cff8e5dc880f1125c231f3f2cc2e7657b10fad7e322a8f71e1d2c6b0f1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "66d2a51d48b8f49c0059c545819f8e295fb7fa6da6228c31357217b3c187e2ed"
+    },
+    "last_active_child_id": "hooks/012-pi-extension-playbooks/002-deep-pi-playbook",
+    "last_active_at": null
+  }
+}

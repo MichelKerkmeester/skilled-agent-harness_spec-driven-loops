@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
+  "spec_folder": "hooks-plugins-extensions/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
+  "parent_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi-cache-optimizer non-deepseek optimization",
+      "prompt cache key self-heal",
+      "provider coverage matrix",
+      "cache-hit-rate economics",
+      "non-deepseek optimization research plan",
+      "deep research pi-cache-optimizer",
+      "non-deepseek optimization research tasks",
+      "non-deepseek optimization research"
+    ],
+    "key_topics": [
+      "pi-cache-optimizer",
+      "non-deepseek",
+      "optimization",
+      "prompt",
+      "cache",
+      "key",
+      "self-heal",
+      "provider",
+      "coverage",
+      "matrix",
+      "cache-hit-rate",
+      "economics"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      "research/lineages/deepseek-flash/research.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".pi/settings.json",
+      "research/lineages/deepseek-flash/invocation-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "invocation-metadata.json",
+        "kind": "config",
+        "path": "research/lineages/deepseek-flash/invocation-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optimization Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 008's fork work guards `pi-cache-optimizer`'s two mutation hooks against DeepSeek-matched models, leaving deep-pi as the exclusive DeepSeek-direct extension",
+    "created_at": "2026-08-09T05:53:50.261Z",
+    "last_save_at": "2026-11-08T13:10:27.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94d3f764dc0680d34d49a907407753a208d51ca456c3fa36a389737f7b150bd8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9931f417748fcff74482adf507d524ccf22f2b4d9cba2f1b90b97f99a750630e",
+      "plan.md": "595b18a221b268962c2dd2bbfefeb5b79b0e2a4f50a8a024b4363fcae07e803a",
+      "tasks.md": "d65148d74e77937975ea8e70c6fb37102575128c320fd68ad437441a5546cd3b",
+      "implementation-summary.md": "61ba09dc187e35769e9bec5ee2c6778d8b7dc841f654059bd3739f4f37ec7223"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

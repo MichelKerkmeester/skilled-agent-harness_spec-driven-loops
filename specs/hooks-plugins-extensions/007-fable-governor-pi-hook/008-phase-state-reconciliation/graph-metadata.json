@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/007-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "spec_folder": "hooks-plugins-extensions/007-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "parent_id": "hooks-plugins-extensions/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase state reconciliation",
+      "spec metadata reconciliation",
+      "stale completion frontmatter",
+      "graph status repair",
+      "phase state reconciliation plan",
+      "metadata refresh plan",
+      "parent map repair plan",
+      "phase state reconciliation tasks",
+      "metadata refresh tasks",
+      "parent map repair tasks",
+      "phase state reconciliation summary",
+      "metadata reconciliation status"
+    ],
+    "key_topics": [
+      "phase",
+      "state",
+      "reconciliation",
+      "spec",
+      "metadata",
+      "stale",
+      "completion",
+      "frontmatter",
+      "graph",
+      "status",
+      "repair",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Phase State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet's phase implementation summaries contain contradictory state: some frontmatter says planned or not started while the body says implemented, completion percentages remain at zero after claimed work, graph metadata still reports draft/planned state, and completion criteria remain unchecked",
+    "created_at": "2026-08-04T17:57:55Z",
+    "last_save_at": "2026-11-08T13:10:23.667Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38a84432cb0f17c8f71647c9cb0a81c7ccdfa10743a3032391cdacfc1ac2ced8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5fe95cb61523095c7ecbe7f4e0130c89a5afd5ad764928104f30f3756f130cdd",
+      "plan.md": "542de48c42c85e548f5b007ed7a00fd7d9f19ed5fe3fe3024345f0a3d25aceb1",
+      "tasks.md": "c62f0442550c1298e791a3ab550f5cc5d79278f568f41fd5f059100f287bad41",
+      "implementation-summary.md": "86611b9aa66c043039367c252aff88d401e0750d104f3f344af6743339a303f6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

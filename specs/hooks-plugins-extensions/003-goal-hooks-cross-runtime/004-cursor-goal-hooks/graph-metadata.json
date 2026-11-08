@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/003-goal-hooks-cross-runtime/004-cursor-goal-hooks",
+  "spec_folder": "hooks-plugins-extensions/003-goal-hooks-cross-runtime/004-cursor-goal-hooks",
+  "parent_id": "hooks-plugins-extensions/003-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cursor goal hooks",
+      "cursor sessionStart goal injection",
+      "cursor goal fail-open",
+      "cursor goal hooks plan",
+      "cursor prebind injection",
+      "cursor goal hooks tasks",
+      "cursor goal hooks summary"
+    ],
+    "key_topics": [
+      "cursor",
+      "goal",
+      "hooks",
+      "sessionstart",
+      "injection",
+      "fail-open",
+      "plan",
+      "prebind",
+      "tasks",
+      "summary",
+      "set",
+      "work"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".opencode/hooks/goal/cursor/goal-cursor.test.mjs",
+      ".cursor/hooks.json",
+      ".opencode/hooks/goal/lib/goal-core.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-cursor.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Port",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Because Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "User Story As",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixed Parity Tiers",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A goal set for the work does not survive into a Cursor session",
+    "created_at": "2026-07-28T17:25:31.731Z",
+    "last_save_at": "2026-11-08T13:10:23.351Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:32ae47a18f9a01d50c18720a62e4884c9175802f4a14e9f4365f7625e8d3911d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "45410449e54ffa69e69178a543f8ec5d9d9f7ce12568ec0e0896fb2f6b646c93",
+      "plan.md": "cce5ea4e6076c194ae912afc7e1ff925095d99e6bd63530cd1e515c56c0fbc33",
+      "tasks.md": "791706a96d1f048159bfad86f159d7c2e94391214854aa72cc235c63a59ef266",
+      "implementation-summary.md": "d843a9492aa79af079f8e743c24ba2f97b191e631765365800e53b6c195fcbf2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

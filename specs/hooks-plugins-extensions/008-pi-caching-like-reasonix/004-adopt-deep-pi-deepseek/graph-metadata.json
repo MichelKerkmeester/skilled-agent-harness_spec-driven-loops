@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
+  "spec_folder": "hooks-plugins-extensions/008-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
+  "parent_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "adopt deep-pi",
+      "deep-pi deepseek install",
+      "deepseek cache stack adoption",
+      "deep-pi install plan",
+      "deep-pi install tasks",
+      "deep-pi adoption status"
+    ],
+    "key_topics": [
+      "adopt",
+      "deep-pi",
+      "deepseek",
+      "install",
+      "cache",
+      "stack",
+      "adoption",
+      "plan",
+      "tasks",
+      "status",
+      "operator",
+      "intends"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Install",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Install",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Activation Confirmation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Trade",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator intends to route more work through DeepSeek going forward",
+    "created_at": "2026-08-07T05:55:43Z",
+    "last_save_at": "2026-11-08T13:10:27.920Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4425580cf11c0c7f9dad139fbecc826be8b61dc1cf5c87cac949066d5f12cdd4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "db5ad13db68fa224204afd4a9c31d8bf849bec5d5502ce53caec729642cd3780",
+      "plan.md": "17b14f75b341b97c4501324665dd10c1bdad2702832d98eb1b6039184ede7917",
+      "tasks.md": "cef4c0e43fcba9cc7aca3d808a0a2ada553238a2e210beabcaf22bdf2fcfb50b",
+      "implementation-summary.md": "91b9a2459780ac6474a1c9226283469fbcb80f453b4d151dc1bf0f80fc232921"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

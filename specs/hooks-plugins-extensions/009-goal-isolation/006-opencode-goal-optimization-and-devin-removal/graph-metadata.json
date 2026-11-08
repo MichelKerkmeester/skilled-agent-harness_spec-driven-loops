@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+  "spec_folder": "hooks-plugins-extensions/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+  "parent_id": "hooks-plugins-extensions/009-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode goal optimization",
+      "opencode goal state migration",
+      "remove devin goal remnants",
+      "fixed length goal state key",
+      "opencode goal optimization plan",
+      "legacy goal state migration",
+      "devin goal remnant removal",
+      "opencode goal optimization tasks",
+      "devin goal residue tasks",
+      "goal state migration tasks",
+      "opencode goal optimization summary",
+      "goal state migration status"
+    ],
+    "key_topics": [
+      "opencode",
+      "goal",
+      "optimization",
+      "state",
+      "migration",
+      "remove",
+      "devin",
+      "remnants",
+      "length",
+      "key",
+      "plan",
+      "legacy"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".codex/config.toml",
+      ".claude/SYNC.md",
+      ".devin/hooks.v1.json",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".opencode/hooks/goal/goal-plugin.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".claude/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Goal Remnant Removal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Devin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mk-goal.js` derives a state filename by hex-encoding the full OpenCode session id",
+    "created_at": "2026-08-10T17:42:43Z",
+    "last_save_at": "2026-11-08T13:10:31.165Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:ec32c417e26e14b0d359036fde7f7ece9e0ee6224460e686837316cda56d7c3f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a1163a4cf2e7689711a9cfb56de0c40e1683e23e0826ffd8bda2beebfbbc83eb",
+      "plan.md": "1a47c810aee8b8a95194f546ac823ee00158326f06dfea297fd9398ae8f1e2e0",
+      "tasks.md": "f62c6be746b0e3c45611763dd23f4278dc125b6cf74e56ea36ba169644862b87",
+      "implementation-summary.md": "86144de4d2cbb4b45e3c00f65b44c58e43e489f858ed00eb7b063ea07cdeff47",
+      "handover.md": "a0348603955d0c944f2a78e2aec34f15ed6547539fc3cf540c1f744e6a2f974c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

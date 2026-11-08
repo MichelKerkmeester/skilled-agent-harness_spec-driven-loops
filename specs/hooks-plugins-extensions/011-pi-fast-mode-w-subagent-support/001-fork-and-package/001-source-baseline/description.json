@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline",
+  "description": "Later phases need a stable source boundary so package identity, compatibility, and handoff changes can be reviewed independently",
+  "keywords": [
+    "later",
+    "phases",
+    "need",
+    "stable",
+    "source",
+    "boundary",
+    "package",
+    "identity",
+    "compatibility",
+    "handoff",
+    "changes",
+    "reviewed",
+    "independently"
+  ],
+  "lastUpdated": "2026-08-30T07:16:09.394Z",
+  "specId": "001",
+  "folderSlug": "source-baseline",
+  "parentChain": [
+    "hooks",
+    "011-pi-fast-mode-w-subagent-support",
+    "001-fork-and-package"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
+  "spec_folder": "hooks-plugins-extensions/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
+  "parent_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek long retention advice",
+      "supportsLongCacheRetention snippet fix",
+      "pi-cache-optimizer verify-first optional",
+      "deepseek compat consistency",
+      "cache-optimizer fix long retention",
+      "deepseek compat consistency plan",
+      "long retention optional plan",
+      "deepseek compat consistency tasks",
+      "deepseek compat consistency summary",
+      "long retention optional summary"
+    ],
+    "key_topics": [
+      "deepseek",
+      "long",
+      "retention",
+      "advice",
+      "supportslongcacheretention",
+      "snippet",
+      "pi-cache-optimizer",
+      "verify-first",
+      "optional",
+      "compat",
+      "consistency",
+      "cache-optimizer"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-findings.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGES-FROM-UPSTREAM.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retention Advice Consistency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Required",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "test",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In the vendored `pi-cache-optimizer` fork, the DeepSeek compat path treated `supportsLongCacheRetention` as a required/missing flag: it appeared in the \"merged compat lacks …\" startup warning, in the copyable \"Recommended DeepSeek compat snippet\", and in the `/cache-optimizer fix` auto-write set",
+    "created_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-11-08T13:10:28.002Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2244d2cc1d35f2f69a4905d9b0972fd6f1239efdc8ad1269f9ec67e41c4e6518",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "12ee12a16249d81992b43ee9784316f55154d26786d38a4451ae98271841720d",
+      "plan.md": "20c1cf2780ef862ebdc023c1d84076e9f6406422dc0f69a48dabebbc5f21f353",
+      "tasks.md": "944a7eb35507e97522d3424457f5162d7f9c8108d386f33755bffb3a18ea6311",
+      "implementation-summary.md": "e7b360bd6dc86404bc60fc923f10a4eb190e94cee12c16947ea57bf0d9ab4d68"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

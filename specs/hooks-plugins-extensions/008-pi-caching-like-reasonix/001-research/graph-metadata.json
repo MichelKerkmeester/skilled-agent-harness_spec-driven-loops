@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix/001-research",
+  "spec_folder": "hooks-plugins-extensions/008-pi-caching-like-reasonix/001-research",
+  "parent_id": "hooks-plugins-extensions/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi caching research",
+      "reasonix claim verification",
+      "pi cache gap scoping",
+      "deepseek prefix cache research",
+      "pi-cache-optimizer verify",
+      "pi caching research plan",
+      "reasonix verification protocol",
+      "three executor fan-out",
+      "pi caching research tasks",
+      "pi caching research summary",
+      "reasonix pi research execution"
+    ],
+    "key_topics": [
+      "caching",
+      "research",
+      "reasonix",
+      "claim",
+      "verification",
+      "cache",
+      "gap",
+      "scoping",
+      "deepseek",
+      "prefix",
+      "pi-cache-optimizer",
+      "verify"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md",
+      "research/resource-map.md",
+      "research/lineages/sol-high/research.md",
+      "research/lineages/terra-max/research.md",
+      "research/lineages/luna-max/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Reasonix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Caching",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claim Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gap Scoping",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Caching Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Engine",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`lumo.md` asserts specific, uncited figures — Reasonix at a ~99.8% cache-hit rate, a ~$61→$12 single-day cost drop, DeepSeek-native prefix caching — and describes Pi as provider-agnostic with a `pi-cache-optimizer` extension and a list of \"missing in Pi\" features (Context Engine v2, MCP first-class support, plan mode, checkpoints & rewind)",
+    "created_at": "2026-08-06T09:15:11.519Z",
+    "last_save_at": "2026-11-08T13:10:24.376Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d1d9b08cf92d7932929a990692dcfedf9da2d87e8d253d928429cb65cb040f67",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4a6bb6f946a8fc05dcaeb7658156edcf0abc56e042b421c64102b7d012f1bc3f",
+      "plan.md": "e8bcd47cd362aa4e43ab4d3d6272a7602fcd9092765f34b86640068f1477b080",
+      "tasks.md": "e7d8e9ab7363a9a7d69812a8d27d580a33ee9eac70785302466bc99b7e8f9341",
+      "implementation-summary.md": "eed9ecc2b20b5c3896b94b7f5969a5e3dfba4a9463de1d69b805c3d123aa30ec",
+      "research/research.md": "531080ec52d58198dc1387825eec208501ff4676d8360fdbe033f0230fb1610f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
