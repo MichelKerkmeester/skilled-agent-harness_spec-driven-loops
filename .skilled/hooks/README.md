@@ -21,7 +21,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/` is the single home for every "hook" concept in the repo. Nine concern folders hold AI-runtime lifecycle hooks as real code here: `dispatch/`, `mcp-route-guard/`, `overlay-guard/`, `post-edit-quality/`, `task-dispatch/`, `classifier-injection-screen/`, `decision-capture/`, `goal/` and `session-relaunch/`, plus their shared helper in `shared/`. Four of them (`dispatch/`, `mcp-route-guard/`, `post-edit-quality/` and `task-dispatch/`) have no real dependency on the skill they used to live inside, and each was originally nested under a domain skill's own tree (`cli-opencode/scripts/`, `mcp-code-mode/runtime/`, `sk-code/sk-code-quality/scripts/`, `system-deep-loop/runtime/lib/deep-loop/`). `overlay-guard/` and `classifier-injection-screen/` were written here from the start. The classifier reaches into `cli-classifier` for its Jev gate, transport and measured question. Moving those four out means a user can adopt or remove the enforcement layer independently of the skill's own knowledge and reference content.
+`.skilled/hooks/` is the single home for every "hook" concept in the repo. Nine concern folders hold AI-runtime lifecycle hooks as real code here: `dispatch/`, `mcp-route-guard/`, `overlay-guard/`, `post-edit-quality/`, `task-dispatch/`, `classifier-injection-screen/`, `decision-capture/`, `goal/` and `session-relaunch/`, plus their shared helpers and session readers in `shared/`. Four of them (`dispatch/`, `mcp-route-guard/`, `post-edit-quality/` and `task-dispatch/`) have no real dependency on the skill they used to live inside, and each was originally nested under a domain skill's own tree (`cli-opencode/scripts/`, `mcp-code-mode/runtime/`, `sk-code/sk-code-quality/scripts/`, `system-deep-loop/runtime/lib/deep-loop/`). `overlay-guard/` and `classifier-injection-screen/` were written here from the start. The classifier reaches into `cli-classifier` for its Jev gate, transport and measured question. Moving those four out means a user can adopt or remove the enforcement layer independently of the skill's own knowledge and reference content.
 
 A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime sibling of the OpenCode `opencode-goal` plugin. It binds a session to a spec packet whose `goal.md` is the directive, renders that file's durable slice with the frontmatter stripped, on every turn where that runtime injects at all (OpenCode, Pi, Devin and DSH per turn, Cursor at session start), and keeps only the pointer, liveness and telemetry per session. Pi, Cursor, Devin and DSH reach it through native session identity. OpenCode keeps using `opencode-goal` directly, which imports the same slice module.
 
@@ -115,6 +115,7 @@ hooks/
 |   `-- pre-commit                   # standalone, opt-in; the primary hook has its own gate
 +-- shared/
 |   +-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by the CommonJS and ESM adapters below
+|   +-- session-readers/             # read-only per-runtime session readers (Claude, Codex, Pi, OpenCode, Devin and DSH ready, Cursor gated)
 |   `-- dsh/      dsh-llm.mjs (harness package loader), session-role.mjs (fan-out leaf marker)
 +-- dispatch/                        # cli-opencode dispatch-shape hard-rule + audit hooks
 |   +-- lib/
