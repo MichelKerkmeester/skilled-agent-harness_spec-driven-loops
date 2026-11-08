@@ -31,7 +31,8 @@
     "hooks/022-smart-rule-injection",
     "hooks/023-session-relaunch-loop",
     "hooks/024-dispatch-adapter-test-repair",
-    "hooks/025-cache-optimizer-single-copy-guard"
+    "hooks/025-cache-optimizer-single-copy-guard",
+    "hooks/027-ask-surface-enforcement"
   ],
   "manual": {
     "depends_on": [],
