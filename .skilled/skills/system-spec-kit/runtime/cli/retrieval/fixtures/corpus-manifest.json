@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5d9e0fee0d10e91acb775117a75d8469d97ab311b4daae6180e746558babdd7e",
+  "corpusHash": "5e3b6dc8b0b7a5879772717f99365863de97dc9988d5ec1dfdf7efa83ebe12a2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28494,
+  "includedPathCount": 28495,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13898,6 +13898,7 @@
     "specs/sk-code/018-frontend-upstream-proposals/goal.md",
     "specs/sk-code/018-frontend-upstream-proposals/spec.md",
     "specs/sk-code/019-surface-consistency-research/acceptance-criteria.md",
+    "specs/sk-code/019-surface-consistency-research/decision-record.md",
     "specs/sk-code/019-surface-consistency-research/implementation-summary.md",
     "specs/sk-code/019-surface-consistency-research/plan.md",
     "specs/sk-code/019-surface-consistency-research/research/deep-research-dashboard.md",
@@ -28525,7 +28526,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3ffa815965b9e8008b83391450274d24d159095f97c9654275b254c87b6e173b",
+  "manifestHash": "639ce400f3fe21783996f78d5c5827d1b8905ec75290043fef01c031793daf49",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
