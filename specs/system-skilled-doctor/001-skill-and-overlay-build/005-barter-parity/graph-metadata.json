@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Barter vendors Skilled with 130 overlays, and the upstream `/doctor:overlay` could not read them",
     "created_at": "2026-11-07T21:36:40Z",
-    "last_save_at": "2026-11-08T06:41:31.809Z",
+    "last_save_at": "2026-11-08T08:09:42.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e5b7bebfb8ef1c68dd692497872d1339bd2fb4a7e21b9acaeef8d77881d43f6a",
+    "source_fingerprint": "sha256:e3cb57fec2b9d977ae14573a28603aaccaa9fd355a35bff40912541eba7fd953",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ffda25ff742140676f2c9629281d248ce0a4c4ec8e784f93b2a916e242a8aa36",
       "plan.md": "a4934f0acc96d3fb75f37427ed8918d7919a835d9b521c6dab76f89a48fbe729",
-      "tasks.md": "52c7213ea72d3779d518b5b613c2464739ac5a23a7ccfa8b406b46cf1e9b2a08",
-      "implementation-summary.md": "7b2372e719208617fb7ac9be09afc2d7a5d8afd36bea94486a9403c0b97095ca",
+      "tasks.md": "a55fc43b2b1621fb585b0924474b671a321f26e8ebd386920db473e1c2d06478",
+      "implementation-summary.md": "e71ce0f79150f43785a99bd46bb9758fc8c384d0e1044e836fe922bf62fd6369",
       "research/research.md": "356f1257cbe395f7e83cdd586ce84ee039bd27d1f9603c658281ff7b796e9e71"
     },
     "last_active_at": null

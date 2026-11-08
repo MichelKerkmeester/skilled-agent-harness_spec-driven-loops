@@ -32,4 +32,11 @@ Decisions taken overnight without the operator, and questions left for them. Eac
 9. **No changelog entry for this change.** The alignment run flagged that `system-skilled-doctor` changed user-visible behavior with no changelog entry or version bump. A release entry is a version decision, so it waits for you: a `v1.0.1.0` changelog plus a `SKILL.md` version bump, or fold it into the next release?
 10. **Pre-existing CI failures on main, not fixed here.** The doctor playbook's `status-without-overlays.md` and `moved-command-contract.md` fail `SKIP_BLOCKER_MISSING`, and the doctor `README.md` points at a missing `runtime/ENV-REFERENCE.md`. Both fail on main `1f2236c027` too. Want them fixed as their own change?
 
+## Operator answers (2026-11-08)
+
+- **Push:** the three alignment commits were pushed on the operator's yes.
+- **Q8:** opened as its own packet, `specs/cli-external-orchestration/087-opencode-worktree-confinement`. Rereading the worker logs showed w1 and w2 also read main-checkout paths, though only w3 wrote there. The prompt never named the main path and the inherited `PWD` is not the cause.
+- **Q9:** both. `system-skilled-doctor` v1.1.0.0 changelog entry and `SKILL.md` at 1.1.0.0.
+- **Q10:** fix all. The six agents-md failures shared one cause, a manifest history the `v4.0.2.0` tag made stale, cleared by `agents-md-manifest.cjs --write`. The two playbook SKIP lines name their blocker, the result-persistence marker is in, and the doctor README links `ENV-REFERENCE.md` by its full path. Doctor suite: 1,069 of 1,069 pass.
+
 _(more appended as they arise)_

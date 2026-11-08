@@ -18,7 +18,8 @@
     "cli-external-orchestration/083-gpt-6-1-terra-roster",
     "cli-external-orchestration/084-remove-llmgateway-luna-route",
     "cli-external-orchestration/085-cli-deepseek-harness-creation",
-    "cli-external-orchestration/086-cli-hermes-deprecation"
+    "cli-external-orchestration/086-cli-hermes-deprecation",
+    "cli-external-orchestration/087-opencode-worktree-confinement"
   ],
   "manual": {
     "depends_on": [],

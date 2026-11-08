@@ -108,7 +108,7 @@ A five-iteration deep-research run on pi with DeepSeek V4.1 Flash at `--thinking
 |-------|--------|
 | Upstream `status --root barter/ai-speckit/skilled` | PASS: `checked=132 ok=132 miss=0`, `RESULT: PASSED` (was exit 2) |
 | Barter `replay.cjs --check` and `sync.cjs --status` | PASS: `checked=132 ok=132 miss=0`, `in-sync=468` |
-| Doctor suite | 1,069 tests, 1,063 pass, 6 fail; the six are the agents-md failures the base commit also has (base: 1,065, 1,059, 6) |
+| Doctor suite | 1,069 tests, 1,069 pass, 0 fail (base: 1,065, 1,059, 6; the six agents-md failures came from the stale manifest history and are fixed) |
 | Mutation pass | Each of four removed behaviors fails its test; engine restored byte-identical |
 | `doctor-phrase-reach.cjs` | PASS: `STATUS=OK phrases=228 bridges=35` |
 | Advisor vitest suite | PASS: 160 files, 1,373 tests, 8 skipped |
@@ -121,6 +121,8 @@ A five-iteration deep-research run on pi with DeepSeek V4.1 Flash at `--thinking
 ## Alignment Follow-Up
 
 A `/local-skilled-alignment` run over the branch found that a nested overlay folder such as `project/overlays` hid every upstream change under `project/` from the not-copied list, because the check compared only the first path segment. It also found that `overlays.md` broke the eight-phrase frontmatter limit, that two docs and two workflow assets lagged the engine's new output, and that `description.json` still held its scaffold text. Each was fixed, the engine change with a test that fails against the old code, and the new playbook scenario was run for real before it was recorded.
+
+After that pass the operator settled questions 8 to 10. The change now ships as `system-skilled-doctor` v1.1.0.0 with its own changelog entry. The six agents-md test failures main also had came from one stale record: the manifest keeps the bodies of the last six release tags, and the `v4.0.2.0` tag pushed one out, so regenerating it cleared all six. Two playbook scenarios now name their SKIP blocker, and the doctor README links `ENV-REFERENCE.md` by its full path. The OpenCode worker that wrote into the main checkout became its own packet, `specs/cli-external-orchestration/087-opencode-worktree-confinement`, because the cause sits in how OpenCode resolves a linked worktree, not in this skill.
 <!-- /ANCHOR:alignment -->
 
 ---
