@@ -1,5 +1,5 @@
 {
-  "corpusHash": "225f1ee7ba4679e13b4b0d8501cb2f08c0d2fdafd847df741fe61933e3a5b59e",
+  "corpusHash": "20b09ba3c8bb0448261f37f17d9f9644d83665c175d70891d99a80c7a5d9d174",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28513,
+  "includedPathCount": 28505,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10591,14 +10591,6 @@
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/decision-record.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/implementation-summary.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/plan.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/deep-research-dashboard.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/deep-research-strategy.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/iterations/iteration-001.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/iterations/iteration-002.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/iterations/iteration-003.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/prompts/iteration-1.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/prompts/iteration-2.md",
-    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/prompts/iteration-3.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/spec.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/tasks.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/goal.md",
@@ -28544,7 +28536,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e2a0f0f8c83492e604cde952607c787320c728a23723440597b8c91c2aca79b0",
+  "manifestHash": "d70fb63310f86041bba2ca6d099b85b5905f83bbcc7a3bd7d7bfffac25a65c1c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31207,10 +31199,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
       "reason": "excluded directory"
     },
@@ -32020,14 +32008,6 @@
     },
     {
       "path": "specs/sk-code/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
