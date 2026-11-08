@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b3ad108eba6461f162ffea01497e403313347184055b0d62595b8fcd0f39936a",
+  "corpusHash": "6352920d9403c5f1ecfa8a0f8197ab5c55c65ae845e478b3b67b6d5a803824ef",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28526,
+  "includedPathCount": 28544,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -18579,6 +18579,24 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/deep-research-dashboard.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/deep-research-strategy.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/iterations/iteration-001.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/iterations/iteration-002.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/iterations/iteration-003.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/iterations/iteration-004.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/iterations/iteration-005.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/prompts/iteration-1.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/prompts/iteration-2.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/prompts/iteration-3.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/prompts/iteration-4.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/prompts/iteration-5.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/research.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/resource-map.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-decisions.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-spec.md",
@@ -28557,7 +28575,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6754bb89796bbef3468a55bfa6b6419b861c791e6ffc4d6cb266bbb53e130e45",
+  "manifestHash": "a1f00e84bdb0af7bbd4bb0eeb20b10bc43d7372b9905938024b2d11fbbe5104d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34373,6 +34391,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/scratch",
       "reason": "excluded directory"
     },
     {

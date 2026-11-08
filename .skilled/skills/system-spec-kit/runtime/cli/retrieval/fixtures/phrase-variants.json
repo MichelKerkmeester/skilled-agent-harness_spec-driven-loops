@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6754bb89796bbef3468a55bfa6b6419b861c791e6ffc4d6cb266bbb53e130e45",
+  "manifestHash": "a1f00e84bdb0af7bbd4bb0eeb20b10bc43d7372b9905938024b2d11fbbe5104d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -43092,6 +43092,21 @@
     "doctor update yaml superseded": [
       "doctor-update yaml superseded"
     ],
+    "doctor ux research": [
+      "doctor ux research"
+    ],
+    "doctor ux research implementation summary": [
+      "doctor ux research implementation summary"
+    ],
+    "doctor ux research plan": [
+      "doctor ux research plan"
+    ],
+    "doctor ux research strategy": [
+      "doctor ux research strategy"
+    ],
+    "doctor ux research tasks": [
+      "doctor ux research tasks"
+    ],
     "doctor version battery claims": [
       "doctor version battery claims"
     ],
@@ -47362,6 +47377,9 @@
     ],
     "external reference library tasks": [
       "external reference library tasks"
+    ],
+    "external repo onboarding friction": [
+      "external repo onboarding friction"
     ],
     "external repo upgrade path": [
       "external repo upgrade path"
@@ -76666,6 +76684,9 @@
     "overlay engine implementation summary": [
       "overlay engine implementation summary"
     ],
+    "overlay engine improvements": [
+      "overlay engine improvements"
+    ],
     "overlay engine one state source": [
       "overlay engine one state source"
     ],
@@ -80690,6 +80711,9 @@
     ],
     "phase 7 docs and changelogs": [
       "phase 7 docs and changelogs"
+    ],
+    "phase 7 doctor ux research": [
+      "phase 7 doctor ux research"
     ],
     "phase 7 gap closure": [
       "phase 7 gap closure"
