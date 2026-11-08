@@ -28,7 +28,10 @@ function fakePi() {
   return { pi, handlers, sent };
 }
 
-const context = { hasUI: true, cwd: tmpdir(), sessionManager: { getSessionId: () => 'session-pi' } };
+// The guard logs each fire under the session cwd, so cwd is the per-test
+// directory: a shared temp root would gain a .skilled folder that other
+// suites then resolve as their repository root.
+let context = { hasUI: true, cwd: '', sessionManager: { getSessionId: () => 'session-pi' } };
 const userThenMenu = [
   { role: 'user', content: 'pick one' },
   { role: 'assistant', content: [{ type: 'text', text: menu }] },
@@ -39,6 +42,7 @@ describe('pi ask-surface guard', () => {
   let markerDir = '';
   beforeEach(() => {
     markerDir = mkdtempSync(join(tmpdir(), 'ask-surface-pi-'));
+    context = { ...context, cwd: markerDir };
     process.env.HOOK_FLAGS_CONFIG = '/nonexistent/hook-flags.env';
     delete process.env.SYSTEM_ASK_SURFACE_DISABLED;
     delete process.env.SYSTEM_HOOKS_DISABLED;
