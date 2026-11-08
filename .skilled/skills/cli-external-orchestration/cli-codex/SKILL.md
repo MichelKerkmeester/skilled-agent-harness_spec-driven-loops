@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.9.15.0
+version: 1.9.15.1
 ---
 
 # Codex CLI Orchestrator - Cross-AI Task Delegation
