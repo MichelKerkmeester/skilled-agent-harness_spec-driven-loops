@@ -4,7 +4,7 @@
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { evidenceBindsToCell } from '../../../../specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs';
+import { evidenceBindsToCell } from '../../../../specs/hooks-plugins-extensions/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix-evidence.mjs';
 import {
   clearPolicyObservationSink,
   deliveryEvidenceFromObservation,
