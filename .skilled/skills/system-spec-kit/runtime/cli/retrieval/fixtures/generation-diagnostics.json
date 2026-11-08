@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7375,
-    "ok": 17483,
+    "ok": 17487,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28407,
+  "documentsScanned": 28411,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e850f1a3ec8d18f73300fb153038099beee84834cab2a33afaf31eaaf84aee55",
+  "manifestHash": "f51173ab040a5bf66532850fe0fbcd448675f64048327e62d2ac2c9171d8f2f8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41806,
+      "ok": 41815,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -71002,6 +71002,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/087-opencode-worktree-confinement/scratch",
       "reason": "excluded directory"
     },
     {

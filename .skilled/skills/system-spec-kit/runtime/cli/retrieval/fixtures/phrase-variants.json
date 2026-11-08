@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e850f1a3ec8d18f73300fb153038099beee84834cab2a33afaf31eaaf84aee55",
+  "manifestHash": "f51173ab040a5bf66532850fe0fbcd448675f64048327e62d2ac2c9171d8f2f8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8281,6 +8281,9 @@
     ],
     "admission research fan out": [
       "admission research fan-out"
+    ],
+    "adopt an existing overlay folder": [
+      "adopt an existing overlay folder"
     ],
     "adopt deep pi": [
       "adopt deep-pi"
@@ -60715,6 +60718,9 @@
     "keep a workflow skill above the cli hub": [
       "keep a workflow skill above the cli hub"
     ],
+    "keep cli opencode workers inside the git worktree": [
+      "keep cli opencode workers inside the git worktree"
+    ],
     "keep drop ledger": [
       "keep drop ledger"
     ],
@@ -75081,8 +75087,20 @@
     "opencode worker farm dispatch": [
       "opencode worker farm dispatch"
     ],
+    "opencode worker wrote into the main checkout": [
+      "opencode worker wrote into the main checkout"
+    ],
     "opencode workflow guardrails": [
       "opencode workflow guardrails"
+    ],
+    "opencode worktree confinement": [
+      "opencode worktree confinement"
+    ],
+    "opencode worktree confinement plan": [
+      "opencode worktree confinement plan"
+    ],
+    "opencode worktree confinement tasks": [
+      "opencode worktree confinement tasks"
     ],
     "opencode worktree isolation dispatch": [
       "opencode worktree isolation dispatch"
@@ -86498,6 +86516,9 @@
     ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
+    ],
+    "re pin not copied list": [
+      "re-pin not-copied list"
     ],
     "re pin preceded by red run": [
       "re-pin preceded by red run"
@@ -116780,6 +116801,9 @@
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
     ],
+    "system skilled doctor 1 1 0 0": [
+      "system-skilled-doctor 1.1.0.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -116821,6 +116845,9 @@
     ],
     "system skilled doctor v1 0 0 0": [
       "system-skilled-doctor v1.0.0.0"
+    ],
+    "system skilled doctor v1 1 0 0": [
+      "system-skilled-doctor v1.1.0.0"
     ],
     "system spec gate": [
       "system-spec-gate"

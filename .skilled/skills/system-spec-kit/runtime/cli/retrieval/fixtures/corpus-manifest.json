@@ -1,5 +1,5 @@
 {
-  "corpusHash": "60d4f63fc9f3a001d8a324e1b0bab020fe7410699641367e8ab728bb16bd7601",
+  "corpusHash": "f542f197510831f5c9e351e201a5d69caa72e814f91c5e16a0b2be292b0691fa",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28407,
+  "includedPathCount": 28411,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8330,6 +8330,7 @@
     ".skilled/skills/system-skilled-doctor/benchmark/README.md",
     ".skilled/skills/system-skilled-doctor/benchmark/reports/README.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.0.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
@@ -10580,6 +10581,9 @@
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/spec.md",
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/tasks.md",
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/spec.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/plan.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/spec.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/tasks.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
@@ -28438,7 +28442,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e850f1a3ec8d18f73300fb153038099beee84834cab2a33afaf31eaaf84aee55",
+  "manifestHash": "f51173ab040a5bf66532850fe0fbcd448675f64048327e62d2ac2c9171d8f2f8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30302,6 +30306,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/087-opencode-worktree-confinement/scratch",
       "reason": "excluded directory"
     },
     {
