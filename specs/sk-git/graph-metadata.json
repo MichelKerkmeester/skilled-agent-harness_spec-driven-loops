@@ -21,7 +21,8 @@
     "sk-git/034-standards-template-round-trip",
     "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
     "sk-git/036-personal-name-scrub",
-    "sk-git/037-advisory-cd-prefix-env-steps"
+    "sk-git/037-advisory-cd-prefix-env-steps",
+    "sk-git/038-provision-private-command-links"
   ],
   "manual": {
     "depends_on": [],

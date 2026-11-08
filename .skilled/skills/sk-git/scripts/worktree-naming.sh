@@ -611,14 +611,17 @@ _wn_record_build() {
   printf '%s\n' "$fingerprint" > "$stamp"
 }
 
-# _wn_link_local_commands <dir> -- link the operator's private local-* commands
-# from the primary checkout into a linked worktree. They are git-ignored, so a new
-# worktree starts without them and the command is unusable there. The ignore rules
-# already name every directory a private command or its mirror lives in, so they
-# are read here rather than repeated, and a new mirror needs no change to this
-# function. A link keeps one copy, so an edit made in any worktree reaches every
-# other. An existing path is never replaced, and a checkout with no private command
-# is the common case, so nothing here can fail provisioning.
+# _wn_link_local_commands <dir> -- recreate the operator's private local-* commands
+# in a linked worktree, in the form the primary checkout holds them. They are
+# git-ignored, so a new worktree starts without them and the command is unusable
+# there. The ignore rules already name every directory a private command or its
+# mirror lives in, so they are read here rather than repeated, and a new mirror
+# needs no change to this function. The form is preserved because the mirror
+# generators walk real files and want relative links, so an absolute link would
+# block every commit there. A folder is shared by an absolute link while a file is
+# copied, so an edit to a copied file stays in its worktree. An existing path is
+# never replaced, and a checkout with no private command is the common case, so
+# nothing here can fail provisioning.
 _wn_link_local_commands() {
   local dir="$1" common primary rule parent src name linked=0
   common="$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" || return 0
@@ -637,11 +640,17 @@ _wn_link_local_commands() {
       if [ -e "$dir/$parent/$name" ] || [ -L "$dir/$parent/$name" ]; then continue; fi
       # A folder that holds only private entries is untracked, so a new worktree lacks it.
       mkdir -p "$dir/$parent" 2>/dev/null || continue
-      if ln -s "$src" "$dir/$parent/$name" 2>/dev/null; then linked=$((linked + 1)); fi
+      if [ -L "$src" ]; then
+        if ln -s "$(readlink "$src")" "$dir/$parent/$name" 2>/dev/null; then linked=$((linked + 1)); fi
+      elif [ -d "$src" ]; then
+        if ln -s "$src" "$dir/$parent/$name" 2>/dev/null; then linked=$((linked + 1)); fi
+      elif [ -f "$src" ]; then
+        if cp -p "$src" "$dir/$parent/$name" 2>/dev/null; then linked=$((linked + 1)); fi
+      fi
     done
   done < <(grep -E '^/\.[A-Za-z0-9_-]+/(commands(/assets)?|prompts)/local-\*$' "$dir/.gitignore" || true)
   if [ "$linked" -gt 0 ]; then
-    echo "  linked $linked private local-* command entries from $primary" >&2
+    echo "  provisioned $linked private local-* command entries from $primary" >&2
   fi
   return 0
 }
