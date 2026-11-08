@@ -101,8 +101,7 @@ Every step was run before it was written. The link path ran on an empty git repo
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The first link needs a second run.** On a new project the first `link` leaves runtime folders `partial-merge`. The guide says to run it again.
-2. **Relative links show in git status.** The relative links inside a runtime folder get no ignore line. The guide says to leave them uncommitted.
+1. **Both link rough edges are fixed since.** `specs/system-skilled-doctor/002-symlink-first-link` made one `link` run enough on a new project and ignored the relative links, and removed the two notes from the guide.
 <!-- /ANCHOR:limitations -->
 
 ---
