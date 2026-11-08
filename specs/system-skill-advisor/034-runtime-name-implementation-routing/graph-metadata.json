@@ -49,7 +49,11 @@
       ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
       ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts",
-      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts"
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts",
+      ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+      "templates/addons/acceptance-criteria.md.tmpl"
     ],
     "entities": [
       {
@@ -131,6 +135,24 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "policy-observation-sink.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -177,29 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Post",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The executor-delegation resolver treats any bare executor alias as a hand-off, so \"Make the Claude Code Stop hook return a block\" routes to `cli-claude-code` at confidence 0.95 and caps `sk-code` below it",
     "created_at": "2026-11-08T16:20:14Z",
-    "last_save_at": "2026-11-08T16:44:56.118Z",
+    "last_save_at": "2026-11-08T17:10:39.414Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41d963125682d9557f65dc8b944e4443d9bc9b70f999f358fe53adf29abc29ea",
+    "source_fingerprint": "sha256:9368bbd17deb35521861b0f86f2b540cb75e5eb37c1e20ab2df091be0b6184aa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "511b96fc23dcf96b503f9c73c4cbb508f7cd1f9380c2847ee29b118d247bfc26",
+      "spec.md": "098bf6889fa2511c8168a56647c44cd31f8d10bfc5939784131ff56d0c4eb1f8",
       "plan.md": "fda2c1ac6330bb32ff97a69f76d69ca70226812aa885ca7906d56fa7802092e2",
-      "tasks.md": "9feb982e796dba0d5d74988c54c776cd397da8813d8bb40616905b5a4d40e268",
+      "tasks.md": "afa945c65bc3e6daa4b970cd902514ee73fea7ae1974417103d33c85439f7dfa",
       "decision-record.md": "1a192a0a7c170d6bd89ab3b5f2ba4d86a708936e202406a70064d7656808dd51",
-      "implementation-summary.md": "406ee61d2cea1200ff6e2ad445745782740be7386b7d2fec788622d1191c9a45"
+      "implementation-summary.md": "bc8f2b1a08a23ab77b7e401eb38f7d3c646a98421d3dd679746cbc9463495557"
     },
     "last_active_at": null
   }

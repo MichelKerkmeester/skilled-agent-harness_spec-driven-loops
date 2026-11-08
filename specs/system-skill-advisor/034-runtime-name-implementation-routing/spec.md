@@ -85,6 +85,9 @@ full_corpus_top1 0.8103 (158/195)   holdout_top1 0.75 (30/40)   unknown_count 13
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Modify | The same mask in the Python fallback, so both engines agree |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Re-captured: the delegation bucket grows from 18 to 20 cases |
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Modify | Delegation census pins move from 18 to 20 |
+| `.skilled/skills/sk-code/SKILL.md` | Modify | Four code words in its keywords, approved by the operator |
+| `.skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts` | Modify | Follow the hooks track rename |
+| `.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl` | Modify | Scaffold-replaced session id token |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,7 +120,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `run-probes.cjs` on the same input reports no CLI executor as any probe's top-1, down from four. The first draft asked for 7 of 11 passing; the trace showed the other misses are weak lexical scores, so `implementation-summary.md` records why that target changed.
+- **SC-001**: `run-probes.cjs` on the same input reports no CLI executor as any probe's top-1, down from four, and at least 7 of 11 passing once `sk-code` declares the approved vocabulary. The first draft asked for 7 of 11 passing; the trace showed the other misses are weak lexical scores, so `implementation-summary.md` records why that target changed.
 - **SC-002**: `advisor_validate` reports full corpus and holdout counts at or above 158/195 and 30/40.
 <!-- /ANCHOR:success-criteria -->
 

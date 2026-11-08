@@ -74,6 +74,9 @@ The delegation resolver now blanks a runtime name that a surface noun follows wi
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | Modified | Re-captured; only the delegation bucket moves, 18 to 20 |
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Modified | Delegation census pins 18 to 20 |
 | `.skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts` | Modified | Claude Stop hook count 3 to 4, for the ask-surface guard registered there |
+| `.skilled/skills/sk-code/SKILL.md` | Modified | Keywords gain guard, adapter, stderr and detector |
+| `.skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts` | Modified | Import follows the hooks track rename to `hooks-plugins-extensions` |
+| `.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl` | Modified | Session id uses the `template-session` token the scaffold replaces |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -93,7 +96,7 @@ Baselines came first: the probes, `advisor_validate`, the vitest suite and the P
 |----------|-----|
 | Mask the surface mention, not the whole prompt | A blanket guard like the existing OpenCode one would also drop a real hand-off in the same sentence |
 | Demote the hub after fusion rather than change the author lane | The author lane serves every prompt; the override already owns delegation decisions and touches only prompts that name a runtime surface |
-| Leave P01, P04 to P07, P09 and P11 as recorded misses | Moving them means adding probe words to `sk-code`'s keywords and recompiling the skill graph, which tunes routing to eleven prompts and edits another skill's surface |
+| Add four code words to `sk-code`'s keywords, with the operator's approval | guard, adapter, stderr and detector move P01, P04, P05 and P06 and leave the corpus unchanged. Bare "hook" stole advisor-hook, env-example and changelog prompts, and "fixtures" stole a documentation prompt, so both were dropped after spot checks |
 | Change SC-001 from 7 of 11 to no CLI misses | The 7-of-11 target was set before the trace; the remaining misses score near zero on every skill, so no scorer fix reaches them honestly |
 <!-- /ANCHOR:decisions -->
 
@@ -104,9 +107,11 @@ Baselines came first: the probes, `advisor_validate`, the vitest suite and the P
 
 | Check | Result |
 |-------|--------|
-| `run-probes.cjs` | Before: pass 3, four CLI executors. After: pass 4, no CLI executor |
+| `run-probes.cjs` | Before: pass 3, four CLI executors. After the mask: pass 4, no CLI executor. After the keywords: pass 8 |
 | `advisor_validate` | Before and after: 158/195, holdout 30/40, UNKNOWN 13, the same four pre-existing parity regressions |
-| Advisor vitest | Before: 1 failed test, 2 failed files. After: 1374 passed, 0 failed tests, 1 failed file (pre-existing import of a deleted spec file) |
+| Advisor vitest | Before: 1 failed test, 2 failed files. After: 0 failed tests and 0 failed files once the stale import was fixed |
+| Collision spot checks | Git-hook, advisor-hook, env-example, changelog, spec-gate guard and README prompts keep their owners with the final keyword set |
+| Scaffold probe | A throwaway Level 2 scaffold writes `session_id: "scaffold-999-scaffold-probe"`; spec-kit template and scaffold tests 201/201, AC-closure 29/29 |
 | Python regression suite | 78/84 before and after, the same six failures |
 | Delegation tests and fixture | 87/87, TypeScript and Python agree on both new cases |
 <!-- /ANCHOR:verification -->
@@ -116,8 +121,8 @@ Baselines came first: the probes, `advisor_validate`, the vitest suite and the P
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Seven probes still miss on weak signals.** P01 and P06 score under 0.13 on every skill, and `sk-doc` wins on shared words like "add" and "log". P04 and P05 fall to `system-spec-kit` and `sk-doc` the same way, because `sk-code` declares no hook or guard vocabulary. P07 names a rule file that no skill owns. P09 routes to `sk-code` on `hook-registry.json`, and P11 to `sk-doc` because it asks to document the switch in a README; both read as defensible. Adding hook vocabulary to `sk-code` would move several, at the cost of a skill-graph recompile and a corpus rerun.
-2. **`policy-observation-sink.vitest.ts` fails to import.** It loads a helper from `specs/hooks/`, which another session deleted. It failed before this change too.
+1. **Three probes still miss, each for a stated reason.** P07 names a rule file that no skill owns, and claiming bare `.md` paths for `sk-doc` would pull spec-doc prompts from `system-spec-kit`. P09 routes to `sk-code` on `hook-registry.json`, a JSON edit. P11 routes to `sk-doc` because it asks to document the switch in a README.
+2. **22 older packets keep the old acceptance-criteria placeholder.** The template fix covers new scaffolds only. Those packets belong to other work and fill the id when they next close.
 <!-- /ANCHOR:limitations -->
 
 ---
