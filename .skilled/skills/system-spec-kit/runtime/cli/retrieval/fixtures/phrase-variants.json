@@ -1,5 +1,5 @@
 {
-  "manifestHash": "26dea1db35dac003ad1a386e6e2aa3378433544221b6bbbdd54c94c8b5a66df0",
+  "manifestHash": "37703c35f8d346345413ae2bcf5bfc37f160dbac415acc6b07538977b0eda52e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49848,6 +49848,9 @@
     "first changelog version": [
       "first changelog version"
     ],
+    "first overlay setup": [
+      "first overlay setup"
+    ],
     "first rule in a repository": [
       "first rule in a repository"
     ],
@@ -62932,6 +62935,9 @@
     ],
     "link integrity guard": [
       "link integrity guard"
+    ],
+    "link or copy skilled into a project": [
+      "link or copy skilled into a project"
     ],
     "link skilled into your project": [
       "link skilled into your project"
@@ -99938,6 +99944,15 @@
     "setup cp sandbox rmrf guard": [
       "setup cp sandbox rmrf guard"
     ],
+    "setup guide implementation summary": [
+      "setup guide implementation summary"
+    ],
+    "setup guide plan": [
+      "setup guide plan"
+    ],
+    "setup guide tasks": [
+      "setup guide tasks"
+    ],
     "setup native module health": [
       "setup native module health"
     ],
@@ -110085,6 +110100,9 @@
     ],
     "skilled root discovery": [
       "skilled root discovery"
+    ],
+    "skilled setup guide": [
+      "skilled setup guide"
     ],
     "skilled skills sk code sk code quality repository quality json": [
       ".skilled/skills/sk-code/sk-code-quality/repository/quality.json"

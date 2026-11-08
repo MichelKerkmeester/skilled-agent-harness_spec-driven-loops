@@ -1,5 +1,5 @@
 {
-  "corpusHash": "eec9edbf5d054cd4390505756a8e3bdbe04540bc1de7c9959888ab50d95885ab",
+  "corpusHash": "8c1e4b63340a254011b1fe4e9b4d9e458d273ff1f765e7b443e29a6a351ae320",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28424,
+  "includedPathCount": 28428,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -18513,6 +18513,10 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/resource-map.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-decisions.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-spec.md",
@@ -28455,7 +28459,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "26dea1db35dac003ad1a386e6e2aa3378433544221b6bbbdd54c94c8b5a66df0",
+  "manifestHash": "37703c35f8d346345413ae2bcf5bfc37f160dbac415acc6b07538977b0eda52e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34247,6 +34251,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/scratch",
       "reason": "excluded directory"
     },
     {
