@@ -185,7 +185,7 @@ It checks the install without changing anything and names one repair command for
 
 ### Use It In Your Own Project
 
-You can also link this checkout into your own project repos, or commit a copy of Skilled to a project and keep your changes to it as overlays. The [setup guide](SETUP.md) walks through both.
+You can also use Skilled in your own projects. Link this checkout into a project, or commit a copy and keep your changes as overlays. The [setup guide](SETUP.md) walks through both.
 
 ### First Task
 
@@ -221,12 +221,12 @@ The doctor commands check and repair one area each. `/doctor:helper` names the o
 
 ## 5. 🔗 USE IT IN YOUR OWN PROJECT
 
-Skilled does not have to live inside each project. There are two ways to put it into one, and the [setup guide](SETUP.md) walks through both, step by step.
+Skilled does not have to live inside each project. You can set up a project in two ways, and the [setup guide](SETUP.md) walks through both.
 
-- **Link it:** keep this one checkout and link it into each project, so one `git pull` updates them all. `/doctor:install` prints the steps and `/doctor:symlink` makes the links after a plan and your yes. See [Link It Into Your Project](SETUP.md#2--link-it-into-your-project).
-- **Copy it in:** commit your own copy of Skilled to the project, so the whole team shares one pinned version. Your changes to the copy live in an overlay folder, and `/doctor:overlay` puts them back after each move to a newer commit. See [Copy It Into Your Project](SETUP.md#3--copy-it-into-your-project).
+- **Link it.** Keep one Skilled checkout and link it into each project. One `git pull` then updates them all. See [Link It Into Your Project](SETUP.md#2-link-it-into-your-project).
+- **Copy it.** Commit a copy of Skilled to the project, so the whole team shares one pinned version. Your changes to the copy live in an overlay folder. See [Copy It Into Your Project](SETUP.md#3-copy-it-into-your-project).
 
-Every step writes only after it shows you a plan, and each one prints how to undo it.
+Each step shows you a plan before it writes, and each one prints how to undo it.
 
 &nbsp;
 
@@ -766,7 +766,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Doctor-command skill at `.skilled/skills/system-skilled-doctor/` for putting Skilled into your own project and keeping it current there
 - Owns eleven of the seventeen doctor commands: `/doctor:install`, `/doctor:symlink`, `/doctor:update`, `/doctor:agents-md`, `/doctor:runtime-mirrors`, `/doctor:env`, `/doctor:setup`, `/doctor:helper`, `/doctor:speckit`, `/doctor:mcp` and `/doctor:overlay`. Each keeps its workflow in `.skilled/commands/doctor/`, and the skill matches a request to one of them
-- Keeps a vendored copy's own changes: `/doctor:overlay` reports an overlay that drifted and puts it back, and it re-pins the copy to a newer upstream commit. See [Copy It Into Your Project](SETUP.md#3--copy-it-into-your-project)
+- Keeps a vendored copy's own changes: `/doctor:overlay` reports an overlay that drifted and puts it back, and it re-pins the copy to a newer upstream commit. See [Copy It Into Your Project](SETUP.md#3-copy-it-into-your-project)
 - The other six doctor commands stay with the skill whose own checks they run, such as `/doctor:git` with `sk-git`. The [Doctor](#doctor) section lists them
 
 &nbsp;
@@ -1292,7 +1292,7 @@ Seventeen commands check and repair the setup, one per area. Eleven of them belo
 - Counts orphaned helper processes, including a model server whose launcher died, and prints the command that lists them
 - Lists every other doctor command, and writes nothing
 
-**`/doctor:install [--root <dir>] [--runtimes <list>] [--json]`** - the ordered steps that put Skilled into your own project repo. The [setup guide](SETUP.md#2--link-it-into-your-project) walks through every step
+**`/doctor:install [--root <dir>] [--runtimes <list>] [--json]`** - the ordered steps that put Skilled into your own project repo. The [setup guide](SETUP.md#2-link-it-into-your-project) walks through every step
 
 - Checks both builds, asks for the target repo, the runtimes, the link shape and the instruction choice in one prompt, runs the symlink check, then prints the ordered setup commands with each command's class and one line of why
 - The steps are `/doctor:symlink link`, `/doctor:agents-md embed` unless the instruction files are linked, `/doctor:mcp install`, `/doctor:git setup` and `/doctor:setup`
@@ -1358,7 +1358,7 @@ Seventeen commands check and repair the setup, one per area. Eleven of them belo
 - Checks what a release changes, applies it after your approval and can roll it back
 - `compat` moves a v3 checkout to the v4 `specs/` layout, and `--dry-run` previews the move
 
-**`/doctor:overlay [status|apply|repin] [--json] [--root <dir>] [--capture <path>] [--upstream <dir>] [--to <commit>] [--rollback <run-id>]`** - a vendored Skilled copy's own changes. The [setup guide](SETUP.md#3--copy-it-into-your-project) says when a project needs them
+**`/doctor:overlay [status|apply|repin] [--json] [--root <dir>] [--capture <path>] [--upstream <dir>] [--to <commit>] [--rollback <run-id>]`** - a vendored Skilled copy's own changes. The [setup guide](SETUP.md#3-copy-it-into-your-project) says when a project needs them
 
 - `status` (the default, read-only) prints one line for each destination that is not in sync, with the fix the engine names. It writes nothing. `--json` prints the engine's report and nothing else
 - `apply` shows the `status` report as its plan, asks once, then writes the overlays and runs the manifest's regenerate and verify steps. It writes nothing while a destination holds an edit made in the live copy or a conflict, and the run names the fix for each

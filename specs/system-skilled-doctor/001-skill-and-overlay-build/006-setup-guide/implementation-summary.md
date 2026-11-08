@@ -94,6 +94,7 @@ Every step was run before it was written. The link path ran on an empty git repo
 | `validate_document.py SETUP.md` | No blocking error (one note: README rules were applied) |
 | `check_readme_references.py` on the three docs | `fail=0` |
 | Root README issues | 2, the same 2 as before the change |
+| Human-voice pass on `SETUP.md` | `hvr_scan.py` 100/100, no em dash or semicolon, 113 sentences averaging 9.4 words with none over 25, no decorative heading emoji |
 <!-- /ANCHOR:verification -->
 
 ---
