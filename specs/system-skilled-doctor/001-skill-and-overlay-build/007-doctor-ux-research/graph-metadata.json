@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research",
+  "spec_folder": "system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research",
+  "parent_id": "system-skilled-doctor/001-skill-and-overlay-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor ux research",
+      "phase 7 doctor ux research",
+      "doctor ux research plan",
+      "doctor ux research tasks",
+      "doctor ux research implementation summary",
+      "overlay engine improvements",
+      "external repo onboarding friction"
+    ],
+    "key_topics": [
+      "doctor",
+      "research",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "overlay",
+      "engine",
+      "improvements",
+      "external",
+      "repo"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+      ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs",
+      ".skilled/skills/system-skilled-doctor/references/overlays.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "overlays.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-doctor/references/overlays.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor overlay engine and the external-repo onboarding path grew over six phases",
+    "created_at": "2026-11-08T16:24:02Z",
+    "last_save_at": "2026-11-08T16:39:25.977Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:21098dd9827b245d4e6c2a492fa048ebf5df848abb6d57e8d7d872f19f260222",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b704205548ed0789d341970af9d95ef29d43ea32db6595569b63cb2c3727df71",
+      "plan.md": "81dd65706ab925e85de8736b01ecb7628442bc8f99a01522981bd48864a4985c",
+      "tasks.md": "475506157abc4a1a520376e80a26af6bc995a6220fabc4bb58f2b00a6d422393",
+      "implementation-summary.md": "e081af0ce5994a2b27c537a262c32b273cbba31889f6b4e29f2109af65f6ed46",
+      "research/research.md": "e2d05d66270546111454d392d7b66229e27971e69535a9a07852db7b7306b0d1"
+    },
+    "last_active_at": null
+  }
+}

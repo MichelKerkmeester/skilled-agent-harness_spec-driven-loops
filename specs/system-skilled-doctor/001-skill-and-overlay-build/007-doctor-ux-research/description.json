@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research",
+  "description": "Phase 7: doctor-ux-research",
+  "keywords": [
+    "phase",
+    "doctor-ux-research"
+  ],
+  "lastUpdated": "2026-11-08T16:39:25.977Z",
+  "specId": "007",
+  "folderSlug": "doctor-ux-research",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-11-26_17-39__five-cli-devin-deepseek-v4-1-flash-max-deep.md"
+  ]
+}

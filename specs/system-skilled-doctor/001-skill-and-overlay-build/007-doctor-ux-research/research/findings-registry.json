@@ -1,0 +1,407 @@
+{
+  "sessionId": "2026-11-08T16:26:27Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-where-is-overlay-engine-cjs-status-apply-capture-repin-rollback-incorrect-or-",
+      "inboxId": null,
+      "text": "Q1: Where is overlay-engine.cjs (status/apply/capture/repin/rollback) incorrect or unsafe against its own docs and tests, for example manifest drift, protectedPaths and repin.exclude handling, the not-copied list, partial failure and rollback?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-which-doctor-command-messages-prompts-and-outputs-confuse-an-external-repo-us",
+      "inboxId": null,
+      "text": "Q2: Which /doctor command messages, prompts and outputs confuse an external-repo user or leave them without a next step (overlay, install, symlink, setup, helper)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-what-onboarding-friction-does-a-brand-new-external-repository-hit-when-linkin",
+      "inboxId": null,
+      "text": "Q3: What onboarding friction does a brand-new external repository hit when linking or copying Skilled in, from INSTALL-SKILLED.md through /doctor:install, /doctor:symlink and /doctor:setup?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-how-safe-is-upgrading-or-re-pinning-a-copied-skilled-tree-and-what-would-make",
+      "inboxId": null,
+      "text": "Q4: How safe is upgrading or re-pinning a copied Skilled tree, and what would make re-pin, the overlay-guard hook and rollback safer or easier to recover from?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-where-do-install-skilled-md-overlays-md-the-doctor-command-docs-and-the-skill",
+      "inboxId": null,
+      "text": "Q5: Where do INSTALL-SKILLED.md, overlays.md, the doctor command docs and the skill README disagree with the code, and which improvements rank highest by user impact?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-q2-which-doctor-command-messages-prompts-and-outputs-confuse-an-external-repo-us",
+      "inboxId": null,
+      "text": "Q2: Which /doctor command messages, prompts and outputs confuse an external-repo user or leave them without a next step (overlay, install, symlink, setup, helper)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-where-do-install-skilled-md-overlays-md-the-doctor-command-docs-and-the-skill",
+      "inboxId": null,
+      "text": "Q5: Where do INSTALL-SKILLED.md, overlays.md, the doctor command docs and the skill README disagree with the code, and which improvements rank highest by user impact?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-where-is-overlay-engine-cjs-status-apply-capture-repin-rollback-incorrect-or-",
+      "inboxId": null,
+      "text": "Q1: Where is overlay-engine.cjs (status/apply/capture/repin/rollback) incorrect or unsafe against its own docs and tests, for example manifest drift, protectedPaths and repin.exclude handling, the not-copied list, partial failure and rollback?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-q3-what-onboarding-friction-does-a-brand-new-external-repository-hit-when-linkin",
+      "inboxId": null,
+      "text": "Q3: What onboarding friction does a brand-new external repository hit when linking or copying Skilled in, from INSTALL-SKILLED.md through /doctor:install, /doctor:symlink and /doctor:setup?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-q4-how-safe-is-upgrading-or-re-pinning-a-copied-skilled-tree-and-what-would-make",
+      "inboxId": null,
+      "text": "Q4: How safe is upgrading or re-pinning a copied Skilled tree, and what would make re-pin, the overlay-guard hook and rollback safer or easier to recover from?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Carried forward: Are `status`/`apply`/`capture` classifications correct for every `skill-root` and `json-entry` shape, and does the engine detect a manifest `pin.commit` that disagrees with the bytes actually in the tree?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Which `/doctor` command messages, prompts and outputs confuse an external-repo user or leave them without a next step?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: How safe is upgrading or re-pinning a copied Skilled tree, and what would make re-pin, the overlay-guard hook and rollback safer or easier to recover from?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Where do `INSTALL-SKILLED.md`, `overlays.md`, the doctor command docs and the skill README disagree with the code, and which improvements rank highest by user impact?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: What onboarding friction does a brand-new external repository hit from `INSTALL-SKILLED.md` through `/doctor:install`, `/doctor:symlink` and `/doctor:setup`?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Which `/doctor` command messages, prompts and outputs confuse an external-repo user or leave them without a next step? (partially touched by F3, F9; not answered as a whole)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward from iteration 1: are `status`/`apply`/`capture` classifications correct for every `skill-root` and `json-entry` shape, and does the engine detect a manifest `pin.commit` that disagrees with the bytes actually in the tree?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Residual: `pinnedSha256` scope validation for multi-output entries; whether `apply` repairs layout links; `capture` bodies for `json-entry` and `skill-root`.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: How safe is upgrading or re-pinning a copied Skilled tree, and what would make re-pin, the overlay-guard hook and rollback safer or easier to recover from? (pin-drift is now covered; the guard hook is untouched)",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Residual from this iteration: the `release-update.cjs` upgrade path; whether each adapter passes a `sessionDir` that makes relative write paths resolve against the tree root rather than the hook process's cwd; whether the guard's per-path spawn is measurably slow on the largest overlay manifests.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Which `/doctor` command messages, prompts and outputs confuse an external-repo user or leave them without a next step? (partially touched; not answered as a whole)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Residual from iteration 3: `pinnedSha256` scope validation for multi-output entries; whether `apply` repairs layout links; `capture` bodies for `json-entry` and `skill-root`.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Where do `INSTALL-SKILLED.md`, `overlays.md`, the doctor command docs and the skill README disagree with the code? Still open as a whole. This iteration contributes one confirmed disagreement (F5: an enforced field with no documentation) and one partial (F1: an accepted-but-inert field with no documentation of its scope).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Which `/doctor` command messages, prompts and outputs confuse an external-repo user or leave them without a next step? Still open as a whole. This iteration adds three message-level data points (F2, F3, F6) but does not survey the install/symlink/setup/helper surface.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New residual: whether `loadManifest` rejects `pinnedSha256` on non-`file` scopes, and whether it rejects unknown keys at all. Confirming this decides whether F1 is \"silently inert\" or \"silently inert plus a missing validation\".",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q2: Which /doctor command messages, prompts and outputs confuse an external-repo user or leave them without a next step (overlay, install, symlink, setup, helper)?",
+    "Q5: Where do INSTALL-SKILLED.md, overlays.md, the doctor command docs and the skill README disagree with the code, and which improvements rank highest by user impact?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f-iter001-001-p1-env-prefix-heuristic-permanently-blocks-legitimate-template-fil",
+      "text": "f-iter001-001 (P1) — `.env`-prefix heuristic permanently blocks legitimate template files",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-f-iter001-002-p2-a-re-pin-refuses-when-an-upstream-deleted-file-is-already-missi",
+      "text": "f-iter001-002 (P2) — A re-pin refuses when an upstream-deleted file is already missing locally",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-f-iter001-003-p2-the-not-copied-list-silently-drops-upstream-additions-at-top-le",
+      "text": "f-iter001-003 (P2) — The not-copied list silently drops upstream additions at top-level paths the tree does not hold",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-f-iter001-004-p2-not-copied-findings-are-ephemeral-status-never-re-surfaces-them",
+      "text": "f-iter001-004 (P2) — Not-copied findings are ephemeral; `status` never re-surfaces them",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-f-iter001-005-p2-an-interrupted-re-pin-leaves-no-durable-run-status-and-no-disco",
+      "text": "f-iter001-005 (P2) — An interrupted re-pin leaves no durable run status and no discoverable rollback pointer",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-f-iter001-006-p3-the-not-copied-summary-appends-agents-md-guidance-to-unrelated-",
+      "text": "f-iter001-006 (P3) — The not-copied summary appends AGENTS.md guidance to unrelated paths",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-iter003-001-p1-status-never-checks-pin-commit-against-the-bytes-in-the-tree",
+      "text": "f-iter003-001 (P1) — `status` never checks `pin.commit` against the bytes in the tree",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-f-iter003-002-p1-a-wrong-pin-commit-corrupts-the-re-pin-drift-base",
+      "text": "f-iter003-002 (P1) — A wrong `pin.commit` corrupts the re-pin drift base",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-f-iter003-003-p2-in-sync-is-decided-before-the-pin-so-a-fully-green-status-can-c",
+      "text": "f-iter003-003 (P2) — `in-sync` is decided before the pin, so a fully green status can coexist with a wrong pin",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-f-iter003-004-p3-remove-root-bypasses-the-state-machine-so-a-re-created-file-is-",
+      "text": "f-iter003-004 (P3) — `remove-root` bypasses the state machine, so a re-created file is always \"overlay-edited\"",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-f-iter004-001-p1-rollback-restores-bytes-without-comparing-them-to-the-current-t",
+      "text": "f-iter004-001 (P1) — Rollback restores bytes without comparing them to the current tree",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-f-iter004-002-p1-the-guard-stops-protecting-exactly-when-the-tree-is-damaged",
+      "text": "f-iter004-002 (P1) — The guard stops protecting exactly when the tree is damaged",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-f-iter004-003-p2-a-green-stage-is-not-a-rehearsal-of-the-live-run",
+      "text": "f-iter004-003 (P2) — A green stage is not a rehearsal of the live run",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-f-iter004-004-p2-the-guard-is-a-tool-call-guard-not-a-write-boundary-and-it-spaw",
+      "text": "f-iter004-004 (P2) — The guard is a tool-call guard, not a write boundary, and it spawns the engine once per path",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-f-iter004-005-p3-successful-re-pin-runs-are-never-pruned-and-no-command-lists-th",
+      "text": "f-iter004-005 (P3) — Successful re-pin runs are never pruned, and no command lists them",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-f-iter004-006-p3-runtime-coverage-is-documented-only-in-the-hook-readme-and-doct",
+      "text": "f-iter004-006 (P3) — Runtime coverage is documented only in the hook README, and `/doctor:overlay` never mentions the guard",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-applylayoutlink-root-record-link-source-skilled-commands-doctor-scripts-overlay-",
+      "text": "`applyLayoutLink(root, record.link);` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2136]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-classifydestination-uses-it-to-decide-that-a-destination-holding-the-pinned-byte",
+      "text": "`classifyDestination` uses it to decide that a destination holding the pinned bytes is `overlay-edited` rather than `upstream-moved` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1798] and again in the applied-hash branch [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1804].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-const-classified-analysis-records-find-item-item-key-record-key-source-skilled-c",
+      "text": "`const classified = analysis.records.find((item) => item.key === record.key)` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2310]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-const-layoutrecords-analysis-records-filter-record-record-layout-source-skilled-",
+      "text": "`const layoutRecords = analysis.records.filter((record) => record.layout);` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2128]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-if-classified-console-log-refuse-path-is-not-an-overlay-destination-inputpath-re",
+      "text": "`if (!classified) { console.log('refuse: path is not an overlay destination: ' + inputPath); return EXIT_ERROR; }` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2311]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-if-record-entry-scope-json-entry-console-log-refuse-edit-instead-return-exit-err",
+      "text": "`if (record.entry.scope === 'json-entry') { console.log('refuse: edit … instead'); return EXIT_ERROR; }` [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2291]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-planfileoverlay-consults-it-when-the-destination-is-missing-upstream-removed-reb",
+      "text": "`planFileOverlay` consults it when the destination is missing (`upstream removed …; rebase the overlay`) [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:995], when the entry declares no pin it copies unconditionally [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1003], and when comparing the live hash [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1007].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-the-nothing-to-capture-branch-is-later-source-skilled-commands-doctor-scripts-ov",
+      "text": "the `nothing to capture` branch is later [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2315]",
+      "addedAtIteration": 5,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 2,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 15,
+    "keyFindings": 24,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/330-doctor-ux-research/specs/system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -104,6 +104,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 4 | 004-guard-hook/ | The pre-write guard hook (REQ-013) | Complete |
 | 5 | 005-barter-parity/ | Adoption by a real vendoring project: per-entry protected-path refusal, `.dsh` and not-copied changes in a re-pin, adoption docs and routing, Barter's tree on the engine | Complete |
 | 6 | 006-setup-guide/ | A root `SETUP.md` that guides linking and copying with overlays, and a root README that points to it | Complete |
+| 7 | 007-doctor-ux-research/ | [Phase 7 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -121,6 +122,7 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 003-repin | 004-guard-hook | `repin`, `--stage` and `--rollback` pass their tests | `node --test` on the engine tests |
 | 004-guard-hook | 005-barter-parity | The guard hook ships and the engine passes its own tests | `node --test` on the engine tests |
 | 005-barter-parity | 006-setup-guide | The engine runs on a real copy and its docs match it | Barter's tree passes `status` and the doctor suite passes |
+| 006-setup-guide | 007-doctor-ux-research | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
