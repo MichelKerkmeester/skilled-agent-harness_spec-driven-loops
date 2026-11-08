@@ -20,6 +20,9 @@ Outputs:
   That script is the whole write.
   The JSON can carry the packet's continuity (`recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions`, `answered_questions`), which only a `--full-auto` run writes.
   The field rules are in `save-workflow.md` under Continuity Fields.
+  A full-auto run may also carry the writer inputs `--session-id <id>` and `--runtime <slug>` (claude, codex, opencode, pi, devin, dsh or cursor). With both present, the writer mints the writer-owned `_memory.continuity.session_ref` pointer from them, the repository root and the save time.
+  Never send `session_ref` in the JSON: the writer ignores a payload copy and names it, and a known runtime with a gated reader (cursor) omits the pointer while the save continues.
+  The `session_ref` field rules are in `save-workflow.md` under Session Reference.
   The JSON can also carry `operatorDecisions`, which a `--full-auto` run writes into the target packet's `decision-record.md`, creating that file when it is absent. The field rules are in `save-workflow.md` under Operator Decisions.
   Every mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers, and `hybrid` behaves like the default `plan-only`.
 - Retrieval freshness is a separate, optional step: regenerate the trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when the packet's `trigger_phrases` changed. There is no indexing handoff, no daemon to wait for and no launcher file to check.
@@ -94,6 +97,7 @@ Procedure:
    The writer owns the continuity frontmatter and the generated metadata pair.
    You update continuity by putting its fields in the JSON.
    You never edit `_memory.continuity` by hand.
+   The writer also owns `session_ref`: on a full-auto run it mints the pointer from `--session-id` and `--runtime`, so pass both beside the writer call and never author the object yourself.
    A save targeted at a phase parent writes that continuity to the child its payload paths name.
    When no payload path does, it writes that continuity to the child the parent's pointer names.
    When the paths span two children, it writes no continuity and lists the candidates.

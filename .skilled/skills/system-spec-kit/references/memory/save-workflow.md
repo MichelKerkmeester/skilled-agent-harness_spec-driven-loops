@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.7.0
+version: 1.6.8.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -255,6 +255,23 @@ A `--full-auto` save writes these into the leaf's `_memory.continuity` block. A 
 | `answered_questions` | array   | Question ids, disjoint from `open_questions` |
 
 The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself. A field the payload leaves out keeps its stored value while that value validates; a stored value that fails validation is dropped and named in the save output. A payload value that fails fails the whole save before any file is written, and an empty string counts as absent.
+
+### Session Reference
+
+`session_ref` is writer-owned and is never a payload field. On a `--full-auto` save that receives an explicit `--session-id` and a `--runtime`, the writer mints it from those inputs, the resolved project root and the save time. The generated `SESSION_ID` fallback names no runtime session, so a save without the explicit flag omits the object, and plan-only or hybrid saves never write it.
+
+| Key | Type | Rule |
+| --- | --- | --- |
+| `runtime` | string | `claude`, `codex`, `opencode`, `pi`, `devin` or `dsh`. `cursor` is accepted but not minted while its trigger stays gated. |
+| `sessionId` | string | The explicit `--session-id`, matching the continuity session-id shape. |
+| `workspace` | string | Normalized absolute realpath of the project root at save time. It is local to that checkout and never printed in a resume brief. |
+| `savedAt` | string | ISO-8601 UTC seconds at mint time. A carried object keeps its original stamp, and carrying never refreshes it. |
+| `locatorKind` | string | `transcript_path` for Claude and Codex, `live_branch_or_session_log` for Pi, `transcript_file` for Devin, `session_log` for DSH and `session-store` for OpenCode. |
+| `version` | integer | `1`. |
+
+Malformed-value rule: the writer omits an un-mintable object and names the reason. A payload-supplied object is ignored and named. A stored object that fails validation is dropped from the carry set and named in the save output. Resume treats an invalid object as absent while the rest of the continuity block still loads. No path fails the save or changes the resume brief because of the reference.
+
+`session_ref` is the first optional field dropped when the block exceeds its 2048-byte budget. It never replaces `session_dedup`, which keeps its completion-freshness and dedup role.
 
 ### Operator Decisions
 

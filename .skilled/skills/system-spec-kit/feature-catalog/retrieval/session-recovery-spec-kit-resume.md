@@ -7,7 +7,7 @@ trigger_phrases:
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
-version: 2.0.1.0
+version: 2.0.2.0
 ---
 
 # Session recovery via /speckit:resume
@@ -20,7 +20,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 ## 2. HOW IT WORKS
 
-**SHIPPED.** `/speckit:resume` owns both standard continuation and interrupted-session recovery. Since the memory server was removed, the chain is entirely file-backed: it reads documents that exist on disk and never infers session state from an index.
+**SHIPPED.** `/speckit:resume` owns both standard continuation and interrupted-session recovery. Since the memory server was removed, the ladder itself is entirely file-backed: it reads documents that exist on disk and never infers session state from an index.
 
 - **`handover.md`** -- The preferred continuation context when a fresh structured handoff exists in the packet.
 - **`_memory.continuity`** (in `implementation-summary.md`) -- Supporting continuity state when `handover.md` is absent or needs enrichment from the canonical packet.
@@ -28,7 +28,9 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 - **The ripgrep recipes** in `references/retrieval/retrieval-conventions.md` §2 -- Free-text evidence when the packet is thin and the operator needs to locate a phrase across `specs/` and `.skilled/`. Ripgrep produces matches; the caller ranks them per §5.
 - **The trigger index** -- `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases` when the operator does not yet know which packet to open.
 
-There is no session inference, no semantic paraphrase and no candidate ranking behind this workflow. When the ladder produces nothing, the command asks rather than guessing; `references/retrieval/retrieval-conventions.md` §1 records that boundary as a deliberate loss.
+There is no session inference, no semantic paraphrase and no candidate ranking behind the ladder. When the ladder produces nothing, the command asks rather than guessing. `references/retrieval/retrieval-conventions.md` §1 records that boundary as a deliberate loss.
+
+One store-backed path sits outside the ladder. When a compaction hook minted a fresh locator and the runtime reader is ready, the hook may add one bounded `## History Lookup` section with a read-only lookup command. It never feeds the ladder, and it expires after 30 minutes. [Compaction history lookup](../context-preservation/compaction-history-lookup.md) owns that contract.
 
 ### Resume Modes
 
@@ -85,3 +87,6 @@ There is no session inference, no semantic paraphrase and no candidate ranking b
 - Group: Retrieval
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `retrieval/session-recovery-spec-kit-resume.md`
+
+Related references:
+- [Compaction history lookup](../context-preservation/compaction-history-lookup.md) - the optional store-backed lookup a compaction hook may offer after a fresh locator verifies.
