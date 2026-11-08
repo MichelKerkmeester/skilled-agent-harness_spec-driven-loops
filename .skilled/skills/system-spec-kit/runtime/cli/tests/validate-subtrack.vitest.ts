@@ -82,20 +82,6 @@ describe('recursive validation for declared sub-tracks', () => {
     expect(stdout).toContain('RESULT: PASSED');
   });
 
-  it('does not validate a symlinked description as a sub-track container', () => {
-    const { entries } = buildSubtrackTree(root);
-    fs.rmSync(path.join(entries.sub, 'description.json'));
-    const outsideDescription = path.join(root, 'outside-description.json');
-    fs.writeFileSync(outsideDescription, JSON.stringify({ level: 'sub-track', specFolder: 'demo/sub' }));
-    fs.symlinkSync(outsideDescription, path.join(entries.sub, 'description.json'));
-
-    const result = runValidate(entries.sub, ['--strict', '--json']);
-
-    const report = parseReports(result.stdout)[0];
-    expect(report?.entries).toEqual(expect.any(Array));
-    expect((report?.entries as Array<{ rule: string }>).map(({ rule }) => rule)).not.toContain('TRACK_ROOT');
-  });
-
   it('includes sub-track packets at track depth while skipping archives and symlinks', () => {
     const { entries, specs } = buildSubtrackTree(root);
     const result = runValidate(path.join(specs, 'demo'), ['--recursive', '--json']);

@@ -105,15 +105,6 @@ describe('create.sh refuses a --track that leaves specs/', () => {
     expect(result.stderr).toContain("Error: --track 'demo//'");
     expect(listing()).toEqual(before);
   });
-
-  it('shows the original track value when refusing an undeclared sub-track', () => {
-    const before = listing();
-    const result = create('demo/undeclared/');
-
-    expect(result.status, result.stdout).not.toBe(0);
-    expect(result.stderr).toContain("Error: --track 'demo/undeclared/' refused");
-    expect(listing()).toEqual(before);
-  });
 });
 
 describe('create.sh keeps every track that stays inside specs/', () => {

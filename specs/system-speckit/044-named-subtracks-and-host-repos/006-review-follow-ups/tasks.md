@@ -57,6 +57,7 @@ contextType: "implementation"
 - [x] T009 Prove red: reverse-apply only the code patch, rebuild, run the four new-case files, reapply. Verify: the five new cases fail, then pass. Evidence: `scratch/red.log`; after reapply `T` prints `Tests 85 passed (85)`.
 - [x] T010 Run the full cli and core suites (`K`). Verify: no failure the pre-phase run lacked. Evidence: `implementation-summary.md` Verification.
 - [x] T011 Validate the packet (`..`). Verify: `validate.sh --strict --recursive` prints `RESULT: PASSED` for every folder. Evidence: `implementation-summary.md` Verification.
+- [x] T012 Remove the tests that fail for no reason another test lacks: the fixture builder's own smoke file, the validation case the parity matrix's `linked-description` row already covers, and the refusal-text case, folded as one assertion into `create-track-refresh.vitest.ts`'s undeclared refusal (`K/cli/tests/`). Verify: the folded assertion fails when the diagnostic refusal line prints the stripped value, and the touched files pass. Evidence: the mutated line failed it with `expected 'Error: --track \'demo/loose\' refused…'`; restored, 8 files, 184 passed, 4 fewer than 188.
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -49,8 +49,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
-      "scratch/red.log"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts"
     ],
     "entities": [
       {
@@ -132,12 +131,6 @@
         "source": "derived"
       },
       {
-        "name": "red.log",
-        "kind": "file",
-        "path": "scratch/red.log",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parser and `repair-derived.cjs` check only the sub-track folder's own name, so a declared folder under a numbered, hidden, `nodemodules` or packet-shaped track still became a packet's parent, and `validate.sh` and the orchestrator accepted it under a hidden or `nodemodules` track",
     "created_at": "2026-11-08T05:02:05Z",
-    "last_save_at": "2026-11-08T05:57:28.896Z",
+    "last_save_at": "2026-11-08T06:41:26.833Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58e0b4a660837f4d0fd3f616501c51d3812ace3b5512187e5b6ed315d1035781",
+    "source_fingerprint": "sha256:c67e541914a11fcc0bdb09f16571eca4e007ce37d63bc4e70424550535ba44ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f15c2d09cf8776d8d5c355f164c8fd00be5f1ec41c7de6a3eeaf64960def11f4",
       "plan.md": "d3c374bfaaceb5040e39b0c514dc292ee16e676d5cbc9629839d40c03f2e15f5",
-      "tasks.md": "422e1609d510bfd02cbe4d967ada0c6848f2ff953fb4f233f1b24c3990795478",
-      "implementation-summary.md": "50e046636872a1ad9d837a4b008eff386a6b6a8fd5088834af14e9039efca0cd"
+      "tasks.md": "98241e439ca140007d14aecf47e628c6dfc2d946eef3b8cee075e939d7cd09ea",
+      "implementation-summary.md": "e6a0a2756d65fb420002e2fb835a2bad0d115f420a269530715df9e7920a7cd8"
     },
     "last_active_at": null
   }

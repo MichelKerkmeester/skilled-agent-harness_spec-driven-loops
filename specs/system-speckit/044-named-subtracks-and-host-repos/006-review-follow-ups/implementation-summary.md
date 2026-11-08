@@ -77,6 +77,8 @@ The track reader's name rule is the reference: a track or sub-track is not hidde
 ## How It Was Delivered
 
 The five cases were written first. Then each consumer was fixed and the cases run green. To prove they can fail, the code patch alone was reverse-applied with the tests kept, the runtime rebuilt, and the cases run red (`scratch/red.log`), then the patch reapplied. The full cli and core suites ran last.
+
+A later overengineering check removed four tests that duplicated others: `subtrack-fixture.vitest.ts`, whose fixture every sub-track suite already exercises; a symlinked-description validation case the parity matrix covers; and a separate refusal-text case, now one assertion in the existing undeclared refusal test. A mutation of the refusal line showed the folded assertion still catches the regression.
 <!-- /ANCHOR:how-delivered -->
 
 ---

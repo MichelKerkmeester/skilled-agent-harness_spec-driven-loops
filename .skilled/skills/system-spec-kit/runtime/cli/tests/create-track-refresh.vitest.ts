@@ -242,9 +242,10 @@ describe('create.sh --track refreshes a declared sub-track and its track', () =>
     const looseBefore = fs.readdirSync(loose).sort();
     const trackMetadataBefore = fs.readFileSync(trackMetadata, 'utf8');
 
-    const result = create(['--track', 'demo/loose', '--short-name', 'loose-probe', 'Loose packet']);
+    const result = create(['--track', 'demo/loose/', '--short-name', 'loose-probe', 'Loose packet']);
 
     expect(result.status, result.stderr).not.toBe(0);
+    expect(result.stderr).toContain("--track 'demo/loose/' refused");
     expect(result.stderr).toContain('demo/loose: undeclared folder ignored');
     expect(fs.readdirSync(loose).sort()).toEqual(looseBefore);
     expect(fs.readFileSync(trackMetadata, 'utf8')).toBe(trackMetadataBefore);

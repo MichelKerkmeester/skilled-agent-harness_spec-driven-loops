@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.3.0
+version: 2.0.4.0
 ---
 
 # Track-root children lists
@@ -88,7 +88,7 @@ writer runs again. The gate then names the fix.
 | `runtime/cli/tests/track-roots.vitest.ts` | Sweep and writer cases in a throwaway repository |
 | `runtime/cli/tests/create-track-refresh.vitest.ts` | The `create.sh` hook-up |
 | `runtime/cli/tests/archive-track.vitest.ts` | Archive and restore inside a track |
-| `runtime/cli/tests/subtrack-fixture.vitest.ts` | The shared sub-track tree every sub-track suite builds on |
+| `runtime/cli/tests/fixtures/subtrack-tree.mjs` | The shared sub-track tree every sub-track suite builds on |
 | `runtime/cli/tests/validate-subtrack.vitest.ts` | Recursive validation through a declared sub-track |
 | `.skilled/scripts/git-hooks/tests/pre-push.test.sh` | The gate's cases |
 
