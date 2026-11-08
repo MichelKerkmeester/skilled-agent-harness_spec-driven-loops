@@ -128,12 +128,13 @@ function buildExpectedOutputs() {
   return expected;
 }
 
+// A link here is not this generator's output: a linked worktree reaches the
+// operator's private prompts through links to the primary checkout, as the codex
+// prompt generator also assumes. Counting one would report it as extra and prune it.
 function listOutputFiles() {
   if (!fs.existsSync(OUTPUT_DIR)) return [];
   return fs.readdirSync(OUTPUT_DIR, { withFileTypes: true })
-    .filter((entry) => (
-      entry.name.endsWith('.md') && (entry.isFile() || entry.isSymbolicLink())
-    ))
+    .filter((entry) => entry.name.endsWith('.md') && entry.isFile())
     .map((entry) => entry.name)
     .sort();
 }
