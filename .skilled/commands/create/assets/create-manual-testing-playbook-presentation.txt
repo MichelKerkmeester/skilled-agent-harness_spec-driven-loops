@@ -67,7 +67,7 @@ Default resolution table:
 
 ## 3. Consolidated Startup Prompt
 
-Ask one prompt containing only applicable questions. Do not split these questions across turns.
+Ask only the applicable questions, together in one turn, through the question tool that `.skilled/repo-rules/communication-handoff.md` §5 names for your runtime. Each question below becomes one tool question with its lettered options as the choices, and a free-text item such as a name or a path is answered through the tool's own free-text option. When the tool caps how many questions one call holds, make consecutive calls in the same turn. Only where §5 names no tool for this session, print the form below as text. Do not split these questions across turns.
 
 ```text
 Before proceeding, please answer:

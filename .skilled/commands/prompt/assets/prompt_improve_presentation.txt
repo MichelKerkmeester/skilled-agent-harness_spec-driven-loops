@@ -37,7 +37,7 @@ Unknown fields warn. Malformed lines are parse errors. Marker values override fl
 
 ### Consolidated Prompt Template
 
-Include only the questions whose fields are still unresolved after parsing `$ARGUMENTS`.
+Include only the questions whose fields are still unresolved after parsing `$ARGUMENTS`. Ask them together in one turn, through the question tool that `.skilled/repo-rules/communication-handoff.md` §5 names for your runtime. Each question below becomes one tool question with its lettered options as the choices, and a free-text item such as a name or a path is answered through the tool's own free-text option. When the tool caps how many questions one call holds, make consecutive calls in the same turn. Only where §5 names no tool for this session, print the form below as text. Do not split these questions across turns.
 
 ```
 Before proceeding, please answer:
