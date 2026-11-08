@@ -8,20 +8,20 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs"
-    last_updated_at: "2026-11-08T09:05:30Z"
+    last_updated_at: "2026-11-08T12:33:08Z"
     last_updated_by: "generate-context"
-    recent_action: "CI red check causes repaired locally"
-    next_safe_action: "Commit and push main"
+    recent_action: "Pushed 9932b52352 to main; every CI workflow on it passed"
+    next_safe_action: "Close the phase; nothing on main is red"
     blockers: []
     key_files:
       - ".gitignore"
       - ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs"
       - ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json"
     session_dedup:
-      fingerprint: "sha256:c3d236f612d27c8248123bb9c9afa6fcede9003b033d33364ec45f0c87153193"
+      fingerprint: "sha256:e8ce44de6f0d6ac29b198eb0ba750aca22c0388cbf41e8d36054cda9fb6a385c"
       session_id: "scaffold-016-ci-red-check-repairs"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -71,6 +71,8 @@ A later pass cleared the checks still red on `aded37b8fd`. The history-locator t
 | `.skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and its test | Modified | Exempts the runtime's `research_archive` folder |
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs`, its test and `README.markdown` | Modified | v1 names a command by its frontmatter `name:` |
 | 19 files in `.github/workflows/` | Modified | `ONNXRUNTIME_NODE_INSTALL_CUDA: skip` |
+| `.skilled/skills/system-skilled-doctor/leaf-aliases.json` | Regenerated | Alias for the playbook scenario added after the last projection |
+| `.skilled/skills/mcp-tooling/hub-router.json`, `changelog/v1.9.7.0.md` | Modified | Drops `isolated chrome` from stage one, decision Q003 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -117,6 +119,8 @@ Each cause was read from its workflow log and reproduced locally first: the disp
 | Doctor script suite | 1,073 of 1,073 after rebuilding a stale local advisor build, which failed the same way on clean main |
 | sk-doc script tests | 422 passed |
 | Workflows | All parse; `actionlint` exits 0 |
+| Routing drift workflow, all 15 steps run locally | 15 PASS after both fixes |
+| CI on `9932b52352` | Every workflow on the commit passed |
 <!-- /ANCHOR:verification -->
 
 ---

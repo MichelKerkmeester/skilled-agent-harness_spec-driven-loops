@@ -36,6 +36,7 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Repair every red check, the system-skilled-doctor playbook included, despite its live worktrees 320 and 324. | Not stated. | None | 016-ci-red-check-repairs spec.md section 3, tasks.md T004 |
 | Q002 | The DSH plugin tests move into per-concern tests/ folders. | Not stated. | None | commit add85004bd |
+| Q003 | Drop the phrase isolated chrome from mcp-tooling's hub-router.json and correct the v1.9.7.0 changelog line that listed it. | Carrying it into ROUTER.md also carries it into the advisor signals, where the native scorer sent an sk-git prompt about an isolated lane to mcp-tooling; no test or playbook used the phrase. | None | .skilled/skills/mcp-tooling/hub-router.json, changelog/v1.9.7.0.md, commit 9932b52352 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -83,6 +84,26 @@ Beside each adapter
 Answer:
 ```text
 Per-concern tests/ (Recommended)
+```
+
+### Q003
+<!-- source: claude:ae286a84-7880-4ce7-a5fe-7d1335e09c78:toolu_017YKajLhqDctNqJ9q1EHbyA:0 -->
+
+Question:
+```text
+The Routing Registry Drift Guard (CI on main) is red on one phrase: mcp-tooling's hub-router.json routes "isolated chrome" to mcp-chrome-devtools, but no ROUTER.md intent carries it. Which fix?
+```
+
+Options:
+```text
+Drop the phrase (Recommended)
+Keep it, add an exclusion
+Leave it red
+```
+
+Answer:
+```text
+Drop the phrase (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
