@@ -3,7 +3,7 @@
 name = "review"
 description = "Code review specialist that applies the sk-code review mode's floor and lens, with a severity-based verdict and an advisory score, for PRs and code changes"
 sandbox_mode = "read-only"
-model = "gpt-5.5"
+model = "gpt-6-luna"
 model_reasoning_effort = "high"
 
 developer_instructions = '''

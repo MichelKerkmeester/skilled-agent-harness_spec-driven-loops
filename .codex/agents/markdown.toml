@@ -3,7 +3,7 @@
 name = "markdown"
 description = "Template-first markdown/documentation executor; handles /create:* commands, spec docs, and scoped markdown authoring"
 sandbox_mode = "workspace-write"
-model = "gpt-5.5"
+model = "gpt-6-luna"
 model_reasoning_effort = "medium"
 
 developer_instructions = '''
