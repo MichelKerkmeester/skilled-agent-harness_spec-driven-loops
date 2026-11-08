@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `rg` finds one definition each of `plannedNotePath`, the threshold resolver and the seed parser, all in the core
 - [x] The WS4 docs match `skilled-loop` and their validators exit 0
 - [x] `run-all-drift-guards.sh` exits 0 after the sk-code-opencode alignment review's fixes
-- [x] `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED`
+- [x] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

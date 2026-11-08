@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "specs/hooks/023-session-relaunch-loop/010-post-fix-research"
+    packet_pointer: "specs/hooks-plugins-extensions/023-session-relaunch-loop/010-post-fix-research"
     last_updated_at: "2026-10-19T20:10:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Checked all three completion criteria"
@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 
 - [x] The cli-pi lineage ends `fulfilled` with five iterations and no gateway refusal (AC-001)
 - [x] `research/research.md` gives every finding a verdict and a verified severity (AC-002)
-- [x] The parent names this phase, and `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-003, AC-004)
+- [x] The parent names this phase, and `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-003, AC-004)
 <!-- /ANCHOR:completion -->
 
 ---

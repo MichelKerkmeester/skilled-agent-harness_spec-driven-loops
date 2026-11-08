@@ -150,6 +150,17 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 7. OPEN QUESTIONS
 
 None. The operator chose this phase's location and its full scope on 2026-11-08.
+
+- Is the later CI red-check repair work on main (ten commits from `190b103dd8` to `478cdec696`) fully and correctly documented?
+
+Research Context: deep-research is active for this question; `research/research.md` remains canonical.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Abridged from `research/research.md` (5 iterations, 5/5 questions answered):
+- Not fully documented. Stale beyond the known gaps: `runtime/cli/lib/README.md:121` (track-root `spec.md` rule), `filesystem-naming-convention.md` §5 (`research_archive`), and the TypeScript checklist line 47 and style guide line 36, which still require a module header on compiler-emitted `.d.ts`.
+- `specs/hooks/` is still named in three session-relaunch playbooks, `directive-lifecycle-dedup.md:99-100`, `goal-hook.md:175`, 22 live `goal.md` files and `cite-drift-redirects.json:3913`.
+- Six of the ten fixes shipped inside tag `v4.0.2.0` without a release-note line; four postdate the tag.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

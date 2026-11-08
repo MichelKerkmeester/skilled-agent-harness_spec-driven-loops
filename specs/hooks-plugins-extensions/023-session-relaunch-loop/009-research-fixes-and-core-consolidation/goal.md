@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation"
+    packet_pointer: "specs/hooks-plugins-extensions/023-session-relaunch-loop/009-research-fixes-and-core-consolidation"
     last_updated_at: "2026-10-19T19:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Checked all four completion criteria"
@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Each code finding's test fails on the pre-phase sources, and every session-relaunch suite and the Pi suite end with no failures (AC-001, AC-005)
 - [x] No adapter sends a placeholder claim command or an unchecked spec folder, and the wrapper relaunches only an open note (AC-002, AC-003)
 - [x] The shared decisions live once in the core, and the docs the research named match the code (AC-004, AC-006)
-- [x] The full gate exits 0 and `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-007)
+- [x] The full gate exits 0 and `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-007)
 <!-- /ANCHOR:completion -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions"
+    packet_pointer: "specs/hooks-plugins-extensions/023-session-relaunch-loop/007-handoff-gate-exemptions"
     last_updated_at: "2026-10-19T11:46:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the live run 10 evidence and the verification state"

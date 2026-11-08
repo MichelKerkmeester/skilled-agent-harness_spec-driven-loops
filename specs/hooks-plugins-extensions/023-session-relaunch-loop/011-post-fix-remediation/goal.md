@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation"
+    packet_pointer: "specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation"
     last_updated_at: "2026-10-19T21:30:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Checked all four completion criteria"
@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 - [x] A re-arm after a killer death relaunches, and the killer never signals for a record the wrapper would refuse (AC-001, AC-002)
 - [x] Every arm path uses one guard and the conformance table covers it (AC-003)
 - [x] Every other finding and frontier item has a passing test, and the pre-phase sources fail them (AC-004, AC-005)
-- [x] The docs match the code and `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-006)
+- [x] The docs match the code and `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-006)
 <!-- /ANCHOR:completion -->
 
 ---

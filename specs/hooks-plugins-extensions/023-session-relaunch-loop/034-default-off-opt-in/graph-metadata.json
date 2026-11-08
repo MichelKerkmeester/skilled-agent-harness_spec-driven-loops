@@ -45,7 +45,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/hook-flags.env",
       ".skilled/hooks/shared/hook-flags.cjs",
       ".skilled/hooks/shared/hook-flags.mjs",
       ".skilled/hooks/shared/hook-flags.ts",
@@ -58,7 +57,8 @@
       ".skilled/commands/doctor/assets/doctor-env.yaml",
       ".skilled/hooks/session-relaunch/README.md",
       ".skilled/hooks/shared/README.md",
-      ".skilled/hooks/README.md"
+      ".skilled/hooks/README.md",
+      "scratch/red-flags.txt"
     ],
     "entities": [
       {
@@ -95,12 +95,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook-flags.env",
-        "kind": "file",
-        "path": ".skilled/hooks/hook-flags.env",
         "source": "derived"
       },
       {
@@ -170,6 +164,12 @@
         "source": "derived"
       },
       {
+        "name": "red-flags.txt",
+        "kind": "file",
+        "path": "scratch/red-flags.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "`isHookEnabled` in `.skilled/hooks/shared/hook-flags.cjs` returns true unless the master switch or one of the concern's kill switches resolves truthy",
     "created_at": "2026-10-25T17:48:08Z",
-    "last_save_at": "2026-11-08T13:10:43.540Z",
+    "last_save_at": "2026-11-08T17:15:52.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f322619ad60023280017118e4089bae687db388a78a1cd1d2c1841f478f584d",
+    "source_fingerprint": "sha256:aabebb21b3dc4ef260ee35b6a678e348deb548b32bac746b42335794cee0405b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da587ae5a8e464f8d1a519ecf820ae682d3c303d637e8a6140c4c90f5c97f8ac",

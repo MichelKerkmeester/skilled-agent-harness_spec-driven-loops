@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The deep review passed the loop but left twelve advisories",
     "created_at": "2026-10-18T13:25:35Z",
-    "last_save_at": "2026-11-08T13:10:36.988Z",
+    "last_save_at": "2026-11-08T17:15:52.571Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d70bb8eb9ca33484a90fb6d20930f2700ff4bb0cd9bd5592fb46282d0850261",
+    "source_fingerprint": "sha256:a6015f4c31f4490b50e1bee65f067311eadf7a9602e2becd3f715b91d09c55a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed483385504ba8d3584d32d473daac22735a475facd9bd221d4a166612e5b7e9",

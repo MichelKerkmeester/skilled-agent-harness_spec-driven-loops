@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "specs/hooks/023-session-relaunch-loop/008-review-3-remediation"
+    packet_pointer: "specs/hooks-plugins-extensions/023-session-relaunch-loop/008-review-3-remediation"
     last_updated_at: "2026-10-19T16:43:15Z"
     last_updated_by: "orchestrator"
     recent_action: "Checked all four completion criteria"
@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 - [x] The six new behavior tests fail against the pre-fix library files, and every session-relaunch suite ends with `fail 0` (AC-003, AC-004)
 - [x] Phase 007 cites a committed `relaunch-run10.txt` whose lines match the cited numbers, and phase 002 AC-003 cites a passing literal smoke (AC-001, AC-002)
 - [x] The handoff command, the environment reference and the parent and phase 006 records carry no finding the review named (AC-005, AC-006)
-- [x] The full gate exits 0 and `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-007)
+- [x] The full gate exits 0 and `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED` (AC-007)
 <!-- /ANCHOR:completion -->
 
 ---

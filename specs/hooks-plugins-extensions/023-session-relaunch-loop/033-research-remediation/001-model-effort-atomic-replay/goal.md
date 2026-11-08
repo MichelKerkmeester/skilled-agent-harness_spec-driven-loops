@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A wrapper table test launches Claude, Codex and Pi with a model and effort `low`, consumes a record with a different model and no effort, and sees no effort flag on each runtime; it fails on the code before the change and passes after
 - [ ] A relaunch-core test shows an arm carrying a new model and no effort leaves the record with no `effort` field; it fails on the code before the change and passes after
 - [ ] Wrapper guard tests pass before and after the change: a different live model with effort `medium` renders `--effort medium`, `-c model_reasoning_effort="medium"` and `--thinking medium`, and a live model equal to the launch model with no effort keeps the launch effort

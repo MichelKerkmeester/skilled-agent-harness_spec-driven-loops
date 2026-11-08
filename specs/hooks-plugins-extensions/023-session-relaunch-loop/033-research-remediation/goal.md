@@ -82,7 +82,7 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [ ] All nine child folders print `RESULT: PASSED` under `validate.sh --strict`, with every row in their `acceptance-criteria.md` files Met
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation --recursive --strict` prints `RESULT: PASSED`
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation --recursive --strict` prints `RESULT: PASSED`
 - [ ] A Claude Code session launched through `skilled-loop` with `--model claude-sonnet-5-5 --effort low` and switched to Opus at medium effort relaunches with Opus and `--effort medium`, shown in its recorded receiver process arguments
 - [ ] A live Pi hop armed on `agent_settled` is recorded with its `relaunch.log` hop line
 - [ ] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs` and `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` both exit 0, with neither pass count below its count before phase 001

@@ -1,7 +1,7 @@
 ---
 title: "457 -- Cross-runtime directive-lifecycle dedup"
 description: "Validate lifecycle-scoped directive delivery through the canonical decision, registered runtime adapters, plugin and Pi seams, and separately classified native-host receipts."
-version: 1.7.1.0
+version: 1.7.2.0
 id: ux-hooks-directive-lifecycle-dedup
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -96,8 +96,8 @@ npx --no-install vitest run --config hooks/vitest.config.ts --dir hooks/dispatch
 5. From the repository root, create a new durable registered-adapter evidence directory. The harness refuses to overwrite an existing directory:
 
 ```bash
-node specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/run-registered-adapter-cadence.mjs \
-  specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/<new-output-directory>
+node specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/run-registered-adapter-cadence.mjs \
+  specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/<new-output-directory>
 ```
 
 6. Create one outcome JSON per runtime and evidence class. Set `executionContext.evidenceRoot` to `.`, `requireDurableEvidence` to `true`, and list the exact prior run folder in `supersedes` when correcting historical evidence. No command persists these outcomes today. The scenario-persistence wrapper was retired with its benchmark lane, as MTP-005 records in `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/persist-scenario-result.md`. Until a replacement exists, record each verdict, its reason and its evidence path by hand in a new dated folder under `.skilled/skills/system-spec-kit/benchmark/reports/`. Never overwrite an earlier folder.

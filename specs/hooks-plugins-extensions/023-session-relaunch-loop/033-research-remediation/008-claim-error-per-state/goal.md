@@ -51,7 +51,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A core test claiming a done note gets an error that says the work is finished and must not be continued, and fails on the code before the change
 - [ ] A core test claiming a claimed note gets an error naming its `claimed_by` and `claimed_at`
 - [ ] A core test claiming a note with no status gets an error saying it is not a handoff note

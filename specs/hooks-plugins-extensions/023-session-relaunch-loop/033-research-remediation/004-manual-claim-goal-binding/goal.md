@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A wrapper test of a manual first launch with a seed for an open in-repo note holding a goal packet exports `SESSION_RELAUNCH_GOAL_PACKET`, sets `HERMES_SPEC_FOLDER` for Hermes and replaces Claude's seed argument with the `/goal` slice while keeping the operator's other arguments, and fails on the code before the change
 - [ ] A seed naming a claimed note or a note outside the repository exports no packet
 - [ ] The test "wrapper drops a goal packet inherited from an outer session on every launch" passes unchanged

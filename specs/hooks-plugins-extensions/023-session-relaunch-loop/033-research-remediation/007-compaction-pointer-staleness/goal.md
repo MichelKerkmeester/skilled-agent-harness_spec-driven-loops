@@ -51,7 +51,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A nudge test shows the after-compaction text names the note's `created_at` and asks for `git log --since=<created_at>` and `git status` before Remaining work is trusted, and fails on the code before the change
 - [ ] Claude compact-pointer, Pi and OpenCode plugin tests each show the date in the text they send
 - [ ] The existing relaunch seed tests pass with no edit to their expected text

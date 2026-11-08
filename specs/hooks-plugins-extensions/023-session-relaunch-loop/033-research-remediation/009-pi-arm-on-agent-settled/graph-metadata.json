@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The Pi extension arms the prepared record on `agentend` (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:526`) and withdraws an arm on `agentstart` (`:561`)",
     "created_at": "2026-10-25T13:42:36Z",
-    "last_save_at": "2026-11-08T13:10:43.218Z",
+    "last_save_at": "2026-11-08T17:15:52.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90c8c75afe858c871ee2aea8eb6c85440c9c77ad025cf08f368e8ede902ff33a",
+    "source_fingerprint": "sha256:03b2ea5cc6c64940ddc51ad376c45a73d9ea66e44152adb8a935407757c73792",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1eb70976b519c73348487557e8eb56f316e17a742927fc4a4ade444bd8d2e027",

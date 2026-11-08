@@ -18,7 +18,11 @@
       "ci red check repairs plan",
       "ci red check repairs tasks",
       "016-ci-red-check-repairs operator decisions",
-      "ci red check repairs implementation summary"
+      "ci red check repairs implementation summary",
+      "ci red check documentation audit",
+      "stale specs hooks references",
+      "track roots spec.md rule docs",
+      "d.ts module header exemption docs"
     ],
     "key_topics": [
       "red",
@@ -42,6 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
       ".dsh/prompts/local-skilled-alignment.md",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
@@ -52,7 +57,10 @@
       "runtime/cli/lib/track-roots.mjs",
       ".skilled/skills/system-skilled-doctor/leaf-aliases.json",
       ".skilled/skills/mcp-tooling/hub-router.json",
-      ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py"
+      ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
+      "runtime/tests/history-locator.vitest.ts",
+      ".skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+      ".skilled/changelog/skilled/v4.0.2.0.md"
     ],
     "entities": [
       {
@@ -83,6 +91,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -152,6 +166,18 @@
         "source": "derived"
       },
       {
+        "name": "filesystem-naming-convention.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.0.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -180,29 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Command Tree Parity",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.dsh/prompts/local-skilled-alignment.md` was committed although its source, the operator's private command, is gitignored, so CI and every new worktree reported it as an extra prompt",
     "created_at": "2026-11-08T08:54:12Z",
-    "last_save_at": "2026-11-08T14:48:55.660Z",
+    "last_save_at": "2026-11-08T17:09:32.536Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,16 +218,18 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:94dba27a0020e174f179e85007bd444b7710ae50c4ee395fe2fe0aee44fdb8b7",
+    "source_fingerprint": "sha256:bd68887b8423cb018e18391fe6ebd870c1a23cb16803be7abb760b8b15b3b997",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1ddb179e2db7bf71fce665e9b63161216335dd5737769077d06ff6cc60cf91a",
+      "spec.md": "9e84516080f43615b68634f059b9bbb8edc0e134aac431a1f807cf9d61206fbf",
       "plan.md": "f03cdd83114270146e2acf501eea768caca30dd7da08a09857df952df11ce22f",
       "tasks.md": "77eeac0effe6fe0ff3215ba6af61034f5e912488ece824a6989b15ee0b8a4708",
       "decision-record.md": "d4e917cec561e934fc00f91e3c521df8f61e8c270848b773d677dfea35ad39d9",
-      "implementation-summary.md": "bbe42e864649b0a44f162bafa2674a1b5adf9321114c7c2ebc2173a3dc5298c3"
+      "implementation-summary.md": "bbe42e864649b0a44f162bafa2674a1b5adf9321114c7c2ebc2173a3dc5298c3",
+      "research/research.md": "3e1f123f0a1620699fbb5960b24ff2af2874cbdb5fa5782e9d891ce00c6e5be1"
     },
     "last_active_at": null
   }

@@ -51,7 +51,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A relaunch-core test feeds hops of -1, 1.5, null, "3", NaN and Infinity and gets `relaunch: false` for each, and fails on the code before the change
 - [ ] Hops of 0 and 9 under a limit of 10 still relaunch, and 10 still declines
 - [ ] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs` exits 0

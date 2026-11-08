@@ -7,7 +7,7 @@ trigger_phrases:
   - "opaque history handle"
   - "history lookup CLI"
   - "post-compaction transcript lookup"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Compaction history lookup
@@ -26,7 +26,7 @@ The offer is optional in both directions. When the locator is missing, malformed
 
 ### Locator Mint
 
-Each adapter mints a locator only for the session it was handed. Claude's `compact-inject.ts` mints on `PreCompact` from the transcript path the host supplied. Pi's `session-compact-context.ts`, Devin's `post-compaction.cjs`, DSH's `session-compact-context.mjs` and the OpenCode plugin `.opencode/plugins/session-history-lookup.js` mint on their post-compaction events from the session id and folder alone. The locator records the runtime, the exact session id, the workspace, the runtime's locator type, a digest handle and a mint time.
+Each adapter mints a locator only for the session it was handed. Claude's `compact-inject.ts` mints on `PreCompact` from the transcript path the host supplied, and Codex's `PreCompact` adapter delegates to the same module. Pi's `session-compact-context.ts`, Devin's `post-compaction.cjs`, DSH's `session-compact-context.mjs` and the OpenCode plugin `.opencode/plugins/session-history-lookup.js` mint on their post-compaction events from the session id and folder alone. The locator records the runtime, the exact session id, the workspace, the runtime's locator type, a digest handle and a mint time.
 
 The workspace is the checkout root above the session folder, found by `placeLookup` as the nearest folder with a `.git` entry, which is the folder the printed command moves to. A session started below the root also keeps that folder as `sessionDirectory`, and the reader proves the session against it. When the nearest root cannot run the CLI, such as a nested repository without it or a folder outside any checkout, no locator is minted.
 

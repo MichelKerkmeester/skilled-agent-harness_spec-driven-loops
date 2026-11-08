@@ -7,7 +7,7 @@ trigger_phrases:
   - "Devin session relaunch"
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
-version: 1.0.15.0
+version: 1.0.16.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -388,7 +388,7 @@ PASS when every named case passes. FAIL when a case is missing from the run or f
 
 ### Goal Carry-Over Checks
 
-A hand-over note can carry the sender's goal as a `goal_packet` line, and `skilled-loop` exports it to the relaunched session. This table says which of these runtimes can show that, and what each check proves. The harness is kept with the packet that recorded the runs: `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs it.
+A hand-over note can carry the sender's goal as a `goal_packet` line, and `skilled-loop` exports it to the relaunched session. This table says which of these runtimes can show that, and what each check proves. The harness is kept with the packet that recorded the runs: `specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/`. The relaunch CLI is refused to a sub-agent, so from an agent session the harness script is what runs it.
 
 | Runtime | Sender writes `goal_packet` | A hop reaches the receiver | Receiver binds the packet | Check |
 |---|---|---|---|---|
@@ -402,7 +402,7 @@ Run from the repository root with `tmux`, `node` and `codex` signed in:
 
 ~~~bash
 repo_root="$(git rev-parse --show-toplevel)"
-harness="$repo_root/specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
+harness="$repo_root/specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness"
 out="$(mktemp -d)"
 bash "$harness/run-codex.sh" "$repo_root" "$out"
 ~~~
@@ -442,7 +442,7 @@ Evidence: exit code 0. PASS when it exits 0 and the Cursor cases named under GR-
 
 #### Recorded Results, 2026-10-25
 
-Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/`.
+Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/`.
 
 | Run | Result | Receiver | Evidence folder |
 |---|---|---|---|
@@ -462,9 +462,9 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks/023-session-rel
 | `manual-testing-playbook.md` | Root index and execution verdict rules. |
 | `../../feature-catalog/context-preservation/session-relaunch-loop.md` | Shared handoff implementation and runtime coverage. |
 | `../../../../hooks/session-relaunch/README.md` | Runtime adapter matrix, launch syntax and command-only reasons. |
-| `../../../../../specs/hooks/023-session-relaunch-loop/scratch/contracts/interface-contract.md` | Section 12 contract for the four runtimes. |
-| `../../../../../specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-codex.md` | Codex spike verdict and captured payloads. |
-| `../../../../../specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-devin.md` | Devin spike verdict and unverified items. |
+| `../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/scratch/contracts/interface-contract.md` | Section 12 contract for the four runtimes. |
+| `../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-codex.md` | Codex spike verdict and captured payloads. |
+| `../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/003-command-trigger-runtimes/scratch/spike/SPIKE-devin.md` | Devin spike verdict and unverified items. |
 
 ### Implementation And Test Anchors
 
@@ -484,7 +484,7 @@ Codex 0.164.0, Devin 3000.11.205. Evidence lives in `specs/hooks/023-session-rel
 | `.skilled/hooks/session-relaunch/tests/withdraw.test.cjs` | Shared withdraw helper tests. |
 | `.skilled/hooks/session-relaunch/tests/hop-history.test.cjs` | Hop history, history command and withdrawn-note tests. |
 | `.skilled/hooks/goal/devin/goal-inject.mjs` | Devin hook that binds the hand-over packet before its usual goal read. |
-| `specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The harness behind the goal carry-over checks and their recorded runs. |
+| `specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/` | The harness behind the goal carry-over checks and their recorded runs. |
 
 Provenance: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 

@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 - [x] The root README, the system-spec-kit README and the catalog and playbook indexes are updated, and each index matches its files on disk by name
 - [x] Every touched doc passes `validate_document.py`, and `hvr_scan.py` is clean or each hit is justified
 - [x] A live-run record exists for Codex and for Devin (`swe-2-max`); Hermes and Cursor carry the operator's skip
-- [x] `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED`
+- [x] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
