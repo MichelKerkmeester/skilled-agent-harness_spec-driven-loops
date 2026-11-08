@@ -2,7 +2,7 @@
 name: "system-skilled-doctor"
 description: "Doctor commands that put Skilled into a project repo and keep it current there, including a vendored copy's own overlays."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 <!-- Keywords: put skilled into my project, skilled in my project repo, keep skilled current in my project, vendored skilled copy, vendored skilled overlays, keep my changes to vendored skilled, re-pin vendored skilled, link a local skilled checkout into a project -->
