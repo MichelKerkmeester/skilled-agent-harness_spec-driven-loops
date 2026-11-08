@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3b0d059ea4d2e6ffeb3a048509bf3e52754fb684c1bbe5986dbacc71d3189c39",
+  "manifestHash": "26dea1db35dac003ad1a386e6e2aa3378433544221b6bbbdd54c94c8b5a66df0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -22647,6 +22647,9 @@
     "cli opencode 1 5 8 0": [
       "cli-opencode 1.5.8.0"
     ],
+    "cli opencode 1 5 9 0": [
+      "cli-opencode 1.5.9.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -22901,6 +22904,9 @@
     ],
     "cli opencode v1 5 8 0": [
       "cli-opencode v1.5.8.0"
+    ],
+    "cli opencode v1 5 9 0": [
+      "cli-opencode v1.5.9.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -35888,6 +35894,9 @@
     "deep loop runtime 1 9 15 0": [
       "deep-loop-runtime 1.9.15.0"
     ],
+    "deep loop runtime 1 9 16 0": [
+      "deep-loop-runtime 1.9.16.0"
+    ],
     "deep loop runtime 1 9 2 0": [
       "deep-loop-runtime 1.9.2.0"
     ],
@@ -36010,6 +36019,9 @@
     ],
     "deep loop runtime v1 9 15 0": [
       "deep-loop-runtime v1.9.15.0"
+    ],
+    "deep loop runtime v1 9 16 0": [
+      "deep-loop-runtime v1.9.16.0"
     ],
     "deep loop runtime v1 9 2 0": [
       "deep-loop-runtime v1.9.2.0"
@@ -48107,6 +48119,9 @@
     ],
     "fan out fixed rate overrun accounting": [
       "fan-out fixed-rate overrun accounting"
+    ],
+    "fan out lineage pwd": [
+      "fan-out lineage pwd"
     ],
     "fan out lineage reducer path": [
       "fan-out lineage reducer path"
@@ -62533,6 +62548,9 @@
     ],
     "level upgrade malformed docs": [
       "level upgrade malformed docs"
+    ],
+    "level upgrade questions anchor": [
+      "level upgrade questions anchor"
     ],
     "levels research manifest": [
       "levels.research manifest"
@@ -84429,6 +84447,9 @@
     ],
     "priority based checklist items": [
       "priority-based checklist items"
+    ],
+    "private command provisioning": [
+      "private command provisioning"
     ],
     "private local command": [
       "private local command"
@@ -107075,6 +107096,9 @@
     "sk git 1 11 10 0": [
       "sk-git 1.11.10.0"
     ],
+    "sk git 1 11 11 0": [
+      "sk-git 1.11.11.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -107356,6 +107380,9 @@
     ],
     "sk git v1 11 10 0": [
       "sk-git v1.11.10.0"
+    ],
+    "sk git v1 11 11 0": [
+      "sk-git v1.11.11.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -117203,6 +117230,9 @@
     "system spec kit 2 12 35 1": [
       "system-spec-kit 2.12.35.1"
     ],
+    "system spec kit 2 12 36 0": [
+      "system-spec-kit 2.12.36.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -117778,6 +117808,9 @@
     ],
     "system spec kit v2 12 35 1": [
       "system-spec-kit v2.12.35.1"
+    ],
+    "system spec kit v2 12 36 0": [
+      "system-spec-kit v2.12.36.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"

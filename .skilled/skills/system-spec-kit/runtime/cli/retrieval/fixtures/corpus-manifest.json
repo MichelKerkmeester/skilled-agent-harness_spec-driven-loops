@@ -1,5 +1,5 @@
 {
-  "corpusHash": "df186f0a19ad42a4f4e85676f7b0aba9e382db60ec12b3caadf37fb76f5e7469",
+  "corpusHash": "eec9edbf5d054cd4390505756a8e3bdbe04540bc1de7c9959888ab50d95885ab",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28420,
+  "includedPathCount": 28424,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1630,6 +1630,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.8.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -7166,6 +7167,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.10.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.11.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
@@ -7894,6 +7896,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.13.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.14.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.15.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.16.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.2.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
@@ -8618,6 +8621,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.34.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.35.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.35.1.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.36.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -28451,7 +28455,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3b0d059ea4d2e6ffeb3a048509bf3e52754fb684c1bbe5986dbacc71d3189c39",
+  "manifestHash": "26dea1db35dac003ad1a386e6e2aa3378433544221b6bbbdd54c94c8b5a66df0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
