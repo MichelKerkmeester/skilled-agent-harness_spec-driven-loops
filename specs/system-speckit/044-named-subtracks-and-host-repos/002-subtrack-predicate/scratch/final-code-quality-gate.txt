@@ -1,0 +1,463 @@
+{
+  "schema": "code-quality-run/v1",
+  "status": "advisory",
+  "gate": "NO_BLOCKER_FOUND",
+  "exit_code": 0,
+  "scope": {
+    "mode": "files",
+    "base": null,
+    "merge_base": null,
+    "lines": "changed",
+    "files": [
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts"
+    ]
+  },
+  "config": {
+    "source": "repo",
+    "path": ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+    "bytes": 748,
+    "defaults": "hub:sk-code/sk-code-quality/assets/quality-defaults.json",
+    "trust": {
+      "checks": "trusted",
+      "reason": "the repository shares its git common dir with the runner checkout"
+    },
+    "errors": [],
+    "warnings": [],
+    "hygiene": {
+      "disabled": []
+    }
+  },
+  "resolved_surface": [
+    "SKILLED"
+  ],
+  "surfaces": [
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+      "labels": [
+        "SKILLED"
+      ]
+    },
+    {
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts",
+      "labels": [
+        "SKILLED"
+      ]
+    }
+  ],
+  "layers": {
+    "pre_commit_hygiene": "present",
+    "ci_hygiene": "present",
+    "post_edit": "present"
+  },
+  "checklists": [
+    {
+      "file": "hub:sk-code/shared/references/universal/code-quality-standards.md",
+      "path": "/Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      "why": "universal floor",
+      "files": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts"
+      ]
+    },
+    {
+      "file": "hub:sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+      "path": "/Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+      "why": "SKILLED surface, paths .skilled/**",
+      "files": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts"
+      ]
+    },
+    {
+      "file": "hub:sk-code/sk-code-skilled/assets/checklists/skill-authoring.md",
+      "path": "/Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md",
+      "why": "SKILLED surface, paths .skilled/skills/**",
+      "files": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts"
+      ]
+    },
+    {
+      "file": "hub:sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+      "path": "/Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+      "why": "SKILLED surface, extensions .js .cjs .mjs",
+      "files": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs"
+      ]
+    },
+    {
+      "file": "hub:sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+      "path": "/Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+      "why": "SKILLED surface, extensions .ts .tsx .mts .cts",
+      "files": [
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts"
+      ]
+    },
+    {
+      "file": "hub:sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+      "path": "/Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+      "why": "SKILLED surface, extensions .sh .bash",
+      "files": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh"
+      ]
+    }
+  ],
+  "rule_overrides": [
+    {
+      "file": "hub:sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+      "line": 358,
+      "id": "review.todo-tracking",
+      "action": "replace",
+      "text": "A TODO, FIXME or HACK names its owner, as `TODO(owner)`, and says what is left to do",
+      "reason": "The SKILLED owner-first TODO format. A ticket id stays out of comments here under `floor.ephemeral-pointers`",
+      "files": [
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts"
+      ]
+    }
+  ],
+  "rule_conflicts": [],
+  "checks": [
+    {
+      "id": "comment-hygiene",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "RAN_CLEAN",
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "/Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "--json",
+        "--",
+        "{files}"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "duration_ms": 210,
+      "requires": "python3",
+      "repair": null,
+      "code": null,
+      "files": 9
+    },
+    {
+      "id": "conflict-markers",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "RAN_CLEAN",
+      "argv": null,
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": null,
+      "repair": null,
+      "code": null,
+      "files": 9
+    },
+    {
+      "id": "secrets",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "RAN_CLEAN",
+      "argv": null,
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": null,
+      "repair": null,
+      "code": null,
+      "files": 9
+    },
+    {
+      "id": "debug-leftovers",
+      "origin": "builtin",
+      "severity": "P1",
+      "required": false,
+      "state": "RAN_CLEAN",
+      "argv": null,
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": null,
+      "repair": null,
+      "code": null,
+      "files": 9
+    },
+    {
+      "id": "syntax-json",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "NOT_APPLICABLE",
+      "argv": null,
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": null,
+      "repair": null,
+      "code": null,
+      "files": 0
+    },
+    {
+      "id": "syntax-cjs",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "RAN_CLEAN",
+      "argv": null,
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": null,
+      "repair": null,
+      "code": null,
+      "files": 1
+    },
+    {
+      "id": "syntax-node",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "RAN_CLEAN",
+      "argv": [
+        "node",
+        "--check",
+        "{file}"
+      ],
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 56,
+      "requires": "node",
+      "repair": null,
+      "code": null,
+      "files": 1
+    },
+    {
+      "id": "syntax-python",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "NOT_APPLICABLE",
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-c",
+        "<parse floor>"
+      ],
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": "python3",
+      "repair": null,
+      "code": null,
+      "files": 0
+    },
+    {
+      "id": "syntax-shell",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": true,
+      "state": "RAN_CLEAN",
+      "argv": [
+        "bash",
+        "-n",
+        "{file}"
+      ],
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 6,
+      "requires": "bash",
+      "repair": null,
+      "code": null,
+      "files": 2
+    },
+    {
+      "id": "syntax-yaml",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": false,
+      "state": "NOT_APPLICABLE",
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-c",
+        "<parse floor>"
+      ],
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": "python3 with PyYAML",
+      "repair": null,
+      "code": null,
+      "files": 0
+    },
+    {
+      "id": "syntax-toml",
+      "origin": "builtin",
+      "severity": "P0",
+      "required": false,
+      "state": "NOT_APPLICABLE",
+      "argv": [
+        "python3",
+        "-B",
+        "-I",
+        "-c",
+        "<parse floor>"
+      ],
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": "python3 with tomllib",
+      "repair": null,
+      "code": null,
+      "files": 0
+    },
+    {
+      "id": "dist-staleness",
+      "origin": "builtin",
+      "severity": "P1",
+      "required": false,
+      "state": "NOT_APPLICABLE",
+      "argv": null,
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": "python3",
+      "repair": null,
+      "code": null,
+      "files": 0
+    },
+    {
+      "id": "actionlint",
+      "origin": "configured",
+      "severity": "P1",
+      "required": false,
+      "state": "NOT_APPLICABLE",
+      "argv": [
+        "actionlint",
+        "{files}"
+      ],
+      "cwd": ".",
+      "exit": null,
+      "duration_ms": 0,
+      "requires": "actionlint",
+      "repair": null,
+      "code": null,
+      "files": 0,
+      "runs": []
+    }
+  ],
+  "findings": [],
+  "suggested_checks": [],
+  "judgment_required": [
+    "input validation",
+    "no silent failures",
+    "initialization safety",
+    "no commented-out code",
+    "accessibility",
+    "design restraint ladder"
+  ],
+  "coverage": {
+    "files_total": 9,
+    "files_checked": 9,
+    "unchecked": []
+  },
+  "summary": {
+    "p0_blocking": 0,
+    "p0_heuristic": 0,
+    "p1_open": 0,
+    "p2_open": 0,
+    "touched_file_debt": 0,
+    "unverified": []
+  },
+  "errors": []
+}

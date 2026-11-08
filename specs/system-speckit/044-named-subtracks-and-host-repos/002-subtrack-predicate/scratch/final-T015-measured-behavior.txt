@@ -1,0 +1,81 @@
+COMMAND: node .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs --specs specs
+EXIT: 0
+demo/sub2: undeclared folder ignored
+demo: declared=1 actual=1
+
+sweep-track-roots: all track roots match their declared children
+COMMAND: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/demo/sub2 --strict
+EXIT: 2
+
+Spec Folder Validation v3.0.0
+
+  Folder: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/subtrack-measured-behavior-9jgR4W/specs/demo/sub2
+  Level:  1
+  Engine: orchestrator
+
+x FILE_EXISTS: Missing 3 required file(s) for Level 1
+    - spec.md
+    - plan.md
+    - tasks.md
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 0 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
+! GRAPH_METADATA_PRESENT: Graph metadata checked
+x GENERATED_METADATA_INTEGRITY: Generated metadata integrity found 4 violation(s) (enforced)
+    - graph-metadata.json: FILE_MISSING: graph-metadata.json is missing while description.json is present
+    - description.json: SCHEMA_INVALID: description: Invalid input: expected string, received undefined
+    - description.json: SCHEMA_INVALID: keywords: Invalid input: expected array, received undefined
+    - description.json: SCHEMA_INVALID: lastUpdated: Invalid input: expected string, received undefined
++ GENERATED_METADATA_DRIFT: No generated metadata and source doc pair present to compare
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: Spec status does not claim Complete; scaffold markers are allowed
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; spec.md or implementation-summary.md is absent
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: No TOC-restricted spec documents found (skipped)
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: No declared level found in spec.md (using inferred level)
+x FOLDER_NAMING: Folder name 'sub2' does not follow naming convention
+    - Expected pattern: ###-short-name (e.g., 001-auth-feature)
+    - Got: sub2
+    - Missing 3-digit prefix (e.g., 001-, 042-)
++ FRONTMATTER_VALUES: No packet documents to check
++ SOURCE_TAGS: [SOURCE:] check skipped: no Created date in spec.md, so the packet counts as older than the cutoff
++ MEASURED_BEHAVIOR: Not applicable: no spec.md
++ GREP_CONVENTION: Grep convention: no markdown documents in this folder
+x LEVEL_MATCH: Level consistency errors
+    - Required file missing for Level 1: spec.md
+    - Required file missing for Level 1: plan.md
+    - Required file missing for Level 1: tasks.md
++ GRAPH_METADATA_CHILD_DRIFT: no graph-metadata.json present; child-drift check not applicable
++ GRAPH_METADATA_CHILD_IDENTITY: no graph-metadata.json present; child-identity check not applicable
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: demo/sub2
+! DESCRIPTION_SHAPE: description.json has 1 shape error(s)
+    - description must be a non-empty string
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: Canonical-save lineage check not applicable to this folder
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Canonical-save packet-identity check not applicable to this folder
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Canonical-save freshness-skew check not applicable to this folder
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 4  Warnings: 2
+
+RESULT: FAILED
+
+Some of these are recomputable from the repository. Fix them with:
+  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/demo/sub2 --apply
+  It rewrites generated metadata (description.json, graph-metadata.json), frontmatter packet
+  pointers and the Spec Folder row, and reports any failure it cannot repair. It never edits
+  other text. Run validate once after it.
+  Optional: run it without --apply first to preview the changes.

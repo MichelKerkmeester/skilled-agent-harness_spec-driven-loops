@@ -1,0 +1,29 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/track-roots.vitest.ts (19 tests | 1 failed | 18 skipped) 150ms
+     × distinguishes a declared folder that also holds its own spec in both views 149ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/track-roots.vitest.ts > track-root discovery > distinguishes a declared folder that also holds its own spec in both views
+AssertionError: expected [ …(3) ] to include 'demo/sub: declared folder has spec.md…'
+ ❯ tests/track-roots.vitest.ts:117:44
+    115|     const expected = 'demo/sub: declared folder has spec.md and cannot…
+    116|
+    117|     expect(diagnosticsFromTracks(working)).toContain(expected);
+       |                                            ^
+    118|     expect(committed.diagnostics).toContain(expected);
+    119|     expect(diagnosticsFromTracks(working)).not.toContain('demo/sub: un…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 skipped (19)
+   Start at  22:58:06
+   Duration  240ms (transform 21ms, setup 14ms, import 14ms, tests 150ms, environment 0ms)
+

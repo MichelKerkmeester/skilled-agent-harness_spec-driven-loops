@@ -1,0 +1,4 @@
+repaired specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate
+    re-derive graph metadata
+
+inspected=1 repaired=1 failed=0

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate",
+  "spec_folder": "system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate",
+  "parent_id": "system-speckit/044-named-subtracks-and-host-repos",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "subtrack predicate",
+      "phase 2 subtrack predicate",
+      "declared sub-track rule parity",
+      "validate symlinked description sub-track",
+      "subtrack predicate plan",
+      "sub-track rule parity plan",
+      "subtrack predicate tasks",
+      "sub-track predicate implementation",
+      "sub-track parity verification",
+      "named sub-track validation"
+    ],
+    "key_topics": [
+      "subtrack",
+      "predicate",
+      "phase",
+      "declared",
+      "sub-track",
+      "rule",
+      "parity",
+      "validate",
+      "symlinked",
+      "description",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts",
+      "scratch/final-step1-build.txt",
+      "tests/subtrack-predicate-parity.vitest.ts",
+      "scratch/final-step2-requested-suite.txt",
+      "scratch/final-step3-doctor-node-tests.txt",
+      "scratch/final-T014-plan-suite.txt",
+      "scratch/final-T015-measured-behavior.txt",
+      "scratch/final-step4-strict-validation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "subtrack-predicate-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/subtrack-predicate-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate-subtrack.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-subtrack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "final-step1-build.txt",
+        "kind": "file",
+        "path": "scratch/final-step1-build.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-step2-requested-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-step2-requested-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-step3-doctor-node-tests.txt",
+        "kind": "file",
+        "path": "scratch/final-step3-doctor-node-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-T014-plan-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-T014-plan-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-T015-measured-behavior.txt",
+        "kind": "file",
+        "path": "scratch/final-T015-measured-behavior.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-step4-strict-validation.txt",
+        "kind": "file",
+        "path": "scratch/final-step4-strict-validation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six implementations answer the declared-sub-track question: the reader (`runtime/cli/lib/track-roots.mjs:28-46,76-78`), `validate.sh:188-217`, `orchestrator.ts:213-240`, `archive.sh:193-213`, `graph-metadata-parser.ts:854-873` and `repair-derived.cjs:321-341`",
+    "created_at": "2026-11-07T20:27:53Z",
+    "last_save_at": "2026-11-07T22:16:27.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c076bedc7bcdca1b73668413ae944eb676dc622f150b10d11efbefdf2931abdf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e3d9f0cc429bd7385258eff29dd16a898efbcda7eae49d1774b83aab6dd2a50b",
+      "plan.md": "3e10283e601ab0f70c89bac8a0342d6d456d12e219ff31ea3a7d9a865ba8889c",
+      "tasks.md": "3b8d2c80a3628e2ad8dcb6961ab3f62d3b45af4ecc3780d2356c2d0a5a05362a",
+      "implementation-summary.md": "7d740d4aa55664fdca025bd9435730d597760e9e722c65f9b9b92fa4191b5d74"
+    },
+    "last_active_at": null
+  }
+}

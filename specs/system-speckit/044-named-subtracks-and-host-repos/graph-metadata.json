@@ -3,7 +3,13 @@
   "packet_id": "system-speckit/044-named-subtracks-and-host-repos",
   "spec_folder": "system-speckit/044-named-subtracks-and-host-repos",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes",
+    "system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate",
+    "system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety",
+    "system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps",
+    "system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -39,7 +45,7 @@
       "sub-track"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -210,7 +216,7 @@
     ],
     "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
     "created_at": "2026-11-07T12:11:59Z",
-    "last_save_at": "2026-11-07T16:11:56.964Z",
+    "last_save_at": "2026-11-08T01:44:32.837Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,16 +228,17 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3a73bc19081b16ef71d396c9a6a960fd4082885c455d24ed73343c1d77d14ed0",
+    "source_fingerprint": "sha256:55d794e99104a1c120ea23d7bb0cf1243e3438927156cafc285bd8ebaa45cc57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4529ceba82bc3faabdb91cde2c5f9bf0bfe4f0c6a1822b16cfe5ce43872b571f",
-      "plan.md": "ba2a165837b7130054667f23e6ba86fab0b7969f5cde6b826b590651f99d793e",
-      "tasks.md": "1ef950292d746bf10dcf939fcd6306f37261021144677b0de4fff8aac3575dd6",
-      "decision-record.md": "06e4f7dc9f223b742165a6184a4b39f3a5db9457b4e2a2290d20501c5fb82a96",
-      "implementation-summary.md": "0a10377c44764a1db3e83c4d0ed64e9adf874b86f3e8a833c2b1e18d3dce9a18",
+      "spec.md": "52dee9edb542b7307c792a02b44977161af403b5a99d800509f251bdc999395f",
+      "plan.md": "922f5f592c2ffe8955f154fe4a16a827aba1c482fac6d823065d6d835a2d8596",
+      "tasks.md": "1802664bfc30d6ff81073e89c67e30ee8d78075b69c543f88adf458bd9dd83ec",
+      "decision-record.md": "9730026073bb8d0d5ef0093de091d0c4d131e3c33e3861faa12205771f89b85f",
+      "implementation-summary.md": "6a35121e5b73da7ebda57ed0395905c891e468ebc16e3c8212b77cc7348c95ca",
       "research/research.md": "b11898910b2446c7e3cab618b2b105dcb93da1ccc09273ab3b9687a376e0225f"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-08T01:44:32.837Z",
+    "last_active_child_id": "system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests"
   }
 }

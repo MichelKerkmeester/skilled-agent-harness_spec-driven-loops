@@ -35,7 +35,7 @@ contextType: "implementation"
 
 - [x] T001 Record the baseline pass and fail counts of every test file in `T` (`scratch/baseline.txt`). Verify: `cat scratch/baseline.txt` shows one total per file. Evidence: 8 vitest files 145/145, doctor node tests 12 + 34 = 46/46.
 - [x] T002 Add the shared sub-track fixture builder: a flat packet, a declared sub-track holding a numbered phase parent with one phase, its `z_archive/`, an undeclared folder and a symlinked sub-track (`K/cli/tests/fixtures/subtrack-tree.mjs`). Verify: the builder's own smoke test lists the six entries. Evidence: `subtrack-fixture.vitest.ts` 2/2.
-- [x] T003 Add the red cases for REQ-001 to REQ-008 to the existing test files (`K/cli/tests/*.vitest.ts`). Verify: `T` prints the new cases failing and every baseline case passing. Evidence: red runs kept in `scratch/red-A.log` to `red-G.log`.
+- [x] T003 Add the red cases for REQ-001 to REQ-008 to the existing test files (`K/cli/tests/*.vitest.ts`). Verify: `T` prints the new cases failing and every baseline case passing. Evidence: red runs kept in `scratch/red-A.log` to `scratch/red-D.log` and `scratch/red-F.log` to `scratch/red-G.log`; `scratch/red-E.log` was not kept.
 <!-- /ANCHOR:phase-1 -->
 
 ---

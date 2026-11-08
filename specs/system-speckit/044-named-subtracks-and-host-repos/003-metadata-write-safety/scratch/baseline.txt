@@ -1,0 +1,19 @@
+Baseline before phase 003 edits, 2026-11-07
+
+Build:
+- `npm run build` from `.skilled/skills/system-spec-kit/runtime` passed with Node 24.19.0 from the installed nvm runtime, exit 0.
+- The default Node 26.12.1 binary failed at startup with exit 134 because `libsimdjson.34.dylib` was unavailable. No system files or dependencies were changed.
+
+T001 suite, reported per file with Vitest's JSON reporter:
+- `tests/track-roots.vitest.ts`: 19 passed, 0 failed.
+- `tests/create-track-refresh.vitest.ts`: 20 passed, 0 failed.
+- `tests/archive-track.vitest.ts`: 60 passed, 0 failed.
+- `tests/subtrack-fixture.vitest.ts`: 2 passed, 0 failed.
+- Total: 101 passed, 0 failed across 4 files.
+
+Required regression baselines:
+- The 11-file CLI suite, including `tests/subtrack-predicate-parity.vitest.ts`: 11 files passed, 190 tests passed, 0 failed. The run took 109.26 seconds.
+- `node --test` on `symlink-engine.test.cjs` and `doctor-symlink-contract.test.cjs`: 51 passed, 0 failed.
+
+Workspace check:
+- `find specs -maxdepth 3 -name graph-metadata.json -type l` returned no paths and exited 0.

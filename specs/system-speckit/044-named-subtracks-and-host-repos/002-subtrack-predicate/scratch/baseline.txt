@@ -1,0 +1,24 @@
+# Baseline before source edits
+
+Runtime: Node v26.8.2 via /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin.
+
+Build:
+- `npm run build` with the active Node failed before npm ran (exit 134): missing `libsimdjson.34.dylib`; see `baseline-build.txt`.
+- The same build with Node v26.8.2 passed (exit 0); see `baseline-build-compatible-node.txt`.
+
+Requested Vitest suite: 10 files, 182 passed, 0 failed (exit 0). Per-file baseline:
+- `archive-track.vitest.ts`: 60 passed, 0 failed
+- `create-root-numbering.vitest.ts`: 16 passed, 0 failed
+- `create-track-containment.vitest.ts`: 11 passed, 0 failed
+- `create-track-refresh.vitest.ts`: 20 passed, 0 failed
+- `graph-metadata-refresh.vitest.ts`: 7 passed, 0 failed
+- `repair-derived.vitest.ts`: 41 passed, 0 failed
+- `subtrack-fixture.vitest.ts`: 2 passed, 0 failed
+- `track-roots.vitest.ts`: 18 passed, 0 failed
+- `validate-recursive-artifact-skip.vitest.ts`: 3 passed, 0 failed
+- `validate-subtrack.vitest.ts`: 4 passed, 0 failed
+- Full output: `baseline-requested-vitest.txt`; per-file report: `baseline-requested-vitest.json`.
+
+Doctor Node tests: 51 passed, 0 failed (exit 0); see `baseline-doctor-node-tests.txt`.
+
+The plan's new `subtrack-predicate-parity.vitest.ts` did not exist at baseline. Its red output will be recorded when that test is added.

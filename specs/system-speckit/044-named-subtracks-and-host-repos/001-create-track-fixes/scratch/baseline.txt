@@ -1,0 +1,11 @@
+Baseline before implementation edits (2026-11-07)
+
+Build command: npm run build (runtime/, Node v24.19.0)
+Build result: exit 0
+
+Vitest command: npx vitest run --config ../../vitest.config.ts --project cli --reporter=verbose tests/create-track-refresh.vitest.ts tests/create-track-containment.vitest.ts tests/create-root-numbering.vitest.ts
+Vitest result: exit 0
+create-track-refresh.vitest.ts: 16 passed, 0 failed
+create-track-containment.vitest.ts: 11 passed, 0 failed
+create-root-numbering.vitest.ts: 16 passed, 0 failed
+Total: 43 passed, 0 failed across 3 files

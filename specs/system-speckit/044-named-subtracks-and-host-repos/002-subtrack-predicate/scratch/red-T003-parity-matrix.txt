@@ -1,0 +1,101 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/subtrack-predicate-parity.vitest.ts (5 tests | 4 failed) 2800ms
+     × keeps recursive validation aligned with the reader across the case matrix 818ms
+     × keeps archive parent handling aligned with the reader across the case matrix 631ms
+     × keeps graph parent derivation aligned with the reader across the case matrix 66ms
+     × keeps repair-derived parent repair aligned with the reader across the case matrix 301ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps recursive validation aligned with the reader across the case matrix
+AssertionError: node_modules: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:256:53
+    254|     for (const entry of matrix.entries) {
+    255|       const nestedPacket = `demo/${entry.name}/${entry.packetName}`;
+    256|       expect(folders.has(nestedPacket), entry.name).toBe(readerDeclare…
+       |                                                     ^
+    257|     }
+    258|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps archive parent handling aligned with the reader across the case matrix
+AssertionError: node_modules: SUCCESS: Archived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/subtrack-predicate-parity-sDRfgF/specs/demo/node_modules/001-matrix-probe -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/subtrack-predicate-parity-sDRfgF/specs/demo/node_modules/z_archive/001-matrix-probe
+WARNING: Recorded paths under /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/subtrack-predicate-parity-sDRfgF/specs/demo/node_modules/z_archive/001-matrix-probe were not re-derived: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/subtrack-predicate-parity-sDRfgF/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs is missing. Restore it, then run repair-derived.cjs --roots /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/subtrack-predicate-parity-sDRfgF/specs/demo/node_modules/z_archive/001-matrix-probe --apply.
+WARNING: demo/node_modules/graph-metadata.json was not refreshed. Rerun refresh-track-roots.mjs --track demo/node_modules --apply.
+demo: up to date
+refresh-track-roots: not a track root with graph-metadata.json: demo/node_modules
+: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:268:10
+    266|
+    267|       expect(result.status === 0, `${entry.name}: ${result.stdout}${re…
+    268|         .toBe(declared || numberedParent);
+       |          ^
+    269|       const after = JSON.parse(fs.readFileSync(path.join(entry.contain…
+    270|       expect(after.children_ids.includes(`demo/${entry.name}/${entry.p…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps graph parent derivation aligned with the reader across the case matrix
+AssertionError: 001-odd: expected 'demo/001-odd' to be null // Object.is equality
+
+- Expected:
+null
+
++ Received:
+"demo/001-odd"
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:286:36
+    284|         parentId = null;
+    285|       }
+    286|       expect(parentId, entry.name).toBe(readerDeclares(entry.name, gra…
+       |                                    ^
+    287|     }
+    288|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps repair-derived parent repair aligned with the reader across the case matrix
+AssertionError: sub: expected null to be 'demo/sub' // Object.is equality
+
+- Expected:
+"demo/sub"
+
++ Received:
+null
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:309:43
+    307|
+    308|       expect(result.status === 2, `${entry.name}: ${result.stdout}${re…
+    309|       expect(graph.parent_id, entry.name).toBe(readerDeclares(entry.na…
+       |                                           ^
+    310|       expect(graph.spec_folder).toBe(id);
+    311|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  22:47:06
+   Duration  2.98s (transform 68ms, setup 15ms, import 102ms, tests 2.80s, environment 0ms)
+

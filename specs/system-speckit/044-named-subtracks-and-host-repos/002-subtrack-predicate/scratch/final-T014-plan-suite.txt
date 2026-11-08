@@ -1,0 +1,32 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+refusing a target outside the packet tree: .skilled/skills
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: ../elsewhere
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: specs/.repair-fixture-NsD2CS/001-linked
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: specs/.repair-fixture-NsD2CS/001-linked
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: specs/.repair-fixture-CUgafB/linked-parent/001-outside
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: specs/.repair-fixture-CUgafB/linked-parent/001-outside
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unknown argument: --bogus
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+--folder needs a path
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+unexpected argument: specs/sk-git (paths need --folder or --roots)
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+refusing a target outside the packet tree: /etc
+Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]
+
+ Test Files  8 passed (8)
+      Tests  160 passed (160)
+   Start at  23:02:33
+   Duration  87.76s (transform 165ms, setup 35ms, import 273ms, tests 87.00s, environment 0ms)
+

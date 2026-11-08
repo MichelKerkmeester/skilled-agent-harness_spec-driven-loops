@@ -1,0 +1,61 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/validate-subtrack.vitest.ts (5 tests | 1 failed | 4 skipped) 214ms
+     × does not validate a symlinked description as a sub-track container 213ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/validate-subtrack.vitest.ts > recursive validation for declared sub-tracks > does not validate a symlinked description as a sub-track container
+AssertionError: expected 'Auto-enabled recursive validation: ph…' not to contain 'RESULT: PASSED'
+
+- Expected
++ Received
+
++ Auto-enabled recursive validation: phase child folders detected.
++
++ Spec Folder Validation v3.0.0
++
++   Folder: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/validate-subtrack-YvipUw/specs/demo/sub
++   Level:  1
++   Engine: orchestrator
++
++
++ Summary: Errors: 0  Warnings: 0
++
+  RESULT: PASSED
++
++ Spec Folder Validation v3.0.0
++
++   Folder: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/validate-subtrack-YvipUw/specs/demo/sub/001-nested-probe
++   Level:  phase
++   Engine: orchestrator
++
++ x FILE_EXISTS: Missing 2 required file(s) for Level phase
++     - description.json
++     - graph-metadata.json
++
++ Summary: Errors: 1  Warnings: 0
++
++ RESULT: FAILED
++
+
+ ❯ tests/validate-subtrack.vitest.ts:94:31
+     92|     const result = runValidate(entries.sub, ['--strict']);
+     93|
+     94|     expect(result.stdout).not.toContain('RESULT: PASSED');
+       |                               ^
+     95|   });
+     96|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  22:53:52
+   Duration  299ms (transform 17ms, setup 13ms, import 11ms, tests 214ms, environment 0ms)
+

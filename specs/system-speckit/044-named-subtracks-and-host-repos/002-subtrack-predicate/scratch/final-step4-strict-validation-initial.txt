@@ -1,0 +1,68 @@
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate
+  Level:  1
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 4 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
+x FRONTMATTER_MEMORY_BLOCK: 1 frontmatter_memory_block issue(s) found
+    - SPECDOC_FRONTMATTER_004: implementation-summary.md: last_updated_by 'Codex' is not an actor slug
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+x GENERATED_METADATA_INTEGRITY: Generated metadata integrity found 1 violation(s) (enforced)
+    - graph-metadata.json: SOURCE_FINGERPRINT_MISMATCH: source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale
+x GENERATED_METADATA_DRIFT: Generated metadata drift found 1 drifted field(s) (enforced)
+    - description: stored 'Phase 2: subtrack-predicate' drifted from fresh 'Six implementations answer the declared-sub-track question: the reader (`runtime/cli/lib/track-roots.mjs:28-46,76-78`), `validate.sh:188-217`'
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: Acceptance closure gate not active below Level 2
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOLS: AI protocol check not applicable for Level 1
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 1; phases=3, tasks=18, stories=0, scenarios=0)
++ FOLDER_NAMING: Folder name '002-subtrack-predicate' follows naming convention
++ FRONTMATTER_VALUES: Frontmatter values are in the shared list
++ SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts
++ MEASURED_BEHAVIOR: Measured behavior block holds command output or a reasoned N/A
++ GREP_CONVENTION: Grep convention: 4 document(s) conform
++ LEVEL_MATCH: Level consistent across all files (Level 1)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_CHILD_IDENTITY: children_ids entries all carry the packet's own identity
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
+x METADATA_DISK_PATH_CONSISTENCY: Generated metadata path drift detected against on-disk folder: system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate
+    - continuity.packet_pointer=002-subtrack-predicate expected=system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity normalization drift detected (soft detector)
+    - identity=002-subtrack-predicate
+    - identity=system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+    - code:not_opted_in
++ LINKS_VALID: All wikilinks under the system-spec-kit skill resolve
+
+Summary: Errors: 4  Warnings: 0
+
+RESULT: FAILED
+
+Some of these are recomputable from the repository. Fix them with:
+  node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate --apply
+  It rewrites generated metadata (description.json, graph-metadata.json), frontmatter packet
+  pointers and the Spec Folder row, and reports any failure it cannot repair. It never edits
+  other text. Run validate once after it.
+  Optional: run it without --apply first to preview the changes.

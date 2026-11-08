@@ -1,0 +1,16 @@
+# Baseline 2026-11-08, phase 005, before the first edit
+# vitest from runtime/cli: npx vitest run --config ../../vitest.config.ts --project cli
+# 11 files, 194 passed, 0 failed
+tests/archive-track.vitest.ts pass=60 fail=0
+tests/create-root-numbering.vitest.ts pass=16 fail=0
+tests/create-track-containment.vitest.ts pass=11 fail=0
+tests/create-track-refresh.vitest.ts pass=20 fail=0
+tests/graph-metadata-refresh.vitest.ts pass=7 fail=0
+tests/repair-derived.vitest.ts pass=41 fail=0
+tests/subtrack-fixture.vitest.ts pass=2 fail=0
+tests/subtrack-predicate-parity.vitest.ts pass=5 fail=0
+tests/track-roots.vitest.ts pass=23 fail=0
+tests/validate-recursive-artifact-skip.vitest.ts pass=3 fail=0
+tests/validate-subtrack.vitest.ts pass=6 fail=0
+# node --test doctor (both files)
+symlink-engine.test.cjs + doctor-symlink-contract.test.cjs pass=51 fail=0

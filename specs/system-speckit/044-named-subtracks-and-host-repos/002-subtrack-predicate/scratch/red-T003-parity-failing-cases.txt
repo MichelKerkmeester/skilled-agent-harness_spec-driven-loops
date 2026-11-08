@@ -1,0 +1,134 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/subtrack-predicate-parity.vitest.ts (5 tests | 4 failed) 6290ms
+     × keeps recursive validation aligned with the reader across the case matrix 1617ms
+     × keeps archive parent handling aligned with the reader across the case matrix 1014ms
+     × keeps graph parent derivation aligned with the reader across the case matrix 84ms
+     × keeps repair-derived parent repair aligned with the reader across the case matrix 2571ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps recursive validation aligned with the reader across the case matrix
+AssertionError: expected [ …(3) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ".hidden: expected false, received true",
++   "node_modules: expected false, received true",
++   "linked-description: expected false, received true",
++ ]
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:254:24
+    252|       if (recognized !== expected) mismatches.push(`${entry.name}: exp…
+    253|     }
+    254|     expect(mismatches).toEqual([]);
+       |                        ^
+    255|   });
+    256|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps archive parent handling aligned with the reader across the case matrix
+AssertionError: expected [ …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules: archiveable expected false, received true",
++   "linked-description: archiveable expected false, received true",
++ ]
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:276:24
+    274|       }
+    275|     }
+    276|     expect(mismatches).toEqual([]);
+       |                        ^
+    277|   });
+    278|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps graph parent derivation aligned with the reader across the case matrix
+AssertionError: expected [ …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ".hidden: expected null, received demo/.hidden",
++   "owns-spec: expected null, received demo/owns-spec",
++ ]
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:295:24
+    293|       if (parentId !== expected) mismatches.push(`${entry.name}: expec…
+    294|     }
+    295|     expect(mismatches).toEqual([]);
+       |                        ^
+    296|   });
+    297|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  |cli| tests/subtrack-predicate-parity.vitest.ts > declared sub-track predicate parity > keeps repair-derived parent repair aligned with the reader across the case matrix
+AssertionError: expected [ …(3) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ".hidden: parent repair planned expected false, received true; would repair specs/demo/.hidden/001-matrix-probe
++     graph parent legacy-parent -> demo/.hidden
++     re-derive graph metadata
++
++ inspected=1 repairable=1 failed=0
++
++ To apply these repairs:
++   node ../../../../../../../../Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/demo/.hidden/001-matrix-probe --apply
++ ",
++   "node_modules: parent repair planned expected false, received true; would repair specs/demo/node_modules/001-matrix-probe
++     graph parent legacy-parent -> demo/node_modules
++     re-derive graph metadata
++
++ inspected=1 repairable=1 failed=0
++
++ To apply these repairs:
++   node ../../../../../../../../Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/demo/node_modules/001-matrix-probe --apply
++ ",
++   "owns-spec: parent repair planned expected false, received true; would repair specs/demo/owns-spec/001-matrix-probe
++     graph parent legacy-parent -> demo/owns-spec
++     re-derive graph metadata
++
++ inspected=1 repairable=1 failed=0
++
++ To apply these repairs:
++   node ../../../../../../../../Users/michelkerkmeester/worktrees/public/323-subtrack-review-fixes/.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/demo/owns-spec/001-matrix-probe --apply
++ ",
++ ]
+
+ ❯ tests/subtrack-predicate-parity.vitest.ts:331:24
+    329|       if (graph.spec_folder !== id) mismatches.push(`${entry.name}: sp…
+    330|     }
+    331|     expect(mismatches).toEqual([]);
+       |                        ^
+    332|   });
+    333| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  22:53:26
+   Duration  6.45s (transform 62ms, setup 13ms, import 86ms, tests 6.29s, environment 0ms)
+
