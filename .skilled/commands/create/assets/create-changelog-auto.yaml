@@ -741,16 +741,7 @@ workflow:
       - "Check for tag collision: run `git tag --list {release_tag}`. IF the tag already exists -> PAUSE, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> PAUSE, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\""
       - "Check working tree state: run `git status --porcelain -- {output_path}`. IF uncommitted, log a warning that the tag was created on a HEAD that may not include the just-written changelog file (autonomous mode never auto-commits)"
-      - |
-        Prepare the release notes body from {output_path}:
-          IF the file opens with a YAML frontmatter block (first line is "---"):
-            Strip it through its closing "---" line, plus any blank lines after it
-          IF the next line starts with "# " (the editorial title H1):
-            Strip that line and any immediately following blank lines
-          Keep the entry's spacing: an &nbsp; line before every H2 and nothing between H4 items
-          Append a blank line, an &nbsp; line, a blank line and then the footer line:
-            Full changelog: `{output_path}`
-          Write the result to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) and use it as {notes_file_path}
+      - "Build the release notes body: run `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/build_release_notes.py {output_path} --out /tmp/release-notes-{release_tag}.md` and use that file as {notes_file_path}. It drops the YAML frontmatter and the editorial title H1, keeps the entry's spacing and appends the &nbsp; line and the Full changelog pointer. Exit 2 means the entry could not be read: PAUSE and report it"
       - "Run: git tag -a {release_tag} -m \"{tag_message}\""
       - "Run: git push origin {release_tag}"
       - "Run: gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}"

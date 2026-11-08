@@ -44,6 +44,12 @@ def _template(tmp: Path, body: str) -> str:
     return str(target)
 
 
+PROPER_NAME = """# Sample
+
+DeepSeek Harness joins the CLIs. Teams harness the power of plain words.
+"""
+
+
 def _prose(tmp: Path, body: str) -> str:
     target = tmp / 'draft.md'
     target.write_text(body, encoding='utf-8')
@@ -244,6 +250,12 @@ def run() -> int:
         check(
             'an unmatched backtick does not swallow the paragraph',
             stray_report['hardBlockers'] == 1,
+        )
+
+        names_report = _scan(_prose(tmp, PROPER_NAME))
+        check(
+            'a listed product name is exempt while the bare blocker word still counts',
+            names_report['hardBlockers'] == 1,
         )
 
     dirty = _scan(str(FIXTURES / 'voice-dirty.md'))

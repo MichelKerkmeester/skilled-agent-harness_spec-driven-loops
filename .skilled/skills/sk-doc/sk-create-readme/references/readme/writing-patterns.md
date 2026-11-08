@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme heading hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # README Writing Patterns
@@ -105,7 +105,7 @@ Two registers apply. The repository front-page README may use decorative emoji o
 
 ### Paragraphs and Bullets
 
-Keep paragraphs to 2-4 sentences. A paragraph that stacks several distinct points becomes a bullet list: one idea per bullet, in the shortest form that still says what it is and when it applies.
+Explain in short paragraphs of short sentences, about 10-15 words each and about 60 words a paragraph. Use bullets only for items a reader scans or compares: commands, options, steps and parallel facts. A run of bullets that each hold a sentence of explanation reads better as a paragraph. Balance the two: a section that is all bullets reads like notes, and one that is all prose hides what a reader scans for. Word counts guide rather than gate, so more short sentences are always fine.
 
 ### Blockquote Tagline
 

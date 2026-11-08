@@ -2,7 +2,7 @@
 name: sk-create-readme
 description: Author sk-doc folder, code-folder and skill/project READMEs from local evidence.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.3.13.0
+version: 1.3.14.0
 ---
 
 # Create README (workflow)
@@ -117,8 +117,10 @@ General README format rules:
 - Name the feature or artifact in its heading: `### Spec Kit: a written record of every change`, not `### Powered by Spec Kit`.
 - Emoji use follows two registers. The repository front-page README may use decorative emoji on section headings. Every other README uses semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers.
 - Give every item in an inventory a description. A list of bare names says nothing about when to use each one.
-- Keep paragraphs to 2-4 sentences. A passage with several distinct points belongs in bullets.
+- Explain in short paragraphs of short sentences, about 10-15 words each and about 60 words a paragraph. Use bullets only for items a reader scans or compares: commands, options, steps and parallel facts. A run of bullets that each hold a sentence of explanation reads better as a paragraph.
+- When installing takes more than a few steps, a front-page README keeps only the minimum commands and points to a root install document, such as `INSTALL-SKILLED.md`.
 - Use `---` horizontal rules between H2 sections.
+- When a README spaces its sections with `&nbsp;` lines, put one above every H2, H3 and H4 heading. Leave it out only where a heading directly follows another heading, so sibling sections never get different gaps.
 - Do not add a Table of Contents.
 - Do not add `<!-- ANCHOR -->` navigation comments.
 - Use tables for comparisons, file maps, configuration, options and troubleshooting.

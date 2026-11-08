@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme review checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # README Quality and Pre-Publish Checklist
@@ -86,7 +86,7 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [ ] At least 3 usage examples (simple to advanced)
 - [ ] At least 3 troubleshooting entries
 - [ ] Every item in an inventory (files, templates, commands) carries a short description
-- [ ] Paragraphs run 2-4 sentences. Passages with several distinct points use bullets
+- [ ] Explanation reads as short paragraphs of short sentences. Bullets hold only commands, options, steps and parallel facts
 
 ### Quality
 

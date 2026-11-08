@@ -36,6 +36,8 @@ Documentation depth scales with the task, from a small fix to a phased architect
 
 Every packet is plain markdown in your repo, so the history is yours to read, diff and keep.
 
+&nbsp;
+
 ### 🧠 Spec Memory & Search
 
 Your architecture, decisions and session history are written into the spec folder they belong to. Instant keyword search finds them again.
@@ -44,17 +46,23 @@ Your architecture, decisions and session history are written into the spec folde
 
 After a compaction, a session can search and load its own earlier turns through one read-only command. A detail the summary dropped is not lost. Your answers to the AI's questions are captured as you give them. They are saved into the packet's decision record, with the exact exchange beside each one.
 
+&nbsp;
+
 ### 🔄 Deep Loop
 
 Research and review loops run unattended and stop only when their own evidence says done.
 
 Progress lives on disk, so a loop survives crashes, new sessions and long runs. One shared runtime sits under every loop, so you learn the workflow once. Run fully hands-off or pause at each step, your choice.
 
+&nbsp;
+
 ### 🎯 Skill Advisor
 
 Type a prompt and the matching expertise loads before any tool runs. No memorizing skill names.
 
 A resident daemon scores your prompt across five signal lanes and renders its pick as a one-line route. A live skill graph tracks what each skill depends on, enhances and conflicts with. Daemon down? A local scorer answers instead and marks itself stale rather than pretending to be live.
+
+&nbsp;
 
 ### 🤖 Agent Library
 
@@ -63,6 +71,8 @@ Eleven specialized agents own focused roles. Seven CLI bridges let a runtime dis
 A review can fan out across several models at once, with the safest verdict winning. The conducting AI stays in charge. Each dispatched CLI handles the part it is best at and returns.
 
 The six bridges for repository-opening runtimes refuse self-dispatch except `cli-pi`. The experimental dsh target is a separate run surface, for a headless dispatch or an interactive session such as `dsh web`. Fan-out lineages and dispatch stacks are bounded, so delegation never loops.
+
+&nbsp;
 
 ### 🧩 Plugin & Extension Library
 
@@ -167,6 +177,8 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
+&nbsp;
+
 ### Check The Setup
 
 Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cursor, Devin or Pi. Then run:
@@ -177,9 +189,13 @@ Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cu
 
 It checks the install without changing anything and names one repair command for each failure. Code Mode builds separately, and `/doctor:mcp install` builds and registers it for you.
 
+&nbsp;
+
 ### Use It In Your Own Project
 
 You can also use Skilled in your own projects. Link this checkout into a project, or commit a copy and keep your changes as overlays. The [install guide](INSTALL-SKILLED.md) walks through both.
+
+&nbsp;
 
 ### First Task
 
@@ -191,6 +207,8 @@ This creates a spec folder, plans the work, builds it and saves the session cont
 
 Codex, Cursor and Pi spell commands with a hyphen, as in `/speckit-complete`. Devin reaches the same workflow through its `/system-spec-kit` skill.
 
+&nbsp;
+
 ### Git Hooks
 
 The first AI session installs the repository's git hooks. They check every commit and push in this checkout and its worktrees:
@@ -201,11 +219,15 @@ The first AI session installs the repository's git hooks. They check every commi
 
 Another clone is checked only after `git config --local skilled.trustRepoHooks true`. `/doctor:git setup` checks the hooks and sk-git settings. `/doctor:git hooks` switches a gate on or off, and `/doctor:git standards` changes the commit rules. The [git hooks README](.skilled/scripts/git-hooks/README.md) describes each gate.
 
+&nbsp;
+
 ### Make It Yours
 
 Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 13 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
 
 Every setting has a working default. To change one, see [Environment Settings](#environment-settings), or run `/doctor:env`, which lists them all and saves a change after your yes.
+
+&nbsp;
 
 ### Keep It Healthy
 
@@ -241,6 +263,8 @@ The Spec Kit enforces structured spec folders for every file-modifying conversat
 
 Gate 3 requires a spec folder answer before any file modification begins. Only a trivial fix of a few characters in one file is exempt.
 
+&nbsp;
+
 #### Documentation Levels
 
 Documentation depth scales with task complexity.
@@ -261,6 +285,7 @@ The LOC ranges are guidance, not hard rules. Risk, complexity and the number of 
 The machine contract is the `levels` section of `.skilled/skills/system-spec-kit/templates/spec-kit-docs.json`. The `documents` section beside it is a descriptive index.
 
 &nbsp;
+
 #### Spec Folder Structure
 
 ```text
@@ -279,6 +304,7 @@ specs/<track>/<###-feature-name>/
 `resource-map.md` is not a packet add-on. The deep-research and deep-review loops write their own evidence ledger of that name. They extract it from their deltas into the loop's own `research/` or `review/` artifact directory, never into the packet root.
 
 &nbsp;
+
 #### Available Templates
 
 Fifteen templates ship under `.skilled/skills/system-spec-kit/templates/`. Which ones a packet gets depends on how each document is triggered, not on its level alone.
@@ -330,6 +356,8 @@ allow-ref research.spec.md | a packet-type template, shipped as a .tmpl file und
 allow-ref review.spec.md | a packet-type template, shipped as a .tmpl file under the spec-kit templates' packet-types/ folder
 -->
 
+&nbsp;
+
 #### Task Priority System
 
 Checklist items in `tasks.md` carry a priority so reviewers know what blocks shipping and what can wait.
@@ -343,6 +371,8 @@ Checklist items in `tasks.md` carry a priority so reviewers know what blocks shi
 `acceptance-criteria.md` is the closure gate and does not use priorities. Each row is `Met`, `Unmet`, `Waived` or `Superseded`, and a `Waived` or `Superseded` row must cite an ADR in `decision-record.md`.
 
 `validate.sh` enforces `AC_CLOSURE`. An unmet criterion fails a packet that claims completion and only informs while the work is in progress. Packets created before the rule's rollout stay advisory. `AC_COVERAGE` advises on criteria carrying `file:line` citations.
+
+&nbsp;
 
 #### Phase Decomposition
 
@@ -520,6 +550,8 @@ Each loop dispatches a fresh-context worker against externalized state. It keeps
 
 Three loop families (research, review and AI council) live as nested mode packets inside one parent skill, `system-deep-loop`. All consume one shared runtime, `runtime/`, for state, scoring and fan-out. Research, review and AI council also share its loop contract.
 
+&nbsp;
+
 #### How It Works
 
 ```
@@ -539,6 +571,8 @@ Three loop families (research, review and AI council) live as nested mode packet
                                    ▼
                   legal stop ─► SYNTHESIZE + write-back
 ```
+
+&nbsp;
 
 #### Convergence and Stopping
 
@@ -565,6 +599,8 @@ Run fully autonomous with `:auto` or pause at each step with `:confirm`. You can
 Autonomy stays bounded. Cross-AI fan-out lineages can run with elevated CLI permissions in their own sandboxed workdir. A stall watchdog, a per-lineage cost cap and a lag-ceiling guard bound and observe those subprocesses, so autonomy stays supervised, not unattended.
 
 The runtime is self-contained and MCP-free. It declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`. Its one sibling dependency is system-spec-kit's shared package, and it type-checks with that skill's TypeScript. It carries executor config, atomic state, scoring, fallback routing and the coverage / council graph scripts.
+
+&nbsp;
 
 #### State, the Ledger and the Append Gateway
 
@@ -593,17 +629,22 @@ Fan-out is supervised, not unattended. A stall watchdog aborts a lineage that st
 Every executor kind dispatches through the same shared runner, selected per lineage. Adding a model is a list edit rather than new plumbing. A Cursor, Pi or Devin model must be on the runner's allowlist. DeepSeek Harness accepts only models in its two-route roster.
 
 &nbsp;
+
 #### Deep Research
 
 Investigates a question for you, one focused pass at a time, until the answers hold up. `/deep:research` runs `@deep-research`.
 
 It knows when it is done: it stops once findings stabilize, not after a fixed number of tries. It won't quit early either. It keeps going until the question is covered from enough angles and sources. Ruled-out directions are saved, so you never re-investigate a dead end. Results land in a growing `[spec-folder]/research/research.md` you can read as it works.
 
+&nbsp;
+
 #### Deep Review
 
 Audits your code in passes and never edits it. `/deep:review` runs `@deep-review`.
 
 Every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability, so you fix what matters first. Each critical finding is re-challenged before it sticks, which cuts false alarms. An open P0 forces another pass, and the audit must clear its quality checks before it can stop. The result is a `review-report.md` that ends in a PASS, CONDITIONAL or FAIL verdict.
+
+&nbsp;
 
 #### Multi AI Council
 
@@ -630,6 +671,8 @@ When the daemon is unreachable, the CLI answers from the Python scorer at `.skil
 When there is no brief, the prompt hooks and the OpenCode plugin still say why in one line above the directives. The line reads `Advisor: outage (...)` with the command to route by hand, or `Advisor: no skill matched.`, or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI. A setup, install, configure or check-the-tooling prompt with no match also gets `For setup or health checks, run /doctor:setup.`
 
 The advisor also suggests doctor commands. A setup or health prompt that no skill answers gets a runnable `/doctor:<command> <target>` line. When a skill also matches, the skill comes first and the brief adds `Also: /doctor:<command> <target>` on a second line.
+
+&nbsp;
 
 #### How It Works
 
@@ -673,6 +716,8 @@ The advisor also suggests doctor commands. A setup or health prompt that no skil
            hook adapter -> "Advisor: live; use ..."
            local scorer fallback -> degraded, "Advisor: stale"
 ```
+
+&nbsp;
 
 #### Native Package Layout
 
@@ -724,6 +769,8 @@ The CLI front door serves the same nine commands over the warm daemon for hooks,
 
 The launcher is resilient. It uses an owner lease, a reconnecting session proxy and dead-socket respawn under a bootstrap lock. A hung daemon is reaped and replaced instead of stranding the session or spawning a second writer. A daemon launched before the current build is replaced on the next call, so a rebuild takes effect without a manual restart. `SPECKIT_BRIDGE_RESPAWN_DISABLED=1` turns that off.
 
+&nbsp;
+
 #### Affordance Evidence
 
 Callers can pass structured tool and resource hints as affordance evidence: `skillId`, `name`, `triggers[]`, `category`, `dependsOn[]`, `enhances[]`, `siblings[]`, `prerequisiteFor[]`, `conflictsWith[]`.
@@ -739,6 +786,8 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 ## 9. 🧰 SKILL LIBRARY
 
 14 skills in `.skilled/skills/`. Gate 2 loads them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). By default, no skills are excluded from advisor routing.
+
+&nbsp;
 
 #### SYSTEM
 
@@ -757,6 +806,7 @@ The doctor-command skill at `.skilled/skills/system-skilled-doctor/`, for instal
 It keeps a vendored copy's own changes. `/doctor:overlay` reports an overlay that drifted and restores it, and it re-pins the copy to a newer upstream commit. See [Copy It Into Your Project](INSTALL-SKILLED.md#4-copy-it-into-your-project). The other six doctor commands stay with the skill whose own checks they run, such as `/doctor:git` with `sk-git`. The [Doctor](#doctor) section lists them.
 
 &nbsp;
+
 #### CODE WORKFLOW
 
 **`sk-code`** - write code that fits the stack you're in
@@ -824,6 +874,7 @@ When a decision needs a number rather than prose, this hub asks the hosted Jev c
 Two features run on their own once a key is stored. `validate_document.py` flags a `file:line` citation whose code no longer shows the claim. Fetched web pages receive one advisory line when a section reads as instructions aimed at an AI agent. `JEV_FEATURES=0` stops both features, and without a stored key nothing calls Jev.
 
 &nbsp;
+
 #### MCP INTEGRATION
 
 **`mcp-code-mode`**
@@ -843,6 +894,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 - **`mcp-refero` and `mcp-mobbin` _(transports)_:** read-only search of UI references and app screens and flows
 
 &nbsp;
+
 #### DESIGN
 
 **`sk-design`** - parent hub for design work over three modes
@@ -856,6 +908,7 @@ The hub carries no procedure of its own. It decides which mode owns the question
 It pairs with `sk-code`: the hub supplies the measured reference, and `sk-code` builds and verifies against it.
 
 &nbsp;
+
 #### DOCUMENTATION
 
 **`sk-doc`**
@@ -869,6 +922,7 @@ It authors manual testing playbooks through `sk-create-manual-testing-playbook`.
 It authors spec packet goals through `sk-create-goal`. That is a top-level, phase-parent or phase-child `goal.md` built from a checked template, with top-level and parent goals held to 4,000 characters.
 
 &nbsp;
+
 #### PROMPTING
 
 **`sk-prompt`**
@@ -878,6 +932,7 @@ A standalone prompt-engineering skill that turns a rough ask into a structured, 
 It owns the canonical CLI prompt-quality card. Every `cli-*` executor's local card delegates to it for framework selection and the CLEAR pre-dispatch check.
 
 &nbsp;
+
 #### OTHER
 
 **`cli-orca`** - Orca terminal CLI orchestrator
@@ -893,6 +948,8 @@ Orca work routes here, not to the mcp-tooling hub, which names `cli-orca` as the
 ## 10. 🤖 AGENT LIBRARY
 
 11 custom specialist agents. Defined in `.skilled/agents/` (source of truth) and mirrored for Claude Code, Codex, Cursor, Devin and Pi (`.<runtime>/agents/`). OpenCode reads `.opencode/agents/`, which links to the same `.skilled/agents/` source.
+
+&nbsp;
 
 #### AGENT ORCHESTRATION
 
@@ -954,6 +1011,8 @@ Produces `file:line` findings. The `/deep:review` command owns the loop. See [De
 
 The framework extends each runtime through plugins and hooks rather than asking you to wire anything by hand.
 
+&nbsp;
+
 #### Goal Plugin
 
 Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets.
@@ -974,6 +1033,7 @@ The validator guards the goal. A phase parent or top-level packet goal has one l
 Autonomous continuation is default-off and gated by caps, a cooldown and a kill-switch. See `.skilled/hooks/goal/README.md` for the model and `.skilled/hooks/goal/goal-plugin.md` for the OpenCode plugin contract.
 
 &nbsp;
+
 #### In-Session Handover
 
 In-session handover ships off, and nothing about your sessions changes until you turn it on.
@@ -999,6 +1059,7 @@ Each runtime also has its own flag, `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`,
 The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
 
 &nbsp;
+
 #### Decision Capture
 
 Saves the answers you give to the AI's questions, so the reason behind a choice is not lost when the session ends.
@@ -1012,6 +1073,7 @@ A question you answered in plain chat is offered at save with evidence about the
 In linked projects, each project keeps its answers in its own folder under `.skilled/skills/.state/decision-capture/`. Projects linked to one checkout never see each other's answers. To turn it off, set `SYSTEM_DECISION_CAPTURE_DISABLED=1`. The [hooks README](.skilled/hooks/README.md) lists the adapters.
 
 &nbsp;
+
 #### OpenCode Plugins
 
 Seventeen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
@@ -1024,6 +1086,7 @@ Seventeen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
 
 &nbsp;
+
 #### Pi Extensions
 
 `.pi/extensions/` holds Pi's discovery mirror: `*.ts` extension entries (relative symlinks into their owners' trees) plus two local extension packages.
@@ -1043,6 +1106,7 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 `.pi/extensions/` also holds `pi-fast-mode-w-subagent-support`, for fast mode with subagent support. Its symlinked guard bridges run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the in-session handover relaunch. Community packages load via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`, `pi-claude-code-ui`.
 
 &nbsp;
+
 #### DeepSeek Harness Bundle
 
 DeepSeek Harness loads plugins only from the patches a run names. `.dsh/patches/guards.patch.yml` loads `.dsh/plugins/repo-guards/`. Its adapters live in the hook library beside their cores and reach the bundle through links that `/doctor:runtime-mirrors` checks.
@@ -1055,6 +1119,7 @@ DeepSeek Harness loads plugins only from the patches a run names. `.dsh/patches/
 In fan-out lineages, the lineage patch adds a marker row that keeps the four interactive-only adapters off and every guard on. See [`.dsh/SYNC.md`](.dsh/SYNC.md).
 
 &nbsp;
+
 #### Shared Hook Cores
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
@@ -1068,6 +1133,8 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 ## 12. ⌨️ COMMAND LIBRARY
 
 45 commands: 43 in six groups plus two utilities. The grouped ones are Markdown files under `.skilled/commands/`, and most hand their steps to a YAML workflow beside them. The OpenCode-only `/goal-opencode` is authored in `.opencode/commands/`.
+
+&nbsp;
 
 #### SPEC KIT
 
@@ -1107,6 +1174,7 @@ Continues a previous session by auto-loading continuity from the spec folder. It
 `/deep:research` joins that chain only after a real `spec.md` exists.
 
 &nbsp;
+
 #### CONTINUITY
 
 **`/speckit:save`**
@@ -1124,6 +1192,7 @@ It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi and OpenCode 
 Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--triggers`, ripgrep recipes otherwise. `--paths` and `--count` pick the recipe, and `--packet <specFolder>` narrows the search roots. A phrase nobody wrote is a clean no-hit, never a nearest guess.
 
 &nbsp;
+
 #### CREATE
 
 **`/create:skill`** - unified skill creation and update workflow
@@ -1181,6 +1250,7 @@ Creates, revises or retires a rule under `repo-rules/` and wires it into `REPO R
 Applies the Human Voice Rules to a file or passage, or scores it against them, then re-scans the result. Modes: `:auto`, `:confirm`.
 
 &nbsp;
+
 #### DEEP
 
 The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they run. Use `@context` for one-shot retrieval before planning. All three accept the modes `:auto` and `:confirm`.
@@ -1190,6 +1260,7 @@ The active autonomous loop families. See [Deep Loop](#7--deep-loop) for how they
 - **`/deep:review`** - audit code until it is clean. Iterative code audit until convergence, ending in a PASS/CONDITIONAL/FAIL verdict
 
 &nbsp;
+
 #### DESIGN
 
 All three accept the modes `:auto` and `:confirm`.
@@ -1199,6 +1270,7 @@ All three accept the modes `:auto` and `:confirm`.
 - **`/design:diagram`** - draw a diagram. Writes an HTML and SVG diagram in one of 27 types, an ASCII or Markdown flowchart or a redraw of a draw.io or Mermaid source
 
 &nbsp;
+
 #### DOCTOR
 
 Seventeen commands check and repair the setup, one per area. Eleven of them belong to the `system-skilled-doctor` skill, which owns the commands that install Skilled in a project and keep it current there. The other six stay with the skill whose own checks they run: `/doctor:sk-code` and `/doctor:ci` with `sk-code`, `/doctor:git` with `sk-git`, `/doctor:sk-skill` with `sk-doc`, `/doctor:skill-advisor` with `system-skill-advisor` and `/doctor:deep-loop` with `system-deep-loop`.
@@ -1325,6 +1397,7 @@ A bare invocation runs `check`. A repository already in its target state prints 
 Shows each setting in `ENV-REFERENCE.md` and `.env.example`, with its default, its purpose and where it is set, by name only and never by value. It saves a preference to `hook-flags.env` or Claude Code's `.claude/settings.local.json` only after showing the exact line and getting your yes. Otherwise it prints an `export` line for your shell profile. It never asks for or saves a secret.
 
 &nbsp;
+
 #### UTILITY
 
 **`/prompt:improve`**
@@ -1343,11 +1416,15 @@ Code Mode MCP gives the AI access to external tools (Figma, GitHub, Chrome DevTo
 
 Instead of loading large external tool definitions into context, Code Mode loads them on demand through one interface (1.6k tokens). That is a 98.7% reduction.
 
+&nbsp;
+
 #### Native MCP Servers
 
 `code_mode` is the only registered MCP server: 7 tools for external tool orchestration via TypeScript execution.
 
 The Skill Advisor is deliberately not one. It runs as a resident daemon behind `node .skilled/bin/skill-advisor.cjs` and registers nothing.
+
+&nbsp;
 
 #### Code Mode Tools (7)
 
@@ -1360,6 +1437,8 @@ The Skill Advisor is deliberately not one. It runs as a resident daemon behind `
 | **`register_manual`** | Register a new tool provider |
 | **`deregister_manual`** | Remove a tool provider |
 | **`get_required_keys_for_tool`** | Check required environment variables for a tool |
+
+&nbsp;
 
 #### External Integrations (via `.utcp_config.json`)
 
@@ -1380,6 +1459,8 @@ All of them run as MCP over stdio.
 | **`webflow`** | Sites, CMS collections | `webflow_WEBFLOW_TOKEN` |
 | **`aside`**, **`mobbin`**, **`notion`**, **`obsidian`**, **`refero`** | Each backs the `mcp-tooling` mode of the same name | |
 | **`magnific`** and **`gitkraken`** | Registered with no mode packet of their own | |
+
+&nbsp;
 
 #### Performance
 
@@ -1421,6 +1502,9 @@ See `.skilled/skills/sk-git/references/continuous-integration.md` for the full m
 ## 15. ⚙️ CONFIGURATION
 
 <a id="customizing-for-your-stack"></a>
+
+&nbsp;
+
 ### 🎯 Customizing for Your Stack: Start with `sk-code`
 
 This repo ships as a **public template**. Of the skills it ships with, only one carries stack-specific content. Start there.
@@ -1446,11 +1530,13 @@ Every other shipped skill is codebase-agnostic:
 | **`cli-orca`** | Drives the Orca app's worktrees, terminals, browser and automations from a dispatch. Works for any project that runs Orca |
 
 &nbsp;
+
 #### Adding Your Own Skills
 
 The shipped set is intentionally minimal. Most teams add their own: project-specific workflows, ops runbooks, domain-specific reviewers. Drop them into `.skilled/skills/<your-skill>/` and the advisor picks them up. The shipped skills stay agnostic so upstream updates apply cleanly to your fork.
 
 &nbsp;
+
 #### What Adapting `sk-code` Looks Like
 
 `sk-code` ships three surfaces. The Skilled surface holds the standards for this framework's own code, so keep it. The CI surface holds the GitHub Actions workflow standards. The Frontend surface holds stack-agnostic web frontend practice (markup, CSS, accessibility, i18n, performance and the five-pass Figma check). It also holds the visual references that decide a value: spacing, type, colour and elevation scales, the hierarchy method and visual review pass, and motion and interaction rules. Add a surface of your own when you want the hub to carry another stack.
@@ -1464,6 +1550,7 @@ The shipped set is intentionally minimal. Most teams add their own: project-spec
 The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces and your rule overrides at review time.
 
 &nbsp;
+
 #### What Adapting `sk-git` Looks Like
 
 `sk-git` reads most of its settings from the repository, so you adapt it with git config and a `.sk-git/` folder rather than by editing the skill. Run every command from the repository root.
@@ -1477,6 +1564,7 @@ The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack)
 **Verify.** Run `/doctor:git setup`, or `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <runtime>` outside an AI runtime. It checks eleven settings without changing anything and names one repair command for each check that fails.
 
 &nbsp;
+
 ### Core Configuration Files
 
 | File | What it holds |
@@ -1488,6 +1576,7 @@ The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack)
 | **Runtime folders** | `.claude/`, `.codex/`, `.opencode/`, `.cursor/`, `.pi/` and `.devin/`. Each holds a README that separates what is generated from `.skilled/` from what is authored there, and names the command that checks its mirrors: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md) |
 
 &nbsp;
+
 ### Environment Settings
 
 Every setting has a default, so you can start without setting anything. Two example files list them, and no reader loads their values. Copy a line into the place its reader looks, then uncomment it and change the value.
@@ -1506,6 +1595,7 @@ Where you set a value depends on what reads it:
 Git ignores all four, so your values stay on your machine. `/doctor:env list` shows every setting and where it is set, by name only. `/doctor:env <NAME>` shows one setting, then saves a new value to `hook-flags.env` or `.claude/settings.local.json` after showing you the exact line. It can also print the `export` line for your profile. It never asks for a key.
 
 &nbsp;
+
 ### Off Switches
 
 The AI hooks, the validators, the git hooks and the CI workflows all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches, the two validation switches and the Jev feature switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
@@ -1531,11 +1621,13 @@ echo 'SYSTEM_GIT_HOOKS_CHECK_DISABLED=1' >> .skilled/hooks/hook-flags.env
 ```
 
 &nbsp;
+
 ### Retrieval and Continuity Configuration
 
 Nothing to configure. The trigger index is a committed file regenerated by `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`. The ripgrep recipes read the working tree, and the continuity writer updates the packet in place. There is no database, no daemon and no embedding provider on this path. The skill advisor keeps its own model-server settings.
 
 &nbsp;
+
 ### MCP Config Shape
 
 ```json
@@ -1551,8 +1643,6 @@ Nothing to configure. The trigger index is a committed file regenerated by `node
 &nbsp;
 
 ## 16. ❓ FAQ
-
-&nbsp;
 
 **Q: Must all 14 skills be installed to use the framework?**
 

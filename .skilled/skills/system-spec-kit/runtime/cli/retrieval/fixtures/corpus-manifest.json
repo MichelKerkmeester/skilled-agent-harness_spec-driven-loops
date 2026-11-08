@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b862da2cfca51e15b0e40831ab282d84deeb340133a8ae37b54e7ccff954fd01",
+  "corpusHash": "3d46d96961724c649c8cfbdccc07e5ebc8ef0687c0b7f3abd8ba1b9df39229d5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28486,
+  "includedPathCount": 28494,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6477,6 +6477,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.6.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.7.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6696,6 +6697,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.2.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -6961,6 +6963,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.11.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.12.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.13.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.14.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.2.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.3.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.4.0.md",
@@ -7118,6 +7121,7 @@
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.3.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.4.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.5.0.md",
+    ".skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.6.0.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/accuracy-outranks-the-standard.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/scope-gate/code-and-quotations-untouched.md",
@@ -15656,6 +15660,10 @@
     "specs/sk-doc/066-skill-readability-refinement/decision-record.md",
     "specs/sk-doc/066-skill-readability-refinement/goal.md",
     "specs/sk-doc/066-skill-readability-refinement/spec.md",
+    "specs/sk-doc/067-doc-tooling-prose-and-release-amend/implementation-summary.md",
+    "specs/sk-doc/067-doc-tooling-prose-and-release-amend/plan.md",
+    "specs/sk-doc/067-doc-tooling-prose-and-release-amend/spec.md",
+    "specs/sk-doc/067-doc-tooling-prose-and-release-amend/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -28517,7 +28525,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "755310e39055686a72153fef19d39ec05f6a728ee90bed54d9a7132d836781b5",
+  "manifestHash": "bb35779f725918367ac87554714de6469540d341b977cd0a386d0cac167349a7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33269,6 +33277,10 @@
     },
     {
       "path": "specs/sk-doc/066-skill-readability-refinement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/067-doc-tooling-prose-and-release-amend/scratch",
       "reason": "excluded directory"
     },
     {

@@ -9,7 +9,7 @@ trigger_phrases:
   - "natural writing standards"
 importance_tier: important
 contextType: general
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # Human Voice Rules (HVR) - Writing Standards Reference
@@ -380,6 +380,9 @@ Never use these. Each occurrence is automatic failure.
 
 **Context-dependent** (-5 when metaphorical, OK when literal):
 `navigating` (blocked: challenges | OK: website), `landscape` (blocked: competitive | OK: photography), `unlock` (blocked: potential | OK: door), `ecosystem` (blocked: startup | OK: biological), `journey` (blocked: customer | OK: actual travel)
+
+**Proper names** (exempt as the exact name, case-sensitive, so a product name never counts as the blocker word inside it):
+`DeepSeek Harness`, `cli-deepseek-harness`
 
 ---
 

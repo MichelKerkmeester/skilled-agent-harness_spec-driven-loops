@@ -8,7 +8,7 @@ trigger_phrases:
   - "narrative readme structure"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # README Template and Selection Guide
@@ -94,11 +94,13 @@ Sections use plain numbered H2 headings. Do not add `<!-- ANCHOR -->` comments o
 
 ## 4. WRITING RULES
 
-Write for scanning first.
+Write for reading first, then scanning.
 
 - Lead with what the thing does.
 - Put the fastest useful path before detailed reference.
+- Explain in short paragraphs of short sentences. Keep bullets for commands, options, steps and parallel facts.
 - Use tables for options, file lists and comparisons.
+- When installing takes more than a few steps, keep only the minimum commands here and point to a root install document.
 - Give every inventory item a description. When an item needs more than one line, switch to the itemized pattern below instead of widening the table.
 - Use fenced code blocks with language tags.
 - Test commands before documenting them.

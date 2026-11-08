@@ -1070,6 +1070,33 @@ SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
 check "no staged skill doc is a silent no-op" 0 "$RC"
 grep -q 'doc-version-bump' "$TMP/out.log" && { echo "FAIL  doc-version gate spoke on an unrelated commit"; FAIL=$((FAIL + 1)); }
 
+# During a merge, both branches raised the doc from 1.2.0.0 to 1.2.1.0 over different bodies,
+# so the merge stops on a conflict that the caller then resolves. HEAD alone is the wrong
+# yardstick here: a doc taken whole from the merged-in side was already raised there.
+setup_docv_merge_fixture() {
+  setup_docv_fixture
+  local trunk; trunk="$(git -C "$TMP" rev-parse --abbrev-ref HEAD)"
+  git -C "$TMP" checkout -qb side
+  docv_doc 1.2.1.0 "Side body." > "$TMP/$DOCV_REF"; git -C "$TMP" commit -qam side
+  git -C "$TMP" checkout -q "$trunk"
+  docv_doc 1.2.1.0 "Trunk body." > "$TMP/$DOCV_REF"; git -C "$TMP" commit -qam trunk
+  git -C "$TMP" merge -q --no-commit side >/dev/null 2>&1 || true
+}
+
+setup_docv_merge_fixture
+git -C "$TMP" checkout -q --theirs -- "$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a merge taking a doc whole from the merged-in side passes" 0 "$RC"
+if [[ "$(docv_staged_version)" == "1.2.1.0" ]]; then echo "PASS  a doc taken from the merged-in side keeps its version"; PASS=$((PASS + 1))
+else echo "FAIL  the merged-in doc was raised again to $(docv_staged_version)"; FAIL=$((FAIL + 1)); fi
+
+setup_docv_merge_fixture
+docv_doc 1.2.1.0 "Resolved body." > "$TMP/$DOCV_REF"; git -C "$TMP" add "$DOCV_REF"
+SPECKIT_SKIP_DOC_VERSION_BUMP=0 run_hook; RC=$?
+check "a merge resolution that edits a doc body raises it" 0 "$RC" "raised $DOCV_REF"
+if [[ "$(docv_staged_version)" == "1.2.2.0" ]]; then echo "PASS  the resolved doc's raise reached the index"; PASS=$((PASS + 1))
+else echo "FAIL  expected the resolved doc at 1.2.2.0, got $(docv_staged_version)"; FAIL=$((FAIL + 1)); fi
+
 echo ""
 # ── 74. a staged private skill is refused and the refusal names its repair ──
 setup_gate_fixture
