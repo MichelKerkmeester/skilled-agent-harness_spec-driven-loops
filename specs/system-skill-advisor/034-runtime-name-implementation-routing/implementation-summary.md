@@ -77,6 +77,7 @@ The delegation resolver now blanks a runtime name that a surface noun follows wi
 | `.skilled/skills/sk-code/SKILL.md` | Modified | Keywords gain guard, adapter, stderr and detector |
 | `.skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts` | Modified | Import follows the hooks track rename to `hooks-plugins-extensions` |
 | `.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl` | Modified | Session id uses the `template-session` token the scaffold replaces |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` | Modified | A test writes only into its own temp folder, after a Pi test's marker in the shared temp root failed 27 goal-core tests |
 <!-- /ANCHOR:what-built -->
 
 ---

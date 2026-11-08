@@ -62,6 +62,7 @@ contextType: "implementation"
 - [x] T011 Add guard, adapter, stderr and detector to `sk-code`'s keywords (`.skilled/skills/sk-code/SKILL.md`). Verify: probes rise and the corpus holds. Evidence: pass 8; validate 158/195, 30/40, 13; Python 78/84; collision spot checks keep their owners.
 - [x] T012 Point the observation-sink test at the renamed hooks track (`runtime/tests/policy-observation-sink.vitest.ts`). Verify: it loads. Evidence: 5/5.
 - [x] T013 Give the acceptance-criteria template the token the scaffold replaces (`templates/addons/acceptance-criteria.md.tmpl`). Verify: a fresh scaffold writes a real id. Evidence: `scaffold-999-scaffold-probe`; 201/201 and 29/29.
+- [x] T014 Add the temp-folder rule for tests to sk-code's test conventions (`sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md`). Verify: the section sits under Test File Conventions. Evidence: "Temp Files in Tests" subsection; validate below.
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -86,6 +86,7 @@ full_corpus_top1 0.8103 (158/195)   holdout_top1 0.75 (30/40)   unknown_count 13
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Re-captured: the delegation bucket grows from 18 to 20 cases |
 | `.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Modify | Delegation census pins move from 18 to 20 |
 | `.skilled/skills/sk-code/SKILL.md` | Modify | Four code words in its keywords, approved by the operator |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` | Modify | Temp-folder rule for tests, approved by the operator |
 | `.skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts` | Modify | Follow the hooks track rename |
 | `.skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl` | Modify | Scaffold-replaced session id token |
 <!-- /ANCHOR:scope -->

@@ -53,6 +53,7 @@
       ".skilled/skills/sk-code/SKILL.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/policy-observation-sink.vitest.ts",
       ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
       "templates/addons/acceptance-criteria.md.tmpl"
     ],
     "entities": [
@@ -153,6 +154,12 @@
         "source": "derived"
       },
       {
+        "name": "directory-and-test-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The executor-delegation resolver treats any bare executor alias as a hand-off, so \"Make the Claude Code Stop hook return a block\" routes to `cli-claude-code` at confidence 0.95 and caps `sk-code` below it",
     "created_at": "2026-11-08T16:20:14Z",
-    "last_save_at": "2026-11-08T17:39:12.323Z",
+    "last_save_at": "2026-11-08T19:02:08.015Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:588578df4316dd00dc75bd107673fdd70cda14d4d5f1f124bd46f03c21946db0",
+    "source_fingerprint": "sha256:7ed11f0f685d6f1fd62d0e9c0e176ef92ebf9186c5c35ab51861527e5228a215",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "098bf6889fa2511c8168a56647c44cd31f8d10bfc5939784131ff56d0c4eb1f8",
+      "spec.md": "3a7e92d5c0f9023b00022545ccfcdcdb861f5811fe0dc49f172636522ff4ffbc",
       "plan.md": "fda2c1ac6330bb32ff97a69f76d69ca70226812aa885ca7906d56fa7802092e2",
-      "tasks.md": "afa945c65bc3e6daa4b970cd902514ee73fea7ae1974417103d33c85439f7dfa",
+      "tasks.md": "3bf47ef7ad52116f206085b771c35c8ee2a42aea8b0ebb6fa8992212f1d0de4b",
       "decision-record.md": "1a192a0a7c170d6bd89ab3b5f2ba4d86a708936e202406a70064d7656808dd51",
-      "implementation-summary.md": "fb53cb0ed2ecb0e99b6be1d7993a83650cb4416ff331d255bf2cfaa9622ff8fe"
+      "implementation-summary.md": "a798c92d06a3954bc268303599b766f0c0e58671f61bef1665d81b553a1731e0"
     },
     "last_active_at": null
   }

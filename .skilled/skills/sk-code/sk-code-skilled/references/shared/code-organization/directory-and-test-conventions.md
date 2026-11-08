@@ -8,7 +8,7 @@ trigger_phrases:
   - "script directory structure"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Directory & Test File Conventions
@@ -265,6 +265,12 @@ These two rules are SKILLED house rules. The universal style guide leaves folder
 - **Test code lives under a `tests/` tree.** Tests, their fixtures and their helpers go under the package's top-level `tests/` folder. Keep that folder flat while the file names stay unique, and group by area only when a group holds several files. A test file never sits beside the source file it covers.
 
 `verify_alignment_drift.py --check-folders` flags both the name rule and code folders that lack a README.
+
+### Temp Files in Tests
+
+A test writes only into a folder it created for itself, such as one from `mkdtemp`, `mktemp -d` or `tempfile.mkdtemp`, and removes it when the test ends. It never writes into the shared temp root (`os.tmpdir()`, `$TMPDIR`, `/tmp`) directly, and never passes that root as a working directory to the code under test.
+
+Other suites read the same root. A file left there by one test can change what another suite finds and fail it, in a run that never touched the first test. This includes files the code under test writes on its own, such as state markers or logs under its working directory, so give that code a private folder too.
 
 ### Test File Structure
 
