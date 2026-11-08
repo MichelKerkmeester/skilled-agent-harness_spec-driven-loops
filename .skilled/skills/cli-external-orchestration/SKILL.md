@@ -29,7 +29,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 | **cli-cursor** | workflow | Cursor CLI orchestration: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when `cursor-agent` is absent | `cli-external-orchestration/cli-cursor/` |
 | **cli-devin** | workflow | Devin CLI orchestration: Cognition-backed coding, cloud handoff, subagent delegation, MCP host integration; fails closed when `devin` is absent | `cli-external-orchestration/cli-devin/` |
 | **cli-pi** | workflow | Pi CLI orchestration: guarded headless print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when `pi` is absent | `cli-external-orchestration/cli-pi/` |
-| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: both routes are verified, LLM Gateway on 2026-11-06 and OpenCode Go on 2026-11-07. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
+| **cli-deepseek-harness** | workflow | DeepSeek Harness (`dsh`) CLI orchestration: pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster, JSON event stream, cross-AI validation. Experimental: both routes answered a keyed run, LLM Gateway on 2026-11-06 as the default and OpenCode Go on 2026-11-07 when named. Fails closed when `dsh` is absent or not the pinned version | `cli-external-orchestration/cli-deepseek-harness/` |
 
 ### When NOT to Use
 

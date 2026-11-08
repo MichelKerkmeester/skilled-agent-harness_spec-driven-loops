@@ -234,6 +234,20 @@ describe('refresh-track-roots', () => {
     expect(raw).toBe(`${JSON.stringify(after, null, 2)}\n`);
   });
 
+  it('does not count a numbered folder with no spec.md as a packet', () => {
+    // A cloned reference project kept beside the packets, named like one.
+    fs.mkdirSync(path.join(specs, 'beta', '008-reference-clone', 'context'), { recursive: true });
+    fs.writeFileSync(path.join(specs, 'beta', '008-reference-clone', 'context', 'README.md'), '# clone\n');
+    const result = run(REFRESH, ['--track', 'beta', '--apply']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(readChildren('beta')).toEqual(['beta/001-x']);
+    commitFixture();
+    const fromTree = readWorkingTreeTracks(specs).find((entry: { name: string }) => entry.name === 'beta');
+    const fromCommit = readCommitTracks(specs, 'HEAD').tracks.find((entry: { name: string }) => entry.name === 'beta');
+    expect(fromTree?.children).toEqual(['001-x']);
+    expect(fromCommit?.children).toEqual(['001-x']);
+  });
+
   it('leaves a track that already matches byte for byte', () => {
     const before = fs.readFileSync(path.join(specs, 'beta', 'graph-metadata.json'), 'utf8');
     const result = run(REFRESH, ['--track', 'beta', '--apply']);

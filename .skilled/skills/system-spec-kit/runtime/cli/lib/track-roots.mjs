@@ -72,9 +72,13 @@ function isDeclaredSubTrack(description) {
   return description !== null && description.level === SUB_TRACK_LEVEL;
 }
 
+// A numbered folder is a packet only when it holds a spec.md. A folder named like
+// one that holds none, such as an ignored reference clone kept beside the packets,
+// would otherwise be listed in the working tree and never in a commit.
 function numberedChildren(directory) {
   return fs.readdirSync(directory, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && SPEC_LEAF_SEGMENT_PATTERN.test(entry.name))
+    .filter((entry) => fs.existsSync(path.join(directory, entry.name, 'spec.md')))
     .map((entry) => entry.name)
     .sort();
 }
@@ -196,9 +200,23 @@ function lsTree(repoTop, rev, treePath) {
   });
 }
 
-function numberedTreeChildren(entries) {
+// The commit side of numberedChildren: one recursive listing of the folder finds
+// every child that holds a spec.md, rather than one git call per child.
+function numberedTreeChildren(repoTop, rev, treePath, entries) {
+  const output = execFileSync('git', ['-C', repoTop, 'ls-tree', '-r', '-z', '--name-only', rev, `${treePath}/`], {
+    encoding: 'utf8',
+    env: gitEnv(),
+    maxBuffer: 256 * 1024 * 1024,
+  });
+  const prefix = `${treePath}/`;
+  const withSpec = new Set();
+  for (const entryPath of output.split('\0')) {
+    if (!entryPath.startsWith(prefix)) continue;
+    const parts = entryPath.slice(prefix.length).split('/');
+    if (parts.length === 2 && parts[1] === 'spec.md') withSpec.add(parts[0]);
+  }
   return entries
-    .filter((item) => item.type === 'tree' && SPEC_LEAF_SEGMENT_PATTERN.test(item.name))
+    .filter((item) => item.type === 'tree' && SPEC_LEAF_SEGMENT_PATTERN.test(item.name) && withSpec.has(item.name))
     .map((item) => item.name)
     .sort();
 }
@@ -233,7 +251,7 @@ export function readCommitTracks(specsRoot, rev) {
       name: entry.name,
       metadataPath: `${specsPath}/${entry.name}/${GRAPH_METADATA}`,
       rawMetadata: readBlob(repoTop, metadata.object),
-      children: numberedTreeChildren(inside),
+      children: numberedTreeChildren(repoTop, rev, `${specsPath}/${entry.name}`, inside),
       symlinked: false,
     };
     tracks.push(track);
@@ -263,7 +281,7 @@ export function readCommitTracks(specsRoot, rev) {
         name: id,
         metadataPath: `${specsPath}/${entry.name}/${sub.name}/${GRAPH_METADATA}`,
         rawMetadata: subMetadata ? readBlob(repoTop, subMetadata.object) : null,
-        children: numberedTreeChildren(subInside),
+        children: numberedTreeChildren(repoTop, rev, `${specsPath}/${entry.name}/${sub.name}`, subInside),
         symlinked: false,
       });
     }

@@ -124,10 +124,39 @@ def parse_word_blockers(text):
             bucket = hard_raw
         elif lowered.startswith("**context-dependent"):
             bucket = context_raw
+        elif lowered.startswith("**proper names"):
+            bucket = None
         if bucket is None:
             continue
         bucket.extend(re.findall(r"`([^`]+)`", line))
     return _clean_terms(hard_raw), _clean_terms(context_raw)
+
+
+def parse_proper_names(text):
+    """Product names that contain a blocker word, kept exact and case-sensitive.
+
+    "DeepSeek Harness" names a tool, so the word "harness" inside it is not the
+    metaphor the blocker list exists to catch. Only the listed spelling is exempt,
+    which keeps a lowercase "harness the power" a hard blocker.
+    """
+    body = _section(text, "HARD BLOCKER WORDS")
+    names = []
+    in_names = False
+    for line in body.splitlines():
+        lowered = line.lower()
+        if lowered.startswith("**"):
+            in_names = lowered.startswith("**proper names")
+        if in_names:
+            names.extend(re.findall(r"`([^`]+)`", line))
+    return sorted(set(names), key=lambda value: (-len(value), value))
+
+
+def mask_proper_names(lines, names):
+    """Blank each listed name in place, so columns of other findings stay true."""
+    if not names:
+        return lines
+    pattern = re.compile("|".join(re.escape(name) for name in names))
+    return [pattern.sub(lambda match: " " * len(match.group(0)), line) for line in lines]
 
 
 def parse_phrase_blockers(text):
@@ -205,6 +234,7 @@ def load_rules(rules_path):
         "soft1": one,
         "transitions": transitions,
         "punctuation": parse_punctuation(text),
+        "properNames": parse_proper_names(text),
     }
 
 
@@ -505,6 +535,7 @@ def scan_text(text, rules, include_code=False, template_payload=False):
 
     findings = []
     scan_punctuation(lines, rules["punctuation"], findings)
+    lines = mask_proper_names(lines, rules.get("properNames", []))
     scan_terms(lines, rules["hardPhrases"], "phrase-blocker", "hard", findings)
     scan_terms(lines, rules["hardWords"], "word-blocker", "hard", findings)
     scan_terms(lines, rules["contextWords"], "context-dependent", "review", findings)

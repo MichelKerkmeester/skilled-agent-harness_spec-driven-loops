@@ -12,8 +12,18 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 
 import { capabilities, readSession } from '../../session-readers/index.mjs';
+import { piProjectDirectory } from '../../session-readers/pi.mjs';
 import { DECOY, piSession, SESSION, T0 } from './fixtures.mjs';
 import { withTempAsync } from './helpers.mjs';
+
+// The fixtures build store folders with the reader's own key helper, so this
+// pins the helper to a folder name a real Pi install wrote.
+test('the project folder name matches the one Pi writes', () => {
+  assert.equal(
+    piProjectDirectory('/Users/michelkerkmeester/MEGA/Development/Skilled'),
+    '--Users-michelkerkmeester-MEGA-Development-Skilled--',
+  );
+});
 
 test('an older session resolves by header id and matching cwd', async () => {
   await withTempAsync('pi-reader', async (root) => {

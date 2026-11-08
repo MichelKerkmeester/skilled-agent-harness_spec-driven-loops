@@ -22,7 +22,7 @@
       "surface consistency research tasks",
       "sk-code surface remediation tasks",
       "sk-code surface consistency acceptance criteria",
-      "surface consistency research implementation summary"
+      "019-surface-consistency-research operator decisions"
     ],
     "key_topics": [
       "surface",
@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "research_archive/20261019T081751Z/research.md",
@@ -57,7 +58,6 @@
       ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
       ".skilled/bin/compiled-route-manifest.cjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
       ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
       ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml"
@@ -85,6 +85,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -154,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-skills-hermes.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
-        "source": "derived"
-      },
-      {
         "name": "generate-trigger-index.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The sk-code hub has three code surfaces that route the same way but are built differently",
     "created_at": "2026-10-19T06:38:42Z",
-    "last_save_at": "2026-11-06T17:33:43.334Z",
+    "last_save_at": "2026-11-08T14:48:52.410Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,16 +218,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:30e0930b158e524594a99462423be1b38b50bb2695cb62cd134044e9d4755b20",
+    "source_fingerprint": "sha256:4f910670abc00a8817647c1d4ff7aa07f0707a310cccb9826f4bfd0215b5fe9b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "631c99afd5282f73d453a72c5fc1dadb50351fbc8a6cfc141f3a5fa87dba8f21",
       "plan.md": "3db1c662025eaa813fc9d42ff9c82edfbc07d339854713dab9190302f784b383",
       "tasks.md": "533ffed99349f154ebffc41b168310c64da270ce5a4f0e40f0c768b61cdca9ab",
-      "implementation-summary.md": "82fa341efec46c5d5c78d095208901663a6c5f456d312ea05b198e4c91bf0934",
+      "decision-record.md": "d1060eb72721f49dea7ad5efdf64c9ba7b2f76de63c41eaa401255aa8885875a",
+      "implementation-summary.md": "ea64b3914696bce188c626439e307ed52e912d380120d6a795e50c01da2f9cf6",
       "research/research.md": "f65d5d158584053b98a6df6df8747b0a62ee8e27b4c1fe73de6dc95ba7cacc20"
     },
     "last_active_at": null

@@ -81,7 +81,13 @@
     "decision capture queue",
     "decision capture folder",
     "decision capture state",
-    "this chat candidate"
+    "this chat candidate",
+    "history lookup",
+    "session history",
+    "compacted session",
+    "before this compaction",
+    "earlier turns",
+    "history entry"
   ],
   "derived": {
     "trigger_phrases": [
@@ -105,7 +111,11 @@
       "spec template add-ons",
       "template add-ons",
       "spec docs",
-      "draft auto-repair"
+      "draft auto-repair",
+      "history lookup",
+      "session history",
+      "compacted session",
+      "history entry"
     ],
     "key_topics": [
       "spec",

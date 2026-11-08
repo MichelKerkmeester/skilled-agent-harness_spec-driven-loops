@@ -666,16 +666,7 @@ workflow:
       - "Check for tag collision: run `git tag --list {release_tag}`. IF the tag already exists -> STOP, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
       - "Check working tree state: run `git status --porcelain -- {output_path}`. IF the changelog file (or other pending work) is not yet committed, surface this at the checkpoint below -- the tag will point at current HEAD, which may not include {output_path}"
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> STOP, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\"; do not attempt tag/release"
-      - |
-        Prepare the release notes body from {output_path}:
-          IF the file opens with a YAML frontmatter block (first line is "---"):
-            Strip it through its closing "---" line, plus any blank lines after it
-          IF the next line starts with "# " (the editorial title H1):
-            Strip that line and any immediately following blank lines, because GitHub release bodies never duplicate the release title with a leading H1
-          Keep the entry's spacing: an &nbsp; line before every H2 and nothing between H4 items
-          Append a blank line, an &nbsp; line, a blank line and then the footer line:
-            Full changelog: `{output_path}`
-          Write the result to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) and use it as {notes_file_path}
+      - "Build the release notes body: run `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/build_release_notes.py {output_path} --out /tmp/release-notes-{release_tag}.md` and use that file as {notes_file_path}. It drops the YAML frontmatter and the editorial title H1, keeps the entry's spacing and appends the &nbsp; line and the Full changelog pointer. Exit 2 means the entry could not be read: PAUSE and report it"
       - "Compose the exact commands: `git tag -a {release_tag} -m \"{tag_message}\"`, `git push origin {release_tag}`, `gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}`"
       - "Present the checkpoint below showing the literal tag name and the exact commands. Only execute after explicit Approve."
       - |

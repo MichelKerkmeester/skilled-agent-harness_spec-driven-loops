@@ -8,6 +8,7 @@ import { createHistoryLookup } from '../hooks/lib/history/core.js';
 import {
   HistoryProjectionError,
   hasPagingToolCall,
+  isPagingToolCall,
   projectHistoryEntries,
   type HistoryEntry,
 } from '../hooks/lib/history/history.js';
@@ -245,6 +246,24 @@ describe('public projection', () => {
     if (projected === undefined || projected.kind !== 'modelTurn') throw new Error('Shell turn is not recoverable');
     expect(projected.assistantMessage.content[0]).toBeNull();
     expect(projected.toolResults.map((result) => result.toolCallId)).toEqual(['call-ls']);
+  });
+
+  it('treats an argument vector that runs the lookup CLI as paging', () => {
+    expect(isPagingToolCall({
+      type: 'toolCall',
+      id: 'call-argv',
+      name: 'exec',
+      arguments: { argv: ['node', '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js', 'browse'] },
+    })).toBe(true);
+  });
+
+  it('keeps a call that only names the lookup CLI file', () => {
+    expect(isPagingToolCall({
+      type: 'toolCall',
+      id: 'call-read-cli',
+      name: 'read_file',
+      arguments: { path: '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js' },
+    })).toBe(false);
   });
 
   it('keeps null slots so contentIndex still addresses the projection', () => {

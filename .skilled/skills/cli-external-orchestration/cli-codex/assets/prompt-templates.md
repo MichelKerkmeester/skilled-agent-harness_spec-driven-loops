@@ -9,7 +9,7 @@ trigger_phrases:
   - "codex review prompt template"
 importance_tier: normal
 contextType: implementation
-version: 1.9.3.0
+version: 1.9.4.0
 ---
 
 # Prompt Templates - Codex CLI
@@ -37,7 +37,7 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 | ------------------------------ | ----------------------------------------------------------------------------------- |
 | `--model gpt-6-luna`              | Skill default model. Override per dispatch with `gpt-5.5` / `gpt-5.6-terra` / `gpt-6.1-terra` / `gpt-6-sol` when the plan lists one of them and it fits the task better. Required pin. |
 | `-c model_reasoning_effort="high"` | Reasoning effort. **Required pin for templates.** Levels: `none`, `minimal`, `low`, `medium` (skill default), `high`, `xhigh`, `max`, `ultra`. Ceiling is per-model: `gpt-5.5` ≤ `xhigh`, `gpt-6-luna` ≤ `max`, `gpt-5.6-terra` / `gpt-6.1-terra` / `gpt-6-sol` ≤ `ultra`. |
-| `-c service_tier="fast"`        | Fast service tier, **opt-in only**. Project memory rule: never pass by default. Pass explicitly per invocation when fast tier is intentional. |
+| `-c service_tier="fast"`        | Fast service tier, the skill default. Pass it explicitly on every dispatch so the caller's `~/.codex/config.toml` cannot change it, and leave it out only when the operator asks for the standard tier. |
 | `--sandbox read-only`          | Safe mode: read files, no writes or shell commands                                  |
 | `--sandbox workspace-write`    | Allow file writes and build commands within workspace                               |
 | `--sandbox danger-full-access` | Full shell access, **requires explicit user approval**                             |
@@ -58,15 +58,15 @@ Generate a complete single-file application from a description.
 
 ```bash
 codex exec "Create a [description] application in [language]. Requirements: [requirements]. Output a single complete file with all imports, error handling, and comments. Start immediately." \
-  --model gpt-6-luna -c model_reasoning_effort="high" --sandbox workspace-write
+  --model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast" --sandbox workspace-write
 ```
-<!-- pinned model/effort, service_tier omitted per project policy (never default to fast) -->
+<!-- pinned model, effort and the default fast tier -->
 
 **Example:**
 
 ```bash
 codex exec "Create a REST API server application in TypeScript. Requirements: Express framework, CRUD endpoints for a 'tasks' resource, input validation with Zod, error middleware, health check endpoint. Output a single complete file with all imports, error handling, and comments. Start immediately." \
-  --model gpt-6-luna -c model_reasoning_effort="high" --sandbox workspace-write
+  --model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast" --sandbox workspace-write
 ```
 
 ### Multi-File Project
@@ -77,7 +77,7 @@ Generate a multi-file project structure with coordinated files.
 
 ```bash
 codex exec "Create a [description] project in [language] with the following structure: [features]. Generate all files including entry point, modules, configuration, and package manifest. Write files to [directory]. Start immediately." \
-  --model gpt-6-luna -c model_reasoning_effort="high" --sandbox workspace-write
+  --model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast" --sandbox workspace-write
 ```
 **Example:**
 
@@ -562,15 +562,15 @@ Raise effort to `high` or `xhigh` for tasks that benefit from deeper analysis:
 ```bash
 # Architecture analysis
 codex exec "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
-  --model gpt-6-luna -c model_reasoning_effort="high" --sandbox read-only
+  --model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast" --sandbox read-only
 
 # Security audit
 codex exec "Perform a thorough security audit of @./[file]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
-  --model gpt-6-luna -c model_reasoning_effort="high" --sandbox read-only
+  --model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast" --sandbox read-only
 
 # Complex planning
 codex exec -p ai-council "Design 3 alternative caching strategies for this API. Score each on correctness, maintainability, and performance." \
-  --model gpt-6-luna -c model_reasoning_effort="xhigh" -s read-only
+  --model gpt-6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast" -s read-only
 ```
 
 ### Medium Reasoning (default: code, review, docs)
@@ -580,15 +580,15 @@ codex exec -p ai-council "Design 3 alternative caching strategies for this API. 
 ```bash
 # Code generation
 codex exec "Create a [description] in [language]. Requirements: [requirements]. Output complete file." \
-  --model gpt-6-luna -c model_reasoning_effort="medium" --sandbox workspace-write
+  --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast" --sandbox workspace-write
 
 # Standard code review
 codex exec "Review @./[file] for bugs, style issues, and edge cases." \
-  --model gpt-6-luna -c model_reasoning_effort="medium" --sandbox read-only
+  --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast" --sandbox read-only
 
 # Test generation
 codex exec "Generate comprehensive unit tests for @./[file]." \
-  --model gpt-6-luna -c model_reasoning_effort="medium" --sandbox workspace-write
+  --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast" --sandbox workspace-write
 ```
 
 ### Mixed Effort Workflow
@@ -598,11 +598,11 @@ Use `high` for analysis, then `medium` for implementation, the same model at a d
 ```bash
 # Step 1: Deep analysis at high reasoning
 codex exec "Identify all security vulnerabilities in @./src/auth/" \
-  --model gpt-6-luna -c model_reasoning_effort="high" --sandbox read-only > /tmp/security-findings.txt
+  --model gpt-6-luna -c model_reasoning_effort="high" -c service_tier="fast" --sandbox read-only > /tmp/security-findings.txt
 
 # Step 2: Fix at medium reasoning
 codex exec "Fix these security issues: $(cat /tmp/security-findings.txt)" \
-  --model gpt-6-luna -c model_reasoning_effort="medium" --sandbox workspace-write
+  --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast" --sandbox workspace-write
 ```
 
 ---

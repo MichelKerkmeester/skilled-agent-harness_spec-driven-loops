@@ -562,9 +562,24 @@ def check_javascript(path: str, lines: List[str], extension: str) -> List[Findin
     return findings
 
 
+DECLARATION_SUFFIXES = (".d.ts", ".d.mts", ".d.cts")
+
+
+def is_compiler_emitted_declaration(path: str, lines: List[str]) -> bool:
+    """A declaration file the compiler wrote ends with its source-map comment.
+
+    Its header cannot be added by hand: the next emit drops it, and the added lines
+    would shift every mapping in the declaration map beside it.
+    """
+    if not path.endswith(DECLARATION_SUFFIXES):
+        return False
+    tail = [line.strip() for line in lines[-3:] if line.strip()]
+    return bool(tail) and tail[-1].startswith("//# sourceMappingURL=")
+
+
 def check_typescript(path: str, lines: List[str]) -> List[Finding]:
     findings: List[Finding] = []
-    if should_skip_ts_module_header(path):
+    if should_skip_ts_module_header(path) or is_compiler_emitted_declaration(path, lines):
         return findings
 
     module_marker = find_line(lines[:40], r"MODULE:")

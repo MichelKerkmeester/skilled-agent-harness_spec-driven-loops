@@ -16,6 +16,15 @@ import { dshProjectKey } from '../../session-readers/dsh.mjs';
 import { DECOY, dshSession, NOW, SESSION } from './fixtures.mjs';
 import { trackFileOpens, withTempAsync, writeJsonl } from './helpers.mjs';
 
+// The fixtures build store folders with the reader's own key helper, so this
+// pins the helper to a folder name a real DSH install wrote.
+test('the project key matches the folder name DSH writes', () => {
+  assert.equal(
+    dshProjectKey('/Users/michelkerkmeester/Documents/deepseek-harness/default-workspace'),
+    '--Users-michelkerkmeester-Documents-deepseek-harness-default-workspace--',
+  );
+});
+
 test('a session log resolves by header id and matching cwd', async () => {
   await withTempAsync('dsh-reader', async (root) => {
     const projectDir = join(root, 'project');

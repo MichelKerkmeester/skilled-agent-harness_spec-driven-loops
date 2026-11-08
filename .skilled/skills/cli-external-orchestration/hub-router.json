@@ -247,13 +247,15 @@
         "dsh",
         "dsh headless",
         "deepseek harness",
-        "delegate to dsh"
+        "delegate to dsh",
+        "opencode go route"
       ]
     },
     "deepseek-harness-dispatch": {
       "keywords": [
         "dsh headless dispatch",
-        "deepseek harness dispatch"
+        "deepseek harness dispatch",
+        "opencode go route"
       ]
     }
   }

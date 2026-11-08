@@ -1,5 +1,5 @@
 {
-  "manifestHash": "755310e39055686a72153fef19d39ec05f6a728ee90bed54d9a7132d836781b5",
+  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4246,6 +4246,9 @@
     ],
     "019 search query rag tasks": [
       "019 search query rag tasks"
+    ],
+    "019 surface consistency research operator decisions": [
+      "019-surface-consistency-research operator decisions"
     ],
     "019 system hardening": [
       "019 system hardening"
@@ -11464,6 +11467,9 @@
     "ambiguous brief rendering": [
       "ambiguous brief rendering"
     ],
+    "amend a published release": [
+      "amend a published release"
+    ],
     "amend test filename vocabulary": [
       "amend test filename vocabulary"
     ],
@@ -15401,6 +15407,9 @@
     ],
     "build obsidian theme": [
       "build obsidian theme"
+    ],
+    "build release notes": [
+      "build release notes"
     ],
     "build the colour system": [
       "build the colour system"
@@ -41308,6 +41317,18 @@
     "doc template code readme alignment tasks": [
       "doc template code readme alignment tasks"
     ],
+    "doc tooling prose and release amend": [
+      "doc tooling prose and release amend"
+    ],
+    "doc tooling prose and release amend implementation summary": [
+      "doc tooling prose and release amend implementation summary"
+    ],
+    "doc tooling prose and release amend plan": [
+      "doc tooling prose and release amend plan"
+    ],
+    "doc tooling prose and release amend tasks": [
+      "doc tooling prose and release amend tasks"
+    ],
     "doc trigger flag": [
       "doc trigger flag"
     ],
@@ -41373,6 +41394,9 @@
     ],
     "doc version auto bump": [
       "doc version auto bump"
+    ],
+    "doc version bump on merge": [
+      "doc version bump on merge"
     ],
     "doc version bump rule": [
       "doc version bump rule"
@@ -58099,6 +58123,9 @@
     ],
     "hvr pass result": [
       "hvr pass result"
+    ],
+    "hvr proper names": [
+      "hvr proper names"
     ],
     "hvr punctuation no matches": [
       "hvr punctuation no matches"
@@ -87409,6 +87436,12 @@
     "readme off switches shipped": [
       "readme off switches shipped"
     ],
+    "readme paragraphs and bullets": [
+      "readme paragraphs and bullets"
+    ],
+    "readme paragraphs over bullets": [
+      "readme paragraphs over bullets"
+    ],
     "readme paths lead to real files": [
       "readme paths lead to real files"
     ],
@@ -104465,6 +104498,9 @@
     "sk create changelog 1 4 2 0": [
       "sk-create-changelog 1.4.2.0"
     ],
+    "sk create changelog 1 4 3 0": [
+      "sk-create-changelog 1.4.3.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -104566,6 +104602,9 @@
     ],
     "sk create changelog v1 4 2 0": [
       "sk-create-changelog v1.4.2.0"
+    ],
+    "sk create changelog v1 4 3 0": [
+      "sk-create-changelog v1.4.3.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -105376,6 +105415,9 @@
     "sk create readme 1 3 13 0": [
       "sk-create-readme 1.3.13.0"
     ],
+    "sk create readme 1 3 14 0": [
+      "sk-create-readme 1.3.14.0"
+    ],
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
     ],
@@ -105450,6 +105492,9 @@
     ],
     "sk create readme v1 3 13 0": [
       "sk-create-readme v1.3.13.0"
+    ],
+    "sk create readme v1 3 14 0": [
+      "sk-create-readme v1.3.14.0"
     ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
@@ -105862,6 +105907,9 @@
     "sk create with human voice 1 2 5 0": [
       "sk-create-with-human-voice 1.2.5.0"
     ],
+    "sk create with human voice 1 2 6 0": [
+      "sk-create-with-human-voice 1.2.6.0"
+    ],
     "sk create with human voice implementation summary": [
       "sk create with human voice implementation summary"
     ],
@@ -105897,6 +105945,9 @@
     ],
     "sk create with human voice v1 2 5 0": [
       "sk-create-with-human-voice v1.2.5.0"
+    ],
+    "sk create with human voice v1 2 6 0": [
+      "sk-create-with-human-voice v1.2.6.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -106829,6 +106880,9 @@
     "sk doc 2 9 6 0": [
       "sk-doc 2.9.6.0"
     ],
+    "sk doc 2 9 7 0": [
+      "sk-doc 2.9.7.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -107302,6 +107356,9 @@
     ],
     "sk doc v2 9 6 0": [
       "sk-doc v2.9.6.0"
+    ],
+    "sk doc v2 9 7 0": [
+      "sk-doc v2.9.7.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -117573,6 +117630,9 @@
     "system spec kit 2 12 36 0": [
       "system-spec-kit 2.12.36.0"
     ],
+    "system spec kit 2 12 37 0": [
+      "system-spec-kit 2.12.37.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -118151,6 +118211,9 @@
     ],
     "system spec kit v2 12 36 0": [
       "system-spec-kit v2.12.36.0"
+    ],
+    "system spec kit v2 12 37 0": [
+      "system-spec-kit v2.12.37.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"

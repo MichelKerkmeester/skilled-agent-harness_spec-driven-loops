@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # create-changelog
@@ -199,9 +199,11 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
    - Select compact or expanded from the changes that survive (template section 5).
    - Write each section to its one job, so a fact appears once: themes in the opening, the gap in Why This Release, one payoff line per theme at a glance, the detail in the H4 items and only actions in the upgrade notes.
    - Lead with why the release matters, and add a table only when its numbers are the story.
+   - Order the opening, the glance list, the topical sections and the upgrade notes by what matters most to the reader, never by when the work landed.
    - When extending an open release, read the entry first and fold the new work into it.
      Add its section or H4 items, a glance bullet in section order, its spec folder on the spec-folder line and any upgrade action.
      Widen the opening and Why This Release only enough to cover the new theme, keep the title unless the new work changes the headline, and correct any existing sentence the new work makes untrue.
+     When the new work matters more to a reader than what the entry leads with, retitle the entry and re-rank its sections, so the release still opens on its most important change.
 5. **Validate quality.** Run the section 9 checks on the draft. For a new entry, confirm the version is strictly greater than the latest one and no file exists at the target. For an extension, confirm the target is the open entry. Confirm every path the entry names exists. Apply the cut test (template section 3), fix what is safe and revalidate.
 6. **Write the file.** Write `.skilled/changelog/{primary_component}/v{next_version}.md`, or edit the open entry in place when extending, then read back its first lines.
    Set `next_version` in every version carrier the component's skill root already has (`SKILL.md`, `description.json`, `hub-router.json` and `mode-registry.json`), never in `README.md` or a hub `ROUTER.md`, whose versions are each document's own.
@@ -225,7 +227,7 @@ The voice, structure, omission and length rules live in `assets/changelog-templa
 
 ### Release Notes
 
-For GitHub release notes, use the changelog content with any YAML frontmatter and the editorial title H1 removed, keeping its spacing, then append an `&nbsp;` line and the pointer:
+For GitHub release notes, use the changelog content with any YAML frontmatter and the editorial title H1 removed, keeping its spacing, then append an `&nbsp;` line and the pointer. `scripts/build_release_notes.py <entry> --out <file>` builds exactly this body, so a publish and every later amend match the entry:
 
 ```text
 &nbsp;
@@ -239,6 +241,10 @@ Any other component skips the release, because component versions share the `vX.
 The tag is `v{next_version}`, and the release title is the tag followed by the entry's editorial title, the H1 without its leading version.
 The step checks for a tag collision and an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --title {release_title} --notes-file {notes_file}`, which publishes at once with no draft stage.
 `:confirm` shows the exact commands and runs them only after approval.
+
+#### Amend a Published Release
+
+An entry can change after its release is published, for a correction or a reordering. Rebuild the body with `build_release_notes.py`, then run `gh release edit {release_tag} --notes-file {notes_file}`, adding `--title {release_title}` when the editorial title changed. The tag stays where it is. Moving a published tag deletes and recreates a public ref, so it needs the operator's explicit go-ahead. Leave it in place when the later commits change only the notes.
 
 ---
 
@@ -337,6 +343,7 @@ Packet-local files are deprecated, so no new one is validated here. `validate_do
 
 1. `assets/changelog-template.md`: the canonical format, selection, voice and length rules.
 2. `scripts/check_changelog_shape.py`: the shape gate that enforces the expanded ceilings, the glance order and the spec-folder line.
+   `scripts/build_release_notes.py`: builds the GitHub release body from an entry, for a publish and for an amend.
 3. `references/README.md`: the route map to `worked-examples.md` (filled-in entries), `version-bump-rules.md` (concrete version choices) and `topology-edge-cases.md` (placement, back-dating, source conflicts and the release flow).
 4. `.skilled/commands/create/changelog.md`: the thin `/create:changelog` router.
 5. `.skilled/commands/create/assets/create-changelog-auto.yaml` and `create-changelog-confirm.yaml`: the `:auto` and `:confirm` workflows, which resolve to this same contract.

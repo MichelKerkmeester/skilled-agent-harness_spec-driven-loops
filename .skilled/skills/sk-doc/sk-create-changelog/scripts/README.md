@@ -1,7 +1,7 @@
 ---
-title: "Create Changelog Scripts: changelog shape gate"
-description: "A Python gate that fails a global changelog entry whose length, item count, glance list or spec-folder line breaks the changelog template's ceilings."
-version: 1.0.1.0
+title: "Create Changelog Scripts: shape gate and release notes builder"
+description: "A Python gate that fails a global changelog entry whose shape breaks the template's ceilings, and a builder that turns an entry into its GitHub release body."
+version: 1.0.2.0
 ---
 
 # Create Changelog Scripts
@@ -10,7 +10,7 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-`sk-create-changelog/scripts/` holds the shape gate for the `/create:changelog` workflow. `check_changelog_shape.py` reads a changelog entry and fails it, one line per broken rule, when its shape breaks a ceiling that [`../assets/changelog-template.md`](../assets/changelog-template.md) sets. The workflow runs it on the draft before writing, so an entry that runs long never reaches `.skilled/changelog/`.
+`sk-create-changelog/scripts/` holds the shape gate and the release notes builder for the `/create:changelog` workflow. `check_changelog_shape.py` reads a changelog entry and fails it, one line per broken rule, when its shape breaks a ceiling that [`../assets/changelog-template.md`](../assets/changelog-template.md) sets. The workflow runs it on the draft before writing, so an entry that runs long never reaches `.skilled/changelog/`.
 
 An entry is expanded when it carries an H4 item or an `## Upgrade Notes` section, and compact otherwise. Lines inside a fenced code block are never read, so a template skeleton quoted in a fence does not count.
 
@@ -31,6 +31,7 @@ The order rule reads the trailing `<!-- section: {Topical Domain} -->` comment o
 | File | Purpose |
 |------|---------|
 | `check_changelog_shape.py` | Gate for the expanded file total, the H4 item ceiling, the glance bullet ceiling, the glance order and the spec-folder line. |
+| `build_release_notes.py` | Builds a GitHub release body from an entry. It drops the frontmatter and the title H1 and appends the `Full changelog` pointer. The publish step and an amend both use it. |
 
 ---
 
@@ -39,6 +40,7 @@ The order rule reads the trailing `<!-- section: {Topical Domain} -->` comment o
 | Entrypoint | Flags | Exit codes |
 |---|---|---|
 | `check_changelog_shape.py <entry.md> [...]` | None | 0 every entry passes, 1 an entry breaks a rule, 2 no path given or a file cannot be read |
+| `build_release_notes.py <entry.md>` | `--out <file>`, else stdout | 0 notes written, 2 a usage error or an entry that cannot be read |
 
 ---
 
@@ -52,7 +54,7 @@ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape
 
 Expected result: `PASS`, a note that the order rule was skipped and `SUMMARY files=1 pass=1 fail=0`, exit 0.
 
-The sk-doc suite covers each rule at its ceiling and one past it in `test_check_changelog_shape.py`:
+The sk-doc suite covers each rule at its ceiling and one past it in `test_check_changelog_shape.py`, and the release body in `test_build_release_notes.py`:
 
 ```bash
 bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh
@@ -64,6 +66,6 @@ Expected result: `all sk-doc script tests passed` and exit 0.
 
 ## 5. RELATED
 
-- [`SKILL.md`](../SKILL.md), whose validation section runs this gate.
+- [`SKILL.md`](../SKILL.md), whose validation section runs the gate and whose release notes section uses the builder.
 - [`changelog-template.md`](../assets/changelog-template.md), which sets the ceilings this gate holds.
 - [`scripts/tests/`](../../scripts/tests/), the sk-doc suite that tests the gate.

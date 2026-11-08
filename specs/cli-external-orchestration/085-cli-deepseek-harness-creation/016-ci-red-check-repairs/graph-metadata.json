@@ -49,6 +49,7 @@
       ".skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts",
       ".skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
       ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      "runtime/cli/lib/track-roots.mjs",
       ".skilled/skills/system-skilled-doctor/leaf-aliases.json",
       ".skilled/skills/mcp-tooling/hub-router.json",
       ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py"
@@ -127,6 +128,12 @@
         "source": "derived"
       },
       {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": "runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
         "name": "leaf-aliases.json",
         "kind": "config",
         "path": ".skilled/skills/system-skilled-doctor/leaf-aliases.json",
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.dsh/prompts/local-skilled-alignment.md` was committed although its source, the operator's private command, is gitignored, so CI and every new worktree reported it as an extra prompt",
     "created_at": "2026-11-08T08:54:12Z",
-    "last_save_at": "2026-11-08T12:33:19.556Z",
+    "last_save_at": "2026-11-08T14:48:55.660Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6e681c63dc32347dac970dad33afc9d4827223dc46bab2744131237b4c45605",
+    "source_fingerprint": "sha256:94dba27a0020e174f179e85007bd444b7710ae50c4ee395fe2fe0aee44fdb8b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1ddb179e2db7bf71fce665e9b63161216335dd5737769077d06ff6cc60cf91a",
       "plan.md": "f03cdd83114270146e2acf501eea768caca30dd7da08a09857df952df11ce22f",
-      "tasks.md": "87f568d233d113235c2e05751402e9f7778fced690205ccf4ba5a63441961c36",
-      "decision-record.md": "e4fa8524e33664333460abdff25316dd4fdf3b81dc1a784fc839804b5fda383d",
-      "implementation-summary.md": "3192d5d2175a47ee76af33ed4f2251826a8cde4c34ac4bbc84254e7d7d5ac56f"
+      "tasks.md": "77eeac0effe6fe0ff3215ba6af61034f5e912488ece824a6989b15ee0b8a4708",
+      "decision-record.md": "d4e917cec561e934fc00f91e3c521df8f61e8c270848b773d677dfea35ad39d9",
+      "implementation-summary.md": "bbe42e864649b0a44f162bafa2674a1b5adf9321114c7c2ebc2173a3dc5298c3"
     },
     "last_active_at": null
   }

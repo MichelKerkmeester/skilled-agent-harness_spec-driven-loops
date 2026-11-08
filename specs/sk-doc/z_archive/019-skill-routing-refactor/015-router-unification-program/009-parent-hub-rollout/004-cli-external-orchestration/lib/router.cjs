@@ -122,6 +122,45 @@ function detectorMatches(text, detector) {
   return new RegExp(`\\b${pattern}`, 'i').test(haystack);
 }
 
+function detectorWords(detector) {
+  return spaced(String(detector.value).toLowerCase()).split(/\s+/).filter(Boolean);
+}
+
+// A one-word executor name inside another mode's longer phrase is part of that
+// phrase, not a second request: "the OpenCode Go route" names a DeepSeek Harness
+// route, not an OpenCode dispatch. The word still counts when it also appears
+// outside every such phrase, so a prompt that names both executors still bundles.
+function withoutSubsumedWords(snapshot, text, matchedIds) {
+  const modesByDetector = new Map();
+  for (const selector of snapshot.policy.selectors) {
+    for (const id of selector.detectorIds) {
+      if (!modesByDetector.has(id)) modesByDetector.set(id, new Set());
+      modesByDetector.get(id).add(selector.destinationId.workflowMode);
+    }
+  }
+  const matched = snapshot.policy.detectors.filter((detector) => matchedIds.has(detector.id));
+  const phrases = matched.filter((detector) => detectorWords(detector).length > 1);
+  const kept = new Set(matchedIds);
+
+  for (const single of matched) {
+    const words = detectorWords(single);
+    if (words.length !== 1) continue;
+    const singleModes = modesByDetector.get(single.id) ?? new Set();
+    let remaining = spaced(text);
+    for (const phrase of phrases) {
+      const phraseWords = detectorWords(phrase);
+      const phraseModes = modesByDetector.get(phrase.id) ?? new Set();
+      const otherMode = [...phraseModes].some((mode) => !singleModes.has(mode));
+      if (!otherMode || !phraseWords.includes(words[0])) continue;
+      const gap = `(?:\\s+\\S+){0,${DETECTOR_MAX_GAP_WORDS}}\\s+`;
+      const pattern = new RegExp(`\\b${phraseWords.map(escapeDetectorWord).join(gap)}`, 'gi');
+      remaining = remaining.replace(pattern, ' ');
+    }
+    if (!remaining.includes(words[0])) kept.delete(single.id);
+  }
+  return kept;
+}
+
 // Score every mode by its count of distinct matched detector forms. A
 // vocabulary that lists both spellings of one phrase names it once, so two
 // detectors whose values fold to the same text contribute one hit, never two.
@@ -183,9 +222,9 @@ function evaluateRoute(snapshot, input) {
     };
   }
 
-  const matchedDetectorIds = new Set(snapshot.policy.detectors
+  const matchedDetectorIds = withoutSubsumedWords(snapshot, text, new Set(snapshot.policy.detectors
     .filter((detector) => detector.kind === 'alias' && detectorMatches(text, detector))
-    .map((detector) => detector.id));
+    .map((detector) => detector.id)));
   const scored = scoredModes(snapshot, matchedDetectorIds);
   if (scored.length === 0) {
     return {

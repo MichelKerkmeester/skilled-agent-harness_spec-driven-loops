@@ -371,6 +371,34 @@ function changedDocs(root, mergeBase, skillsRoot) {
   return rows;
 }
 
+/** The commits a merge in progress brings in, one per MERGE_HEAD line; none outside a merge. */
+function mergeHeads(root) {
+  try {
+    const file = execFileSync('git', ['rev-parse', '--git-path', 'MERGE_HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+    return fs.readFileSync(path.resolve(root, file), 'utf8').split('\n').map((s) => s.trim()).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * During a merge, the docs whose staged blob equals a merged-in parent's, body and version
+ * alike. Such a doc arrives unchanged from the other side, which raised its own version
+ * when it changed the body there, so measuring it against HEAD alone would raise it twice.
+ * A doc the resolution itself edited differs from every parent and stays in.
+ */
+function takenFromMergedSide(root, skillsRoot, rows) {
+  const taken = new Set();
+  if (rows.length === 0) return taken;
+  const rel = path.relative(root, skillsRoot).split(path.sep).join('/');
+  for (const head of mergeHeads(root)) {
+    const differs = new Set(execFileSync('git', ['diff', '--cached', '--name-only', '-z', '--no-renames', head, '--', `:(glob)${rel}/**/*.md`],
+      { cwd: root, maxBuffer: 1 << 30 }).toString('utf8').split('\0').filter(Boolean));
+    for (const r of rows) if (!differs.has(r.path)) taken.add(r.path);
+  }
+  return taken;
+}
+
 /** Set `version` in a parsed doc: rewrite the line in its own quoting, or insert it as the last key. */
 function withEdition(fm, next) {
   const lines = [...fm.lines];
@@ -401,10 +429,12 @@ function bumpDocs({ root: givenRoot, skillsRoot: givenSkillsRoot, base, check })
     console.error(`frontmatter-version.mjs: cannot find the merge base of ${base} and HEAD`);
     return 1;
   }
-  const rows = changedDocs(root, mergeBase, skillsRoot).filter((r) => {
+  const changed = changedDocs(root, mergeBase, skillsRoot).filter((r) => {
     const abs = path.join(root, r.path);
     return inScope(abs, skillsRoot) && !isSkillMd(abs);
   });
+  const taken = takenFromMergedSide(root, skillsRoot, changed);
+  const rows = changed.filter((r) => !taken.has(r.path));
   const blobs = readBlobs(rows.flatMap((r) => [r.oldSha, r.newSha]), root);
   const raises = [];
   const errors = [];
