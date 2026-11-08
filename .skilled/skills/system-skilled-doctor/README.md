@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # system-skilled-doctor
@@ -140,4 +140,5 @@ A pass prints `fail 0` in the summary. Then confirm the advisor credits each own
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent map and the resource map |
+| [`SETUP.md`](../../../SETUP.md) | The step-by-step guide to linking Skilled into a project or copying it in with overlays |
 | [`references/overlays.md`](./references/overlays.md) | The overlay sync states and what the engine refuses, plus the re-pin and rollback steps |
