@@ -1,14 +1,15 @@
 ---
 title: Directory & Test File Conventions
-description: File structure principles, module organization concepts, and import ordering standards for OpenCode system code. — Directory & Test File Conventions.
+description: Where skill, server and script files sit, how test files are named and placed, and where a test may write temporary files.
 trigger_phrases:
   - "directory conventions opencode"
   - "test file conventions"
   - "mcp server structure"
   - "script directory structure"
+  - "test temp folder isolation"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Directory & Test File Conventions
@@ -28,6 +29,7 @@ Define predictable directory layouts and test-file conventions for OpenCode syst
 - Creating or reorganizing a skill, MCP server, or scripts package
 - Choosing unit and integration test locations
 - Naming test files for a supported language
+- Writing a test that creates files or runs code that does
 - Reviewing a package layout for consistency
 
 ---
@@ -268,9 +270,9 @@ These two rules are SKILLED house rules. The universal style guide leaves folder
 
 ### Temp Files in Tests
 
-A test writes only into a folder it created for itself, such as one from `mkdtemp`, `mktemp -d` or `tempfile.mkdtemp`, and removes it when the test ends. It never writes into the shared temp root (`os.tmpdir()`, `$TMPDIR`, `/tmp`) directly, and never passes that root as a working directory to the code under test.
-
-Other suites read the same root. A file left there by one test can change what another suite finds and fail it, in a run that never touched the first test. This includes files the code under test writes on its own, such as state markers or logs under its working directory, so give that code a private folder too.
+- **Rule:** A test writes only into a folder it created for itself, from `mkdtemp`, `mktemp -d` or `tempfile.mkdtemp`, and removes it when the test ends. It never writes into the shared temp root (`os.tmpdir()`, `$TMPDIR`, `/tmp`), and never hands that root to the code under test as its working directory, since that code may write state markers or logs there on its own.
+- **Why:** Other suites read the same root. A file one test leaves there can change what another suite finds and fail it, in a run that never touched the first test.
+- **Check:** Search the test for `tmpdir()`, `$TMPDIR` or `/tmp` used as a write target or working directory rather than as the parent of a fresh folder.
 
 ### Test File Structure
 
@@ -301,12 +303,13 @@ describe('functionToTest', () => {
 
 ### Universal Patterns
 
-- `universal_patterns.md` - Naming, commenting, reference patterns
+- [Naming and commenting](../universal-patterns/naming-and-commenting.md) - Naming, commenting and reference patterns
+- [Organization, security and examples](../universal-patterns/organization-security-and-examples.md) - Cross-language organization and security patterns
 
 ### Language-Specific Organization
 
-- `../../javascript/style-guide.md` - JS module patterns, exports
-- `../../typescript/style-guide/overview-strict-and-naming.md` - TS imports, types, ES module syntax
-- `../../python/style-guide.md` - Python imports, `__all__`
-- `../../shell/style-guide/overview-structure-and-naming.md` - Shell sourcing, functions
-- `../../config/style-guide.md` - JSON/JSONC structure
+- [JavaScript style guide](../../javascript/style-guide.md) - JS module patterns, exports
+- [TypeScript style guide](../../typescript/style-guide/overview-strict-and-naming.md) - TS imports, types, ES module syntax
+- [Python style guide](../../python/style-guide.md) - Python imports, `__all__`
+- [Shell style guide](../../shell/style-guide/overview-structure-and-naming.md) - Shell sourcing, functions
+- [Config style guide](../../config/style-guide.md) - JSON/JSONC structure
