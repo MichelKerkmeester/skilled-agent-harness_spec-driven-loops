@@ -35,14 +35,14 @@ A probe starts one read-only OpenCode worker in a throwaway linked worktree and 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] The probe exits 1 with the old shape and exits 0 on three runs with the fixed shape
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] The probe exits 1 with the old shape and exits 0 on three runs with the fixed shape
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

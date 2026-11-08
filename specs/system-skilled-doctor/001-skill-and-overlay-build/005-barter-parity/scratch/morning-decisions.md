@@ -39,4 +39,8 @@ Decisions taken overnight without the operator, and questions left for them. Eac
 - **Q9:** both. `system-skilled-doctor` v1.1.0.0 changelog entry and `SKILL.md` at 1.1.0.0.
 - **Q10:** fix all. The six agents-md failures shared one cause, a manifest history the `v4.0.2.0` tag made stale, cleared by `agents-md-manifest.cjs --write`. The two playbook SKIP lines name their blocker, the result-persistence marker is in, and the doctor README links `ENV-REFERENCE.md` by its full path. Doctor suite: 1,069 of 1,069 pass.
 
+- **Q8 follow-up built (2026-11-08):** the cause is the inherited `PWD`. OpenCode 2 takes the model's working directory from `PWD`, and Node's `spawn()` passes the parent's value on unchanged, while the "Workspace root folder" it also names is the repository's first checkout. Dispatches now set `PWD` and carry a `REPOSITORY ROOT` line, the deep-loop fan-out runner sets `PWD` per lineage, and `cli-opencode/scripts/probe-worktree-confinement.cjs` proves a shape. Packet `specs/cli-external-orchestration/087-opencode-worktree-confinement`.
+- **Q5 fixed:** `upgrade-level.sh` splits above the questions anchor. Packet `specs/system-speckit/045-upgrade-level-anchor-insert`.
+- **Q6 fixed:** provisioning recreates each private `local-*` entry in the primary's form: a file as a copy, a relative link as the same link and a folder as one shared link. Packet `specs/sk-git/038-provision-private-command-links`.
+
 _(more appended as they arise)_

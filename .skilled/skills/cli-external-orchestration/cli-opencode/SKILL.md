@@ -230,6 +230,8 @@ On OpenCode 1 (fallback), `--port <N>` serves explicit detached sessions and `--
     - For non-interactive `opencode run` with `--dangerously-skip-permissions` against a populated worktree, you MUST apply the four-layer mitigation, the only active protection:
       - (L1) The rendered prompt contains literal `BANNED OPERATIONS` and `ALLOWED WRITE PATHS`.
       - (L2) The working directory points to a fresh `git worktree` (OpenCode 2: start-in-directory `cd`; OpenCode 1: `--dir <path>`).
+        - OpenCode 2 takes the model's working directory from `PWD`, not from the process directory, and names the repository's first checkout as the workspace root. A dispatch from Node `spawn()` with `cwd` must also set `PWD` to that directory, and the prompt carries the `REPOSITORY ROOT` line from the child-dispatch preamble.
+        - `scripts/probe-worktree-confinement.cjs` shows whether a dispatch shape stays inside: exit 1 means a tool path left the worktree.
       - (L3) Commit the target's own in-flight changes by explicit path. Leave other sessions' changes alone and record the recovery-baseline commit hash.
       - (L4) For multi-phase / phase-parent targets, prefer `cli-copilot` + `gpt-6-sol --reasoning-effort high` over the DeepSeek V4 Flash default, after confirming that model on the Copilot surface.
     - The 2026-05-04 incident deleted 44 files. See `references/destructive-scope-violations.md` for its root cause and checklist.

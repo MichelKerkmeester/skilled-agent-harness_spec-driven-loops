@@ -8,7 +8,7 @@ trigger_phrases:
   - "pre-resolve gate for a dispatched worker"
 importance_tier: important
 contextType: implementation
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # Child Dispatch Preamble
@@ -56,9 +56,13 @@ Ship one without the other and the dispatch fails silently, at exit code zero.
 ## 3. THE BLOCK
 
 Put this at the very top of the prompt, above the persona and the task. Substitute the real
-folder path.
+checkout and folder paths.
 
 ```text
+REPOSITORY ROOT: <absolute path of the checkout the worker runs in>
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 
 You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
@@ -77,6 +81,10 @@ Your task is complete only when files exist on disk and the verification command
 
 The last line matters as much as the first. A dispatch that stops to confirm and a dispatch
 that finishes both exit zero.
+
+### The Repository Root Line
+
+OpenCode 2 tells the model its working directory from `PWD` and names the repository's first checkout as the workspace root. A worker started in a linked worktree can then read and write the operator's main checkout. The root line names the right checkout. A dispatcher that spawns from Node with `cwd` also sets `PWD` to the same path, because `spawn()` passes the parent's value on unchanged.
 
 ---
 

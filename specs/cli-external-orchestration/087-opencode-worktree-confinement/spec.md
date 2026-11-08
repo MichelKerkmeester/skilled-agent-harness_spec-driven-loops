@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-08 |
 | **Branch** | `worktrees/324-overlay-repin-barter-parity` |
 <!-- /ANCHOR:metadata -->
@@ -32,7 +32,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-An OpenCode 2 worker started inside a linked git worktree read and wrote files in the main checkout instead. The cli-opencode skill counts a fresh worktree as a containment layer (its rule 16, layer L2), so a worker that leaves the worktree breaks that layer without any warning and can edit the operator's live tree.
+An OpenCode 2 worker started inside a linked git worktree read and wrote files in the main checkout instead. The cli-opencode skill counts a fresh worktree as a containment layer (its rule 15, layer L2), so a worker that leaves the worktree breaks that layer without any warning and can edit the operator's live tree.
 
 ### Purpose
 A worker started in a linked worktree reads and writes only inside that worktree, and the skill documents only containment that a test has shown to hold.
@@ -51,6 +51,15 @@ w4  every path under the worktree (its prompt named the absolute worktree root a
 ```
 
 The w3 prompt contains the main path zero times (`grep -c "MEGA/Development/Skilled" w3.prompt.txt` prints `0`). `opencode debug config --standalone` with `cwd` at the worktree lists only worktree paths, whether `PWD` is set to the main checkout or to the worktree, so an inherited `PWD` is not the cause. The binary was run directly, not through the `opencode` shell function. The w3 edits were moved to the worktree with `git apply` and reversed in main with `git apply -R`.
+
+The cause, measured with `scripts/probe-worktree-confinement.cjs` (one read-only worker in a throwaway linked worktree per run). OpenCode 2 builds its environment block as `Working directory: ${T.directory}` and `Workspace root folder: ${T.project.directory}` (from `strings` on the `v2.2.5` binary), and its project row for this repository, keyed by the root commit, stores `worktree = /Users/michelkerkmeester/MEGA/Development/Skilled`. The working directory comes from the inherited `PWD`, which Node's `spawn()` passes on unchanged when it moves `cwd`:
+
+```text
+old shape, PWD = the launching worktree         4 runs: exit 1, 0, 1, 1   (paths in the launching worktree)
+old shape, PWD = a folder outside any checkout  3 runs: exit 1, 1, 1      (paths in main and in worktrees 320 and 324)
+--set-pwd, PWD = the probe worktree             4 runs + 3 under a bad PWD: exit 0 every run
+--root-line only, under a bad PWD               3 runs: exit 0 every run
+```
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -62,7 +71,7 @@ The w3 prompt contains the main path zero times (`grep -c "MEGA/Development/Skil
 - Find where OpenCode 2 gets the main checkout path for a session started in a linked worktree. The leading hypothesis is that it resolves the project through `git rev-parse --git-common-dir` and gives the model that checkout as its root.
 - Write a repeatable probe that starts a worker in a throwaway linked worktree and reports every tool path outside it.
 - Fix the dispatch shape so a worktree start stays in the worktree, with an OpenCode flag or setting if one exists, or with an absolute-root line that the shared child-dispatch preamble always carries.
-- Correct cli-opencode's rule 16 layer L2 so it claims only the containment the probe shows.
+- Correct cli-opencode's rule 15 layer L2 so it claims only the containment the probe shows.
 
 ### Out of Scope
 - Patching OpenCode itself. The fix is on the dispatch side. A defect upstream gets reported, not forked.
@@ -75,6 +84,9 @@ The w3 prompt contains the main path zero times (`grep -c "MEGA/Development/Skil
 | `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` | Modify | Rule 16 layer L2 and the dispatch shape state the confinement that holds |
 | `.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md` | Modify | Carries the absolute repository root if the probe shows it is needed |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md` | Modify | The worktree dispatch pattern names the fix |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/probe-worktree-confinement.cjs` | Create | The probe |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | The fan-out runner sets `PWD` to the `cwd` it spawns a lineage in |
+| `.skilled/skills/system-deep-loop/runtime/tests/fanout-lineage-pwd.test.ts` | Create | Pins the lineage `PWD` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -122,7 +134,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does OpenCode 2 offer a flag or setting that fixes the project root to the start directory? If it does, the fix is that flag. If not, it is the preamble line.
+- Does OpenCode 2 offer a flag or setting that fixes the project root to the start directory? Answered: no flag does. `opencode run` takes a start directory and `--standalone`, and neither changes the stored project root. The fix is to set `PWD` and carry the root line.
 <!-- /ANCHOR:questions -->
 
 ---

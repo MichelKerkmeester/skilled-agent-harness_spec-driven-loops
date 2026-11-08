@@ -15,7 +15,8 @@
       "keep cli opencode workers inside the git worktree",
       "opencode worker wrote into the main checkout",
       "opencode worktree confinement plan",
-      "opencode worktree confinement tasks"
+      "opencode worktree confinement tasks",
+      "opencode worktree confinement implementation summary"
     ],
     "key_topics": [
       "opencode",
@@ -32,13 +33,17 @@
       "checkout"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/probe-worktree-confinement.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/fanout-lineage-pwd.test.ts",
       ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md",
       "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch/morning-decisions.md"
     ],
@@ -62,15 +67,39 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-worktree-confinement.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/probe-worktree-confinement.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-lineage-pwd.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/fanout-lineage-pwd.test.ts",
         "source": "derived"
       },
       {
         "name": "child-dispatch-preamble.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
@@ -162,48 +191,26 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An OpenCode 2 worker started inside a linked git worktree read and wrote files in the main checkout instead",
     "created_at": "2026-11-08T08:06:33Z",
-    "last_save_at": "2026-11-08T08:08:32.729Z",
+    "last_save_at": "2026-11-08T09:38:51.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e011f1be3585535fe4a708a6f320db8dec4da2eeaffb8ac4dd26180a702c45b",
+    "source_fingerprint": "sha256:bce1a45c2e8807e74cb70613417a2fb643ed1d4730ae20536443d415678a4e6f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f2e295de12db26b3e3db699200302a024d912155f7fc3d10c65025033786eeb",
-      "plan.md": "296fa7f8aa123489e6552a833b81d3a9a4104100b4e3d655b11314f4223be5d3",
-      "tasks.md": "da840f8a529bdca6481c2f429d38782eec4ef07b7b1799a1e02b322e55be2b09"
+      "spec.md": "bcc3e931d0a5e8b16b69e574271d57f487c56376405f4554f4d02f1f1116c68a",
+      "plan.md": "6a817b9daaef451140791b8dd7c6c72efb31b1acafe1e26041f7e9b2ddfb67c2",
+      "tasks.md": "40095e5348ea2e7436fb4890e20dd00f24dc085f38a48cb23951096dcfc47b1e",
+      "implementation-summary.md": "55bef4bb51d4b6c4957a7f99a3c807e5d4546361a66bfe369474ecef4c62d94e"
     },
     "last_active_at": null
   }

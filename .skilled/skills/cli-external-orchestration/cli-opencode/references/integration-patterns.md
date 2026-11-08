@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.15.0
+version: 1.4.16.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -109,6 +109,10 @@ OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms that `o
 ### Why it matters
 
 This is the canonical cross-AI dispatch path. It gives external runtimes a one-shot bridge into the project's full runtime without forcing the operator to leave their host session.
+
+### Dispatching Into a Linked Worktree
+
+Start the worker in the worktree and set `PWD` to the same path. A shell `cd <worktree> && opencode run ...` does both. A Node `spawn('opencode', args, { cwd })` does not, so pass `env: { ...process.env, PWD: cwd }` too. Put the `REPOSITORY ROOT` line from the child-dispatch preamble at the top of the prompt. Check a new dispatch shape with `node .skilled/skills/cli-external-orchestration/cli-opencode/scripts/probe-worktree-confinement.cjs --set-pwd --root-line` before trusting it.
 
 ---
 
