@@ -163,10 +163,26 @@ function entryLabel(entry) {
   return typeof entry?.id === 'string' ? entry.id : 'plugin entry';
 }
 
+// Reads the `name:` field of a file's leading frontmatter block, or null when the
+// file opens with no such block or the block names nothing.
+function frontmatterName(file) {
+  let text;
+  try {
+    text = fs.readFileSync(file, 'utf8');
+  } catch {
+    return null;
+  }
+  const block = text.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!block) return null;
+  const line = block[1].match(/^name:[ \t]*["']?([^"'\r\n]+?)["']?[ \t]*$/m);
+  return line ? line[1] : null;
+}
+
 // Lists the command names one config directory registers: every `.md` file under
 // its `command` and `commands` folders, named by the relative path without the
-// extension, because that is the name the runtime answers to.
-function listCommandNames(dir) {
+// extension, because that is the name the runtime answers to. OpenCode 1 lets a
+// frontmatter `name:` replace that path, so for `v1` a named file answers to it.
+function listCommandNames(dir, family = 'v2') {
   const names = [];
   const seen = new Set();
 
@@ -200,7 +216,8 @@ function listCommandNames(dir) {
       if (stat.isDirectory()) {
         walk(full, `${prefix}${entry.name}/`);
       } else if (stat.isFile() && entry.name.endsWith('.md')) {
-        names.push(`${prefix}${entry.name.slice(0, -'.md'.length)}`);
+        const named = family === 'v1' ? frontmatterName(full) : null;
+        names.push(named ?? `${prefix}${entry.name.slice(0, -'.md'.length)}`);
       }
     }
   };
@@ -273,7 +290,7 @@ function listNonCommandFiles(dir) {
 // own: the global config directories it reads, the ancestor folders v2 merges as
 // well, and the v2 built-ins that live in no folder at all.
 function allowedCommandSources(root, family, env, isolated = false) {
-  const required = listCommandNames(path.join(root, '.opencode'));
+  const required = listCommandNames(path.join(root, '.opencode'), family);
   const allowed = new Set();
 
   const home = typeof env?.HOME === 'string' && env.HOME.length > 0 ? env.HOME : null;
@@ -286,7 +303,7 @@ function allowedCommandSources(root, family, env, isolated = false) {
   if (typeof env?.OPENCODE_CONFIG_DIR === 'string' && env.OPENCODE_CONFIG_DIR.length > 0) {
     globalDirs.push(env.OPENCODE_CONFIG_DIR);
   }
-  for (const dir of globalDirs) for (const name of listCommandNames(dir)) allowed.add(name);
+  for (const dir of globalDirs) for (const name of listCommandNames(dir, family)) allowed.add(name);
 
   if (family === 'v2') {
     // v2 walks past the repository root and merges each ancestor's `.opencode`, so a
