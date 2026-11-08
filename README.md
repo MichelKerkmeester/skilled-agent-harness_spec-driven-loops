@@ -44,6 +44,7 @@ Your architecture, decisions and session history are written into the spec folde
 - `/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped
 - A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
 - A phrase nobody wrote is a clean no-hit, never a nearest guess
+- After a compaction, a session can search and load its own earlier turns through one read-only command, so a detail the summary dropped is not lost
 - Your answers to the AI's questions are captured as you give them and saved into the packet's decision record, with the exact exchange beside each one
 
 ### 🔄 Deep Loop
@@ -185,7 +186,7 @@ It checks the install without changing anything and names one repair command for
 
 ### Use It In Your Own Project
 
-You can also keep Skilled in this one checkout and link it into your own project repos, so every project shares one copy and one `git pull` updates them all. Run `/doctor:install` here and follow the steps it prints. [Use It In Your Own Project](#5--use-it-in-your-own-project) walks through it and also covers a project that copies Skilled in and keeps its own changes to the copy.
+You can also use Skilled in your own projects. Link this checkout into a project, or commit a copy and keep your changes as overlays. The [setup guide](SETUP.md) walks through both.
 
 ### First Task
 
@@ -221,90 +222,12 @@ The doctor commands check and repair one area each. `/doctor:helper` names the o
 
 ## 5. 🔗 USE IT IN YOUR OWN PROJECT
 
-Skilled does not have to live inside each project. Keep one checkout, this repository, and link it into the repositories you work in. Every linked project then uses the same skills, commands, agents and hooks, and a `git pull` here updates all of them at once.
+Skilled does not have to live inside each project. You can set up a project in two ways, and the [setup guide](SETUP.md) walks through both.
 
-Two doctor commands do the work. `/doctor:install` is the guide: it checks this checkout, asks what you want, looks at the target repo and prints the setup commands in order. `/doctor:symlink` does the linking, and only after it has shown you a plan and you said yes.
+- **Link it.** Keep one Skilled checkout and link it into each project. One `git pull` then updates them all. See [Link It Into Your Project](SETUP.md#2-link-it-into-your-project).
+- **Copy it.** Commit a copy of Skilled to the project, so the whole team shares one pinned version. Your changes to the copy live in an overlay folder. See [Copy It Into Your Project](SETUP.md#3-copy-it-into-your-project).
 
-### Run The Guide
-
-Open this checkout in your runtime and run:
-
-```
-/doctor:install
-```
-
-It checks that the Spec Kit and Skill Advisor builds exist, and asks four things in one prompt:
-
-1. **Target repo:** the absolute path of your project, for example `/Users/me/code/my-app`
-2. **Runtimes:** any of `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`, or the ones already in the repo
-3. **Link shape:** `auto`, `whole` or `merge` (see below). `auto` is the one to pick
-4. **Instruction file:** `embed` keeps your repo's own `AGENTS.md` and adds the shipped sections to it, and `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at this checkout's copies
-
-<!-- readme-check
-allow-ref /Users/me/code/my-app | a sample target path the operator replaces with their own project
-allow-ref CLAUDE.md | the instruction file in the operator's target repo, which this checkout does not ship
--->
-
-You can pass the first two up front with `/doctor:install --root <dir> --runtimes <list>`. The guide then runs a read-only check of the target repo, shows what is already linked, and prints the steps. It changes nothing itself.
-
-### The Steps It Prints
-
-| Step | Command | Run it from | What it does |
-| --- | --- | --- | --- |
-| 1 | `/doctor:symlink link --root <dir> --runtimes <list> --mode <shape>` | this checkout | Links `.skilled` and your runtime folders into the repo, after a plan and your yes |
-| 2 | `/doctor:agents-md embed --root <dir>` | this checkout | Adds the shipped instruction sections to the repo's `AGENTS.md`. Skipped when you chose `link` |
-| 3 | `/doctor:mcp install` | this checkout | Builds and registers Code Mode |
-| 4 | `/doctor:git setup` | the target repo | Checks the git hooks and sk-git settings there |
-| 5 | `/doctor:setup` | the target repo | Confirms the whole setup works from inside the project |
-
-A missing build adds a step 0 with the four `npm` commands from [Install](#install).
-
-### What Gets Linked
-
-`.skilled` is always linked. Each runtime you pick adds its own folder: `.claude` (plus `.mcp.json`), `.opencode`, `.codex`, `.cursor`, `.devin` or `.pi`. You can add `repo-rules`, `.github`, `.utcp_config.json` and `.env` with `--include`. Linking `.env` shares this checkout's secrets with every tool started in the project, and the plan says so before you approve it.
-
-Each folder gets one of two shapes:
-
-- **Whole:** the folder itself is one link into this checkout. This is what `auto` does when the project has no such folder yet.
-- **Merge:** the folder stays a real folder in your project, and every entry inside it is its own link. Files your project already keeps there, such as its own commands, stay where they are and are never overwritten. This is what `auto` does when the folder already exists.
-
-Your own files are never replaced. The only links `link` changes are broken ones that point into this checkout, which it repoints or removes. A link that points anywhere else is reported and left alone.
-
-### Plan, Yes, Undo
-
-`/doctor:symlink link` prints every action and a plan digest, then asks once. Nothing is written before your yes, and the write runs only against the plan you read. Add `--dry-run` to see the plan without the question.
-
-The links are absolute paths on your machine, so they must never be committed. `link` adds an ignore line for each one to the repo's `.git/info/exclude`, which git reads but never commits. Use `--ignore gitignore` to write `.gitignore` instead, or `--ignore none` to write neither.
-
-Every run records what it did, and its last line is the undo command:
-
-```
-/doctor:symlink unlink --run <run dir> --dry-run
-```
-
-Unlink removes only what that run created and restores only what it replaced. A path you changed afterwards is skipped and reported.
-
-### Keep Linked Projects Healthy
-
-Run `/doctor:symlink check --root <dir>` at any time. It reports each framework folder as linked whole, merged, partly merged, missing or broken, names missing entries and broken links, and warns about absolute links that git already tracks. When the checkout gains new commands or prompts, a merged folder shows them as missing, and `/doctor:symlink link` adds them.
-
-> **Context saves.** A save lands in the project's own `specs/` folder when it runs from inside the project. Run `/doctor:setup` and your saves from the project, not from the Skilled checkout.
-
-### Keep Your Changes To A Copy
-
-<!-- readme-check
-allow-ref skilled-overlays/ | the overlay folder in a project that vendors Skilled, which this checkout does not ship
-allow-ref .skilled-overlays.json | the optional overlay folder setting at the root of a vendored copy, which this checkout does not ship
--->
-
-Some projects copy Skilled in instead of linking it. A new upstream release then replaces the whole copy, so a change you made to it survives only if it also lives in an overlay: a file in the project's own overlay folder that `/doctor:overlay` puts back on the copy. The folder is `skilled-overlays/` unless `.skilled-overlays.json` at the root of the copy names another. The `system-skilled-doctor` skill owns the command, and its [overlays reference](.skilled/skills/system-skilled-doctor/references/overlays.md) explains each sync state.
-
-- **`status`** is read-only. It reports every overlay that is out of sync and names the fix
-- **`apply`** shows that report as its plan and puts the overlays back after your yes
-- **`apply --capture <path>`** moves an edit made in the live copy into its overlay instead
-- **`repin`** moves the copy to a newer upstream commit. It shows a staged result first and backs up every path before it writes. `repin --rollback <run-id>` restores that backup
-
-A file an overlay owns is edited in its overlay, never in the live copy. The `overlay-guard` hook enforces that: it refuses an agent's edit to an owned file and names the overlay file to edit instead. It runs on Claude Code, Codex, Cursor, Devin, Pi and DeepSeek Harness, and it does nothing in a repo with no overlay folder. `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off, and the [overlay-guard README](.skilled/hooks/overlay-guard/README.md) has the details.
+Each step shows you a plan before it writes, and each one prints how to undo it.
 
 &nbsp;
 
@@ -590,11 +513,20 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - Both lanes read committed files, so neither needs a running daemon
 - Retrieval is lexical only: semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported. A miss is a clean no-hit rather than a degraded guess
 
+**History after compaction**
+
+- After a compaction on Claude, Codex, Pi, Devin, DSH or OpenCode, the returned context can carry a `## History Lookup` section with one read-only command
+- The command searches, browses, loads and pages the session's own earlier turns, at most 16 KiB per reply, and returns only what the conversation showed
+- Search finds a turn from part of what the model remembers: `MARKER` or `dv-2b7e` finds the turn that said `LIVE-MARKER-dv-2b7e`, and the preview shows the match
+- The handle works for 30 minutes and only for the session and checkout that minted it, including a session started in a subfolder. Cursor is not offered yet
+- The command runs the compiled helper, so run `npm run build` in `.skilled/skills/system-spec-kit/runtime` first
+
 **The moving parts**
 
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
 - A save that is not `--full-auto` ends its summary with `Continuity fields not written: plan-only save; pass --full-auto to write them`, so a plan-only save no longer looks like a full one
-- Recovery stays with the continuity ladder that `/speckit:resume` owns as the primary recovery path, and the compaction path may add one bounded history lookup when a fresh locator verifies
+- `/speckit:resume` stays the primary recovery path. The history lookup only adds to it, and when its handle is missing or stale the section is left out and recovery runs as before
+- `/speckit:save` records the runtime and session that wrote a packet's continuity when the save passes `--session-id` and `--runtime`
 - `/speckit:search` runs the two lexical lanes
 - `/doctor:speckit` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
@@ -844,7 +776,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Doctor-command skill at `.skilled/skills/system-skilled-doctor/` for putting Skilled into your own project and keeping it current there
 - Owns eleven of the seventeen doctor commands: `/doctor:install`, `/doctor:symlink`, `/doctor:update`, `/doctor:agents-md`, `/doctor:runtime-mirrors`, `/doctor:env`, `/doctor:setup`, `/doctor:helper`, `/doctor:speckit`, `/doctor:mcp` and `/doctor:overlay`. Each keeps its workflow in `.skilled/commands/doctor/`, and the skill matches a request to one of them
-- Keeps a vendored copy's own changes: `/doctor:overlay` reports an overlay that drifted and puts it back, and it re-pins the copy to a newer upstream commit. See [Keep Your Changes To A Copy](#keep-your-changes-to-a-copy)
+- Keeps a vendored copy's own changes: `/doctor:overlay` reports an overlay that drifted and puts it back, and it re-pins the copy to a newer upstream commit. See [Copy It Into Your Project](SETUP.md#3-copy-it-into-your-project)
 - The other six doctor commands stay with the skill whose own checks they run, such as `/doctor:git` with `sk-git`. The [Doctor](#doctor) section lists them
 
 &nbsp;
@@ -1370,13 +1302,13 @@ Seventeen commands check and repair the setup, one per area. Eleven of them belo
 - Counts orphaned helper processes, including a model server whose launcher died, and prints the command that lists them
 - Lists every other doctor command, and writes nothing
 
-**`/doctor:install [--root <dir>] [--runtimes <list>] [--json]`** - the ordered steps that put Skilled into your own project repo. [Use It In Your Own Project](#5--use-it-in-your-own-project) walks through every step
+**`/doctor:install [--root <dir>] [--runtimes <list>] [--json]`** - the ordered steps that put Skilled into your own project repo. The [setup guide](SETUP.md#2-link-it-into-your-project) walks through every step
 
 - Checks both builds, asks for the target repo, the runtimes, the link shape and the instruction choice in one prompt, runs the symlink check, then prints the ordered setup commands with each command's class and one line of why
 - The steps are `/doctor:symlink link`, `/doctor:agents-md embed` unless the instruction files are linked, `/doctor:mcp install`, `/doctor:git setup` and `/doctor:setup`
 - It never runs a writing command. Every step that writes is printed for you to run
 
-**`/doctor:symlink [check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags]`** - the Skilled framework links in another project repo. [Use It In Your Own Project](#5--use-it-in-your-own-project) explains the link shapes
+**`/doctor:symlink [check|link|unlink] [--root <dir>] [--runtimes <list>] [--mode <shape>] [--plan-digest <digest>] [--run <dir>] [--yes] [flags]`** - the Skilled framework links in another project repo. The [setup guide](SETUP.md#what-gets-linked) explains the link shapes
 
 - `check` (the default, read-only) reports one line per entry, then the repository warnings, and writes nothing. `link` prints the plan and its digest, asks once, then links `.skilled` and the runtime folders you chose into that repo. A link is either the whole folder or a real folder holding one link per entry, so the repo keeps its own files beside them, and `--mode auto` picks the shape per folder. Ignore lines go to `.git/info/exclude` by default, and the undo is the unlink command the run prints
 - `unlink` shows the plan the recorded run describes, asks once, then removes what that run created
@@ -1436,7 +1368,7 @@ Seventeen commands check and repair the setup, one per area. Eleven of them belo
 - Checks what a release changes, applies it after your approval and can roll it back
 - `compat` moves a v3 checkout to the v4 `specs/` layout, and `--dry-run` previews the move
 
-**`/doctor:overlay [status|apply|repin] [--json] [--root <dir>] [--capture <path>] [--upstream <dir>] [--to <commit>] [--rollback <run-id>]`** - a vendored Skilled copy's own changes. [Keep Your Changes To A Copy](#keep-your-changes-to-a-copy) says when a project needs them
+**`/doctor:overlay [status|apply|repin] [--json] [--root <dir>] [--capture <path>] [--upstream <dir>] [--to <commit>] [--rollback <run-id>]`** - a vendored Skilled copy's own changes. The [setup guide](SETUP.md#3-copy-it-into-your-project) says when a project needs them
 
 - `status` (the default, read-only) prints one line for each destination that is not in sync, with the fix the engine names. It writes nothing. `--json` prints the engine's report and nothing else
 - `apply` shows the `status` report as its plan, asks once, then writes the overlays and runs the manifest's regenerate and verify steps. It writes nothing while a destination holds an edit made in the live copy or a conflict, and the run names the fix for each
@@ -1811,6 +1743,7 @@ Everything is a file in your own repository.
 **Internal documentation**
 
 - **[→ AGENTS.md](AGENTS.md)** - agent routing, gate definitions, behavior rules
+- **[→ Setup Guide](SETUP.md)** - put Skilled into your own project, by linking it or by copying it in with overlays
 - **[→ Spec Kit README](.skilled/skills/system-spec-kit/README.md)** - spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.skilled/skills/system-spec-kit/runtime/README.md)** - validation, generated metadata and runtime hook adapters
 - **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - in-session handover, off by default: the handoff note, the `skilled-loop` wrapper and the shell shim

@@ -953,16 +953,26 @@ upgrade_spec_l1_to_l2() {
         oq_num=$(sed -n "${oq_line}p" "$spec_file" | grep -oE '[0-9]+' | head -1)
         local new_oq_num=$((oq_num + 3))
 
+        # Split above the questions anchor so injected sections stay outside it.
+        local split_line="$oq_line"
+        if [[ "$(sed -n "$((oq_line - 1))p" "$spec_file")" == "<!-- ANCHOR:questions -->" ]]; then
+            split_line=$((oq_line - 1))
+        fi
+
         verbose "Found OPEN QUESTIONS at line $oq_line (section $oq_num → $new_oq_num)"
 
         local tmp_file="${spec_file}.tmp"
         {
-            # Part 1: everything before OPEN QUESTIONS
-            head -n $((oq_line - 1)) "$spec_file"
+            # Part 1: everything before OPEN QUESTIONS (or before its anchor)
+            head -n $((split_line - 1)) "$spec_file"
             # Part 2: the L2 fragment
             printf '%s\n' "$fragment_content"
-            # Part 3: blank line + renumbered OPEN QUESTIONS heading
-            printf '\n## %d. OPEN QUESTIONS\n' "$new_oq_num"
+            # Part 3: blank line, optional questions anchor, renumbered heading
+            printf '\n'
+            if [[ "$split_line" -ne "$oq_line" ]]; then
+                printf '<!-- ANCHOR:questions -->\n'
+            fi
+            printf '## %d. OPEN QUESTIONS\n' "$new_oq_num"
             # Part 4: everything after the original OPEN QUESTIONS heading
             tail -n +$((oq_line + 1)) "$spec_file"
         } > "$tmp_file"
@@ -975,10 +985,18 @@ upgrade_spec_l1_to_l2() {
         local tmp_file="${spec_file}.tmp"
         if [[ -n "$oq_line" ]]; then
             verbose "Found OPEN QUESTIONS (non-standard format) at line $oq_line"
+            # Split above the questions anchor so injected sections stay outside it.
+            local split_line="$oq_line"
+            if [[ "$(sed -n "$((oq_line - 1))p" "$spec_file")" == "<!-- ANCHOR:questions -->" ]]; then
+                split_line=$((oq_line - 1))
+            fi
             {
-                head -n $((oq_line - 1)) "$spec_file"
+                head -n $((split_line - 1)) "$spec_file"
                 printf '%s\n' "$fragment_content"
                 printf '\n'
+                if [[ "$split_line" -ne "$oq_line" ]]; then
+                    printf '<!-- ANCHOR:questions -->\n'
+                fi
                 tail -n +"${oq_line}" "$spec_file"
             } > "$tmp_file"
         else

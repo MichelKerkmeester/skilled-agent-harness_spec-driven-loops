@@ -1,6 +1,11 @@
 [
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/adopt-with-protected-file.md",
+    "diskPath": "manual-testing-playbook/overlays/adopt-with-protected-file.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/status-without-overlays.md",
     "diskPath": "manual-testing-playbook/overlays/status-without-overlays.md"
   },

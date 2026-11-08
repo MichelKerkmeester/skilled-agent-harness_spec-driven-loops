@@ -1,0 +1,35 @@
+{
+  "newInfoRatio": 1.0,
+  "status": "complete",
+  "focus": "Barter-side reality: barter-overlays manifest, replay/sync forks, state, hooks",
+  "noveltyJustification": "All 9 findings were new to this lineage; the Barter checkout had not been read before iteration 2 and the fork relationship changes the recommended direction.",
+  "keyQuestions": [],
+  "answeredQuestions": ["Q2: What do Barter's `barter-overlays` runbook, `overlay-manifest.json`, `replay.cjs`, `sync.cjs` and `sync-state.json` do that the Skilled engine does not, and what is the concrete migration path onto the engine's manifest and state schema?"],
+  "ruledOut": [
+    "Treating Barter's scripts as an unrelated bespoke implementation",
+    "Assuming the manifest would need rewriting from scratch",
+    "Searching for a repin implementation inside Barter",
+    "Looking for protectedPaths in Barter's manifest to explain the design-tokens refusal"
+  ],
+  "edgeCase": "contradictory-evidence",
+  "focusTrack": "barter-migration",
+  "toolsUsed": ["Read", "Bash", "Grep"],
+  "sourcesQueried": [
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+    "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs",
+    ".skilled/commands/doctor/scripts/overlay-engine.cjs",
+    ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs"
+  ],
+  "findingSources": {
+    "default": [
+      "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs",
+      "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+      ".skilled/commands/doctor/scripts/overlay-engine.cjs"
+    ]
+  },
+  "durationMs": 0
+}

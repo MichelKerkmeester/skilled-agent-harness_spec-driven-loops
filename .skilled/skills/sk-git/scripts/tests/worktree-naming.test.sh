@@ -763,18 +763,22 @@ mkdir -p "$LOCAL_CMD/repo"
   git config user.email t@t
   git config user.name t
   # assets/ is left untracked, as in the real repository, so the worktree starts without it.
-  mkdir -p .pi/prompts .skilled/commands .skilled/skills
-  printf '/.skilled/commands/local-*\n/.skilled/commands/assets/local-*\n/.pi/prompts/local-*\n/.skilled/skills/local-*\n' > .gitignore
+  mkdir -p .pi/prompts .skilled/commands .skilled/skills .opencode/commands
+  printf '/.skilled/commands/local-*\n/.skilled/commands/assets/local-*\n/.pi/prompts/local-*\n/.skilled/skills/local-*\n/.opencode/commands/local-*\n' > .gitignore
   : > .skilled/commands/README.md
   : > .pi/prompts/README.md
   : > .skilled/skills/README.md
+  : > .opencode/commands/README.md
+  # The operator's global excludes may ignore .opencode, but this fixture tracks it.
   git add .gitignore .skilled .pi
+  git add -f .opencode
   git commit -q -m init
   git worktree add -q -b worktrees/001-demo "$LOCAL_CMD/wt" main
   printf 'router\n' > .skilled/commands/local-demo.md
   mkdir -p .skilled/commands/assets/local-demo .skilled/skills/local-private
   : > .skilled/commands/assets/local-demo/run.cjs
   printf 'primary prompt\n' > .pi/prompts/local-demo.md
+  mkdir -p .opencode/commands && ln -s ../../.skilled/commands/local-demo.md .opencode/commands/local-demo.md
 )
 LOCAL_PRIMARY="$(cd "$LOCAL_CMD/repo" && pwd -P)"
 LOCAL_WT="$(cd "$LOCAL_CMD/wt" && pwd -P)"
@@ -788,8 +792,13 @@ run_local_link() {
   )
 }
 expect_rc "local command link exits 0" 0 run_local_link "$LOCAL_WT"
-expect_eq "local command router is linked to the primary copy" \
-  "$LOCAL_PRIMARY/.skilled/commands/local-demo.md" "$(readlink "$LOCAL_WT/.skilled/commands/local-demo.md")"
+expect_rc "local command router is a real file in the worktree" 1 test -L "$LOCAL_WT/.skilled/commands/local-demo.md"
+expect_eq "local command router content comes from the primary" "router" \
+  "$(cat "$LOCAL_WT/.skilled/commands/local-demo.md")"
+expect_eq "local command mirror keeps the primary's relative link text" \
+  "../../.skilled/commands/local-demo.md" "$(readlink "$LOCAL_WT/.opencode/commands/local-demo.md")"
+expect_eq "the relative mirror link resolves inside the worktree" "router" \
+  "$(cat "$LOCAL_WT/.opencode/commands/local-demo.md")"
 expect_eq "local command assets folder is linked" \
   "$LOCAL_PRIMARY/.skilled/commands/assets/local-demo" "$(readlink "$LOCAL_WT/.skilled/commands/assets/local-demo")"
 expect_eq "an existing worktree file is never replaced" "worktree prompt" "$(cat "$LOCAL_WT/.pi/prompts/local-demo.md")"

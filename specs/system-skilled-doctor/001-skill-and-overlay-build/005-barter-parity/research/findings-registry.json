@@ -1,0 +1,1092 @@
+{
+  "mergedFrom": [
+    "pi-max"
+  ],
+  "lineageExecutors": {
+    "pi-max": {
+      "kind": "cli-pi",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-which-overlay-engine-changes-are-required-so-a-vendored-repo-whose-overlay-fo",
+      "inboxId": null,
+      "text": "Q1: Which overlay-engine changes are required so a vendored repo whose overlay folder is `barter-overlays` can run status, apply and repin without an unexplained exit 2 or a whole-run abort on a protected path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "question-2-q2-what-do-barter-s-barter-overlays-runbook-overlay-manifest-json-replay-cjs-syn",
+      "inboxId": null,
+      "text": "Q2: What do Barter's `barter-overlays` runbook, `overlay-manifest.json`, `replay.cjs`, `sync.cjs` and `sync-state.json` do that the Skilled engine does not, and what is the concrete migration path onto the engine's manifest and state schema?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "question-3-q3-which-runtime-surfaces-must-be-re-pinned-or-regenerated-after-a-re-pin-dsh-sk",
+      "inboxId": null,
+      "text": "Q3: Which runtime surfaces must be re-pinned or regenerated after a re-pin (dsh skill links, runtime mirrors, hook registrations, trigger index, advisor graph), and how should the engine express them?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "question-4-q4-which-root-file-and-cross-runtime-traps-agents-md-repo-rules-md-opencode-scri",
+      "inboxId": null,
+      "text": "Q4: Which root-file and cross-runtime traps (`AGENTS.md`, `REPO RULES.md`, `.opencode/scripts`, fork-drifted files) must the engine handle before an external repo can adopt it safely?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "question-5-q5-which-documentation-and-advertising-changes-are-needed-so-adoption-is-discove",
+      "inboxId": null,
+      "text": "Q5: Which documentation and advertising changes are needed so adoption is discoverable and correctly described, and how should all proposed changes be ranked by impact and risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "_lineages": [
+        "pi-max"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-a-missing-skilled-overlays-json-does-not-itself-fail-status-resolveoverlaydir-si",
+      "text": "A missing `.skilled-overlays.json` does not itself fail status: `resolveOverlayDir` silently falls back to the literal folder `skilled-overlays`, and the run only dies one step later when `loadManifest` throws `no overlay manifest at …/overlay-manifest.json`, which the CLI catch turns into exit 2 with the message on stderr. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:375] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:425] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:3340]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-protected-path-refusal-is-a-whole-run-throw-not-a-per-entry-block-assertsafe",
+      "text": "The protected-path refusal is a whole-run throw, not a per-entry block: `assertSafeToPlan` raises for any `token`-named path it meets inside a directory or skill-root walk, and `analyze` raises again for a protected destination or source, so one `*token*` file aborts every other overlay's report with exit 2 and no `MISS` line naming the entry. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1688] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1801]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-1-3-that-throw-is-inconsistent-with-the-engine-s-own-reporting-model-classified-stat",
+      "text": "That throw is inconsistent with the engine's own reporting model: classified states in `BLOCKING_STATES` are printed per overlay as `blocked <overlay>: <state> <path>` and collected into the report, so an overlay-level refusal already has a shape the protected-path throw bypasses. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:58] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2884]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-1-4-default-runtime-folders-lists-claude-codex-cursor-devin-opencode-pi-and-omits-ds",
+      "text": "`DEFAULT_RUNTIME_FOLDERS` lists `.claude`, `.codex`, `.cursor`, `.devin`, `.opencode`, `.pi` and omits `.dsh`, while the doctor's own runtime-mirror contract treats `.dsh` as a first-class surface with `dsh_skills`, `dsh_prompts` and `dsh_agents` sync scripts, so a re-pin of a tree that ships `.dsh` mirrors copies stale mirrors unless the manifest overrides `repin.runtimeFolders`. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:74] [SOURCE: .skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-1-5-a-re-pin-copies-only-skilled-plus-the-runtime-folders-and-deletes-only-paths-und",
+      "text": "A re-pin copies only `.skilled/**` plus the runtime folders and deletes only paths under `.skilled` and the runtime folders, so a root file such as `AGENTS.md` or `REPO RULES.md` is neither carried forward nor removed when upstream changes it; the vendored root copy silently drifts from the new pin. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2531] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2539]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-1-6-repin-exclude-already-exists-is-validated-as-a-list-of-relative-paths-and-is-cov",
+      "text": "`repin.exclude` already exists, is validated as a list of relative paths, and is covered by a test that keeps a real `.opencode/scripts` folder where upstream ships a link, so the brief's \"no repin.exclude for .opencode/scripts\" is a Barter manifest gap rather than a missing engine feature. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2503] [SOURCE: .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-1-7-post-write-regeneration-is-declared-entirely-by-the-manifest-layoutlinks-recreat",
+      "text": "Post-write regeneration is declared entirely by the manifest: `layoutLinks` recreate links, `regenerate` runs `argv` steps and snapshots their `outputs`, and `verifyGenerated` re-runs read-only checks with `fresh-true` or `zero-changed` expectations, so dsh skill links, runtime mirrors, hook registrations, trigger index and advisor graph can all be re-pinned today only if a manifest names them; the engine ships no default step set. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1424] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1516] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1531]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-1-8-a-staged-re-pin-deliberately-drops-the-regenerate-and-verify-blocks-before-writi",
+      "text": "A staged re-pin deliberately drops the regenerate and verify blocks before writing the copy, so a clean `RESULT: STAGED` report is not evidence that the live post-repin tree regenerated or verified. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2914]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:58, 61, 74, 375, 425, 1424, 1516, 1531, 1688, 1801, 2503, 2531, 2539, 2884, 2914, 3340",
+        ".skilled/commands/doctor/overlay.md:1",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:456",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-1-barter-s-replay-cjs-and-sync-cjs-are-a-fork-of-the-skilled-overlay-engine-rather",
+      "text": "Barter's `replay.cjs` and `sync.cjs` are a fork of the Skilled overlay engine rather than an independent tool: the WHY preamble is the same text about a vendored tree being replaced wholesale, and the shared function names (`planOverlay`, `assertSafeToPlan`, `classifyDestination`, `commandGuard`) match the engine's, so adoption is an upstreaming problem, not a replatform. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:106]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-2-barter-s-fork-adds-a-sixth-destination-state-fork-drifted-fed-by-upstreamsource-",
+      "text": "Barter's fork adds a sixth destination state, `fork-drifted`, fed by `upstreamSource` metadata that two entries carry, so a Barter fork of an upstream file stays visible and non-blocking; the engine's `STATUS_NAMES` has five states and never reads `upstreamSource`, so both forks become invisible after migration. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:67]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-token-name-refusal-differs-in-exactly-the-way-that-breaks-barter-design-toke",
+      "text": "The token-name refusal differs in exactly the way that breaks `barter-design-tokens.md`: Barter's fork allows `.md`, `.css`, `.ts` and `.svelte` names, while the engine refuses any basename containing `token` that is not named exactly by the manifest. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:91] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1555]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-4-no-barter-entry-declares-protectedpaths-0-of-130-so-the-migration-fix-for-that-f",
+      "text": "No Barter entry declares `protectedPaths` (0 of 130), so the migration fix for that file is manifest-side: `references/barter-design-tokens.md` added to the `repo-frontend` directory entry's `protectedPaths`, which the engine accepts because it resolves the value relative to the entry. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1595]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-5-barter-s-sk-git-skill-root-entry-declares-16-outsidecertificate-paths-with-a-rea",
+      "text": "Barter's `sk-git` skill-root entry declares 16 `outsideCertificate` paths with a reason each, and its fork validates and honors them as intentionally vendor-owned; the engine has no reader for `outsideCertificate`, so every exemption those paths carry is lost on migration. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2337]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-6-barter-s-sync-state-json-is-already-the-engine-s-state-shape-schemaversion-1-pin",
+      "text": "Barter's `sync-state.json` is already the engine's state shape (`schemaVersion: 1`, `pin`, `files` with 454 destination hashes), so it can seed an engine state file directly, but the engine will only look for that file inside the folder named by `.skilled-overlays.json` (or the literal `skilled-overlays`), and Barter ships neither the setting nor a `skilled-overlays` folder. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:375] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:430]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-7-barter-has-no-re-pin-command-at-all-neither-script-mentions-repin-and-the-re-pin",
+      "text": "Barter has no re-pin command at all: neither script mentions `repin`, and the re-pin is an eight-step hand runbook that copies seven runtime folders including `.dsh`, excludes `.opencode/scripts`, then regenerates dsh skill links, runtime mirrors, hook registrations, the trigger index and the advisor graph, and finally compares a Barter fork of the git skill. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:90] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:108] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2914]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-8-barter-s-edit-guard-is-a-different-core-from-skilled-s-overlay-guard-it-spawns-s",
+      "text": "Barter's edit guard is a different core from Skilled's `overlay-guard`: it spawns `sync.cjs` from the overlay folder and layers a separate session gate, while Skilled's guard allows immediately unless `.skilled-overlays.json` or `skilled-overlays/` exists at the tree root, so today it is inert in Barter and after adoption two guards would run over the same writes. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11] [SOURCE: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32] [SOURCE: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:111]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-2-9-barter-s-own-documentation-has-already-drifted-from-its-manifest-the-vendored-re",
+      "text": "Barter's own documentation has already drifted from its manifest: the vendored `README.md` still pins `23b4f3d2e7` while `overlay-manifest.json` and `sync-state.json` both carry `230d22ba88`, which is the same silent-drift class the engine's own status check cannot see because it never reads a README. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:43, 59-60, 90-96, 108-131, 178, 186-196",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:4, 813",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91, 106, 402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/.skilled/hooks/overlay-sync/lib/overlay-sync-core.cjs:11",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/README.md:9",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 375, 430, 1595, 2337, 2914",
+        ".skilled/hooks/overlay-guard/lib/overlay-guard.cjs:32, 111"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-1-barter-s-manifest-already-declares-a-hook-registrations-pair-a-regenerate-step-a",
+      "text": "Barter's manifest already declares a `hook-registrations` pair — a regenerate step and its `--check` verify — pointing at `sync-hook-registrations.cjs`, so the brief's list is wrong on that item: hook registration regeneration is expressible and already expressed. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1502]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-dsh-skill-sync-is-a-clean-regenerate-verify-pair-the-engine-can-express-toda",
+      "text": "The dsh skill sync is a clean regenerate/verify pair the engine can express today — `sync-skills-dsh.cjs` writes without flags and `--check` reports `MISSING`/`STALE`/`EXTRA` drift and returns 1 — yet Barter's manifest never names it, so `expect: \"exit-0\"` on `--check` would close the brief's dsh-link gap with no engine change. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:317]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-3-sync-runtime-mirrors-cjs-follows-the-same-shape-no-flag-writes-check-collects-st",
+      "text": "`sync-runtime-mirrors.cjs` follows the same shape — no flag writes, `--check` collects `STALE`/`MISSING`/`EXTRA` drift and exits non-zero — so runtime-mirror regeneration is also a manifest entry, not an engine feature. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:317]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-trigger-index-already-has-the-exact-fresh-true-contract-the-engine-s-verifyg",
+      "text": "The trigger index already has the exact `fresh-true` contract the engine's `verifyGenerated` expects: `generate-trigger-index.mjs --check --json` returns a `fresh` boolean and exits 1 when a document is stale or the corpus is untrusted, so regeneration plus freshness is one manifest pair. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:565]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-advisor-graph-is-the-one-surface-the-engine-cannot-fully-express-rebuilding-",
+      "text": "The advisor graph is the one surface the engine cannot fully express: rebuilding is `skill-advisor.cjs advisor_rebuild` (operator-gated, no freshness output), and the only checkable surface is `skill-graph-freshness.cjs`, which is report-only, exits 0 by default, and gates only under `--strict`; so a manifest can only pair an `advisor_rebuild` regenerate step with a `skill-graph-freshness.cjs --strict` exit-0 verify, never a `fresh-true` expectation. [SOURCE: .skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1] [SOURCE: .skilled/commands/doctor/scripts/skill-graph-freshness.cjs:20]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-re-pin-workflow-s-own-invariant-claims-the-stage-runs-every-step-on-a-copy-b",
+      "text": "The re-pin workflow's own invariant claims the stage runs every step on a copy, but the engine deliberately strips `regenerate` and `verifyGenerated` from a staged run, so a clean `RESULT: STAGED` report can precede a live re-pin whose regeneration fails; the two contracts disagree and the stage report carries no line saying regeneration was skipped. [SOURCE: .skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2914]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-7-regeneration-steps-are-arbitrary-argv-run-with-cwd-at-the-tree-root-and-no-allow",
+      "text": "Regeneration steps are arbitrary argv run with `cwd` at the tree root and no allowlist, so a vendored repo's manifest is an execution surface: whoever writes `manifest.regenerate` decides what a re-pin runs, which is why a migration should copy a reviewed step list rather than accept one from an untrusted overlay folder. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1478] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1531]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-3-8-doctor-already-treats-the-dsh-surfaces-as-first-class-mirrors-with-dsh-skills-ds",
+      "text": "Doctor already treats the dsh surfaces as first-class mirrors, with `dsh_skills`, `dsh_prompts` and `dsh_agents` scripted against `.dsh/skills`, `.dsh/prompts` and `.dsh/agents`, so a re-pin that omits `.dsh` from its runtime folders contradicts the doctor model, not just Barter's runbook. [SOURCE: .skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46]",
+      "addedAtIteration": 3,
+      "sources": [
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1394, 1502",
+        ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs:46, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:70, 317",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:33, 565",
+        ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs:1, 20",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:1478, 1531, 2914",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-1-opencode-scripts-needs-no-engine-change-the-engine-already-refuses-a-folder-wher",
+      "text": "`.opencode/scripts` needs no engine change: the engine already refuses a folder where upstream ships a file with a message that names the fix (`list it in repin.exclude to keep it`), and refuses unowned drift with `move each edit into an overlay, list the path in repin.exclude, or restore it from <pin>`, so Barter's `tar --exclude .opencode/scripts` becomes a manifest `repin.exclude` entry. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2671] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2969] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-engine-refuses-when-the-overlay-folder-sits-inside-a-folder-a-re-pin-copies-",
+      "text": "The engine refuses when the overlay folder sits inside a folder a re-pin copies, and Barter's `barter-overlays/` sits at the tree root outside `.skilled` and the runtime folders, so `.skilled-overlays.json` naming it is the only missing piece for adoption — no engine change is needed for placement. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2961] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-3-root-files-are-structurally-outside-the-re-pin-copy-and-delete-sets-which-makes-",
+      "text": "Root files are structurally outside the re-pin copy and delete sets, which makes Barter's documented whole-archive trap impossible through the engine, but the same exclusion means an upstream change to a root file is never applied and no report line says so; the reference doc states `Root files such as AGENTS.md are never copied` as a fact rather than as a warning that those changes are dropped. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2531] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:186] [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:120]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-4-agents-md-and-repo-rules-md-have-a-second-owner-doctor-agents-md-check-reports-t",
+      "text": "`AGENTS.md` and `REPO RULES.md` have a second owner: `/doctor:agents-md check` reports twelve rows including `REPO RULES.md`, so after a re-pin two commands own the same root files and neither the router docs nor the reference states which one wins. [SOURCE: README.md:1452] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2531]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-5-dsh-is-treated-inconsistently-inside-skilled-itself-the-overlay-guard-ships-a-ds",
+      "text": "`.dsh` is treated inconsistently inside Skilled itself: the overlay guard ships a dsh adapter, so dsh edits are protected, while the engine's default runtime folder list omits `.dsh`, so dsh mirrors are skipped on re-pin unless the manifest overrides `repin.runtimeFolders`. [SOURCE: .skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:74]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-advertised-install-route-never-mentions-overlays-doctor-install-has-zero-ove",
+      "text": "The advertised install route never mentions overlays: `/doctor:install` has zero overlay mentions, and the install, setup and helper workflow assets have none either, while root README section 5 documents `status`, `apply`, `--capture` and `repin` in full — so a repo that follows the install path never discovers the feature it needs. [SOURCE: .skilled/commands/doctor/install.md:1] [SOURCE: .skilled/commands/doctor/assets/doctor-install.yaml:1] [SOURCE: README.md:300]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-overlays-reference-already-documents-the-setting-protectedpaths-with-the-lit",
+      "text": "The overlays reference already documents the setting, `protectedPaths` with the literal `references/barter-design-tokens.md` example, `repin.exclude` and the root-file rule, so the brief's \"docs only advertise linking\" is false for that file; what is genuinely missing is adoption guidance for a repo that already has a hand-rolled overlay folder, manifest extensions and a state file. [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:44] [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:92] [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:120]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-4-8-fork-drifted-tracking-has-no-engine-and-no-documentation-expression-barter-s-for",
+      "text": "Fork-drifted tracking has no engine and no documentation expression: Barter's fork adds the state and validates `outsideCertificate` reasons, while the engine ignores both keys, so a migrating repo deletes those declarations and loses the only visibility it had into upstream-vs-fork divergence. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:67]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 2531, 2671, 2961, 2969",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92, 120",
+        ".skilled/hooks/overlay-guard/dsh/overlay-guard.mjs:1",
+        ".skilled/commands/doctor/install.md (no overlay mention)",
+        ".skilled/commands/doctor/assets/doctor-install.yaml (no overlay mention)",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/README.md:94, 186",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:402",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-1-ranked-engine-change-p1-make-a-protected-path-a-per-entry-refusal-instead-of-a-w",
+      "text": "Ranked engine change P1 — make a protected path a per-entry refusal instead of a whole-run throw: `assertSafeToPlan` and `analyze` currently raise before any report exists, while `BLOCKING_STATES`/`reportBlocked` already give every other refusal a per-overlay line, so moving the protected check into that reporting path fixes a confusing exit 2 with no new state. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1688] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:1801] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2884]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-2-ranked-engine-change-p2-add-dsh-to-default-runtime-folders-the-doctor-s-runtime-",
+      "text": "Ranked engine change P2 — add `.dsh` to `DEFAULT_RUNTIME_FOLDERS`: the doctor's runtime-mirror contract already treats `.dsh` as three first-class surfaces (`dsh_skills`, `dsh_prompts`, `dsh_agents`), and a re-pin that skips it leaves stale dsh mirrors; the change also touches the repin tests' hard-coded `copy N paths` expectations, which must be re-baselined. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:74] [SOURCE: .skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46] [SOURCE: .skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-3-ranked-engine-change-p3-make-a-stage-report-state-that-regeneration-and-verifica",
+      "text": "Ranked engine change P3 — make a stage report state that regeneration and verification were skipped: the engine strips both blocks for a staged run and prints nothing about it, while the re-pin workflow's invariant claims the stage runs every step on a copy, so one printed line plus the workflow text correction closes a real expectation gap. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2914] [SOURCE: .skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-4-ranked-engine-change-p4-report-upstream-root-file-changes-the-re-pin-excludes-th",
+      "text": "Ranked engine change P4 — report upstream root-file changes the re-pin excludes: the copy and delete sets are built only from `.skilled` and the runtime folders, so an upstream change to `AGENTS.md` or `REPO RULES.md` is never applied and never named, even though `/doctor:agents-md` reports rows for both files and the two writers have no documented precedence. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:2531] [SOURCE: README.md:1452]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-5-ranked-engine-change-p5-make-a-missing-overlay-setting-diagnosable-today-the-fal",
+      "text": "Ranked engine change P5 — make a missing overlay setting diagnosable: today the fallback to `skilled-overlays` turns \"no setting and no such folder\" into `no overlay manifest at skilled-overlays/overlay-manifest.json`, which reads like a corrupt manifest; a distinct \"no overlay folder named\" message, or a guarded search for any folder holding `overlay-manifest.json`, fixes the adoption path without touching classification. [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:375] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:425]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-6-ranked-engine-change-p6-p7-fork-drifted-and-outsidecertificate-are-one-optional-",
+      "text": "Ranked engine change P6/P7 — `fork-drifted` and `outsideCertificate` are one optional extension, not two: both exist only in Barter's fork, both are non-blocking visibility features, and the engine's five-state classifier plus its skill-root planner would each need a new branch, so they should ship together behind one documented manifest contract or not at all. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:67]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-7-declined-engine-change-extension-based-token-trust-barter-s-fork-allows-md-css-t",
+      "text": "Declined engine change — extension-based token trust: Barter's fork allows `.md`, `.css`, `.ts` and `.svelte` names, but adopting that rule would weaken the engine's secret-file posture for every consumer; `protectedPaths` already gives a per-path, path-relative opt-in and the reference doc publishes it with the exact Barter example, so the manifest fix is preferred over the heuristic fix. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:91] [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:92]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-8-barter-manifest-migration-in-order-add-skilled-overlays-json-naming-barter-overl",
+      "text": "Barter manifest migration, in order: add `.skilled-overlays.json` naming `barter-overlays`; copy `sync-state.json` into the overlay folder unchanged (its `schemaVersion`/`pin`/`files` shape already matches); add `protectedPaths: [\"assets/tokens.css\", \"references/barter-design-tokens.md\"]` to `repo-frontend` only, since every other Barter token-named file is a `file` scope entry that the engine already reads exactly; add a `repin` block with the seven runtime folders including `.dsh` and `exclude: [\".opencode/scripts\"]`; keep `pinnedSha256` per entry because the engine reads it; move `outsideCertificate`/`upstreamSource` aside until the P6/P7 extension exists. [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1] [SOURCE: /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:984]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "finding-5-9-documentation-and-advertising-changes-ranked-d1-add-an-overlay-step-and-an-you-h",
+      "text": "Documentation and advertising changes, ranked: D1 add an overlay step and an \"you have a vendored copy with local changes\" branch to `/doctor:install` and its YAML, which mention overlays zero times today; D2 add adoption/migration guidance to `references/overlays.md` (existing folder, existing state, `.dsh`, stage-skips-regeneration, root-file changes are dropped); D3 add adoption trigger phrases to `/doctor:overlay`'s route block and the skill's keyword list, which currently only name status/apply/repin phrasings; D4 correct the re-pin workflow invariant; D5 state the `AGENTS.md`/`REPO RULES.md` precedence against `/doctor:agents-md` in both the reference and root README section 5. [SOURCE: .skilled/commands/doctor/install.md:1] [SOURCE: .skilled/commands/doctor/assets/doctor-install.yaml:1] [SOURCE: .skilled/skills/system-skilled-doctor/references/overlays.md:44] [SOURCE: .skilled/commands/doctor/_routes.yaml:624] [SOURCE: README.md:300]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/commands/doctor/scripts/overlay-engine.cjs:67, 74, 375, 425, 984, 1688, 1801, 2531, 2884, 2914",
+        ".skilled/commands/doctor/scripts/tests/overlay-engine-repin.test.cjs:280",
+        ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs:46",
+        ".skilled/commands/doctor/install.md, .skilled/commands/doctor/assets/doctor-install.yaml",
+        ".skilled/skills/system-skilled-doctor/references/overlays.md:44, 92",
+        ".skilled/commands/doctor/_routes.yaml:624",
+        ".skilled/commands/doctor/assets/doctor-overlay-repin.yaml:40",
+        "README.md:300, 1452",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/overlay-manifest.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync-state.json:1",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/sync.cjs:17, 91",
+        "/Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit/skilled/barter-overlays/replay.cjs:813"
+      ],
+      "_lineages": [
+        "pi-max"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-6c82e4b2b1f2",
+      "text": "Running `overlay-engine.cjs status` against this repo to observe the failure: the engine writes nothing in status mode, but a run would still need the repo's own setting and manifest, and the finding is fully derivable from the branches; the command was not run to keep the write surface clean.",
+      "contentHash": "6c82e4b2b1f2",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-7b0273d0ba25",
+      "text": "Looking for an engine-level default regeneration list: there is none; the only default is the runtime folder list, which is the `.dsh` gap in finding 4.",
+      "contentHash": "7b0273d0ba25",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-9bc488c8d056",
+      "text": "Looking for a \"setting file missing\" diagnostic: none exists, so an operator sees a manifest-path error instead of a settings error, which explains the confusing exit 2 in the brief.",
+      "contentHash": "9bc488c8d056",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-b982c2f1c114",
+      "text": "Reading the engine's usage header as the contract: the header documents exit codes per command but not the `.skilled-overlays.json` fallback or the protected-path throw, and both were only visible in the function bodies (lines 375-379, 1688-1703).",
+      "contentHash": "b982c2f1c114",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-d7a43b017f9e",
+      "text": "Treating the brief's gap list as authoritative: finding 6 directly contradicts it, so the brief was demoted to hypotheses and re-verified item by item.",
+      "contentHash": "d7a43b017f9e",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-95c9b358febf",
+      "text": "Treating Barter's scripts as an unrelated bespoke implementation: the shared preamble and function names make that untenable, and it changes the recommendation from \"replace Barter's tool\" to \"upstream its deltas\".",
+      "contentHash": "95c9b358febf",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-bf934d8c3e2a",
+      "text": "Searching for a `repin` implementation inside Barter: none, by design; the runbook is the implementation.",
+      "contentHash": "bf934d8c3e2a",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-da2e82132fcb",
+      "text": "Assuming the manifest would need rewriting from scratch: 130 entries, 19 layout links, 9 regenerate steps and 10 verify steps already match the engine's schema; only `outsideCertificate`, `upstreamSource` and the missing `pin.checkout` reader are engine-side gaps.",
+      "contentHash": "da2e82132fcb",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-f3f00b447808",
+      "text": "Looking for `protectedPaths` in Barter's manifest to explain the design-tokens refusal: it is absent everywhere, so the refusal comes from the engine's name heuristic, not from a malformed entry.",
+      "contentHash": "f3f00b447808",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-01f8ba0fbf80",
+      "text": "Assuming the advisor graph can be treated like the others: the rebuild has no read-only freshness mode, so it must be a regenerate step plus a separate report-only gate, and that asymmetry has to be documented rather than papered over.",
+      "contentHash": "01f8ba0fbf80",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-0580816c1a7a",
+      "text": "Assuming the engine needs a new regeneration mechanism: three of the five surfaces (dsh links, runtime mirrors, trigger index) are expressible with manifest entries the engine already supports.",
+      "contentHash": "0580816c1a7a",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-2c39bcf61c3a",
+      "text": "Looking for an advisor freshness JSON contract: `skill-graph-freshness.cjs` prints a panel, not a `fresh` field, so the `fresh-true` expectation cannot be reused there.",
+      "contentHash": "2c39bcf61c3a",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-343ea7c46edf",
+      "text": "Looking for an engine-level \"post-repin hook\": none; `regenerate` runs inside `applyUnderLock` after the copy, which is the post-repin point, so no new hook is needed.",
+      "contentHash": "343ea7c46edf",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-5ed051d1692f",
+      "text": "Trusting the repin workflow's stage invariant: the engine's stage branch contradicts it, so the workflow text needs the correction, not just the engine.",
+      "contentHash": "5ed051d1692f",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-03ed67bea236",
+      "text": "Expecting the engine to need a root-file copy rule: the exclusion is deliberate and correct for a re-pin; the gap is the missing report line and the missing precedence rule, not the exclusion.",
+      "contentHash": "03ed67bea236",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-065fe6259c1c",
+      "text": "Searching `update.md`, `symlink.md`, `runtime-mirrors.md` and `env.md` for overlay mentions: zero in each, which confirms the discovery gap is route-level rather than a single missing sentence.",
+      "contentHash": "065fe6259c1c",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-0cd4dadb6a57",
+      "text": "Looking for a documented precedence between `/doctor:agents-md` and the overlay engine over `AGENTS.md`: none exists.",
+      "contentHash": "0cd4dadb6a57",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-17363332847d",
+      "text": "Expecting the docs to be silent about overlays: root README section 5 and the reference are thorough, so the fix is routing and adoption guidance rather than writing the feature up from scratch.",
+      "contentHash": "17363332847d",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-1ed5df44af16",
+      "text": "Expecting `.opencode/scripts` and `.dsh` to be engine features: both are manifest configuration plus defaults, and only the defaults need to change.",
+      "contentHash": "1ed5df44af16",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-1ea595e60702",
+      "text": "Treating the `.dsh` default as a documentation-only change: the repin tests assert exact copy counts, so it is a code + test change with a doc note.",
+      "contentHash": "1ea595e60702",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-562c21e9ed4b",
+      "text": "Looking for a test that would catch a missing `.dsh` default: the engine tests do not enumerate the default list, only the doctor mirror contract does.",
+      "contentHash": "562c21e9ed4b",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-64d4e7efaa88",
+      "text": "Looking for a single migration document that already covers an existing hand-rolled overlay folder: none exists in the doctor skill or the command docs, which is why D2 is a real deliverable rather than a reorganisation.",
+      "contentHash": "64d4e7efaa88",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-7c05d07f7d33",
+      "text": "Prioritising the Barter fork's two extra states above the smaller fixes: they are the most expensive changes and the least blocking, and a repo can adopt the engine without them.",
+      "contentHash": "7c05d07f7d33",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "pi-max"
+      ]
+    },
+    {
+      "id": "ruled-out-df7d39fdd54a",
+      "text": "Adopting Barter's extension allowlist: it trades an explicit per-path declaration for a name heuristic, which is the wrong direction for a secret-file guard.",
+      "contentHash": "df7d39fdd54a",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "pi-max"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 42,
+    "sourceFindings": 42,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.65,
+    "coverageBySources": {}
+  }
+}

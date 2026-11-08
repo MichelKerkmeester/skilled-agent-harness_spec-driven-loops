@@ -41,6 +41,19 @@ def current_verdict(path: str) -> dict:
     }
 
 
+# Where a finding sits moves with every edit above it, so a verdict is compared
+# on what was found, not on the line it was found at.
+POSITION_KEYS = ("line", "line_number")
+
+
+def comparable(verdict: dict) -> dict:
+    """The verdict with each finding's position removed."""
+    def strip(findings):
+        return [{k: v for k, v in item.items() if k not in POSITION_KEYS} if isinstance(item, dict) else item
+                for item in findings or []]
+    return {**verdict, "blocking_errors": strip(verdict.get("blocking_errors")), "warnings": strip(verdict.get("warnings"))}
+
+
 def tracked_readmes() -> list[str]:
     """Every tracked README.md or README.markdown, the set the baseline describes; vendored trees are never tracked."""
     proc = subprocess.run(
@@ -77,7 +90,7 @@ def main() -> int:
     mismatches = []
     for expected in baseline["results"]:
         actual = current_verdict(expected["file"])
-        if actual != expected:
+        if comparable(actual) != comparable(expected):
             mismatches.append({"file": expected["file"], "expected": expected, "actual": actual})
     print(f"PARITY baseline_files={baseline['count']} post_files={len(baseline['results'])} diff_entries={len(mismatches)}")
     if mismatches:

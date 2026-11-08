@@ -196,5 +196,6 @@ STATUS=FAIL ERROR="[message]"
 | A line reads `local` or `foreign-link` | Left alone on purpose. Move that file or link yourself, or bring it under step 1's shape, and rerun the guide |
 | Only the steps are wanted | `list` prints them with no build check and no inspection |
 | A saved session lands in the checkout's `specs/` | The save ran from the Skilled checkout. Run it again from inside the target repo, as the caveat in section 7 says |
+| The project copies Skilled in instead of linking it | This guide covers linking only. A copy that keeps its own changes keeps them as overlays: run `/doctor:overlay status --root <copy>`, and see the overlays reference in `system-skilled-doctor` for adopting the engine when the project already has its own overlay folder |
 
 End interactive presentations with: `What would you like to do next?`

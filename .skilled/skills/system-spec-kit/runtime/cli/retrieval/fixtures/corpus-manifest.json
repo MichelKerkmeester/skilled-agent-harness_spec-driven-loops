@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6a6d9855e22925e468dc4b1f3959b8925a5181579e09add6a6f9e723221c42a5",
+  "corpusHash": "f0887150c61a18f7c4afea717c19f9150d045859f917187a40ecb40ea2fd4531",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28448,
+  "includedPathCount": 28485,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1632,6 +1632,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.6.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.8.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.9.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -7168,6 +7169,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.10.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.11.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
@@ -7896,6 +7898,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.13.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.14.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.15.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.16.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.2.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.3.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
@@ -8332,7 +8335,10 @@
     ".skilled/skills/system-skilled-doctor/benchmark/README.md",
     ".skilled/skills/system-skilled-doctor/benchmark/reports/README.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.0.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/integration-request-routing.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/routing/moved-command-contract.md",
@@ -8620,6 +8626,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.34.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.35.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.35.1.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.36.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -8744,6 +8751,8 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/ask-surface-guard-live-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/ask-surface-guard-no-false-positive-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-baseline-conversation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
@@ -10595,6 +10604,10 @@
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/spec.md",
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/tasks.md",
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/spec.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/implementation-summary.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/plan.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/spec.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/tasks.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/holdout-managed-workspace.md",
     "specs/cli-orca/001-mcp-orca-cli/benchmark/reports/hub-routing-archived/orca-worktree-terminal.md",
@@ -15920,6 +15933,10 @@
     "specs/sk-git/037-advisory-cd-prefix-env-steps/plan.md",
     "specs/sk-git/037-advisory-cd-prefix-env-steps/spec.md",
     "specs/sk-git/037-advisory-cd-prefix-env-steps/tasks.md",
+    "specs/sk-git/038-provision-private-command-links/implementation-summary.md",
+    "specs/sk-git/038-provision-private-command-links/plan.md",
+    "specs/sk-git/038-provision-private-command-links/spec.md",
+    "specs/sk-git/038-provision-private-command-links/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -18513,11 +18530,27 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/acceptance-criteria.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/fanout-attribution.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/research.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/resource-map.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/tasks.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/implementation-summary.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/plan.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/spec.md",
+    "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/tasks.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-decisions.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-plan.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/plan.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/spec.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -28476,10 +28509,14 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/review/p2-verification.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/review/review-report.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/spec.md",
-    "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
+    "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/implementation-summary.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/plan.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/spec.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "620beff7728459703ffb14c713e78e467e81fa8ded368d076b5ee5a003ccea3e",
+  "manifestHash": "fc008d49467d5c2676d5fdc981e0b031988f3d03bd16be23024a4c43bfc6ea29",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30351,6 +30388,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/087-opencode-worktree-confinement/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33426,6 +33467,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/038-provision-private-command-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/z_archive",
       "reason": "excluded directory"
     },
@@ -34282,7 +34327,19 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-spec-kit/044-named-subtracks-and-host-repos/review/lineages",
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {
@@ -36899,6 +36956,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-upgrade-level-anchor-insert/scratch",
       "reason": "excluded directory"
     },
     {

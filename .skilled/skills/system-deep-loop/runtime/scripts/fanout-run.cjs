@@ -2108,7 +2108,9 @@ function runLineageProcess(command, cmdArgs, opts) {
     try {
       child = spawn(command, cmdArgs, {
         cwd,
-        env,
+        // spawn() moves the working directory but passes the parent's PWD on unchanged,
+        // and some executors read PWD to tell the model where it is.
+        env: cwd ? { ...(env || process.env), PWD: path.resolve(cwd) } : env,
         stdio: [hasInput ? 'pipe' : 'ignore', 'pipe', 'pipe'],
         detached: process.platform !== 'win32',
       });

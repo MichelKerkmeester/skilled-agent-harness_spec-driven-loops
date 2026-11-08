@@ -322,16 +322,27 @@ test('an exact file entry for a token-named destination applies', (t) => {
   assert.equal(fs.readFileSync(path.join(fixture.overlayDir, 'files/design-tokens.json'), 'utf8'), '{"gap": 8}\n');
 });
 
-test('a token-named file met while walking a directory or skill-root entry is refused', (t) => {
-  for (const [label, relativePath] of [['directory', 'directory-live/tokens.css'], ['skill-root', 'skill/docs/tokens.css']]) {
+test('a token-named file met while walking a directory or skill-root entry blocks only its own entry', (t) => {
+  for (const [label, relativePath, hint] of [
+    ['directory', 'directory-live/tokens.css', 'add "tokens.css" to this entry\'s protectedPaths'],
+    ['skill-root', 'skill/docs/tokens.css', 'add "docs/tokens.css" to this entry\'s protectedPaths'],
+  ]) {
     const fixture = createSyncFixture(t);
     seed(fixture);
+    writeFile(fixture.overlayDir, 'files/guarded.txt', 'overlay two\n');
     writeFile(fixture.tree, relativePath, ':root {}\n');
+    const before = treeDigest(fixture.tree);
     const status = fixture.run(['status']);
-    assert.equal(status.code, 2, label + ': ' + status.output);
-    assert.match(status.output, /refusing to inspect a protected path/, label);
+    assert.equal(status.code, 1, label + ': ' + status.output);
+    assert.match(status.output, /^MISS +\S+: refusing to inspect a protected path/m, label);
+    assert.ok(status.output.includes(hint), label + ': ' + status.output);
+    // The refusal no longer hides the rest of the report.
+    assert.match(status.output, /overlay-edited guarded\.txt/, label);
+    assert.match(status.output, /^RESULT: FAILED$/m, label);
     const applied = fixture.run(['apply']);
-    assert.equal(applied.code, 2, label + ': ' + applied.output);
+    assert.equal(applied.code, 1, label + ': ' + applied.output);
+    assert.match(applied.output, /^BLOCKED +\S+: refusing to inspect a protected path/m, label);
+    assert.equal(treeDigest(fixture.tree), before, label + ': apply wrote while an entry was refused');
   }
   const fixture = createSyncFixture(t);
   seed(fixture);
@@ -360,8 +371,8 @@ test('a walked token-named file passes only when its entry lists the exact path 
 
   writeFile(fixture.tree, 'directory-live/access-token.txt', 'secret\n');
   const unlisted = fixture.run(['status']);
-  assert.equal(unlisted.code, 2, unlisted.output);
-  assert.match(unlisted.output, /refusing to inspect a protected path/);
+  assert.equal(unlisted.code, 1, unlisted.output);
+  assert.match(unlisted.output, /refusing to inspect a protected path: directory-live\/access-token\.txt; if the overlay owns it, add "access-token\.txt"/);
 });
 
 test('a protectedPaths value that escapes its entry or names a .env file is refused', (t) => {
@@ -381,8 +392,10 @@ test('a .env file is refused even when a manifest entry names it exactly', (t) =
   fixture.manifest.overlays.push({ id: 'env', scope: 'file', source: 'files/.env.local', destination: '.env.local' });
   writeManifest(fixture);
   const status = fixture.run(['status']);
-  assert.equal(status.code, 2, status.output);
-  assert.match(status.output, /refusing to inspect a protected path/);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /^MISS +env: refusing to inspect a protected path: files\/\.env\.local; a \.env file is never read/m);
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 1, applied.output);
   assert.equal(fs.existsSync(path.join(fixture.tree, '.env.local')), false);
 });
 

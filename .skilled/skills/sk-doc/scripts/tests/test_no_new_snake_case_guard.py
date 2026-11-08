@@ -209,6 +209,20 @@ class NoNewSnakeCaseGuardTests(unittest.TestCase):
         self.assertIn("synthesis_pending.json", rejected.stdout)
         self.assertNotIn("synthesis_complete.json", rejected.stdout)
 
+    def test_runtime_generated_research_archive_dir_is_exempt_by_exact_name(self) -> None:
+        self.repo.write("docs/clean-name.md")
+        base = self.repo.commit("base")
+
+        self.repo.write("packet/research_archive/old-lineage/state.json", "{}\n")
+        accepted = self.repo.guard("--changed-since", base)
+        self.assertEqual(accepted.returncode, 0, accepted.stdout + accepted.stderr)
+
+        self.repo.write("packet/research_archive/old_lineage/state.json", "{}\n")
+        rejected = self.repo.guard("--changed-since", base)
+        self.assertEqual(rejected.returncode, 1, rejected.stdout + rejected.stderr)
+        self.assertIn("old_lineage", rejected.stdout)
+        self.assertNotIn("packet/research_archive\n", rejected.stdout)
+
     def test_all_enumerates_offenders_deterministically(self) -> None:
         self.repo.write_many(
             [

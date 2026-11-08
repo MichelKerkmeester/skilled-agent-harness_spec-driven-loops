@@ -1,0 +1,6 @@
+{"type":"session","sessionId":"session-ad5ecb6b-d64e-4e76-b902-608b218b9359","cwd":"/Users/michelkerkmeester/worktrees/public/324-overlay-repin-barter-parity/specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/lineages/dsh-max"}
+{"type":"status","phase":"turn_start","turn":1}
+{"type":"status","phase":"step_start","turn":1,"step":1}
+{"type":"status","phase":"step_end","turn":1,"step":1,"usage":{"inputTokens":0,"outputTokens":0,"totalTokens":0}}
+{"type":"status","phase":"turn_end","turn":1,"reason":{"kind":"error","error":{"message":"402: {\"message\":\"Dev Plan credit limit reached. Upgrade your plan or wait for renewal on 11/10/2026. Or enable pay-as-you-go overflow in your DevPass dashboard to keep going past your allowance.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"billing_error\"}","code":"INVALID_REQUEST"}}}
+{"type":"final","sessionId":"session-ad5ecb6b-d64e-4e76-b902-608b218b9359","reason":{"kind":"error","error":{"message":"402: {\"message\":\"Dev Plan credit limit reached. Upgrade your plan or wait for renewal on 11/10/2026. Or enable pay-as-you-go overflow in your DevPass dashboard to keep going past your allowance.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"billing_error\"}","code":"INVALID_REQUEST"}},"text":""}

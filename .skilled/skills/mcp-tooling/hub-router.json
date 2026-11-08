@@ -149,8 +149,7 @@
         "chrome autoconnect",
         "my own chrome",
         "signed-in chrome",
-        "logged in chrome",
-        "isolated chrome"
+        "logged in chrome"
       ]
     },
     "browser-debug": {

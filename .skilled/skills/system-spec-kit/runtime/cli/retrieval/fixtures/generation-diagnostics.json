@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7376,
-    "ok": 17523,
+    "missing-frontmatter": 7380,
+    "ok": 17556,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28448,
+  "documentsScanned": 28485,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "620beff7728459703ffb14c713e78e467e81fa8ded368d076b5ee5a003ccea3e",
+  "manifestHash": "fc008d49467d5c2676d5fdc981e0b031988f3d03bd16be23024a4c43bfc6ea29",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41890,
+      "ok": 41951,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -32658,6 +32658,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -45988,6 +45994,24 @@
       "line": 1,
       "path": "specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "valid-empty-list",
@@ -71019,6 +71043,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/087-opencode-worktree-confinement/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -74091,6 +74119,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/038-provision-private-command-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/z_archive",
       "reason": "excluded directory"
     },
@@ -74947,7 +74979,19 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-spec-kit/044-named-subtracks-and-host-repos/review/lineages",
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {
@@ -77564,6 +77608,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-upgrade-level-anchor-insert/scratch",
       "reason": "excluded directory"
     },
     {

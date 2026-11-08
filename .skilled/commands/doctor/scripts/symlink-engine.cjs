@@ -474,6 +474,20 @@ function isWholeLink(rootPath, sourcePath, entry, linkText) {
 }
 
 /**
+ * Report whether a path resolves to a location inside a directory.
+ * @param {string} target
+ * @param {string} directory
+ * @returns {boolean}
+ */
+function resolvesInto(target, directory) {
+  try {
+    return isWithin(fs.realpathSync(target), fs.realpathSync(directory));
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Return true if following a symlink reaches an existing target.
  * @param {string} target
  * @returns {boolean}
@@ -782,6 +796,26 @@ function refuse(actions, refusals, pathName, reason) {
 }
 
 /**
+ * Whether the plan itself creates the folder a host sibling link points at.
+ * A link or replace-link counts for its whole subtree, while a mkdir counts only
+ * as an exact match because an empty folder does not create what is under it.
+ * @param {Array<object>} actions
+ * @param {string} root
+ * @param {string} target
+ * @returns {boolean}
+ */
+function planCreates(actions, root, target) {
+  return actions.some((action) => {
+    if (!action || typeof action.path !== 'string') return false;
+    const absolute = path.resolve(root, action.path);
+    if (action.op === 'link' || action.op === 'replace-link') {
+      return target === absolute || target.startsWith(absolute + path.sep);
+    }
+    return action.op === 'mkdir' && target === absolute;
+  });
+}
+
+/**
  * Add merge links under a real directory, preserving every local path.
  * @param {string} root
  * @param {string} source
@@ -814,12 +848,18 @@ function planMergeTree(root, source, rootRelative, sourceRelative, entrySource, 
     if (isHostRelativeLink(childSource, entrySource)) {
       const linkText = fs.readlinkSync(childSource);
       const hostTarget = path.resolve(path.dirname(childRoot), linkText);
-      // Only a host sibling that already exists receives the alias; it is never a link into the checkout.
-      if (!isWithin(hostTarget, root) || !linkTargetExists(hostTarget)) continue;
+      // Only a host sibling receives the alias; it is never a link into the checkout. The
+      // sibling counts when it exists or when this same plan creates it, so a first link
+      // into a new project does not need a second run.
+      const targetPlanned = !linkTargetExists(hostTarget) && planCreates(actions, root, hostTarget);
+      if (!isWithin(hostTarget, root) || !(linkTargetExists(hostTarget) || targetPlanned)) continue;
       if (!rootStat) {
-        // The host-relative alias keeps its text relative, so it is portable and a host may
-        // commit it. Only the machine-local absolute links below belong in the ignore file.
+        // The alias text stays relative, so an alias to real host content is portable and a
+        // host may commit it. An alias whose target is a link this plan creates resolves only
+        // on this machine, as does one whose target already resolves into the checkout, so
+        // either joins the machine-local links in the ignore file.
         actions.push({ op: 'link', path: childRootRelative, target: linkText });
+        if (targetPlanned || resolvesInto(hostTarget, source)) ignoreCandidates.push(childRootRelative);
       }
       continue;
     }

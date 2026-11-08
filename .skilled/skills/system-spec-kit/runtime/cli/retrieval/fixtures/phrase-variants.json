@@ -1,5 +1,5 @@
 {
-  "manifestHash": "620beff7728459703ffb14c713e78e467e81fa8ded368d076b5ee5a003ccea3e",
+  "manifestHash": "fc008d49467d5c2676d5fdc981e0b031988f3d03bd16be23024a4c43bfc6ea29",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8294,6 +8294,9 @@
     "admission research fan out": [
       "admission research fan-out"
     ],
+    "adopt an existing overlay folder": [
+      "adopt an existing overlay folder"
+    ],
     "adopt deep pi": [
       "adopt deep-pi"
     ],
@@ -8302,6 +8305,9 @@
     ],
     "adopt spec kit modules": [
       "adopt spec-kit modules"
+    ],
+    "adopt the overlay engine": [
+      "adopt the overlay engine"
     ],
     "adopter customized sk code": [
       "adopter customized sk-code"
@@ -13820,6 +13826,21 @@
     ],
     "barter overlay mechanics research": [
       "barter overlay mechanics research"
+    ],
+    "barter parity": [
+      "barter parity"
+    ],
+    "barter parity acceptance criteria": [
+      "barter parity acceptance criteria"
+    ],
+    "barter parity implementation summary": [
+      "barter parity implementation summary"
+    ],
+    "barter parity plan": [
+      "barter parity plan"
+    ],
+    "barter parity tasks": [
+      "barter parity tasks"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -22686,6 +22707,9 @@
     "cli opencode 1 5 8 0": [
       "cli-opencode 1.5.8.0"
     ],
+    "cli opencode 1 5 9 0": [
+      "cli-opencode 1.5.9.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -22940,6 +22964,9 @@
     ],
     "cli opencode v1 5 8 0": [
       "cli-opencode v1.5.8.0"
+    ],
+    "cli opencode v1 5 9 0": [
+      "cli-opencode v1.5.9.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -27768,6 +27795,12 @@
     ],
     "compaction history lookup": [
       "compaction history lookup"
+    ],
+    "compaction history recall baseline conversation": [
+      "compaction history recall baseline conversation"
+    ],
+    "compaction history recall conversation": [
+      "compaction history recall conversation"
     ],
     "compaction pointer staleness": [
       "compaction pointer staleness"
@@ -35960,6 +35993,9 @@
     "deep loop runtime 1 9 15 0": [
       "deep-loop-runtime 1.9.15.0"
     ],
+    "deep loop runtime 1 9 16 0": [
+      "deep-loop-runtime 1.9.16.0"
+    ],
     "deep loop runtime 1 9 2 0": [
       "deep-loop-runtime 1.9.2.0"
     ],
@@ -36082,6 +36118,9 @@
     ],
     "deep loop runtime v1 9 15 0": [
       "deep-loop-runtime v1.9.15.0"
+    ],
+    "deep loop runtime v1 9 16 0": [
+      "deep-loop-runtime v1.9.16.0"
     ],
     "deep loop runtime v1 9 2 0": [
       "deep-loop-runtime v1.9.2.0"
@@ -48219,6 +48258,9 @@
     "fan out fixed rate overrun accounting": [
       "fan-out fixed-rate overrun accounting"
     ],
+    "fan out lineage pwd": [
+      "fan-out lineage pwd"
+    ],
     "fan out lineage reducer path": [
       "fan-out lineage reducer path"
     ],
@@ -49943,6 +49985,12 @@
     ],
     "first changelog version": [
       "first changelog version"
+    ],
+    "first link leaves partial merge": [
+      "first link leaves partial merge"
+    ],
+    "first overlay setup": [
+      "first overlay setup"
     ],
     "first rule in a repository": [
       "first rule in a repository"
@@ -56963,6 +57011,12 @@
     "history lookup core": [
       "history lookup core"
     ],
+    "history lookup recall baseline": [
+      "history lookup recall baseline"
+    ],
+    "history lookup recall with lookup": [
+      "history lookup recall with lookup"
+    ],
     "history rewrite": [
       "history rewrite"
     ],
@@ -59309,6 +59363,9 @@
     "input validation exit code deep loop": [
       "input validation exit code deep loop"
     ],
+    "insert level 2 sections above the questions anchor": [
+      "insert level 2 sections above the questions anchor"
+    ],
     "inspect clickup task": [
       "inspect clickup task"
     ],
@@ -60847,6 +60904,9 @@
     ],
     "keep a workflow skill above the cli hub": [
       "keep a workflow skill above the cli hub"
+    ],
+    "keep cli opencode workers inside the git worktree": [
+      "keep cli opencode workers inside the git worktree"
     ],
     "keep drop ledger": [
       "keep drop ledger"
@@ -62658,6 +62718,9 @@
     "level upgrade malformed docs": [
       "level upgrade malformed docs"
     ],
+    "level upgrade questions anchor": [
+      "level upgrade questions anchor"
+    ],
     "levels research manifest": [
       "levels.research manifest"
     ],
@@ -63038,6 +63101,9 @@
     ],
     "link integrity guard": [
       "link integrity guard"
+    ],
+    "link or copy skilled into a project": [
+      "link or copy skilled into a project"
     ],
     "link skilled into your project": [
       "link skilled into your project"
@@ -70017,6 +70083,9 @@
     "migrate misplaced child packets": [
       "migrate misplaced child packets"
     ],
+    "migrate my overlay folder": [
+      "migrate my overlay folder"
+    ],
     "migrate notion to obsidian": [
       "migrate notion to obsidian"
     ],
@@ -71820,6 +71889,9 @@
     "mxbai vs bge reranker code": [
       "mxbai vs bge reranker code"
     ],
+    "my changes vanish on update": [
+      "my changes vanish on update"
+    ],
     "my own signed in chrome": [
       "my own signed-in chrome"
     ],
@@ -72374,6 +72446,9 @@
     ],
     "new sk doc mode packet": [
       "new sk-doc mode packet"
+    ],
+    "new worktree cannot commit local commands": [
+      "new worktree cannot commit local commands"
     ],
     "newcomer reachability": [
       "newcomer reachability"
@@ -75238,8 +75313,23 @@
     "opencode worker farm dispatch": [
       "opencode worker farm dispatch"
     ],
+    "opencode worker wrote into the main checkout": [
+      "opencode worker wrote into the main checkout"
+    ],
     "opencode workflow guardrails": [
       "opencode workflow guardrails"
+    ],
+    "opencode worktree confinement": [
+      "opencode worktree confinement"
+    ],
+    "opencode worktree confinement implementation summary": [
+      "opencode worktree confinement implementation summary"
+    ],
+    "opencode worktree confinement plan": [
+      "opencode worktree confinement plan"
+    ],
+    "opencode worktree confinement tasks": [
+      "opencode worktree confinement tasks"
     ],
     "opencode worktree isolation dispatch": [
       "opencode worktree isolation dispatch"
@@ -76495,6 +76585,9 @@
     "overengineering simplification summary": [
       "overengineering simplification summary"
     ],
+    "overlay adoption closure gate": [
+      "overlay adoption closure gate"
+    ],
     "overlay engine": [
       "overlay engine"
     ],
@@ -76521,9 +76614,6 @@
     ],
     "overlay engine tasks": [
       "overlay engine tasks"
-    ],
-    "overlay folder setting": [
-      "overlay folder setting"
     ],
     "overlay guard": [
       "overlay guard"
@@ -76566,9 +76656,6 @@
     ],
     "overlay sync repin failure modes": [
       "overlay sync repin failure modes"
-    ],
-    "overlay sync state": [
-      "overlay sync state"
     ],
     "overlays for vendored copies": [
       "overlays for vendored copies"
@@ -80156,6 +80243,9 @@
     ],
     "phase 5 advisor negation and routing": [
       "phase 5 advisor negation and routing"
+    ],
+    "phase 5 barter parity": [
+      "phase 5 barter parity"
     ],
     "phase 5 central doctor playbook": [
       "phase 5 central doctor playbook"
@@ -84584,6 +84674,9 @@
     "priority based checklist items": [
       "priority-based checklist items"
     ],
+    "private command provisioning": [
+      "private command provisioning"
+    ],
     "private local command": [
       "private local command"
     ],
@@ -85614,6 +85707,21 @@
     ],
     "provision command for a fresh clone": [
       "provision command for a fresh clone"
+    ],
+    "provision private command links": [
+      "provision private command links"
+    ],
+    "provision private command links implementation summary": [
+      "provision private command links implementation summary"
+    ],
+    "provision private command links plan": [
+      "provision private command links plan"
+    ],
+    "provision private command links tasks": [
+      "provision private command links tasks"
+    ],
+    "provision private commands by form": [
+      "provision private commands by form"
     ],
     "provision stamp fingerprint before build": [
       "provision stamp fingerprint before build"
@@ -86688,6 +86796,9 @@
     ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
+    ],
+    "re pin not copied list": [
+      "re-pin not-copied list"
     ],
     "re pin preceded by red run": [
       "re-pin preceded by red run"
@@ -89114,6 +89225,9 @@
     ],
     "relative import census": [
       "relative import census"
+    ],
+    "relative links show in git status": [
+      "relative links show in git status"
     ],
     "relaunch cancel and test isolation": [
       "relaunch cancel and test isolation"
@@ -100092,6 +100206,15 @@
     "setup cp sandbox rmrf guard": [
       "setup cp sandbox rmrf guard"
     ],
+    "setup guide implementation summary": [
+      "setup guide implementation summary"
+    ],
+    "setup guide plan": [
+      "setup guide plan"
+    ],
+    "setup guide tasks": [
+      "setup guide tasks"
+    ],
     "setup native module health": [
       "setup native module health"
     ],
@@ -107250,6 +107373,9 @@
     "sk git 1 11 10 0": [
       "sk-git 1.11.10.0"
     ],
+    "sk git 1 11 11 0": [
+      "sk-git 1.11.11.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -107531,6 +107657,9 @@
     ],
     "sk git v1 11 10 0": [
       "sk-git v1.11.10.0"
+    ],
+    "sk git v1 11 11 0": [
+      "sk-git v1.11.11.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -110042,6 +110171,9 @@
     "skilled house style": [
       "skilled house style"
     ],
+    "skilled in your own project": [
+      "skilled in your own project"
+    ],
     "skilled integration commands get their own skill": [
       "skilled integration commands get their own skill"
     ],
@@ -110233,6 +110365,9 @@
     ],
     "skilled root discovery": [
       "skilled root discovery"
+    ],
+    "skilled setup guide": [
+      "skilled setup guide"
     ],
     "skilled skills sk code sk code quality repository quality json": [
       ".skilled/skills/sk-code/sk-code-quality/repository/quality.json"
@@ -115935,6 +116070,18 @@
     "symlink engine and command tasks": [
       "symlink engine and command tasks"
     ],
+    "symlink first link": [
+      "symlink first link"
+    ],
+    "symlink first link implementation summary": [
+      "symlink first link implementation summary"
+    ],
+    "symlink first link plan": [
+      "symlink first link plan"
+    ],
+    "symlink first link tasks": [
+      "symlink first link tasks"
+    ],
     "symlink not followed": [
       "symlink not followed"
     ],
@@ -117030,6 +117177,12 @@
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
     ],
+    "system skilled doctor 1 1 0 0": [
+      "system-skilled-doctor 1.1.0.0"
+    ],
+    "system skilled doctor 1 1 1 0": [
+      "system-skilled-doctor 1.1.1.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -117071,6 +117224,12 @@
     ],
     "system skilled doctor v1 0 0 0": [
       "system-skilled-doctor v1.0.0.0"
+    ],
+    "system skilled doctor v1 1 0 0": [
+      "system-skilled-doctor v1.1.0.0"
+    ],
+    "system skilled doctor v1 1 1 0": [
+      "system-skilled-doctor v1.1.1.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -117401,6 +117560,9 @@
     ],
     "system spec kit 2 12 35 1": [
       "system-spec-kit 2.12.35.1"
+    ],
+    "system spec kit 2 12 36 0": [
+      "system-spec-kit 2.12.36.0"
     ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
@@ -117977,6 +118139,9 @@
     ],
     "system spec kit v2 12 35 1": [
       "system-spec-kit v2.12.35.1"
+    ],
+    "system spec kit v2 12 36 0": [
+      "system-spec-kit v2.12.36.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
@@ -122359,6 +122524,21 @@
     "upgrade legacy tasks": [
       "upgrade-legacy tasks"
     ],
+    "upgrade level anchor insert": [
+      "upgrade level anchor insert"
+    ],
+    "upgrade level anchor insert implementation summary": [
+      "upgrade level anchor insert implementation summary"
+    ],
+    "upgrade level anchor insert plan": [
+      "upgrade level anchor insert plan"
+    ],
+    "upgrade level anchor insert tasks": [
+      "upgrade level anchor insert tasks"
+    ],
+    "upgrade level breaks anchors valid": [
+      "upgrade-level breaks anchors_valid"
+    ],
     "upgrade level fragments": [
       "upgrade-level fragments"
     ],
@@ -123910,6 +124090,9 @@
     ],
     "vendored model card exemption": [
       "vendored model card exemption"
+    ],
+    "vendored overlay adoption": [
+      "vendored overlay adoption"
     ],
     "vendored overlays and repin": [
       "vendored overlays and repin"

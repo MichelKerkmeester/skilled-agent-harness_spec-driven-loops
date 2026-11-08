@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # system-skilled-doctor
@@ -40,7 +40,7 @@ Doctor commands about a single skill's own checks stay with that skill, such as 
 | `/doctor:update` | Moves a checkout to a newer spec-kit release: `check`, `align`, a gated `apply`, `rollback`, `record-base` and `compat`, which moves a v3 spec layout to v4 behind two approvals |
 | `/doctor:agents-md` | Checks the sections Skilled ships in a project's `AGENTS.md`, and embeds or restores them after showing the plan |
 | `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
-| `/doctor:env` | Shows the switches documented in `system-spec-kit`'s `runtime/ENV-REFERENCE.md` and every other setting in the root `.env.example`, with where each is set. It saves a preference after you approve the exact line |
+| `/doctor:env` | Shows the switches documented in `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` and every other setting in the root `.env.example`, with where each is set. It saves a preference after you approve the exact line |
 | `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks, names the repair command for each failing one and shows the last session hop, any unclaimed handoff note and the orphaned processes still running |
 | `/doctor:helper` | Takes a described problem and ranks the doctor commands that fit, with why, ready to run |
 | `/doctor:speckit` | Checks that the trigger index is fresh and that its lookup and the ripgrep recipes return results |
@@ -140,4 +140,5 @@ A pass prints `fail 0` in the summary. Then confirm the advisor credits each own
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent map and the resource map |
+| [`SETUP.md`](../../../SETUP.md) | The step-by-step guide to linking Skilled into a project or copying it in with overlays |
 | [`references/overlays.md`](./references/overlays.md) | The overlay sync states and what the engine refuses, plus the re-pin and rollback steps |

@@ -5,7 +5,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterAll, afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import {
   HISTORY_LOCATOR_VERSION,
@@ -100,6 +100,10 @@ const TEST_SESSION_IDS = [
   'history-locator-legacy',
   'history-locator-malformed',
 ];
+
+// The hooks create the state folder before their first write, so each test does too:
+// on a fresh machine the temp folder holds no state folder yet.
+beforeEach(() => ensureStateDir());
 
 afterEach(() => {
   for (const sessionId of TEST_SESSION_IDS) {

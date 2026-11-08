@@ -1,0 +1,90 @@
+{
+  "topic": "How should Skilled's vendored-copy overlay and re-pin support be improved so external repo users like Barter can adopt it? Skilled side (read in /Users/michelkerkmeester/worktrees/public/324-overlay-repin-barter-parity): .skilled/commands/doctor/overlay.md, .skilled/commands/doctor/scripts/overlay-engine.cjs and its tests, .skilled/skills/system-skilled-doctor/ (SKILL.md, README.md, references/overlays.md), .skilled/hooks/overlay-guard/, README.md section 5, doctor install/helper/setup. Barter side (read-only, /Users/michelkerkmeester/MEGA/Development/Skilled/barter/ai-speckit): skilled/barter-overlays/ (README.md runbook, overlay-manifest.json, replay.cjs, sync.cjs, sync-state.json), skilled/.skilled/hooks/overlay-sync/, README.md. Known gaps to verify and extend: Barter has no .skilled-overlays.json so /doctor:overlay status exits 2; with the setting the engine refuses barter-overlays/sk-code/sk-code-frontend/references/barter-design-tokens.md for missing protectedPaths; engine DEFAULT_RUNTIME_FOLDERS omits .dsh; no repin.exclude for .opencode/scripts; no fork-drifted state; no post-repin regenerate steps (dsh skill links, runtime mirrors, hook registrations, trigger index, advisor graph); root-file traps (AGENTS.md, REPO RULES.md); docs only advertise linking. Deliver: ranked engine changes, Barter manifest migration steps, and doc/advertising changes, each with file:line evidence.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity",
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-11-07T21:42:10Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "fanout": {
+    "lineageLabel": "pi-max",
+    "rootArtifactDir": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research"
+  },
+  "fanout_lineage_artifact_dir": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/research/lineages/pi-max",
+  "lineage": {
+    "sessionId": "fanout-pi-max-1794087510790-zecq2g",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "completedAt": "2026-11-07T21:54:16.371Z",
+  "stopReason": "maxIterationsReached"
+}

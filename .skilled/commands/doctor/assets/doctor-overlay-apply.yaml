@@ -73,7 +73,7 @@ workflow:
       - "Exit 0 with RESULT: PASSED means the tree is in sync. Render the unchanged result, ask nothing, write nothing and go to phase 6 with STATUS=OK."
       - "Without capture_path: a live-edited line stops the run before the question, because a plain apply refuses while one is there. Show each such line with /doctor:overlay apply --capture <path> for it and end with STATUS=FAIL. Nothing was written."
       - "Without capture_path: a both-changed or upstream-moved line stops the run before the question, because a person resolves it. Show each such line with the engine's fix and end with STATUS=FAIL. Nothing was written."
-      - "Without capture_path: exit 1 with no destination line and only MISS lines means no destination is behind, so an apply has nothing to fix. Show the MISS lines and end with STATUS=FAIL. Nothing was written."
+      - "Without capture_path: a MISS line that says refusing to inspect a protected path means that entry is blocked and apply would write nothing; show it with the fix from the presentation contract's refusing to inspect a protected path row and end with STATUS=FAIL. Otherwise, exit 1 with no destination line and only MISS lines means no destination is behind, so an apply has nothing to fix. Show the MISS lines and end with STATUS=FAIL. Nothing was written."
       - "With capture_path: find the one destination line whose key is that path, made relative to the tree root. With no such line the path is in sync or not an overlay destination, so render the nothing-to-capture result, ask nothing and end with STATUS=OK. A line in any state other than live-edited stops the run with that line and its fix, and STATUS=FAIL."
 
   phase_3_approval:

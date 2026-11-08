@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Build system-skilled-doctor and the doctor overlay command"
-description: "A project that vendors Skilled keeps its local changes only through private scripts, and ten Skilled integration doctor commands are credited to skills whose purpose does not cover them. These four phases add system-skilled-doctor, which owns those commands and a new /doctor:overlay command that applies, checks and re-pins a vendored copy's overlays."
+description: "A project that vendors Skilled keeps its local changes only through private scripts, and ten Skilled integration doctor commands are credited to skills whose purpose does not cover them. These six phases add system-skilled-doctor, which owns those commands and a new /doctor:overlay command that applies, checks and re-pins a vendored copy's overlays, then fit the engine to a real vendoring project with its own overlay folder."
 trigger_phrases:
   - "skill and overlay build phase parent spec"
   - "system skilled doctor build"
@@ -44,7 +44,7 @@ _memory:
 | **Parent Packet** | system-skilled-doctor |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | All four children pass `validate.sh --strict`, and their acceptance criteria are Met |
+| **Handoff Criteria** | All six children pass `validate.sh --strict`, and their acceptance criteria are Met |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -102,6 +102,8 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 2 | 002-overlay-engine/ | The engine, `status` and `apply` (REQ-003, 004, 005, 009, 011, 012) | Complete |
 | 3 | 003-repin/ | The `repin` target (REQ-006, 007, 010) | Complete |
 | 4 | 004-guard-hook/ | The pre-write guard hook (REQ-013) | Complete |
+| 5 | 005-barter-parity/ | Adoption by a real vendoring project: per-entry protected-path refusal, `.dsh` and not-copied changes in a re-pin, adoption docs and routing, Barter's tree on the engine | Complete |
+| 6 | 006-setup-guide/ | A root `SETUP.md` that guides linking and copying with overlays, and a root README that points to it | Complete |
 
 ### Phase Transition Rules
 
@@ -117,6 +119,8 @@ The decided design, its research and the operator's eight rulings are in `resear
 | 001-skill-and-tag-move | 002-overlay-engine | The skill exists and owns the ten commands | Doctor tests 1005 of 1005, every moved bridge names the skill |
 | 002-overlay-engine | 003-repin | `status` and `apply` pass the ported tests and one test per engine requirement | `node --test` on the engine tests |
 | 003-repin | 004-guard-hook | `repin`, `--stage` and `--rollback` pass their tests | `node --test` on the engine tests |
+| 004-guard-hook | 005-barter-parity | The guard hook ships and the engine passes its own tests | `node --test` on the engine tests |
+| 005-barter-parity | 006-setup-guide | The engine runs on a real copy and its docs match it | Barter's tree passes `status` and the doctor suite passes |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,17 +1,18 @@
 ---
 title: "Vendored Skilled Overlays"
-description: "What each overlay sync state means, how the overlay folder is found, what the engine refuses and how to re-pin a vendored copy or roll a re-pin back."
+description: "What each overlay sync state means, how the overlay folder is found, what the engine refuses, how to re-pin a vendored copy or roll a re-pin back, and how a project with its own overlay folder adopts the engine."
 trigger_phrases:
   - "vendored skilled overlays"
-  - "overlay sync state"
+  - "adopt the overlay engine"
+  - "migrate my overlay folder"
+  - "my changes vanish on update"
   - "doctor overlay status"
   - "edit the overlay not the live file"
-  - "overlay folder setting"
   - "re-pin vendored skilled"
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.3.0
 ---
 
 # Vendored Skilled Overlays
@@ -44,7 +45,7 @@ A file an overlay owns is edited in its overlay, never in the live copy. The nex
 The engine reads one setting file at the root of the vendored tree, `.skilled-overlays.json`:
 
 ```json
-{ "overlayDir": "barter-overlays" }
+{ "overlayDir": "team-overlays" }
 ```
 
 The value is a path relative to the tree root. With no setting file the folder is `skilled-overlays/`. The folder holds:
@@ -97,11 +98,13 @@ The engine never reads a `.env` file, even one a manifest entry names. A file wh
   "scope": "directory",
   "source": "sk-code/sk-code-frontend",
   "destination": ".skilled/skills/sk-code/sk-code-frontend",
-  "protectedPaths": ["assets/tokens.css", "references/barter-design-tokens.md"]
+  "protectedPaths": ["assets/tokens.css", "references/team-design-tokens.md"]
 }
 ```
 
 A `protectedPaths` value that points outside the entry, an absolute path, an empty value or a `.env` name is refused before anything is read.
+
+A refused file blocks only the entry it belongs to. `status` still reports every other overlay, then prints a `MISS` line for the blocked entry that names the file and the fix, such as `add "assets/tokens.css" to this entry's protectedPaths`, and exits 1. `apply` writes nothing while any entry is blocked, and `repin` refuses before its backup.
 
 ### An Edit to an Owned File
 
@@ -116,14 +119,23 @@ A re-pin replaces the vendored copy with a newer upstream commit and puts the ov
 ### What a Re-Pin Copies
 
 - **`.skilled`:** only the paths upstream added or changed between the two commits. Files the project regenerates, such as the trigger index, stay untouched unless upstream changed them.
-- **The runtime folders:** each one whole, so an upstream runtime file that drifted comes back. A project's own files in those folders stay, because upstream never ships them.
+- **The runtime folders:** each one whole, so an upstream runtime file that drifted comes back. A project's own files in those folders stay, because upstream never ships them. With no `repin.runtimeFolders` in the manifest they are `.claude`, `.codex`, `.cursor`, `.devin`, `.dsh`, `.opencode` and `.pi`.
 - **Deleted paths:** whatever upstream removed between the two commits is removed here too.
 
-A path in the manifest's `repin.exclude` list is never copied over, which keeps a project's real folder where upstream ships a link. Root files such as `AGENTS.md` are never copied.
+A path in the manifest's `repin.exclude` list is never copied over, which keeps a project's real folder where upstream ships a link. Root files such as `AGENTS.md` and `REPO RULES.md` are never copied, so a re-pin never overwrites the project's own copy.
+
+What a re-pin leaves out, it lists. Each upstream change under `repin.exclude`, or under a top-level file or folder of the copy outside the copied roots, prints as a `not-copied` line, up to 20, then one line with the count of the rest. `report.json` keeps the full list. A top-level link, such as a `specs` link to the project's own folder, is skipped. Carry each listed change over by hand when it applies. For the shipped `AGENTS.md` sections, `/doctor:agents-md` owns that merge.
+
+```json
+"repin": {
+  "runtimeFolders": [".claude", ".codex", ".cursor", ".devin", ".dsh", ".opencode", ".pi"],
+  "exclude": [".opencode/scripts"]
+}
+```
 
 ### The Two Runs
 
-1. Run `/doctor:overlay repin --upstream <checkout> --to <commit>`. It first builds the re-pinned tree in a temporary copy and reports how many paths it will copy and delete. The report also lists the blocked overlays and the overlays that now equal upstream.
+1. Run `/doctor:overlay repin --upstream <checkout> --to <commit>`. It first builds the re-pinned tree in a temporary copy and reports how many paths it will copy and delete. The report also lists the blocked overlays, the overlays that now equal upstream and the `not-copied` changes. The copy has no project install behind it, so it skips the manifest's `regenerate` and `verifyGenerated` steps and prints how many it skipped. A clean stage proves the copy and the overlays, not the generators.
 2. Rebase each blocked overlay onto the new upstream file, and drop each entry that now equals upstream. Then run the command again.
 3. When the report lists nothing blocked, approve it. The live run backs up every path it will touch, copies, sets the pin, applies the overlays twice and runs the full check.
 
@@ -141,7 +153,21 @@ Rollback restores each backed-up file byte for byte and removes the files the ru
 
 ---
 
-## 6. RELATED RESOURCES
+## 6. ADOPTING THE ENGINE WITH EXISTING OVERLAYS
+
+A project that already keeps its own overlay folder and replay script moves onto the engine without moving a file. The engine reads the same manifest shape and the same `sync-state.json` shape, `{ "schemaVersion": 1, "pin", "files" }`, so the folder stays where it is.
+
+1. **Name the folder.** Add `.skilled-overlays.json` at the root of the vendored copy with `{ "overlayDir": "<folder>" }`. Without it the engine looks in `skilled-overlays/`, and `status` stops with an error that says so.
+2. **Run `/doctor:overlay status`.** Each entry that walks a token-named file prints a `MISS` line naming the file. Add each one to that entry's `protectedPaths`, by its path relative to the entry.
+3. **Add the `repin` block** from §5 when the copy keeps a real folder where upstream ships a link, or when it vendors a different set of runtime folders.
+4. **Check the generated surfaces.** The manifest's `regenerate` and `verifyGenerated` steps run after every apply, including the one a re-pin makes. Each command runs at the tree root, so review the list rather than copying one from a folder you do not trust. A verify step only fails when its command can fail: `skill-graph-freshness.cjs` reports and exits 0 unless it gets `--strict`.
+5. **Run `status` again** until it prints `RESULT: PASSED`, then use `apply` and `repin` as usual.
+
+A replay script the project keeps beside the engine can keep running against the same folder. It reads only the keys it knows, and the engine ignores keys it does not read, such as a fork's own certificates. Retire the script once nothing depends on its extra keys or states.
+
+---
+
+## 7. RELATED RESOURCES
 
 - `.skilled/commands/doctor/overlay.md`: the command router.
 - `.skilled/commands/doctor/scripts/overlay-engine.cjs`: the engine, whose header lists every target and exit code.

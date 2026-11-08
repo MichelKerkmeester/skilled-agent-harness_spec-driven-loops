@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide",
+  "description": "Phase 6: setup-guide",
+  "keywords": [
+    "phase",
+    "setup-guide"
+  ],
+  "lastUpdated": "2026-11-08T10:47:42.798Z",
+  "specId": "006",
+  "folderSlug": "setup-guide",
+  "parentChain": [
+    "system-skilled-doctor",
+    "001-skill-and-overlay-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
