@@ -1117,6 +1117,25 @@ refresh_track_root() {
     refresh_track_level "$specs_root" "$track"
 }
 
+# --path names the folder outright, so its track is wherever it sits under
+# specs/. Without this a packet placed by path is never declared by its track
+# root, and the pre-push gate blocks it as drift. A folder outside specs/ has no
+# track, and a deeper path is judged by refresh_track_root like any slash value.
+explicit_path_track() {
+    [[ -n "$EXPLICIT_PATH" ]] || return 0
+    local specs_root relative
+    for specs_root in "$REPO_ROOT/specs" "$(cd "$REPO_ROOT/specs" 2>/dev/null && pwd -P)"; do
+        [[ -n "$specs_root" ]] || continue
+        case "$FEATURE_DIR" in
+            "$specs_root"/*)
+                relative="${FEATURE_DIR#"$specs_root"/}"
+                [[ "$relative" == */* ]] && printf '%s\n' "${relative%/*}"
+                return 0
+                ;;
+        esac
+    done
+}
+
 # The presence rule counts a phase parent's description.json as required, so a
 # parent that cannot get one stops here, loudly, instead of passing and failing
 # validation the moment it exists. Both --phase and --level phase-parent call it.
@@ -2109,7 +2128,7 @@ This is **Phase ${_phase_number}** of the ${FEATURE_DESCRIPTION} specification.
         CHILDREN_INFO+=("${_child_folder}|${_child_files_str}")
     done
 
-    refresh_track_root "$REPO_ROOT/specs" "$TRACK"
+    refresh_track_root "$REPO_ROOT/specs" "${TRACK:-$(explicit_path_track)}"
 
     # ── Output ──
     SPEC_FILE="$FEATURE_DIR/spec.md"
@@ -2295,7 +2314,7 @@ if [[ "$DOC_LEVEL" == "phase" ]]; then
     scaffold_phase_parent_validation_child "$FEATURE_DIR" "$FEATURE_DESCRIPTION"
 fi
 
-refresh_track_root "$REPO_ROOT/specs" "$TRACK"
+refresh_track_root "$REPO_ROOT/specs" "${TRACK:-$(explicit_path_track)}"
 
 # Set paths for output
 SPEC_FILE="$FEATURE_DIR/spec.md"

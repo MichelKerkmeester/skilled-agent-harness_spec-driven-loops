@@ -145,6 +145,27 @@ describe('create.sh --track refreshes its track root', () => {
   });
 });
 
+// --path names the folder outright, so the track is the folder's place under
+// specs/ rather than a flag; without that, a packet placed by path starts out as
+// drift the pre-push gate blocks.
+describe('create.sh --path refreshes the track it lands in', () => {
+  it('declares a packet created by path in its track root', () => {
+    const metadataPath = trackRoot('tools', ['tools/001-first'], ['001-first']);
+    const result = create(['--path', 'specs/tools/007-by-path', 'By path packet']);
+    expect(result.status, result.stderr).toBe(0);
+    expect(children(metadataPath)).toEqual(['tools/001-first', 'tools/007-by-path']);
+    expect(result.stderr).toContain('tools: add 007-by-path (written)');
+  });
+
+  it('leaves the track root alone for a folder nested inside a packet', () => {
+    const metadataPath = trackRoot('tools', ['tools/001-first'], ['001-first']);
+    const before = fs.readFileSync(metadataPath, 'utf8');
+    const result = create(['--path', 'specs/tools/001-first/002-nested', 'Nested packet']);
+    expect(result.status, result.stderr).toBe(0);
+    expect(fs.readFileSync(metadataPath, 'utf8')).toBe(before);
+  });
+});
+
 // A declared sub-track is a container like a track root, so a packet scaffolded
 // into it is declared at two levels: the sub-track lists the new packet, and the
 // track keeps listing only the sub-track itself.
