@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6c4b3f2a8e4b3c6ef0bedff1f74ac7f68745faaa72fd5aff3a897aad36f04f6b",
+  "manifestHash": "8047b6973934eca7447aefa949ab85369ce4cd3bc9b2d945da9260a70c9ca85e",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17529,9 +17529,30 @@
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/research.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/research.md",
     "specs/system-speckit/043-decision-capture/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/tasks.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/morning-handoff.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/plan.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/deep-research-strategy.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/research.md",
@@ -24768,6 +24789,9 @@
     "043 tasks": [
       12009
     ],
+    "044 doc drift remediation": [
+      17537
+    ],
     "044 implementation plan": [
       12011
     ],
@@ -24775,7 +24799,10 @@
       12010
     ],
     "044 named subtracks and host repos operator decisions": [
-      17520
+      17540
+    ],
+    "044 review remediation handoff": [
+      17542
     ],
     "044 suite revalidation": [
       13592
@@ -30461,6 +30488,12 @@
     ],
     "archive multipliers decay fix": [
       13563
+    ],
+    "archive parent derivation negative control": [
+      17535
+    ],
+    "archive parent derivation test cannot fail": [
+      17537
     ],
     "archive path follow ups": [
       15872
@@ -50771,8 +50804,20 @@
     "create sh sibling listing plan": [
       15809
     ],
+    "create sh sub track guard": [
+      17519
+    ],
+    "create sh symlinked sub track": [
+      17521
+    ],
+    "create sh track guard plan": [
+      17520
+    ],
     "create sh track traversal fix": [
       17301
+    ],
+    "create sh trailing slash track": [
+      17521
     ],
     "create sh unknown option": [
       3053
@@ -50847,6 +50892,18 @@
     ],
     "create task comment": [
       895
+    ],
+    "create track fixes": [
+      17521
+    ],
+    "create track fixes implementation summary": [
+      17519
+    ],
+    "create track fixes plan": [
+      17520
+    ],
+    "create track fixes tasks": [
+      17522
     ],
     "create wiki": [
       927
@@ -53303,6 +53360,9 @@
       7797
     ],
     "declared sub track container": [
+      17546
+    ],
+    "declared sub track rule parity": [
       17525
     ],
     "declared surfaces parity": [
@@ -56638,7 +56698,7 @@
       15213,
       16022,
       16913,
-      17523
+      17544
     ],
     "deep research strategy md": [
       2473
@@ -61247,6 +61307,18 @@
     "docs and stress test refresh root changelog": [
       13770
     ],
+    "docs and tests": [
+      17537
+    ],
+    "docs and tests implementation": [
+      17535
+    ],
+    "docs and tests plan": [
+      17536
+    ],
+    "docs and tests tasks": [
+      17538
+    ],
     "docs catalogs phase parent": [
       13368
     ],
@@ -62566,6 +62638,18 @@
     ],
     "doctor surface authoring handover": [
       12986
+    ],
+    "doctor symlink gaps": [
+      17533
+    ],
+    "doctor symlink gaps plan": [
+      17532
+    ],
+    "doctor symlink gaps summary": [
+      17531
+    ],
+    "doctor symlink gaps tasks": [
+      17534
     ],
     "doctor symlink install phase parent spec": [
       5063
@@ -67547,7 +67631,7 @@
       7352,
       16022,
       16913,
-      17523
+      17544
     ],
     "exhausted review approaches": [
       2492,
@@ -79243,11 +79327,20 @@
       15316,
       15318
     ],
+    "host relative alias decision plan": [
+      17532
+    ],
+    "host relative alias ignore decision": [
+      17531
+    ],
+    "host relative link ignore bookkeeping": [
+      17533
+    ],
     "host repository trigger index": [
-      17524
+      17545
     ],
     "host repository trigger index mode": [
-      17525
+      17546
     ],
     "hostile locale child vitest": [
       10030
@@ -92331,6 +92424,18 @@
     "metadata status derivation tasks": [
       11585
     ],
+    "metadata write safety": [
+      17529
+    ],
+    "metadata write safety implementation": [
+      17527
+    ],
+    "metadata write safety plan": [
+      17528
+    ],
+    "metadata write safety tasks": [
+      17530
+    ],
     "metal context race spec kit memory": [
       13592
     ],
@@ -92724,6 +92829,9 @@
     ],
     "missing stress fixture root tasks": [
       9755
+    ],
+    "missing sub track metadata seed": [
+      17527
     ],
     "missing value file behavior": [
       17124
@@ -94435,25 +94543,28 @@
       16231
     ],
     "named sub track research": [
-      17524
+      17545
     ],
     "named sub track support in spec kit plus": [
-      17525
+      17546
+    ],
+    "named sub track validation": [
+      17523
     ],
     "named subtracks and host repos": [
-      17525
+      17546
     ],
     "named subtracks and host repos implementation summary": [
-      17521
+      17541
     ],
     "named subtracks and host repos plan": [
-      17522
+      17543
     ],
     "named subtracks and host repos tasks": [
-      17526
+      17547
     ],
     "named subtracks closure gate": [
-      17519
+      17539
     ],
     "namespace command example": [
       1892
@@ -94772,6 +94883,9 @@
     ],
     "negative control task": [
       10765
+    ],
+    "negative control test repair plan": [
+      17536
     ],
     "negative knowledge": [
       2464
@@ -102256,6 +102370,9 @@
     "phase 1 compiled route manifest suite": [
       6372
     ],
+    "phase 1 create track fixes": [
+      17521
+    ],
     "phase 1 deep research": [
       4573,
       8934,
@@ -102985,6 +103102,9 @@
     "phase 2 skill and routing rename": [
       6819
     ],
+    "phase 2 subtrack predicate": [
+      17525
+    ],
     "phase 2 surface contract alignment": [
       6145
     ],
@@ -103281,6 +103401,9 @@
     "phase 3 mcp chrome devtools": [
       8561
     ],
+    "phase 3 metadata write safety": [
+      17529
+    ],
     "phase 3 nested skilled root": [
       4940
     ],
@@ -103439,6 +103562,9 @@
     ],
     "phase 4 doctor playbook": [
       8429
+    ],
+    "phase 4 doctor symlink gaps": [
+      17533
     ],
     "phase 4 doctrine": [
       6938
@@ -103619,6 +103745,9 @@
     ],
     "phase 5 doc claims hardening": [
       6308
+    ],
+    "phase 5 docs and tests": [
+      17537
     ],
     "phase 5 dsh mirror generators": [
       4597
@@ -108697,7 +108826,7 @@
       1638
     ],
     "project owned doctor entry": [
-      17524
+      17545
     ],
     "project plan roadmap": [
       1621
@@ -112562,6 +112691,15 @@
       15796,
       15797,
       15798
+    ],
+    "refresh track roots symlink guard": [
+      17527
+    ],
+    "refresh track roots symlinked metadata": [
+      17529
+    ],
+    "refresh track roots write guard plan": [
+      17528
     ],
     "refreshgraphmetadata reindexspecdocs runenrichmentbackfill": [
       11758
@@ -116550,7 +116688,7 @@
       7352,
       16022,
       16913,
-      17523
+      17544
     ],
     "research spec conflict detection": [
       2483
@@ -116582,7 +116720,7 @@
       7352,
       16022,
       16913,
-      17523
+      17544
     ],
     "research stop contract": [
       2478
@@ -116608,7 +116746,7 @@
       7352,
       16022,
       16913,
-      17523
+      17544
     ],
     "research stuck count": [
       2477
@@ -120666,7 +120804,7 @@
       7352,
       16022,
       16913,
-      17523
+      17544
     ],
     "ruledout array": [
       2464
@@ -137373,7 +137511,7 @@
       13501
     ],
     "spec kit sub track design": [
-      17524
+      17545
     ],
     "spec kit tasks": [
       15559
@@ -140435,10 +140573,22 @@
       3177
     ],
     "sub track acceptance criteria": [
-      17519
+      17539
+    ],
+    "sub track doc corrections": [
+      17535
     ],
     "sub track implementation plan": [
-      17522
+      17543
+    ],
+    "sub track parity verification": [
+      17523
+    ],
+    "sub track predicate implementation": [
+      17523
+    ],
+    "sub track rule parity plan": [
+      17524
     ],
     "subagent": [
       5418
@@ -140615,6 +140765,15 @@
     ],
     "subsystem decommission": [
       16290
+    ],
+    "subtrack predicate": [
+      17525
+    ],
+    "subtrack predicate plan": [
+      17524
+    ],
+    "subtrack predicate tasks": [
+      17526
     ],
     "subtree root scan deletion": [
       13878
@@ -141127,6 +141286,9 @@
     "sweep track roots": [
       3136,
       15797
+    ],
+    "sweep unreadable sub track metadata repair": [
+      17529
     ],
     "sweep verification checklist": [
       16597
@@ -149260,6 +149422,9 @@
     "validate strict nested packet": [
       16027
     ],
+    "validate symlinked description sub track": [
+      17525
+    ],
     "validate ts hex mismatch": [
       1702
     ],
@@ -151526,6 +151691,10 @@
     ],
     "whole index freshness check": [
       3688
+    ],
+    "whole linked skilled specs limit": [
+      17531,
+      17533
     ],
     "whole system gate": [
       9597,

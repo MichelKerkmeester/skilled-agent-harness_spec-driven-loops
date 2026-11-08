@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7371,
-    "ok": 17478,
+    "missing-frontmatter": 7373,
+    "ok": 17499,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28398,
+  "documentsScanned": 28421,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6c4b3f2a8e4b3c6ef0bedff1f74ac7f68745faaa72fd5aff3a897aad36f04f6b",
+  "manifestHash": "8047b6973934eca7447aefa949ab85369ce4cd3bc9b2d945da9260a70c9ca85e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41797,
+      "ok": 41846,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -69121,6 +69121,18 @@
       "line": 2,
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/p2-verification.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -77474,6 +77486,26 @@
     },
     {
       "path": "specs/system-speckit/043-decision-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/002-subtrack-predicate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/scratch",
       "reason": "excluded directory"
     },
     {
