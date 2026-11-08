@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7373,
-    "ok": 17513,
+    "missing-frontmatter": 7376,
+    "ok": 17523,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28435,
+  "documentsScanned": 28448,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "1a6d076a806f3a0b78cba930e363adc74d63dcad831e2d81664dae5b82332b00",
+  "manifestHash": "620beff7728459703ffb14c713e78e467e81fa8ded368d076b5ee5a003ccea3e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41874,
+      "ok": 41890,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -33670,6 +33670,18 @@
       "reason": "no opening frontmatter delimiter"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "duplicate-phrase",
       "line": 6,
       "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md",
@@ -36033,1084 +36045,1084 @@
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
+      "path": "specs/hooks-plugins-extensions/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/001-hook-docs-relocation/review-report-router-alignment.md",
+      "path": "specs/hooks-plugins-extensions/001-hook-docs-relocation/review-report-router-alignment.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/risk-register.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/007-guardrail-controls-and-activation/risk-register.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/rollback-procedure.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/007-guardrail-controls-and-activation/rollback-procedure.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/inventory/structural-impact-coverage.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/inventory/structural-impact-coverage.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/decision-rollback-review-flash.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/decision-rollback-review-flash.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/fresh-deep-review-disposition.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/fresh-deep-review-disposition.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/post-change-correctness-review-round-1.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/post-change-correctness-review-round-1.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/post-change-evidence-review-round-1.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/post-change-evidence-review-round-1.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/security-review-flash.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/security-review-flash.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/deep-review-dashboard.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 10,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/iterations/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/prompts/iteration-1.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/prompts/iteration-1.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/resource-map.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 10,
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/review-report.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/review/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/per-prompt-injection-audit/research/fanout-attribution.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/run1-archive/research.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/per-prompt-injection-audit/run1-archive/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/002-injection-bloat-reduction/review/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/review/fanout-attribution.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/006-spec-gate-question-noise/resume-prompt.md",
+      "path": "specs/hooks-plugins-extensions/006-spec-gate-question-noise/resume-prompt.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/001-research/evidence/iterations.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/001-research/evidence/iterations.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/001-research/evidence/synthesis.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/001-research/evidence/synthesis.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/007-dispatch-validation-evidence/evidence/command-receipts.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/007-dispatch-validation-evidence/evidence/command-receipts.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/007-dispatch-validation-evidence/evidence/full-corpus-baseline.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/007-dispatch-validation-evidence/evidence/full-corpus-baseline.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/review-archive/20260805T073738Z/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/prompts/iteration-1.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/review-archive/20260805T073738Z/prompts/iteration-1.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/007-fable-governor-pi-hook/review/deep-review-dashboard.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/review/deep-review-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/review/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/review/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/review/prompts/iteration-1.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/review/prompts/iteration-1.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/007-fable-governor-pi-hook/review/prompts/iteration-2.md",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/review/prompts/iteration-2.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/001-research/research/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/001-research/research/fanout-attribution.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/001-research/research/research.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/001-research/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/001-research/research/resource-map.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/001-research/research/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements/research/research.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/007-research-fork-improvements/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/002-observability-and-economics/benchmark-protocol.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/008-implement-fork-improvements/002-observability-and-economics/benchmark-protocol.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/002-observability-and-economics/denominator-note.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/008-implement-fork-improvements/002-observability-and-economics/denominator-note.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 9,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/seats/round-001/seat-001-seat-001.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/seats/round-001/seat-001-seat-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 9,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/seats/round-002/seat-001-seat-001.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/seats/round-002/seat-001-seat-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 9,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/seats/round-003/seat-001-seat-001.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/seats/round-003/seat-001-seat-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 2,
-      "path": "specs/hooks/008-pi-caching-like-reasonix/lumo.md",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/lumo.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/research/deep-research-dashboard.md",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/001-goal-isolation-research/research/deep-research-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/research/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/001-goal-isolation-research/research/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/research/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/001-goal-isolation-research/research/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/research/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/001-goal-isolation-research/research/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/research/research.md",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/001-goal-isolation-research/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/research/resource-map.md",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/001-goal-isolation-research/research/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/010-hook-feature-flags-and-hub-index/research/research.md",
+      "path": "specs/hooks-plugins-extensions/010-hook-feature-flags-and-hub-index/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/deep-research-dashboard.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/deep-research-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-007.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-008.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-008.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-009.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-009.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-010.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-010.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-001.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-002.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-003.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-004.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-005.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-006.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-007.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-008.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-008.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-009.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-009.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-010.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/prompts/iteration-010.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/resource-map.md",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/research/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/iterations/iteration-008.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/iterations/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/research/prompts/iteration-008.md",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/research/prompts/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w1.md",
+      "path": "specs/hooks-plugins-extensions/019-cache-optimizer-measurement-fixes/impl/prompts/w1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w2.md",
+      "path": "specs/hooks-plugins-extensions/019-cache-optimizer-measurement-fixes/impl/prompts/w2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w3.md",
+      "path": "specs/hooks-plugins-extensions/019-cache-optimizer-measurement-fixes/impl/prompts/w3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w4.md",
+      "path": "specs/hooks-plugins-extensions/019-cache-optimizer-measurement-fixes/impl/prompts/w4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w5.md",
+      "path": "specs/hooks-plugins-extensions/019-cache-optimizer-measurement-fixes/impl/prompts/w5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w6.md",
+      "path": "specs/hooks-plugins-extensions/019-cache-optimizer-measurement-fixes/impl/prompts/w6.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/README.md",
+      "path": "specs/hooks-plugins-extensions/021-compat-opt-in-and-image-declaration/review/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
+      "path": "specs/hooks-plugins-extensions/021-compat-opt-in-and-image-declaration/review/brief.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-008.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-009.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-009.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-010.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/iterations/iteration-010.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/prior-findings.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/001-deep-research/research/prior-findings.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-008.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-009.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-009.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-008.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-009.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-009.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-010.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-010.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/prior-findings.md",
+      "path": "specs/hooks-plugins-extensions/022-smart-rule-injection/004-agents-md-concision/research/prior-findings.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/review-2-verification.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/review-2-verification.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/010-post-fix-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/019-fork-compact-pointer-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/research.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/019-fork-compact-pointer-research/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/research/research.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/hooks/023-session-relaunch-loop/research/resource-map.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-001.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-002.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-003.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-004.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-006.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-007.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-1.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-2.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-3.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-4.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-5.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-6.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-6.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-7.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-7.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/resource-map.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261019T144809Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/review-report.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261019T144809Z/review-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/fanout-attribution.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261020T164213Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -69124,6 +69136,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review-archive/2026-11-07T1905-deepseek-2-stopped/deepseek-2/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review/p2-verification.md",
       "reason": "no opening frontmatter delimiter"
@@ -69136,6 +69154,10 @@
     }
   ],
   "skippedPaths": [
+    {
+      "path": ".skilled/hooks/ask-surface-guard/fixtures",
+      "reason": "excluded directory"
+    },
     {
       "path": ".skilled/hooks/classifier-injection-screen/opencode/classifier-injection-screen.js",
       "reason": "symlink not followed"
@@ -71305,475 +71327,483 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/002-injection-bloat-reduction/008-sk-code-alignment/research/lineages",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/008-sk-code-alignment/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/002-injection-bloat-reduction/009-testing-doc-alignment/research/lineages",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/009-testing-doc-alignment/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/scratch",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/lineages",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/per-prompt-injection-audit/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/run1-archive/lineages",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/per-prompt-injection-audit/run1-archive/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/002-injection-bloat-reduction/review/lineages",
+      "path": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/review/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/001-research/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/001-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/002-governor-parity/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/002-governor-parity/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/003-pi-directive-capsule/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/003-pi-directive-capsule/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/004-pi-directive-enforcement/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/004-pi-directive-enforcement/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/005-agents-md-pi-row/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/005-agents-md-pi-row/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/006-dispatch-authorization-hardening/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/006-dispatch-authorization-hardening/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/007-dispatch-validation-evidence/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/007-dispatch-validation-evidence/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/008-phase-state-reconciliation/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/008-phase-state-reconciliation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/007-fable-governor-pi-hook/009-injection-contract-directive-sync/scratch",
+      "path": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/009-injection-contract-directive-sync/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/001-research/research/lineages",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/001-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/005-verification-and-decision-reconciliation/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/005-verification-and-decision-reconciliation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements/research/lineages",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/007-research-fork-improvements/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements/scratch",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/007-research-fork-improvements/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/research/lineages",
+      "path": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/009-goal-isolation/001-goal-isolation-research/scratch",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/001-goal-isolation-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/009-goal-isolation/002-session-scoped-core/scratch",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/002-session-scoped-core/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/009-goal-isolation/003-pi-and-runtime-bindings/scratch",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/003-pi-and-runtime-bindings/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/009-goal-isolation/004-legacy-cutover-and-docs/scratch",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/004-legacy-cutover-and-docs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/009-goal-isolation/005-verification-and-validation/scratch",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/005-verification-and-validation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal/scratch",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/009-goal-isolation/scratch",
+      "path": "specs/hooks-plugins-extensions/009-goal-isolation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/010-hook-feature-flags-and-hub-index/research/lineages",
+      "path": "specs/hooks-plugins-extensions/010-hook-feature-flags-and-hub-index/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/001-fork-and-package/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/scratch",
+      "path": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/013-pi-cache-affinity-compat/scratch",
+      "path": "specs/hooks-plugins-extensions/013-pi-cache-affinity-compat/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/014-retire-governor-and-proof-directives/scratch",
+      "path": "specs/hooks-plugins-extensions/014-retire-governor-and-proof-directives/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/015-git-hook-gate-reduction/scratch",
+      "path": "specs/hooks-plugins-extensions/015-git-hook-gate-reduction/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/scratch",
+      "path": "specs/hooks-plugins-extensions/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/scratch",
+      "path": "specs/hooks-plugins-extensions/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/scratch",
+      "path": "specs/hooks-plugins-extensions/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/scratch",
+      "path": "specs/hooks-plugins-extensions/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/scratch",
+      "path": "specs/hooks-plugins-extensions/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/scratch",
+      "path": "specs/hooks-plugins-extensions/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/017-cache-optimizer-review-remediation/scratch",
+      "path": "specs/hooks-plugins-extensions/017-cache-optimizer-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/017-routing-manifest-auto-remint/scratch",
+      "path": "specs/hooks-plugins-extensions/017-routing-manifest-auto-remint/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/018-cache-optimizer-improvement-research/scratch",
+      "path": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/018-prepush-naming-gate-residue/scratch",
+      "path": "specs/hooks-plugins-extensions/018-prepush-naming-gate-residue/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/019-cache-optimizer-measurement-fixes/scratch",
+      "path": "specs/hooks-plugins-extensions/019-cache-optimizer-measurement-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/020-spec-metadata-auto-remint/scratch",
+      "path": "specs/hooks-plugins-extensions/020-spec-metadata-auto-remint/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages",
+      "path": "specs/hooks-plugins-extensions/021-compat-opt-in-and-image-declaration/review/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/scratch",
+      "path": "specs/hooks-plugins-extensions/021-compat-opt-in-and-image-declaration/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/001-claude-relaunch-loop/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/002-pi-opencode-adapters/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/003-command-trigger-runtimes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/004-integration-review-and-docs-closure/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/005-deep-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/006-deep-review-2-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/007-handoff-gate-exemptions/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/008-review-3-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/lineages",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/010-post-fix-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/010-post-fix-research/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/010-post-fix-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/011-post-fix-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/012-ci-red-check-repairs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/013-live-hop-and-notice-reason/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/014-handover-docs-promotion/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/015-v4-0-0-13-changelog/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/016-handover-trigger-review/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/017-hop-history/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/017-hop-history/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/018-outside-loop-handoff/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/019-fork-compact-pointer-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/019-fork-compact-pointer-research/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/019-fork-compact-pointer-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/020-fork-session-guards/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/020-fork-session-guards/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/021-fork-nudge-and-precompact-guards/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/023-relaunch-cancel-and-test-isolation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/024-goal-rebind-claude-codex-hermes-probes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/025-goal-binding-record-and-launcher/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/025-goal-binding-record-and-launcher/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/026-goal-rebind-shared-core-and-opencode/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/027-goal-rebind-claude-and-codex/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/030-opencode2-killer-target/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/030-opencode2-killer-target/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/031-relaunch-model-and-effort/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/031-relaunch-model-and-effort/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/032-opencode2-standalone-replay/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/032-opencode2-standalone-replay/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/004-manual-claim-goal-binding/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/005-persisted-hops-validation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/007-compaction-pointer-staleness/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/008-claim-error-per-state/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/033-research-remediation/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/034-default-off-opt-in/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/035-known-gap-fixes/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/035-known-gap-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/lineages",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/research_archive/20261025T113110Z-post-008/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/lineages",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261019T144809Z/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/lineages",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review-archive/20261020T164213Z/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/review/lineages",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/review/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/023-session-relaunch-loop/scratch",
+      "path": "specs/hooks-plugins-extensions/023-session-relaunch-loop/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/024-dispatch-adapter-test-repair/scratch",
+      "path": "specs/hooks-plugins-extensions/024-dispatch-adapter-test-repair/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/025-cache-optimizer-single-copy-guard/scratch",
+      "path": "specs/hooks-plugins-extensions/025-cache-optimizer-single-copy-guard/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks/z_archive",
+      "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -72586,6 +72616,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -74906,6 +74944,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/004-guard-hook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-spec-kit/044-named-subtracks-and-host-repos/review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -77514,6 +77556,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/review-archive/2026-11-07T1745-single-lineage-stopped/lineages",
       "reason": "excluded directory"
     },
     {

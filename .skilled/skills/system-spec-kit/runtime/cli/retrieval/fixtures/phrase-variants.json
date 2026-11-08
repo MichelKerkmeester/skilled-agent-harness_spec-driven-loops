@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1a6d076a806f3a0b78cba930e363adc74d63dcad831e2d81664dae5b82332b00",
+  "manifestHash": "620beff7728459703ffb14c713e78e467e81fa8ded368d076b5ee5a003ccea3e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -5556,6 +5556,9 @@
     ],
     "027 advisor and codegraph": [
       "027 advisor and codegraph"
+    ],
+    "027 ask surface enforcement operator decisions": [
+      "027-ask-surface-enforcement operator decisions"
     ],
     "027 changelog history": [
       "027 changelog history"
@@ -12761,6 +12764,36 @@
     ],
     "ask question tool": [
       "ask question tool"
+    ],
+    "ask surface disabled live test": [
+      "ask surface disabled live test"
+    ],
+    "ask surface enforcement": [
+      "ask surface enforcement"
+    ],
+    "ask surface enforcement acceptance criteria": [
+      "ask surface enforcement acceptance criteria"
+    ],
+    "ask surface enforcement implementation summary": [
+      "ask surface enforcement implementation summary"
+    ],
+    "ask surface enforcement plan": [
+      "ask surface enforcement plan"
+    ],
+    "ask surface enforcement tasks": [
+      "ask surface enforcement tasks"
+    ],
+    "ask surface guard devin advisory": [
+      "ask surface guard devin advisory"
+    ],
+    "ask surface guard false positive": [
+      "ask surface guard false positive"
+    ],
+    "ask surface guard kill switch": [
+      "ask surface guard kill switch"
+    ],
+    "ask surface guard live conversation": [
+      "ask surface guard live conversation"
     ],
     "askuserquestion capture": [
       "askuserquestion capture"
@@ -39955,6 +39988,9 @@
     "devin prompt templates": [
       "devin prompt templates"
     ],
+    "devin prose menu advisory test": [
+      "devin prose menu advisory test"
+    ],
     "devin providers and models": [
       "devin providers and models"
     ],
@@ -45563,6 +45599,9 @@
     ],
     "endless sessions readme": [
       "endless sessions readme"
+    ],
+    "enforce asking operator decisions through each runtime s": [
+      "enforce asking operator decisions through each runtime s"
     ],
     "enforce session caps": [
       "enforce session caps"
@@ -73227,6 +73266,9 @@
     "numbered review findings reducer": [
       "numbered review findings reducer"
     ],
+    "numbered summary not a menu": [
+      "numbered summary not a menu"
+    ],
     "numbered worktree branch convention": [
       "numbered worktree branch convention"
     ],
@@ -85392,6 +85434,9 @@
     "prose lines and bullet lists": [
       "prose lines and bullet lists"
     ],
+    "prose option menu live test": [
+      "prose option menu live test"
+    ],
     "prose semicolon": [
       "prose semicolon"
     ],
@@ -86361,6 +86406,9 @@
     ],
     "question origin provenance": [
       "question origin provenance"
+    ],
+    "question tool enforcement scenario": [
+      "question tool enforcement scenario"
     ],
     "questions anchor scope": [
       "questions anchor scope"
