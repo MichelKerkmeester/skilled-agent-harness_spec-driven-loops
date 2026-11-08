@@ -1,5 +1,5 @@
 {
-  "manifestHash": "639ce400f3fe21783996f78d5c5827d1b8905ec75290043fef01c031793daf49",
+  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -117630,6 +117630,9 @@
     "system spec kit 2 12 36 0": [
       "system-spec-kit 2.12.36.0"
     ],
+    "system spec kit 2 12 37 0": [
+      "system-spec-kit 2.12.37.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -118208,6 +118211,9 @@
     ],
     "system spec kit v2 12 36 0": [
       "system-spec-kit v2.12.36.0"
+    ],
+    "system spec kit v2 12 37 0": [
+      "system-spec-kit v2.12.37.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5e3b6dc8b0b7a5879772717f99365863de97dc9988d5ec1dfdf7efa83ebe12a2",
+  "corpusHash": "f314ccf5442b89b0976db02cdfe791bd529d56d38badda396232b83ef5b6fd0a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28495,
+  "includedPathCount": 28496,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8632,6 +8632,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.35.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.35.1.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.36.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.37.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -28526,7 +28527,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "639ce400f3fe21783996f78d5c5827d1b8905ec75290043fef01c031793daf49",
+  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
