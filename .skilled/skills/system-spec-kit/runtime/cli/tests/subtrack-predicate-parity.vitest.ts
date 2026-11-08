@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { refreshGraphMetadataForSpecFolder } from '../../lib/graph/graph-metadata-parser.js';
+import { refreshGraphMetadataForSpecFolder } from '../../api';
 // @ts-expect-error -- the reader is a plain ESM module without declaration files.
 import { readWorkingTreeTracks } from '../lib/track-roots.mjs';
 // @ts-expect-error -- the fixture builder is plain ESM without declaration files.
