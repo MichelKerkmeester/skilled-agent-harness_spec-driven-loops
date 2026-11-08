@@ -8,26 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/027-ask-surface-enforcement"
-    last_updated_at: "2026-11-08T13:06:53Z"
+    last_updated_at: "2026-11-08T14:58:51Z"
     last_updated_by: "generate-context"
-    recent_action: "Built ask-surface guard; 12/12 live scenario runs pass and strict validation passes"
-    next_safe_action: "Review the uncommitted diff, then commit when the operator asks"
+    recent_action: "Fixed all alignment findings; tests and live rerun pass"
+    next_safe_action: "Run the alignment recheck, then commit when the operator asks"
     blockers: []
     key_files:
-      - ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs"
+      - ".skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts"
       - ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs"
-      - ".opencode/plugins/ask-surface-guard.js"
-      - ".skilled/repo-rules/communication-handoff.md"
+      - ".opencode/plugins/lib/v2-bridge.js"
+      - ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/ask-surface-guard.md"
       - "specs/hooks-plugins-extensions/027-ask-surface-enforcement/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:9c2ec66694de5a770a6bb775f5066cb2cd0273f55fe45d9a0a715c6e9d6f03b3"
+      fingerprint: "sha256:0ff95430865c487dea7405574f75efd6f5f91c9c4d19a74aecaaa84817b86e19"
       session_id: "scaffold-027-ask-surface-enforcement"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "37344d65-539c-401d-8341-c9b769fd34a7"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-08T13:06:53Z"
+      savedAt: "2026-11-08T14:58:51Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -62,7 +62,7 @@ A reply that ends in a typed A/B/C menu, with no question-tool call in the turn,
 
 ### Enforce asking operator decisions through each runtime's native ask-question tool instead of prose option menus
 
-You no longer have to catch a prose menu by eye. One shared detector reads the closing lines of a turn: two or more sequential labels starting at A or 1, a question beside them, and nothing inside code fences, quotes or tables. Each runtime adapter decides what to do with a match. A per-turn marker means a turn is sent back once at most, so a model that repeats the menu ends normally rather than looping. `SYSTEM_ASK_SURFACE_DISABLED=1` turns the guard off everywhere. The rule text changed too. `communication-handoff.md` §4 now says a structured choice goes through the §5 tool. §5 names each runtime's tool and narrows the prose fallback to sessions that have no tool, and Gate 3 in `AGENTS.md` points at §5.
+You no longer have to catch a prose menu by eye. One shared detector reads the closing lines of a turn: two or more sequential labels starting at A or 1, a question beside them, and nothing inside code fences, quotes or tables. Each runtime adapter decides what to do with a match. A turn is sent back once at most, so a model that repeats the menu ends normally rather than looping: Claude Code relies on `stop_hook_active`, and DSH, OpenCode and Pi key a marker on the operator's turn. `SYSTEM_ASK_SURFACE_DISABLED=1` turns the guard off everywhere. The rule text changed too. `communication-handoff.md` §4 now says a structured choice goes through the §5 tool. §5 names each runtime's tool and narrows the prose fallback to sessions that have no tool, and Gate 3 in `AGENTS.md` points at §5.
 
 ### Files Changed
 
@@ -75,7 +75,11 @@ You no longer have to catch a prose menu by eye. One shared detector reads the c
 | `.skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs` | Created | DSH `agent/turn-stopping` guard that steers once and skips headless sessions |
 | `.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts` | Created | Pi `agent_end` guard that starts one follow-up turn |
 | `.opencode/plugins/ask-surface-guard.js` | Created | OpenCode `session.idle` guard that re-prompts through `promptAsync` |
-| `.skilled/hooks/ask-surface-guard/fixtures/*.json` and each adapter's test | Created | Ten detector fixtures, plus tests for each adapter |
+| `.skilled/hooks/ask-surface-guard/fixtures/*.json` and each adapter's test | Created | Ten detector fixtures, plus tests for each adapter; the DSH test sits in `tests/dsh-ask-surface-guard.test.mjs` with the other DSH tests |
+| `.opencode/plugins/lib/v2-bridge.js` and `tests/v2-bridge.test.cjs` | Modified | OpenCode 2 tool parts reach the v1 message shape, so the plugin sees a `question` call |
+| `.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/ask-surface-guard.md` and `feature-catalog.md` | Created, Modified | Catalog entry the four scenario rows link |
+| Root, `.opencode/`, `.opencode/plugins/`, `.pi/` and DSH READMEs, `.dsh/SYNC.md`, `.env.example`, `ENV-REFERENCE.md`, `injection-contract.md` | Modified | Inventories, counts, the kill switch and the injection channels name the guard |
+| Thirteen `/create:*`, `/design:*` and `/prompt:*` presentation files, `speckit-implement.yaml` | Modified | Startup forms are asked through the §5 question tool, printed as text only where §5 names none |
 | `.pi/extensions/ask-surface-guard.ts`, `.dsh/plugins/repo-guards/adapters/ask-surface-guard.mjs` | Created | Symlinks that load the guard |
 | `.dsh/plugins/repo-guards/index.mjs` | Modified | Registers the DSH guard |
 | `hook-registry.json`, `.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json` | Modified | Registry entry and the configs the sync script regenerated from it |
@@ -92,6 +96,8 @@ You no longer have to catch a prose menu by eye. One shared detector reads the c
 ## How It Was Delivered
 
 Five research iterations on DeepSeek V4.1 Flash, run through opencode-go after DevPass ran out of credit, mapped each runtime's tool and stop event. The detector and its fixtures came first, then the adapters one runtime at a time, then the registry entry and the rule text. The Gate 3 edit went in only after you approved the byte-neutral diff. Every unit suite ran on the final tree. The four conversation scenarios then ran live through the shared runner, which drives each runtime in a scratch project.
+
+`/local-skilled-alignment` then reviewed the work with four review lanes and a critic. It found three guard defects: the Claude guard missed a slash command as a turn start, the Pi guard had no UI check and no per-turn marker, and the OpenCode 2 bridge dropped tool parts. It also found the doc gaps the second Files Changed block lists. All were fixed. The live scenario and the Devin advisory then ran again on the fixed code.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -101,6 +107,8 @@ Five research iterations on DeepSeek V4.1 Flash, run through opencode-go after D
 
 | Decision | Why |
 |----------|-----|
+| Key the Pi marker on the operator's last message | `agent_end` closes one agent loop, not the turn, and the guard's own follow-up arrives as a custom message, so every loop of one turn shares the key |
+| Fix the OpenCode tool-part gap in the shared bridge | The bridge dropped the part for every plugin, so fixing it there fixes the cause rather than one reader |
 | One shared detector, thin adapter per runtime | Each runtime differs only in how it reads a turn and sends one back, so a single detector keeps the verdict identical everywhere |
 | Send back once per turn | A model that repeats the menu must still finish its turn, so the guard can never trap a session |
 | Advisory only on Codex and Devin | Neither Stop event documents a block, and a guessed block could break their sessions |
@@ -125,6 +133,8 @@ Five research iterations on DeepSeek V4.1 Flash, run through opencode-go after D
 | Live: ask-surface-guard-devin-advisory-conversation | PASS on Devin: teal=1, fires=0 |
 | Live: ask-surface-guard-kill-switch-conversation | PASS on Claude Code, OpenCode, Pi and Devin: fires=0, teal=1 |
 | Live: ask-surface-guard-no-false-positive-conversation | PASS on Claude Code, OpenCode, Pi and Devin: fires=0, listed=1 |
+| Fixed-code tests: core, advisory, Claude, DSH, OpenCode and bridge | PASS: 89 pass, 0 fail, exit 0; Pi vitest 6/6; full hooks vitest lane 489/489 |
+| Live rerun on the fixed code | Claude Code, OpenCode and Pi: tool=1 and fires=0, with the runner's REPO_CHANGED from other sessions' writes; Devin advisory PASS |
 | Run report | `.skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard/`: 12 PASS |
 | Playbook validator, `--package system-spec-kit` | No ask-surface finding; the two violations already present are session-relaunch links |
 <!-- /ANCHOR:verification -->
@@ -134,7 +144,8 @@ Five research iterations on DeepSeek V4.1 Flash, run through opencode-go after D
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No live run has exercised the send-back.** Every live run recorded fires=0, because each model used the question tool on its own, even when the prompt asked for lettered options. The send-back is proven by the adapter tests only. When a real turn trips the guard, `.skilled/skills/.state/ask-surface/fires.jsonl` records it. Use that line to rerun the live scenario on that runtime.
+1. **No live run has exercised the send-back, before or after the fixes.** Every live run recorded fires=0, because each model used the question tool on its own, even when the prompt asked for lettered options. The send-back is proven by the adapter tests only. When a real turn trips the guard, `.skilled/skills/.state/ask-surface/fires.jsonl` records it. Use that line to rerun the live scenario on that runtime.
 2. **Codex is untested live.** No Codex usage was available, so the Codex adapter is covered by its unit test only.
-3. **A turn sent back can still end in prose.** The guard sends a turn back once, so a model that ignores the instruction ends its turn normally, and the menu stays on screen. The fire line still records it.
+3. **The hooks node:test lane has 27 goal-hook failures this work did not cause.** `goal-core.test.cjs` fails 27 of 98 alone; nothing under `.skilled/hooks/goal` changed in this work, and the lane passed earlier the same day, before 64 commits from another session landed.
+4. **A turn sent back can still end in prose.** The guard sends a turn back once, so a model that ignores the instruction ends its turn normally, and the menu stays on screen. The fire line still records it.
 <!-- /ANCHOR:limitations -->

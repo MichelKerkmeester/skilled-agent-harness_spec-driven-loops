@@ -38,6 +38,9 @@ _memory:
 | Q002 | Run the DeepSeek v4.1 flash research on the opencode-go provider after DevPass ran out of credit. | DevPass returned a 402 credit-limit error until 11/10, and opencode-go serves the same model. | None | research/fanout.json, research/lineages/deepseek/ |
 | Q003 | Build enforcing guards for Claude Code, DSH, OpenCode and Pi, with advisory Codex and Devin adapters, planned first. | Not stated. | None | REQ-002, REQ-004, REQ-005, tasks.md T009-T013 |
 | Q004 | Write the ask-surface conversation scenarios and run the full matrix on Claude Code, OpenCode, Pi and Devin, leaving Codex out for lack of usage. | No Codex usage is available; only opencode-go and the GPT provider through cli-codex, OpenCode, Pi and Devin. | None | tasks.md T020-T022, scratch/live-runs/, the 2026-11-08 ask-surface-guard run report |
+| Q005 | Run the alignment check over this work's 67 files, narrowed from the 7,880-file HEAD scope that held other sessions' changes. | Not stated. | None | tasks.md T026, the 20261108T130844Z alignment run |
+| Q006 | Run the four alignment review lanes and the critic on opencode-go DeepSeek V4.1 Flash max. | Not stated. | None | tasks.md T026, the 20261108T130844Z alignment run |
+| Q007 | Fix every alignment finding: the three guard defects and all the doc gaps. | Not stated. Evidence: yes_no, option false, overlap 1, imperative true, shift false. | None | tasks.md T023-T027, AC-008 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -125,6 +128,61 @@ Write only
 Answer:
 ```text
 Go for 2, but i dont have codex usage. only opencode go and gpt provider through cli codex, opencode, pi and SWE 2 MAX cli devin
+```
+
+### Q005
+<!-- source: claude:37344d65-539c-401d-8341-c9b769fd34a7:toolu_01BKjY4LQgTV5JvsrymAJ63r:0 -->
+
+Question:
+```text
+Alignment scope. Target: HEAD (branch), base origin/main, 51fc49ae75, 0 commits. The work is all uncommitted on main, and the resolver's HEAD scope pulled in 7,880 dirty files, mostly from other sessions. I narrowed the run's own scope.json to this work's 67 files (13 owners; packet scratch/ and research/ excluded), keeping the resolver's classification. The full HEAD scope is kept beside it as scope.head-full.json. Surfaces that fire: S1 code (18), S2 skill docs (22), S3 catalog (23), S4 playbooks (23), S5 READMEs (51), S6 changelogs (24), S9 commands (1), S11 runtime mirrors (31), S12 AGENTS.md and rules (2), S13 env docs (19), S14 packet validate (8), S15 CI parity. Quiet: S7, S8, S10. Battery rows planned: 59. How should the run go?
+```
+
+Options:
+```text
+Approve narrowed scope (Recommended)
+Use full HEAD scope
+Cancel
+```
+
+Answer:
+```text
+Approve narrowed scope (Recommended)
+```
+
+### Q006
+<!-- source: claude:37344d65-539c-401d-8341-c9b769fd34a7:toolu_01QdxjHgw4hYu6uuW88WGcun:0 -->
+
+Question:
+```text
+Battery finished: pass 50, fail 5, cannot run 0, not applicable 4. None of the 5 failures is in a file this work changed: playbook PATH_MISSING in session-relaunch scenarios (twice, S4 and the S15 fleet run), 10 broken links into the deleted specs/hooks/, a stale plugin count and sk-vision.js in .opencode/plugins/README.md, and a hooks/dsh/ path in .skilled/hooks/README.md line 210. Lanes that would run: A Code (S1, S15), B Skill docs (S2, S3, S4), C READMEs, changelogs, env docs (S5, S6, S13), D Routing, commands, mirrors, rules (S9, S11, S12). Preset opencode-go (default): cli-opencode opencode-go/deepseek-v4.1-flash at max; critic the same. The lanes and the critic are paid model calls (5 dispatches). Run them?
+```
+
+Options:
+```text
+Approve lanes (Recommended)
+Battery-only
+Cancel
+```
+
+Answer:
+```text
+Approve lanes (Recommended)
+```
+
+### Q007
+<!-- source: claude:37344d65-539c-401d-8341-c9b769fd34a7:chat:244ab8d6-efb9-4eea-a2cd-77ed5705166d:13f264a3-7feb-47da-83b0-3108225567e8 -->
+
+Question:
+```text
+Nothing in the checkout was changed by this run. Your decision: should I fix the three guard bugs (A-2, A-1 with D-001, A-3) in packet 027 now, with the doc gaps after them? Once fixed, `/local-skilled-alignment --recheck=~/.local/state/local-skilled-alignment/Skilled/20261108T130844Z` confirms what closed.
+```
+
+Options: none
+
+Answer:
+```text
+fix all
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -49,13 +49,13 @@
       ".skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs",
       ".skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts",
       ".opencode/plugins/ask-surface-guard.js",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/ask-surface-guard.md",
+      ".dsh/SYNC.md",
       ".pi/extensions/ask-surface-guard.ts",
       ".dsh/plugins/repo-guards/adapters/ask-surface-guard.mjs",
       ".dsh/plugins/repo-guards/index.mjs",
-      ".claude/settings.json",
-      ".codex/hooks.json",
-      ".devin/hooks.v1.json",
-      ".skilled/repo-rules/communication-handoff.md"
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -131,6 +131,24 @@
         "source": "derived"
       },
       {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/ask-surface-guard.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
+        "source": "derived"
+      },
+      {
         "name": "index.mjs",
         "kind": "file",
         "path": ".dsh/plugins/repo-guards/index.mjs",
@@ -140,24 +158,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "communication-handoff.md",
-        "kind": "doc",
-        "path": ".skilled/repo-rules/communication-handoff.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Agents end turns with a prose menu of lettered options and a closing question instead of calling the runtime's ask-question tool, so the operator has to type an answer to a question the runtime could have asked as a structured choice",
     "created_at": "2026-11-08T10:05:12Z",
-    "last_save_at": "2026-11-08T13:06:53.117Z",
+    "last_save_at": "2026-11-08T14:58:51.462Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f17a605fc54ee47ef3da07e49fb7d728b701ea89d3630108539362fa1b3991f5",
+    "source_fingerprint": "sha256:5a3097c19630d96adfc8ff25d2fa353e3253c0f7e9f88551cc2c947752a3765b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1e660abcd145b3d5e1151a8018b95cccecc1971878637bc959c3fef724d3aec5",
       "plan.md": "2a3bb9069e7187abc040232c8a38d4c5c5f2b152d389ab8598f8af6a818751eb",
-      "tasks.md": "790ca97f47549c7563dffdb1df5398e224077b86dd8b22e69d61408b3b2af5b3",
-      "decision-record.md": "8a8f04eb3b77e8ee18877241897ffe75dcae575ada2f03935c63291b1fddf0d9",
-      "implementation-summary.md": "6362fb247b53e019e31fea4bcf1ba57ca8691a1627fd69155138ce870ff6aa47"
+      "tasks.md": "73ab5c505370e7bce6f198dc6d406d89648cbb34e3b2461ed576fcb75952efb9",
+      "decision-record.md": "656f8a28e6d26114237259f421ffbbf92e9b9dfb9e13389509fd3963dc53d012",
+      "implementation-summary.md": "632e6008a6749545960f65fbea3d5f92f41d1aff162d08ac0d64f3befade010f"
     },
     "last_active_at": null
   }

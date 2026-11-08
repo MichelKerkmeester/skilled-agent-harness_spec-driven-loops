@@ -72,6 +72,11 @@ contextType: "general"
 - [x] T020 Log every fire to the project's gitignored state folder so live runs can count them (`.skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs`). Verify: every adapter test asserts its `fires.jsonl` line; 37 node:test and 4 vitest pass; no file appears under the real repo's `.skilled/skills/.state/ask-surface/`. Evidence: as stated.
 - [x] T021 Write the live, kill-switch and no-false-positive conversation scenarios and index them (`.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/`). Verify: `validate-playbook-package.cjs --package system-spec-kit` reports no violation in the three files. Evidence: its only two violations are pre-existing session-relaunch links into the deleted `specs/hooks/` tree.
 - [x] T022 Run the scenarios live on Claude Code, OpenCode, Pi and Devin (`run-conversation-scenario.cjs`). Verify: each `matrix.md` lists one verdict per runtime. Evidence: 12 PASS across four scenarios, Devin split into its own advisory scenario; report `.skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard/`, runs in `scratch/live-runs/`.
+- [x] T023 Treat a slash command as the operator's turn in the Claude guard (`.skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs`). Verify: the slash-command boundary test blocks. Evidence: 7/7 pass.
+- [x] T024 Gate the Pi guard on `hasUI` and key its once-per-turn marker on the operator's last message (`.skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts`). Verify: five agent loops send once and a no-UI run sends none. Evidence: Pi vitest 6/6; the old code sent on loops 1, 3 and 5.
+- [x] T025 Carry OpenCode 2 tool parts through the v2 bridge (`.opencode/plugins/lib/v2-bridge.js`). Verify: the bridge test maps a `question` tool part. Evidence: OpenCode plugin suites 572/572.
+- [x] T026 Close the alignment run's doc gaps: feature-catalog entry, plugin and extension inventories, DSH adapter table, env references, injection contract, the hooks README core table, scenario setup and matcher, and the `/create:*` startup forms that §4 now contradicts. Verify: catalog, playbook, README, mirror and command checks pass. Evidence: each exits 0; the playbook package reports 0 violations.
+- [x] T027 Rerun the live scenario and the Devin advisory on the fixed code (`run-conversation-scenario.cjs`). Verify: each check passes. Evidence: tool=1 on Claude Code, OpenCode and Pi, with the runner's REPO_CHANGED caused by other sessions' writes; Devin PASS.
 - [x] T019 Validate the packet (`spec folder`). Verify: `validate.sh --strict` prints `RESULT: PASSED`. Evidence: Errors 0, Warnings 1, `RESULT: PASSED`, exit 0.
 <!-- /ANCHOR:phase-3 -->
 
@@ -81,7 +86,7 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [x] All tasks marked `[x]`: T001 to T022 are checked
+- [x] All tasks marked `[x]`: T001 to T027 are checked
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed: 12 live conversation runs PASS, report `.skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard/`
 <!-- /ANCHOR:completion -->
