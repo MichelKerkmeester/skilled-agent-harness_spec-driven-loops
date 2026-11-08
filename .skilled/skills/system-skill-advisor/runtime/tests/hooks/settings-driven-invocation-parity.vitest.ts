@@ -103,7 +103,7 @@ const EXPECTED_HOOK_COUNTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], number
   UserPromptSubmit: 3,
   PreCompact: 1,
   SessionStart: 8,
-  Stop: 3,
+  Stop: 4,
 };
 
 interface HookCommand {
