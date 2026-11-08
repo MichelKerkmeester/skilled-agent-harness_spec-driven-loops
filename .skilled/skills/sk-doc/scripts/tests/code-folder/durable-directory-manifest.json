@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 922,
+  "derived_count": 924,
   "directories": [
     ".",
     ".claude",
@@ -828,6 +828,8 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/outcomes",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-08--manual-testing-playbook--ask-surface-guard/outcomes",
     ".skilled/skills/system-spec-kit/config",
     ".skilled/skills/system-spec-kit/runtime",
     ".skilled/skills/system-spec-kit/runtime/api",
