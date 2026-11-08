@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7380,
-    "ok": 17570,
+    "missing-frontmatter": 7387,
+    "ok": 17577,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28499,
+  "documentsScanned": 28513,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2beb93847d094b1a88f5383f62d63d45b98f3ca76c71636a3ba0040d61dc0902",
+  "manifestHash": "e2a0f0f8c83492e604cde952607c787320c728a23723440597b8c91c2aca79b0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41983,
+      "ok": 41991,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -35638,6 +35638,48 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/014-playbook-docs-and-closeout/evidence/playbook-run/summary.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -71831,6 +71873,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks-plugins-extensions/z_archive",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
       "reason": "excluded directory"
     },
@@ -72640,6 +72686,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
@@ -74948,6 +75002,10 @@
     },
     {
       "path": "specs/system-skill-advisor/033-build-freshness-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/034-runtime-name-implementation-routing/scratch",
       "reason": "excluded directory"
     },
     {

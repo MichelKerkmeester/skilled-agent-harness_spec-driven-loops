@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2beb93847d094b1a88f5383f62d63d45b98f3ca76c71636a3ba0040d61dc0902",
+  "manifestHash": "e2a0f0f8c83492e604cde952607c787320c728a23723440597b8c91c2aca79b0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6661,6 +6661,9 @@
     ],
     "034 query expansion tasks": [
       "034 query expansion tasks"
+    ],
+    "034 runtime name implementation routing operator decisions": [
+      "034-runtime-name-implementation-routing operator decisions"
     ],
     "034 spec folder tooling number map": [
       "034-spec-folder-tooling number map"
@@ -46906,6 +46909,9 @@
     ],
     "executor": [
       "executor"
+    ],
+    "executor alias hook surface": [
+      "executor alias hook surface"
     ],
     "executor aliases": [
       "executor aliases"
@@ -95404,6 +95410,9 @@
     "route guard": [
       "route guard"
     ],
+    "route implementation prompts that name a runtime surface": [
+      "route implementation prompts that name a runtime surface"
+    ],
     "route line bounding implementation": [
       "route line bounding implementation"
     ],
@@ -97084,6 +97093,21 @@
     ],
     "runtime module tests": [
       "runtime module tests"
+    ],
+    "runtime name implementation routing": [
+      "runtime name implementation routing"
+    ],
+    "runtime name implementation routing acceptance criteria": [
+      "runtime name implementation routing acceptance criteria"
+    ],
+    "runtime name implementation routing implementation summary": [
+      "runtime name implementation routing implementation summary"
+    ],
+    "runtime name implementation routing plan": [
+      "runtime name implementation routing plan"
+    ],
+    "runtime name implementation routing tasks": [
+      "runtime name implementation routing tasks"
     ],
     "runtime native commands": [
       "runtime-native commands"
