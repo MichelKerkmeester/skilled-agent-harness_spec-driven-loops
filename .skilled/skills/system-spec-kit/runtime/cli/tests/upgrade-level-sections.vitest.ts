@@ -129,6 +129,20 @@ describe('upgrade-level.sh section fragments', () => {
     }
   });
 
+  it('keeps the questions anchor directly above the renumbered heading on upgrade', () => {
+    const packet = createLevelOnePacket();
+    upgrade(packet, 2);
+
+    const lines = fs.readFileSync(path.join(packet, 'spec.md'), 'utf8').split(/\r?\n/);
+    const anchorIndex = lines.indexOf('<!-- ANCHOR:questions -->');
+    expect(anchorIndex, 'questions anchor present').toBeGreaterThan(-1);
+    expect(lines[anchorIndex + 1]).toMatch(/^## \d+\. OPEN QUESTIONS$/);
+
+    const l2Index = lines.indexOf('## L2: NON-FUNCTIONAL REQUIREMENTS');
+    expect(l2Index, 'L2 sections present').toBeGreaterThan(-1);
+    expect(l2Index).toBeLessThan(anchorIndex);
+  });
+
   it('stamps the implementation-summary it recreates on upgrade', () => {
     const packet = createLevelOnePacket();
     fs.rmSync(path.join(packet, 'implementation-summary.md'));

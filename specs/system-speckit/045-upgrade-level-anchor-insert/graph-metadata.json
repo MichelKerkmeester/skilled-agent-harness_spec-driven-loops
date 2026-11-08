@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/045-upgrade-level-anchor-insert",
+  "spec_folder": "system-speckit/045-upgrade-level-anchor-insert",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "upgrade level anchor insert",
+      "insert level 2 sections above the questions anchor",
+      "upgrade-level breaks anchors_valid",
+      "upgrade level anchor insert plan",
+      "upgrade level anchor insert tasks",
+      "upgrade level anchor insert implementation summary"
+    ],
+    "key_topics": [
+      "upgrade",
+      "level",
+      "anchor",
+      "insert",
+      "sections",
+      "questions",
+      "upgrade-level",
+      "breaks",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-level-sections.vitest.ts",
+      "runtime/cli/tests/upgrade-level-sections.vitest.ts",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch/morning-decisions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level-sections.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-level-sections.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "morning-decisions.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch/morning-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Insert Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`upgrade-level.sh` inserted the Level 2 sections directly above the `## N",
+    "created_at": "2026-11-08T08:54:39Z",
+    "last_save_at": "2026-11-08T09:39:17.567Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f78be4e282c1f855904d566b7c11ae66fe57648656b00714c1f0d44b403188cd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2f96c2ef7763c6b1c31bb135b69560131e568286ddec77b17035500579de5bca",
+      "plan.md": "18e160d24e9e89b0ae0c03bc369d240c1d785f4c4e6184babebed71fa4f45440",
+      "tasks.md": "a342b8b575dda73a366cb41bef4d3e701725c4afeedee136323e101d26ec9e9d",
+      "implementation-summary.md": "fd889b22f6336273dd842642ada8c21bc1b62bff1b77113838f30161d0d39b1c"
+    },
+    "last_active_at": null
+  }
+}
