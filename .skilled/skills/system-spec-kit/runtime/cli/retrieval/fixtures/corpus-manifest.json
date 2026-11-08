@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b388b7a50e35c27e576b90d1d2aa3e849807ecbcfea57ba01b5d0a6b49f6eb08",
+  "corpusHash": "c4425bd87bc60e94ecbeb0bb79fb13e01c4fd79539690c4030606c58cb70dfd3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28452,7 +28452,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8047b6973934eca7447aefa949ab85369ce4cd3bc9b2d945da9260a70c9ca85e",
+  "manifestHash": "7ac0ea5eff6f170b1813bfa6d2d9445ccecfbab75aa60b19b0b44fe51d6c91d7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
