@@ -26,7 +26,7 @@ trigger_phrases:
   - "verify before claiming done"
 importance_tier: important
 contextType: reference
-version: 1.1.1.4
+version: 1.1.1.5
 ---
 
 # Rule: Evidence and proof
@@ -208,7 +208,8 @@ that looks like a different bug.
 a prior implementation summary are all claims about the code by someone who is not the
 code. They are excellent for finding *where* to look and worthless as the final word on
 *what happens*. Where a doc and the code disagree, the code wins and the doc is now a
-defect.
+defect. A turn recalled through the history lookup is a claim too: it shows what was
+true when it ran, not what is true now.
 
 Before the change, run the checks that decide whether it is the right change at all:
 does something simpler already do this, what does it cost at runtime, who maintains it
