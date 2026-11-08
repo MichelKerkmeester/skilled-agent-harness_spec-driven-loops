@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7373,
-    "ok": 17499,
+    "ok": 17503,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28421,
+  "documentsScanned": 28425,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7ac0ea5eff6f170b1813bfa6d2d9445ccecfbab75aa60b19b0b44fe51d6c91d7",
+  "manifestHash": "78475ec792e200cb596eb0f1486625bbfbdf2af13df4f475f6b8054eb148c13c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41846,
+      "ok": 41854,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -77506,6 +77506,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7ac0ea5eff6f170b1813bfa6d2d9445ccecfbab75aa60b19b0b44fe51d6c91d7",
+  "manifestHash": "78475ec792e200cb596eb0f1486625bbfbdf2af13df4f475f6b8054eb148c13c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12398,6 +12398,9 @@
     ],
     "archive root graph node tasks": [
       "archive root graph node tasks"
+    ],
+    "archive seeds sub track metadata": [
+      "archive seeds sub-track metadata"
     ],
     "archive sh track": [
       "archive.sh track"
@@ -80348,6 +80351,9 @@
     "phase 6 research lineage reducer path": [
       "phase 6 research lineage reducer path"
     ],
+    "phase 6 review follow ups": [
+      "phase 6 review follow ups"
+    ],
     "phase 6 review remediation": [
       "phase 6 review remediation"
     ],
@@ -93958,6 +93964,18 @@
     ],
     "review folders under spec tree root": [
       "review folders under spec-tree root"
+    ],
+    "review follow ups": [
+      "review follow ups"
+    ],
+    "review follow ups implementation summary": [
+      "review follow ups implementation summary"
+    ],
+    "review follow ups plan": [
+      "review follow ups plan"
+    ],
+    "review follow ups tasks": [
+      "review follow ups tasks"
     ],
     "review gate follows severity": [
       "review gate follows severity"
@@ -115114,6 +115132,12 @@
     ],
     "sub track rule parity plan": [
       "sub-track rule parity plan"
+    ],
+    "sub track track segment alignment": [
+      "sub-track track segment alignment"
+    ],
+    "sub track track segment parity": [
+      "sub-track track segment parity"
     ],
     "subagent": [
       "subagent"

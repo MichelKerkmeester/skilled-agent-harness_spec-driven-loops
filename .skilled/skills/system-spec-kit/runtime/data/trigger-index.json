@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7ac0ea5eff6f170b1813bfa6d2d9445ccecfbab75aa60b19b0b44fe51d6c91d7",
+  "manifestHash": "78475ec792e200cb596eb0f1486625bbfbdf2af13df4f475f6b8054eb148c13c",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17549,6 +17549,10 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/plan.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/spec.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/tasks.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
@@ -24799,10 +24803,10 @@
       12010
     ],
     "044 named subtracks and host repos operator decisions": [
-      17540
+      17544
     ],
     "044 review remediation handoff": [
-      17542
+      17546
     ],
     "044 suite revalidation": [
       13592
@@ -30534,6 +30538,9 @@
     ],
     "archive root graph node tasks": [
       15462
+    ],
+    "archive seeds sub track metadata": [
+      17541
     ],
     "archive sh track": [
       15799,
@@ -53360,7 +53367,7 @@
       7797
     ],
     "declared sub track container": [
-      17546
+      17550
     ],
     "declared sub track rule parity": [
       17525
@@ -56698,7 +56705,7 @@
       15213,
       16022,
       16913,
-      17544
+      17548
     ],
     "deep research strategy md": [
       2473
@@ -67631,7 +67638,7 @@
       7352,
       16022,
       16913,
-      17544
+      17548
     ],
     "exhausted review approaches": [
       2492,
@@ -79337,10 +79344,10 @@
       17533
     ],
     "host repository trigger index": [
-      17545
+      17549
     ],
     "host repository trigger index mode": [
-      17546
+      17550
     ],
     "hostile locale child vitest": [
       10030
@@ -94543,28 +94550,28 @@
       16231
     ],
     "named sub track research": [
-      17545
+      17549
     ],
     "named sub track support in spec kit plus": [
-      17546
+      17550
     ],
     "named sub track validation": [
       17523
     ],
     "named subtracks and host repos": [
-      17546
+      17550
     ],
     "named subtracks and host repos implementation summary": [
-      17541
+      17545
     ],
     "named subtracks and host repos plan": [
-      17543
-    ],
-    "named subtracks and host repos tasks": [
       17547
     ],
+    "named subtracks and host repos tasks": [
+      17551
+    ],
     "named subtracks closure gate": [
-      17539
+      17543
     ],
     "namespace command example": [
       1892
@@ -103996,6 +104003,9 @@
     "phase 6 research lineage reducer path": [
       10463
     ],
+    "phase 6 review follow ups": [
+      17541
+    ],
     "phase 6 review remediation": [
       6864
     ],
@@ -108826,7 +108836,7 @@
       1638
     ],
     "project owned doctor entry": [
-      17545
+      17549
     ],
     "project plan roadmap": [
       1621
@@ -116688,7 +116698,7 @@
       7352,
       16022,
       16913,
-      17544
+      17548
     ],
     "research spec conflict detection": [
       2483
@@ -116720,7 +116730,7 @@
       7352,
       16022,
       16913,
-      17544
+      17548
     ],
     "research stop contract": [
       2478
@@ -116746,7 +116756,7 @@
       7352,
       16022,
       16913,
-      17544
+      17548
     ],
     "research stuck count": [
       2477
@@ -118506,6 +118516,18 @@
     ],
     "review folders under spec tree root": [
       2521
+    ],
+    "review follow ups": [
+      17541
+    ],
+    "review follow ups implementation summary": [
+      17539
+    ],
+    "review follow ups plan": [
+      17540
+    ],
+    "review follow ups tasks": [
+      17542
     ],
     "review gate follows severity": [
       1253
@@ -120804,7 +120826,7 @@
       7352,
       16022,
       16913,
-      17544
+      17548
     ],
     "ruledout array": [
       2464
@@ -137511,7 +137533,7 @@
       13501
     ],
     "spec kit sub track design": [
-      17545
+      17549
     ],
     "spec kit tasks": [
       15559
@@ -140573,13 +140595,13 @@
       3177
     ],
     "sub track acceptance criteria": [
-      17539
+      17543
     ],
     "sub track doc corrections": [
       17535
     ],
     "sub track implementation plan": [
-      17543
+      17547
     ],
     "sub track parity verification": [
       17523
@@ -140589,6 +140611,12 @@
     ],
     "sub track rule parity plan": [
       17524
+    ],
+    "sub track track segment alignment": [
+      17539
+    ],
+    "sub track track segment parity": [
+      17541
     ],
     "subagent": [
       5418

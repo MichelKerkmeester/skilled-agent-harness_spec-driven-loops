@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c4425bd87bc60e94ecbeb0bb79fb13e01c4fd79539690c4030606c58cb70dfd3",
+  "corpusHash": "3011c4dabcb8a71268d2e3c143884594d7853c609e35ce23d27060ccd4352dca",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28421,
+  "includedPathCount": 28425,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28431,6 +28431,10 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/plan.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/spec.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/tasks.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
@@ -28452,7 +28456,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7ac0ea5eff6f170b1813bfa6d2d9445ccecfbab75aa60b19b0b44fe51d6c91d7",
+  "manifestHash": "78475ec792e200cb596eb0f1486625bbfbdf2af13df4f475f6b8054eb148c13c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36832,6 +36836,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
