@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0a483b585e350fbf1120cb690bd26c43d4dd761f83b1f7cbab6a035f56147d17",
+  "manifestHash": "e850f1a3ec8d18f73300fb153038099beee84834cab2a33afaf31eaaf84aee55",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -99305,9 +99305,6 @@
     "overlay engine tasks": [
       10933
     ],
-    "overlay folder setting": [
-      2922
-    ],
     "overlay guard": [
       168
     ],
@@ -99349,9 +99346,6 @@
     ],
     "overlay sync repin failure modes": [
       10956
-    ],
-    "overlay sync state": [
-      2922
     ],
     "overlays for vendored copies": [
       61
