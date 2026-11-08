@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skilled.local/schemas/system-spec-kit/history-entry.schema.json",
+  "title": "HistoryEntry",
+  "description": "One runtime-neutral session-history entry an adapter builds before the lookup core projects it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "role",
+    "sequence",
+    "timestamp",
+    "content"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Stable entry identifier, unique within one adapter source."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["user", "assistant", "toolResult"],
+      "description": "Message role that selects the legal content blocks."
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Zero-based position in the adapter's entry list."
+    },
+    "timestamp": {
+      "type": "string",
+      "minLength": 1,
+      "description": "ISO-8601 instant supplied by the adapter; the core reads no clock."
+    },
+    "content": {
+      "type": "array",
+      "description": "Role content blocks exactly as the adapter read them.",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "text"],
+            "properties": {
+              "type": {
+                "const": "text",
+                "description": "Block discriminator for plain public text."
+              },
+              "text": {
+                "type": "string",
+                "description": "Public text content."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "thinking"],
+            "properties": {
+              "type": {
+                "const": "thinking",
+                "description": "Block discriminator for provider-private reasoning."
+              },
+              "thinking": {
+                "type": "string",
+                "description": "Private reasoning that the public projection removes."
+              },
+              "signature": {
+                "type": "string",
+                "description": "Optional provider signature that the public projection removes."
+              },
+              "redacted": {
+                "type": "string",
+                "description": "Optional redacted payload that the public projection removes."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "id", "name", "arguments"],
+            "properties": {
+              "type": {
+                "const": "toolCall",
+                "description": "Block discriminator for a tool invocation."
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "description": "Tool-call identifier matched by one tool result."
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Registered tool name."
+              },
+              "arguments": {
+                "description": "Opaque tool arguments exactly as the adapter read them."
+              },
+              "thoughtSignature": {
+                "type": "string",
+                "description": "Optional provider signature that the public projection removes."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "data", "mimeType"],
+            "properties": {
+              "type": {
+                "const": "image",
+                "description": "Block discriminator for a native image attachment."
+              },
+              "data": {
+                "type": "string",
+                "description": "Base64 image bytes; these never become text."
+              },
+              "mimeType": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Image media type."
+              }
+            }
+          }
+        ]
+      }
+    },
+    "toolCallId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Tool-call identifier; required on toolResult and forbidden otherwise."
+    },
+    "isError": {
+      "type": "boolean",
+      "description": "Whether a tool result reports an error; legal only on toolResult."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "role": {
+            "const": "toolResult"
+          }
+        },
+        "required": ["role"]
+      },
+      "then": {
+        "required": ["toolCallId"]
+      },
+      "else": {
+        "not": {
+          "required": ["toolCallId"]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "role": {
+            "const": "toolResult"
+          }
+        },
+        "required": ["role"]
+      },
+      "else": {
+        "not": {
+          "required": ["isError"]
+        }
+      }
+    }
+  ]
+}
