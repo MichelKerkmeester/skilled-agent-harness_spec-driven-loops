@@ -33,7 +33,7 @@ trigger_phrases:
   - "resume condition"
 importance_tier: important
 contextType: reference
-version: 1.6.0.6
+version: 1.6.0.7
 ---
 
 # Rule: Communication handoff
@@ -125,7 +125,8 @@ were supposed to notice.
 
 ## 4. WHEN THE THING YOU NEED IS A DECISION
 
-**Ask as a structured choice when all three hold:**
+**Ask as a structured choice, through the question tool §5 names for your runtime, when all
+three hold:**
 
 - The alternatives are nameable, not open-ended.
 - The answer changes what you do next. A question that changes nothing is a delay, per
@@ -136,6 +137,10 @@ were supposed to notice.
 continue?" for a step that is clear and in scope.
 
 Recommend one option and say why.
+
+A lettered or numbered menu typed into the reply is not a structured choice when §5 names a
+tool for your runtime. It is the buried question in a different shape: the operator has to
+type the answer back, and nothing records it as a decision.
 
 The failure this prevents: two of them. A question nobody answers because it was a sentence in
 a paragraph, and a menu that appears for something the operator expected you to handle.
@@ -149,14 +154,20 @@ rather than assuming one.
 
 | Runtime | Surface | How this is known |
 |---|---|---|
-| Claude Code | `AskUserQuestion` | Named in this repository |
-| Pi | The `@juicesharp/rpiv-ask-user-question` extension, typed options rather than free text | Recorded as installed in `.pi/PLUGINS.md` |
-| OpenCode | A built-in equivalent | Operator-reported, name not recorded here |
+| Claude Code | `AskUserQuestion`, in the main conversation only. A subagent has none | Named in this repository |
+| Pi | `ask_user_question` from the `@juicesharp/rpiv-ask-user-question` extension, or `question` from `pi-plan-build` | Recorded as installed in `.pi/PLUGINS.md` |
+| OpenCode | `question`, built in | The tool name the decision-capture sweep reads, `sweep-opencode.mjs` |
 | Codex | `request_user_input`, only on a turn whose tool list names it. Plan mode has it, Default mode only behind the `default_mode_request_user_input` feature, which ships off and this repository's `.codex/config.toml` turns on, and `codex exec` never | Read from the Codex 0.160.1 binary's own instructions |
+| Devin | `ask_user_question`. A subagent has none | `cli-devin/references/devin-tools.md` |
+| DSH | `ask_user_question`, in a session with an attached client. A headless run has none | `.dsh/plugins/repo-guards/README.md` |
+| Cursor | None | No question tool in the Cursor tool reference |
 | Anything else | No native surface assumed | Use the fallback below |
 
-**A runtime with no such surface is not exempt.** It falls back to a numbered list of named
-options with the recommendation marked.
+**A session with no such surface is not exempt.** That is a runtime the table gives no tool,
+or a session where the tool is missing: a subagent, a headless run, `codex exec`. It falls
+back to a numbered list of named options with the recommendation marked, and says in one
+line that no question tool was available. Where the table names a tool and the session has
+it, the typed list is the failure §4 names, never a fallback.
 
 Do not invent a tool name to fill a gap in that table. An invented name fails silently, the
 question is never asked, and the turn ends looking complete. Where the row says unverified,

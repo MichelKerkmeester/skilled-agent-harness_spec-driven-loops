@@ -74,14 +74,14 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 #### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK — ASKED FIRST
 **Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone, or when its only write is gitignored runtime state under `.skilled/skills/.state/`, such as a session-relaunch handoff note. A read-only word next to a write trigger does not disqualify it.
 
-- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary for runtimes that call it; the sentence above is its human-readable form for the rest.
-- **Options (stable labels, recommend one):**
+- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary; the sentence above is its human-readable form.
+- **Options (stable labels, recommend one), asked via the `communication-handoff.md` §5 tool:**
   - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope. **Reply with the folder path.**
   - **B) New** - Create a new top-level packet only when no existing packet suits the work. Decide independently whether it is standard or phased. **Reply with a new folder path.**
   - **C) Related** - Use another existing packet, a child of an existing phase parent, a related standard packet split into phases once it meets both thresholds independently, or a series parent for a different change to the same artifact as an existing same-track packet. **Reply with the folder or child path.**
   - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never the default.
 - **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two phase thresholds and the series parent.
-- **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; one that writes anything is bound like any mutation.
+- **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; one that writes is bound like any mutation.
 - **The answer holds for the ENTIRE session.** A relaunch hop is the same session. Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
 - **Autonomous child-dispatch exemption.** `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
 
