@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.7.0
+version: 1.6.8.0
 ---
 
 # Folder Structure Reference
@@ -112,15 +112,15 @@ A sub-track is declared, not inferred. All of these hold:
 | Part | Requirement |
 |---|---|
 | Shape | Direct child of a track root, name not `NNN-*`, no `spec.md` |
-| `description.json` | `"level": "sub-track"`, with `specFolder` and `specId` set to `<track>/<sub-track>` |
+| `description.json` | `"level": "sub-track"` and `specFolder` set to `<track>/<sub-track>`. `specId` is not required: the description producers write only `specFolder`, and no reader derives a sub-track identity from `specId`. |
 | `graph-metadata.json` | Track-root shape: `packet_id` `<track>/<sub-track>`, `parent_id` the track, `children_ids` its immediate numbered packets |
 | Track registration | The sub-track id appears in the track's `graph-metadata.json` `children_ids` |
 
-Numbering continues per folder, so each sub-track numbers its own packets from `001`. One level is supported: a sub-track holds numbered packets, not another sub-track.
+Numbering continues per folder, so each sub-track numbers its own packets from `001`. One level is supported: a sub-track holds numbered packets, not another sub-track. A declared folder that contains `spec.md` gets the diagnostic `declared folder has spec.md and cannot be a sub-track`, and `create.sh` refuses it.
 
 A track's `children_ids` lists its direct numbered packets and its declared sub-tracks. A sub-track's `children_ids` lists only its own immediate numbered packets. A numbered phase parent counts as one entry, and its phases stay its own children.
 
-A sub-track has its own `z_archive/`. Any `z_` folder inside a track or sub-track is never a sub-track and is never discovered as content. A non-numbered folder without the declaration gets one diagnostic and is never promoted. A symlinked sub-track is skipped with one diagnostic in both the working-tree and the commit view. Diagnostics are advisory and never change an exit code.
+A sub-track has its own `z_archive/`. Any `z_` folder inside a track or sub-track is never a sub-track and is never discovered as content. A non-numbered folder without the declaration gets one diagnostic and is never promoted. A symlinked sub-track is skipped with one diagnostic in both the working-tree and the commit view. The sweep treats these diagnostics as advisory and does not change its exit code. `create.sh` uses sub-track diagnostics to explain invalid `--track` values and exits with status 1.
 
 ---
 
