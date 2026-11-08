@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c011e5ae90dc80d7b472b53d6a141fa7aa38e57cdc95f60d4c19580769831b44",
+  "manifestHash": "7324c0a66448b31672095b33b6000f7a8777004befec3e94e6daab41b87c8000",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -135318,6 +135318,9 @@
     ],
     "skilled house style": [
       1448
+    ],
+    "skilled in your own project": [
+      61
     ],
     "skilled integration commands get their own skill": [
       2925

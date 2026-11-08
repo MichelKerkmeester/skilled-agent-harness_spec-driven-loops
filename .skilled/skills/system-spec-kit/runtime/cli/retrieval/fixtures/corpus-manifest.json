@@ -1,5 +1,5 @@
 {
-  "corpusHash": "065abf6ea115a13a4b5eb637018bc3d429bbaae0d3d92c6d91fb189427a1fbe0",
+  "corpusHash": "9dd40611a81b90a9d10002beb2840d4d1fd327eb9348b074276265e8ba9fc920",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28503,7 +28503,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c011e5ae90dc80d7b472b53d6a141fa7aa38e57cdc95f60d4c19580769831b44",
+  "manifestHash": "7324c0a66448b31672095b33b6000f7a8777004befec3e94e6daab41b87c8000",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
