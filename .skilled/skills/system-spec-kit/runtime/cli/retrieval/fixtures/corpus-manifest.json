@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8c1e4b63340a254011b1fe4e9b4d9e458d273ff1f765e7b443e29a6a351ae320",
+  "corpusHash": "c3508ec5923bb3e6f83e7ad211172e80661d7e9470c50528c29a41a66c3d4d65",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28428,
+  "includedPathCount": 28433,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8334,6 +8334,7 @@
     ".skilled/skills/system-skilled-doctor/benchmark/reports/README.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.0.0.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
@@ -18522,6 +18523,10 @@
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/design-spec.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/research/research.md",
     "specs/system-skilled-doctor/001-skill-and-overlay-build/spec.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/implementation-summary.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/plan.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/spec.md",
+    "specs/system-skilled-doctor/002-symlink-first-link/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -28459,7 +28464,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "37703c35f8d346345413ae2bcf5bfc37f160dbac415acc6b07538977b0eda52e",
+  "manifestHash": "ed28ddc2094fff6b8c3da81901a1012aca661f91dc601df59e47fad1d82b51f5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34255,6 +34260,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {

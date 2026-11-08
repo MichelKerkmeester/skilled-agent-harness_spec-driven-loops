@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7375,
-    "ok": 17504,
+    "ok": 17509,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28428,
+  "documentsScanned": 28433,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "37703c35f8d346345413ae2bcf5bfc37f160dbac415acc6b07538977b0eda52e",
+  "manifestHash": "ed28ddc2094fff6b8c3da81901a1012aca661f91dc601df59e47fad1d82b51f5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41845,
+      "ok": 41853,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -74934,6 +74934,10 @@
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-doctor/002-symlink-first-link/scratch",
       "reason": "excluded directory"
     },
     {

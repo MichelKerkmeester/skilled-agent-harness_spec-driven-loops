@@ -1,5 +1,5 @@
 {
-  "manifestHash": "37703c35f8d346345413ae2bcf5bfc37f160dbac415acc6b07538977b0eda52e",
+  "manifestHash": "ed28ddc2094fff6b8c3da81901a1012aca661f91dc601df59e47fad1d82b51f5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49848,6 +49848,9 @@
     "first changelog version": [
       "first changelog version"
     ],
+    "first link leaves partial merge": [
+      "first link leaves partial merge"
+    ],
     "first overlay setup": [
       "first overlay setup"
     ],
@@ -88985,6 +88988,9 @@
     "relative import census": [
       "relative import census"
     ],
+    "relative links show in git status": [
+      "relative links show in git status"
+    ],
     "relaunch cancel and test isolation": [
       "relaunch cancel and test isolation"
     ],
@@ -115775,6 +115781,18 @@
     "symlink engine and command tasks": [
       "symlink engine and command tasks"
     ],
+    "symlink first link": [
+      "symlink first link"
+    ],
+    "symlink first link implementation summary": [
+      "symlink first link implementation summary"
+    ],
+    "symlink first link plan": [
+      "symlink first link plan"
+    ],
+    "symlink first link tasks": [
+      "symlink first link tasks"
+    ],
     "symlink not followed": [
       "symlink not followed"
     ],
@@ -116873,6 +116891,9 @@
     "system skilled doctor 1 1 0 0": [
       "system-skilled-doctor 1.1.0.0"
     ],
+    "system skilled doctor 1 1 1 0": [
+      "system-skilled-doctor 1.1.1.0"
+    ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
     ],
@@ -116917,6 +116938,9 @@
     ],
     "system skilled doctor v1 1 0 0": [
       "system-skilled-doctor v1.1.0.0"
+    ],
+    "system skilled doctor v1 1 1 0": [
+      "system-skilled-doctor v1.1.1.0"
     ],
     "system spec gate": [
       "system-spec-gate"
