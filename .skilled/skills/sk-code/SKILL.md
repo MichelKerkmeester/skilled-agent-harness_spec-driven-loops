@@ -7,7 +7,7 @@ metadata:
   family: sk-code
 ---
 
-<!-- Keywords: sk-code, code, surface-aware, two-axis, opencode, typescript, python, shell, json, jsonc, github-actions, ci-workflow, sk-code-quality, sk-code-review, sk-code-ci, sk-code-frontend, quality, code-review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet -->
+<!-- Keywords: sk-code, code, surface-aware, two-axis, opencode, typescript, python, shell, json, jsonc, github-actions, ci-workflow, sk-code-quality, sk-code-review, sk-code-ci, sk-code-frontend, quality, code-review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet, guard, adapter, stderr, detector -->
 
 # Code Family Hub (sk-code)
 
