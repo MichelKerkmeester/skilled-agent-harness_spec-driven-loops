@@ -9,6 +9,7 @@
 import assert from 'node:assert/strict';
 import { mkdirSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { DatabaseSync } from 'node:sqlite';
 import { test } from 'node:test';
 
 import { readSession } from '../../session-readers/index.mjs';
@@ -40,6 +41,24 @@ test('a sessions database hit is preferred over a transcript with another id', a
     assert.equal(result.ok, true);
     assert.equal(result.source.locatorKind, 'session_id');
     assert.equal(result.items.find((item) => item.id === 'devin-devin-user-1')?.content[0].text, 'Read the file.');
+  });
+});
+
+test('a sessions row whose turns are not in the database falls through to its transcript', async () => {
+  await withTempAsync('devin-db-no-nodes', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = devinSession({ root, projectDir });
+    const database = new DatabaseSync(fixture.dbPath);
+    try {
+      database.prepare('DELETE FROM message_nodes WHERE session_id = ?').run(SESSION);
+    } finally {
+      database.close();
+    }
+    const result = await readSession({ runtime: 'devin', sessionId: SESSION, ...fixture.options });
+    assert.equal(result.ok, true);
+    assert.equal(result.source.locatorKind, 'transcript_file');
+    assert.equal(result.items[0].content[0].text, 'Read the file.');
   });
 });
 

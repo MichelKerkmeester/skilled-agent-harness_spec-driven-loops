@@ -157,7 +157,19 @@ function messageRoles(rows, legacyRows = []) {
   return roles;
 }
 
-function messageEntries(rows, seenCallIds) {
+// A message whose text already arrived as text parts must not repeat it from
+// the message row, or the same turn would be found and counted twice.
+function messageIdsWithTextParts(rows) {
+  const ids = new Set();
+  for (const row of rows) {
+    if (typeof row.message_id !== 'string') continue;
+    const part = parseJsonObject(row.data);
+    if (part?.type === 'text' && typeof part.text === 'string') ids.add(row.message_id);
+  }
+  return ids;
+}
+
+function messageEntries(rows, seenCallIds, textPartMessageIds = new Set()) {
   const entries = [];
 
   rows.forEach((row) => {
@@ -165,11 +177,12 @@ function messageEntries(rows, seenCallIds) {
     if (!message) return;
     const timestamp = isoOr(message.time?.created ?? row.time_created);
     const sort = message.time?.created ?? UNTIMED_MESSAGE_BASE + (row.seq ?? 0);
+    const textFromParts = textPartMessageIds.has(row.id);
 
     if (row.type === 'user') {
       // Synthetic context is recorded as its own message type, which this branch
       // never reads, so a user row is operator content even when it opens with '<'.
-      if (typeof message.text !== 'string' || !message.text) return;
+      if (textFromParts || typeof message.text !== 'string' || !message.text) return;
       entries.push({ sort, record: { id: row.id, role: 'user', timestamp, content: [textBlock(message.text)] } });
       return;
     }
@@ -179,6 +192,7 @@ function messageEntries(rows, seenCallIds) {
     content.forEach((item, index) => {
       if (!item || typeof item !== 'object') return;
       if (item.type === 'text' && typeof item.text === 'string') {
+        if (textFromParts) return;
         entries.push({
           sort,
           record: { id: `${row.id}:${index}`.slice(0, 128), role: 'assistant', timestamp, content: [textBlock(item.text)] },
@@ -275,7 +289,7 @@ export function loadOpenCodeSession({ sessionId, ...options } = {}) {
         }
       }
     }
-    entries.push(...messageEntries(messageRows, seenCallIds));
+    entries.push(...messageEntries(messageRows, seenCallIds, messageIdsWithTextParts(partRows)));
     entries.sort((left, right) => left.sort - right.sort);
 
     return {

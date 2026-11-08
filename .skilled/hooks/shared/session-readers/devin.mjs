@@ -368,21 +368,24 @@ export function loadDevinSession({ sessionId, projectDir, ...options } = {}) {
         }
 
         // An older store names its sessions but keeps their turns only in
-        // transcript files, so a database without message rows falls through.
+        // transcript files, so a database with no message rows for this
+        // session, or no chain head to walk, falls through.
         if (tableColumns(database, 'message_nodes').size > 0) {
           const records = recordsFromDatabase(database, sessionId, row.main_chain_id);
           if (!records) return { ok: false, code: 'store_unreadable' };
 
-          return {
-            ok: true,
-            source: {
-              runtime: RUNTIME,
-              sessionId,
-              locatorKind: DATABASE_LOCATOR_KIND,
-              storePath: dbContainment.path,
-            },
-            records,
-          };
+          if (records.length > 0) {
+            return {
+              ok: true,
+              source: {
+                runtime: RUNTIME,
+                sessionId,
+                locatorKind: DATABASE_LOCATOR_KIND,
+                storePath: dbContainment.path,
+              },
+              records,
+            };
+          }
         }
       }
     } catch {

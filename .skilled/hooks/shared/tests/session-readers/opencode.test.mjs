@@ -35,6 +35,8 @@ test('a text part takes its role from the parent message row', async () => {
     const part = result.items.find((item) => item.id === 'oc-p0');
     assert.equal(part?.role, 'user');
     assert.equal(part?.content[0].text, 'Read the file.');
+    // The message row carries the same text, which must not appear a second time.
+    assert.equal(result.items.filter((item) => item.role === 'user').length, 1);
   });
 });
 

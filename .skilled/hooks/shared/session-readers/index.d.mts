@@ -40,10 +40,9 @@ export const capabilities: Readonly<{
         storeRoot: "$XDG_DATA_HOME/opencode/opencode.db";
     }>;
     devin: Readonly<{
-        status: "gated";
+        status: "ready";
         locatorKind: "transcript_file";
-        storeRoot: "$XDG_DATA_HOME/devin/cli/transcripts";
-        reason: "Devin 3000.12 keeps history in sessions.db instead of transcripts/, and drops PostCompaction additionalContext, so an offer could not reach the model or be redeemed";
+        storeRoot: "$XDG_DATA_HOME/devin/cli/sessions.db";
     }>;
     dsh: Readonly<{
         status: "ready";
