@@ -55,7 +55,8 @@ repo-guards/
 +-- index.mjs                 # bundle entry the guards patch loads
 +-- lineage-leaf.mjs          # marker plugin the lineage patch inserts
 +-- adapters/                 # one relative link per adapter, see section 2
-|   +-- classifier-injection-screen.mjs, completion-evidence.mjs, decision-capture.mjs
+|   +-- ask-surface-guard.mjs, classifier-injection-screen.mjs, completion-evidence.mjs
+|   +-- decision-capture.mjs
 |   +-- dispatch-audit.mjs, dispatch-preflight-lint.mjs, git-message-gate.mjs
 |   +-- git-preflight-advisory.mjs, goal-context.mjs, goal-manage.mjs
 |   +-- mcp-route-guard.mjs, overlay-guard.mjs, post-edit-quality.mjs, prompt-advisor.mjs
@@ -81,6 +82,7 @@ Each adapter's tests sit in its concern's `tests/` folder as `dsh-<concern>.test
 | `spec-gate-classify` | `agent/pre-step` | Latest operator prompt | runs, off by the runner's `SYSTEM_SPEC_GATE_DISABLED=1` | Log and continue |
 | `spec-gate-enforce` | `tools/pre-execute` | `write`, `edit`, `apply_patch`, `bash` | runs, off by the runner's `SYSTEM_SPEC_GATE_DISABLED=1` | Log and deny on core failure |
 | `completion-evidence` | `agent/turn-stopping` | Current assistant turn | runs | Log and continue |
+| `ask-surface-guard` | `agent/turn-stopping` | Current assistant turn: a closing typed option menu with no `ask_user_question` call | skipped, as is any headless or child session, since none has a question tool | Log and continue |
 | `task-dispatch-guard` | `tools/pre-execute` | `subagent`, `subagent_fork` | runs | Log and continue |
 | `post-edit-quality` | `tools/post-execute` | `write`, `edit`, `apply_patch` | runs | Log and continue |
 | `mcp-route-guard` | `tools/pre-execute` | `mcp__*` | runs | Log and deny on core failure, and deny a `code_mode` tool outside `call_tool_chain`, `list_tools`, `search_tools` and `tool_info` |
@@ -133,7 +135,7 @@ Run these commands from the repository root.
 node --test .skilled/hooks/*/tests/dsh-*.test.mjs .skilled/skills/system-skill-advisor/hooks/tests/dsh-*.test.mjs .dsh/plugins/repo-guards/tests/
 ```
 
-Expected result: 78 tests pass.
+Expected result: 85 tests pass.
 
 ```sh
 node --test .skilled/hooks/decision-capture/bin/sweep-dsh.test.mjs

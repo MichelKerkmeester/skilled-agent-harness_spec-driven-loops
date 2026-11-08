@@ -40,7 +40,7 @@ The plugins are the part that is real here. They import the OpenCode plugin SDK,
 | Skills | The `skills` link is OpenCode's skill discovery root |
 | Agents | The `agents` link exposes the authored agents in their source dialect, so no translated copy is needed |
 | Commands | `commands/` holds one link per top-level entry of `.skilled/commands/`, plus `goal-opencode.md`, the native goal command |
-| Hooks and guards | The plugins in `plugins/`. They cover the skill advisor, the spec-folder gate, the CLI dispatch audit, the MCP route guard, post-edit quality, the injection screen, decision capture, the sk-git gate and preflight advisory, the deep-loop guard, completion checks, session cleanup and the session-relaunch nudge |
+| Hooks and guards | The plugins in `plugins/`. They cover the skill advisor, the spec-folder gate, the CLI dispatch audit, the MCP route guard, post-edit quality, the injection screen, decision capture, the ask-surface guard, the sk-git gate and preflight advisory, the deep-loop guard, completion checks, session cleanup and the session-relaunch nudge |
 | Advisor | `system-skill-advisor.js` |
 | Goals | `opencode-goal.js` implements the goal tools, and `goal-opencode.md` drives them |
 | MCP | The root `opencode.json` names `.skilled/bin/mcp-code-mode-launcher.cjs` as the Code Mode launcher |

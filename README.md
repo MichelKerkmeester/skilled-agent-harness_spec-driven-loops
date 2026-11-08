@@ -1014,11 +1014,11 @@ In linked projects, each project keeps its answers in its own folder under `.ski
 &nbsp;
 #### OpenCode Plugins
 
-Seventeen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
+Nineteen JavaScript plugins live in `.opencode/plugins/`, where OpenCode finds them. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 2 (recommended) and OpenCode 1 (fallback) alike. When both are installed, `OPENCODE_BIN=opencode1` keeps CLI dispatches on OpenCode 1.
 
 - **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
 - **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
-- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit and a screen for instructions hidden in fetched web pages
+- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit, a screen for instructions hidden in fetched web pages, and a guard that sends a turn ending in a typed option menu back to ask through the question tool
 - **Sessions:** the goal plugin, session cleanup and the in-session handover relaunch
 
 Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
@@ -1059,7 +1059,7 @@ In fan-out lineages, the lineage patch adds a marker row that keeps the four int
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
 
-The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `permission-policy`, `post-edit-quality` and `classifier-injection-screen`. The git cores are `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard` and `hook-install`. The rest are `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness` and `codex-watchdog`, plus `shared` for the helpers they all use.
+The cores are `goal`, `dispatch`, `decision-capture`, `spec-gate`, `completion`, `mcp-route-guard`, `overlay-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen` and `ask-surface`. The git cores are `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard` and `hook-install`. The rest are `session-cleanup`, `session-lifecycle`, `session-relaunch`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness` and `codex-watchdog`, plus `shared` for the helpers they all use.
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry. Open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 

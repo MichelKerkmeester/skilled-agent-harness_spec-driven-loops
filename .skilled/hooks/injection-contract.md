@@ -36,7 +36,7 @@ Answer, for any hook or plugin in this repo: what does it add to the session, on
 | Tag | Meaning |
 |---|---|
 | **[SYS]** | Model-context-only. Delivered as `additionalContext`, `systemMessage`, or an appended system-prompt string. The assistant sees it every time. A human watching the normal chat/TUI does not, by default. |
-| **[MSG]** | Rendered as visible chat content. Currently true only for Pi's `input`-event transform, which appends text directly onto the user's own visible prompt. |
+| **[MSG]** | Rendered as visible chat content. True for Pi's `input`-event transform, which appends text directly onto the user's own visible prompt, and for the OpenCode ask-surface guard, whose `session.promptAsync` re-prompt shows as a user message. |
 | **[BLOCK]** | A permission/tool-call denial with a reason. Model-visible because the assistant's next turn has to react to the failed call. A human sees it indirectly, through the assistant's response, not as separate injected text. |
 | **[LOG]** | Written to a file only (audit log, advisory log, state file). Invisible to both the assistant and the human unless someone opens the file. |
 | **[NONE]** | No content is added anywhere. The hook does only side effects (state writes, cache writes, process cleanup). |
@@ -251,6 +251,12 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 - **Channel:** Pi model context on the next turn. DSH `agent.inject` reaches the model as the turn stops. Other adapters use advisory logs and/or stderr, depending on the runtime.
 
+### Ask-Surface Guard
+
+**Injects:** When a turn ends in a typed option menu and called no question tool, the guard sends the turn back once with one instruction: ask that question through the runtime's question tool. Claude Code returns `decision: "block"` from Stop with the instruction as its `reason` [BLOCK]. DSH calls `agent.steer` at `agent/turn-stopping`, which queues the instruction as the next step [SYS]. OpenCode posts it with `session.promptAsync` on `session.idle`, so it appears as a user message in the TUI [MSG]. Pi sends it with `pi.sendMessage`, `display: false` and `{ deliverAs: "followUp", triggerTurn: true }`, hidden from display but starting a new turn [SYS]. Codex and Devin cannot block a finished turn, so they write an advisory to stderr only. Every adapter appends one line to `.skilled/skills/.state/ask-surface/fires.jsonl` [LOG]. `SYSTEM_ASK_SURFACE_DISABLED=1` turns it off.
+
+- **Channel:** Claude Stop block reason, DSH steer, OpenCode user message, Pi hidden follow-up turn, Codex and Devin stderr, plus the fire log on every runtime.
+
 ### Permission Request Policy (Devin only)
 
 **Injects:** an allow/deny decision with reason for a `PermissionRequest` event, composing the same `spec-gate-core`/`dispatch-rule-checks` cores the tool-time hooks already use.
@@ -297,8 +303,8 @@ The bundle README, [`../../.dsh/plugins/repo-guards/README.md`](../../.dsh/plugi
 | **Claude Code** | The raw session transcript is a JSONL file at `~/.claude/projects/<project-slug>/<session-id>.jsonl` and contains every injected `[SYS]` block verbatim, per turn. Grep it directly. `claude --debug` shows hook registration, execution, and input/output JSON live as it happens. |
 | **Cursor / Devin** | No known `--debug`/`--verbose` flag for either CLI. Fall back to the shared audit log (`.skilled/logs/cli-dispatch-audit.log`) and each hook's own state files, or re-run the adapter script standalone with a captured stdin payload (the method used throughout this repo's own hook verification work). |
 | **Codex** | Same mirror scripts as Claude. Inspect via the same JSONL-transcript method if Codex persists one, otherwise the standalone-replay method above. |
-| **OpenCode** | `opencode --log-level DEBUG --print-logs` writes to `~/.local/share/opencode/log/`. `opencode export <sessionID>` exists as an export-to-JSON path, but its exact content shape (whether it includes the assembled `system` array) is not verified in this repo. Treat it as unconfirmed until checked live. |
-| **Pi** | The one runtime where `[MSG]`-tagged content (skill-advisor brief, Gate-3 deferral instruction) is visible directly in the normal chat, because the `input`-event transform rewrites the visible prompt itself. `[SYS]`-tagged content (session-start/compact context via `pi.sendMessage`) is not visible even here. |
+| **OpenCode** | `opencode --log-level DEBUG --print-logs` writes to `~/.local/share/opencode/log/`. `opencode export <sessionID>` exists as an export-to-JSON path, but its exact content shape (whether it includes the assembled `system` array) is not verified in this repo. Treat it as unconfirmed until checked live. The ask-surface guard's re-prompt is the one OpenCode injection shown in the normal chat, as a user message. |
+| **Pi** | The runtime where most `[MSG]`-tagged content (skill-advisor brief, Gate-3 deferral instruction) is visible directly in the normal chat, because the `input`-event transform rewrites the visible prompt itself. `[SYS]`-tagged content (session-start/compact context via `pi.sendMessage`) is not visible even here. |
 | **DeepSeek Harness** | `dsh --dump-config` with the dispatch's patches prints the resolved plugin rows, so it shows whether the `repo-guards-lineage-leaf` marker row is present. The session log under `$DSH_HOME/sessions` records each injected notice as a `user/message` whose source is `repo-guards`. An adapter failure reaches the plugin logger as a `repo-guards <adapter>:` warning. |
 
 ---

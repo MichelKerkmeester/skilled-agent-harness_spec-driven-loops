@@ -19,6 +19,12 @@ trigger_phrases:
 
 Every plugin here runs on both OpenCode majors. OpenCode 2 calls `setup(ctx)` and OpenCode 1 calls `server(input)`, and neither host calls the other's entry, so a plugin that exported only one entry would do nothing on the other host. On 2026-10-19 the 17 plugin files then present were verified on OpenCode 2.0.32 and OpenCode 1.19.3: the doctor battery reported all 17 active on 2.0.32 and discovered all 17 on 1.19.3. On 2026-10-20 a live run of every plugin showed each one's effect on both versions. One of those plugins, `sk-vision.js`, has since been retired, and `decision-capture.js` was added later through the same bridge without a rerun of that battery. `session-history-lookup.js` was added the same way; on 2026-11-08 a live OpenCode 2.2.5 session showed its section and redeemed the printed command, and a live OpenCode 1.19.4 session did the same. [ARCHITECTURE.md](./ARCHITECTURE.md) explains the dual export, the bridge and what has no OpenCode 2 equivalent.
 
+<!-- readme-check
+allow-count 17 plugin files | a dated count of the files present at the 2026-10-19 battery, not the current folder
+allow-count 17 plugins | a dated count of the files present at the 2026-10-19 battery, not the current folder
+allow-ref sk-vision.js | names a plugin that has since been retired, so no file is expected
+-->
+
 The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `system-completion`, `system-deep-loop`). Most files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. The single shared boundary every plugin honors in normal operation: **never write to stdout or stderr**, because OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers or persisted to bounded workspace logs.
 
 Most plugins honor a per-concern kill switch through the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin stops its main work.
@@ -35,6 +41,7 @@ One plugin is an exception. `sk-git-message-gate.js` has no switch, because the 
 
 | File | Concern | Hook surface | Responsibility |
 |---|---|---|---|
+| `ask-surface-guard.js` | `ask-surface` | `event` (`session.idle`) | When a turn ends in a typed option menu and called no `question` tool, sends the turn back once through `session.promptAsync` with an instruction to ask through `question`. Writes nothing to stdout or stderr, fails open, and stays off under `SYSTEM_ASK_SURFACE_DISABLED=1`. |
 | `classifier-injection-screen.js` | `injection-screen` | `tool.execute.after` for `webfetch`, `experimental.chat.system.transform` | Screens fetched `webfetch` text for instructions aimed at the agent. Buffers up to 20 advisories per session and drains them on the next transform, the model call that reads the fetch result. Never writes stdout/stderr. |
 | `cli-dispatch-audit.js` | `dispatch`, `dispatch-guard` | `tool.execute.before` and `tool.execute.after` for Bash | `tool.execute.before` blocks a CLI dispatch that breaks a hard rule declared in the target skill's `SKILL.md` by throwing, and fails open on its own errors. `tool.execute.after` records redacted dispatch telemetry after completed CLI calls, recognizes an `opencode` or `opencode2` invocation and appends a bounded audit record. |
 | `codex-hooks-watchdog.js` | `codex-watchdog` | `event` (`session.created`) | Watches Codex hook installation and reports drift. Never affects the guarded session. |
@@ -98,6 +105,7 @@ The remaining `*.test.cjs` files cover v1 behavior and adjacent contracts. `test
 plugins/
 +-- README.md                              # this index
 +-- ARCHITECTURE.md                        # dual-version design, bridge and limits
++-- ask-surface-guard.js
 +-- classifier-injection-screen.js
 +-- cli-dispatch-audit.js
 +-- codex-hooks-watchdog.js

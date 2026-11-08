@@ -40,7 +40,7 @@ A handler fails open when its hook core faults, so a bug in a guard never blocks
 | Skills | The `skills` link exposes the whole skill library |
 | Agents | Each shared agent in `agents/`, in Pi's dialect. No installed Pi surface reads them today, so the folder stays current for a consumer that returns |
 | Commands | One prompt template per command in `prompts/`. Each template points at its canonical command file. `goal-pi.md` is the native goal command |
-| Hooks and guards | 20 extensions. They cover the advisor, the spec-folder gate, dispatch lint and audit, the task-dispatch guard, the MCP route guard, post-edit quality, the injection screen, the overlay guard, decision capture, the sk-git gate and preflight advisory, the session context hooks and the session-relaunch nudge |
+| Hooks and guards | 21 extensions. They cover the advisor, the spec-folder gate, dispatch lint and audit, the task-dispatch guard, the MCP route guard, post-edit quality, the injection screen, the overlay guard, decision capture, the ask-surface guard, the sk-git gate and preflight advisory, the session context hooks and the session-relaunch nudge |
 | Advisor | The `prompt-advisor` extension |
 | Goals | The `goal-context` extension, and `goal-pi.md` for the native command |
 | MCP | `mcp.json` registers the Code Mode server |

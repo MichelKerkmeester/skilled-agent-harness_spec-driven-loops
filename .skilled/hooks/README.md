@@ -86,7 +86,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 
 The same file holds two switches that are not hook concerns, for people who do not care whether their docs drift from the expected formats. `SPECKIT_SKIP_VALIDATION` switches spec folder validation (`validate.sh`) off, and `SKDOC_SKIP_VALIDATION` switches off every sk-doc validator. Both follow the precedence above and take the same truthy values. `hook_flag_on` in the shell mirror and `isFlagOn` in `hook-flags.cjs` resolve a named switch like these. [ENV-REFERENCE.md](../skills/system-spec-kit/runtime/ENV-REFERENCE.md) and sk-doc's [validation-and-enforcement.md](../skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md) say what each one covers.
 
-### Why only these five cores keep their real code here
+### Why only these six cores keep their real code here
 
 A core only qualifies to keep its **real code** in this tree when it imports nothing but Node builtins (or shells out to an unrelated, unmoved checker script by path) and has no real tie to its owning skill's other content. Verified per core before it moved or was written here:
 
@@ -97,6 +97,7 @@ A core only qualifies to keep its **real code** in this tree when it imports not
 | `overlay-guard` | Node builtins, plus the overlay engine loaded only when the tree has an overlay folder | Portable |
 | `post-edit-quality` | Node builtins + `spawnSync` to unmoved checker scripts (invoked by path, never imported) | Portable |
 | `task-dispatch` | Node builtins only | Portable |
+| `ask-surface` | Node builtins only (`node:crypto`, `node:fs`, `node:os`, `node:path`) | Portable |
 
 The Jev [`classifier-injection-screen/`](./classifier-injection-screen/README.md) hook is the deliberate exception to that rule: it lives here for hook registration, but its adapter and library import the gate, transport and measured question from `cli-classifier`, so the live hook and the offline measurement cannot drift apart.
 
@@ -349,4 +350,5 @@ The `session-lifecycle/` and `skill-advisor/` subfolders of Claude, Codex, Curso
 <!-- readme-check
 allow-ref mcp-code-mode/runtime/ | a former location these hooks moved out of
 allow-ref runtime-hooks/ | the sibling directory name the operator rejected in favour of one tree
+allow-ref hooks/dsh/ | names the owning skill's own hooks/dsh/ folder, not a folder in this tree
 -->
