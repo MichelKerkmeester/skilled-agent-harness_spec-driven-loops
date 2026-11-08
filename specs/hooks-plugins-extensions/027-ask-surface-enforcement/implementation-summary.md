@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/027-ask-surface-enforcement"
-    last_updated_at: "2026-11-08T14:58:51Z"
+    last_updated_at: "2026-11-08T16:44:27Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed all alignment findings; tests and live rerun pass"
-    next_safe_action: "Run the alignment recheck, then commit when the operator asks"
+    recent_action: "Amended the release notes with the guard and fixed the Pi test"
+    next_safe_action: "Verify a live turn trips the guard when one appears in fires.jsonl"
     blockers: []
     key_files:
       - ".skilled/hooks/ask-surface-guard/pi/ask-surface-guard.ts"
@@ -20,14 +20,14 @@ _memory:
       - ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/ask-surface-guard.md"
       - "specs/hooks-plugins-extensions/027-ask-surface-enforcement/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0ff95430865c487dea7405574f75efd6f5f91c9c4d19a74aecaaa84817b86e19"
+      fingerprint: "sha256:1dc03cbfde29c68d7474dc412c36c0f2de576e2dae3fc54466d9bd2b24e5821e"
       session_id: "scaffold-027-ask-surface-enforcement"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "37344d65-539c-401d-8341-c9b769fd34a7"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-08T14:58:51Z"
+      savedAt: "2026-11-08T16:44:27Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

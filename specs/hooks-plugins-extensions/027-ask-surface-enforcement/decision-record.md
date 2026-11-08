@@ -41,6 +41,7 @@ _memory:
 | Q005 | Run the alignment check over this work's 67 files, narrowed from the 7,880-file HEAD scope that held other sessions' changes. | Not stated. | None | tasks.md T026, the 20261108T130844Z alignment run |
 | Q006 | Run the four alignment review lanes and the critic on opencode-go DeepSeek V4.1 Flash max. | Not stated. | None | tasks.md T026, the 20261108T130844Z alignment run |
 | Q007 | Fix every alignment finding: the three guard defects and all the doc gaps. | Not stated. Evidence: yes_no, option false, overlap 1, imperative true, shift false. | None | tasks.md T023-T027, AC-008 |
+| Q008 | Rebuild the v4.0.2.0 GitHub release body from the amended entry and publish it, leaving the tag in place. | Not stated. | None | T029, .skilled/changelog/skilled/v4.0.2.0.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -183,6 +184,25 @@ Options: none
 Answer:
 ```text
 fix all
+```
+
+### Q008
+<!-- source: claude:37344d65-539c-401d-8341-c9b769fd34a7:toolu_01CUwcq6fbmhgMsJgFh6fh1L:1 -->
+
+Question:
+```text
+The v4.0.2.0 changelog entry now describes the guard, but the published GitHub release body still shows the old text. Should I rebuild the body with build_release_notes.py and run `gh release edit v4.0.2.0 --notes-file …`? The tag stays where it is, and you can undo by re-editing the body.
+```
+
+Options:
+```text
+Update the release (Recommended)
+Leave GitHub as is
+```
+
+Answer:
+```text
+Update the release (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
