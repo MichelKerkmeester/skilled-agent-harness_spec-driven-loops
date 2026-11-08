@@ -211,8 +211,13 @@ process.exit(1);
 
 is_declared_subtrack_folder() {
     local folder="$1"
+    local track_name
     [[ -d "$folder" && ! -L "$folder" ]] || return 1
     is_track_root_folder "$(dirname "$folder")" || return 1
+    # The track reader never reads an archive, hidden or node_modules track, so
+    # nothing inside one is a sub-track.
+    track_name="$(basename "$(dirname "$folder")")"
+    [[ "$track_name" != z_* && "$track_name" != .* && "$track_name" != node_modules ]] || return 1
     has_subtrack_declaration "$folder"
 }
 
@@ -376,7 +381,10 @@ collect_phase_dirs() {
             # A sub-track's packets are validated at the same depth as a track's
             # own packets, so a packet's result never depends on which it sits in.
             PHASE_DIRS+=("$subtrack_folder")
-            for packet_dir in "$subtrack_folder"/[0-9][0-9][0-9]-*/; do
+            # Every name the track reader counts as a packet, including 001 and
+            # 001_name, and nothing it does not.
+            for packet_dir in "$subtrack_folder"/[0-9][0-9][0-9]*/; do
+                [[ "$(basename "$packet_dir")" =~ ^[0-9]{3}([-_].+)?$ ]] || continue
                 [[ -d "$packet_dir" && ! -L "${packet_dir%/}" ]] && PHASE_DIRS+=("${packet_dir%/}")
             done
         done

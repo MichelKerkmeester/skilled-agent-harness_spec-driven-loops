@@ -224,7 +224,7 @@ track_of() {
     parent="$(dirname "$folder")"
     if [[ "$(dirname "$parent")" == "$specs_root" ]]; then
         name="$(basename "$parent")"
-        if [[ "$name" =~ ^[0-9]{3} || "$name" == "z_archive" ]]; then
+        if [[ "$name" =~ ^[0-9]{3}([-_].+)?$ || "$name" == z_* || "$name" == .* || "$name" == node_modules ]]; then
             return 0
         fi
         printf '%s' "$name"
@@ -272,13 +272,20 @@ is_packet_home() {
 
 # A track root lists its packets in children_ids, and the pre-push gate blocks a
 # commit whose list disagrees with the packets it holds. Archiving or restoring
-# a packet changes that set, so the list follows the move. A track with no
-# graph-metadata.json lists nothing, so there is nothing to do.
+# a packet changes that set, so the list follows the move. A flat track with no
+# graph-metadata.json lists nothing, so there is nothing to do. A declared
+# sub-track without one gets it from the refresh, as create.sh does, as long as
+# its track has metadata for the reader to find it through.
 refresh_track_root() {
     local specs_root="$1"
     local track="$2"
     local refresh_script="$SCRIPT_DIR/refresh-track-roots.mjs"
-    [[ -n "$track" && -f "$specs_root/$track/graph-metadata.json" ]] || return 0
+    [[ -n "$track" ]] || return 0
+    if [[ "$track" == */* ]]; then
+        [[ -f "$specs_root/${track%%/*}/graph-metadata.json" ]] || return 0
+    else
+        [[ -f "$specs_root/$track/graph-metadata.json" ]] || return 0
+    fi
     if [[ ! -f "$refresh_script" ]]; then
         log_warning "${track}/graph-metadata.json was not refreshed: $refresh_script is missing. Restore it, then run refresh-track-roots.mjs --track ${track} --apply."
         return 0

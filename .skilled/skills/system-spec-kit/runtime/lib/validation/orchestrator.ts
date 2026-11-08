@@ -243,6 +243,10 @@ function isDeclaredSubTrack(folder: string): boolean {
   if (name.startsWith('.') || name === 'node_modules' || name.startsWith('z_') || PACKET_FOLDER_RE.test(name)) return false;
   if (fs.existsSync(path.join(resolved, 'spec.md'))) return false;
   if (!isTrackRoot(path.dirname(resolved))) return false;
+  // The track reader never reads an archive, hidden or node_modules track, so
+  // nothing inside one is a sub-track.
+  const trackName = path.basename(path.dirname(resolved));
+  if (trackName.startsWith('.') || trackName === 'node_modules' || trackName.startsWith('z_')) return false;
   return hasSubTrackLevel(resolved);
 }
 

@@ -1407,21 +1407,21 @@ validate_track_value "$TRACK" "$RAW_TRACK_VALUE"
 if [[ -n "$TRACK" ]]; then
     SPECS_DIR="$SPECS_DIR/$TRACK"
     if [[ "$TRACK" == */*/* ]]; then
-        echo "Error: --track '$TRACK' has more than two path segments; use a track or one declared sub-track such as 'demo/sub'." >&2
+        echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' has more than two path segments; use a track or one declared sub-track such as 'demo/sub'." >&2
         exit 1
     fi
     if [[ "$TRACK" == */* ]]; then
         if [[ -L "$SPECS_DIR" ]]; then
-            echo "Error: --track '$TRACK' refused: $TRACK: symlinked folder skipped, not followed." >&2
+            echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK: symlinked folder skipped, not followed." >&2
             echo "Use a real sub-track directory such as specs/demo/sub/." >&2
             exit 1
         fi
         if [[ ! -d "$SPECS_DIR" ]] || ! is_declared_subtrack "$REPO_ROOT/specs" "$TRACK"; then
             TRACK_DIAGNOSTIC="$(subtrack_diagnostic "$REPO_ROOT/specs" "$TRACK" 2>/dev/null || true)"
             if [[ -n "$TRACK_DIAGNOSTIC" ]]; then
-                echo "Error: --track '$TRACK' refused: $TRACK_DIAGNOSTIC" >&2
+                echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK_DIAGNOSTIC" >&2
             else
-                echo "Error: --track '$TRACK' refused: $TRACK: undeclared folder ignored." >&2
+                echo "Error: --track '${RAW_TRACK_VALUE:-$TRACK}' refused: $TRACK: undeclared folder ignored." >&2
                 echo "Declare its description.json with level 'sub-track' in a real directory, such as specs/demo/sub/." >&2
             fi
             exit 1

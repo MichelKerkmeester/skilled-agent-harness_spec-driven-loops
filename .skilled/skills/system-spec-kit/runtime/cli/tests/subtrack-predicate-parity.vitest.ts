@@ -375,4 +375,90 @@ describe('declared sub-track predicate parity', () => {
     }
     expect(mismatches).toEqual([]);
   });
+
+  it('creates a missing sub-track metadata file when archiving out of it', () => {
+    const sub = matrix.entries.find((entry) => entry.name === 'sub');
+    if (!sub) throw new Error('matrix has no sub entry');
+    const metadataPath = path.join(sub.containerFolder, 'graph-metadata.json');
+    fs.unlinkSync(metadataPath);
+
+    const result = runArchive(sub);
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stdout + result.stderr).not.toContain('was not refreshed');
+    expect(fs.existsSync(metadataPath)).toBe(true);
+    const children = (JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as { children_ids: string[] }).children_ids;
+    expect(children).not.toContain(`demo/sub/${sub.packetName}`);
+  });
+
+  it('judges the track segment the way the reader does for every consumer', () => {
+    const trackNames = ['001_x', 'owns-spec-track', 'z_track', '.hidden-track', 'node_modules'];
+    const repairRoot = path.join(root, 'track-segment-repair');
+    fs.mkdirSync(repairRoot, { recursive: true });
+    fs.symlinkSync(path.join(REPO_ROOT, '.skilled'), path.join(repairRoot, '.skilled'), 'dir');
+    const repairScript = path.join(repairRoot, '.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs');
+    const mismatches: string[] = [];
+
+    const plant = (specsRoot: string, trackName: string): string => {
+      const trackFolder = path.join(specsRoot, trackName);
+      writeJson(path.join(trackFolder, 'graph-metadata.json'), {
+        schema_version: 1,
+        packet_id: trackName,
+        spec_folder: trackName,
+        parent_id: null,
+        children_ids: ['sub'],
+        manual: { depends_on: [], supersedes: [], related_to: [] },
+        derived: { trigger_phrases: [], key_topics: [trackName], causal_summary: `Track ${trackName}.` },
+      });
+      if (trackName === 'owns-spec-track') fs.writeFileSync(path.join(trackFolder, 'spec.md'), '# Packet-shaped track\n');
+      writeContainer(path.join(trackFolder, 'sub'), `${trackName}/sub`, [`${trackName}/sub/001-probe`]);
+      const packetFolder = path.join(trackFolder, 'sub', '001-probe');
+      writePacket(packetFolder, `${trackName}/sub/001-probe`);
+      return packetFolder;
+    };
+
+    for (const trackName of trackNames) {
+      const id = `${trackName}/sub`;
+      const packetFolder = plant(specs, trackName);
+      const repairPacket = plant(path.join(repairRoot, 'specs'), trackName);
+      const expected = (readWorkingTreeTracks(specs) as Array<{ name: string }>).some((track) => track.name === id);
+
+      let parentId: string | null = null;
+      try {
+        parentId = refreshGraphMetadataForSpecFolder(packetFolder).metadata.parent_id;
+      } catch {
+        parentId = null;
+      }
+      if (parentId !== (expected ? id : null)) mismatches.push(`${trackName}: graph parent expected ${expected ? id : null}, received ${parentId}`);
+
+      const graphPath = path.join(repairPacket, 'graph-metadata.json');
+      const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8')) as { parent_id: string | null };
+      graph.parent_id = 'legacy-parent';
+      writeJson(graphPath, graph);
+      const relative = path.relative(repairRoot, repairPacket).split(path.sep).join('/');
+      const repair = spawnSync(process.execPath, [repairScript, '--folder', relative], {
+        cwd: repairRoot,
+        encoding: 'utf8',
+        env: { ...process.env, SPECKIT_RULES: 'METADATA_DISK_PATH_CONSISTENCY' },
+      });
+      const planned = repair.stdout.includes(`graph parent legacy-parent -> ${id}`);
+      if (planned !== expected) mismatches.push(`${trackName}: repair planned expected ${expected}, received ${planned}`);
+
+      const validation = runValidate(path.join(specs, trackName, 'sub'), false);
+      const first = JSON.parse(validation.stdout.split('\n')[0] || '{}') as {
+        entries?: Array<{ rule: string; message: string }>;
+      };
+      const recognized = first.entries?.some((item) =>
+        item.rule === 'TRACK_ROOT' && item.message === 'Sub-track directory, not a packet; no packet rules apply',
+      ) ?? false;
+      if (recognized !== expected) mismatches.push(`${trackName}: validation expected ${expected}, received ${recognized}`);
+
+      const archived = spawnSync('bash', [archiveScript, '--force', path.relative(root, packetFolder).split(path.sep).join('/')], {
+        cwd: root,
+        encoding: 'utf8',
+      });
+      if ((archived.status === 0) !== expected) mismatches.push(`${trackName}: archive expected ${expected}, received ${archived.status === 0}; ${archived.stderr}`);
+    }
+    expect(mismatches).toEqual([]);
+  });
 });

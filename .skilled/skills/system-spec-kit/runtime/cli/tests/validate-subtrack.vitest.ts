@@ -111,6 +111,20 @@ describe('recursive validation for declared sub-tracks', () => {
     expect(result.stderr.match(/Skipped symlinked sub-track/g) ?? []).toHaveLength(1);
   });
 
+  it('finds every packet name the track reader counts inside a sub-track', () => {
+    const { entries, specs } = buildSubtrackTree(root);
+    for (const name of ['002_underscored', '003', '004x']) {
+      fs.mkdirSync(path.join(entries.sub, name), { recursive: true });
+      fs.writeFileSync(path.join(entries.sub, name, 'spec.md'), '# Probe\n');
+    }
+    const result = runValidate(path.join(specs, 'demo'), ['--recursive', '--json']);
+    const folders = relativeFolders(specs, result.stdout);
+
+    expect(folders).toContain('demo/sub/002_underscored');
+    expect(folders).toContain('demo/sub/003');
+    expect(folders).not.toContain('demo/sub/004x');
+  });
+
   it('skips a symlinked numbered packet inside a sub-track', () => {
     const { entries, specs } = buildSubtrackTree(root);
     const outsidePacket = path.join(root, 'outside-packet');

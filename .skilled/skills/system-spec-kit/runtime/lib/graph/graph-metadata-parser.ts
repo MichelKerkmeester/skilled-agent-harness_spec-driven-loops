@@ -850,11 +850,22 @@ function resolveSpecFolderPath(specFolderPath: string): string {
 // never be promoted to a parent just for sitting between a track and a packet.
 const SUBTRACK_LEVEL = 'sub-track';
 
-/** Whether a folder declares itself a named sub-track container. */
+function isContainerName(name: string): boolean {
+  return !name.startsWith('.') && name !== 'node_modules' && !name.startsWith('z_') && !isSpecLeafSegment(name);
+}
+
+/**
+ * Whether a folder declares itself a named sub-track container.
+ *
+ * Its track must be one the track reader reads, so a declared folder under a
+ * numbered, hidden, archive or packet-shaped folder is never a parent.
+ */
 function isDeclaredSubtrackFolder(folderPath: string): boolean {
   const name = path.basename(folderPath);
-  if (name.startsWith('.') || name === 'node_modules' || name.startsWith('z_')
-    || isSpecLeafSegment(name) || fs.existsSync(path.join(folderPath, 'spec.md')) || isSymbolicLink(folderPath)) {
+  const trackPath = path.dirname(folderPath);
+  if (!isContainerName(name) || !isContainerName(path.basename(trackPath))
+    || fs.existsSync(path.join(folderPath, 'spec.md')) || fs.existsSync(path.join(trackPath, 'spec.md'))
+    || isSymbolicLink(folderPath)) {
     return false;
   }
   const descriptionPath = path.join(folderPath, 'description.json');

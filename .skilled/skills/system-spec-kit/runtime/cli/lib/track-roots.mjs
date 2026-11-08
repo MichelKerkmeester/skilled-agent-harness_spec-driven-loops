@@ -32,16 +32,11 @@ const GRAPH_METADATA = 'graph-metadata.json';
 const DESCRIPTION = 'description.json';
 const SUB_TRACK_LEVEL = 'sub-track';
 
+// An archive folder (z_*) holds packets that are done, so it is never a track
+// or a sub-track at either level.
 function isCandidateTrackName(name) {
-  return !name.startsWith('.') && name !== 'node_modules' && !SPEC_LEAF_SEGMENT_PATTERN.test(name);
-}
-
-function isArchiveName(name) {
-  return name.startsWith('z_');
-}
-
-function isSubTrackCandidateName(name) {
-  return isCandidateTrackName(name) && !isArchiveName(name);
+  return !name.startsWith('.') && name !== 'node_modules' && !name.startsWith('z_')
+    && !SPEC_LEAF_SEGMENT_PATTERN.test(name);
 }
 
 function compareNames(a, b) {
@@ -126,7 +121,7 @@ export function readWorkingTreeTracks(specsRoot) {
     tracks.push(track);
 
     const containers = fs.readdirSync(trackPath, { withFileTypes: true })
-      .filter((entry) => isSubTrackCandidateName(entry.name))
+      .filter((entry) => isCandidateTrackName(entry.name))
       .sort(byFolderName);
     for (const entry of containers) {
       const id = `${name}/${entry.name}`;
@@ -243,7 +238,7 @@ export function readCommitTracks(specsRoot, rev) {
     };
     tracks.push(track);
 
-    const containers = inside.filter((item) => isSubTrackCandidateName(item.name)).sort(byFolderName);
+    const containers = inside.filter((item) => isCandidateTrackName(item.name)).sort(byFolderName);
     for (const sub of containers) {
       const id = `${entry.name}/${sub.name}`;
       if (sub.mode === '120000') {

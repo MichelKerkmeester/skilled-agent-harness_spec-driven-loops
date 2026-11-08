@@ -314,6 +314,19 @@ describe('refresh-track-roots', () => {
       .toEqual([]);
   });
 
+  it('calls missing sub-track metadata missing, not unreadable', () => {
+    for (const name of ['alpha', 'beta', 'delta']) {
+      fs.rmSync(path.join(specs, name), { recursive: true, force: true });
+    }
+    const { entries } = buildSubtrackTree(repo);
+    fs.unlinkSync(path.join(entries.sub, 'graph-metadata.json'));
+
+    const sweep = run(SWEEP, []);
+
+    expect(sweep.stdout).toContain('demo/sub: declared=? actual=? (graph-metadata.json is missing)');
+    expect(sweep.status).not.toBe(0);
+  });
+
   it('seeds missing sub-track metadata so the sweep passes', () => {
     for (const name of ['alpha', 'beta', 'delta']) {
       fs.rmSync(path.join(specs, name), { recursive: true, force: true });
