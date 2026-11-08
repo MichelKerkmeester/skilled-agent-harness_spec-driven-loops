@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8e423404e4034670c4396e8cbb5ea5c86dcca4a13312a27cf3df4e561763af64",
+  "manifestHash": "13923eb142cf82841a5ea992f54ac45962cb2b110b5444b7d046545d19ff2998",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19228,6 +19228,9 @@
     "ci push triggers tasks": [
       "ci push triggers tasks"
     ],
+    "ci red check documentation audit": [
+      "ci red check documentation audit"
+    ],
     "ci red check repairs": [
       "ci red check repairs"
     ],
@@ -32679,6 +32682,9 @@
     ],
     "cycle health evidence": [
       "cycle health evidence"
+    ],
+    "d ts module header exemption docs": [
+      "d.ts module header exemption docs"
     ],
     "d1 d8 defect train": [
       "D1 D8 defect train"
@@ -102050,6 +102056,9 @@
     "sk code 3 11 3 0": [
       "sk-code 3.11.3.0"
     ],
+    "sk code 3 11 4 0": [
+      "sk-code 3.11.4.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -104155,6 +104164,9 @@
     ],
     "sk code v3 11 3 0": [
       "sk-code v3.11.3.0"
+    ],
+    "sk code v3 11 4 0": [
+      "sk-code v3.11.4.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
@@ -114283,6 +114295,9 @@
     "stale specfolder identifiers": [
       "stale specFolder identifiers"
     ],
+    "stale specs hooks references": [
+      "stale specs hooks references"
+    ],
     "stale surface corrections": [
       "stale surface corrections"
     ],
@@ -117678,6 +117693,9 @@
     "system spec kit 2 12 37 0": [
       "system-spec-kit 2.12.37.0"
     ],
+    "system spec kit 2 12 38 0": [
+      "system-spec-kit 2.12.38.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -118259,6 +118277,9 @@
     ],
     "system spec kit v2 12 37 0": [
       "system-spec-kit v2.12.37.0"
+    ],
+    "system spec kit v2 12 38 0": [
+      "system-spec-kit v2.12.38.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
@@ -120780,6 +120801,9 @@
     "track root pre push gate": [
       "track-root pre-push gate"
     ],
+    "track root spec md rule": [
+      "track root spec.md rule"
+    ],
     "track root store only evidence": [
       "track root store only evidence"
     ],
@@ -120797,6 +120821,9 @@
     ],
     "track root sweep script": [
       "track root sweep script"
+    ],
+    "track roots spec md rule docs": [
+      "track roots spec.md rule docs"
     ],
     "track roots sweep script": [
       "track roots sweep script"
