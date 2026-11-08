@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.7.10.0
+version: 1.7.11.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -79,8 +79,8 @@ per-mode references, it is not part of the first slice.
   and the packet's prompt-quality card a request to dispatch a one-task `dsh`
   headless run loads. The packet carries no integration-pattern guide, and it loads
   this card on every run, so the card takes that slot. The mode remains
-  experimental. LLM Gateway is verified. OpenCode Go is configured but not
-  verified.
+  experimental. LLM Gateway answered a keyed run on 2026-11-06 and is the
+  default. OpenCode Go answered one on 2026-11-07 and runs only when named.
 
 A DeepSeek model named on another runtime is a request for that runtime, not
 for the harness. "Use cli-opencode with deepseek-v4.1-flash" routes to
