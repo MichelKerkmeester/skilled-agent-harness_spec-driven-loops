@@ -438,3 +438,5 @@ specs/**/context/
 .deep-review.lock
 .deep-review-pause
 .legacy-projection-watermarks/
+# A deep-loop coverage graph is a SQLite run database, rebuilt by the loop and never committed.
+coverage-graph-db/
