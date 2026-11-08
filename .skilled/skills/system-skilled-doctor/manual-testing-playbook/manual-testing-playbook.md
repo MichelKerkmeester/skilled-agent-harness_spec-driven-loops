@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor playbook"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # system-skilled-doctor Manual Testing Playbook
@@ -14,6 +14,7 @@ version: 1.0.2.0
 > Operator scenarios for this skill. This corpus is an input: a benchmark run reads it and
 > never rewrites it, so a later run can be compared against an earlier one.
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded under the skill's `benchmark/reports/` directory.
 
 ---
