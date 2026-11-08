@@ -782,6 +782,26 @@ function refuse(actions, refusals, pathName, reason) {
 }
 
 /**
+ * Whether the plan itself creates the folder a host sibling link points at.
+ * A link or replace-link counts for its whole subtree, while a mkdir counts only
+ * as an exact match because an empty folder does not create what is under it.
+ * @param {Array<object>} actions
+ * @param {string} root
+ * @param {string} target
+ * @returns {boolean}
+ */
+function planCreates(actions, root, target) {
+  return actions.some((action) => {
+    if (!action || typeof action.path !== 'string') return false;
+    const absolute = path.resolve(root, action.path);
+    if (action.op === 'link' || action.op === 'replace-link') {
+      return target === absolute || target.startsWith(absolute + path.sep);
+    }
+    return action.op === 'mkdir' && target === absolute;
+  });
+}
+
+/**
  * Add merge links under a real directory, preserving every local path.
  * @param {string} root
  * @param {string} source
@@ -814,10 +834,13 @@ function planMergeTree(root, source, rootRelative, sourceRelative, entrySource, 
     if (isHostRelativeLink(childSource, entrySource)) {
       const linkText = fs.readlinkSync(childSource);
       const hostTarget = path.resolve(path.dirname(childRoot), linkText);
-      // Only a host sibling that already exists receives the alias; it is never a link into the checkout.
-      if (!isWithin(hostTarget, root) || !linkTargetExists(hostTarget)) continue;
+      // Only a host sibling that exists or is planned receives the alias; it is never a link into the checkout.
+      // A host sibling counts when it exists or when this same plan creates it,
+      // so a first link into a new project does not need a second run.
+      if (!isWithin(hostTarget, root) || !(linkTargetExists(hostTarget) || planCreates(actions, root, hostTarget))) continue;
       if (!rootStat) {
         actions.push({ op: 'link', path: childRootRelative, target: linkText });
+        ignoreCandidates.push(childRootRelative);
       }
       continue;
     }

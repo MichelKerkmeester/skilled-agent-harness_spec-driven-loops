@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-skilled-doctor/002-symlink-first-link",
+  "description": "Link everything on the first symlink run and keep its relative links ignored",
+  "keywords": [
+    "link",
+    "everything",
+    "first",
+    "symlink",
+    "run",
+    "keep",
+    "relative",
+    "links",
+    "ignored"
+  ],
+  "lastUpdated": "2026-11-08T11:02:53.580Z",
+  "specId": "002",
+  "folderSlug": "symlink-first-link",
+  "parentChain": [
+    "system-skilled-doctor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

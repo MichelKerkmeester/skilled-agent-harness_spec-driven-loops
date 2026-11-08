@@ -61,9 +61,7 @@ It changes nothing itself. It prints the steps below, filled in for your project
 /doctor:symlink check --root <dir>
 ```
 
-Every folder should read `linked-whole` or `linked-merge`.
-
-On a new project, the first `link` leaves the runtime folders as `partial-merge`. Some of their entries are relative links into `.skilled`, and they are added only once `.skilled` exists in the project. Run the same `link` command a second time and `check` reads `linked-merge` everywhere.
+Every folder should read `linked-whole` or `linked-merge`. A `partial-merge` folder is missing entries that this checkout gained since the last `link`, and running `link` again adds them.
 
 ### What Gets Linked
 
@@ -73,9 +71,7 @@ A folder your project already has stays a real folder, and each entry inside it 
 
 ### Links Stay Out of Git
 
-The links are absolute paths on your machine, so they must never be committed. `link` adds an ignore line for each one to `.git/info/exclude`, which git reads but never commits. `--ignore gitignore` writes `.gitignore` instead.
-
-The relative links inside a runtime folder, such as `.claude/skills`, get no ignore line, so `git status` lists them. Leave them uncommitted, because a teammate without the `.skilled` link would get broken links.
+The links point into this checkout on your machine, so they must never be committed. `link` adds an ignore line for each one to `.git/info/exclude`, which git reads but never commits, so `git status` stays clean. `--ignore gitignore` writes `.gitignore` instead.
 
 ### Undo
 
@@ -85,7 +81,7 @@ Every `link` run ends with its undo command:
 /doctor:symlink unlink --run <run dir> --dry-run
 ```
 
-Drop `--dry-run` to run it. Unlink removes only what that run created, restores only what it replaced and removes its ignore lines. After two `link` runs, undo the newer one first.
+Drop `--dry-run` to run it. Unlink removes only what that run created, restores only what it replaced and removes its ignore lines. After more than one `link` run, undo the newest first.
 
 > **Context saves.** A save lands in the project's own `specs/` folder when it runs from inside the project. Run `/doctor:setup` and your saves from the project, not from this checkout.
 
@@ -231,7 +227,7 @@ The engine reads the same manifest and state shapes as a hand-made overlay setup
 
 | You see | It means | Do this |
 | --- | --- | --- |
-| `partial-merge` after a first `link` | Relative entries wait for `.skilled` to exist in the project | Run the same `link` again |
+| `partial-merge` in `/doctor:symlink check` | This checkout gained entries since the last `link` | Run the same `link` again |
 | `no overlay manifest at skilled-overlays/overlay-manifest.json` | The engine found no overlay folder | Create it (section 3, step 2), or name your folder in `.skilled-overlays.json` |
 | `overlay-edited` | The overlay changed and the copy has not caught up | `/doctor:overlay apply` |
 | `live-edited` | Someone edited the copy directly | `/doctor:overlay apply --capture <path>` |

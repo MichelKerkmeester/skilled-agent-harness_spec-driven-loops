@@ -4,7 +4,8 @@
   "spec_folder": "system-skilled-doctor",
   "parent_id": null,
   "children_ids": [
-    "system-skilled-doctor/001-skill-and-overlay-build"
+    "system-skilled-doctor/001-skill-and-overlay-build",
+    "system-skilled-doctor/002-symlink-first-link"
   ],
   "manual": {
     "depends_on": [],

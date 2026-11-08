@@ -498,3 +498,43 @@ test('setup keeps the specs alias pointed at a host specs folder', () => {
   assert.equal(fs.lstatSync(alias, { throwIfNoEntry: false }), undefined);
   assert.equal(fs.existsSync(path.join(hostSpecs, 'host-packet/spec.md')), true);
 });
+
+test('a first link creates a runtime alias whose target the same plan creates', () => {
+  const { source, root } = buildFixture({ git: true });
+  writeFile(path.join(source, '.skilled/skills/fixture/SKILL.md'), '# Fixture skill\n');
+  fs.symlinkSync('../.skilled/skills', path.join(source, '.claude/skills'));
+  const plan = planFor(source, root);
+
+  assertPlanAction(plan, 'link', '.claude/skills');
+  const applied = runRoot(source, root, 'apply', ['--plan-digest', plan.digest]);
+  assertStatus(applied, 0, 'apply should create the planned host alias');
+  const alias = path.join(root, '.claude/skills');
+  assert.equal(fs.readlinkSync(alias), '../.skilled/skills');
+  assert.equal(fs.existsSync(path.join(alias, 'fixture/SKILL.md')), true);
+  assert.equal(findEntry(checkReport(source, root), '.claude').status, 'linked-merge');
+  const exclude = fs.readFileSync(path.join(root, '.git/info/exclude'), 'utf8');
+  assert.equal(exclude.split(/\r?\n/).includes('/.claude/skills'), true, exclude);
+
+  const status = spawnSync('git', ['status', '--porcelain', '--untracked-files=all'], {
+    cwd: root,
+    encoding: 'utf8'
+  });
+  assert.equal(status.status, 0, status.stderr);
+  assert.equal(status.stdout, '');
+
+  const undone = runUnlink(source, runDirectoryFrom(applied.output), '--yes');
+  assertStatus(undone, 0, 'unlink should remove the planned host alias');
+  assert.equal(fs.lstatSync(alias, { throwIfNoEntry: false }), undefined);
+});
+
+test('a second plan after a first link adds nothing', () => {
+  const { source, root } = buildFixture({ git: true });
+  writeFile(path.join(source, '.skilled/skills/fixture/SKILL.md'), '# Fixture skill\n');
+  fs.symlinkSync('../.skilled/skills', path.join(source, '.claude/skills'));
+  const first = planFor(source, root);
+  const applied = runRoot(source, root, 'apply', ['--plan-digest', first.digest]);
+  assertStatus(applied, 0, 'apply should create the planned host alias');
+
+  const second = planFor(source, root);
+  assertNoPlanAction(second, ['link'], '.claude/skills');
+});
