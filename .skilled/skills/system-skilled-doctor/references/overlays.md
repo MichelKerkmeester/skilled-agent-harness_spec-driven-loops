@@ -12,7 +12,7 @@ trigger_phrases:
   - "roll back a re-pin"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Vendored Skilled Overlays
@@ -69,7 +69,7 @@ The setting lives outside `.skilled` because a re-copy overwrites that folder, a
 |-------|---------------|------------------|
 | `in-sync` | The destination matches the overlay copy | Nothing |
 | `overlay-edited` | The overlay moved and the tree has not caught up | `/doctor:overlay apply` |
-| `live-edited` | Someone edited the live copy | `/doctor:overlay apply --capture <path>`, which moves the edit into the overlay |
+| `live-edited` | Someone edited the live copy. A path under a skill-root entry's `remove` list never reaches this state: the overlay owns its removal, so `apply` deletes it | `/doctor:overlay apply --capture <path>`, which moves the edit into the overlay |
 | `both-changed` | The overlay and the live copy both moved, or a guarded destination matches neither its pinned hash nor the new copy | A person. Capture refuses and apply writes nothing |
 | `upstream-moved` | The pin moved, and the destination matches neither the recorded hash nor the overlay copy | A person, who rebases the overlay onto the new upstream file |
 

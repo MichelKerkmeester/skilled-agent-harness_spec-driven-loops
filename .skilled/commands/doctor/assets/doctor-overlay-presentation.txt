@@ -92,7 +92,7 @@ What each state means, and who acts on it:
 |-------|---------|-----|
 | `in-sync` | The destination holds what its overlay would write | None, and the engine prints no line for it |
 | `overlay-edited` | The overlay source changed, or a layout link is missing, so the destination is behind | `/doctor:overlay apply` |
-| `live-edited` | Someone edited the destination itself, and the overlay source does not have that edit yet | `/doctor:overlay apply --capture <path>` |
+| `live-edited` | Someone edited the destination itself, and the overlay source does not have that edit yet. A path under a skill-root entry's `remove` list is never `live-edited`: it is `overlay-edited` and `apply` deletes it | `/doctor:overlay apply --capture <path>` |
 | `both-changed` | The overlay source and the destination both changed since the last apply | A person resolves the two, then reruns `/doctor:overlay status` |
 | `upstream-moved` | A re-pin brought in an upstream change to a file an overlay owns | A person resolves the overlay against the new upstream, then reruns `/doctor:overlay status` |
 

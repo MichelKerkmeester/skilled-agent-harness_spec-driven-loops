@@ -28,6 +28,13 @@ function seedState(fixture) {
   return result;
 }
 
+function addRemovedFolder(fixture, removed = 'retired') {
+  const entry = fixture.manifest.overlays.find((item) => item.id === 'skill-root');
+  entry.remove = [removed];
+  writeManifest(fixture);
+  return entry;
+}
+
 test('clean apply records every managed file and a second apply is a no-op', (t) => {
   const fixture = createFixture(t);
   const first = seedState(fixture);
@@ -271,6 +278,77 @@ test('remove-root reports pending paths, blocks guard and capture, and drops ret
   const captureAfterRemoval = fixture.run(['apply', '--capture', 'guarded.txt']);
   assert.equal(captureAfterRemoval.code, 2, captureAfterRemoval.output);
   assert.match(captureAfterRemoval.output, /remove-root row retired-frontends/);
+});
+
+test('an upstream file added inside a removed folder is overlay-edited and apply deletes it', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  addRemovedFolder(fixture);
+  writeFile(fixture.tree, 'skill/retired/notes.md', 'upstream addition\n');
+  writeFile(fixture.tree, 'skill/retired/nested/deep.md', 'upstream addition deeper\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /overlay-edited skill\/retired\/notes\.md {2}\(overlay: skilled-overlays\/skill-root-source\/retired\/notes\.md\)/);
+  assert.match(status.output, /overlay-edited skill\/retired\/nested\/deep\.md/);
+  assert.match(status.output, /overlay-edited=2 live-edited=0 both-changed=0 upstream-moved=0/);
+  assert.doesNotMatch(status.output, /apply --capture skill\/retired/);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(applied.output.trim(), '2 changed');
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skill/retired/notes.md')), false);
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skill/retired/nested/deep.md')), false);
+
+  const settled = fixture.run(['status']);
+  assert.equal(settled.code, 0, settled.output);
+  assert.match(settled.output, /RESULT: PASSED/);
+});
+
+test('a replace-listed file inside a removed folder stays overlay-owned', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  const entry = addRemovedFolder(fixture);
+  entry.replace = ['SKILL.md', 'docs', 'retired/keep.md'];
+  writeManifest(fixture);
+  writeFile(fixture.overlayDir, 'skill-root-source/retired/keep.md', 'overlay keep\n');
+  writeFile(fixture.tree, 'skill/retired/keep.md', 'upstream keep\n');
+  writeFile(fixture.tree, 'skill/retired/drop.md', 'upstream drop\n');
+
+  const status = fixture.run(['status']);
+  assert.equal(status.code, 1, status.output);
+  assert.match(status.output, /overlay-edited skill\/retired\/keep\.md/);
+  assert.match(status.output, /overlay-edited skill\/retired\/drop\.md/);
+  assert.doesNotMatch(status.output, /^live-edited /m);
+
+  const applied = fixture.run(['apply']);
+  assert.equal(applied.code, 0, applied.output);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'skill/retired/keep.md'), 'utf8'), 'overlay keep\n');
+  assert.equal(fs.existsSync(path.join(fixture.tree, 'skill/retired/drop.md')), false);
+
+  writeFile(fixture.tree, 'skill/retired/keep.md', 'hand edit\n');
+  const captured = fixture.run(['apply', '--capture', 'skill/retired/keep.md']);
+  assert.equal(captured.code, 0, captured.output);
+  assert.equal(
+    fs.readFileSync(path.join(fixture.overlayDir, 'skill-root-source/retired/keep.md'), 'utf8'),
+    'hand edit\n',
+  );
+  assert.equal(fixture.run(['status']).code, 0);
+});
+
+test('capture refuses a path under a removed folder without writing into the overlay', (t) => {
+  const fixture = createFixture(t);
+  seedState(fixture);
+  addRemovedFolder(fixture);
+  writeFile(fixture.tree, 'skill/retired/notes.md', 'upstream addition\n');
+  const stateBefore = fs.readFileSync(fixture.statePath, 'utf8');
+
+  const captured = fixture.run(['apply', '--capture', 'skill/retired/notes.md']);
+  assert.equal(captured.code, 2, captured.output);
+  assert.match(captured.output, /skill\/retired\/notes\.md is scheduled for removal by overlay skill-root; capture is not supported/);
+  assert.equal(fs.existsSync(path.join(fixture.overlayDir, 'skill-root-source/retired')), false);
+  assert.equal(fs.readFileSync(path.join(fixture.tree, 'skill/retired/notes.md'), 'utf8'), 'upstream addition\n');
+  assert.equal(fs.readFileSync(fixture.statePath, 'utf8'), stateBefore);
 });
 
 test('guard resolves cwd-relative paths and capture refuses unknown, protected, and json-entry destinations', (t) => {

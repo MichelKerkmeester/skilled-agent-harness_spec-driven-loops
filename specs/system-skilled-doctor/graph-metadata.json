@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "system-skilled-doctor/001-skill-and-overlay-build",
-    "system-skilled-doctor/002-symlink-first-link"
+    "system-skilled-doctor/002-symlink-first-link",
+    "system-skilled-doctor/003-removed-folder-classification"
   ],
   "manual": {
     "depends_on": [],

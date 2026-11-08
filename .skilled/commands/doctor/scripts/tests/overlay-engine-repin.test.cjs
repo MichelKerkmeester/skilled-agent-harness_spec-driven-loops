@@ -501,6 +501,35 @@ test('repin --stage builds the re-pinned tree in a copy, reports both groups and
   assert.match(staged.output, /^stage skipped 1 regenerate and 1 verify step\(s\); the live run runs them$/m);
 });
 
+test('repin --stage treats an upstream addition inside a removed folder as removed', (t) => {
+  const fixture = createRepinFixture(t, {
+    newEntries: { '.skilled/skills/hub/old-folder/new-file.md': 'new inside removed folder\n' },
+  });
+  writeFile(fixture.overlayDir, 'hub-root/stable.md', 'stable\n');
+  fixture.manifest.overlays.push({
+    id: 'hub-root',
+    scope: 'skill-root',
+    source: 'hub-root',
+    destination: '.skilled/skills/hub',
+    replace: ['stable.md'],
+    remove: ['old-folder'],
+  });
+  writeManifest(fixture);
+  fs.rmSync(path.join(fixture.tree, '.skilled/skills/hub/old-folder'), { recursive: true, force: true });
+  const seeded = fixture.run(['apply']);
+  assert.equal(seeded.code, 0, seeded.output);
+  assert.equal(fixture.run(['status']).code, 0);
+
+  const stageDir = path.join(fixture.workspace, 'stage');
+  const staged = fixture.repin(['--stage', stageDir]);
+  assert.equal(staged.code, 0, staged.output);
+  assert.match(staged.output, /^RESULT: STAGED$/m);
+  assert.doesNotMatch(staged.output, /^blocked hub-root:/m);
+  assert.doesNotMatch(staged.output, /live-edited \.skilled\/skills\/hub\/old-folder/m);
+  assert.equal(fs.existsSync(path.join(stageDir, '.skilled/skills/hub/old-folder/new-file.md')), false);
+  assert.equal(read(stageDir, '.skilled/skills/hub/stable.md'), 'stable\n');
+});
+
 test('repin --stage refuses a folder that is not empty or that sits inside the live tree', (t) => {
   const fixture = createRepinFixture(t);
   const before = treeDigest(fixture.tree);

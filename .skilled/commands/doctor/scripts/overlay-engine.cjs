@@ -1250,7 +1250,11 @@ function planSkillRootOverlay(entry, ctx, problems) {
 
   const current = walkTree(destinationDir);
   const removedPrefixes = [...entry.remove, ...replacedSubtrees];
-  const isRemoved = (rel) => removedPrefixes.some((prefix) => rel === prefix || rel.startsWith(`${prefix}/`));
+  const matchesPrefix = (prefixes, rel) => prefixes.some((prefix) => rel === prefix || rel.startsWith(`${prefix}/`));
+  const isRemoved = (rel) => matchesPrefix(removedPrefixes, rel);
+  // A replaced subtree is the overlay's to capture into; only a path the entry
+  // removes without also replacing is a removal the overlay performs.
+  const isDeclaredRemoval = (rel) => matchesPrefix(entry.remove, rel) && !matchesPrefix(entry.replace, rel);
 
   for (const [rel, wanted] of desired) {
     const destinationPath = path.join(destinationDir, rel);
@@ -1272,7 +1276,7 @@ function planSkillRootOverlay(entry, ctx, problems) {
     const destinationPath = path.join(destinationDir, rel);
     deletes.push(destinationPath);
     if (current.get(rel).kind === 'file') {
-      outputs.push({ filePath: destinationPath, buffer: null, sourcePath: path.join(sourceDir, rel) });
+      outputs.push({ filePath: destinationPath, buffer: null, sourcePath: path.join(sourceDir, rel), removal: isDeclaredRemoval(rel) });
     }
   }
   // Deepest first, so a removed folder is empty by the time its own delete runs.
@@ -1785,6 +1789,10 @@ function classifyDestination({ output, plan, key, live, state, manifest }) {
   const hasState = Object.prototype.hasOwnProperty.call(state.files, key);
   const appliedHash = hasState ? state.files[key] : undefined;
   if (buffersEqual(live, desired)) return 'in-sync';
+  // A path the entry declares removed is the overlay's own deletion, and apply is
+  // the only way to carry it out, so a live file there is pending work, never a
+  // person's edit to capture.
+  if (output.removal) return 'overlay-edited';
 
   if (!hasState) {
     if (desired === null && live !== null) return 'live-edited';
@@ -2214,7 +2222,7 @@ function captureRecordForPath(ctx, manifest, candidate) {
       for (const relativePath of entry.paths || []) {
         const removalPath = resolveRemoveRootPath(root, relativePath);
         if (!isWithin(removalPath, candidate)) continue;
-        return { entry, key, destinationPath: candidate, removal: true };
+        return { entry, key, destinationPath: candidate, removal: true, removalOwner: 'remove-root row ' + entry.id };
       }
       continue;
     }
@@ -2244,6 +2252,11 @@ function captureRecordForPath(ctx, manifest, candidate) {
         relative === kept || relative.startsWith(kept + '/'));
       if (isReplacement && !isKept) {
         return { entry, key, destinationPath: candidate, sourcePath };
+      }
+      const isRemoved = (entry.remove || []).some((removed) =>
+        relative === removed || relative.startsWith(removed + '/'));
+      if (isRemoved) {
+        return { entry, key, destinationPath: candidate, removal: true, removalOwner: 'overlay ' + entry.id };
       }
     }
   }
@@ -2281,7 +2294,7 @@ function captureUnderLock(ctx, manifest, inputPath) {
     return EXIT_ERROR;
   }
   if (record.removal) {
-    console.log('refuse: ' + record.key + ' is scheduled for removal by remove-root row ' + record.entry.id + '; capture is not supported');
+    console.log('refuse: ' + record.key + ' is scheduled for removal by ' + record.removalOwner + '; capture is not supported');
     return EXIT_ERROR;
   }
   if (isCaptureRestricted(ctx, record, inputPath)) {
@@ -2365,7 +2378,7 @@ function destinationCandidates(ctx, manifest) {
   for (const entry of manifest.overlays) {
     if (entry.scope === 'remove-root') {
       for (const relativePath of entry.paths || []) {
-        records.push({ entry, destinationPath: resolveRemoveRootPath(root, relativePath), removal: true });
+        records.push({ entry, destinationPath: resolveRemoveRootPath(root, relativePath), removal: true, removalOwner: 'remove-root row ' + entry.id });
       }
       continue;
     }
@@ -2430,7 +2443,7 @@ function destinationCandidates(ctx, manifest) {
           const relative = path.relative(destinationPath, livePath);
           if (retained.has(relative) || owned.has(relative)) continue;
           owned.add(relative);
-          records.push({ entry, destinationPath: livePath, sourcePath: path.join(sourceDirectory, relative) });
+          records.push({ entry, destinationPath: livePath, sourcePath: path.join(sourceDirectory, relative), removal: true, removalOwner: 'overlay ' + entry.id });
         }
       }
     }
@@ -2459,7 +2472,7 @@ function commandGuard(ctx, inputPath) {
       const destination = isWithin(root, lexicalCandidate)
         ? relativeKey(root, lexicalCandidate)
         : relativeKey(canonicalPath(root), removalCandidate);
-      console.log('refuse: ' + destination + ' is scheduled for removal by remove-root row ' + record.entry.id);
+      console.log('refuse: ' + destination + ' is scheduled for removal by ' + record.removalOwner);
       return EXIT_CONFLICT;
     }
     if (!pathExists(record.destinationPath)) continue;
