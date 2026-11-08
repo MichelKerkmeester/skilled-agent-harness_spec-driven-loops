@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b0a278ed7513d40292e35ffc4645b9dc431ece6f9f2c17672cd1d5c66e437952",
+  "manifestHash": "d7e269565f50a2dc271e1419a285042ec761439e8ea4375df161fdf0068c22b1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3635,6 +3635,9 @@
     ],
     "016 013 ollama and bge promotion": [
       "016/013 ollama and bge promotion"
+    ],
+    "016 ci red check repairs operator decisions": [
+      "016-ci-red-check-repairs operator decisions"
     ],
     "016 decision record": [
       "016 decision record"
@@ -40834,6 +40837,9 @@
     "dispatch shapes deny": [
       "dispatch shapes deny"
     ],
+    "dispatch test stub dsh path": [
+      "dispatch test stub dsh path"
+    ],
     "dispatch to opencode 1 or 2": [
       "dispatch to opencode 1 or 2"
     ],
@@ -43942,6 +43948,9 @@
     ],
     "dsh prompt framework selection": [
       "dsh prompt framework selection"
+    ],
+    "dsh prompt local stub untracked": [
+      "dsh prompt local stub untracked"
     ],
     "dsh prompt quality card": [
       "dsh prompt quality card"
@@ -79180,6 +79189,9 @@
     ],
     "phase 16 align sk design": [
       "phase 16 align sk design"
+    ],
+    "phase 16 ci red check repairs": [
+      "phase 16 ci red check repairs"
     ],
     "phase 16 cli codex": [
       "phase 16 cli codex"

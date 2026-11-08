@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2eae5bb98e40fd2f5b2cdbd54f3be9837b23d8c4010a602ae6b1bd573e4893bf",
+  "corpusHash": "c81fbda6e3713d94c9f871b49de5aa1dbb107c942e549c592e2ba3d32bd52a0c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28425,
+  "includedPathCount": 28430,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10560,6 +10560,11 @@
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/spec.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/tasks.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/timeline.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/decision-record.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/implementation-summary.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/plan.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/spec.md",
+    "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/tasks.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/spec.md",
@@ -28456,7 +28461,7 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b0a278ed7513d40292e35ffc4645b9dc431ece6f9f2c17672cd1d5c66e437952",
+  "manifestHash": "d7e269565f50a2dc271e1419a285042ec761439e8ea4375df161fdf0068c22b1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30308,6 +30313,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/016-ci-red-check-repairs/scratch",
       "reason": "excluded directory"
     },
     {
