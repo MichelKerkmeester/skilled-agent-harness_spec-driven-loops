@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f542f197510831f5c9e351e201a5d69caa72e814f91c5e16a0b2be292b0691fa",
+  "corpusHash": "df186f0a19ad42a4f4e85676f7b0aba9e382db60ec12b3caadf37fb76f5e7469",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28411,
+  "includedPathCount": 28420,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10581,6 +10581,7 @@
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/spec.md",
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/003-regeneration-and-alignment-sweep/tasks.md",
     "specs/cli-external-orchestration/086-cli-hermes-deprecation/spec.md",
+    "specs/cli-external-orchestration/087-opencode-worktree-confinement/implementation-summary.md",
     "specs/cli-external-orchestration/087-opencode-worktree-confinement/plan.md",
     "specs/cli-external-orchestration/087-opencode-worktree-confinement/spec.md",
     "specs/cli-external-orchestration/087-opencode-worktree-confinement/tasks.md",
@@ -15903,6 +15904,10 @@
     "specs/sk-git/037-advisory-cd-prefix-env-steps/plan.md",
     "specs/sk-git/037-advisory-cd-prefix-env-steps/spec.md",
     "specs/sk-git/037-advisory-cd-prefix-env-steps/tasks.md",
+    "specs/sk-git/038-provision-private-command-links/implementation-summary.md",
+    "specs/sk-git/038-provision-private-command-links/plan.md",
+    "specs/sk-git/038-provision-private-command-links/spec.md",
+    "specs/sk-git/038-provision-private-command-links/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -28439,10 +28444,14 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/research.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/research/resource-map.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/spec.md",
-    "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md"
+    "specs/system-speckit/044-named-subtracks-and-host-repos/tasks.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/implementation-summary.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/plan.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/spec.md",
+    "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f51173ab040a5bf66532850fe0fbcd448675f64048327e62d2ac2c9171d8f2f8",
+  "manifestHash": "3b0d059ea4d2e6ffeb3a048509bf3e52754fb684c1bbe5986dbacc71d3189c39",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33369,6 +33378,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/038-provision-private-command-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/z_archive",
       "reason": "excluded directory"
     },
@@ -36818,6 +36831,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-upgrade-level-anchor-insert/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7375,
-    "ok": 17487,
+    "ok": 17496,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28411,
+  "documentsScanned": 28420,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f51173ab040a5bf66532850fe0fbcd448675f64048327e62d2ac2c9171d8f2f8",
+  "manifestHash": "3b0d059ea4d2e6ffeb3a048509bf3e52754fb684c1bbe5986dbacc71d3189c39",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41815,
+      "ok": 41828,
       "prose-sentence": 19,
       "single-token": 159,
       "stop-word-only": 1,
@@ -74065,6 +74065,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/038-provision-private-command-links/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/z_archive",
       "reason": "excluded directory"
     },
@@ -77514,6 +77518,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-upgrade-level-anchor-insert/scratch",
       "reason": "excluded directory"
     },
     {
