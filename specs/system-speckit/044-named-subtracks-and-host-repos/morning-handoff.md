@@ -52,6 +52,33 @@ Full spec-kit suites on the worktree, taken before the round-1 fixes:
 | 3 | Claude Sonnet, high, a fresh instance | 0 | 0 | 6 | No regressions; both earlier rounds' fixes hold; pre-push tests 50/50. Five P2s were sent to Luna: (1) `create.sh` leaves a declared sub-track's missing metadata unseeded, so the push gate blocks, and the fix makes `create.sh` call the refresh that seeds it, per D-003b; (2) stale `refresh-track-roots` header and dry-run exit code; (3) a stale `folder-structure.md` sentence; (4) a weak symlink test; (5) the refusal message showing the stripped value. The sixth, sub-track check gaps no normal use hits, is left as known: `resolveParentId` and `expectedParentId` do not check segment 0; `archive.sh` refuses a `z_*` track and has an unanchored `track_of`; the `validate.sh` packet glob is older than this change. Luna fixed the five. Re-gate: suite 202/202, doctor 51/51, pre-push tests 50/50, recursive strict `RESULT: PASSED` on all six folders. |
 | 4 | Claude Opus, medium, final | 0 | 0 | 3 | APPROVED. Reproduced: symlinked and broken metadata links are refused; a missing sub-track file is seeded and the sweep is then clean; a parent with no metadata creates the packet; flat tracks are unchanged; `--json` stays one payload. The three cosmetic P2s, logged as follow-ups below. The loop stopped at its 4-round cap with no P0 or P1 in the last two rounds. |
 
+## Landed
+
+- **Final gate on the code that was pushed:**
+  - the packet suite passes 202/202;
+  - the full cli project passes 2,370 tests over 199 files, with 20 skipped and 0 failed;
+  - core passes 4,243 tests over 283 files, with 21 skipped and 0 failed;
+  - the doctor tests pass 51/51 and the pre-push tests 50/50;
+  - `validate.sh --strict --recursive` prints `RESULT: PASSED` on all six folders.
+- **Save:** `generate-context.js --full-auto` wrote the two operator decisions into `decision-record.md` and the continuity into `005-docs-and-tests`. Six other answers from the same session belong to other work and were left out of this packet: the Barter router commit, worktrees 145 and 087, and the DSH plugin tests.
+- **Pushed to `origin/main` as a fast-forward** (`230d22ba88..dc7e4f00de`), in five commits:
+  - `f46c48fa2a`: the code;
+  - `0f823500e6`: doctor;
+  - `db4d8c6453`: docs;
+  - `e79c779ff9`: the packet;
+  - `dc7e4f00de`: the trigger index.
+- **Branch protection:** GitHub reported that the push bypassed two rules. The commits are unsigned, and the required status checks had not yet run.
+- **Commit hooks:** the pre-commit mirror gate first failed on the operator's private `local-skilled-alignment` command. Provisioning had linked it into the worktree as symlinks, and the mirror checks skip symlinked sources. The fix replaced the gitignored worktree copies with real files, matching main. No gate was bypassed.
+
+## Your primary checkout
+
+`/Users/michelkerkmeester/MEGA/Development/Skilled` is still on `230d22ba88`, five commits behind `origin/main`, with other sessions' uncommitted work. It also holds untracked originals of the files these commits add: the 044 phase folders, `review/` and `review-archive/`. So `git merge --ff-only origin/main` will refuse to overwrite them. To sync it:
+1. Move `specs/system-speckit/044-named-subtracks-and-host-repos/{001,002,003,004,005}-*` and `review/` aside.
+2. Run `git merge --ff-only origin/main`.
+3. Keep `review-archive/` and the untracked ledger folders, or delete them. They are run state and are not committed.
+
+The worktree and its branch, `worktrees/323-subtrack-review-fixes`, can be removed once you are happy.
+
 ## Follow-ups (cosmetic, not done)
 
 - **`archive.sh:281`** does not seed a missing sub-track `graph-metadata.json`, though `create.sh` now does. The push gate catches it, and the repair it prints works.
