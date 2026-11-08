@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/034-runtime-name-implementation-routing",
+  "spec_folder": "system-skill-advisor/034-runtime-name-implementation-routing",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime name implementation routing",
+      "route implementation prompts that name a runtime surface",
+      "executor alias hook surface",
+      "runtime name implementation routing plan",
+      "runtime name implementation routing tasks",
+      "runtime name implementation routing acceptance criteria",
+      "034-runtime-name-implementation-routing operator decisions",
+      "runtime name implementation routing implementation summary"
+    ],
+    "key_topics": [
+      "runtime",
+      "name",
+      "implementation",
+      "routing",
+      "route",
+      "prompts",
+      "surface",
+      "executor",
+      "alias",
+      "hook",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/executor-delegation.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/executor-delegation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-delegation-cases.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/executor-delegation-cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-validate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings-driven-invocation-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Post",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The executor-delegation resolver treats any bare executor alias as a hand-off, so \"Make the Claude Code Stop hook return a block\" routes to `cli-claude-code` at confidence 0.95 and caps `sk-code` below it",
+    "created_at": "2026-11-08T16:20:14Z",
+    "last_save_at": "2026-11-08T16:44:56.118Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41d963125682d9557f65dc8b944e4443d9bc9b70f999f358fe53adf29abc29ea",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "511b96fc23dcf96b503f9c73c4cbb508f7cd1f9380c2847ee29b118d247bfc26",
+      "plan.md": "fda2c1ac6330bb32ff97a69f76d69ca70226812aa885ca7906d56fa7802092e2",
+      "tasks.md": "9feb982e796dba0d5d74988c54c776cd397da8813d8bb40616905b5a4d40e268",
+      "decision-record.md": "1a192a0a7c170d6bd89ab3b5f2ba4d86a708936e202406a70064d7656808dd51",
+      "implementation-summary.md": "406ee61d2cea1200ff6e2ad445745782740be7386b7d2fec788622d1191c9a45"
+    },
+    "last_active_at": null
+  }
+}
