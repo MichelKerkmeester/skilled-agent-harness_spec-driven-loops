@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The wrapper takes the live model at `.skilled/bin/skilled-loop:789-800` and the live effort separately at `:814-823`",
     "created_at": "2026-10-25T13:42:25Z",
-    "last_save_at": "2026-11-08T13:10:43.223Z",
+    "last_save_at": "2026-11-08T17:15:52.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7973877342d70a8142a82c57dec1c300f3c62b3a05b00f4285aca7e565d10c01",
+    "source_fingerprint": "sha256:e6fce38c5387371e63e3ae7ed7aa282e38354289be56fd9b3af0761b19e7fa08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "415f8c37cbaf6a808b74fb1e9a3cf37156aef5c84286beff71f3ebdb3640612e",

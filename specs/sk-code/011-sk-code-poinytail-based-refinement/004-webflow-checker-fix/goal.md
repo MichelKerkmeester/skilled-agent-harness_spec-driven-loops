@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | A hardcoded `MAX_SYNC_CALLBACK_DEPTH = 20` in section 1 of `test-minified-runtime.mjs` skips further synchronous callback calls, so a script that polls for a missing element does not overflow the stack. |
 | D3 | The Webflow fixtures live in `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/runtime-fixture/known-bad/` and `runtime-fixture/known-good/`, each holding `src/2_javascript/z_minified/*.js`, because the checker takes no arguments and reads that path from the working directory. |
 | D4 | The validator's known-bad input is the unittest `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_stack_folders.py`, which runs a copy of the validator in a temporary tree. `verify_stack_folders.py` itself does not change. |
-| D5 | The phase modifies only `test-minified-runtime.mjs` and the two script READMEs, and adds only `runtime-fixture/` and `test_verify_stack_folders.py`. It does not fix the pre-existing `[JSON-PARSE]` drift-gate error in `specs/hooks/022-smart-rule-injection/graph-metadata.json`. |
+| D5 | The phase modifies only `test-minified-runtime.mjs` and the two script READMEs, and adds only `runtime-fixture/` and `test_verify_stack_folders.py`. It does not fix the pre-existing `[JSON-PARSE]` drift-gate error in `specs/hooks-plugins-extensions/022-smart-rule-injection/graph-metadata.json`. |
 
 <!-- /ANCHOR:directive -->
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.4.0
+version: 2.0.5.0
 ---
 
 # Track-root children lists
@@ -32,8 +32,8 @@ publish a list that disagrees.
 `refresh-track-roots.mjs` sets a track's `children_ids` to its numbered packet
 folders, sorted, and changes no other field. It is dry by default and writes
 with `--apply`, and `--track <name>` limits it to one track. A file named like a
-packet, an archive folder and an entry under an earlier identity are not
-packets. A declared sub-track with missing `graph-metadata.json` is reported as
+packet, a numbered folder without a `spec.md`, an archive folder and an entry
+under an earlier identity are not packets. A declared sub-track with missing `graph-metadata.json` is reported as
 a pending creation in a dry run; `--apply` seeds its track-root record before
 updating `children_ids`. The writer refuses a `graph-metadata.json` symlink and
 leaves it unchanged. Empty or unreadable metadata is also left alone and exits

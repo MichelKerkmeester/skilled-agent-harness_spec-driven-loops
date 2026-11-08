@@ -8,7 +8,7 @@ trigger_phrases:
   - "snake_case exemption boundary"
 importance_tier: important
 contextType: general
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Filesystem Naming Convention - Kebab-Case Canon
@@ -50,7 +50,7 @@ Each class below keeps its existing name. A rename here would break an interpret
 | Python source files | `validate_document.py` | Python style is snake_case; renaming churns imports for no gain |
 | Python import-package directories | `my_package/` | A `_`→`-` on a package dir breaks `import` and `from` statements (see §4) |
 | Vendored / third-party trees | `node_modules/`, vendored SDK folders | Owned upstream, not by this repo |
-| Generated / lockfile output | `package-lock.json`, `dist/`, `*.tsbuildinfo` | Rewritten by tools; not authored names |
+| Generated / lockfile output | `package-lock.json`, `dist/`, `*.tsbuildinfo`, the `research_archive/` folder a deep-research restart creates | Rewritten by tools; not authored names |
 | Tool-mandated filenames | `SKILL.md`, `README.md`, `.utcp_config.json`, `action.yml`, `conftest.py` | The name is a contract a tool matches on exactly |
 | Test-runner magic | `__snapshots__/`, `__mocks__/`, `test_*.py`, `*_test.py` | Discovery frameworks match these patterns literally |
 | Frozen surfaces | `z_archive/`, changelogs, completed spec-folder history | Append-only; they record prior names as history (see §5) |

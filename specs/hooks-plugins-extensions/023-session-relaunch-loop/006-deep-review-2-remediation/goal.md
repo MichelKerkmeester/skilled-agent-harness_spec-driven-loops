@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation"
+    packet_pointer: "specs/hooks-plugins-extensions/023-session-relaunch-loop/006-deep-review-2-remediation"
     last_updated_at: "2026-10-18T19:42:43Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

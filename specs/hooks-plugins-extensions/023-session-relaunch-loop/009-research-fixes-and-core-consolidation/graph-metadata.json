@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The research found real defects past phase 008",
     "created_at": "2026-10-19T17:38:20Z",
-    "last_save_at": "2026-11-08T13:10:39.937Z",
+    "last_save_at": "2026-11-08T17:15:52.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3397a04aabffe11b14b3dc696ac572f791f27575499a79a3141b7030b9b33e7b",
+    "source_fingerprint": "sha256:404b84a4522255cc64c5da07a96f466bbf71963a79f0d2480ef0d8c2a4e1ab85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "033fe0e43aac76269af58789c4c6ae3288dc3432ecede8d5ad64cff67aeef228",

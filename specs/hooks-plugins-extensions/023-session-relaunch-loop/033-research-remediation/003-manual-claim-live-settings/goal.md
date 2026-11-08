@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/003-manual-claim-live-settings --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A wrapper test with a record carrying a live model and effort prints a manual command holding both and not the launch model, and fails on the code before the change
 - [ ] A Cursor wrapper test with a model from the Cursor live reader prints that model in the manual command
 - [ ] A wrapper test with no live values prints the same manual command it printed before the change

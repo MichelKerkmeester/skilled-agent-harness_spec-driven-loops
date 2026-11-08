@@ -51,7 +51,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/009-pi-arm-on-agent-settled --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A Pi test arms the record on `agent_settled` and not on `agent_end` alone, and fails on the code before the change
 - [ ] A Pi test of `agent_end`, a continuation `agent_start`, `agent_end` and `agent_settled` ends with the record armed, not disarmed
 - [ ] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0

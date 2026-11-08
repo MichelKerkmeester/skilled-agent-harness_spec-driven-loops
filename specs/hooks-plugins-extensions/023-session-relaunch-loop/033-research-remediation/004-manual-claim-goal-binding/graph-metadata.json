@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A first launch unsets the goal packet and claim seed so an outer session's values never leak in (`.skilled/bin/skilled-loop:470-474`)",
     "created_at": "2026-10-25T13:42:29Z",
-    "last_save_at": "2026-11-08T13:10:43.606Z",
+    "last_save_at": "2026-11-08T17:15:52.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0eb44fd4e2bca0ef19e56eed9521de83a2e412ebdbdc99e7c936f6b36ec39913",
+    "source_fingerprint": "sha256:7d9dcac584fbd8b254dfb7082de591bf44dbecda81bdb9fe22150a815eff5fd7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55669f7e2b83aee058372b2b3cee2a2d9530dfcfe94148c759aebf152ce85be0",

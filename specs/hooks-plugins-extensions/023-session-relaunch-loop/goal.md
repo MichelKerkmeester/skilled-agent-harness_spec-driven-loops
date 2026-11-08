@@ -92,7 +92,7 @@ string, not these files.
 ## 3. COMPLETION CRITERIA
 
 - [x] All eleven phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
-- [x] `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED`
+- [x] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
 <!-- /ANCHOR:completion -->

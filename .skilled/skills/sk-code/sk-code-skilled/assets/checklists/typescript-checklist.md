@@ -8,7 +8,7 @@ trigger_phrases:
   - "pascalcase types check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # TypeScript Code Quality Checklist
@@ -46,6 +46,8 @@ These items MUST be fixed before any commit.
 ```markdown
 [ ] File has TypeScript module header identifying the module
 ```
+
+A `.d.ts`, `.d.mts` or `.d.cts` file the compiler emitted, one that ends with a `//# sourceMappingURL=` line, is exempt. A hand-written declaration file still needs the header.
 
 **Required format**:
 ```typescript

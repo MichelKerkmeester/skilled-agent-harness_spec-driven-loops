@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/006-relaunch-coverage-gaps --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A wrapper test passes `--server=http://localhost:4096` to OpenCode 2 and asserts the shared-server warning and launch arguments equal to `['--server=http://localhost:4096']` with no `--standalone`
 - [ ] A wrapper test with a PATH it builds, holding no runtime binary, asserts exit status 127
 - [ ] A core test releases two child processes from one start barrier to claim one open note and gets exactly one winner, the other refused as claimed and `claimed_by` naming the winner

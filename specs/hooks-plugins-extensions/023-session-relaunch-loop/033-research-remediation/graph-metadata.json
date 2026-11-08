@@ -198,14 +198,14 @@
     ],
     "causal_summary": "The ten-iteration research after phase 032 (`../research/research.md` sections 9, 9a, 11, 11a and 15) and an independent review against the code left nine fixable items in the session relaunch loop",
     "created_at": "2026-10-25T13:42:16Z",
-    "last_save_at": "2026-11-08T13:10:42.547Z",
+    "last_save_at": "2026-11-08T17:15:52.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b7a11784d7f35783efdec8626532edebc1fed1c86cea14480247ba8bae8c5bc2",
+    "source_fingerprint": "sha256:18222db5505ace09c8be95e52ed5031325eace3e8352917f16f3bb970e71f4be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b94b2859a5514236413e31dd9980151b7443b4ea6de8697080ad2ff12c9ba3e"

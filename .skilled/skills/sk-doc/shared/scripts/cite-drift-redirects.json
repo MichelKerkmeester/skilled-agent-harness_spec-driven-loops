@@ -3910,7 +3910,7 @@
     },
     {
       "from": "specs/hooks/001-per-prompt-injection-audit/",
-      "to": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/",
+      "to": "specs/hooks-plugins-extensions/002-injection-bloat-reduction/per-prompt-injection-audit/",
       "records": 86,
       "agreement": 1
     },

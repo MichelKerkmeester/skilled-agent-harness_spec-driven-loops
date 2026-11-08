@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/034-default-off-opt-in --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/034-default-off-opt-in --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] `node --test .skilled/hooks/shared/hook-flags.test.cjs` exits 0, and its new tests show session-relaunch off with no flag, on with `SYSTEM_SESSION_RELAUNCH_ENABLED=1` from the environment or from the config file, off when `SYSTEM_SESSION_RELAUNCH_DISABLED=1` is also set, and `spec-gate` still on with no flag
 - [ ] A parity test gives the same answer from the `.cjs`, `.mjs`, `.ts` and `.sh` readers on every row of one input table, and it fails on the code before the change
 - [ ] With the concern not enabled, a test shows the Claude context nudge emits no nudge over the threshold, and a test shows `prepare` inside the loop writes no relaunch record and exits non-zero

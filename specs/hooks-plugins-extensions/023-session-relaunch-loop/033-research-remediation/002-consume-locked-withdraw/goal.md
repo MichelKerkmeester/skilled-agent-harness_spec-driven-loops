@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `validate.sh specs/hooks/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
+- [ ] `validate.sh specs/hooks-plugins-extensions/023-session-relaunch-loop/033-research-remediation/002-consume-locked-withdraw --strict` prints `RESULT: PASSED`, with every row in its `acceptance-criteria.md` Met
 - [ ] A consume test with a record withdrawn before consume prints `withdrawn: true` and fails on the code before the change
 - [ ] A wrapper test that withdraws between should-relaunch approval and consume prints the withdrawn warning, starts no second runtime and exits with the runtime's code
 - [ ] The exact-shape consume tests in `session-relaunch-cli.test.cjs` pass with no edit to their expected objects

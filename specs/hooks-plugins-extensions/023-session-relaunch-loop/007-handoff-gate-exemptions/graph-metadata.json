@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A session that has no Gate 3 answer and reaches its context limit hands off by writing a note under `.skilled/skills/.state/`",
     "created_at": "2026-10-19T11:28:53Z",
-    "last_save_at": "2026-11-08T13:10:36.926Z",
+    "last_save_at": "2026-11-08T17:15:52.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c56ca9f2bccaf7aaaec851fd2c65fe39dbfad1eab4de23dec2c5af30ed9e0784",
+    "source_fingerprint": "sha256:f4ff9f5836a0e7d0485b48d33078981631d8193fa2bc2281200487fe203f0c5d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6bdfbe74a9de3068f6c137a3fb76caf2c7c00bf92dde973a4dbf5c6828fa2861",
