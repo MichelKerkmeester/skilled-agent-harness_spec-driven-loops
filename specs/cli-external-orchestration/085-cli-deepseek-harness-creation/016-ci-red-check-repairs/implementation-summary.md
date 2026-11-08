@@ -71,6 +71,8 @@ A later pass cleared the checks still red on `aded37b8fd`. The history-locator t
 | `.skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py` and its test | Modified | Exempts the runtime's `research_archive` folder |
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs`, its test and `README.markdown` | Modified | v1 names a command by its frontmatter `name:` |
 | 19 files in `.github/workflows/` | Modified | `ONNXRUNTIME_NODE_INSTALL_CUDA: skip` |
+| `verify_alignment_drift.py` and its test | Modified | A declaration ending in its source-map comment is compiler output and skips the header rule |
+| `runtime/cli/lib/track-roots.mjs` and `track-roots.vitest.ts` | Modified | A numbered folder counts as a packet only with a `spec.md`, in both views |
 | `.skilled/skills/system-skilled-doctor/leaf-aliases.json` | Regenerated | Alias for the playbook scenario added after the last projection |
 | `.skilled/skills/mcp-tooling/hub-router.json`, `changelog/v1.9.7.0.md` | Modified | Drops `isolated chrome` from stage one, decision Q003 |
 <!-- /ANCHOR:what-built -->
@@ -121,6 +123,8 @@ Each cause was read from its workflow log and reproduced locally first: the disp
 | Workflows | All parse; `actionlint` exits 0 |
 | Routing drift workflow, all 15 steps run locally | 15 PASS after both fixes |
 | CI on `9932b52352` | Every workflow on the commit passed |
+| `verify_alignment_drift.py --check-router` | Before: 10 errors on emitted `.d.mts` files. After: 0 errors; 36 of 36 tests |
+| Track-root suites | 137 of 137; the new no-`spec.md` case fails before the fix |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -132,7 +136,7 @@ Each cause was read from its workflow log and reproduced locally first: the disp
 2. **The directory manifest still needs `--write` whenever a durable folder is added.** That is its purpose: it lists the folders a README must cover.
 3. **The README verdict baseline still covers 989 of 1,141 tracked READMEs.** It predates the rest. Rebuilding it is a separate decision for the sk-doc owner.
 4. **OpenCode still registers the doctor test fixtures as commands.** 45 fixture `.md` files sit under `.skilled/commands/doctor/scripts/tests/fixtures/`, so both versions list them, under a stray name such as `sk-git` on v1. The DSH, Pi and Codex mirrors already skip `fixtures` folders. Moving them out of the command tree is for the doctor owner.
-5. **One sk-code drift guard, `alignment-drift`, fails on main** with 10 errors in files this phase did not touch. It fails the same way before these changes.
+5. **A linked track can lose an empty packet folder from its list.** The linked `anobel.com` track declares `003-webshop-bento-card-designs`, an empty folder, which a working-tree refresh now drops. That track lives in another repository.
 <!-- /ANCHOR:limitations -->
 
 ---
