@@ -46,6 +46,9 @@
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
       ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      ".skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts",
+      ".skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
       ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py"
     ],
     "entities": [
@@ -101,6 +104,24 @@
         "name": "baseline-readme-verdicts.json",
         "kind": "config",
         "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "history-locator.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/history-locator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_new_snake_case.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/check_no_new_snake_case.py",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Workflow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.dsh/prompts/local-skilled-alignment.md` was committed although its source, the operator's private command, is gitignored, so CI and every new worktree reported it as an extra prompt",
     "created_at": "2026-11-08T08:54:12Z",
-    "last_save_at": "2026-11-08T10:52:37.756Z",
+    "last_save_at": "2026-11-08T11:48:35.446Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db14d43240b8a2e510052efc9b50641e0641d10cf5c8c7565e4d10b5258c521b",
+    "source_fingerprint": "sha256:ad821e656bd085f3bc0b4ccf80da28c9f015972ff2743bb32d96fdc8dcabeaf0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1ddb179e2db7bf71fce665e9b63161216335dd5737769077d06ff6cc60cf91a",
       "plan.md": "f03cdd83114270146e2acf501eea768caca30dd7da08a09857df952df11ce22f",
-      "tasks.md": "d53323071046e9da11441e57eb0bf9488b6c14a18044bbb8017ea0a56ea0652c",
+      "tasks.md": "87f568d233d113235c2e05751402e9f7778fced690205ccf4ba5a63441961c36",
       "decision-record.md": "58e02636cc9bfb2a9abc024f9e7c71d6eaab3e2f280a5a21b8bf74080056744c",
-      "implementation-summary.md": "4036564108e99b67f2e9272856a9fb32e8dc054106966823f98756f687d2b421"
+      "implementation-summary.md": "2117f9ec279efec7845ed1a22a9b70cdcc67bbd09bc7a6c1de55602a4b083f0e"
     },
     "last_active_at": null
   }
