@@ -20,7 +20,8 @@
     "system-skill-advisor/030-doctor-command-surfacing",
     "system-skill-advisor/031-routing-and-launcher-hardening",
     "system-skill-advisor/032-executor-workflow-owner-guard",
-    "system-skill-advisor/033-build-freshness-record"
+    "system-skill-advisor/033-build-freshness-record",
+    "system-skill-advisor/034-runtime-name-implementation-routing"
   ],
   "manual": {
     "depends_on": [],
