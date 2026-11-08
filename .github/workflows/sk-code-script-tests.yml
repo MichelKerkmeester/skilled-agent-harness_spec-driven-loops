@@ -57,6 +57,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+env:
+  # Every model load runs on the CPU, so the onnxruntime-node install skips its Linux CUDA
+  # provider download: unused here, and the install step that fails when that host times out.
+  ONNXRUNTIME_NODE_INSTALL_CUDA: skip
+
 jobs:
   sk-code-scripts:
     name: sk-code script tests

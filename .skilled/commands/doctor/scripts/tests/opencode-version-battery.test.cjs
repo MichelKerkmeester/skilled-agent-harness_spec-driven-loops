@@ -644,6 +644,22 @@ test('C7: both command folder spellings are read, with slashed names and a follo
   assert.deepEqual(listCommandNames(path.join(root, 'missing')), []);
 });
 
+test('C9: v1 names a file by its frontmatter name, v2 by its path', (t) => {
+  const root = tempRoot(t);
+  const opencode = path.join(root, '.opencode');
+  fs.mkdirSync(path.join(opencode, 'command', 'deep'), { recursive: true });
+  fs.writeFileSync(path.join(opencode, 'command', 'plain.md'), '# plain\n');
+  fs.writeFileSync(path.join(opencode, 'command', 'deep', 'SKILL.md'), '---\nname: fixture-named\ndescription: x\n---\n# body\n');
+  fs.writeFileSync(path.join(opencode, 'command', 'deep', 'late.md'), '# body\n\nname: not-frontmatter\n');
+  assert.deepEqual(listCommandNames(opencode, 'v1'), ['deep/late', 'fixture-named', 'plain']);
+  assert.deepEqual(listCommandNames(opencode), ['deep/SKILL', 'deep/late', 'plain']);
+  const env = emptyEnv(t);
+  const v1 = legCommandListed('v1', ['plain', 'fixture-named', 'deep/late'], allowedCommandSources(root, 'v1', env));
+  assert.equal(v1.status, 'PASS', resultText(v1));
+  const v1ByPath = legCommandListed('v1', ['plain', 'deep/SKILL', 'deep/late'], allowedCommandSources(root, 'v1', env));
+  assert.equal(v1ByPath.status, 'FAIL');
+});
+
 test('C8: v2 a command listing that never settles degrades command-listed', (t) => {
   const root = pluginRoot(t, ['alpha.js']);
   const files = listPluginFiles(root);
