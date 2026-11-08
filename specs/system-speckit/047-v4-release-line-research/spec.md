@@ -105,6 +105,30 @@ Every write stays inside this packet.
 | 3 | 003-cli-and-deep-loop/ | cli-external-orchestration, cli-classifier, DeepSeek harness, system-deep-loop runtime | Complete |
 | 4 | 004-advisor-hooks-relaunch/ | system-skill-advisor, compiled routing, hooks and plugins, session relaunch, compaction history | Complete |
 | 5 | 005-doctor-git-ci-runtime/ | doctor commands, Skilled-in-your-project, overlays, sk-git, CI, agents, commands, runtime mirrors, repo-rules | Complete |
+| 6 | 006-deep-loop-single-executor-dispatch/ | Remediation: deep loop single executor dispatch (scope in `research/research.md`) | Pending |
+| 7 | 007-deep-loop-state-and-stop-policy/ | Remediation: deep loop state and stop policy (scope in `research/research.md`) | Pending |
+| 8 | 008-write-containment-scoping/ | Remediation: write containment scoping (scope in `research/research.md`) | Pending |
+| 9 | 009-gate3-and-continuity-root/ | Remediation: gate3 and continuity root (scope in `research/research.md`) | Pending |
+| 10 | 010-validate-and-retrieval-exit-honesty/ | Remediation: validate and retrieval exit honesty (scope in `research/research.md`) | Pending |
+| 11 | 011-spec-kit-doc-drift/ | Remediation: spec kit doc drift (scope in `research/research.md`) | Pending |
+| 12 | 012-hook-guards-and-audit-log/ | Remediation: hook guards and audit log (scope in `research/research.md`) | Pending |
+| 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Pending |
+| 14 | 014-doctor-and-ci-gate-honesty/ | Remediation: doctor and ci gate honesty (scope in `research/research.md`) | Pending |
+| 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Pending |
+| 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Pending |
+| 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Pending |
+| 6 | 006-deep-loop-single-executor-dispatch/ | [Phase 6 scope] | Pending |
+| 7 | 007-deep-loop-state-and-stop-policy/ | [Phase 7 scope] | Pending |
+| 8 | 008-write-containment-scoping/ | [Phase 8 scope] | Pending |
+| 9 | 009-gate3-and-continuity-root/ | [Phase 9 scope] | Pending |
+| 10 | 010-validate-and-retrieval-exit-honesty/ | [Phase 10 scope] | Pending |
+| 11 | 011-spec-kit-doc-drift/ | [Phase 11 scope] | Pending |
+| 12 | 012-hook-guards-and-audit-log/ | [Phase 12 scope] | Pending |
+| 13 | 013-agents-md-delivery-budget/ | [Phase 13 scope] | Pending |
+| 14 | 014-doctor-and-ci-gate-honesty/ | [Phase 14 scope] | Pending |
+| 15 | 015-cli-hub-routing-and-classifier/ | [Phase 15 scope] | Pending |
+| 16 | 016-authoring-hub-manifests-and-drift/ | [Phase 16 scope] | Pending |
+| 17 | 017-over-engineering-cuts/ | [Phase 17 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -121,6 +145,18 @@ Every write stays inside this packet.
 | 002-authoring-hubs | 003-cli-and-deep-loop | None: phases run in parallel | Each child validates on its own |
 | 003-cli-and-deep-loop | 004-advisor-hooks-relaunch | None: phases run in parallel | Each child validates on its own |
 | 004-advisor-hooks-relaunch | 005-doctor-git-ci-runtime | None: phases run in parallel | Each child validates on its own |
+| 005-doctor-git-ci-runtime | 006-deep-loop-single-executor-dispatch | [Criteria TBD] | [Verification TBD] |
+| 006-deep-loop-single-executor-dispatch | 007-deep-loop-state-and-stop-policy | [Criteria TBD] | [Verification TBD] |
+| 007-deep-loop-state-and-stop-policy | 008-write-containment-scoping | [Criteria TBD] | [Verification TBD] |
+| 008-write-containment-scoping | 009-gate3-and-continuity-root | [Criteria TBD] | [Verification TBD] |
+| 009-gate3-and-continuity-root | 010-validate-and-retrieval-exit-honesty | [Criteria TBD] | [Verification TBD] |
+| 010-validate-and-retrieval-exit-honesty | 011-spec-kit-doc-drift | [Criteria TBD] | [Verification TBD] |
+| 011-spec-kit-doc-drift | 012-hook-guards-and-audit-log | [Criteria TBD] | [Verification TBD] |
+| 012-hook-guards-and-audit-log | 013-agents-md-delivery-budget | [Criteria TBD] | [Verification TBD] |
+| 013-agents-md-delivery-budget | 014-doctor-and-ci-gate-honesty | [Criteria TBD] | [Verification TBD] |
+| 014-doctor-and-ci-gate-honesty | 015-cli-hub-routing-and-classifier | [Criteria TBD] | [Verification TBD] |
+| 015-cli-hub-routing-and-classifier | 016-authoring-hub-manifests-and-drift | [Criteria TBD] | [Verification TBD] |
+| 016-authoring-hub-manifests-and-drift | 017-over-engineering-cuts | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

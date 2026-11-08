@@ -8,7 +8,19 @@
     "system-speckit/047-v4-release-line-research/002-authoring-hubs",
     "system-speckit/047-v4-release-line-research/003-cli-and-deep-loop",
     "system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch",
-    "system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime"
+    "system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime",
+    "system-speckit/047-v4-release-line-research/006-deep-loop-single-executor-dispatch",
+    "system-speckit/047-v4-release-line-research/007-deep-loop-state-and-stop-policy",
+    "system-speckit/047-v4-release-line-research/008-write-containment-scoping",
+    "system-speckit/047-v4-release-line-research/009-gate3-and-continuity-root",
+    "system-speckit/047-v4-release-line-research/010-validate-and-retrieval-exit-honesty",
+    "system-speckit/047-v4-release-line-research/011-spec-kit-doc-drift",
+    "system-speckit/047-v4-release-line-research/012-hook-guards-and-audit-log",
+    "system-speckit/047-v4-release-line-research/013-agents-md-delivery-budget",
+    "system-speckit/047-v4-release-line-research/014-doctor-and-ci-gate-honesty",
+    "system-speckit/047-v4-release-line-research/015-cli-hub-routing-and-classifier",
+    "system-speckit/047-v4-release-line-research/016-authoring-hub-manifests-and-drift",
+    "system-speckit/047-v4-release-line-research/017-over-engineering-cuts"
   ],
   "manual": {
     "depends_on": [],
@@ -40,7 +52,7 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -206,7 +218,7 @@
     ],
     "causal_summary": "Nineteen releases shipped between v4.0.0.0 (2026-09-21) and v4.0.2.0 (2026-11-08): 3,687 commits across spec kit, the authoring hubs, the CLI executors, the deep loops, the skill advisor, hooks, doctor commands and git tooling",
     "created_at": "2026-11-08T19:49:04Z",
-    "last_save_at": "2026-11-08T23:36:24.362Z",
+    "last_save_at": "2026-11-08T23:39:31.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +226,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5b8975740ffa3cdb79fb9df14ea7f97f67fc42a5b02fcb58586f2403c7bc2931",
+    "source_fingerprint": "sha256:745f15b867e486c87b2c27260c1bc9c65099fb4cf9dc46b6104d255076e58cb7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1747af60b4197b50151d7020002978bec13c1116e6e4995c9dc0ccdf1e92e046",
+      "spec.md": "5a42495ddde5febdb2dfb7af3a747a3e429a99d68651213d27f7e7c3eef5eac5",
       "research/research.md": "12682bd016fa7179f71e23cffa6aa65f5ae689e6a331bd86649f58576f8b4a55"
     },
     "last_active_child_id": "system-speckit/047-v4-release-line-research/003-cli-and-deep-loop",
