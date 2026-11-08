@@ -65,6 +65,9 @@ contextType: "implementation"
 - [x] T016 Run the advisor's vitest suite. Verify: `160 passed (160)` files, `1373 passed | 8 skipped`.
 - [x] T017 Rerun the three Barter checks and stage a re-pin of Barter onto this branch's commit. Verify: upstream `status` `RESULT: PASSED`, fork checks green, `repin --to c29f26ded8 --stage` exit 0, `checked=132 ok=132 miss=0`, `RESULT: STAGED`, no blocked overlay, live tree unchanged.
 - [x] T018 Validate the packet. Verify: `validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+- [x] T019 Fix the alignment findings: a nested overlay folder hid sibling paths from the not-copied list (E `notCopiedChanges`), `overlays.md` carried 10 trigger phrases, two docs said every not-copied change prints, two workflow assets missed the new engine lines, and `description.json` kept its scaffold placeholder. Verify: the new nested-folder test passes and fails against the old engine; `check-skill-doc-frontmatter.sh . --coverage` prints `violations=0`.
+- [x] T020 Add the manual-testing scenario SKD-004 for the per-entry protected-file refusal (`manual-testing-playbook/overlays/adopt-with-protected-file.md`). Verify: its command sequence prints the one `MISS directory-files` line with the `protectedPaths` fix, exits 1 and leaves the tree unchanged; the package validator counts `scenarios=4` with no new violation.
+- [x] T021 Rerun the doctor suite and the alignment recheck. Verify: `tests 1069`, `pass 1063`, `fail 6` (the same six agents-md tests); recheck resolved the frontmatter row and found no new failure.
 <!-- /ANCHOR:phase-3 -->
 
 ---

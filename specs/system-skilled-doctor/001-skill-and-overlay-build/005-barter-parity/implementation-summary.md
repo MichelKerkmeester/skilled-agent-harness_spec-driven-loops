@@ -70,6 +70,9 @@ A token-named file the engine may not read used to stop the whole report, so one
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts` | Modified | Regenerated from the routes |
 | `.skilled/skills/system-skilled-doctor/references/overlays.md` | Modified | Per-entry refusal, re-pin copy set and not-copied list, adoption section |
 | `README.md` | Modified | §5 names the re-pin copy set, the not-copied list and adoption |
+| `.skilled/commands/doctor/assets/doctor-overlay-apply.yaml` | Modified | Treats a protected-path `MISS` line as a blocked entry |
+| `.skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md` | Created | Scenario SKD-004: the per-entry protected-file refusal |
+| `.skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md` | Modified | Indexes SKD-004 |
 | Barter `skilled/.skilled-overlays.json` | Created | Names `barter-overlays`; untracked in Barter, not committed |
 | Barter `skilled/barter-overlays/overlay-manifest.json` | Modified | `protectedPaths` on `repo-frontend` and a `repin` block; untracked in Barter, not committed |
 <!-- /ANCHOR:what-built -->
@@ -105,12 +108,20 @@ A five-iteration deep-research run on pi with DeepSeek V4.1 Flash at `--thinking
 |-------|--------|
 | Upstream `status --root barter/ai-speckit/skilled` | PASS: `checked=132 ok=132 miss=0`, `RESULT: PASSED` (was exit 2) |
 | Barter `replay.cjs --check` and `sync.cjs --status` | PASS: `checked=132 ok=132 miss=0`, `in-sync=468` |
-| Doctor suite | 1,068 tests, 1,062 pass, 6 fail; the six are the agents-md failures the base commit also has (base: 1,065, 1,059, 6) |
+| Doctor suite | 1,069 tests, 1,063 pass, 6 fail; the six are the agents-md failures the base commit also has (base: 1,065, 1,059, 6) |
 | Mutation pass | Each of four removed behaviors fails its test; engine restored byte-identical |
 | `doctor-phrase-reach.cjs` | PASS: `STATUS=OK phrases=228 bridges=35` |
 | Advisor vitest suite | PASS: 160 files, 1,373 tests, 8 skipped |
 | Staged re-pin of Barter onto `c29f26ded8` | PASS: exit 0, `checked=132 ok=132 miss=0`, `RESULT: STAGED`, no blocked overlay; listed `README.md` as not copied, skipped 9 regenerate and 10 verify steps, and found 8 overlays that now equal upstream |
 <!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:alignment -->
+## Alignment Follow-Up
+
+A `/local-skilled-alignment` run over the branch found that a nested overlay folder such as `project/overlays` hid every upstream change under `project/` from the not-copied list, because the check compared only the first path segment. It also found that `overlays.md` broke the eight-phrase frontmatter limit, that two docs and two workflow assets lagged the engine's new output, and that `description.json` still held its scaffold text. Each was fixed, the engine change with a test that fails against the old code, and the new playbook scenario was run for real before it was recorded.
+<!-- /ANCHOR:alignment -->
 
 ---
 

@@ -1,17 +1,14 @@
 {
   "level": "2",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity",
-  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Phase 5: barter-parity. A vendoring project with its own overlay folder could not use /doctor:overlay; the engine now reports a protected file per entry, re-pins .dsh, lists the upstream changes a re-pin leaves out and documents adoption, with Barter's tree passing the upstream status.",
   "keywords": [
-    "yourvaluehere",
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "phase",
+    "barter-parity",
+    "overlay",
+    "re-pin",
+    "vendored",
+    "adoption"
   ],
   "lastUpdated": "2026-11-07T21:36:41.351Z",
   "specId": "005",
