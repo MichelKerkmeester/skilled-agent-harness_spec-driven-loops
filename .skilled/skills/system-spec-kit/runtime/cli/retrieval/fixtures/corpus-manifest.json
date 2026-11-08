@@ -1,5 +1,5 @@
 {
-  "corpusHash": "be6e9c6587b1324d3d1727cec7e05c7c73d27fd9830beec4a3153153ac8a40bd",
+  "corpusHash": "ac108177cd44476238001ff1154b684f24f437606db7dc4359671f0925e2cc1a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28470,
+  "includedPathCount": 28472,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8745,6 +8745,8 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-baseline-conversation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/compaction-history-recall-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
@@ -28501,7 +28503,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "75392b1a5953da1c61c76ccfa9d8c2e09a86158aa307c1490fad439a4d4751bc",
+  "manifestHash": "d3bcc6aa29edb526f945b21911f2c143746fc4dfd64c938d391c98efe8046df2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
