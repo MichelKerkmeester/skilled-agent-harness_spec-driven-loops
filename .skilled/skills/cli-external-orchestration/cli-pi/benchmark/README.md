@@ -66,4 +66,4 @@ Each run-label folder holds the seven-file package the storage guide defines:
 |---|---|
 | [`cli-pi`](../SKILL.md) | The CLI under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `PI-021` scenario this run validates |
-| [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks/004-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |
+| [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks-plugins-extensions/004-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |

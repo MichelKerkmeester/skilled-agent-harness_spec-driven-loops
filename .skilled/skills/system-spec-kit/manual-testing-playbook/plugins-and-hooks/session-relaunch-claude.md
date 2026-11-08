@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.15.0
+version: 1.0.16.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -431,7 +431,7 @@ Evidence: inside the first session, `echo $SKILLED_LOOP_ID` through the Bash too
 
 #### Recorded Results, 2026-10-22
 
-Claude Code 2.1.306 to 2.1.308 (it updated itself mid-run), live in tmux at a 0.05 threshold. All rows passed. The full situation matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md).
+Claude Code 2.1.306 to 2.1.308 (it updated itself mid-run), live in tmux at a 0.05 threshold. All rows passed. The full situation matrix, commits and evidence paths are in the [runtime-certainty implementation summary](../../../../../specs/hooks-plugins-extensions/023-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode/implementation-summary.md).
 
 | Situation | Result |
 |---|---|
