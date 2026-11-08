@@ -44,6 +44,7 @@ Your architecture, decisions and session history are written into the spec folde
 - `/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped
 - A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
 - A phrase nobody wrote is a clean no-hit, never a nearest guess
+- After a compaction, a session can search and load its own earlier turns through one read-only command, so a detail the summary dropped is not lost
 - Your answers to the AI's questions are captured as you give them and saved into the packet's decision record, with the exact exchange beside each one
 
 ### 🔄 Deep Loop
@@ -590,11 +591,20 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - Both lanes read committed files, so neither needs a running daemon
 - Retrieval is lexical only: semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported. A miss is a clean no-hit rather than a degraded guess
 
+**History after compaction**
+
+- After a compaction on Claude, Codex, Pi, Devin, DSH or OpenCode, the returned context can carry a `## History Lookup` section with one read-only command
+- The command searches, browses, loads and pages the session's own earlier turns, at most 16 KiB per reply, and returns only what the conversation showed
+- Search finds a turn from part of what the model remembers: `MARKER` or `dv-2b7e` finds the turn that said `LIVE-MARKER-dv-2b7e`, and the preview shows the match
+- The handle works for 30 minutes and only for the session and checkout that minted it, including a session started in a subfolder. Cursor is not offered yet
+- The command runs the compiled helper, so run `npm run build` in `.skilled/skills/system-spec-kit/runtime` first
+
 **The moving parts**
 
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
 - A save that is not `--full-auto` ends its summary with `Continuity fields not written: plan-only save; pass --full-auto to write them`, so a plan-only save no longer looks like a full one
-- Recovery stays with the continuity ladder that `/speckit:resume` owns as the primary recovery path, and the compaction path may add one bounded history lookup when a fresh locator verifies
+- `/speckit:resume` stays the primary recovery path. The history lookup only adds to it, and when its handle is missing or stale the section is left out and recovery runs as before
+- `/speckit:save` records the runtime and session that wrote a packet's continuity when the save passes `--session-id` and `--runtime`
 - `/speckit:search` runs the two lexical lanes
 - `/doctor:speckit` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
