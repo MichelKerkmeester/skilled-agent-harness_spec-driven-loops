@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
+  "manifestHash": "f34a4644ba3fd89ffb06cd144164bbdc44c7ebe62f675b1381dff93a0e793ef3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20968,6 +20968,9 @@
     "cli codex 1 9 15 0": [
       "cli-codex 1.9.15.0"
     ],
+    "cli codex 1 9 15 1": [
+      "cli-codex 1.9.15.1"
+    ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
     ],
@@ -21189,6 +21192,9 @@
     ],
     "cli codex v1 9 15 0": [
       "cli-codex v1.9.15.0"
+    ],
+    "cli codex v1 9 15 1": [
+      "cli-codex v1.9.15.1"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -26813,6 +26819,9 @@
     ],
     "codex task dispatch payload": [
       "codex task dispatch payload"
+    ],
+    "codex templates fast tier": [
+      "codex templates fast tier"
     ],
     "codex timeout stale marker": [
       "Codex timeout stale marker"

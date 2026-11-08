@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f314ccf5442b89b0976db02cdfe791bd529d56d38badda396232b83ef5b6fd0a",
+  "corpusHash": "19d9bfd1630eced696fe0bbd72b49ae9ff4ddf5806de0202146c93c097a24400",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28496,
+  "includedPathCount": 28497,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -782,6 +782,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.13.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.14.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.1.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
@@ -28527,7 +28528,7 @@
     "specs/system-speckit/045-upgrade-level-anchor-insert/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dfcaba7e3d235ff85bf99b7edf3a307ba2b71e0d5aa557e5f81ef951786c0051",
+  "manifestHash": "f34a4644ba3fd89ffb06cd144164bbdc44c7ebe62f675b1381dff93a0e793ef3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
