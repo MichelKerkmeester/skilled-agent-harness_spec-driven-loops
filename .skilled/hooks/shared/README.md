@@ -64,6 +64,7 @@ shared/
 +-- hook-adapter-shared.cjs     # readStdin() + parseJsonFailOpen() for CommonJS and ESM adapters
 +-- hook-adapter-shared.test.cjs   # node --test suite: stdin deadline and whole-input read
 +-- hook-stdin-deadline.test.mjs   # node --test suite: every ESM adapter exits at the stdin deadline
++-- session-reader-declarations.mjs   # rebuilds or checks the session readers' .d.mts declarations
 `-- session-readers/               # read-only per-runtime session readers (see session-readers/index.mjs)
 ```
 
@@ -82,6 +83,7 @@ shared/
 | `hook-adapter-shared.test.cjs` | `node --test` suite: a never-closed stdin resolves at the deadline and its process exits; complete input comes back whole. |
 | `hook-stdin-deadline.test.mjs` | `node --test` suite: with stdin left open and never written, each of the seventeen ESM adapters that import `readStdin` exits 0 at the deadline with its fail-open output, and the seven adapters no other suite spawns still answer a normal payload. |
 | `session-readers/` | Read-only session reader package: `readSession()` resolves one exact session id per runtime (Claude, Codex, Pi, OpenCode, Devin and DSH are ready, and Cursor is gated), projects the result into the shared `HistoryEntry` list and writes nothing, while the six decision-capture sweeps remain the writers. See [`session-readers/index.mjs`](./session-readers/index.mjs). |
+| `session-reader-declarations.mjs` | Rebuilds the committed `session-readers/*.d.mts` declarations that TypeScript callers read, or with `--check` reports any that no longer match their source. The compiler will not overwrite a declaration in place, so a plain build never refreshes them. It builds in a temporary copy and borrows the TypeScript compiler that the system-spec-kit skill installs. A development tool: no hook loads it. |
 
 ---
 
@@ -155,7 +157,13 @@ The session readers have their own suite:
 node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs
 ```
 
-Expected result: all 67 tests pass, including the store-unchanged check that every reader leaves the seven fixture stores untouched.
+Expected result: every test passes, including the store-unchanged check that every reader leaves the seven fixture stores untouched, and the declaration check, which is skipped when the TypeScript compiler is not installed.
+
+After changing a reader's exports or return shapes, rebuild its declarations:
+
+```bash
+node .skilled/hooks/shared/session-reader-declarations.mjs
+```
 
 ---
 

@@ -10,6 +10,11 @@ export function loadPiSession({ sessionId, projectDir, sessionManager, ...option
     code?: undefined;
 } | {
     ok: boolean;
+    code: string;
+    source?: undefined;
+    records?: undefined;
+} | {
+    ok: boolean;
     source: {
         runtime: string;
         sessionId: any;
