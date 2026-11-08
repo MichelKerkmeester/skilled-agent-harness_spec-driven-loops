@@ -198,6 +198,7 @@ Abridged from `research/research.md` (3 iterations, 5/5 questions answered):
 | 3 | 003-metadata-write-safety/ | `refresh-track-roots --apply` stops writing through a symlinked metadata file, and the pre-push repair clears a sub-track with no metadata (P2-4, P2-3) | Complete |
 | 4 | 004-doctor-symlink-gaps/ | The doctor engine's host-relative alias ignore decision and the whole-link `specs/` limit (P2-10b, P2-10d) | Complete |
 | 5 | 005-docs-and-tests/ | Doc drift and weak tests: `specId`, reader docs, three 044 doc lines, two test gaps, optional reader shape (P2-11, P2-12, P2-13a/b/c, P2-14a, P2-14b, optional P2-9) | Complete |
+| 6 | 006-review-follow-ups/ | The round-3 and round-4 follow-ups: every consumer judges the track segment like the reader, `archive.sh` creates missing sub-track metadata, the `validate.sh` sub-track packet glob, and two messages | Complete |
 
 ### Phase Transition Rules
 
@@ -214,6 +215,7 @@ Abridged from `research/research.md` (3 iterations, 5/5 questions answered):
 | 002-subtrack-predicate | 003-metadata-write-safety | The parity test passes for every consumer, so phase 003 seeds metadata only for a folder every tool agrees is a sub-track | The parity test file passes, and `validate.sh` on `002-subtrack-predicate` prints `RESULT: PASSED` |
 | 003-metadata-write-safety | 004-doctor-symlink-gaps | The refresh guard and seed pass their cases and D-003a and D-003b are answered; phase 004 has no code dependency, so it may run earlier | `track-roots.vitest.ts` passes, and `validate.sh` on `003-metadata-write-safety` prints `RESULT: PASSED` |
 | 004-doctor-symlink-gaps | 005-docs-and-tests | The doctor decision is pinned by a test and phases 001 to 003 are Complete, because phase 005's docs describe their final behavior | Both doctor node test files pass, and `validate.sh` on `004-doctor-symlink-gaps` prints `RESULT: PASSED` |
+| 005-docs-and-tests | 006-review-follow-ups | Phases 001 to 005 are Complete and the review loop approved them | `validate.sh` on `005-docs-and-tests` prints `RESULT: PASSED` |
 
 ### Recorded Operator Decisions
 

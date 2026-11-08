@@ -72,19 +72,16 @@ Full spec-kit suites on the worktree, taken before the round-1 fixes:
 
 ## Your primary checkout
 
-`/Users/michelkerkmeester/MEGA/Development/Skilled` is still on `230d22ba88`, five commits behind `origin/main`, with other sessions' uncommitted work. It also holds untracked originals of the files these commits add: the 044 phase folders, `review/` and `review-archive/`. So `git merge --ff-only origin/main` will refuse to overwrite them. To sync it:
-1. Move `specs/system-speckit/044-named-subtracks-and-host-repos/{001,002,003,004,005}-*` and `review/` aside.
-2. Run `git merge --ff-only origin/main`.
-3. Keep `review-archive/` and the untracked ledger folders, or delete them. They are run state and are not committed.
+Synced on 2026-11-08: `/Users/michelkerkmeester/MEGA/Development/Skilled` fast-forwarded from `230d22ba88` to `1f2236c027`. Its 044 copies were this session's own early drafts, with the phase map still at Draft, so before the merge they were moved to `~/.local/state/044-primary-backup-20261108/`: the four modified parent docs, the five phase folders and `review/`. Other sessions' uncommitted work was left as it was; none of it overlapped the incoming commits. `review-archive/` and the three ledger folders stay in place, untracked.
 
-The worktree and its branch, `worktrees/323-subtrack-review-fixes`, can be removed once you are happy.
+## Follow-ups (done in phase 006)
 
-## Follow-ups (cosmetic, not done)
-
-- **`archive.sh:281`** does not seed a missing sub-track `graph-metadata.json`, though `create.sh` now does. The push gate catches it, and the repair it prints works.
-- **`sweep-track-roots.mjs:99`** calls a missing sub-track metadata file "unreadable", where refresh now says "missing". The wording predates this change.
-- **`create.sh:1409-1426`:** only the empty-segment refusal shows the raw `--track` value. The other refusals print it without its trailing slash.
-- **The four sub-track check gaps** from round 3: segment 0 is not checked in `resolveParentId` and `expectedParentId`; `archive.sh` refuses a `z_*` track and has an unanchored `track_of`; the `validate.sh` packet glob. Normal use hits none of them.
+Every follow-up from rounds 3 and 4 is closed in `006-review-follow-ups/`, each behind a test that fails on the old code:
+- `archive.sh` now creates a missing sub-track `graph-metadata.json`, and `track_of` matches the full packet-name pattern.
+- The sweep says "missing" for an absent file and keeps "unreadable" for a bad one.
+- `create.sh` refusals print the `--track` value as typed.
+- The parser, `repair-derived.cjs`, `validate.sh` and the orchestrator now judge the track segment like the reader. The reader no longer reads a `z_*` track (D-006a).
+- `validate.sh` lists `NNN` and `NNN_name` sub-track packets.
 
 ## Open questions for the operator
 
@@ -92,6 +89,6 @@ None yet.
 
 ## Noted, out of scope
 
-- `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:169` exits with a bash syntax error. The phase 004 worker found it.
+- `.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` is not broken. It is a Python script with a `python3` shebang; the phase 004 worker ran it with `bash`, which fails at line 169. Run directly, it exits 0.
 - The review's run snapshots, 196 MB, were moved out of `review/lineages/*/containment` to the session scratchpad so validation could read `review/`. The scratchpad is temporary. Two more snapshot folders stay under `review-archive/`, about 94 MB.
-- Untracked runtime folders `deep-review-ledger/`, `deep-review-audit-ledger/` and `locks-and-fencing-v1/` sit at the packet root in the main checkout. Nothing was deleted.
+- **A stash slip, repaired.** During phase 006 a failed `git stash push` was followed by a `git stash pop`, which applied another session's `stash@{0}` ("sk-vision-024: park unrelated tree while committing") into this worktree. The pop conflicted, so git kept that stash entry. The worktree was backed up, reset to HEAD and given back only this phase's patch. `stash@{0}` is still in the list, unchanged.
