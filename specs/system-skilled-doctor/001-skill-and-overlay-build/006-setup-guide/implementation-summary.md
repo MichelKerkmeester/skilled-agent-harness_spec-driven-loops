@@ -8,18 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-doctor/001-skill-and-overlay-build/006-setup-guide"
-    last_updated_at: "2026-11-08T10:45:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "SETUP.md written from tested runs, README section 5 cut to a pointer"
+    last_updated_at: "2026-11-08T16:05:32Z"
+    last_updated_by: "generate-context"
+    recent_action: "Guide renamed INSTALL-SKILLED.md, README reworked, release notes republished"
     next_safe_action: "None; packet complete"
     blockers: []
     key_files:
-      - "SETUP.md"
+      - "INSTALL-SKILLED.md"
       - "README.md"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "setup guide"
-      parent_session_id: null
+      - ".skilled/changelog/skilled/v4.0.2.0.md"
+    session_ref:
+      runtime: "claude"
+      sessionId: "b2bc3af2-2d66-4d13-9d70-784e628579d2"
+      workspace: "/Users/michelkerkmeester/worktrees/public/324-overlay-repin-barter-parity"
+      savedAt: "2026-11-08T16:05:32Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

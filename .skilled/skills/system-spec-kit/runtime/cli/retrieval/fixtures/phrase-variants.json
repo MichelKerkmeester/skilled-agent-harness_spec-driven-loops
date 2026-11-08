@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fc38e99d0bbb05aca2bc0754d35562e03fceaef4defb7e2e59e1e40449f1e5e1",
+  "manifestHash": "443e29d2a04e3dbc5af7e6deed4f3d1839d28edb3aba25e1eb00bba077b86c43",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1680,6 +1680,9 @@
     ],
     "006 search query rag optimization tasks": [
       "006 search query rag optimization tasks"
+    ],
+    "006 setup guide operator decisions": [
+      "006-setup-guide operator decisions"
     ],
     "006 stale documentation readme fixes": [
       "006-stale-documentation-readme-fixes"

@@ -1696,7 +1696,7 @@ Define the agent in `.skilled/agents/` (the source of truth), then mirror the ad
 
 **Q: How many MCP tools are there and where are they defined?**
 
-The `code_mode` server registers seven tools, listed under [Code Mode MCP](#13--code-mode-mcp). External providers are declared as templates in `.utcp_config.json` at the repo root, which currently holds 13 entries.
+The `code_mode` server registers seven tools, listed under [Code Mode MCP](#13--code-mode-mcp). External providers are declared as templates in `.utcp_config.json` at the repo root, which currently holds 14 entries.
 
 &nbsp;
 

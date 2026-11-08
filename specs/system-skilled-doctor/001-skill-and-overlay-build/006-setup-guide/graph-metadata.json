@@ -16,6 +16,7 @@
       "first overlay setup",
       "setup guide plan",
       "setup guide tasks",
+      "006-setup-guide operator decisions",
       "setup guide implementation summary"
     ],
     "key_topics": [
@@ -29,8 +30,8 @@
       "overlay",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "006-setup-guide",
+      "operator"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,6 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-skilled-doctor/README.md"
     ],
@@ -58,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -179,32 +187,28 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root README held about 160 lines of setup detail written as reference",
     "created_at": "2026-11-08T10:47:42Z",
-    "last_save_at": "2026-11-08T13:32:17.330Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-08T16:05:32.680Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9fa072444989c3183e9901b427d2997653d31dae52320e337da46b07fb1a20a",
+    "source_fingerprint": "sha256:b646596a7a36f95b831905c0422482a84bfcc2a8223aa155c5c6b543411295ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02a7619d4eebe06ec5ffb2a9b955c79bcea8c8b1ce34c4517fb319561b8ea9f2",
       "plan.md": "7b855a9d94c853f78dff8540657e6bed85b41a7f864aa6782026893f29049829",
       "tasks.md": "d8a419a085c2e96cf598c489d2780208d8dd1c08cd5175dee92637923da7b4c4",
-      "implementation-summary.md": "3fb62cd96df61b8ea5cbd17514c67f4441af51e07a57be917e99e2d6aab3b82c"
+      "decision-record.md": "cf7ab6ea85c70c8e8c6eeee8292a5748b38d8d135e267d5dd0e371cf921f993f",
+      "implementation-summary.md": "78590480272ba92ba1b00ba26664cb457e29e2d304de84105ebb7f6bcdb39dfe"
     },
     "last_active_at": null
   }
