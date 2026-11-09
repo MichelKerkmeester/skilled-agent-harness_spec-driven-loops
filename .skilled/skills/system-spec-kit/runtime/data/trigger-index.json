@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8d30bcd6c110d9e95e5f2b12d3f48c897e178a5728a2b5b693c73eee030c5435",
+  "manifestHash": "e609aba83beafe9e00cb0998ccbb30d4e04f18eb1bd3e9b055e2f5b2b7a326e0",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17642,6 +17642,24 @@
     "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/plan.md",
     "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/spec.md",
     "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/tasks.md",
     "specs/system-speckit/047-v4-release-line-research/goal.md",
     "specs/system-speckit/047-v4-release-line-research/research/research.md",
     "specs/system-speckit/047-v4-release-line-research/spec.md"
@@ -47610,7 +47628,7 @@
       17207,
       17400,
       17408,
-      17632
+      17650
     ],
     "completion criteria copied": [
       16192,
@@ -65010,7 +65028,7 @@
       17207,
       17400,
       17408,
-      17632
+      17650
     ],
     "durable fan in failure plan": [
       9237
@@ -75375,7 +75393,7 @@
       17207,
       17400,
       17408,
-      17632
+      17650
     ],
     "goal binding gaps": [
       8171
@@ -79549,6 +79567,24 @@
     ],
     "host repository trigger index mode": [
       17513
+    ],
+    "host trigger index and repin generated": [
+      17636
+    ],
+    "host trigger index and repin generated acceptance criteria": [
+      17632
+    ],
+    "host trigger index and repin generated decisions": [
+      17633
+    ],
+    "host trigger index and repin generated implementation summary": [
+      17634
+    ],
+    "host trigger index and repin generated plan": [
+      17635
+    ],
+    "host trigger index and repin generated tasks": [
+      17637
     ],
     "hostile locale child vitest": [
       10042
@@ -98287,6 +98323,24 @@
     "operator approval grammar": [
       8857
     ],
+    "operator approved closeout": [
+      17648
+    ],
+    "operator approved closeout acceptance criteria": [
+      17644
+    ],
+    "operator approved closeout decisions": [
+      17645
+    ],
+    "operator approved closeout implementation summary": [
+      17646
+    ],
+    "operator approved closeout plan": [
+      17647
+    ],
+    "operator approved closeout tasks": [
+      17649
+    ],
     "operator confirmed labels": [
       3884
     ],
@@ -100624,7 +100678,7 @@
       17207,
       17400,
       17408,
-      17632
+      17650
     ],
     "packet goal authoring boundary": [
       8174
@@ -103012,6 +103066,9 @@
     "phase 18 create sh unknown options": [
       6636
     ],
+    "phase 18 host trigger index and repin generated": [
+      17636
+    ],
     "phase 18 outside loop handoff": [
       5653
     ],
@@ -103063,6 +103120,9 @@
     "phase 19 tasks": [
       5949,
       16863
+    ],
+    "phase 19 template marker upgrade and staleness scope": [
+      17642
     ],
     "phase 2 admission corpus pin": [
       6402
@@ -103261,6 +103321,9 @@
     ],
     "phase 20 implementation summary": [
       5950
+    ],
+    "phase 20 operator approved closeout": [
+      17648
     ],
     "phase 20 plan": [
       16866
@@ -144793,6 +144856,24 @@
     "template mapping": [
       2944
     ],
+    "template marker upgrade and staleness scope": [
+      17642
+    ],
+    "template marker upgrade and staleness scope acceptance criteria": [
+      17638
+    ],
+    "template marker upgrade and staleness scope decisions": [
+      17639
+    ],
+    "template marker upgrade and staleness scope implementation summary": [
+      17640
+    ],
+    "template marker upgrade and staleness scope plan": [
+      17641
+    ],
+    "template marker upgrade and staleness scope tasks": [
+      17643
+    ],
     "template markers": [
       16029
     ],
@@ -149369,16 +149450,16 @@
       16967
     ],
     "v4 release line research phase parent spec": [
-      17634
+      17652
     ],
     "v4 release line research synthesis": [
-      17633
+      17651
     ],
     "v4 release notes corrections applied": [
       16652
     ],
     "v4 remediation phases": [
-      17633
+      17651
     ],
     "v4 root readme": [
       16887

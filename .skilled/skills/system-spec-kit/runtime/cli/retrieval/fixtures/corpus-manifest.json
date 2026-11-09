@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8e9c983a7326efacd55852da9f354a9876a7914d1ef2c98436393bc90115e836",
+  "corpusHash": "a9d5e73a377bcc93b218b9bd8beef59c9931e6ae0fafe309a9276459037bede3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25878,
+  "includedPathCount": 25896,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25905,12 +25905,30 @@
     "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/plan.md",
     "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/spec.md",
     "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/tasks.md",
     "specs/system-speckit/047-v4-release-line-research/goal.md",
     "specs/system-speckit/047-v4-release-line-research/research/research.md",
     "specs/system-speckit/047-v4-release-line-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8d30bcd6c110d9e95e5f2b12d3f48c897e178a5728a2b5b693c73eee030c5435",
+  "manifestHash": "e609aba83beafe9e00cb0998ccbb30d4e04f18eb1bd3e9b055e2f5b2b7a326e0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36534,6 +36552,18 @@
     },
     {
       "path": "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/scratch",
       "reason": "excluded directory"
     },
     {

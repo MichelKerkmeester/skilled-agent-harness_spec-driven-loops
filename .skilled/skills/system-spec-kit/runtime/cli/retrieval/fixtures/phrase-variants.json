@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8d30bcd6c110d9e95e5f2b12d3f48c897e178a5728a2b5b693c73eee030c5435",
+  "manifestHash": "e609aba83beafe9e00cb0998ccbb30d4e04f18eb1bd3e9b055e2f5b2b7a326e0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -57617,6 +57617,24 @@
     "host repository trigger index mode": [
       "host repository trigger index mode"
     ],
+    "host trigger index and repin generated": [
+      "host trigger index and repin generated"
+    ],
+    "host trigger index and repin generated acceptance criteria": [
+      "host trigger index and repin generated acceptance criteria"
+    ],
+    "host trigger index and repin generated decisions": [
+      "host trigger index and repin generated decisions"
+    ],
+    "host trigger index and repin generated implementation summary": [
+      "host trigger index and repin generated implementation summary"
+    ],
+    "host trigger index and repin generated plan": [
+      "host trigger index and repin generated plan"
+    ],
+    "host trigger index and repin generated tasks": [
+      "host trigger index and repin generated tasks"
+    ],
     "hostile locale child vitest": [
       "hostile locale child vitest"
     ],
@@ -75334,6 +75352,24 @@
     "operator approval grammar": [
       "operator approval grammar"
     ],
+    "operator approved closeout": [
+      "operator approved closeout"
+    ],
+    "operator approved closeout acceptance criteria": [
+      "operator approved closeout acceptance criteria"
+    ],
+    "operator approved closeout decisions": [
+      "operator approved closeout decisions"
+    ],
+    "operator approved closeout implementation summary": [
+      "operator approved closeout implementation summary"
+    ],
+    "operator approved closeout plan": [
+      "operator approved closeout plan"
+    ],
+    "operator approved closeout tasks": [
+      "operator approved closeout tasks"
+    ],
     "operator confirmed labels": [
       "operator-confirmed labels"
     ],
@@ -79334,6 +79370,9 @@
     "phase 18 create sh unknown options": [
       "phase 18 create sh unknown options"
     ],
+    "phase 18 host trigger index and repin generated": [
+      "phase 18 host trigger index and repin generated"
+    ],
     "phase 18 outside loop handoff": [
       "phase 18 outside loop handoff"
     ],
@@ -79384,6 +79423,9 @@
     ],
     "phase 19 tasks": [
       "phase 19 tasks"
+    ],
+    "phase 19 template marker upgrade and staleness scope": [
+      "phase 19 template marker upgrade and staleness scope"
     ],
     "phase 2 admission corpus pin": [
       "phase 2 admission corpus pin"
@@ -79582,6 +79624,9 @@
     ],
     "phase 20 implementation summary": [
       "phase 20 implementation summary"
+    ],
+    "phase 20 operator approved closeout": [
+      "phase 20 operator approved closeout"
     ],
     "phase 20 plan": [
       "phase 20 plan"
@@ -118895,6 +118940,24 @@
     ],
     "template mapping": [
       "template mapping"
+    ],
+    "template marker upgrade and staleness scope": [
+      "template marker upgrade and staleness scope"
+    ],
+    "template marker upgrade and staleness scope acceptance criteria": [
+      "template marker upgrade and staleness scope acceptance criteria"
+    ],
+    "template marker upgrade and staleness scope decisions": [
+      "template marker upgrade and staleness scope decisions"
+    ],
+    "template marker upgrade and staleness scope implementation summary": [
+      "template marker upgrade and staleness scope implementation summary"
+    ],
+    "template marker upgrade and staleness scope plan": [
+      "template marker upgrade and staleness scope plan"
+    ],
+    "template marker upgrade and staleness scope tasks": [
+      "template marker upgrade and staleness scope tasks"
     ],
     "template markers": [
       "template markers"

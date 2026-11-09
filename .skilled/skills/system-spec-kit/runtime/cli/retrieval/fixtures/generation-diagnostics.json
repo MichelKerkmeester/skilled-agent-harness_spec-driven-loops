@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6663,
-    "ok": 17586,
+    "ok": 17604,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 25878,
+  "documentsScanned": 25896,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8d30bcd6c110d9e95e5f2b12d3f48c897e178a5728a2b5b693c73eee030c5435",
+  "manifestHash": "e609aba83beafe9e00cb0998ccbb30d4e04f18eb1bd3e9b055e2f5b2b7a326e0",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 41933,
+      "ok": 41954,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -62050,6 +62050,18 @@
     },
     {
       "path": "specs/system-speckit/047-v4-release-line-research/017-over-engineering-cuts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/scratch",
       "reason": "excluded directory"
     },
     {

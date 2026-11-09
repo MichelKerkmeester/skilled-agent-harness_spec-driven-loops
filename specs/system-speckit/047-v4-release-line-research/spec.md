@@ -112,13 +112,14 @@ Every write stays inside this packet.
 | 10 | 010-validate-and-retrieval-exit-honesty/ | Remediation: validate and retrieval exit honesty (scope in `research/research.md`) | Complete |
 | 11 | 011-spec-kit-doc-drift/ | Remediation: spec kit doc drift (scope in `research/research.md`) | Complete |
 | 12 | 012-hook-guards-and-audit-log/ | Remediation: hook guards and audit log (scope in `research/research.md`) | Complete |
-| 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Blocked |
+| 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Complete |
 | 14 | 014-doctor-and-ci-gate-honesty/ | Remediation: doctor and ci gate honesty (scope in `research/research.md`) | Complete |
 | 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Complete |
 | 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Complete |
 | 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Complete |
 | 18 | 018-host-trigger-index-and-repin-generated/ | Barter upstream: host trigger index default and generated retrieval files in a re-pin | Complete |
 | 19 | 019-template-marker-upgrade-and-staleness-scope/ | Barter upstream: old-marker upgrade path and staleness checker discovery scope | Complete |
+| 20 | 020-operator-approved-closeout/ | Operator-approved closeout: AGENTS.md headroom and manifest write, sk-design routing regeneration, trigger index rebuild | Complete |
 
 ### Phase Transition Rules
 
@@ -149,6 +150,7 @@ Every write stays inside this packet.
 | 016-authoring-hub-manifests-and-drift | 017-over-engineering-cuts | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 017-over-engineering-cuts | 018-host-trigger-index-and-repin-generated | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 018-host-trigger-index-and-repin-generated | 019-template-marker-upgrade-and-staleness-scope | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 019-template-marker-upgrade-and-staleness-scope | 020-operator-approved-closeout | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---
