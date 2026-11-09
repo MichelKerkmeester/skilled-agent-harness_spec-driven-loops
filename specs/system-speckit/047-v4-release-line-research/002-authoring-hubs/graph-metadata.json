@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Every v4 release from v4.0.0.0 to v4.0.2.0 changed the authoring hubs: `.skilled/skills/sk-doc/`, `sk-code/`, `sk-design/`, `sk-prompt/` and the `/create:`, `/design:` and `/prompt:` commands, and no pass has read the release notes, the code and the docs against each other",
     "created_at": "2026-11-08T19:49:05Z",
-    "last_save_at": "2026-11-08T22:34:30.628Z",
+    "last_save_at": "2026-11-09T13:50:05.776Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:736dbb9382365229796e9cf14d130e7d69dc4dc449d6b311593dfc5958c4423c",
+    "source_fingerprint": "sha256:e940e8f2f0178a8bfc948816777b2c905c0cd55cb0010315ae066b116bd2e035",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d38319d23efc81170b9a80ec1881c5f0a9a19d466ad34d91de749844b780eaf",
       "plan.md": "c6da9e2204b3be3f391e64cfa6fcc1b104b570ad03840838633245bd812ef535",
       "tasks.md": "4367e0ec33208f12cd8581449afa3a68a5d104b15c5ab1307330809a2543d49b",
       "decision-record.md": "a461449c79c2bf15bd2c9bf181b0a10e7757cfe70059a957991a35c5428009fd",
-      "implementation-summary.md": "14bb3ca6dc308dff8e25e389a2a4079dc6bd656c09ce7f7b9f4cd5a5ed0810b3",
+      "implementation-summary.md": "7e98ea81b3631d1d130b4d1ae68e61a4e4ed78238d8f1137d3dc668ccd139c64",
       "research/research.md": "d72511cf0a1d76feecd7cf95a9e3fdcc69d745f18f63dad583ed11f3d413408b"
     },
     "last_active_at": null

@@ -120,6 +120,7 @@ The orchestrator ran the auto workflow's own commands step by step: lock, render
 | Check | Result |
 |-------|--------|
 | Iterations recorded in the state log | 20 rows of type `iteration` |
+| Depth-bar score at close | 3 of 3 clean by the orchestrator's verification: iterations 18 to 20 added no new verified P1 after two +5 extensions. Raw delta severities for 18, 19 and 20 are P1 2, 1 and 2, none of which the orchestrator verified as a new P1, with newInfoRatio 0.60, 0.58 and 0.62 |
 | Citation checks | Two per iteration, verdicts in `decision-record.md` ADR-005 |
 | Strict validation | Summary: Errors: 0  Warnings: 2 / RESULT: PASSED (SOURCE_TAGS: 4 citations inside a containment quarantine copy of a sibling child iteration; LEVEL_MATCH: decision-record.md at Level 1) |
 <!-- /ANCHOR:verification -->

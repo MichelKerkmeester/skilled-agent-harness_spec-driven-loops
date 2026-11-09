@@ -120,6 +120,7 @@ The orchestrator ran the auto workflow's own commands step by step: lock, render
 | Check | Result |
 |-------|--------|
 | Iterations recorded in the state log | 11 rows of type `iteration` |
+| Depth-bar score at close | 3 of 3 clean at the 10-iteration floor, so no +5 extension: the deltas for iterations 9, 10 and 11 carry no P0 or P1 (P2 5, 6 and 0), with newInfoRatio 0.42, 0.58 and 0.35 |
 | Citation checks | Two per iteration, verdicts in `decision-record.md` ADR-005 |
 | Strict validation | Summary: Errors: 0  Warnings: 2 / RESULT: PASSED (after save; warnings SOURCE_TAGS from containment quarantine copies and LEVEL_MATCH for decision-record at Level 1) |
 <!-- /ANCHOR:verification -->
