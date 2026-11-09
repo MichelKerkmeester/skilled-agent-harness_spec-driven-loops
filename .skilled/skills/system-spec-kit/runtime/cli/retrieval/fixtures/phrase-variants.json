@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6172ddea923b11dcd3394449d87df088987e509236384f8432031400ce1a7e8e",
+  "manifestHash": "7466c38f8def17e892fd5030f99424fcc368d9ee4dcf338138f6e32ed3806ebc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8959,6 +8959,27 @@
     "advisor hook validation playbook": [
       "advisor hook validation playbook"
     ],
+    "advisor hooks relaunch": [
+      "advisor hooks relaunch"
+    ],
+    "advisor hooks relaunch decision record": [
+      "advisor hooks relaunch decision record"
+    ],
+    "advisor hooks relaunch implementation summary": [
+      "advisor hooks relaunch implementation summary"
+    ],
+    "advisor hooks relaunch plan": [
+      "advisor hooks relaunch plan"
+    ],
+    "advisor hooks relaunch tasks": [
+      "advisor hooks relaunch tasks"
+    ],
+    "advisor hooks relaunch timeline": [
+      "advisor hooks relaunch timeline"
+    ],
+    "advisor hooks relaunch v4 research findings": [
+      "advisor hooks relaunch v4 research findings"
+    ],
     "advisor identity": [
       "advisor identity"
     ],
@@ -13283,6 +13304,27 @@
     ],
     "authoring checklists link label": [
       "authoring checklists link label"
+    ],
+    "authoring hubs": [
+      "authoring hubs"
+    ],
+    "authoring hubs decision record": [
+      "authoring hubs decision record"
+    ],
+    "authoring hubs implementation summary": [
+      "authoring hubs implementation summary"
+    ],
+    "authoring hubs plan": [
+      "authoring hubs plan"
+    ],
+    "authoring hubs tasks": [
+      "authoring hubs tasks"
+    ],
+    "authoring hubs timeline": [
+      "authoring hubs timeline"
+    ],
+    "authoring hubs v4 research findings": [
+      "authoring hubs v4 research findings"
     ],
     "authoring metric definitions": [
       "authoring metric definitions"
@@ -20406,6 +20448,27 @@
     ],
     "cli aliases errors": [
       "CLI aliases errors"
+    ],
+    "cli and deep loop": [
+      "cli and deep loop"
+    ],
+    "cli and deep loop decision record": [
+      "cli and deep loop decision record"
+    ],
+    "cli and deep loop implementation summary": [
+      "cli and deep loop implementation summary"
+    ],
+    "cli and deep loop plan": [
+      "cli and deep loop plan"
+    ],
+    "cli and deep loop tasks": [
+      "cli and deep loop tasks"
+    ],
+    "cli and deep loop timeline": [
+      "cli and deep loop timeline"
+    ],
+    "cli and deep loop v4 research findings": [
+      "cli and deep loop v4 research findings"
     ],
     "cli and mcp hubs": [
       "cli and mcp hubs"
@@ -42142,6 +42205,27 @@
     ],
     "doctor git acceptance criteria": [
       "doctor git acceptance criteria"
+    ],
+    "doctor git ci runtime": [
+      "doctor git ci runtime"
+    ],
+    "doctor git ci runtime decision record": [
+      "doctor git ci runtime decision record"
+    ],
+    "doctor git ci runtime implementation summary": [
+      "doctor git ci runtime implementation summary"
+    ],
+    "doctor git ci runtime plan": [
+      "doctor git ci runtime plan"
+    ],
+    "doctor git ci runtime tasks": [
+      "doctor git ci runtime tasks"
+    ],
+    "doctor git ci runtime timeline": [
+      "doctor git ci runtime timeline"
+    ],
+    "doctor git ci runtime v4 research findings": [
+      "doctor git ci runtime v4 research findings"
     ],
     "doctor git command": [
       "doctor git command"
@@ -79101,6 +79185,9 @@
     "phase 1 source deprecation": [
       "phase 1 source deprecation"
     ],
+    "phase 1 spec kit core": [
+      "phase 1 spec kit core"
+    ],
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
     ],
@@ -79581,6 +79668,9 @@
     "phase 2 agent improvement inventory": [
       "phase 2 agent improvement inventory"
     ],
+    "phase 2 authoring hubs": [
+      "phase 2 authoring hubs"
+    ],
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
@@ -79944,6 +80034,9 @@
     "phase 3 check and template canon closure": [
       "phase 3 check and template canon closure"
     ],
+    "phase 3 cli and deep loop": [
+      "phase 3 cli and deep loop"
+    ],
     "phase 3 cli codex": [
       "phase 3 cli codex"
     ],
@@ -80138,6 +80231,9 @@
     ],
     "phase 39 sk code opencode alignment audit": [
       "phase 39 sk code opencode alignment audit"
+    ],
+    "phase 4 advisor hooks relaunch": [
+      "phase 4 advisor hooks relaunch"
     ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
@@ -80378,6 +80474,9 @@
     ],
     "phase 5 docs and tests": [
       "phase 5 docs and tests"
+    ],
+    "phase 5 doctor git ci runtime": [
+      "phase 5 doctor git ci runtime"
     ],
     "phase 5 dsh mirror generators": [
       "phase 5 dsh mirror generators"
@@ -112105,6 +112204,27 @@
     "spec kit contract optimization": [
       "spec-kit contract optimization"
     ],
+    "spec kit core": [
+      "spec kit core"
+    ],
+    "spec kit core decision record": [
+      "spec kit core decision record"
+    ],
+    "spec kit core implementation summary": [
+      "spec kit core implementation summary"
+    ],
+    "spec kit core plan": [
+      "spec kit core plan"
+    ],
+    "spec kit core tasks": [
+      "spec kit core tasks"
+    ],
+    "spec kit core timeline": [
+      "spec kit core timeline"
+    ],
+    "spec kit core v4 research findings": [
+      "spec kit core v4 research findings"
+    ],
     "spec kit database path fix": [
       "spec-kit database path fix"
     ],
@@ -123595,8 +123715,17 @@
     "v4 phase map blank line": [
       "v4 phase map blank line"
     ],
+    "v4 release line research phase parent spec": [
+      "v4 release line research phase parent spec"
+    ],
+    "v4 release line research synthesis": [
+      "v4 release line research synthesis"
+    ],
     "v4 release notes corrections applied": [
       "v4 release notes corrections applied"
+    ],
+    "v4 remediation phases": [
+      "v4 remediation phases"
     ],
     "v4 root readme": [
       "v4 root readme"

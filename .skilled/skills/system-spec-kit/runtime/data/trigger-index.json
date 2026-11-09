@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6172ddea923b11dcd3394449d87df088987e509236384f8432031400ce1a7e8e",
+  "manifestHash": "7466c38f8def17e892fd5030f99424fcc368d9ee4dcf338138f6e32ed3806ebc",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17653,7 +17653,52 @@
     "specs/system-speckit/046-create-path-track-refresh/implementation-summary.md",
     "specs/system-speckit/046-create-path-track-refresh/plan.md",
     "specs/system-speckit/046-create-path-track-refresh/spec.md",
-    "specs/system-speckit/046-create-path-track-refresh/tasks.md"
+    "specs/system-speckit/046-create-path-track-refresh/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/research/deep-research-strategy.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/research/research.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/001-spec-kit-core/timeline.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/research/deep-research-strategy.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/research/research.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/002-authoring-hubs/timeline.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/research/deep-research-strategy.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/research/research.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/research_archive/20261108T201434Z/deep-research-strategy.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/timeline.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/research/deep-research-strategy.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/research/research.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/research_archive/20261108T201439Z/deep-research-strategy.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/004-advisor-hooks-relaunch/timeline.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/research/deep-research-strategy.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/research/research.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/005-doctor-git-ci-runtime/timeline.md",
+    "specs/system-speckit/047-v4-release-line-research/goal.md",
+    "specs/system-speckit/047-v4-release-line-research/research/research.md",
+    "specs/system-speckit/047-v4-release-line-research/spec.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -27062,6 +27107,27 @@
     "advisor hook validation playbook": [
       2824
     ],
+    "advisor hooks relaunch": [
+      17675
+    ],
+    "advisor hooks relaunch decision record": [
+      17669
+    ],
+    "advisor hooks relaunch implementation summary": [
+      17670
+    ],
+    "advisor hooks relaunch plan": [
+      17671
+    ],
+    "advisor hooks relaunch tasks": [
+      17676
+    ],
+    "advisor hooks relaunch timeline": [
+      17677
+    ],
+    "advisor hooks relaunch v4 research findings": [
+      17673
+    ],
     "advisor identity": [
       315
     ],
@@ -31554,6 +31620,27 @@
     ],
     "authoring checklists link label": [
       1340
+    ],
+    "authoring hubs": [
+      17657
+    ],
+    "authoring hubs decision record": [
+      17652
+    ],
+    "authoring hubs implementation summary": [
+      17653
+    ],
+    "authoring hubs plan": [
+      17654
+    ],
+    "authoring hubs tasks": [
+      17658
+    ],
+    "authoring hubs timeline": [
+      17659
+    ],
+    "authoring hubs v4 research findings": [
+      17656
     ],
     "authoring metric definitions": [
       17378
@@ -38984,6 +39071,27 @@
     ],
     "cli aliases errors": [
       14881
+    ],
+    "cli and deep loop": [
+      17666
+    ],
+    "cli and deep loop decision record": [
+      17660
+    ],
+    "cli and deep loop implementation summary": [
+      17661
+    ],
+    "cli and deep loop plan": [
+      17662
+    ],
+    "cli and deep loop tasks": [
+      17667
+    ],
+    "cli and deep loop timeline": [
+      17668
+    ],
+    "cli and deep loop v4 research findings": [
+      17664
     ],
     "cli and mcp hubs": [
       7929
@@ -47702,7 +47810,8 @@
       17288,
       17325,
       17519,
-      17527
+      17527,
+      17686
     ],
     "completion criteria copied": [
       16298,
@@ -56949,7 +57058,14 @@
       15297,
       16106,
       16997,
-      17632
+      17632,
+      17647,
+      17655,
+      17663,
+      17665,
+      17672,
+      17674,
+      17681
     ],
     "deep research strategy md": [
       2484
@@ -62162,6 +62278,27 @@
     "doctor git acceptance criteria": [
       4868
     ],
+    "doctor git ci runtime": [
+      17683
+    ],
+    "doctor git ci runtime decision record": [
+      17678
+    ],
+    "doctor git ci runtime implementation summary": [
+      17679
+    ],
+    "doctor git ci runtime plan": [
+      17680
+    ],
+    "doctor git ci runtime tasks": [
+      17684
+    ],
+    "doctor git ci runtime timeline": [
+      17685
+    ],
+    "doctor git ci runtime v4 research findings": [
+      17682
+    ],
     "doctor git command": [
       4871
     ],
@@ -65119,7 +65256,8 @@
       17288,
       17325,
       17519,
-      17527
+      17527,
+      17686
     ],
     "durable fan in failure plan": [
       9279
@@ -67933,7 +68071,14 @@
       7398,
       16106,
       16997,
-      17632
+      17632,
+      17647,
+      17655,
+      17663,
+      17665,
+      17672,
+      17674,
+      17681
     ],
     "exhausted review approaches": [
       2503,
@@ -75491,7 +75636,8 @@
       17288,
       17325,
       17519,
-      17527
+      17527,
+      17686
     ],
     "goal binding gaps": [
       8213
@@ -100898,7 +101044,8 @@
       17288,
       17325,
       17519,
-      17527
+      17527,
+      17686
     ],
     "packet goal authoring boundary": [
       8216
@@ -102858,6 +103005,9 @@
     "phase 1 source deprecation": [
       8323
     ],
+    "phase 1 spec kit core": [
+      17649
+    ],
     "phase 1 spec template anchor nesting": [
       15944
     ],
@@ -103339,6 +103489,9 @@
     "phase 2 agent improvement inventory": [
       10556
     ],
+    "phase 2 authoring hubs": [
+      17657
+    ],
     "phase 2 budget check": [
       10783
     ],
@@ -103704,6 +103857,9 @@
     "phase 3 check and template canon closure": [
       7969
     ],
+    "phase 3 cli and deep loop": [
+      17666
+    ],
     "phase 3 cli codex": [
       8555
     ],
@@ -103898,6 +104054,9 @@
     ],
     "phase 39 sk code opencode alignment audit": [
       4459
+    ],
+    "phase 4 advisor hooks relaunch": [
+      17675
     ],
     "phase 4 agents commands config": [
       4292
@@ -104138,6 +104297,9 @@
     ],
     "phase 5 docs and tests": [
       17621
+    ],
+    "phase 5 doctor git ci runtime": [
+      17683
     ],
     "phase 5 dsh mirror generators": [
       4625
@@ -117154,7 +117316,14 @@
       7398,
       16106,
       16997,
-      17632
+      17632,
+      17647,
+      17655,
+      17663,
+      17665,
+      17672,
+      17674,
+      17681
     ],
     "research spec conflict detection": [
       2494
@@ -117187,7 +117356,14 @@
       7398,
       16106,
       16997,
-      17632
+      17632,
+      17647,
+      17655,
+      17663,
+      17665,
+      17672,
+      17674,
+      17681
     ],
     "research stop contract": [
       2489
@@ -117214,7 +117390,14 @@
       7398,
       16106,
       16997,
-      17632
+      17632,
+      17647,
+      17655,
+      17663,
+      17665,
+      17672,
+      17674,
+      17681
     ],
     "research stuck count": [
       2488
@@ -121288,7 +121471,14 @@
       7398,
       16106,
       16997,
-      17632
+      17632,
+      17647,
+      17655,
+      17663,
+      17665,
+      17672,
+      17674,
+      17681
     ],
     "ruledout array": [
       2475
@@ -137482,6 +137672,27 @@
     "spec kit contract optimization": [
       16147
     ],
+    "spec kit core": [
+      17649
+    ],
+    "spec kit core decision record": [
+      17644
+    ],
+    "spec kit core implementation summary": [
+      17645
+    ],
+    "spec kit core plan": [
+      17646
+    ],
+    "spec kit core tasks": [
+      17650
+    ],
+    "spec kit core timeline": [
+      17651
+    ],
+    "spec kit core v4 research findings": [
+      17648
+    ],
     "spec kit database path fix": [
       14024
     ],
@@ -149857,8 +150068,17 @@
     "v4 phase map blank line": [
       17083
     ],
+    "v4 release line research phase parent spec": [
+      17688
+    ],
+    "v4 release line research synthesis": [
+      17687
+    ],
     "v4 release notes corrections applied": [
       16764
+    ],
+    "v4 remediation phases": [
+      17687
     ],
     "v4 root readme": [
       17003
