@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates",
+  "spec_folder": "system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates",
+  "parent_id": "system-speckit/044-named-subtracks-and-host-repos",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "children list duplicates",
+      "phase 7 children list duplicates",
+      "children_ids repeated entry",
+      "declared more than once",
+      "children list duplicates plan",
+      "children list duplicates tasks",
+      "children list duplicates acceptance criteria",
+      "children list duplicates implementation summary",
+      "declared more than once fix"
+    ],
+    "key_topics": [
+      "children",
+      "list",
+      "duplicates",
+      "phase",
+      "repeated",
+      "entry",
+      "declared",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "specs/graph-metadata.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/README.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.39.0.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      "runtime/cli/lib/track-roots.mjs",
+      "runtime/cli/spec/sweep-track-roots.mjs",
+      "runtime/cli/spec/refresh-track-roots.mjs",
+      "feature-catalog/tooling-and-scripts/track-root-children-lists.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/track-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "track-root-children-lists.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.39.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.39.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`compareTrackChildren` in `track-roots.mjs` compares a track root's declared `childrenids` with its on-disk packets as sets",
+    "created_at": "2026-11-09T19:47:22Z",
+    "last_save_at": "2026-11-09T20:38:20.621Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba43188dfce76b532aaddc7bfddbcd259a052494a1a7de079e91f54ef0e875bc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "64d9a9436bc91fd83835049a7cc709d5252b20b4eff1e258a7e7d7892e19f461",
+      "plan.md": "72510659b40226acab877f6d6cbfb95021b0291a2d95340f28ee0dae3257cb8f",
+      "tasks.md": "95a47177944b7c540e1a7320c057c8ebe876201e3440dc601fe672933361111a",
+      "implementation-summary.md": "534f4867b1563f87efc930de67738ac8c779fb5f36a12e0ce4c2baa1f3d92cae"
+    },
+    "last_active_at": null
+  }
+}

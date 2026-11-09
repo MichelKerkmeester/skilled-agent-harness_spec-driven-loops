@@ -9,9 +9,10 @@
 // child directories, and prints one line per track. A declared sub-track is
 // swept the same way, under its "<track>/<sub>" identity.
 //
-// A track matches only when the declared set equals the on-disk set and no entry
-// hangs off another identity. Counting alone is not enough: a packet renamed on
-// disk leaves both counts where they were.
+// A track matches only when the declared set equals the on-disk set, no entry
+// hangs off another identity and no packet is declared more than once. Counting
+// alone is not enough: a packet renamed on disk leaves both counts where they
+// were, and a repeated entry leaves the set itself equal.
 //
 // An undeclared non-numbered folder and a symlinked sub-track each print one
 // diagnostic. Diagnostics are advisory and never change the exit code.
@@ -113,6 +114,9 @@ function main() {
     }
     if (result.missing.length > 0) {
       process.stdout.write(`    declared, not on disk: ${result.missing.join(', ')}\n`);
+    }
+    if (result.duplicates.length > 0) {
+      process.stdout.write(`    declared more than once: ${result.duplicates.join(', ')}\n`);
     }
     if (!result.matches) {
       drifted += 1;

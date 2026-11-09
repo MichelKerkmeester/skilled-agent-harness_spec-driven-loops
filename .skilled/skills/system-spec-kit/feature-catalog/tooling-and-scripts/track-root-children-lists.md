@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.5.0
+version: 2.0.6.0
 ---
 
 # Track-root children lists
@@ -42,7 +42,9 @@ with status 2.
 `sweep-track-roots.mjs` reports. It compares the list with the packets as sets,
 because a packet renamed on disk leaves both counts equal. With `--rev <commit>`
 it reads that commit instead of the working tree, and leaves out a symlinked
-track, whose files live in another repository.
+track, whose files live in another repository. A packet named more than once is
+drift even though the set is unchanged: the sweep names it and the writer
+removes the repeat.
 
 A declared sub-track is a container one level below a track: its
 `"level": "sub-track"` description makes it a track root in miniature, with the

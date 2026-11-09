@@ -5,8 +5,9 @@
 // repair sweep-track-roots.mjs reports the need for. Only children_ids changes:
 // every other field, its key order and the file's two-space format stay as they
 // were, and a track that already matches is not rewritten at all. Entries for
-// packets no longer on disk and entries under an earlier identity are dropped,
-// because a track's children are exactly the packet folders it holds.
+// packets no longer on disk, repeated entries and entries under an earlier
+// identity are dropped, because a track's children are exactly the packet
+// folders it holds, each once.
 //
 // A declared sub-track is refreshed by its own identity, "<track>/<sub>", and
 // lists only its immediate numbered packets. Refreshing every track also
@@ -70,6 +71,7 @@ function parseArgs(argv) {
 function describeChange(result) {
   const parts = [];
   if (result.extra.length > 0) parts.push(`add ${result.extra.join(', ')}`);
+  if (result.duplicates.length > 0) parts.push(`drop duplicate ${result.duplicates.join(', ')}`);
   const removed = [...result.missing, ...result.foreign];
   if (removed.length > 0) parts.push(`remove ${removed.join(', ')}`);
   return parts.join('; ');

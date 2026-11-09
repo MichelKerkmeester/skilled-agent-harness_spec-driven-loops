@@ -312,15 +312,20 @@ export function trackIdentity(metadata, trackName) {
 /**
  * Compare a track's declared children with its packets on disk. Entries under
  * another identity are foreign residue of an earlier name. A track matches only
- * when the two sets are equal and nothing foreign is declared; equal counts are
- * not enough, since a renamed packet leaves both counts where they were.
+ * when the two sets are equal, nothing foreign is declared and no packet is
+ * declared more than once; equal counts are not enough, since a renamed packet
+ * leaves both counts where they were, and a repeated entry leaves the set equal.
  */
 export function compareTrackChildren(metadata, trackName, children) {
   const identity = trackIdentity(metadata, trackName);
   const entries = Array.isArray(metadata.children_ids) ? metadata.children_ids.map(String) : [];
   const own = entries.filter((entry) => entry.startsWith(`${identity}/`));
   const foreign = entries.filter((entry) => !entry.startsWith(`${identity}/`));
-  const declared = own.map((entry) => entry.slice(identity.length + 1)).sort();
+  const names = own.map((entry) => entry.slice(identity.length + 1));
+  const counts = new Map();
+  for (const name of names) counts.set(name, (counts.get(name) ?? 0) + 1);
+  const duplicates = [...counts].filter(([, count]) => count > 1).map(([name]) => name).sort();
+  const declared = [...counts.keys()].sort();
   const declaredSet = new Set(declared);
   const childSet = new Set(children);
   const extra = children.filter((name) => !declaredSet.has(name));
@@ -328,10 +333,11 @@ export function compareTrackChildren(metadata, trackName, children) {
   return {
     identity,
     declared,
+    duplicates,
     foreign,
     extra,
     missing,
-    matches: foreign.length === 0 && extra.length === 0 && missing.length === 0,
+    matches: foreign.length === 0 && duplicates.length === 0 && extra.length === 0 && missing.length === 0,
   };
 }
 

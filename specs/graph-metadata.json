@@ -1,11 +1,8 @@
 {
   "derived": {
-    "last_active_child_id": "999-playbook-test-memory-mcp-validation",
+    "last_active_child_id": null,
     "last_active_at": "2026-06-03T14:54:01.986Z",
     "last_save_at": "2026-06-03T14:54:01.986Z"
   },
-  "children_ids": [
-    "999-test-sandbox",
-    "999-playbook-test-memory-mcp-validation"
-  ]
+  "children_ids": []
 }

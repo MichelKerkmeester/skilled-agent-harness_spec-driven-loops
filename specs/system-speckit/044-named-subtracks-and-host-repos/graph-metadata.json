@@ -9,7 +9,8 @@
     "system-speckit/044-named-subtracks-and-host-repos/003-metadata-write-safety",
     "system-speckit/044-named-subtracks-and-host-repos/004-doctor-symlink-gaps",
     "system-speckit/044-named-subtracks-and-host-repos/005-docs-and-tests",
-    "system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups"
+    "system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups",
+    "system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates"
   ],
   "manual": {
     "depends_on": [],
@@ -217,7 +218,7 @@
     ],
     "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
     "created_at": "2026-11-07T12:11:59Z",
-    "last_save_at": "2026-11-08T14:50:02.436Z",
+    "last_save_at": "2026-11-09T20:38:20.641Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,17 +230,17 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c2259c49e12cc6bf03187c8c4e9eb59ba79e4f2010bb47c185f0252a2d7eca44",
+    "source_fingerprint": "sha256:5e82583e730b52c9bbcde21ebc0d6ba4fc27bc0c93d05df189044ed4f92899be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c30b7055b92b2b2163e5ac5e83a9ea5b679379ead50fb4a5ca8453fee98d519b",
+      "spec.md": "45eeeb031a7e0873f5ada82c23abc65cc878438c243c82663fd95ffaab098b5a",
       "plan.md": "922f5f592c2ffe8955f154fe4a16a827aba1c482fac6d823065d6d835a2d8596",
       "tasks.md": "1802664bfc30d6ff81073e89c67e30ee8d78075b69c543f88adf458bd9dd83ec",
       "decision-record.md": "983a6ee2af74f6033271e79b73b60b05db778a5b986d0e78c15f186fea5b1bb0",
       "implementation-summary.md": "6a35121e5b73da7ebda57ed0395905c891e468ebc16e3c8212b77cc7348c95ca",
       "research/research.md": "b11898910b2446c7e3cab618b2b105dcb93da1ccc09273ab3b9687a376e0225f"
     },
-    "last_active_child_id": "system-speckit/044-named-subtracks-and-host-repos/001-create-track-fixes",
-    "last_active_at": "2026-11-08T14:48:49.947Z"
+    "last_active_child_id": "system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates",
+    "last_active_at": "2026-11-09T20:38:20.641Z"
   }
 }

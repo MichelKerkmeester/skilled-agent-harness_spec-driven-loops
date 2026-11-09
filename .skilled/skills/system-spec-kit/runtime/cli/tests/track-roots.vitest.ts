@@ -197,6 +197,27 @@ describe('sweep-track-roots', () => {
       fs.rmSync(outside, { recursive: true, force: true });
     }
   });
+
+  // Order carries no meaning in the list, so a hand-edited or merged list that
+  // names each packet once must not block a push.
+  it('passes an unsorted list that names each packet once', () => {
+    track('mixed', ['mixed/002-y', 'mixed/001-x'], ['001-x', '002-y']);
+    const result = run(SWEEP, []);
+
+    expect(result.status, result.stdout).toBe(0);
+    expect(run(REFRESH, ['--track', 'mixed']).stdout).toContain('mixed: up to date');
+  });
+
+  // A repeated entry leaves the set unchanged, so only the repeat count can tell
+  // the list from a correct one.
+  it('reports a packet declared more than once', () => {
+    track('dupe', ['dupe/001-x', 'dupe/001-x'], ['001-x']);
+    const result = run(SWEEP, []);
+
+    expect(result.status, result.stdout).toBe(1);
+    expect(result.stdout).toContain('dupe: declared=1 actual=1');
+    expect(result.stdout).toContain('    declared more than once: 001-x');
+  });
 });
 
 describe('refresh-track-roots', () => {
@@ -254,6 +275,25 @@ describe('refresh-track-roots', () => {
     expect(result.status).toBe(0);
     expect(result.stdout).toContain('beta: up to date');
     expect(fs.readFileSync(path.join(specs, 'beta', 'graph-metadata.json'), 'utf8')).toBe(before);
+  });
+
+  // A repeated entry is a defect in the list, not on disk, so the writer must
+  // drop the repeat while keeping the packet declared once.
+  it('drops a repeated entry on --apply and leaves the sweep clean', () => {
+    fs.rmSync(path.join(specs, 'alpha'), { recursive: true });
+    fs.rmSync(path.join(specs, 'delta'), { recursive: true });
+    track('dupe', ['dupe/001-x', 'dupe/001-x'], ['001-x']);
+
+    const dryRun = run(REFRESH, ['--track', 'dupe']);
+    expect(dryRun.status, dryRun.stdout).toBe(1);
+    expect(dryRun.stdout).toContain('dupe: drop duplicate 001-x');
+
+    const refresh = run(REFRESH, ['--track', 'dupe', '--apply']);
+    expect(refresh.status, refresh.stdout + refresh.stderr).toBe(0);
+    expect(readChildren('dupe')).toEqual(['dupe/001-x']);
+
+    const sweep = run(SWEEP, []);
+    expect(sweep.status, sweep.stdout).toBe(0);
   });
 
   it('reports unreadable metadata, writes nothing to it and fails', () => {
