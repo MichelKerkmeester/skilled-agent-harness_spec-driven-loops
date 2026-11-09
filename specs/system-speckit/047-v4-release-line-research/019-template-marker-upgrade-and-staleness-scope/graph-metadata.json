@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope",
+  "spec_folder": "system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope",
+  "parent_id": "system-speckit/047-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template marker upgrade and staleness scope",
+      "phase 19 template marker upgrade and staleness scope",
+      "template marker upgrade and staleness scope plan",
+      "template marker upgrade and staleness scope tasks",
+      "template marker upgrade and staleness scope acceptance criteria",
+      "template marker upgrade and staleness scope decisions",
+      "template marker upgrade and staleness scope implementation summary"
+    ],
+    "key_topics": [
+      "template",
+      "marker",
+      "upgrade",
+      "staleness",
+      "scope",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "templates/MIGRATION.md",
+      "runtime/cli/tests/upgrade-legacy-refresh-markers.vitest.ts",
+      "runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
+      ".skilled/skills/system-spec-kit/templates/MIGRATION.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "MIGRATION.md",
+        "kind": "doc",
+        "path": "templates/MIGRATION.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy-refresh-markers.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/upgrade-legacy-refresh-markers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-legacy.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/check-template-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`upgrade-legacy.mjs` repairs only packets that fail strict validation, so a passing packet with a `spec | v1.0` or `spec-core | v2.2` marker stays stale with no supported path forward",
+    "created_at": "2026-11-09T06:27:48Z",
+    "last_save_at": "2026-11-09T07:48:33.409Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:30dd3ee549d6014ba52687941151b094da7a5ac0fc0a375237de998196170c34",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "273fb0bba15d610ada0e7595ef818bf6ee3a0cac002cb5c552205b70210a91a1",
+      "plan.md": "57c8332bd7025a282176ac88068a593a05458ecdc311ab52ef8b82f2db640ce5",
+      "tasks.md": "96c1d7b1747db1723c5cb48dfc23d8f972bb9b5c1789b2dd9cea443e34efee51",
+      "decision-record.md": "01e0038223088d966993f2c441ac4a14c8b74a619874994ccb7e47ac9bd619fc",
+      "implementation-summary.md": "fb9c84403498563f328b431190b69b1929b84bc8779ff11a8a86c56934464900"
+    },
+    "last_active_at": null
+  }
+}

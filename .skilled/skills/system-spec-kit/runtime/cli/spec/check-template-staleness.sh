@@ -4,6 +4,9 @@
 # ───────────────────────────────────────────────────────────────
 # Compares SPECKIT_TEMPLATE_SOURCE version in each spec folder
 # against the current template version. Reports stale folders.
+# Discovery walks the spec document root only (<root>/specs) and skips
+# archived and fixture folders, so a vendored source tree or a fixture packet
+# is never reported as one of the host's stale packets.
 #
 # Documents rendered from the utility templates carry their own version
 # (v1.0 or v1.1) and stay valid; the validator checks marker presence only,
@@ -55,6 +58,10 @@ Options:
   --root           Repository root (default: git root or cwd)
   --help           Show this help
 
+Discovery walks <root>/specs only. Archived (z_archive), fixture, scratch,
+memory, templates and build-output folders are skipped, so a vendored source
+tree is never scanned.
+
 --auto-upgrade was removed; use upgrade-legacy.mjs for version-comment rewrites.
 EOF
 }
@@ -95,16 +102,39 @@ get_folder_template_version() {
 # 3. SPEC FOLDER DISCOVERY
 # ───────────────────────────────────────────────────────────────
 
+# Discovery is confined to the spec document root. A host repository that
+# vendors this skill would otherwise have the vendored packet tree, and every
+# fixture packet under it, reported as its own stale folders.
+#
+# The directory names below are the retrieval corpus walker's
+# (runtime/cli/retrieval/lib/corpus.mjs), so a folder named "fixtures" or
+# "scratch" is tooling to both readers instead of a packet to one of them. Only
+# the name list is shared; the walker's path-scoped rules stay its own.
+# A directory whose name ends in "-fixtures" is pruned only when it starts with
+# a lowercase letter, which is what keeps numbered packet folders that merely
+# end in "-fixtures" in the report.
 discover_spec_folders() {
     local root="$1"
-    find "$root" -name "spec.md" -type f \
-        -not -path "*/scratch/*" \
-        -not -path "*/memory/*" \
-        -not -path "*/node_modules/*" \
-        -not -path "*/.git/*" \
-        -not -path "*/test-fixtures/*" \
-        -not -path "*/templates/*" \
-        2>/dev/null | while IFS= read -r spec_file; do
+    local spec_root="$root/specs"
+    # A missing root reports no folders rather than failing the run.
+    [[ -d "$spec_root" ]] || return 0
+
+    # The trailing slash makes find resolve a symlinked spec root instead of
+    # leaving it as an unresolved link it will not descend, which is how a host
+    # shares one packet tree across checkouts.
+    find "$spec_root/" \( -type d \( \
+            -name z_archive \
+            -o -name node_modules \
+            -o -name scratch \
+            -o -name .git \
+            -o -name dist \
+            -o -name memory \
+            -o -name templates \
+            -o -name fixtures \
+            -o -name __fixtures__ \
+            -o -name '[a-z]*-fixtures' \
+        \) -prune \) -o \( -type f -name "spec.md" -print \) 2>/dev/null \
+        | while IFS= read -r spec_file; do
         dirname "$spec_file"
     done | sort -u
 }
@@ -135,14 +165,17 @@ main() {
         [[ -n "$folder" ]] && folders+=("$folder")
     done < <(discover_spec_folders "$ROOT_PATH")
 
-    local total=${#folders[@]}
+    # An empty discovery result leaves the array unset, which `set -u` treats as
+    # an unbound variable on Bash 3.2; the defaults keep a packet-less root a
+    # clean zero rather than a crash.
+    local total=${#folders[@]:-0}
     local current_count=0 stale_count=0 none_count=0 missing_count=0
     local stale_folders=()
     # Bash 3.2 compatible version tracking (parallel arrays instead of associative)
     local version_keys=()
     local version_vals=()
 
-    for folder in "${folders[@]}"; do
+    for folder in "${folders[@]+"${folders[@]}"}"; do
         local folder_name
         folder_name=$(echo "$folder" | sed "s|$ROOT_PATH/||")
         local version

@@ -8,7 +8,7 @@ trigger_phrases:
   - template compatibility policy
 importance_tier: normal
 contextType: reference
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # SpecKit Template Migration Guide
@@ -38,7 +38,7 @@ When a legacy packet does not have manifest-aware metadata, derive its document 
 - Include command-owned docs only when present: `handover.md`, `debug-delegation.md`, and `research/research.md`.
 - For phase parents, prefer the lean trio: `spec.md`, `description.json`, and `graph-metadata.json`.
 
-The derived list is read-only compatibility data. Do not rewrite old packets only to normalize marker style.
+The derived list is read-only compatibility data. Do not rewrite old packets only to normalize marker style: `upgrade-legacy.mjs --refresh-markers` is the one opt-in path that rewrites a passing packet's old marker, and only to a marker its own anchors prove (section 4 still holds).
 
 ---
 

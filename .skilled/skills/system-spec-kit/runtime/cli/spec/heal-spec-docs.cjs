@@ -1654,6 +1654,58 @@ function headerAdd(text, file) {
 }
 
 /**
+ * Move a document's template-source marker to the marker its anchors prove.
+ *
+ * Nothing else on the line moves: the rewrite keeps the marker's position and the
+ * line's own ending, so a refreshed document differs in its version text alone.
+ * A document that carries no marker keeps none, because provenance is not this
+ * tool's to invent, and one whose anchors do not match the level's render is
+ * refused rather than guessed at.
+ *
+ * Opt-in only: no lane mode calls it, so a default run never rewrites a marker
+ * that is already on the page.
+ *
+ * @param {string} text - Markdown document content.
+ * @param {string} file - Path of the document, for its packet level.
+ * @returns {{text: string, changed: boolean, actions: string[], refusals: string[]}}
+ */
+function refreshMarker(text, file) {
+  const name = path.basename(file);
+  const unchanged = { text, changed: false, actions: [], refusals: [] };
+
+  // A marker shown inside a fenced example is prose about the format, not this
+  // document's own marker, so the first one the fence walk reaches is the one
+  // a reader would take as provenance.
+  const lines = splitLinesPreserveEndings(text);
+  const fenced = fencedLines(lines);
+  let index = -1;
+  let marker = null;
+  for (let cursor = 0; cursor < lines.length; cursor += 1) {
+    if (fenced[cursor]) continue;
+    const found = lineBody(lines[cursor]).match(TEMPLATE_SOURCE_RE);
+    if (!found) continue;
+    index = cursor;
+    marker = found;
+    break;
+  }
+  if (marker === null) return unchanged;
+
+  const proven = provenMarker(text, name, file);
+  if (proven.refusal) return { ...unchanged, refusals: [proven.refusal] };
+  if (marker[1] === proven.marker) return unchanged;
+
+  const body = lineBody(lines[index]);
+  const updatedBody = `${body.slice(0, marker.index)}<!-- SPECKIT_TEMPLATE_SOURCE: ${proven.marker} -->${body.slice(marker.index + marker[0].length)}`;
+  const updated = [...lines.slice(0, index), `${updatedBody}${lines[index].slice(body.length)}`, ...lines.slice(index + 1)].join('');
+  return {
+    text: updated,
+    changed: updated !== text,
+    actions: [`moved the template source from ${marker[1]} to ${proven.marker}, proven by its exact anchors`],
+    refusals: [],
+  };
+}
+
+/**
  * Run every selected lane mode over each document the packet carries, feeding
  * each mode the text the previous one returned, and write once per document
  * when apply is set. The result stays plain JSON: a caller writes the refusal
@@ -1784,6 +1836,7 @@ module.exports = {
   headerAdd,
   levelFromSpec,
   linkRepoint,
+  refreshMarker,
   repairAnchors,
   repairAnchorFile,
   runLaneModes,
