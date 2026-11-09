@@ -148,7 +148,18 @@ describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () =>
       }
       // The gateway drops findingsCount from the projected research row, so asking
       // for it in the state record is a demand only a direct write can meet.
-      const countLine = researchPrompt(kind).split('\n').find((line) => line.includes('findingsCount')) ?? '';
+      const prompt = researchPrompt(kind);
+      const promptLines = prompt.split('\n');
+      const personaBeginIndex = promptLines.findIndex((line) => line.includes('=== BEGIN AGENT PERSONA'));
+      const personaEndIndex = promptLines.findIndex(
+        (line, index) => index > personaBeginIndex && line.includes('=== END AGENT PERSONA'),
+      );
+      expect(prompt).toContain('=== BEGIN AGENT PERSONA');
+      expect(personaEndIndex).toBeGreaterThan(personaBeginIndex);
+      // The persona is the agent file verbatim, so this assertion targets the dispatcher's own contract.
+      const countLine = promptLines.find(
+        (line, index) => (index < personaBeginIndex || index > personaEndIndex) && line.includes('findingsCount'),
+      ) ?? '';
       expect(countLine, `${kind} asks for findingsCount where the gateway keeps it`).toContain('gateway');
       expect(countLine).not.toContain('state record');
     }

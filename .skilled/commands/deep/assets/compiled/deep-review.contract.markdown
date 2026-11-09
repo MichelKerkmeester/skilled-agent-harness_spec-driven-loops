@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "bd898416b5766a5a901bcc88fc1545eff56b55500183eb8301e0cd9d885b7e28",
+      "sha256": "b6d37fd1e40e14005eb28b372eacb08bd9d0e09fe58430e7f55bedaaf976cd8d",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "ae22e5dfda354cc7e0fbdf16a8a3f702074a190ea477b040dfbcdea50103c2d6",
+      "sha256": "7de36fce3d634e1ee6ac52be5161e65fc28a7cb35cec1cd1c16ab48e27e322a0",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "9d2c5aeb1eab4d062d9eca0856279de4b47cb04bbcd45cfe599c309843819537",
+      "sha256": "67ed12e9fd9c40e4c851435fa173cfb257f361e515546c1aed833387baaf2400",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "e67562895576bb3503280ec2aa5e3cec76a8736516614a653ecfa96c5ccba88c"
+  "compiledBodyDigest": "16df8658e8cbcb269f726d8b2383c746b5d842a701a8fb6091a723f0a38842bf"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -270,7 +270,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -288,14 +288,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
    |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
    |
-   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
    - The generated `deep-review-config.json` stores executor settings under `config.executor.*`
 
    Parsing to config mapping:
-   - `--executor` -> `config.executor.type`
+   - `--executor` -> `config.executor.kind`
    - `--model` -> `config.executor.model`
    - `--config-dir` -> `config.executor.configDir`
    - `--reasoning-effort` -> `config.executor.reasoningEffort`
@@ -377,7 +377,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
    - stop_policy = [from flag, marker, or default convergence]
-    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
 

@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "0c51ed3178eed9aee2eabf85f9987147f6444249111a531101bd2f244484dc2f",
+      "sha256": "ce0b55f36e31644ff677db8a8ce2ff5119d49894e9e7f59d142be2508e75f323",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "97c6d660627ad43ff34886c6c78bad872954d3b5266b321dde6121fb045f7cb3",
+      "sha256": "719180ff8fca5e029099d1def0b89791680b1dbf808d75ca566dbcf83ca93e3a",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "f0ce3ea8d6870ba38038a37b0c6c27eed61efdbab67c6805eb2faa616d188e8a",
+      "sha256": "18bfd574be3027deda0580d323688f66b3b084475ed810a476c20ab60b453620",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "a71c8b0d73cae02adc89d39230e602de918eb99c4e4d1680c14af2c26b85e271",
+      "sha256": "ae9c0895641fb31a84d7fa2736c405f0fe79beffc98e804ad8f0c78f43dc5496",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "ba0d0e71cf8841a2cdb2e6afa35125e55b3eafe5dc17e49b8c44001e6e163c87"
+  "compiledBodyDigest": "dc157d7816f3cbc882db16ac8b8b42f3a60e0554b8a01e178fecd25af286b2a9"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -249,7 +249,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -265,14 +265,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
    |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
    |
-   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
    - The generated `deep-research-config.json` stores executor settings under `config.executor.*`
 
    Parsing to config mapping:
-   - `--executor` -> `config.executor.type`
+   - `--executor` -> `config.executor.kind`
    - `--model` -> `config.executor.model`
    - `--config-dir` -> `config.executor.configDir`
    - `--reasoning-effort` -> `config.executor.reasoningEffort`
@@ -337,7 +337,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - maxIterations = [from Q3 or flag or default 10]
    - convergenceThreshold = [from flag or default 0.05]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
-    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
 

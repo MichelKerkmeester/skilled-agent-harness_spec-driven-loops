@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Phase 6: deep-loop-single-executor-dispatch"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Route the single-executor cli-opencode branches through the fan-out command builder, refuse single-executor dsh honestly, fix the research YAML field and generation drift, inline CLI personas and render the tool-call cap, then lock the branch contract with a static test."
 trigger_phrases:
   - "deep loop single executor dispatch plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 6: deep-loop-single-executor-dispatch
@@ -15,73 +15,71 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | YAML workflow assets with embedded Node ESM heredocs, CommonJS runtime script, TypeScript tests |
+| **Framework** | system-deep-loop runtime (`fanout-run.cjs`, `executor-audit.ts`, `executor-config.ts`) |
+| **Storage** | None |
+| **Testing** | vitest 4.1.12 in `.skilled/skills/system-deep-loop/runtime`; spec-kit cli vitest project for the YAML contract tests |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The cursor, devin and pi single-executor branches already call `buildLineageCommand`; the opencode branch is the copy that drifted, so it adopts the same pattern and loses `--pure` and the hardcoded binary. The remaining fixes are field renames, a refusal branch, a persona block shared by fan-out and single-executor prompts, and one template variable. A static test reads the four YAMLs and fails on the drift classes this phase closes.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `npx vitest run --no-coverage` in the deep-loop runtime passes at least the baseline count plus the new contract test, and the four spec-kit deep YAML contract tests pass 24 of 24
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Shared command builder.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`buildLineageCommand` (`fanout-run.cjs`)**: the one place that turns an executor kind, model and sandbox into a command, argv and stdin, with binary preflight and model allowlists.
+- **Single-executor YAML branches**: per-kind heredocs that render the iteration prompt, call the builder and hand the result to `runAuditedExecutorCommand`.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+The YAML renders the iteration prompt pack, prepends the persona block for a CLI kind, calls `buildLineageCommand` with the executor fields, and passes the returned command to `runAuditedExecutorCommand`, which writes the dispatch receipts and the executor audit row.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| `deep-{research,review}-{auto,confirm}.yaml` opencode branches | Producer of the failing argv | update | `rg -n -- "--pure" .skilled/commands/deep/assets/*.yaml` prints nothing |
+| `fanout-run.cjs` `buildOpencodeLineageCommand` | Owns the version-aware opencode argv | unchanged, now also consumed by the YAMLs | contract test asserts the opencode branch calls `buildLineageCommand` |
+| `fanout-run.cjs` prompt composition | Points CLI leaves at the persona by path | update | `rg -n "BEGIN AGENT PERSONA" fanout-run.cjs` |
+| `deep-research/assets/prompt-pack-iteration.md.tmpl` | Hardcodes the tool cap | update | `rg -n "Max 12" <tmpl>` prints nothing |
+| `compiled/*.contract.markdown` | Digest of the YAML sources | regenerate | dry print diffs clean against the written file |
+| `deep-ai-council-*.yaml` | Has no executor branches | not a consumer | `rg -n "if_cli_" deep-ai-council-*.yaml` prints nothing |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: `rg -n "'--pure'|config\.executor\.type|g\{generation\}|if_cli_copilot" .skilled/commands/deep/assets/`.
+- Consumers of changed symbols: `rg -n "buildLineageCommand|prompt-pack-iteration|max_tool_calls" .skilled --glob '*.{ts,cjs,mjs,yaml}'`.
+- Matrix axes: YAML (4) by executor kind (8 admitted kinds); every non-native kind either has a builder-backed branch or a refusal branch in the auto YAMLs.
+- Algorithm invariant: a single-executor branch never constructs argv for a CLI by hand when the builder supports the kind.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -89,43 +87,40 @@ Required inventories:
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup counts the archives. Implementation adds `--keep`. Verification counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Setup baselines the deep-loop runtime suite, the four spec-kit YAML contract tests and contract freshness. Implementation runs one Luna dispatch per finding class in the order of `tasks.md`. Verification reruns the baselines, the opencode flag probe and the cross-family review.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | New `executor-branch-contract.vitest.ts`; existing fan-out and YAML parity suites | vitest |
+| Integration | `buildLineageCommand` for `cli-opencode` returns an argv `opencode run --help` style parsing accepts | node one-liner from a temp dir |
+| Manual | N/A: no billable live dispatch; the flag parser probe is the observable proof | shell |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| cli-codex `gpt-6-luna` high fast | External | Green (`codex login status` reports ChatGPT login) | Fall back to DeepSeek V4.1 Flash max and log it |
+| OpenCode v2.2.5 on PATH | External | Green | The flag probe cannot run |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: A single-executor deep loop on any kind stops dispatching after this change.
+- **Procedure**: `git revert` the phase commit; the YAMLs and the runtime script return together.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -135,7 +130,6 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,10 +137,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | None | Implementation |
+| Implementation | Setup baselines recorded | Verification |
+| Verification | Implementation and the cross-family review | Phase 007, which edits the same YAMLs |
 <!-- /ANCHOR:phase-deps -->
 
 ---
-

@@ -1161,6 +1161,7 @@ workflow:
               research_topic: "{research_topic}"
               current_iteration: "{current_iteration}"
               max_iterations: "{max_iterations}"
+              max_tool_calls_per_iteration: "{config.maxToolCallsPerIteration}"
               next_focus: "{next_focus}"
               remaining_questions_list: "{remaining_questions_list}"
               carried_forward_open_questions: "{carried_forward_open_questions}"
@@ -1174,47 +1175,30 @@ workflow:
               state_paths_iteration_pattern: "{state_paths.iteration_pattern}"
               state_paths_delta_pattern: "{state_paths.delta_pattern}"
         pre_dispatch_audit:
-          skip_when: "config.executor.type == 'native' or dry_run == true"
+          skip_when: "config.executor.kind == 'native' or dry_run == true"
           call: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
           args:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
             iteration: "{current_iteration}"
-        branch_on: "config.executor.type"
+        branch_on: "config.executor.kind"
         if_native:
           dispatch:
             agent: deep-research
             model: opus
             context_source: "rendered_prompt_pack"
           wait_for_completion: true
-        if_cli_copilot:
-          command: |
-            PROMPT_PATH='{state_paths.prompt_dir}/iteration-{current_iteration}.md'
-            PROMPT_SIZE=$(wc -c < "$PROMPT_PATH" | tr -d ' ')
-            if [ "$PROMPT_SIZE" -le 16384 ]; then
-              copilot \
-                -p "$(cat "$PROMPT_PATH")" \
-                --model "{config.executor.model}" \
-                --allow-all-tools \
-                --no-ask-user
-            else
-              copilot \
-                -p "Read the instructions in @$PROMPT_PATH and follow them exactly. Do not deviate." \
-                --model "{config.executor.model}" \
-                --allow-all-tools \
-                --no-ask-user
-            fi
-          working_directory: "{repo_root}"
-          timeout_seconds: "{config.executor.timeoutSeconds}"
-          wait_for_completion: true
-          notes:
-            - "copilot has no stdin support; prompt is positional"
-            - "Size check uses 16KB threshold; above that uses @PROMPT_PATH wrapper prompt"
-            - "Large-prompt path relies on copilot honoring @path references within its prompt string"
         if_cli_claude_code:
           command: |
             claude \
-              -p "$(cat '{state_paths.prompt_dir}/iteration-{current_iteration}.md')" \
+              -p "$(node --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { createRequire } from 'node:module';
+            const require = createRequire(import.meta.url);
+            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            process.stdout.write(withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}'));
+            EOF
+            )" \
               --model "{config.executor.model}" \
               --permission-mode acceptEdits \
               --output-format text \
@@ -1234,36 +1218,47 @@ workflow:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
+            import { createRequire } from 'node:module';
 
             import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
             import {
               snapshotOutOfScopeDirtyPaths,
               enforceWriteContainment,
             } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
 
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const require = createRequire(import.meta.url);
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const sandboxMode = '{config.executor.sandboxMode}' === 'null' ? 'danger-full-access' : '{config.executor.sandboxMode}';
             const executor = {
               kind: 'cli-opencode',
-              model: '{config.executor.model}',
+              model,
               configDir: null,
               reasoningEffort,
               serviceTier: null,
-              sandboxMode: null,
+              sandboxMode,
               timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
               governor: null,
             };
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}');
             const message = 'Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true'
               + '\n\n'
               + promptBody;
-            const args = ['run', '--model', executor.model, '--format', 'json', '--dangerously-skip-permissions', '--pure', '--dir', '{repo_root}'];
-            if (executor.reasoningEffort) {
-              args.push('--variant', executor.reasoningEffort);
-            }
-            args.push(message);
+
+            const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
+            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+            const repoRoot = '{repo_root}';
+            const { command, args, input, cwd } = buildLineageCommand(
+              lineage,
+              message,
+              sandboxMode,
+              resolvedPermission,
+              { env: process.env, cwd: repoRoot, directoryRoot: repoRoot },
+            );
 
             const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
-            const repoRoot = '{repo_root}';
             const artifactDir = '{state_paths.packet_dir}';
             // A --dangerously-skip-permissions opencode leaf can write anywhere in the
             // repo, and the prompt-level allowed-write contract is its only other guard.
@@ -1272,14 +1267,14 @@ workflow:
             // writes under the artifact dir are never flagged.
             const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
             const dispatchExit = runAuditedExecutorCommand({
-              command: 'opencode',
+              command,
               args,
-              cwd: repoRoot,
+              cwd: cwd || repoRoot,
               timeoutSeconds: executor.timeoutSeconds,
               stateLogPath: '{state_paths.state_log}',
               executor,
               iteration: Number('{current_iteration}'),
-              input: '',
+              input,
               receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
               dispatchId,
             });
@@ -1317,8 +1312,8 @@ workflow:
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
             - "Structural write-containment: snapshot out-of-scope dirty paths pre-dispatch, then diff post-dispatch and record a containment_violation event for every NEW out-of-artifact-dir path. The remedy preserves by default -- bytes stay on disk and a copy is quarantined -- because a path the guard cannot attribute may belong to a concurrent writer, so restoring is opt-in per run and nothing here fails the iteration; the authority for both modes is runtime/lib/deep-loop/write-containment.ts. The leaf's own artifact-dir writes are never flagged. A path that was already dirty at the baseline and changed during the dispatch is held out of the violations and reported as contested instead: printed with its note and recorded as a containment_contested state-log event, with no quarantine copy, patch or revert, because the tree shows its bytes changed, not who wrote them. The confirm branch previously relied on the prompt contract plus post-dispatch validation alone"
-            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode reads stdin at startup and hangs without it"
-            - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
+            - "buildLineageCommand returns empty input, so stdin is closed (EOF), equivalent to </dev/null"
+            - "buildLineageCommand resolves the OpenCode binary and version-correct argv for the configured sandboxMode"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
@@ -1359,11 +1354,11 @@ workflow:
             - "executor_missing — non-native executor did not record provenance"
             - "dispatch_failure_logged — last record is an explicit dispatch_failure event"
         record_executor_audit:
-          skip_when: "config.executor.type == 'native'"
+          skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"
           field: "executor"
           value:
-            type: "{config.executor.type}"
+            kind: "{config.executor.kind}"
             model: "{config.executor.model}"
             reasoningEffort: "{config.executor.reasoningEffort}"
             serviceTier: "{config.executor.serviceTier}"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-deep-loop-single-executor-dispatch"
+    packet_pointer: "system-speckit/047-v4-release-line-research/006-deep-loop-single-executor-dispatch"
     last_updated_at: "2026-11-08T23:38:59Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -37,9 +37,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** 006-deep-loop-single-executor-dispatch
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-08
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the four deep YAMLs, When a single-executor run selects `cli-opencode`, Then the branch takes command, args and input from `buildLineageCommand` and the argv carries no `--pure` | `rg -n -- "--pure" .skilled/commands/deep/assets/*.yaml` prints nothing; builder argv probe shows no `Unrecognized flag` | Met | - |
+| AC-002 | REQ-002 | Given executor kind `cli-deepseek-harness` in single-executor mode, When the dispatch step runs, Then it exits non-zero naming fan-out, and no note claims single-executor dsh support | `rg -n "if_cli_deepseek_harness" -A12` in both auto YAMLs | Met | - |
+| AC-003 | REQ-003 | Given the research YAMLs, When their executor references are listed, Then every one reads `config.executor.kind` | `rg -n "config\.executor\.type" .skilled/commands/deep/assets/deep-research-*.yaml` prints nothing | Met | - |
+| AC-004 | REQ-004 | Given a new research lineage, When a dispatch id is built, Then it reads `config.lineage.generation` | `rg -n "g\{generation\}" .skilled/commands/deep/assets/deep-research-*.yaml` prints nothing | Met | - |
+| AC-005 | REQ-005 | Given a CLI lineage or CLI single-executor iteration, When its prompt is composed, Then the agent persona is inline between persona markers | `rg -n "BEGIN AGENT PERSONA"` in `fanout-run.cjs` and the auto YAML CLI branches; fan-out unit tests | Met | - |
+| AC-006 | REQ-006 | Given the research config sets `maxToolCallsPerIteration`, When the prompt pack renders, Then the cap printed is that value | `rg -n "Max 12" .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` prints nothing; every render step binds the variable | Met | - |
+| AC-007 | REQ-007 | Given the deep YAMLs, When branches are listed, Then none is `if_cli_copilot` | `rg -n "if_cli_copilot" .skilled/commands/deep/assets/` prints nothing | Met | - |
+| AC-008 | REQ-008 | Given the new contract test, When run, Then it passes on the fixed YAMLs and its assertions name the drift classes | `npx vitest run tests/unit/executor-branch-contract.vitest.ts` | Met | - |
+| AC-009 | REQ-001 | Given the baseline suites, When rerun after the change, Then no previously passing test fails | runtime vitest and the four spec-kit YAML contract tests, counts in `implementation-summary.md` | Met | - |
 
 ### Status values
 
@@ -79,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met with the evidence named in its row and in `implementation-summary.md`.
 <!-- /ANCHOR:closure -->
