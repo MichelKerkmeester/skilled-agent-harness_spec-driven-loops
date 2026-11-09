@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Phase 13 closes Blocked: both AGENTS.md fixes need the operator, and this phase records the evidence and the exact steps."
+description: "Phase 13 first closed Blocked with both AGENTS.md fixes left to the operator; the operator approved them on 2026-11-09, phase 020 applied them, and both findings are now closed."
 trigger_phrases:
   - "agents md delivery budget implementation summary"
 importance_tier: "important"
@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -84,8 +84,8 @@ The orchestrator measured both checks in the worktree and wrote the decisions. N
 
 | Check | Result |
 |-------|--------|
-| `agents-md-manifest.cjs --check` | Before FAIL. After FAIL (unchanged, operator step) |
-| `check-rule-copies.js` | Before OK, last anchor 16,379. After the same |
+| `agents-md-manifest.cjs --check` | Before FAIL. After phase 020's write PASS, exit 0 |
+| `check-rule-copies.js` | Before OK, last anchor 16,379. After phase 020's cut OK, last anchor 15,800 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -93,7 +93,7 @@ The orchestrator measured both checks in the worktree and wrote the decisions. N
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Phase 014's manifest CI step is red until the operator runs the write.** Recorded in 014.
+1. **Phase 014's manifest CI step.** Now green; promoting it from report-only to blocking is a separate decision recorded in 014.
 <!-- /ANCHOR:limitations -->
 
 ---

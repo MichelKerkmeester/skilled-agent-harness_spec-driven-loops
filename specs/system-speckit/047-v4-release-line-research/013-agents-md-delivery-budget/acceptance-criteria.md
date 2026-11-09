@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-speckit/047-v4-release-line-research/013-agents-md-delivery-budget"
     last_updated_at: "2026-11-09T12:00:00Z"
     last_updated_by: "remediation-orchestrator-b"
-    recent_action: "Authored the acceptance criteria"
-    next_safe_action: "Meet the open criteria"
+    recent_action: "Recorded acceptance evidence"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 40
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `013-agents-md-delivery-budget`
 **Level:** 2
-**Status:** Blocked
+**Status:** Complete
 **Date:** 2026-11-09
 <!-- /ANCHOR:metadata -->
 
@@ -51,8 +51,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given AGENTS.md at HEAD, When `agents-md-manifest.cjs --check` runs, Then it exits 0 | Operator step: the only remedy is the manifest write (ADR-002); check still FAIL | Unmet | - |
-| AC-002 | REQ-002 | Given AGENTS.md, When `check-rule-copies.js` runs, Then the last delivery anchor ends at least 512 bytes under 16,384 | Operator step: needs an AGENTS.md body cut (ADR-003); canary still 16,379 | Unmet | - |
+| AC-001 | REQ-001 | Given AGENTS.md at HEAD, When `agents-md-manifest.cjs --check` runs, Then it exits 0 | Operator approved the write on 2026-11-09 (ADR-004); phase 020 ran `--write`, then `--check` printed `PASS: 44 sections, 30 pins, derived matches AGENTS.md`, exit 0 | Met | - |
+| AC-002 | REQ-002 | Given AGENTS.md, When `check-rule-copies.js` runs, Then the last delivery anchor ends at least 512 bytes under 16,384 | Operator approved the cut on 2026-11-09 (ADR-004); after phase 020's cut `check-rule-copies.js` prints OK with Blast-Radius ending at 15,800, a 584-byte margin | Met | - |
 | AC-003 | REQ-003 | Given this phase's decision record, When it is read, Then it names the exact operator step for each finding | ADR-002 and ADR-003 name the command and the edit | Met | - |
 
 ### Status values
@@ -78,7 +78,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 and AC-002 wait on the operator steps named in ADR-002 and ADR-003.
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

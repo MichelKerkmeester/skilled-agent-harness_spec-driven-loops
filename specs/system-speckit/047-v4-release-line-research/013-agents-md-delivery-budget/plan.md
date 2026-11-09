@@ -40,9 +40,9 @@ No product file changes. Both fixes alter the shipped AGENTS.md body or its rele
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Each finding has a recorded decision and an exact operator step
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Each finding has a recorded decision and an exact operator step
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

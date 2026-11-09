@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 13: agents-md-delivery-budget"
-description: "The AGENTS.md manifest check fails at HEAD and the Devin 16 KB delivery prefix has five bytes of headroom. Both fixes change the shipped AGENTS.md record or body, which is the operator's to approve, so this phase records the evidence and a concrete proposal and closes Blocked."
+description: "The AGENTS.md manifest check fails at HEAD and the Devin 16 KB delivery prefix has five bytes of headroom. Both fixes change the shipped AGENTS.md record or body, which is the operator's to approve, so this phase recorded the evidence and a concrete proposal. The operator approved both on 2026-11-09 and phase 020 applied them."
 trigger_phrases:
   - "agents md delivery budget"
   - "phase 13 agents md delivery budget"
@@ -20,7 +20,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Blocked |
+| **Status** | Complete |
 | **Created** | 2026-11-08 |
 | **Branch** | `worktrees/334-v4-release-remediation` |
 | **Parent Spec** | ../spec.md |

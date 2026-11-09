@@ -34,7 +34,7 @@
       "agents-md-manifest"
     ],
     "importance_tier": "important",
-    "status": "blocked",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`agents-md-manifest.cjs --check` fails because the recorded history body `865f058927ed` is no longer released, and its only remedy is `--write`, which records the current unreleased AGENTS.md body as released",
     "created_at": "2026-11-08T23:39:03Z",
-    "last_save_at": "2026-11-09T03:04:05.944Z",
+    "last_save_at": "2026-11-09T08:21:30.079Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dedafeabf67bf43b952a9d88b4c5d7b0b1d97f896fe12acb907f62e123aa3ba4",
+    "source_fingerprint": "sha256:8a97502a77d7e5b5a6f84c1256aabdec27fd5c76b33547a7b194fd9d559b6c70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2bd6c43a8f114fe37a40ffc7a126822f6c9b40e019683a01747dbdadeb09756",
-      "plan.md": "121120912fced6d76b6ed4df07f8168303612679e9b4418f2e46cbf388c32371",
-      "tasks.md": "3cc6582aec7f666f586b5f24984f0b19633da2436c21908ce4056f6296ade5db",
-      "decision-record.md": "e59213de6c78453055498fbd5d8da6736cb21a39f0931eb272d9427ce357457f",
-      "implementation-summary.md": "116ab2cc582e40a9ad099394ac770ac8b9ab46a093f40417aec5d2715da96fe0"
+      "spec.md": "ea769e37b9669cff5bda108e2cd8bf9949a16522457acbff90af3d1e9938b8be",
+      "plan.md": "316a6315e2de2233f3c0901594e03bece8b39ae24b637f470516cb9fa21ec5fd",
+      "tasks.md": "a00b2dd696131567ff4a245548971b2e1edee4c340e9c55d49b87adf90111259",
+      "decision-record.md": "e9aab0f760d79eb3ab81de3c36ada5a18afdf561c872508be8f9460325c9d01f",
+      "implementation-summary.md": "578459ca49d2d2d12917befc6880f19363e5e8b326e53348bdcffb0e750ce19c"
     },
     "last_active_at": null
   }

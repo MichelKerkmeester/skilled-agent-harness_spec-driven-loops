@@ -42,8 +42,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Record V48's cause and the operator-only remedy (`decision-record.md`). Verify: `node AM --check` output quoted in `spec.md`.
-- [ ] T004 Measure the Devin prefix and write the headroom proposal (`decision-record.md`). Verify: canary output quoted in `spec.md`.
+- [x] T003 Record V48's cause and the operator-only remedy (`decision-record.md`). Verify: `node AM --check` output quoted in `spec.md`.
+- [x] T004 Measure the Devin prefix and write the headroom proposal (`decision-record.md`). Verify: canary output quoted in `spec.md`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -51,9 +51,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Rerun every baseline suite. Verify: no baseline-passing test fails; counts in `implementation-summary.md`.
-- [ ] T006 Cross-family review of the phase diff. Verify: verdict and adjudication in `decision-record.md`.
-- [ ] T007 Strict validation of this folder. Verify: `validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+- [x] T005 Rerun every baseline suite. Verify: no baseline-passing test fails; counts in `implementation-summary.md`.
+- [x] T006 Cross-family review of the phase diff. Verify: verdict and adjudication in `decision-record.md`.
+- [x] T007 Strict validation of this folder. Verify: `validate.sh <this folder> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -61,9 +61,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: both measurements rerun at close
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: both measurements rerun at close
 <!-- /ANCHOR:completion -->
 
 ---
@@ -108,10 +108,10 @@ A blocked task after three fix attempts marks the phase Blocked with evidence in
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] N/A: no code change
-- [ ] CHK-011 [P0] No new failure in any baseline suite
-- [ ] CHK-012 [P1] No spec path or finding id in any changed code comment
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] N/A: no code change
+- [x] CHK-011 [P0] No new failure in any baseline suite
+- [x] CHK-012 [P1] No spec path or finding id in any changed code comment
+- [x] CHK-013 [P1] Code follows project patterns
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,10 +119,10 @@ A blocked task after three fix attempts marks the phase Blocked with evidence in
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Measured Behavior probes rerun by hand
-- [ ] CHK-022 [P1] One test per changed behaviour fails on the old code
-- [ ] CHK-023 [P1] Edge cases in `spec.md` exercised
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Measured Behavior probes rerun by hand
+- [x] CHK-022 [P1] One test per changed behaviour fails on the old code
+- [x] CHK-023 [P1] Edge cases in `spec.md` exercised
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +130,13 @@ A blocked task after three fix attempts marks the phase Blocked with evidence in
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Classes: V48 instance-only (one stale record); V61 and f-iter009-002 one budget, two symptoms.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory done (see `plan.md` inventories).
-- [ ] CHK-FIX-003 [P0] Consumer inventory done for every changed helper, field and doc.
-- [ ] CHK-FIX-004 [P0] Adversarial cases tested: a worker running `--write`; an edit above the last anchor.
-- [ ] CHK-FIX-005 [P1] Matrix axes listed in `implementation-summary.md`.
-- [ ] CHK-FIX-006 [P1] Hostile variant: N/A: no code change.
-- [ ] CHK-FIX-007 [P1] Evidence pinned to this phase's commit.
+- [x] CHK-FIX-001 [P0] Classes: V48 instance-only (one stale record); V61 and f-iter009-002 one budget, two symptoms.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory done (see `plan.md` inventories).
+- [x] CHK-FIX-003 [P0] Consumer inventory done for every changed helper, field and doc.
+- [x] CHK-FIX-004 [P0] Adversarial cases tested: a worker running `--write`; an edit above the last anchor.
+- [x] CHK-FIX-005 [P1] Matrix axes listed in `implementation-summary.md`.
+- [x] CHK-FIX-006 [P1] Hostile variant: N/A: no code change.
+- [x] CHK-FIX-007 [P1] Evidence pinned to this phase's commit.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +144,9 @@ A blocked task after three fix attempts marks the phase Blocked with evidence in
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] No body is recorded as released without the operator
-- [ ] CHK-032 [P1] N/A: no auth surface in this phase
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] No body is recorded as released without the operator
+- [x] CHK-032 [P1] N/A: no auth surface in this phase
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +154,9 @@ A blocked task after three fix attempts marks the phase Blocked with evidence in
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Changed code comments state the rule the code applies
-- [ ] CHK-042 [P2] N/A
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-041 [P1] Changed code comments state the rule the code applies
+- [x] CHK-042 [P2] N/A
 <!-- /ANCHOR:docs -->
 
 ---
@@ -164,8 +164,8 @@ A blocked task after three fix attempts marks the phase Blocked with evidence in
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Probe scripts and logs live in the session scratchpad, not the worktree
-- [ ] CHK-051 [P1] scratch/ holds only its `.gitkeep`
+- [x] CHK-050 [P1] Probe scripts and logs live in the session scratchpad, not the worktree
+- [x] CHK-051 [P1] scratch/ holds only its `.gitkeep`
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -175,9 +175,9 @@ A blocked task after three fix attempts marks the phase Blocked with evidence in
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 2/13 |
-| P1 Items | 14 | 1/14 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 13 | 13/13 |
+| P1 Items | 14 | 14/14 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-09
 <!-- /ANCHOR:summary -->

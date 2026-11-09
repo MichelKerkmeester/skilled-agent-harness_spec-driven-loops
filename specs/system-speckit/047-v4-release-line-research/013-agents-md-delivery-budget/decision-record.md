@@ -11,14 +11,14 @@ _memory:
     last_updated_at: "2026-11-09T12:00:00Z"
     last_updated_by: "remediation-orchestrator-b"
     recent_action: "Recorded the phase decisions"
-    next_safe_action: "Implement the phase"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -208,5 +208,64 @@ Devin keeps the first 16,384 bytes of AGENTS.md. The canary's last anchor, Blast
 **Rollback**: revert the phase commit.
 
 <!-- /ANCHOR:adr-003 -->
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Operator approval of both steps
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-09 |
+| **Deciders** | Remediation orchestrator B (operator unavailable) |
+
+---
+
+### Context
+
+ADR-002 and ADR-003 left the manifest write and the AGENTS.md cut to the operator.
+
+### Constraints
+- The verified finding set in `../research/research.md` bounds the scope.
+
+---
+
+### Decision
+
+**Summary**: The operator approved both on 2026-11-09 ("Cut, then write (Recommended)"). Phase 020 applied them: a DeepSeek worker cut restated prose from sections 1 and 2, the reviewer restored one weakened Gate 3 example, then `--write` and `--check` ran.
+
+**Details**: Net cut 579 bytes (27,587 to 27,008); Blast-Radius ends at 15,800, 584 bytes under Devin's 16,384. `--check` exits 0. Both findings close, so this phase is Complete.
+
+---
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Apply the approved steps in phase 020** | Closes both findings with evidence | None | 9/10 |
+
+**Why Chosen**: The operator answered the question ADR-002 and ADR-003 asked.
+
+---
+
+### Consequences
+
+**Positive**:
+- Both findings closed.
+
+**Negative**:
+- None.
+
+---
+
+### Implementation
+
+**Affected Systems**: this phase's files
+
+**Rollback**: revert the phase commit.
+
+<!-- /ANCHOR:adr-004 -->
 ---
 
