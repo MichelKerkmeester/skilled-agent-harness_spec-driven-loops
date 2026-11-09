@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The skill advisor, compiled routing and the hook layer changed in almost every v4 release, from the CLI-only advisor in v4.0.0.0 through session relaunch in v4.0.0.13 and v4.0.0.14, per-skill ROUTER.md files in v4.0.1.0, and compaction history plus question-tool capture in v4.0.2.0",
     "created_at": "2026-11-08T19:49:07Z",
-    "last_save_at": "2026-11-09T14:35:51.376Z",
+    "last_save_at": "2026-11-09T14:42:49.232Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c61379cefea2a3e47034d80d8a38c6ab2a37c0f97b58f5b52df2c73da6b17bb4",
+    "source_fingerprint": "sha256:30ff06f592dd2329ddcb88d183cfbfe8d834658a051d762c34a2b9ee58b69eda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e38a635f89aa4b9172217521fe5a460f751e6a6f9454d319f039cf45be782a28",
@@ -218,7 +218,7 @@
       "tasks.md": "633d89f68d360901b62debfa33c270d7bc25bab89b8cf45b833577b109f3e8a7",
       "decision-record.md": "e4467884f7c94675782f1a2af012181d9a4958eabd335dfe85fb341808d11739",
       "implementation-summary.md": "63f4175c7d7736df15cc3c6ccedf3268f1961248d04d82f34c387f8837d14669",
-      "research/research.md": "1d015d2877d7129b4ec57afb02a248963c35160f9941a1d3e00f40c1b3f937b1"
+      "research/research.md": "e6df31fabafd3620636166c7ad0f2b1108f477dcb70ab0c189c4ea7eec74a7e3"
     },
     "last_active_at": null
   }

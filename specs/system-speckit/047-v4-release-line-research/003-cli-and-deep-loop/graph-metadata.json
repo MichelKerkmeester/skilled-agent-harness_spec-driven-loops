@@ -45,7 +45,6 @@
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       "research/deep-research-strategy.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-      "research/containment/quarantine/14/manifest.json",
       "research/iterations/iteration-001.md",
       "research/findings-registry.json"
     ],
@@ -102,12 +101,6 @@
         "name": "executor-config.ts",
         "kind": "code",
         "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": "research/containment/quarantine/14/manifest.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The CLI executors and the deep-loop runtime changed in almost every v4 release, from the seven-bridge hub in v4.0.0.0 to the DeepSeek Harness addition and the Hermes removal in v4.0.2.0",
     "created_at": "2026-11-08T19:49:06Z",
-    "last_save_at": "2026-11-08T23:08:34.979Z",
+    "last_save_at": "2026-11-09T14:42:46.853Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +207,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d45a9996974b3f224a2575debe943e61d7a097e1b4f505d8c2e18d4da7e36bd6",
+    "source_fingerprint": "sha256:034622cef9df22472f057860c0f676afedcb42251f784e0e54a3a6979e39ea4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ac3ecc60486a200a6b6ca03b537ca31fd0108c9341b83a87af98ba8f9abd560",
@@ -216,7 +215,7 @@
       "tasks.md": "224dd41c6a9b74b1abf456d3ca368efbefd2e774b76ab91bdf4b1354750ba56e",
       "decision-record.md": "797a0fe86b5e7fbed665b2a7ccd63c97a05b1750b163224e09ff1c114f8876d8",
       "implementation-summary.md": "6c6ed978f08a48706863080ef307283fdab231bf0e214a5a6c5fa903615af219",
-      "research/research.md": "4c40619d4fb8711aa1f71240f6cd76e7cad582f17027e3d7090810b9cb3f6bd9"
+      "research/research.md": "d54d335e3d030ce0e125f451ae81172c19ba47f1dcefa18d3dfa00fca51b4b4f"
     },
     "last_active_at": null
   }

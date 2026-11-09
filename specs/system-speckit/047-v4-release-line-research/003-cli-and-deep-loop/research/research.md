@@ -241,6 +241,15 @@ The orchestrator opened at least two citations per iteration; the full per-itera
 
 ---
 
+Late P1 claims in the last three iterations, by id, with the outcome `decision-record.md` records for each:
+
+| Finding | Iteration | Outcome |
+|---------|-----------|---------|
+| f-iter024-001 | 24 | Narrowed to P2, folded into D15: the review YAML admits only the four canonical dimensions |
+| f-iter024-002 | 24 | Falsified as P1: `state-format.md` names `resolvedFindings`; kept as a P2 gap in `state-jsonl.md` |
+| f-iter025-002 | 25 | Confirmed and graded P2, folded into D14 with the other documented-but-inert controls |
+| f-iter026-003 | 26 | Graded P2, folded into D16: the isolation is intended, only the docs omit it |
+
 ## 17. References
 
 - Iterations: `research/iterations/iteration-001.md` to `iteration-026.md`; generation 1 under `research_archive/20261108T201434Z/iterations/`.

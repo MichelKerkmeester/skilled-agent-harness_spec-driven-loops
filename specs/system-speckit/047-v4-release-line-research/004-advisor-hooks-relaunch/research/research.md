@@ -224,6 +224,12 @@ The orchestrator's per-iteration record is the Steering Log in `decision-record.
 
 ---
 
+Late P1 claims in the last three iterations (19, 21, 22), by id:
+
+| Finding | Iteration | Outcome |
+|---------|-----------|---------|
+| f-iter019-004 | 19 | Refuted (see the refuted table): Claude and Codex use the host's native goal command by design (`goal-plugin.md:159-160`) |
+
 ## 17. References
 
 - Iterations: `research/iterations/iteration-001.md` to `iteration-022.md` (no iteration 16 or 20, because the workflow numbers by state row); generation 1 under `research_archive/20261108T201439Z/iterations/`.
