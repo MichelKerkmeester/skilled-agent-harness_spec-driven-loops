@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6663,
-    "ok": 17610,
+    "ok": 17616,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 25902,
+  "documentsScanned": 25908,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "667f05a4de593f61d1759164ad1cdd279379ef7ffbaae7325902da17d2b4ebf3",
+  "manifestHash": "f2e8877643451df2588dd84f6e043e2785c73844357578e6ad0eb2f9fc88d937",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 41961,
+      "ok": 41968,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -62066,6 +62066,10 @@
     },
     {
       "path": "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/scratch",
       "reason": "excluded directory"
     },
     {
