@@ -130,6 +130,14 @@ test('a missing commands directory is a checker error, exit 2', () => {
   assert.match(out, /STATUS=ERROR command-catalog-mirror/);
 });
 
+test('--check is accepted as a no-op so the shared mirror invocation runs', () => {
+  // Every run of this checker already is a check, so refusing the flag its
+  // siblings take would fail a call that asks for nothing more.
+  const { status, out } = run(buildRoot(), ['--check']);
+  assert.equal(status, 0, out);
+  assert.match(out, /STATUS=OK command-catalog-mirror/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. COVERAGE IS JUDGED BY EACH ROW'S OWN COMMAND ID
 // ─────────────────────────────────────────────────────────────────────────────

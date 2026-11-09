@@ -287,7 +287,9 @@ function resolveRoots(rootInput, sourceInput) {
     throw new PreconditionError('source is missing or is not a directory: ' + sourceInput);
   }
   if (isWithin(root, source) || isWithin(source, root)) {
-    throw new PreconditionError('root and source must not contain one another');
+    throw new PreconditionError(
+      'root and source must not contain one another: --root must be a project repository outside the Skilled checkout (got ' + root + ')'
+    );
   }
   return { root, source };
 }
@@ -1798,7 +1800,11 @@ function main(argv) {
         linkInstructions: options.linkInstructions,
       });
       emit(report, options.json, renderReport(report));
-      return 0;
+      const driftStatuses = new Set(['broken', 'foreign-link', 'source-missing']);
+      const hasDrift = report.entries.some((entry) => driftStatuses.has(entry.status)
+        || (entry.status === 'partial-merge' && entry.broken_links.length > 0))
+        || report.tracked_absolute_links.length > 0;
+      return hasDrift ? 1 : 0;
     }
     const plan = buildPlan({
       ...options,

@@ -56,7 +56,7 @@ execution:
     - "Check that .skilled/commands/doctor/scripts/symlink-engine.cjs, .skilled/commands/doctor/assets/symlink-manifest.json and .skilled/commands/doctor/assets/doctor-symlink-presentation.txt exist. If one is missing, report its path and stop with STATUS=FAIL. Do not create the presentation file here."
     - 'Run node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root "{root}", adding --source "{source}" when supplied, --runtimes "{runtimes}" when supplied, --include "{include}" when supplied, --link-instructions when requested and --json when requested.'
     - "The engine reports one status for each selected manifest entry, with detail lines for missing children, broken links and local conflicts. It also reports detected runtimes, tracked absolute links, Git state and applicable warnings."
-    - "Exit 0 means the check ran. Findings are part of its report, not a failure code. Exit 2 means the invocation or target root was refused. Quote the engine message and end with STATUS=FAIL."
+    - "Exit 0 means no drift was found. Exit 1 means drift was found: broken links, foreign links, broken links inside merged folders, a missing source, or tracked absolute links. Missing children in a partial merge do not count as drift. Show the report and end with STATUS=WARN. Exit 2 means the invocation or target root was refused. Quote the engine message and end with STATUS=FAIL."
     - "Render the engine output through .skilled/commands/doctor/assets/doctor-symlink-presentation.txt. When --json was requested, print the engine's JSON object alone."
 
 # ─────────────────────────────────────────────────────────────────
@@ -64,4 +64,5 @@ execution:
 # ─────────────────────────────────────────────────────────────────
 output: |
   STATUS=OK when the engine exits 0. Show the check report through the presentation contract.
+  STATUS=WARN when the engine exits 1. Show the check report through the presentation contract.
   STATUS=FAIL when the engine exits 2 or cannot run. Name the accepted invocation (/doctor:symlink check --root <dir> [flags]) and quote the engine message.

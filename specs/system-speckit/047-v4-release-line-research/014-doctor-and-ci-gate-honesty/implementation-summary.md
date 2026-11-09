@@ -1,24 +1,24 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Doctor and CI gates now fail or report honestly: the symlink check exits 1 on drift, agent parity covers all seven trees, the runtime-mirrors route runs it, and CI runs all five sk-git suites and the AGENTS.md manifest check."
 trigger_phrases:
   - "doctor and ci gate honesty implementation summary"
-importance_tier: "normal"
-contextType: "general"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-doctor-and-ci-gate-honesty"
-    last_updated_at: "2026-11-08T23:39:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "system-speckit/047-v4-release-line-research/014-doctor-and-ci-gate-honesty"
+    last_updated_at: "2026-11-09T12:00:00Z"
+    last_updated_by: "remediation-orchestrator-b"
+    recent_action: "Closed the phase"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-014-doctor-and-ci-gate-honesty"
+      session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 014-doctor-and-ci-gate-honesty |
-| **Completed** | 2026-11-08 |
+| **Completed** | 2026-11-09 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +44,68 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Five gates that reported green without checking, or after finding drift, now say what they found.
 
 ### Phase 14: doctor-and-ci-gate-honesty
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`/doctor:symlink check` exits 1 on a broken or foreign link, a missing source, a tracked absolute link or a broken link inside a merged folder, and stays at 0 for install work such as a missing entry. The agent parity verifier covers opencode, claude, codex, cursor, devin, pi and dsh, reports a mirror that is the canonical file as same-file instead of a match, and runs from `/doctor:runtime-mirrors` with a repair line. CI runs all five sk-git suites, and advisory CI runs the AGENTS.md manifest check report-only. The hooks status no longer calls an alias-linked hook SHADOWED, the containment refusal names its remedy, the parent-skill policy line no longer reads as a result, the orphan scan exits 1 when it could not run, and the install guide names `/doctor:git standards`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `DS/symlink-engine.cjs`, `DA/doctor-symlink-check.yaml`, `DA/doctor-symlink-presentation.txt`, `DA/doctor-install-presentation.txt`, symlink playbook | Modified | Drift exit and contracts |
+| `.skilled/bin/lib/mirror-sync-verify.cjs`, `.skilled/bin/check-agent-mirror-sync.cjs` | Modified | Seven trees, same-file |
+| `DA/doctor-runtime-mirrors.yaml`, `.skilled/commands/doctor/_routes.yaml` | Modified | Body-parity step |
+| `.github/workflows/sk-git-script-tests.yml`, `advisory-checks.yml`, `README.md` | Modified | Suites and manifest step |
+| `.skilled/scripts/install-git-hooks.sh`, `DS/parent-skill-check.cjs`, `DS/orphan-process-check.cjs`, two mirror checkers, READMEs, `INSTALL-SKILLED.md` | Modified | P2 messages and exits |
+| Tests beside each | Modified | One case per behaviour |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Baselines ran first. cli-codex `gpt-6-luna` high-fast made the P1 code changes (symlink exit, parity trees, runtime-mirrors step); DeepSeek V4.1 Flash max (cli-pi) made the CI, P2 and wording changes. Each family reviewed the other's part read-only: DeepSeek returned FAIL with one P1 and four P2 rows on the Luna part, all fixed by one more Luna brief; Luna returned PASS on the DeepSeek part. Every suite was rerun from the final state.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Partial merge with only missing children is not drift | It is the normal pre-install state of a project with `.claude/` |
+| Manifest CI step report-only | It stays red until the operator's manifest write |
+| Defer V63 and V64 | A contract change and an improvement, not defects |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Doctor node tests | Before 1071 pass / 6 fail. After 1081 pass / 6 fail, same six manifest tests |
+| sk-git suites | Before and after: worktree-naming 174/0, commit-id-naming 39/0, stamp-branch 24/0, migrate 3/0, git-timeout 1/0 |
+| Bin vitest | Before 13 tests in the two changed files by static count (not run). After 64/0 across the bin config |
+| `check-agent-mirror-sync.cjs --all` | Before exit 0. After exit 0, 11 agents |
+| `route-validate.sh` | Before exit 0, 76 invocations. After exit 0, 77 |
+| Cross-family review | DeepSeek FAIL (1 P1, 4 P2) on Luna's part, all fixed; Luna PASS on DeepSeek's part |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **V63: `release-update check --offline` still prints no RESULT line when every unit is unknown.** Its contract is exit 0 whatever the status; changing it is a separate contract decision.
+2. **V64: the runtime-mirrors hook battery stays existence-only.** Content drift is now covered by the sync checkers and the body-parity step.
+3. **The new CI steps were run locally, not on a GitHub runner.** The reviewer found no runner-specific dependency.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

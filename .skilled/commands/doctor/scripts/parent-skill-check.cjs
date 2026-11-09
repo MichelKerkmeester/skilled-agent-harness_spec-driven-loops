@@ -2485,7 +2485,7 @@ function main() {
   }
   info(`Parent skill: ${argTarget}`);
   info(`Resolved:     ${target}`);
-  info(`Advisory findings: ${STRICT_HUB_CANON ? 'FAIL' : 'WARN'}. Hard failures always FAIL.`);
+  info(`Policy: advisory findings count as ${STRICT_HUB_CANON ? 'FAIL' : 'WARN'}; hard failures always FAIL.`);
   console.log('');
 
   const unusable = targetError(target);

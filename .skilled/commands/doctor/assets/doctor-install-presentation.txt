@@ -87,7 +87,7 @@ Root: [the target repo]
 [the engine's entry lines, verbatim, with its indented detail lines and its repo-level warnings]
 ```
 
-Do not re-sort the lines, re-word a status or sum them into a verdict. The check exits 0 whether or not anything is missing: a `missing` line is work for step 1, not a failure. Add `--link-instructions` when the instruction choice is `link`.
+Do not re-sort the lines, re-word a status or sum them into a verdict. A `missing` line is work for step 1, not a failure, and the check still exits 0 for it. The check exits 1 only on drift: a broken or foreign link, including a broken link inside a merged folder, a missing source or a tracked absolute link. Missing children in a partial merge do not count as drift. Add `--link-instructions` when the instruction choice is `link`.
 
 | Status | What it means for this install |
 |--------|-------------------------------|

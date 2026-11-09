@@ -27,6 +27,7 @@ const mirrorSync = require(path.join(
     missingRuntimes: string[];
     driftRuntimes: string[];
     allInSync: boolean;
+    details: Array<{ runtime: string; path: string; status: string }>;
   };
 };
 
@@ -100,6 +101,33 @@ describe('mirror-sync-verify', () => {
     expect(result.allInSync).toBe(false);
     expect(result.missingRuntimes).toEqual([]);
     expect(result.driftRuntimes).toEqual(['claude']);
+  });
+
+  it('reports a symlink to the canonical file as same-file without comparing its body', () => {
+    writeAllMirrors();
+    fs.rmSync(path.join(tmpDir, '.opencode/agents', `${AGENT_NAME}.md`));
+    writeFile(`.skilled/agents/${AGENT_NAME}.md`, CANONICAL);
+    fs.symlinkSync(
+      path.join('..', '..', '.skilled', 'agents', `${AGENT_NAME}.md`),
+      path.join(tmpDir, '.opencode/agents', `${AGENT_NAME}.md`),
+    );
+
+    const result = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
+
+    expect(result.allInSync).toBe(true);
+    expect(result.details.find((detail) => detail.runtime === 'opencode')?.status).toBe('same-file');
+    expect(result.details.find((detail) => detail.runtime === 'opencode')?.status).not.toBe('in-sync');
+  });
+
+  it('reports a Cursor mirror whose body differs from the canonical as drift', () => {
+    writeAllMirrors();
+    writeFile('.cursor/agents/mirror-sync-fixture.md', '# Mirror Sync Fixture\n\nCursor-only content.\n');
+
+    const result = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
+
+    expect(result.allInSync).toBe(false);
+    expect(result.driftRuntimes).toEqual(['cursor']);
+    expect(result.details.find((detail) => detail.runtime === 'cursor')?.status).toBe('drift');
   });
 
   it('rejects a reordered load-bearing instruction sequence', () => {

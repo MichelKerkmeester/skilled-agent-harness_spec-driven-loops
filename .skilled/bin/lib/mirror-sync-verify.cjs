@@ -51,6 +51,16 @@ const RUNTIME_MIRRORS = Object.freeze([
   { runtime: 'opencode', template: '.opencode/agents/{name}.md', format: 'markdown', required: true },
   { runtime: 'claude', template: '.claude/agents/{name}.md', format: 'markdown', required: true },
   { runtime: 'codex', template: '.codex/agents/{name}.toml', format: 'toml', required: false },
+  { runtime: 'cursor', template: '.cursor/agents/{name}.md', format: 'markdown', required: false },
+  { runtime: 'devin', template: '.devin/agents/{name}/AGENT.md', format: 'markdown', required: false },
+  { runtime: 'pi', template: '.pi/agents/{name}.md', format: 'markdown', required: false },
+  {
+    runtime: 'dsh',
+    template: '.dsh/agents/{name}.patch.yml',
+    format: 'patch-yaml',
+    required: false,
+    comparable: false,
+  },
 ]);
 
 const LOAD_BEARING_MARKERS = Object.freeze([
@@ -287,6 +297,7 @@ function runtimePaths(agentName, repoRoot = process.cwd()) {
     absolutePath: resolveMirrorPath(repoRoot, mirror.template, agentName),
     format: mirror.format,
     required: mirror.required,
+    comparable: mirror.comparable !== false,
   }));
 }
 
@@ -319,6 +330,8 @@ function verifyMirrorSync(agentName, content, options = {}) {
   const missingRuntimes = [];
   const driftRuntimes = [];
   const details = [];
+  const canonicalPath = resolveMirrorPath(repoRoot, '.opencode/agents/{name}.md', agentName);
+  const canonicalRealPath = fs.existsSync(canonicalPath) ? fs.realpathSync(canonicalPath) : null;
 
   for (const mirror of runtimePaths(agentName, repoRoot)) {
     if (!fs.existsSync(mirror.absolutePath)) {
@@ -332,6 +345,25 @@ function verifyMirrorSync(agentName, content, options = {}) {
     }
 
     presentRuntimes.push(mirror.runtime);
+    if (canonicalRealPath && fs.realpathSync(mirror.absolutePath) === canonicalRealPath) {
+      details.push({
+        runtime: mirror.runtime,
+        path: mirror.path,
+        status: 'same-file',
+      });
+      continue;
+    }
+
+    if (!mirror.comparable) {
+      details.push({
+        runtime: mirror.runtime,
+        path: mirror.path,
+        status: 'present-but-not-compared',
+        reason: 'format-not-comparable',
+      });
+      continue;
+    }
+
     const mirrorContent = fs.readFileSync(mirror.absolutePath, 'utf8');
     const mirrorBody = extractAgentBody(mirrorContent, mirror.format);
     if (mirrorBody === null) {

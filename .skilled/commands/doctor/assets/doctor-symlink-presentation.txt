@@ -99,7 +99,7 @@ Skilled link check: [the root the engine read]
 [one line per entry, as the engine printed it]
 [indented detail lines, as printed]
 [repository-level warnings, as printed, including each tracked absolute link]
-STATUS=[OK|FAIL]
+STATUS=[OK|WARN|FAIL]
 ```
 
 With `--json` print the engine's JSON and nothing else: no table, no summary, no next-step line. The JSON carries the entries with their own status and detail, the detected runtimes, the tracked absolute links and whether the root is a git work tree.
@@ -109,20 +109,21 @@ With `--json` print the engine's JSON and nothing else: no table, no summary, no
 ```text
 DOCTOR DIAGNOSTIC RESULT
 Target: check
-Status: [OK|FINDINGS|FAIL]
+Status: [OK|WARN|FAIL]
 Mutation class: read-only
 Scope: [the root the engine read]
 Evidence: [n] entries, [n] linked-whole, [n] linked-merge, [n] partial-merge, [n] missing, [n] broken, [n] foreign-link, [n] local, [n] source-missing, [n] tracked absolute links
 Recommendation: [the repair each non-pass entry needs, or none]
-STATUS=[OK|FAIL]
+STATUS=[OK|WARN|FAIL]
 ```
 
-`STATUS=OK` covers a check that ran, and the rows and the summary carry the findings. `Status: FINDINGS` holds when at least one selected entry is not a pass or a tracked absolute link printed, and `Status: OK` holds when every selected entry is a pass. An engine exit 2 ends `STATUS=FAIL ERROR="[the engine's code]"`, and the reply names the accepted invocation.
+`Status` is `OK` when the engine exits 0, `WARN` when it exits 1 and `FAIL` when it exits 2. An engine exit 0 means no drift was found and ends `STATUS=OK`. An engine exit 1 means drift was found and ends `STATUS=WARN` with the report. Drift includes broken links, foreign links, broken links inside merged folders, a missing source or tracked absolute links. Missing children in a partial merge do not count as drift. An engine exit 2 means the invocation was refused, ends `STATUS=FAIL ERROR="[the engine's code]"` and names the accepted invocation.
 
 Statuses this route prints, each on its own line so a workflow never has to compose one:
 
 ```text
 STATUS=OK
+STATUS=WARN
 STATUS=FAIL ERROR="[code]"
 ```
 

@@ -36,10 +36,12 @@
 // Exit 0 when every copy covers the tree, 1 on drift, 2 on checker error (bad
 // arguments, a missing tree, or any unexpected throw), always with a STATUS= line.
 //
-// Usage: command-catalog-mirror-check.cjs [--root <dir>] [--strict]
+// Usage: command-catalog-mirror-check.cjs [--root <dir>] [--strict] [--check]
 //   --root   check a copy of the tree instead of this repository, so a
 //            deliberate staleness can be proven without editing the real one.
 //   --strict promote prose divergence from a warning to drift.
+//   --check  accepted as a no-op, because this checker is read-only either way
+//            and the sibling mirror checkers take the flag.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -98,6 +100,9 @@ function parseArgs(argv) {
   const opts = { root: DEFAULT_REPO, strict: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--strict') opts.strict = true;
+    // Every run here is a check, so the flag its siblings require names no other
+    // mode; refusing it would fail a valid shared invocation.
+    else if (argv[i] === '--check') continue;
     else if (argv[i] === '--root') {
       const next = argv[++i];
       if (!next) fail('--root needs a directory');

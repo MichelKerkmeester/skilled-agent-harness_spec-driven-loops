@@ -82,3 +82,20 @@ jobs:
             echo "::error::trigger index drift found; the trigger-index-rebuild workflow repairs drift on the integration branches after merge, or regenerate locally with node $GENERATOR"
             exit 1
           fi
+
+      - name: AGENTS.md manifest (report-only)
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          MANIFEST=".skilled/commands/doctor/scripts/agents-md-manifest.cjs"
+          # Fail closed: a missing script is a moved or deleted file, not an empty
+          # report. The step keeps continue-on-error, so the job stays green by design
+          # while this step shows the error.
+          if [ ! -f "$MANIFEST" ]; then
+            echo "::error::AGENTS.md manifest tool not found at $MANIFEST, failing closed."
+            exit 1
+          fi
+          if ! node "$MANIFEST" --check; then
+            echo "::error::AGENTS.md manifest drift found; the operator records a released body with node $MANIFEST --write"
+            exit 1
+          fi

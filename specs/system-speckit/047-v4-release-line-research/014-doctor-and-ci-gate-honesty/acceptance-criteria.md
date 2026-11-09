@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-doctor-and-ci-gate-honesty"
-    last_updated_at: "2026-11-08T23:39:05Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "system-speckit/047-v4-release-line-research/014-doctor-and-ci-gate-honesty"
+    last_updated_at: "2026-11-09T12:00:00Z"
+    last_updated_by: "remediation-orchestrator-b"
+    recent_action: "Recorded acceptance evidence"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-014-doctor-and-ci-gate-honesty"
+      session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,25 +35,28 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
-**Date:** 2026-11-08
+**Packet:** `014-doctor-and-ci-gate-honesty`
+**Level:** 2
+**Status:** Complete
+**Date:** 2026-11-09
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a fixture with a broken link, When `symlink-engine.cjs check` runs, Then it exits 1, and a clean linked fixture or a partial merge with only missing children exits 0 | `symlink-engine.test.cjs` cases pass; doctor battery 1081 pass | Met | - |
+| AC-002 | REQ-002 | Given the sk-git workflow, When it is read, Then it runs all five suites, and each passes locally | workflow diff; worktree-naming 174/0, commit-id-naming 39/0, stamp-branch 24/0, migrate 3/0, git-timeout 1/0 | Met | - |
+| AC-003 | REQ-003 | Given advisory-checks.yml, When it is read, Then a report-only step runs `agents-md-manifest.cjs --check` | workflow diff; yaml parses | Met | - |
+| AC-004 | REQ-004 | Given the parity verifier, When it runs, Then it covers seven trees, reports a symlinked mirror as same-file, and `--all` exits 0 here | bin vitest 64/0; `check-agent-mirror-sync.cjs --all` exit 0; reviewer confirmed a symlink to a forked file reports drift | Met | - |
+| AC-005 | REQ-005 | Given `/doctor:runtime-mirrors`, When its steps are read, Then it runs the body-parity check, and route validation passes | runtime-mirrors contract test passes; `route-validate.sh` 77 invocations paired, exit 0 | Met | - |
+| AC-006 | REQ-006 | Given the doctor battery, When it reruns, Then no baseline pass is lost and the failures are the same six | before 1071/6, after 1081/6, same six test names | Met | - |
 
 ### Status values
 
@@ -77,9 +80,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

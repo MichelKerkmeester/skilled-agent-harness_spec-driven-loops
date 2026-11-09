@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 14: doctor-and-ci-gate-honesty"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Doctor checkers and CI reported green for drift they found or never looked at: a symlink check that always exits 0, sk-git CI running one suite of five, an agent parity gate over three of seven trees, and no workflow running the AGENTS.md manifest check. This phase makes each gate fail or report honestly."
 trigger_phrases:
   - "doctor and ci gate honesty"
   - "phase 14 doctor and ci gate honesty"
-importance_tier: "normal"
-contextType: "general"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 14: doctor-and-ci-gate-honesty
@@ -15,20 +15,19 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-11-08 |
-| **Branch** | `scaffold/014-doctor-and-ci-gate-honesty` |
+| **Branch** | `worktrees/334-v4-release-remediation` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 14 of 17 |
 | **Predecessor** | 013-agents-md-delivery-budget |
 | **Successor** | 015-cli-hub-routing-and-classifier |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Doctor tests, sk-git suites, mirror parity and route validation hold their baselines |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,33 +37,52 @@ contextType: "general"
 
 This is **Phase 14** of the v4 release line remediation specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Verified findings V49, V51, V53, V54, V56 and the P2 rows V55, V57, V58, V62, V63, V64, V65 from `../research/research.md`.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 013: the manifest check stays red until the operator's write, so the new CI step is report-only.
 
 **Deliverables**:
-- [To be defined during planning]
+- Doctor checkers whose exit codes match what they report, and CI that runs every sk-git suite and the manifest check.
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+`symlink-engine.cjs check` returns a literal 0 after printing broken links. sk-git CI runs one of its five script suites. The agent body-parity verifier lists three of seven runtime trees, and its required opencode row compares the canonical file with itself through a symlink. `/doctor:runtime-mirrors` never runs that verifier. No workflow runs `agents-md-manifest.cjs --check`, which is how its failure shipped unseen. Several P2 messages mislead: a SHADOWED hook that is this checkout's own file, a refusal with no remedy, a policy line that reads as a FAIL result, and an orphan scan that exits 0 when it could not run.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+A doctor or CI result that says green means the thing was checked and is clean.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ sed -n 1791,1801p .skilled/commands/doctor/scripts/symlink-engine.cjs
+    if (options.command === 'check') {
+      ...
+      emit(report, options.json, renderReport(report));
+      return 0;
+
+$ rg -n "run: bash" .github/workflows/sk-git-script-tests.yml
+51:        run: bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh
+
+$ sed -n 50,54p .skilled/bin/lib/mirror-sync-verify.cjs
+const RUNTIME_MIRRORS = Object.freeze([
+  { runtime: 'opencode', template: '.opencode/agents/{name}.md', format: 'markdown', required: true },
+  { runtime: 'claude', template: '.claude/agents/{name}.md', format: 'markdown', required: true },
+  { runtime: 'codex', template: '.codex/agents/{name}.toml', format: 'toml', required: false },
+
+$ rg -l "agents-md-manifest" .github/workflows
+(no output)
+
+$ node --test .skilled/commands/doctor/scripts/tests/*.test.cjs
+ℹ tests 1077
+ℹ pass 1071
+ℹ fail 6
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,42 +90,51 @@ This is **Phase 14** of the v4 release line remediation specification.
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Exit 1 from `symlink-engine.cjs check` on drift (V51).
+- Run all five sk-git suites in CI (V53) and the AGENTS.md manifest check report-only in advisory CI (V49).
+- Cover all seven agent trees in the parity verifier and report a symlinked mirror as same-file (V54), and run it from `/doctor:runtime-mirrors` (V56).
+- Fix the misleading P2 messages and exits: install-git-hooks SHADOWED (V55), the containment refusal remedy (V57), the `/doctor:git standards` install step (V58), the parent-skill-check policy line (V62), the orphan scan exit and `--check` acceptance (V65).
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- V63, `release-update check --offline` printing no RESULT line - its documented contract is "exit 0 whatever the release status"; changing it is a contract change for its own phase.
+- V64, the 66 existence-only hook rows - drift is covered by the sync checkers this phase wires in; rewriting the battery is an improvement, not a defect.
+- Making the manifest CI step blocking - it is red until the operator's write (phase 013).
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/commands/doctor/scripts/symlink-engine.cjs`, `doctor-symlink-check.yaml`, presentation files | Modify | Drift exit and contract text |
+| `.github/workflows/sk-git-script-tests.yml`, `advisory-checks.yml`, `README.md` | Modify | Suites and manifest step |
+| `.skilled/bin/lib/mirror-sync-verify.cjs`, `check-agent-mirror-sync.cjs` | Modify | Seven trees, same-file status |
+| `.skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml`, `_routes.yaml` | Modify | Body-parity step |
+| `install-git-hooks.sh`, `parent-skill-check.cjs`, `orphan-process-check.cjs`, two mirror checkers, `INSTALL-SKILLED.md` | Modify | P2 messages and exits |
+| Tests beside each | Modify | One case per behaviour |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | `symlink-engine.cjs check` exits 1 on a fixture with a broken link and 0 on a clean linked fixture. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-002 | `sk-git-script-tests.yml` runs all five sk-git suites, and each passes locally. |
+| REQ-003 | `advisory-checks.yml` runs `agents-md-manifest.cjs --check` as a report-only step. |
+| REQ-004 | The parity verifier covers seven trees, reports a symlinked mirror as same-file, and `check-agent-mirror-sync.cjs --all` exits 0 on this repository. |
+| REQ-005 | `/doctor:runtime-mirrors` runs the body-parity check and `route-validate.sh` passes. |
+| REQ-006 | Doctor tests lose no baseline pass; the only failures are the six manifest-caused ones. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -117,81 +144,67 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: Every changed exit has a test that fails on the old code.
+- **SC-002**: Doctor, sk-git, mirror and route checks hold or grow their pass counts.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Risk | A caller relied on `check` exiting 0 | Med | `missing`, `local` and `project-owned` still exit 0; callers grepped |
+| Risk | New sk-git CI steps fail on the runner | Low | Each suite sets its own git identity and passes locally |
+| Dependency | Operator's manifest write | The advisory step stays red | Report-only until then |
 <!-- /ANCHOR:risks -->
-
----
-
 
 ---
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: The parity verifier adds four trees of small file reads; no measurable cost.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: No checker gains a write path.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: A check that could not run never exits 0.
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: a project with nothing linked reports `missing` and exits 0.
+- Maximum input: all seven agent trees present.
+- Failure path: `ps` unavailable makes the orphan scan exit 1.
 <!-- /ANCHOR:edge-cases -->
 
 ---
 
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 18/25 | About twenty files across doctor, bin and CI |
+| Risk | 14/25 | Gates other work relies on |
+| Research | 4/20 | Evidence from the parent synthesis |
+| **Total** | **36/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None. Deferrals are in `decision-record.md`.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

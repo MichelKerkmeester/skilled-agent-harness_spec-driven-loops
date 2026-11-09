@@ -327,12 +327,20 @@ test('--min-age-min overrides the default threshold', async () => {
   );
 });
 
-test('a ps failure is informational and exits zero', async () => {
+test('a ps failure is an unexpected error and exits one', async () => {
   const result = await runMain(['--summary'], {
     runPs: () => { throw new Error('ps unavailable'); },
   });
-  assert.equal(result.exitCode, 0);
+  assert.equal(result.exitCode, 1);
   assert.equal(result.output, 'orphan check could not run: ps unavailable\n');
+});
+
+test('a missing current uid is an unexpected error and exits one', async () => {
+  // A scan that cannot see its own user classifies nothing, so an empty report
+  // would read as "no orphans" instead of "nothing was read".
+  const result = await runMain(['--summary'], { uid: Number.NaN });
+  assert.equal(result.exitCode, 1);
+  assert.equal(result.output, 'orphan check could not run: current uid is unavailable\n');
 });
 
 test('--reap without --yes prints confirmation and never signals', async () => {

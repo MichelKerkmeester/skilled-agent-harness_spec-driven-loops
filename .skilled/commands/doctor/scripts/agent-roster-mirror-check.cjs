@@ -33,9 +33,11 @@ const path = require('node:path');
 const DEFAULT_REPO = path.resolve(__dirname, '../../../..');
 
 const USAGE = [
-  'Usage: agent-roster-mirror-check.cjs [--root <dir>]',
+  'Usage: agent-roster-mirror-check.cjs [--root <dir>] [--check]',
   '  --root  check the tree under <dir> instead of this repository (default: the',
   '          repository holding this script), so drift can be proven on a copy.',
+  '  --check accepted as a no-op, because this checker is read-only either way and',
+  '          the sibling mirror checkers take the flag.',
 ].join('\n');
 
 // The Claude tree is canonical: it holds the full agent bodies that the Cursor
@@ -81,6 +83,9 @@ function fail(message) {
 function parseArgs(argv) {
   const opts = { root: DEFAULT_REPO };
   for (let i = 0; i < argv.length; i++) {
+    // Every run here is a check, so the flag its siblings require names no other
+    // mode; refusing it would fail a valid shared invocation.
+    if (argv[i] === '--check') continue;
     if (argv[i] === '--root') {
       const next = argv[++i];
       if (!next || next.startsWith('-')) fail(`--root needs a directory\n${USAGE}`);

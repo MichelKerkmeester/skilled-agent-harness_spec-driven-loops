@@ -370,10 +370,15 @@ test('the check presentation carries status, JSON and result fields', () => {
   }
   assert.match(PRESENTATION, /^Skilled link check: \[the root the engine read\]$/mu);
   assert.match(PRESENTATION, /^DOCTOR DIAGNOSTIC RESULT$/mu);
-  assert.match(PRESENTATION, /^STATUS=\[OK\|FAIL\]$/mu);
+  const statusTemplates = PRESENTATION.split(/\r?\n/u).filter((line) => /^STATUS=\[/u.test(line));
+  assert.ok(statusTemplates.length > 0, 'presentation has a STATUS template');
+  assert.deepEqual(statusTemplates, statusTemplates.map(() => 'STATUS=[OK|WARN|FAIL]'));
+  assert.match(PRESENTATION, /^Status: \[OK\|WARN\|FAIL\]$/mu);
+  assert.match(PRESENTATION, /`Status` is `OK` when the engine exits 0, `WARN` when it exits 1 and `FAIL` when it exits 2/u);
+  assert.doesNotMatch(PRESENTATION, /FINDINGS/u);
   assert.match(PRESENTATION, /print the engine's JSON and nothing else/u);
   assert.match(PRESENTATION, /^Plan digest: \[the engine's plan-digest line\]$/mu);
-  assert.match(PRESENTATION, /Link the Skilled checkout into this repository now\? \[yes\/no\]$/u);
+  assert.match(PRESENTATION, /Link the Skilled checkout into this repository now\? \[yes\/no\]\n?$/u);
   assert.match(PRESENTATION, /the digest on screen is the digest the apply repeats/u);
   assert.match(PRESENTATION, /never compose a plan digest/u);
 });
@@ -418,7 +423,11 @@ test('the check workflow forwards optional flags only when requested', () => {
 
 test('the check workflow maps the engine exit classes to the route status', () => {
   assert.match(CHECK_WORKFLOW.output, /STATUS=OK/u);
+  assert.match(CHECK_WORKFLOW.output, /STATUS=WARN/u);
   assert.match(CHECK_WORKFLOW.output, /STATUS=FAIL/u);
+  assert.match(CHECK_YAML, /Exit 0 means no drift/u);
+  assert.match(CHECK_YAML, /Exit 1 means drift was found/u);
+  assert.match(CHECK_YAML, /Exit 2 means the invocation/u);
   assert.match(CHECK_WORKFLOW.output, /engine exits 2/u);
 });
 

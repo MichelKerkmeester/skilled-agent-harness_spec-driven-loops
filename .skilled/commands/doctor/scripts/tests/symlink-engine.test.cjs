@@ -212,9 +212,57 @@ test('auto links whole entries in an empty root, including the relative MCP link
   assert.equal(fs.readlinkSync(path.join(root, '.mcp.json')), '.claude/mcp.json');
 
   const report = checkReport(source, root);
+  assertStatus(runRoot(source, root, 'check'), 0, 'clean linked check should exit successfully');
   assert.equal(findEntry(report, '.skilled').status, 'linked-whole');
   assert.equal(findEntry(report, '.claude').status, 'linked-whole');
   assert.equal(findEntry(report, '.mcp.json').status, 'linked-whole');
+});
+
+test('check exits 1 when an entry is a broken link', () => {
+  const { source, root } = buildFixture();
+  fs.symlinkSync(path.join(root, 'missing-target'), path.join(root, '.skilled'));
+
+  const result = runRoot(source, root, 'check', ['--json']);
+  assertStatus(result, 1, 'broken link should be reported as drift');
+  assert.equal(findEntry(JSON.parse(result.stdout), '.skilled').status, 'broken');
+});
+
+test('check exits 1 when an entry is a foreign link', () => {
+  const { source, root } = buildFixture();
+  const foreign = makeTempRoot('symlink-engine-foreign-');
+  writeFile(path.join(foreign, 'marker.txt'), 'foreign target\n');
+  fs.symlinkSync(foreign, path.join(root, '.skilled'));
+
+  const result = runRoot(source, root, 'check', ['--json']);
+  assertStatus(result, 1, 'foreign link should be reported as drift');
+  assert.equal(findEntry(JSON.parse(result.stdout), '.skilled').status, 'foreign-link');
+});
+
+test('check exits 1 when a partial merge contains a broken link', () => {
+  const { source, root } = buildFixture();
+  fs.mkdirSync(path.join(root, '.claude'), { recursive: true });
+  fs.symlinkSync(
+    path.join(source, '.claude/missing-command'),
+    path.join(root, '.claude/commands')
+  );
+
+  const result = runRoot(source, root, 'check', ['--json']);
+  assertStatus(result, 1, 'broken link inside a partial merge should be reported as drift');
+  const entry = findEntry(JSON.parse(result.stdout), '.claude');
+  assert.equal(entry.status, 'partial-merge');
+  assert.ok(entry.broken_links.length > 0);
+});
+
+test('check exits 0 when a partial merge has only missing children', () => {
+  const { source, root } = buildFixture();
+  fs.mkdirSync(path.join(root, '.claude'), { recursive: true });
+
+  const result = runRoot(source, root, 'check', ['--json']);
+  assertStatus(result, 0, 'missing children are install work, not drift');
+  const entry = findEntry(JSON.parse(result.stdout), '.claude');
+  assert.equal(entry.status, 'partial-merge');
+  assert.ok(entry.missing_children.length > 0);
+  assert.equal(entry.broken_links.length, 0);
 });
 
 test('auto merges a real Claude folder and preserves its local statusline', () => {
@@ -399,6 +447,13 @@ test('--root equal to the source or inside it is refused with exit 2', () => {
     const result = runRoot(source, root, 'check');
     assertStatus(result, 2, `root ${root} should be refused`);
     assert.match(result.stderr, /^ERROR:.*\n?$/m);
+    // The refusal names the remedy and the root it refused, because inspecting
+    // the Skilled checkout itself is the way this precondition is reached.
+    assert.match(
+      result.stderr,
+      /root and source must not contain one another: --root must be a project repository outside the Skilled checkout \(got /
+    );
+    assert.ok(result.stderr.includes(fs.realpathSync(root)), result.stderr);
   }
 });
 
@@ -425,14 +480,17 @@ test('git exclude receives only the new ignore lines and unlink removes only tho
 
 test('a project-owned file reports its status and survives link and unlink byte-for-byte', () => {
   const { source, root } = buildFixture();
+  writeFile(path.join(source, '.env'), 'SOURCE_SECRET=\n');
   const sourceContents = Buffer.from('SOURCE_KEY=\n');
   const projectContents = Buffer.from([0, 1, 2, 3, 250, 255]);
   writeFile(path.join(source, '.env.example'), sourceContents);
   writeFile(path.join(root, '.env.example'), projectContents);
 
   const checked = runRoot(source, root, 'check', ['--include', 'env', '--json']);
-  assertStatus(checked, 0, 'check should accept the project-owned file');
-  assert.equal(findEntry(JSON.parse(checked.stdout), '.env.example').status, 'project-owned');
+  assertStatus(checked, 0, 'the project-owned entry should not be treated as drift');
+  const checkedEntries = JSON.parse(checked.stdout);
+  assert.equal(findEntry(checkedEntries, '.env').status, 'missing');
+  assert.equal(findEntry(checkedEntries, '.env.example').status, 'project-owned');
 
   const plan = planFor(source, root, ['--include', 'env']);
   assert.doesNotMatch(plan.output, /^refusal:/m);
@@ -444,7 +502,7 @@ test('a project-owned file reports its status and survives link and unlink byte-
   assert.deepEqual(fs.readFileSync(path.join(root, '.env.example')), projectContents);
 
   const report = runRoot(source, root, 'check', ['--include', 'env', '--json']);
-  assertStatus(report, 0, 'post-apply check should accept the project-owned file');
+  assertStatus(report, 0, 'the project-owned entry should remain clean after apply');
   assert.equal(findEntry(JSON.parse(report.stdout), '.env.example').status, 'project-owned');
 
   const undone = runUnlink(source, runDirectoryFrom(applied.output), '--yes');

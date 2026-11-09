@@ -400,6 +400,19 @@ test('STRICT=0 keeps hard failures as FAIL', () => {
   assert.equal(status, 1, output);
 });
 
+test('the header states the advisory policy instead of reporting a result', () => {
+  // "Advisory findings: WARN" on the header line reads as this run's verdict,
+  // which is misleading on a clean run. The header states which way advice
+  // counts, and the per-invariant lines stay the only place a verdict appears.
+  const hub = buildHub();
+  const strict = runChecker(hub);
+  assert.match(strict.output, /Policy: advisory findings count as FAIL; hard failures always FAIL\./);
+  assert.doesNotMatch(strict.output, /Advisory findings: /);
+
+  const lenient = runChecker(hub, { PARENT_HUB_CHECK_STRICT: '0' });
+  assert.match(lenient.output, /Policy: advisory findings count as WARN; hard failures always FAIL\./);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. TESTS: FAILING CASE PER INVARIANT
 // ─────────────────────────────────────────────────────────────────────────────
