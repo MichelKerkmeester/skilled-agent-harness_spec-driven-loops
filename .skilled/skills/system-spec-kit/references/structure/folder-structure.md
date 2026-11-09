@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.9.0
+version: 1.6.10.0
 ---
 
 # Folder Structure Reference
@@ -400,7 +400,7 @@ specs/billing/
 
 ## 7. HOST REPOSITORY TRIGGER INDEX
 
-The packaged index at `runtime/data/trigger-index.json` describes the framework's own documents. A host repository that vendors Skilled keeps its own index at `.speckit-index/trigger-index.json`, and both scripts select it automatically when they run from the host root: a bare lookup reads it, and a bare generation writes it with the three sidecars beside it. The packaged artifact stays the default everywhere else, including this repository's own checkout, and an explicit `--index` or `--out` still wins.
+The packaged index at `runtime/data/trigger-index.json` describes the framework's own documents. A host repository that vendors Skilled keeps its own index at `.speckit-index/trigger-index.json`, or in the folder named by `indexDir` in a `.skilled-host.json` file at its root, and both scripts select it automatically when they run from the host root: a bare lookup reads it, and a bare generation writes it with the three sidecars beside it. The packaged artifact stays the default everywhere else, including this repository's own checkout, and an explicit `--index` or `--out` still wins.
 
 Generate from the host root:
 

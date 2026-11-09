@@ -64,12 +64,12 @@ The in-scope surfaces live here:
 | Surface | Where it lives |
 |---|---|
 | AI runtime hooks | `.skilled/hooks/`. `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json` register them. OpenCode loads `.opencode/plugins/` and Pi loads `.pi/extensions/` |
-| DeepSeek Harness run surface | `.dsh/` and `.dsh/plugins/repo-guards/`. Its per-run permission mode is separate from the repository-opening runtimes |
+| DeepSeek Harness run surface | `.dsh/` and `.dsh/plugins/repo-guards/`, which `.dsh/patches/guards.patch.yml` loads. Its per-run permission mode is separate from the repository-opening runtimes |
 | Git hooks | `.skilled/scripts/git-hooks/`, installed by `.skilled/scripts/install-git-hooks.sh` |
 | Skills and their scripts | `.skilled/skills/` |
-| Commands and agents | `.skilled/commands/`, `.skilled/agents/` and the agent folder inside each runtime folder |
+| Commands and agents | `.skilled/commands/`, `.skilled/agents/` and the agent, command and prompt folders inside each runtime folder |
 | Launchers and repo scripts | `.skilled/bin/` and `.skilled/scripts/` |
-| MCP wiring | `.mcp.json`, `opencode.json`, `.codex/config.toml`, `.cursor/mcp.json`, `.devin/mcp_config.json` and `.utcp_config.json` |
+| MCP wiring | `.mcp.json`, which links to `.claude/mcp.json`, `opencode.json`, `.codex/config.toml`, `.cursor/mcp.json`, `.devin/mcp_config.json`, `.pi/mcp.json`, `.dsh/patches/mcp-code-mode.patch.yml` and `.utcp_config.json` |
 
 Some spec packets keep copies of third-party repositories as research material under `specs/**/context/`. Git ignores that path, so those copies stay on the machine that fetched them and are not part of what Skilled ships.
 
@@ -85,19 +85,19 @@ Each risk below names the file that sets the behavior, so you can check it yours
 
 ### The Shipped Permission Defaults Skip Approval
 
-`.claude/settings.json` sets `permissions.defaultMode` to `bypassPermissions` and turns off the warning Claude Code shows for that mode with `skipDangerousModePermissionPrompt`. `opencode.json` allows `edit`, `bash`, `webfetch` and `external_directory` without a prompt. Under these defaults the agent runs shell commands, edits files, reaches outside the project folder and fetches URLs without asking you. Text the agent reads in a web page, an issue, a pull request or a file can steer it, and no approval step stands in the way.
+`.claude/settings.json` sets `permissions.defaultMode` to `bypassPermissions` and turns off the warning Claude Code shows for that mode with `skipDangerousModePermissionPrompt`. `opencode.json` allows `edit`, `bash`, `webfetch`, `doom_loop` and `external_directory` without a prompt. Under these defaults the agent runs shell commands, edits files, reaches outside the project folder and fetches URLs without asking you. Text the agent reads in a web page, an issue, a pull request or a file can steer it, and no approval step stands in the way.
 
 ### Dispatched CLIs Auto-Approve
 
-The `cli-*` skills start other AI CLIs without a terminal. A lane that may write runs with approval switched off. The deep-loop fan-out runner in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` passes `--permission-mode dangerous` to Devin for any lane that may write. An OpenCode lane with full access gets `--dangerously-skip-permissions`. `cli-devin` uses `--permission-mode dangerous` for a single dispatch too, unless you name another mode. The DeepSeek Harness route also disables approval for dispatch, but its `--approval-policy never` flag does not confine filesystem access. Select `read-only` or `workspace-write` deliberately, use a disposable `DSH_HOME` and scratch working directory outside the checkout and do not run a dsh dispatch from the repository root. The documented scratch-cwd launch path keeps the repository-root `.env` out of its search path. A dispatched lane learns from its prompt which paths it may write, and nothing in its sandbox enforces that list. In one recorded incident, a review dispatch running with `--dangerously-skip-permissions` deleted 44 files across two phase folders.
+The `cli-*` skills start other AI CLIs without a terminal. A lane that may write runs with approval switched off. The deep-loop fan-out runner in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` passes `--permission-mode dangerous` to Devin for any lane that may write. An OpenCode lane with full access gets `--dangerously-skip-permissions` on OpenCode v1 and `--auto` on v2. `cli-devin` uses `--permission-mode dangerous` for a single dispatch too, unless you name another mode. The DeepSeek Harness route also disables approval for dispatch, but its `--approval-policy never` flag does not confine filesystem access. Select `read-only` or `workspace-write` deliberately, use a disposable `DSH_HOME` and scratch working directory outside the checkout and do not run a dsh dispatch from the repository root. The documented scratch-cwd launch path keeps the repository-root `.env` out of its search path. A dispatched lane learns from its prompt which paths it may write, and nothing in its sandbox enforces that list. In one recorded incident, a review dispatch running with `--dangerously-skip-permissions` deleted 44 files across two phase folders.
 
 ### Installs Run Without A Separate Prompt
 
-The skill advisor launcher in `.skilled/bin/system-skill-advisor-launcher.cjs` runs `npm ci` or `npm install` and a build when its runtime has not been built yet. `worktree-naming.sh create` in `sk-git` installs every package tree listed in `worktree-provision-paths.txt`, fourteen of them today, with npm, or with bun for a package that ships a `bun.lock` or `bun.lockb` and no `package-lock.json`. Neither passes `--ignore-scripts`, so each package's install scripts run. The first AI session in the main checkout also installs the git hooks when they are missing.
+The skill advisor launcher in `.skilled/bin/system-skill-advisor-launcher.cjs` runs `npm ci` or `npm install` and a build when its runtime has not been built yet. `worktree-naming.sh create` in `sk-git` installs every package tree listed in `worktree-provision-paths.txt`, thirteen of them today, with npm, or with bun for a package that ships a `bun.lock` or `bun.lockb` and no `package-lock.json`. Neither passes `--ignore-scripts`, so each package's install scripts run. The first AI session in the main checkout also installs the git hooks when they are missing.
 
 ### MCP Servers Come From The Network
 
-The Claude Code, Codex, Cursor, Devin and OpenCode configs each register one MCP server, Code Mode, which starts the servers listed in `.utcp_config.json`. Apart from the two Chrome DevTools entries, every `npx` entry there names no fixed version or names `@latest`, so a launch can fetch a release you have never run. Three entries connect to remote endpoints through `mcp-remote`. Code Mode reads the API keys those servers need from the `.env` file at the repository root.
+The Claude Code, Codex, Cursor, Devin, OpenCode and Pi configs each register one MCP server, Code Mode, which starts the servers listed in `.utcp_config.json`. A DeepSeek Harness dispatch registers it only when it adds the Code Mode patch. Apart from the three Chrome DevTools entries, every `npx` entry there names no fixed version or names `@latest`, so a launch can fetch a release you have never run. Four entries connect to remote endpoints through `mcp-remote`. One entry, `aside`, runs a binary from your `PATH`. Code Mode reads the API keys those servers need from the `.env` file at the repository root.
 
 ### Secrets Leak Through Files And Commands
 
@@ -113,10 +113,10 @@ Git ignores `.env` and `.env.*` (`.env.example` excepted), `*.key`, `*.pem`, `*.
 
 ### Read What Runs
 
-Read the hook registrations before your first AI session: the `hooks` block in `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`, `.opencode/plugins/` and `.pi/extensions/`. The [hooks README](.skilled/hooks/README.md) indexes every hook the repository authors, by concern and runtime. After a pull, this shows what changed in the code that runs on your machine:
+Read the hook registrations before your first AI session: the `hooks` block in `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`, `.opencode/plugins/`, `.pi/extensions/` and `.dsh/patches/guards.patch.yml`. The [hooks README](.skilled/hooks/README.md) indexes every hook the repository authors, by concern and runtime. Several entries under `.skilled/hooks/` are links to code inside a skill, so the command below also covers `.skilled/skills`. After a pull, it shows what changed in the code that runs on your machine:
 
 ```bash
-git diff --stat ORIG_HEAD HEAD -- .claude/settings.json .codex .cursor .devin .opencode/plugins .pi/extensions .skilled/hooks .skilled/bin .skilled/scripts .utcp_config.json
+git diff --stat ORIG_HEAD HEAD -- .claude/settings.json .claude/mcp.json .codex .cursor .devin .dsh .opencode/plugins opencode.json .pi .skilled/hooks .skilled/bin .skilled/scripts .skilled/skills .skilled/commands/doctor/scripts .utcp_config.json
 ```
 
 ### Turn Approval Back On
@@ -135,7 +135,7 @@ In OpenCode, change `"bash"` and `"edit"` under `permission` in `opencode.json` 
 
 ### Keep Secrets Out Of Tracked Files
 
-- Keep API keys in the root `.env` file or your shell, never in `.utcp_config.json`. Refer to them there as `${VARIABLE_NAME}`. Code Mode expects each name prefixed with its manual name, for example `clickup_CLICKUP_API_KEY`
+- Keep API keys in the root `.env` file or your shell, never in `.utcp_config.json`. Refer to them there as `${VARIABLE_NAME}`. Code Mode expects each name prefixed with its manual name, with every underscore in that name doubled. The [Code Mode install guide](.skilled/skills/mcp-code-mode/INSTALL-GUIDE.md) shows the exact form
 - Restrict the file with `chmod 600 .env`
 - Never type a key on a command line or paste one into a prompt or a spec document
 - Check `git diff --cached` before you commit, because no hook will catch a key for you
@@ -150,7 +150,7 @@ Replace `@latest` and the unversioned `npx` entries in `.utcp_config.json` with 
 
 ### Switch Hooks Off With Care
 
-`SYSTEM_HOOKS_DISABLED=1` turns off every AI hook, and the [hooks README](.skilled/hooks/README.md) lists one switch per hook. Some switches widen access instead of narrowing it. With `SYSTEM_HOOKS_DISABLED=1` or `SYSTEM_PERMISSION_POLICY_DISABLED=1`, Devin approves every permission request. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate. To see where each git hook resolves, or to remove them:
+`SYSTEM_HOOKS_DISABLED=1` turns off every AI hook and every pre-commit gate, and the [hooks README](.skilled/hooks/README.md) lists one switch per hook. Some switches widen access instead of narrowing it. With `SYSTEM_HOOKS_DISABLED=1` or `SYSTEM_PERMISSION_POLICY_DISABLED=1`, Devin approves every permission request. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate. To see where each git hook resolves, or to remove them:
 
 ```bash
 bash .skilled/scripts/install-git-hooks.sh --status
@@ -163,17 +163,18 @@ bash .skilled/scripts/install-git-hooks.sh --uninstall
 
 | Safeguard | What it does | Where |
 |---|---|---|
-| Mass-deletion ceiling | `pre-push` blocks a push that deletes more than 100 tracked files. `SPECKIT_MASS_DELETION_THRESHOLD` raises the ceiling for one command | `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` |
+| Mass-deletion ceiling | `pre-push` blocks a push that deletes more than 100 tracked files. `SPECKIT_MASS_DELETION_THRESHOLD` raises the ceiling for one command and `SPECKIT_ALLOW_MASS_DELETION=1` skips the check for one | `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` |
 | Push permission gate | `pre-push` needs your approval for a push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist | `.skilled/scripts/git-hooks/pre-push` |
 | Message contract | `commit-msg` blocks a message that breaks the sk-git commit rules. There is no bypass, and `pre-push` re-checks every pushed commit, so `--no-verify` does not let one through | `.skilled/scripts/git-hooks/commit-msg` |
 | Dispatch preflight | Reads the `hard-rules.json` file beside each CLI skill's `SKILL.md` and denies a dispatch that breaks a blocking rule, such as an `opencode run` that leaves stdin open | `.skilled/hooks/dispatch/` |
 | Git preflight advisory | Warns before a git command with a surprising result, such as `reset --hard` over uncommitted changes or a force push without a lease | `.skilled/skills/sk-git/hard-rules.json` |
-| dsh git preflight advisory | Evaluates dsh git commands against the shared sk-git hard rules and warns before a risky operation | `.dsh/plugins/repo-guards/` |
+| dsh git preflight advisory | Evaluates dsh git commands against the shared sk-git hard rules and warns after a risky one has run | `.dsh/plugins/repo-guards/` |
 | Devin permission policy | Answers each Devin permission request and denies on malformed input, a missing field, an unknown tool or any internal error | `.skilled/hooks/permission-policy/` |
+| Overlay guard | Denies an edit to a file that a copied project's overlay owns. It covers every runtime except OpenCode, and `SYSTEM_OVERLAY_GUARD_DISABLED=1` turns it off | `.skilled/hooks/overlay-guard/` |
 | Fan-out write containment | Diffs the tree after each dispatch, quarantines a copy of every write outside the lane's directory and reports it | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` |
 | Dispatch audit log | Writes one line per dispatch, with API keys, tokens, passwords and authorization headers redacted. Git ignores the log | `.skilled/logs/cli-dispatch-audit.log` |
 | Pinned CI actions | Every GitHub Action is pinned to a commit SHA, and Dependabot updates the pins weekly | `.github/workflows/`, `.github/dependabot.yml` |
-| Dependency updates | Dependabot opens weekly npm updates for the root, `.opencode/`, `.skilled/` and `.pi/extensions/`. Only a grouped npm security update made of patch releases merges on its own once checks pass. Every other update waits for a person | `.github/workflows/dependabot-auto-merge.yml` |
+| Dependency updates | Dependabot opens weekly npm updates for every package under `.opencode/`, `.skilled/` and `.pi/extensions/`. Only an npm security update made of patch releases merges on its own once checks pass. Every other update waits for a person | `.github/workflows/dependabot-auto-merge.yml` |
 
 ---
 

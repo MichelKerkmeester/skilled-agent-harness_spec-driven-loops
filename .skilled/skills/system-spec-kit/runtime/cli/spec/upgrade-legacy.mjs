@@ -74,9 +74,18 @@ const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '.
 // host's specs/ could then never be read, and --roots would refuse every path the host names.
 // Host detection therefore decides instead, and everywhere else the file's location still
 // does, because that is the only tree a plain checkout knows about.
+//
+// A host whose settings file cannot be honored is a refusal, not a crash: a direct run reports
+// it and exits 2 like every other refused invocation, while an importer still sees the error.
 function hostRepositoryRoot() {
   const caller = callerRepoRoot(process.cwd());
-  return caller !== null && isHostRepository(caller) ? caller : null;
+  try {
+    return caller !== null && isHostRepository(caller) ? caller : null;
+  } catch (err) {
+    if (!directRun()) throw err;
+    process.stderr.write(`${SCRIPT}: ${(err && err.message) || err}\n`);
+    process.exit(2);
+  }
 }
 
 const HOST_ROOT = hostRepositoryRoot();

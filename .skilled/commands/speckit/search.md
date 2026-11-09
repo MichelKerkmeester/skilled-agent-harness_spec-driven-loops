@@ -81,10 +81,10 @@ The keyed lookup over the generated index. Reads a file and exits.
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<QUERY>"
 ```
 
-The default index is the packaged `runtime/data/trigger-index.json`. A host repository that generated its own index passes it explicitly: `--index .speckit-index/trigger-index.json`.
+With no `--index`, a host repository's own index is read automatically: `.speckit-index/trigger-index.json` at its root, or the folder named by `indexDir` in its `.skilled-host.json`. A project linked into a host reads that host's index, unless the project keeps an index of its own, which wins. Everywhere else the packaged `runtime/data/trigger-index.json` is the default, and an explicit `--index` always wins.
 
 1. Run the command with the resolved `QUERY`.
-2. Branch on the exit status: `0` = candidates, `1` = clean no-hit, `2` or higher = the index is missing or unreadable.
+2. Branch on the exit status: `0` = candidates, `1` = clean no-hit, `2` or higher = the index is missing or unreadable, or the host's `.skilled-host.json` cannot be honored.
 3. Render candidates with the Section 2 contract in the presentation asset — score, match class and path, in the order the tool returned them.
 4. On exit `2` or higher, render the Section 7 error display with stderr attached and name `/doctor:speckit` as the diagnostic. Never report it as a no-hit.
 

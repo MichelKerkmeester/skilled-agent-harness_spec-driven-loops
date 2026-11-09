@@ -38,8 +38,18 @@ Current state:
 
 A host repository that vendors Skilled keeps its own index at `.speckit-index/trigger-index.json` in the host root. Both scripts select that file automatically when they run from the host: the lookup reads it when no `--index` is given, and the generator writes it, with its sidecars beside it, when no `--out` is given. A checkout of the framework itself keeps reading and writing the packaged `runtime/data/trigger-index.json`, and an explicit `--index` or `--out` still wins.
 
+A host can name a different folder in a `.skilled-host.json` file at its root:
+
+```json
+{ "indexDir": ".index" }
+```
+
+The generator, the lookup and host detection all follow that folder, and a host with no file, or no `indexDir`, keeps `.speckit-index/`. The folder must sit inside the host root and outside `.skilled/`, `specs/`, `.git/` and `node_modules/`, and the name must not belong to a file. A link or a differently cased name that reaches one of those places is refused too. A setting that is not valid JSON, or that breaks those rules, stops both scripts with an error naming the file rather than falling back to the default.
+
+Naming a folder disowns `.speckit-index/`. Until the index is regenerated into the named folder, a bare lookup answers from the packaged index and says so in one stderr line that names the leftover index.
+
 ```bash
-# generate from the host root: writes .speckit-index/trigger-index.json
+# generate from the host root: writes .speckit-index/trigger-index.json, or the named folder
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 
 # Gate 1 lookup against the host index
@@ -54,13 +64,13 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-inde
 
 ### Linked Project Checkouts
 
-A project that links its `.skilled` tree, and usually its `specs` tree, into a host and keeps no `.speckit-index/` of its own reads the index of the host that holds the linked tree. That host is the git toplevel of the tree's real location, and only a host that keeps an index counts. No ancestor walk is used, so an unrelated repository further up the filesystem is never mistaken for the host.
+A project that links its `.skilled` tree, and usually its `specs` tree, into a host and keeps no index folder of its own reads the index of the host that holds the linked tree. That host is the git toplevel of the tree's real location, and only a host that keeps an index counts. The folder is read from the host's own `.skilled-host.json`, so the project needs no setting of its own. No ancestor walk is used, so an unrelated repository further up the filesystem is never mistaken for the host.
 
 The default scope is the folder the project's `specs` link points to, spelled relative to the host, which is how the host's index spells its paths. `--spec-folder ""` drops that scope, and an explicit `--spec-folder` wins over it.
 
 Result paths are relative to the host, and the text output prints a `paths` line naming the host they belong to.
 
-A bare generation from such a project exits 2 and names the host, because writing the host's corpus into a project-local index would split one corpus across two files. Generate at the host root instead. A project that keeps its own `.speckit-index/` is not refused.
+A bare generation from such a project exits 2 and names the host, because writing the host's corpus into a project-local index would split one corpus across two files. Generate at the host root instead. A project that keeps its own index folder is not refused.
 
 ```bash
 # from the project root: reads the host index, scoped to the linked specs folder

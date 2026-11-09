@@ -381,6 +381,8 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 | "No match" from search | The phrase is not written in the searched roots | Rephrase with wording that appears in the documents, or widen the roots. Exit `1` means the command worked and found nothing |
 | Search reports an error with stderr | Ripgrep exited `2` or higher: a search root that does not exist, or a malformed pattern | Read the stderr. Exit `1` and exit `2` both produce empty stdout, so the exit status is the only discriminator |
 | Trigger lookup fails with an error | The generated index is missing or unreadable | Run `/doctor:speckit`, then regenerate with `generate-trigger-index.mjs` |
+| Trigger lookup exits `2` and names `.skilled-host.json` | The host's `indexDir` setting is not valid JSON, or names a folder the scripts refuse | Fix the setting. The folder must sit inside the host root and outside `.skilled/`, `specs/`, `.git/` and `node_modules/` |
+| Trigger lookup in a host answers from the framework's documents | The host names an `indexDir` that holds no index yet. Stderr names the leftover `.speckit-index/` file | Run `generate-trigger-index.mjs` from the host root |
 | A new document never matches a trigger prompt | Its `trigger_phrases` are absent, generic, or the index predates the edit | Add distinctive phrases per `retrieval-conventions.md` Section 8, then regenerate the index |
 | A recipe returns an unexpected output shape | Two output-mode flags were combined; the last one wins silently | Use exactly one output mode per invocation |
 

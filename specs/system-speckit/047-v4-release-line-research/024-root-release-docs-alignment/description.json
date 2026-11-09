@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/047-v4-release-line-research/024-root-release-docs-alignment",
+  "description": "Align the root release, contributing and security docs with the current repository",
+  "keywords": [
+    "align",
+    "root",
+    "release",
+    "contributing",
+    "security",
+    "docs",
+    "current",
+    "repository"
+  ],
+  "lastUpdated": "2026-11-09T19:57:49.735Z",
+  "specId": "024",
+  "folderSlug": "root-release-docs-alignment",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

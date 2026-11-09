@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/047-v4-release-line-research/023-configurable-host-index-folder",
+  "description": "Let a host repository name its trigger index folder",
+  "keywords": [
+    "let",
+    "host",
+    "repository",
+    "name",
+    "trigger",
+    "index",
+    "folder"
+  ],
+  "lastUpdated": "2026-11-09T18:06:54.421Z",
+  "specId": "023",
+  "folderSlug": "configurable-host-index-folder",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

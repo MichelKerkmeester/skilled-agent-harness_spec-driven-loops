@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.29.0
+version: 2.7.30.0
 ---
 
 # System Spec Kit
@@ -77,7 +77,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 
 | Capability | What the skill knows how to operate |
 |---|---|
-| **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running |
+| **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running. A host repository keeps its own index in `.speckit-index/`, or in the folder its `.skilled-host.json` names |
 | **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple |
 | **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` and kept as the primary recovery path, plus one bounded history lookup a compaction may add when a fresh locator verifies |
 | **Session relaunch** | Relaunches a near-limit session in a fresh runtime in the same terminal, gated per runtime and carrying a handoff note |

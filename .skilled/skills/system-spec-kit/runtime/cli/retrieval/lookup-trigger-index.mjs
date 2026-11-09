@@ -23,7 +23,8 @@
 // the output keeps them, matching the retired lane's recorded results.
 //
 // With no --index, an index the caller's own repository carries at
-// <root>/.speckit-index/trigger-index.json is read instead of the packaged one.
+// <root>/.speckit-index/trigger-index.json, or in the `indexDir` its
+// .skilled-host.json names, is read instead of the packaged one.
 // A host repository that vendors Skilled keeps its packets there, and the
 // packaged index describes the framework's documents only.
 //
@@ -51,7 +52,7 @@ import {
   queryTokens,
   scorePhrase,
 } from './lib/normalize.mjs';
-import { callerRepoRoot, hostIndexPath, isFile, owningHostRoot } from './lib/host-index.mjs';
+import { callerRepoRoot, disownedDefaultIndex, hostIndexDir, hostIndexPath, isFile, owningHostRoot } from './lib/host-index.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -66,7 +67,8 @@ export const DEFAULT_INDEX_PATH = path.resolve(SCRIPT_DIR, '..', '..', 'data', '
  * The index a bare lookup reads, and the scope that goes with it.
  *
  * A host repository that vendors Skilled keeps an index over its own packets
- * at `<root>/.speckit-index/trigger-index.json`. Reading the packaged artifact
+ * at `<root>/.speckit-index/trigger-index.json`, or under the `indexDir` its
+ * `.skilled-host.json` names. Reading the packaged artifact
  * there answers every question from the framework's documents instead of the
  * host's, so an existing host index wins and the packaged default stays the
  * fallback.
@@ -420,6 +422,22 @@ function displayIndexPath(indexPath) {
 }
 
 /**
+ * Explains a bare lookup that fell back while the caller's repository still
+ * holds an index its setting no longer names.
+ *
+ * @param {string} [cwd] Directory the caller works in.
+ * @returns {string|null} One stderr line, or null when nothing was left behind.
+ */
+export function disownedIndexHint(cwd = process.cwd()) {
+  const root = callerRepoRoot(cwd);
+  if (root === null) return null;
+  const leftover = disownedDefaultIndex(root);
+  if (leftover === null) return null;
+  return `lookup-trigger-index: ${path.relative(root, leftover)} is not read, because the host names`
+    + ` ${hostIndexDir(root)}/ and holds no index there; regenerate the index from ${root}\n`;
+}
+
+/**
  * @returns {number} Process exit code.
  */
 function main() {
@@ -432,10 +450,24 @@ function main() {
   }
 
   // An explicit --index is the caller's own choice of artifact, so no host is
-  // named and no default scope is inferred from one.
-  const selection = args.indexPath === undefined
-    ? defaultIndexSelection()
-    : { indexPath: args.indexPath, ownerRoot: null, specFolder: null };
+  // named and no default scope is inferred from one. A host setting that cannot
+  // be honored exits 2, because exit 1 means a clean no-hit to every caller.
+  let selection;
+  try {
+    selection = args.indexPath === undefined
+      ? defaultIndexSelection()
+      : { indexPath: args.indexPath, ownerRoot: null, specFolder: null };
+  } catch (error) {
+    process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+    return 2;
+  }
+
+  // A fallback is silent by design, so the one case where the caller's own
+  // repository explains it is said out loud. Only stderr: stdout stays the answer.
+  if (args.indexPath === undefined && selection.indexPath === DEFAULT_INDEX_PATH) {
+    const hint = disownedIndexHint();
+    if (hint !== null) process.stderr.write(hint);
+  }
 
   let loaded;
   try {

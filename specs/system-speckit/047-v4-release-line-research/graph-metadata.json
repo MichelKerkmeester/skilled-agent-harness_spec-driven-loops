@@ -25,7 +25,9 @@
     "system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope",
     "system-speckit/047-v4-release-line-research/020-operator-approved-closeout",
     "system-speckit/047-v4-release-line-research/021-host-root-marker-refresh",
-    "system-speckit/047-v4-release-line-research/022-linked-project-host-index"
+    "system-speckit/047-v4-release-line-research/022-linked-project-host-index",
+    "system-speckit/047-v4-release-line-research/023-configurable-host-index-folder",
+    "system-speckit/047-v4-release-line-research/024-root-release-docs-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -223,7 +225,7 @@
     ],
     "causal_summary": "Nineteen releases shipped between v4.0.0.0 (2026-09-21) and v4.0.2.0 (2026-11-08): 3,687 commits across spec kit, the authoring hubs, the CLI executors, the deep loops, the skill advisor, hooks, doctor commands and git tooling",
     "created_at": "2026-11-08T19:49:04Z",
-    "last_save_at": "2026-11-09T13:45:50.938Z",
+    "last_save_at": "2026-11-09T20:05:23.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,10 +233,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4ff2b141e2ff224768b8515c9890bc8a75403f2375a055a21f058b1825b31de9",
+    "source_fingerprint": "sha256:5fc09bf5953bbc0246f977f53e9a6287f645a5960e5cf00cbef907a81d423a40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "407b68c0da589f60b425bfa72731b94facb307a6b5310e309e88256554e91fa0",
+      "spec.md": "6d21a35bd9c790da2a905f9af16f2d931d52d10258265cac0abf53295575e73f",
       "research/research.md": "12682bd016fa7179f71e23cffa6aa65f5ae689e6a331bd86649f58576f8b4a55"
     },
     "last_active_child_id": "system-speckit/047-v4-release-line-research/003-cli-and-deep-loop",

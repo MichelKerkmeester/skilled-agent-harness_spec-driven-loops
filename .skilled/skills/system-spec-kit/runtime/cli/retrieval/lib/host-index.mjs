@@ -10,7 +10,8 @@
 //
 // The two roots are distinguishable without configuration. This checkout holds
 // a real `.skilled` directory directly under its own root. A host either keeps
-// its index at `.speckit-index/`, or points `.skilled` at a tree that lives
+// its index directory, `.speckit-index/` unless it names another, or points
+// `.skilled` at a tree that lives
 // outside itself — a symlink into an installed copy, or a vendored tree placed
 // elsewhere. Neither signal can be produced by accident inside the framework
 // checkout, so a bare invocation can select the host corpus and index safely.
@@ -21,6 +22,11 @@
 // the one belonging to the repository holding the tree it linked. That owner is
 // resolved from where the vendored tree really lives — never by walking ancestors
 // in the hope of meeting a repository that happens to keep an index.
+//
+// A host may name its index directory in `.skilled-host.json` at its root, as
+// `{ "indexDir": ".index" }`. The file is read at the root whose index is being
+// located, so a linked project reaches its owner's folder without carrying the
+// setting itself.
 
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -31,8 +37,22 @@ import process from 'node:process';
 // 1. CONTRACT
 // ───────────────────────────────────────────────────────────────────
 
-/** Location of a host repository's own index, relative to its root. */
-export const HOST_INDEX_RELATIVE = '.speckit-index/trigger-index.json';
+/** Index directory a host uses when it names none, relative to its root. */
+export const DEFAULT_HOST_INDEX_DIR = '.speckit-index';
+
+/** Default location of a host repository's own index, relative to its root. */
+export const HOST_INDEX_RELATIVE = `${DEFAULT_HOST_INDEX_DIR}/trigger-index.json`;
+
+/** Host-root file that may name the index directory. */
+export const HOST_SETTINGS_FILE = '.skilled-host.json';
+
+/** Name of the index file inside the index directory. */
+const INDEX_FILE_NAME = 'trigger-index.json';
+
+// Top-level directories that may never hold the index. The vendored tree must
+// stay identical to its pin, `specs` is the corpus the index is built from, and
+// the other two belong to tools that rewrite or prune what they find inside.
+const RESERVED_TOP_LEVEL = ['.skilled', 'specs', '.git', 'node_modules'];
 
 // ───────────────────────────────────────────────────────────────────
 // 2. ROOT RESOLUTION
@@ -78,10 +98,11 @@ export function callerRepoRoot(cwd = process.cwd()) {
  *
  * @param {string} root Absolute or resolvable repository root.
  * @returns {boolean} True when the root keeps a corpus outside the framework tree.
+ * @throws {Error} When the root's settings file cannot be honored, as `hostIndexDir` reports.
  */
 export function isHostRepository(root) {
   const absolute = path.resolve(root);
-  if (isDirectory(path.join(absolute, '.speckit-index'))) return true;
+  if (isDirectory(path.join(absolute, hostIndexDir(absolute)))) return true;
 
   let sourceTree;
   try {
@@ -100,13 +121,104 @@ export function isHostRepository(root) {
 }
 
 /**
+ * Resolves the index directory a root uses, relative to that root.
+ *
+ * A root with no settings file, or one that names no `indexDir`, keeps the
+ * default. A settings file that cannot be parsed, or that names a directory
+ * outside the root, inside a reserved directory such as the vendored tree or
+ * the scanned `specs` corpus, or at a path that is not a directory, is an
+ * error rather than a fallback: silently using the default would publish or
+ * read an index the host did not ask for.
+ *
+ * The name is checked twice. The spelling is checked first, so a setting is
+ * refused before anything exists on disk. The resolved location is checked
+ * second, because a link or a differently cased name on a case-insensitive
+ * volume reaches a refused directory under a spelling that looks harmless.
+ *
+ * @param {string} root Repository root.
+ * @returns {string} Index directory relative to the root, never empty.
+ * @throws {Error} When the settings file is malformed or names an unsafe directory.
+ */
+export function hostIndexDir(root) {
+  const settingsPath = path.join(path.resolve(root), HOST_SETTINGS_FILE);
+  let raw;
+  try {
+    raw = fs.readFileSync(settingsPath, 'utf8');
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'ENOTDIR') return DEFAULT_HOST_INDEX_DIR;
+    throw error;
+  }
+
+  let settings;
+  try {
+    settings = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(`${settingsPath}: not valid JSON (${error.message})`);
+  }
+  if (settings === null || typeof settings !== 'object' || Array.isArray(settings)) {
+    throw new Error(`${settingsPath}: expected a JSON object`);
+  }
+  if (settings.indexDir === undefined) return DEFAULT_HOST_INDEX_DIR;
+  if (typeof settings.indexDir !== 'string' || settings.indexDir.trim() === '') {
+    throw new Error(`${settingsPath}: indexDir must be a non-empty string`);
+  }
+
+  const relative = path.normalize(settings.indexDir.trim());
+  const first = relative.split(path.sep)[0];
+  if (path.isAbsolute(relative) || relative === '.' || first === '..') {
+    throw new Error(`${settingsPath}: indexDir must name a directory inside the repository root`);
+  }
+  const reserved = RESERVED_TOP_LEVEL.find((name) => name === first.toLowerCase());
+  if (reserved !== undefined) {
+    throw new Error(`${settingsPath}: indexDir must not lie inside ${reserved}/`);
+  }
+
+  const rootReal = realpathOrSelf(path.resolve(root));
+  const target = path.join(rootReal, relative);
+  const resolved = resolveThroughExisting(target);
+  if (!isInside(resolved, rootReal)) {
+    throw new Error(`${settingsPath}: indexDir must name a directory inside the repository root`);
+  }
+  for (const name of RESERVED_TOP_LEVEL) {
+    const held = realpathOrSelf(path.join(rootReal, name));
+    if (resolved === held || isInside(resolved, held)) {
+      throw new Error(`${settingsPath}: indexDir must not lie inside ${name}/`);
+    }
+  }
+  if (fs.existsSync(target) && !isDirectory(target)) {
+    throw new Error(`${settingsPath}: indexDir names a path that is not a directory`);
+  }
+  return relative;
+}
+
+/**
  * Resolves where a host repository keeps its own index.
  *
  * @param {string} root Host repository root.
  * @returns {string} Absolute index path under the root.
+ * @throws {Error} When the root's settings file cannot be honored.
  */
 export function hostIndexPath(root) {
-  return path.resolve(root, HOST_INDEX_RELATIVE);
+  return path.resolve(root, hostIndexDir(root), INDEX_FILE_NAME);
+}
+
+/**
+ * Names an index a root still keeps in the default directory after its setting
+ * moved the index elsewhere and nothing was generated there yet.
+ *
+ * The setting disowns the default directory, so that index is never read. A
+ * lookup then answers from another index without failing, which looks like a
+ * working setup: the one useful thing left is to say which step is missing.
+ *
+ * @param {string} root Repository root.
+ * @returns {string|null} Path of the disowned index, or null when there is none.
+ * @throws {Error} When the root's settings file cannot be honored.
+ */
+export function disownedDefaultIndex(root) {
+  if (hostIndexDir(root) === DEFAULT_HOST_INDEX_DIR) return null;
+  if (isFile(hostIndexPath(root))) return null;
+  const leftover = path.resolve(root, HOST_INDEX_RELATIVE);
+  return isFile(leftover) ? leftover : null;
 }
 
 /**
@@ -127,6 +239,7 @@ export function hostIndexPath(root) {
  *
  * @param {string} root Absolute or resolvable repository root.
  * @returns {string|null} Root of the host holding the vendored tree, or null.
+ * @throws {Error} When the settings file of the root or of its owner cannot be honored.
  */
 export function owningHostRoot(root) {
   const absolute = path.resolve(root);
@@ -186,4 +299,37 @@ function realpathOrSelf(candidate) {
   } catch {
     return candidate;
   }
+}
+
+/**
+ * Resolves a path that may not exist yet, following every link on the part
+ * that does. The index directory is created on first generation, so the
+ * deepest existing ancestor is what decides where a write would land.
+ *
+ * @param {string} candidate Absolute path.
+ * @returns {string} The location the path reaches once links are followed.
+ */
+function resolveThroughExisting(candidate) {
+  const missing = [];
+  let current = candidate;
+  for (;;) {
+    try {
+      return path.join(fs.realpathSync(current), ...missing);
+    } catch {
+      const parent = path.dirname(current);
+      if (parent === current) return candidate;
+      missing.unshift(path.basename(current));
+      current = parent;
+    }
+  }
+}
+
+/**
+ * @param {string} candidate Absolute path.
+ * @param {string} container Absolute directory.
+ * @returns {boolean} True when the path lies strictly below the directory.
+ */
+function isInside(candidate, container) {
+  const offset = path.relative(container, candidate);
+  return offset !== '' && offset.split(path.sep)[0] !== '..' && !path.isAbsolute(offset);
 }

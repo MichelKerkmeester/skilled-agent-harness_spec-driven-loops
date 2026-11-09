@@ -520,6 +520,8 @@ Canonical continuity lives in the spec packet itself. `generate-context.js` upda
 
 Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`. Free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). Both lanes read committed files, so neither needs a running daemon.
 
+A host repository that vendors Skilled keeps its own index in `.speckit-index/` at its root. It can name another folder with `{ "indexDir": ".index" }` in a `.skilled-host.json` file there, and the generator and the lookup both follow it.
+
 The trigger-index generator names the checkout it indexes. Run from a project that links the Skilled source, it indexes the source checkout unless `--repo-root` names another. It now prints one stderr line naming both roots and the `--repo-root` and `--out` flags. The default root, stdout and exit codes are unchanged.
 
 Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported. A miss is a clean no-hit rather than a degraded guess.

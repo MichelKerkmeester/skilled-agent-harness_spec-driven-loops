@@ -38,7 +38,8 @@
 //
 // A host repository that vendors Skilled names its own corpus and index: with no
 // --repo-root the caller's own repository supplies the root when it is a host,
-// and with no --out the index and its sidecars land under <root>/.speckit-index.
+// and with no --out the index and its sidecars land in the root's index directory:
+// <root>/.speckit-index, or the `indexDir` its .skilled-host.json names.
 // Inside the framework checkout nothing changes, and any explicit flag wins.
 //
 // A project repository that links its `.skilled` and `specs` into such a host is
@@ -47,7 +48,7 @@
 // project-local index would split one corpus across two artifacts, and writing
 // the packaged index instead would replace the framework's. Naming both
 // --repo-root and --out is the way to build one deliberately. A linked project
-// that carries its own `.speckit-index/` directory is the exception, because the
+// that carries its own index directory is the exception, because the
 // lookup from that project reads the index there before it considers any host.
 //
 // Exit codes: 0 = published (--check: index matches the corpus), 1 = malformed corpus, nothing
@@ -70,7 +71,7 @@ import { packetFolderTokens } from './lib/grep-convention.mjs';
 import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
 import { loadIndex } from './lookup-trigger-index.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
-import { HOST_INDEX_RELATIVE, callerRepoRoot, hostIndexPath, isHostRepository, owningHostRoot } from './lib/host-index.mjs';
+import { callerRepoRoot, hostIndexDir, hostIndexPath, isHostRepository, owningHostRoot } from './lib/host-index.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -684,7 +685,7 @@ function resolveInvocationDefaults(flags) {
  */
 function keepsOwnIndexDirectory(root) {
   try {
-    return fs.statSync(path.join(root, path.dirname(HOST_INDEX_RELATIVE))).isDirectory();
+    return fs.statSync(path.join(root, hostIndexDir(root))).isDirectory();
   } catch {
     return false;
   }
@@ -757,15 +758,21 @@ function main() {
 
   // Refused before any default is resolved, so --check is covered too: a check
   // run from here would compare the project against a corpus it does not own.
-  const refusal = linkedTreeRefusal(flags);
-  if (refusal !== null) {
-    process.stderr.write(refusal);
+  // A host setting that cannot be honored is a bad invocation, not a malformed
+  // corpus, so it exits 2 rather than escaping as an uncaught error.
+  let defaults;
+  try {
+    const refusal = linkedTreeRefusal(flags);
+    if (refusal !== null) {
+      process.stderr.write(refusal);
+      return 2;
+    }
+    defaults = resolveInvocationDefaults(flags);
+    warnWhenIndexingAnotherRepository(flags, defaults.repoRoot);
+  } catch (error) {
+    process.stderr.write(`generate-trigger-index: ${error instanceof Error ? error.message : String(error)}\n`);
     return 2;
   }
-
-  const defaults = resolveInvocationDefaults(flags);
-
-  warnWhenIndexingAnotherRepository(flags, defaults.repoRoot);
 
   if (flags.check) return runCheck(flags, defaults);
 
