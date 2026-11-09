@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Phase 5: zero-hit fallback to git-changed spec docs"
-description: "When the committed trigger index returns no scored candidate, score the declared trigger phrases of spec docs that git reports as changed, so a newly created or edited packet is findable before the next index rebuild."
+title: "Feature Specification: Phase 5: zero-hit fallback to unindexed spec docs"
+description: "When the committed trigger index returns no scored candidate, score the declared trigger phrases of spec docs the index does not list yet, so a newly created or edited packet is findable before the next index rebuild."
 trigger_phrases:
   - "stale index fallback"
   - "trigger lookup zero hit fallback"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
-# Feature Specification: Phase 5: zero-hit fallback to git-changed spec docs
+# Feature Specification: Phase 5: zero-hit fallback to unindexed spec docs
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -57,7 +57,7 @@ This is **Phase 5** of the sweet-search integration packet: a build phase for on
 The trigger index is committed and rebuilt by hand, so a packet created or edited since the last build is invisible to the Gate 1 lookup. The lookup exits 1 with no sign that the index is stale, which looks the same as a topic nobody wrote about. This happened for every new phase of this packet.
 
 ### Purpose
-A zero-hit lookup inside a git work tree also checks the declared phrases of changed spec docs, and says so in its answer, without changing any lookup that already finds a match.
+A zero-hit lookup inside a git work tree also checks the declared phrases of spec docs the index does not list yet, and says so in its answer, without changing any lookup that already finds a match.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -76,7 +76,8 @@ exit=1
 ## 3. SCOPE
 
 ### In Scope
-- Add `lib/changed-docs.mjs`: list changed `*.md` with `git status --porcelain=v1 -z --untracked-files=all`, read their `trigger_phrases`, score them with `scorePhrase`.
+- Add `lib/unindexed-docs.mjs`: walk `specs/` with the generator's own directory pruning, keep the spec-doc files whose path the index does not list, read their `trigger_phrases` with the generator's frontmatter reader, and score them with `scorePhrase`.
+- Export the research-file rule from `lib/corpus.mjs` so the walk and the generator exclude the same files.
 - Add `lookupWithFallback()`, a `--no-stale-fallback` flag, an async `main()`, the `staleFallback` answer field and a `fallback :` human line.
 - Recompute `totalCandidates` and `truncated` after the merge.
 - Amend sections 4 and 5 of the retrieval conventions and the retrieval README.
@@ -89,16 +90,18 @@ exit=1
 - Grepping body text of changed files - that is the ripgrep lane's job.
 - Rebuilding the trigger index automatically - `generate-trigger-index.mjs` stays the only writer.
 - Mtime-based freshness or any queue file - the index has no build timestamp.
+- Phrases edited inside a doc the index already lists - the index answers for that path, and `generate-trigger-index.mjs --check` reports it stale.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/changed-docs.mjs` | Create | Git candidate list, frontmatter phrase read, scoring, `MAX_FALLBACK_FILES = 200` |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs` | Create | Unindexed spec-doc walk, frontmatter phrase read, scoring, `MAX_FALLBACK_FILES = 500` |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs` | Modify | Export `isExcludedResearchPath` so the walk reuses the generator's research-file rule |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Modify | Usage (17-31), JSDoc (148-159), comparator extraction and `lookupWithFallback()` (before 242), `parseArgs` (264-316), `formatAnswer` (323-338), async `main` (354-384) |
 | `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Modify | Section 4 fallback note (after 180), section 5 determinism paragraph (212) |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | Flag list and fallback paragraph |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/stale-fallback.vitest.ts` | Create | 18-case git-fixture matrix plus the merged-count case |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/stale-fallback.vitest.ts` | Create | Fallback matrix adapted to the unindexed-doc discovery, plus the merged-count case |
 | `.skilled/skills/system-spec-kit/feature-catalog/retrieval/stale-index-fallback.md` | Create | Catalog entry for the feature (sk-doc feature-catalog standard) |
 | `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` | Modify | Index row for the new entry |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/stale-index-fallback.md` | Create | Scenario 490: conversational prompt, commands, expected signals, pass/fail |
@@ -107,7 +110,7 @@ exit=1
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `README.md` (root, Gate 1 paragraph at line 521) | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/commands/speckit/README.txt` | Modify | Describe the new behavior and output; keep counts and examples true |
-| `.skilled/skills/system-spec-kit/changelog/v2.12.41.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
+| `.skilled/skills/system-spec-kit/changelog/v2.12.42.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
 | `.skilled/changelog/skilled/` newest open release notes | Modify | One line for the user-visible change, if the notes are still open |
 | `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml` | Check | Its staleness report should name the fallback as the stopgap; change only if its wording now misleads |
 | `benchmark/` (this phase folder) | Create | `queries.txt`, `before.json`, `after.json`, `results.md` |
@@ -123,7 +126,7 @@ exit=1
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | A zero-hit lookup in a work tree returns matches from changed docs' declared phrases | Test: an untracked new packet with `trigger_phrases` is returned, exit 0, `staleFallback.matches: 1` |
+| REQ-001 | A zero-hit lookup in a work tree returns matches from unindexed spec docs' declared phrases | Test: a new packet with `trigger_phrases` that the index does not list is returned, exit 0, `staleFallback.matches: 1` |
 | REQ-002 | A lookup that already has a scored match is unchanged | Test: existing `lookup`, `--scoring-only` and limit-contract blocks pass, and their JSON has no `staleFallback` key |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -131,7 +134,7 @@ exit=1
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | The fallback is off for an explicit `--index` and for `--no-stale-fallback` | Tests 8 and 9 in the phase 3 matrix: exit 1, no `staleFallback` field |
-| REQ-004 | Staged additions, untracked folders and renames are covered; non-git and missing git degrade to `available: false` | Tests 2-7 in the phase 3 matrix pass |
+| REQ-004 | Unindexed docs are found whether untracked, staged or committed; excluded folders and non-spec-doc names are never read; outside a git work tree the fallback reports `available: false` | The matching rows of `stale-fallback.vitest.ts` pass |
 | REQ-005 | Docs ship with the code: catalog entry, scenario 490, READMEs and changelog | The alignment report lists no open S3, S4, S5 or S6 finding for this change |
 | REQ-006 | The change aligns with sk-code and sk-doc across every surface it fires | `/local-skilled-alignment` recheck shows 0 open P0 and P1 findings; any P2 left open is listed with a reason in `implementation-summary.md` |
 | REQ-007 | Before and after results are measured on the same query set | `benchmark/results.md` holds the comparison table below with real numbers |
@@ -164,7 +167,7 @@ exit=1
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Phase 3 design line numbers | Line ranges drift before the build | Re-read each cited range before editing |
-| Risk | A repo-wide fallback costs about 0.9 s on a zero-hit, over the 200 ms p95 cold-lookup budget `/doctor:speckit` enforces | High | It runs only on a zero-hit, is scoped to `--spec-folder` when given (about 0.05 s) and capped at 200 files; measure the p95 over `fixtures/prompt-set.json` in the before run, and stop and ask before changing the budget if the after run breaks it |
+| Risk | The designed `git status --untracked-files=all` call costs 0.8-1.1 s on this repo, over the 200 ms p95 cold-lookup budget | High | Resolved by the design change below: an async walk of `specs/` diffed against the index `paths` costs about 40-60 ms, plus 3-17 ms to read the candidates; the budget stays frozen and the after run measures it |
 | Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 in both JSON files and require it to match; do not rebuild the index between runs |
 <!-- /ANCHOR:risks -->
 
@@ -180,11 +183,11 @@ exit=1
 - **NFR-P02**: The cold-lookup p95 over `fixtures/prompt-set.json` stays at or under 200 ms, the `/doctor:speckit` budget. If the fallback breaks it, stop and ask before changing the budget.
 
 ### Security
-- **NFR-S01**: Git runs with an argv array, never a shell string, and reads only paths inside the repo root.
-- **NFR-S02**: Only `*.md` files under the configured roots are read; symlinks that resolve outside the root are skipped.
+- **NFR-S01**: The walk stays under `<repo root>/specs`, follows no symbolic link, and reads only spec-doc `*.md` files.
+- **NFR-S02**: Git runs only through the existing `callerRepoRoot()` argv call, never a shell string.
 
 ### Reliability
-- **NFR-R01**: No git, no repo or a git error degrades to `staleFallback.available: false` and the index-only result, never exit 2.
+- **NFR-R01**: Outside a git work tree the result is `staleFallback.available: false` and the index-only answer; an unreadable folder or file is skipped. Neither exits 2.
 - **NFR-R02**: The full retrieval suite has no new failure versus the baseline.
 
 <!-- ANCHOR:edge-cases -->
@@ -192,8 +195,9 @@ exit=1
 <!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
 - Empty input: a tokenless prompt skips the fallback and exits 1 as today.
-- Maximum input: more than 200 changed docs reads the first 200 by path order and sets `staleFallback.truncated: true`.
-- Failure path: git missing or the folder is not a work tree gives `available: false`, exit 1, no stderr.
+- Sub-tracks: a packet under `specs/<track>/<sub-track>/NNN-*/` is found, its `research/`, `scratch/` and the sub-track's `z_archive/` are pruned as at track level, and `--spec-folder specs/<track>/<sub-track>` scopes the walk to that sub-track.
+- Maximum input: more than 500 unindexed spec docs reads the first 500 by path order and sets `staleFallback.truncated: true`.
+- Failure path: git missing or the folder is not a work tree gives `available: false`, exit 1, no stderr; an unreadable folder is skipped.
 <!-- /ANCHOR:edge-cases -->
 
 <!-- ANCHOR:complexity -->
@@ -211,7 +215,11 @@ exit=1
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. The design in phase 3 settles the field names, output strings and test cases.
+- None open. The phase 3 design settles the field names, output strings and test cases.
+
+### Design change: discovery by index diff, not git status
+
+Phase 3 designed discovery as `git status --porcelain=v1 -z --untracked-files=all`. Measured on this repo it costs 0.8-1.1 s per zero-hit, and the operator kept the 200 ms budget frozen ("Keep 200 ms, shrink fallback"). The build therefore walks `specs/` asynchronously with the generator's pruning and keeps spec-doc files the index `paths` list does not hold: about 40-60 ms plus 3-17 ms of reads. The walk also finds docs committed since the last index build, which `git status` cannot see, and the fallback runs only after a zero-hit, so an indexed path could not have matched anyway. The cost: a phrase edited inside an already indexed doc is not covered.
 <!-- /ANCHOR:questions -->
 
 ---

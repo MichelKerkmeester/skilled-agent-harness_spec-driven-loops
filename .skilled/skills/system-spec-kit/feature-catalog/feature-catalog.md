@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-07"
-version: 2.1.23.0
+version: 2.1.24.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1006,6 +1006,20 @@ Reports the ranked trigger-index candidate total before applying `--limit` and i
 #### Source Files
 
 See [`retrieval/trigger-lookup-total-candidates.md`](retrieval/trigger-lookup-total-candidates.md) for full implementation and test file listings.
+
+### Stale index fallback
+
+#### Description
+
+Searches newly written spec packet docs when the trigger index returns no scored candidate.
+
+#### Current Reality
+
+When the index returns no scored candidate, the lookup scans eligible, unindexed packet docs and scores their declared trigger phrases. A fallback hit adds matches to the answer and reports how many docs it read. The scan runs only in a Git work tree; `--no-stale-fallback` and an explicit `--index` keep the lookup index-only. Changed phrases in docs already listed by the index remain outside the fallback; `generate-trigger-index.mjs --check` reports that drift.
+
+#### Source Files
+
+See [`retrieval/stale-index-fallback.md`](retrieval/stale-index-fallback.md) for full implementation and test file listings.
 
 ---
 

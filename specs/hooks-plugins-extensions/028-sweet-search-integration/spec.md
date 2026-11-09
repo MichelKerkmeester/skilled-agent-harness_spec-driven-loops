@@ -99,7 +99,7 @@ Decide from evidence whether sweet-search is worth adopting, and if so, integrat
 | 2 | 002-retrieval-lessons-research/ | 5-iteration research: which lexical techniques from sweet-search improve system-spec-kit retrieval without embeddings, MCP or a daemon | Complete |
 | 3 | 003-retrieval-feature-design-research/ | 5-iteration research: implementation-ready designs for the five retrieval improvements from phase 2 | Complete |
 | 4 | 004-total-candidate-count/ | Build: report `totalCandidates` beside `truncated` in the trigger lookup, plus the section 9 `research/**` row | Complete |
-| 5 | 005-stale-index-fallback/ | Build: zero-hit fallback that scores trigger phrases of git-changed spec docs | Pending |
+| 5 | 005-stale-index-fallback/ | Build: zero-hit fallback that scores trigger phrases of spec docs the index does not list yet | Complete |
 | 6 | 006-rg-flood-control/ | Build: one row per file plus `+N more` lines in the ripgrep wrapper | Pending |
 
 ### Phase Transition Rules

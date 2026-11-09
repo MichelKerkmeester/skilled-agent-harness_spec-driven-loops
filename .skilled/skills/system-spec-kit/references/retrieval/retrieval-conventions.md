@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -179,6 +179,8 @@ Three outcomes, and a wrapper must branch on all three. Treating a non-zero exit
 | `1` | No match | An empty result, not an error. Return it as such |
 | `2` or higher | Execution or configuration error | Fail loudly with stderr attached. Never report it as no-hit |
 
+**Keyed-lane zero-hit fallback.** `lookup-trigger-index.mjs` adds candidates from spec documents the committed index does not list yet when the index returns no scored candidate. With the fallback on (the default), exit `1` means neither the index nor the fallback found a scored candidate, and a fallback hit exits `0` like any other match. It runs only on a zero-hit and only inside a git work tree, and it reads each unindexed document's declared `trigger_phrases`, never its body text. `--no-stale-fallback` turns it off, and so does an explicit `--index`, which restores index-only exit semantics.
+
 ### Worked Example
 
 Run against this repository at ripgrep 15.2.0 on 2026-10-03, with the phrase `trigger index generator` and the roots `specs .skilled`. The exit codes are the contract; the counts move as the corpus grows.
@@ -209,7 +211,7 @@ Ripgrep supplies matches, paths and lines. It never ranks relevance, and no docu
 
 Each result carries its document type and its packet path alongside the ranked position, so a caller can filter or group without a second scan.
 
-The tuple is deterministic by construction. Every component is derived from the parsed match, none of it from ripgrep's own output order, and the final path and line pair breaks every remaining tie. Two runs over an unchanged corpus therefore produce the same ordering.
+The tuple is deterministic by construction. Every component is derived from the parsed match, none of it from ripgrep's own output order, and the final path and line pair breaks every remaining tie. Two runs over an unchanged corpus therefore produce the same ordering. The keyed lookup's zero-hit fallback (Section 4) also reads spec documents the committed index does not list, so its answer depends on the working tree as well as the index: a fixed index and a fixed tree always give the same ordering, because fallback candidates are sorted by path before they are read and enter the same tuple. Pass `--no-stale-fallback`, or an explicit `--index`, for the index-only answer.
 
 ---
 

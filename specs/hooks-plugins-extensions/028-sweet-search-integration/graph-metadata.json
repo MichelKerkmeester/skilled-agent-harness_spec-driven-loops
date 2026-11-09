@@ -157,17 +157,17 @@
     ],
     "causal_summary": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
     "created_at": "2026-11-09T11:30:04Z",
-    "last_save_at": "2026-11-09T19:05:38.799Z",
+    "last_save_at": "2026-11-09T20:43:52.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:90a39b5a3832656d63e9f8b87f12f4c6105dd5bf2c62ff78dd6c98b5eaedc69f",
+    "source_fingerprint": "sha256:f779c1a6060baa6a087a2891e02636d23bb2f58ceaf132fdb5064dc57d23f0b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b61b230cf33059163ce5d6c74dfa7c9cb29fa531e1ad4b4f35fe97d3d69d51fb"
+      "spec.md": "f5e4c379acdf3f766f8255aa2abc8143d14dfc0708ba45932f2266c26d02487c"
     },
     "last_active_child_id": "hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research",
     "last_active_at": "2026-11-09T15:25:53.754Z"

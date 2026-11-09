@@ -1,0 +1,440 @@
+{
+  "label": "after",
+  "createdAt": "2026-11-09T20:40:57.673Z",
+  "state": {
+    "indexSha256": "d024126c0b36a293c487fb3ccfe3aeb250ff2238548beb5d7933c5947a143a5a",
+    "gitStatusCount": 23
+  },
+  "rows": [
+    {
+      "queryClass": "stale",
+      "query": "sweet search verdict",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/research.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 2,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/acceptance-criteria.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/research.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 2 match(es)",
+      "indexAnswerSha256": "1ce17baa0ae91c02e8ff0e4a37c9ed2997b8cf6245c397b256e85686da0e6c1f",
+      "humanSha256": "19098cfe53bd7e4fd306c8d11e3f8256e490a869e73e09bc2bf78dcc2a8b95ac",
+      "medianMs": 146.744
+    },
+    {
+      "queryClass": "stale",
+      "query": "phase 1 sweet search research",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 2,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/research.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 2 match(es)",
+      "indexAnswerSha256": "93f6fbc94b0490f5d607d4bf61696418edfbbd99d02f00d48df4aecb8b8c5a10",
+      "humanSha256": "9accdc6ca288f6c2690ee1fb9c3cf89b36be06128aac0e195a8aa44afc537eff",
+      "medianMs": 152.796
+    },
+    {
+      "queryClass": "stale",
+      "query": "retrieval lessons research",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/research.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 5,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/implementation-summary.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/plan.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/research.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/spec.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/tasks.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 5 match(es)",
+      "indexAnswerSha256": "a0088d6a9647cc963b64bbdfcb0ade4e226ee1b84452b5c1cc8eefe3bba07941",
+      "humanSha256": "14d78135e60aaf3f6dc474724b2c98974df1e38202a89c7b624a5d484a3cdf6b",
+      "medianMs": 144.071
+    },
+    {
+      "queryClass": "stale",
+      "query": "phase 2 retrieval lessons research",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/spec.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 2,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/research.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/spec.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 2 match(es)",
+      "indexAnswerSha256": "b1085ad13c54df3d434742580a62f02af9c09dc493da0c08ae2c0ec920b0199f",
+      "humanSha256": "a290204db76325a392064c31299f17469056de05045d95cae4d30d8f6e9e4f76",
+      "medianMs": 155.054
+    },
+    {
+      "queryClass": "stale",
+      "query": "retrieval feature design research",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/research.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 5,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/implementation-summary.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/plan.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/research.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/spec.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/tasks.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 5 match(es)",
+      "indexAnswerSha256": "e36c5e4baeaa47bb890ac71465afb9ef3c02c62c9e20da470d18fb1cbcd11fe4",
+      "humanSha256": "4f7de255d9e28946beed6de4822802ba7ddffc88491d35ce80d827f571a6bb0e",
+      "medianMs": 148.349
+    },
+    {
+      "queryClass": "stale",
+      "query": "rg wrapper flood control design",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/research.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 1,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/research.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 1 match(es)",
+      "indexAnswerSha256": "78eb5f09b1bd885831e29a08b1d015c9f6e5b8ee23c613fa7016350d513d1454",
+      "humanSha256": "15b361bc03039ccc1b9dab346862513b0f9da2d683a262bb964cab0060f6e810",
+      "medianMs": 139.43
+    },
+    {
+      "queryClass": "stale",
+      "query": "trigger lookup total candidates",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/spec.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 1,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/spec.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 1 match(es)",
+      "indexAnswerSha256": "c3161767cd9794e79db6c0e435a8ece14ece59730bba92b4d22998c9ed546e8f",
+      "humanSha256": "b4bfef8ff4c3588f89a100930ca38b46791352649d9e704d2cd07e22aad21ba1",
+      "medianMs": 142.877
+    },
+    {
+      "queryClass": "stale",
+      "query": "total candidate count plan",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/plan.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 2,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/plan.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/spec.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 2 match(es)",
+      "indexAnswerSha256": "952da7bf83c54aef8b3fe789f99e6e5108c02c199bfcfd1ad43bac949042a34f",
+      "humanSha256": "e98c39a1bb77cdf4d313131fa1fdc9198c39e7ebfb4dde3e5bd7c35abaee35ef",
+      "medianMs": 155.901
+    },
+    {
+      "queryClass": "stale",
+      "query": "ripgrep one row per file",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/spec.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 2,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/acceptance-criteria.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/spec.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 2 match(es)",
+      "indexAnswerSha256": "0a15c34e986cce8027f96016a05b46ba1f5644d8962b912a92f033966218a8c2",
+      "humanSha256": "3fa41a102325f8d3d6c82142010f8c407e0edfc81806f39c0b66d614880daeea",
+      "medianMs": 150.76
+    },
+    {
+      "queryClass": "stale",
+      "query": "sweet search integration",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 2,
+        "paths": [
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/research.md",
+          "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md"
+        ],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 2 match(es)",
+      "indexAnswerSha256": "31b0373c72d2a488f05c787bccb86531117503f5bb57832b97d27adc6c0f26a2",
+      "humanSha256": "7e48e1eda9071c5755f1c7612c3dfd2f9eaab994f5853dee079486c1055abcb4",
+      "medianMs": 144.59
+    },
+    {
+      "queryClass": "match",
+      "query": "spec folder question",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/system-speckit/031-system-speckit-v4/048-gate-3-mutation-time-delivery/spec.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "da5da42f7769dae57dcf7db205b0cab77b37b043f4e9570790b95573d43cbee3",
+      "humanSha256": "55e0b72f1d6a308ef792707c5182d473919d9196c1ca81b00b1a277557abeac7",
+      "medianMs": 73.776
+    },
+    {
+      "queryClass": "match",
+      "query": "memory save continuity",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": ".skilled/skills/system-deep-loop/deep-research/feature-catalog/loop-lifecycle/memory-save.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "a442e111b9ea3e2b8eeb887e98daf998e6c0310b6766310bcc2629aedbf2e68f",
+      "humanSha256": "e800ebc2d3c1a86e0f4e4a522599c54b8c6d6f0832d74b4cd5a442909f1b4c7c",
+      "medianMs": 72.268
+    },
+    {
+      "queryClass": "match",
+      "query": "deep research convergence loop",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": ".skilled/skills/system-deep-loop/deep-research/README.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "b2e9d537739ad2550a3b5354e60325f531a957db69d4804b829b91618222ca6b",
+      "humanSha256": "9080399ffe6bb0d306eb94eb1db80e6b0732e49f3ac8dd34e4d4a45abd664807",
+      "medianMs": 77.277
+    },
+    {
+      "queryClass": "match",
+      "query": "trigger index",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/spec.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "a46c5241a7b39735e86576dad540bb587eaabe72188d4e49364174f26dbcf017",
+      "humanSha256": "7e7ea9a0cab607071338c5692383619cfed3e127ef1bd9d2707826663f237a59",
+      "medianMs": 70.062
+    },
+    {
+      "queryClass": "match",
+      "query": "communication quality",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/agents-md/003-communication-quality/implementation-summary.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "435db78dbfcf70d56c51da2b924fcc83d121b89542dd786c344db0778e18a55a",
+      "humanSha256": "41868016abcf086cfd84b6ad5fc0521d790d2ea154c0af493d8f26543e3ef71a",
+      "medianMs": 70.558
+    },
+    {
+      "queryClass": "match",
+      "query": "playbook scenario",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": ".skilled/changelog/skilled/v4.0.1.0.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "ee51b2894fd7f717232f2de46ab06650376df608944532113628ce126c19138e",
+      "humanSha256": "6490f184c54b6415e2a0d7097a5db5848f50d39e144dd3eb7e6250b5bb16ea6e",
+      "medianMs": 69.157
+    },
+    {
+      "queryClass": "match",
+      "query": "release notes",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": ".skilled/skills/sk-doc/sk-create-changelog/README.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "4ea9e5ae6be00fc45c0ba00e72fd949aaa4a07a08ef06fad063c8648a0a3106f",
+      "humanSha256": "f58a54d172482af1c544be747926683a7ae7b27325313eb42d09c2c9e6ff64e8",
+      "medianMs": 68.108
+    },
+    {
+      "queryClass": "match",
+      "query": "deep research strategy",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "38b8e3017b3be6233a664d049c9c59755dbf1ba2a32b8685b27f298f5aa18514",
+      "humanSha256": "20c4a60956a11c2acb043b6a8743d1cd2a130024cdb5a17314645fe9c7bc40ff",
+      "medianMs": 75.522
+    },
+    {
+      "queryClass": "match",
+      "query": "skill advisor hook",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/system-speckit/026-graph-and-context-optimization/changelog/002-spec-kit-internals/changelog-004-004-devin-advisor-hook-integration.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "de8c0f70c32415a3e0c7a048e18b1dd487d5deeb6a2fd935dc3453f29de76f72",
+      "humanSha256": "45a2e96d7cb29965842c849588466b5bb9046c3077fa461d8df3d5b2b8610db6",
+      "medianMs": 75.147
+    },
+    {
+      "queryClass": "match",
+      "query": "memory context",
+      "exit": 0,
+      "resultCount": 20,
+      "topPath": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/002-mcp-runtime-improvement-research/research/research.md",
+      "staleFallback": null,
+      "fallbackLine": null,
+      "indexAnswerSha256": "6eeb38bb1320882af5367904a78cd66a3ec6460c32157de90dbd2843f5a1f8d7",
+      "humanSha256": "162000174ce83650923bc764c45fcef1910b1c573ab3636193369286446c805a",
+      "medianMs": 70.873
+    },
+    {
+      "queryClass": "none",
+      "query": "zzqx qwvbn xkjfp",
+      "exit": 1,
+      "resultCount": 0,
+      "topPath": null,
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 0,
+        "paths": [],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 0 match(es)",
+      "indexAnswerSha256": "e8d5a5d65788a17ae4d4bb3961bf65d9d2e8528f76db4a2597a5a40c4fcef30e",
+      "humanSha256": "cea15afe782d9e53bdd2dd62fe89b592c3b2ba852e5f6ab2ec5fa8b7f1467e13",
+      "medianMs": 137.282
+    },
+    {
+      "queryClass": "none",
+      "query": "quantum toaster calibration",
+      "exit": 1,
+      "resultCount": 20,
+      "topPath": ".skilled/skills/sk-code/changelog/v3.9.4.0.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 0,
+        "paths": [],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 0 match(es)",
+      "indexAnswerSha256": "67b3839ec3930eee6e0e8b20f260699bf5542047d522df38dab5a7de9be99b20",
+      "humanSha256": "adf7e6c4b9252dee677076dc6c6a39846b7423d1a7c03f4f98278979dbbfc897",
+      "medianMs": 134.964
+    },
+    {
+      "queryClass": "none",
+      "query": "llama yodel harmonics",
+      "exit": 1,
+      "resultCount": 20,
+      "topPath": ".skilled/skills/system-skill-advisor/runtime/lib/embedders/adapters/README.md",
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 0,
+        "paths": [],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 0 match(es)",
+      "indexAnswerSha256": "fe62bcfe9f005d129bdc0d06e67b3c15b299806a3498b04904225eb9653372e6",
+      "humanSha256": "9834b40855c37558c4e99817b57f921059fc4a625e1554b3eece7d64c0a2127a",
+      "medianMs": 134.795
+    },
+    {
+      "queryClass": "none",
+      "query": "purple walrus banjo",
+      "exit": 1,
+      "resultCount": 0,
+      "topPath": null,
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 0,
+        "paths": [],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 0 match(es)",
+      "indexAnswerSha256": "7d65033b3505903bda8cb246e54345aa2a1aad8ad4a348247bf5a999ca9efadd",
+      "humanSha256": "905c3db0eb50f516ba9e2c3f834d5639c9d91dc01657ba11d7a8462ac0e1e9cf",
+      "medianMs": 139.281
+    },
+    {
+      "queryClass": "none",
+      "query": "glacier kazoo omelette",
+      "exit": 1,
+      "resultCount": 0,
+      "topPath": null,
+      "staleFallback": {
+        "available": true,
+        "files": 197,
+        "matches": 0,
+        "paths": [],
+        "truncated": false
+      },
+      "fallbackLine": "fallback   : 197 unindexed doc(s) read, 0 match(es)",
+      "indexAnswerSha256": "3e87a50238adc9cc00f81534842c902ffb9fca569ee12e40b133c0f23af3f925",
+      "humanSha256": "f90c5b0ae98c3f3d8bad57e096b58ce357fdf242f99f909bb3f896b68a79c40e",
+      "medianMs": 145.781
+    }
+  ],
+  "promptSet": {
+    "cases": 18,
+    "samples": 90,
+    "p50Ms": 74.73,
+    "p95Ms": 151.609
+  }
+}

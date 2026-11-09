@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.12.41.0
+version: 2.12.42.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
@@ -127,7 +127,8 @@ The two are linked rather than parallel. `AC_COVERAGE` requires every criterion'
 
 Retrieval is file-based and needs no running service.
 Gate 1 resolves a prompt against the committed trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`.
-It exits `0` on candidates, `1` on a clean no-hit and `2` on a bad invocation or unreadable index.
+When the index scores nothing, it also scores the declared `trigger_phrases` of spec docs the index does not list yet and reports that scan in `staleFallback`; `--no-stale-fallback` keeps it index-only.
+It exits `0` on candidates from either source, `1` on a clean no-hit and `2` on a bad invocation or unreadable index.
 Free-text retrieval uses the literal ripgrep recipes in [`references/retrieval/retrieval-conventions.md`](references/retrieval/retrieval-conventions.md).
 The trailing positional path scopes them by track and packet. The recipes are precise only because the corpus is regular.
 [`references/structure/grep-convention.md`](references/structure/grep-convention.md) holds the frontmatter, anchor, naming and body-preservation rules. `validate.sh` enforces them on every spec document.

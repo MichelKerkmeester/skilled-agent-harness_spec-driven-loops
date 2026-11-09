@@ -518,13 +518,15 @@ Canonical continuity lives in the spec packet itself. `generate-context.js` upda
 
 **How search works**
 
-Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`. Free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). Both lanes read committed files, so neither needs a running daemon.
+Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`. Free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). The trigger index is a committed file, and on a zero-hit the lookup also checks spec docs in the working tree that the index does not list yet. The ripgrep recipes read the working tree. Neither lane needs a running daemon.
 
 A host repository that vendors Skilled keeps its own index in `.speckit-index/` at its root. It can name another folder with `{ "indexDir": ".index" }` in a `.skilled-host.json` file there, and the generator and the lookup both follow it.
 
 The trigger-index generator names the checkout it indexes. Run from a project that links the Skilled source, it indexes the source checkout unless `--repo-root` names another. It now prints one stderr line naming both roots and the `--repo-root` and `--out` flags. The default root, stdout and exit codes are unchanged.
 
 Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported. A miss is a clean no-hit rather than a degraded guess.
+
+When the index has no scored candidate, Gate 1 also scores declared trigger phrases in unindexed spec docs in a git work tree and reports the scan in the answer's `staleFallback` field.
 
 **History after compaction**
 
@@ -795,7 +797,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 **`system-spec-kit`**
 
-The mandatory orchestrator for all file modifications. It activates automatically for any code file change. It creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+). It owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes. Trigger lookup reports the full candidate count before `--limit` and marks truncated results. It also manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces.
+The mandatory orchestrator for all file modifications. It activates automatically for any code file change. It creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+). It owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes. Trigger lookup reports the full candidate count before `--limit`, marks truncated results, and on a zero-hit checks spec docs the index does not list yet. It also manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces.
 
 **`system-skill-advisor`**
 
@@ -1191,7 +1193,7 @@ It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi and OpenCode 
 
 **`/speckit:search`**
 
-Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--triggers`, ripgrep recipes otherwise. `--paths` and `--count` pick the recipe, and `--packet <specFolder>` narrows the search roots. A phrase nobody wrote is a clean no-hit, never a nearest guess.
+Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--triggers`, which on a zero-hit also checks spec docs the index does not list yet, ripgrep recipes otherwise. `--paths` and `--count` pick the recipe, and `--packet <specFolder>` narrows the search roots. A phrase nobody wrote is a clean no-hit, never a nearest guess.
 
 &nbsp;
 

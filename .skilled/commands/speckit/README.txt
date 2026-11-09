@@ -83,7 +83,7 @@ The two lanes answer different questions. Prompt-to-declared-phrase matching is 
 
 | Lane | Flag | Mechanism |
 |------|------|-----------|
-| Trigger index | `--triggers` | `lookup-trigger-index.mjs` over the generated index |
+| Trigger index | `--triggers` | `lookup-trigger-index.mjs` over the generated index, with a zero-hit fallback to unindexed spec docs in a git work tree |
 | Free-text evidence | default | Structured JSONL recipe, `retrieval-conventions.md` Section 2.1 |
 | Which files mention it | `--paths` | Path-only recipe, Section 2.2 |
 | How many times | `--count` | Count recipe, Section 2.3 |

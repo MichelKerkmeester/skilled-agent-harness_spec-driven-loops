@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.30.0
+version: 2.7.31.0
 ---
 
 # System Spec Kit
@@ -168,7 +168,9 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.
   --json -- "spec folder"; echo "exit=$?"
 ```
 
-Exit `0` means the index resolved candidates, `1` means a clean miss and `2` means a bad invocation or an unreadable index. JSON output includes `totalCandidates`, the document count after `--scoring-only` and before `--limit`. `truncated` is true only when `totalCandidates` exceeds a non-zero `--limit`. Truncated human output reads `candidates : 2 of 14 (truncated) from 9 phrase(s)`. There is nothing to start and nothing to keep warm: the index is a committed file, and a fresh clone answers on the first call.
+Exit `0` means the index or its zero-hit fallback resolved candidates, `1` means a clean miss in both and `2` means a bad invocation or an unreadable index. JSON output includes `totalCandidates`, the document count after `--scoring-only` and before `--limit`. `truncated` is true only when `totalCandidates` exceeds a non-zero `--limit`. Truncated human output reads `candidates : 2 of 14 (truncated) from 9 phrase(s)`. There is nothing to start and nothing to keep warm: the index is a committed file, and a fresh clone answers on the first call.
+
+When the index has no scored candidate, the lookup scores declared trigger phrases in up to 500 spec docs missing from the index, but only inside a git work tree. The JSON `staleFallback` field and human `fallback` line report scan counts or an unavailable notice outside a git work tree, while `--no-stale-fallback` or an explicit `--index` keeps the lookup index-only.
 
 If the index is missing, rebuild it:
 
@@ -324,7 +326,7 @@ Optional support documents such as `handover.md`, `debug-delegation.md` and `res
 
 System Spec Kit has no memory MCP server. Its search pipeline, query intelligence, memory lifecycle, save scoring, causal graph, index self-maintenance and evaluation harness have no successor.
 
-Retrieval is two lexical lanes over committed files.
+Retrieval is two lexical lanes: the committed trigger index, which on a zero-hit also checks unindexed spec docs in the working tree, and ripgrep over the working tree.
 
 - **Trigger-index lookup:** `lookup-trigger-index.mjs` matches a prompt against author-declared `trigger_phrases` through the generated index.
 - **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus.

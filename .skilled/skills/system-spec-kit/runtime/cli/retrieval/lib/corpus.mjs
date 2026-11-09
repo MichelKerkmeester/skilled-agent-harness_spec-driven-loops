@@ -165,7 +165,7 @@ export function canonicalRelativePath(relativePath) {
  * @param {string} relativePath Repo-relative POSIX path.
  * @returns {boolean} True when the research artifact must be excluded.
  */
-function isExcludedResearchPath(relativePath) {
+export function isExcludedResearchPath(relativePath) {
   const parts = relativePath.split('/');
   const researchIndex = parts[0] === DOCUMENT_ROOT ? parts.indexOf('research') : -1;
   if (researchIndex < 3 || !/^\d{3}-/.test(parts[researchIndex - 1] ?? '')) return false;

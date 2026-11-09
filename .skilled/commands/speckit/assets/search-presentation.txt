@@ -43,6 +43,7 @@ SPECKIT:SEARCH TRIGGERS "<query>"
 --------------------------------------------------
 index     <indexHash short>   manifest <manifestHash short>
 scope     <specFolder or (unscoped)>
+fallback   : <files> unindexed doc(s) read, <matches> match(es) (when staleFallback is available)
 <score>  <matchClass>  <path>
 <score>  <matchClass>  <path>
 +<hidden> more candidate(s) not shown (raise --limit to see them)
@@ -62,9 +63,12 @@ Field mapping:
 | `result.path` | `<path>` — the repo-relative document path |
 | `results.length`, the rows shown after `--limit` | `CANDIDATES=<count>` |
 | `totalCandidates` - `results.length`, only when `truncated` is true | `+<hidden> more candidate(s)` line; omit the line when `truncated` is false |
+| `staleFallback` | Render the `fallback   : <files> unindexed doc(s) read, <matches> match(es)` line when `available` is true, adding the cap note when `truncated` is true. Render `fallback   : unavailable (not a git work tree)` when `available` is false. |
+| A `result.path` listed in `staleFallback.paths` | Append `[not yet in index]` to that result's path so fallback matches are identified as unindexed spec docs. |
 
 Rules:
 - Render the `+<hidden> more` line only when `truncated` is true, and compute `<hidden>` from the tool's `totalCandidates`, never from a guess.
+- Render the `fallback` line only when `staleFallback` is present. Mark each result path listed in `staleFallback.paths` with `[not yet in index]`.
 - Render candidates in the order the tool returned them. The lookup is deterministic; do not re-sort.
 - Never rename `score` to `confidence`, `similarity` or `relevance`, and never render it as a percentage. It is the tool's own score, not a probability.
 - `matchClass` is a label, not a rank. Do not translate it into a quality adjective.
@@ -126,12 +130,14 @@ No match. The phrase does not appear in the searched roots.
 
 roots     <positional search roots>
 recipe    <section id>
+fallback   : <same fallback line as Section 2, when staleFallback is present>
 
 STATUS=OK RESULTS=0 LANE=<trigger-index|ripgrep>
 ```
 
 Rules:
 - A no-hit is `STATUS=OK`, never `STATUS=FAIL`. Exit `1` means the command worked and found nothing.
+- For a trigger-index no-hit, render the `fallback` line when `staleFallback` is present, including when it reports zero matches.
 - Never soften a no-hit into a paraphrase, a nearest neighbour or a guess. Retrieval here is lexical: if the phrase is not present, the honest answer is that it is not present.
 - Offer at most one narrower or broader phrase as a follow-up, and only when the query was plainly too generic.
 
