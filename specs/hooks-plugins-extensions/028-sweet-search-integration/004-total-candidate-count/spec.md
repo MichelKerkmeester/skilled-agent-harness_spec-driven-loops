@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -102,7 +102,7 @@ candidates : 2 (truncated) from 2302 phrase(s)
 | `.skilled/skills/system-spec-kit/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/skills/system-spec-kit/runtime/data/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
-| `.skilled/skills/system-spec-kit/changelog/v2.12.39.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
+| `.skilled/skills/system-spec-kit/changelog/v2.12.41.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
 | `.skilled/changelog/skilled/` newest open release notes | Modify | One line for the user-visible change, if the notes are still open |
 | `benchmark/` (this phase folder) | Create | `queries.txt`, `before.json`, `after.json`, `results.md` |
 | `alignment/` (this phase folder) | Create | Copy of the alignment `report.md` and `recheck.md` |
@@ -155,7 +155,7 @@ candidates : 2 (truncated) from 2302 phrase(s)
 |------|------|--------|------------|
 | Dependency | Phase 3 design line numbers | Line ranges drift before the build | Re-read each cited range before editing |
 | Risk | A caller that parses a closed field set breaks on the new key | Low | Phase 3 found five consumers, all reading named fields; rerun the full retrieval suite before and after |
-| Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 and the `git status` line count in both JSON files; do not rebuild the index between runs |
+| Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 in both JSON files and require it to match; do not rebuild the index between runs |
 <!-- /ANCHOR:risks -->
 
 ---

@@ -1,0 +1,12 @@
+2	trigger index
+2	communication quality
+2	spec folder
+2	deep research strategy
+2	skill advisor hook
+2	memory context
+20	codesight
+20	tombstones
+20	aggregation
+20	cosine
+20	graphify
+20	contextador

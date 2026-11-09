@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-11-07"
-version: 2.1.19.0
+version: 2.1.20.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -327,6 +327,7 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 |---|---|---|---|
 | 453 | Speckit autopilot lifecycle | [453](lifecycle/speckit-autopilot-lifecycle.md) | [speckit-autopilot-lifecycle](../feature-catalog/lifecycle/speckit-autopilot-lifecycle.md) |
 | 190 | Session recovery via /speckit:resume | [190](retrieval/session-recovery-spec-kit-resume.md) | [session-recovery-spec-kit-resume](../feature-catalog/retrieval/session-recovery-spec-kit-resume.md) |
+| 489 | Trigger lookup total candidates | [489](retrieval/trigger-lookup-total-candidates.md) | [trigger-lookup-total-candidates](../feature-catalog/retrieval/trigger-lookup-total-candidates.md) |
 
 ---
 

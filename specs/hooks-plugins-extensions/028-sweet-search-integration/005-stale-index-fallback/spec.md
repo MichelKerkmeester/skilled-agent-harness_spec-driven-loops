@@ -107,7 +107,7 @@ exit=1
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `README.md` (root, Gate 1 paragraph at line 521) | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/commands/speckit/README.txt` | Modify | Describe the new behavior and output; keep counts and examples true |
-| `.skilled/skills/system-spec-kit/changelog/v2.12.40.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
+| `.skilled/skills/system-spec-kit/changelog/v2.12.41.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
 | `.skilled/changelog/skilled/` newest open release notes | Modify | One line for the user-visible change, if the notes are still open |
 | `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml` | Check | Its staleness report should name the fallback as the stopgap; change only if its wording now misleads |
 | `benchmark/` (this phase folder) | Create | `queries.txt`, `before.json`, `after.json`, `results.md` |
@@ -165,7 +165,7 @@ exit=1
 |------|------|--------|------------|
 | Dependency | Phase 3 design line numbers | Line ranges drift before the build | Re-read each cited range before editing |
 | Risk | A repo-wide fallback costs about 0.9 s on a zero-hit, over the 200 ms p95 cold-lookup budget `/doctor:speckit` enforces | High | It runs only on a zero-hit, is scoped to `--spec-folder` when given (about 0.05 s) and capped at 200 files; measure the p95 over `fixtures/prompt-set.json` in the before run, and stop and ask before changing the budget if the after run breaks it |
-| Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 and the `git status` line count in both JSON files; do not rebuild the index between runs |
+| Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 in both JSON files and require it to match; do not rebuild the index between runs |
 <!-- /ANCHOR:risks -->
 
 ---

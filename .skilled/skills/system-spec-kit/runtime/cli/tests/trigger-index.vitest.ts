@@ -844,6 +844,40 @@ describe('lookup', () => {
     expect(answer.manifestHash).toMatch(/^[0-9a-f]{64}$/);
   });
 
+  it('reports the full candidate count when results are limited', () => {
+    const answer = lookup(buildFixtureIndex(), 'spec folder question', { limit: 2 });
+
+    expect(answer.results).toHaveLength(2);
+    expect(answer.truncated).toBe(true);
+    expect(answer.totalCandidates).toBe(6);
+  });
+
+  it('reports the full candidate count without truncation', () => {
+    const answer = lookup(buildFixtureIndex(), 'spec folder question');
+
+    expect(answer.results).toHaveLength(6);
+    expect(answer.truncated).toBe(false);
+    expect(answer.totalCandidates).toBe(6);
+  });
+
+  it('treats a zero limit as unbounded while preserving the candidate count', () => {
+    const answer = lookup(buildFixtureIndex(), 'spec folder question', { limit: 0 });
+
+    expect(answer.results).toHaveLength(6);
+    expect(answer.truncated).toBe(false);
+    expect(answer.totalCandidates).toBe(6);
+  });
+
+  it('counts only scored documents when scoring-only is enabled', () => {
+    const loaded = buildFixtureIndex();
+    const unfiltered = lookup(loaded, 'cified drift zone');
+    const scoringOnly = lookup(loaded, 'cified drift zone', { scoringOnly: true });
+
+    expect(unfiltered.totalCandidates).toBe(1);
+    expect(scoringOnly.totalCandidates).toBe(0);
+    expect(scoringOnly.results).toEqual([]);
+  });
+
   it('admits a mid-word substring by scanning the phrase keys', () => {
     const loaded = buildFixtureIndex();
 
@@ -872,6 +906,7 @@ describe('lookup', () => {
 
     expect(answer.tokens).toEqual([]);
     expect(answer.results).toEqual([]);
+    expect(answer.totalCandidates).toBe(0);
     expect(answer.discardedTokens).toHaveLength(2);
   });
 
@@ -913,6 +948,37 @@ describe('lookup --scoring-only', () => {
     ], { encoding: 'utf8' });
     return { answer: JSON.parse(run.stdout), status: run.status };
   }
+
+  function runLookupText(indexPath: string, prompt: string, extra: string[] = []) {
+    const run = spawnSync(process.execPath, [
+      LOOKUP_SCRIPT, '--index', indexPath, '--no-index-hash', ...extra, '--', prompt,
+    ], { encoding: 'utf8' });
+    return { stdout: run.stdout, status: run.status };
+  }
+
+  it('returns totalCandidates in JSON when results are truncated', () => {
+    const indexPath = fixtureIndexPath();
+    const run = runLookup(indexPath, 'Spec folder question', ['--limit', '2']);
+
+    expect(run.status).toBe(0);
+    expect(run.answer.results).toHaveLength(2);
+    expect(run.answer.truncated).toBe(true);
+    expect(run.answer.totalCandidates).toBe(4);
+  });
+
+  it('formats candidate counts for truncated and untruncated human output', () => {
+    const indexPath = fixtureIndexPath();
+    const truncated = runLookupText(indexPath, 'Spec folder question', ['--limit', '2']);
+    const untruncated = runLookupText(indexPath, 'Spec folder question');
+
+    expect(truncated.status).toBe(0);
+    expect(truncated.stdout)
+      .toMatch(/^candidates : 2 of 4 \(truncated\) from \d+ phrase\(s\)$/m);
+    expect(untruncated.status).toBe(0);
+    const candidatesLine = untruncated.stdout.match(/^candidates :.*$/m)?.[0];
+    expect(candidatesLine).toBeDefined();
+    expect(candidatesLine).not.toContain(' of ');
+  });
 
   it('exits 0 when a real phrase scores', () => {
     const indexPath = fixtureIndexPath();

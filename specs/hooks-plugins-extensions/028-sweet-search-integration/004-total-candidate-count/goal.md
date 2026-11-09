@@ -56,13 +56,13 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `npx vitest run` from `.skilled/skills/system-spec-kit` on `trigger-index.vitest.ts` and `retrieval-coverage-parity.vitest.ts` exits 0
-- [ ] A `--limit 2 --json` lookup for "spec folder validation strict" returns `totalCandidates` greater than 2
-- [ ] The six untruncated benchmark queries print byte-identical human output before and after
-- [ ] `validate_catalog_package.py` and `validate-playbook-package.cjs` exit 0 and scenario 489 exists
-- [ ] `/local-skilled-alignment` recheck on this phase's change shows 0 open P0 and P1 findings
-- [ ] `benchmark/results.md` shows 6/6 truncated answers stating a total and median time within 10% of before
-- [ ] `validate.sh` on this phase prints `RESULT: PASSED` and every `acceptance-criteria.md` row is `Met`
+- [x] `npx vitest run` from `.skilled/skills/system-spec-kit` on `trigger-index.vitest.ts` and `retrieval-coverage-parity.vitest.ts` exits 0
+- [x] A `--limit 2 --json` lookup for "spec folder validation strict" returns `totalCandidates` greater than 2
+- [x] The six untruncated benchmark queries print byte-identical human output before and after
+- [x] `validate_catalog_package.py` and `validate-playbook-package.cjs` exit 0 and scenario 489 exists
+- [x] `/local-skilled-alignment` recheck on this phase's change shows 0 open P0 and P1 findings
+- [x] `benchmark/results.md` shows 6/6 truncated answers stating a total and median time within 10% of before
+- [x] `validate.sh` on this phase prints `RESULT: PASSED` and every `acceptance-criteria.md` row is `Met`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,7 +80,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning docs | Done | Level 2 spec, plan, tasks, acceptance criteria |
-| Build | Pending |  |
+| Build, docs, alignment, benchmark | Done | Suite 4077 passed, 0 failed; recheck 0 still open; 6/6 totals; scenario 489 PASS |
 
 ### Deviations and findings
 

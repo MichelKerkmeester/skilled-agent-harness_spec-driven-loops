@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-07"
-version: 2.1.22.0
+version: 2.1.23.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -992,6 +992,20 @@ The continuity ladder is `handover.md` -> `_memory.continuity` -> packet-first s
 #### Source Files
 
 See [`retrieval/session-recovery-spec-kit-resume.md`](retrieval/session-recovery-spec-kit-resume.md) for full implementation and test file listings.
+
+### Trigger lookup total candidates
+
+#### Description
+
+Reports the ranked trigger-index candidate total before applying `--limit` and indicates when results are truncated.
+
+#### Current Reality
+
+`--json` reports `totalCandidates` after the optional `--scoring-only` filter and before `--limit`. `truncated` is true only when a non-zero limit omits candidates. The human summary includes the total only when truncated, and exit codes remain unchanged. Section 9 of `retrieval-conventions.md` records that the trigger index skips `specs/**/research/**` run output except `research/research.md`, while ripgrep still searches it.
+
+#### Source Files
+
+See [`retrieval/trigger-lookup-total-candidates.md`](retrieval/trigger-lookup-total-candidates.md) for full implementation and test file listings.
 
 ---
 

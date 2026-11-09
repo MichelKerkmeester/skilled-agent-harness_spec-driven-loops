@@ -219,6 +219,7 @@ export function specFolderMatches(documentPath, specFolder) {
  *   manifestHash: string,
  *   schemaVersion: number,
  *   candidatePhraseCount: number,
+ *   totalCandidates: number,
  *   truncated: boolean,
  *   results: Array<{ matchClass: string, path: string, phrases: string[], score: number }>
  * }} Candidates ordered best class first, ties broken by path.
@@ -240,6 +241,7 @@ export function lookup(loaded, prompt, options = {}) {
     schemaVersion: loaded.schemaVersion,
     specFolder,
     tokens,
+    totalCandidates: 0,
     truncated: false,
   };
 
@@ -300,6 +302,7 @@ export function lookup(loaded, prompt, options = {}) {
     || (matchClassRank(a.matchClass) - matchClassRank(b.matchClass))
     || compareCodeUnits(a.path, b.path));
 
+  answer.totalCandidates = ordered.length;
   answer.truncated = limit > 0 && ordered.length > limit;
   answer.results = limit > 0 ? ordered.slice(0, limit) : ordered;
   return answer;
@@ -402,7 +405,7 @@ function formatAnswer(answer, indexPath, ownerRoot) {
     ...(ownerRoot === null ? [] : [`paths      : relative to ${displayIndexPath(ownerRoot)}`]),
     `index      : ${answer.indexHash ?? '(hash skipped)'}`,
     `manifest   : ${answer.manifestHash || '(none)'}`,
-    `candidates : ${answer.results.length}${answer.truncated ? ' (truncated)' : ''} from ${answer.candidatePhraseCount} phrase(s)`,
+    `candidates : ${answer.results.length}${answer.truncated ? ` of ${answer.totalCandidates} (truncated)` : ''} from ${answer.candidatePhraseCount} phrase(s)`,
   ];
   for (const result of answer.results) {
     lines.push(`  ${result.score.toFixed(3)}  ${result.matchClass.padEnd(18)} ${result.path}`);

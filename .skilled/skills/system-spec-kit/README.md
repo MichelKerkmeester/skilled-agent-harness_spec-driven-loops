@@ -168,7 +168,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.
   --json -- "spec folder"; echo "exit=$?"
 ```
 
-Exit `0` means the index resolved candidates, `1` means a clean miss and `2` means a bad invocation or an unreadable index. There is nothing to start and nothing to keep warm: the index is a committed file, and a fresh clone answers on the first call.
+Exit `0` means the index resolved candidates, `1` means a clean miss and `2` means a bad invocation or an unreadable index. JSON output includes `totalCandidates`, the document count after `--scoring-only` and before `--limit`. `truncated` is true only when `totalCandidates` exceeds a non-zero `--limit`. Truncated human output reads `candidates : 2 of 14 (truncated) from 9 phrase(s)`. There is nothing to start and nothing to keep warm: the index is a committed file, and a fresh clone answers on the first call.
 
 If the index is missing, rebuild it:
 

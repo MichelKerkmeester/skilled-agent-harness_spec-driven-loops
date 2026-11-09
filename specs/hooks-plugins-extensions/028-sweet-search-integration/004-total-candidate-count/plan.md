@@ -116,8 +116,8 @@ The default lane preset is `opencode-go`. Pass `--lanes=` only if that preset is
 **Benchmark (before versus after).** One fixed query set, run on the code before the change and again after it, on the same worktree and index state.
 
 - **Queries:** 12 lookup queries: 6 that truncate at `--limit 2` and 6 that do not truncate at the default limit. Stored in `benchmark/queries.txt` before the first run, and never edited after.
-- **Runner:** `benchmark/run.sh <before|after>` runs each query 5 times with `--json`, keeps the median wall time, and writes one JSON row per query: query, exit code, result count, the new fields, and time.
-- **Fixed state:** both JSON files record the `trigger-index.json` sha256 and the `git status --porcelain | wc -l` count. If either differs between runs, rerun before.
+- **Runner:** `node benchmark/run.mjs <before|after>` runs each query 5 times with `--json`, keeps the median wall time, and writes one JSON row per query: query, exit code, result count, the new fields, and time.
+- **Fixed state:** both JSON files record the `trigger-index.json` sha256 and the `git status --porcelain | wc -l` count. The sha256 must match between runs; the count is a record only, since the build edits are uncommitted during the after run.
 - **Display:** `benchmark/results.md` holds this table, filled with measured values, plus the per-query rows:
 
 | Metric | Before | After target |

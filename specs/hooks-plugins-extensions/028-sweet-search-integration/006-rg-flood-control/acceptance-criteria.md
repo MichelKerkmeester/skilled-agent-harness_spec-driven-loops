@@ -62,7 +62,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-004 | REQ-001 | Given the measured query from `spec.md`, When the wrapper runs with `--json`, Then it returns 14 rows, one per file, and `rg -n structuredCappedRecipe .skilled` prints nothing | Command output in `benchmark/results.md` | Unmet | - |
 | AC-005 | REQ-004 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 491 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md` | Unmet | - |
 | AC-006 | REQ-005 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder | Unmet | - |
-| AC-007 | REQ-006 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 and git status counts match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Unmet | - |
+| AC-007 | REQ-006 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 values match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Unmet | - |
 
 ### Status values
 

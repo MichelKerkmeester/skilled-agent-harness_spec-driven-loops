@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -276,7 +276,7 @@ Declare phrases of two or more tokens. A single-token phrase can only ever match
 - **Owner counting:** When owners of one phrase disagree, `documents` counts each owner under its own class and `phrases` counts the phrase once, as `folder-token-fallback` if any owner's folder repeats it.
 - **Warning behavior:** A warning never deletes an author's phrase; it names what the index cannot use.
 
-The lookup applies its own two limits to the prompt, not to declared phrases: a query token shorter than three characters is dropped before matching, and only the first eight distinct eligible tokens are kept, in the order they first appear; both discards are reported in the lookup's JSON output.
+The lookup applies its own two limits to the prompt, not to declared phrases: a query token shorter than three characters is dropped before matching, and only the first eight distinct eligible tokens are kept, in the order they first appear; both discards are reported in the lookup's JSON output. That output also carries `candidatePhraseCount`, the phrases whose text admitted the query, and `totalCandidates`, the documents ranked after the scoring filter and before `--limit`; `truncated` is true only when `totalCandidates` exceeds a non-zero `--limit`, so a caller can read how many candidates a cap hid instead of only that it hid some.
 
 ---
 
@@ -310,6 +310,7 @@ The lookup applies its own two limits to the prompt, not to declared phrases: a 
 | `dist` | Yes | No | Deliberate divergence. The trigger index prunes compiled output so a stale copy of a source document cannot own a phrase; the ripgrep lane scans it, and a hit there is evidence like any other. |
 | `tests/fixtures` | Yes | No | The trigger index's flat spelling of the fixture rule below, kept because it matches a `tests/fixtures` tree under `specs/` too, which the scoped pattern deliberately leaves alone |
 | `lineages` (under `specs/` whatever the parent, or directly under a `research` parent) | Yes | No | Deliberate divergence. The fan-out runner writes lineages into whatever artifact directory it is given (`research/`, `review/`, or a named run directory), and each lineage can hold containment snapshots that copy real documents, so the trigger index prunes every `lineages` directory under `specs/`. The trigger index excludes lineage transcripts to protect the curated phrase index from unauthored, transcript-derived noise (Section 8). Ripgrep is a raw evidence lane with no ranking to protect, and the corpus holds thousands of lineage documents a researcher may legitimately need to grep for a specific fact; converging would be a real coverage loss for a noise concern that does not apply to a scan |
+| `specs/**/research/**` (except a numbered packet's or phase's `research/research.md`) | Yes | No | Deliberate divergence. The trigger index indexes only the synthesis document and prunes the rest of that `research/` tree — iteration narratives, deltas, prompts, dispatch receipts and lineage copies — because it is run output rather than authored content. Ripgrep is a raw evidence lane with no ranking to protect, and a researcher may legitimately need to grep an iteration log or a prompt render for an exact fact; converging would be a real coverage loss. The narrower `lineages` row above still applies inside this tree |
 | `fixtures` / `__fixtures__` / `test-fixtures` / `*-fixtures` directories outside `specs/` | Yes | No | Deliberate divergence. The trigger index's exemption is scoped to outside `specs/` because hundreds of real specification documents live under packet directories named or containing `fixtures` (for example `002-contracts-and-fixtures`); replicating that exact scoping in ripgrep's flat, later-glob-wins engine risks a subtly wrong pattern that silently drops real spec content, which is a worse failure than the test-fixture noise it would remove |
 
 ---

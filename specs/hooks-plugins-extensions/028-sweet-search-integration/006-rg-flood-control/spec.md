@@ -106,7 +106,7 @@ rows 382, files 14, top 20 rows from 2 files, 19 of them from one file
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/skills/system-spec-kit/runtime/cli/ops/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/commands/speckit/README.txt` | Modify | Describe the new behavior and output; keep counts and examples true |
-| `.skilled/skills/system-spec-kit/changelog/v2.12.41.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
+| `.skilled/skills/system-spec-kit/changelog/v2.12.42.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
 | `.skilled/changelog/skilled/` newest open release notes | Modify | One line for the user-visible change, if the notes are still open |
 | `benchmark/` (this phase folder) | Create | `queries.txt`, `before.json`, `after.json`, `results.md` |
 | `alignment/` (this phase folder) | Create | Copy of the alignment `report.md` and `recheck.md` |
@@ -161,7 +161,7 @@ rows 382, files 14, top 20 rows from 2 files, 19 of them from one file
 |------|------|--------|------------|
 | Dependency | Phase 3 design line numbers | Line ranges drift before the build | Re-read each cited range before editing |
 | Risk | Changing what `results` means breaks a consumer | Low | Only one non-test caller exists (`retrofit-convention.mjs`), updated in the same phase; `SCHEMA_VERSION` 2 signals the change |
-| Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 and the `git status` line count in both JSON files; do not rebuild the index between runs |
+| Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 in both JSON files and require it to match; do not rebuild the index between runs |
 <!-- /ANCHOR:risks -->
 
 ---

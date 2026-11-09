@@ -64,7 +64,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-006 | REQ-002 | Given `runtime/cli/retrieval/fixtures/prompt-set.json`, When the cold-lookup p95 is measured, Then it is at or under 200 ms | Benchmark p95 row | Unmet | - |
 | AC-007 | REQ-005 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 490 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md` | Unmet | - |
 | AC-008 | REQ-006 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder | Unmet | - |
-| AC-009 | REQ-007 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 and git status counts match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Unmet | - |
+| AC-009 | REQ-007 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 values match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Unmet | - |
 
 ### Status values
 

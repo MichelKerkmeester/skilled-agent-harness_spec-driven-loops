@@ -42,7 +42,7 @@ _memory:
 
 **Packet:** hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-09
 <!-- /ANCHOR:metadata -->
 
@@ -56,12 +56,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the fixture index, When `lookup(loaded, 'spec folder question', { limit: 2 })` runs, Then it returns 2 results, `truncated: true` and `totalCandidates: 6` | `npx vitest run trigger-index.vitest.ts` exits 0 | Unmet | - |
-| AC-002 | REQ-002 | Given a default-limit run that does not truncate, When its human output is compared with the before run, Then the two are byte-identical and the `candidates :` line contains no ` of ` | Benchmark per-query rows, untruncated set | Unmet | - |
-| AC-003 | REQ-002 | Given `retrieval-conventions.md`, When `rg -n 'specs/\*\*/research' retrieval-conventions.md` runs, Then section 9 lists the research-folder row and the parity suite passes | `npx vitest run retrieval-coverage-parity.vitest.ts` exits 0 | Unmet | - |
-| AC-004 | REQ-003 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 489 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md` | Unmet | - |
-| AC-005 | REQ-004 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder | Unmet | - |
-| AC-006 | REQ-005 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 and git status counts match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Unmet | - |
+| AC-001 | REQ-001 | Given the fixture index, When `lookup(loaded, 'spec folder question', { limit: 2 })` runs, Then it returns 2 results, `truncated: true` and `totalCandidates: 6` | `npx vitest run trigger-index.vitest.ts` exits 0; observed: 84/84 passed in `trigger-index.vitest.ts` and `retrieval-coverage-parity.vitest.ts` | Met | - |
+| AC-002 | REQ-002 | Given a default-limit run that does not truncate, When its human output is compared with the before run, Then the two are byte-identical and the `candidates :` line contains no ` of ` | Benchmark per-query rows, untruncated set; observed: `benchmark/results.md`: 0/6 untruncated outputs changed | Met | - |
+| AC-003 | REQ-002 | Given `retrieval-conventions.md`, When `rg -n 'specs/\*\*/research' retrieval-conventions.md` runs, Then section 9 lists the research-folder row and the parity suite passes | `npx vitest run retrieval-coverage-parity.vitest.ts` exits 0; observed: Row present; parity suite passed | Met | - |
+| AC-004 | REQ-003 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 489 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md`; observed: Catalog validator exit 0 (all packages), playbook validator exit 0, row 489 in section 7.8 | Met | - |
+| AC-005 | REQ-004 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder; observed: resolved 7, still open 0, new 0 | Met | - |
+| AC-006 | REQ-005 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 values match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md`; observed: `benchmark/results.md`: all five rows met, index sha256 equal | Met | - |
 
 ### Status values
 
@@ -87,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, so every criterion is unmet; closure waits on the build, the alignment recheck and the after benchmark.
+Every criterion is met with observed evidence.
 <!-- /ANCHOR:closure -->

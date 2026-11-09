@@ -45,6 +45,7 @@ index     <indexHash short>   manifest <manifestHash short>
 scope     <specFolder or (unscoped)>
 <score>  <matchClass>  <path>
 <score>  <matchClass>  <path>
++<hidden> more candidate(s) not shown (raise --limit to see them)
 
 STATUS=OK CANDIDATES=<count> LANE=trigger-index
 ```
@@ -59,9 +60,11 @@ Field mapping:
 | `result.score` | `<score>` — the lookup's own score, three decimals, exactly as the tool emits it |
 | `result.matchClass` | `<matchClass>` — one of `exact`, `phrase-containment`, `query-containment`, `token-overlap`, `partial`, verbatim from the tool |
 | `result.path` | `<path>` — the repo-relative document path |
-| `results.length` | `CANDIDATES=<count>` |
+| `results.length`, the rows shown after `--limit` | `CANDIDATES=<count>` |
+| `totalCandidates` - `results.length`, only when `truncated` is true | `+<hidden> more candidate(s)` line; omit the line when `truncated` is false |
 
 Rules:
+- Render the `+<hidden> more` line only when `truncated` is true, and compute `<hidden>` from the tool's `totalCandidates`, never from a guess.
 - Render candidates in the order the tool returned them. The lookup is deterministic; do not re-sort.
 - Never rename `score` to `confidence`, `similarity` or `relevance`, and never render it as a percentage. It is the tool's own score, not a probability.
 - `matchClass` is a label, not a rank. Do not translate it into a quality adjective.

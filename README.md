@@ -795,7 +795,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 **`system-spec-kit`**
 
-The mandatory orchestrator for all file modifications. It activates automatically for any code file change. It creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+). It owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes. It also manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces.
+The mandatory orchestrator for all file modifications. It activates automatically for any code file change. It creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+). It owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes. Trigger lookup reports the full candidate count before `--limit` and marks truncated results. It also manages the manifest template source, 42 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces.
 
 **`system-skill-advisor`**
 

@@ -1,0 +1,2 @@
+{"runtime":"devin","time":"2026-11-09T18:47:21.375Z","turn":"startup","kind":"startup","steps":[{"key":"Enter"}]}
+{"runtime":"devin","time":"2026-11-09T18:47:25.935Z","turn":"trigger-lookup-total-candidates","kind":"send","steps":[{"text":"Search the trigger index for spec folder validation strict but only show me the top 2. How many matches did you leave out?"},{"key":"Enter"}]}
