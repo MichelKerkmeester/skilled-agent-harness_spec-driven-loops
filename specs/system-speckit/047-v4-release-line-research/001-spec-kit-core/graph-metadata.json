@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Every v4 release from v4.0.0.0 to v4.0.2.0 changed the spec-kit core: `.skilled/skills/system-spec-kit/` and `.skilled/commands/speckit/`, and no pass has read the release notes, the code and the docs against each other",
     "created_at": "2026-11-08T19:49:04Z",
-    "last_save_at": "2026-11-09T14:35:48.379Z",
+    "last_save_at": "2026-11-09T14:38:16.858Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d623eaebbc574469b93f9a490fa765bb3bd538b971144695577d99dbc8e3f77c",
+    "source_fingerprint": "sha256:5d6ac18a8b94ff14259edb1c5af35959f08a908aa78674ffa53178564d1de179",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b079c9bbc8c17164a62723d81e815740340d894d40b8a570ba108ba145dfefa8",
       "plan.md": "07a7c89cda81749749407b5773c818397c87f892bea618bc66f32f4a6dc79b58",
       "tasks.md": "5969f407243d2e9e336fde19c68ce4fe89b6f3671477f59b37339620dc7f7e2e",
       "decision-record.md": "6947527793d8e7e3440a134e8a0d00603fd4bfa95ac3130e8336a4ca1c0c1bbd",
-      "implementation-summary.md": "4a06805514b5c74b56c85efee583b1416d7f6eda3e0238fc356c35f0ed128fed",
+      "implementation-summary.md": "4cf34b44fb00059c1da5b4999edfbd6861457bb32bb421647b911a823a20cd35",
       "research/research.md": "6e43c7fda1cd95a45a4e897e9049719d43a575e3198d06d3185ab1f72b9a89b4"
     },
     "last_active_at": null
