@@ -176,16 +176,22 @@ export interface IterationStartedData extends JsonObject {
   readonly status: 'started';
 }
 
-export interface IterationCompletedData extends JsonObject {
+interface IterationCompletedCoreData extends JsonObject {
   readonly status: 'complete' | 'error' | 'insight' | 'stuck' | 'thought' | 'timeout';
   readonly rawNewInfoRatio: number;
   readonly trustedEvidenceYield: number;
   readonly outputDigest: Digest;
   readonly ruledOutApproachRefs: string[];
   readonly nextFocusCausationId: string;
-  readonly focus?: string;
-  readonly answeredQuestions?: string[];
 }
+
+// Legacy iteration rows may omit either field, so model each persisted shape without optional
+// properties that would fall outside JsonObject's JsonValue index contract.
+export type IterationCompletedData =
+  | IterationCompletedCoreData
+  | (IterationCompletedCoreData & { readonly focus: string })
+  | (IterationCompletedCoreData & { readonly answeredQuestions: string[] })
+  | (IterationCompletedCoreData & { readonly focus: string; readonly answeredQuestions: string[] });
 
 export interface SourceCapturedData extends JsonObject {
   readonly sourceIdentityDigest: Digest;

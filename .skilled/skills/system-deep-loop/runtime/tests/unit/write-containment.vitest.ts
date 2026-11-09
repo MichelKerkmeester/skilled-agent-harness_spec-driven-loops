@@ -38,6 +38,7 @@ vi.mock('node:fs', async (importOriginal) => {
 });
 
 import {
+  discoverForeignLiveRunDirs as discoverForeignLiveRunDirsFromLibrary,
   snapshotOutOfScopeDirtyPaths,
   detectNewOutOfScopeViolations,
   revertOutOfScopeViolations,
@@ -1091,6 +1092,44 @@ describe('write-containment — regenerable runtime state', () => {
 });
 
 describe('write-containment — enforceWriteContainment high-level', () => {
+  it('reports and records files in a new nested out-of-scope folder', () => {
+    const root = makeRepo();
+    const artifactDir = join(root, 'specs/x/research');
+    mkdirSync(artifactDir, { recursive: true });
+    writeFileSync(join(artifactDir, 'seed.md'), 'seed\n');
+    commitAll(root, 'fix(containment): baseline');
+
+    const stateLog = join(artifactDir, 'state.jsonl');
+    writeFileSync(stateLog, '');
+    const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    const nestedDir = join(root, 'specs/001-test-feature');
+    mkdirSync(nestedDir, { recursive: true });
+    writeFileSync(join(nestedDir, 'spec.md'), 'spec\n');
+    writeFileSync(join(nestedDir, 'plan.md'), 'plan\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths,
+      stateLogPath: stateLog,
+      iteration: 1,
+      label: 'nested-folder',
+    });
+
+    const expectedPaths = ['specs/001-test-feature/plan.md', 'specs/001-test-feature/spec.md'];
+    // A brand-new untracked file outside scope has no bytes to un-write, so the default
+    // remedy records it as an advisory instead of a fatal breach.
+    expect(result.violations).toEqual([]);
+    expect(result.advisories.map((advisory) => advisory.path).sort()).toEqual(expectedPaths);
+    expect(result.event?.event).toBe('containment_violation');
+    expect(result.event?.violations.map((violation) => violation.path).sort()).toEqual(expectedPaths);
+
+    const records = readFileSync(stateLog, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    expect(records).toHaveLength(1);
+    expect(records[0].event).toBe('containment_violation');
+    expect(records[0].violations.map((violation: { path: string }) => violation.path).sort()).toEqual(expectedPaths);
+  });
+
   it('reverts violations, appends a containment_violation event to the state log, and reports them', () => {
     const { root, artifactDir } = baselineRepo();
     const stateLog = join(artifactDir, 'state.jsonl');
@@ -1392,6 +1431,44 @@ describe('write-containment — a concurrent run in a sibling phase folder', () 
     writeFileSync(written[2], '{"type":"state"}\n');
     return written;
   }
+
+  it('automatically excludes writes from a sibling phase with a live lock', () => {
+    const { root, artifactDir, otherRunDir } = phasedPacketRepo();
+    writeLoopLock(otherRunDir, 'live');
+    const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    expect(preDispatchDirtyPaths.some((entry) => entry.path.endsWith('.deep-research.lock'))).toBe(false);
+
+    writeOtherRunArtifacts(otherRunDir);
+    expect(detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths })).toEqual([]);
+    expect(discoverForeignLiveRunDirsFromLibrary({ repoRoot: root, artifactDir })).toEqual([
+      realpathSync(otherRunDir),
+    ]);
+  });
+
+  it('does not exclude writes from a sibling phase with a stale lock', () => {
+    const { root, artifactDir, otherRunDir } = phasedPacketRepo();
+    writeLoopLock(otherRunDir, 'stale');
+    const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeOtherRunArtifacts(otherRunDir);
+    const violations = detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths });
+    expect(violations.map((violation) => violation.path)).toContain(
+      'specs/track/030-packet/002-phase-b/research/lineages/luna-max/deep-research-state.jsonl',
+    );
+    expect(discoverForeignLiveRunDirsFromLibrary({ repoRoot: root, artifactDir })).toEqual([]);
+  });
+
+  it('keeps a repo-root write guarded while a sibling phase holds a live lock', () => {
+    const { root, artifactDir, otherRunDir } = phasedPacketRepo();
+    writeLoopLock(otherRunDir, 'live');
+    const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeOtherRunArtifacts(otherRunDir);
+    writeFileSync(join(root, 'tracked-outside.txt'), 'CHANGED_AT_REPO_ROOT\n');
+    const violations = detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths });
+    expect(violations.map((violation) => violation.path)).toContain('tracked-outside.txt');
+    expect(violations.some((violation) => violation.path.includes('002-phase-b'))).toBe(false);
+  });
 
   it('passes with zero violations when a live lock marks the other run as its owner', async () => {
     const { root, specFolder, baseArtifactDir, artifactDir, otherRunDir } = phasedPacketRepo();

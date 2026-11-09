@@ -1,24 +1,26 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Write containment now excludes the folders of other live deep-loop runs for every caller, not only fan-out, so loops running side by side in one packet stop blaming each other; a new out-of-folder file is pinned as recorded."
 trigger_phrases:
   - "write containment scoping implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-write-containment-scoping"
-    last_updated_at: "2026-11-08T23:39:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "system-speckit/047-v4-release-line-research/008-write-containment-scoping"
+    last_updated_at: "2026-11-09T00:00:00Z"
+    last_updated_by: "remediation-orchestrator-a"
+    recent_action: "Closed the phase with the final gate green and the review fixed"
+    next_safe_action: "Start phase 015"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-008-write-containment-scoping"
+      session_id: "orchestrator-a-008"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +34,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-write-containment-scoping |
-| **Completed** | 2026-11-08 |
+| **Completed** | 2026-11-09 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +46,71 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Two deep loops running at the same time in sibling phase folders no longer record each other's writes. A single-executor loop now gets the same live-run exclusion fan-out already had, with no change to its YAML.
 
 ### Phase 8: write-containment-scoping
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The live-run discovery moved from the fan-out runner into the containment library. Snapshot and detection scan the top-level packet for folders holding a live deep-loop lock and leave their writes out of attribution. A stale lock grants nothing, and a write at the repository root is still recorded. A new test pins that a new out-of-scope folder's files are recorded in the event and the state log and returned as advisories.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` | Modified | Live-run discovery, used in snapshot and detection |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modified | Calls the library discovery; local copy removed |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts` | Modified | Fixes the typecheck regression from phase 007 |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modified | Live, stale, repo-root and nested-folder cases |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+A read-only Luna pass mapped the callers and the untracked-file behavior first. Luna moved the discovery and wrote the tests; DeepSeek corrected one test's assertions and reviewed the diff. The review returned CONDITIONAL; two Luna fix rounds closed the confirmed items, including a typecheck regression phase 007 had shipped.
+
+| Suite | Command | Baseline | Final |
+|-------|---------|----------|-------|
+| Runtime vitest | `npx vitest run --no-coverage` in `runtime/` | 174 files, 2880 passed, 8 skipped | 174 files, 2884 passed, 8 skipped, exit 0 |
+| Council vitest | `npx vitest run --no-coverage` in `deep-ai-council/` | 118 passed | 118 passed, exit 0 |
+| Runtime typecheck | `npm run --silent typecheck` in `runtime/` | 2 errors (phase 007 regression) | exit 0, no output |
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Record unowned out-of-folder writes; never auto-move them (ADR-001) | A shared worktree has other writers; moving a file punishes whichever run looks |
+| Discover inside the library, not at each call site | Every caller gets the exclusion with no YAML edit |
+| Load the lock module through `createRequire` | The library is loaded natively, so it needs the `.ts` specifier that tsc rejects in a static import |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Runtime vitest | PASS: 174 files, 2884 passed, 8 skipped |
+| Council vitest | PASS: 118 passed |
+| Runtime typecheck | PASS: exit 0 |
+| Containment, ledger schema and fan-out files | PASS: 318 passed |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **A planted live lock exempts a folder.** A leaf that writes a lock naming a live foreign process into a sibling folder hides its writes there; fan-out had the same exposure before this phase.
+2. **Discovery cost is unmeasured.** Each scope resolution walks the packet, bounded at depth 6 and 2000 directories.
+3. **A run that releases its lock mid-iteration is re-attributed in single-executor mode.** Its leftover writes land on this run as advisories under the default preserve mode; fan-out unions the pre-dispatch set and is not affected.
+4. **Ignored writes are invisible.** Containment reads `git status`, so a write under an ignore rule leaves no record; the `specs/001-test-feature/` miss remains UNKNOWN (D-07).
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

@@ -39,8 +39,10 @@
 
 import { spawnSync } from 'node:child_process';
 import { appendFileSync, closeSync, constants, fstatSync, lstatSync, mkdirSync, mkdtempSync, openSync, readdirSync, readFileSync, readlinkSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import type { LoopLockData } from './loop-lock.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -358,12 +360,109 @@ export interface QuarantineResult {
   error?: string;
 }
 
+export interface ForeignLiveRunDiscoveryOptions {
+  repoRoot: string;
+  artifactDir: string;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PATH HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 /** Quarantine tree, relative to the artifact directory; one directory per containment pass. */
 const PASS_QUARANTINE_DIR = join('containment', 'quarantine');
+// These advisory lock files identify ownership for the two deep-loop run types.
+const DEEP_LOOP_LOCK_FILENAMES = ['.deep-research.lock', '.deep-review.lock'];
+// Artifact dirs sit only a few levels below a packet; bound depth and visited dirs because this
+// scan runs before dispatch and again for every containment check.
+const FOREIGN_RUN_SCAN_MAX_DEPTH = 6;
+const FOREIGN_RUN_SCAN_MAX_DIRS = 2000;
+let loopLockModule: typeof import('./loop-lock.js') | undefined;
+type StaleLoopLockInput = Pick<LoopLockData, 'ownerPid' | 'ownerKind' | 'ttlMs' | 'lastHeartbeatIso'>;
+
+/**
+ * Artifact directories under the packet that belong to another live deep-loop run.
+ *
+ * @param input - Repository root and the current run's artifact directory.
+ * @returns Physical artifact directories owned by other live runs, or an empty array on failure.
+ */
+export function discoverForeignLiveRunDirs(input: ForeignLiveRunDiscoveryOptions): string[] {
+  try {
+    // Lock files are the ownership signal; stale locks left by completed runs do not grant it.
+    const physicalArtifactDir = realpathAncestor(resolve(input.repoRoot, input.artifactDir));
+    const segments = physicalArtifactDir.split(sep);
+    const specsIndex = segments.lastIndexOf('specs');
+    if (specsIndex === -1 || segments.length < specsIndex + 3) return [];
+
+    // Native Node needs the .ts path; createRequire keeps TypeScript's extension rule out of the specifier.
+    const loopLock = loopLockModule ??= createRequire(import.meta.url)('./loop-lock.ts') as typeof import('./loop-lock.js');
+
+    // Phase children can nest deeply, so the shared boundary is their top-level packet.
+    const packetDir = segments.slice(0, specsIndex + 3).join(sep) || sep;
+    const ownRunDir = physicalArtifactDir;
+    const found: string[] = [];
+    const queue: Array<{ dir: string; depth: number }> = [{ dir: packetDir, depth: 0 }];
+    let visited = 0;
+
+    while (queue.length > 0 && visited < FOREIGN_RUN_SCAN_MAX_DIRS) {
+      const { dir, depth } = queue.shift()!;
+      visited += 1;
+      // This run's tree is covered by its artifact boundary and sibling lineages; another run's
+      // artifact directory cannot live inside it, so do not search it.
+      if (isSubpath(dir, ownRunDir)) continue;
+
+      // A locked ancestor is this run's supervisor, so neither claim nor prune it; its sibling
+      // subtrees may contain the phase children being sought.
+      let hasLiveLock = false;
+      for (const lockName of DEEP_LOOP_LOCK_FILENAMES) {
+        let record: Record<string, unknown>;
+        try {
+          record = JSON.parse(readFileSync(join(dir, lockName), 'utf8')) as Record<string, unknown>;
+        } catch {
+          continue;
+        }
+        if (!record || typeof record !== 'object') continue;
+        const ownerPid = record.owner_pid;
+        const ownerKind = record.owner_kind;
+        const ttlMs = record.ttl_ms;
+        const lastHeartbeatIso = record.last_heartbeat_iso;
+        if (typeof ownerPid !== 'number' || typeof ttlMs !== 'number'
+          || typeof lastHeartbeatIso !== 'string'
+          || (ownerKind !== undefined && ownerKind !== 'process' && ownerKind !== 'transient')) {
+          continue;
+        }
+        const staleInput: StaleLoopLockInput = { ownerPid, ownerKind, ttlMs, lastHeartbeatIso };
+        // Staleness depends only on these four persisted fields; other lock metadata is irrelevant.
+        const stale = Reflect.apply(loopLock.isStaleLoopLock, undefined, [staleInput]) === true;
+        if (!stale) {
+          hasLiveLock = true;
+          break;
+        }
+      }
+
+      if (hasLiveLock && !isSubpath(ownRunDir, dir)) {
+        found.push(dir);
+        // Everything below a live run's artifact directory belongs to it as a unit.
+        continue;
+      }
+      if (depth >= FOREIGN_RUN_SCAN_MAX_DEPTH) continue;
+
+      let entries;
+      try {
+        entries = readdirSync(dir, { withFileTypes: true });
+      } catch {
+        continue;
+      }
+      for (const entry of entries) {
+        if (!entry.isDirectory() || entry.name === '.git' || entry.name === 'node_modules') continue;
+        queue.push({ dir: join(dir, entry.name), depth: depth + 1 });
+      }
+    }
+    return found;
+  } catch {
+    return [];
+  }
+}
 
 /**
  * The identity of one containment pass: the iteration, plus the attempt when the caller
@@ -951,7 +1050,11 @@ function resolveArtifactScope(
   // Same resolution rules as the artifact dir: anything that cannot be expressed
   // as a repo-relative subpath is dropped rather than silently widening scope.
   const unattributableRelPosix: string[] = [];
-  for (const dir of opts.unattributableDirs ?? []) {
+  const unattributableDirs = [
+    ...(opts.unattributableDirs ?? []),
+    ...discoverForeignLiveRunDirs({ repoRoot: opts.repoRoot, artifactDir: opts.artifactDir }),
+  ];
+  for (const dir of unattributableDirs) {
     const rel = toPosix(relative(repoReal, realpathSafe(dir)));
     if (!rel || rel.startsWith('..') || isAbsolute(rel)) continue;
     if (rel === artifactRelPosix) continue;

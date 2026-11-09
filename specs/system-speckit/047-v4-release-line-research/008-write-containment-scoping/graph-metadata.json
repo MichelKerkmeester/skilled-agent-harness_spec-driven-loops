@@ -16,6 +16,7 @@
       "write containment scoping plan",
       "write containment scoping tasks",
       "write containment scoping acceptance criteria",
+      "write containment scoping decision record",
       "write containment scoping implementation summary"
     ],
     "key_topics": [
@@ -27,19 +28,24 @@
       "tasks",
       "acceptance",
       "criteria",
+      "decision",
+      "record",
       "implementation",
-      "summary",
-      "yourvaluehere",
-      "broken"
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
     ],
     "entities": [
       {
@@ -67,19 +73,43 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +139,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +157,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +175,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Before",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -155,41 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`snapshotOutOfScopeDirtyPaths` and `detectNewOutOfScopeViolations` read repo-wide `git status`",
     "created_at": "2026-11-08T23:39:00Z",
-    "last_save_at": "2026-11-08T23:39:07.813Z",
+    "last_save_at": "2026-11-09T04:30:52.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +203,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5959fabf4ce3c662be6ede0b8553d5cdf95fd5c20040865fa6a7b462c4753131",
+    "source_fingerprint": "sha256:edf09641c3e3431bdaadec8aca65071995f9f3882aad6e91624776b792ad21fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d414545f05ab8ce717117bb7126196b889d2209605d650009fc33a5157ef93b3",
-      "plan.md": "accc1aa51bc5e824104db45b08048cac03477db9515dba27696f81c73b005a03",
-      "tasks.md": "b6195294282d09c554bb02f598eb3e5c0be062b41d19c49f43f222eff672ecdc",
-      "implementation-summary.md": "a093be725fac74d32350a88124e7c364d0dce484a7adc869885e753bd2b5fc06"
+      "spec.md": "32318490a02af4d7e824611d8dea12289ab66a0fc0cdbf748118392a095c7b26",
+      "plan.md": "e86e3fdaa17e4c1335f5978258db1759bb1a00c5fae4a8cf47cc25765ca884a4",
+      "tasks.md": "4388804ceeae63e0f2dcd8e557b98ba83b35f7561592f026b8882b739cdd400d",
+      "decision-record.md": "350c21139f10647f0d014a0eaa729a5cd2f22938e59eb6c35ac399bb6905f014",
+      "implementation-summary.md": "74cb5d81c33a00b438c24c71d55d1d84be08f6ff523cb2888f94eac8af962242"
     },
     "last_active_at": null
   }
