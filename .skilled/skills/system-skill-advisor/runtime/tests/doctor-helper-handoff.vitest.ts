@@ -26,6 +26,14 @@ describe('doctor problem cue', () => {
     expect(doctorProblemCue('turn off one of the github actions workflows')).toBe('strong');
   });
 
+  // A hook that does not fire is a broken state, not a bare problem word: the
+  // operator reports it in exactly this shape, and the cue is what lets the
+  // hand-off stand beside a passing skill.
+  it('reads a hook that does not fire as a strong cue', () => {
+    expect(doctorProblemCue('my hooks are not firing, what do I run')).toBe('strong');
+    expect(doctorProblemCue('the git hooks are not triggering on commit')).toBe('strong');
+  });
+
   it('reads a bare problem word as a weak cue', () => {
     expect(doctorProblemCue('Fix the broken JSON example and revalidate the packet.')).toBe('weak');
     expect(doctorProblemCue('my AGENTS.md is out of date with the template')).toBe('weak');
@@ -41,6 +49,14 @@ describe('doctor helper ranker bridge', () => {
   it('returns the command the helper ranks first for a doctor problem', () => {
     const match = matchDoctorProblem('my deep research run never converges', WORKSPACE);
     expect(match?.command).toBe('/doctor:deep-loop');
+    expect(match?.score).toBeGreaterThanOrEqual(6);
+  });
+
+  // The manifest phrases are the whole reason this reaches a command: the ranker
+  // carries no synonym list of its own.
+  it('reaches the git route for hooks that stopped firing', () => {
+    const match = matchDoctorProblem('my hooks are not firing, what do I run', WORKSPACE);
+    expect(match?.command).toBe('/doctor:git');
     expect(match?.score).toBeGreaterThanOrEqual(6);
   });
 

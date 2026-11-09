@@ -33,7 +33,9 @@ const PI_CLASSIFIERS = new Map([
   ['official', { provider: 'typesafe', model: 'jev-latest' }],
   ['openrouter', { provider: 'openrouter', model: 'typesafe/jev-1.13' }],
 ]);
-const PI_PACKAGE_VERSION = '0.99.2';
+const PI_PINNED_VERSION = '0.99.2';
+const PI_MINIMUM_MAJOR = 1;
+const PI_RUNTIME_METHODS = ['getModelOfType', 'getAvailableOfType'];
 const ANSWER_NAME = 'answer';
 const PI_PACKAGE_NAME = '@earendil-works/pi-coding-agent';
 const DEFAULT_TIMEOUT_MS = 30000;
@@ -308,10 +310,56 @@ function which(name, env) {
 }
 
 /**
+ * Directory and version of the Pi coding-agent package at one path, or null when
+ * no manifest there names that package. An absent or unparseable manifest says
+ * nothing about the executable's package, so it reads as no package here.
+ *
+ * @param {string} dir Directory to read.
+ * @returns {{ packageDir: string, version: string | null } | null} Package at that directory, or null.
+ */
+function piPackageAt(dir) {
+  try {
+    const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8'));
+    if (manifest.name === PI_PACKAGE_NAME) {
+      return { packageDir: dir, version: typeof manifest.version === 'string' ? manifest.version : null };
+    }
+  } catch {
+    // No manifest here.
+  }
+  return null;
+}
+
+/**
+ * The package behind a managed `pi` install, or null when the executable is not
+ * one. A managed launcher is a shell script in `<agent>/bin` with no manifest
+ * above it: it runs whichever release `<agent>/install/current-version` names,
+ * so the version file, not the script, is what locates the package.
+ *
+ * @param {string} executableDir Directory holding the resolved `pi` executable.
+ * @returns {{ packageDir: string, version: string | null } | null} Release package, or null.
+ */
+function resolveManagedPiPackage(executableDir) {
+  if (path.basename(executableDir) !== 'bin') return null;
+  const installDir = path.join(path.dirname(executableDir), 'install');
+
+  let version;
+  try {
+    version = fs.readFileSync(path.join(installDir, 'current-version'), 'utf8').trim();
+  } catch {
+    return null;
+  }
+  // The value reaches a path join, so it must start with a letter or digit: `.` and `..` name no release.
+  if (!/^[0-9A-Za-z][0-9A-Za-z._+-]*$/.test(version)) return null;
+
+  return piPackageAt(path.join(installDir, 'releases', version, 'node_modules', PI_PACKAGE_NAME));
+}
+
+/**
  * Directory and version of the Pi coding-agent package that `pi` resolves to,
- * or null when no `pi` on PATH belongs to that package. The executable sits
- * inside the package's own dist tree, so the climb starts at its directory and
- * keeps going until a manifest names the package.
+ * or null when no `pi` on PATH belongs to that package. The climb runs first and
+ * starts at the executable's directory, because a directly installed executable
+ * sits inside the package's own dist tree; a launcher names no package that way,
+ * so the managed release tree is the fallback.
  *
  * @param {{ PATH?: string }} env Environment whose PATH is searched.
  * @returns {{ packageDir: string, version: string | null } | null} Resolved package, or null.
@@ -326,22 +374,45 @@ function resolvePiPackage(env) {
   } catch {
     return null;
   }
+  const executableDir = dir;
 
   for (;;) {
-    // A manifest that is absent or unparseable says nothing about the executable's
-    // package, so the climb continues past it.
-    try {
-      const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8'));
-      if (manifest.name === PI_PACKAGE_NAME) {
-        return { packageDir: dir, version: typeof manifest.version === 'string' ? manifest.version : null };
-      }
-    } catch {
-      // Keep climbing.
-    }
+    const manifest = piPackageAt(dir);
+    if (manifest !== null) return manifest;
     const parent = path.dirname(dir);
-    if (parent === dir) return null;
+    if (parent === dir) break;
     dir = parent;
   }
+
+  return resolveManagedPiPackage(executableDir);
+}
+
+/**
+ * Whether a package version is one the transport may ask for a classifier
+ * answer. The calls it makes have shipped since 1.0, so any 1.x or later release
+ * is usable and the build the transport was first measured against stays
+ * accepted; every other version is refused before a runtime is created.
+ *
+ * @param {string | null} version Version the package manifest carried.
+ * @returns {boolean} True when the version may carry the classifier surface.
+ */
+function piVersionAccepted(version) {
+  if (version === PI_PINNED_VERSION) return true;
+  const match = /^(\d+)\.\d+\.\d+(?:[-+][0-9A-Za-z.+-]*)?$/.exec(version ?? '');
+  return match !== null && Number(match[1]) >= PI_MINIMUM_MAJOR;
+}
+
+/**
+ * Whether a runtime object carries the reads the transport calls. A missing read
+ * means an install too old to answer, and the version gate is the single line a
+ * caller sees for that cause.
+ *
+ * @param {object | undefined} runtime Runtime the package created.
+ * @returns {boolean} True when every classifier read is callable.
+ */
+function hasPiClassifierSurface(runtime) {
+  if (runtime === null || runtime === undefined) return false;
+  return PI_RUNTIME_METHODS.every((method) => typeof runtime[method] === 'function');
 }
 
 // The runtime is imported from the package `pi` resolves to, so the transport
@@ -371,12 +442,16 @@ async function getPiPreflight(env, deps, jevProvider, classifier) {
     preflightPromise = (async () => {
       const pi = resolvePiPackage(env);
       if (pi === null) return { gate: 'package' };
-      if (pi.version !== PI_PACKAGE_VERSION) return { gate: 'version' };
+      if (!piVersionAccepted(pi.version)) return { gate: 'version' };
 
       const runtime = deps.runtime ?? await getCachedPiRuntime(
         pi.packageDir,
         deps.createRuntime ?? createPiRuntime,
       );
+      // The version alone says which release this is, not whether it can answer:
+      // the transport calls two classifier reads, so the runtime that was loaded
+      // is what decides, and one gate names one cause to the caller.
+      if (!hasPiClassifierSurface(runtime)) return { gate: 'version' };
       const model = runtime.getModelOfType('classifier', classifier.provider, classifier.model);
       if (model === undefined) return { gate: 'model' };
 

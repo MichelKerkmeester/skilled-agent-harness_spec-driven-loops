@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Phase 15: cli-hub-routing-and-classifier"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Resolve the managed Pi install, route every advertised Jev phrase, send OpenCode Go prompts to the CLI hub and hook problems to a doctor command, then regenerate bridges and compiled routing copies."
 trigger_phrases:
   - "cli hub routing and classifier plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 15: cli-hub-routing-and-classifier
@@ -15,127 +15,118 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | ESM transport, JSON routing data, TypeScript advisor scorer, YAML doctor routes |
+| **Framework** | cli-classifier hub, compiled routing, system-skill-advisor |
+| **Storage** | hub-router.json, generated command bridges, activation manifests |
+| **Testing** | node:test in cli-classifier and `.skilled/bin/tests`, vitest in the advisor runtime |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Each miss is fixed in the data the router reads: the transport's package resolution, the hub vocabulary, the advisor's explicit phrase table and problem cue, and the doctor trigger phrases. Generated artifacts are rebuilt with their documented commands.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Advisor vitest at least 1379 passed, classifier 172, bin tests no new failures
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Fix the data at the source each router reads; regenerate what is derived.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`jev-transport.mjs`**: finds Pi and decides whether its route can run.
+- **`hub-router.json`**: the vocabulary compiled routing reads for the classifier hub.
+- **`lanes/explicit.ts`, `doctor-helper-handoff.ts`**: advisor phrase boosts and problem cues.
+- **`_routes.yaml` and `derive-command-bridges.cjs`**: doctor trigger phrases and the bridges generated from them.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+A prompt reaches the advisor, which scores skills and command bridges; a hub prompt then goes through compiled routing against the hub vocabulary pinned by the activation manifest.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| Pi package resolution | Climb only, exact pin | update | transport tests; real preflight on Pi 1.5.0 |
+| cli-classifier hub vocabulary | Missing advertised phrases | update | `hub-router-phrases.test.mjs` |
+| Advisor explicit phrase table | Bare `opencode` to sk-code | update | `opencode-provider-route.vitest.ts`, live CLI probe |
+| Doctor helper cue and trigger phrases | No firing cue or phrase | update | `doctor-helper-handoff.vitest.ts`, bridges test |
+| Activation manifest, bridges, projection | Generated | regenerate | guard, sync check, bridge `--check` |
+| cli-external-orchestration mode choice for "opencode go route" | DeepSeek Harness by design | unchanged | ADR-001 |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: `rg -n "PI_PACKAGE_VERSION" .skilled/skills/cli-classifier`.
+- Consumers: advisor gold and holdout prompts that mention opencode.
+- Matrix axes: advertised phrase by router file (hub, cli-jev).
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup counts the archives. Implementation adds `--keep`. Verification counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Setup baselines the advisor, classifier and compiled-routing suites. Implementation runs one worker per finding, then the orchestrator regenerates the bridges, rebuilds the advisor dist and re-mints the classifier manifest. Verification reruns every baseline and the review.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Transport resolution and gate, cue table, explicit lane | node:test, vitest |
+| Integration | Every advertised phrase through compiled routing; live advisor CLI probes | node:test, `skill-advisor.cjs` |
+| Manual | Real preflight against the installed Pi 1.5.0 | node |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| cli-codex `gpt-6-luna` high fast | External | Green | Fall back to DeepSeek and log it |
+| cli-pi `opencode-go/deepseek-v4.1-flash` max | External | Green | Only model reachable after GPT quota ran out |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: A routed prompt lands on the wrong target.
+- **Procedure**: `git revert` the phase commit.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,10 +134,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | Phase 008 commit | Implementation |
+| Implementation | Baseline recorded | Verification |
+| Verification | Implementation and review | Phase 017 |
 <!-- /ANCHOR:phase-deps -->
 
 ---
-

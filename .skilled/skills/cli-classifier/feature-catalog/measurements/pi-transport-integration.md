@@ -6,7 +6,7 @@ trigger_phrases:
   - "jev transport module"
   - "JEV_TRANSPORT switch"
   - "jev-transport.mjs"
-version: 0.3.1.0
+version: 0.3.2.0
 ---
 
 # Pi classifier transport integration (jev-transport.mjs)
@@ -61,7 +61,7 @@ provider.
 | Gate | Checked with | Failure line |
 |---|---|---|
 | package | `resolvePiPackage` resolves, and `ModelRuntime.create()` does not throw | `skip: pi transport unavailable (package), using jev CLI` |
-| version | the resolved package is 0.99.2 | `skip: pi transport unavailable (version), using jev CLI` |
+| version | the resolved package is 0.99.2 or a 1.x-or-later release, and the runtime it loads carries `getModelOfType` and `getAvailableOfType` | `skip: pi transport unavailable (version), using jev CLI` |
 | model | `getModelOfType('classifier', piProvider, classifierId)` is defined for the mapped pair | `skip: pi transport unavailable (model), using jev CLI` |
 | credential | `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
 | backend | `classify()` throws or errors, or the answer cannot be read: a `choice` answer must name a submitted key and hold a finite probability for every submitted key, and a `noul` answer must be a `bool` answer with a probability from 0 to 1 | `skip: pi transport unavailable (backend), using jev CLI` |

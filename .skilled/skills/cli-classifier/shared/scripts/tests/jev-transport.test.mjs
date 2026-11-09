@@ -56,6 +56,24 @@ function stubPiPackage(root, version = '0.99.2') {
   return bin;
 }
 
+// A managed install as the installer lays it out: `pi` is a launcher script and
+// the package sits in the release tree the version file names, so no manifest
+// above the executable belongs to the package.
+function stubManagedPiInstall(root, version = '1.5.0') {
+  const bin = path.join(root, 'bin');
+  const install = path.join(root, 'install');
+  const packageDir = path.join(install, 'releases', version, 'node_modules', '@earendil-works', 'pi-coding-agent');
+  fs.mkdirSync(bin);
+  fs.mkdirSync(packageDir, { recursive: true });
+  fs.writeFileSync(path.join(bin, 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  fs.writeFileSync(path.join(install, 'current-version'), `${version}\n`);
+  fs.writeFileSync(
+    path.join(packageDir, 'package.json'),
+    JSON.stringify({ name: '@earendil-works/pi-coding-agent', version }),
+  );
+  return { bin, packageDir };
+}
+
 // Minimal pipe stand-in: the spawn port only sets an encoding and reads data.
 function fakeStream() {
   const stream = new EventEmitter();
@@ -715,6 +733,132 @@ test('spawn_call_auto_and_explicit_version_gate_fall_back', async () => {
 
   assert.deepEqual(lines, [SKIP.version]);
   assert.equal(spawn.calls.length, 1);
+  assert.deepEqual(runtime.calls.model, []);
+});
+
+test('preflight_resolves_a_managed_install_through_its_version_file', async () => {
+  const { bin, packageDir } = stubManagedPiInstall(tempDir('managed-pi'));
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const runtime = runtimeStub({ classify: async () => successfulChoiceResult() });
+  const created = [];
+
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+    {
+      spawn: spawn.spawnFn,
+      createRuntime: (dir) => {
+        created.push(dir);
+        return runtime;
+      },
+    },
+  );
+
+  // The executable is realpathed before the climb, so the resolved tree is the
+  // real one and a symlinked temp root ('/var' on macOS) is not what comes back.
+  assert.deepEqual(created, [fs.realpathSync(packageDir)]);
+  assert.equal(outcome.transport, 'pi');
+  assert.equal(spawn.calls.length, 0);
+  assert.deepEqual(lines, []);
+});
+
+test('preflight_refuses_a_version_file_that_names_a_parent_directory', async () => {
+  const { bin } = stubManagedPiInstall(tempDir('managed-pi-dotdot'));
+  const install = path.join(path.dirname(bin), 'install');
+  // `releases/..` collapses onto the install directory, so a package left there
+  // is what a version file reading `..` resolves to whenever it is let through.
+  const escaped = path.join(install, 'node_modules', '@earendil-works', 'pi-coding-agent');
+  fs.mkdirSync(escaped, { recursive: true });
+  fs.writeFileSync(
+    path.join(escaped, 'package.json'),
+    JSON.stringify({ name: '@earendil-works/pi-coding-agent', version: '1.5.0' }),
+  );
+  fs.writeFileSync(path.join(install, 'current-version'), '..\n');
+
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const runtime = runtimeStub({ classify: async () => successfulChoiceResult() });
+  const created = [];
+
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+    {
+      spawn: spawn.spawnFn,
+      createRuntime: (dir) => {
+        created.push(dir);
+        return runtime;
+      },
+    },
+  );
+
+  assert.deepEqual(created, []);
+  assert.equal(outcome.transport, 'jev');
+  assert.equal(spawn.calls.length, 1);
+  assert.deepEqual(lines, [SKIP.package]);
+});
+
+test('preflight_accepts_a_one_x_package_that_exposes_the_classifier_reads', async () => {
+  const bin = stubPiPackage(tempDir('pi'), '1.5.0');
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const runtime = runtimeStub({ classify: async () => successfulChoiceResult() });
+
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(outcome.transport, 'pi');
+  assert.equal(spawn.calls.length, 0);
+  assert.deepEqual(runtime.calls.model, [
+    { type: 'classifier', providerId: 'openrouter', modelId: 'typesafe/jev-1.13' },
+  ]);
+  assert.deepEqual(lines, []);
+});
+
+test('preflight_refuses_a_runtime_missing_a_classifier_read', async () => {
+  for (const missing of ['getModelOfType', 'getAvailableOfType']) {
+    const bin = stubPiPackage(tempDir('pi'), '1.5.0');
+    const { lines, report } = collector();
+    const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+    const runtime = runtimeStub({ classify: async () => successfulChoiceResult() });
+    delete runtime[missing];
+
+    await S.spawnClassifierCall(
+      callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+      { spawn: spawn.spawnFn, runtime },
+    );
+
+    assert.deepEqual(lines, [SKIP.version], missing);
+    assert.equal(spawn.calls.length, 1, missing);
+    assert.deepEqual(runtime.calls.model, [], missing);
+    assert.deepEqual(runtime.calls.available, [], missing);
+  }
+});
+
+test('preflight_refuses_a_package_below_the_classifier_release', async () => {
+  const bin = stubPiPackage(tempDir('pi'), '0.98.0');
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const runtime = runtimeStub({ classify: async () => successfulChoiceResult() });
+  const created = [];
+
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+    {
+      spawn: spawn.spawnFn,
+      createRuntime: (dir) => {
+        created.push(dir);
+        return runtime;
+      },
+    },
+  );
+
+  assert.deepEqual(lines, [SKIP.version]);
+  assert.equal(spawn.calls.length, 1);
+  assert.equal(outcome.stdout, '{"ok":true}\n');
+  // A refused version stops before a runtime is created, so the gate costs no import.
+  assert.deepEqual(created, []);
   assert.deepEqual(runtime.calls.model, []);
 });
 

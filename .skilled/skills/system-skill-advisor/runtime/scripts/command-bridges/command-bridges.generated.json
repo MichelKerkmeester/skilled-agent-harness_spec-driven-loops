@@ -825,6 +825,9 @@
             "is my sk-git setup working",
             "which git rules are live",
             "check my git hooks setup",
+            "my hooks are not firing",
+            "git hooks not firing",
+            "hooks stopped firing",
             "/doctor:git"
           ],
           "intentSignals": [

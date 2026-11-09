@@ -7,9 +7,9 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/015-cli-hub-routing-and-classifier"
+    packet_pointer: "system-speckit/047-v4-release-line-research/015-cli-hub-routing-and-classifier"
     last_updated_at: "2026-11-08T23:39:05Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "remediation-orchestrator-a"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-015-cli-hub-routing-and-classifier"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,10 +37,10 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
-**Date:** 2026-11-08
+**Packet:** 015-cli-hub-routing-and-classifier
+**Level:** 2
+**Status:** Complete
+**Date:** 2026-11-09
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,7 +53,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given each keyword in the hub and cli-jev ROUTER files, When it is routed through compiled routing, Then the route is cli-jev | `hub-router-phrases.test.mjs` passes; probes of the eight deferring phrases now print `"action":"route"` | Met | - |
+| AC-002 | REQ-002 | Given the managed Pi 1.5.0 install, When the transport preflights, Then it resolves the release package and passes the version gate; an old or method-less Pi gets gate `version` | `jev-transport.test.mjs` 51 with the phrases test, 0 fail; real preflight resolves `install/releases/1.5.0/...` | Met | - |
+| AC-003 | REQ-003 | Given "opencode go route this task", When the advisor ranks it, Then cli-external-orchestration is above sk-code, and "write an opencode plugin" still ranks sk-code first | live CLI: hub 0.734 over sk-code 0.657; plugin prompt sk-code 0.767; `opencode-provider-route.vitest.ts` | Met | - |
+| AC-004 | REQ-004 | Given "my hooks are not firing, what do I run", When the advisor ranks it, Then a doctor command is recommended | live CLI lists `command-doctor-git-setup` 0.607; `doctor-helper-handoff.vitest.ts` | Met | - |
+| AC-005 | REQ-001 | Given the baselines, When rerun, Then no previously passing test fails | advisor 1383 (baseline 1379), typecheck exit 0, classifier 179 (172), bin 172 pass 0 fail (156/16), sync, guard and bridge check fresh | Met | - |
 
 ### Status values
 
@@ -79,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is met with observed evidence; ADR-001 keeps the hub mode choice for OpenCode Go.
 <!-- /ANCHOR:closure -->

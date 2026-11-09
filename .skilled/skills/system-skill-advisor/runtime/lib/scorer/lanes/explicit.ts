@@ -50,7 +50,6 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   jsonl: [['sk-code', 0.45], ['system-spec-kit', 0.35]],
   mcp: [['sk-code', 0.65], ['mcp-code-mode', 0.45]],
   memory: [['system-spec-kit', 0.95]],
-  opencode: [['sk-code', 1]],
   packet: [['system-spec-kit', 0.55]],
   playbook: [['sk-doc', 0.75]],
   pr: [['sk-code', 0.5], ['sk-git', 0.35]],
@@ -179,6 +178,11 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'prompt variant': [['sk-prompt', 1]],
   'user prompt': [['sk-prompt', 0.9]],
   'cleaner user prompt': [['sk-prompt', 1]],
+  // "OpenCode Go" is a provider route, not a code surface: the code hub's OpenCode
+  // vocabulary is the authoring nouns below. Only the two-word phrase routes, so a
+  // bare runtime mention still reaches the code hub through its own author keyword
+  // at reduced weight, and the provider route reaches the hub that dispatches it.
+  'opencode go': [['cli-external-orchestration', 1]],
   // sk-code phrases: system-code surfaces.
   'opencode skill': [['sk-code', 0.95]],
   'opencode agent': [['sk-code', 0.85]],

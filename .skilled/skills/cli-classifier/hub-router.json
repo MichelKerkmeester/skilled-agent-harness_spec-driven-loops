@@ -40,8 +40,12 @@
         "jev noul",
         "jev choice",
         "jev score",
+        "jev urgency check",
+        "jev yes or no",
+        "jev probability",
         "jev run",
         "jev mcp",
+        "expose jev",
         "jev judgment call",
         "run jev",
         "ask jev",
@@ -50,9 +54,13 @@
         "through jev",
         "does jev use",
         "jev provider",
+        "jev openrouter",
         "jev model",
         "jev auth",
-        "jev question"
+        "jev question",
+        "jev pick one",
+        "jev options",
+        "jev batch"
       ]
     }
   }

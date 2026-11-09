@@ -112,7 +112,7 @@ route that named Pi the failure prints exactly one line and then runs the CLI:
 | Gate | Failure line |
 |---|---|
 | package: `resolvePiPackage` resolves, and `ModelRuntime.create()` does not throw | `skip: pi transport unavailable (package), using jev CLI` |
-| version: the resolved package is 0.99.2 | `skip: pi transport unavailable (version), using jev CLI` |
+| version: the resolved package is 0.99.2 or a 1.x-or-later release whose runtime carries `getModelOfType` and `getAvailableOfType` | `skip: pi transport unavailable (version), using jev CLI` |
 | model: `getModelOfType('classifier', piProvider, classifierId)` returns the mapped model | `skip: pi transport unavailable (model), using jev CLI` |
 | credential: `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
 | backend: `classify()` throws or errors, or the answer cannot be read as the submitted question | `skip: pi transport unavailable (backend), using jev CLI` |
