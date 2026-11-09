@@ -23,6 +23,10 @@
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --refresh-markers [--roots <dir>]... [--apply]
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
 //
+// From a host repository the run reads that host's specs/ and skips the folders the host
+// ignores there, so a vendor's tree is never repaired as if it were the host's work. A host
+// is a repository that vendors this skill, so its .skilled resolves outside its own root.
+//
 // --layout-map prints the planned v3-to-v4 move of the spec roots as JSON and
 // writes nothing.
 //
@@ -46,7 +50,7 @@
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
-import { execFile } from 'node:child_process';
+import { execFile, spawnSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
@@ -54,6 +58,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
+import { callerRepoRoot, isHostRepository } from '../retrieval/lib/host-index.mjs';
 import { buildReport, classifyRepo } from './repo-era.mjs';
 
 const run = promisify(execFile);
@@ -63,7 +68,19 @@ const run = promisify(execFile);
 // ───────────────────────────────────────────────────────────────────
 const SCRIPT = 'upgrade-legacy';
 const SKILL_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-const REPO = path.resolve(SKILL_ROOT, '../../..');
+
+// Which repository a run belongs to. A host vendors this tree, so `.skilled` there resolves
+// outside the host root and this file's own location answers with the vendored checkout: the
+// host's specs/ could then never be read, and --roots would refuse every path the host names.
+// Host detection therefore decides instead, and everywhere else the file's location still
+// does, because that is the only tree a plain checkout knows about.
+function hostRepositoryRoot() {
+  const caller = callerRepoRoot(process.cwd());
+  return caller !== null && isHostRepository(caller) ? caller : null;
+}
+
+const HOST_ROOT = hostRepositoryRoot();
+const REPO = HOST_ROOT ?? path.resolve(SKILL_ROOT, '../../..');
 // The TypeScript tools run from source through the tsx loader, as repair-derived does,
 // because a source module must not depend on a build that can be stale.
 const TSX_LOADER = path.join(SKILL_ROOT, 'node_modules/tsx/dist/loader.mjs');
@@ -777,6 +794,15 @@ function printGroupedDetail(packets, reports) {
   if (count === 0) process.stdout.write('  none\n');
 }
 
+// v4 reads packets from a top-level specs/ and v3 kept them in .opencode/specs, which some
+// checkouts still point at each other. A host never carries the second spelling as its own
+// work, because <host>/.opencode resolves into the vendored tree, so only specs/ is read there.
+function defaultSpecRoots() {
+  const roots = [path.join(REPO, 'specs')];
+  if (HOST_ROOT === null) roots.push(path.join(REPO, '.opencode', 'specs'));
+  return roots.filter((dir) => fs.existsSync(dir));
+}
+
 // Roots are resolved to real paths and deduplicated because some checkouts
 // symlink .opencode/specs at specs: walking both spellings would validate
 // every packet twice and count every failure twice. A supplied root is also
@@ -792,7 +818,7 @@ function resolveRoots(given) {
   }
   const candidates = given.length > 0
     ? given.map((dir) => path.resolve(REPO, dir))
-    : [path.join(REPO, 'specs'), path.join(REPO, '.opencode', 'specs')].filter((dir) => fs.existsSync(dir));
+    : defaultSpecRoots();
   const roots = [];
   for (const candidate of candidates) {
     if (!fs.existsSync(candidate)) {
@@ -845,6 +871,25 @@ function specsSegments(folder) {
   return segments.slice(segments.indexOf('specs') + 1);
 }
 
+// A host keeps an ignored mirror of this repository's own packets under specs/, so a folder
+// git ignores there is the framework's work and not the host's. git names the ignored paths
+// and answers 1 when it ignored none of them; any other failure leaves the question open, and
+// a sweep that could not tell would repair that mirror, so it stops the run instead.
+function ignoredSpecFolders(relatives) {
+  if (relatives.length === 0) return new Set();
+  const result = spawnSync('git', ['-C', REPO, 'check-ignore', '--stdin', '-z'], {
+    input: `${relatives.join('\0')}\0`,
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (result.error || (result.status !== 0 && result.status !== 1)) {
+    const why = (result.stderr ?? '').trim() || result.error?.message || `status ${result.status}`;
+    process.stderr.write(`${SCRIPT}: could not ask git which spec folders ${REPO} ignores: ${why}\n`);
+    process.exit(2);
+  }
+  return new Set((result.stdout ?? '').split('\0').filter((entry) => entry !== ''));
+}
+
 async function discover(roots, includeArchive) {
   const packets = [];
   // Roots may nest, such as specs and one track inside it, and a packet under
@@ -861,7 +906,21 @@ async function discover(roots, includeArchive) {
       packets.push({ folder, root, archived });
     }
   }
-  return packets.sort((a, b) => (a.folder < b.folder ? -1 : a.folder > b.folder ? 1 : 0));
+  const ignored = HOST_ROOT === null
+    ? new Set()
+    : ignoredSpecFolders(packets.map((packet) => repoRelative(packet.folder)));
+  // A dropped folder is otherwise silent, and an empty report reads the same whether the tree
+  // holds no packets or an ignore rule hid one, so the count is said out loud and the likely
+  // cause is named once nothing survives it.
+  const kept = packets.filter((packet) => !ignored.has(repoRelative(packet.folder)));
+  const skipped = packets.length - kept.length;
+  if (skipped > 0) {
+    process.stderr.write(`${SCRIPT}: skipped ${skipped} spec folders the host repository ignores\n`);
+    if (kept.length === 0) {
+      process.stderr.write(`${SCRIPT}: every spec folder found is ignored by git; check the host's .gitignore and global excludes\n`);
+    }
+  }
+  return kept.sort((a, b) => (a.folder < b.folder ? -1 : a.folder > b.folder ? 1 : 0));
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -2030,6 +2089,10 @@ function directRun() {
 }
 
 if (directRun()) {
+  // A host run is chosen by the caller's repository rather than by this file's location, so
+  // every path the output prints is relative to that repository and the reader has to know
+  // which one answered. Announced here, at the one place every invocation passes through.
+  if (HOST_ROOT !== null) process.stderr.write(`${SCRIPT}: host repository ${REPO}\n`);
   if (releaseApplyLockPresent()) {
     process.stderr.write(`${SCRIPT}: refused while the release apply lock exists at ${RELEASE_APPLY_LOCK}\n`);
     process.exitCode = 2;

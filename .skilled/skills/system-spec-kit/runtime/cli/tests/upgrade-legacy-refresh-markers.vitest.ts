@@ -99,6 +99,53 @@ function provenSpecMarkerValue(): string {
   return marker[1].trim();
 }
 
+// The same derivation for a Level 2 phase child, whose render adds the phase addendum.
+function provenLevelTwoSpecMarker(childSpec: string): string {
+  const contract = loadTemplateContractForDocument('2', 'spec.md', childSpec);
+  if (!contract.supported) throw new Error('the Level 2 spec.md contract did not resolve');
+  const rendered = renderInlineGates(fs.readFileSync(contract.templatePath, 'utf8'), '2');
+  const marker = rendered.match(/<!--\s*SPECKIT_TEMPLATE_SOURCE:\s*([^>]*?)\s*-->/);
+  if (!marker) throw new Error('the Level 2 spec.md render declares no template-source marker');
+  return marker[1].trim();
+}
+
+// A current phase child exercises both anchor shapes at once: the scaffold writes a
+// measured-behavior block nested inside the problem section and a phase-context block from
+// the phase addendum, and no H2 heading makes either of them a mandatory section anchor.
+// The scaffold builds it, so the fixture cannot drift from what an operator receives.
+function scaffoldPhaseChildSpec(): string {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'refresh-marker-phase-'));
+  tempRoots.push(root);
+  execFileSync('git', ['init', '-q'], { cwd: root });
+  const scaffold = spawnSync(
+    'bash',
+    [
+      path.join(skillRoot, 'runtime/cli/spec/create.sh'),
+      '--phase',
+      '--level',
+      '2',
+      '--phases',
+      '1',
+      '--phase-names',
+      'alpha',
+      '--short-name',
+      'phase-marker-probe',
+      '--skip-branch',
+      'Phase marker probe',
+    ],
+    { cwd: root, encoding: 'utf8' },
+  );
+  expect(scaffold.status, scaffold.stdout + scaffold.stderr).toBe(0);
+
+  const track = fs.readdirSync(path.join(root, 'specs'), { withFileTypes: true });
+  const packet = track.find((entry) => entry.isDirectory() && /^\d{3}-/.test(entry.name));
+  if (!packet) throw new Error('the scaffold created no packet folder');
+  const phases = fs.readdirSync(path.join(root, 'specs', packet.name), { withFileTypes: true });
+  const child = phases.find((entry) => entry.isDirectory() && /^\d{3}-/.test(entry.name));
+  if (!child) throw new Error('the scaffold created no phase child folder');
+  return path.join(root, 'specs', packet.name, child.name, 'spec.md');
+}
+
 // The build record that proves the copied dist fresh is keyed by an absolute path, so a
 // copy is judged by mtimes; its dist was built from these sources, so the copy is
 // re-stamped to look built from its own tree.
@@ -259,5 +306,53 @@ describe('refreshMarker', () => {
 
     expect(result).toEqual({ text, changed: false, actions: [], refusals: [] });
     expect(fs.readFileSync(file, 'utf8')).toBe(text);
+  });
+
+  it('moves a stale marker on a current phase child', () => {
+    const file = scaffoldPhaseChildSpec();
+    const legacy = fs
+      .readFileSync(file, 'utf8')
+      .replace(/<!--\s*SPECKIT_TEMPLATE_SOURCE:[^>]*-->/, '<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->');
+    fs.writeFileSync(file, legacy);
+
+    const result = refreshMarker(legacy, file);
+
+    expect(result.refusals).toEqual([]);
+    expect(result.changed).toBe(true);
+    expect(result.text).toContain(`<!-- SPECKIT_TEMPLATE_SOURCE: ${provenLevelTwoSpecMarker(file)} -->`);
+    expect(result.text).not.toContain('spec-core | v2.2');
+  });
+
+  it('leaves a current phase child at its own marker untouched', () => {
+    const file = scaffoldPhaseChildSpec();
+    const text = fs.readFileSync(file, 'utf8');
+
+    const result = refreshMarker(text, file);
+
+    expect(result).toEqual({ text, changed: false, actions: [], refusals: [] });
+  });
+
+  it('refuses a foreign anchor on a stale marker but not on a current one', () => {
+    const file = scaffoldPhaseChildSpec();
+    const scaffolded = fs.readFileSync(file, 'utf8');
+    const withExtra = scaffolded.replace(
+      '<!-- ANCHOR:metadata -->',
+      `${EXTRA_ANCHOR}\n\n<!-- ANCHOR:metadata -->`,
+    );
+
+    const current = refreshMarker(withExtra, file);
+    expect(current.refusals).toEqual([]);
+    expect(current.changed).toBe(false);
+
+    const stale = withExtra.replace(
+      /<!--\s*SPECKIT_TEMPLATE_SOURCE:[^>]*-->/,
+      '<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->',
+    );
+    const refused = refreshMarker(stale, file);
+    expect(refused.refusals).toEqual([
+      `spec.md: carries invented-extra beyond the anchors rendered for Level 2, so it cannot be called ${provenLevelTwoSpecMarker(file)}`,
+    ]);
+    expect(refused.changed).toBe(false);
+    expect(refused.text).toBe(stale);
   });
 });

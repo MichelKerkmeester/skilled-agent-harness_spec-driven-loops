@@ -312,8 +312,26 @@ function templateHeadingAnchors(templatePath, level) {
 
 /**
  * The template-source marker a document's own anchors prove, or a refusal
- * reason. The document must carry exactly the anchors its level renders: one
- * extra or missing anchor means the render cannot honestly be claimed.
+ * reason. The document must carry the anchors its level renders and nothing
+ * foreign: one extra or missing anchor means the render cannot honestly be
+ * claimed.
+ *
+ * Two anchor sets, because provenance asks two different questions. An anchor is
+ * foreign only when the level's template never emits it, so the emitted set is
+ * wider than the sections an H2 heading makes mandatory: a block nested inside
+ * another section belongs to the render that emitted it, and a phase child's
+ * own addendum belongs to that level's render, so counting either as foreign
+ * refuses the render's own output. An anchor is required only when the template
+ * always emits it, which is the required and optional sections; a block the
+ * wider set merely permits may be absent from an older document of the same
+ * level, and refusing that one would leave a marker refresh unable to reach the
+ * documents it exists for.
+ *
+ * A refusal carries `renderedMarker` whenever the level's marker was resolved
+ * before the refusal, because a caller that only needs to know whether the
+ * document already sits at its own level's marker can decide without a proof.
+ *
+ * @returns {{marker?: string, refusal?: string, renderedMarker?: string}}
  */
 function provenMarker(out, name, file) {
   const { level, refusal } = declaredLevel(path.dirname(file), name === 'spec.md' ? out : null);
@@ -334,20 +352,27 @@ function provenMarker(out, name, file) {
     return { refusal: `${name}: Level ${level} renders no template for this document, so it cannot be named` };
   }
 
-  const rendered = new Set([...(contract.requiredAnchors || []), ...(contract.optionalAnchors || [])]);
+  const mandatory = new Set([...(contract.requiredAnchors || []), ...(contract.optionalAnchors || [])]);
+  const emitted = new Set([...mandatory, ...(contract.allowedAnchors || [])]);
   const have = anchorsOf(out);
-  const extra = [...have].filter((anchor) => !rendered.has(anchor));
-  const missing = [...rendered].filter((anchor) => !have.has(anchor));
+  const extra = [...have].filter((anchor) => !emitted.has(anchor));
+  const missing = [...mandatory].filter((anchor) => !have.has(anchor));
 
   const marker = renderedTemplateSource(contract.templatePath, normalized);
   if (marker === null) {
     return { refusal: `${name}: the Level ${level} template renders no SPECKIT_TEMPLATE_SOURCE marker, so it cannot be named` };
   }
   if (extra.length > 0) {
-    return { refusal: `${name}: carries ${extra.join(', ')} beyond the anchors rendered for Level ${level}, so it cannot be called ${marker}` };
+    return {
+      refusal: `${name}: carries ${extra.join(', ')} beyond the anchors rendered for Level ${level}, so it cannot be called ${marker}`,
+      renderedMarker: marker,
+    };
   }
   if (missing.length > 0) {
-    return { refusal: `${name}: does not carry ${missing.join(', ')}, so it cannot be called ${marker}` };
+    return {
+      refusal: `${name}: does not carry ${missing.join(', ')}, so it cannot be called ${marker}`,
+      renderedMarker: marker,
+    };
   }
   return { marker };
 }
@@ -1660,7 +1685,10 @@ function headerAdd(text, file) {
  * line's own ending, so a refreshed document differs in its version text alone.
  * A document that carries no marker keeps none, because provenance is not this
  * tool's to invent, and one whose anchors do not match the level's render is
- * refused rather than guessed at.
+ * refused rather than guessed at — unless the document already carries the
+ * marker its own level renders. Nothing needs moving then, so a failed proof of
+ * it refuses nothing: whether every anchor is on the page is the validator's
+ * finding, and restating it here only buries the run in noise.
  *
  * Opt-in only: no lane mode calls it, so a default run never rewrites a marker
  * that is already on the page.
@@ -1691,6 +1719,7 @@ function refreshMarker(text, file) {
   if (marker === null) return unchanged;
 
   const proven = provenMarker(text, name, file);
+  if (proven.renderedMarker !== undefined && marker[1] === proven.renderedMarker) return unchanged;
   if (proven.refusal) return { ...unchanged, refusals: [proven.refusal] };
   if (marker[1] === proven.marker) return unchanged;
 
