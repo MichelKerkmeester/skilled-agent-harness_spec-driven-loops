@@ -1,5 +1,5 @@
 {
-  "manifestHash": "667f05a4de593f61d1759164ad1cdd279379ef7ffbaae7325902da17d2b4ebf3",
+  "manifestHash": "f2e8877643451df2588dd84f6e043e2785c73844357578e6ad0eb2f9fc88d937",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -63114,6 +63114,24 @@
     "link tasks": [
       "link tasks"
     ],
+    "linked project host index": [
+      "linked project host index"
+    ],
+    "linked project host index acceptance criteria": [
+      "linked project host index acceptance criteria"
+    ],
+    "linked project host index decisions": [
+      "linked project host index decisions"
+    ],
+    "linked project host index implementation summary": [
+      "linked project host index implementation summary"
+    ],
+    "linked project host index plan": [
+      "linked project host index plan"
+    ],
+    "linked project host index tasks": [
+      "linked project host index tasks"
+    ],
     "linked project workspace accepted": [
       "linked project workspace accepted"
     ],
@@ -79711,6 +79729,9 @@
     ],
     "phase 22 implementation summary": [
       "phase 22 implementation summary"
+    ],
+    "phase 22 linked project host index": [
+      "phase 22 linked project host index"
     ],
     "phase 22 runtime certainty claude pi opencode": [
       "phase 22 runtime certainty claude pi opencode"
