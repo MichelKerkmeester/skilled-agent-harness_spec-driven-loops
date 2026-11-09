@@ -1,11 +1,12 @@
 ---
 title: "Feature Specification: Phase 10: validate-and-retrieval-exit-honesty"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Several spec-kit checkers report a result their exit code or pass marker contradicts: a typo lookup exits 0, a findings-only goal corpus exits 0, a skipped rule prints a pass, the post-edit placeholder check fails where validate warns, a rule that could not run still yields RESULT: PASSED, and the dist alignment check never checks freshness."
 trigger_phrases:
   - "validate and retrieval exit honesty"
   - "phase 10 validate and retrieval exit honesty"
-importance_tier: "normal"
-contextType: "general"
+  - "checker exit code honesty"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 10: validate-and-retrieval-exit-honesty
@@ -15,20 +16,19 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-11-08 |
-| **Branch** | `scaffold/010-validate-and-retrieval-exit-honesty` |
+| **Branch** | `worktrees/334-v4-release-remediation` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 10 of 17 |
 | **Predecessor** | 009-gate3-and-continuity-root |
 | **Successor** | 011-spec-kit-doc-drift |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every probe in Measured Behavior exits as its printed result says, and the spec-kit suites hold their baseline |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,76 +38,106 @@ contextType: "general"
 
 This is **Phase 10** of the v4 release line remediation specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Verified findings V31, V32, V35, V36, V37, V40, V41 and the P2 rows V30 and V34 from `../research/research.md`. V30 needs no code change (see `decision-record.md`); its release-note text is phase 011's.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 009 (same spec-kit runtime and `validate.sh`).
 
 **Deliverables**:
-- [To be defined during planning]
+- Lookup, goal checker, placeholder check, validate rules and dist alignment check whose exit codes and markers match what they found.
+- A trigger corpus that no longer goes stale on every research iteration write.
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+An operator or a gate reads these checkers' exit codes and pass markers, and several of them say "fine" when they found nothing, could not run, or found findings. A misspelled Gate 1 lookup returns 20 rows scored 0 with exit 0, `check-goal.cjs --all` exits 0 on findings, `validate.sh` prints a pass for a contamination check it skipped and `RESULT: PASSED` when SOURCE_TAGS could not run, the post-edit placeholder script fails a Draft packet that validate only warns on, and a stale dist passes the alignment check.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Every spec-kit checker this phase touches exits and marks exactly what it found.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ node runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "valdiate the specc folder"
+exit=0 rows 20 scores [ 0 ]
+
+$ node sk-doc/sk-create-goal/scripts/check-goal.cjs --help
+[check-goal] ERROR unknown option: --help
+
+$ bash runtime/cli/spec/validate.sh specs/system-speckit/047-v4-release-line-research/001-spec-kit-core --strict
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
+RESULT: PASSED
+
+$ bash runtime/cli/spec/check-placeholders.sh specs/.../010-validate-and-retrieval-exit-honesty ; echo $?
+FAIL — 65 placeholder pattern(s) found in ...
+1
+$ bash runtime/cli/spec/validate.sh specs/.../010-validate-and-retrieval-exit-honesty
+! PLACEHOLDER_FILLED: 65 unfilled value token(s) in a Draft packet. Fill each one before the status leaves Draft
+RESULT: PASSED
 ```
+V32, V36, V40 and V41 are reproduced by the worker's tests against fixtures, because the live repository has no findings-only goal corpus, no unreadable redirect table and no stale dist to point at.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Exit the trigger lookup with 1 when no row scores above 0, in both modes (V31).
+- Exit `check-goal.cjs --all` with 1 on a findings-only corpus, accept `--help`, and default the root to the caller's repository (V32, V34).
+- Report CROSS_ANCHOR_CONTAMINATION as skipped, not passed, when validate.sh supplies no routing payload (V35).
+- Keep `specs/**/research/**` out of the trigger corpus except each packet's `research/research.md` (V36).
+- Make the post-edit `check-placeholders.sh` use the PLACEHOLDER_FILLED rule's verdict (V37).
+- Fail a `--strict` run when SOURCE_TAGS could not run (V40).
+- Fail the dist alignment check when a dist entry is older than its source build record (V41).
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Regenerating the committed trigger index - a generated artifact; rebuilt after merge (operator item in `decision-record.md`).
+- V30 phase-parent anchor exemption - documented behaviour; its note text is phase 011.
+- Wiring a save-time routing producer into validate.sh - no caller needs it; the standalone `--contamination-json` path stays.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Modify | No-hit exit when nothing scores |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs` | Modify | Exclude research artifacts except `research.md` |
+| `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` | Modify | Corpus exit, `--help`, root default |
+| `.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts`, `spec-doc-structure.ts` | Modify | Skipped status for contamination; strict failure when a rule could not run |
+| `.skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh` | Modify | Mark the cannot-run case |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh` | Modify | Delegate to the rule |
+| `.skilled/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts` | Modify | Freshness check |
+| Tests beside each | Modify/Create | One case per changed exit |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | `validate.sh --strict` never prints `RESULT: PASSED` when SOURCE_TAGS reported it could not run. |
+| REQ-002 | `validate.sh` never prints the pass marker `+` for CROSS_ANCHOR_CONTAMINATION when no routing payload was supplied. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-003 | The lookup exits 1 when no result scores above 0, with or without `--scoring-only`, and exits 0 when any scores above 0. |
+| REQ-004 | `check-goal.cjs --all` exits 1 when the corpus has findings and no errors; `--help` exits 0 with usage. |
+| REQ-005 | `spec/check-placeholders.sh` exits 0 where PLACEHOLDER_FILLED warns and 1 where it fails. |
+| REQ-006 | The trigger corpus excludes files under `specs/**/research/**` other than `research/research.md`. |
+| REQ-007 | `check-source-dist-alignment.ts` exits non-zero when a recorded dist build is older than its sources. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -117,81 +147,67 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: Each Measured Behavior probe exits or marks as its own output says.
+- **SC-002**: The spec-kit cli vitest project and validation shell suites keep every test that passed at baseline.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Phase 009's `validate.sh` edit | Merge conflict in one file | 010 starts after 009's commit |
+| Risk | A caller treats lookup exit 1 as an error | Med | AGENTS.md already defines exit 1 with no rows as a clean no-hit; grep callers for exit handling |
+| Risk | Strict failure on SOURCE_TAGS breaks packets outside git | Low | Only the cannot-run path changes, and only under `--strict` |
 <!-- /ANCHOR:risks -->
-
----
-
 
 ---
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: N/A: no checker gains a new pass over the repository except the freshness read of an existing build record.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: N/A: no input crosses a trust boundary.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: A check that cannot run is never reported as passed.
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: an empty lookup prompt keeps its current usage error.
+- Maximum input: a corpus with both errors and findings still exits 2.
+- Failure path: SOURCE_TAGS helper exit 2 is a warning without `--strict` and an error with it.
 <!-- /ANCHOR:edge-cases -->
 
 ---
 
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 14/25 | Eight source files across retrieval, validation, evals and sk-doc |
+| Risk | 14/25 | validate.sh is every packet's closure gate |
+| Research | 4/20 | Evidence from the parent synthesis |
+| **Total** | **32/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None. Design choices are recorded in `decision-record.md`.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

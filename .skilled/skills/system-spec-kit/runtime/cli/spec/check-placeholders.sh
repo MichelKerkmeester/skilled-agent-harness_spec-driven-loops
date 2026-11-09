@@ -2,14 +2,10 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: CHECK PLACEHOLDERS
 # ───────────────────────────────────────────────────────────────
-# Scan spec folder .md files for unfilled placeholder markers.
+# Scan every authored Markdown file in a spec folder for unfilled placeholder markers.
 # Bash 3.2+ compatible (macOS and Linux).
 #
-# The post-edit quality hook runs this on the folder of every spec doc an
-# author edits. It reports what strict validation would flag: the four
-# markers PLACEHOLDER_FILLED reads, with that rule's fence, inline-code and
-# per-line rules for the template stamp each doc carries. A marker in a Draft
-# packet still counts, because it is still unfilled.
+# Draft value tokens in v2.3+ documents are warnings; every other marker fails.
 
 set -euo pipefail
 
@@ -30,7 +26,7 @@ usage() {
     cat <<EOF
 Usage: $(basename "$0") <spec-folder> [OPTIONS]
 
-Scan a spec folder for the unfilled placeholder markers strict validation flags.
+Scan a spec folder for unfilled placeholder markers.
 
 Arguments:
   <spec-folder>    Path to spec folder (e.g., specs/042-feature/)
@@ -41,8 +37,8 @@ Options:
   --help, -h       Show this help message
 
 Exit codes:
-  0  No placeholders found (PASS)
-  1  Placeholders found (FAIL)
+  0  No failures, with or without Draft token warnings (PASS or WARN)
+  1  One or more failing placeholder markers found (FAIL)
   2  Invalid arguments or folder not found
 
 Examples:
@@ -91,28 +87,20 @@ if [[ ! -d "$FOLDER_PATH" ]]; then
 fi
 
 # ─── Placeholder markers ─────────────────────────────────────
-# placeholder_marker_lines, from rules/check-placeholders.sh, reads each doc
-# the way the orchestrator does: a doc stamped v2.3 or later with the fence,
-# inline-code and every-marker rules, an older doc with the first-marker rule.
-# Bracketed prose such as [Owner name] is not a marker and is not counted.
+FAILURES=0
+WARNINGS=0
+FAIL_MATCHES=()
+WARN_MATCHES=()
+DRAFT_PACKET=false
+if spec_status_is_draft "$FOLDER_PATH"; then
+    DRAFT_PACKET=true
+fi
 
-TOTAL=0
-MATCHES=""
-
-# Process each .md file (skip backup/temp directories)
 while IFS= read -r file; do
-    # Skip backup directories and non-template subfolders.
-    # Memory/ contains generated session context markdown that legitimately
-    # Uses bracketed TOC links (e.g., [CONTINUE SESSION]); scratch/ is temp.
     case "$file" in
         */.backup-*) continue ;;
         */memory/*) continue ;;
         */scratch/*) continue ;;
-        # research/ and review/ hold the deep loops' own output: iteration files,
-        # dashboards and syntheses their workflow writes and regenerates, where
-        # bracketed status text such as [None yet] is the reducer's format rather
-        # than an unfilled template. The validator's placeholder rule reads only
-        # the authored docs, so this scan matches it.
         */research/*) continue ;;
         */review/*) continue ;;
     esac
@@ -122,39 +110,54 @@ while IFS= read -r file; do
         mode="v23"
     fi
 
-    # A title row is the scaffold rule's finding, not one of the four markers.
     while IFS=$'\t' read -r line_num kind; do
         [[ -n "$line_num" && "$kind" != "title" ]] || continue
-        TOTAL=$((TOTAL + 1))
-        if [[ "$VERBOSE" == "true" ]]; then
-            match_text=$(sed -n "${line_num}p" "$file" | sed -E 's/^[[:space:]]+//' | cut -c1-120)
-            MATCHES="${MATCHES}  ${file}:${line_num}: ${match_text}\n"
+        match_text=$(sed -n "${line_num}p" "$file" | sed -E 's/^[[:space:]]+//' | cut -c1-120)
+        if [[ "$DRAFT_PACKET" == "true" && "$mode" == "v23" && "$kind" == "token" ]]; then
+            WARNINGS=$((WARNINGS + 1))
+            if [[ "$VERBOSE" == "true" ]]; then
+                WARN_MATCHES+=("warn ${file}:${line_num}: ${match_text}")
+            fi
+        else
+            FAILURES=$((FAILURES + 1))
+            if [[ "$VERBOSE" == "true" ]]; then
+                FAIL_MATCHES+=("${file}:${line_num}: ${match_text}")
+            fi
         fi
     done < <(placeholder_marker_lines "$file" "$mode")
 done < <(find "$FOLDER_PATH" -name "*.md" -type f 2>/dev/null | sort)
 
-# ─── Output ──────────────────────────────────────────────────
-if [[ "$JSON_MODE" == "true" ]]; then
-    if [[ $TOTAL -eq 0 ]]; then
-        echo "{\"status\":\"PASS\",\"placeholders\":0,\"folder\":\"$FOLDER_PATH\"}"
-    else
-        echo "{\"status\":\"FAIL\",\"placeholders\":$TOTAL,\"folder\":\"$FOLDER_PATH\"}"
-    fi
+if [[ "$FAILURES" -gt 0 ]]; then
+    RESULT="FAIL"
+    COLOR="$RED"
+    EXIT_CODE=1
+    MESSAGE="$FAILURES placeholder pattern(s) found"
+elif [[ "$WARNINGS" -gt 0 ]]; then
+    RESULT="WARN"
+    COLOR="$YELLOW"
+    EXIT_CODE=0
+    MESSAGE="$WARNINGS unfilled value token(s) in a Draft packet"
 else
-    if [[ $TOTAL -eq 0 ]]; then
-        echo -e "${GREEN}${BOLD}PASS${NC} — Zero placeholder patterns found in ${FOLDER_PATH}"
-    else
-        echo -e "${RED}${BOLD}FAIL${NC} — ${TOTAL} placeholder pattern(s) found in ${FOLDER_PATH}" >&2
-        if [[ "$VERBOSE" == "true" && -n "$MATCHES" ]]; then
-            echo ""
-            echo -e "$MATCHES"
+    RESULT="PASS"
+    COLOR="$GREEN"
+    EXIT_CODE=0
+    MESSAGE="Zero placeholder patterns found"
+fi
+TOTAL=$((FAILURES + WARNINGS))
+
+if [[ "$JSON_MODE" == "true" ]]; then
+    printf '{"status":"%s","placeholders":%d,"warnings":%d,"folder":"%s","message":"%s"}\n' \
+        "$RESULT" "$TOTAL" "$WARNINGS" "$FOLDER_PATH" "$MESSAGE"
+else
+    printf '%b%s%b — %s in %s\n' "$COLOR" "$RESULT" "$NC" "$MESSAGE" "$FOLDER_PATH"
+    if [[ "$VERBOSE" == "true" ]]; then
+        if [[ ${#FAIL_MATCHES[@]} -gt 0 ]]; then
+            printf '  %s\n' "${FAIL_MATCHES[@]}"
+        fi
+        if [[ ${#WARN_MATCHES[@]} -gt 0 ]]; then
+            printf '  %s\n' "${WARN_MATCHES[@]}"
         fi
     fi
 fi
 
-# Exit code: 0 = pass, 1 = fail
-if [[ $TOTAL -eq 0 ]]; then
-    exit 0
-else
-    exit 1
-fi
+exit "$EXIT_CODE"

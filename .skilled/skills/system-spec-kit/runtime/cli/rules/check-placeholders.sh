@@ -7,8 +7,8 @@
 # but the orchestrator runs a native PLACEHOLDER_FILLED and skips any registry shell
 # rule whose id it runs natively, so the native rule alone decides the verdict and
 # an edit to run_check here changes no validate.sh result. Three callers source it:
-#   - spec/check-placeholders.sh, the post-edit scan, which calls only
-#     placeholder_marker_lines, so an edit to that helper changes what the scan reports;
+#   - spec/check-placeholders.sh, the post-edit scan, which calls
+#     placeholder_marker_lines and spec_status_is_draft;
 #   - tests/test-validation-extended.sh, whose isolated rule tests call run_check;
 #   - tests/placeholder-token-gate.vitest.ts, whose parity matrix calls run_check
 #     beside the orchestrator and requires the same verdict for a v2.3 doc.

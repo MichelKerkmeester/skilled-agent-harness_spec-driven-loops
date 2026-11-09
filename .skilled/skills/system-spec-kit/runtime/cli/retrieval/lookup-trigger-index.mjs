@@ -19,11 +19,11 @@
 //                                 [--limit <n>] [--no-index-hash] [--scoring-only] [--json]
 //
 // --limit 0 lifts the cap and returns every candidate; the default is 20.
-// --scoring-only drops the score-0 partial candidates before the cap, so a
-// prompt nothing scores on comes back empty with exit 1. Without it the output
-// keeps them, matching the recorded results of the retired lane.
+// --scoring-only drops score-0 partial candidates before the cap. Without it
+// the output keeps them, matching the retired lane's recorded results.
 //
-// Exit codes: 0 = candidates found, 1 = no candidates, 2 = bad invocation or unreadable index.
+// Exit codes: 0 = at least one candidate scores above 0, 1 = no candidate
+// scores above 0, 2 = bad invocation or unreadable index.
 // ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
@@ -332,7 +332,7 @@ function main() {
     specFolder: args.specFolder,
   });
   process.stdout.write(args.json ? `${JSON.stringify(answer, null, 2)}\n` : formatAnswer(answer));
-  return answer.results.length > 0 ? 0 : 1;
+  return answer.results.some((result) => result.score > 0) ? 0 : 1;
 }
 
 if (isMainModule(import.meta.url)) {

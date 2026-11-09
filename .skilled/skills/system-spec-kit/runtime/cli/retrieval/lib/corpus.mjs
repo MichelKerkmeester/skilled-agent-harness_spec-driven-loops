@@ -64,6 +64,7 @@ export const EXCLUSIONS = Object.freeze([
   '**/scratch/**',
   '**/dist/**',
   '**/research/lineages/**',
+  'specs/**/research/** except **/research/research.md',
   'specs/**/lineages/**',
   '**/tests/fixtures/**',
   '**/{fixtures,__fixtures__,test-fixtures,*-fixtures}/** outside specs/',
@@ -159,6 +160,20 @@ export function canonicalRelativePath(relativePath) {
 }
 
 /**
+ * Returns whether a path is inside a research folder owned by a numbered packet or phase.
+ *
+ * @param {string} relativePath Repo-relative POSIX path.
+ * @returns {boolean} True when the research artifact must be excluded.
+ */
+function isExcludedResearchPath(relativePath) {
+  const parts = relativePath.split('/');
+  const researchIndex = parts[0] === DOCUMENT_ROOT ? parts.indexOf('research') : -1;
+  if (researchIndex < 3 || !/^\d{3}-/.test(parts[researchIndex - 1] ?? '')) return false;
+  return parts.length > researchIndex + 1
+    && (parts.length !== researchIndex + 2 || parts.at(-1) !== 'research.md');
+}
+
+/**
  * Directory pruning rule. `lineages` is pruned under a `research` parent anywhere,
  * and under the document root whatever its parent: the fan-out runner writes
  * lineage transcripts and containment snapshots into any artifact directory it is
@@ -174,6 +189,7 @@ export function canonicalRelativePath(relativePath) {
  */
 export function isExcludedDirectory(name, parentName, relativePath = '') {
   if (EXCLUDED_DIR_NAMES.has(name)) return true;
+  if (isExcludedResearchPath(relativePath)) return true;
   if (name === 'lineages' && (parentName === 'research' || relativePath.split('/')[0] === DOCUMENT_ROOT)) return true;
   return FIXTURE_DIR_PATTERN.test(name) && relativePath.split('/')[0] !== DOCUMENT_ROOT;
 }
@@ -272,6 +288,8 @@ function walkDirectory(repoRoot, directory, byRealPath, skipped, ignored) {
   for (const entry of entries) {
     const absolute = path.join(directory, entry.name);
     const relative = toRelative(repoRoot, absolute);
+
+    if (!entry.isDirectory() && isExcludedResearchPath(relative)) continue;
 
     // Not listed as skipped: which ignored paths exist depends on the machine,
     // and a skipped row would make the committed manifest differ between a

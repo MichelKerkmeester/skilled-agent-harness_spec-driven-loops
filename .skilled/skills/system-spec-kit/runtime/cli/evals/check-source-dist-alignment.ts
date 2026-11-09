@@ -32,7 +32,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { dirnameFromImportMeta } from '../lib/esm-entry.js';
+import { spawnSync } from 'node:child_process';
+import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 import { resolvePackageRoot } from '@spec-kit/shared/workspace/package-root.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
@@ -58,6 +59,21 @@ interface DistTarget {
   label: string;
   distRoot: string;
   sourceRoot: string;
+}
+
+/** Package entry and recovery command checked by the alignment eval. */
+export interface FreshnessCheck {
+  packageId: string;
+  entry: string;
+  buildCommand: string;
+}
+
+/** Captured process output from one dist-freshness check invocation. */
+export interface FreshnessCommandResult {
+  status: number | null;
+  stdout: string;
+  stderr: string;
+  error?: Error;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -267,6 +283,97 @@ const SIBLING_ALLOWLIST: SiblingException[] = [];
 /** Directories whose contents are build output or dependencies, not authored source. */
 const SIBLING_SKIP_DIRS = new Set(['dist', 'node_modules', '.git']);
 
+const FRESHNESS_CHECKS: FreshnessCheck[] = [
+  {
+    packageId: 'system-spec-kit/runtime',
+    entry: 'default',
+    buildCommand: 'cd .skilled/skills/system-spec-kit/runtime && npm run build',
+  },
+  {
+    packageId: 'system-spec-kit/runtime',
+    entry: 'validation-orchestrator',
+    buildCommand: 'cd .skilled/skills/system-spec-kit/runtime && npm run build',
+  },
+  {
+    packageId: 'system-spec-kit/runtime/cli',
+    entry: 'default',
+    buildCommand: 'cd .skilled/skills/system-spec-kit/runtime/cli && npm run build',
+  },
+  {
+    packageId: 'system-spec-kit/runtime/cli',
+    entry: 'is-phase-parent',
+    buildCommand: 'cd .skilled/skills/system-spec-kit/runtime/cli && npm run build',
+  },
+];
+
+/** Return a failure message unless the helper proves this entry is fresh. */
+export function freshnessFailure(
+  check: FreshnessCheck,
+  result: FreshnessCommandResult,
+): string | null {
+  const label = `${check.packageId} entry ${check.entry}`;
+  const remedy = `build with: ${check.buildCommand}`;
+  const detail = result.error?.message || result.stderr.trim();
+
+  if (result.error || result.status === null) {
+    return `Freshness check could not run for ${label}; ${remedy}${detail ? ` (${detail})` : ''}`;
+  }
+
+  if (result.status === 69) {
+    return `Stale dist for ${label}; ${remedy}`;
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(result.stdout) as unknown;
+  } catch {
+    return `Freshness check could not be read for ${label}; ${remedy}${detail ? ` (${detail})` : ''}`;
+  }
+
+  if (!parsed || typeof parsed !== 'object') {
+    return `Freshness check returned no result for ${label}; ${remedy}`;
+  }
+
+  const freshness = parsed as { status?: unknown; stale?: unknown; message?: unknown };
+  if (freshness.stale === true || freshness.status === 'stale') {
+    return `Stale dist for ${label}; ${remedy}`;
+  }
+
+  if (result.status === 0 && freshness.status === 'unprovisioned' && freshness.stale === false) {
+    return null;
+  }
+
+  if (result.status !== 0 || freshness.status !== 'fresh' || freshness.stale !== false) {
+    const reason = typeof freshness.message === 'string' ? freshness.message : detail;
+    return `Freshness check failed for ${label}${reason ? `: ${reason}` : ''}; ${remedy}`;
+  }
+
+  return null;
+}
+
+function runFreshnessChecks(packageRoot: string): { failures: string[]; skipped: string[] } {
+  const helperPath = path.join(packageRoot, 'runtime', 'cli', 'lib', 'dist-freshness.cjs');
+  const skipped: string[] = [];
+  const failures = FRESHNESS_CHECKS.flatMap((check) => {
+    const result = spawnSync(
+      process.execPath,
+      [helperPath, 'check', '--package', check.packageId, '--entry', check.entry, '--json', '--no-write'],
+      { cwd: packageRoot, encoding: 'utf8' },
+    );
+    const failure = freshnessFailure(check, result);
+    if (!failure) {
+      const parsed = JSON.parse(result.stdout) as { status?: unknown };
+      if (parsed.status === 'unprovisioned') {
+        const label = `${check.packageId} entry ${check.entry}`;
+        skipped.push(label);
+        console.log(`  dist freshness: ${label} unprovisioned, skipped`);
+      }
+    }
+    return failure ? [failure] : [];
+  });
+  return { failures, skipped };
+}
+
 function findCompiledSiblings(dir: string, packageRoot: string, found: string[] = []): string[] {
   let entries: fs.Dirent[];
   try {
@@ -332,6 +439,7 @@ function main(): void {
     }
   }
 
+  const { failures: freshnessFailures, skipped: freshnessSkips } = runFreshnessChecks(packageRoot);
   const alignedCount = scannedCount - allowlistedOrphans.length - violations.length;
 
   if (allowlistedOrphans.length > 0) {
@@ -350,6 +458,15 @@ function main(): void {
   console.log(`  aligned files: ${alignedCount}`);
   console.log(`  allowlisted orphans: ${allowlistedOrphans.length}`);
   console.log(`  violations: ${violations.length}`);
+  const freshCount = FRESHNESS_CHECKS.length - freshnessFailures.length - freshnessSkips.length;
+  console.log(`  dist freshness: ${freshCount}/${FRESHNESS_CHECKS.length} fresh, ${freshnessSkips.length} skipped`);
+
+  if (freshnessFailures.length > 0) {
+    console.error(`\nDist freshness check FAILED: ${freshnessFailures.length} package/entry pair(s):\n`);
+    for (const failure of freshnessFailures) {
+      console.error(`  ${failure}`);
+    }
+  }
 
   if (violations.length > 0) {
     console.error(`\nSource/dist alignment check FAILED: ${violations.length} orphaned dist file(s):\n`);
@@ -377,9 +494,15 @@ function main(): void {
     process.exit(1);
   }
 
+  if (freshnessFailures.length > 0) {
+    process.exit(1);
+  }
+
   console.log('\nSource/dist alignment check passed: every scanned dist *.js file maps to a source .ts file,');
   console.log('and no compiled file shadows the source it came from.');
   process.exit(0);
 }
 
-main();
+if (isMainModule(import.meta.url)) {
+  main();
+}

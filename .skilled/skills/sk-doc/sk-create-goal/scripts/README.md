@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal conformance checker"
   - "goal template parity test"
   - "goal criteria lint"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-create-goal scripts: goal checker and criteria lint
@@ -81,9 +81,10 @@ specs/**/goal.md ──▶ lint-goal-criteria.cjs (rules 4 and 5) ──▶ repo
 ```bash
 node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>
 node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all
+node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --help
 ```
 
-`<packet>` is a packet folder or the path to its `goal.md`. One packet prints each check and `RESULT: PASSED (5/5 checks)` or `RESULT: FAILED`, and exits 0 only when all five pass. `--all` scans every active goal outside `z_archive/` and prints the finding count per check and each finding. It exits 2 when a goal cannot be read and 0 otherwise, whatever the findings. `--root <path>` sets the workspace root.
+`<packet>` is a packet folder or the path to its `goal.md`. One packet prints each check and `RESULT: PASSED (5/5 checks)` or `RESULT: FAILED`, and exits 0 only when all five pass. `--all` scans every active goal outside `z_archive/` and prints the finding count per check and each finding. It exits 0 with no findings, 1 when findings exist and 2 when a goal cannot be read. `--help` prints usage and exits 0. `--root <path>` sets the workspace root.
 
 ```bash
 node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs <packet>

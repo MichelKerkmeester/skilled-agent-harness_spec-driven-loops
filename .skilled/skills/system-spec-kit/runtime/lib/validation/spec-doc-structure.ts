@@ -36,7 +36,7 @@ export interface RuleDiagnostic {
 /** Outcome of evaluating one structural rule against a spec folder. */
 export interface RuleResult {
   rule: SpecDocRuleName;
-  status: 'pass' | 'warn' | 'fail';
+  status: 'pass' | 'warn' | 'fail' | 'info';
   message: string;
   details: string[];
   diagnostics: RuleDiagnostic[];
@@ -1285,11 +1285,13 @@ function inferCategory(text: string): string {
 
 function validateCrossAnchorContamination(contaminationPlan: ContaminationPlan | null | undefined): RuleResult {
   if (!contaminationPlan || !contaminationPlan.chunkText) {
-    return createResult(
-      'CROSS_ANCHOR_CONTAMINATION',
-      [],
-      'No routing payload supplied; contamination check skipped',
-    );
+    return {
+      rule: 'CROSS_ANCHOR_CONTAMINATION',
+      status: 'info',
+      message: 'No routing payload supplied; contamination check skipped',
+      details: [],
+      diagnostics: [],
+    };
   }
 
   const diagnostics: RuleDiagnostic[] = [];

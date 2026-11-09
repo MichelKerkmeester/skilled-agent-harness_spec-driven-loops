@@ -3,12 +3,13 @@
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-import { CORPUS_ROOTS, EXCLUDED_DIR_NAMES, EXCLUSIONS, FIXTURE_DIR_PATTERN, isExcludedDirectory } from '../retrieval/lib/corpus.mjs';
+import { CORPUS_ROOTS, EXCLUDED_DIR_NAMES, EXCLUSIONS, FIXTURE_DIR_PATTERN, isExcludedDirectory, walkCorpus } from '../retrieval/lib/corpus.mjs';
 import { DEFAULT_ROOTS, GLOBS } from '../retrieval/lib/rg-lane.mjs';
 import {
   EXCLUDED_DIR_NAMES as RETROFIT_EXCLUDED_DIR_NAMES,
@@ -135,6 +136,32 @@ describe('root coverage parity', () => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('exclusion coverage parity', () => {
+  it('walks research paths only when they meet the numbered packet and phase rules', () => {
+    const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'corpus-research-'));
+    const expectedFiles = [
+      'specs/research/001-p/spec.md',
+      'specs/t/001-p/research/iterations/x.md',
+      'specs/t/001-p/research/research.md',
+      'specs/t/001-p/002-c/research/x.md',
+    ];
+
+    try {
+      for (const relativePath of expectedFiles) {
+        const absolutePath = path.join(repoRoot, relativePath);
+        fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
+        fs.writeFileSync(absolutePath, '# fixture\n');
+      }
+
+      const { files } = walkCorpus(repoRoot, { roots: ['specs'], ignored: new Set() });
+      expect(files).toContain(expectedFiles[0]);
+      expect(files).not.toContain(expectedFiles[1]);
+      expect(files).toContain(expectedFiles[2]);
+      expect(files).not.toContain(expectedFiles[3]);
+    } finally {
+      fs.rmSync(repoRoot, { recursive: true, force: true });
+    }
+  });
+
   it('agrees on every universally-excluded directory name', () => {
     // corpus.mjs's real exclusion set must be exactly the shared table below -
     // an addition or removal on either side without updating this test is the

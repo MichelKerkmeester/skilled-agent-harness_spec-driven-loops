@@ -169,3 +169,57 @@ test('a path to another file still exits 2 as not a directory', () => {
   assert.equal(result.status, 2);
   assert.ok((result.stdout + result.stderr).includes('packet path is not a directory'));
 });
+
+test('--all exits 1 when the corpus has findings and no errors', () => {
+  const corpusRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'check-goal-findings-'));
+  const packetDir = path.join(corpusRoot, 'specs', 'fixture-track', 'finding');
+  fs.mkdirSync(packetDir, { recursive: true });
+  fs.copyFileSync(
+    path.join(fixtures.negatives['objective-placeholder'], 'goal.md'),
+    path.join(packetDir, 'goal.md')
+  );
+
+  try {
+    const result = spawnSync(
+      process.execPath,
+      [path.join(__dirname, '..', 'check-goal.cjs'), '--all', '--root', corpusRoot],
+      { encoding: 'utf8' }
+    );
+    assert.equal(result.status, 1);
+    assert.match(result.stdout, /FINDING/u);
+    assert.doesNotMatch(result.stderr, /ERROR/u);
+  } finally {
+    fs.rmSync(corpusRoot, { recursive: true, force: true });
+  }
+});
+
+test('--all exits 2 when the corpus has an error', () => {
+  const corpusRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'check-goal-errors-'));
+  const packetDir = path.join(corpusRoot, 'specs', 'fixture-track', 'error');
+  fs.mkdirSync(packetDir, { recursive: true });
+  fs.writeFileSync(path.join(packetDir, 'goal.md'), '---\nobjective: broken\n');
+
+  try {
+    const result = spawnSync(
+      process.execPath,
+      [path.join(__dirname, '..', 'check-goal.cjs'), '--all', '--root', corpusRoot],
+      { encoding: 'utf8' }
+    );
+    assert.equal(result.status, 2);
+    assert.match(result.stderr, /ERROR/u);
+  } finally {
+    fs.rmSync(corpusRoot, { recursive: true, force: true });
+  }
+});
+
+test('--help prints usage and exits 0', () => {
+  const result = spawnSync(
+    process.execPath,
+    [path.join(__dirname, '..', 'check-goal.cjs'), '--help'],
+    { encoding: 'utf8' }
+  );
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /Usage:/u);
+  assert.match(result.stdout, /Exit codes: 0 = no findings, 1 = findings, 2 = errors/u);
+});
