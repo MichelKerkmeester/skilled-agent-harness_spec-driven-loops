@@ -44,6 +44,10 @@ import {
 import { mintFenceCapability } from '../../lib/locks-and-fencing/fence-capability.js';
 import { invokeAppendAuthorized } from '../../lib/authorized-ledger/append-only-ledger.js';
 import {
+  readLockHolder,
+  shouldArchiveLock,
+} from '../../lib/authorized-ledger/immutable-frame-store.js';
+import {
   FIXTURE_AUDIT_LEDGER_ID,
   FIXTURE_AUTHORITY,
   FIXTURE_EVENT_TYPE,
@@ -64,6 +68,7 @@ import type {
   TransitionAuthorizationRequest,
 } from '../../lib/authorized-ledger/index.js';
 import type { EventTypeRegistry, EventWritePreflight, JsonObject } from '../../lib/event-envelope/index.js';
+import type { LockHolderRead } from '../../lib/authorized-ledger/immutable-frame-store.js';
 import {
   appendAuthorizedForTest,
   appendAuthorizedWithCapabilityForTest,
@@ -1043,6 +1048,72 @@ describe('locked ordering and immutable integrity', () => {
     }));
     await expect(createHarness(authorizationRoot).ledger.readVerifiedEvents())
       .rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.AUTHORIZATION_INVALID });
+  });
+
+  const lockHolderRecord = {
+    token: 'holder-token',
+    owner_pid: 4_242,
+    acquired_at: '2026-01-01T00:00:00.000Z',
+  };
+
+  const archiveDecisionCases: readonly {
+    readonly label: string;
+    readonly read: LockHolderRead;
+    readonly ownerAlive: boolean;
+    readonly archive: boolean;
+  }[] = [
+    {
+      label: 'retains a lock whose holder file is already gone',
+      read: { state: 'absent' },
+      ownerAlive: true,
+      archive: false,
+    },
+    {
+      label: 'archives a lock file that never parses as a holder record',
+      read: { state: 'invalid' },
+      ownerAlive: true,
+      archive: true,
+    },
+    {
+      label: 'retains a lock whose holder process is still alive',
+      read: { state: 'present', holder: lockHolderRecord },
+      ownerAlive: true,
+      archive: false,
+    },
+    {
+      label: 'archives a lock whose holder process is gone',
+      read: { state: 'present', holder: lockHolderRecord },
+      ownerAlive: false,
+      archive: true,
+    },
+  ];
+
+  it.each(archiveDecisionCases)('$label', ({ read, ownerAlive, archive }) => {
+    const consultedProcessIds: number[] = [];
+    const isAlive = (processId: number): boolean => {
+      consultedProcessIds.push(processId);
+      return ownerAlive;
+    };
+
+    expect(shouldArchiveLock(read, isAlive)).toBe(archive);
+    expect(consultedProcessIds)
+      .toEqual(read.state === 'present' ? [lockHolderRecord.owner_pid] : []);
+  });
+
+  it('separates a released lock path from an unparseable one', () => {
+    const root = temporaryRoot('lock-holder-read');
+
+    expect(readLockHolder(join(root, 'released.lock'))).toEqual({ state: 'absent' });
+
+    const corruptPath = join(root, 'corrupt.lock');
+    writeFileSync(corruptPath, 'not-a-holder-record', { encoding: 'utf8', mode: FILE_MODE });
+    chmodSync(corruptPath, FILE_MODE);
+    expect(readLockHolder(corruptPath)).toEqual({ state: 'invalid' });
+
+    const heldPath = join(root, 'held.lock');
+    writeFileSync(heldPath, JSON.stringify(lockHolderRecord), { encoding: 'utf8', mode: FILE_MODE });
+    chmodSync(heldPath, FILE_MODE);
+    expect(readLockHolder(heldPath)).toEqual({ state: 'present', holder: lockHolderRecord });
   });
 });
 

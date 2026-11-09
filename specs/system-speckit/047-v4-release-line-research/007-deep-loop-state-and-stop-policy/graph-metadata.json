@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The deep loops report state that does not match what ran",
     "created_at": "2026-11-08T23:38:59Z",
-    "last_save_at": "2026-11-09T03:22:34.967Z",
+    "last_save_at": "2026-11-09T10:39:11.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00cff95943eeb439ac409cc2a5c2eb745908e0f51371f76e0f6e60e357b63b3c",
+    "source_fingerprint": "sha256:21cb439e19f9d26b1522600602bc4ac3a14f8b1d3ee25d2ff8c2067f175dbd2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "635f87ca20d6364929df43db60fb503ff14f669ff10279f3670c64a772d159aa",
       "plan.md": "45af6f2253ddd66dd4a0a67c12dca0f1e84f87ca100beea3f41b3babedf77b77",
       "tasks.md": "cd9d1b3cb3660191e03a4a80f6be73aeb367b12786be9da2119bae68c023e05e",
-      "decision-record.md": "5e717108d1190e4ae1c6016026ea5389b4e35823a6fb76f207d41023ede01311",
+      "decision-record.md": "db46dd10987562a6796f932efedb7c544b9b817cbe27ea1b1b98c04d5c30ecab",
       "implementation-summary.md": "eb7b3c02c1638fc71e069a6188c6ee0d3775b3af14b11e92d4dd350ad5dcb263"
     },
     "last_active_at": null
