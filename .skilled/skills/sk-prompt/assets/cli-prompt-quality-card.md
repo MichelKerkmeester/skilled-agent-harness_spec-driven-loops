@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.5.0
+version: 0.8.6.0
 ---
 
 # CLI Prompt Quality Card
@@ -189,7 +189,7 @@ Silence is never an exception.
 
 ## 8. MIRROR SYNC
 
-All three cli-* cards (`cli-claude-code`, `cli-opencode`, `cli-opencode`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
+All seven cli-* cards (`cli-claude-code`, `cli-codex`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness`, each under `cli-external-orchestration/`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
 
 A duplication guard enforces this contract:
 
@@ -208,5 +208,5 @@ When editing this file, no mirroring step is required — the delegating cards r
 - `../SKILL.md`
 - `../references/patterns-evaluation.md`
 - `../references/improvement-checklist.md`
-- `../../../cli-claude-code/assets/prompt-quality-card.md`
-- `../../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md`
+- `../../cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md`
+- `../../cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md`

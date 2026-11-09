@@ -115,7 +115,7 @@ Every write stays inside this packet.
 | 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Blocked |
 | 14 | 014-doctor-and-ci-gate-honesty/ | Remediation: doctor and ci gate honesty (scope in `research/research.md`) | Complete |
 | 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Pending |
-| 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Pending |
+| 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Complete |
 | 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Pending |
 | 6 | 006-deep-loop-single-executor-dispatch/ | [Phase 6 scope] | Pending |
 | 7 | 007-deep-loop-state-and-stop-policy/ | [Phase 7 scope] | Pending |
@@ -127,7 +127,7 @@ Every write stays inside this packet.
 | 13 | 013-agents-md-delivery-budget/ | [Phase 13 scope] | Blocked |
 | 14 | 014-doctor-and-ci-gate-honesty/ | [Phase 14 scope] | Complete |
 | 15 | 015-cli-hub-routing-and-classifier/ | [Phase 15 scope] | Pending |
-| 16 | 016-authoring-hub-manifests-and-drift/ | [Phase 16 scope] | Pending |
+| 16 | 016-authoring-hub-manifests-and-drift/ | [Phase 16 scope] | Complete |
 | 17 | 017-over-engineering-cuts/ | [Phase 17 scope] | Pending |
 
 ### Phase Transition Rules

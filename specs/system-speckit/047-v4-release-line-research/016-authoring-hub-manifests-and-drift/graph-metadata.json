@@ -16,6 +16,7 @@
       "authoring hub manifests and drift plan",
       "authoring hub manifests and drift tasks",
       "authoring hub manifests and drift acceptance criteria",
+      "authoring hub manifests and drift decisions",
       "authoring hub manifests and drift implementation summary"
     ],
     "key_topics": [
@@ -28,18 +29,24 @@
       "tasks",
       "acceptance",
       "criteria",
+      "decisions",
       "implementation",
-      "summary",
-      "yourvaluehere"
+      "summary"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/README.txt",
+      ".skilled/changelog/skilled/v4.0.0.0.md",
+      ".skilled/commands/create/README.txt",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py"
     ],
     "entities": [
       {
@@ -67,19 +74,43 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +140,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +158,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +176,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow An",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -155,41 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`packageskill.py` without `--check` writes `<skill>.zip` into the working directory, which planted three zips in the repository root",
     "created_at": "2026-11-08T23:39:05Z",
-    "last_save_at": "2026-11-08T23:39:08.772Z",
+    "last_save_at": "2026-11-09T04:59:55.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2dc14edd7db19120b39c3d7573e44406a78eab53de5f88e12dc06b6ae77f16a",
+    "source_fingerprint": "sha256:94b29273b06419eca339b6f6970915ce6a203f116b900e99989d92c61bfacc5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70027f394ffdc614f0372cdbaf36f641c41c739b3c85fa0879ce7b790e41220d",
-      "plan.md": "3080297f67a0f8049f182c95dfcb551b4507e2ea46e7216619e20ebf9331bb45",
-      "tasks.md": "36a77f6891f90e2c0c5e88e0a272c24f736b1361ddea854c3b54d78030c4bf79",
-      "implementation-summary.md": "d03d159bb9d62528a32ca7439febfb58d4a3a06b9cb651a125ac6961f981a055"
+      "spec.md": "fa7c97c5cec4a117bab03e373fb98710a6ff44787552938b5e85beda34c0dff9",
+      "plan.md": "abae1b4ecfd7870ae94919cf761137fc5a8f2cd8c17f69fa152b01ea525f3a62",
+      "tasks.md": "d783adb1d7b9e31d984fd4e398316e5cf5a8b9541a5b9fed8911b7a790f9887a",
+      "decision-record.md": "1d54bcd9bb56f08e83a875e009ff4d1fdf2fc11b0cdb05660f0fb853dd934286",
+      "implementation-summary.md": "4407b98fce25caa67d85231b6ecfc697937b70712540d3cba3d94746a331ef05"
     },
     "last_active_at": null
   }

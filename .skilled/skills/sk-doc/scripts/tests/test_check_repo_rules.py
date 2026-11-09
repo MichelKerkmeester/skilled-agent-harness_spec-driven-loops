@@ -103,6 +103,24 @@ def test_moved_bullet_meets_move_router_item(tmp_path: Path) -> None:
     assert "10/11 PASS fires-when coverage" in result.stdout
 
 
+# A three-letter stem and the silent-e form beside it are one concept. Counted as
+# two words they lifted the denominator as much as the numerator, so a bullet
+# carrying two further unmatched words stayed under the threshold. One unit makes
+# the pair score 1 of 3 instead of 1 of 4.
+def test_short_stem_bullet_reaches_coverage_when_the_stem_pair_counts_once(tmp_path: Path) -> None:
+    root = make_tree(tmp_path, trigger_items="Deploy a service · move the file")
+    rule = root / ".skilled" / "repo-rules" / "alpha.md"
+    rule.write_text(RULE.replace(
+        "- You notice a stale comment outside the files in scope.",
+        "- A moved draft was published."))
+
+    result = run(root)
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "10/11 PASS fires-when coverage" in result.stdout
+    assert "RESULT: PASSED (11/11 checks)" in result.stdout
+
+
 def test_root_without_a_router_is_an_error(tmp_path: Path) -> None:
     result = run(tmp_path)
 

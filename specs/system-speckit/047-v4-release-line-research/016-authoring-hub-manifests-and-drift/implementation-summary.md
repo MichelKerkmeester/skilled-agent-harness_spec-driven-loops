@@ -1,24 +1,24 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The skill packager no longer writes into a repository root, two sk-doc checkers count and report fully, and the authoring docs state the right flags, counts, names and links."
 trigger_phrases:
   - "authoring hub manifests and drift implementation summary"
-importance_tier: "normal"
-contextType: "general"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/016-authoring-hub-manifests-and-drift"
-    last_updated_at: "2026-11-08T23:39:06Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "system-speckit/047-v4-release-line-research/016-authoring-hub-manifests-and-drift"
+    last_updated_at: "2026-11-09T12:00:00Z"
+    last_updated_by: "remediation-orchestrator-b"
+    recent_action: "Closed the phase"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-016-authoring-hub-manifests-and-drift"
+      session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 016-authoring-hub-manifests-and-drift |
-| **Completed** | 2026-11-08 |
+| **Completed** | 2026-11-09 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +44,70 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The packager that dropped three zips into the repository root now needs to be told where to write.
 
 ### Phase 16: authoring-hub-manifests-and-drift
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`package_skill.py` exits 2 when asked to package with no output directory and refuses a repository's top level, while `--check` and `--json` are unchanged; its usage docs now show `--check` or an output directory. It reports every frontmatter error in one run, first error first. The repo-rule checker counts a three-letter stem and its silent-e form as one unit. The v4.0.0.16 note names the real `--dry-run` flag, the v4.0.0.0 note names the surface as it was at that tag and drops the DEPTH claim, the create index says 29 chart forms and lists `auto` for `--bump`, the prompt card names all seven delegating cards with working links, and the playbook link resolves. The leaf manifest and the sk-design router outcome were left as they are, for the reasons in the decision record.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `SD/sk-create-skill/scripts/package_skill.py` | Modified | Output directory, frontmatter errors |
+| `SD/shared/references/quick-reference.md`, `SD/sk-create-skill/references/skill/creation-workflow.md`, `.skilled/skills/README.txt` | Modified | Packager usage |
+| `SD/sk-create-repo-rule/scripts/check-repo-rules.cjs` | Modified | Coverage units |
+| `.skilled/changelog/skilled/v4.0.0.0.md`, `v4.0.0.16.md` | Modified | Release-note corrections |
+| `.skilled/commands/create/README.txt`, `changelog.md` | Modified | Chart count, bump values |
+| `.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md`, one playbook scenario | Modified | Card roster and links, playbook path |
+| `SD/scripts/tests/test_package_skill_regressions.py`, `test_check_repo_rules.py` | Modified | One case per behaviour |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Baselines ran first. The first brief went to cli-codex `gpt-6-luna`, which hit its usage limit (reset 2026-11-13) mid-run; its partial leaf-alias edit was discarded, and every later brief went to DeepSeek V4.1 Flash max through cli-pi as the goal's fallback allows. The orchestrator caught one worker claim by bisecting: removing sk-design's `none` outcome staled compiled routing, so that edit was reverted. The read-only review was DeepSeek too, because no other family was available; its three stale-usage rows were fixed and its sk-design row matches the recorded decision.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| V43 needs no change | The manifest lists typed leaf ids; `leaf-aliases.json` maps five of them to shared files by design |
+| Leave sk-design's `none` outcome | Removing it stales the compiled-routing manifest, which only a generator rewrites |
+| Defer f-iter006-001 | Advisor vocabulary needs a rebuild and a benchmark, and the advisor tree is phase 015's |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `validate_skill_package.py` | Before sk-doc, sk-design, sk-prompt exit 0. After the same, sk-design compiled-ready PASS |
+| sk-doc script tests | Before all passed. After all passed |
+| `test_package_skill_regressions.py` | Before 45. After 46 |
+| `test_check_repo_rules.py` | Before 6. After 7 |
+| Playbook validator, sk-prompt | Before 1 BACKTICK_PATH_UNRESOLVED. After 0 |
+| Root metadata, leaf freshness, card sync | Before 14/14, 14/14, exit 0. After the same |
+| Review | DeepSeek PASS with four P2 rows; three fixed, one matches ADR-004 |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Cross-family review was not possible.** GPT quota is exhausted until 2026-11-13; the reviewer was the same family as the writer.
+2. **sk-design still declares the undefined `none` outcome.** Removing it needs the compiled-routing generator; recorded for the operator.
+3. **A comment in `.skilled/bin/lib/compiled-routing/.../canary-router.cjs:322` names the `none` outcome.** Accurate while the outcome stays; outside this phase's files.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

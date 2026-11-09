@@ -139,7 +139,7 @@ Every skill folder needs:
 After fleshing out `SKILL.md` and the references, run the packager to validate the structure:
 
 ```bash
-python3 .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/my-new-skill/
+python3 .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/my-new-skill/ --check
 # Validates frontmatter, structure and graph metadata. Exit 0 means the skill is ready for discovery.
 ```
 

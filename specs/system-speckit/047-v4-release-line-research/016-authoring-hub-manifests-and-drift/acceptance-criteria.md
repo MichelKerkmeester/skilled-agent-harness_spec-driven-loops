@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/016-authoring-hub-manifests-and-drift"
-    last_updated_at: "2026-11-08T23:39:06Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "system-speckit/047-v4-release-line-research/016-authoring-hub-manifests-and-drift"
+    last_updated_at: "2026-11-09T12:00:00Z"
+    last_updated_by: "remediation-orchestrator-b"
+    recent_action: "Recorded acceptance evidence"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-016-authoring-hub-manifests-and-drift"
+      session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,25 +35,29 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
-**Date:** 2026-11-08
+**Packet:** `016-authoring-hub-manifests-and-drift`
+**Level:** 2
+**Status:** Complete
+**Date:** 2026-11-09
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given no output directory, When the packager runs without --check, Then it exits 2 and writes no zip, and a repository top level is refused | `test_package_skill_regressions.py` 46 passed; reviewer observed exit 2 with an empty cwd | Met | - |
+| AC-002 | REQ-002 | Given the sk-prompt playbook and card, When the validator and guard run, Then no BACKTICK_PATH_UNRESOLVED and exit 0 | playbook validator 0 unresolved (baseline 1); card-sync exit 0 | Met | - |
+| AC-003 | REQ-003 | Given each corrected sentence, When it is checked against its source, Then it matches | read-only review checked each against `_routes.yaml:277`, the v4.0.0.0 tag tree, the chart catalog, `sk-create-changelog/SKILL.md:64`, the seven cards | Met | - |
+| AC-004 | REQ-004 | Given sk-design, When its package check runs, Then compiled routing is ready and the `none` decision is recorded | `validate_skill_package.py sk-design` exit 0 with compiled-ready PASS; ADR-004 | Met | - |
+| AC-005 | REQ-005 | Given a short-stem bullet, When coverage is scored, Then it reaches the threshold, and every real bullet passes | `test_check_repo_rules.py` 7 passed; `check-repo-rules` 11/11, 62 bullets | Met | - |
+| AC-006 | REQ-006 | Given a SKILL.md with two frontmatter faults, When the packager validates, Then both appear, first fault first | new regression test passes; reviewer found 0 verdict differences over 15 input classes | Met | - |
+| AC-007 | REQ-007 | Given the baselines, When the checks rerun, Then each holds | package checks sk-doc, sk-design, sk-prompt exit 0; sk-doc script tests pass; root metadata 14/14; leaf freshness 14/14; parent-skill-check sk-doc and sk-design 0 warnings | Met | - |
 
 ### Status values
 
@@ -77,9 +81,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

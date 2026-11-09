@@ -1,7 +1,7 @@
 ---
 title: "SP-017 -- Total below 40/50 triggers targeted repair"
 description: "This scenario validates targeted CLEAR repair for `SP-017`. It focuses on a total below 40 of 50 sending the prompt to its weakest dimension, capped at 3 repair cycles, with an honest best-version note when the target is not reached."
-version: 3.0.0.0
+version: 3.0.1.0
 ---
 
 # SP-017 -- Total below 40/50 triggers targeted repair
@@ -79,7 +79,7 @@ Feed a prompt that already scores at or above 40 and confirm it is delivered wit
 
 | File | Role |
 |---|---|
-| `../../manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | Skill source the scenario contract mirrors: workflow, mode commands and dispatch rules |
 
 ### Implementation And Test Anchors
