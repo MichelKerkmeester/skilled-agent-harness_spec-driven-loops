@@ -1,5 +1,5 @@
 {
-  "manifestHash": "624f41bf57d0a19c2af40027b5cd713ee57645e2b2896e1260f7cae7b8359157",
+  "manifestHash": "072d10f03db84220c9dbdca2bec82a41d3dc638667b3280a19ed31754a13e3c2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11045,6 +11045,9 @@
     ],
     "align the hub routing repo rule": [
       "align the hub routing repo rule"
+    ],
+    "align the root release contributing and security docs": [
+      "align the root release contributing and security docs"
     ],
     "alignment acceptance criteria": [
       "alignment acceptance criteria"
@@ -28650,6 +28653,21 @@
     ],
     "config setupfiles reconciled": [
       "config setupFiles reconciled"
+    ],
+    "configurable host index folder": [
+      "configurable host index folder"
+    ],
+    "configurable host index folder acceptance criteria": [
+      "configurable host index folder acceptance criteria"
+    ],
+    "configurable host index folder implementation summary": [
+      "configurable host index folder implementation summary"
+    ],
+    "configurable host index folder plan": [
+      "configurable host index folder plan"
+    ],
+    "configurable host index folder tasks": [
+      "configurable host index folder tasks"
     ],
     "configurable worktree base": [
       "configurable worktree base"
@@ -62629,6 +62647,9 @@
     "less doc template bloat": [
       "less doc-template bloat"
     ],
+    "let a host repository name its trigger index": [
+      "let a host repository name its trigger index"
+    ],
     "let a second pi cache optimizer copy stand": [
       "let a second pi cache optimizer copy stand"
     ],
@@ -95177,6 +95198,18 @@
     ],
     "root readme uses forced blank lines instead": [
       "root readme uses forced blank lines instead"
+    ],
+    "root release docs alignment": [
+      "root release docs alignment"
+    ],
+    "root release docs alignment implementation summary": [
+      "root release docs alignment implementation summary"
+    ],
+    "root release docs alignment plan": [
+      "root release docs alignment plan"
+    ],
+    "root release docs alignment tasks": [
+      "root release docs alignment tasks"
     ],
     "root resolution preflight": [
       "root resolution preflight"

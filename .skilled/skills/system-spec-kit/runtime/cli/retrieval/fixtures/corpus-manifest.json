@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4841939563f34dbb4c153d56386cd9b20eb5746d7acca17be0beb0ac440d102f",
+  "corpusHash": "c2ea6486cdf713b2fd6c50f30cdeba346242adc2c83ee6c82bfa1f56c77f6910",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25908,
+  "includedPathCount": 25917,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25935,12 +25935,21 @@
     "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/plan.md",
     "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/spec.md",
     "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/tasks.md",
     "specs/system-speckit/047-v4-release-line-research/goal.md",
     "specs/system-speckit/047-v4-release-line-research/research/research.md",
     "specs/system-speckit/047-v4-release-line-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "624f41bf57d0a19c2af40027b5cd713ee57645e2b2896e1260f7cae7b8359157",
+  "manifestHash": "072d10f03db84220c9dbdca2bec82a41d3dc638667b3280a19ed31754a13e3c2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36584,6 +36593,14 @@
     },
     {
       "path": "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/scratch",
       "reason": "excluded directory"
     },
     {

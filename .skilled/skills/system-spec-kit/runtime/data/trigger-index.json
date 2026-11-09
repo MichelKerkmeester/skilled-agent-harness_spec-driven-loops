@@ -1,5 +1,5 @@
 {
-  "manifestHash": "624f41bf57d0a19c2af40027b5cd713ee57645e2b2896e1260f7cae7b8359157",
+  "manifestHash": "072d10f03db84220c9dbdca2bec82a41d3dc638667b3280a19ed31754a13e3c2",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17672,6 +17672,15 @@
     "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/plan.md",
     "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/spec.md",
     "specs/system-speckit/047-v4-release-line-research/022-linked-project-host-index/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/023-configurable-host-index-folder/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/024-root-release-docs-alignment/tasks.md",
     "specs/system-speckit/047-v4-release-line-research/goal.md",
     "specs/system-speckit/047-v4-release-line-research/research/research.md",
     "specs/system-speckit/047-v4-release-line-research/spec.md"
@@ -29228,6 +29237,9 @@
     ],
     "align the hub routing repo rule": [
       3523
+    ],
+    "align the root release contributing and security docs": [
+      17669
     ],
     "alignment acceptance criteria": [
       3848
@@ -47640,7 +47652,7 @@
       17207,
       17400,
       17408,
-      17662
+      17671
     ],
     "completion criteria copied": [
       16192,
@@ -48106,6 +48118,21 @@
     ],
     "config setupfiles reconciled": [
       16222
+    ],
+    "configurable host index folder": [
+      17665
+    ],
+    "configurable host index folder acceptance criteria": [
+      17662
+    ],
+    "configurable host index folder implementation summary": [
+      17663
+    ],
+    "configurable host index folder plan": [
+      17664
+    ],
+    "configurable host index folder tasks": [
+      17666
     ],
     "configurable worktree base": [
       2206
@@ -65040,7 +65067,7 @@
       17207,
       17400,
       17408,
-      17662
+      17671
     ],
     "durable fan in failure plan": [
       9237
@@ -75408,7 +75435,7 @@
       17207,
       17400,
       17408,
-      17662
+      17671
     ],
     "goal binding gaps": [
       8171
@@ -84946,6 +84973,9 @@
     ],
     "less doc template bloat": [
       16070
+    ],
+    "let a host repository name its trigger index": [
+      17665
     ],
     "let a second pi cache optimizer copy stand": [
       5804
@@ -100729,7 +100759,7 @@
       17207,
       17400,
       17408,
-      17662
+      17671
     ],
     "packet goal authoring boundary": [
       8174
@@ -119830,6 +119860,18 @@
     ],
     "root readme uses forced blank lines instead": [
       8337
+    ],
+    "root release docs alignment": [
+      17669
+    ],
+    "root release docs alignment implementation summary": [
+      17667
+    ],
+    "root release docs alignment plan": [
+      17668
+    ],
+    "root release docs alignment tasks": [
+      17670
     ],
     "root resolution preflight": [
       15715
@@ -149507,16 +149549,16 @@
       16967
     ],
     "v4 release line research phase parent spec": [
-      17664
+      17673
     ],
     "v4 release line research synthesis": [
-      17663
+      17672
     ],
     "v4 release notes corrections applied": [
       16652
     ],
     "v4 remediation phases": [
-      17663
+      17672
     ],
     "v4 root readme": [
       16887
