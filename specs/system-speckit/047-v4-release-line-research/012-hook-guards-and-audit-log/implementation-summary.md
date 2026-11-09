@@ -1,24 +1,24 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The ask-surface guard reads numbered menus correctly, never hangs a turn on stdin, sends a turn back at most once per operator message on every runtime, and dispatch-audit logs land at the repository root."
 trigger_phrases:
   - "hook guards and audit log implementation summary"
-importance_tier: "normal"
-contextType: "general"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/012-hook-guards-and-audit-log"
-    last_updated_at: "2026-11-08T23:39:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "system-speckit/047-v4-release-line-research/012-hook-guards-and-audit-log"
+    last_updated_at: "2026-11-09T12:00:00Z"
+    last_updated_by: "remediation-orchestrator-b"
+    recent_action: "Closed the phase"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-012-hook-guards-and-audit-log"
+      session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-hook-guards-and-audit-log |
-| **Completed** | 2026-11-08 |
+| **Completed** | 2026-11-09 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +44,67 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The ask-surface guard now behaves the same on every runtime and can no longer hang a turn, and dispatch audit logs stop scattering into packet folders.
 
 ### Phase 12: hook-guards-and-audit-log
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+A menu numbered `1.` or running to `10)` is now recognised, while a numbered how-to list that ends in a generic question is left alone. The Claude ask-surface Stop hook and the Codex and Devin advisory hooks read stdin through the shared deadline reader, so a held-open pipe ends the turn after the deadline instead of hanging it. OpenCode and dsh now key the send-back on the operator's latest message, ignoring the guard's own reprompt, which matches Claude and Pi. Every dispatch-audit adapter writes to `<repository top level>/.skilled/logs/cli-dispatch-audit.log`, resolving the root once per directory.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs` | Modified | Menu rule, contract sentence |
+| `.skilled/hooks/ask-surface-guard/fixtures/` (3 files) | Created | Dotted, ten-option and how-to fixtures |
+| `.skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs`, `lib/advisory-stop.cjs`, `codex/` and `devin/ask-surface-stop.cjs` | Modified | Deadline reader and fail-open catch |
+| `.opencode/plugins/ask-surface-guard.js`, `.skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs` | Modified | Operator-message key |
+| `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` and the claude, codex, devin, pi adapters, `README.md` | Modified | Repo-rooted memoized log path |
+| Test files beside each | Modified | One case per behaviour |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Baselines ran first. Four cli-codex `gpt-6-luna` high-fast briefs made the changes, one per finding. DeepSeek V4.1 Flash max (cli-pi, read-only) reviewed the diff and found one P1, the OpenCode reprompt re-keying itself, and five P2s; the orchestrator confirmed the P1 against the v2 bridge and one more Luna brief fixed it with three P2s. The whole hook battery was rerun from the final state.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Once per operator message | Claude and Pi already did it, and the core header says a turn is sent back once |
+| Ignore the guard's own reprompt by its text | OpenCode 2 delivers it as an ordinary user message with no marker |
+| Memoize the git root per directory | One `git rev-parse` cost about 14 ms on every Bash call |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| OpenCode plugin tests | Before 572/0. After 574/0 |
+| Plugin tests under `AI_SESSION_CHILD=1` | Before 545/27. After 547/27, identical failure list |
+| Hook node tests (ask-surface, dispatch, shared) | Before 228/0. After 235/0 |
+| Hooks vitest | Before 415/0. After 417/0 |
+| Matrix | 6 runtimes by 3 events; the 4 adapters that change carry tests, Claude and Pi are read and unchanged |
+| Cross-family review | DeepSeek FAIL, 1 P1 and 5 P2; P1 and three P2 fixed, two P2 recorded in ADR-003 |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **A numbered summary followed by a choice-worded question can fire.** Example: a `1.` list of done steps then "Which file should I open?"; the cost is one reprompt. Recorded in ADR-003.
+2. **The stray `specs/system-speckit/043-decision-capture/.skilled/logs` stays.** It is untracked and gitignored; deleting it is the operator's call.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

@@ -17,14 +17,12 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { join } from 'node:path';
-
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import {
-  DEFAULT_LOG_RELATIVE_PATH,
   isAuditDisabled,
   recordDispatch,
+  resolveAuditLogPath,
 } from '../lib/dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -60,7 +58,7 @@ async function main() {
   if (typeof command !== 'string' || command.length === 0) return done();
 
   const projectDir = payload?.cwd || process.env.CODEX_PROJECT_DIR || process.cwd();
-  const logPath = join(projectDir, DEFAULT_LOG_RELATIVE_PATH);
+  const logPath = resolveAuditLogPath(projectDir);
 
   // Older Codex hands back `{stdout, stderr}`; 0.160 and later hand back the
   // command's output as one string.

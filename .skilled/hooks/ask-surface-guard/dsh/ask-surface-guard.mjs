@@ -48,12 +48,19 @@ function isQuestionCall(name) {
  *
  * @param {Object} agent - The dsh agent whose session holds the turn.
  * @param {number} turn - The turn number dsh is stopping.
- * @returns {{lastMessage: string, askToolCalled: boolean}} What the turn held.
+ * @returns {{lastMessage: string, askToolCalled: boolean, operatorKey: string|null}} What the turn held.
  */
 export function readTurn(agent, turn) {
   const snapshot = agent?.session?.snapshotEvents?.();
-  const result = { lastMessage: '', askToolCalled: false };
+  const result = { lastMessage: '', askToolCalled: false, operatorKey: null };
   if (!Array.isArray(snapshot)) return result;
+  for (let index = snapshot.length - 1; index >= 0; index -= 1) {
+    const event = snapshot[index];
+    if (event?.type !== 'user/message' || event.data?.role !== 'user' || event.data?.source?.kind !== 'user') continue;
+    const content = textFromContent(event.data.content);
+    result.operatorKey = event.data.id || `${index}:${content}`;
+    break;
+  }
   for (const event of snapshot) {
     if (event?.data?.turn !== turn) continue;
     if (event.type === 'tool/call' && isQuestionCall(event.data.name)) result.askToolCalled = true;
@@ -99,12 +106,15 @@ export function registerAskSurfaceGuard(ctx, {
 
   ctx.on('agent/turn-stopping', async ({ agent, turn }) => {
     try {
-      const { lastMessage, askToolCalled } = readTurn(agent, turn);
+      const { lastMessage, askToolCalled, operatorKey } = readTurn(agent, turn);
       const result = askCore.evaluateTurn({ lastMessage, askToolCalled, surfaceAvailable: !isHeadless() });
       if (result.verdict !== 'fire') return;
 
       const projectDir = agent?.session?.header?.cwd ?? cwd;
-      const turnKey = `dsh:${agent?.session?.id ?? agent?.id ?? 'session'}:${turn}`;
+      // dsh may not retain an operator message in its snapshot, so keep the turn key as a fallback.
+      const turnKey = operatorKey
+        ? `dsh:${agent?.session?.id ?? agent?.id ?? 'session'}:${operatorKey}`
+        : `dsh:${agent?.session?.id ?? agent?.id ?? 'session'}:${turn}`;
       if (!askCore.markTurn(projectDir, turnKey, markerDir)) return;
       askCore.recordFire(projectDir, { runtime: 'dsh', mode: 'reprompt' });
 

@@ -4,4 +4,4 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-require('../lib/advisory-stop.cjs').runAdvisoryStop('devin');
+require('../lib/advisory-stop.cjs').runAdvisoryStop('devin').catch(() => {});

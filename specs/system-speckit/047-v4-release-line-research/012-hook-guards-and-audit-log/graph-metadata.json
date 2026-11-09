@@ -13,9 +13,12 @@
     "trigger_phrases": [
       "hook guards and audit log",
       "phase 12 hook guards and audit log",
+      "ask surface guard menu detector",
+      "dispatch audit log root",
       "hook guards and audit log plan",
       "hook guards and audit log tasks",
       "hook guards and audit log acceptance criteria",
+      "hook guards and audit log decisions",
       "hook guards and audit log implementation summary"
     ],
     "key_topics": [
@@ -24,22 +27,29 @@
       "audit",
       "log",
       "phase",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere"
+      "ask",
+      "surface",
+      "guard",
+      "menu",
+      "detector",
+      "dispatch",
+      "root"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
+      ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs",
+      ".opencode/plugins/ask-surface-guard.js",
+      ".skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/README.md"
     ],
     "entities": [
       {
@@ -67,19 +77,55 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "ask-surface-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/lib/ask-surface-core.cjs",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "ask-surface-stop.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/claude/ask-surface-stop.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/ask-surface-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "ask-surface-guard.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/ask-surface-guard/dsh/ask-surface-guard.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +173,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -137,59 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The ask-surface guard misses a menu numbered `1.` or one with a tenth option and fires on a `1)` how-to list that ends in an unrelated question",
     "created_at": "2026-11-08T23:39:03Z",
-    "last_save_at": "2026-11-08T23:39:08.304Z",
+    "last_save_at": "2026-11-09T03:20:48.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +207,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e79b8c84c2c2e7fd8f3ab76c2ae6a0cb536c818c89fd8c01e33b94998b266e3e",
+    "source_fingerprint": "sha256:c85573bf6104b57e0ae1fc79ea040df0234915ea13edf0663bdd8b584d7acbc3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b61098499fb519824ba49a9bb01c2287f12cc7766017507f07135f296ae40ad7",
-      "plan.md": "efcb008d512a1bc547511b63a4d32f793a1c53ec54ec6726131a2e35d15c2b15",
-      "tasks.md": "d1c074f744e54b44deca85581da53106401967ad666f0f698d60695490e0a84b",
-      "implementation-summary.md": "9d9ec2c825f205748e4813676bed405ff6dafd6178d7ea718f9ebcd9846c4cd5"
+      "spec.md": "13413f83e4f1164a1e97cf4d7176843c5ef4a4ff7c4ef03568be356c087acd36",
+      "plan.md": "1379e8d6248b07da9caf4ecd78c18b69c83e25dcb1a8675ce7d3ac7c764da73b",
+      "tasks.md": "d5ac039681c37406ab18e0e19efae69e851f67156aa4df89687dba8489e142e2",
+      "decision-record.md": "9228c90aae53069f0a65e800c755543d88f5aedef478ece3690209ee2ba53f58",
+      "implementation-summary.md": "b6c0834c5987495b11adf6c620e1611d682dffe8736ad4d13349d755997dd790"
     },
     "last_active_at": null
   }

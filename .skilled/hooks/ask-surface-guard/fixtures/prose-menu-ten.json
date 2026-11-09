@@ -1,0 +1,5 @@
+{
+  "expected": "fire",
+  "askToolCalled": false,
+  "lastMessage": "Which option do you prefer?\n\n1) First option\n2) Second option\n3) Third option\n4) Fourth option\n5) Fifth option\n6) Sixth option\n7) Seventh option\n8) Eighth option\n9) Ninth option\n10) Tenth option"
+}
