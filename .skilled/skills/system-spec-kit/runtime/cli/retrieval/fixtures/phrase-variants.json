@@ -1,5 +1,5 @@
 {
-  "manifestHash": "777e430c2423d1b5cb0d6dfd9117ef1b1b6c78690d6b9a49f5129b8949d0ac30",
+  "manifestHash": "624f41bf57d0a19c2af40027b5cd713ee57645e2b2896e1260f7cae7b8359157",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -52358,6 +52358,9 @@
     ],
     "gaps claims contradictions provenance": [
       "gaps claims contradictions provenance"
+    ],
+    "gate 1 finds project packets": [
+      "gate 1 finds project packets"
     ],
     "gate 1 instruction parity": [
       "gate 1 instruction parity"

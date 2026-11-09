@@ -1,5 +1,5 @@
 {
-  "manifestHash": "777e430c2423d1b5cb0d6dfd9117ef1b1b6c78690d6b9a49f5129b8949d0ac30",
+  "manifestHash": "624f41bf57d0a19c2af40027b5cd713ee57645e2b2896e1260f7cae7b8359157",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -73466,6 +73466,9 @@
     ],
     "gaps claims contradictions provenance": [
       2648
+    ],
+    "gate 1 finds project packets": [
+      61
     ],
     "gate 1 instruction parity": [
       16614,
