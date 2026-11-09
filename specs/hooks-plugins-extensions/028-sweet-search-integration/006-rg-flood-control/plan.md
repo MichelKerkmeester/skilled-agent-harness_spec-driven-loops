@@ -9,7 +9,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 6: one row per file in the ripgrep wrapper
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -138,10 +138,73 @@ No new package or dependency. Uses Node, ripgrep and git that the retrieval CLI 
 
 ---
 
+<!-- ANCHOR:executors -->
+## EXECUTORS
+
+The conductor is the session running the goal. It writes briefs, reviews diffs and runs the final gates itself. Workers never commit.
+
+| Role | Executor | Use for |
+|------|----------|---------|
+| Worker (default) | cli-codex `gpt-6-luna`, `model_reasoning_effort="xhigh"`, `service_tier="fast"`, `--sandbox workspace-write` | Code, test, doc and README edits, one change per brief |
+| Complex worker | cli-devin `deepseek-v4-1-flash-max`, `--permission-mode dangerous` | none, and any task Luna failed twice |
+| Testing orchestrator | cli-devin `deepseek-v4-1-flash-max` | T002 baseline, both benchmark runs, scenario walk-through, suite reruns |
+| Fallback 1 | cli-devin `deepseek-v4-1-flash-max` | Any Luna task when codex is down or out of quota |
+| Fallback 2 | cli-pi `opencode-go/deepseek-v4.1-flash`, `--thinking max`, `</dev/null`, `AI_SESSION_CHILD=1` | Any DeepSeek task when devin is down |
+| Alignment lanes | `/local-skilled-alignment --lanes=codex`, then `--lanes=opencode-go` | T030 and T032 |
+
+- Luna runs only through cli-codex. When codex fails, the task moves to DeepSeek; it never moves Luna to another provider.
+- Codex's `workspace-write` sandbox blocks `tsx` IPC, so codex workers never run the test suite; the testing orchestrator or the conductor does.
+- The conductor reruns every final gate itself: suite, benchmark comparison, alignment recheck and `validate.sh`. A worker's pass is a claim until then.
+- Briefs stay short: one change, literal old and new text at `file:line`, and a stated accept check.
+<!-- /ANCHOR:executors -->
+
+---
+
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
 Revert the commit; `SCHEMA_VERSION` returns to 1 and the one caller line reverts with it.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
+
+Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
+| Surface | Current Role | Action | Verification |
+|---------|--------------|--------|--------------|
+| `lib/rg-lane.mjs` `shapeRankedMatches` | New post-rank shaper | update | Shaping cases in `rg-wrapper-recipes.vitest.ts` |
+| `rg-wrapper.mjs` record and `formatSummary` | Producer of the JSON record and human summary | update, `SCHEMA_VERSION` 2 | Wrapper tests and the measured command |
+| `ops/retrofit-convention.mjs:488` | Reads the total match count | update to `record.matchCount ?? record.results?.length` | `retrofit-convention-pipeline.vitest.ts` |
+| `structuredCappedRecipe` | Unused export | delete | `rg -n structuredCappedRecipe .skilled` prints nothing |
+| `search-presentation.txt`, `/speckit:search` | Present wrapper output | update the hidden-count slot | Scenario 491 |
+
+Required inventories:
+- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
+- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+<!-- /ANCHOR:affected-surfaces -->
+
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
+
+```
+Before ──► Build ──► Document ──► Align ──► After
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| Before (baseline and before benchmark) | Predecessor phase complete | Build |
+| Build (code and tests) | Before | Document, Align |
+| Document (catalog, scenario, READMEs, changelog) | Build | Align |
+| Align (`/local-skilled-alignment` and recheck) | Build, Document | After |
+| After (suite, after benchmark, validate) | Align | Phase close |
+<!-- /ANCHOR:phase-deps -->
 
 ---

@@ -11,7 +11,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 5: zero-hit fallback to git-changed spec docs
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-11-09 |
@@ -153,7 +153,7 @@ exit=1
 | Already-matching queries with identical output | n/a | 10/10 |
 | Undeclared phrases still exit 1 | 5/5 | 5/5 |
 | Median time, matching queries | record | within 10% of before |
-| Median time, zero-hit queries | record | under 1.5 s repo-wide |
+| Cold-lookup p95 over `fixtures/prompt-set.json` | record | at or under 200 ms, the `/doctor:speckit` budget |
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -164,14 +164,52 @@ exit=1
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | Phase 3 design line numbers | Line ranges drift before the build | Re-read each cited range before editing |
-| Risk | A repo-wide fallback costs about 0.9 s on a zero-hit | Med | It runs only on a zero-hit, is scoped to `--spec-folder` when given (about 0.05 s), and is capped at 200 files |
+| Risk | A repo-wide fallback costs about 0.9 s on a zero-hit, over the 200 ms p95 cold-lookup budget `/doctor:speckit` enforces | High | It runs only on a zero-hit, is scoped to `--spec-folder` when given (about 0.05 s) and capped at 200 files; measure the p95 over `fixtures/prompt-set.json` in the before run, and stop and ask before changing the budget if the after run breaks it |
 | Risk | The benchmark compares runs on different index or worktree states | Med | Record the `trigger-index.json` sha256 and the `git status` line count in both JSON files; do not rebuild the index between runs |
 <!-- /ANCHOR:risks -->
 
 ---
 
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
+<!-- /ANCHOR:nfr -->
+
+### Performance
+- **NFR-P01**: Matching queries stay within 10% of the before median; the fallback never runs for them.
+- **NFR-P02**: The cold-lookup p95 over `fixtures/prompt-set.json` stays at or under 200 ms, the `/doctor:speckit` budget. If the fallback breaks it, stop and ask before changing the budget.
+
+### Security
+- **NFR-S01**: Git runs with an argv array, never a shell string, and reads only paths inside the repo root.
+- **NFR-S02**: Only `*.md` files under the configured roots are read; symlinks that resolve outside the root are skipped.
+
+### Reliability
+- **NFR-R01**: No git, no repo or a git error degrades to `staleFallback.available: false` and the index-only result, never exit 2.
+- **NFR-R02**: The full retrieval suite has no new failure versus the baseline.
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
+
+- Empty input: a tokenless prompt skips the fallback and exits 1 as today.
+- Maximum input: more than 200 changed docs reads the first 200 by path order and sets `staleFallback.truncated: true`.
+- Failure path: git missing or the folder is not a work tree gives `available: false`, exit 1, no stderr.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 14/25 | New module plus CLI wiring, about 420-530 lines, 7 files |
+| Risk | 12/25 | Changes CLI exit semantics on a zero-hit; touches a latency budget |
+| Research | 4/20 | Designed in phase 3; budget check is new |
+| **Total** | **30/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - None. The design in phase 3 settles the field names, output strings and test cases.
 <!-- /ANCHOR:questions -->

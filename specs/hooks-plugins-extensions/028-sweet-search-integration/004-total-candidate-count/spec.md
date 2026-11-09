@@ -11,7 +11,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 4: report total candidates in the trigger lookup
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-11-09 |
@@ -160,8 +160,46 @@ candidates : 2 (truncated) from 2302 phrase(s)
 
 ---
 
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
+<!-- /ANCHOR:nfr -->
+
+### Performance
+- **NFR-P01**: Median lookup time over the benchmark set stays within 10% of the before run.
+- **NFR-P02**: The cold-lookup p95 over `runtime/cli/retrieval/fixtures/prompt-set.json` stays at or under the 200 ms budget `/doctor:speckit` enforces.
+
+### Security
+- **NFR-S01**: The change reads no new file and writes nothing.
+- **NFR-S02**: N/A. The lookup handles no credentials or user data.
+
+### Reliability
+- **NFR-R01**: Exit codes stay 0 for a hit, 1 for a clean no-hit, 2 or higher for an error.
+- **NFR-R02**: The full retrieval suite has no new failure versus the baseline.
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
+
+- Empty input: a tokenless prompt returns `totalCandidates: 0`, `truncated: false` and exits 1.
+- Maximum input: `--limit 0` means no cut, so `totalCandidates` equals the result count and `truncated` stays false.
+- Failure path: a missing or unreadable index still exits 2 with the existing message; the new field never appears on that path.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 6/25 | One code file, one doc, two test files, about 48 lines |
+| Risk | 4/25 | Additive JSON field, no exit-code change |
+| Research | 2/20 | Designed in phase 3 |
+| **Total** | **12/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - None. The design in phase 3 settles the field names, output strings and test cases.
 <!-- /ANCHOR:questions -->

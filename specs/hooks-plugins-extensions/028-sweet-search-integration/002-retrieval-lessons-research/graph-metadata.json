@@ -16,9 +16,13 @@
       "sweet search retrieval lessons",
       "retrieval lessons research plan",
       "retrieval lessons research tasks",
-      "retrieval lessons research implementation summary",
-      "sweet-search retrieval lessons",
-      "trigger index zero-hit fallback"
+      "retrieval lessons acceptance",
+      "retrieval lessons verdict criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "retrieval lessons research implementation summary"
     ],
     "key_topics": [
       "retrieval",
@@ -29,10 +33,10 @@
       "search",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "sweet-search",
-      "trigger"
+      "acceptance",
+      "verdict",
+      "criteria",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -40,6 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
@@ -63,6 +69,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -178,33 +196,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "system-spec-kit retrieval is a committed trigger index plus ripgrep recipes with a caller-side ranking tuple",
     "created_at": "2026-11-09T14:30:54Z",
-    "last_save_at": "2026-11-09T16:22:39.481Z",
+    "last_save_at": "2026-11-09T17:09:33.399Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:dfacd4a4f9eb55e5b93fa2591ad84ac46489c2ef6c63e3522303b9ba009c8c9f",
+    "source_fingerprint": "sha256:1d126dd5ac2e37307e0a8236f8adee7f990f1545223f4ddce919454b0dbfec12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e173b6bc97fe6ceebdeab42b5494880bfa2a5352a21f7fcf10d3270a8a935b7a",

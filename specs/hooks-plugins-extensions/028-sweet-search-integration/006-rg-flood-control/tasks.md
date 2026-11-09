@@ -9,7 +9,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
 # Tasks: Phase 6: one row per file in the ripgrep wrapper
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -89,3 +89,91 @@ contextType: "implementation"
 <!-- /ANCHOR:cross-refs -->
 
 ---
+
+
+## Verification Checklist
+<!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+<!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
+
+- [ ] CHK-001 [P0] Every cited line range re-read and still matches the phase 3 design (T001)
+- [ ] CHK-002 [P0] `benchmark/before.json` exists with the index sha256 and git status count (T002b)
+- [ ] CHK-003 [P1] Executor preflight passed: `codex login status` and `devin auth status` both report signed in
+<!-- /ANCHOR:pre-impl -->
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
+
+- [ ] CHK-010 [P0] `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format text --files <changed files>` exits 0
+- [ ] CHK-011 [P0] `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh -- <changed files>` passes: no spec, phase or task ids in comments
+- [ ] CHK-012 [P1] Every new error path exits 2 with a message on stderr, never a silent exit 1
+- [ ] CHK-013 [P1] `npm --prefix .skilled/skills/system-spec-kit run check` passes, run by the conductor outside the codex sandbox
+<!-- /ANCHOR:code-quality -->
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
+
+- [ ] CHK-020 [P0] Every row in `acceptance-criteria.md` is `Met` with evidence
+- [ ] CHK-021 [P0] Scenario 491 walked by the testing orchestrator and its PASS verdict recorded
+- [ ] CHK-022 [P1] Each edge case in `spec.md` has a passing test
+- [ ] CHK-023 [P1] Every guardrail row in `benchmark/results.md` meets its target
+<!-- /ANCHOR:testing -->
+
+<!-- ANCHOR:security -->
+## Security
+<!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
+
+- [ ] CHK-030 [P0] `benchmark/` and `alignment/` hold no tokens, keys or home-directory secrets
+- [ ] CHK-031 [P0] Every new flag or input is validated and rejects bad values with exit 2
+- [ ] CHK-032 [P1] N/A: the retrieval CLI has no auth surface
+<!-- /ANCHOR:security -->
+
+<!-- ANCHOR:docs -->
+## Documentation
+<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
+
+- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` name the same fields and flags
+- [ ] CHK-041 [P1] Alignment recheck shows no open S3, S4, S5 or S6 finding
+- [ ] CHK-042 [P2] The open root release notes carry a line for this change
+<!-- /ANCHOR:docs -->
+
+<!-- ANCHOR:file-org -->
+## File Organization
+<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
+
+- [ ] CHK-050 [P1] Temp files live in `scratch/`; benchmark and alignment evidence live in `benchmark/` and `alignment/`
+- [ ] CHK-051 [P1] `scratch/` cleaned and no `.backup-*` folder left before completion
+<!-- /ANCHOR:file-org -->
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 8 | 0/8 |
+| P1 Items | 10 | 0/10 |
+| P2 Items | 1 | 0/1 |
+
+**Verification Date**: Not verified yet
+<!-- /ANCHOR:summary -->
+
+---
+
+
+

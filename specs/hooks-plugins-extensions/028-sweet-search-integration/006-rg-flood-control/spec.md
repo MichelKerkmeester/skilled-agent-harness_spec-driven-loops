@@ -11,7 +11,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 6: one row per file in the ripgrep wrapper
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-11-09 |
@@ -166,8 +166,46 @@ rows 382, files 14, top 20 rows from 2 files, 19 of them from one file
 
 ---
 
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
+<!-- /ANCHOR:nfr -->
+
+### Performance
+- **NFR-P01**: Median query time stays within 10% of the before run; shaping is one linear pass after ranking.
+- **NFR-P02**: Memory stays linear in the match count; no second ripgrep call.
+
+### Security
+- **NFR-S01**: `--limit` accepts only `/^\d+$/`; anything else exits 2 with usage.
+- **NFR-S02**: N/A. The wrapper reads files the caller already scoped.
+
+### Reliability
+- **NFR-R01**: Ties keep the existing rank tuple order, so output is deterministic run to run.
+- **NFR-R02**: The full retrieval suite has no new failure versus the baseline.
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
+
+- Empty input: no matches returns `results: []`, `matchCount: 0`, `hidden: {files: 0, matches: 0}`, `truncated: false`.
+- Maximum input: `--limit 0` shows every file once with no cut; one file with thousands of matches shows one row and `moreInFile`.
+- Failure path: an invalid `--limit` exits 2 with usage; a ripgrep error keeps today's exit and message.
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 10/25 | Two code files, one caller, docs and tests, about 200 lines |
+| Risk | 9/25 | Changes what `results` means; schema version bump |
+| Research | 2/20 | Designed in phase 3 |
+| **Total** | **21/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - None. The design in phase 3 settles the field names, output strings and test cases.
 <!-- /ANCHOR:questions -->

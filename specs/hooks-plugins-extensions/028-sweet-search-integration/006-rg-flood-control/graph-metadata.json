@@ -16,6 +16,12 @@
       "phase 6 rg flood control",
       "rg flood control plan",
       "rg flood control tasks",
+      "rg flood control acceptance",
+      "ripgrep one row per file criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "rg flood control implementation summary"
     ],
     "key_topics": [
@@ -29,8 +35,8 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary"
+      "acceptance",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -38,6 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "ops/retrofit-convention.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs",
@@ -71,6 +79,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -186,38 +206,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Shape",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Post",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The ripgrep wrapper ranks every match and only slices the first 20 for display, so one file with many matches fills the whole view and hides every other file with no sign anything was hidden",
     "created_at": "2026-11-09T16:18:07Z",
-    "last_save_at": "2026-11-09T16:52:40.616Z",
+    "last_save_at": "2026-11-09T17:09:40.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e7a327fd699e860075c14e09066fa6f03741d39265fd093a46ba76128b0046c",
+    "source_fingerprint": "sha256:88d344c12bb5fdf435232808a89d3ab6f0b2b98cb94fb096ddc67b3de5a5882e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97c7b02c5d1e3af7f4d3e9e28a8c23892b7eafa917f66f1eccaee2557239fdb5",
-      "plan.md": "ab6bcd2afc60383bd66cd3039437b1b5118981b8f70248a753512d867e580f51",
-      "tasks.md": "626f042b2b35c4a6aca75c6fc7bb0c74a49fc8c367637a5c88375f50d472493c",
-      "implementation-summary.md": "2f9e75161df02698da671f8307f074b7e08ae8bb1d0f3598669efcc1c0ba4ca5"
+      "spec.md": "6cd6ce66b87d1a0f5a866b74e519b1eb63464b21b670622a567761cc68bc47a6",
+      "plan.md": "1936e987c801b553ab4acbbebb8e17c8f80ebcd07a0e17fd376ca91c0caa683a",
+      "tasks.md": "af9f373dc6ef2f2e27a9f5dc1d8a9c8b18803264d0644aa4d0bb4da08cee7145",
+      "implementation-summary.md": "28cb6090323ca9ad7dc85f0b500b31a46ecd2a51637789974d2cedc6ef493937"
     },
     "last_active_at": null
   }

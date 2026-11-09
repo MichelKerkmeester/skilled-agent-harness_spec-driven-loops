@@ -25,7 +25,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 004-total-candidate-count |
 | **Completed** | Not started (planned 2026-11-09) |
-| **Level** | 1 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---

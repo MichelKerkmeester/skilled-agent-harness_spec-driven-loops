@@ -20,7 +20,11 @@
     "trigger_phrases": [
       "sweet search integration phase parent spec",
       "sweet-search integration",
-      "sweet search code search"
+      "sweet search code search",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "sweet",
@@ -31,24 +35,44 @@
       "spec",
       "sweet-search",
       "code",
-      "agents",
-      "working",
-      "skilled",
-      "project"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "001-sweet-search-research/research/research.md",
       "002-retrieval-lessons-research/research/research.md",
-      "003-retrieval-feature-design-research/research/research.md"
+      "003-retrieval-feature-design-research/research/research.md",
+      "001-sweet-search-research/goal.md",
+      "002-retrieval-lessons-research/goal.md",
+      "003-retrieval-feature-design-research/goal.md",
+      "004-total-candidate-count/goal.md",
+      "005-stale-index-fallback/goal.md",
+      "006-rg-flood-control/goal.md",
+      "runtime/cli/retrieval/fixtures/prompt-set.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-set.json",
+        "kind": "config",
+        "path": "runtime/cli/retrieval/fixtures/prompt-set.json",
         "source": "derived"
       },
       {
@@ -86,17 +110,54 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "measured",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
     "created_at": "2026-11-09T11:30:04Z",
-    "last_save_at": "2026-11-09T16:52:15.210Z",
+    "last_save_at": "2026-11-09T17:09:27.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:f3597ddbe17ee26541e9c195ff0e488562f212449bc01de6e41a9c84620d2d25",
+    "source_fingerprint": "sha256:7e843247c0d586f87308589c49b68bd1185a2a03614ec9ff986cb2fc53947d84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "74b3d97a4865a6212d18899804c063ec0115c34488e8ccc532777f214b7a84ae"

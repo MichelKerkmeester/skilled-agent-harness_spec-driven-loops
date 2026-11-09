@@ -25,7 +25,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 005-stale-index-fallback |
 | **Completed** | Not started (planned 2026-11-09) |
-| **Level** | 1 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -98,7 +98,7 @@ Not delivered yet. The plan: record the retrieval-suite baseline, make the edits
 | Benchmark: Already-matching queries with identical output | Before: n/a. After: not run yet (target 10/10) |
 | Benchmark: Undeclared phrases still exit 1 | Before: 5/5. After: not run yet (target 5/5) |
 | Benchmark: Median time, matching queries | Before: record. After: not run yet (target within 10% of before) |
-| Benchmark: Median time, zero-hit queries | Before: record. After: not run yet (target under 1.5 s repo-wide) |
+| Benchmark: Cold-lookup p95 over `fixtures/prompt-set.json` | Before: record. After: not run yet (target at or under 200 ms, the `/doctor:speckit` budget) |
 <!-- /ANCHOR:verification -->
 
 ---

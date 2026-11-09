@@ -16,8 +16,13 @@
       "trigger index zero hit fallback design",
       "retrieval feature design research plan",
       "retrieval feature design research tasks",
-      "retrieval feature design research implementation summary",
-      "rg wrapper flood control design"
+      "retrieval feature design acceptance",
+      "feature design criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "retrieval feature design research implementation summary"
     ],
     "key_topics": [
       "retrieval",
@@ -39,6 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
@@ -63,6 +70,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -178,33 +197,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 2 named what to build and roughly how big each change is, but not the exact design",
     "created_at": "2026-11-09T14:51:09Z",
-    "last_save_at": "2026-11-09T16:22:41.594Z",
+    "last_save_at": "2026-11-09T17:09:35.874Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:354e940b2596a91caf3e194134f4de49de8204191d0a4ad65b114ebe3f4700d4",
+    "source_fingerprint": "sha256:b2c7bd8a89dcb4daad6f0db91115eab9dc04185aa381bb0d05641000ab5833ff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ebd9d65991ad1c48952fe001b86ef9c2ccf00d4793e153dcf1057ca979b172de",
