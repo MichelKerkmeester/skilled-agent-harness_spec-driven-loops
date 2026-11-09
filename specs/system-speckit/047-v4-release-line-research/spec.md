@@ -117,22 +117,10 @@ Every write stays inside this packet.
 | 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Complete |
 | 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Complete |
 | 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Complete |
-| 6 | 006-deep-loop-single-executor-dispatch/ | [Phase 6 scope] | Pending |
-| 7 | 007-deep-loop-state-and-stop-policy/ | [Phase 7 scope] | Pending |
-| 8 | 008-write-containment-scoping/ | [Phase 8 scope] | Pending |
-| 9 | 009-gate3-and-continuity-root/ | [Phase 9 scope] | Complete |
-| 10 | 010-validate-and-retrieval-exit-honesty/ | [Phase 10 scope] | Complete |
-| 11 | 011-spec-kit-doc-drift/ | [Phase 11 scope] | Complete |
-| 12 | 012-hook-guards-and-audit-log/ | [Phase 12 scope] | Complete |
-| 13 | 013-agents-md-delivery-budget/ | [Phase 13 scope] | Blocked |
-| 14 | 014-doctor-and-ci-gate-honesty/ | [Phase 14 scope] | Complete |
-| 15 | 015-cli-hub-routing-and-classifier/ | [Phase 15 scope] | Pending |
-| 16 | 016-authoring-hub-manifests-and-drift/ | [Phase 16 scope] | Complete |
-| 17 | 017-over-engineering-cuts/ | [Phase 17 scope] | Pending |
 
 ### Phase Transition Rules
 
-- The five phases run in parallel; each must pass `validate.sh` independently before synthesis
+- Research phases 001-005 ran in parallel and each passed `validate.sh` before synthesis; remediation phases 006-017 ran in two orchestrator lanes in one worktree, each closing with its own commit
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
@@ -145,18 +133,18 @@ Every write stays inside this packet.
 | 002-authoring-hubs | 003-cli-and-deep-loop | None: phases run in parallel | Each child validates on its own |
 | 003-cli-and-deep-loop | 004-advisor-hooks-relaunch | None: phases run in parallel | Each child validates on its own |
 | 004-advisor-hooks-relaunch | 005-doctor-git-ci-runtime | None: phases run in parallel | Each child validates on its own |
-| 005-doctor-git-ci-runtime | 006-deep-loop-single-executor-dispatch | [Criteria TBD] | [Verification TBD] |
-| 006-deep-loop-single-executor-dispatch | 007-deep-loop-state-and-stop-policy | [Criteria TBD] | [Verification TBD] |
-| 007-deep-loop-state-and-stop-policy | 008-write-containment-scoping | [Criteria TBD] | [Verification TBD] |
-| 008-write-containment-scoping | 009-gate3-and-continuity-root | [Criteria TBD] | [Verification TBD] |
-| 009-gate3-and-continuity-root | 010-validate-and-retrieval-exit-honesty | [Criteria TBD] | [Verification TBD] |
-| 010-validate-and-retrieval-exit-honesty | 011-spec-kit-doc-drift | [Criteria TBD] | [Verification TBD] |
-| 011-spec-kit-doc-drift | 012-hook-guards-and-audit-log | [Criteria TBD] | [Verification TBD] |
-| 012-hook-guards-and-audit-log | 013-agents-md-delivery-budget | [Criteria TBD] | [Verification TBD] |
-| 013-agents-md-delivery-budget | 014-doctor-and-ci-gate-honesty | [Criteria TBD] | [Verification TBD] |
-| 014-doctor-and-ci-gate-honesty | 015-cli-hub-routing-and-classifier | [Criteria TBD] | [Verification TBD] |
-| 015-cli-hub-routing-and-classifier | 016-authoring-hub-manifests-and-drift | [Criteria TBD] | [Verification TBD] |
-| 016-authoring-hub-manifests-and-drift | 017-over-engineering-cuts | [Criteria TBD] | [Verification TBD] |
+| 005-doctor-git-ci-runtime | 006-deep-loop-single-executor-dispatch | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 006-deep-loop-single-executor-dispatch | 007-deep-loop-state-and-stop-policy | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 007-deep-loop-state-and-stop-policy | 008-write-containment-scoping | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 008-write-containment-scoping | 009-gate3-and-continuity-root | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 009-gate3-and-continuity-root | 010-validate-and-retrieval-exit-honesty | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 010-validate-and-retrieval-exit-honesty | 011-spec-kit-doc-drift | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 011-spec-kit-doc-drift | 012-hook-guards-and-audit-log | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 012-hook-guards-and-audit-log | 013-agents-md-delivery-budget | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 013-agents-md-delivery-budget | 014-doctor-and-ci-gate-honesty | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 014-doctor-and-ci-gate-honesty | 015-cli-hub-routing-and-classifier | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 015-cli-hub-routing-and-classifier | 016-authoring-hub-manifests-and-drift | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 016-authoring-hub-manifests-and-drift | 017-over-engineering-cuts | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---
