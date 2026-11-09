@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3b2163f13a3e3ce210b45c281b99f79882dfb61ce3f81d566c15dc0186638e74",
+  "corpusHash": "048a9a1f6b9986ef850125151e95c5f4c8f52bb834a9c4139b10699b555054c1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25896,
+  "includedPathCount": 25902,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25923,12 +25923,18 @@
     "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/plan.md",
     "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/spec.md",
     "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/tasks.md",
     "specs/system-speckit/047-v4-release-line-research/goal.md",
     "specs/system-speckit/047-v4-release-line-research/research/research.md",
     "specs/system-speckit/047-v4-release-line-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3d42cb694a6cbe2587adc6e47b8c19197f6d4f7ad722062a5d0a1dd0bbd913c1",
+  "manifestHash": "667f05a4de593f61d1759164ad1cdd279379ef7ffbaae7325902da17d2b4ebf3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36564,6 +36570,10 @@
     },
     {
       "path": "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/scratch",
       "reason": "excluded directory"
     },
     {

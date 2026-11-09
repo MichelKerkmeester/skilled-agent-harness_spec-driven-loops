@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3d42cb694a6cbe2587adc6e47b8c19197f6d4f7ad722062a5d0a1dd0bbd913c1",
+  "manifestHash": "667f05a4de593f61d1759164ad1cdd279379ef7ffbaae7325902da17d2b4ebf3",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -17660,6 +17660,12 @@
     "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/plan.md",
     "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/spec.md",
     "specs/system-speckit/047-v4-release-line-research/020-operator-approved-closeout/tasks.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/acceptance-criteria.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/decision-record.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/implementation-summary.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/plan.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/spec.md",
+    "specs/system-speckit/047-v4-release-line-research/021-host-root-marker-refresh/tasks.md",
     "specs/system-speckit/047-v4-release-line-research/goal.md",
     "specs/system-speckit/047-v4-release-line-research/research/research.md",
     "specs/system-speckit/047-v4-release-line-research/spec.md"
@@ -47628,7 +47634,7 @@
       17207,
       17400,
       17408,
-      17650
+      17656
     ],
     "completion criteria copied": [
       16192,
@@ -65028,7 +65034,7 @@
       17207,
       17400,
       17408,
-      17650
+      17656
     ],
     "durable fan in failure plan": [
       9237
@@ -75393,7 +75399,7 @@
       17207,
       17400,
       17408,
-      17650
+      17656
     ],
     "goal binding gaps": [
       8171
@@ -79567,6 +79573,24 @@
     ],
     "host repository trigger index mode": [
       17513
+    ],
+    "host root marker refresh": [
+      17654
+    ],
+    "host root marker refresh acceptance criteria": [
+      17650
+    ],
+    "host root marker refresh decisions": [
+      17651
+    ],
+    "host root marker refresh implementation summary": [
+      17652
+    ],
+    "host root marker refresh plan": [
+      17653
+    ],
+    "host root marker refresh tasks": [
+      17655
     ],
     "host trigger index and repin generated": [
       17636
@@ -100678,7 +100702,7 @@
       17207,
       17400,
       17408,
-      17650
+      17656
     ],
     "packet goal authoring boundary": [
       8174
@@ -103358,6 +103382,9 @@
     ],
     "phase 21 fork nudge and precompact guards": [
       5665
+    ],
+    "phase 21 host root marker refresh": [
+      17654
     ],
     "phase 21 implementation summary": [
       5954
@@ -149450,16 +149477,16 @@
       16967
     ],
     "v4 release line research phase parent spec": [
-      17652
+      17658
     ],
     "v4 release line research synthesis": [
-      17651
+      17657
     ],
     "v4 release notes corrections applied": [
       16652
     ],
     "v4 remediation phases": [
-      17651
+      17657
     ],
     "v4 root readme": [
       16887

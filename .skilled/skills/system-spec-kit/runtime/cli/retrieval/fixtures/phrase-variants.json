@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3d42cb694a6cbe2587adc6e47b8c19197f6d4f7ad722062a5d0a1dd0bbd913c1",
+  "manifestHash": "667f05a4de593f61d1759164ad1cdd279379ef7ffbaae7325902da17d2b4ebf3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -57617,6 +57617,24 @@
     "host repository trigger index mode": [
       "host repository trigger index mode"
     ],
+    "host root marker refresh": [
+      "host root marker refresh"
+    ],
+    "host root marker refresh acceptance criteria": [
+      "host root marker refresh acceptance criteria"
+    ],
+    "host root marker refresh decisions": [
+      "host root marker refresh decisions"
+    ],
+    "host root marker refresh implementation summary": [
+      "host root marker refresh implementation summary"
+    ],
+    "host root marker refresh plan": [
+      "host root marker refresh plan"
+    ],
+    "host root marker refresh tasks": [
+      "host root marker refresh tasks"
+    ],
     "host trigger index and repin generated": [
       "host trigger index and repin generated"
     ],
@@ -79660,6 +79678,9 @@
     ],
     "phase 21 fork nudge and precompact guards": [
       "phase 21 fork nudge and precompact guards"
+    ],
+    "phase 21 host root marker refresh": [
+      "phase 21 host root marker refresh"
     ],
     "phase 21 implementation summary": [
       "phase 21 implementation summary"
