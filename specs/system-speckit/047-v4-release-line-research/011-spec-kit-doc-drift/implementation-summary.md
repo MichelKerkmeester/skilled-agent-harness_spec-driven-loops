@@ -1,24 +1,24 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Four spec-kit documents and three command docs now describe the code as it is: no scope-adherence check, no tiered save router, a kill switch that takes `1`, a phase-parent anchor exemption and a strict SOURCE_TAGS exception."
 trigger_phrases:
   - "spec kit doc drift implementation summary"
-importance_tier: "normal"
-contextType: "general"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-spec-kit-doc-drift"
-    last_updated_at: "2026-11-08T23:39:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "system-speckit/047-v4-release-line-research/011-spec-kit-doc-drift"
+    last_updated_at: "2026-11-09T12:00:00Z"
+    last_updated_by: "remediation-orchestrator-b"
+    recent_action: "Closed the phase"
+    next_safe_action: "Commit the phase"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-011-spec-kit-doc-drift"
+      session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 011-spec-kit-doc-drift |
-| **Completed** | 2026-11-08 |
+| **Completed** | 2026-11-09 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +44,63 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Release notes and references stopped promising checks and routers the code never had.
 
 ### Phase 11: spec-kit-doc-drift
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The v4.0.0.0 note now says acceptance coverage is the one new check and that scope adherence did not ship. The v4.0.0.5 note says a phase parent stays exempt from the stricter `ANCHORS_VALID`. The save-workflow reference keeps the eight content categories as the vocabulary validation uses and says plainly that the writer does not classify chunks and ignores `routeAs` and `mergeModeHint`. Both ENV-REFERENCE rows for `SYSTEM_SPEC_GATE_DISABLED` name `1` and explain why the other truthy words are unreliable. The plan, implement and complete commands name the strict SOURCE_TAGS exception phase 010 introduced.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/changelog/skilled/v4.0.0.0.md` | Modified | Scope-adherence paragraph |
+| `.skilled/changelog/skilled/v4.0.0.5.md` | Modified | Phase-parent exemption |
+| `SK/references/memory/save-workflow.md` | Modified | Content Categories section |
+| `SK/runtime/ENV-REFERENCE.md` | Modified | Two kill-switch rows |
+| `.skilled/commands/speckit/plan.md`, `implement.md`, `complete.md` | Modified | Strict exception sentence |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Baselines ran first. Four short DeepSeek V4.1 Flash max briefs (cli-pi) made the edits with literal replacement text. cli-codex `gpt-6-luna` high-fast reviewed the diff read-only against the code and returned PASS with no rows. The orchestrator checked the save writer's real scope against its help text before the last brief.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Document the kill switch as `1` rather than widen the parser | A kill switch's grammar is behaviour; one reliable value is enough |
+| Rewrite the router section rather than delete it | The category names are still the validation vocabulary |
+| Edit released notes in place | The sentences were false when published; the rest of each note is unchanged |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `validate_document.py` on seven docs | Before 6 clean plus ENV-REFERENCE exit 0 with a type-fallback note. After the same |
+| `env-reference-drift.vitest.ts` | Before 5/0. After 5/0 |
+| REQ-001 rg probe | After: no output, exit 1 |
+| Cross-family review | Luna PASS, no rows |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The gate core and the hooks hub still read the kill switch with two grammars.** The docs now name the value both accept; unifying the parsers is a behaviour change for a later phase.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

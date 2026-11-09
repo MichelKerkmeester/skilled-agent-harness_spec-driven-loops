@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.8.0
+version: 1.6.9.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -410,9 +410,9 @@ The save path updates packet docs rather than creating a separate primary sessio
 - packet narrative remains in canonical docs rather than a parallel memory note.
 - recovery begins with `handover.md`, then `_memory.continuity`, then the rest of the packet docs.
 
-### Canonical Save Router
+### Content Categories
 
-The routed save path classifies each canonical chunk into exactly 8 categories:
+Each canonical doc section holds one kind of content. The eight categories below name those kinds, and they are the vocabulary the CROSS_ANCHOR_CONTAMINATION validation check uses when a caller supplies a routing payload.
 
 | Category | Typical target | Notes |
 |----------|----------------|-------|
@@ -423,17 +423,9 @@ The routed save path classifies each canonical chunk into exactly 8 categories:
 | `research_finding` | `research/research.md::findings` | Investigation result or cited evidence |
 | `task_update` | `tasks.md::<phase-anchor>` | Task or checklist mutation |
 | `metadata_only` | `_memory.continuity` | Machine-owned continuity payloads |
-| `drop` | `scratch/pending-route-<hash>.json` via refusal | Transcript/tooling noise that must not merge |
+| `drop` | `not written` | Transcript or tooling noise that belongs in no packet doc |
 
-Routing contract highlights:
-
-- Tier 1 handles structured routes and strong heuristics.
-- Tier 2 uses routing-prototype similarity.
-- Tier 3 is part of the live save handler by default. When `LLM_REFORMULATION_ENDPOINT` is reachable and returns a usable decision, it participates automatically; if that endpoint is unavailable or unusable, the save path falls back to Tier 2 with a confidence penalty when safe, otherwise it refuses to route.
-- Delivery cues are intentionally stronger when the chunk mentions sequencing, gating, rollout, or verification.
-- Handover and drop now split hard transcript/tool telemetry wrappers from softer operational phrases like `git diff`, `list memories`, or `force re-index`.
-- `routeAs` can force a category and keeps the natural decision for audit if the override crosses a natural `drop`.
-- Router context passes `packet_kind` derived from spec metadata first (`type`, `title`, `description`), with parent-phase fallback only when metadata is silent.
+The save writer does not classify chunks. It writes `description.json` and `graph-metadata.json`, and under `--full-auto` the continuity fields; the author writes each section's content into the right doc. It accepts top-level `routeAs` and `mergeModeHint` for compatibility with older payloads and ignores them; there is no tiered router, no LLM reformulation endpoint and no refusal file for dropped chunks.
 
 ### Anchor Tags
 

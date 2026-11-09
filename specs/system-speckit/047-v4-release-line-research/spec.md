@@ -110,7 +110,7 @@ Every write stays inside this packet.
 | 8 | 008-write-containment-scoping/ | Remediation: write containment scoping (scope in `research/research.md`) | Pending |
 | 9 | 009-gate3-and-continuity-root/ | Remediation: gate3 and continuity root (scope in `research/research.md`) | Complete |
 | 10 | 010-validate-and-retrieval-exit-honesty/ | Remediation: validate and retrieval exit honesty (scope in `research/research.md`) | Complete |
-| 11 | 011-spec-kit-doc-drift/ | Remediation: spec kit doc drift (scope in `research/research.md`) | Pending |
+| 11 | 011-spec-kit-doc-drift/ | Remediation: spec kit doc drift (scope in `research/research.md`) | Complete |
 | 12 | 012-hook-guards-and-audit-log/ | Remediation: hook guards and audit log (scope in `research/research.md`) | Pending |
 | 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Pending |
 | 14 | 014-doctor-and-ci-gate-honesty/ | Remediation: doctor and ci gate honesty (scope in `research/research.md`) | Pending |
@@ -122,7 +122,7 @@ Every write stays inside this packet.
 | 8 | 008-write-containment-scoping/ | [Phase 8 scope] | Pending |
 | 9 | 009-gate3-and-continuity-root/ | [Phase 9 scope] | Complete |
 | 10 | 010-validate-and-retrieval-exit-honesty/ | [Phase 10 scope] | Complete |
-| 11 | 011-spec-kit-doc-drift/ | [Phase 11 scope] | Pending |
+| 11 | 011-spec-kit-doc-drift/ | [Phase 11 scope] | Complete |
 | 12 | 012-hook-guards-and-audit-log/ | [Phase 12 scope] | Pending |
 | 13 | 013-agents-md-delivery-budget/ | [Phase 13 scope] | Pending |
 | 14 | 014-doctor-and-ci-gate-honesty/ | [Phase 14 scope] | Pending |

@@ -16,6 +16,7 @@
       "spec kit doc drift plan",
       "spec kit doc drift tasks",
       "spec kit doc drift acceptance criteria",
+      "spec kit doc drift decisions",
       "spec kit doc drift implementation summary"
     ],
     "key_topics": [
@@ -28,18 +29,24 @@
       "tasks",
       "acceptance",
       "criteria",
+      "decisions",
       "implementation",
-      "summary",
-      "yourvaluehere"
+      "summary"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.0.md",
+      ".skilled/changelog/skilled/v4.0.0.5.md",
+      ".skilled/commands/speckit/plan.md",
+      ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
     ],
     "entities": [
       {
@@ -67,19 +74,43 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.0.md",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "v4.0.0.5.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.5.md",
+        "source": "derived"
+      },
+      {
+        "name": "save-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +140,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +158,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +176,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow An",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -155,41 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The v4.0.0.0 note says the completion gate refuses a packet whose changed files fall outside its spec, driven by `SYSTEMSCOPECHANGEDFILES`; no rule or reader exists",
     "created_at": "2026-11-08T23:39:02Z",
-    "last_save_at": "2026-11-08T23:39:08.185Z",
+    "last_save_at": "2026-11-09T03:01:14.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08d0f1afeff9f71c28c87e5956a14543397e7920fab4759bc8e37580252a750d",
+    "source_fingerprint": "sha256:d52c5a26ff1c42ffdcea75bf3a486803b9eb2e79eb209a0158fce62949e2cd8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45a70fabc8e8cf0ccd0b452e690f97f48389211d81d0069282a733274e2a8f81",
-      "plan.md": "31ed612a148454b44d79dd9ea24debe529cb0ba5c87c7cf57d6e69eb969f27ec",
-      "tasks.md": "6d0f8a838a0a7691670d9501b771d7008ef9e8d9986500b3c764bc665b4cc232",
-      "implementation-summary.md": "342e62411fca308fc6974f0229bd2f4e6ad29bf63ef55536be2812fe5f9e666f"
+      "spec.md": "b2f6c2145b1bdcd845cc202ee2b118edd04f2b1f813558c8385a13681385a1f9",
+      "plan.md": "6f14e8ed18d31427ac3f71a09e90ae80c0dd48ac13bfa72274319d1c82d8e172",
+      "tasks.md": "d840e9b34ab5b152853d756bb27fb969e597ec60d92d5d0cb0f3dcf73bb2ab0c",
+      "decision-record.md": "087501ff2c436b73d449fcedd062498054e4cd38424d305124c7e3e2730c1886",
+      "implementation-summary.md": "dcede644f6839b6c20429e97a5217c3b82652ad402988e12903e32a257caf56d"
     },
     "last_active_at": null
   }
