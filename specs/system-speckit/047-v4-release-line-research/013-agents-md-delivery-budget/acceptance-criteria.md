@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/013-agents-md-delivery-budget"
-    last_updated_at: "2026-11-08T23:39:04Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "system-speckit/047-v4-release-line-research/013-agents-md-delivery-budget"
+    last_updated_at: "2026-11-09T12:00:00Z"
+    last_updated_by: "remediation-orchestrator-b"
+    recent_action: "Authored the acceptance criteria"
+    next_safe_action: "Meet the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-013-agents-md-delivery-budget"
+      session_id: "2026-11-09-047-remediation-b"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 40
     open_questions: []
     answered_questions: []
 ---
@@ -35,25 +35,25 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
-**Date:** 2026-11-08
+**Packet:** `013-agents-md-delivery-budget`
+**Level:** 2
+**Status:** Blocked
+**Date:** 2026-11-09
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given AGENTS.md at HEAD, When `agents-md-manifest.cjs --check` runs, Then it exits 0 | Operator step: the only remedy is the manifest write (ADR-002); check still FAIL | Unmet | - |
+| AC-002 | REQ-002 | Given AGENTS.md, When `check-rule-copies.js` runs, Then the last delivery anchor ends at least 512 bytes under 16,384 | Operator step: needs an AGENTS.md body cut (ADR-003); canary still 16,379 | Unmet | - |
+| AC-003 | REQ-003 | Given this phase's decision record, When it is read, Then it names the exact operator step for each finding | ADR-002 and ADR-003 name the command and the edit | Met | - |
 
 ### Status values
 
@@ -77,9 +77,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** No
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+AC-001 and AC-002 wait on the operator steps named in ADR-002 and ADR-003.
 <!-- /ANCHOR:closure -->

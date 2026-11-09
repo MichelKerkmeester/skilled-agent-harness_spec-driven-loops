@@ -112,7 +112,7 @@ Every write stays inside this packet.
 | 10 | 010-validate-and-retrieval-exit-honesty/ | Remediation: validate and retrieval exit honesty (scope in `research/research.md`) | Complete |
 | 11 | 011-spec-kit-doc-drift/ | Remediation: spec kit doc drift (scope in `research/research.md`) | Complete |
 | 12 | 012-hook-guards-and-audit-log/ | Remediation: hook guards and audit log (scope in `research/research.md`) | Complete |
-| 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Pending |
+| 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Blocked |
 | 14 | 014-doctor-and-ci-gate-honesty/ | Remediation: doctor and ci gate honesty (scope in `research/research.md`) | Pending |
 | 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Pending |
 | 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Pending |
@@ -124,7 +124,7 @@ Every write stays inside this packet.
 | 10 | 010-validate-and-retrieval-exit-honesty/ | [Phase 10 scope] | Complete |
 | 11 | 011-spec-kit-doc-drift/ | [Phase 11 scope] | Complete |
 | 12 | 012-hook-guards-and-audit-log/ | [Phase 12 scope] | Complete |
-| 13 | 013-agents-md-delivery-budget/ | [Phase 13 scope] | Pending |
+| 13 | 013-agents-md-delivery-budget/ | [Phase 13 scope] | Blocked |
 | 14 | 014-doctor-and-ci-gate-honesty/ | [Phase 14 scope] | Pending |
 | 15 | 015-cli-hub-routing-and-classifier/ | [Phase 15 scope] | Pending |
 | 16 | 016-authoring-hub-manifests-and-drift/ | [Phase 16 scope] | Pending |

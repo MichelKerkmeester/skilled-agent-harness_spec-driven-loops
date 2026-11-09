@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 13: agents-md-delivery-budget"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The AGENTS.md manifest check fails at HEAD and the Devin 16 KB delivery prefix has five bytes of headroom. Both fixes change the shipped AGENTS.md record or body, which is the operator's to approve, so this phase records the evidence and a concrete proposal and closes Blocked."
 trigger_phrases:
   - "agents md delivery budget"
   - "phase 13 agents md delivery budget"
-importance_tier: "normal"
-contextType: "general"
+importance_tier: "important"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 13: agents-md-delivery-budget
@@ -15,20 +15,19 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Blocked |
 | **Created** | 2026-11-08 |
-| **Branch** | `scaffold/013-agents-md-delivery-budget` |
+| **Branch** | `worktrees/334-v4-release-remediation` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 13 of 17 |
 | **Predecessor** | 012-hook-guards-and-audit-log |
 | **Successor** | 014-doctor-and-ci-gate-honesty |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | The operator runs the manifest write and approves or rejects the AGENTS.md headroom cut |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,33 +37,42 @@ contextType: "general"
 
 This is **Phase 13** of the v4 release line remediation specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Verified findings V48 and V61 and child finding 002 `f-iter009-002`.
 
 **Dependencies**:
-- [To be defined during planning]
+- None upstream. Phase 014 adds a CI step for the manifest check, which stays red until V48 is fixed.
 
 **Deliverables**:
-- [To be defined during planning]
+- Evidence and a decision for each finding, and a proposal the operator can apply in one sitting.
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+`agents-md-manifest.cjs --check` fails because the recorded history body `865f058927ed` is no longer released, and its only remedy is `--write`, which records the current unreleased AGENTS.md body as released. Devin injects the first 16,384 bytes of the 27,587-byte AGENTS.md; the last hard-rule anchor the delivery canary tracks ends at byte 16,379, so the next edit above it breaks the canary.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Leave the operator a decision they can apply without re-measuring anything.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check
+[agents-md-manifest] FAIL: the manifest's derived key does not match AGENTS.md
+[agents-md-manifest]   history: the recorded body 865f058927ed is no longer released
+[agents-md-manifest] Run: node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --write
+
+$ wc -c AGENTS.md
+   27587 AGENTS.md
+
+$ node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
+Delivery prefix (AGENTS.md, end byte <= 16384):
+  16379  #### Blast-Radius Management
+OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 6 extension floor(s) + 2 example output(s)).
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,42 +80,40 @@ This is **Phase 13** of the v4 release line remediation specification.
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Record V48's cause and why its remedy is operator-only.
+- Measure the Devin delivery prefix and record the headroom proposal for V61 and `f-iter009-002`.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Running `agents-md-manifest.cjs --write` - it records an unreleased body as released; the lead reserved it for the operator.
+- Editing the AGENTS.md body - it is the shipped universal template every runtime reads, its release record is the operator-only manifest write, and Devin cannot be run to confirm delivery (quota exhausted).
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| This phase folder only | Modify | Evidence, decisions and the operator proposal |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | `agents-md-manifest.cjs --check` exits 0. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-002 | The delivery canary's last anchor sits at least 512 bytes under 16,384. |
+| REQ-003 | The decision record names the operator step for each finding with the exact command or edit. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -117,81 +123,65 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: After the operator steps, `--check` exits 0 and the canary reports 512 bytes or more of headroom.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Operator approval | Phase stays Blocked | The proposal is ready to apply |
+| Risk | Phase 014's manifest CI step is red until V48 is fixed | Med | 014 records the dependency |
 <!-- /ANCHOR:risks -->
-
----
-
 
 ---
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: N/A: no code change.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Every hard rule stays inside the 16,384-byte Devin prefix.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: The manifest never records a body as released without the operator.
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: N/A.
+- Maximum input: an AGENTS.md edit above the last anchor of more than five bytes breaks the canary today.
+- Failure path: `--write` run by a worker would erase the evidence V48 rests on.
 <!-- /ANCHOR:edge-cases -->
 
 ---
 
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 6/25 | Two artifacts, operator-applied |
+| Risk | 20/25 | Instructions every runtime reads |
+| Research | 4/20 | Evidence from the parent synthesis |
+| **Total** | **30/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- For the operator: apply the headroom cut proposed in `decision-record.md`, then run the manifest write.
 <!-- /ANCHOR:questions -->
 
 ---
-
-
