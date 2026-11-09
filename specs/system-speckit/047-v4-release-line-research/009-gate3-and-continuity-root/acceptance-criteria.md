@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-gate3-and-continuity-root"
+    packet_pointer: "system-speckit/047-v4-release-line-research/009-gate3-and-continuity-root"
     last_updated_at: "2026-11-08T23:39:01Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-gate3-and-continuity-root"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,9 +37,9 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** `009-gate3-and-continuity-root`
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-08
 <!-- /ANCHOR:metadata -->
 
@@ -53,7 +53,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the rebuilt `shared/dist`, When `PROBE` classifies "Update the README and review the result." and "Review the README and update it.", Then both print `true` | `g3probe2.mjs` on rebuilt `shared/dist`: both print `true file_write_match` | Met | - |
+| AC-002 | REQ-002 | Given the rebuilt `shared/dist`, When `PROBE` classifies "review the packet and resume" and "review the packet", Then they print `true` and `false` | probe: `true resume_match` and `false no_match` | Met | - |
+| AC-003 | REQ-003 | Given a working directory outside any repository, When a save runs without `--project-root`, Then it exits non-zero, names `--project-root` and writes nothing in the runtime repository | `generate-context-cli-authority.vitest.ts` passes; manual run from a non-repository dir exits 1 naming `--project-root` | Met | - |
+| AC-004 | REQ-004 | Given the doctor install assets and `validate.sh`, When searched for the CLI writer and the repair command, Then both install files probe `runtime/cli/dist/continuity/generate-context.js` and every `Run:` line in `validate.sh` builds `runtime/cli` | `rg` finds the writer path in both doctor install files; `validate.sh` lines 409, 417, 432 print `npm --prefix .skilled/skills/system-spec-kit run build` | Met | - |
+| AC-005 | REQ-005 | Given a scratch git repository with no `.skilled` tree, When `create.sh --level 1` runs there, Then it creates the folder from the skill's own templates, and `SPECKIT_TEMPLATES_BASE` appears in `ENV-REFERENCE.md` | scratch repo run exit 0 with folder created; `ENV-REFERENCE.md:206` documents the variable | Met | - |
+| AC-006 | REQ-006 | Given the 195-row labeled corpus, When scored after the change, Then agreement is at least 191 and no row that agreed before disagrees | 191/195 after, same four disagreeing ids as before | Met | - |
 
 ### Status values
 
@@ -79,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

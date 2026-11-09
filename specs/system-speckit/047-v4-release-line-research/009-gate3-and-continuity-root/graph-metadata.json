@@ -13,9 +13,12 @@
     "trigger_phrases": [
       "gate3 and continuity root",
       "phase 9 gate3 and continuity root",
+      "gate 3 word order",
+      "project root fallback",
       "gate3 and continuity root plan",
       "gate3 and continuity root tasks",
       "gate3 and continuity root acceptance criteria",
+      "gate3 and continuity root decisions",
       "gate3 and continuity root implementation summary"
     ],
     "key_topics": [
@@ -23,23 +26,38 @@
       "continuity",
       "root",
       "phase",
+      "gate",
+      "word",
+      "order",
+      "project",
+      "fallback",
       "plan",
       "tasks",
-      "acceptance",
-      "criteria",
-      "implementation",
-      "summary",
-      "yourvaluehere",
-      "broken"
+      "acceptance"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/gate-3-classifier.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts",
+      ".skilled/commands/doctor/assets/doctor-install.yaml",
+      "runtime/cli/dist/continuity/generate-context.js",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+      "shared/gate-3-classifier.ts",
+      "runtime/cli/core/config.ts",
+      "runtime/cli/spec/create.sh"
     ],
     "entities": [
       {
@@ -67,19 +85,85 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "gate-3-classifier.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/gate-3-classifier.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context-cli-authority.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "runtime/cli/dist/continuity/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,87 +193,21 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Gate 3 fires for \"Review the README and update it.\" but not for \"Update the README and review the result.\", and a read-only word cancels a resume instruction such as \"review the packet and resume\"",
     "created_at": "2026-11-08T23:39:00Z",
-    "last_save_at": "2026-11-08T23:39:07.940Z",
+    "last_save_at": "2026-11-09T01:51:57.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +215,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8ac4f7de8b98843d1236b6fd8e459b863eacbc887dd5f5d2be70df9e85e303f",
+    "source_fingerprint": "sha256:099f302d74570039f9a9f7cfd89ec35474c1ded4d57e188fa6a7db81897be4e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b269823df3ed847d27e91e34c092205cdff383ab369f4e430de77c040a8cb2d6",
-      "plan.md": "d1121306aebd03ab807133b1e62dca575b53fbd3ee6a8dd0d4b26c18e1c66636",
-      "tasks.md": "6597457c2166d57836891a7edde967f6c4aaa7b5b30844364e040bd701e25fb7",
-      "implementation-summary.md": "3826cc74bdd163c9b8d8e4da1fe3a93c2f9fd0c748ba25349bfd265ae34d6a7e"
+      "spec.md": "8410312d485a4df6e5485f9c72cbb816958e49957d9a24c6be8dc85a29fcc68a",
+      "plan.md": "aaa8328e00113bc012b9e4b6b332bf62758e98897ac6db963f8b85fc994596a2",
+      "tasks.md": "d7c55599fb14bf4d2cc0ad53bc2a678439f8c6f6c263d223496d4d9636bea1b9",
+      "decision-record.md": "26787a6cc3c03914490b11ceef6259293bfd81a52332600bceb74b98c7f675bc",
+      "implementation-summary.md": "33382b2646ea7c632856a8a47ab9206f72aa85f83d0bb35d17197326eb5953fd"
     },
     "last_active_at": null
   }

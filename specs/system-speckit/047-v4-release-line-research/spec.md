@@ -108,7 +108,7 @@ Every write stays inside this packet.
 | 6 | 006-deep-loop-single-executor-dispatch/ | Remediation: deep loop single executor dispatch (scope in `research/research.md`) | Complete |
 | 7 | 007-deep-loop-state-and-stop-policy/ | Remediation: deep loop state and stop policy (scope in `research/research.md`) | Pending |
 | 8 | 008-write-containment-scoping/ | Remediation: write containment scoping (scope in `research/research.md`) | Pending |
-| 9 | 009-gate3-and-continuity-root/ | Remediation: gate3 and continuity root (scope in `research/research.md`) | Pending |
+| 9 | 009-gate3-and-continuity-root/ | Remediation: gate3 and continuity root (scope in `research/research.md`) | Complete |
 | 10 | 010-validate-and-retrieval-exit-honesty/ | Remediation: validate and retrieval exit honesty (scope in `research/research.md`) | Pending |
 | 11 | 011-spec-kit-doc-drift/ | Remediation: spec kit doc drift (scope in `research/research.md`) | Pending |
 | 12 | 012-hook-guards-and-audit-log/ | Remediation: hook guards and audit log (scope in `research/research.md`) | Pending |
@@ -120,7 +120,7 @@ Every write stays inside this packet.
 | 6 | 006-deep-loop-single-executor-dispatch/ | [Phase 6 scope] | Pending |
 | 7 | 007-deep-loop-state-and-stop-policy/ | [Phase 7 scope] | Pending |
 | 8 | 008-write-containment-scoping/ | [Phase 8 scope] | Pending |
-| 9 | 009-gate3-and-continuity-root/ | [Phase 9 scope] | Pending |
+| 9 | 009-gate3-and-continuity-root/ | [Phase 9 scope] | Complete |
 | 10 | 010-validate-and-retrieval-exit-honesty/ | [Phase 10 scope] | Pending |
 | 11 | 011-spec-kit-doc-drift/ | [Phase 11 scope] | Pending |
 | 12 | 012-hook-guards-and-audit-log/ | [Phase 12 scope] | Pending |

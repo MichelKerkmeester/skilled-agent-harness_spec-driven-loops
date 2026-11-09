@@ -24,7 +24,7 @@ The Skilled checkout is the repository this command runs in. The runtimes load t
 
 | Build | Check, run from the checkout root | Built when |
 |-------|-----------------------------------|------------|
-| Spec Kit | `test -d .skilled/skills/system-spec-kit/runtime/dist` | exit 0 |
+| Spec Kit | `test -d .skilled/skills/system-spec-kit/runtime/dist && test -f .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` | exit 0 |
 | Skill Advisor | `node .skilled/bin/skill-advisor.cjs list-tools --format json` | exit 0 |
 
 Render both lines, then carry on either way: a missing build never stops the guide.
@@ -32,7 +32,7 @@ Render both lines, then carry on either way: a missing build never stops the gui
 ```text
 DOCTOR INSTALL — BUILDS
 Source: [the Skilled checkout]
-Spec Kit build: [found at .skilled/skills/system-spec-kit/runtime/dist | missing]
+Spec Kit build: [found at .skilled/skills/system-spec-kit/runtime/dist and runtime/cli/dist/continuity/generate-context.js | missing]
 Advisor CLI: [answers list-tools | missing or not built]
 ```
 

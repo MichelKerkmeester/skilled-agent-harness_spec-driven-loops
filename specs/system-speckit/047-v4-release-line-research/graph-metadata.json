@@ -218,7 +218,7 @@
     ],
     "causal_summary": "Nineteen releases shipped between v4.0.0.0 (2026-09-21) and v4.0.2.0 (2026-11-08): 3,687 commits across spec kit, the authoring hubs, the CLI executors, the deep loops, the skill advisor, hooks, doctor commands and git tooling",
     "created_at": "2026-11-08T19:49:04Z",
-    "last_save_at": "2026-11-09T01:27:06.743Z",
+    "last_save_at": "2026-11-09T01:51:56.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,10 +226,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6d119e85d86333f789d410efa74b52d8257b26f3b2d9b8b9cf9b087a176f547f",
+    "source_fingerprint": "sha256:1ac1f69802b15a5d76d01d14841886a5d8fadea5695f618ade188e7a675d70de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "794989f1c235c2ff21f6b1682a2e0aba3710572938f49fd64db4b8cde1ee7bf8",
+      "spec.md": "06f243e3ed498171bfbbfca3e1519fa17adfe2a73d132401a5c6d7d418349890",
       "research/research.md": "12682bd016fa7179f71e23cffa6aa65f5ae689e6a331bd86649f58576f8b4a55"
     },
     "last_active_child_id": "system-speckit/047-v4-release-line-research/003-cli-and-deep-loop",
