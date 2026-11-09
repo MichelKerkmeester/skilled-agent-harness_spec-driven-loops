@@ -300,6 +300,31 @@ describe('OpenCode version resolution', () => {
 });
 
 describe('OpenCode lineage builders', () => {
+  it('returns empty stdin input for both OpenCode versions', () => {
+    const v1BinDir = createTempDirectory();
+    writeVersionStub(v1BinDir, 'opencode', VERSION_1_OUTPUT);
+    const v1Result = fanoutRun.buildLineageCommand(
+      { kind: 'cli-opencode', model: MODEL, reasoningEffort: EFFORT },
+      PROMPT,
+      'danger-full-access',
+      'bypassPermissions',
+      { env: envWithPath(v1BinDir) },
+    );
+
+    const v2BinDir = createTempDirectory();
+    writeVersionStub(v2BinDir, 'opencode2', VERSION_2_OUTPUT);
+    const v2Result = fanoutRun.buildLineageCommand(
+      { kind: 'cli-opencode', model: MODEL, reasoningEffort: EFFORT },
+      PROMPT,
+      'danger-full-access',
+      'bypassPermissions',
+      { env: envWithPath(v2BinDir) },
+    );
+
+    expect(v1Result.input).toBe('');
+    expect(v2Result.input).toBe('');
+  });
+
   it('D1 preserves the cli-opencode v1 argv', () => {
     const binDir = createTempDirectory();
     writeVersionStub(binDir, 'opencode', VERSION_1_OUTPUT);

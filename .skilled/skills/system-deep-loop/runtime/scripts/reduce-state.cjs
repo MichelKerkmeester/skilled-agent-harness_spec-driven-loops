@@ -13,6 +13,7 @@ const path = require('node:path');
 const { emitResourceMap } = require('../../shared/synthesis/resource-map.cjs');
 const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-root.cjs');
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
+const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -2007,8 +2008,13 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
 }
 
 function renderDashboard(config, registry, iterationRecords, iterationFiles) {
-  const latestIteration = iterationRecords.filter((record) => record.type === 'iteration').at(-1);
-  const ratios = iterationRecords
+  const dashboardIterationRecords = latestIterationRecords(iterationRecords.map((record) => (
+    record?.type === 'iteration'
+      ? { ...record, iteration: record.run ?? record.iteration }
+      : record
+  )));
+  const latestIteration = dashboardIterationRecords.filter((record) => record.type === 'iteration').at(-1);
+  const ratios = dashboardIterationRecords
     .filter((record) => record.type === 'iteration')
     .map((record) => (typeof record.newFindingsRatio === 'number' ? record.newFindingsRatio : null))
     .filter((value) => value !== null);
@@ -2027,7 +2033,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
       : 'PASS';
   const hasAdvisories = verdict === 'PASS' && severity.P2 > 0;
 
-  const progressRows = iterationRecords
+  const progressRows = dashboardIterationRecords
     .filter((record) => record.type === 'iteration')
     .map((record) => {
       const dimensions = Array.isArray(record.dimensions) ? record.dimensions.join('/') : '-';
@@ -2068,7 +2074,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
     `- Review Target: ${config.reviewTarget || '[Unknown target]'} (${config.reviewTargetType || 'unknown'})`,
     `- Started: ${config.createdAt || '[Unknown start]'}`,
     `- Status: ${registry.status || String(config.status || 'initialized').toUpperCase()}`,
-    `- Iteration: ${iterationRecords.filter((record) => record.type === 'iteration').length} of ${config.maxIterations || 0}`,
+    `- Iteration: ${dashboardIterationRecords.filter((record) => record.type === 'iteration').length} of ${config.maxIterations || 0}`,
     `- Provisional Verdict: ${verdict}`,
     `- hasSearchDebt: ${hasSearchDebt}`,
     `- hasAdvisories: ${hasAdvisories}`,

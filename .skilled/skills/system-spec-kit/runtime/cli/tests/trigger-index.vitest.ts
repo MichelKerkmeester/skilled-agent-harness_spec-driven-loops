@@ -337,8 +337,9 @@ describe('walkCorpus', () => {
     writeDoc(root, 'specs/track/notes.txt', 'ignored');
     writeDoc(root, 'specs/track/z_archive/old.md', frontmatter(['archived']));
     writeDoc(root, 'specs/track/scratch/tmp.md', frontmatter(['scratch']));
-    writeDoc(root, 'specs/track/research/lineages/run/iter.md', frontmatter(['lineage']));
-    writeDoc(root, 'specs/track/research/synthesis.md', frontmatter(['kept']));
+    writeDoc(root, 'specs/track/001-p/research/lineages/run/iter.md', frontmatter(['lineage']));
+    writeDoc(root, 'specs/track/001-p/research/iterations/iteration-001.md', frontmatter(['iteration']));
+    writeDoc(root, 'specs/track/001-p/research/research.md', frontmatter(['kept']));
     writeDoc(root, '.skilled/skills/demo/SKILL.md', frontmatter(['skill']));
     writeDoc(root, '.skilled/skills/demo/node_modules/pkg/readme.md', frontmatter(['vendored']));
 
@@ -346,8 +347,8 @@ describe('walkCorpus', () => {
 
     expect(files).toEqual([
       '.skilled/skills/demo/SKILL.md',
+      'specs/track/001-p/research/research.md',
       'specs/track/a.md',
-      'specs/track/research/synthesis.md',
     ]);
   });
 
@@ -913,10 +914,13 @@ describe('lookup --scoring-only', () => {
     return { answer: JSON.parse(run.stdout), status: run.status };
   }
 
-  it('returns only the scoring rows and exits 0 when the prompt scores', () => {
-    const scored = runLookup(fixtureIndexPath(), 'Spec folder question', ['--scoring-only']);
+  it('exits 0 when a real phrase scores', () => {
+    const indexPath = fixtureIndexPath();
+    const scored = runLookup(indexPath, 'Spec folder question', ['--scoring-only']);
+    const unfiltered = runLookup(indexPath, 'Spec folder question');
 
     expect(scored.status).toBe(0);
+    expect(unfiltered.status).toBe(0);
     expect(scored.answer.results.map((r: { matchClass: string; path: string }) => [r.matchClass, r.path])).toEqual([
       ['exact', 'specs/track/exact.md'],
       ['token-overlap', 'specs/track/overlap.md'],
@@ -931,10 +935,10 @@ describe('lookup --scoring-only', () => {
     expect(missed.answer.truncated).toBe(false);
   });
 
-  it('keeps the score-0 row and exit 0 for the same miss without the flag', () => {
+  it('keeps the score-0 row but exits 1 for a miss without the flag', () => {
     const unflagged = runLookup(fixtureIndexPath(), 'cified drift zone');
 
-    expect(unflagged.status).toBe(0);
+    expect(unflagged.status).toBe(1);
     expect(unflagged.answer.results.map((r: { matchClass: string; path: string; score: number }) => [r.matchClass, r.path, r.score]))
       .toEqual([['partial', 'specs/other/midword.md', 0]]);
   });

@@ -4,7 +4,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, symlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -45,7 +45,7 @@ const {
       rejectedPattern: string;
     }>;
   };
-  emitFanoutResourceMap: (specFolder: string, options?: { write?: boolean }) => {
+  emitFanoutResourceMap: (specFolder: string, options?: { write?: boolean; requireExistingState?: boolean }) => {
     resourceMap: string | null;
     resourceMapPath: string;
     resourceMapSkipped: boolean;
@@ -388,6 +388,78 @@ describe('deep-research reduce-state recovery gate', () => {
     );
   });
 
+  it('refuses a corrupt delta in validate-existing-state mode', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({ type: 'iteration', run: 1, status: 'complete' })}\n`);
+    writeDeltaRows(specFolder, 'iter-001.jsonl', [
+      { type: 'iteration', iteration: 1, run: 1, status: 'complete' },
+    ]);
+    appendFileSync(join(specFolder, 'research', 'deltas', 'iter-001.jsonl'), 'not-json\n', 'utf8');
+
+    try {
+      reduceResearchState(specFolder, { write: false, requireExistingState: true });
+      throw new Error('Expected recovery refusal');
+    } catch (error: unknown) {
+      expect(error).toBeInstanceOf(Error);
+      expect((error as { code?: string }).code).toBe('STATE_RECOVERY_REFUSED');
+      expect((error as { reason?: string }).reason).toBe('corrupt delta');
+      expect((error as { stateLogPath?: string }).stateLogPath)
+        .toBe(realpathSync(join(specFolder, 'research', 'deltas', 'iter-001.jsonl')));
+      expect((error as { corruptionWarnings?: unknown[] }).corruptionWarnings).toHaveLength(1);
+    }
+  });
+
+  it('drops corrupt delta rows in lenient mode while preserving valid rows', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({ type: 'iteration', run: 1, status: 'complete' })}\n`);
+    writeDeltaRows(specFolder, 'iter-001.jsonl', [
+      { type: 'iteration', iteration: 1, run: 1, status: 'complete', focus: 'valid delta' },
+    ]);
+    appendFileSync(join(specFolder, 'research', 'deltas', 'iter-001.jsonl'), 'not-json\n', 'utf8');
+    const warning = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    const result = reduceResearchState(specFolder, { write: false, lenient: true });
+
+    expect(warning).toHaveBeenCalledWith(expect.stringContaining('skipped 1 malformed delta row'));
+    expect(result.dashboard).toContain('valid delta');
+    expect(result.registry.metrics?.iterationsCompleted).toBe(1);
+    expect(result.dashboard).not.toContain('null');
+  });
+
+  it('refuses corrupt lineage deltas when required and drops them otherwise', () => {
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    writeFileSync(
+      join(researchDir, 'deep-research-config.json'),
+      `${JSON.stringify({ topic: 'Lineage delta', resource_map: { emit: true } }, null, 2)}\n`,
+      'utf8',
+    );
+    const deltaPath = join(researchDir, 'lineages', 'alpha', 'deltas', 'iter-001.jsonl');
+    mkdirSync(dirname(deltaPath), { recursive: true });
+    writeFileSync(
+      deltaPath,
+      `${JSON.stringify({ type: 'iteration', iteration: 1, sourcesQueried: ['valid-source.md'] })}\nnot-json\n`,
+      'utf8',
+    );
+
+    try {
+      emitFanoutResourceMap(specFolder, { write: true, requireExistingState: true });
+      throw new Error('Expected recovery refusal');
+    } catch (error: unknown) {
+      expect(error).toBeInstanceOf(Error);
+      expect((error as { code?: string }).code).toBe('STATE_RECOVERY_REFUSED');
+      expect((error as { reason?: string }).reason).toBe('corrupt delta');
+      expect((error as { stateLogPath?: string }).stateLogPath).toBe(realpathSync(deltaPath));
+    }
+
+    const warning = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const result = emitFanoutResourceMap(specFolder, { write: false });
+
+    expect(warning).toHaveBeenCalledWith(expect.stringContaining('lineages/alpha/deltas/iter-001.jsonl'));
+    expect(result.resourceMap).toContain('valid-source.md');
+    expect(result.resourceMap).not.toContain('null');
+  });
+
   it('leaves the legitimate fresh reducer path unchanged when validation is not requested', () => {
     const specFolder = makeTempSpec();
     writeState(specFolder, '');
@@ -416,6 +488,23 @@ describe('deep-research reduce-state recovery gate', () => {
 
     expect(result.dashboard).toContain('| # | Focus | Track | Ratio | Findings | Status | Log Offset | Log Size | Log Path |');
     expect(result.dashboard).toContain('| 1 | offset metadata | - | 0.40 | 1 | complete | 34 | 211 | /tmp/research/deep-research-state.jsonl |');
+  });
+
+  it('counts duplicated iteration rows once and selects the highest run as latest', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, [
+      { type: 'iteration', run: 1, status: 'complete', focus: 'first attempt', newInfoRatio: 0.2 },
+      { type: 'iteration', run: 2, status: 'complete', focus: 'highest run', newInfoRatio: 0.6 },
+      { type: 'iteration', run: 1, status: 'complete', focus: 'redispatched attempt', newInfoRatio: 0.4 },
+    ].map((record) => JSON.stringify(record)).join('\n') + '\n');
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.registry.metrics.iterationsCompleted).toBe(2);
+    expect(result.registry.metrics.convergenceScore).toBe(0.6);
+    expect(result.dashboard).toContain('| 2 | highest run | - | 0.60 | 0 | complete |');
+    expect(result.dashboard).not.toContain('first attempt');
+    expect(result.dashboard).toContain('redispatched attempt');
   });
 
   it('promotes inbox questions with provenance into registry, strategy, and dashboard output', () => {

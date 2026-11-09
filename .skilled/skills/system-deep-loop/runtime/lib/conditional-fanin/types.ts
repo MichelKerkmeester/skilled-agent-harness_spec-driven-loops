@@ -13,10 +13,6 @@ import type {
 import type {
   LeafResultPayload,
 } from '../result-envelopes/index.js';
-import type {
-  ProjectedBranch,
-  ProjectedLease,
-} from '../branch-leases-waves/index.js';
 import type { JsonObject } from '../event-envelope/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -77,6 +73,29 @@ export type OutstandingExecutionState =
   | 'reserved-not-started'
   | 'running'
   | 'terminal';
+
+/**
+ * Registration fields fan-in ordering and lineage correlation read.
+ * Declared here so this module carries no dependency on a branch orchestrator
+ * whose projections it only reads structurally.
+ */
+export interface ProjectedBranchRegistration extends JsonObject {
+  readonly logical_branch_id: string;
+  readonly manifest_fingerprint: string;
+}
+
+/** Structural view of one branch's durable projection, narrowed to the fields read here. */
+export interface ProjectedBranch extends JsonObject {
+  readonly registration: ProjectedBranchRegistration;
+}
+
+/** Structural view of a branch lease, narrowed to the bookkeeping fields read here. */
+export interface ProjectedLease extends JsonObject {
+  readonly logicalBranchId: string;
+  readonly leaseId: string;
+  readonly fenceToken: number;
+  readonly status: 'active' | 'released';
+}
 
 export interface OutstandingBranchAtCut {
   readonly branch: ProjectedBranch;

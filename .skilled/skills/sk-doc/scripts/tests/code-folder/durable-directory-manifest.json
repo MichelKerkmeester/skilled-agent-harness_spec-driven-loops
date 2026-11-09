@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 924,
+  "derived_count": 922,
   "directories": [
     ".",
     ".claude",
@@ -545,7 +545,6 @@
     ".skilled/skills/sk-design/benchmark",
     ".skilled/skills/sk-design/shared/scripts",
     ".skilled/skills/sk-design/sk-design-chart",
-    ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts",
     ".skilled/skills/sk-design/sk-design-chart/assets/templates",
     ".skilled/skills/sk-design/sk-design-chart/references",
     ".skilled/skills/sk-design/sk-design-chart/scripts",
@@ -671,7 +670,6 @@
     ".skilled/skills/system-deep-loop/runtime/lib/authority-root",
     ".skilled/skills/system-deep-loop/runtime/lib/authorized-ledger",
     ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication",
-    ".skilled/skills/system-deep-loop/runtime/lib/branch-leases-waves",
     ".skilled/skills/system-deep-loop/runtime/lib/claim-continuity",
     ".skilled/skills/system-deep-loop/runtime/lib/conditional-fanin",
     ".skilled/skills/system-deep-loop/runtime/lib/contradiction-supersession",

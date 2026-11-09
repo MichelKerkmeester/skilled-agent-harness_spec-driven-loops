@@ -266,13 +266,31 @@ function wordsMeet(left, right) {
   return shorter.length >= 4 && longer.startsWith(shorter);
 }
 
+// A three-letter stem and the silent-e form contentWords adds beside it name one
+// concept, so coverage scores them as one unit: met when either form meets an
+// item word, counted once in the denominator. Scoring them apart let the token
+// added to rescue a match also enlarge the set being divided by, so the bullets
+// the pair was meant to rescue could still fall under the threshold.
+function coverageUnits(words) {
+  const units = [];
+  const claimed = new Set();
+  for (const word of words) {
+    if (claimed.has(word)) continue;
+    const forms = word.length === 3 && words.has(`${word}e`) ? [word, `${word}e`] : [word];
+    for (const form of forms) claimed.add(form);
+    units.push(forms);
+  }
+  return units;
+}
+
 function coverage(bulletWords, itemWords) {
   if (bulletWords.size === 0) return 1;
+  const units = coverageUnits(bulletWords);
   let met = 0;
-  for (const word of bulletWords) {
-    if ([...itemWords].some((other) => wordsMeet(word, other))) met += 1;
+  for (const forms of units) {
+    if ([...itemWords].some((other) => forms.some((form) => wordsMeet(form, other)))) met += 1;
   }
-  return met / bulletWords.size;
+  return met / units.length;
 }
 
 function summarize(problems) {

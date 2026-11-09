@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.8.0
+version: 1.6.9.0
 ---
 
 # Folder Structure Reference
@@ -400,34 +400,29 @@ specs/billing/
 
 ## 7. HOST REPOSITORY TRIGGER INDEX
 
-The packaged index at `runtime/data/trigger-index.json` is the default every lookup reads. A host repository that vendors Skilled can build an index over its own docs at `.speckit-index/trigger-index.json`. Nothing selects that file on its own, so the host passes it with `--index`.
+The packaged index at `runtime/data/trigger-index.json` describes the framework's own documents. A host repository that vendors Skilled keeps its own index at `.speckit-index/trigger-index.json`, and both scripts select it automatically when they run from the host root: a bare lookup reads it, and a bare generation writes it with the three sidecars beside it. The packaged artifact stays the default everywhere else, including this repository's own checkout, and an explicit `--index` or `--out` still wins.
 
 Generate from the host root:
 
 ```bash
-node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
-  --repo-root . \
-  --out .speckit-index/trigger-index.json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 ```
 
 Call it from the host's Gate 1 lookup:
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
-  --index .speckit-index/trigger-index.json \
   --json -- "<prompt>"
 ```
 
-Exit `0` means candidates, `1` a clean miss and `2` a bad invocation or an unreadable index. `--out` alone writes the corpus manifest, diagnostics and phrase variants beside the index. Check freshness against the same file:
+Exit `0` means candidates, `1` a clean miss and `2` a bad invocation or an unreadable index. The lookup's `source` line names the file it read. `--out` alone writes the corpus manifest, diagnostics and phrase variants beside the index, which is what the host default does. Check freshness against the same file:
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
-  --check \
-  --repo-root . \
-  --out .speckit-index/trigger-index.json
+  --check
 ```
 
-Without `--index`, the lookup keeps reading the packaged index.
+Outside a host repository, a bare lookup keeps reading the packaged index.
 
 ---
 

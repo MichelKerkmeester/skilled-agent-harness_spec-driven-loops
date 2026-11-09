@@ -728,11 +728,22 @@ function hasMixedWriteTail(
 
     for (const writeEntry of writeMatches) {
       const writeIndex = triggerIndex(writeEntry, normalized);
-      if (writeIndex <= readIndex) {
+      if (writeIndex < 0) {
         continue;
       }
 
-      const between = normalized.slice(readIndex + readOnlyEntry.pattern.length, writeIndex);
+      const followingReadOnly = readOnlyMatches.some((entry) => triggerIndex(entry, normalized) > writeIndex);
+      const writePrefix = normalized.slice(0, writeIndex);
+      const instructionPosition = /^(?:please\s+)?$/.test(writePrefix)
+        || /(?:\band\b|\bthen\b|[,;])\s*$/.test(writePrefix);
+      if (followingReadOnly && !instructionPosition) {
+        continue;
+      }
+
+      const readEndsFirst = readIndex < writeIndex;
+      const between = readEndsFirst
+        ? normalized.slice(readIndex + readOnlyEntry.pattern.length, writeIndex)
+        : normalized.slice(writeIndex + writeEntry.pattern.length, readIndex);
       if (/\b(then|and|if)\b/.test(between) || between.includes(',')) {
         return true;
       }
@@ -744,6 +755,12 @@ function hasMixedWriteTail(
 
 function hasWorkflowInvocationMarker(normalized: string): boolean {
   return /\b(run|use|start|begin|continue|resume|append|kick off|keep|launch)\b/.test(normalized);
+}
+
+function hasResumeInvocationMarker(normalized: string): boolean {
+  return /^\s*(?:please\s+)?resume\b/.test(normalized)
+    || /\bthen\s+resume\b/.test(normalized)
+    || /(?:^|[.!?])[^,]*\band\s+resume\b/.test(normalized);
 }
 
 function hasNegatedWriteAction(normalized: string, writeMatches: TriggerEntry[]): boolean {
@@ -782,14 +799,17 @@ function isPromptOnlyGeneration(normalized: string): boolean {
  * Classify a prompt against the Gate 3 trigger vocabulary.
  *
  * Decision order:
- * 1. Test positive triggers (file_write, memory_save, resume).
- * 2. If a resume or memory_save trigger matches → Gate 3 ALWAYS required
- *    (read_only disqualifiers cannot override).
- * 3. If only file_write triggers match:
+ * 1. Detect positive triggers and read-only disqualifiers.
+ * 2. Suppress negated file-write actions and prompt-only generation.
+ * 3. A memory_save trigger always requires Gate 3.
+ * 4. An instruction-position resume marker always requires Gate 3. Otherwise,
+ *    a read-only disqualifier suppresses a resume trigger unless a workflow
+ *    invocation marker or mixed write tail establishes an instruction.
+ * 5. If only file_write triggers match:
  *    a. If any read_only disqualifier matches AND no file_write token is
  *       explicitly paired with a file target, Gate 3 is SUPPRESSED.
  *    b. Otherwise Gate 3 is required.
- * 4. If no positive trigger matches → Gate 3 not required.
+ * 6. If no positive trigger matches → Gate 3 not required.
  */
 function classifyPromptCore(prompt: string): CoreClassificationResult {
   const normalized = normalizePrompt(prompt);
@@ -814,6 +834,8 @@ function classifyPromptCore(prompt: string): CoreClassificationResult {
       hasResume = true;
     }
   }
+  const hasResumeInstruction = hasResumeInvocationMarker(normalized);
+  hasResume ||= hasResumeInstruction;
   for (const entry of FILE_WRITE_TRIGGERS) {
     if (matchesEntry(entry, normalized, tokens)) {
       matched.push(entry);
@@ -828,15 +850,22 @@ function classifyPromptCore(prompt: string): CoreClassificationResult {
 
   const fileWriteMatched = matched.filter((entry) => entry.category === 'file_write');
   const hasRecoverableMixedWriteTail = hasMixedWriteTail(normalized, fileWriteMatched, readOnlyMatched);
-  if (hasFileWrite && (hasNegatedWriteAction(normalized, fileWriteMatched) || isPromptOnlyGeneration(normalized))) {
+  if (hasFileWrite && hasNegatedWriteAction(normalized, fileWriteMatched)) {
     return { triggersGate3: false, reason: readOnlyMatched.length > 0 ? 'read_only_override' : 'no_match', matched, readOnlyMatched };
   }
 
-  // Memory save / resume: Gate 3 ALWAYS required (writes produced regardless).
+  if (hasFileWrite && isPromptOnlyGeneration(normalized)) {
+    return { triggersGate3: false, reason: readOnlyMatched.length > 0 ? 'read_only_override' : 'no_match', matched, readOnlyMatched };
+  }
+
+  // Memory saves produce files, so read-only language cannot cancel them.
   if (hasMemorySave) {
     return { triggersGate3: true, reason: 'memory_save_match', matched, readOnlyMatched };
   }
   if (hasResume) {
+    if (hasResumeInstruction) {
+      return { triggersGate3: true, reason: 'resume_match', matched, readOnlyMatched };
+    }
     if (readOnlyMatched.length > 0 && !hasWorkflowInvocationMarker(normalized) && !hasRecoverableMixedWriteTail) {
       return { triggersGate3: false, reason: hasFileWrite ? 'read_only_override' : 'no_match', matched, readOnlyMatched };
     }

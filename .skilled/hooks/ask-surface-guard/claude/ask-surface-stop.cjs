@@ -2,8 +2,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Claude Ask Surface Stop Guard
 // ───────────────────────────────────────────────────────────────────
-// Synchronous on purpose: only a Stop hook that runs before the turn closes
-// can return {decision:"block"}, and that is the one seam that makes Claude
+// Only a Stop hook that runs before the turn closes can return {decision:"block"},
+// and that is the one seam that makes Claude
 // re-ask a prose menu through AskUserQuestion. Subagents never fire Stop, so
 // a session without the tool never reaches this file.
 'use strict';
@@ -13,6 +13,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 const { readFileSync } = require('node:fs');
+const { readStdin: readHookStdin } = require('../../shared/hook-adapter-shared.cjs');
 
 const core = require('../lib/ask-surface-core.cjs');
 
@@ -78,9 +79,9 @@ function readTurn(entries) {
 // 3. MAIN
 // ───────────────────────────────────────────────────────────────────
 
-function readStdin() {
+async function readStdin() {
   try {
-    return readFileSync(0, 'utf8');
+    return await readHookStdin();
   } catch {
     return '';
   }
@@ -107,11 +108,11 @@ function evaluate(payload) {
   return { decision: 'block', reason: core.repromptFor('claude') };
 }
 
-function main() {
+async function main() {
   if (isHookEnabled(core.CONCERN) === false) return;
   let payload;
   try {
-    payload = JSON.parse(readStdin());
+    payload = JSON.parse(await readStdin());
   } catch {
     return;
   }
@@ -124,12 +125,11 @@ function main() {
 // ───────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
-  try {
-    main();
-  } catch (error) {
+  main().catch((error) => {
     // A guard failure must end the turn normally, never block it.
     process.stderr.write(`ask-surface-stop: ${error instanceof Error ? error.message : String(error)}\n`);
-  }
+    process.exitCode = 0;
+  });
   process.exitCode = 0;
 }
 

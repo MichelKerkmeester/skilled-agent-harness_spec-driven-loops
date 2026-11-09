@@ -299,6 +299,9 @@ export function createDeepResearchProjectionContract(
           status: typeof data.status === 'string' ? data.status : 'complete',
           newInfoRatio: typeof data.rawNewInfoRatio === 'number' ? data.rawNewInfoRatio : 0,
           ruledOut: Array.isArray(data.ruledOutApproachRefs) ? data.ruledOutApproachRefs : [],
+          focus: typeof data.focus === 'string' ? data.focus : '',
+          mode: 'research',
+          answeredQuestions: Array.isArray(data.answeredQuestions) ? data.answeredQuestions : [],
           timestamp: occurredAt,
         };
       } else if (stem === 'deep_research.convergence_blocked') {

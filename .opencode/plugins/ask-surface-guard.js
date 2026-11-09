@@ -34,15 +34,28 @@ function sessionIdFromEvent(event) {
  * Read the current turn: everything after the last user message.
  *
  * @param {Array<object>} entries - Session messages, oldest first, each `{info, parts}`.
- * @returns {{lastMessage: string, askToolCalled: boolean, messageId: string|null}} What the turn held.
+ * @returns {{lastMessage: string, askToolCalled: boolean, messageId: string|null, operatorKey: string|null}} What the turn held.
  */
 export function readTurn(entries) {
   const list = Array.isArray(entries) ? entries : [];
   let start = 0;
+  let operatorKey = null;
   for (let index = list.length - 1; index >= 0; index -= 1) {
-    if (list[index]?.info?.role === 'user') { start = index + 1; break; }
+    if (list[index]?.info?.role === 'user') {
+      const entry = list[index];
+      const parts = Array.isArray(entry.parts) ? entry.parts : [];
+      if (parts.some((part) => part?.synthetic === true || part?.ignored === true)) continue;
+      const content = parts
+        .filter((part) => part?.type === 'text' && typeof part.text === 'string')
+        .map((part) => part.text)
+        .join('\n');
+      if (content.trim() === core.repromptFor('opencode').trim()) continue;
+      operatorKey = entry.info.id || `${index}:${content}`;
+      start = index + 1;
+      break;
+    }
   }
-  const result = { lastMessage: '', askToolCalled: false, messageId: null };
+  const result = { lastMessage: '', askToolCalled: false, messageId: null, operatorKey };
   for (const entry of list.slice(start)) {
     if (entry?.info?.role !== 'assistant') continue;
     const parts = Array.isArray(entry.parts) ? entry.parts : [];
@@ -97,9 +110,8 @@ export async function AskSurfaceGuardPlugin(ctx, options = {}) {
 
         const turn = readTurn(await fetchMessages(client, sessionID));
         if (core.evaluateTurn(turn).verdict !== 'fire') return;
-        // Keyed on the message, so the turn this plugin starts is judged on
-        // its own reply and the same reply is never sent back twice.
-        if (!core.markTurn(projectDir, `opencode:${sessionID}:${turn.messageId || turn.lastMessage}`, options.markerDir)) return;
+        const operatorKey = turn.operatorKey || `unknown:${turn.messageId || turn.lastMessage}`;
+        if (!core.markTurn(projectDir, `opencode:${sessionID}:${operatorKey}`, options.markerDir)) return;
 
         core.recordFire(projectDir, { runtime: 'opencode', mode: 'reprompt' });
         await client.session.promptAsync({

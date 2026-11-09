@@ -120,6 +120,7 @@ describe('prompt-pack', () => {
       research_topic: 'Deep loop coverage',
       current_iteration: 2,
       max_iterations: 5,
+      max_tool_calls_per_iteration: 24,
       next_focus: 'Graph event capture',
       remaining_questions_list: '- Q1\n- Q2',
       carried_forward_open_questions: '- Runtime helper ownership? (iteration 1)',
@@ -156,6 +157,7 @@ describe('prompt-pack', () => {
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');
+    expect(researchRendered).toContain('Max 24 tool calls total.');
     expect(researchRendered).toContain('put the finding statement there');
     expect(researchRendered).toContain('NO OPERATOR IS PRESENT');
     expect(researchRendered).toContain('WRITE UNDER THE LINEAGE DIRECTORY');

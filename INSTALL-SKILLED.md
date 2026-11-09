@@ -114,7 +114,7 @@ The guide writes nothing. It prints the steps below with your paths filled in.
 | 1 | `/doctor:symlink link --root <dir> --runtimes <list> --mode auto` | the checkout | Links `.skilled` and your runtime folders into the project |
 | 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md`. Skip it if you chose `link` |
 | 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode, the bridge your runtime uses to call MCP tools |
-| 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings |
+| 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings. Run `/doctor:git standards` afterwards to write repo-owned commit, PR and branch rules; until then the shipped defaults apply |
 | 5 | `/doctor:setup` | your project | Confirms the whole setup works |
 
 If you chose `link` for the instruction file, step 1 also carries `--link-instructions` and step 2 drops out.

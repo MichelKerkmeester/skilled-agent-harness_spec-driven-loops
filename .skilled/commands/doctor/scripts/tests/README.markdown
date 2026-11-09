@@ -63,7 +63,7 @@ Current state:
 | `doctor-ci-contract.test.cjs` | Checks the `/doctor:ci` router, workflows, presentation and command contract against each other: the route manifest, the toggle's allowed names, the scaffold's refusals and templates |
 | `doctor-setup-orphan-line.test.cjs` | The orphan-process line in `/doctor:setup`: informational output that never changes the doctor status |
 | `opencode-version-battery.test.cjs` | `opencode-version-battery.cjs`: the plugin, command and MCP-prompt legs on v1 and v2, the family skips, nested roots, the argument errors and the probe count |
-| `orphan-process-check.test.cjs` | `orphan-process-check.cjs`: elapsed-time and ps parsing, orphan classification, the `--json`, `--summary` and `--min-age-min` options and the guarded `--reap --yes` |
+| `orphan-process-check.test.cjs` | `orphan-process-check.cjs`: elapsed-time and ps parsing, orphan classification, the `--json`, `--summary` and `--min-age-min` options, the exit codes for a scan that cannot run, and the guarded `--reap --yes` |
 | `test_audit_descriptions.py` | `audit_descriptions.py` |
 
 The freshness panel suite lives at `.skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts` because it runs on the advisor runtime's vitest.

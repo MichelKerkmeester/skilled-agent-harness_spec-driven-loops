@@ -25,7 +25,7 @@ import {
   findChildFolderSync,
 } from '../core/index.js';
 import { resolveSpecFolderCanonical } from '../core/spec-root-canonical-resolver.js';
-import { gitTopLevel } from '../core/config.js';
+import { gitTopLevel, isRuntimeRepositoryFallback } from '../core/config.js';
 import { assertSpecWriteAllowed } from '../core/spec-root-write-guard.js';
 import { runWorkflow, releaseFilesystemLock } from '../core/workflow.js';
 import { loadCollectedData } from '../loaders/index.js';
@@ -1226,6 +1226,11 @@ async function main(
     argv = projectRootOption.rest;
     if (projectRootOption.value !== null) {
       CONFIG.PROJECT_ROOT = resolveProjectRootOption(projectRootOption.value);
+    } else if (isRuntimeRepositoryFallback()) {
+      throw new Error(
+        `Working directory ${process.cwd()} is not inside a spec-kit repository; `
+          + 'specify --project-root <dir> to choose the repository to save into',
+      );
     }
     const parsed = await parseArguments(argv, stdinReader);
     CONFIG.DATA_FILE = parsed.dataFile;

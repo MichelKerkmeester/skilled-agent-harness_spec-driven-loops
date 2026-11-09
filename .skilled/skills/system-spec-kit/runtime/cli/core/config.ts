@@ -114,6 +114,12 @@ export function gitTopLevel(cwd: string): string | null {
   }
 }
 
+/** Whether resolving a project root from `cwd` would use the runtime repository fallback. */
+export function isRuntimeRepositoryFallback(cwd: string = process.cwd()): boolean {
+  const top = gitTopLevel(cwd);
+  return !(top && usesSpecKit(top)) && !usesSpecKit(cwd);
+}
+
 /**
  * Resolve the repository whose spec folders a run reads and writes.
  *

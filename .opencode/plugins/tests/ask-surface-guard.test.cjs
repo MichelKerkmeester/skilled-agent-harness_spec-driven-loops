@@ -22,7 +22,13 @@ function fakeClient(messages) {
     prompts,
     session: {
       messages: async () => ({ data: messages }),
-      promptAsync: async (options) => { prompts.push(options); },
+      promptAsync: async (options) => {
+        prompts.push(options);
+        messages.push({
+          info: { role: 'user', id: `reprompt-${prompts.length}` },
+          parts: [{ type: 'text', text: options.body.parts[0].text }],
+        });
+      },
     },
   };
 }
@@ -54,6 +60,30 @@ test('a turn ending in a prose menu is prompted once with the question tool', as
   assert.equal(client.prompts.length, 1);
   assert.equal(client.prompts[0].path.id, 'ses_ask');
   assert.match(client.prompts[0].body.parts[0].text, /`question`/);
+});
+
+test('a send-back reprompt does not become a new operator turn', async (t) => {
+  const messages = [...userThenMenu];
+  const client = fakeClient(messages);
+  const hooks = await hooksFor(t, client);
+  await hooks.event(idle);
+
+  messages.push({ info: { role: 'assistant', id: 'm3' }, parts: [{ type: 'text', text: MENU }] });
+  await hooks.event(idle);
+  assert.equal(client.prompts.length, 1);
+});
+
+test('a genuine new operator message may be sent back again', async (t) => {
+  const messages = [...userThenMenu];
+  const client = fakeClient(messages);
+  const hooks = await hooksFor(t, client);
+  await hooks.event(idle);
+  messages.push(
+    { info: { role: 'user', id: 'm4' }, parts: [{ type: 'text', text: 'new choice' }] },
+    { info: { role: 'assistant', id: 'm5' }, parts: [{ type: 'text', text: MENU }] },
+  );
+  await hooks.event(idle);
+  assert.equal(client.prompts.length, 2);
 });
 
 test('a turn that called the question tool is left alone', async (t) => {

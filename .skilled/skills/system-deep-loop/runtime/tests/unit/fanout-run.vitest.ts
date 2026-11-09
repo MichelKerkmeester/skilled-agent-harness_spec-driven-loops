@@ -62,6 +62,14 @@ function makeTempDir(prefix: string): string {
   return dir;
 }
 
+describe('fanout-run.cjs — withAgentPersona', () => {
+  it('fails closed with the missing persona path', () => {
+    const repoRoot = makeTempDir('fanout-persona-missing-');
+    expect(() => withAgentPersona('deep-research', 'iteration prompt', repoRoot))
+      .toThrow(`Agent persona file not found: ${join(repoRoot, '.skilled', 'agents', 'deep-research.md')}`);
+  });
+});
+
 function useHermeticEnv(testId: string): HermeticEnv {
   const hermetic = createHermeticEnv(testId);
   hermeticEnvs.push(hermetic);
@@ -522,6 +530,9 @@ afterEach(() => {
 });
 
 const fanoutRunScript = resolve(runtimeRoot, 'scripts', 'fanout-run.cjs');
+const { withAgentPersona } = requireCjs(fanoutRunScript) as {
+  withAgentPersona: (agentName: string, prompt: string, repoRoot: string) => string;
+};
 const reviewWorkflowPaths = [
   resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-auto.yaml'),
   resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-review-confirm.yaml'),
@@ -2434,6 +2445,62 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     expect(existsSync(join(baseDir, 'orchestration-summary.json'))).toBe(false);
   });
 
+  it('rejects uncapped max-iterations lineages before spawning and accepts capped lineages', async () => {
+    const binDir = makeTempDir('fanout-run-max-iterations-preflight-bin-');
+
+    const uncappedBaseDir = makeTempDir('fanout-run-max-iterations-uncapped-base-');
+    const uncappedMarkerPath = join(uncappedBaseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, uncappedMarkerPath);
+    const uncappedConfig = JSON.stringify({
+      executors: [{ label: 'uncapped-research', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' }],
+      concurrency: 1,
+    });
+    const uncappedRun = await spawnFanout('max-iterations-uncapped', [
+      '--spec-folder',
+      'specs/test-fanout-max-iterations-uncapped',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      uncappedConfig,
+      '--base-artifact-dir',
+      uncappedBaseDir,
+      '--stop-policy',
+      'max-iterations',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(uncappedRun.result.exitCode).toBe(3);
+    expect(uncappedRun.result.stdout).toContain(
+      'stopPolicy=max-iterations requires a positive lineage iteration cap for lineage(s): uncapped-research',
+    );
+    expect(existsSync(uncappedMarkerPath)).toBe(false);
+    expect(existsSync(join(uncappedBaseDir, 'lineages'))).toBe(false);
+
+    const cappedBaseDir = makeTempDir('fanout-run-max-iterations-capped-base-');
+    const cappedMarkerPath = join(cappedBaseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, cappedMarkerPath);
+    const cappedConfig = JSON.stringify({
+      executors: [{ label: 'capped-research', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+      concurrency: 1,
+    });
+    const cappedRun = await spawnFanout('max-iterations-capped', [
+      '--spec-folder',
+      'specs/test-fanout-max-iterations-capped',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      cappedConfig,
+      '--base-artifact-dir',
+      cappedBaseDir,
+      '--stop-policy',
+      'max-iterations',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(existsSync(cappedMarkerPath)).toBe(true);
+    expect(cappedRun.result.stdout).not.toContain(
+      'stopPolicy=max-iterations requires a positive lineage iteration cap',
+    );
+  });
+
   it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
     const binDir = makeTempDir('fanout-run-manifest-bin-');
     writeStubBinary(binDir, 'opencode');
@@ -2539,6 +2606,25 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
     expect(nativePrompt).not.toContain('steer.md');
   });
 
+  it('places the persona after the executor directive and leaves native prompts unchanged', () => {
+    const lineageDir = 'specs/test-fanout-persona/research/lineages/seat';
+    const cliPrompt = buildLoopPrompt(
+      'research', 'specs/test-fanout-persona', lineageDir, 'fanout-research-run-123',
+      { kind: 'cli-opencode', label: 'seat', model: 'opencode-go/glm-5.1' }, 'persona test topic',
+    );
+    const nativePrompt = buildLoopPrompt(
+      'research', 'specs/test-fanout-persona', lineageDir, 'fanout-research-run-123',
+      { kind: 'native', label: 'seat' } as never, 'persona test topic',
+    );
+
+    expect(cliPrompt.indexOf('GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.'))
+      .toBeLessThan(cliPrompt.indexOf('EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.'));
+    expect(cliPrompt.indexOf('EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.'))
+      .toBeLessThan(cliPrompt.indexOf('=== BEGIN AGENT PERSONA'));
+    expect(cliPrompt).toContain('=== END AGENT PERSONA (resolved persona: deep-research) ===');
+    expect(nativePrompt).not.toContain('=== BEGIN AGENT PERSONA');
+  });
+
   it('rejects deprecated context fan-out prompt construction', () => {
     expect(() => buildLoopPrompt(
       'context' as never,
@@ -2563,7 +2649,7 @@ describe('fanout-run.cjs — buildLoopPrompt child-dispatch preamble and path fo
     ) => string;
   };
 
-  it('opens with the child-dispatch preamble, naming AI_SESSION_CHILD=1 and not SYSTEM_SPEC_GATE_ENFORCE=0', () => {
+  it('places the preamble, executor directive, and persona in order', () => {
     const prompt = buildLoopPrompt(
       'research',
       'specs/test-fanout-preamble',
@@ -2573,9 +2659,12 @@ describe('fanout-run.cjs — buildLoopPrompt child-dispatch preamble and path fo
       'preamble test topic',
     );
 
-    expect(
-      prompt.startsWith('GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.'),
-    ).toBe(true);
+    expect(prompt.startsWith('GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.'))
+      .toBe(true);
+    expect(prompt.indexOf('EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.'))
+      .toBeGreaterThan(prompt.indexOf('GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.'));
+    expect(prompt.indexOf('=== BEGIN AGENT PERSONA'))
+      .toBeGreaterThan(prompt.indexOf('EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.'));
     expect(prompt).toContain('AI_SESSION_CHILD=1 is set');
     expect(prompt).not.toContain('SYSTEM_SPEC_GATE_ENFORCE=0');
   });

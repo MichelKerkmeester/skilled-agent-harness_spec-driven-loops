@@ -119,7 +119,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
    |-- --lineage-mode=auto|resume|restart -> lineage_mode = value
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -137,14 +137,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
    |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
    |
-   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.kind=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
    - The generated `deep-review-config.json` stores executor settings under `config.executor.*`
 
    Parsing to config mapping:
-   - `--executor` -> `config.executor.type`
+   - `--executor` -> `config.executor.kind`
    - `--model` -> `config.executor.model`
    - `--config-dir` -> `config.executor.configDir`
    - `--reasoning-effort` -> `config.executor.reasoningEffort`
@@ -226,7 +226,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - convergenceThreshold = [from flag or default 0.10]
    - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
    - stop_policy = [from flag, marker, or default convergence]
-    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
+    - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.kind/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
 

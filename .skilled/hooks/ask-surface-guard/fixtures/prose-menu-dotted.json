@@ -1,0 +1,5 @@
+{
+  "expected": "fire",
+  "askToolCalled": false,
+  "lastMessage": "Which route should I take?\n\n1. Keep the current provider\n2. Switch to another provider\n3. Wait and retry later"
+}

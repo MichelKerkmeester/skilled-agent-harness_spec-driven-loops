@@ -264,6 +264,34 @@ describe('Gate 3 classifier — read-only disqualifiers (T-DOC-02)', () => {
     }
   });
 
+  it('recovers mixed write and read-only verbs in either order', () => {
+    for (const prompt of [
+      'Update the README and review the result.',
+      'Update the README, then review it.',
+      'Review the README and update it.',
+    ]) {
+      const r = classifyPrompt(prompt);
+      expect(r.triggersGate3).toBe(true);
+      expect(r.reason).toBe('file_write_match');
+    }
+  });
+
+  it('keeps standalone read-only prompts suppressed', () => {
+    expect(classifyPrompt('review the packet').triggersGate3).toBe(false);
+    expect(classifyPrompt('audit the README').triggersGate3).toBe(false);
+  });
+
+  it('does not treat write words in read-only descriptions as write instructions', () => {
+    for (const prompt of [
+      'Review the build output and explain the failures.',
+      'Explain what the update does and review its tests.',
+      'Inspect the build log and review the failures.',
+      'Analyze the update path and explain it.',
+    ]) {
+      expect(classifyPrompt(prompt).triggersGate3).toBe(false);
+    }
+  });
+
   it('does NOT suppress Gate 3 for a save-memory trigger even with "review"', () => {
     const r = classifyPrompt('review and save memory for the packet');
     expect(r.triggersGate3).toBe(true);
@@ -296,6 +324,30 @@ describe('Gate 3 classifier — save/resume/continue (T-DOC-03)', () => {
 
   it('triggers Gate 3 for "resume deep research"', () => {
     expect(classifyPrompt('resume deep research loop').triggersGate3).toBe(true);
+  });
+
+  it('treats a standalone resume invocation as a Gate 3 trigger', () => {
+    for (const prompt of [
+      'review the packet and resume',
+      'review the packet, then resume',
+      'resume the packet',
+    ]) {
+      const r = classifyPrompt(prompt);
+      expect(r.triggersGate3).toBe(true);
+      expect(r.reason).toBe('resume_match');
+    }
+  });
+
+  it('keeps read-only questions about resume suppressed', () => {
+    for (const prompt of [
+      'Explain what save, resume, and reload do.',
+      'Compare save, resume, and stop.',
+      'Explain how the resume flow works.',
+      'Review the resume handler for bugs.',
+      'Audit how resume recovers continuity.',
+    ]) {
+      expect(classifyPrompt(prompt).triggersGate3).toBe(false);
+    }
   });
 
   it('triggers Gate 3 for "continue iteration"', () => {

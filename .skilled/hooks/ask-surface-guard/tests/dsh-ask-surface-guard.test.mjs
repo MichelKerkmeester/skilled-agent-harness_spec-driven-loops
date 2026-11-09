@@ -41,6 +41,26 @@ test('a turn closing on a prose menu is steered once, and a second stop in that 
   assert.match(noticeText(steered[0]), /ask_user_question/);
 });
 
+test('a send-back is once per operator message, and a new user message may fire again', async (t) => {
+  const events = [
+    { type: 'user/message', data: { role: 'user', id: 'u1', source: { kind: 'user' }, content: [{ type: 'text', text: 'pick one' }] } },
+    assistant(3, [{ type: 'text', text: menu }]),
+  ];
+  const { fire, agent, steered } = setup(t, { events });
+  await fire('agent/turn-stopping', { agent, turn: 3 });
+
+  events.push(assistant(4, [{ type: 'text', text: menu }]));
+  await fire('agent/turn-stopping', { agent, turn: 4 });
+  assert.equal(steered.length, 1);
+
+  events.push(
+    { type: 'user/message', data: { role: 'user', id: 'u2', source: { kind: 'user' }, content: [{ type: 'text', text: 'another choice' }] } },
+    assistant(5, [{ type: 'text', text: menu }]),
+  );
+  await fire('agent/turn-stopping', { agent, turn: 5 });
+  assert.equal(steered.length, 2);
+});
+
 test('an ask_user_question call in the turn passes the menu', async (t) => {
   const events = [
     { type: 'tool/call', data: { turn: 3, name: 'ask_user_question' } },

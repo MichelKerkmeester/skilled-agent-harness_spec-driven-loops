@@ -7,7 +7,7 @@ trigger_phrases:
   - "mode append gateway flow"
   - "deep-loop package topology"
 importance_tier: "important"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Architecture: system-deep-loop
@@ -88,7 +88,7 @@ Allowed dependency direction:
 - `runtime/lib/<domain>/ ──▶ runtime/lib/<sibling>/index` through the public barrel
 - `runtime/tests/ ──▶ runtime/lib/` and `runtime/scripts/`
 
-Three `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and `council/convergence.cjs` take the writer lock from `scripts/lib/cli-guards.cjs`, and `branch-leases-waves/durable-orchestrator.ts` loads `scripts/fanout-pool.cjs`. Those are the only exceptions to the direction above.
+Two `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and `council/convergence.cjs` take the writer lock from `scripts/lib/cli-guards.cjs`. Those are the only exceptions to the direction above.
 
 ---
 
@@ -116,7 +116,7 @@ Three `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and
 
 **Authority and fencing.** `authority-root/`, `authorized-ledger/` and `locks-and-fencing/` hold the durable authority record, the fenced append and the protected-resource registry. `scripts/loop-lock.cjs` exposes lock acquire, heartbeat, reclaim and release to the CLI.
 
-**Fan-out.** `fanout-run.cjs`, `fanout-pool.cjs`, `fanout-merge.cjs` and `fanout-salvage.cjs` run lineages as CLI subprocesses under a concurrency cap, merge their outputs deterministically and recover artifacts from captured output. `branch-leases-waves/` and `hierarchical-budgets/` bound the waves and their budgets.
+**Fan-out.** `fanout-run.cjs`, `fanout-pool.cjs`, `fanout-merge.cjs` and `fanout-salvage.cjs` run lineages as CLI subprocesses under a concurrency cap, merge their outputs deterministically and recover artifacts from captured output. `hierarchical-budgets/` bounds the waves and their budgets.
 
 **Council.** `lib/council/` and `database/council-graph.sqlite` hold the AI Council graph, its convergence and the seat primitives the `deep-ai-council` packet orchestrates.
 

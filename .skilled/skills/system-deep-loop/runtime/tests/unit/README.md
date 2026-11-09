@@ -29,7 +29,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `authorized-ledger.vitest.ts` | Executable checks for the authorized ledger runtime contract. |
 | `bayesian-scorer.vitest.ts` | Executable checks for the bayesian scorer runtime contract. |
 | `blinded-adjudication.vitest.ts` | Executable checks for the blinded adjudication runtime contract. |
-| `branch-leases-waves.vitest.ts` | Executable checks for the branch leases waves runtime contract. |
 | `check-contract-drift.vitest.ts` | Executable checks for the check contract drift runtime contract. |
 | `claim-continuity.vitest.ts` | Executable checks for the claim continuity runtime contract. |
 | `cli-guards-writer-lock.vitest.ts` | Executable checks for the cli guards writer lock runtime contract. |

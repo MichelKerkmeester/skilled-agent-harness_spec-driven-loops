@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/047-v4-release-line-research/020-operator-approved-closeout",
+  "spec_folder": "system-speckit/047-v4-release-line-research/020-operator-approved-closeout",
+  "parent_id": "system-speckit/047-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "operator approved closeout",
+      "phase 20 operator approved closeout",
+      "operator approved closeout plan",
+      "operator approved closeout tasks",
+      "operator approved closeout acceptance criteria",
+      "operator approved closeout decisions",
+      "operator approved closeout implementation summary"
+    ],
+    "key_topics": [
+      "operator",
+      "approved",
+      "closeout",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions",
+      "implementation",
+      "summary",
+      "devin"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/skills/sk-design/hub-router.json",
+      ".skilled/commands/doctor/scripts/tests/fixtures/agents-md/over-budget/fixture.json",
+      "runtime/data/trigger-index.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "fixture.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/scripts/tests/fixtures/agents-md/over-budget/fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Devin keeps the first 16,384 bytes of AGENTS.md and the last binding clause ended at byte 16,379",
+    "created_at": "2026-11-09T07:49:54Z",
+    "last_save_at": "2026-11-09T08:23:05.943Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2191b1c89e913e29200d17e4fa97c3de22be33f20c4c81452d75083bf55cb697",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f28d5ccaaa61cc99b56bdc99a75df8e7b5a21919dceb0f0607562be338eebf09",
+      "plan.md": "bb4aa58d04e81554f0501f9c08b170b834980a0f7b6daeed61e557b9e5eeae3d",
+      "tasks.md": "eeb51bb3446bd618e9cdb78fc2985f4c804667989f66f98631ecfc41bc44b311",
+      "decision-record.md": "444ad6deee845d9e4b0c496c3bb47bba4df679b165bbd6e0d67a84c32d5cbbc8",
+      "implementation-summary.md": "efd24660428c37d211b429e94c57921356a2d4ebdd9d30ece77f982a3be76349"
+    },
+    "last_active_at": null
+  }
+}

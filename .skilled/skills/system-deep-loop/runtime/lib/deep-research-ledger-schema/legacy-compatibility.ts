@@ -604,6 +604,14 @@ export function upcastLegacyDeepResearchRecord(
           ? input.ruledOut.map((_, index) => `legacy-jsonl:${recordDigest}:ruled-out:${index + 1}`)
           : [],
         nextFocusCausationId: `legacy-jsonl:${recordDigest}:next-focus`,
+        ...(typeof input.focus === 'string' && input.focus.trim().length > 0
+          ? { focus: input.focus }
+          : {}),
+        ...(Array.isArray(input.answeredQuestions)
+          && input.answeredQuestions.every((question) => typeof question === 'string'
+            && question.trim().length > 0)
+          ? { answeredQuestions: input.answeredQuestions }
+          : {}),
       };
       warnings.push('Trusted evidence yield was absent and remains explicitly zero.');
       break;

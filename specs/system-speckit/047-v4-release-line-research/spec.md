@@ -105,10 +105,25 @@ Every write stays inside this packet.
 | 3 | 003-cli-and-deep-loop/ | cli-external-orchestration, cli-classifier, DeepSeek harness, system-deep-loop runtime | Complete |
 | 4 | 004-advisor-hooks-relaunch/ | system-skill-advisor, compiled routing, hooks and plugins, session relaunch, compaction history | Complete |
 | 5 | 005-doctor-git-ci-runtime/ | doctor commands, Skilled-in-your-project, overlays, sk-git, CI, agents, commands, runtime mirrors, repo-rules | Complete |
+| 6 | 006-deep-loop-single-executor-dispatch/ | Remediation: deep loop single executor dispatch (scope in `research/research.md`) | Complete |
+| 7 | 007-deep-loop-state-and-stop-policy/ | Remediation: deep loop state and stop policy (scope in `research/research.md`) | Complete |
+| 8 | 008-write-containment-scoping/ | Remediation: write containment scoping (scope in `research/research.md`) | Complete |
+| 9 | 009-gate3-and-continuity-root/ | Remediation: gate3 and continuity root (scope in `research/research.md`) | Complete |
+| 10 | 010-validate-and-retrieval-exit-honesty/ | Remediation: validate and retrieval exit honesty (scope in `research/research.md`) | Complete |
+| 11 | 011-spec-kit-doc-drift/ | Remediation: spec kit doc drift (scope in `research/research.md`) | Complete |
+| 12 | 012-hook-guards-and-audit-log/ | Remediation: hook guards and audit log (scope in `research/research.md`) | Complete |
+| 13 | 013-agents-md-delivery-budget/ | Remediation: agents md delivery budget (scope in `research/research.md`) | Complete |
+| 14 | 014-doctor-and-ci-gate-honesty/ | Remediation: doctor and ci gate honesty (scope in `research/research.md`) | Complete |
+| 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Complete |
+| 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Complete |
+| 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Complete |
+| 18 | 018-host-trigger-index-and-repin-generated/ | Barter upstream: host trigger index default and generated retrieval files in a re-pin | Complete |
+| 19 | 019-template-marker-upgrade-and-staleness-scope/ | Barter upstream: old-marker upgrade path and staleness checker discovery scope | Complete |
+| 20 | 020-operator-approved-closeout/ | Operator-approved closeout: AGENTS.md headroom and manifest write, sk-design routing regeneration, trigger index rebuild | Complete |
 
 ### Phase Transition Rules
 
-- The five phases run in parallel; each must pass `validate.sh` independently before synthesis
+- Research phases 001-005 ran in parallel and each passed `validate.sh` before synthesis; remediation phases 006-017 ran in two orchestrator lanes in one worktree, each closing with its own commit
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
@@ -121,6 +136,21 @@ Every write stays inside this packet.
 | 002-authoring-hubs | 003-cli-and-deep-loop | None: phases run in parallel | Each child validates on its own |
 | 003-cli-and-deep-loop | 004-advisor-hooks-relaunch | None: phases run in parallel | Each child validates on its own |
 | 004-advisor-hooks-relaunch | 005-doctor-git-ci-runtime | None: phases run in parallel | Each child validates on its own |
+| 005-doctor-git-ci-runtime | 006-deep-loop-single-executor-dispatch | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 006-deep-loop-single-executor-dispatch | 007-deep-loop-state-and-stop-policy | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 007-deep-loop-state-and-stop-policy | 008-write-containment-scoping | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 008-write-containment-scoping | 009-gate3-and-continuity-root | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 009-gate3-and-continuity-root | 010-validate-and-retrieval-exit-honesty | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 010-validate-and-retrieval-exit-honesty | 011-spec-kit-doc-drift | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 011-spec-kit-doc-drift | 012-hook-guards-and-audit-log | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 012-hook-guards-and-audit-log | 013-agents-md-delivery-budget | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 013-agents-md-delivery-budget | 014-doctor-and-ci-gate-honesty | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 014-doctor-and-ci-gate-honesty | 015-cli-hub-routing-and-classifier | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 015-cli-hub-routing-and-classifier | 016-authoring-hub-manifests-and-drift | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 016-authoring-hub-manifests-and-drift | 017-over-engineering-cuts | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 017-over-engineering-cuts | 018-host-trigger-index-and-repin-generated | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 018-host-trigger-index-and-repin-generated | 019-template-marker-upgrade-and-staleness-scope | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 019-template-marker-upgrade-and-staleness-scope | 020-operator-approved-closeout | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

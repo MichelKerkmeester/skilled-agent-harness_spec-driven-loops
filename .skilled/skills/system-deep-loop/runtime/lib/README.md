@@ -21,7 +21,6 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 |--------|---------|
 | `authorized-ledger/` | Default-deny authorization gateway and immutable append-only ledger that ledger-backed domains write verified events through. |
 | `blinded-adjudication/` | Reviewer-blind adjudication comparing a baseline judgment with a policy-linked intervention without exposing candidate identity. |
-| `branch-leases-waves/` | Durable fan-out admission, fenced branch ownership and immutable wave compilation for parallel branch execution. |
 | `claim-continuity/` | Tracks claim identity across loop iterations by matching, folding and replaying claim events into a disposable frontier projection. |
 | `conditional-fanin/` | Decides when a fan-out wave has enough branch results to proceed and plans continuation for the branches left outstanding. |
 | `contradiction-supersession/` | Isolated shadow ledger recording contradiction and supersession between claims, with an audited replay-verified status projection. |

@@ -1,9 +1,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Ask Surface Core
 // ───────────────────────────────────────────────────────────────────
-// Runtime-neutral policy for the ask-surface guard. A turn that ends with a
-// prose option menu, while the runtime had a question tool it could have
-// called, is sent back once so the agent asks through that tool instead.
+// Runtime-neutral policy for the ask-surface guard. Each operator message is sent back at most once so every runtime asks through its question tool.
 'use strict';
 
 // ───────────────────────────────────────────────────────────────────
@@ -32,11 +30,9 @@ const QUESTION_TOOLS = Object.freeze({
   pi: ['ask_user_question', 'question'],
 });
 
-// A letter label takes `)`, `.` or `:`. A number label takes only `)`,
-// because `1.` is how ordinary step lists and summaries are numbered.
-// ceiling: a menu written as `1.`/`2.` is missed; widen only with a fixture
-// that shows it firing without catching numbered plans.
-const OPTION_LINE = /^\s*(?:[-*+]\s+)?(?:\*\*|__)?\(?(?:([A-Ha-h])[).:]|([1-9])\))(?:\*\*|__)?\s+\S/;
+// Numbered lines can be steps, so they need a closing question that asks the reader to choose.
+// ceiling: dotted and multi-digit numeric menus count only when their question signals a choice.
+const OPTION_LINE = /^\s*(?:[-*+]\s+)?(?:\*\*|__)?\(?(?:([A-Ha-h])[).:]|(\d+)[).])(?:\*\*|__)?\s+\S/;
 
 // An option's description can wrap over several lines, so options in one
 // menu may sit this many non-option lines apart.
@@ -69,12 +65,16 @@ function proseLines(text) {
 function optionLabel(line) {
   const match = OPTION_LINE.exec(line);
   if (!match) return null;
-  return match[1] ? match[1].toUpperCase() : match[2];
+  return match[1] ? match[1].toUpperCase() : String(Number(match[2]));
 }
 
 function nextLabel(label) {
-  if (/^[1-9]$/.test(label)) return String(Number(label) + 1);
+  if (/^\d+$/.test(label)) return String(Number(label) + 1);
   return String.fromCharCode(label.charCodeAt(0) + 1);
+}
+
+function asksForNumericChoice(question) {
+  return /\b(?:which|pick|choose|option|prefer)\b|\bhow\s+(?:would|do)\s+you\s+(?:like|want)\b|\b\d+(?:\s*,\s*\d+)*(?:\s+(?:or|and)\s+\d+)\b/i.test(question);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -119,6 +119,7 @@ function detectProseMenu(text) {
     if (optionPositions.has(cursor)) continue;
     const line = lines[nonBlank[cursor]];
     if (line.includes('?')) {
+      if (/^\d+$/.test(options[0].label) && !asksForNumericChoice(line)) continue;
       return { labels: options.map((option) => option.label), question: line.trim() };
     }
   }
@@ -163,11 +164,11 @@ function repromptFor(runtime) {
 // ───────────────────────────────────────────────────────────────────
 
 /**
- * Record that a turn was sent back, so the guard never re-prompts it twice.
+ * Record that an operator message was sent back, so the guard prompts it at most once.
  * Runtimes with no re-entry flag of their own rely on this marker.
  *
  * @param {string} projectDir - Repository root, scoping the marker folder.
- * @param {string} turnKey - A key unique to one session's one turn.
+ * @param {string} turnKey - A key unique to one session's one operator message.
  * @param {string} [baseDir] - Marker root; the OS temp folder by default.
  * @returns {boolean} True the first time a turn is marked, false after.
  */

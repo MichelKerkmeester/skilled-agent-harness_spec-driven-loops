@@ -5,7 +5,12 @@ Regression tests for package_skill.py validation behavior.
 
 import importlib.util
 import json
+import shutil
+import subprocess
+import sys
 from pathlib import Path
+
+import pytest
 
 
 def _load_module():
@@ -155,6 +160,29 @@ def test_allowed_tools_remains_mandatory():
     valid, message, _warnings, _parsed = module.validate_frontmatter(content)
     assert valid is False
     assert "allowed-tools" in message
+
+
+# Frontmatter faults are independent, so one run has to report all of them: a
+# report that stops at the first fault makes the author repair one line per run.
+def test_frontmatter_reports_every_independent_error_in_one_message():
+    module = _load_module()
+    content = (
+        "---\n"
+        "name: Bad_Name\n"
+        "description: Demo skill description that is intentionally long enough for warning checks.\n"
+        "allowed-tools: [Read, Write]\n"
+        "version: 1.0.0\n"
+        "---\n\n"
+        "## 1. WHEN TO USE\n"
+        "Text.\n"
+    )
+
+    valid, message, _warnings, _parsed = module.validate_frontmatter(content)
+
+    assert valid is False
+    assert "must be hyphen-case" in message
+    assert "must be 4-part" in message
+    assert message.index("must be hyphen-case") < message.index("must be 4-part")
 
 
 def test_template_rules_json_not_flagged_as_placeholder(tmp_path):
@@ -919,3 +947,91 @@ def test_repo_root_hub_paths_skip_the_naming_and_version_walks(tmp_path):
     assert "drafts/run_suite/notes.md" in versioned
     assert "specs/run_suite/notes.md" not in versioned
     assert "SYNC.md" not in versioned
+
+
+# ───────────────────────────────────────────────────────────────
+# Package output location: an archive needs a directory the caller chose
+# ───────────────────────────────────────────────────────────────
+
+SCRIPT = Path(__file__).resolve().parents[1] / "package_skill.py"
+GIT = shutil.which("git")
+
+
+def _run_packager(skill_path, *args, cwd):
+    return subprocess.run(
+        [sys.executable, str(SCRIPT), str(skill_path), *(str(arg) for arg in args)],
+        cwd=str(cwd),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+
+def _zip_files(directory):
+    return sorted(path.name for path in Path(directory).glob("*.zip"))
+
+
+def _require_outside_work_tree(directory):
+    """Skip when the temp root already sits in a work tree, which changes the outcome."""
+    completed = subprocess.run(
+        ["git", "-C", str(directory), "rev-parse", "--show-toplevel"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode == 0:
+        pytest.skip(f"temp output directory is inside a git work tree: {completed.stdout.strip()}")
+
+
+def test_packaging_without_output_dir_writes_nothing_into_cwd(tmp_path):
+    skill_path = _write_valid_skill(tmp_path / "skills" / "demo-skill", with_recommended_sections=True)
+    cwd = tmp_path / "cwd"
+    cwd.mkdir()
+
+    completed = _run_packager(skill_path, cwd=cwd)
+
+    assert completed.returncode == 2, completed.stdout + completed.stderr
+    assert (
+        "an output directory is required to write a package: pass one as the second "
+        "argument, or use --check to validate without writing"
+    ) in completed.stderr
+    assert list(cwd.iterdir()) == []
+
+
+def test_library_call_without_output_dir_refuses_before_writing(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_valid_skill(tmp_path / "skills" / "demo-skill", with_recommended_sections=True)
+    cwd = tmp_path / "cwd"
+    cwd.mkdir()
+    monkeypatch.chdir(cwd)
+
+    assert module.package_skill(str(skill_path), None) is None
+    assert list(cwd.iterdir()) == []
+
+
+@pytest.mark.skipif(GIT is None, reason="git is required to build the work-tree fixture")
+def test_packaging_into_a_work_tree_top_level_is_refused(tmp_path):
+    skill_path = _write_valid_skill(tmp_path / "skills" / "demo-skill", with_recommended_sections=True)
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.run([GIT, "init", "-q", str(repo)], capture_output=True, text=True, check=True)
+
+    completed = _run_packager(skill_path, repo, cwd=tmp_path)
+
+    assert completed.returncode != 0
+    assert "refusing to write a package into the top level of a git work tree" in (
+        completed.stdout + completed.stderr
+    )
+    assert _zip_files(repo) == []
+
+
+def test_packaging_into_a_plain_directory_writes_the_zip(tmp_path):
+    skill_path = _write_valid_skill(tmp_path / "skills" / "demo-skill", with_recommended_sections=True)
+    out = tmp_path / "out"
+    out.mkdir()
+    _require_outside_work_tree(out)
+
+    completed = _run_packager(skill_path, out, cwd=tmp_path)
+
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+    assert _zip_files(out) == ["demo-skill.zip"]

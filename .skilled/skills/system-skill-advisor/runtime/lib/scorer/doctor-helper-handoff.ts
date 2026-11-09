@@ -49,7 +49,7 @@ export const DOCTOR_HELPER_UNCUED_MIN_SCORE = 10;
 // that ordinary work requests also use ("fix the broken example"), so it counts
 // only when no skill passes. Every hand-off needs at least one cue.
 const STRONG_PROBLEM_CUE = new RegExp([
-  "\\b(?:not|isn'?t|aren'?t|doesn'?t|don'?t|won'?t|can'?t) (?:\\w+ )?(?:work|working|registered|found|load|loading|run|running|active|linked|converg\\w*)\\b",
+  "\\b(?:not|isn'?t|aren'?t|doesn'?t|don'?t|won'?t|can'?t) (?:\\w+ )?(?:work|working|registered|found|load|loading|run|running|active|linked|fir(?:e|es|ing)|trigger(?:s|ing)?|converg\\w*)\\b",
   '\\bnever (?:converg\\w*|finish\\w*|stops?|works?|loads?|runs?)\\b',
   '\\breturns? nothing\\b',
   '\\b(?:healthy|health|diagnos\\w*)\\b',

@@ -109,6 +109,19 @@ resolve_target() {
   fi
 }
 
+# Compare where two paths physically live. A link written through the legacy
+# .opencode name reaches the same file as one written through .skilled, so only
+# a path landing on a different file is shadowed. Bash 3.2 ships no realpath,
+# so resolve the containing directory physically and keep the basename.
+canonical_path() {
+  local target="$1"
+  if [[ -e "$target" || -L "$target" ]]; then
+    printf '%s\n' "$(cd "$(dirname "$target")" && pwd -P)/$(basename "$target")"
+  else
+    printf '%s\n' "$target"
+  fi
+}
+
 if [ "${1:-}" = "--status" ]; then
   global_hooks="$(git -C "$REPO_ROOT" config --global --get core.hooksPath 2>/dev/null || true)"
   local_hooks="$(git -C "$REPO_ROOT" config --local --get core.hooksPath 2>/dev/null || true)"
@@ -130,10 +143,11 @@ if [ "${1:-}" = "--status" ]; then
     name="$(basename "$hook")"
     is_git_hook_name "$name" || continue
     target="$HOOK_TARGET_DIR/$name"
+    installed_target="$(resolve_target "$target")"
     printf '  %s\n' "$name"
-    printf '    installed: %s\n' "$(resolve_target "$target")"
+    printf '    installed: %s\n' "$installed_target"
     printf '    source:    %s\n' "$hook"
-    if [[ -L "$target" ]] && [[ "$(resolve_target "$target")" != "$hook" ]]; then
+    if [[ -L "$target" ]] && [[ "$(canonical_path "$installed_target")" != "$(canonical_path "$hook")" ]]; then
       printf '    SHADOWED: the installed hook resolves outside this checkout\n'
     fi
   done

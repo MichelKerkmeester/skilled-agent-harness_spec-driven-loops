@@ -10,6 +10,7 @@ import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { buildSessionScopedSaveContextPath } from '../core/save-context-path';
+import { resolveProjectRoot } from '../core/config';
 
 const harness = vi.hoisted(() => ({
   runWorkflow: vi.fn(async () => undefined),
@@ -64,6 +65,7 @@ function trackGraphMetadata(track: string): Record<string, unknown> {
 
 function createTempWorkspace(): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'generate-context-cli-authority-'));
+  fs.mkdirSync(path.join(root, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
   const packetDir = path.join(root, FIXTURE_PACKET);
   fs.mkdirSync(packetDir, { recursive: true });
   fs.writeFileSync(path.join(packetDir, 'spec.md'), '# Fixture packet\n', 'utf8');
@@ -129,6 +131,51 @@ describe('generate-context CLI authority', () => {
     });
     await workflowCall?.loadDataFn?.();
     expect(harness.loadCollectedData).toHaveBeenCalledWith({});
+  });
+
+  it('rejects the runtime-repository fallback before writing when cwd is outside a spec-kit repository', async () => {
+    const originalCwd = process.cwd();
+    const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'generate-context-outside-repository-'));
+    const fallbackRoot = resolveProjectRoot(outside, tempRoot);
+    const lockPath = path.join(fallbackRoot, FIXTURE_PACKET, '.canonical-save.lock');
+    const exitSpy = mockProcessExit();
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+
+    try {
+      process.chdir(outside);
+      const { main } = await import('../continuity/generate-context');
+
+      await expect(
+        main(['--json', JSON.stringify({ specFolder: FIXTURE_PACKET, sessionSummary: 'Fallback must be rejected.' })], undefined, fallbackRoot),
+      ).rejects.toThrow('EXIT:1');
+
+      expect(errorSpy).toHaveBeenCalledWith(expect.stringContaining('--project-root'));
+      expect(fs.existsSync(lockPath)).toBe(false);
+      expect(harness.runWorkflow).not.toHaveBeenCalled();
+    } finally {
+      process.chdir(originalCwd);
+      errorSpy.mockRestore();
+      exitSpy.mockRestore();
+      fs.rmSync(outside, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps save behavior when cwd is inside a spec-kit repository', async () => {
+    const originalCwd = process.cwd();
+
+    try {
+      process.chdir(tempRoot);
+      const { main } = await import('../continuity/generate-context');
+      await main(
+        ['--json', JSON.stringify({ specFolder: FIXTURE_PACKET, sessionSummary: 'A repository cwd remains valid.' })],
+        undefined,
+        tempRoot,
+      );
+
+      expect(harness.runWorkflow).toHaveBeenCalledTimes(1);
+    } finally {
+      process.chdir(originalCwd);
+    }
   });
 
   it('forwards explicit --session-id to workflow', async () => {

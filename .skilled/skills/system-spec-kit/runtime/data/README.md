@@ -36,23 +36,21 @@ Current state:
 
 ### Host Repository Index
 
-A host repository that vendors Skilled keeps its own index at `.speckit-index/trigger-index.json` in the host root. Nothing selects that file automatically: the lookup's default stays the packaged `runtime/data/trigger-index.json`, so the host passes its path with `--index`.
+A host repository that vendors Skilled keeps its own index at `.speckit-index/trigger-index.json` in the host root. Both scripts select that file automatically when they run from the host: the lookup reads it when no `--index` is given, and the generator writes it, with its sidecars beside it, when no `--out` is given. A checkout of the framework itself keeps reading and writing the packaged `runtime/data/trigger-index.json`, and an explicit `--index` or `--out` still wins.
 
 ```bash
-# generate from the host root
-node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
-  --repo-root . --out .speckit-index/trigger-index.json
+# generate from the host root: writes .speckit-index/trigger-index.json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs
 
 # Gate 1 lookup against the host index
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
-  --index .speckit-index/trigger-index.json --json -- "<prompt>"
+  --json -- "<prompt>"
 
 # freshness check against the same file
-node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs \
-  --check --repo-root . --out .speckit-index/trigger-index.json
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check
 ```
 
-`--out` alone writes the corpus manifest, diagnostics and phrase variants beside the index. Regenerate it after any `trigger_phrases` change in the host's docs.
+`--out` alone writes the corpus manifest, diagnostics and phrase variants beside the index, which is what the host default does. Regenerate it after any `trigger_phrases` change in the host's docs.
 
 ---
 

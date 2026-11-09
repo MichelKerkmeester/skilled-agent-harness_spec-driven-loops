@@ -4,4 +4,4 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-require('../lib/advisory-stop.cjs').runAdvisoryStop('codex');
+require('../lib/advisory-stop.cjs').runAdvisoryStop('codex').catch(() => {});

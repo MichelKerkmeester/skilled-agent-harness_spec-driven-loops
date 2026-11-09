@@ -5,7 +5,7 @@ trigger_phrases:
   - "jev transport"
   - "pi classifier transport"
   - "cli-classifier shared scripts"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Jev transport scripts
@@ -38,9 +38,9 @@ shared/scripts/
 | File | Responsibility |
 |---|---|
 | `jev-features.mjs` | Resolves the shared `JEV_FEATURES` master switch, each feature's own switch and its older names, then answers readiness for that feature: `featureSwitch` reads switch state alone, `featureReady` adds one bounded `jev auth status --provider <JEV_PROVIDER>` (default `official`) that runs only when the switch allows it. It never prints, never reads or passes a key and discards the command's output. The `.cjs` callers require this file, so it ships no top-level await. |
-| `jev-transport.mjs` | Tries Pi by default when the call names no transport and the preflight passes: the pinned Pi 0.99.2 package, the mapped model and a credential Pi can read. `JEV_TRANSPORT=jev` forces the CLI, while `JEV_TRANSPORT=pi` or the per-call `transport: 'pi'` option asks for Pi and prints one skip line when Pi cannot answer. It maps a `choice` or `noul` request to Pi's classifier context, with the state under the `text` key, and falls back to the CLI on each failed gate and on a backend failure. `score` and `run` stay on the CLI. Every outcome names the route that answered, `pi` or `jev`, and the model that answered, and a Pi answer's payload carries its token usage. |
+| `jev-transport.mjs` | Tries Pi by default when the call names no transport and the preflight passes: a Pi package found above the `pi` executable or in its managed install whose runtime exposes the model calls (0.99.2, or 1.0 and later), the mapped model and a credential Pi can read. `JEV_TRANSPORT=jev` forces the CLI, while `JEV_TRANSPORT=pi` or the per-call `transport: 'pi'` option asks for Pi and prints one skip line when Pi cannot answer. It maps a `choice` or `noul` request to Pi's classifier context, with the state under the `text` key, and falls back to the CLI on each failed gate and on a backend failure. `score` and `run` stay on the CLI. Every outcome names the route that answered, `pi` or `jev`, and the model that answered, and a Pi answer's payload carries its token usage. |
 | `scorer-report.mjs` | Pins the rows a run scored behind one SHA-256 digest, reports whether an output directory already holds a run, picks the key with the highest summed probability, counts the decided subset, computes margin slack and draws a seeded cluster bootstrap interval, with the three lines that print them. It ships no top-level await, so the `.cjs` scorers require it. |
-| `tests/` | Holds `jev-features.test.mjs`, `jev-transport.test.mjs` and `scorer-report.test.mjs`, the `node --test` suites for the three modules. Both backends are stubs, so no test opens a socket, calls a model or needs a key. |
+| `tests/` | Holds `jev-features.test.mjs`, `jev-transport.test.mjs` and `scorer-report.test.mjs`, the `node --test` suites for the three modules, and `hub-router-phrases.test.mjs`, which routes every advertised Jev phrase through compiled routing. Both backends are stubs, so no test opens a socket, calls a model or needs a key. |
 
 **`jev-transport.mjs`**
 

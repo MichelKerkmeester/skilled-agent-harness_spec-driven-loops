@@ -36,6 +36,11 @@
 // phrase-variants.json beside it. --check compares the index at --out, or the
 // committed one, with the corpus and writes nothing.
 //
+// A host repository that vendors Skilled names its own corpus and index: with no
+// --repo-root the caller's own repository supplies the root when it is a host,
+// and with no --out the index and its sidecars land under <root>/.speckit-index.
+// Inside the framework checkout nothing changes, and any explicit flag wins.
+//
 // Exit codes: 0 = published (--check: index matches the corpus), 1 = malformed corpus, nothing
 // published (--check: a document is stale, an index path left the corpus, or the corpus is
 // untrusted), 2 = bad invocation or, for --check, an unreadable index.
@@ -56,6 +61,7 @@ import { packetFolderTokens } from './lib/grep-convention.mjs';
 import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
 import { loadIndex } from './lookup-trigger-index.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
+import { callerRepoRoot, hostIndexPath, isHostRepository } from './lib/host-index.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -629,19 +635,52 @@ function findGitRoot(start) {
 }
 
 /**
- * Warns when the corpus was resolved to another checkout than the caller's.
+ * Resolves the corpus root and index path a bare invocation works against.
+ *
+ * A host repository that vendors Skilled is neither this checkout nor a scratch
+ * tree: a bare run there would index the framework's documents and publish them
+ * over the packaged artifact. When the caller's own repository is a host it
+ * supplies both, and its index keeps the three sidecars beside it because the
+ * packaged index is not the file being written. Every explicit flag still wins,
+ * including when it names a different host.
  *
  * @param {Record<string, string | boolean>} flags Parsed flags.
+ * @returns {{ indexPath: string | undefined, repoRoot: string }} Resolved defaults.
+ */
+function resolveInvocationDefaults(flags) {
+  const namedRoot = typeof flags['repo-root'] === 'string' ? flags['repo-root'] : undefined;
+  const callerRoot = namedRoot === undefined ? callerRepoRoot() : null;
+  const hostRoot = namedRoot === undefined && callerRoot !== null && isHostRepository(callerRoot)
+    ? callerRoot
+    : null;
+  const repoRoot = path.resolve(namedRoot ?? hostRoot ?? DEFAULT_REPO_ROOT);
+  const hostIndex = typeof flags.out === 'string' || !isHostRepository(repoRoot)
+    ? undefined
+    : hostIndexPath(repoRoot);
+  return { indexPath: hostIndex, repoRoot };
+}
+
+/**
+ * Warns when the corpus was resolved to another checkout than the caller's.
+ *
+ * A host repository names its own root and index, so the bare run there is
+ * already aimed at the caller's tree and never reaches this warning. What
+ * remains is a checkout that is neither the framework tree nor a host: indexing
+ * it silently from here would still write the packaged artifact.
+ *
+ * @param {Record<string, string | boolean>} flags Parsed flags.
+ * @param {string} repoRoot Resolved corpus root.
  * @returns {void}
  */
-function warnWhenIndexingAnotherRepository(flags) {
+function warnWhenIndexingAnotherRepository(flags, repoRoot) {
   if (typeof flags['repo-root'] === 'string') return;
+  if (isHostRepository(repoRoot)) return;
   const callerRoot = findGitRoot(process.cwd());
   if (callerRoot === null) return;
-  if (fs.realpathSync(callerRoot) === fs.realpathSync(DEFAULT_REPO_ROOT)) return;
+  if (fs.realpathSync(callerRoot) === fs.realpathSync(repoRoot)) return;
   // A linked source tree resolves to its own checkout, so silence would hide the wrong corpus.
   process.stderr.write(
-    `generate-trigger-index: indexing ${DEFAULT_REPO_ROOT}, not the current repository ${callerRoot};`
+    `generate-trigger-index: indexing ${repoRoot}, not the current repository ${callerRoot};`
     + ` pass --repo-root ${callerRoot}, and --out <path> to leave the shared index untouched\n`,
   );
 }
@@ -658,16 +697,18 @@ function main() {
     return 2;
   }
 
-  warnWhenIndexingAnotherRepository(flags);
+  const defaults = resolveInvocationDefaults(flags);
 
-  if (flags.check) return runCheck(flags);
+  warnWhenIndexingAnotherRepository(flags, defaults.repoRoot);
+
+  if (flags.check) return runCheck(flags, defaults);
 
   const report = generate({
     allowMalformed: Boolean(flags['allow-malformed']),
     diagnosticsPath: typeof flags.diagnostics === 'string' ? flags.diagnostics : undefined,
-    indexPath: typeof flags.out === 'string' ? flags.out : undefined,
+    indexPath: typeof flags.out === 'string' ? flags.out : defaults.indexPath,
     manifestPath: typeof flags.manifest === 'string' ? flags.manifest : undefined,
-    repoRoot: typeof flags['repo-root'] === 'string' ? flags['repo-root'] : undefined,
+    repoRoot: defaults.repoRoot,
     variantsPath: typeof flags.variants === 'string' ? flags.variants : undefined,
   });
 
@@ -682,9 +723,10 @@ function main() {
 
 /**
  * @param {Record<string, string | boolean>} flags Parsed flags, `check` among them.
+ * @param {{ indexPath: string | undefined, repoRoot: string }} defaults Resolved defaults.
  * @returns {number} Process exit code.
  */
-function runCheck(flags) {
+function runCheck(flags, defaults) {
   // Check mode writes nothing, so an output or publication flag would be
   // silently ignored; refusing it keeps a caller from believing it took effect.
   const writeOnly = ['allow-malformed', 'diagnostics', 'manifest', 'variants'].filter((name) => name in flags);
@@ -696,8 +738,8 @@ function runCheck(flags) {
   let report;
   try {
     report = checkIndex({
-      indexPath: typeof flags.out === 'string' ? flags.out : undefined,
-      repoRoot: typeof flags['repo-root'] === 'string' ? flags['repo-root'] : undefined,
+      indexPath: typeof flags.out === 'string' ? flags.out : defaults.indexPath,
+      repoRoot: defaults.repoRoot,
     });
   } catch (error) {
     process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);

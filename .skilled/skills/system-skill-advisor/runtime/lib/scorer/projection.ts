@@ -339,7 +339,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
     category: 'command',
     name: '/doctor:git setup',
     description: '',
-    keywords: ['sk-git setup check', 'is my sk-git setup working', 'which git rules are live', 'check my git hooks setup', '/doctor:git'],
+    keywords: ['sk-git setup check', 'is my sk-git setup working', 'which git rules are live', 'check my git hooks setup', 'my hooks are not firing', 'git hooks not firing', 'hooks stopped firing', '/doctor:git'],
     domains: ['doctor', 'command'],
     intentSignals: ['/doctor:git setup'],
     readOnly: true,

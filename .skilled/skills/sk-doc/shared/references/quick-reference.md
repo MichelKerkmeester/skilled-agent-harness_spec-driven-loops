@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gates at a glance"
 importance_tier: normal
 contextType: general
-version: 2.1.2.0
+version: 2.1.3.0
 ---
 
 # Markdown Optimizer - Quick Reference
@@ -69,7 +69,7 @@ python scripts/validate_document.py document.md     # Format validation (exit 0/
 python scripts/extract_structure.py document.md   # Extract structure + DQI score
 python scripts/quick_validate.py skill-path       # Quick validation
 python scripts/init_skill.py skill-name           # Initialize new skill
-python scripts/package_skill.py skill-path        # Package skill
+python scripts/package_skill.py skill-path out-dir # Package skill
 ```
 
 ---
@@ -242,7 +242,7 @@ active resource map.
 2. **Planning** → Identify scripts/refs/assets (~5 min)
 3. **Initialize** → `python scripts/init_skill.py <name>` (~2 min)
 4. **Edit** → Populate SKILL.md + resources (~10-15 min)
-5. **Package** → `python scripts/package_skill.py <path>` (~2 min)
+5. **Package** → `python scripts/package_skill.py <path> <output-dir>` (~2 min)
 6. **Iterate** → Test and improve (ongoing)
 
 ---

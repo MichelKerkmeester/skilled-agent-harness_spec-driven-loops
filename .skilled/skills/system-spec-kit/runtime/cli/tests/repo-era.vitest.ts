@@ -183,7 +183,7 @@ describe('repository era report', () => {
       packetPaths.filter((packetPath) => packetPath === 'specs/fixture-track/001-packet'),
     ).toHaveLength(1);
     expect(hasExcludedCopy).toBe(false);
-    expect(excludedPaths).toContain('specs/fixture-track/001-packet/research');
+    expect(excludedPaths).toContain('specs/fixture-track/001-packet/research/002-containment-copy');
     expect(excludedPaths).toContain('specs/fixture-track/001-packet/research/lineages');
     expect(excludedPaths).toContain('specs/fixture-track/001-packet/review');
     expect(excludedPaths).toContain('specs/fixture-track/001-packet/context');

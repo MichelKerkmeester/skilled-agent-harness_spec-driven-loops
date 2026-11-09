@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/047-v4-release-line-research/006-deep-loop-single-executor-dispatch",
+  "description": "Phase 6: deep-loop-single-executor-dispatch",
+  "keywords": [
+    "phase",
+    "deep-loop-single-executor-dispatch"
+  ],
+  "lastUpdated": "2026-11-08T23:38:59.396Z",
+  "specId": "006",
+  "folderSlug": "deep-loop-single-executor-dispatch",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

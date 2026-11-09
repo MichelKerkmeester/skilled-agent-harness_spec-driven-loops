@@ -92,7 +92,7 @@ The YAML workflow requires prior planning artifacts, executes implementation tas
 When it writes spec docs, it follows `.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md` and fills every `[YOUR_VALUE_HERE: ...]` token before the status leaves Draft.
 
 Its `validate.sh --strict` calls also run warn-only rules.
-Those rules never fail the run.
+Those rules never fail the run, with one exception: under `--strict`, a SOURCE_TAGS check that cannot run is an error.
 Three rules check authoring.
 `FRONTMATTER_VALUES` checks each doc's `contextType` and `importance_tier` against sk-create-frontmatter's `assets/frontmatter-values.json`.
 `SOURCE_TAGS` resolves the `[SOURCE: path:line]` tags in research and review artifacts of packets created after 2026-10-04.

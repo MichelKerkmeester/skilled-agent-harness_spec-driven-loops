@@ -126,6 +126,14 @@ function main() {
       continue;
     }
 
+    for (const detail of result.details) {
+      if (detail.status === 'same-file') {
+        console.log(`SAME FILE  ${name} [${detail.runtime}] ${detail.path} resolves to the canonical file`);
+      } else if (detail.status === 'present-but-not-compared') {
+        console.log(`NOT COMPARED  ${name} [${detail.runtime}] ${detail.path} (${detail.reason})`);
+      }
+    }
+
     if (result.allInSync) {
       continue;
     }
@@ -158,7 +166,7 @@ function main() {
     process.exit(1);
   }
 
-  console.log(`agent-mirror-sync: ${uniqueNames.length} agent(s) checked — all mirrors in sync — OK`);
+  console.log(`agent-mirror-sync: ${uniqueNames.length} agent(s) checked — all comparable mirrors in sync — OK`);
   process.exit(0);
 }
 

@@ -33,7 +33,7 @@ All paths are relative to the repo root.
 ## CONSTRAINTS
 
 - You are a LEAF agent. Do NOT dispatch sub-agents.
-- Target 3-5 research actions. Max 12 tool calls total.
+- Target 3-5 research actions. Max {max_tool_calls_per_iteration} tool calls total.
 - Write ALL findings to files. Do not hold in context.
 - The workflow reducer owns strategy machine-owned sections, registry, and dashboard synchronization. Treat those reducer-owned files as read-only.
 - Do not re-enter a saturated direction. Use Pivot Lineage and Saturated Directions as hard negative context unless new evidence explicitly invalidates the saturation record.

@@ -110,6 +110,14 @@ test('an unknown argument is a checker error with usage', () => {
   assert.match(out, /Usage: agent-roster-mirror-check\.cjs/);
 });
 
+test('--check is accepted as a no-op so the shared mirror invocation runs', () => {
+  // Every run of this checker already is a check, so refusing the flag its
+  // siblings take would fail a call that asks for nothing more.
+  const { status, out } = run(['--check', '--root', buildRoot()]);
+  assert.equal(status, 0, out);
+  assert.match(out, /STATUS=OK agent-roster-mirror/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. REGRESSIONS
 // ─────────────────────────────────────────────────────────────────────────────

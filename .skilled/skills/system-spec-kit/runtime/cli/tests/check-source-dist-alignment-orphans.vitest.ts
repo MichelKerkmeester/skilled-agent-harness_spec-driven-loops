@@ -14,6 +14,7 @@ import * as os from 'node:os';
 import * as path from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { freshnessFailure } from '../evals/check-source-dist-alignment.js';
 
 // Mirror the path-resolution pattern used by alignment-drift-fixture-preservation.vitest.ts.
 const SKILL_ROOT = path.resolve(__dirname, '..', '..', '..');
@@ -139,5 +140,48 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
       '.skilled/skills/system-spec-kit/runtime/dist/tests/search-quality/harness.js',
     );
     expect(fs.existsSync(harnessPath)).toBe(false);
+  });
+});
+
+describe('check-source-dist-alignment freshness results', () => {
+  const check = {
+    packageId: 'system-spec-kit/runtime/cli',
+    entry: 'default',
+    buildCommand: 'cd .skilled/skills/system-spec-kit/runtime/cli && npm run build',
+  };
+
+  it('fails when dist-freshness reports a stale build', () => {
+    const failure = freshnessFailure(check, {
+      status: 69,
+      stdout: JSON.stringify({ status: 'stale', stale: true }),
+      stderr: '',
+    });
+
+    expect(failure).toContain('Stale dist for system-spec-kit/runtime/cli entry default');
+    expect(failure).toContain(check.buildCommand);
+  });
+
+  it('skips an unprovisioned dist-freshness result', () => {
+    const failure = freshnessFailure(check, {
+      status: 0,
+      stdout: JSON.stringify({ status: 'unprovisioned', stale: false }),
+      stderr: '',
+    });
+
+    expect(failure).toBeNull();
+  });
+
+  it('fails when the freshness check cannot run', () => {
+    const failure = freshnessFailure(check, {
+      status: null,
+      stdout: '',
+      stderr: '',
+      error: new Error('listen EPERM'),
+    });
+
+    expect(failure).toContain('Freshness check could not run');
+    expect(failure).toContain(check.packageId);
+    expect(failure).toContain(check.entry);
+    expect(failure).toContain(check.buildCommand);
   });
 });

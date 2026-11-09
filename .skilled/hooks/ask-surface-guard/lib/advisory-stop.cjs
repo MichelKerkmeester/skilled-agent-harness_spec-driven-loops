@@ -9,7 +9,7 @@
 // blocking path once their Stop accepts a block.
 'use strict';
 
-const { readFileSync } = require('node:fs');
+const { readStdin } = require('../../shared/hook-adapter-shared.cjs');
 
 const core = require('./ask-surface-core.cjs');
 
@@ -38,10 +38,10 @@ function adviseFor(runtime, payload) {
  *
  * @param {string} runtime - `codex` or `devin`.
  */
-function runAdvisoryStop(runtime) {
+async function runAdvisoryStop(runtime) {
   try {
     if (isHookEnabled(core.CONCERN) === false) return;
-    const advisory = adviseFor(runtime, JSON.parse(readFileSync(0, 'utf8')));
+    const advisory = adviseFor(runtime, JSON.parse(await readStdin()));
     if (advisory) process.stderr.write(`${advisory}\n`);
   } catch {
     // Advisory only: a bad payload or a read error ends the turn normally.

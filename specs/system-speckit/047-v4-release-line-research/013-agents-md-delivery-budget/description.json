@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/047-v4-release-line-research/013-agents-md-delivery-budget",
+  "description": "Phase 13: agents-md-delivery-budget",
+  "keywords": [
+    "phase",
+    "agents-md-delivery-budget"
+  ],
+  "lastUpdated": "2026-11-08T23:39:04.264Z",
+  "specId": "013",
+  "folderSlug": "agents-md-delivery-budget",
+  "parentChain": [
+    "system-speckit",
+    "047-v4-release-line-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

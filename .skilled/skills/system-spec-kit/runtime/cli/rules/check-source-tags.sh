@@ -27,7 +27,11 @@ run_check() {
 
     local output
     if ! output=$(node "$rule_dir/check-source-tags-helper.mjs" "$folder" 2>&1); then
-        RULE_STATUS="warn"
+        if [[ "${STRICT_MODE:-false}" == "true" ]]; then
+            RULE_STATUS="error"
+        else
+            RULE_STATUS="warn"
+        fi
         RULE_MESSAGE="[SOURCE:] check skipped: the repository or the redirect table could not be read"
         RULE_DETAILS=("$output")
         return 0

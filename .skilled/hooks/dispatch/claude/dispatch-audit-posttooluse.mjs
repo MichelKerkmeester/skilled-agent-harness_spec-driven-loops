@@ -18,8 +18,6 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { join } from 'node:path';
-
 import * as dispatchAuditCore from '../lib/dispatch-audit.mjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
@@ -54,7 +52,7 @@ async function main() {
   if (typeof command !== 'string' || command.length === 0) return done();
 
   const projectDir = payload?.cwd || process.env.CLAUDE_PROJECT_DIR || process.cwd();
-  const logPath = join(projectDir, dispatchAuditCore.DEFAULT_LOG_RELATIVE_PATH);
+  const logPath = dispatchAuditCore.resolveAuditLogPath(projectDir);
 
   const toolResponse = payload?.tool_response && typeof payload.tool_response === 'object'
     ? payload.tool_response

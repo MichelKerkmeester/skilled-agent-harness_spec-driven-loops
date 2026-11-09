@@ -18,7 +18,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -1158,6 +1159,26 @@ export function buildAuditLine(record = {}) {
 export const DEFAULT_LOG_RELATIVE_PATH = '.skilled/logs/cli-dispatch-audit.log';
 const DEFAULT_MAX_LOG_BYTES = 512 * 1024;
 const LOG_BACKUP_SUFFIX = '.1';
+const repositoryRootByStartingDirectory = new Map();
+
+/** Resolve the audit log beneath the repository containing a starting directory. */
+export function resolveAuditLogPath(startingDirectory = process.cwd()) {
+  const absoluteStartingDirectory = resolve(startingDirectory);
+  let repositoryRoot = repositoryRootByStartingDirectory.get(absoluteStartingDirectory);
+  if (!repositoryRoot) {
+    repositoryRoot = absoluteStartingDirectory;
+    try {
+      repositoryRoot = execFileSync('git', ['-C', absoluteStartingDirectory, 'rev-parse', '--show-toplevel'], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }).trim() || absoluteStartingDirectory;
+    } catch (_) {
+      // Standalone directories still get a local audit log.
+    }
+    repositoryRootByStartingDirectory.set(absoluteStartingDirectory, repositoryRoot);
+  }
+  return join(repositoryRoot, DEFAULT_LOG_RELATIVE_PATH);
+}
 
 /**
  * Append one pre-built JSONL line to the audit log, rotating it to a `.1` backup first when

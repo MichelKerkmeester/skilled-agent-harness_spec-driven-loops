@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.10.0
+version: 1.2.11.0
 ---
 
 # Skill Creation Process
@@ -345,12 +345,12 @@ The gate runs the deterministic render checks, so the judgment calls stay with y
 
 `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --json` reports the deterministic half of this review as `render_*` warnings. Clear those warnings before you make the judgment calls above.
 
-**Command** (validate + package into a zip):
+**Command** (validate only, writes nothing):
 ```bash
-scripts/package_skill.py <path/to/skill-folder>
+scripts/package_skill.py <path/to/skill-folder> --check
 ```
 
-**Optional output directory**:
+**Command** (validate + package into a zip; the output directory is required and may not be a repository's top level):
 ```bash
 scripts/package_skill.py <path/to/skill-folder> ./dist
 ```

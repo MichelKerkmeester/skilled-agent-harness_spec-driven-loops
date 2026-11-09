@@ -1654,6 +1654,57 @@ describe('deep-research typed ledger schema', () => {
     { stem: 'deep_research.pivot_failed', record: LEGACY_LIFECYCLE_ROWS.pivotFailed },
   ] as const;
 
+  it('projects a completed iteration with its focus, mode and answered questions', () => {
+    const record = {
+      type: 'iteration', mode: 'research', run: 7, status: 'complete',
+      sessionId: 'run-1', parentSessionId: 'lineage-1',
+      focus: 'verify production behavior', answeredQuestions: ['Does retry preserve the request id?'],
+      newInfoRatio: 0.6, ruledOut: [], timestamp: '2026-05-24T00:00:00Z',
+    };
+    const context = {
+      scope: { runId: 'run-1', lineageId: 'lineage-1', iteration: 7 },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-iteration'),
+    };
+    const result = upcastLegacyDeepResearchRecord(record, context);
+    if (result.status !== 'migrated') throw new Error(result.decision.reasonCode);
+
+    const prepared = prepareDeepResearchEvent({
+      stem: result.targetStem,
+      scope: result.scope,
+      prevEventHash: result.prevEventHash,
+      replay: result.replay,
+      data: result.data,
+      eventId: 'event-legacy-iteration',
+      streamId: 'deep-research-run-1',
+      streamSequence: 1,
+      occurredAt: result.occurredAt as string,
+      recordedAt: TIMESTAMP,
+      producer: { name: 'deep-research-shadow-schema', version: '1' },
+      authorityEpoch: 1,
+      correlationId: 'run-1',
+      causationId: null,
+      idempotencyKey: 'legacy-iteration',
+    } as DeepResearchEventInput<'deep_research.iteration_completed'>, createDeepResearchEventRegistry());
+    const contract = createDeepResearchProjectionContract();
+    const projected = contract.reduce(contract.base.state, {
+      effective: prepared,
+    } as unknown as EventReadResult);
+
+    expect(projected.rows).toEqual([{
+      type: 'iteration',
+      iteration: 7,
+      run: 7,
+      status: 'complete',
+      newInfoRatio: 0.6,
+      ruledOut: [],
+      focus: 'verify production behavior',
+      mode: 'research',
+      answeredQuestions: ['Does retry preserve the request id?'],
+      timestamp: record.timestamp,
+    }]);
+  });
+
   it.each(reducerReadRows)('upcasts a legacy $record.event row to $stem and projects the same row back', ({ stem, record }) => {
     const context = {
       scope: { runId: 'run-ideas-1', lineageId: 'lineage-ideas-1', iteration: 7 },

@@ -680,8 +680,9 @@ workflow:
           - "{state_paths.strategy}"
           - "{state_paths.config}"
         extract:
-          - iteration_count: "Count lines where type === 'iteration'"
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "Count distinct run values (run, else iteration) across lines where type === 'iteration'; a redispatched run counts once"
+          - highest_run: "Highest run value (run, else iteration) across lines where type === 'iteration', else 0"
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - last_newFindingsRatio: "Extract newFindingsRatio from last iteration record"
           - last_focus: "Extract focus/dimension from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newFindingsRatio from second-latest iteration record, else 'N/A'"
@@ -1236,113 +1237,27 @@ workflow:
             model: opus
             context_source: "rendered_prompt_pack"
           wait_for_completion: true
-        if_cli_copilot:
+        if_cli_deepseek_harness:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-            import { readFileSync, writeFileSync } from 'node:fs';
-            import { createHash } from 'node:crypto';
-
-            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { buildCopilotPromptArg } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
-
-            const promptPath = '{state_paths.prompt_dir}/iteration-{current_iteration}.md';
-            const prompt = readFileSync(promptPath, 'utf8');
-
-            // Workflow-resolved spec folder is the only legal write authority.
-            // The helper (`validateSpecFolder` inside `buildCopilotPromptArg`)
-            // is the single source of truth for rejecting empty / unresolved
-            // template / whitespace-only / string-coerced empty values. The
-            // YAML hands the raw `{spec_folder}` directly; on rejection the
-            // helper safe-fails to `type:"missing", writeIntent:true` (Gate-3
-            // enforcement, --allow-all-tools stripped).
-            const specFolderRaw = '{spec_folder}';
-            const targetAuthority = { type: 'approved', specFolder: specFolderRaw };
-
-            const baseArgs = [
-              '-p',
-              prompt,
-              '--model',
-              '{config.executor.model}',
-              '--allow-all-tools',
-              '--no-ask-user',
-            ];
-
-            const built = buildCopilotPromptArg({
-              promptPath,
-              prompt,
-              targetAuthority,
-              baseArgv: baseArgs,
-            });
-
-            // Large-prompt @PROMPT_PATH wrapper: helper emits a `promptFileBody`
-            // containing `<TARGET AUTHORITY preamble>\n\n---\n\n<original>`.
-            // Write it to disk so the file Copilot reads via @path opens with
-            // the authority block. Without this, recovered/bootstrap folder
-            // mentions inside the file could still anchor the model.
-            if (built.promptFileBody !== undefined) {
-              writeFileSync(promptPath, built.promptFileBody, 'utf8');
-            }
-
-            // Copilot is routed through the audited executor wrapper so it produces
-            // INTENT + COMPLETION dispatch receipts alongside claude-code/opencode
-            // There is no cli-copilot kind in the executor schema, so it
-            // dispatches as kind:'native' (full env passthrough, no recursion-guard
-            // layer configured for copilot); the receipt still records the real
-            // 'copilot' command + built.argv as facts.
-            const dispatchFacts = {
-              command: 'deep/review',
-              mode: 'review',
-              specFolder: '{spec_folder}',
-              artifactDir: '{state_paths.packet_dir}',
-              iteration: Number('{current_iteration}'),
-              executorKind: '{config.executor.kind}',
-              branchId: '{config.executor.kind}',
-              sessionId: '{session_id}',
-              generation: Number('{generation}'),
-            };
-            const dispatchId = 'review-i{current_iteration}-g{generation}';
-            process.exit(
-              runAuditedExecutorCommand({
-                command: 'copilot',
-                args: built.argv,
-                cwd: '{repo_root}',
-                timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-                stateLogPath: '{state_paths.state_log}',
-                executor: {
-                  kind: 'native',
-                  model: '{config.executor.model}',
-                  configDir: null,
-                  reasoningEffort: null,
-                  serviceTier: null,
-                  sandboxMode: null,
-                  timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-                  governor: null,
-                },
-                iteration: Number('{current_iteration}'),
-                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-                dispatchId,
-              }),
-            );
+            node --input-type=module <<'EOF'
+            console.error('cli-deepseek-harness runs only as a fan-out lineage; rerun with --fanout or choose another executor kind');
+            process.exit(2);
             EOF
           working_directory: "{repo_root}"
-          timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
           notes:
-            - "Routed through runAuditedExecutorCommand so copilot produces INTENT + COMPLETION dispatch receipts; built.argv (@PROMPT_PATH or positional) is forwarded verbatim as the receipt facts"
-            - "copilot has no stdin support; prompt is positional"
-            - "Size check uses 16KB threshold; above that uses @PROMPT_PATH wrapper prompt"
-            - "Large-prompt path relies on copilot honoring @path references within its prompt string"
-            - "buildCopilotPromptArg attaches a TARGET AUTHORITY preamble bound to the workflow-approved spec folder; recovered context cannot override it (authority guard source: .skilled/commands/speckit/assets/speckit_deep-review_auto.yaml)"
-            - "If spec_folder is missing/malformed/unresolved on a write-intent dispatch, the helper enforces plan-only by replacing the prompt with a Gate-3 question and stripping --allow-all-tools"
-            - "Large-prompt wrapper mode rewrites the prompt file at promptPath to include the TARGET AUTHORITY preamble (prefix + divider + original body); the argv becomes a bare @promptPath reference"
+            - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
         if_cli_claude_code:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
+            import { createRequire } from 'node:module';
 
             import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
+            const require = createRequire(import.meta.url);
+            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
             const configDir = '{optional_claude_config_dir}';
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
             const executor = {
@@ -1357,7 +1272,7 @@ workflow:
             };
             const args = [
               '-p',
-              readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'),
+              withAgentPersona('deep-review', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}'),
               '--model',
               executor.model,
               '--permission-mode',
@@ -1424,22 +1339,28 @@ workflow:
             import { execFileSync } from 'node:child_process';
             import { readFileSync, readlinkSync, realpathSync, writeFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
+            import { createRequire } from 'node:module';
             import { basename, dirname, isAbsolute, join, relative, resolve } from 'node:path';
 
             import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
 
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const require = createRequire(import.meta.url);
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const sandboxMode = '{config.executor.sandboxMode}' === 'null' ? 'danger-full-access' : '{config.executor.sandboxMode}';
             const executor = {
               kind: 'cli-opencode',
-              model: '{config.executor.model}',
+              model,
               configDir: null,
               reasoningEffort,
               serviceTier: null,
-              sandboxMode: null,
+              sandboxMode,
               timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
               governor: null,
             };
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-review', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}');
             if (!promptBody.includes('BANNED OPERATIONS') || !promptBody.includes('ALLOWED WRITE PATHS')) {
               throw new Error('Unsafe cli-opencode dispatch: rendered prompt is missing required write-containment sections');
             }
@@ -1537,21 +1458,16 @@ workflow:
             const message = 'Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true'
               + '\n\n'
               + promptBody;
-            const args = [
-              'run',
-              '--model',
-              executor.model,
-              '--format',
-              'json',
-              '--dangerously-skip-permissions',
-              '--pure',
-              '--dir',
-              '{repo_root}',
-            ];
-            if (executor.reasoningEffort) {
-              args.push('--variant', executor.reasoningEffort);
-            }
-            args.push(message);
+
+            const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
+            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+            const { command, args, input, cwd } = buildLineageCommand(
+              lineage,
+              message,
+              sandboxMode,
+              resolvedPermission,
+              { env: process.env, cwd: repoRoot, directoryRoot: repoRoot },
+            );
 
             const dispatchFacts = {
               command: 'deep/review',
@@ -1567,16 +1483,15 @@ workflow:
             const dispatchId = 'review-i{current_iteration}-g{generation}';
             process.exit(
               runAuditedExecutorCommand({
-                command: 'opencode',
+                command,
                 args,
-                cwd: '{repo_root}',
+                cwd: cwd || repoRoot,
                 timeoutSeconds: executor.timeoutSeconds,
                 stateLogPath: '{state_paths.state_log}',
                 executor,
                 iteration: Number('{current_iteration}'),
-                // opencode v1.14.39 reads stdin at startup before session creation;
-                // an empty input gives EOF stdin, equivalent to </dev/null.
-                input: '',
+                // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
+                input,
                 receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
                 dispatchId,
               }),
@@ -1600,16 +1515,17 @@ workflow:
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
             - "Fail closed before dispatch unless the rendered containment sections exist, --dir is an isolated linked worktree, the primary worktree is clean, and current-worktree changes are confined to artifact_dir both by name and after every path component is resolved through symlinks; append the recovery-baseline commit to state_log"
-            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule)"
-            - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
-            - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
-            - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
+            - "buildLineageCommand returns empty input, so stdin is closed (EOF), equivalent to </dev/null"
+            - "buildLineageCommand receives the route-proof preamble + iteration body as its message"
+            - "buildLineageCommand maps reasoningEffort to the installed OpenCode version's supported option"
+            - "buildLineageCommand resolves the OpenCode binary and version-correct argv for the configured sandboxMode"
             - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { execFileSync } from 'node:child_process';
+            import { createRequire } from 'node:module';
 
             import {
               RECURSION_GUARD_EXIT_CODE,
@@ -1659,7 +1575,9 @@ workflow:
               process.exit(RECURSION_GUARD_EXIT_CODE);
             }
 
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const require = createRequire(import.meta.url);
+            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const promptBody = withAgentPersona('deep-review', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}');
 
             // codex reads the iteration prompt from stdin via the trailing '-'. A review
             // iteration must WRITE its own iteration file, delta and state record, so the
@@ -1759,7 +1677,7 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
             const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
@@ -1773,7 +1691,7 @@ workflow:
             const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
 
             const repoRoot = '{repo_root}';
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-review', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
             const { command, args, input } = buildLineageCommand(
               lineage,
               promptBody,
@@ -1860,7 +1778,7 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
             const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
@@ -1874,7 +1792,7 @@ workflow:
             const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
 
             const repoRoot = '{repo_root}';
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-review', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
             const { command, args, input } = buildLineageCommand(
               lineage,
               promptBody,
@@ -1961,7 +1879,7 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
             const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
@@ -1976,7 +1894,7 @@ workflow:
             const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
 
             const repoRoot = '{repo_root}';
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-review', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
             const { command, args, input } = buildLineageCommand(
               lineage,
               promptBody,
@@ -2119,22 +2037,33 @@ workflow:
           - reviewed_artifacts: "From latest JSONL iteration record"
           - traceability_checks: "From latest JSONL iteration record when present"
         on_missing_outputs:
-          action: "Mark iteration as 'error', continue to next"
+          action: "Inspect the latest dispatch record before handling missing outputs"
+          read:
+            - "{state_paths.state_log}"
+          extract:
+            - last_record: "Parse the latest state.jsonl record after dispatch"
+          branch_on: "last_record.type == 'event' AND last_record.event == 'dispatch_failure' AND last_record.executorUnavailable == true"
+          if_executor_unavailable:
+            set: { reason: "error", stopReason: "error" }
+            message: "The {last_record.executor.kind} executor is unavailable ({last_record.matchedMarker}). Switch executor or wait, then resume this run."
+            halt: true
+          if_other_failure:
+            action: "Mark iteration as 'error', continue to next"
           # Canonical iteration record: include sessionId, generation, durationMs so the reducer can
           # persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
           # The row is staged for the append gateway: the state log is a projection of the
           # ledger, so a directly appended error row is dropped by the next refresh.
-          command: |
-            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
-            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
-            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
-            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
-            {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.sessionId}","generation":{config.generation},"lineageMode":"{config.lineageMode}"}}
-            DEEP_LOOP_STATE_RECORD
-            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
-            RECORD_STATUS=$?
-            rm -f "$EVENT_FILE"
-            exit "$RECORD_STATUS"
+            command: |
+              GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+              [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+              EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
+              cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+              {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.sessionId}","generation":{config.generation},"lineageMode":"{config.lineageMode}"}}
+              DEEP_LOOP_STATE_RECORD
+              node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+              RECORD_STATUS=$?
+              rm -f "$EVENT_FILE"
+              exit "$RECORD_STATUS"
 
       step_post_iteration_claim_adjudication:
         action: "Validate typed claim-adjudication packets for any new P0/P1 findings and persist the result to state.jsonl so the next iteration's claimAdjudicationGate can read it"
@@ -2315,7 +2244,9 @@ workflow:
         read_patterns:
           - "{state_paths.packet_dir}/lineages/*/deep-review-state.jsonl"
         extract:
-          - iteration_count: "When direct lineage state logs exist, count type === 'iteration' across those logs in stable lineage order; otherwise count the root state log. Never add root compatibility records to lineage records."
+          - iteration_count: "When direct lineage state logs exist, count distinct run values (run, else iteration) across those logs in stable lineage order; otherwise count distinct run values (run, else iteration) across the root state log. Never add root compatibility records to lineage records."
+          - highest_run: "When direct lineage state logs exist, take the highest run value (run, else iteration) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (run, else iteration) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - p0_count: "Total P0 findings across all iterations (deduped)"
           - p1_count: "Total P1 findings across all iterations (deduped)"
           - p2_count: "Total P2 findings across all iterations (deduped)"
@@ -2468,6 +2399,19 @@ workflow:
 
           Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-review/references/protocol/loop-protocol.md §Lifecycle Branches`.)
         output: "{state_paths.review_output}"
+
+      step_derive_release_readiness_state:
+        action: "Bind release-readiness state from final review results"
+        algorithm: |
+          if active_p0 > 0:
+            release_readiness_state = "release-blocking"
+          elif reason == "converged" and verdict in ["PASS", "CONDITIONAL"]:
+            release_readiness_state = "converged"
+          else:
+            release_readiness_state = "in-progress"
+        outputs:
+          - release_readiness_state: "in-progress | converged | release-blocking"
+        note: "State meanings follow releaseReadinessStates in deep-review/assets/review-mode-contract.yaml."
 
       step_convergence_report:
         action: "Append convergence report to JSONL"

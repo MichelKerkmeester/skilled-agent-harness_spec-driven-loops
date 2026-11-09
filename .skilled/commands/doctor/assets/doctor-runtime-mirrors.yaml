@@ -35,6 +35,7 @@ upstream_assets:
   codex_agents: ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs"
   codex_prompts: ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs"
   agent_roster: ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs"
+  agent_body_parity: ".skilled/bin/check-agent-mirror-sync.cjs"
   command_catalog: ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs"
   codex_hooks_installer: ".skilled/bin/install-codex-hooks.mjs"
   pi_agents: ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs"
@@ -138,6 +139,7 @@ execution:
     - "Run upstream_assets.codex_agents with --check. Covers the generated .codex/agents/*.toml. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.codex_prompts with --check. Covers the generated .codex/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = checker error (bad argument, canonical dir missing, or crash)."
+    - "Run upstream_assets.agent_body_parity with --all. Compares each agent body across the runtime trees; same-file mirrors and non-comparable formats are reported, not counted as matches. Exit 0 = all comparable mirrors in sync, 1 = drift or comparison failure, 2 = checker invocation error (unknown option), 3 = not checkable (frontmatter parser unavailable)."
     - "Run upstream_assets.command_catalog. Compare command frontmatter with the root and family indexes and hub metadata. Exit 0 = in sync, 1 = drift, 2 = checker error."
     - "Run upstream_assets.codex_hooks_installer with --check --allow-worktree. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .skilled adapter no longer exists on disk. Explicit OK output = in sync; a drift report = drift; refusal, error, or missing affirmative output = error."
     - "Run upstream_assets.pi_agents with --check. Covers the generated .pi/agents/*.md. Exit 0 = in sync, 1 = drift."
@@ -158,6 +160,7 @@ output: |
     codex agents     -> node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs
     codex prompts    -> node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs
     codex hooks      -> node .skilled/bin/install-codex-hooks.mjs
+    agent body parity (.skilled/bin/check-agent-mirror-sync.cjs) -> .claude/agents is a hand-maintained real-file mirror; update both its .skilled source and Claude twin, then run node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs for .codex/agents, node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs for .pi/agents, and node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs for the .cursor and .devin links
     pi agents        -> node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
     pi prompts       -> node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
     dsh skills       -> node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs
@@ -166,8 +169,8 @@ output: |
     command catalog  -> update the root and family indexes, group counts, and hub metadata from command frontmatter
   While .dsh/ is absent the three DSH rows read n/a (no .dsh/ tree), never in sync, and leave
   STATUS unchanged: the mirror does not exist yet, and this run never creates it. Their repair lines are the generators without --check, run once the tree exists.
-  The agent roster check has no generator; its drift is repaired by the runtime-mirrors generator or by hand
-  for the authored surfaces (.skilled/agents, .codex/agents).
+  The agent roster check has no generator. Its drift is repaired by the runtime-mirrors generator or by hand
+  for the authored surfaces (.skilled/agents and .claude/agents).
   Hook CONFIG STRUCTURE is deliberately out of scope for mirroring: the four runtimes use incompatible event
   vocabularies and entry shapes, so those files are hand-authored per runtime and cannot be mirror-checked
   against each other.

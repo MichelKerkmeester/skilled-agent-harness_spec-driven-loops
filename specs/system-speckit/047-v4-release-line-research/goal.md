@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-speckit/047-v4-release-line-research"
     last_updated_at: "2026-11-08T22:20:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Goal extended from research to autonomous remediation"
-    next_safe_action: "Finish the five research runs, then synthesize"
+    recent_action: "All remediation phases closed; final gates run"
+    next_safe_action: "Operator reviews and merges the worktree branch; runs the operator-only steps"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-11-08-047-v4-release-line-research"
       parent_session_id: null
-    completion_pct: 40
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -84,12 +84,15 @@ Everything below is VOLATILE and not part of the directive.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Research children 001-005 | Running | 42 productive iterations at 22:20 CET |
-| Executor switch | Done | Devin daily quota exhausted; cli-pi `opencode-go/deepseek-v4.1-flash` max in use |
+| Research children 001-005 | Done | 101 state rows, 96 productive iterations; every child cleared the depth bar |
+| Synthesis | Done | `research/research.md`: 1 P0, 45 P1, 14 P2 verified; Luna 33 confirmed, 27 changed, 5 refuted |
+| Remediation 006-017 | Done | 11 Complete, 013 Blocked on operator steps; commits on `worktrees/334-v4-release-remediation` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| GPT quota exhausted mid-remediation | From phase 016 on, Luna-tier writes went to DeepSeek and the second-family review was done by the Claude orchestrator; recorded per phase |
+| Spec-remint bypass on phase commits | Two orchestrators shared one worktree, so each phase commit skipped only the remint check after a manual repair-derived; the closing parent commit runs it |
 | cli-deepseek-harness skipped | Single-executor path throws `requires a lineage directory` (`fanout-run.cjs:3002`) while `deep-research-auto.yaml:1579` advertises support |
 <!-- /ANCHOR:log -->

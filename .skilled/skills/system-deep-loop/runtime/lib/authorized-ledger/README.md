@@ -33,7 +33,7 @@ Fail-closed write substrate for `system-deep-loop` runtime domains. A transition
 
 ## 3. CONSUMERS
 
-Every ledger-backed `runtime/lib/` domain imports this module to append and replay its own events, including `blinded-adjudication`, `branch-leases-waves`, `claim-continuity`, `contradiction-supersession`, `cycle-detection`, `dispatch-receipts`, `deep-loop/continuity-identity` and `locks-and-fencing/protected-resource-registry.ts`.
+Every ledger-backed `runtime/lib/` domain imports this module to append and replay its own events, including `blinded-adjudication`, `claim-continuity`, `contradiction-supersession`, `cycle-detection`, `dispatch-receipts`, `deep-loop/continuity-identity` and `locks-and-fencing/protected-resource-registry.ts`.
 
 ---
 

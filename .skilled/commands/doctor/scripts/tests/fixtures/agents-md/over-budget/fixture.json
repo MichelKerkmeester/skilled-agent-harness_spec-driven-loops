@@ -4,7 +4,7 @@
   "base": "template",
   "block": {
     "markers": "reversed",
-    "pad_lines": 100
+    "pad_lines": 200
   },
   "files": {},
   "notes": "The end marker written before the start marker, with a repository block long enough to push the total past the ceiling Codex stops reading at. Both defects are one shape: a block nobody can place and a document too long to deliver whole."

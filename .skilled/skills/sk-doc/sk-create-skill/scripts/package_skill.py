@@ -13,11 +13,10 @@ Validates against skill creation standards:
 - skill_asset_template.md: Asset file requirements
 
 Usage:
-    python package_skill.py <path/to/skill-folder> [output-directory]
+    python package_skill.py <path/to/skill-folder> <output-directory>
     python package_skill.py <path/to/skill-folder> --check  # Validate only, don't package
 
 Example:
-    python package_skill.py .skilled/skills/my-skill
     python package_skill.py .skilled/skills/my-skill ./dist
     python package_skill.py .skilled/skills/my-skill --check
 """
@@ -26,6 +25,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -326,6 +326,10 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
     """
     warnings = []
     parsed = {}
+    # Every detectable frontmatter fault is collected before returning, so one
+    # run lists them all. Returning at the first one turns a three-fault block
+    # into three edit-run cycles the author cannot see the end of.
+    errors = []
 
     if not content.startswith('---'):
         return False, "No YAML frontmatter found (file should start with ---)", warnings, parsed
@@ -346,18 +350,25 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
             structured_frontmatter = loaded_frontmatter
 
     if structured_frontmatter is not None:
-        for field in REQUIRED_FRONTMATTER_FIELDS:
-            if field not in structured_frontmatter:
-                return False, f"Missing required field '{field}' in frontmatter", warnings, parsed
-        name = str(structured_frontmatter['name']).strip()
-        parsed['name'] = name
+        missing_fields = [
+            field for field in REQUIRED_FRONTMATTER_FIELDS
+            if field not in structured_frontmatter
+        ]
     else:
-        for field in REQUIRED_FRONTMATTER_FIELDS:
-            if f'{field}:' not in frontmatter:
-                return False, f"Missing required field '{field}' in frontmatter", warnings, parsed
+        missing_fields = [
+            field for field in REQUIRED_FRONTMATTER_FIELDS
+            if f'{field}:' not in frontmatter
+        ]
+    for field in missing_fields:
+        errors.append(f"Missing required field '{field}' in frontmatter")
 
+    name = None
+    if structured_frontmatter is not None:
+        if 'name' in structured_frontmatter:
+            name = str(structured_frontmatter['name']).strip()
+            parsed['name'] = name
+    else:
         name_match = re.search(r'name:\s*(.+)', frontmatter)
-        name = None
         if name_match:
             name = name_match.group(1).strip().strip('"\'')
             parsed['name'] = name
@@ -365,58 +376,63 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
     if name is not None:
         # Hyphen-case: lowercase with hyphens only
         if not re.match(r'^[a-z0-9-]+$', name):
-            return False, f"Name '{name}' must be hyphen-case (lowercase letters, digits, and hyphens only)", warnings, parsed
+            errors.append(f"Name '{name}' must be hyphen-case (lowercase letters, digits, and hyphens only)")
         if name.startswith('-') or name.endswith('-'):
-            return False, f"Name '{name}' cannot start or end with hyphen", warnings, parsed
+            errors.append(f"Name '{name}' cannot start or end with hyphen")
         if '--' in name:
-            return False, f"Name '{name}' cannot contain consecutive hyphens", warnings, parsed
+            errors.append(f"Name '{name}' cannot contain consecutive hyphens")
 
+    description = None
     if structured_frontmatter is not None:
-        description = str(structured_frontmatter['description']).strip()
-        if '\n' in description or re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
-            return False, "Description uses YAML multiline block format (must be single line after colon)", warnings, parsed
-        if not description:
-            return False, "Description appears to be empty or multiline (must be single line after colon)", warnings, parsed
-        parsed['description'] = description
+        if 'description' in structured_frontmatter:
+            description = str(structured_frontmatter['description']).strip()
+            if '\n' in description or re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
+                errors.append("Description uses YAML multiline block format (must be single line after colon)")
+            if not description:
+                errors.append("Description appears to be empty or multiline (must be single line after colon)")
+            else:
+                parsed['description'] = description
     else:
         # YAML multiline block format not allowed
         if re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
-            return False, "Description uses YAML multiline block format (must be single line after colon)", warnings, parsed
+            errors.append("Description uses YAML multiline block format (must be single line after colon)")
 
         desc_match = re.search(r'description:\s*(.+)', frontmatter)
         if desc_match:
             description = desc_match.group(1).strip().strip('"\'')
             parsed['description'] = description
-        else:
-            return False, "Description appears to be empty or multiline (must be single line after colon)", warnings, parsed
+        elif 'description' not in missing_fields:
+            errors.append("Description appears to be empty or multiline (must be single line after colon)")
 
-    # Angle brackets break OpenCode XML parsing
-    if '<' in description or '>' in description:
-        return False, "Description cannot contain angle brackets (< or >) - breaks OpenCode parsing", warnings, parsed
+    if description is not None:
+        # Angle brackets break OpenCode XML parsing
+        if '<' in description or '>' in description:
+            errors.append("Description cannot contain angle brackets (< or >) - breaks OpenCode parsing")
 
-    if 'TODO' in description.upper():
-        warnings.append("Description contains TODO placeholder - please complete it")
+        if 'TODO' in description.upper():
+            warnings.append("Description contains TODO placeholder - please complete it")
 
-    # Description budget: ≤130 soft target (see skill_contract.json).
-    budget = _description_budget('skill') if _description_budget else {}
-    soft = int(budget.get('softMax', 130))
-    hard = int(budget.get('hardCap', 1536))
-    description_length = len(description)
-    if description_length > hard:
-        return False, (
-            f"Description {description_length} chars exceeds hard cap {hard} — "
-            "skill will fail to register"
-        ), warnings, parsed
-    elif description_length > soft:
-        warnings.append(
-            f"Description {description_length} chars exceeds soft target of {soft}"
-        )
+        # Description budget: ≤130 soft target (see skill_contract.json).
+        budget = _description_budget('skill') if _description_budget else {}
+        soft = int(budget.get('softMax', 130))
+        hard = int(budget.get('hardCap', 1536))
+        description_length = len(description)
+        if description_length > hard:
+            errors.append(
+                f"Description {description_length} chars exceeds hard cap {hard} — "
+                "skill will fail to register"
+            )
+        elif description_length > soft:
+            warnings.append(
+                f"Description {description_length} chars exceeds soft target of {soft}"
+            )
 
     if structured_frontmatter is not None:
-        tools_value = structured_frontmatter['allowed-tools']
-        parsed['allowed-tools'] = tools_value
-        if not isinstance(tools_value, list):
-            return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings, parsed
+        if 'allowed-tools' in structured_frontmatter:
+            tools_value = structured_frontmatter['allowed-tools']
+            parsed['allowed-tools'] = tools_value
+            if not isinstance(tools_value, list):
+                errors.append(f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}")
     else:
         tools_match = re.search(r'allowed-tools:\s*(.+)', frontmatter)
         if tools_match:
@@ -426,11 +442,12 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
             # Array format required: [Tool1, Tool2]
             if tools_value and not tools_value.startswith('['):
                 if ',' in tools_value:
-                    return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings, parsed
+                    errors.append(f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}")
 
     # version is required (enforced by REQUIRED_FRONTMATTER_FIELDS above) and must be 4-part X.Y.Z.W.
     if structured_frontmatter is not None:
-        parsed['version'] = str(structured_frontmatter['version']).strip()
+        if 'version' in structured_frontmatter:
+            parsed['version'] = str(structured_frontmatter['version']).strip()
     else:
         version_match = re.search(r'^version:\s*(.+)', frontmatter, flags=re.MULTILINE)
         if version_match:
@@ -439,10 +456,13 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
     if 'version' in parsed:
         version_value = parsed['version'].strip().strip('"\'')
         if not re.match(r'^\d+\.\d+\.\d+\.\d+$', version_value):
-            return False, (
+            errors.append(
                 f"version '{version_value}' must be 4-part X.Y.Z.W "
                 f"(see sk-create-frontmatter/references/frontmatter-versioning.md)"
-            ), warnings, parsed
+            )
+
+    if errors:
+        return False, '; '.join(errors), warnings, parsed
 
     return True, "Frontmatter valid", warnings, parsed
 
@@ -1794,12 +1814,41 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
 # 3. PACKAGING FUNCTIONS
 # ───────────────────────────────────────────────────────────────
 
+def _is_git_worktree_toplevel(directory: Path) -> bool:
+    """Return whether a directory is the top level of a git work tree.
+
+    An archive written at a work tree's top level lands among tracked files,
+    one `git add .` away from being committed by accident, so packaging refuses
+    that location instead of relying on the caller to notice where it went.
+    """
+    try:
+        completed = subprocess.run(
+            ['git', '-C', str(directory), 'rev-parse', '--show-toplevel'],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+            check=False,
+        )
+    except OSError:
+        # No git executable is an ordinary environment, not a packaging error.
+        return False
+
+    if completed.returncode != 0:
+        return False
+
+    toplevel = completed.stdout.strip()
+    if not toplevel:
+        return False
+
+    return Path(toplevel).resolve() == directory.resolve()
+
+
 def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Optional[Path]:
     """Package a skill folder into a zip file.
 
     Args:
         skill_path_str: Path to the skill folder.
-        output_dir: Optional output directory for the zip file (defaults to cwd).
+        output_dir: Output directory for the zip file (required to package).
 
     Returns:
         Path to the created zip file, or None on error.
@@ -1836,11 +1885,20 @@ def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Opti
         print()
 
     skill_name = skill_path.name
-    if output_dir:
-        output_path = Path(output_dir).resolve()
-        output_path.mkdir(parents=True, exist_ok=True)
-    else:
-        output_path = Path.cwd()
+    # A package belongs in a directory the caller chose, never wherever the
+    # process happens to run, so the working directory is not a fallback.
+    if not output_dir:
+        print("❌ Error: an output directory is required to write a package.")
+        print("   Pass one as the second argument, or use --check to validate without writing.")
+        return None
+
+    output_path = Path(output_dir).resolve()
+    if _is_git_worktree_toplevel(output_path):
+        print(f"❌ Error: refusing to write a package into the top level of a git work tree: {output_path}")
+        print("   Pass a dedicated output directory, or use --check to validate without writing.")
+        return None
+
+    output_path.mkdir(parents=True, exist_ok=True)
 
     zip_filename = output_path / f"{skill_name}.zip"
 
@@ -1938,7 +1996,7 @@ def main() -> None:
         'output_dir',
         nargs='?',
         default=None,
-        help="Optional output directory for the zip package",
+        help="Output directory for the zip package (required unless --check/--json is used)",
     )
     parser.add_argument(
         '--check',
@@ -1988,9 +2046,16 @@ def main() -> None:
         sys.exit(0 if result else 1)
 
     else:
+        if not output_dir:
+            print(
+                "an output directory is required to write a package: "
+                "pass one as the second argument, or use --check to validate without writing",
+                file=sys.stderr,
+            )
+            sys.exit(2)
+
         print(f"📦 Packaging skill: {skill_path}")
-        if output_dir:
-            print(f"   Output directory: {output_dir}")
+        print(f"   Output directory: {output_dir}")
         print()
 
         result = package_skill(skill_path, output_dir)

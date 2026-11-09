@@ -78,7 +78,7 @@ The 41 checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`),
 
 A check returns `true` when the command *satisfies* the rule; `false` means violated. An unknown check id is skipped (the CI validator catches typos, not this hot path), and a throwing check resolves to satisfied so it can never block a dispatch.
 
-**Audit** injects nothing into the model. After each completed dispatch it appends one scrubbed, truncated JSONL line to the size-rotated log at `.skilled/logs/cli-dispatch-audit.log` (512 KB cap, rotated to a `.1` backup):
+**Audit** injects nothing into the model. After each completed dispatch it appends one scrubbed, truncated JSONL line to the size-rotated log at `<repository root>/.skilled/logs/cli-dispatch-audit.log` (512 KB cap, rotated to a `.1` backup). Adapters resolve the Git top-level from their working directory, or use that directory when it is outside a Git repository:
 
 ```json
 {"schema_version":1,"ts":"<ISO>","runtime":"<claude|codex|devin|opencode|pi|dsh>","sessionID":"...","callID":"...","skill":"...","command":"<scrubbed>","commandTruncated":false,"model":"...","target":"...","durationMs":1234,"exitCode":0,"outputBytes":5678}

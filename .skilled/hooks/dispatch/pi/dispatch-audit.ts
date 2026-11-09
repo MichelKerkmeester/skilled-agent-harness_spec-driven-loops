@@ -2,8 +2,6 @@
 // MODULE: Pi Extension - Dispatch Audit
 // ───────────────────────────────────────────────────────────────────
 
-import { join } from 'node:path';
-
 import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
 
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
@@ -29,7 +27,7 @@ export default function dispatchAudit(pi: ExtensionAPI): void {
       const audit = await import('../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs');
       audit.recordDispatch({
         command: event.input.command,
-        logPath: join(ctx.cwd, audit.DEFAULT_LOG_RELATIVE_PATH),
+        logPath: audit.resolveAuditLogPath(ctx.cwd),
         runtime: 'pi',
         sessionID: ctx.sessionManager.getSessionId(),
         callID: event.toolCallId,

@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
+const childProcess = require('node:child_process');
 const path = require('node:path');
 
 const {
@@ -56,7 +57,15 @@ const CHECKS = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 function getDefaultWorkspaceRoot() {
-  return path.resolve(__dirname, '../../../../../');
+  try {
+    return childProcess.execFileSync('git', ['rev-parse', '--show-toplevel'], {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore']
+    }).trim();
+  } catch (error) {
+    return path.resolve(__dirname, '../../../../../');
+  }
 }
 
 function pathIsFile(filePath) {
@@ -558,12 +567,16 @@ function parseArguments(argv) {
   const options = {
     workspaceRoot: null,
     scanAll: false,
+    help: false,
     packetArg: null
   };
 
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
-    if (argument === '--all') {
+    if (argument === '--help' || argument === '-h') {
+      options.help = true;
+      return options;
+    } else if (argument === '--all') {
       options.scanAll = true;
     } else if (argument === '--root') {
       const value = argv[index + 1];
@@ -583,6 +596,20 @@ function parseArguments(argv) {
     throw new Error('--all cannot be combined with a packet directory');
   }
   return options;
+}
+
+function printUsage() {
+  console.log([
+    'Usage: check-goal.cjs [--all] [--root <path>] [<packet-directory>]',
+    '       check-goal.cjs --help',
+    '',
+    'Options:',
+    '  --all          Scan every active packet goal',
+    '  --root <path>  Use the specified workspace root',
+    '  -h, --help     Show this help',
+    '',
+    'Exit codes: 0 = no findings, 1 = findings, 2 = errors'
+  ].join('\n'));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -694,13 +721,18 @@ function scanCorpus(workspaceRoot = getDefaultWorkspaceRoot()) {
 
 function main(argv) {
   const options = parseArguments(argv);
+  if (options.help) {
+    printUsage();
+    return 0;
+  }
   exitIfValidationOff('check-goal.cjs', argv);
   const workspaceRoot = options.workspaceRoot || getDefaultWorkspaceRoot();
 
   if (options.scanAll || options.packetArg === null) {
     const report = scanCorpus(workspaceRoot);
     printCorpusReport(report);
-    return report.errors.length === 0 ? 0 : 2;
+    if (report.errors.length > 0) return 2;
+    return report.findings.length > 0 ? 1 : 0;
   }
 
   let packetDir = path.resolve(workspaceRoot, options.packetArg);

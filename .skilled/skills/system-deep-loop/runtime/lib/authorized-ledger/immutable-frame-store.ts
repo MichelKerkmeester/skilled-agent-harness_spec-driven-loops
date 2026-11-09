@@ -204,21 +204,59 @@ function parseJsonObject(bytes: Buffer, filePath: string): JsonObject {
   return parsed as JsonObject;
 }
 
-function readLockRecord(lockPath: string): LockRecord | null {
-  if (!existsSync(lockPath)) return null;
+/** Three-way read of a lock path: absent, unusable, or a parsed holder record. */
+export type LockHolderRead =
+  | { readonly state: 'absent' }
+  | { readonly state: 'invalid' }
+  | { readonly state: 'present'; readonly holder: LockRecord };
+
+/** Classify a lock path without collapsing "released" into "corrupt". Exported for tests. */
+export function readLockHolder(lockPath: string): LockHolderRead {
+  let bytes: Buffer;
   try {
-    const parsed = parseJsonObject(readPrivateFile(lockPath), lockPath);
-    if (
-      typeof parsed.token !== 'string'
-      || typeof parsed.owner_pid !== 'number'
-      || typeof parsed.acquired_at !== 'string'
-    ) {
-      return null;
+    bytes = readPrivateFile(lockPath);
+  } catch (error: unknown) {
+    // A holder releases by unlinking, so a path that vanished is a completed release
+    // rather than a corrupt lock this writer may move aside.
+    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
+      return { state: 'absent' };
     }
-    return parsed as LockRecord;
-  } catch {
-    return null;
+    return { state: 'invalid' };
   }
+  let parsed: JsonObject;
+  try {
+    parsed = parseJsonObject(bytes, lockPath);
+  } catch {
+    return { state: 'invalid' };
+  }
+  if (
+    typeof parsed.token !== 'string'
+    || typeof parsed.owner_pid !== 'number'
+    || typeof parsed.acquired_at !== 'string'
+  ) {
+    return { state: 'invalid' };
+  }
+  return { state: 'present', holder: parsed as LockRecord };
+}
+
+function readLockRecord(lockPath: string): LockRecord | null {
+  const read = readLockHolder(lockPath);
+  return read.state === 'present' ? read.holder : null;
+}
+
+/**
+ * Whether an observed lock path may be moved aside as stale. Only a holder record that
+ * is present and whose process is gone, or a file that never parses as a holder record,
+ * justifies the rename: an absent path is a lock this writer never inspected, and moving
+ * it would displace the successor that just acquired it.
+ */
+export function shouldArchiveLock(
+  read: LockHolderRead,
+  isAlive: (processId: number) => boolean,
+): boolean {
+  if (read.state === 'absent') return false;
+  if (read.state === 'invalid') return true;
+  return !isAlive(read.holder.owner_pid);
 }
 
 function withoutRecoveryHash(
@@ -603,11 +641,13 @@ export class ImmutableFrameStore {
   // a design decision rather than an edit. Do not narrow this by reordering: a smaller
   // window reads as fixed and is not.
   #archiveDeadLock(): void {
-    const holder = readLockRecord(this.#lockPath);
-    if (holder && isProcessAlive(holder.owner_pid)) return;
+    const read = readLockHolder(this.#lockPath);
+    // A lock file that is already gone was released by its holder between the failed
+    // link and this read, so this writer never inspected it and does not own the path.
+    if (!shouldArchiveLock(read, isProcessAlive)) return;
     const archivedPath = join(
       this.#staleLocksDirectory,
-      `${Date.now()}-${holder?.token ?? randomUUID()}.lock`,
+      `${Date.now()}-${read.state === 'present' ? read.holder.token : randomUUID()}.lock`,
     );
     try {
       renameSync(this.#lockPath, archivedPath);

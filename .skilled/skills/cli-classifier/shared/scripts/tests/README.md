@@ -26,6 +26,7 @@ The scorer-report cases cover the row pin, the output-directory check, the proba
 | File | Responsibility |
 |---|---|
 | `jev-transport.test.mjs` | Tests `resolveTransport`, `choiceRequestFrom`, `classifierContextFor` and `choicePayloadFor`, both `spawnClassifierCall` paths with the package, model, credential and backend fallbacks, the timeout and spawn-error outcomes, the answering model on both routes, Pi's token usage, and the module's CommonJS reach. |
+| `hub-router-phrases.test.mjs` | Reads every keyword the hub and `cli-jev` ROUTER files advertise and asserts compiled routing sends each one to `cli-jev`, so a phrase missing from `hub-router.json` fails here. It runs `.skilled/bin/compiled-route.cjs` from the repository root. |
 | `scorer-report.test.mjs` | Tests each export of `../scorer-report.mjs`, one happy path and one edge case apiece, and that a CommonJS `require` reaches the module. |
 
 ---

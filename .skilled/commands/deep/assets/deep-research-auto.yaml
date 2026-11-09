@@ -612,8 +612,9 @@ workflow:
           - "{state_paths.strategy}"
           - "{state_paths.config}"
         extract:
-          - iteration_count: "Count lines where type === 'iteration'"
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "Count distinct run values (run, else iteration) across lines where type === 'iteration'; a redispatched run counts once"
+          - highest_run: "Highest run value (run, else iteration) across lines where type === 'iteration', else 0"
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - current_segment: "Latest segment_start event segment, else 1"
           - last_newInfoRatio: "Extract newInfoRatio from last iteration record"
           - last_focus: "Extract focus from latest iteration record, else 'none yet'"
@@ -1182,6 +1183,7 @@ workflow:
               research_topic: "{research_topic}"
               current_iteration: "{current_iteration}"
               max_iterations: "{max_iterations}"
+              max_tool_calls_per_iteration: "{config.maxToolCallsPerIteration}"
               next_focus: "{next_focus}"
               remaining_questions_list: "{remaining_questions_list}"
               carried_forward_open_questions: "{carried_forward_open_questions}"
@@ -1195,28 +1197,41 @@ workflow:
               state_paths_iteration_pattern: "{state_paths.iteration_pattern}"
               state_paths_delta_pattern: "{state_paths.delta_pattern}"
         pre_dispatch_audit:
-          skip_when: "config.executor.type == 'native'"
+          skip_when: "config.executor.kind == 'native'"
           call: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
           args:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
             iteration: "{current_iteration}"
-        branch_on: "config.executor.type"
+        branch_on: "config.executor.kind"
         if_native:
           dispatch:
             agent: deep-research
             model: opus
             context_source: "rendered_prompt_pack"
           wait_for_completion: true
+        if_cli_deepseek_harness:
+          command: |
+            node --input-type=module <<'EOF'
+            console.error('cli-deepseek-harness runs only as a fan-out lineage; rerun with --fanout or choose another executor kind');
+            process.exit(2);
+            EOF
+          working_directory: "{repo_root}"
+          wait_for_completion: true
+          notes:
+            - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
         if_cli_claude_code:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
+            import { createRequire } from 'node:module';
 
             import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
             import { resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
 
+            const require = createRequire(import.meta.url);
+            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
             const executor = {
               kind: 'cli-claude-code',
               model: '{config.executor.model}',
@@ -1227,7 +1242,7 @@ workflow:
             };
             const args = [
               '-p',
-              readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'),
+              withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}'),
               '--model',
               executor.model,
               '--permission-mode',
@@ -1245,8 +1260,8 @@ workflow:
               specFolder: '{spec_folder}',
               artifactDir: '{state_paths.packet_dir}',
               iteration: Number('{current_iteration}'),
-              executorKind: '{config.executor.type}',
-              branchId: '{config.executor.type}',
+              executorKind: '{config.executor.kind}',
+              branchId: '{config.executor.kind}',
               sessionId: '{config.lineage.sessionId}',
               generation: Number('{config.lineage.generation}'),
             };
@@ -1291,9 +1306,9 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
-            const kind = '{config.executor.type}';
+            const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
             const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
             // The iteration must write its own iteration file, delta and state record,
@@ -1305,7 +1320,7 @@ workflow:
             const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
 
             const repoRoot = '{repo_root}';
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
             const { command, args, input } = buildLineageCommand(
               lineage,
               promptBody,
@@ -1324,7 +1339,7 @@ workflow:
               timeoutSeconds,
               governor: null,
             };
-            const dispatchId = 'research-i{current_iteration}-g{generation}';
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
             const artifactDir = '{artifact_dir}';
             const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
             const dispatchExit = runAuditedExecutorCommand({
@@ -1392,9 +1407,9 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
-            const kind = '{config.executor.type}';
+            const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
             const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
             // The iteration must write its own iteration file, delta and state record,
@@ -1406,7 +1421,7 @@ workflow:
             const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
 
             const repoRoot = '{repo_root}';
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
             const { command, args, input } = buildLineageCommand(
               lineage,
               promptBody,
@@ -1425,7 +1440,7 @@ workflow:
               timeoutSeconds,
               governor: null,
             };
-            const dispatchId = 'research-i{current_iteration}-g{generation}';
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
             const artifactDir = '{artifact_dir}';
             const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
             const dispatchExit = runAuditedExecutorCommand({
@@ -1493,9 +1508,9 @@ workflow:
             // It throws (fail closed) when the binary is absent or the model is off the
             // allowlist, so a requested CLI executor never becomes native.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
-            const kind = '{config.executor.type}';
+            const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
             const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
             // The iteration must write its own iteration file, delta and state record,
@@ -1508,7 +1523,7 @@ workflow:
             const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
 
             const repoRoot = '{repo_root}';
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
             const { command, args, input } = buildLineageCommand(
               lineage,
               promptBody,
@@ -1527,7 +1542,7 @@ workflow:
               timeoutSeconds,
               governor: null,
             };
-            const dispatchId = 'research-i{current_iteration}-g{generation}';
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
             const artifactDir = '{artifact_dir}';
             const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
             const dispatchExit = runAuditedExecutorCommand({
@@ -1576,13 +1591,13 @@ workflow:
           notes:
             - "cli-pi single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-pi model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
             - "Fails closed when pi is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-pi executor never degrades to native"
-            - "cli-deepseek-harness single-executor (experimental, never a default): the same shared builder emits `dsh --profile headless` with the route, lineage and guards patches, `--json` and the prompt on stdin, from the lineage directory with a fresh DSH_HOME; fails closed when dsh is absent, its version is not the pinned release, the model is off the two-id roster or the guards patch is missing"
+            - "Single-executor cli-deepseek-harness is refused by if_cli_deepseek_harness; dsh runs through fan-out"
         record_executor_audit:
-          skip_when: "config.executor.type == 'native'"
+          skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"
           field: "executor"
           value:
-            kind: "{config.executor.type}"
+            kind: "{config.executor.kind}"
             model: "{config.executor.model}"
             reasoningEffort: "{config.executor.reasoningEffort}"
             serviceTier: "{config.executor.serviceTier}"
@@ -1590,40 +1605,42 @@ workflow:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
+            import { createRequire } from 'node:module';
             import { createHash } from 'node:crypto';
 
             import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
 
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const require = createRequire(import.meta.url);
+            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const sandboxMode = '{config.executor.sandboxMode}' === 'null' ? 'danger-full-access' : '{config.executor.sandboxMode}';
             const executor = {
               kind: 'cli-opencode',
-              model: '{config.executor.model}',
+              model,
               configDir: null,
               reasoningEffort,
               serviceTier: null,
-              sandboxMode: null,
+              sandboxMode,
               timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
               governor: null,
             };
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}');
             const message = 'Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true'
               + '\n\n'
               + promptBody;
-            const args = [
-              'run',
-              '--model',
-              executor.model,
-              '--format',
-              'json',
-              '--dangerously-skip-permissions',
-              '--pure',
-              '--dir',
-              '{repo_root}',
-            ];
-            if (executor.reasoningEffort) {
-              args.push('--variant', executor.reasoningEffort);
-            }
-            args.push(message);
+
+            const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
+            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+            const repoRoot = '{repo_root}';
+            const { command, args, input, cwd } = buildLineageCommand(
+              lineage,
+              message,
+              sandboxMode,
+              resolvedPermission,
+              { env: process.env, cwd: repoRoot, directoryRoot: repoRoot },
+            );
 
             const dispatchFacts = {
               command: 'deep/research',
@@ -1631,24 +1648,23 @@ workflow:
               specFolder: '{spec_folder}',
               artifactDir: '{state_paths.packet_dir}',
               iteration: Number('{current_iteration}'),
-              executorKind: '{config.executor.type}',
-              branchId: '{config.executor.type}',
+              executorKind: '{config.executor.kind}',
+              branchId: '{config.executor.kind}',
               sessionId: '{config.lineage.sessionId}',
               generation: Number('{config.lineage.generation}'),
             };
             const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
             process.exit(
               runAuditedExecutorCommand({
-                command: 'opencode',
+                command,
                 args,
-                cwd: '{repo_root}',
+                cwd: cwd || repoRoot,
                 timeoutSeconds: executor.timeoutSeconds,
                 stateLogPath: '{state_paths.state_log}',
                 executor,
                 iteration: Number('{current_iteration}'),
-                // opencode v1.14.39 reads stdin at startup before session creation;
-                // an empty input gives EOF stdin, equivalent to </dev/null.
-                input: '',
+                // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
+                input,
                 receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
                 dispatchId,
               }),
@@ -1659,16 +1675,17 @@ workflow:
           wait_for_completion: true
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
-            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule)"
-            - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
-            - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
-            - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
+            - "buildLineageCommand returns empty input, so stdin is closed (EOF), equivalent to </dev/null"
+            - "buildLineageCommand receives the route-proof preamble + iteration body as its message"
+            - "buildLineageCommand maps reasoningEffort to the installed OpenCode version's supported option"
+            - "buildLineageCommand resolves the OpenCode binary and version-correct argv for the configured sandboxMode"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { execFileSync } from 'node:child_process';
+            import { createRequire } from 'node:module';
 
             import {
               RECURSION_GUARD_EXIT_CODE,
@@ -1718,7 +1735,9 @@ workflow:
               process.exit(RECURSION_GUARD_EXIT_CODE);
             }
 
-            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const require = createRequire(import.meta.url);
+            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}');
 
             // codex reads the iteration prompt from stdin via the trailing '-'. A research
             // iteration must WRITE its own iteration file, delta and state record, so the
@@ -1899,6 +1918,20 @@ workflow:
         outputs:
           - run_now_restored: "Emitted when an operator recreates the sentinel before the accepted dispatch completes"
 
+      step_check_executor_unavailable:
+        action: "Stop when the current iteration dispatch records an unavailable executor"
+        read:
+          - "{state_paths.state_log}"
+        extract:
+          - unavailable_record: "Latest line with type == 'event', event == 'dispatch_failure', iteration == current_iteration, and executorUnavailable == true; else none"
+        branch_on: "unavailable_record"
+        if_present:
+          set: { reason: "error", stopReason: "error" }
+          message: "The {unavailable_record.executor.kind} executor is unavailable ({unavailable_record.matchedMarker}). Switch executor or wait, then resume this run."
+          halt: true
+        if_absent:
+          action: "Continue to state reduction"
+
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
         command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
@@ -2034,10 +2067,21 @@ workflow:
           - status: "From latest JSONL iteration record"
           - latest_focus: "From latest JSONL iteration record"
         on_missing_outputs:
-          action: "Mark iteration as 'error', continue to next"
-          # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
-          # so the reducer can persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
-          append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          action: "Inspect the latest dispatch record before handling missing outputs"
+          read:
+            - "{state_paths.state_log}"
+          extract:
+            - last_record: "Parse the latest state.jsonl record after dispatch"
+          branch_on: "last_record.type == 'event' AND last_record.event == 'dispatch_failure' AND last_record.executorUnavailable == true"
+          if_executor_unavailable:
+            set: { reason: "error", stopReason: "error" }
+            message: "The {last_record.executor.kind} executor is unavailable ({last_record.matchedMarker}). Switch executor or wait, then resume this run."
+            halt: true
+          if_other_failure:
+            action: "Mark iteration as 'error', continue to next"
+            # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
+            # so the reducer can persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
+            append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
       step_telemetry_heartbeat_progress:
         action: "Emit a single-loop progress row when iteration state changes"
@@ -2164,8 +2208,9 @@ workflow:
           - "{state_paths.packet_dir}/lineages/*/deep-research-state.jsonl"
           - "{state_paths.packet_dir}/lineages/*/deep-research-strategy.md"
         extract:
-          - iteration_count: "When direct lineage state logs exist, count type === 'iteration' across those logs in stable lineage order; otherwise count the root state log. Never add root compatibility records to lineage records."
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "When direct lineage state logs exist, count distinct run values (run, else iteration) across those logs in stable lineage order; otherwise count distinct run values (run, else iteration) across the root state log. Never add root compatibility records to lineage records."
+          - highest_run: "When direct lineage state logs exist, take the highest run value (run, else iteration) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (run, else iteration) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - current_segment: "Latest segment_start event segment, else 1"
           - last_focus: "Extract focus from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newInfoRatio from second-latest iteration record, else 'N/A'"

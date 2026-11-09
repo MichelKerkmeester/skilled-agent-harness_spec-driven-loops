@@ -170,6 +170,30 @@ fi
 grep -q 'no hook sources' "$TEMP_ROOT/no-hooks-output.txt" || fail 'the installer did not report the missing hook sources'
 printf '%s\n' 'PASS a checkout with hook sources under neither name fails'
 
+# --status judges the file a hook lands on, not the name the link was written
+# through. A link via the .opencode alias reaches this checkout's own .skilled
+# source and is live, while a link to another tool's hook is still shadowed.
+status_log="$TEMP_ROOT/layout-status.txt"
+run_layout_status() { # run_layout_status <label>
+  ( cd "$LAYOUT_REPO" && bash "$INSTALLER" --status ) > "$status_log" 2>&1 \
+    || fail "--status failed on $1"
+}
+
+ln -sfn "$LAYOUT_REPO/.opencode/scripts/git-hooks/pre-commit" "$LAYOUT_REPO/.layout-hooks/pre-commit"
+run_layout_status 'a hook linked through the .opencode alias'
+grep -qE 'installed: .*\.opencode/scripts/git-hooks/pre-commit' "$status_log" \
+  || fail '--status did not print the hook installed through the .opencode alias'
+if grep -q 'SHADOWED' "$status_log"; then
+  fail '--status called a hook linked through the .opencode alias shadowed'
+fi
+printf '%s\n' 'PASS --status accepts a hook linked through the .opencode alias'
+
+ln -sfn "$TEMP_ROOT/other-tool/pre-commit" "$LAYOUT_REPO/.layout-hooks/pre-commit"
+run_layout_status "another tool's hook link"
+grep -q 'SHADOWED: the installed hook resolves outside this checkout' "$status_log" \
+  || fail "--status did not report another tool's hook link as shadowed"
+printf '%s\n' "PASS --status still reports another tool's hook link as shadowed"
+
 printf '%s\n' 'Installer transcript (linked worktree):'
 sed 's/^/  /' "$linked_output"
 printf '%s\n' 'Installer transcript (core.hooksPath):'

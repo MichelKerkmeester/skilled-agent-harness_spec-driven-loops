@@ -19,11 +19,16 @@
 //                                 [--limit <n>] [--no-index-hash] [--scoring-only] [--json]
 //
 // --limit 0 lifts the cap and returns every candidate; the default is 20.
-// --scoring-only drops the score-0 partial candidates before the cap, so a
-// prompt nothing scores on comes back empty with exit 1. Without it the output
-// keeps them, matching the recorded results of the retired lane.
+// --scoring-only drops score-0 partial candidates before the cap. Without it
+// the output keeps them, matching the retired lane's recorded results.
 //
-// Exit codes: 0 = candidates found, 1 = no candidates, 2 = bad invocation or unreadable index.
+// With no --index, an index the caller's own repository carries at
+// <root>/.speckit-index/trigger-index.json is read instead of the packaged one.
+// A host repository that vendors Skilled keeps its packets there, and the
+// packaged index describes the framework's documents only.
+//
+// Exit codes: 0 = at least one candidate scores above 0, 1 = no candidate
+// scores above 0, 2 = bad invocation or unreadable index.
 // ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
@@ -40,6 +45,7 @@ import {
   queryTokens,
   scorePhrase,
 } from './lib/normalize.mjs';
+import { callerRepoRoot, hostIndexPath } from './lib/host-index.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -49,6 +55,29 @@ import { isMainModule } from '../lib/esm-entry.mjs';
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 export const DEFAULT_INDEX_PATH = path.resolve(SCRIPT_DIR, '..', '..', 'data', 'trigger-index.json');
+
+/**
+ * The artifact a bare lookup reads.
+ *
+ * A host repository that vendors Skilled keeps an index over its own packets
+ * at `<root>/.speckit-index/trigger-index.json`. Reading the packaged artifact
+ * there answers every question from the framework's documents instead of the
+ * host's, so an existing host index wins and the packaged default stays the
+ * fallback. An explicit `--index` is never overridden; it does not reach here.
+ *
+ * @param {string} [cwd] Directory the caller works in.
+ * @returns {string} Absolute index path.
+ */
+export function defaultIndexPath(cwd = process.cwd()) {
+  const root = callerRepoRoot(cwd);
+  if (root === null) return DEFAULT_INDEX_PATH;
+  const candidate = hostIndexPath(root);
+  try {
+    return fs.statSync(candidate).isFile() ? candidate : DEFAULT_INDEX_PATH;
+  } catch {
+    return DEFAULT_INDEX_PATH;
+  }
+}
 
 /** Mirrors the trigger lane's result cap. */
 export const DEFAULT_LIMIT = 20;
@@ -288,14 +317,16 @@ export function parseArgs(argv) {
 
 /**
  * @param {ReturnType<typeof lookup>} answer Lookup answer.
+ * @param {string} indexPath Artifact the answer was read from.
  * @returns {string} Human-readable summary.
  */
-function formatAnswer(answer) {
+function formatAnswer(answer, indexPath) {
   const lines = [
     `query      : ${answer.normalizedQuery}`,
     `tokens     : ${answer.tokens.join(' ') || '(none)'}`,
     `discarded  : ${answer.discardedTokens.map((d) => `${d.token} (${d.reason})`).join(', ') || '(none)'}`,
     `scope      : ${answer.specFolder ?? '(unscoped)'}`,
+    `source     : ${displayIndexPath(indexPath)}`,
     `index      : ${answer.indexHash ?? '(hash skipped)'}`,
     `manifest   : ${answer.manifestHash || '(none)'}`,
     `candidates : ${answer.results.length}${answer.truncated ? ' (truncated)' : ''} from ${answer.candidatePhraseCount} phrase(s)`,
@@ -304,6 +335,17 @@ function formatAnswer(answer) {
     lines.push(`  ${result.score.toFixed(3)}  ${result.matchClass.padEnd(18)} ${result.path}`);
   }
   return `${lines.join('\n')}\n`;
+}
+
+/**
+ * A path the caller can compare against the argument it passed, or against its
+ * own working directory when it passed none.
+ *
+ * @param {string} indexPath Absolute index path.
+ * @returns {string} Path relative to the working directory.
+ */
+function displayIndexPath(indexPath) {
+  return path.relative(process.cwd(), indexPath) || '.';
 }
 
 /**
@@ -318,9 +360,11 @@ function main() {
     return 2;
   }
 
+  const indexPath = args.indexPath ?? defaultIndexPath();
+
   let loaded;
   try {
-    loaded = loadIndex(args.indexPath, { hashIndex: args.hashIndex });
+    loaded = loadIndex(indexPath, { hashIndex: args.hashIndex });
   } catch (error) {
     process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
     return 2;
@@ -331,8 +375,8 @@ function main() {
     scoringOnly: args.scoringOnly,
     specFolder: args.specFolder,
   });
-  process.stdout.write(args.json ? `${JSON.stringify(answer, null, 2)}\n` : formatAnswer(answer));
-  return answer.results.length > 0 ? 0 : 1;
+  process.stdout.write(args.json ? `${JSON.stringify(answer, null, 2)}\n` : formatAnswer(answer, indexPath));
+  return answer.results.some((result) => result.score > 0) ? 0 : 1;
 }
 
 if (isMainModule(import.meta.url)) {

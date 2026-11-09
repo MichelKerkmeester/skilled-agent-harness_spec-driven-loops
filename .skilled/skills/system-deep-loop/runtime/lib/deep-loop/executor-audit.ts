@@ -1098,6 +1098,7 @@ export function emitDispatchFailure(
   reason: DispatchFailureReason,
   iteration: number,
   detail?: string,
+  matchedMarker?: string | null,
 ): void {
   const executorAudit = getExecutorKind(executor) === 'native'
     ? undefined
@@ -1107,6 +1108,7 @@ export function emitDispatchFailure(
     lastIterationEvent?.event === 'dispatch_failure'
     && lastIterationEvent.reason === reason
     && lastIterationEvent.detail === (detail || undefined)
+    && lastIterationEvent.matchedMarker === (matchedMarker || undefined)
     && JSON.stringify(lastIterationEvent.executor) === JSON.stringify(executorAudit)
   ) {
     return;
@@ -1119,8 +1121,68 @@ export function emitDispatchFailure(
     reason,
     iteration,
     ...(detail ? { detail } : {}),
+    ...(matchedMarker ? { executorUnavailable: true, matchedMarker } : {}),
     timestamp: new Date().toISOString(),
   });
+}
+
+/**
+ * Classify provider outage markers from stderr and error-like stdout lines.
+ * Ordinary report prose on stdout must not be mistaken for an executor outage.
+ *
+ * @param stdout - Captured executor standard output.
+ * @param stderr - Captured executor standard error.
+ * @returns The first matching marker, or null when output has no unavailable marker.
+ */
+export function classifyExecutorUnavailable(stdout: string, stderr: string): string | null {
+  const stdoutErrors = stdout
+    .split(/\r?\n/)
+    .filter((line) => line.trim().length > 0)
+    .slice(-20)
+    .filter((line) => {
+      if (/\b(error|failed|failure|exception|denied|status)\b/i.test(line)) {
+        return true;
+      }
+
+      try {
+        const parsed: unknown = JSON.parse(line);
+        return typeof parsed === 'object'
+          && parsed !== null
+          && !Array.isArray(parsed)
+          && (
+            'error' in parsed
+            || 'errorKind' in parsed
+            || ('type' in parsed && parsed.type === 'error')
+          );
+      } catch {
+        return false;
+      }
+    });
+  const output = `${stdoutErrors.join('\n')}\n${stderr}`;
+  const markers = [
+    /resource_exhausted/i,
+    /rate[\s_-]*limit/i,
+    /usage[\s_-]*limit/i,
+    /quota/i,
+    /insufficient\s+credits?/i,
+    /too\s+many\s+requests/i,
+    /\b429\b/,
+    /not\s+authenticated/i,
+    /not\s+logged\s+in/i,
+    /authentication\s+required/i,
+    /unauthorized/i,
+    /capacity/i,
+    /overloaded/i,
+  ];
+
+  for (const marker of markers) {
+    const match = marker.exec(output);
+    if (match) {
+      return match[0];
+    }
+  }
+
+  return null;
 }
 
 /**
@@ -1166,6 +1228,10 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
   if (typeof result.stderr === 'string' && result.stderr.length > 0) {
     process.stderr.write(result.stderr);
   }
+  const unavailableMarker = classifyExecutorUnavailable(
+    typeof result.stdout === 'string' ? result.stdout : '',
+    typeof result.stderr === 'string' ? result.stderr : '',
+  );
 
   // Post-dispatch COMPLETION countersign: bind the INTENT to the child facts the
   // wrapper observed (pid / exit / signal). Written before failure classification
@@ -1192,6 +1258,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       isTimeoutError ? 'timeout' : 'crash',
       input.iteration,
       result.error.message,
+      unavailableMarker,
     );
     return 0;
   }
@@ -1203,6 +1270,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       'crash',
       input.iteration,
       `executor exited with status ${result.status}`,
+      unavailableMarker,
     );
     return 0;
   }
@@ -1214,6 +1282,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       'crash',
       input.iteration,
       `executor terminated by signal ${result.signal}`,
+      unavailableMarker,
     );
     return 0;
   }
@@ -1240,6 +1309,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
         'model_mismatch',
         input.iteration,
         `requested model ${requestedModel} but executor ran ${actualModel}`,
+        unavailableMarker,
       );
       return 0;
     }

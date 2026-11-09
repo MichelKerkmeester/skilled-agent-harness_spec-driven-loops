@@ -639,6 +639,10 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
   'deep_research.run_initialized': Object.freeze({
     topic: 'prose',
   }),
+  'deep_research.iteration_completed': Object.freeze({
+    focus: 'prose',
+    answeredQuestions: 'prose-array',
+  }),
   // The idea rows are hand-written, so beyond the idea text they carry only the
   // fields their writer gave them; the projection writes back exactly those.
   'deep_research.idea_promoted': Object.freeze({

@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.11.0
+version: 2.7.12.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -905,7 +905,7 @@ validation run means; a copy kept anywhere else goes stale the first time the ha
    refuse to run: it prints `compiled validation orchestrator is stale`, exits 3, and emits
    no rule output at all. A sweep looking only for `RESULT: FAILED` reads that silence as a
    clean pass. Rebuild with
-   `cd "$(realpath .skilled)/skills/system-spec-kit/runtime" && npm run build`.
+   `npm --prefix .skilled/skills/system-spec-kit run build`.
 2. **Invoke through `realpath`, and verify by content.** Reached through the `.opencode`
    compatibility root, whose entries are symlinks, the spec scripts and generators can
    silently no-op, exiting 0 with zero output. Use

@@ -56,6 +56,7 @@ if (require.main === module && !isTsxLoaded) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv = process.argv.slice(2)) {
+  const knownFlags = ['mode', 'runDirectory', 'runDir', 'specFolder', 'eventJson', 'eventJsonPath', 'policyId'];
   const args = {};
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
@@ -63,6 +64,11 @@ function parseArgs(argv = process.argv.slice(2)) {
       throw new Error(`Unexpected positional argument: ${token}`);
     }
     const key = token.slice(2).replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    if (!knownFlags.includes(key)) {
+      const error = new Error(`Unknown option: --${token.slice(2)}`);
+      error.code = 'INPUT_VALIDATION';
+      throw error;
+    }
     const next = argv[i + 1];
     if (next === undefined || next.startsWith('--')) {
       args[key] = true;
@@ -511,9 +517,9 @@ if (require.main === module && isTsxLoaded) {
       ok: false,
       phase: 'runtime',
       reason: error instanceof Error ? error.message : String(error),
-      code: 'RUNTIME_ERROR',
+      code: error && error.code === 'INPUT_VALIDATION' ? 'INPUT_VALIDATION' : 'RUNTIME_ERROR',
     });
-    process.exit(1);
+    process.exit(error && error.code === 'INPUT_VALIDATION' ? 3 : 1);
   });
 }
 

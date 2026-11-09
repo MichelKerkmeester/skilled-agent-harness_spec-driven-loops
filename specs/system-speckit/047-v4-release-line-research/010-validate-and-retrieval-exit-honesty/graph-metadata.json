@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/047-v4-release-line-research/010-validate-and-retrieval-exit-honesty",
+  "spec_folder": "system-speckit/047-v4-release-line-research/010-validate-and-retrieval-exit-honesty",
+  "parent_id": "system-speckit/047-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validate and retrieval exit honesty",
+      "phase 10 validate and retrieval exit honesty",
+      "checker exit code honesty",
+      "validate and retrieval exit honesty plan",
+      "validate and retrieval exit honesty tasks",
+      "validate and retrieval exit honesty acceptance criteria",
+      "validate and retrieval exit honesty decisions",
+      "validate and retrieval exit honesty implementation summary"
+    ],
+    "key_topics": [
+      "validate",
+      "retrieval",
+      "exit",
+      "honesty",
+      "phase",
+      "checker",
+      "code",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      "rules/check-placeholders.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/check-placeholders.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts",
+      "spec/check-placeholders.sh",
+      "retrieval/lib/corpus.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": "rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-tags.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-source-dist-alignment.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/evals/check-source-dist-alignment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator or a gate reads these checkers' exit codes and pass markers, and several of them say \"fine\" when they found nothing, could not run, or found findings",
+    "created_at": "2026-11-08T23:39:01Z",
+    "last_save_at": "2026-11-09T03:19:38.762Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8ef916372e6988eb1ce4318d9c4951ffc39d1c89c66d983f9c972b88b93ded8f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0274e55bd0e9047c651e7c22c4c48e98a8ed93ca9f8c51ebf3ab573cb93675b8",
+      "plan.md": "596acce43d00dbe2e93ed3d0ed789973a511075b7ee970280cda39da745fa328",
+      "tasks.md": "9fbc7d6f423f63129b28d96cddd1865ec93836217f347690902cbd598cfe898f",
+      "decision-record.md": "3a36b38769e7b6c588ad3cd05add2aacc098a8963f1989cbb12f7927092ce198",
+      "implementation-summary.md": "92dd47d5092572c97a3ad8f5028cab84e02a183c0dc7e8b9666ab16014bb7abf"
+    },
+    "last_active_at": null
+  }
+}

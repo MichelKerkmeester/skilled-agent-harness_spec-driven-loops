@@ -4,7 +4,8 @@
 // Run with the pinned binary, because `npx vitest` resolves a different copy:
 // .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
 
-import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,6 +24,7 @@ import {
   matchDispatchShape,
   recordDispatch,
   resolveDispatchCommands,
+  resolveAuditLogPath,
   resolveDispatchPacket,
   resolveDispatchPackets,
 } from './dispatch-audit.mjs';
@@ -45,6 +47,36 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 function makeScratchDir() {
   return mkdtempSync(join(tmpdir(), 'dispatch-audit-test-'));
 }
+
+describe('resolveAuditLogPath', () => {
+  it('writes beneath the git root when the starting directory is nested', () => {
+    const dir = makeScratchDir();
+    try {
+      execFileSync('git', ['init', dir], { stdio: 'ignore' });
+      const nestedDir = join(dir, 'specs', 'packet');
+      mkdirSync(nestedDir, { recursive: true });
+      const logPath = resolveAuditLogPath(nestedDir);
+
+      expect(recordDispatch({ command: 'opencode run "x"', logPath })).toBe(true);
+      expect(existsSync(join(dir, '.skilled/logs/cli-dispatch-audit.log'))).toBe(true);
+      expect(existsSync(join(nestedDir, '.skilled/logs/cli-dispatch-audit.log'))).toBe(false);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('writes beneath the starting directory when it is not in a git repo', () => {
+    const dir = makeScratchDir();
+    try {
+      const logPath = resolveAuditLogPath(dir);
+
+      expect(recordDispatch({ command: 'opencode run "x"', logPath })).toBe(true);
+      expect(existsSync(join(dir, '.skilled/logs/cli-dispatch-audit.log'))).toBe(true);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+});
 
 function versionResolverOptions(key, probe) {
   return {

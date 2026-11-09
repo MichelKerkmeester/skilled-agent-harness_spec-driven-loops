@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -25,6 +25,29 @@ function run(payload, env = {}) {
     encoding: 'utf8',
   });
   return { status: result.status, stdout: result.stdout.trim() };
+}
+
+function runWithOpenStdin() {
+  return new Promise((resolve) => {
+    const started = Date.now();
+    const child = spawn(process.execPath, [ADAPTER], {
+      cwd: workDir,
+      env: {
+        ...process.env,
+        HOOK_FLAGS_CONFIG: '/nonexistent/hook-flags.env',
+        SYSTEM_ASK_SURFACE_DISABLED: '',
+        SYSTEM_HOOKS_DISABLED: '',
+      },
+      stdio: ['pipe', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    const killer = setTimeout(() => child.kill('SIGKILL'), 10000);
+    child.on('close', (status, signal) => {
+      clearTimeout(killer);
+      resolve({ status, signal, stdout, elapsedMs: Date.now() - started });
+    });
+  });
 }
 
 function transcript(t, lines) {
@@ -56,6 +79,15 @@ test('the kill switch ends the turn', () => {
 
 test('a malformed payload ends the turn', () => {
   assert.deepEqual(run('not json'), { status: 0, stdout: '' });
+});
+
+test('open stdin reaches the deadline and ends the turn without a block decision', async () => {
+  const result = await runWithOpenStdin();
+  assert.equal(result.signal, null, 'the hook must exit on its own, not be killed');
+  assert.equal(result.status, 0);
+  assert.equal(result.stdout, '');
+  assert.ok(result.elapsedMs >= 2900, `exited after ${result.elapsedMs} ms, before the stdin deadline`);
+  assert.ok(result.elapsedMs < 8000, `exited after ${result.elapsedMs} ms, past the deadline plus margin`);
 });
 
 test('an AskUserQuestion call earlier in the turn passes the menu', (t) => {

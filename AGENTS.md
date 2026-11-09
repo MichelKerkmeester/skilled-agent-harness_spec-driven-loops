@@ -6,28 +6,26 @@
 
 ## 1. 🚨 CRITICAL RULES — HARD BLOCKERS
 
-Where a rule file expands a clause here, `REPO RULES.md`'s trigger table routes the load.
+A rule file expanding a clause here is routed by `REPO RULES.md`'s trigger table.
 
 #### The Four Laws — HARD BLOCKERS (cannot be overridden)
 
 1. **READ FIRST** — Never edit a file without reading it first. Understand context before modifying.
 2. **SCOPE LOCK** — Only modify files explicitly in scope. **NO** "cleaning up" or "improving" adjacent code. Scope in `spec.md` is FROZEN.
 3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
-4. **HALT** — Stop immediately where the §2 Confidence Thresholds say to ask, if line numbers don't match, or if tests fail. A failing check may be repaired, but forward progress and completion stay blocked until the authoritative gate passes.
+4. **HALT** — Stop immediately where the §2 Confidence Thresholds say to ask, if line numbers don't match, or if tests fail. A failing check may be repaired, but progress and completion stay blocked until the authoritative gate passes.
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
 
 #### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
 
-When an approved plan names a specific workflow, command, agent or skill (e.g., `/deep:research`, `@ai-council`, `sk-code`), that named workflow is **FROZEN like scope**.
+When an approved plan names a specific workflow, command, agent or skill, it is **FROZEN like scope**.
 
 **Before substituting a manual or alternative approach:**
-1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test any friction you believe it has.
-2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
+1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test the friction you believe it has.
+2. **FLAG deviations** — If it blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
 3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
-4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it for this task and name the fix in the same response: the file, the rule, the one-line replacement. The adjacent case, a frozen scope you believe is wrong, is [`scope-discipline.md`](.skilled/repo-rules/scope-discipline.md) §5 and §6.
-
-> Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
+4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it and name the fix in the same response: the file, the rule, the one-line replacement. The adjacent case, a frozen scope you believe is wrong, is [`scope-discipline.md`](.skilled/repo-rules/scope-discipline.md) §5 and §6.
 
 #### Comment Hygiene — HARD BLOCK (cannot be overridden)
 
@@ -35,7 +33,7 @@ Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ
 
 #### Halt Conditions — Stop and Report
 
-Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
+Beyond Law 4, halt on:
 - Target file missing, or the Edit tool reports "string not found"
 - Merge conflicts encountered
 - Test/Production boundary unclear
@@ -50,7 +48,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "<prompt>"` → Surface relevant context. It reads the committed index; exit 1 with no rows is a clean no-hit
 2. Classify intent: Research or Implementation
-3. Parse the request and judge confidence against the Confidence Thresholds below — that table is the single scale; do not carry a second one.
+3. Parse the request; judge confidence against the Confidence Thresholds below — the single scale, no second one.
 4. Below the proceed bar → INVESTIGATE (max 3 iterations) → ESCALATE per §7.
 
 #### Confidence Thresholds
@@ -67,47 +65,47 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 2. B) Direct call: run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
-- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s, and the gitignored runtime state Gate 3 exempts, which no skill owns. Routing means loading what its ROUTER.md resolves, under the same loading rule as Gate 5. A skill already in context is not re-read. A resolved contract that is wrong for this case is followed and amended, as PLAN-WORKFLOW LOCK step 4 says.
+- **Artifact trigger — binds on what you write, regardless of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs (`system-spec-kit`'s) and the gitignored runtime state Gate 3 exempts, which no skill owns. Routing means loading what its ROUTER.md resolves, per Gate 5's loading rule. A skill already in context is not re-read. A resolved contract wrong for this case is followed and amended, per PLAN-WORKFLOW LOCK step 4.
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`; when the artifact trigger fires, add `ARTIFACT: [skill] → [what its router resolved]`
 - Skip: trivial queries only (greetings, single-line questions). The artifact trigger skips only the §6 exemption class.
 
 #### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK — ASKED FIRST
-**Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone, or when its only write is gitignored runtime state under `.skilled/skills/.state/`, such as a session-relaunch handoff note. A read-only word next to a write trigger does not disqualify it.
+**Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone, or when its only write is gitignored runtime state under `.skilled/skills/.state/`. A read-only word next to a write trigger does not disqualify it.
 
-- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary; the sentence above is its human-readable form.
+- **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary; the sentence above paraphrases it.
 - **Options (stable labels, recommend one), asked via the `communication-handoff.md` §5 tool:**
-  - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope. **Reply with the folder path.**
+  - **A) Existing** - Continue in the detected/current spec or its current phase child when the work fits that scope. **Reply with the folder path.**
   - **B) New** - Create a new top-level packet only when no existing packet suits the work. Decide independently whether it is standard or phased. **Reply with a new folder path.**
   - **C) Related** - Use another existing packet, a child of an existing phase parent, a related standard packet split into phases once it meets both thresholds independently, or a series parent for a different change to the same artifact as an existing same-track packet. **Reply with the folder or child path.**
   - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never the default.
 - **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two phase thresholds and the series parent.
-- **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; one that writes is bound like any mutation.
-- **The answer holds for the ENTIRE session.** A relaunch hop is the same session. Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
+- **Router commands:** evaluate Gate 3 per selected route, not once for the router. A read-only route needs no write path; a writing one is bound like any mutation.
+- **The answer holds for the ENTIRE session.** A relaunch hop is the same session. Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks.
 - **Autonomous child-dispatch exemption.** `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
-Trigger-phrase routing is Gate 2's and deep-loop state discipline is the deep-mode `SKILL.md`'s. These two tiebreakers fire before the owning skill loads:
+Trigger-phrase routing is Gate 2's, deep-loop state discipline the deep-mode `SKILL.md`'s; both fire before the owning skill loads:
 - **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW: it runs inside the skill's workflow and never overrides the skill-owned route.
-- **Skill advisor ambiguity.** When the advisor's `command-spec-kit` bridge, keyed to `/speckit:plan`, `/speckit:resume`, `/deep:research` and `/deep:review`, matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins. The CLI executor is a tool inside the command's workflow, not a replacement for it.
+- **Skill advisor ambiguity.** When the advisor's `command-spec-kit` bridge, keyed to `/speckit:plan`, `/speckit:resume`, `/deep:research` and `/deep:review`, matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins.
 
 #### GATE 5: REPO RULES LOAD [HARD] BLOCK
-Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it, and where that file is absent this document alone governs.
+Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it; where that file is absent this document alone governs.
 1. Open the repository's root `REPO RULES.md`.
 2. Match **the action you are about to take** against its trigger table — the action, never the topic of the request.
 3. LOAD every rule file it names, and follow them.
-- Loading is a Read, not a Gate Action, so on a file-modification request it queues behind Gate 3 like any other tool call.
-- This gate binds the LOAD, not the loaded content. A rule file never relaxes a hard blocker. Where the two disagree, this document wins, the rule file is wrong and you say so.
+- Loading is a Read, not a Gate Action, so on a file-modification request it queues behind Gate 3 like any tool call.
+- This gate binds the LOAD, not the loaded content. A rule file never relaxes a hard blocker. Where they disagree, this document wins; the rule file is wrong and you say so.
 - Output: `REPO RULES: [rule files loaded]`, or `REPO RULES: no trigger matched`, or `REPO RULES: none in this repository`
 - Skip: the §6 exemption class only (a few characters in one file). Any new behavior, API, or control flow loads the rule.
 
 #### GATE 6: REPLY RULES LOAD [HARD] BLOCK
 Trigger: before EVERY substantive reply, read-only turns included, since Gate 5 fires only on a write.
 1. LOAD `communication.md` and `communication-prose.md` from `.skilled/repo-rules/`.
-2. Also LOAD `communication-decisions.md` before a recommendation or a long stretch, `communication-handoff.md` before ending a turn, and `answer-the-actual-request.md` before warning about, narrowing, declining or pricing a request.
+2. Also LOAD `communication-decisions.md` before a recommendation or long stretch, `communication-handoff.md` before ending a turn, and `answer-the-actual-request.md` before warning about, narrowing, declining or pricing a request.
 - A file already in context is not re-read.
 
 #### CONSOLIDATED QUESTION PROTOCOL
-Consolidate multiple questions into a SINGLE prompt. Gate 3 is still asked first; any other question waits until you have read what could answer it, and comes before the work its answer would change. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading.
+Consolidate multiple questions into a SINGLE prompt. Gate 3 is asked first; any other question waits until you have read what could answer it, and comes before the work its answer would change. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading.
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]
 Trigger: About to skip Gate 3, or realized it was skipped, on a turn where it fires and neither a session answer nor the child-dispatch exemption covers it → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D) → WAIT. Any other skipped gate: run it before the next tool call.

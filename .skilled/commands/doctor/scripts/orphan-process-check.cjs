@@ -539,7 +539,8 @@ function confirmationCommand(options) {
  *
  * @param {string[]} argv - CLI arguments after the script path.
  * @param {Object} [dependencies] - Optional process and output dependencies for tests.
- * @returns {Promise<number>} Exit code, with ps failures kept informational.
+ * @returns {Promise<number>} Exit code; a scan that cannot run is an unexpected
+ *   error rather than a clean report, so it never reads as "no orphans".
  */
 async function main(argv = process.argv.slice(2), dependencies = {}) {
   const options = parseArgs(argv);
@@ -557,7 +558,7 @@ async function main(argv = process.argv.slice(2), dependencies = {}) {
     : Number(dependencies.uid);
   if (!Number.isInteger(currentUid)) {
     write('orphan check could not run: current uid is unavailable\n');
-    return 0;
+    return 1;
   }
 
   let psOutput;
@@ -565,7 +566,7 @@ async function main(argv = process.argv.slice(2), dependencies = {}) {
     psOutput = runPs(INITIAL_PS_ARGS);
   } catch (error) {
     write(`orphan check could not run: ${errorReason(error)}\n`);
-    return 0;
+    return 1;
   }
 
   const observedAtMs = now();

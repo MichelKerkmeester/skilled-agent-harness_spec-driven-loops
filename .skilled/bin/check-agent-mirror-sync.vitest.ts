@@ -178,4 +178,23 @@ Orphaned mirror body.
     expect(result.stdout).toContain('corrupt build');
     expect(result.stdout).not.toContain('DRIFT');
   });
+
+  it('shows same-file and non-comparable mirrors without treating them as drift', () => {
+    const opencodePath = path.join(tmpDir, '.opencode/agents', `${AGENT_NAME}.md`);
+    fs.rmSync(opencodePath);
+    writeFile(`.skilled/agents/${AGENT_NAME}.md`, CANONICAL);
+    fs.symlinkSync(
+      path.join('..', '..', '.skilled', 'agents', `${AGENT_NAME}.md`),
+      opencodePath,
+    );
+    writeFile(`.claude/agents/${AGENT_NAME}.md`, CANONICAL);
+    writeFile(`.dsh/agents/${AGENT_NAME}.patch.yml`, 'patch:\n  name: mirror-sync-probe\n');
+
+    const result = runChecker(`.skilled/agents/${AGENT_NAME}.md`);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain(`SAME FILE  ${AGENT_NAME} [opencode]`);
+    expect(result.stdout).toContain(`NOT COMPARED  ${AGENT_NAME} [dsh]`);
+    expect(result.stdout).toContain('1 agent(s) checked');
+  });
 });

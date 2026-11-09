@@ -7,7 +7,6 @@ import type {
   TransitionAuthorizationGateway,
 } from '../authorized-ledger/index.js';
 import type { BlindedAdjudicationService } from '../blinded-adjudication/index.js';
-import type { DurableBranchOrchestrator } from '../branch-leases-waves/index.js';
 import type { HierarchicalBudgetAuthority } from '../hierarchical-budgets/index.js';
 import type {
   BudgetEnvelope,
@@ -31,6 +30,13 @@ import type { GaugeRegistry } from '../stream-fold-gauges/index.js';
 // ───────────────────────────────────────────────────────────────────
 // 1. PORT TYPES
 // ───────────────────────────────────────────────────────────────────
+
+/**
+ * Durable branch-orchestration handle supplied by the host runtime.
+ * Opaque on purpose: no mode reads through this port yet, and restating
+ * orchestrator operations here would duplicate a module this tree does not ship.
+ */
+export type DurableBranchOrchestratorPort = object;
 
 /** Existing runtime services consumed by every mode implementation. */
 export interface ModeSubstratePorts {
@@ -69,7 +75,7 @@ export interface ModeSubstratePorts {
     readonly recordSalvage: typeof import('../result-envelopes/index.js').recordSalvageFragment;
     readonly foldResume: typeof import('../result-envelopes/index.js').foldResumeProgress;
   };
-  readonly branchLeasesAndWaves: DurableBranchOrchestrator;
+  readonly branchLeasesAndWaves: DurableBranchOrchestratorPort;
   readonly conditionalFanIn: {
     readonly commitDecision: typeof import('../conditional-fanin/index.js').commitFanInDecision;
     readonly evaluateShadow:

@@ -23,7 +23,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 
 | Workflow | Responsibility |
 |---|---|
-| `advisory-checks.yml` | Runs advisory test suites, doc-model references and the trigger index freshness check (`generate-trigger-index.mjs --check`). Reports without gating. |
+| `advisory-checks.yml` | Runs advisory test suites, doc-model references, the trigger index freshness check (`generate-trigger-index.mjs --check`) and the AGENTS.md manifest check (`agents-md-manifest.cjs --check`). Reports without gating. |
 | `agent-mirror-sync.yml` | Keeps the `.skilled` and `.claude` agent mirrors aligned. |
 | `changed-packet-validation.yml` | Validates the spec packets a commit or pull request changed. Compares the set of failing rules at head against the merge base, or the previous tip on a push, and blocks when head fails a rule the base did not. |
 | `chart-corpus.yml` | Checks the chart corpus contract and runs its mutation suite. |
@@ -49,7 +49,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `sk-code-script-tests.yml` | Runs the sk-code script tests, among them the drift-guard runner test. |
 | `sk-doc-rename-harness.yml` | Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change. |
 | `sk-doc-script-tests.yml` | Runs the other sk-doc script tests, among them the durable-directory manifest and README verdict baseline, which walk the whole repository. |
-| `sk-git-script-tests.yml` | Runs the sk-git worktree naming, allocation and provisioning suite. |
+| `sk-git-script-tests.yml` | Runs all five sk-git script suites in named steps, so a failure names its suite: worktree naming, allocation and provisioning, commit-id naming, legacy branch-name migration, branch stamping, and the message-hook git timeout. |
 | `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else, then scans the skill graph and runs the advisor's default suite, which includes the Python compatibility suite. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |

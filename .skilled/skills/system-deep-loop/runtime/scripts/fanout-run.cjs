@@ -21,9 +21,18 @@ const { resolveOpencodeBinary } = require('./opencode-version.cjs');
 const {
   classifyExitCode,
   detectPendingQuestion,
+  assertKnownFlags,
   maybeThrowTestFault,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
+
+const FANOUT_FLAGS = [
+  'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'fanoutConfigJson', 'baseArtifactDir',
+  'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'containmentMode',
+  'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
+  'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
+  'costUnitsPerIteration', 'estimatedTokensPerIteration',
+];
 
 const {
   runCappedPool,
@@ -108,6 +117,7 @@ function parseArgs(argv = process.argv.slice(2)) {
       i += 1;
     }
   }
+  assertKnownFlags(args, FANOUT_FLAGS, inputError);
   return args;
 }
 
@@ -115,6 +125,30 @@ function inputError(message) {
   const err = new Error(message);
   err.code = 'INPUT_VALIDATION';
   return err;
+}
+
+function agentPersonaBlock(agentName, repoRoot) {
+  const personaPath = path.join(repoRoot, '.skilled', 'agents', `${agentName}.md`);
+  let persona;
+  try {
+    persona = fs.readFileSync(personaPath, 'utf8');
+  } catch (err) {
+    if (err && err.code === 'ENOENT') {
+      throw inputError(`Agent persona file not found: ${personaPath}`);
+    }
+    throw err;
+  }
+
+  return [
+    `=== BEGIN AGENT PERSONA (resolved runtime path: .skilled/agents/${agentName}.md) ===`,
+    persona.trimEnd(),
+    `=== END AGENT PERSONA (resolved persona: ${agentName}) ===`,
+    `You are dispatched AS the @${agentName} agent defined above. Obey its role, tool-scope, verification gates, and output contract.`,
+  ].join('\n');
+}
+
+function withAgentPersona(agentName, prompt, repoRoot) {
+  return `${agentPersonaBlock(agentName, repoRoot)}\n\n${prompt}`;
 }
 
 function ensureString(args, key) {
@@ -518,16 +552,6 @@ const WAIT_CHECKPOINT_SCHEMA_VERSION = 1;
 const WAIT_SLEEP_CHUNK_MS = 200;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 const DEFAULT_POST_EXIT_GRACE_MS = 5 * 60 * 1000;
-// A deep-loop run publishes its advisory lock into its own artifact dir under one of these
-// names (the `lock_file` of the deep-research / deep-review command contracts). Presence plus
-// liveness is what identifies a directory as another run's working area.
-const DEEP_LOOP_LOCK_FILENAMES = ['.deep-research.lock', '.deep-review.lock'];
-// The packet scan runs once per lineage before dispatch and again before every containment
-// check, so it is bounded twice over: it never descends past the depth a run's artifact dir
-// plausibly sits at below its packet, and never walks more directories than a packet holds.
-const FOREIGN_RUN_SCAN_MAX_DEPTH = 6;
-const FOREIGN_RUN_SCAN_MAX_DIRS = 2000;
-
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
     terminateLineageProcess(child, signal);
@@ -560,47 +584,6 @@ function physicalPathForValidation(targetPath) {
       return targetPath;
     }
   }
-}
-
-/**
- * The top-level spec packet a path belongs to: `specs/<track>/<NNN-name>`, absolute.
- *
- * Phase children nest arbitrarily deep below that packet, and a concurrent run in one of them
- * is what this exists to locate, so the boundary is the packet rather than the run's own spec
- * folder. Resolved physically first so the `.opencode/specs` symlink alias and the real
- * `specs/` tree name the same directory. Null when the path is not under a `specs` tree at all
- * (a hermetic fixture, an external artifact dir) — the signal to skip discovery entirely.
- */
-function resolveTopLevelPacketDir(startDir) {
-  const physical = physicalPathForValidation(path.resolve(process.cwd(), startDir));
-  const segments = physical.split(path.sep);
-  const specsIndex = segments.lastIndexOf('specs');
-  if (specsIndex === -1 || segments.length < specsIndex + 3) return null;
-  return segments.slice(0, specsIndex + 3).join(path.sep);
-}
-
-/** True when `dir` holds a deep-loop lock whose owner is still running and still heartbeating. */
-function holdsLiveLoopLock(dir, isStaleLoopLock) {
-  for (const name of DEEP_LOOP_LOCK_FILENAMES) {
-    let record;
-    try {
-      record = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
-    } catch {
-      continue;
-    }
-    if (!record || typeof record !== 'object') continue;
-    // The lock is persisted in snake_case; the liveness rule reads the camelCase view of the
-    // four fields it judges on. Mapped here rather than re-derived, so staleness stays the
-    // single definition in loop-lock and cannot drift from what the acquirer enforces.
-    const isStale = isStaleLoopLock({
-      ownerPid: record.owner_pid,
-      ownerKind: record.owner_kind,
-      ttlMs: record.ttl_ms,
-      lastHeartbeatIso: record.last_heartbeat_iso,
-    });
-    if (!isStale) return true;
-  }
-  return false;
 }
 
 /**
@@ -642,43 +625,8 @@ function readStoredLineageSessionId(loopType, lineageDir) {
  * quiet sibling phase folder still fails the iteration exactly as before.
  */
 async function discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }) {
-  const packetDir = resolveTopLevelPacketDir(specFolder);
-  if (!packetDir) return [];
-  const { isStaleLoopLock } = await import('../lib/deep-loop/loop-lock.ts');
-  const ownRunDir = physicalPathForValidation(path.resolve(process.cwd(), baseArtifactDir));
-  const found = [];
-  const queue = [{ dir: packetDir, depth: 0 }];
-  let visited = 0;
-  while (queue.length > 0 && visited < FOREIGN_RUN_SCAN_MAX_DIRS) {
-    const { dir, depth } = queue.shift();
-    visited += 1;
-    // This run's own tree is already bounded by its artifact dir plus its sibling lineages, and
-    // no other run's artifact dir can live inside it — so it is skipped rather than searched.
-    // Exempting any part of it here would widen this leaf's own boundary instead of narrowing
-    // who its writes are attributed to.
-    if (isPathInside(dir, ownRunDir)) continue;
-    // A locked ANCESTOR of this run is this run's own supervisor, not a foreign owner, and its
-    // other subtrees are exactly where the sibling phase folders being searched for live — so
-    // it is neither claimed nor pruned.
-    if (holdsLiveLoopLock(dir, isStaleLoopLock) && !isPathInside(ownRunDir, dir)) {
-      found.push(dir);
-      // Everything below a live run's artifact dir belongs to that run wholesale.
-      continue;
-    }
-    if (depth >= FOREIGN_RUN_SCAN_MAX_DEPTH) continue;
-    let entries;
-    try {
-      entries = fs.readdirSync(dir, { withFileTypes: true });
-    } catch {
-      continue;
-    }
-    for (const entry of entries) {
-      if (!entry.isDirectory()) continue;
-      if (entry.name === '.git' || entry.name === 'node_modules') continue;
-      queue.push({ dir: path.join(dir, entry.name), depth: depth + 1 });
-    }
-  }
-  return found;
+  const { discoverForeignLiveRunDirs: discover } = await import('../lib/deep-loop/write-containment.ts');
+  return discover({ repoRoot: process.cwd(), artifactDir: baseArtifactDir || specFolder });
 }
 
 function validateBaseArtifactDir(baseArtifactDir, specFolder, loopType) {
@@ -1626,7 +1574,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     ? loopType === 'review'
       ? [
           `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
-          `Before iteration 1, read ${iterationTemplateFile} and .skilled/agents/${agentName}.md; follow their OUTPUT CONTRACT for each iteration.`,
+          `Before iteration 1, read ${iterationTemplateFile}; follow its OUTPUT CONTRACT for each iteration.`,
           `- The narrative uses Findings by Severity with numbered findings under P0 Findings, P1 Findings, and P2 Findings.`,
           `- The canonical iteration state record includes findingDetails with one object per finding, each carrying id, severity, and title.`,
           `- Use only P0, P1, or P2. A positive findingsCount or findingsSummary needs a non-empty findingDetails that lists the findings behind it.`,
@@ -1637,7 +1585,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
         ]
       : [
           `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
-          `Before iteration 1, read ${iterationTemplateFile} and .skilled/agents/${agentName}.md; follow their OUTPUT CONTRACT for each iteration.`,
+          `Before iteration 1, read ${iterationTemplateFile}; follow its OUTPUT CONTRACT for each iteration.`,
           `- The iteration narrative has a ## Findings section with one numbered line per finding.`,
           `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","label":"<text>","iteration":N,"sources":["<path or URL>"]} row per finding.`,
           `- The delta's iteration row and the iteration record handed to the gateway carry findingsCount equal to the number of findings enumerated for that iteration.`,
@@ -1704,7 +1652,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           ``,
         ]
       : [];
-  return [
+  const prompt = [
     `GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.`,
     `You are a non-interactive dispatched worker: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.`,
     `Your write authority is already bound to ${promptDir}. The dispatcher's answer to every other stop-and-ask rule (Halt Conditions, Logic-Sync, stop-for-yes): follow the workflow within this prompt's write limits, record the conflict in the current iteration, and continue. Never end a turn with a question or A/B/C/D options.`,
@@ -1714,6 +1662,9 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     ...detachedIntro,
     ``,
     ...inProcessDirective,
+    ...(lineage.kind !== 'native'
+      ? [agentPersonaBlock(agentName, path.resolve(__dirname, '../../../../../'))]
+      : []),
     ...leafContract,
     `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
     ...params,
@@ -1752,6 +1703,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     ``,
     `When complete, output a single line: FANOUT_LINEAGE_COMPLETE:${lineage.label}`,
   ].join('\n');
+  return prompt;
 }
 
 function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, options = {}) {
@@ -3400,6 +3352,17 @@ async function main() {
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
+  if ((loopType === 'research' || loopType === 'review') && stopPolicy === 'max-iterations') {
+    const uncappedLineages = allLineages.filter((lineage) => (
+      !Number.isInteger(lineage.iterations) || lineage.iterations <= 0
+    ));
+    if (uncappedLineages.length > 0) {
+      const labels = uncappedLineages.map((lineage) => lineage.label).join(', ');
+      throw inputError(
+        `stopPolicy=max-iterations requires a positive lineage iteration cap for lineage(s): ${labels}`,
+      );
+    }
+  }
   try {
     preflightFanoutCapabilities(allLineages);
   } catch (error) {
@@ -4295,6 +4258,7 @@ module.exports = {
   isDevinBinaryAvailable,
   isPiBinaryAvailable,
   isDshBinaryAvailable,
+  withAgentPersona,
   buildLoopPrompt,
   buildNativeCommandInput,
   normalizeReviewFocus,
@@ -4315,7 +4279,6 @@ module.exports = {
   computeSkippedCount,
   decorateSlotAccountingEvent,
   discoverForeignLiveRunDirs,
-  resolveTopLevelPacketDir,
   readStoredLineageSessionId,
   startLineageProgressHeartbeat,
   startLineageStallWatchdog,

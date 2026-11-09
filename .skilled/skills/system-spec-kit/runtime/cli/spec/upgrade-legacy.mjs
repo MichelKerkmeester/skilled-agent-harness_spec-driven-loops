@@ -20,16 +20,28 @@
 //
 // Usage:
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs [--roots <dir>]... [--include-archive] [--apply]
+//   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --refresh-markers [--roots <dir>]... [--apply]
 //   node .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs --layout-map
 //
 // --layout-map prints the planned v3-to-v4 move of the spec roots as JSON and
 // writes nothing.
 //
+// --refresh-markers is the one opt-in path that rewrites a marker on a packet that
+// already passes: it moves a document's old template-source marker to the marker the
+// document's own anchors prove, and refuses a document whose anchors prove none, so a
+// version comment is never invented. --include-archive is refused with it because an
+// archived packet's prose is history. A packet that fails strict validation is skipped
+// and stays with the normal repair path. Under --apply the packet's stored fingerprint is
+// re-derived from the refreshed documents and the packet is revalidated; if it still does
+// not pass, its documents and generated metadata go back byte for byte.
+//
 // Exit codes: 0 = every packet in scope passes, or --layout-map found no collisions,
-//             1 = dry run found failing packets, or --layout-map found collisions,
+//             1 = dry run found failing packets or documents to refresh, or
+//                 --layout-map found collisions,
 //             2 = a rejected argument, a failed step, a packet still failing
-//                 after --apply, a layout map that could not be produced, or a run
-//                 refused while the release apply lock exists.
+//                 after --apply, a reverted marker refresh, a layout map that could
+//                 not be produced, or a run refused while the release apply lock
+//                 exists.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -125,6 +137,16 @@ const ARCHIVE_SEGMENTS = new Set(['z_archive', 'z_future']);
 // carry one of these names.
 const ARTIFACT_TREES = new Set(['research', 'review', 'context']);
 
+// The documents a template-source marker can be proven for, in the order a reader
+// meets them: the healer proves a marker from a document's own anchors, so only a lane
+// document the templates render per level can carry one.
+const MARKER_DOCUMENTS = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md'];
+
+// The generated pair that stores the packet's source fingerprint. A rewritten document
+// reads as drift until the derivation covers it again, so these are also the files a
+// revert has to restore beside the documents themselves.
+const GENERATED_METADATA_FILES = ['description.json', 'graph-metadata.json'];
+
 const BASELINE_FILE = 'upgrade-baseline.json';
 const MANIFEST_FILE = 'upgrade-legacy.manifest.json';
 
@@ -157,13 +179,15 @@ const NEVER_RECORDED_RULES = new Set([
 // 3. ARGUMENTS
 // ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
-  const parsed = { roots: [], includeArchive: false, apply: false };
+  const parsed = { roots: [], includeArchive: false, apply: false, refreshMarkers: false };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--apply') {
       parsed.apply = true;
     } else if (arg === '--include-archive') {
       parsed.includeArchive = true;
+    } else if (arg === '--refresh-markers') {
+      parsed.refreshMarkers = true;
     } else if (arg === '--roots') {
       const value = argv[index + 1];
       if (value === undefined || value.startsWith('--')) {
@@ -176,6 +200,13 @@ function parseArgs(argv) {
       process.stderr.write(`${SCRIPT}: unknown argument: ${arg}\n`);
       process.exit(2);
     }
+  }
+  // An archived packet's prose is history, and a version comment is prose. The two flags
+  // describe different documents, so naming both asks for a write this command will not
+  // make.
+  if (parsed.refreshMarkers && parsed.includeArchive) {
+    process.stderr.write(`${SCRIPT}: --refresh-markers cannot be combined with --include-archive, because an archived packet's prose is never rewritten\n`);
+    process.exit(2);
   }
   return parsed;
 }
@@ -1009,6 +1040,102 @@ function healerFor(context) {
   return requireFromScript(context.heal);
 }
 
+// Moves a passing packet's template-source marker to the marker its own anchors prove.
+// The healer only stamps a document that carries none, so without this path a packet
+// whose marker predates the current templates would stay stale forever even though its
+// anchors already match the current render. A document whose anchors prove no marker
+// keeps the one it has and the refusal is printed, because an unproven version comment
+// would claim a render the document does not match.
+//
+// Nothing is written until every document has been read, so a refusal on the last
+// document cannot leave a packet half-refreshed. Under apply the packet's stored
+// fingerprint is re-derived, because it spans the documents the refresh just rewrote,
+// and then the packet is revalidated. A packet that still does not pass gets every
+// snapshot back byte for byte, so a marker the validator rejects is never left behind.
+async function refreshPacketMarkers({ packets, reports, apply, context = LIVE_RUN_CONTEXT }) {
+  const healer = healerFor(context);
+  let refreshed = 0;
+  let refused = 0;
+  let reverted = 0;
+  let failed = 0;
+
+  for (const packet of packets) {
+    const shown = repoRelative(packet.folder);
+    const report = reports.get(packet.folder);
+    if (report === null) {
+      failed += 1;
+      process.stdout.write(`unreadable ${shown}: ${unreadableWhy.get(packet.folder)}\n`);
+      continue;
+    }
+    // A failing packet is the repair path's work, and its documents change under that
+    // path anyway, so a marker rewritten here would have to be proven again after it.
+    if (report.passed !== true) {
+      process.stdout.write(`skipped ${shown}: fails strict validation, so the normal repair path owns it\n`);
+      continue;
+    }
+
+    const snapshots = new Map();
+    const writes = new Map();
+    // The generated pair is part of the snapshot: the derivation rewrites it to match the
+    // refreshed documents, so a revert has to put it back too.
+    const generated = GENERATED_METADATA_FILES
+      .map((name) => path.join(packet.folder, name))
+      .filter((file) => fs.existsSync(file) && !linkAt(file));
+    for (const file of generated) snapshots.set(file, fs.readFileSync(file, 'utf8'));
+    for (const name of MARKER_DOCUMENTS) {
+      const file = path.join(packet.folder, name);
+      if (!fs.existsSync(file) && !linkAt(file)) continue;
+      if (linkAt(file)) {
+        refused += 1;
+        process.stdout.write(`refused ${repoRelative(file)}: symbolic link, not followed\n`);
+        continue;
+      }
+      const original = fs.readFileSync(file, 'utf8');
+      snapshots.set(file, original);
+      const result = healer.refreshMarker(original, file);
+      for (const reason of result.refusals) {
+        refused += 1;
+        process.stdout.write(`refused ${repoRelative(file)}: ${reason}\n`);
+      }
+      if (!result.changed) continue;
+      refreshed += 1;
+      writes.set(file, result.text);
+      for (const action of result.actions) {
+        process.stdout.write(`${apply ? 'refreshed' : 'would refresh'} ${repoRelative(file)}: ${action}\n`);
+      }
+    }
+
+    if (!apply || writes.size === 0) continue;
+    for (const [file, text] of writes) healer.writeFileAtomic(file, text);
+    // The fingerprint spans the documents this pass just rewrote, so validating first
+    // would only report the drift the refresh itself created.
+    let why = null;
+    if (generated.length > 0) {
+      why = await runStep(
+        `repair-derived ${shown}`,
+        [context.repair, '--apply', '--folder', packet.folder],
+        context.stepOptions,
+        true,
+      );
+    }
+    if (why === null) {
+      const after = await validate(packet.folder, context);
+      if (after !== null && after.passed === true) continue;
+    }
+
+    for (const [file, text] of snapshots) healer.writeFileAtomic(file, text);
+    reverted += 1;
+    process.stdout.write(`reverted ${shown}: ${why === null
+      ? 'the refreshed marker stopped the packet passing strict validation'
+      : `re-deriving the packet metadata failed (${why})`}\n`);
+  }
+
+  process.stdout.write(`\nrefresh-markers packets=${packets.length} documents refreshed=${refreshed} refused=${refused} reverted=${reverted}\n`);
+  if (reverted > 0 || failed > 0) process.exitCode = 2;
+  else if (!apply && refreshed > 0) process.exitCode = 1;
+  else process.exitCode = 0;
+}
+
 // Runs the repair tools over the packets that failed the first validation, in
 // an order that keeps each step's output valid input for the next: document
 // edits first, derivation last. Only these targets are touched, so a packet
@@ -1631,7 +1758,7 @@ export function planLayoutMove(repoRoot) {
 // 9. MAIN
 // ───────────────────────────────────────────────────────────────────
 async function main() {
-  const { roots: given, includeArchive, apply } = parseArgs(process.argv.slice(2));
+  const { roots: given, includeArchive, apply, refreshMarkers } = parseArgs(process.argv.slice(2));
   let gitState = null;
   if (apply) {
     try {
@@ -1654,7 +1781,8 @@ async function main() {
 
   if (packets.length === 0) {
     process.stdout.write(`${SCRIPT}: no spec folders found\n`);
-    if (apply) process.stdout.write('plan changes=0\n');
+    if (refreshMarkers) process.stdout.write('refresh-markers packets=0 documents refreshed=0 refused=0 reverted=0\n');
+    else if (apply) process.stdout.write('plan changes=0\n');
     else process.stdout.write('\nDowngrades:\n  none\n');
     process.exitCode = 0;
     return;
@@ -1682,6 +1810,14 @@ async function main() {
   }
 
   const before = await validateAll(packets);
+
+  // The marker refresh is a separate pass over the packets that already pass, so it
+  // reports its own counts and decides its own exit code rather than sharing the repair
+  // path's plan output and Downgrades section.
+  if (refreshMarkers) {
+    await refreshPacketMarkers({ packets, reports: before, apply });
+    return;
+  }
 
   // Every repair decision rests on the first validation, and a packet with no
   // report cannot be judged. The usual cause, a stale build or a broken

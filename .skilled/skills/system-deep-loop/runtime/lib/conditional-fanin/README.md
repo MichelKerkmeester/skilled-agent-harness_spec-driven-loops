@@ -49,4 +49,3 @@ Decision layer for `system-deep-loop` fan-out waves that do not need to wait for
 ## 5. RELATED
 
 - [`runtime/lib README`](../README.md)
-- [`branch-leases-waves`](../branch-leases-waves/README.md)

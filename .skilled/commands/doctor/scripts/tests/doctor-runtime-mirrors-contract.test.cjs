@@ -38,6 +38,10 @@ const WORKFLOW_PATH =
   process.env.DOCTOR_RUNTIME_MIRRORS_WORKFLOW || path.join(ASSETS_DIR, 'doctor-runtime-mirrors.yaml');
 
 const ROUTE_TARGET = 'runtime-mirrors';
+const AGENT_BODY_PARITY = {
+  key: 'agent_body_parity',
+  script: '.skilled/bin/check-agent-mirror-sync.cjs',
+};
 
 // Each mirror check names its surface, runtime tree and upstream_assets key. The
 // surface and tree are asserted so the diagnostic says what it checks and skips.
@@ -184,8 +188,42 @@ test('the workflow names all mirror checks and reports n/a when a runtime tree i
   assert.deepEqual(workflowGaps(read(WORKFLOW_PATH)), []);
 });
 
+test('agent body parity runs after the roster check and reports its comparison outcomes', () => {
+  const route = runtimeMirrorsRoute(read(ROUTES_PATH));
+  const invocation = (route.script_invocations || []).find((entry) => tokens(entry).includes(AGENT_BODY_PARITY.script));
+  assert.ok(invocation, `script_invocations never runs ${AGENT_BODY_PARITY.script}`);
+  assert.equal(tokens(invocation)[0], 'node');
+  assert.ok(tokens(invocation).includes('--all'));
+
+  const workflow = parseYaml(read(WORKFLOW_PATH));
+  assert.equal(workflow.upstream_assets[AGENT_BODY_PARITY.key], AGENT_BODY_PARITY.script);
+  const steps = workflow.execution.steps;
+  const rosterIndex = steps.findIndex((step) => step.includes('upstream_assets.agent_roster'));
+  const parityIndex = steps.findIndex((step) => step.includes(`upstream_assets.${AGENT_BODY_PARITY.key}`));
+  assert.ok(rosterIndex >= 0, 'the workflow has no agent roster step');
+  assert.equal(parityIndex, rosterIndex + 1, 'agent body parity follows the agent roster step');
+
+  const step = steps[parityIndex];
+  assert.match(step, /with --all/);
+  assert.match(step, /same-file mirrors and non-comparable formats are reported, not counted as matches/i);
+  assert.match(step, /Exit 0 = all comparable mirrors in sync/);
+  assert.match(step, /1 = drift or comparison failure/);
+  assert.match(step, /2 = checker invocation error \(unknown option\)/);
+  assert.match(step, /3 = not checkable \(frontmatter parser unavailable\)/);
+});
+
 test('the output block carries a generator repair line for every mirror check', () => {
   assert.deepEqual(repairGaps(read(WORKFLOW_PATH)), []);
+});
+
+test('agent body parity output names the real-file and generated mirror repairs', () => {
+  const output = String(parseYaml(read(WORKFLOW_PATH)).output || '');
+  const repair = output.split('\n').find((line) => line.includes(AGENT_BODY_PARITY.script));
+  assert.ok(repair, 'agent body parity has a repair line');
+  assert.match(repair, /\.claude\/agents is a hand-maintained real-file mirror/u);
+  assert.match(repair, /runtime\/cli\/codex\/sync-agents\.cjs/u);
+  assert.match(repair, /runtime\/cli\/pi\/sync-agents-pi\.cjs/u);
+  assert.match(repair, /runtime\/cli\/runtime-mirrors\/sync-runtime-mirrors\.cjs/u);
 });
 
 test('the route stays read-only and never runs a mirror generator in write mode', () => {
