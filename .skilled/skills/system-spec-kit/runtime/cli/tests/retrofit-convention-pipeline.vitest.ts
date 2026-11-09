@@ -179,6 +179,20 @@ describe('enumerate', () => {
     }
   });
 
+  // The structured recipe now returns one row per file, so a baseline that
+  // counted rows would undercount; the baseline must keep total matches.
+  it('counts every structured match in the baseline, not one row per file', () => {
+    const root = makeRepo();
+    seedCorpus(root);
+    write(root, 'specs/track/001-packet/decision-record.md', [
+      '# Decisions', '', 'quartz baseline probe', 'quartz baseline probe', 'quartz baseline probe', '',
+    ]);
+    const { report } = enumerate(options(root, { probe: 'quartz baseline probe' }));
+    const structured = report.baseline.recipeRuns.find((run: { recipe: string }) => run.recipe === 'structured');
+
+    expect(structured.resultCount).toBe(3);
+  });
+
   it('refuses a track that selects no document rather than freezing an empty manifest', () => {
     const root = makeRepo();
     seedCorpus(root);

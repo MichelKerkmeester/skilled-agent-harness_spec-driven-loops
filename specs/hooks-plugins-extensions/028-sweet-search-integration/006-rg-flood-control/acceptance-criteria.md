@@ -56,13 +56,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given one file with 25 matches and three with 1, When `shapeRankedMatches` runs at `limit: 20`, Then it returns 4 rows, the first with `moreInFile: 24`, and `matchCount: 28` | `npx vitest run rg-wrapper-recipes.vitest.ts` exits 0 | Unmet | - |
-| AC-002 | REQ-002 | Given 30 files of 3 matches, When shaping runs at `limit: 20`, Then `hidden` is `{ files: 10, matches: 30 }` and `truncated` is true | Same test file | Unmet | - |
-| AC-003 | REQ-003 | Given the retrofit pipeline, When it reads a schema-2 record, Then its baseline count equals `record.matchCount` | `npx vitest run retrofit-convention-pipeline.vitest.ts` exits 0 | Unmet | - |
-| AC-004 | REQ-001 | Given the measured query from `spec.md`, When the wrapper runs with `--json`, Then it returns 14 rows, one per file, and `rg -n structuredCappedRecipe .skilled` prints nothing | Command output in `benchmark/results.md` | Unmet | - |
-| AC-005 | REQ-004 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 491 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md` | Unmet | - |
-| AC-006 | REQ-005 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder | Unmet | - |
-| AC-007 | REQ-006 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 values match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Unmet | - |
+| AC-001 | REQ-001 | Given one file with 25 matches and three with 1, When `shapeRankedMatches` runs at `limit: 20`, Then it returns 4 rows, the first with `moreInFile: 24`, and `matchCount: 28` | `npx vitest run rg-wrapper-recipes.vitest.ts` exits 0 | Met | - |
+| AC-002 | REQ-002 | Given 30 files of 3 matches, When shaping runs at `limit: 20`, Then `hidden` is `{ files: 10, matches: 30 }` and `truncated` is true | Same test file | Met | - |
+| AC-003 | REQ-003 | Given the retrofit pipeline, When it reads a schema-2 record, Then its baseline count equals `record.matchCount` | `npx vitest run retrofit-convention-pipeline.vitest.ts` exits 0 | Met | - |
+| AC-004 | REQ-001 | Given the measured query from `spec.md`, When the wrapper runs with `--json`, Then it returns 14 rows, one per file, and `rg -n structuredCappedRecipe .skilled` prints nothing | Command output in `benchmark/results.md` | Met | - |
+| AC-005 | REQ-004 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 491 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md` | Met | - |
+| AC-006 | REQ-005 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder | Met | - |
+| AC-007 | REQ-006 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 values match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Met | - |
 
 ### Status values
 
@@ -88,7 +88,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, so every criterion is unmet; closure waits on the build, the alignment recheck and the after benchmark.
+Every criterion is met with observed evidence, recorded in `implementation-summary.md`, `benchmark/results.md` and `alignment/recheck.md`.
 <!-- /ANCHOR:closure -->

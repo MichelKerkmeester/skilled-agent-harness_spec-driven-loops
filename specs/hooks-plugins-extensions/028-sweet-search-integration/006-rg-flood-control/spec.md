@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -106,7 +106,7 @@ rows 382, files 14, top 20 rows from 2 files, 19 of them from one file
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/skills/system-spec-kit/runtime/cli/ops/README.md` | Modify | Describe the new behavior and output; keep counts and examples true |
 | `.skilled/commands/speckit/README.txt` | Modify | Describe the new behavior and output; keep counts and examples true |
-| `.skilled/skills/system-spec-kit/changelog/v2.12.42.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
+| `.skilled/skills/system-spec-kit/changelog/v2.12.43.0.md` and `SKILL.md` version | Create / Modify | Changelog entry; use the next free version at build time |
 | `.skilled/changelog/skilled/` newest open release notes | Modify | One line for the user-visible change, if the notes are still open |
 | `benchmark/` (this phase folder) | Create | `queries.txt`, `before.json`, `after.json`, `results.md` |
 | `alignment/` (this phase folder) | Create | Copy of the alignment `report.md` and `recheck.md` |

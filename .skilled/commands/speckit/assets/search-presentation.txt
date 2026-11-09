@@ -82,10 +82,10 @@ SPECKIT:SEARCH "<query>"
 --------------------------------------------------
 recipe    <section id from retrieval-conventions.md>
 roots     <positional search roots>
-<path>:<line>  <field>  <matchClass>
-<path>:<line>  <field>  <matchClass>
+<path>:<line>  <field>  <matchClass> (+N more in this file)
+<path>:<line>  <field>  <matchClass> (+N more in this file)
 
-STATUS=OK RESULTS=<count> LANE=ripgrep
+STATUS=OK RESULTS=<shown rows> HIDDEN=<files>/<matches> LANE=ripgrep
 ```
 
 Filled example:
@@ -109,12 +109,17 @@ Field mapping:
 | The recipe actually run | `recipe` — its section number and name from `retrieval-conventions.md` Section 2 |
 | The positional search roots | `roots` |
 | Parsed match path and one-based line | `<path>:<line>` |
+| Rows returned by the structured recipe | `<shown rows>` in `RESULTS` |
 | Evidence field per the ranking tuple | `<field>` — `trigger_phrases`, `title-or-description`, `anchor-marker`, or `body`, verbatim as `rg-wrapper.mjs` emits them |
 | Normalized match class per the ranking tuple | `<matchClass>` — one of `exact`, `phrase-containment`, `query-containment`, `token-overlap`, `partial`, the same five labels the lookup emits |
+| Matches collapsed into the same file row | Append `(+N more in this file)` when `result.moreInFile` is greater than 0; omit it when the value is 0 |
+| Hidden files and matches | Render `record.hidden.files` and `record.hidden.matches` as `HIDDEN=<files>/<matches>`. The structured wrapper record uses `schemaVersion: 2` |
 
 Rules:
 - Ripgrep produces matches, never a relevance ranking. Order rows with the Section 5 ranking tuple from `retrieval-conventions.md`: evidence field, then match class, then path and line. Never imply the tool ranked anything.
 - Do not invent a numeric score for this lane. There is none. A row carries a field, a class, a path and a line, and that is the whole record.
+- The `(+N more in this file)` suffix and the `HIDDEN` slot come from a `rg-wrapper.mjs` record with `schemaVersion: 2`, which keeps the first-ranked row per file and cuts at `--limit` files (default 20, `--limit 0` uncapped). Omit the suffix when `moreInFile` is 0.
+- When the structured lane ran the raw Section 2.1 recipe instead of the wrapper, there is no per-file shaping and no hidden count: omit the suffix and the `HIDDEN` slot, and report `RESULTS` as the matches rendered. Omit `HIDDEN` for path-only and count recipes too.
 - Label a line inside an `<!-- ANCHOR:id -->` block as `anchor`, established by searching for the marker itself.
 - Report an unmatched or orphan anchor marker as a diagnostic line, never by silently dropping it.
 - One output mode per invocation. Never combine `--json` with the path-only or count modes; the last flag wins silently and a JSONL parser reads count output as empty.

@@ -88,6 +88,8 @@ The two lanes answer different questions. Prompt-to-declared-phrase matching is 
 | Which files mention it | `--paths` | Path-only recipe, Section 2.2 |
 | How many times | `--count` | Count recipe, Section 2.3 |
 
+The `rg-wrapper.mjs` structured lane keeps the highest-ranked row per file; `/speckit:search` runs the raw Section 2.1 recipe, which does not shape results. The wrapper's `--limit` defaults to 20 files, and `--limit 0` is uncapped. JSON uses `schemaVersion: 2` and reports `moreInFile`, `matchCount`, `fileCount`, `hidden: { files, matches }`, `limit` and `truncated`.
+
 Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` replaces the search roots with that packet.
 
 ### Command Dependencies

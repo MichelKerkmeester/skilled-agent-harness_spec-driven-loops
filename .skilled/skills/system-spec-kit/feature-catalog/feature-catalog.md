@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-07"
-version: 2.1.24.0
+version: 2.1.25.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1020,6 +1020,20 @@ When the index returns no scored candidate, the lookup scans eligible, unindexed
 #### Source Files
 
 See [`retrieval/stale-index-fallback.md`](retrieval/stale-index-fallback.md) for full implementation and test file listings.
+
+### Ripgrep one row per file
+
+#### Description
+
+Keeps the highest-ranked ripgrep match per file and reports matches hidden by the file limit.
+
+#### Current Reality
+
+The structured recipe ranks matches first, then returns one highest-ranked row per file. The default limit is 20 files; --limit 0 is uncapped. JSON schema version 2 reports total matches and files, hidden files and matches, each shown row's moreInFile count, the effective limit and whether files were omitted. Human output reports the same totals and identifies additional matches in a shown file.
+
+#### Source Files
+
+See [retrieval/rg-flood-control.md](retrieval/rg-flood-control.md) for full implementation and test file listings.
 
 ---
 

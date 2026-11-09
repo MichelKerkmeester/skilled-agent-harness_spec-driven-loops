@@ -28,7 +28,10 @@
 //
 // Usage:
 //   node rg-wrapper.mjs <structured|path|count> <phrase> [--root <dir>]
-//                       [--search-root <dir>]... [--json]
+//                       [--search-root <dir>]... [--limit <n>] [--json]
+//
+// --limit caps how many files the structured recipe reports (default 20);
+// --limit 0 reports every file.
 //
 // Exit codes: 0 = match, 1 = no match, 2 = execution or configuration error.
 // ───────────────────────────────────────────────────────────────────
@@ -42,6 +45,7 @@ import {
   countRecipe as laneCountRecipe,
   pathOnlyRecipe as lanePathRecipe,
   structuredRecipe as laneStructuredRecipe,
+  DEFAULT_LIMIT,
   EXIT_ERROR_FLOOR,
   EXIT_MATCH,
   EXIT_NO_MATCH,
@@ -49,6 +53,7 @@ import {
   parseJsonLines,
   rankMatches,
   runRecipe,
+  shapeRankedMatches,
 } from './lib/rg-lane.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 import { findSourceRoot } from '../../hooks/lib/workspace/repo-root.mjs';
@@ -57,8 +62,11 @@ import { findSourceRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 // 1. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-/** Report schema; bump when a consumer would have to change to read it. */
-export const SCHEMA_VERSION = 1;
+/**
+ * Report schema; bump when a consumer would have to change to read it.
+ * Version 2 redefines `results` from every match to one row per file.
+ */
+export const SCHEMA_VERSION = 2;
 
 /** The recipe names this wrapper accepts. */
 export const RECIPES = Object.freeze(['structured', 'path', 'count']);
@@ -187,17 +195,22 @@ export function assertRecipeParity(phrase, roots = DEFAULT_SEARCH_ROOTS) {
  *
  * @param {string} recipe One of RECIPES.
  * @param {string} phrase Literal phrase.
- * @param {{ cwd?: string, roots?: ReadonlyArray<string> }} [options] Execution context.
+ * @param {{ cwd?: string, limit?: number, roots?: ReadonlyArray<string> }} [options] Execution context.
  * @returns {{
  *   command: string,
  *   counts: Array<{ count: number, path: string }> | null,
  *   exitCode: number,
+ *   fileCount: number | null,
+ *   hidden: { files: number, matches: number } | null,
+ *   limit: number | null,
+ *   matchCount: number | null,
  *   outcome: 'match' | 'no-match' | 'error',
  *   paths: string[] | null,
  *   recipe: string,
  *   results: Array<Record<string, unknown>> | null,
  *   schemaVersion: number,
  *   stderr: string,
+ *   truncated: boolean,
  *   unparsedLines: number
  * }} Execution record.
  */
@@ -214,12 +227,17 @@ export function search(recipe, phrase, options = {}) {
     command: formatCommand(argv),
     counts: null,
     exitCode: run.exitCode,
+    fileCount: null,
+    hidden: null,
+    limit: null,
+    matchCount: null,
     outcome: run.outcome,
     paths: null,
     recipe,
     results: null,
     schemaVersion: SCHEMA_VERSION,
     stderr: run.stderr,
+    truncated: false,
     unparsedLines: 0,
   };
 
@@ -229,7 +247,16 @@ export function search(recipe, phrase, options = {}) {
 
   if (recipe === 'structured') {
     const parsed = parseJsonLines(run.stdout);
-    record.results = rankMatches(parsed.matches, { cwd, normalizedQuery: normalizeTriggerText(phrase) });
+    const ranked = rankMatches(parsed.matches, { cwd, normalizedQuery: normalizeTriggerText(phrase) });
+    // One row per file is a post-rank filter, not a second ranker: the first
+    // row for a path is already that file's highest-ranked line.
+    const shaped = shapeRankedMatches(ranked, { limit: options.limit ?? DEFAULT_LIMIT });
+    record.results = shaped.results;
+    record.matchCount = shaped.matchCount;
+    record.fileCount = shaped.fileCount;
+    record.hidden = shaped.hidden;
+    record.limit = shaped.limit;
+    record.truncated = shaped.hidden.files > 0;
     record.unparsedLines = parsed.unparsedLines;
     return record;
   }
@@ -255,21 +282,31 @@ export function search(recipe, phrase, options = {}) {
 
 /**
  * @param {string[]} argv Arguments after the script name.
- * @returns {{ json: boolean, phrase: string, recipe: string, root: string | undefined, roots: string[] }} Parsed options.
+ * @returns {{ json: boolean, limit: number, phrase: string, recipe: string, root: string | undefined, roots: string[] }} Parsed options.
  */
 export function parseArgs(argv) {
   const positional = [];
   const roots = [];
   let json = false;
+  let limit = DEFAULT_LIMIT;
   let root;
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--json') { json = true; continue; }
-    if (arg === '--root' || arg === '--search-root') {
+    if (arg === '--root' || arg === '--search-root' || arg === '--limit') {
       const value = argv[i + 1];
       if (value === undefined) throw new Error(`${arg} requires a value`);
-      if (arg === '--root') root = value; else roots.push(value);
+      if (arg === '--limit') {
+        // parseInt would read `2junk` as 2 and `1.9` as 1 and silently truncate
+        // the answer, so the raw text has to be a whole decimal number.
+        // A run of digits longer than a safe integer parses to Infinity, which
+        // the JSON record would then report as a null limit.
+        const parsed = /^\d+$/.test(value) ? Number(value) : Number.NaN;
+        if (!Number.isSafeInteger(parsed)) throw new Error('--limit requires a non-negative integer');
+        limit = parsed;
+      } else if (arg === '--root') root = value;
+      else roots.push(value);
       i += 1;
       continue;
     }
@@ -288,7 +325,7 @@ export function parseArgs(argv) {
     throw new Error(`unexpected extra argument(s): ${extra.join(' ')}; quote a multi-word phrase`);
   }
 
-  return { json, phrase, recipe, root, roots: roots.length > 0 ? roots : undefined };
+  return { json, limit, phrase, recipe, root, roots: roots.length > 0 ? roots : undefined };
 }
 
 /**
@@ -308,9 +345,17 @@ export function formatSummary(record) {
   }
 
   if (record.results) {
-    lines.push(`ranked  : ${record.results.length} match(es), unparsed ${record.unparsedLines}`);
-    for (const result of record.results.slice(0, 20)) {
-      lines.push(`  ${result.evidenceField.padEnd(20)} ${result.path}:${result.line}`);
+    const atLimit = record.limit === 0 ? 'limit 0 (uncapped)' : `limit ${record.limit}`;
+    const unparsed = record.unparsedLines > 0 ? `, unparsed ${record.unparsedLines}` : '';
+    lines.push(`ranked  : ${record.matchCount} match(es) in ${record.fileCount} file(s); showing ${record.results.length} file(s) at ${atLimit}${unparsed}`);
+    // Shaping already bounded the rows to --limit files, so every shaped row is
+    // printed; a second cut here would hide rows the tail line never counts.
+    for (const result of record.results) {
+      const moreInFile = result.moreInFile > 0 ? ` (+${result.moreInFile} more in this file)` : '';
+      lines.push(`  ${result.evidenceField.padEnd(20)} ${result.path}:${result.line}${moreInFile}`);
+    }
+    if (record.hidden?.files > 0) {
+      lines.push(`  +${record.hidden.files} more files with ${record.hidden.matches} matches`);
     }
   }
   if (record.paths) {
@@ -340,6 +385,7 @@ export function main(argv) {
 
   const record = search(args.recipe, args.phrase, {
     cwd: args.root ? path.resolve(args.root) : process.cwd(),
+    limit: args.limit,
     roots: args.roots,
   });
 

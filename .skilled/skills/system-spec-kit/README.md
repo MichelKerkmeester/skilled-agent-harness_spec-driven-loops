@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.31.0
+version: 2.7.32.0
 ---
 
 # System Spec Kit
@@ -78,7 +78,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | Capability | What the skill knows how to operate |
 |---|---|
 | **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running. A host repository keeps its own index in `.speckit-index/`, or in the folder its `.skilled-host.json` names |
-| **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple |
+| **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple; `rg-wrapper.mjs` keeps one row per file, cuts at `--limit` files and reports what it hid |
 | **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` and kept as the primary recovery path, plus one bounded history lookup a compaction may add when a fresh locator verifies |
 | **Session relaunch** | Relaunches a near-limit session in a fresh runtime in the same terminal, gated per runtime and carrying a handoff note |
 | **Decision capture** | Queues the answers you give to the AI's questions and writes them into the bound packet's `decision-record.md` on a full-auto save |
@@ -329,7 +329,7 @@ System Spec Kit has no memory MCP server. Its search pipeline, query intelligenc
 Retrieval is two lexical lanes: the committed trigger index, which on a zero-hit also checks unindexed spec docs in the working tree, and ripgrep over the working tree.
 
 - **Trigger-index lookup:** `lookup-trigger-index.mjs` matches a prompt against author-declared `trigger_phrases` through the generated index.
-- **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus.
+- **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus. The `rg-wrapper.mjs` structured recipe shows each file once at its best line, cuts at `--limit` files (default 20, `--limit 0` uncapped) and reports the hidden files and matches.
 - **Continuity:** `runtime/cli/dist/continuity/generate-context.js` writes it into the packet itself, and `/speckit:resume` reads it back through the ladder it walks.
 - **Declared losses:** semantic paraphrase, ranking fusion, decay, access tracking, session dedup and graph traversal have no successor, so a phrase nobody wrote is a clean no-hit.
 

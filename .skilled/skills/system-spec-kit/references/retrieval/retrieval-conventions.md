@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -94,6 +94,10 @@ rg --no-config --hidden --json --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- 'phrase' specs .skilled
 ```
+
+The wrapper that serves this recipe applies two bounds after parsing, never inside ripgrep: it keeps **one line per file**, that file's highest-ranked line, because the Section 5 tuple already orders the rows, and then cuts the resulting file list at `--limit` files (default 20; `--limit 0` lifts the cut). The bound is applied after ranking on purpose. `--max-count 1` would stop reading a file at its first matching line, which is the file's earliest line, not its highest-ranked one, and it would also destroy the per-file totals the elision needs.
+
+The bound is reported, never silent. A shown row whose file held more matches carries `(+N more in this file)`. A run that dropped whole files ends with `+N more files with M matches`. The JSON form carries the same numbers as `moreInFile` on each result, `hidden: { files, matches }` on the record, and `matchCount`, `fileCount`, `limit` and `truncated` at the top level. A caller that needs a hidden row raises `--limit`; nothing is returned silently beyond the bound.
 
 ### 2.2 Path-only, replacing `memory_quick_search`
 
@@ -208,6 +212,7 @@ Ripgrep supplies matches, paths and lines. It never ranks relevance, and no docu
 1. **Evidence field**, most specific first: `trigger_phrases`, then title or description, then anchor marker, then body line.
 2. **Normalized match class**, in the order `lib/normalize.mjs` ranks them: `exact`, `phrase-containment`, `query-containment`, `token-overlap`, then `partial`. The lookup emits these labels verbatim, and no document may rename them.
 3. **Relative path**, then one-based line number.
+4. **Post-rank shaping**, applied after the tuple and never as part of it: one line per file (that file's first-ranked row), then a cut at `--limit` files, default 20, with `--limit 0` uncapped. Shaping filters the ordered list; it never re-sorts it, so the tuple remains the lane's only ranker. The cut is reported in the same answer: `moreInFile` on each result, and `hidden: { files, matches }` plus `matchCount`, `fileCount`, `limit` and `truncated` on the record.
 
 Each result carries its document type and its packet path alongside the ranked position, so a caller can filter or group without a second scan.
 
