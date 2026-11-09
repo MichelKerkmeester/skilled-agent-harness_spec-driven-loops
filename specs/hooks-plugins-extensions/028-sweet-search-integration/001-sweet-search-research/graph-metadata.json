@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research",
+  "spec_folder": "hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research",
+  "parent_id": "hooks-plugins-extensions/028-sweet-search-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sweet search research",
+      "phase 1 sweet search research",
+      "sweet search research plan",
+      "sweet search research tasks",
+      "sweet search research implementation summary",
+      "sweet-search verdict",
+      "sweet search integration decision"
+    ],
+    "key_topics": [
+      "sweet",
+      "search",
+      "research",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "sweet-search",
+      "verdict",
+      "integration",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      ".skilled/repo-rules/prevent-overengineering.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Rendered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sweet-search claims cheaper and faster agent runs through a local code index, but its value for Skilled's own workflows is unmeasured",
+    "created_at": "2026-11-09T11:30:04Z",
+    "last_save_at": "2026-11-09T16:22:37.189Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d7b15b239b7eb6f9283adf1af180310ce74fe8b84a117498571e92d0628d8c80",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "052cd93d4445d6fb87b40386ccf813f82144dc8ca0af6191e9a9dd2d2e34dae7",
+      "plan.md": "dcb7177a12eef79adb77d2cee339159516ea1211cbed020b39872cbd0d22c8f5",
+      "tasks.md": "05b2fd60d59fb21f5391101e918bd78c7ee91c9818a4b069ebf66350e6281cfb",
+      "implementation-summary.md": "e6c80528ec03f19078eebf8913ebe30eb3ac7575faee9ed0ff0c41d8403564e0",
+      "research/research.md": "a63aab2a384042b548d13d3a5176acfe4a8ffd00fcecd38e29311a28079e0df8"
+    },
+    "last_active_at": null
+  }
+}

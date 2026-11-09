@@ -1,0 +1,25 @@
+{
+  "specFolder": "hooks-plugins-extensions/028-sweet-search-integration",
+  "description": "Sweet-search integration: evaluate the local code-search tool and integrate it into Skilled where it earns its place",
+  "keywords": [
+    "sweet-search",
+    "integration",
+    "evaluate",
+    "local",
+    "code-search",
+    "tool",
+    "integrate",
+    "skilled",
+    "earns",
+    "place"
+  ],
+  "lastUpdated": "2026-11-09T11:30:04.163Z",
+  "specId": "028",
+  "folderSlug": "sweet-search-integration",
+  "parentChain": [
+    "hooks-plugins-extensions"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

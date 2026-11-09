@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research",
+  "spec_folder": "hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research",
+  "parent_id": "hooks-plugins-extensions/028-sweet-search-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval lessons research",
+      "phase 2 retrieval lessons research",
+      "sweet search retrieval lessons",
+      "retrieval lessons research plan",
+      "retrieval lessons research tasks",
+      "retrieval lessons research implementation summary",
+      "sweet-search retrieval lessons",
+      "trigger index zero-hit fallback"
+    ],
+    "key_topics": [
+      "retrieval",
+      "lessons",
+      "research",
+      "phase",
+      "sweet",
+      "search",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "sweet-search",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Rendered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "system-spec-kit retrieval is a committed trigger index plus ripgrep recipes with a caller-side ranking tuple",
+    "created_at": "2026-11-09T14:30:54Z",
+    "last_save_at": "2026-11-09T16:22:39.481Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:dfacd4a4f9eb55e5b93fa2591ad84ac46489c2ef6c63e3522303b9ba009c8c9f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e173b6bc97fe6ceebdeab42b5494880bfa2a5352a21f7fcf10d3270a8a935b7a",
+      "plan.md": "c36e3807583b20d3013e609748a04acb30c2ec8b3d4e218298ca96cddb71bb0a",
+      "tasks.md": "1cc4571286824bb5d241a3c39871dfdd9acc6af1cac2b3f9bb4668ddc6c51c6f",
+      "implementation-summary.md": "38cc9112b0c7fb8924e8bdd3c458dff7eace86873cf6b59401b1dbabd84d51af",
+      "research/research.md": "556babcb212cddb042ec87ad99563dd37a9b587a9eabf8d5b0f844cbecd16826"
+    },
+    "last_active_at": null
+  }
+}

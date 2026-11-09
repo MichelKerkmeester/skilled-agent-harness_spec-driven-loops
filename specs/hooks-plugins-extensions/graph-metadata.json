@@ -32,7 +32,8 @@
     "hooks/023-session-relaunch-loop",
     "hooks/024-dispatch-adapter-test-repair",
     "hooks/025-cache-optimizer-single-copy-guard",
-    "hooks/027-ask-surface-enforcement"
+    "hooks/027-ask-surface-enforcement",
+    "hooks/028-sweet-search-integration"
   ],
   "manual": {
     "depends_on": [],

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research",
+  "description": "Phase 2: retrieval-lessons-research",
+  "keywords": [
+    "phase",
+    "retrieval-lessons-research"
+  ],
+  "lastUpdated": "2026-11-09T14:38:47.304Z",
+  "specId": "002",
+  "folderSlug": "retrieval-lessons-research",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "028-sweet-search-integration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "09-11-26_15-38__phase-2-research-complete-5-parallel-iterations.md"
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback",
+  "spec_folder": "hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback",
+  "parent_id": "hooks-plugins-extensions/028-sweet-search-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stale index fallback",
+      "trigger lookup zero hit fallback",
+      "phase 5 stale index fallback",
+      "stale index fallback plan",
+      "stale index fallback tasks",
+      "stale index fallback implementation summary"
+    ],
+    "key_topics": [
+      "stale",
+      "index",
+      "fallback",
+      "trigger",
+      "lookup",
+      "zero",
+      "hit",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview When",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Zero",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The trigger index is committed and rebuilt by hand, so a packet created or edited since the last build is invisible to the Gate 1 lookup",
+    "created_at": "2026-11-09T16:18:07Z",
+    "last_save_at": "2026-11-09T16:52:18.072Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:37b1b716e6e5ff5f3dfb40d9a6e186d09811f7718b8ba22cf15053c21385efa7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1a7c78fd262d0cba047585d616c57be84921be61fc1d0fca1cb8e0fa7f77d46a",
+      "plan.md": "79dd247b696dfe764b29657727e39e195992cdb767b16924a74267af74c9245a",
+      "tasks.md": "703aeae75a499d6a2940ad5505e31283aa52503027515e89ba2305fe1b445f34",
+      "implementation-summary.md": "be161d5ce0e41d59d428579290d4390df77b530dbf275b2a44da5a4c0b3baaca"
+    },
+    "last_active_at": null
+  }
+}
