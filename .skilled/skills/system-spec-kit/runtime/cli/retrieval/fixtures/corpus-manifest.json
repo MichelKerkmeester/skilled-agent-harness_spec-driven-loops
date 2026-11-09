@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9f99045177d6b7fb7bb643a336dd04afa80f5c82b7c314c2ac0c130c996a3968",
+  "corpusHash": "4412606ceb0c2443f70670f60cbc5b4ddbf985a61ef61d0777b5e4b10926307c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -25940,7 +25940,7 @@
     "specs/system-speckit/047-v4-release-line-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f2e8877643451df2588dd84f6e043e2785c73844357578e6ad0eb2f9fc88d937",
+  "manifestHash": "2e36388778c6556b070a692c598f8118f541c38de332ec2b60f1078a77a1ac6c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
