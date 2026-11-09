@@ -98,6 +98,7 @@ Baselines ran first. The first brief went to cli-codex `gpt-6-luna`, which hit i
 | Playbook validator, sk-prompt | Before 1 BACKTICK_PATH_UNRESOLVED. After 0 |
 | Root metadata, leaf freshness, card sync | Before 14/14, 14/14, exit 0. After the same |
 | Review | DeepSeek PASS with four P2 rows; three fixed, one matches ADR-004 |
+| Second-family review (Claude, ADR-006) | PASS, no defect; packager, contract and repo-rule tests 84 passed on rerun |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -105,9 +106,8 @@ Baselines ran first. The first brief went to cli-codex `gpt-6-luna`, which hit i
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cross-family review was not possible.** GPT quota is exhausted until 2026-11-13; the reviewer was the same family as the writer.
-2. **sk-design still declares the undefined `none` outcome.** Removing it needs the compiled-routing generator; recorded for the operator.
-3. **A comment in `.skilled/bin/lib/compiled-routing/.../canary-router.cjs:322` names the `none` outcome.** Accurate while the outcome stays; outside this phase's files.
+1. **sk-design still declares the undefined `none` outcome.** Removing it needs the compiled-routing generator; recorded for the operator.
+2. **A comment in `.skilled/bin/lib/compiled-routing/.../canary-router.cjs:322` names the `none` outcome.** Accurate while the outcome stays; outside this phase's files.
 <!-- /ANCHOR:limitations -->
 
 ---

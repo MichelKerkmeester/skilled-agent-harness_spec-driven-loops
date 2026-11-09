@@ -329,3 +329,63 @@ GPT quota ran out during the first brief (reset 2026-11-13). The goal allows a D
 <!-- /ANCHOR:adr-005 -->
 ---
 
+<!-- ANCHOR:adr-006 -->
+## ADR-006: Second-family review of the phase commit
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-09 |
+| **Deciders** | Remediation orchestrator B (operator unavailable) |
+
+---
+
+### Context
+
+GPT was unavailable until 2026-11-13, so the lead asked the orchestrator (Claude, a different family from the DeepSeek writer and reviewer) to review commit `cfca8f5e22` against the phase findings and acceptance criteria.
+
+### Constraints
+- The verified finding set in `../research/research.md` bounds the scope.
+
+---
+
+### Decision
+
+**Summary**: PASS. No defect found; nothing changed in product files.
+
+**Details**: Read the full diff. Packager: no output directory exits 2 with nothing written (probe from an empty scratch cwd: exit 2, 0 files); the repository top level is refused (exit 1, refusal printed); `--check` still exits 0; the top-level probe runs before `mkdir`, so a not-yet-created directory is never mistaken for a top level. Frontmatter: the checks run in their old order, the missing-field guard stops a duplicate empty-description error, and every newly guarded key access covers a path the old early return made unreachable. Coverage units: a stem pairs only with its own silent-e form; a bullet holding both `move` and `moved` yields two units that always score together, the same two tokens the old code counted, so no bullet can pass on an unmatched pair. Docs: the v4.0.0.0 tag registry ships `sk-code-opencode`; the quick reference, creation workflow and skills README now show `--check` or an output directory. Reruns: packager, create-skill contract and repo-rule tests 84 passed; `check-repo-rules --root .` 11/11; no zip in the repository root.
+
+---
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Accept as committed** | Every criterion holds on rerun | None | 9/10 |
+| Change the coverage pairing for the move/moved case | Marginally tidier ratio | No behaviour difference from before the commit | 3/10 |
+
+**Why Chosen**: Each claim was checked by a command or a source read, not taken from the earlier review.
+
+---
+
+### Consequences
+
+**Positive**:
+- The phase now has a second-family read.
+
+**Negative**:
+- None.
+
+---
+
+### Implementation
+
+**Affected Systems**: this phase's files
+
+**Rollback**: revert the phase commit.
+
+<!-- /ANCHOR:adr-006 -->
+---
+

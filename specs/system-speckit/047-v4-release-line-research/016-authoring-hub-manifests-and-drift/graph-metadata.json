@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`packageskill.py` without `--check` writes `<skill>.zip` into the working directory, which planted three zips in the repository root",
     "created_at": "2026-11-08T23:39:05Z",
-    "last_save_at": "2026-11-09T04:59:55.521Z",
+    "last_save_at": "2026-11-09T05:02:26.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94b29273b06419eca339b6f6970915ce6a203f116b900e99989d92c61bfacc5e",
+    "source_fingerprint": "sha256:7116af607c06e4b7b26e8215130d1d60a3b0b13cb51421032881d001d5f51bf9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa7c97c5cec4a117bab03e373fb98710a6ff44787552938b5e85beda34c0dff9",
       "plan.md": "abae1b4ecfd7870ae94919cf761137fc5a8f2cd8c17f69fa152b01ea525f3a62",
       "tasks.md": "d783adb1d7b9e31d984fd4e398316e5cf5a8b9541a5b9fed8911b7a790f9887a",
-      "decision-record.md": "1d54bcd9bb56f08e83a875e009ff4d1fdf2fc11b0cdb05660f0fb853dd934286",
-      "implementation-summary.md": "4407b98fce25caa67d85231b6ecfc697937b70712540d3cba3d94746a331ef05"
+      "decision-record.md": "9f7aa60731f048be8cb67e147b68a49f2f40709988c67578fec043c2080f3850",
+      "implementation-summary.md": "58d747f550f90ec7cc64c60dc47d17da321e24fba3b5c20de83ac269a460e484"
     },
     "last_active_at": null
   }
