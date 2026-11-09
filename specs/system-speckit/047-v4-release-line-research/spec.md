@@ -117,6 +117,8 @@ Every write stays inside this packet.
 | 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Complete |
 | 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Complete |
 | 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Complete |
+| 18 | 018-host-trigger-index-and-repin-generated/ | Barter upstream: host trigger index default and generated retrieval files in a re-pin | Complete |
+| 19 | 019-template-marker-upgrade-and-staleness-scope/ | Barter upstream: old-marker upgrade path and staleness checker discovery scope | Pending |
 
 ### Phase Transition Rules
 
@@ -145,6 +147,8 @@ Every write stays inside this packet.
 | 014-doctor-and-ci-gate-honesty | 015-cli-hub-routing-and-classifier | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 015-cli-hub-routing-and-classifier | 016-authoring-hub-manifests-and-drift | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 016-authoring-hub-manifests-and-drift | 017-over-engineering-cuts | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 017-over-engineering-cuts | 018-host-trigger-index-and-repin-generated | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 018-host-trigger-index-and-repin-generated | 019-template-marker-upgrade-and-staleness-scope | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

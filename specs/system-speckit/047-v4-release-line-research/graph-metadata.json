@@ -20,7 +20,9 @@
     "system-speckit/047-v4-release-line-research/014-doctor-and-ci-gate-honesty",
     "system-speckit/047-v4-release-line-research/015-cli-hub-routing-and-classifier",
     "system-speckit/047-v4-release-line-research/016-authoring-hub-manifests-and-drift",
-    "system-speckit/047-v4-release-line-research/017-over-engineering-cuts"
+    "system-speckit/047-v4-release-line-research/017-over-engineering-cuts",
+    "system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated",
+    "system-speckit/047-v4-release-line-research/019-template-marker-upgrade-and-staleness-scope"
   ],
   "manual": {
     "depends_on": [],
@@ -218,7 +220,7 @@
     ],
     "causal_summary": "Nineteen releases shipped between v4.0.0.0 (2026-09-21) and v4.0.2.0 (2026-11-08): 3,687 commits across spec kit, the authoring hubs, the CLI executors, the deep loops, the skill advisor, hooks, doctor commands and git tooling",
     "created_at": "2026-11-08T19:49:04Z",
-    "last_save_at": "2026-11-09T05:38:34.899Z",
+    "last_save_at": "2026-11-09T07:48:51.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,10 +228,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0602b53193bd785e38ce4cf7858cc9f92bdf26940f2d59e77e1e0fde0b25245c",
+    "source_fingerprint": "sha256:8f6ff9e43bc4644a25721cc2e851093fc97caf3c75352d9e8abb90d1e69a8a59",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "736c92b3b15829f853078037470388f06e39c2b5f44a81e2bd5b7b12f98f1941",
+      "spec.md": "cbd0d9078ed7d90beb8122ddf1b0ac611032d2701016a211cf938cdc1cb65e8e",
       "research/research.md": "12682bd016fa7179f71e23cffa6aa65f5ae689e6a331bd86649f58576f8b4a55"
     },
     "last_active_child_id": "system-speckit/047-v4-release-line-research/003-cli-and-deep-loop",

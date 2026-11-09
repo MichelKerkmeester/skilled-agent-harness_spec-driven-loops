@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated",
+  "spec_folder": "system-speckit/047-v4-release-line-research/018-host-trigger-index-and-repin-generated",
+  "parent_id": "system-speckit/047-v4-release-line-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "host trigger index and repin generated",
+      "phase 18 host trigger index and repin generated",
+      "host trigger index and repin generated plan",
+      "host trigger index and repin generated tasks",
+      "host trigger index and repin generated acceptance criteria",
+      "host trigger index and repin generated decisions",
+      "host trigger index and repin generated implementation summary"
+    ],
+    "key_topics": [
+      "host",
+      "trigger",
+      "index",
+      "repin",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "decisions",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "runtime/data/README.md",
+      "references/structure/folder-structure.md",
+      "runtime/cli/tests/host-trigger-index.vitest.ts",
+      "runtime/cli/retrieval/lib/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/data/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "host-trigger-index.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/host-trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lookup-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`lookup-trigger-index.mjs` fixes `DEFAULTINDEXPATH` relative to the script, so from a host root the AGENTS.md Gate 1 command reads Skilled's packaged index and misses every host packet",
+    "created_at": "2026-11-09T06:27:48Z",
+    "last_save_at": "2026-11-09T07:48:30.150Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c536a7e8fc926041ce8e8f63811011ba2a76a823a3235e8cbd5ab456c77e6836",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "06947611de4887a80012fbf59d4a205719a790b94432b9a3deba6c47afebed3d",
+      "plan.md": "2f418e517316a8cd0f8b5ca1f3eb64e69e74242bc1fbd1d585d63079fe5ca433",
+      "tasks.md": "d4f3283f4240e92f227914aedc6c5acf40d07d5468e4a4c046d75753c66dba7f",
+      "decision-record.md": "99e831a217ccf6af82839fc913ba92505aab5b6b5c94b4724cc1e787307b1062",
+      "implementation-summary.md": "120632a8fccdf11a704888840e2ff4a8ab36432d4bf6af1fd729d13db1922620"
+    },
+    "last_active_at": null
+  }
+}
