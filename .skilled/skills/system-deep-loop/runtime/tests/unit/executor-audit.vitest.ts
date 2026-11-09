@@ -14,6 +14,7 @@ import {
   appendExecutorAuditToLastRecord,
   buildExecutorAuditRecord,
   buildExecutorDispatchEnv,
+  classifyExecutorUnavailable,
   detectFromAncestry,
   detectFromFanoutLineage,
   detectFromLockfile,
@@ -74,6 +75,45 @@ function cliCodexExecutor(): ExecutorConfig {
 }
 
 describe('executor-audit', () => {
+  it.each([
+    ['', 'cognition.ai/errorKind: resource_exhausted', 'resource_exhausted'],
+    ['', 'Provider rate limit reached', 'rate limit'],
+    ['', 'Daily usage limit reached', 'usage limit'],
+    ['', 'Quota exceeded', 'Quota'],
+    ['', 'insufficient credits', 'insufficient credits'],
+    ['', 'HTTP 429: too many requests', 'too many requests'],
+    ['', 'Not authenticated', 'Not authenticated'],
+    ['', 'Not logged in', 'Not logged in'],
+    ['', 'Executor capacity is unavailable', 'capacity'],
+    ['', 'Service overloaded', 'overloaded'],
+  ])('classifies executor-unavailable output marker %s %s', (stdout, stderr, marker) => {
+    expect(classifyExecutorUnavailable(stdout, stderr)).toBe(marker);
+  });
+
+  it.each([
+    ['', 'executor exited with status 1'],
+    ['Authentication was successful', 'ordinary provider error'],
+    ['Request completed with HTTP 200', ''],
+  ])('does not classify ordinary output %s %s', (stdout, stderr) => {
+    expect(classifyExecutorUnavailable(stdout, stderr)).toBeNull();
+  });
+
+  it('ignores outage markers in ordinary stdout report prose', () => {
+    const report = Array.from({ length: 30 }, (_, index) =>
+      `Finding ${index + 1}: unauthorized access, capacity pressure, and HTTP 429 were reviewed`,
+    ).join('\n');
+
+    expect(classifyExecutorUnavailable(report, '')).toBeNull();
+  });
+
+  it('still classifies outage markers anywhere in stderr', () => {
+    expect(classifyExecutorUnavailable('', 'unauthorized capacity HTTP 429')).toBe('429');
+  });
+
+  it('classifies a JSON error object on stdout', () => {
+    expect(classifyExecutorUnavailable('{"type":"error","message":"rate limit exceeded"}', '')).toBe('rate limit');
+  });
+
   it('buildExecutorAuditRecord returns all audit fields for a CLI executor', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-claude-code',
@@ -628,6 +668,34 @@ describe('executor-audit', () => {
         reason: 'recursion-guard-stack',
         detail: 'cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK',
         executor: { kind: 'cli-claude-code' },
+      });
+    });
+  });
+
+  it('runAuditedExecutorCommand marks captured provider quota output as executor unavailable', () => {
+    withTempStateLog('{"type":"event","event":"start"}\n', (stateLogPath) => {
+      runAuditedExecutorCommand({
+        command: 'node',
+        args: ['-e', "process.stderr.write('resource_exhausted'); process.exit(1)"],
+        cwd: tmpdir(),
+        timeoutSeconds: 5,
+        stateLogPath,
+        executor: cliClaudeExecutor(),
+        iteration: 10,
+        guardContext: {
+          env: { PATH: process.env.PATH, [CLI_DISPATCH_STACK_ENV]: '' },
+          ancestryCmdlines: [],
+          statePaths: [],
+        },
+      });
+
+      const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
+      expect(JSON.parse(lines.at(-1) ?? '')).toMatchObject({
+        type: 'event',
+        event: 'dispatch_failure',
+        iteration: 10,
+        executorUnavailable: true,
+        matchedMarker: 'resource_exhausted',
       });
     });
   });

@@ -2445,6 +2445,62 @@ describe('fanout-run.cjs — live-tools preflight and Cartesian manifest dispatc
     expect(existsSync(join(baseDir, 'orchestration-summary.json'))).toBe(false);
   });
 
+  it('rejects uncapped max-iterations lineages before spawning and accepts capped lineages', async () => {
+    const binDir = makeTempDir('fanout-run-max-iterations-preflight-bin-');
+
+    const uncappedBaseDir = makeTempDir('fanout-run-max-iterations-uncapped-base-');
+    const uncappedMarkerPath = join(uncappedBaseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, uncappedMarkerPath);
+    const uncappedConfig = JSON.stringify({
+      executors: [{ label: 'uncapped-research', kind: 'cli-opencode', model: 'opencode-go/glm-5.1' }],
+      concurrency: 1,
+    });
+    const uncappedRun = await spawnFanout('max-iterations-uncapped', [
+      '--spec-folder',
+      'specs/test-fanout-max-iterations-uncapped',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      uncappedConfig,
+      '--base-artifact-dir',
+      uncappedBaseDir,
+      '--stop-policy',
+      'max-iterations',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(uncappedRun.result.exitCode).toBe(3);
+    expect(uncappedRun.result.stdout).toContain(
+      'stopPolicy=max-iterations requires a positive lineage iteration cap for lineage(s): uncapped-research',
+    );
+    expect(existsSync(uncappedMarkerPath)).toBe(false);
+    expect(existsSync(join(uncappedBaseDir, 'lineages'))).toBe(false);
+
+    const cappedBaseDir = makeTempDir('fanout-run-max-iterations-capped-base-');
+    const cappedMarkerPath = join(cappedBaseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, cappedMarkerPath);
+    const cappedConfig = JSON.stringify({
+      executors: [{ label: 'capped-research', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', iterations: 1 }],
+      concurrency: 1,
+    });
+    const cappedRun = await spawnFanout('max-iterations-capped', [
+      '--spec-folder',
+      'specs/test-fanout-max-iterations-capped',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      cappedConfig,
+      '--base-artifact-dir',
+      cappedBaseDir,
+      '--stop-policy',
+      'max-iterations',
+    ], { env: { PATH: `${binDir}:${process.env.PATH ?? ''}` } });
+
+    expect(existsSync(cappedMarkerPath)).toBe(true);
+    expect(cappedRun.result.stdout).not.toContain(
+      'stopPolicy=max-iterations requires a positive lineage iteration cap',
+    );
+  });
+
   it('feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool', async () => {
     const binDir = makeTempDir('fanout-run-manifest-bin-');
     writeStubBinary(binDir, 'opencode');

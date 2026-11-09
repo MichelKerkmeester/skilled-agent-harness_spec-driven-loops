@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Phase 7: deep-loop-state-and-stop-policy"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Fix iteration counting and delta integrity in the research reducer, the state row, readiness binding, quota handling and confirm-gate locks in the workflow YAMLs, up-front max-iterations validation in fan-out, unknown-option refusal across deep-loop scripts, and the council confirm post-dispatch check."
 trigger_phrases:
   - "deep loop state and stop policy plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 7: deep-loop-state-and-stop-policy
@@ -15,73 +15,76 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | CommonJS runtime scripts, YAML workflow assets, TypeScript tests |
+| **Framework** | system-deep-loop runtime and the deep-research reducer |
+| **Storage** | JSONL state logs and delta files under each run's artifact directory |
+| **Testing** | vitest in `runtime/` and `deep-ai-council/`; `node --test` for the reducer script tests; a reducer replay over temp copies of the five 047 research logs |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Each finding is fixed where its value is produced: the reducer for counts and delta integrity, the gateway projection or YAML for the state row, the review YAML for the readiness binding, the YAML dispatch-failure path for quota errors, the confirm YAMLs for lock refresh, `fanout-run.cjs` for the stop-policy check and each script's own argument parser for unknown options. The reducer replay is the end-to-end proof for the counting fix.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Runtime vitest at least 2853 passed plus new tests, council vitest at least 118, node script tests 2 of 2, and the replay prints 20 for 004
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Fix at the producer.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`reduce-state.cjs`**: derives iteration metrics, latest iteration and delta records from the state log and delta files.
+- **Workflow YAMLs**: own the state row template, the dispatch-failure branch, the closeout arguments and the lock refresh steps.
+- **`fanout-run.cjs`**: validates lineage inputs before any spawn.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+An iteration writes its delta and hands its record to the append gateway; the reducer reads the state log and deltas and writes the registry and dashboard; the YAML reads the reducer's output to decide the next iteration or stop.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| `reduce-state.cjs` metrics and latest-iteration selection | Counts rows | update | reducer replay, unit test with a duplicated run |
+| `reduce-state.cjs` delta parse | Pads corrupt rows with null | update | unit test with a corrupt delta row |
+| research YAML state row and `step_read_state` | Drops focus; counts rows | update | `rg` on the row template; contract test |
+| review YAML closeout | Passes an unbound placeholder | update | `rg -n release_readiness_state` shows a binding step |
+| deep YAML dispatch-failure branch | Writes an `error` iteration | update | YAML text plus the reducer ignoring the event in counts |
+| confirm YAML operator gates | Refresh only before gates | update | `rg` shows a refresh after each gate |
+| `fanout-run.cjs` input validation | Validates after the run | update | unit test: uncapped max-iterations throws before spawn |
+| deep-loop CLI scripts | Some accept any `--key` | update | per-script unknown-option test |
+| `deep-ai-council-confirm.yaml` | Lacks post-dispatch validation | update | diff against the auto twin |
+| `deep-review/scripts` reducer | Counts review iterations | not a consumer of the research reducer | unchanged |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: `rg -n "type === 'iteration'|iterationsCompleted|concat\(new Array" .skilled/skills/system-deep-loop`.
+- Consumers of changed symbols: `rg -n "append-mode-event|loop-lock.cjs refresh|release-readiness-state" .skilled/commands/deep`.
+- Matrix axes: workflow (research, review, council) by mode (auto, confirm) for the lock, quota and validation fixes.
+- Algorithm invariant: completed iterations equal the number of distinct `run` values on non-error iteration rows.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -89,43 +92,40 @@ Required inventories:
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup counts the archives. Implementation adds `--keep`. Verification counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Setup baselines the runtime, council and node suites and replays the reducer over the five research logs. Implementation runs one worker per finding in the order of `tasks.md`. Verification reruns every baseline and the replay, then the cross-family review.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Reducer counting and delta integrity, fan-out validation, script option parsing | vitest, `node --test` |
+| Integration | Reducer replay over temp copies of the five research logs | `replay-reducer.sh` in the orchestrator scratchpad |
+| Manual | N/A: no live executor dispatch; YAML changes are checked by text and contract tests | shell |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| cli-codex `gpt-6-luna` high fast | External | Green | Fall back to DeepSeek and log it |
+| cli-pi `opencode-go/deepseek-v4.1-flash` max | External | Green (cli-devin quota exhausted) | Mechanical edits move to Luna |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: A deep loop stops on a state it previously accepted and the stop is wrong.
+- **Procedure**: `git revert` the phase commit.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -135,7 +135,6 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,10 +142,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | Phase 006 commit | Implementation |
+| Implementation | Baselines recorded | Verification |
+| Verification | Implementation and review | Phase 008 |
 <!-- /ANCHOR:phase-deps -->
 
 ---
-

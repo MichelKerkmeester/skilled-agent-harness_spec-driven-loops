@@ -330,6 +330,10 @@ workflow:
         on_resume:
           show_dashboard: "{state_paths.dashboard}"
           ask: "Existing research session is consistent. Resume where it left off, or restart (archive the current research packet under the root-level research_archive/ tree and start a fresh session)?"
+          after_gate_refresh_lock:
+            action: "Refresh the packet lock heartbeat immediately after the operator response"
+            command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+            on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
           options: [resume, restart, cancel]
           on_resume_choice:
             dry_run_boundary: "state-mutation"
@@ -538,6 +542,10 @@ workflow:
           B) Revise the planned branch
           C) Cancel
         wait_for: "User response"
+        after_gate_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the operator response"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: step_preinit_spec_branch }
         on_B: { action: "Adjust the planned pre-init mutation inputs", return_to: gate_preinit_spec_mutation_approval }
         on_C: { action: "Cancel workflow after releasing the advisory lock during cleanup", status: "CANCELLED" }
@@ -615,6 +623,10 @@ workflow:
           B) Adjust questions or parameters
           C) Cancel
         wait_for: "User response"
+        after_gate_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the operator response"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { set: { current_iteration: 1, current_segment: 1, stuck_count: 0 }, proceed_to: phase_loop }
         on_B: { action: "Apply user adjustments to strategy.md and/or config", return_to: gate_init_approval }
         on_C: { action: "Cancel workflow", status: "CANCELLED" }
@@ -648,8 +660,9 @@ workflow:
           - "{state_paths.strategy}"
           - "{state_paths.config}"
         extract:
-          - iteration_count: "Count lines where type === 'iteration'"
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "Count distinct run values (run, else iteration) across lines where type === 'iteration'; a redispatched run counts once"
+          - highest_run: "Highest run value (run, else iteration) across lines where type === 'iteration', else 0"
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - current_segment: "Latest segment_start event segment, else 1"
           - last_newInfoRatio: "Extract newInfoRatio from last iteration record"
           - last_focus: "Extract focus from latest iteration record, else 'none yet'"
@@ -1012,6 +1025,10 @@ workflow:
                     B) Choose a different ranked candidate (unavailable: no ranking contract)
                     C) manualStop and proceed to the existing pre-synthesis gate
                   wait_for: "User response"
+                  after_gate_refresh_lock:
+                    action: "Refresh the packet lock heartbeat immediately after the operator response"
+                    command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
                   on_A:
                     bookkeeping_log: '{"type":"event","event":"pivot_confirm_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{pivot_result.selectedCandidate},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
                     set:
@@ -1043,6 +1060,10 @@ workflow:
                     B) Explicitly override with accepted candidate id + rationale
                     C) manualStop and proceed to the existing pre-synthesis gate
                   wait_for: "User response"
+                  after_gate_refresh_lock:
+                    action: "Refresh the packet lock heartbeat immediately after the operator response"
+                    command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
                   on_A: { skip_to: gate_pre_synthesis }
                   on_B:
                     action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier."
@@ -1123,6 +1144,10 @@ workflow:
           C) Stop loop and synthesize now
           D) Cancel entirely
         wait_for: "User response"
+        after_gate_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the operator response"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: step_dispatch_iteration }
         on_B: { action: "Update next_focus to user's choice", proceed_to: step_dispatch_iteration }
         on_C:
@@ -1363,6 +1388,20 @@ workflow:
             reasoningEffort: "{config.executor.reasoningEffort}"
             serviceTier: "{config.executor.serviceTier}"
 
+      step_check_executor_unavailable:
+        action: "Stop when the current iteration dispatch records an unavailable executor"
+        read:
+          - "{state_paths.state_log}"
+        extract:
+          - unavailable_record: "Latest line with type == 'event', event == 'dispatch_failure', iteration == current_iteration, and executorUnavailable == true; else none"
+        branch_on: "unavailable_record"
+        if_present:
+          set: { reason: "error", stopReason: "error" }
+          message: "The {unavailable_record.executor.kind} executor is unavailable ({unavailable_record.matchedMarker}). Switch executor or wait, then resume this run."
+          halt: true
+        if_absent:
+          action: "Continue to state reduction"
+
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
         dry_run_boundary: "reducer-refresh"
@@ -1482,7 +1521,18 @@ workflow:
           - status: "From latest JSONL iteration record"
           - latest_focus: "From latest JSONL iteration record"
         on_missing_outputs:
-          action: "Mark iteration as 'error', continue to next"
+          action: "Inspect the latest dispatch record before handling missing outputs"
+          read:
+            - "{state_paths.state_log}"
+          extract:
+            - last_record: "Parse the latest state.jsonl record after dispatch"
+          branch_on: "last_record.type == 'event' AND last_record.event == 'dispatch_failure' AND last_record.executorUnavailable == true"
+          if_executor_unavailable:
+            set: { reason: "error", stopReason: "error" }
+            message: "The {last_record.executor.kind} executor is unavailable ({last_record.matchedMarker}). Switch executor or wait, then resume this run."
+            halt: true
+          if_other_failure:
+            action: "Mark iteration as 'error', continue to next"
 
       # ─── APPROVAL GATE: Post-Iteration ───
       gate_post_iteration:
@@ -1507,6 +1557,10 @@ workflow:
           C) Stop loop and synthesize
           D) Cancel entirely
         wait_for: "User response"
+        after_gate_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the operator response"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: step_update_tracking }
         on_B: { action: "Set next_focus to user's choice in strategy.md", proceed_to: step_update_tracking }
         on_C:
@@ -1572,8 +1626,9 @@ workflow:
           - "{state_paths.packet_dir}/lineages/*/deep-research-state.jsonl"
           - "{state_paths.packet_dir}/lineages/*/deep-research-strategy.md"
         extract:
-          - iteration_count: "When direct lineage state logs exist, count type === 'iteration' across those logs in stable lineage order; otherwise count the root state log. Never add root compatibility records to lineage records."
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "When direct lineage state logs exist, count distinct run values (run, else iteration) across those logs in stable lineage order; otherwise count distinct run values (run, else iteration) across the root state log. Never add root compatibility records to lineage records."
+          - highest_run: "When direct lineage state logs exist, take the highest run value (run, else iteration) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (run, else iteration) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - current_segment: "Latest segment_start event segment, else 1"
           - last_focus: "Extract focus from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newInfoRatio from second-latest iteration record, else 'N/A'"
@@ -1605,6 +1660,10 @@ workflow:
           B) Run more iterations (increase max)
           C) Cancel (keep iteration files)
         wait_for: "User response"
+        after_gate_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the operator response"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: step_read_all_iterations }
         on_B: { action: "Increase max_iterations, return to loop", proceed_to: phase_loop }
         on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
@@ -1723,6 +1782,10 @@ workflow:
           B) Revise before write-back
           C) Defer spec.md write-back
         wait_for: "User response"
+        after_gate_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the operator response"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: step_writeback_spec_findings }
         on_B: { action: "Adjust the synthesis or write-back inputs", return_to: gate_post_synthesis_spec_writeback }
         on_C:
@@ -1788,6 +1851,10 @@ workflow:
           B) Request revisions to research/research.md
           C) Skip memory save
         wait_for: "User response"
+        after_gate_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the operator response"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
         on_A: { proceed_to: phase_save }
         on_B: { action: "Apply user revisions", return_to: gate_post_synthesis }
         on_C: { proceed_to: completion }

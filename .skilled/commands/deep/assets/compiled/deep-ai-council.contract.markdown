@@ -27,7 +27,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "e7ed2dd3cc327e3b78c4b81908db80b4fe76faa330ee782ae9cdd3cd0fa67d99",
+      "sha256": "9e9eb15fc20678765bfc47b1eee68a0b052b65e7be157634783402d9a4541cec",
       "section": "full"
     },
     {

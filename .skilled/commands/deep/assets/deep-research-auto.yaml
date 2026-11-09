@@ -612,8 +612,9 @@ workflow:
           - "{state_paths.strategy}"
           - "{state_paths.config}"
         extract:
-          - iteration_count: "Count lines where type === 'iteration'"
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "Count distinct run values (run, else iteration) across lines where type === 'iteration'; a redispatched run counts once"
+          - highest_run: "Highest run value (run, else iteration) across lines where type === 'iteration', else 0"
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - current_segment: "Latest segment_start event segment, else 1"
           - last_newInfoRatio: "Extract newInfoRatio from last iteration record"
           - last_focus: "Extract focus from latest iteration record, else 'none yet'"
@@ -1917,6 +1918,20 @@ workflow:
         outputs:
           - run_now_restored: "Emitted when an operator recreates the sentinel before the accepted dispatch completes"
 
+      step_check_executor_unavailable:
+        action: "Stop when the current iteration dispatch records an unavailable executor"
+        read:
+          - "{state_paths.state_log}"
+        extract:
+          - unavailable_record: "Latest line with type == 'event', event == 'dispatch_failure', iteration == current_iteration, and executorUnavailable == true; else none"
+        branch_on: "unavailable_record"
+        if_present:
+          set: { reason: "error", stopReason: "error" }
+          message: "The {unavailable_record.executor.kind} executor is unavailable ({unavailable_record.matchedMarker}). Switch executor or wait, then resume this run."
+          halt: true
+        if_absent:
+          action: "Continue to state reduction"
+
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
         command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
@@ -2052,10 +2067,21 @@ workflow:
           - status: "From latest JSONL iteration record"
           - latest_focus: "From latest JSONL iteration record"
         on_missing_outputs:
-          action: "Mark iteration as 'error', continue to next"
-          # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
-          # so the reducer can persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
-          append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          action: "Inspect the latest dispatch record before handling missing outputs"
+          read:
+            - "{state_paths.state_log}"
+          extract:
+            - last_record: "Parse the latest state.jsonl record after dispatch"
+          branch_on: "last_record.type == 'event' AND last_record.event == 'dispatch_failure' AND last_record.executorUnavailable == true"
+          if_executor_unavailable:
+            set: { reason: "error", stopReason: "error" }
+            message: "The {last_record.executor.kind} executor is unavailable ({last_record.matchedMarker}). Switch executor or wait, then resume this run."
+            halt: true
+          if_other_failure:
+            action: "Mark iteration as 'error', continue to next"
+            # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
+            # so the reducer can persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
+            append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
       step_telemetry_heartbeat_progress:
         action: "Emit a single-loop progress row when iteration state changes"
@@ -2182,8 +2208,9 @@ workflow:
           - "{state_paths.packet_dir}/lineages/*/deep-research-state.jsonl"
           - "{state_paths.packet_dir}/lineages/*/deep-research-strategy.md"
         extract:
-          - iteration_count: "When direct lineage state logs exist, count type === 'iteration' across those logs in stable lineage order; otherwise count the root state log. Never add root compatibility records to lineage records."
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "When direct lineage state logs exist, count distinct run values (run, else iteration) across those logs in stable lineage order; otherwise count distinct run values (run, else iteration) across the root state log. Never add root compatibility records to lineage records."
+          - highest_run: "When direct lineage state logs exist, take the highest run value (run, else iteration) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (run, else iteration) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - current_segment: "Latest segment_start event segment, else 1"
           - last_focus: "Extract focus from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newInfoRatio from second-latest iteration record, else 'N/A'"

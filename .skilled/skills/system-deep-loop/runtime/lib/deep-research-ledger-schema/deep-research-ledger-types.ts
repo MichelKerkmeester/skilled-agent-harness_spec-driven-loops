@@ -183,6 +183,8 @@ export interface IterationCompletedData extends JsonObject {
   readonly outputDigest: Digest;
   readonly ruledOutApproachRefs: string[];
   readonly nextFocusCausationId: string;
+  readonly focus?: string;
+  readonly answeredQuestions?: string[];
 }
 
 export interface SourceCapturedData extends JsonObject {

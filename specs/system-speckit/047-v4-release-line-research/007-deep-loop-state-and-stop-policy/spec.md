@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 7: deep-loop-state-and-stop-policy"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Deep-loop state reporting disagrees with what ran: the reducer counts rows rather than iterations, delta corruption is swallowed, the state row loses its focus, review closeout never binds readiness, quota errors burn iterations, a confirm gate can lose its lock and a max-iterations fan-out is rejected only after it ran. This phase makes the state and stop policy honest."
 trigger_phrases:
   - "deep loop state and stop policy"
   - "phase 7 deep loop state and stop policy"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 7: deep-loop-state-and-stop-policy
@@ -15,20 +15,19 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-11-08 |
-| **Branch** | `scaffold/007-deep-loop-state-and-stop-policy` |
+| **Branch** | `worktrees/334-v4-release-remediation` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 7 of 17 |
 | **Predecessor** | 006-deep-loop-single-executor-dispatch |
 | **Successor** | 008-write-containment-scoping |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | The reducer replay over the five research logs reports distinct iterations, and the deep-loop runtime and council suites hold their baselines |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,33 +37,45 @@ contextType: "general"
 
 This is **Phase 7** of the v4 release line remediation specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Iteration counting, delta and state-log integrity, the canonical state row, review closeout bindings, executor-unavailable handling, confirm-mode lock refresh, fan-out max-iterations validation, unknown-option refusal in deep-loop scripts, and the council confirm post-dispatch check. Dispatch argv belongs to 006; containment to 008.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 006 committed (`e7398d6c76`), because both phases edit the same workflow YAMLs
+- Verified findings V07, V08, V10, V11, V12, V13, V14, V16 and P2s V06, V15 in `../research/research.md`
 
 **Deliverables**:
-- [To be defined during planning]
+- Honest iteration counts and fail-closed delta reads in the research reducer
+- Workflow YAML fixes for state fields, readiness binding, quota errors and confirm-gate locks
+- Up-front fan-out validation and strict option parsing in deep-loop scripts
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The deep loops report state that does not match what ran. The research reducer counts iteration rows, so a redispatched iteration is counted twice, and it takes the last row as the latest; corrupt delta rows are padded with nulls while a corrupt state log fails closed. The canonical state row drops `focus`, so `last_focus` reads undefined. Review closeout passes `{release_readiness_state}` that nothing binds. An executor quota error is written as an `error` iteration that consumes `maxIterations`. A confirm-mode operator gate longer than the lock TTL lets another run reclaim the packet. A fan-out with `stopPolicy=max-iterations` and no lineage cap is rejected only after the lineage ran. And the v4.0.0.8 promise that every deep-loop script refuses unknown options holds for 15 of 27.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Every count, stop decision and refusal a deep loop reports is derived from what actually happened, and fails closed where the evidence is broken.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ for each 047 research child: count type=iteration rows, distinct run values, error rows, keys on the last row
+001-spec-kit-core iterationRows=20 distinctRuns=20 errorRows=1 lastRowKeys=7 hasFocus=false
+002-authoring-hubs iterationRows=11 distinctRuns=11 errorRows=1 lastRowKeys=7 hasFocus=false
+003-cli-and-deep-loop iterationRows=26 distinctRuns=26 errorRows=0 lastRowKeys=7 hasFocus=false
+004-advisor-hooks-relaunch iterationRows=22 distinctRuns=20 errorRows=0 lastRowKeys=7 hasFocus=false
+005-doctor-git-ci-runtime iterationRows=22 distinctRuns=22 errorRows=1 lastRowKeys=7 hasFocus=false
+$ bash replay-reducer.sh   # reduce-state.cjs --lenient on a temp copy of each child
+001-spec-kit-core iterationsCompleted=20 reduceExit=0
+002-authoring-hubs iterationsCompleted=11 reduceExit=0
+003-cli-and-deep-loop iterationsCompleted=26 reduceExit=0
+004-advisor-hooks-relaunch iterationsCompleted=22 reduceExit=0
+005-doctor-git-ci-runtime iterationsCompleted=22 reduceExit=0
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,42 +83,56 @@ This is **Phase 7** of the v4 release line remediation specification.
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Count distinct iterations and pick the latest by run number in the research reducer, and read delta corruption fail-closed like the state log.
+- Keep `focus`, `mode` and `answeredQuestions` on the canonical research state row, and bind `release_readiness_state` before review closeout.
+- Record an executor-unavailable dispatch as an event that does not consume `maxIterations`, refresh the confirm-mode lock after every operator gate, and reject an uncapped max-iterations fan-out before any lineage starts.
+- Make every deep-loop CLI script refuse unknown options, and give the council confirm workflow the auto twin's post-dispatch validation.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Moving stop policy and `minIterations` from YAML into `convergence.cjs` (V06) - the YAML implements them correctly; waived by ADR-001.
+- Rewriting the 047 research logs - they are evidence; only temp copies are reduced.
+- Dispatch argv and containment - phases 006 and 008.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Modify | Distinct-iteration counting, latest by run, fail-closed delta corruption |
+| `.skilled/commands/deep/assets/deep-research-{auto,confirm}.yaml` | Modify | State row fields, `iteration_count` semantics, executor-unavailable path, confirm-gate lock refresh |
+| `.skilled/commands/deep/assets/deep-review-{auto,confirm}.yaml` | Modify | `release_readiness_state` binding, executor-unavailable path, confirm-gate lock refresh |
+| `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` | Modify | Post-dispatch validation matching the auto twin |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Reject an uncapped max-iterations lineage before dispatch |
+| `.skilled/skills/system-deep-loop/runtime/scripts/*.cjs` (scripts that accept unknown options) | Modify | Refuse unknown options with a usage error |
+| `.skilled/skills/system-deep-loop/runtime/tests/**` | Modify/Create | Coverage for each fix |
+| `.skilled/commands/deep/assets/compiled/*.contract.markdown` | Modify | Regenerated digests |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | The research reducer reports one completed iteration per distinct run, takes the highest run as the latest, and reduces a copy of child 004's log to 20, not 22. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-002 | A corrupt delta row makes the reducer refuse with the same recovery error class the state log uses when existing state is required, instead of padding nulls. |
+| REQ-003 | The canonical research state row keeps `focus`, `mode` and `answeredQuestions`, so `last_focus` reads the last iteration's focus. |
+| REQ-004 | Review closeout receives a bound `release_readiness_state` derived before the closeout call, never the literal placeholder. |
+| REQ-005 | A dispatch that fails because the executor is unavailable (quota, capacity, auth) is recorded as an executor-unavailable event that does not count toward `maxIterations`. |
+| REQ-006 | Confirm-mode workflows refresh the packet lock after every operator gate returns, and stop when the refresh reports the lock lost. |
+| REQ-007 | `fanout-run.cjs` rejects `stopPolicy=max-iterations` without a positive per-lineage cap before any lineage dispatch. |
+| REQ-008 | Every deep-loop runtime CLI script exits with a usage error on an unknown `--option`. |
+| REQ-009 | The council confirm workflow runs the same post-dispatch validation as its auto twin. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -117,81 +142,67 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: The reducer replay prints `iterationsCompleted=20` for 004 and unchanged counts for the other four children.
+- **SC-002**: The deep-loop runtime suite, the council suite and the two node script tests pass with no fewer passing tests than the baseline, plus the new tests.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | Phase 006 YAML edits | Both phases edit the same YAMLs | 006 is committed before the first 007 edit |
+| Risk | Fail-closed delta reads stop a run that previously limped on | Med | Refuse only under the same `requireExistingState` condition the state log uses; `--lenient` keeps its tolerant path |
+| Risk | Stricter option parsing breaks a caller passing an undocumented flag | Med | Inventory every caller of each script in YAMLs, tests and docs before tightening |
 <!-- /ANCHOR:risks -->
-
----
-
 
 ---
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: N/A: counting distinct runs is linear in the state log, as counting rows was.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: N/A: no credential or permission path changes.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: Broken evidence (corrupt delta, lost lock, uncapped forced-depth run) stops the loop with a named reason instead of producing a count.
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: a state log with no iteration rows reports 0 completed iterations and `last_focus` of `none yet`.
+- Maximum input: a run redispatched several times still counts once, and its latest row by timestamp wins within the same run.
+- Failure path: an unknown option exits 2 with usage; an uncapped max-iterations fan-out exits with an input error before any spawn.
 <!-- /ANCHOR:edge-cases -->
 
 ---
 
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 18/25 | Reducer, six workflow YAMLs, fan-out runner, about a dozen scripts |
+| Risk | 15/25 | State and stop decisions of every deep loop |
+| Research | 6/20 | Verified findings with evidence |
+| **Total** | **39/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None. V06 is waived by ADR-001 in `decision-record.md`.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

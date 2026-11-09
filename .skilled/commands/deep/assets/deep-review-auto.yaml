@@ -680,8 +680,9 @@ workflow:
           - "{state_paths.strategy}"
           - "{state_paths.config}"
         extract:
-          - iteration_count: "Count lines where type === 'iteration'"
-          - current_iteration: "iteration_count + 1"
+          - iteration_count: "Count distinct run values (run, else iteration) across lines where type === 'iteration'; a redispatched run counts once"
+          - highest_run: "Highest run value (run, else iteration) across lines where type === 'iteration', else 0"
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - last_newFindingsRatio: "Extract newFindingsRatio from last iteration record"
           - last_focus: "Extract focus/dimension from latest iteration record, else 'none yet'"
           - ratio_prev: "Extract newFindingsRatio from second-latest iteration record, else 'N/A'"
@@ -2036,22 +2037,33 @@ workflow:
           - reviewed_artifacts: "From latest JSONL iteration record"
           - traceability_checks: "From latest JSONL iteration record when present"
         on_missing_outputs:
-          action: "Mark iteration as 'error', continue to next"
+          action: "Inspect the latest dispatch record before handling missing outputs"
+          read:
+            - "{state_paths.state_log}"
+          extract:
+            - last_record: "Parse the latest state.jsonl record after dispatch"
+          branch_on: "last_record.type == 'event' AND last_record.event == 'dispatch_failure' AND last_record.executorUnavailable == true"
+          if_executor_unavailable:
+            set: { reason: "error", stopReason: "error" }
+            message: "The {last_record.executor.kind} executor is unavailable ({last_record.matchedMarker}). Switch executor or wait, then resume this run."
+            halt: true
+          if_other_failure:
+            action: "Mark iteration as 'error', continue to next"
           # Canonical iteration record: include sessionId, generation, durationMs so the reducer can
           # persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
           # The row is staged for the append gateway: the state log is a projection of the
           # ledger, so a directly appended error row is dropped by the next refresh.
-          command: |
-            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
-            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
-            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
-            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
-            {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.sessionId}","generation":{config.generation},"lineageMode":"{config.lineageMode}"}}
-            DEEP_LOOP_STATE_RECORD
-            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
-            RECORD_STATUS=$?
-            rm -f "$EVENT_FILE"
-            exit "$RECORD_STATUS"
+            command: |
+              GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+              [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+              EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
+              cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+              {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.sessionId}","generation":{config.generation},"lineageMode":"{config.lineageMode}"}}
+              DEEP_LOOP_STATE_RECORD
+              node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+              RECORD_STATUS=$?
+              rm -f "$EVENT_FILE"
+              exit "$RECORD_STATUS"
 
       step_post_iteration_claim_adjudication:
         action: "Validate typed claim-adjudication packets for any new P0/P1 findings and persist the result to state.jsonl so the next iteration's claimAdjudicationGate can read it"
@@ -2232,7 +2244,9 @@ workflow:
         read_patterns:
           - "{state_paths.packet_dir}/lineages/*/deep-review-state.jsonl"
         extract:
-          - iteration_count: "When direct lineage state logs exist, count type === 'iteration' across those logs in stable lineage order; otherwise count the root state log. Never add root compatibility records to lineage records."
+          - iteration_count: "When direct lineage state logs exist, count distinct run values (run, else iteration) across those logs in stable lineage order; otherwise count distinct run values (run, else iteration) across the root state log. Never add root compatibility records to lineage records."
+          - highest_run: "When direct lineage state logs exist, take the highest run value (run, else iteration) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (run, else iteration) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
+          - current_iteration: "max(highest_run, iteration_count) + 1"
           - p0_count: "Total P0 findings across all iterations (deduped)"
           - p1_count: "Total P1 findings across all iterations (deduped)"
           - p2_count: "Total P2 findings across all iterations (deduped)"
@@ -2385,6 +2399,19 @@ workflow:
 
           Preserve machine-owned markers so the reducer-owned registry, dashboard, and strategy anchors can be refreshed on re-run without mutating prior synthesis. (Note: `completed-continue` lineage branch is deferred — see `deep-review/references/protocol/loop-protocol.md §Lifecycle Branches`.)
         output: "{state_paths.review_output}"
+
+      step_derive_release_readiness_state:
+        action: "Bind release-readiness state from final review results"
+        algorithm: |
+          if active_p0 > 0:
+            release_readiness_state = "release-blocking"
+          elif reason == "converged" and verdict in ["PASS", "CONDITIONAL"]:
+            release_readiness_state = "converged"
+          else:
+            release_readiness_state = "in-progress"
+        outputs:
+          - release_readiness_state: "in-progress | converged | release-blocking"
+        note: "State meanings follow releaseReadinessStates in deep-review/assets/review-mode-contract.yaml."
 
       step_convergence_report:
         action: "Append convergence report to JSONL"

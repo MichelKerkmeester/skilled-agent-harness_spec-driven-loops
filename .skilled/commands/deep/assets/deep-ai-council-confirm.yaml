@@ -153,6 +153,10 @@ workflow:
 
   gate_loop_approval:
     ask: "Run orchestrate-session.cjs with the resolved topics, executor, and cost guards?"
+    after_gate_refresh_lock:
+      action: "Refresh the packet lock heartbeat immediately after the operator response"
+      command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+      on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
     options: [continue, cancel]
     on_cancel:
       halt: true
@@ -179,9 +183,25 @@ workflow:
           - "{state_paths.topics_dir}/**"
         outputs:
           - session_result: "topics_completed, topic_results, skipped_topic_ids, stop_reason"
+        post_dispatch_validate:
+          validator: ".skilled/skills/system-deep-loop/runtime/lib/council/session-state-hierarchy.cjs#validateSessionStateHierarchy"
+          assert_jsonl_record_type: round_completed
+          assert_jsonl_fields: [type, topic_id, round_id, round_number, mode]
+          route_proof:
+            mode: ai-council
+            target_agent: ai-council
+            agent_definition_loaded: true
+            resolved_route: "Resolved route: mode=ai-council target_agent=ai-council"
+          failure_reasons:
+            - route_proof_missing
+            - route_proof_mismatch
 
   gate_synthesis_approval:
     ask: "Compile per-topic council reports and the session-wide session-report.md?"
+    after_gate_refresh_lock:
+      action: "Refresh the packet lock heartbeat immediately after the operator response"
+      command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+      on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
     options: [continue, cancel]
     on_cancel:
       halt: true
@@ -208,6 +228,10 @@ workflow:
 
   gate_save_approval:
     ask: "Route the completed council session through speckit:save?"
+    after_gate_refresh_lock:
+      action: "Refresh the packet lock heartbeat immediately after the operator response"
+      command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+      on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
     options: [continue, skip, cancel]
     on_skip:
       log: "Memory save skipped by user; ai-council artifacts remain packet-local."

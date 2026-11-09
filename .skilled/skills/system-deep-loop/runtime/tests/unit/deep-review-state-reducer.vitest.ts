@@ -207,6 +207,27 @@ describe('reduceReviewState — degrades gracefully on warning-class problems', 
 });
 
 describe('reduceReviewState — iteration numbering', () => {
+  it('counts distinct run values in the dashboard after a run is redispatched', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'redispatched-run-count' }));
+    const records = [2, 2, 3].map((run, index) => ({
+      type: 'iteration',
+      iteration: run,
+      run,
+      status: 'complete',
+      focus: `dimension-${index + 1}`,
+      newFindingsRatio: 0.5,
+      findingsSummary: { P0: 0, P1: 0, P2: 0 },
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), `${records.map((record) => JSON.stringify(record)).join('\n')}\n`);
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), '# Deep Review Strategy\n\nNo machine sections here at all.\n');
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+
+    expect(result.dashboard).toContain('- Iteration: 2 of 5');
+    expect(result.dashboard).not.toContain('- Iteration: 3 of 5');
+  });
+
   it('numbers a dashboard progress row from `iteration` when the record carries no `run`', () => {
     // `iteration` is the canonical iteration-record field and the fan-out validator
     // accepts nothing else, so a record that honours the contract must still render

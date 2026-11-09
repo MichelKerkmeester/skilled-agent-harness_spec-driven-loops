@@ -16,6 +16,7 @@
       "deep loop state and stop policy plan",
       "deep loop state and stop policy tasks",
       "deep loop state and stop policy acceptance criteria",
+      "deep loop state and stop policy decision record",
       "deep loop state and stop policy implementation summary"
     ],
     "key_topics": [
@@ -29,17 +30,24 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary"
+      "decision",
+      "record"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
       {
@@ -67,19 +75,49 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-ai-council-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +165,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow An",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -149,47 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The deep loops report state that does not match what ran",
     "created_at": "2026-11-08T23:38:59Z",
-    "last_save_at": "2026-11-08T23:39:07.692Z",
+    "last_save_at": "2026-11-09T03:22:34.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +205,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53a301a75089274501be71587f6e2a47a47a3b508835fef8363a2b411f09c963",
+    "source_fingerprint": "sha256:00cff95943eeb439ac409cc2a5c2eb745908e0f51371f76e0f6e60e357b63b3c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a3e0dcf8e6ba50e2909489ff025a710bbce597d71b3616ccfb2ad32c2b59f99",
-      "plan.md": "bd3d2dceb08de47f46f76edc5b1afb1f1294abd36e594c883d0a26ccaad0fc63",
-      "tasks.md": "bef5f13b5ef9d65508707e58d665c511a48f1b77bab067c2ef83ae06c5f8cf31",
-      "implementation-summary.md": "896dc6ef38a30709965cff79f74b72251409b2e76b04a2cee2d0bcc36383917d"
+      "spec.md": "635f87ca20d6364929df43db60fb503ff14f669ff10279f3670c64a772d159aa",
+      "plan.md": "45af6f2253ddd66dd4a0a67c12dca0f1e84f87ca100beea3f41b3babedf77b77",
+      "tasks.md": "cd9d1b3cb3660191e03a4a80f6be73aeb367b12786be9da2119bae68c023e05e",
+      "decision-record.md": "5e717108d1190e4ae1c6016026ea5389b4e35823a6fb76f207d41023ede01311",
+      "implementation-summary.md": "eb7b3c02c1638fc71e069a6188c6ee0d3775b3af14b11e92d4dd350ad5dcb263"
     },
     "last_active_at": null
   }

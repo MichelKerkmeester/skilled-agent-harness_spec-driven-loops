@@ -21,9 +21,18 @@ const { resolveOpencodeBinary } = require('./opencode-version.cjs');
 const {
   classifyExitCode,
   detectPendingQuestion,
+  assertKnownFlags,
   maybeThrowTestFault,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
+
+const FANOUT_FLAGS = [
+  'specFolder', 'loopType', 'researchTopic', 'reviewFocus', 'fanoutConfigJson', 'baseArtifactDir',
+  'convergenceThreshold', 'lineageTimeoutHours', 'stopPolicy', 'convergenceMode', 'containmentMode',
+  'noMetadataRefresh', 'preDispatchWaitMs', 'stallWatchdogMs', 'maxCostUnitsPerLineage',
+  'maxAggregateCostUnits', 'maxTokensPerLineage', 'maxTokenBudget', 'maxTokenBudgetPerLineage',
+  'costUnitsPerIteration', 'estimatedTokensPerIteration',
+];
 
 const {
   runCappedPool,
@@ -108,6 +117,7 @@ function parseArgs(argv = process.argv.slice(2)) {
       i += 1;
     }
   }
+  assertKnownFlags(args, FANOUT_FLAGS, inputError);
   return args;
 }
 
@@ -3428,6 +3438,17 @@ async function main() {
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
+  if ((loopType === 'research' || loopType === 'review') && stopPolicy === 'max-iterations') {
+    const uncappedLineages = allLineages.filter((lineage) => (
+      !Number.isInteger(lineage.iterations) || lineage.iterations <= 0
+    ));
+    if (uncappedLineages.length > 0) {
+      const labels = uncappedLineages.map((lineage) => lineage.label).join(', ');
+      throw inputError(
+        `stopPolicy=max-iterations requires a positive lineage iteration cap for lineage(s): ${labels}`,
+      );
+    }
+  }
   try {
     preflightFanoutCapabilities(allLineages);
   } catch (error) {

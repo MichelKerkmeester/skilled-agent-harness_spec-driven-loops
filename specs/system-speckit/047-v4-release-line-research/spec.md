@@ -106,7 +106,7 @@ Every write stays inside this packet.
 | 4 | 004-advisor-hooks-relaunch/ | system-skill-advisor, compiled routing, hooks and plugins, session relaunch, compaction history | Complete |
 | 5 | 005-doctor-git-ci-runtime/ | doctor commands, Skilled-in-your-project, overlays, sk-git, CI, agents, commands, runtime mirrors, repo-rules | Complete |
 | 6 | 006-deep-loop-single-executor-dispatch/ | Remediation: deep loop single executor dispatch (scope in `research/research.md`) | Complete |
-| 7 | 007-deep-loop-state-and-stop-policy/ | Remediation: deep loop state and stop policy (scope in `research/research.md`) | Pending |
+| 7 | 007-deep-loop-state-and-stop-policy/ | Remediation: deep loop state and stop policy (scope in `research/research.md`) | Complete |
 | 8 | 008-write-containment-scoping/ | Remediation: write containment scoping (scope in `research/research.md`) | Pending |
 | 9 | 009-gate3-and-continuity-root/ | Remediation: gate3 and continuity root (scope in `research/research.md`) | Complete |
 | 10 | 010-validate-and-retrieval-exit-honesty/ | Remediation: validate and retrieval exit honesty (scope in `research/research.md`) | Complete |

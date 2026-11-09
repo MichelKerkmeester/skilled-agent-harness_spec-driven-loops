@@ -1636,7 +1636,7 @@ function assertSafeResourceMapOutput(researchDir, resourceMapPath) {
   resolveContainedFile(researchDir, resourceMapPath, 'resource-map output');
 }
 
-function loadDeltaPayloads(deltaDir, researchDir) {
+function loadDeltaPayloads(deltaDir, researchDir, requireExistingState) {
   if (!fs.existsSync(deltaDir)) {
     return [];
   }
@@ -1657,10 +1657,15 @@ function loadDeltaPayloads(deltaDir, researchDir) {
       if (!corruptionWarnings.length) {
         return records;
       }
+      if (requireExistingState) {
+        throw createRecoveryRefusedError(sourcePath, 'corrupt delta', {
+          corruptionWarnings,
+        });
+      }
       console.warn(
         `[deep-research] resource-map extractor skipped ${corruptionWarnings.length} malformed delta row(s) from ${fileName}`,
       );
-      return records.concat(new Array(corruptionWarnings.length).fill(null));
+      return records;
     });
 }
 
@@ -1691,7 +1696,7 @@ function mergeDeltaIterationRecord(stateRecord, deltaIterations) {
   return deltaRecord ? { ...deltaRecord, ...stateRecord } : stateRecord;
 }
 
-function loadDeltaSources(deltaDir, researchDir, lineage) {
+function loadDeltaSources(deltaDir, researchDir, lineage, requireExistingState) {
   if (!fs.existsSync(deltaDir)) {
     return [];
   }
@@ -1711,6 +1716,11 @@ function loadDeltaSources(deltaDir, researchDir, lineage) {
       const realSourcePath = resolveContainedFile(researchDir, sourcePath, `lineage ${lineage} delta source`);
       const { records, corruptionWarnings } = parseJsonlDetailed(readUtf8(realSourcePath));
       if (corruptionWarnings.length) {
+        if (requireExistingState) {
+          throw createRecoveryRefusedError(realSourcePath, 'corrupt delta', {
+            corruptionWarnings,
+          });
+        }
         console.warn(
           `[deep-research] resource-map extractor skipped ${corruptionWarnings.length} malformed delta row(s) from ${path.relative(researchDir, sourcePath)}`,
         );
@@ -1729,13 +1739,13 @@ function loadDeltaSources(deltaDir, researchDir, lineage) {
             return record;
           }
           return { ...record, sources: record.sourcesQueried };
-        }).concat(new Array(corruptionWarnings.length).fill(null)),
+        }),
       };
     });
 }
 
-function loadFanoutDeltaSources(researchDir) {
-  const sources = loadDeltaSources(path.join(researchDir, 'deltas'), researchDir, 'root');
+function loadFanoutDeltaSources(researchDir, requireExistingState) {
+  const sources = loadDeltaSources(path.join(researchDir, 'deltas'), researchDir, 'root', requireExistingState);
   const lineagesDir = path.join(researchDir, 'lineages');
   if (!fs.existsSync(lineagesDir)) {
     return sources;
@@ -1754,7 +1764,7 @@ function loadFanoutDeltaSources(researchDir) {
     .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
 
   for (const label of lineageLabels) {
-    sources.push(...loadDeltaSources(path.join(lineagesDir, label, 'deltas'), researchDir, label));
+    sources.push(...loadDeltaSources(path.join(lineagesDir, label, 'deltas'), researchDir, label, requireExistingState));
   }
   return sources;
 }
@@ -1796,7 +1806,7 @@ function emitFanoutResourceMap(specFolder, options = {}) {
     };
   }
 
-  const deltaSources = loadFanoutDeltaSources(researchDir);
+  const deltaSources = loadFanoutDeltaSources(researchDir, Boolean(options.requireExistingState));
   if (!deltaSources.length) {
     return {
       configPath,
@@ -2041,6 +2051,26 @@ function readIterationNumber(record) {
   if (isFiniteNumber(record?.run)) return record.run;
   if (isFiniteNumber(record?.iteration)) return record.iteration;
   return null;
+}
+
+function distinctIterationRecords(records) {
+  const byRun = new Map();
+  const unnumbered = [];
+
+  for (const record of records) {
+    if (record?.type !== 'iteration') continue;
+    const run = readIterationNumber(record);
+    if (run === null) {
+      unnumbered.push(record);
+    } else {
+      byRun.set(run, record);
+    }
+  }
+
+  const numbered = [...byRun.entries()]
+    .sort(([leftRun], [rightRun]) => leftRun - rightRun)
+    .map(([, record]) => record);
+  return unnumbered.concat(numbered);
 }
 
 function computeGraphConvergenceScore(signals) {
@@ -2517,7 +2547,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
   const ruledOutDirections = uniqueRuledOutByContent(ruledOutDirectionCandidates);
 
   const coverageBySources = buildCoverageBySources(iterationFiles, iterationRecords);
-  const latestIteration = iterationRecords.filter((record) => record.type === 'iteration').at(-1);
+  const latestIteration = distinctIterationRecords(iterationRecords).at(-1);
   const convergenceScore =
     latestIteration?.convergenceSignals?.compositeStop
     ?? latestIteration?.newInfoRatio
@@ -2607,7 +2637,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     divergence,
     ...(questionConflicts.length ? { questionConflicts } : {}),
     metrics: {
-      iterationsCompleted: iterationRecords.filter((record) => record.type === 'iteration').length,
+      iterationsCompleted: distinctIterationRecords(iterationRecords).length,
       openQuestions: keyedQuestions.filter((question) => !question.resolved).length,
       resolvedQuestions: keyedQuestions.filter((question) => question.resolved).length,
       carriedForwardOpenQuestions: carriedForwardOpenQuestions.length,
@@ -3087,11 +3117,11 @@ function reduceResearchState(specFolder, options = {}) {
   // The state log's iteration rows are a thin projection rebuilt by the append gateway; the
   // delta file holds the full record the leaf wrote. Merge the delta in with the projected
   // fields winning, and reuse the same payloads for resource-map emission below.
-  const deltaPayloads = loadDeltaPayloads(deltaDir, researchDir);
+  const deltaPayloads = loadDeltaPayloads(deltaDir, researchDir, requireExistingState);
   const deltaIterations = collectDeltaIterationRecords(deltaPayloads);
-  const records = completionBearingRecords
+  const records = distinctIterationRecords(completionBearingRecords
     .filter((record) => record.type === 'iteration')
-    .map((record) => mergeDeltaIterationRecord(record, deltaIterations));
+    .map((record) => mergeDeltaIterationRecord(record, deltaIterations)));
   const mainEvents = completionBearingRecords.filter((record) => record.type === 'event');
   const pivotEvents = loadPivotEventRecords(researchDir);
   const events = mainEvents.concat(pivotEvents);
@@ -3258,6 +3288,18 @@ function reduceResearchState(specFolder, options = {}) {
 
 if (require.main === module) {
   const args = process.argv.slice(2);
+  const knownFlags = new Set([
+    '--artifact-dir', '--lenient', '--create-missing-anchors', '--emit-resource-map',
+    '--fanout-resource-map-only', '--require-existing-state',
+  ]);
+  const unknownFlag = args.find((arg) => arg.startsWith('--') && !knownFlags.has(arg));
+  if (unknownFlag) {
+    process.stderr.write(`[deep-research] Unknown option: ${unknownFlag}\n`);
+    process.stderr.write(
+      'Usage: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> [--artifact-dir <path>] [--lenient] [--emit-resource-map]\n',
+    );
+    process.exit(3);
+  }
   const lenient = args.includes('--lenient');
   const fanoutResourceMapOnly = args.includes('--fanout-resource-map-only');
   const emitResourceMapOutput = args.includes('--emit-resource-map') || fanoutResourceMapOnly;
