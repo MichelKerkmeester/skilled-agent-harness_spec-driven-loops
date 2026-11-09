@@ -16,6 +16,7 @@
       "over engineering cuts plan",
       "over engineering cuts tasks",
       "over engineering cuts acceptance criteria",
+      "over engineering cuts decision record",
       "over engineering cuts implementation summary"
     ],
     "key_topics": [
@@ -26,20 +27,23 @@
       "tasks",
       "acceptance",
       "criteria",
+      "decision",
+      "record",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken",
-      "missing"
+      "system-deep-loop"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/leaf-manifest.json",
+      "runtime/data/trigger-index.json"
     ],
     "entities": [
       {
@@ -67,19 +71,31 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/leaf-manifest.json",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,6 +125,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -121,7 +143,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern Scan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,29 +189,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "`system-deep-loop/runtime/lib/branch-leases-waves` is 3,165 lines whose only importers are two type-only imports, and it carries its own unit suite",
     "created_at": "2026-11-08T23:39:06Z",
-    "last_save_at": "2026-11-08T23:39:08.894Z",
+    "last_save_at": "2026-11-09T05:36:18.079Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,15 +201,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eef089af30812cd9343f43e25bf0498c5e9c780fc77232d9a1e1a6d26d424507",
+    "source_fingerprint": "sha256:4920395d8947689c098e421a211a8d829db56387af1594ddf0fed54c9177a6f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c13eab91d050c0fa01766bfa60df7142ed04e90c44e48de8da2bc4f87a288622",
-      "plan.md": "4c6a16c0a15ec5c8a87922340e1834ccaff02b36397f0da4dbf6dc039fd22050",
-      "tasks.md": "2d93896bfebeae734ec2ad6e1c8eddd315e9bf1d01732b5655fdd43bb8d3c49f",
-      "implementation-summary.md": "849dc993a6bc8a5625a6bd0ecb8a5783ddccd84e873c184ea6e87e17adde4f01"
+      "spec.md": "5fc58107e9fb3c243dfab21a4f69270ae102dbe07aaa744aa02cfbefaa80e823",
+      "plan.md": "e40d0f855b2f787c4a3bc9308d392b524624683590c6d45b2ff565c3acb6446c",
+      "tasks.md": "b4b6bbf5977e3f7845d607a0b8c9b487081c07aa72f6410ace5b353693da4687",
+      "decision-record.md": "ac3305de26b6951b8a2855f7fa48b2d4ec1907ab1a16b3f6d1a5270aa8a2b224",
+      "implementation-summary.md": "9acdb6f5fc40140ad016b9c26e68f034a40baef4135a831e5a457f79ab7764e8"
     },
     "last_active_at": null
   }

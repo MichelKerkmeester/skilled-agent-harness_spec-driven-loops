@@ -116,7 +116,7 @@ Every write stays inside this packet.
 | 14 | 014-doctor-and-ci-gate-honesty/ | Remediation: doctor and ci gate honesty (scope in `research/research.md`) | Complete |
 | 15 | 015-cli-hub-routing-and-classifier/ | Remediation: cli hub routing and classifier (scope in `research/research.md`) | Complete |
 | 16 | 016-authoring-hub-manifests-and-drift/ | Remediation: authoring hub manifests and drift (scope in `research/research.md`) | Complete |
-| 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Pending |
+| 17 | 017-over-engineering-cuts/ | Remediation: over engineering cuts (scope in `research/research.md`) | Complete |
 | 6 | 006-deep-loop-single-executor-dispatch/ | [Phase 6 scope] | Pending |
 | 7 | 007-deep-loop-state-and-stop-policy/ | [Phase 7 scope] | Pending |
 | 8 | 008-write-containment-scoping/ | [Phase 8 scope] | Pending |

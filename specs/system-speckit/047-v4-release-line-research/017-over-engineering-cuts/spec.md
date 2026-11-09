@@ -1,11 +1,11 @@
 ---
 title: "Feature Specification: Phase 17: over-engineering-cuts"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "A 3,165-line deep-loop module ships with no runtime importer, and two chart palette sheets ship with no reader. This phase removes the verified dead weight and keeps every check that reads the tree green."
 trigger_phrases:
   - "over engineering cuts"
   - "phase 17 over engineering cuts"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Phase 17: over-engineering-cuts
@@ -15,20 +15,19 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P2 |
+| **Status** | Complete |
 | **Created** | 2026-11-08 |
-| **Branch** | `scaffold/017-over-engineering-cuts` |
+| **Branch** | `worktrees/334-v4-release-remediation` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 17 of 17 |
 | **Predecessor** | 016-authoring-hub-manifests-and-drift |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | The cuts are gone, no reference points at a missing path, and the deep-loop, sk-design, sk-doc and retrieval checks hold their baselines |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,33 +37,40 @@ contextType: "general"
 
 This is **Phase 17** of the v4 release line remediation specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Cut-list rows marked "Luna verified" or "orch confirmed": the `branch-leases-waves` module (V23), the `if_cli_copilot` branches (V05), and the unused evilcharts palette sheets. The lead opened sk-design and the four fixtures that name the deleted paths for this phase.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phases 006 and 007 committed
+- Findings V23 and V05 and the cut list in `../research/research.md` section 4
 
 **Deliverables**:
-- [To be defined during planning]
+- The module, its suite and two palette sheets removed, with docs, manifests and fixtures matching
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+`system-deep-loop/runtime/lib/branch-leases-waves` is 3,165 lines whose only importers are two type-only imports, and it carries its own unit suite. Two evilcharts palette sheets and their screenshots have no reader besides their own self-declaration and the leaf manifest. Every doc, fixture and manifest that lists them keeps the dead weight in view.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+The tree carries only code and assets something reads.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ rg -n "branch-leases-waves" (repo, excluding specs and node_modules), importers only
+runtime/lib/mode-contracts/substrate-ports.ts:10   import type { DurableBranchOrchestrator }
+runtime/lib/conditional-fanin/types.ts:19          type import block
+$ rg -n "palette-sheet-ordered|palette-sheet-categorical" (same scope)
+own <meta name="chart-template"> line and leaf-manifest.json:7, :9 only
+$ rg -n "source-globals" (same scope)
+origin.md:3, :30, :34, :82 and changelog v0.14.0.0.md:20 -> kept
+$ rg -n "if_cli_copilot" .skilled/commands/deep/assets/*.yaml
+(no output; removed in phase 006)
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,126 +78,114 @@ This is **Phase 17** of the v4 release line remediation specification.
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Delete `branch-leases-waves` and its suite; give the two importers local types; update the READMEs and ARCHITECTURE.md that name it.
+- Delete the two unreferenced palette sheets and their screenshots; update `leaf-manifest.json`.
+- Regenerate or edit the four fixtures that name the deleted paths, as their owners document.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- `source-globals.css` - `origin.md` and a changelog cite it, so it stays.
+- `CROSS_ANCHOR_CONTAMINATION` - research assigns the wire-or-delete call to phase 010.
+- Every cut-list row marked "child evidence only".
+- Regenerating the sk-design compiled-routing manifest - an operator item.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/skills/system-deep-loop/runtime/lib/branch-leases-waves/**`, `tests/unit/branch-leases-waves.vitest.ts` | Delete | Dead module and suite |
+| `runtime/lib/mode-contracts/substrate-ports.ts`, `runtime/lib/conditional-fanin/types.ts` | Modify | Local types |
+| system-deep-loop READMEs and `ARCHITECTURE.md` | Modify | No pointer at a missing path |
+| `sk-design/sk-design-chart/assets/style-reference/evilcharts/palette-sheet-{ordered,categorical}.html` and screenshots | Delete | Unread assets |
+| `sk-design/leaf-manifest.json` | Modify | Matches the tree |
+| sk-doc code-folder fixtures, spec-kit retrieval fixtures | Regenerate | Owned by their generators |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] |
+| REQ-001 | After the cuts, the deep-loop typecheck and unit suite pass with no loss beyond the deleted suite's own tests. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] |
-
-> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
-> which is the document that decides whether this packet may close.
+| REQ-002 | No file outside `specs/` names a deleted path. |
+| REQ-003 | The sk-design package check, the parent-skill check, the sk-doc code-folder tests and the retrieval fixture tests pass. |
 <!-- /ANCHOR:requirements -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: Every check named in REQ-001 and REQ-003 passes from the final tree.
+- **SC-002**: `rg` for each deleted name outside `specs/` prints nothing.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Risk | A dynamic import the scan missed | Med | Full deep-loop suite and typecheck rerun |
+| Risk | A fixture suite cannot go green | Med | Three attempts, then revert the module deletion and record it (goal G7) |
 <!-- /ANCHOR:risks -->
-
----
-
 
 ---
 
 <!-- ANCHOR:nfr -->
 ## L2: NON-FUNCTIONAL REQUIREMENTS
-<!-- FILL: Name one measurable limit per line. Write `N/A` and one reason when the packet runs no service, or delete the whole section. GOOD: The option adds under 5 ms to a run. WEAK: Performance is good. -->
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: [YOUR_VALUE_HERE: Response time target - e.g., <200ms p95]
-- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: N/A: deletions only.
 
 ### Security
-- **NFR-S01**: [YOUR_VALUE_HERE: Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [YOUR_VALUE_HERE: Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: N/A: no credential or permission path changes.
 
 ### Reliability
-- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target - e.g., 99.9%]
-- **NFR-R02**: [YOUR_VALUE_HERE: Error rate - e.g., <1%]
+- **NFR-R01**: N/A: no runtime path changes behavior; only unreachable code is removed.
 
 ---
 
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
-<!-- FILL: Name the empty input, the maximum input and the failure path. One line each. Write `N/A` with one reason, or delete the whole section. GOOD: Empty input: an empty `logs/archive/` deletes nothing and exits 0. Maximum: `--keep 3` over 10,000 archives keeps the newest 3. Failure path: a missing `--keep` value exits 2 with usage. WEAK: Handle edge cases. -->
 
-- Empty input: [YOUR_VALUE_HERE: How system handles]
-- Maximum input: [YOUR_VALUE_HERE: Limit and behavior]
-- Failure path: [YOUR_VALUE_HERE: Exit code and message]
+- Empty input: N/A, nothing reads the removed code.
+- Maximum input: N/A.
+- Failure path: a check that reads a deleted path fails and names it.
 <!-- /ANCHOR:edge-cases -->
 
 ---
 
 <!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
-<!-- FILL: Score each row with the number the change earns. The total must match the level. Write `N/A` with one reason, or delete the whole section. GOOD: Scope 6/25: one option in `scripts/rotate-logs.sh`. Total 18/100. WEAK: Complexity is medium. -->
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files, LOC, systems] |
-| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth, API, breaking changes] |
-| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs] |
-| **Total** | **[YOUR_VALUE_HERE: /70]** | **Level 2** |
+| Scope | 12/25 | One module, two assets, four fixtures, docs |
+| Risk | 8/25 | Deletions guarded by importer scans |
+| Research | 4/20 | Verified cut list |
+| **Total** | **24/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
-
-

@@ -33,7 +33,6 @@ Runtime primitives that stop two concurrent `system-deep-loop` processes from wr
 
 ## 3. CONSUMERS
 
-- `.skilled/skills/system-deep-loop/runtime/lib/branch-leases-waves/`
 - `.skilled/skills/system-deep-loop/runtime/lib/transactional-projections/`
 - `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts`
 - `.skilled/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/`

@@ -7,9 +7,9 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/017-over-engineering-cuts"
+    packet_pointer: "system-speckit/047-v4-release-line-research/017-over-engineering-cuts"
     last_updated_at: "2026-11-08T23:39:07Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "remediation-orchestrator-a"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-017-over-engineering-cuts"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,10 +37,10 @@ _memory:
 ## 1. METADATA
 <!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
-**Date:** 2026-11-08
+**Packet:** 017-over-engineering-cuts
+**Level:** 2
+**Status:** Complete
+**Date:** 2026-11-09
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,7 +53,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the module and its suite deleted, When the deep-loop typecheck and suite run, Then both pass | typecheck exit 0, no output; 173 files, 2868 passed, 8 skipped (baseline 174 files, 2884; the deleted suite held 18 cases) | Met | - |
+| AC-002 | REQ-002 | Given the cuts, When the repository outside `specs/` is scanned for each deleted name, Then nothing names a deleted path | `rg` for `branch-leases-waves`, `palette-sheet-ordered` and `palette-sheet-categorical` prints nothing after the verdict-baseline entry was dropped | Met | - |
+| AC-003 | REQ-003 | Given the cuts and refreshed fixtures, When sk-design, sk-doc and retrieval checks run, Then each passes | package exit 0; parent check 0 warnings; guard all fresh; README manifest reproducible; verdict parity diff empty; retrieval 209 passed | Met | - |
 
 ### Status values
 
@@ -79,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is met with observed evidence.
 <!-- /ANCHOR:closure -->

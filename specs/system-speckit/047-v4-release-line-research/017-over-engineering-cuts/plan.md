@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: Phase 17: over-engineering-cuts"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Delete the unread branch-leases-waves module and two unread palette sheets, keep the importers compiling, and refresh every doc, manifest and fixture that names them."
 trigger_phrases:
   - "over engineering cuts plan"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
 # Implementation Plan: Phase 17: over-engineering-cuts
@@ -15,127 +15,115 @@ contextType: "general"
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-<!-- FILL: Fill the stack row and write three sentences: what changes, where, and how you will prove it. GOOD: Change one bash script. Add one `--keep <n>` option. Prove it with an archive count. WEAK: This plan describes the implementation. -->
 
 ### Technical Context
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [YOUR_VALUE_HERE: e.g., TypeScript, Python 3.11] |
-| **Framework** | [YOUR_VALUE_HERE: e.g., React, FastAPI] |
-| **Storage** | [YOUR_VALUE_HERE: e.g., PostgreSQL, None] |
-| **Testing** | [YOUR_VALUE_HERE: e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript runtime, HTML assets, JSON manifests and fixtures |
+| **Framework** | system-deep-loop runtime, sk-design chart, sk-doc and spec-kit fixture generators |
+| **Storage** | Tracked files only |
+| **Testing** | deep-loop typecheck and vitest, sk-design package and parent checks, sk-doc python tests, spec-kit retrieval vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+A repository scan gates each deletion; the importers get local types; generators refresh the fixtures that name the deleted paths.
 <!-- /ANCHOR:summary -->
 
 ---
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-<!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] [YOUR_VALUE_HERE: The test command and the output it must print]
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Deep-loop vitest at 2884 minus the 18 deleted tests, typecheck clean, sk-design, sk-doc and retrieval checks green
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-<!-- FILL: Name the pattern in three words, then list the one component that changes. GOOD: Single script branch. The component is `scripts/rotate-logs.sh`. WEAK: Standard architecture. -->
 
 ### Pattern
-[YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Scan, delete, then refresh what is derived.
 
 ### Key Components
-- **[YOUR_VALUE_HERE: Component 1]**: [YOUR_VALUE_HERE: Purpose]
-- **[YOUR_VALUE_HERE: Component 2]**: [YOUR_VALUE_HERE: Purpose]
+- **`mode-contracts/substrate-ports.ts`, `conditional-fanin/types.ts`**: the only importers, both type-only.
+- **`sk-design/leaf-manifest.json`**: lists every leaf the hub serves.
+- **Fixture generators**: `test_readme_manifest.py --write`, `test_readme_verdict_parity.py --write`, `generate-trigger-index.mjs`.
 
 ### Data Flow
-[YOUR_VALUE_HERE: Brief description of how data moves through the system]
+N/A: no runtime path reads the removed files.
 <!-- /ANCHOR:architecture -->
 
 ---
 
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
-<!-- FILL: Name each surface the change touches. Write `not a consumer` when it does not read the change. Write `N/A` or delete the whole addendum when no fix surface applies. GOOD: `scripts/rotate-logs.sh`: owns the deletion. Action: update. WEAK: Various files. -->
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [YOUR_VALUE_HERE: producer/helper/policy] | [YOUR_VALUE_HERE: what owns the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
-| [YOUR_VALUE_HERE: consumer/status/docs/tests] | [YOUR_VALUE_HERE: how it observes the behavior] | [YOUR_VALUE_HERE: update/unchanged/not a consumer] | [YOUR_VALUE_HERE: grep/test/doc evidence] |
+| `branch-leases-waves` and suite | Unread module | delete | typecheck, runtime suite |
+| Two importers | Type imports | local types | typecheck |
+| system-deep-loop READMEs, ARCHITECTURE.md | Name the module | update | `rg` prints nothing |
+| Ordered and categorical palette sheets, screenshots | Unread assets | delete | `rg` prints nothing |
+| `sk-design/leaf-manifest.json` | Lists them | update | package and parent checks |
+| sk-doc code-folder fixtures, spec-kit retrieval fixtures | Name the paths | regenerate | their tests |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Importers: `rg -n "branch-leases-waves|palette-sheet-ordered|palette-sheet-categorical|source-globals" --glob '!specs/**' --glob '!**/node_modules/**' .`
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-<!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup counts the archives. Implementation adds `--keep`. Verification counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Setup baselines every check that reads the tree. Two DeepSeek workers delete the module and the assets. The orchestrator regenerates the fixtures, reviews the diff and reruns the checks.
 <!-- /ANCHOR:phases -->
 
 ---
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-<!-- FILL: Name the one command you will run and the output it must print. GOOD: `ls logs/archive | wc -l` prints 3 after `--keep 3` and 10 after a plain run. WEAK: Test it manually. -->
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [YOUR_VALUE_HERE: Components/functions] | [YOUR_VALUE_HERE: Jest/pytest/etc.] |
-| Integration | [YOUR_VALUE_HERE: API endpoints/flows] | [YOUR_VALUE_HERE: Tools] |
-| Manual | [YOUR_VALUE_HERE: User journeys] | Browser |
+| Unit | Deep-loop runtime suite and typecheck | vitest, tsc |
+| Integration | sk-design package and parent checks; sk-doc fixture tests; retrieval tests | python, node, vitest |
+| Manual | `rg` negative control for each deleted name | rg |
 <!-- /ANCHOR:testing -->
 
 ---
 
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
-<!-- FILL: List each tool the change needs, or write `None`. GOOD: `bash` and `awk`. No new package. WEAK: Usual dependencies. -->
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [YOUR_VALUE_HERE: System/Library] | [YOUR_VALUE_HERE: Internal/External] | [YOUR_VALUE_HERE: Green/Yellow/Red] | [YOUR_VALUE_HERE: Impact] |
+| cli-codex `gpt-6-luna` high fast | External | Quota exhausted | Writes on DeepSeek, review by the orchestrator |
+| cli-pi `opencode-go/deepseek-v4.1-flash` max | External | Green | Only model reachable after GPT quota ran out |
 <!-- /ANCHOR:dependencies -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-<!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-- **Trigger**: [YOUR_VALUE_HERE: Conditions requiring rollback]
-- **Procedure**: [YOUR_VALUE_HERE: How to revert changes]
+- **Trigger**: Something turns out to read a deleted file.
+- **Procedure**: `git revert` the phase commit.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
 <!-- ANCHOR:phase-deps -->
 ## L2: PHASE DEPENDENCIES
-<!-- FILL: Draw the phase order in the fence, then fill the table with depends-on and blocks. Write `N/A` with one reason, or delete the whole section. GOOD: Setup to Implementation to Verification. Verification blocks close. WEAK: Phases depend on each other. -->
 
 ```
 Setup ──► Implementation ──► Verification
@@ -143,10 +131,9 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| [YOUR_VALUE_HERE: Phase A] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase B] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
-| [YOUR_VALUE_HERE: Phase C] | [YOUR_VALUE_HERE: Depends on] | [YOUR_VALUE_HERE: Blocks] |
+| Setup | Phases 006 and 007 committed | Implementation |
+| Implementation | Baseline recorded | Verification |
+| Verification | Implementation and review | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
-
