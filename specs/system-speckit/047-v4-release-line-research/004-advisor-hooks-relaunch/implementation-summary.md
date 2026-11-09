@@ -123,7 +123,7 @@ Cells name the finding ids from `research/research.md`. A dash means the release
 | Check | Result |
 |-------|--------|
 | Iterations in `research/deep-research-state.jsonl` | 20 distinct iterations; 22 `"type":"iteration"` rows because iterations 15 and 19 were redispatched once |
-| Depth-bar score at close | 3 of 3 clean by the orchestrator's verification after the 15 and 20 reopens: the last three distinct iterations added no new verified P1. Raw delta severities for the last three rows are P1 1, 0 and 0, and the orchestrator verified the one as no new P1, with newInfoRatio 0.62, 0.50 and 0.30 |
+| Depth-bar score at close | 3 of 3 clean: the last three distinct iterations (19, 21, 22) added no new P1 to `research/research.md`. Their one raw P1 entry, f-iter019-004 (no Claude or Codex goal adapter), is listed there as refuted: both runtimes use the host's native goal command by design. newInfoRatio 0.62, 0.50 and 0.30 |
 | `verify-iteration.cjs` per iteration | exit 0 on all 20; iteration 15 after one redispatch (`route_proof_missing`), iteration 19 after one (`delta_file_missing`) |
 | Top finding 3 (reopened run): dispatch-audit cwd | Read `dispatch-audit-posttooluse.mjs:56-57`; `git check-ignore -v` on the stray log printed `.gitignore:263` |
 | `synthesis-closeout.cjs` | exit 0, staged `synthesis_complete`, gateway exit 0 |

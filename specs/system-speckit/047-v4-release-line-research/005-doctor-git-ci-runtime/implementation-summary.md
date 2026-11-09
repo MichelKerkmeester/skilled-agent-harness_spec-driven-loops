@@ -120,7 +120,7 @@ The orchestrator ran the auto workflow's own commands step by step: lock, render
 | Check | Result |
 |-------|--------|
 | Iterations recorded in the state log | 22 rows of type `iteration` |
-| Depth-bar score at close | 3 of 3 clean by the orchestrator's verification: iterations 20 to 22 added no new verified P1 after two +5 extensions. Raw delta severities for 20, 21 and 22 are P1 0, 2 and 0, and the orchestrator verified neither of the two in 21 as a new P1. newInfoRatio 0.50, 0.38 and 0.45 |
+| Depth-bar score at close | 3 of 3 clean: iterations 20 to 22 added no new P1 to `research/research.md`. The two raw P1 entries in iteration 21 resolve there as follows: f-iter021-001 corrects the mechanism and count of f-iter019-001, and f-iter021-003 is a P2. newInfoRatio 0.50, 0.38 and 0.45 |
 | Citation checks | Two per iteration, verdicts in `decision-record.md` ADR-005 |
 | Strict validation | Summary: Errors: 0  Warnings: 2 / RESULT: PASSED (SOURCE_TAGS: 4 iteration-010 citations through the .opencode/scripts alias that the redirect table reports as moved, plus one containment quarantine copy of a sibling child; LEVEL_MATCH: decision-record.md at Level 1) |
 <!-- /ANCHOR:verification -->
