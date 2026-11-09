@@ -110,11 +110,23 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phases 001-003 | Done | Research committed in `24fef5fdf5` |
-| Phases 004-006 | Pending | Planning docs ready |
+| Phase 004 | Done | `fcab2a3c33` in worktree 335 |
+| Phase 005 | Done | `214ad8b5cb` in worktree 335 |
+| Phase 006 | Done | `0b783907d3` in worktree 335 |
+| Criterion: recursive validate | Met | Parent and six children each print `RESULT: PASSED` |
+| Criterion: suite | Met | 4110 passed, 0 failed (baseline 4071 passed, 0 failed) |
+| Criterion: lookup and wrapper | Met | `--limit 2` on "trigger index": `totalCandidates` 801; an untracked temp spec doc's phrase found via `staleFallback` without a rebuild; "iteration" over the phase 2 research folder: 14 rows, 14 files, schema 2 |
+| Criterion: latency | Met | Prompt-set p95 151.7 ms at HEAD (max 195.7); `measure-cold-lookup.mjs` exit 0 |
+| Criterion: scenarios and catalog | Met | 489, 490, 491 and three retrieval catalog entries; both validators exit 0 |
+| Criterion: alignment | Met | Battery over `3378c36a06..HEAD` (104 files): 73 pass, 1 fail (S9, environment); final rechecks of all three phase runs: 0 open P0 and P1 (`006-rg-flood-control/alignment/final-recheck.md`) |
+| Criterion: benchmark summary | Met | `006-rg-flood-control/benchmark/summary.md` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Phase 005 discovery | `git status` measured 0.8-1.1 s, so discovery diffs a `specs/` walk against the index paths (phase 5 spec section 10) |
+| `/speckit:search` | Runs the raw ripgrep recipe, so it does not get one row per file; its presentation says so. Routing it through the wrapper is a follow-up outside this packet |
+| Open P2s | S9 (gitignored SQLite absent from a fresh worktree), CR-3 (`AGENTS.md` Gate 1 wording), C-002 (`SPECKIT_RG_BIN` env docs), all pre-existing or out of scope |
+| Tool defect | `recheck.cjs:90` tests a literal fix's old text before its new text, so a fix whose new text contains the old stays open; amendment: test `fix.new` first when it contains `fix.old` |
 <!-- /ANCHOR:log -->

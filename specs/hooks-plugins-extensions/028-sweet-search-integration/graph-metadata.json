@@ -56,7 +56,8 @@
       "006-rg-flood-control/goal.md",
       "004-total-candidate-count/scratch/baseline.txt",
       "runtime/cli/retrieval/fixtures/prompt-set.json",
-      "006-rg-flood-control/benchmark/summary.md"
+      "006-rg-flood-control/benchmark/summary.md",
+      "006-rg-flood-control/alignment/final-recheck.md"
     ],
     "entities": [
       {
@@ -87,6 +88,12 @@
         "name": "summary.md",
         "kind": "doc",
         "path": "006-rg-flood-control/benchmark/summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-recheck.md",
+        "kind": "doc",
+        "path": "006-rg-flood-control/alignment/final-recheck.md",
         "source": "derived"
       },
       {
@@ -164,17 +171,17 @@
     ],
     "causal_summary": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
     "created_at": "2026-11-09T11:30:04Z",
-    "last_save_at": "2026-11-09T21:49:18.507Z",
+    "last_save_at": "2026-11-09T22:07:03.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7a2c503d8be0d5222c6ba02189d73defae8220d3785b4a634db7a5b2ab3952fa",
+    "source_fingerprint": "sha256:bac2a418b19967559d8748e65fc373d8056754461a879a97427db1df6e6e093f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb050cdf089ece5e594437a664b0982b1d8afa7a25600981147891db76675d78"
+      "spec.md": "b4d7e23c547ab50bb9a4b22fc2282a4e2c7dd6b12a07bc27d3976c9f7ccd9987"
     },
     "last_active_child_id": "hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research",
     "last_active_at": "2026-11-09T15:25:53.754Z"
