@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`upgrade-legacy.mjs` repairs only packets that fail strict validation, so a passing packet with a `spec | v1.0` or `spec-core | v2.2` marker stays stale with no supported path forward",
     "created_at": "2026-11-09T06:27:48Z",
-    "last_save_at": "2026-11-09T07:48:33.409Z",
+    "last_save_at": "2026-11-09T08:20:50.566Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30dd3ee549d6014ba52687941151b094da7a5ac0fc0a375237de998196170c34",
+    "source_fingerprint": "sha256:9ecf24fe4e4f0348b06fc7701675957173d1202d96e449750a46d1013c9ce6f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "273fb0bba15d610ada0e7595ef818bf6ee3a0cac002cb5c552205b70210a91a1",
       "plan.md": "57c8332bd7025a282176ac88068a593a05458ecdc311ab52ef8b82f2db640ce5",
       "tasks.md": "96c1d7b1747db1723c5cb48dfc23d8f972bb9b5c1789b2dd9cea443e34efee51",
-      "decision-record.md": "01e0038223088d966993f2c441ac4a14c8b74a619874994ccb7e47ac9bd619fc",
-      "implementation-summary.md": "fb9c84403498563f328b431190b69b1929b84bc8779ff11a8a86c56934464900"
+      "decision-record.md": "30aadbc448cd6e1491f7cc604cfe8748c7e7361bf5b932f808c9db2baac45760",
+      "implementation-summary.md": "4b44d2e976957f3dc561408a7c267abd7b8e0c109c4ce44127c57917f7eea9de"
     },
     "last_active_at": null
   }

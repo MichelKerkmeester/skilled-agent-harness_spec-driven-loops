@@ -8,7 +8,16 @@
 // tree reported as its stale packets as well. Discovery is confined to the spec
 // document root now, and these suites pin that boundary from both sides: a
 // fixture, archived, scratch or vendored folder is not a packet, while a
-// numbered packet whose directory name merely ends in "-fixtures" still is.
+// numbered packet whose directory name merely ends in "-fixtures" still is. The
+// deep-run artifact trees are the other half of that boundary: a lineage's
+// containment snapshot carries a whole framework checkout whose packets belong
+// to the copy, never to the host.
+//
+// A host's spec root can also hold an untracked mirror of another checkout's
+// packets, which git already knows to leave out of the host's own tree. The
+// checker asks git the same question the retrieval corpus walker asks, and both
+// sides of that are pinned here: an ignored folder is not a packet, while a root
+// outside a checkout has nothing to ignore and counts every folder.
 
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -69,6 +78,17 @@ function createRoot(): string {
   scratch.push(root);
   installManifest(root);
   return root;
+}
+
+// A checkout needs no commit for its ignore rules to apply: git answers from the
+// working tree and the committed .gitignore files alone.
+function gitInit(root: string): void {
+  const result = spawnSync('git', ['init', '-q'], { cwd: root, encoding: 'utf8' });
+  expect(result.status, result.stderr).toBe(0);
+}
+
+function writeGitignore(root: string, rules: string): void {
+  fs.writeFileSync(path.join(root, '.gitignore'), rules, 'utf8');
 }
 
 function runChecker(root: string): { status: number | null; stdout: string; stderr: string } {
@@ -140,5 +160,77 @@ describe('template staleness discovery', () => {
 
     expect(payload.total).toBe(2);
     expect(payload.stale_folders).toEqual([`specs/a/002-old (${STALE_VERSION})`]);
+  });
+
+  it('never reports a packet from a deep-run artifact tree or from a vendored Skilled copy', () => {
+    const root = createRoot();
+    writeSpec(root, 'specs/a/001-real', CURRENT_VERSION);
+
+    // A lineage containment snapshot vendors the whole framework, including the
+    // peer packets it copied and the skill fixtures that copy carries.
+    const vendored = 'specs/a/002-r/research/lineages/x/containment/baseline/skilled';
+    fs.mkdirSync(path.join(root, vendored, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+    writeSpec(root, `${vendored}/specs/b/001-copied`, STALE_VERSION);
+    writeSpec(
+      root,
+      `${vendored}/.skilled/skills/sk-doc/scripts/rule-experiment-fixture/specs/fixture/001-m`,
+      STALE_VERSION,
+    );
+
+    // A vendored copy outside a lineage tree is a copy as well: the sentinel
+    // decides, not the path.
+    writeSpec(root, 'specs/a/003-v', STALE_VERSION);
+    fs.mkdirSync(path.join(root, 'specs/a/003-v/vendor/.skilled/skills/system-spec-kit'), { recursive: true });
+    writeSpec(root, 'specs/a/003-v/vendor/specs/c/001-x', STALE_VERSION);
+
+    writeSpec(root, 'specs/a/004-r/research_archive/old', STALE_VERSION);
+
+    const { payload, stdout } = readReport(root);
+
+    expect(payload.total).toBe(2);
+    expect(payload.current).toBe(1);
+    expect(payload.stale_folders).toEqual([`specs/a/003-v (${STALE_VERSION})`]);
+    expect(stdout).not.toMatch(/fixture|lineages|containment|research_archive|vendor\//);
+  });
+
+  it('skips a git-ignored mirror under the spec root', () => {
+    const root = createRoot();
+    writeGitignore(root, '/specs/mirror/\n');
+    gitInit(root);
+    writeSpec(root, 'specs/a/001-real', CURRENT_VERSION);
+    writeSpec(root, 'specs/mirror/b/001-copied', STALE_VERSION);
+
+    const { payload, stdout } = readReport(root);
+
+    expect(payload.total).toBe(1);
+    expect(payload.current).toBe(1);
+    expect(payload.stale_folders).toEqual([]);
+    expect(stdout).not.toMatch(/mirror/);
+  });
+
+  it('skips a packet whose own spec.md is git-ignored', () => {
+    const root = createRoot();
+    writeGitignore(root, '/specs/a/002-old/spec.md\n');
+    gitInit(root);
+    writeSpec(root, 'specs/a/001-real', CURRENT_VERSION);
+    writeSpec(root, 'specs/a/002-old', STALE_VERSION);
+
+    const { payload, stdout } = readReport(root);
+
+    expect(payload.total).toBe(1);
+    expect(payload.stale_folders).toEqual([]);
+    expect(stdout).not.toMatch(/002-old/);
+  });
+
+  it('counts every folder when the root is not a git checkout, since there is nothing to ignore', () => {
+    const root = createRoot();
+    writeGitignore(root, '/specs/mirror/\n');
+    writeSpec(root, 'specs/a/001-real', CURRENT_VERSION);
+    writeSpec(root, 'specs/mirror/b/001-copied', STALE_VERSION);
+
+    const { payload } = readReport(root);
+
+    expect(payload.total).toBe(2);
+    expect(payload.stale_folders).toEqual([`specs/mirror/b/001-copied (${STALE_VERSION})`]);
   });
 });

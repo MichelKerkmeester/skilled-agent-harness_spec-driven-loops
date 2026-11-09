@@ -211,7 +211,67 @@ The checker ran `find` from the repository root, so fixture packets, archives an
 ---
 
 <!-- ANCHOR:adr-004 -->
-## ADR-004: Review
+## ADR-004: Follow-up: vendored copies, deep-run trees and ignored mirrors
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-09 |
+| **Deciders** | Remediation orchestrator B (operator unavailable) |
+
+---
+
+### Context
+
+The lead reran the first pass read-only from Barter: 8146 folders, with 49 fixture paths inside nested vendored Skilled copies under research lineages, plus 2534 folders in `specs/skilled/`, an untracked mirror Barter's .gitignore ignores.
+
+### Constraints
+- The verified finding set in `../research/research.md` bounds the scope.
+
+---
+
+### Decision
+
+**Summary**: Prune lineages, containment and research_archive by name; skip any tree under a `.skilled/skills/system-spec-kit` sentinel; skip git-ignored folders using the corpus walker's own git query.
+
+**Details**: The sentinel pass is one extra find, with no per-directory subprocess. The ignore query is `git ls-files --others --ignored --exclude-per-directory=.gitignore --directory`, counting committed .gitignore files only, and a git failure ignores nothing. Barter: 1008 folders, 0 fixture entries, 34 s.
+
+---
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Sentinel plus walker's ignore rule** | General; matches the corpus | Two extra passes | 9/10 |
+| Name-match `skilled` | Simple | Barter-specific | 3/10 |
+
+**Why Chosen**: Both rules already define what is not a packet elsewhere in the framework.
+
+---
+
+### Consequences
+
+**Positive**:
+- Host report lists only host packets.
+
+**Negative**:
+- A vendored copy without the sentinel and not ignored would still count.
+
+---
+
+### Implementation
+
+**Affected Systems**: this phase's files
+
+**Rollback**: revert the phase commit.
+
+<!-- /ANCHOR:adr-004 -->
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: Review
 
 ### Metadata
 
@@ -266,6 +326,6 @@ GPT is out of quota until 2026-11-13, so the second-family review is Claude's.
 
 **Rollback**: revert the phase commit.
 
-<!-- /ANCHOR:adr-004 -->
+<!-- /ANCHOR:adr-005 -->
 ---
 

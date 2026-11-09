@@ -49,7 +49,7 @@ Old markers have a supported way forward, and the staleness report stops countin
 
 ### Phase 19: template-marker-upgrade-and-staleness-scope
 
-`heal-spec-docs.cjs` exports `refreshMarker`, which rewrites an existing marker in place only to the marker the document's anchors prove and refuses otherwise; it is not a default lane mode. `upgrade-legacy.mjs --refresh-markers` runs it over the lane documents of passing packets, skips failing ones, and under `--apply` re-derives the packet fingerprint, revalidates strict and restores documents and generated metadata byte for byte on failure. `check-template-staleness.sh` walks `<root>/specs/` only, pruning z_archive, node_modules, scratch, .git, dist, memory, templates and fixture directories, and handles a root with no specs under Bash 3.2.
+`heal-spec-docs.cjs` exports `refreshMarker`, which rewrites an existing marker in place only to the marker the document's anchors prove and refuses otherwise; it is not a default lane mode. `upgrade-legacy.mjs --refresh-markers` runs it over the lane documents of passing packets, skips failing ones, and under `--apply` re-derives the packet fingerprint, revalidates strict and restores documents and generated metadata byte for byte on failure. `check-template-staleness.sh` walks `<root>/specs/` only, pruning z_archive, node_modules, scratch, .git, dist, memory, templates and fixture directories, and handles a root with no specs under Bash 3.2. A follow-up, after the lead's read-only recheck in Barter, also prunes lineages, containment and research_archive, skips any vendored Skilled tree found by its `.skilled/skills/system-spec-kit` sentinel, and skips git-ignored folders exactly as the corpus walker does, which removes an ignored mirror of Skilled's packets.
 
 ### Files Changed
 
@@ -59,7 +59,7 @@ Old markers have a supported way forward, and the staleness report stops countin
 | `SP/upgrade-legacy.mjs` | Modified | `--refresh-markers` |
 | `SP/check-template-staleness.sh` | Modified | Discovery scope |
 | `templates/MIGRATION.md` | Modified | Opt-in path |
-| `runtime/cli/tests/upgrade-legacy-refresh-markers.vitest.ts`, `template-staleness-discovery.vitest.ts` | Created | 7 cases |
+| `runtime/cli/tests/upgrade-legacy-refresh-markers.vitest.ts`, `template-staleness-discovery.vitest.ts` | Created | 9 cases |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -89,10 +89,11 @@ Baselines ran first, including the checker on this repository and read-only on B
 
 | Check | Result |
 |-------|--------|
-| New vitest (2 files) | PASS, 7 passed |
+| New vitest (2 files) | PASS, 3 refresh cases; discovery file 6 cases |
+| Discovery, heal-provenance, parity (3 files) | PASS, 17 passed |
 | Related files (5) | PASS |
-| cli vitest project | PASS, 2429 passed, 20 skipped (baseline 2410) |
-| Checker on this repo and Barter | PASS, no fixture, archive or vendored path |
+| cli vitest project | PASS, 2429 passed, 20 skipped (baseline 2410), first pass |
+| Checker on this repo and Barter | PASS, Barter fixture count 0 |
 | validate.sh --strict | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -104,8 +105,8 @@ Baselines ran first, including the checker on this repository and read-only on B
 1. **Host repository root.** `upgrade-legacy.mjs` derives its repository from the script location, so in a host it scans the vendored tree unless `--roots` names a host folder inside it; a host-root option is follow-up work.
 2. **Barter marker census.** Most Barter documents carry v2.2 markers; how many prove the v2.4 anchor set is unmeasured, because the mode cannot be pointed at Barter's tree from here.
 3. **Comment wording.** One comment in `refreshPacketMarkers` says a refusal cannot leave a packet half-refreshed; documents are proven one by one, so a packet can end with mixed markers by design.
-4. **Research subtrees.** The corpus walker also prunes non-synthesis `research/` subtrees and `lineages/`; the checker does not, so two folders under one research packet still count.
-5. **Spec CLI README.** `runtime/cli/spec/README.md` does not list `--refresh-markers` yet.
+4. **Spec CLI README.** `runtime/cli/spec/README.md` does not list `--refresh-markers` yet.
+5. **Fixture-named packets.** Sixteen real Skilled packets carry the word fixture in their names and stay in this repository's report; they are packets, not fixture directories.
 <!-- /ANCHOR:limitations -->
 
 ---
