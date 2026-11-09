@@ -121,6 +121,7 @@ Every write stays inside this packet.
 | 19 | 019-template-marker-upgrade-and-staleness-scope/ | Barter upstream: old-marker upgrade path and staleness checker discovery scope | Complete |
 | 20 | 020-operator-approved-closeout/ | Operator-approved closeout: AGENTS.md headroom and manifest write, sk-design routing regeneration, trigger index rebuild | Complete |
 | 21 | 021-host-root-marker-refresh/ | Barter follow-up: marker refresh uses the host repository, Barter marker census, two READMEs | Complete |
+| 22 | 022-linked-project-host-index/ | Barter follow-up: Gate 1 from a linked project checkout reads the owning host index | Complete |
 
 ### Phase Transition Rules
 
@@ -153,6 +154,7 @@ Every write stays inside this packet.
 | 018-host-trigger-index-and-repin-generated | 019-template-marker-upgrade-and-staleness-scope | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 019-template-marker-upgrade-and-staleness-scope | 020-operator-approved-closeout | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 | 020-operator-approved-closeout | 021-host-root-marker-refresh | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
+| 021-host-root-marker-refresh | 022-linked-project-host-index | Prior phase closed Complete or Blocked with its own commit | `validate.sh --strict` on the phase prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---

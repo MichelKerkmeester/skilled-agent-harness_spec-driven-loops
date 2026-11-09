@@ -52,6 +52,22 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-inde
 
 `--out` alone writes the corpus manifest, diagnostics and phrase variants beside the index, which is what the host default does. Regenerate it after any `trigger_phrases` change in the host's docs.
 
+### Linked Project Checkouts
+
+A project that links its `.skilled` tree, and usually its `specs` tree, into a host and keeps no `.speckit-index/` of its own reads the index of the host that holds the linked tree. That host is the git toplevel of the tree's real location, and only a host that keeps an index counts. No ancestor walk is used, so an unrelated repository further up the filesystem is never mistaken for the host.
+
+The default scope is the folder the project's `specs` link points to, spelled relative to the host, which is how the host's index spells its paths. `--spec-folder ""` drops that scope, and an explicit `--spec-folder` wins over it.
+
+Result paths are relative to the host, and the text output prints a `paths` line naming the host they belong to.
+
+A bare generation from such a project exits 2 and names the host, because writing the host's corpus into a project-local index would split one corpus across two files. Generate at the host root instead. A project that keeps its own `.speckit-index/` is not refused.
+
+```bash
+# from the project root: reads the host index, scoped to the linked specs folder
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
+  --json -- "<prompt>"
+```
+
 ---
 
 ## 4. RELATED RESOURCES

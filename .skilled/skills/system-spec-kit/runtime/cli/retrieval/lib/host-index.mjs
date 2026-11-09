@@ -14,6 +14,13 @@
 // outside itself — a symlink into an installed copy, or a vendored tree placed
 // elsewhere. Neither signal can be produced by accident inside the framework
 // checkout, so a bare invocation can select the host corpus and index safely.
+//
+// One layout goes a step further: a project repository keeps no corpus of its own
+// and links both `.skilled` and `specs` into a host that does. Such a project is
+// a host by the `.skilled` signal yet owns no index, so the index it must read is
+// the one belonging to the repository holding the tree it linked. That owner is
+// resolved from where the vendored tree really lives — never by walking ancestors
+// in the hope of meeting a repository that happens to keep an index.
 
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -102,6 +109,45 @@ export function hostIndexPath(root) {
   return path.resolve(root, HOST_INDEX_RELATIVE);
 }
 
+/**
+ * Resolves the host repository whose vendored tree a project links into.
+ *
+ * A project may carry `.skilled` as a link into a host's tree and keep no index
+ * of its own. Reading the packaged index there answers from the framework's
+ * documents instead of the host corpus the project's `specs` entry actually
+ * points at, so the host that owns the tree has to be named.
+ *
+ * Only a host is considered, and only one whose vendored tree resolves to a
+ * directory held by a *different* repository that already keeps an index. A
+ * root whose `.skilled` resolves inside itself is the framework checkout, and a
+ * root whose owner keeps no index has nothing better to offer than the packaged
+ * default. Nothing is inferred from an ancestor walk: an unrelated repository
+ * higher up the filesystem is not this project's host, and guessing one would
+ * silently serve another corpus.
+ *
+ * @param {string} root Absolute or resolvable repository root.
+ * @returns {string|null} Root of the host holding the vendored tree, or null.
+ */
+export function owningHostRoot(root) {
+  const absolute = path.resolve(root);
+  if (!isHostRepository(absolute)) return null;
+
+  let vendored;
+  try {
+    vendored = fs.realpathSync(path.join(absolute, '.skilled'));
+  } catch {
+    return null;
+  }
+
+  // The tree's own directory is what git is asked about, not the root: the
+  // vendored tree sits somewhere inside its host, at no fixed depth.
+  const owner = callerRepoRoot(path.dirname(vendored));
+  if (owner === null) return null;
+  if (realpathOrSelf(owner) === realpathOrSelf(absolute)) return null;
+
+  return isFile(hostIndexPath(owner)) ? owner : null;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────────
@@ -115,5 +161,29 @@ function isDirectory(candidate) {
     return fs.statSync(candidate).isDirectory();
   } catch {
     return false;
+  }
+}
+
+/**
+ * @param {string} candidate Absolute path.
+ * @returns {boolean} True when the path is an existing regular file.
+ */
+export function isFile(candidate) {
+  try {
+    return fs.statSync(candidate).isFile();
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * @param {string} candidate Absolute path.
+ * @returns {string} The resolved path, or the path unchanged when it cannot be resolved.
+ */
+function realpathOrSelf(candidate) {
+  try {
+    return fs.realpathSync(candidate);
+  } catch {
+    return candidate;
   }
 }

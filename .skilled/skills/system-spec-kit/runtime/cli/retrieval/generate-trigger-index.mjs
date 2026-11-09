@@ -41,6 +41,15 @@
 // and with no --out the index and its sidecars land under <root>/.speckit-index.
 // Inside the framework checkout nothing changes, and any explicit flag wins.
 //
+// A project repository that links its `.skilled` and `specs` into such a host is
+// a host by the `.skilled` signal but owns neither corpus nor index, so a bare run
+// there is refused rather than published: writing the host's corpus into a
+// project-local index would split one corpus across two artifacts, and writing
+// the packaged index instead would replace the framework's. Naming both
+// --repo-root and --out is the way to build one deliberately. A linked project
+// that carries its own `.speckit-index/` directory is the exception, because the
+// lookup from that project reads the index there before it considers any host.
+//
 // Exit codes: 0 = published (--check: index matches the corpus), 1 = malformed corpus, nothing
 // published (--check: a document is stale, an index path left the corpus, or the corpus is
 // untrusted), 2 = bad invocation or, for --check, an unreadable index.
@@ -61,7 +70,7 @@ import { packetFolderTokens } from './lib/grep-convention.mjs';
 import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
 import { loadIndex } from './lookup-trigger-index.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
-import { callerRepoRoot, hostIndexPath, isHostRepository } from './lib/host-index.mjs';
+import { HOST_INDEX_RELATIVE, callerRepoRoot, hostIndexPath, isHostRepository, owningHostRoot } from './lib/host-index.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -661,6 +670,55 @@ function resolveInvocationDefaults(flags) {
 }
 
 /**
+ * Reports whether a repository carries the index directory a lookup reads first.
+ *
+ * A bare lookup selects the index beside the root before it asks which host
+ * holds the linked tree, so the directory being present says this repository
+ * publishes its own index. A generation run there is aimed at that index, which
+ * makes it a different case from one that would have to borrow a host's corpus.
+ * Only a directory counts: the index the lookup requires lives inside it, and a
+ * stray file named for the directory is not an index.
+ *
+ * @param {string} root Absolute repository root.
+ * @returns {boolean} True when the root carries its own index directory.
+ */
+function keepsOwnIndexDirectory(root) {
+  try {
+    return fs.statSync(path.join(root, path.dirname(HOST_INDEX_RELATIVE))).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Explains why a bare run must not index a project that links its tree into a host.
+ *
+ * Such a project has no corpus of its own: its `.skilled` and `specs` entries are
+ * links, so the documents a bare run would walk belong to the host. Publishing
+ * them under the project splits one corpus across two indexes, and publishing the
+ * packaged one instead replaces the framework's. Neither is what the operator
+ * asked for, so the run stops and names where the corpus actually lives. An
+ * explicit --repo-root or --out says which of those was meant, and silences this.
+ *
+ * A project that keeps its own index directory is not that case even when its
+ * tree is linked: that directory is what its own lookups read, so a bare run
+ * there fills the index it already publishes and needs no refusal.
+ *
+ * @param {Record<string, string | boolean>} flags Parsed flags.
+ * @returns {string|null} Refusal message, or null when a bare run may proceed.
+ */
+function linkedTreeRefusal(flags) {
+  if (typeof flags['repo-root'] === 'string' || typeof flags.out === 'string') return null;
+  const callerRoot = callerRepoRoot();
+  if (callerRoot === null) return null;
+  if (keepsOwnIndexDirectory(callerRoot)) return null;
+  const owner = owningHostRoot(callerRoot);
+  if (owner === null) return null;
+  return `generate-trigger-index: ${callerRoot} links its tree from ${owner};`
+    + ` run this from ${owner}, or pass --repo-root and --out\n`;
+}
+
+/**
  * Warns when the corpus was resolved to another checkout than the caller's.
  *
  * A host repository names its own root and index, so the bare run there is
@@ -694,6 +752,14 @@ function main() {
     flags = parseArgs(process.argv.slice(2));
   } catch (error) {
     process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+    return 2;
+  }
+
+  // Refused before any default is resolved, so --check is covered too: a check
+  // run from here would compare the project against a corpus it does not own.
+  const refusal = linkedTreeRefusal(flags);
+  if (refusal !== null) {
+    process.stderr.write(refusal);
     return 2;
   }
 

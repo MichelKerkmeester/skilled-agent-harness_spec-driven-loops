@@ -27,6 +27,12 @@
 // A host repository that vendors Skilled keeps its packets there, and the
 // packaged index describes the framework's documents only.
 //
+// A project repository that links both `.skilled` and `specs` into such a host
+// reads the host's index, and because that index spells its paths relative to
+// the host, an unscoped lookup would answer from every track the host holds. The
+// linked folder therefore becomes the default scope. `--spec-folder ""` says the
+// caller wants the whole index anyway, and any explicit `--spec-folder` wins.
+//
 // Exit codes: 0 = at least one candidate scores above 0, 1 = no candidate
 // scores above 0, 2 = bad invocation or unreadable index.
 // ───────────────────────────────────────────────────────────────────
@@ -45,7 +51,7 @@ import {
   queryTokens,
   scorePhrase,
 } from './lib/normalize.mjs';
-import { callerRepoRoot, hostIndexPath } from './lib/host-index.mjs';
+import { callerRepoRoot, hostIndexPath, isFile, owningHostRoot } from './lib/host-index.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -57,26 +63,83 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 export const DEFAULT_INDEX_PATH = path.resolve(SCRIPT_DIR, '..', '..', 'data', 'trigger-index.json');
 
 /**
- * The artifact a bare lookup reads.
+ * The index a bare lookup reads, and the scope that goes with it.
  *
  * A host repository that vendors Skilled keeps an index over its own packets
  * at `<root>/.speckit-index/trigger-index.json`. Reading the packaged artifact
  * there answers every question from the framework's documents instead of the
  * host's, so an existing host index wins and the packaged default stays the
- * fallback. An explicit `--index` is never overridden; it does not reach here.
+ * fallback.
  *
+ * A project repository that links both `.skilled` and `specs` into a host owns
+ * neither the index nor the corpus, so the index to read belongs to the host.
+ * Its paths are spelled relative to that host, which is why the scope follows
+ * from the same place: the folder the project's `specs` entry links to. That
+ * scope applies only when the index read is the host's own; a project reading
+ * anything else gets no default.
+ *
+ * An explicit `--index` is never overridden — it does not reach here.
+ *
+ * @param {string} [cwd] Directory the caller works in.
+ * @returns {{ indexPath: string, ownerRoot: string | null, specFolder: string | null }} Index to read, the host it belongs to, and the scope it implies.
+ */
+export function defaultIndexSelection(cwd = process.cwd()) {
+  const root = callerRepoRoot(cwd);
+  if (root === null) return { indexPath: DEFAULT_INDEX_PATH, ownerRoot: null, specFolder: null };
+
+  const ownIndex = hostIndexPath(root);
+  if (isFile(ownIndex)) return { indexPath: ownIndex, ownerRoot: null, specFolder: null };
+
+  const owner = owningHostRoot(root);
+  if (owner === null) return { indexPath: DEFAULT_INDEX_PATH, ownerRoot: null, specFolder: null };
+
+  return {
+    indexPath: hostIndexPath(owner),
+    ownerRoot: owner,
+    specFolder: linkedSpecFolder(root, owner),
+  };
+}
+
+/**
  * @param {string} [cwd] Directory the caller works in.
  * @returns {string} Absolute index path.
  */
 export function defaultIndexPath(cwd = process.cwd()) {
-  const root = callerRepoRoot(cwd);
-  if (root === null) return DEFAULT_INDEX_PATH;
-  const candidate = hostIndexPath(root);
+  return defaultIndexSelection(cwd).indexPath;
+}
+
+/**
+ * Names the folder a project's `specs` entry links to inside its host.
+ *
+ * The host's index spells every document path relative to the host, so the scope
+ * filter needs the same spelling; anything else would silently match nothing. A
+ * `specs` entry that is a real directory is the project's own corpus and needs no
+ * scope, and a link that escapes the host is not described by that index at all,
+ * so neither yields a default.
+ *
+ * @param {string} root Project repository root.
+ * @param {string} ownerRoot Host repository root holding the linked tree.
+ * @returns {string | null} Folder relative to the host, or null.
+ */
+function linkedSpecFolder(root, ownerRoot) {
+  const entry = path.join(root, 'specs');
   try {
-    return fs.statSync(candidate).isFile() ? candidate : DEFAULT_INDEX_PATH;
+    if (!fs.lstatSync(entry).isSymbolicLink()) return null;
   } catch {
-    return DEFAULT_INDEX_PATH;
+    return null;
   }
+
+  let target;
+  try {
+    target = fs.realpathSync(entry);
+  } catch {
+    return null;
+  }
+
+  const relative = path.relative(ownerRoot, target);
+  const [head] = relative.split(path.sep);
+  if (head === undefined || head === '' || head === '..') return null;
+  return relative.split(path.sep).join('/');
 }
 
 /** Mirrors the trigger lane's result cap. */
@@ -259,12 +322,13 @@ function normalizeSpecFolder(specFolder) {
  * dash is never read as a flag.
  *
  * @param {string[]} argv Arguments after the script name.
- * @returns {{ prompt: string, indexPath: string | undefined, specFolder: string | null, limit: number, json: boolean, hashIndex: boolean, scoringOnly: boolean }} Parsed invocation.
+ * @returns {{ prompt: string, indexPath: string | undefined, specFolder: string | null | undefined, limit: number, json: boolean, hashIndex: boolean, scoringOnly: boolean }} Parsed invocation.
  */
 export function parseArgs(argv) {
   const prompts = [];
   let indexPath;
-  let specFolder = null;
+  /** @type {string | null | undefined} */
+  let specFolder;
   let limit = DEFAULT_LIMIT;
   let json = false;
   let hashIndex = true;
@@ -297,6 +361,9 @@ export function parseArgs(argv) {
       const value = argv[i + 1];
       if (value === undefined) throw new Error(`${arg} requires a value`);
       if (arg === '--index') indexPath = value;
+      // An empty value is a real choice — it asks for the whole index — so it is
+      // kept as given rather than collapsed into "not given", which is what the
+      // default scope for a project linked into a host hangs on.
       if (arg === '--spec-folder') specFolder = value;
       if (arg === '--limit') {
         // parseInt would read `2junk` as 2 and `1.9` as 1 and silently truncate
@@ -318,15 +385,19 @@ export function parseArgs(argv) {
 /**
  * @param {ReturnType<typeof lookup>} answer Lookup answer.
  * @param {string} indexPath Artifact the answer was read from.
+ * @param {string | null} ownerRoot Host the artifact belongs to, or null.
  * @returns {string} Human-readable summary.
  */
-function formatAnswer(answer, indexPath) {
+function formatAnswer(answer, indexPath, ownerRoot) {
   const lines = [
     `query      : ${answer.normalizedQuery}`,
     `tokens     : ${answer.tokens.join(' ') || '(none)'}`,
     `discarded  : ${answer.discardedTokens.map((d) => `${d.token} (${d.reason})`).join(', ') || '(none)'}`,
     `scope      : ${answer.specFolder ?? '(unscoped)'}`,
     `source     : ${displayIndexPath(indexPath)}`,
+    // The paths below name files in the host, not in the caller, so a reader
+    // comparing them against their own checkout needs that root to resolve them.
+    ...(ownerRoot === null ? [] : [`paths      : relative to ${displayIndexPath(ownerRoot)}`]),
     `index      : ${answer.indexHash ?? '(hash skipped)'}`,
     `manifest   : ${answer.manifestHash || '(none)'}`,
     `candidates : ${answer.results.length}${answer.truncated ? ' (truncated)' : ''} from ${answer.candidatePhraseCount} phrase(s)`,
@@ -360,11 +431,15 @@ function main() {
     return 2;
   }
 
-  const indexPath = args.indexPath ?? defaultIndexPath();
+  // An explicit --index is the caller's own choice of artifact, so no host is
+  // named and no default scope is inferred from one.
+  const selection = args.indexPath === undefined
+    ? defaultIndexSelection()
+    : { indexPath: args.indexPath, ownerRoot: null, specFolder: null };
 
   let loaded;
   try {
-    loaded = loadIndex(indexPath, { hashIndex: args.hashIndex });
+    loaded = loadIndex(selection.indexPath, { hashIndex: args.hashIndex });
   } catch (error) {
     process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
     return 2;
@@ -373,9 +448,12 @@ function main() {
   const answer = lookup(loaded, args.prompt, {
     limit: args.limit,
     scoringOnly: args.scoringOnly,
-    specFolder: args.specFolder,
+    specFolder: args.specFolder === undefined ? selection.specFolder : args.specFolder,
   });
-  process.stdout.write(args.json ? `${JSON.stringify(answer, null, 2)}\n` : formatAnswer(answer, indexPath));
+  const displayed = args.json
+    ? `${JSON.stringify(answer, null, 2)}\n`
+    : formatAnswer(answer, selection.indexPath, selection.ownerRoot);
+  process.stdout.write(displayed);
   return answer.results.some((result) => result.score > 0) ? 0 : 1;
 }
 

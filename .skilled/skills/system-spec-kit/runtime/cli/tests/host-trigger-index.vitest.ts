@@ -29,6 +29,7 @@ import {
   callerRepoRoot,
   hostIndexPath,
   isHostRepository,
+  owningHostRoot,
 } from '../retrieval/lib/host-index.mjs';
 
 const RETRIEVAL_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'retrieval');
@@ -41,6 +42,8 @@ const PACKAGED_FILES = [
   DEFAULT_VARIANTS_PATH,
 ];
 const SIDECAR_NAMES = ['corpus-manifest.json', 'generation-diagnostics.json', 'phrase-variants.json'];
+/** Carried by both packets of the linked fixture, so scope alone separates them. */
+const SHARED_PHRASE = 'shared lookup phrase';
 
 const tempRoots = new Set<string>();
 
@@ -104,6 +107,37 @@ function makeHost(): FakeHost {
 
 function runScript(script: string, cwd: string, args: string[] = []) {
   return spawnSync(process.execPath, [script, ...args], { cwd, encoding: 'utf8' });
+}
+
+interface LinkedProject {
+  /** Host repository holding the vendored tree, the corpus and the index. */
+  host: string;
+  /** Project repository that links into the host and keeps no index of its own. */
+  project: string;
+}
+
+/**
+ * Builds the layout a project gets when it keeps no corpus of its own: a git
+ * repository whose `.skilled` and `specs` entries both link into a host that
+ * holds the tree and the index over it. The host's two packets deliberately
+ * share one phrase, so only the scope separates what a lookup finds.
+ */
+function makeLinkedProject(): LinkedProject {
+  const host = makeTempDir('speckit-linked-host-');
+  writeDoc(host, '.skilled/skills/system-spec-kit/SKILL.md', frontmatter(['vendored framework skill']));
+  fs.mkdirSync(path.join(host, 'vendor', '.skilled'), { recursive: true });
+  writeDoc(host, 'specs/proj/001-x/spec.md', frontmatter(['linked project packet', SHARED_PHRASE]));
+  writeDoc(host, 'specs/other/001-y/spec.md', frontmatter(['other track packet', SHARED_PHRASE]));
+  execFileSync('git', ['init', '--quiet'], { cwd: host, stdio: 'ignore' });
+
+  const generation = runScript(GENERATOR_SCRIPT, host, ['--repo-root', host, '--out', hostIndexPath(host)]);
+  expect(generation.status, generation.stderr).toBe(0);
+
+  const project = makeTempDir('speckit-linked-project-');
+  fs.symlinkSync(path.join(host, 'vendor', '.skilled'), path.join(project, '.skilled'), 'dir');
+  fs.symlinkSync(path.join(host, 'specs', 'proj'), path.join(project, 'specs'), 'dir');
+  execFileSync('git', ['init', '--quiet'], { cwd: project, stdio: 'ignore' });
+  return { host, project };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -220,5 +254,112 @@ describe('bare generation inside a host', () => {
     expect(check.status).toBe(0);
     expect(check.stdout).toContain(hostIndexPath(host.root));
     expect(check.stdout).toContain('trigger index matches the corpus');
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// Project linked into a host
+// ───────────────────────────────────────────────────────────────────
+
+describe('owning host resolution', () => {
+  it('names the host holding the linked tree, whose index the project reads', () => {
+    const { host, project } = makeLinkedProject();
+
+    expect(fs.realpathSync(owningHostRoot(project) ?? '')).toBe(fs.realpathSync(host));
+    expect(defaultIndexPath(project)).toBe(hostIndexPath(host));
+  });
+
+  it('names no owner for the host itself, which holds its own tree', () => {
+    const { host } = makeLinkedProject();
+
+    expect(owningHostRoot(host)).toBeNull();
+  });
+
+  it('falls back to the packaged index when the linked tree has no index of its own', () => {
+    const host = makeTempDir('speckit-unindexed-host-');
+    const vendored = path.join(host, 'vendor', '.skilled');
+    fs.mkdirSync(vendored, { recursive: true });
+    execFileSync('git', ['init', '--quiet'], { cwd: host, stdio: 'ignore' });
+
+    const project = makeTempDir('speckit-unindexed-project-');
+    fs.symlinkSync(vendored, path.join(project, '.skilled'), 'dir');
+    execFileSync('git', ['init', '--quiet'], { cwd: project, stdio: 'ignore' });
+
+    expect(owningHostRoot(project)).toBeNull();
+    expect(defaultIndexPath(project)).toBe(DEFAULT_INDEX_PATH);
+
+    const lookup = runScript(LOOKUP_SCRIPT, project, ['--scoring-only', '--', SHARED_PHRASE]);
+
+    expect(lookup.stdout).not.toMatch(/^paths\s*:/mu);
+  });
+});
+
+describe('lookup from a project linked into a host', () => {
+  it('reads the host index and scopes itself to the folder the project links to', () => {
+    const { host, project } = makeLinkedProject();
+
+    const lookup = runScript(LOOKUP_SCRIPT, project, ['--scoring-only', '--', SHARED_PHRASE]);
+
+    expect(lookup.status).toBe(0);
+    expect(lookup.stdout).toMatch(/^source\s*: .*\.speckit-index\/trigger-index\.json$/mu);
+    expect(lookup.stdout).toContain(path.relative(project, hostIndexPath(host)));
+    expect(lookup.stdout).toMatch(/^paths\s+: relative to /mu);
+    expect(lookup.stdout).toContain(`relative to ${path.relative(project, host)}`);
+    expect(lookup.stdout).toMatch(/^scope\s+: specs\/proj$/mu);
+    expect(lookup.stdout).toContain('specs/proj/001-x/spec.md');
+    expect(lookup.stdout).not.toContain('specs/other/001-y/spec.md');
+  });
+
+  it('drops the default scope when --spec-folder is given an empty value', () => {
+    const { project } = makeLinkedProject();
+
+    const lookup = runScript(LOOKUP_SCRIPT, project, ['--scoring-only', '--spec-folder', '', '--', SHARED_PHRASE]);
+
+    expect(lookup.status).toBe(0);
+    expect(lookup.stdout).toMatch(/^scope\s+: \(unscoped\)$/mu);
+    expect(lookup.stdout).toContain('specs/proj/001-x/spec.md');
+    expect(lookup.stdout).toContain('specs/other/001-y/spec.md');
+  });
+});
+
+describe('bare generation inside a project linked into a host', () => {
+  it('refuses to index the project and names the host that holds the corpus', () => {
+    const { host, project } = makeLinkedProject();
+    const before = packagedHashes();
+
+    const generation = runScript(GENERATOR_SCRIPT, project);
+
+    expect(generation.status).toBe(2);
+    expect(generation.stdout).toBe('');
+    expect(generation.stderr).toContain(`links its tree from ${fs.realpathSync(host)}`);
+    expect(generation.stderr).toContain(`run this from ${fs.realpathSync(host)}`);
+    expect(generation.stderr).toContain('--repo-root and --out');
+    expect(fs.existsSync(path.join(project, '.speckit-index'))).toBe(false);
+    expect(packagedHashes()).toEqual(before);
+  });
+
+  it('refuses a bare --check for the same reason', () => {
+    const { host, project } = makeLinkedProject();
+    const before = packagedHashes();
+
+    const check = runScript(GENERATOR_SCRIPT, project, ['--check']);
+
+    expect(check.status).toBe(2);
+    expect(check.stderr).toContain(`links its tree from ${fs.realpathSync(host)}`);
+    expect(fs.existsSync(path.join(project, '.speckit-index'))).toBe(false);
+    expect(packagedHashes()).toEqual(before);
+  });
+
+  it('does not refuse a project that keeps its own index directory', () => {
+    const { project } = makeLinkedProject();
+    fs.mkdirSync(path.join(project, '.speckit-index'), { recursive: true });
+
+    const generation = runScript(GENERATOR_SCRIPT, project);
+
+    // The linked tree here carries no source sentinel, so the run stops later on
+    // the corpus it cannot walk. The refusal is what this case is about, and it
+    // is the only outcome that exits 2 and names the host.
+    expect(generation.stderr).not.toContain('links its tree from');
+    expect(generation.status).not.toBe(2);
   });
 });
