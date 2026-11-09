@@ -1,5 +1,5 @@
 {
-  "manifestHash": "072d10f03db84220c9dbdca2bec82a41d3dc638667b3280a19ed31754a13e3c2",
+  "manifestHash": "ed45ebef820a16f2b6bc0cd39ba9e861a2befc8324c80c5bcedfed767ca25321",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18814,8 +18814,26 @@
     "children ids remediation mode": [
       "children_ids remediation mode"
     ],
+    "children ids repeated entry": [
+      "children_ids repeated entry"
+    ],
     "children ids stale": [
       "children_ids stale"
+    ],
+    "children list duplicates": [
+      "children list duplicates"
+    ],
+    "children list duplicates acceptance criteria": [
+      "children list duplicates acceptance criteria"
+    ],
+    "children list duplicates implementation summary": [
+      "children list duplicates implementation summary"
+    ],
+    "children list duplicates plan": [
+      "children list duplicates plan"
+    ],
+    "children list duplicates tasks": [
+      "children list duplicates tasks"
     ],
     "chinese to english skill docs": [
       "chinese to english skill docs"
@@ -33807,6 +33825,12 @@
     ],
     "declared mark choices": [
       "declared mark choices"
+    ],
+    "declared more than once": [
+      "declared more than once"
+    ],
+    "declared more than once fix": [
+      "declared more than once fix"
     ],
     "declared phrase specificity": [
       "declared phrase specificity"
@@ -80642,6 +80666,9 @@
     "phase 7 checker debt closeout": [
       "phase 7 checker debt closeout"
     ],
+    "phase 7 children list duplicates": [
+      "phase 7 children list duplicates"
+    ],
     "phase 7 ci rule set comparison": [
       "phase 7 ci rule set comparison"
     ],
@@ -91131,6 +91158,9 @@
     ],
     "repeatable drift verifier": [
       "repeatable drift verifier"
+    ],
+    "repeated children ids entry": [
+      "repeated children_ids entry"
     ],
     "repeated claim and focus signatures": [
       "repeated claim and focus signatures"
@@ -117602,6 +117632,9 @@
     "system spec kit 2 12 38 0": [
       "system-spec-kit 2.12.38.0"
     ],
+    "system spec kit 2 12 39 0": [
+      "system-spec-kit 2.12.39.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -118183,6 +118216,9 @@
     ],
     "system spec kit v2 12 38 0": [
       "system-spec-kit v2.12.38.0"
+    ],
+    "system spec kit v2 12 39 0": [
+      "system-spec-kit v2.12.39.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"

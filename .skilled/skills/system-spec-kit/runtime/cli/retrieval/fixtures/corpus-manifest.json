@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c2ea6486cdf713b2fd6c50f30cdeba346242adc2c83ee6c82bfa1f56c77f6910",
+  "corpusHash": "01a695a209f1e6aeadbdb34a0682a0ea043d28636656f51ba04f53f3b426e419",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25917,
+  "includedPathCount": 25923,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8637,6 +8637,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.36.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.37.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.38.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.39.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -25765,6 +25766,11 @@
     "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/plan.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/spec.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/tasks.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates/acceptance-criteria.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates/implementation-summary.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates/plan.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates/spec.md",
+    "specs/system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates/tasks.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/acceptance-criteria.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/decision-record.md",
     "specs/system-speckit/044-named-subtracks-and-host-repos/implementation-summary.md",
@@ -25949,7 +25955,7 @@
     "specs/system-speckit/047-v4-release-line-research/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "072d10f03db84220c9dbdca2bec82a41d3dc638667b3280a19ed31754a13e3c2",
+  "manifestHash": "ed45ebef820a16f2b6bc0cd39ba9e861a2befc8324c80c5bcedfed767ca25321",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36321,6 +36327,10 @@
     },
     {
       "path": "specs/system-speckit/044-named-subtracks-and-host-repos/006-review-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-named-subtracks-and-host-repos/007-children-list-duplicates/scratch",
       "reason": "excluded directory"
     },
     {
