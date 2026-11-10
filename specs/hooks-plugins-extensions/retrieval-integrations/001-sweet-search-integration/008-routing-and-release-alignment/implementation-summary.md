@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment"
-    last_updated_at: "2026-11-10T10:05:00Z"
-    last_updated_by: "conductor"
-    recent_action: "Built, gated and closed"
-    next_safe_action: "None, the packet is complete"
+    last_updated_at: "2026-11-10T11:30:36Z"
+    last_updated_by: "generate-context"
+    recent_action: "Pushed the path and count limit fix"
+    next_safe_action: "None"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs"
+      - ".skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs"
+      - ".skilled/changelog/skilled/v4.0.2.1.md"
+      - ".skilled/skills/system-spec-kit/changelog/v2.12.48.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f58a599961ca5064e65dba746dcf25227f9a9633593c30e3d7f134dd4478f5da"
       session_id: "scaffold-008-routing-and-release-alignment"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "57bcd03f-32c4-439a-a610-ec91a7c3d3ba"
+      workspace: "/Users/michelkerkmeester/worktrees/public/337-retrieval-routing-and-release"
+      savedAt: "2026-11-10T11:30:36Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

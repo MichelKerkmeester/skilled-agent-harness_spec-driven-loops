@@ -15,6 +15,7 @@
       "phase 7 routing and release alignment",
       "routing and release alignment plan",
       "routing and release alignment tasks",
+      "008-routing-and-release-alignment operator decisions",
       "routing and release alignment implementation summary"
     ],
     "key_topics": [
@@ -24,12 +25,12 @@
       "phase",
       "plan",
       "tasks",
+      "008-routing-and-release-alignment",
+      "operator",
+      "decisions",
       "implementation",
       "summary",
-      "three",
-      "seven",
-      "prompts",
-      "stored"
+      "three"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -37,6 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts",
@@ -52,8 +54,7 @@
       "changelog/v2.12.48.0.md",
       "changelog/v2.12.47.0.md",
       "runtime/cli/ops/retrofit-convention.mjs",
-      ".skilled/bin/skill-advisor.cjs",
-      "retrieval/lib/unindexed-docs.mjs"
+      ".skilled/bin/skill-advisor.cjs"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -193,32 +200,28 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Three",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three of the seven prompts stored by the phase 4 to 6 alignment runs routed to the doctor helper instead of `system-spec-kit`",
     "created_at": "2026-11-10T09:11:21Z",
-    "last_save_at": "2026-11-10T10:40:18.280Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-10T11:30:36.358Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7d079190ef4410f0b3ea7230affb4efc1fb61e41359f0a26b55e1a8475ad466",
+    "source_fingerprint": "sha256:f9c697003f37afec2c4a9bd4d6e213c636127366a6f9f0aa36c00593c356766a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4132eddbe1feb1f9754e842cf0ef5cf3bfd2bfc1f02d1e3ded178d1dcebeb575",
       "plan.md": "a48f51cc1dd381f84263c06fba145e84d3477b684da03dc1f240fcad18501553",
       "tasks.md": "0b4cb78600ef440197788571ab9d6e5d4abe1371d1ad4ef1dfa50104f1732787",
-      "implementation-summary.md": "a62038676343d0f5cab858b2d568d9fc2a3cf0c4f93af5941f6fbd2d1f959633"
+      "decision-record.md": "a4019d9d9ffbc3c6e6607cf27fa1f5c02742e2930fe2ad043e9b2778a41e3cd3",
+      "implementation-summary.md": "b5049eb81fdb90d154c56779b1cb2568fca0d2f22159b5d1a3e0cb4a5f523deb"
     },
     "last_active_at": null
   }

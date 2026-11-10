@@ -26,7 +26,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "001-sweet-search-integration operator decisions"
     ],
     "key_topics": [
       "sweet",
@@ -42,11 +43,12 @@
       "durable",
       "directive"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "001-sweet-search-research/research/research.md",
       "002-retrieval-lessons-research/research/research.md",
       "003-retrieval-feature-design-research/research/research.md",
@@ -72,6 +74,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -169,23 +177,55 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Appendix: Verbatim Operator Answers",
+        "kind": "heading",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
     "created_at": "2026-11-09T11:30:04Z",
-    "last_save_at": "2026-11-10T10:20:40.634Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-10T11:30:36.410Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:6e8fdcdc600a26d36867c7ef81d25a7dec39307c8db76c3d95996f2b088ed88a",
+    "source_fingerprint": "sha256:64d2fe96946418a6d8e41fefd5e1f44f6e24bd3c12da96c40313074dece152eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "785523735cda6b88cf9477627df7548e906654632a9340f3007106bf21fb1d1c"
+      "spec.md": "785523735cda6b88cf9477627df7548e906654632a9340f3007106bf21fb1d1c",
+      "decision-record.md": "325594ae89bea1c689d72543b990f0343097074701dcafec940623ef0147f247"
     },
-    "last_active_child_id": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research",
-    "last_active_at": "2026-11-09T15:25:53.754Z"
+    "last_active_child_id": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment",
+    "last_active_at": "2026-11-10T11:30:36.410Z"
   }
 }
