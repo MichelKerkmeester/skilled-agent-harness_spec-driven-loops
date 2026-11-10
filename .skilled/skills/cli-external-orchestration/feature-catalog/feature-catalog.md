@@ -11,7 +11,7 @@ trigger_phrases:
   - "cross-runtime goal isolation"
   - "DeepSeek Harness Dispatch Mode"
 last_updated: "2026-11-06"
-version: 1.7.3.0
+version: 1.7.4.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -140,7 +140,7 @@ See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencod
 
 #### Description
 
-`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental because no executor pair is admitted yet.
+`cli-deepseek-harness` is the eighth workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental while OpenCode Go is configured but not verified.
 
 #### Current Reality
 

@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,15 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
-      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/system-spec-kit/README.md",
+      "runtime/cli/retrieval/lib/unindexed-docs.mjs",
+      "runtime/cli/retrieval/lib/corpus.mjs",
+      "runtime/cli/retrieval/lookup-trigger-index.mjs",
+      "runtime/cli/tests/stale-fallback.vitest.ts",
+      "references/retrieval/retrieval-conventions.md",
       ".skilled/commands/speckit/README.txt",
-      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
-      "runtime/cli/retrieval/fixtures/prompt-set.json"
+      "feature-catalog/retrieval/stale-index-fallback.md",
+      "manual-testing-playbook/retrieval/stale-index-fallback.md",
+      "changelog/v2.12.42.0.md",
+      "alignment/recheck.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     ],
     "entities": [
       {
@@ -95,33 +100,33 @@
         "source": "derived"
       },
       {
+        "name": "unindexed-docs.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/unindexed-docs.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
         "name": "lookup-trigger-index.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "path": "runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "stale-fallback.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/stale-fallback.vitest.ts",
         "source": "derived"
       },
       {
         "name": "retrieval-conventions.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "path": "references/retrieval/retrieval-conventions.md",
         "source": "derived"
       },
       {
@@ -131,15 +136,21 @@
         "source": "derived"
       },
       {
-        "name": "doctor-speckit-retrieval.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "name": "stale-index-fallback.md",
+        "kind": "doc",
+        "path": "feature-catalog/retrieval/stale-index-fallback.md",
         "source": "derived"
       },
       {
-        "name": "prompt-set.json",
-        "kind": "config",
-        "path": "runtime/cli/retrieval/fixtures/prompt-set.json",
+        "name": "v2.12.42.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.12.42.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "recheck.md",
+        "kind": "doc",
+        "path": "alignment/recheck.md",
         "source": "derived"
       },
       {
@@ -195,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Zero",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The trigger index is committed and rebuilt by hand, so a packet created or edited since the last build is invisible to the Gate 1 lookup",
     "created_at": "2026-11-09T16:18:07Z",
-    "last_save_at": "2026-11-09T17:09:39.352Z",
+    "last_save_at": "2026-11-10T06:08:54.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7be97836fd419960d31e729383a52ddf8e78800e002d24830b2bbaac9ff3348",
+    "source_fingerprint": "sha256:b02acc3093214a3476fc22a4001e1650e3df45f9fda28e75632ddd0e97621187",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7abe9a80a397f791e1acf85dd2aa8396fc09f035913c4fc70da797ec2b73587",
-      "plan.md": "badb8df983a38c547e95a6904116ad3a9ec6a76ba5b1511994529ce82d4bbafa",
-      "tasks.md": "456fde7ba559c9e0dae90902b4cab7b91ab8e04febc9f7937140a819fefec513",
-      "implementation-summary.md": "fdbd41cc449bc766f2765a9811422ac3bdf945c21fe2412884be016bd946bbd9"
+      "spec.md": "49e6971279f87c021e3ce2ee33dff823b1fdb0300759682918887c401fe6d122",
+      "plan.md": "795f2f341859abef60ada54bed530e56ca7cf87bc495a861194c4918778772b1",
+      "tasks.md": "e61aa8aecb821ce4e0208fa319b6498e3e7d197443896b146e65526fd755afe9",
+      "implementation-summary.md": "628a2db66050defed22df882ceecb1b924de8300015973df41434e6f78584f97"
     },
     "last_active_at": null
   }

@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 5: zero-hit fallback to git-changed spec docs"
+title: "Acceptance Criteria: Phase 5: zero-hit fallback to unindexed spec docs"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "stale index fallback acceptance"
@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Acceptance Criteria: Phase 5: zero-hit fallback to git-changed spec docs
+# Acceptance Criteria: Phase 5: zero-hit fallback to unindexed spec docs
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -56,15 +56,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given an untracked new packet that declares `trigger_phrases`, When the lookup runs one of its phrases, Then it exits 0 with `staleFallback.matches: 1` | `npx vitest run stale-fallback.vitest.ts` exits 0 | Unmet | - |
-| AC-002 | REQ-002 | Given a prompt the index already matches, When the lookup runs, Then its JSON has no `staleFallback` key and matches the before run | Existing `npx vitest run trigger-index.vitest.ts` blocks pass unchanged | Unmet | - |
-| AC-003 | REQ-003 | Given an explicit `--index` or `--no-stale-fallback`, When a zero-hit prompt runs, Then the lookup exits 1 with no `staleFallback` field | Tests 8 and 9 of the matrix | Unmet | - |
-| AC-004 | REQ-004 | Given staged additions, untracked folders, renames, a non-git folder and missing git, When the matrix runs, Then each case gives the designed result and none exits 2 | Tests 2-7 of the matrix | Unmet | - |
-| AC-005 | REQ-001 | Given the real repo before an index rebuild, When `lookup-trigger-index.mjs --scoring-only -- "retrieval feature design research"` runs, Then it exits 0 and lists `003-retrieval-feature-design-research/spec.md` | Command output and exit status in `benchmark/results.md` | Unmet | - |
-| AC-006 | REQ-002 | Given `runtime/cli/retrieval/fixtures/prompt-set.json`, When the cold-lookup p95 is measured, Then it is at or under 200 ms | Benchmark p95 row | Unmet | - |
-| AC-007 | REQ-005 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 490 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md` | Unmet | - |
-| AC-008 | REQ-006 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder | Unmet | - |
-| AC-009 | REQ-007 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 and git status counts match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Unmet | - |
+| AC-001 | REQ-001 | Given a new packet the index does not list that declares `trigger_phrases`, When the lookup runs one of its phrases, Then it exits 0 with `staleFallback.matches: 1` | `npx vitest run stale-fallback.vitest.ts` exits 0 | Met | - |
+| AC-002 | REQ-002 | Given a prompt the index already matches, When the lookup runs, Then its JSON has no `staleFallback` key and matches the before run | Existing `npx vitest run trigger-index.vitest.ts` blocks pass unchanged | Met | - |
+| AC-003 | REQ-003 | Given an explicit `--index` or `--no-stale-fallback`, When a zero-hit prompt runs, Then the lookup exits 1 with no `staleFallback` field | Tests 8 and 9 of the matrix | Met | - |
+| AC-004 | REQ-004 | Given untracked, staged and committed unindexed docs, an excluded folder, a non-spec-doc name and a non-git folder, When the matrix runs, Then each case gives the designed result and none exits 2 | The matching rows of `stale-fallback.vitest.ts` | Met | - |
+| AC-005 | REQ-001 | Given the real repo before an index rebuild, When `lookup-trigger-index.mjs --scoring-only -- "retrieval feature design research"` runs, Then it exits 0 and lists `003-retrieval-feature-design-research/spec.md` | Command output and exit status in `benchmark/results.md` | Met | - |
+| AC-006 | REQ-002 | Given `runtime/cli/retrieval/fixtures/prompt-set.json`, When the cold-lookup p95 is measured, Then it is at or under 200 ms | Benchmark p95 row | Met | - |
+| AC-007 | REQ-005 | Given the phase is built, When `validate_catalog_package.py` and `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` run, Then both exit 0 and scenario 490 has a row in section 7.8 | Both commands' output and exit status, pasted in `implementation-summary.md` | Met | - |
+| AC-008 | REQ-006 | Given the uncommitted phase change, When `/local-skilled-alignment --recheck=<run folder>` runs, Then `recheck.md` shows 0 open P0 and P1 findings | `alignment/recheck.md` in this folder | Met | - |
+| AC-009 | REQ-007 | Given `benchmark/before.json` and `benchmark/after.json`, When both are compared, Then their index sha256 values match and every metric row in `benchmark/results.md` has a measured value that meets its target | `benchmark/results.md` | Met | - |
 
 ### Status values
 
@@ -90,7 +90,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, so every criterion is unmet; closure waits on the build, the alignment recheck and the after benchmark.
+Every criterion is met with observed evidence, recorded in `implementation-summary.md`, `benchmark/results.md` and `alignment/recheck.md`.
 <!-- /ANCHOR:closure -->

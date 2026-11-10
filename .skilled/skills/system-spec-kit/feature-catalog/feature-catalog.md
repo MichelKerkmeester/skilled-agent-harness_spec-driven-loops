@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-07"
-version: 2.1.22.0
+version: 2.1.25.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -992,6 +992,48 @@ The continuity ladder is `handover.md` -> `_memory.continuity` -> packet-first s
 #### Source Files
 
 See [`retrieval/session-recovery-spec-kit-resume.md`](retrieval/session-recovery-spec-kit-resume.md) for full implementation and test file listings.
+
+### Trigger lookup total candidates
+
+#### Description
+
+Reports the ranked trigger-index candidate total before applying `--limit` and indicates when results are truncated.
+
+#### Current Reality
+
+`--json` reports `totalCandidates` after the optional `--scoring-only` filter and before `--limit`. `truncated` is true only when a non-zero limit omits candidates. The human summary includes the total only when truncated, and exit codes remain unchanged. Section 9 of `retrieval-conventions.md` records that the trigger index skips `specs/**/research/**` run output except `research/research.md`, while ripgrep still searches it.
+
+#### Source Files
+
+See [`retrieval/trigger-lookup-total-candidates.md`](retrieval/trigger-lookup-total-candidates.md) for full implementation and test file listings.
+
+### Stale index fallback
+
+#### Description
+
+Searches newly written spec packet docs when the trigger index returns no scored candidate.
+
+#### Current Reality
+
+When the index returns no scored candidate, the lookup scans eligible, unindexed packet docs and scores their declared trigger phrases. A fallback hit adds matches to the answer and reports how many docs it read. The scan runs only in a Git work tree; `--no-stale-fallback` and an explicit `--index` keep the lookup index-only. Changed phrases in docs already listed by the index remain outside the fallback; `generate-trigger-index.mjs --check` reports that drift.
+
+#### Source Files
+
+See [`retrieval/stale-index-fallback.md`](retrieval/stale-index-fallback.md) for full implementation and test file listings.
+
+### Ripgrep one row per file
+
+#### Description
+
+Keeps the highest-ranked ripgrep match per file and reports matches hidden by the file limit.
+
+#### Current Reality
+
+The structured recipe ranks matches first, then returns one highest-ranked row per file. The default limit is 20 files; --limit 0 is uncapped. JSON schema version 2 reports total matches and files, hidden files and matches, each shown row's moreInFile count, the effective limit and whether files were omitted. Human output reports the same totals and identifies additional matches in a shown file.
+
+#### Source Files
+
+See [retrieval/rg-flood-control.md](retrieval/rg-flood-control.md) for full implementation and test file listings.
 
 ---
 

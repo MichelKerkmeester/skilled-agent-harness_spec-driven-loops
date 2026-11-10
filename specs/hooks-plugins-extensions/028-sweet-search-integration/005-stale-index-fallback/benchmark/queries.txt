@@ -1,0 +1,25 @@
+stale	sweet search verdict
+stale	phase 1 sweet search research
+stale	retrieval lessons research
+stale	phase 2 retrieval lessons research
+stale	retrieval feature design research
+stale	rg wrapper flood control design
+stale	trigger lookup total candidates
+stale	total candidate count plan
+stale	ripgrep one row per file
+stale	sweet search integration
+match	spec folder question
+match	memory save continuity
+match	deep research convergence loop
+match	trigger index
+match	communication quality
+match	playbook scenario
+match	release notes
+match	deep research strategy
+match	skill advisor hook
+match	memory context
+none	zzqx qwvbn xkjfp
+none	quantum toaster calibration
+none	llama yodel harmonics
+none	purple walrus banjo
+none	glacier kazoo omelette

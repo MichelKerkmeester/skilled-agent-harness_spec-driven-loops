@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5183d50c45efafd13fc6f01b11fcf9e9623798f3447d1c466567c8ef934eb15a",
+  "manifestHash": "11310dd22296d7aa1e57c72ae8898fdde62fba0a9ba1894210d881c9055a153d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49782,6 +49782,9 @@
     "find 3 remaining sidecar p2": [
       "find 3 remaining sidecar p2"
     ],
+    "find a packet before the trigger index is rebuilt": [
+      "find a packet before the trigger index is rebuilt"
+    ],
     "find cdp method by keyword": [
       "find cdp method by keyword"
     ],
@@ -64043,6 +64046,12 @@
     "look up user": [
       "look up user"
     ],
+    "lookup trigger index mjs": [
+      "lookup-trigger-index.mjs"
+    ],
+    "lookup trigger index mjs stale fallback": [
+      "lookup-trigger-index.mjs stale fallback"
+    ],
     "loop adherence": [
       "loop adherence"
     ],
@@ -78136,6 +78145,9 @@
     ],
     "per feature scenario file": [
       "per feature scenario file"
+    ],
+    "per file ripgrep flood control": [
+      "per-file ripgrep flood control"
     ],
     "per folder description": [
       "per folder description"
@@ -92263,6 +92275,9 @@
     "research folder continuity tasks": [
       "research folder continuity tasks"
     ],
+    "research folder retrieval divergence": [
+      "research folder retrieval divergence"
+    ],
     "research folders under spec tree root": [
       "research folders under spec-tree root"
     ],
@@ -94920,6 +94935,9 @@
     "rg wrapper flood control design": [
       "rg wrapper flood control design"
     ],
+    "rg wrapper structured file limit": [
+      "rg-wrapper structured file limit"
+    ],
     "right hooks honest reverts": [
       "Right Hooks, Honest Reverts"
     ],
@@ -94930,10 +94948,14 @@
       "ripgrep json scan"
     ],
     "ripgrep one row per file": [
+      "Ripgrep one row per file",
       "ripgrep one row per file"
     ],
     "ripgrep one row per file criteria": [
       "ripgrep one row per file criteria"
+    ],
+    "ripgrep per file match flood control": [
+      "ripgrep per-file match flood control"
     ],
     "ripgrep recipe contract": [
       "ripgrep recipe contract"
@@ -114213,6 +114235,7 @@
       "stale identifier regeneration plan"
     ],
     "stale index fallback": [
+      "Stale index fallback",
       "stale index fallback"
     ],
     "stale index fallback acceptance": [
@@ -115444,6 +115467,9 @@
     ],
     "structured question tool": [
       "structured question tool"
+    ],
+    "structured ripgrep result shaping": [
+      "structured ripgrep result shaping"
     ],
     "stuck detection": [
       "stuck detection"
@@ -117780,6 +117806,12 @@
     "system spec kit 2 12 40 0": [
       "system-spec-kit 2.12.40.0"
     ],
+    "system spec kit 2 12 42 0": [
+      "system-spec-kit 2.12.42.0"
+    ],
+    "system spec kit 2 12 43 0": [
+      "system-spec-kit 2.12.43.0"
+    ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
     ],
@@ -118367,6 +118399,15 @@
     ],
     "system spec kit v2 12 40 0": [
       "system-spec-kit v2.12.40.0"
+    ],
+    "system spec kit v2 12 41 0": [
+      "system-spec-kit v2.12.41.0"
+    ],
+    "system spec kit v2 12 42 0": [
+      "system-spec-kit v2.12.42.0"
+    ],
+    "system spec kit v2 12 43 0": [
+      "system-spec-kit v2.12.43.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"
@@ -120745,6 +120786,12 @@
     "total candidate count tasks": [
       "total candidate count tasks"
     ],
+    "total candidates trigger lookup": [
+      "total candidates trigger lookup"
+    ],
+    "total trigger index candidate count": [
+      "total trigger-index candidate count"
+    ],
     "touch target size": [
       "touch target size"
     ],
@@ -121474,10 +121521,14 @@
       "trigger index zero hit fallback design"
     ],
     "trigger lookup total candidates": [
+      "Trigger lookup total candidates",
       "trigger lookup total candidates"
     ],
     "trigger lookup totalcandidates criteria": [
       "trigger lookup totalCandidates criteria"
+    ],
+    "trigger lookup truncation": [
+      "trigger lookup truncation"
     ],
     "trigger lookup zero hit fallback": [
       "trigger lookup zero hit fallback"
@@ -122387,6 +122438,12 @@
     ],
     "unify studies s1 s5 deep loop": [
       "unify studies s1 s5 deep loop"
+    ],
+    "unindexed spec doc fallback": [
+      "unindexed spec doc fallback"
+    ],
+    "unindexed spec packet search": [
+      "unindexed spec packet search"
     ],
     "union alpha dual provider roster implementation summary": [
       "union alpha dual provider roster implementation summary"

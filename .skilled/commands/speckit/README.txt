@@ -27,15 +27,17 @@ trigger_phrases:
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
-- [2. COMMANDS](#2--commands)
-- [3. STRUCTURE](#3--structure)
-- [4. WORKFLOW PROGRESSION](#4--workflow-progression)
-- [5. EXECUTION MODES](#5--execution-modes)
-- [6. USAGE EXAMPLES](#6--usage-examples)
-- [7. TOOL COVERAGE MATRIX](#7--tool-coverage-matrix)
-- [8. FAQ](#8--faq)
-- [9. TROUBLESHOOTING](#9--troubleshooting)
-- [10. RELATED DOCUMENTS](#10--related-documents)
+- [2. PURPOSE](#2--purpose)
+- [3. COMMANDS](#3--commands)
+- [4. STRUCTURE](#4--structure)
+- [5. INSTRUCTIONS](#5--instructions)
+- [6. WORKFLOW PROGRESSION](#6--workflow-progression)
+- [7. EXECUTION MODES](#7--execution-modes)
+- [8. USAGE EXAMPLES](#8--usage-examples)
+- [9. TOOL COVERAGE MATRIX](#9--tool-coverage-matrix)
+- [10. FAQ](#10--faq)
+- [11. TROUBLESHOOTING](#11--troubleshooting)
+- [12. RELATED DOCUMENTS](#12--related-documents)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -53,7 +55,7 @@ Retrieval runs on two local mechanisms and no background service:
 - **The generated trigger index**, read by `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`. It matches a prompt against author-declared `trigger_phrases`.
 - **The ripgrep recipes** in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`, which find a phrase anywhere in the corpus with no index at all.
 
-Both are lexical. A phrase that is not written in the corpus is not found, and `search` says so rather than returning a nearest guess. Section 7 lists what that costs.
+Both are lexical. A phrase that is not written in the corpus is not found, and `search` says so rather than returning a nearest guess. Section 9 lists what that costs.
 
 Writing goes through one script: `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`. It keeps atomic same-directory update and lock semantics, needs no daemon, and has no indexing handoff after it. Ripgrep cannot write, so no retrieval recipe substitutes for it.
 
@@ -61,8 +63,19 @@ Writing goes through one script: `node .skilled/skills/system-spec-kit/runtime/c
 
 ---
 
+<!-- ANCHOR:purpose -->
+## 2. PURPOSE
+
+Use this index to see which `/speckit:*` command owns a step of the spec folder lifecycle, which argument shape it expects and what it writes.
+
+This document is a routing and reference surface only. Run the command entrypoint itself for execution, setup prompting and YAML workflow dispatch.
+
+<!-- /ANCHOR:purpose -->
+
+---
+
 <!-- ANCHOR:commands -->
-## 2. COMMANDS
+## 3. COMMANDS
 
 | Command | Invocation | Steps | Description |
 |---------|------------|-------|-------------|
@@ -83,10 +96,12 @@ The two lanes answer different questions. Prompt-to-declared-phrase matching is 
 
 | Lane | Flag | Mechanism |
 |------|------|-----------|
-| Trigger index | `--triggers` | `lookup-trigger-index.mjs` over the generated index |
+| Trigger index | `--triggers` | `lookup-trigger-index.mjs` over the generated index, with a zero-hit fallback to unindexed spec docs in a git work tree |
 | Free-text evidence | default | Structured JSONL recipe, `retrieval-conventions.md` Section 2.1 |
 | Which files mention it | `--paths` | Path-only recipe, Section 2.2 |
 | How many times | `--count` | Count recipe, Section 2.3 |
+
+The `rg-wrapper.mjs` structured lane keeps the highest-ranked row per file; `/speckit:search` runs the raw Section 2.1 recipe, which does not shape results. The wrapper's `--limit` defaults to 20 files, and `--limit 0` is uncapped. JSON uses `schemaVersion: 2` and reports `moreInFile`, `matchCount`, `fileCount`, `hidden: { files, matches }`, `limit` and `truncated`.
 
 Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` replaces the search roots with that packet.
 
@@ -109,7 +124,7 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 ---
 
 <!-- ANCHOR:structure -->
-## 3. STRUCTURE
+## 4. STRUCTURE
 
 ```text
 speckit/
@@ -151,8 +166,21 @@ deep/                 # Deep workflows (research, review, AI council)
 
 ---
 
+<!-- ANCHOR:instructions -->
+## 5. INSTRUCTIONS
+
+1. Pick the command that matches the lifecycle step: plan, implement, complete, resume, handoff, save or search.
+2. Supply `:auto` for autonomous execution or `:confirm` for checkpointed execution. `save` and `search` take no mode suffix.
+3. Name the spec folder the command works in, or answer the spec folder question when it asks.
+4. Use `/speckit:save` for continuity writes instead of editing the continuity fields by hand.
+5. Use `/speckit:search` to find a packet or a phrase before creating a new packet.
+
+<!-- /ANCHOR:instructions -->
+
+---
+
 <!-- ANCHOR:workflow-progression -->
-## 4. WORKFLOW PROGRESSION
+## 6. WORKFLOW PROGRESSION
 
 The typical development lifecycle follows this progression:
 
@@ -200,7 +228,7 @@ The `complete` command combines research, plan and implement into a single invoc
 ---
 
 <!-- ANCHOR:execution-modes -->
-## 5. EXECUTION MODES
+## 7. EXECUTION MODES
 
 | Mode | Suffix | Behavior |
 |------|--------|----------|
@@ -225,7 +253,7 @@ Each mode-pair command maps to a YAML workflow file in `assets/`:
 ---
 
 <!-- ANCHOR:usage-examples -->
-## 6. USAGE EXAMPLES
+## 8. USAGE EXAMPLES
 
 ```bash
 # Plan a new feature (creates spec folder + plan.md)
@@ -289,7 +317,7 @@ Copy the recipe flags literally. `--no-config` stops `RIPGREP_CONFIG_PATH` from 
 ---
 
 <!-- ANCHOR:tool-coverage -->
-## 7. TOOL COVERAGE MATRIX
+## 9. TOOL COVERAGE MATRIX
 
 The retired continuity server exposed 41 tools across seven layers. They are replaced by two local mechanisms and one writer, and several capabilities are not replaced at all. This table maps capability to owner, because an honest map is shorter than the inventory it replaces.
 
@@ -332,7 +360,7 @@ These had no replacement, and no recipe approximates one. `search` reports them 
 ---
 
 <!-- ANCHOR:faq -->
-## 8. FAQ
+## 10. FAQ
 
 **Q: What is the difference between `/speckit:plan` and `/speckit:complete`?**
 
@@ -367,7 +395,7 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 ---
 
 <!-- ANCHOR:troubleshooting -->
-## 9. TROUBLESHOOTING
+## 11. TROUBLESHOOTING
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
@@ -391,7 +419,7 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 ---
 
 <!-- ANCHOR:related-documents -->
-## 10. RELATED DOCUMENTS
+## 12. RELATED DOCUMENTS
 
 | Document | Purpose |
 |----------|---------|

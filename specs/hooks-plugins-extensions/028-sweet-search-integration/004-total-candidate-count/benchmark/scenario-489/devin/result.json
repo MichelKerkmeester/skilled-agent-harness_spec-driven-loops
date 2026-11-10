@@ -1,0 +1,44 @@
+{
+  "runtime": "devin",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1901722710,
+  "socket": "conv-30246-devin",
+  "session_id": "1d5c4fe7-2d97-486b-868d-4aac852b2044",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-489b/devin",
+  "started_at": "2026-11-09T18:47:15.407Z",
+  "finished_at": "2026-11-09T18:48:12.250Z",
+  "adapter": {
+    "bin": "devin",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "trigger-lookup-total-candidates",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "Left out: 1,934 matches.",
+      "evidence": "turns/trigger-lookup-total-candidates"
+    }
+  ]
+}

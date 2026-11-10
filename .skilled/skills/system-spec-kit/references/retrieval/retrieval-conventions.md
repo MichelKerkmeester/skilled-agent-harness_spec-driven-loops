@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.7.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -94,6 +94,10 @@ rg --no-config --hidden --json --fixed-strings --ignore-case \
   --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' \
   -- 'phrase' specs .skilled
 ```
+
+The wrapper that serves this recipe applies two bounds after parsing, never inside ripgrep: it keeps **one line per file**, that file's highest-ranked line, because the Section 5 tuple already orders the rows, and then cuts the resulting file list at `--limit` files (default 20; `--limit 0` lifts the cut). The bound is applied after ranking on purpose. `--max-count 1` would stop reading a file at its first matching line, which is the file's earliest line, not its highest-ranked one, and it would also destroy the per-file totals the elision needs.
+
+The bound is reported, never silent. A shown row whose file held more matches carries `(+N more in this file)`. A run that dropped whole files ends with `+N more files with M matches`. The JSON form carries the same numbers as `moreInFile` on each result, `hidden: { files, matches }` on the record, and `matchCount`, `fileCount`, `limit` and `truncated` at the top level. A caller that needs a hidden row raises `--limit`; nothing is returned silently beyond the bound.
 
 ### 2.2 Path-only, replacing `memory_quick_search`
 
@@ -179,6 +183,8 @@ Three outcomes, and a wrapper must branch on all three. Treating a non-zero exit
 | `1` | No match | An empty result, not an error. Return it as such |
 | `2` or higher | Execution or configuration error | Fail loudly with stderr attached. Never report it as no-hit |
 
+**Keyed-lane zero-hit fallback.** `lookup-trigger-index.mjs` adds candidates from spec documents the committed index does not list yet when the index returns no scored candidate. With the fallback on (the default), exit `1` means neither the index nor the fallback found a scored candidate, and a fallback hit exits `0` like any other match. It runs only on a zero-hit and only inside a git work tree, and it reads each unindexed document's declared `trigger_phrases`, never its body text. `--no-stale-fallback` turns it off, and so does an explicit `--index`, which restores index-only exit semantics. It walks the tree the index read belongs to: the host's own tree when a linked project reads its host's index, and no tree at all when the index lives outside the caller's repository, as the packaged index of a linked install does, because that index's paths name other documents.
+
 ### Worked Example
 
 Run against this repository at ripgrep 15.2.0 on 2026-10-03, with the phrase `trigger index generator` and the roots `specs .skilled`. The exit codes are the contract; the counts move as the corpus grows.
@@ -206,10 +212,11 @@ Ripgrep supplies matches, paths and lines. It never ranks relevance, and no docu
 1. **Evidence field**, most specific first: `trigger_phrases`, then title or description, then anchor marker, then body line.
 2. **Normalized match class**, in the order `lib/normalize.mjs` ranks them: `exact`, `phrase-containment`, `query-containment`, `token-overlap`, then `partial`. The lookup emits these labels verbatim, and no document may rename them.
 3. **Relative path**, then one-based line number.
+4. **Post-rank shaping**, applied after the tuple and never as part of it: one line per file (that file's first-ranked row), then a cut at `--limit` files, default 20, with `--limit 0` uncapped. Shaping filters the ordered list; it never re-sorts it, so the tuple remains the lane's only ranker. The cut is reported in the same answer: `moreInFile` on each result, and `hidden: { files, matches }` plus `matchCount`, `fileCount`, `limit` and `truncated` on the record.
 
 Each result carries its document type and its packet path alongside the ranked position, so a caller can filter or group without a second scan.
 
-The tuple is deterministic by construction. Every component is derived from the parsed match, none of it from ripgrep's own output order, and the final path and line pair breaks every remaining tie. Two runs over an unchanged corpus therefore produce the same ordering.
+The tuple is deterministic by construction. Every component is derived from the parsed match, none of it from ripgrep's own output order, and the final path and line pair breaks every remaining tie. Two runs over an unchanged corpus therefore produce the same ordering. The keyed lookup's zero-hit fallback (Section 4) also reads spec documents the committed index does not list, so its answer depends on the working tree as well as the index: a fixed index and a fixed tree always give the same ordering, because fallback candidates are sorted by path before they are read and enter the same tuple. Pass `--no-stale-fallback`, or an explicit `--index`, for the index-only answer.
 
 ---
 
@@ -276,7 +283,7 @@ Declare phrases of two or more tokens. A single-token phrase can only ever match
 - **Owner counting:** When owners of one phrase disagree, `documents` counts each owner under its own class and `phrases` counts the phrase once, as `folder-token-fallback` if any owner's folder repeats it.
 - **Warning behavior:** A warning never deletes an author's phrase; it names what the index cannot use.
 
-The lookup applies its own two limits to the prompt, not to declared phrases: a query token shorter than three characters is dropped before matching, and only the first eight distinct eligible tokens are kept, in the order they first appear; both discards are reported in the lookup's JSON output.
+The lookup applies its own two limits to the prompt, not to declared phrases: a query token shorter than three characters is dropped before matching, and only the first eight distinct eligible tokens are kept, in the order they first appear; both discards are reported in the lookup's JSON output. That output also carries `candidatePhraseCount`, the phrases whose text admitted the query, and `totalCandidates`, the documents ranked after the scoring filter and before `--limit`; `truncated` is true only when `totalCandidates` exceeds a non-zero `--limit`, so a caller can read how many candidates a cap hid instead of only that it hid some.
 
 ---
 
@@ -310,6 +317,7 @@ The lookup applies its own two limits to the prompt, not to declared phrases: a 
 | `dist` | Yes | No | Deliberate divergence. The trigger index prunes compiled output so a stale copy of a source document cannot own a phrase; the ripgrep lane scans it, and a hit there is evidence like any other. |
 | `tests/fixtures` | Yes | No | The trigger index's flat spelling of the fixture rule below, kept because it matches a `tests/fixtures` tree under `specs/` too, which the scoped pattern deliberately leaves alone |
 | `lineages` (under `specs/` whatever the parent, or directly under a `research` parent) | Yes | No | Deliberate divergence. The fan-out runner writes lineages into whatever artifact directory it is given (`research/`, `review/`, or a named run directory), and each lineage can hold containment snapshots that copy real documents, so the trigger index prunes every `lineages` directory under `specs/`. The trigger index excludes lineage transcripts to protect the curated phrase index from unauthored, transcript-derived noise (Section 8). Ripgrep is a raw evidence lane with no ranking to protect, and the corpus holds thousands of lineage documents a researcher may legitimately need to grep for a specific fact; converging would be a real coverage loss for a noise concern that does not apply to a scan |
+| `specs/**/research/**` (except a numbered packet's or phase's `research/research.md`) | Yes | No | Deliberate divergence. The trigger index indexes only the synthesis document and prunes the rest of that `research/` tree — iteration narratives, deltas, prompts, dispatch receipts and lineage copies — because it is run output rather than authored content. Ripgrep is a raw evidence lane with no ranking to protect, and a researcher may legitimately need to grep an iteration log or a prompt render for an exact fact; converging would be a real coverage loss. The narrower `lineages` row above still applies inside this tree |
 | `fixtures` / `__fixtures__` / `test-fixtures` / `*-fixtures` directories outside `specs/` | Yes | No | Deliberate divergence. The trigger index's exemption is scoped to outside `specs/` because hundreds of real specification documents live under packet directories named or containing `fixtures` (for example `002-contracts-and-fixtures`); replicating that exact scoping in ripgrep's flat, later-glob-wins engine risks a subtly wrong pattern that silently drops real spec content, which is a worse failure than the test-fixture noise it would remove |
 
 ---

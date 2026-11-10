@@ -1,0 +1,148 @@
+{
+  "label": "after",
+  "createdAt": "2026-11-09T18:07:55.513Z",
+  "state": {
+    "indexSha256": "d024126c0b36a293c487fb3ccfe3aeb250ff2238548beb5d7933c5947a143a5a",
+    "gitStatusCount": 26
+  },
+  "rows": [
+    {
+      "limit": 2,
+      "query": "trigger index",
+      "exit": 0,
+      "resultCount": 2,
+      "truncated": true,
+      "totalCandidates": 801,
+      "candidatesLine": "candidates : 2 of 801 (truncated) from 1035 phrase(s)",
+      "humanSha256": "c8152689fd5b56536274a54d30f6e37407e554300e279cecb22a7aa536dad418",
+      "medianMs": 84.826
+    },
+    {
+      "limit": 2,
+      "query": "communication quality",
+      "exit": 0,
+      "resultCount": 2,
+      "truncated": true,
+      "totalCandidates": 474,
+      "candidatesLine": "candidates : 2 of 474 (truncated) from 650 phrase(s)",
+      "humanSha256": "0342529892e5178e2110f321baf2966d68f412b23dcb78d762e4ae5f98f4da5a",
+      "medianMs": 84.397
+    },
+    {
+      "limit": 2,
+      "query": "spec folder",
+      "exit": 0,
+      "resultCount": 2,
+      "truncated": true,
+      "totalCandidates": 1614,
+      "candidatesLine": "candidates : 2 of 1614 (truncated) from 1902 phrase(s)",
+      "humanSha256": "5d64e43c8654f1d083218c03f10e9b4b9adfe6f5d23182979afba35e04827f5a",
+      "medianMs": 82.23
+    },
+    {
+      "limit": 2,
+      "query": "deep research strategy",
+      "exit": 0,
+      "resultCount": 2,
+      "truncated": true,
+      "totalCandidates": 2242,
+      "candidatesLine": "candidates : 2 of 2242 (truncated) from 3136 phrase(s)",
+      "humanSha256": "d9044640dac22ad5edd533cf0e6d8e084a2b052380174e4b4784a3b2bb0f297d",
+      "medianMs": 91.044
+    },
+    {
+      "limit": 2,
+      "query": "skill advisor hook",
+      "exit": 0,
+      "resultCount": 2,
+      "truncated": true,
+      "totalCandidates": 2043,
+      "candidatesLine": "candidates : 2 of 2043 (truncated) from 3127 phrase(s)",
+      "humanSha256": "af9aa051a6b45cfb03071b9305a8fe58a3b44299b9bf8aa800162a2d217a4748",
+      "medianMs": 116.58
+    },
+    {
+      "limit": 2,
+      "query": "memory context",
+      "exit": 0,
+      "resultCount": 2,
+      "truncated": true,
+      "totalCandidates": 1181,
+      "candidatesLine": "candidates : 2 of 1181 (truncated) from 1436 phrase(s)",
+      "humanSha256": "f7b62e882c1b29892191aff3501bd7e0e728e969a7bd5a09860a066ee4514bef",
+      "medianMs": 105.137
+    },
+    {
+      "limit": 20,
+      "query": "codesight",
+      "exit": 0,
+      "resultCount": 6,
+      "truncated": false,
+      "totalCandidates": 6,
+      "candidatesLine": "candidates : 6 from 23 phrase(s)",
+      "humanSha256": "5ff6765e318f85fdff0b4715e4c610de742a577d02ea7592795b308798e8907c",
+      "medianMs": 74.162
+    },
+    {
+      "limit": 20,
+      "query": "tombstones",
+      "exit": 0,
+      "resultCount": 12,
+      "truncated": false,
+      "totalCandidates": 12,
+      "candidatesLine": "candidates : 12 from 10 phrase(s)",
+      "humanSha256": "1df38a2c9b3aebf9c219eecd19298e5015124e9e64687efa48985eebe12b4b9a",
+      "medianMs": 73.263
+    },
+    {
+      "limit": 20,
+      "query": "aggregation",
+      "exit": 0,
+      "resultCount": 11,
+      "truncated": false,
+      "totalCandidates": 11,
+      "candidatesLine": "candidates : 11 from 13 phrase(s)",
+      "humanSha256": "8ffa65f0e6891c9870d36c574aa9b3ab6c543b55a4a4d26b63eb8ea277d9eea7",
+      "medianMs": 74.212
+    },
+    {
+      "limit": 20,
+      "query": "cosine",
+      "exit": 0,
+      "resultCount": 11,
+      "truncated": false,
+      "totalCandidates": 11,
+      "candidatesLine": "candidates : 11 from 13 phrase(s)",
+      "humanSha256": "31298fe48950be9c7ecd4ed95fdb8f71adf01d946716911a323a77a17d7931b9",
+      "medianMs": 69.252
+    },
+    {
+      "limit": 20,
+      "query": "graphify",
+      "exit": 0,
+      "resultCount": 6,
+      "truncated": false,
+      "totalCandidates": 6,
+      "candidatesLine": "candidates : 6 from 20 phrase(s)",
+      "humanSha256": "f8c4011bb3a5a86118c9dfa9096aadf15a3f1ea99200100f660193cb21754137",
+      "medianMs": 73.755
+    },
+    {
+      "limit": 20,
+      "query": "contextador",
+      "exit": 0,
+      "resultCount": 7,
+      "truncated": false,
+      "totalCandidates": 7,
+      "candidatesLine": "candidates : 7 from 10 phrase(s)",
+      "humanSha256": "488c2d800dd8a0f8afe318b13dc1d3095c5308a754e4038ae511fb4cddfa9551",
+      "medianMs": 70.626
+    }
+  ],
+  "promptSet": {
+    "cases": 18,
+    "samples": 90,
+    "p50Ms": 96.197,
+    "p95Ms": 129.568
+  }
+}

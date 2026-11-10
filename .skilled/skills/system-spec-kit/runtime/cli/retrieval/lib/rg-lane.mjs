@@ -65,6 +65,9 @@ export const EXIT_MATCH = 0;
 export const EXIT_NO_MATCH = 1;
 export const EXIT_ERROR_FLOOR = 2;
 
+/** Mirrors the trigger lane's result cap. */
+export const DEFAULT_LIMIT = 20;
+
 /** Evidence fields, most specific first; the index doubles as the rank. */
 export const EVIDENCE_FIELDS = Object.freeze([
   'trigger_phrases',
@@ -95,20 +98,6 @@ export const RIPGREP_BIN_ENV = 'SPECKIT_RG_BIN';
  */
 export function structuredRecipe(phrase, roots = DEFAULT_ROOTS) {
   return [...BASE_FLAGS, '--json', ...GLOBS, '--', phrase, ...roots];
-}
-
-/**
- * The structured recipe with one line of evidence per file. A single common
- * token otherwise emits hundreds of megabytes of JSONL, which buys nothing: the
- * caller ranks by file and field, and the second match in a file never changes
- * that. `--max-count` is the same bound the path-only recipe already uses.
- *
- * @param {string} phrase Literal phrase.
- * @param {string[]} [roots] Search roots.
- * @returns {string[]} Argument vector.
- */
-export function structuredCappedRecipe(phrase, roots = DEFAULT_ROOTS) {
-  return [...BASE_FLAGS, '--json', '--max-count', '1', ...GLOBS, '--', phrase, ...roots];
 }
 
 /**
@@ -433,4 +422,55 @@ const MATCH_CLASS_ORDER = Object.freeze(['exact', 'phrase-containment', 'query-c
 function matchClassOrder(matchClass) {
   const rank = MATCH_CLASS_ORDER.indexOf(matchClass);
   return rank === -1 ? MATCH_CLASS_ORDER.length : rank;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 7. SHAPING
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Bounds a ranked list to one row per file, then to `limit` files, and reports
+ * what the cut hid. This is a filter over the tuple's order, not a second
+ * ranker: a path's first appearance is its highest-ranked line, so keeping that
+ * row and slicing the file list leaves the tuple as the lane's only ordering.
+ *
+ * The cut lives after parsing rather than inside ripgrep because `--max-count`
+ * stops a file at its earliest matching line instead of its best-ranked one,
+ * and it would also destroy the per-file totals the elision reports.
+ *
+ * @param {ReturnType<typeof rankMatches>} ranked Ranked evidence, in tuple order.
+ * @param {{ limit?: number }} [options] Shaping context; a limit of 0 lifts the cut.
+ * @returns {{
+ *   fileCount: number,
+ *   hidden: { files: number, matches: number },
+ *   limit: number,
+ *   matchCount: number,
+ *   results: Array<ReturnType<typeof rankMatches>[number] & { moreInFile: number }>
+ * }} Shaped evidence.
+ */
+export function shapeRankedMatches(ranked, options = {}) {
+  const limit = options.limit === undefined ? DEFAULT_LIMIT : options.limit;
+
+  /** @type {Map<string, { count: number, row: ReturnType<typeof rankMatches>[number] }>} */
+  const byPath = new Map();
+  for (const row of ranked) {
+    const entry = byPath.get(row.path);
+    if (entry) entry.count += 1;
+    else byPath.set(row.path, { count: 1, row });
+  }
+
+  const files = [...byPath.values()];
+  const shown = limit === 0 ? files : files.slice(0, limit);
+  const dropped = files.slice(shown.length);
+
+  return {
+    fileCount: files.length,
+    hidden: {
+      files: dropped.length,
+      matches: dropped.reduce((sum, entry) => sum + entry.count, 0),
+    },
+    limit,
+    matchCount: ranked.length,
+    results: shown.map(({ count, row }) => ({ ...row, moreInFile: count - 1 })),
+  };
 }

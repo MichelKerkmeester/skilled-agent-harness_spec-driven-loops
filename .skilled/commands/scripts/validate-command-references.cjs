@@ -129,6 +129,9 @@ function extractViolations(file, rootDir = REPO_ROOT) {
       // A path under the gitignored runtime state root is written while a command runs, so a clean
       // checkout never holds it. The tracked README under it stays checked.
       if (/^\.skilled\/skills\/\.state\//.test(token) && path.basename(token) !== 'README.md') continue;
+      // The deep-loop graph databases are gitignored and built on first use, so a clean checkout
+      // or a fresh worktree holds none of them.
+      if (/^\.skilled\/skills\/system-deep-loop\/runtime\/database\/[^/]+\.sqlite$/.test(token)) continue;
       if (!fs.existsSync(path.join(rootDir, token))) {
         add(lineNo, 'skill-asset', token, 'path does not exist on disk');
       }

@@ -1,0 +1,44 @@
+{
+  "runtime": "devin",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 5024525,
+  "socket": "conv-69458-devin",
+  "session_id": "974ad5c9-c78f-481e-8c01-9aff475f9900",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-491b/devin",
+  "started_at": "2026-11-09T21:30:41.932Z",
+  "finished_at": "2026-11-09T21:31:14.775Z",
+  "adapter": {
+    "bin": "devin",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "rg-flood-control",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "vk2-ledger.md  is the heavy hitter — every line mentions it. The three  qm7-*  files each mention it once, likely just in a title or frontmatter line. Want me to look at the actual context of those",
+      "evidence": "turns/rg-flood-control"
+    }
+  ]
+}

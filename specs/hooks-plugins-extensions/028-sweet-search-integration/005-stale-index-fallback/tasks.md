@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 5: zero-hit fallback to git-changed spec docs"
+title: "Tasks: Phase 5: zero-hit fallback to unindexed spec docs"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "stale index fallback tasks"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 5: zero-hit fallback to git-changed spec docs
+# Tasks: Phase 5: zero-hit fallback to unindexed spec docs
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -31,10 +31,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-read every cited line range in the phase 3 design (`../003-retrieval-feature-design-research/research/iterations/iteration-002.md`). Verify: each range still holds the named code.
-- [ ] T002 Record the test baseline (`.skilled/skills/system-spec-kit/runtime/cli/tests/`). Verify: the retrieval suite's pass and fail counts are written to `scratch/baseline.txt`.
-- [ ] T002a Write the query set and runner (`benchmark/queries.txt`, `benchmark/run.sh`). Verify: `wc -l benchmark/queries.txt` matches the count in `plan.md`.
-- [ ] T002b Run the before benchmark (`benchmark/before.json`). Verify: one row per query, plus the index sha256 and git status count.
+- [x] T001 Re-read every cited line range in the phase 3 design (`../003-retrieval-feature-design-research/research/iterations/iteration-002.md`). Verify: each range still holds the named code. Done: lookup, corpus and frontmatter ranges re-read; discovery redesigned (spec.md section 10).
+- [x] T002 Record the test baseline (`.skilled/skills/system-spec-kit/runtime/cli/tests/`). Verify: the retrieval suite's pass and fail counts are written to `scratch/baseline.txt`. Done: baseline is the phase 4 post-change suite, 4077 passed, 0 failed.
+- [x] T002a Write the query set and runner (`benchmark/queries.txt`, `benchmark/run.mjs`). Verify: `wc -l benchmark/queries.txt` matches the count in `plan.md`. Done: 25 rows.
+- [x] T002b Run the before benchmark (`benchmark/before.json`). Verify: one row per query, plus the index sha256 and git status count (record only). Done: 0/10 stale found, p95 121.1 ms.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,15 +42,15 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Create `lib/changed-docs.mjs` with `gitChangedDocs`, `readDeclaredPhrases` and `findStaleFallback` (`changed-docs.mjs`). Verify: a unit call on a temp git repo with one untracked spec lists it.
-- [ ] T004 Extract the rank comparator and add `lookupWithFallback()`, which calls `lookup()` with `limit: 0`, merges, recomputes `totalCandidates` and `truncated`, then slices (`lookup-trigger-index.mjs`). Verify: `lookup()` tests still pass unchanged.
-- [ ] T005 Add `--no-stale-fallback`, make `main()` async and print the `fallback :` line (`lookup-trigger-index.mjs`). Verify: `--help` usage lists the flag.
-- [ ] T006 Add the section 4 note and replace the section 5 determinism paragraph (`retrieval-conventions.md`), and the README paragraph. Verify: `rg -n 'no-stale-fallback' retrieval-conventions.md` prints a line.
-- [ ] T007 Write the 18-case matrix plus a merged-count case (`stale-fallback.vitest.ts`). Verify: the file passes.
-- [ ] T020 Write the catalog entry and its index row (`feature-catalog/retrieval/stale-index-fallback.md`, `feature-catalog.md`). Verify: `validate_catalog_package.py` exits 0.
-- [ ] T021 Write scenario 490 "Stale trigger index fallback" with a real user request ("I just created a new spec folder. Can you find the packet about "retrieval feature design research" for me?"), commands, expected signals (Before an index rebuild the lookup returns `003-retrieval-feature-design-research/spec.md` with exit 0 and a `fallback :` line; with `--no-stale-fallback` it exits 1) and pass/fail, and add its row to section 7.8 (`manual-testing-playbook/retrieval/stale-index-fallback.md`, `manual-testing-playbook.md`). Verify: `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` exits 0.
-- [ ] T022 Update every README that describes the changed tool (`.skilled/skills/system-spec-kit/README.md`, `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`, `README.md` (root, Gate 1 paragraph at line 521), `.skilled/commands/speckit/README.txt`). Verify: `rg -n` for each new flag or field finds it in each README that lists flags or fields.
-- [ ] T023 Write the changelog entry and bump the skill version (`changelog/v2.12.40.0.md`, `SKILL.md`), plus a line in the open root release notes. Verify: `check-release-coverage.cjs` reports no gap.
+- [x] T003 Export `isExcludedResearchPath` from `lib/corpus.mjs`, and create `lib/unindexed-docs.mjs` with `listUnindexedDocs` and `findStaleFallback` (`unindexed-docs.mjs`). Verify: a unit call on a temp repo with one new spec the index does not list returns it. Done: `unindexed-docs.mjs` (devin).
+- [x] T004 Extract the rank comparator and add `lookupWithFallback()`, which calls `lookup()` with `limit: 0`, merges, recomputes `totalCandidates` and `truncated`, then slices (`lookup-trigger-index.mjs`). Verify: `lookup()` tests still pass unchanged. Done: `lookupWithFallback()` (devin).
+- [x] T005 Add `--no-stale-fallback`, make `main()` async and print the `fallback :` line (`lookup-trigger-index.mjs`). Verify: `--help` usage lists the flag. Done.
+- [x] T006 Add the section 4 note and replace the section 5 determinism paragraph (`retrieval-conventions.md`), and the README paragraph. Verify: `rg -n 'no-stale-fallback' retrieval-conventions.md` prints a line. Done: rg finds the flag in both docs.
+- [x] T007 Write the fallback matrix, adapted to the index-diff discovery, plus a merged-count case (`stale-fallback.vitest.ts`). Verify: the file passes. Done: 22 passed.
+- [x] T020 Write the catalog entry and its index row (`feature-catalog/retrieval/stale-index-fallback.md`, `feature-catalog.md`). Verify: `validate_catalog_package.py` exits 0. Done: validator exit 0.
+- [x] T021 Write scenario 490 "Stale trigger index fallback" with a real user request ("I just created a new spec folder. Can you find the packet about "retrieval feature design research" for me?"), commands, expected signals (Before an index rebuild the lookup returns `003-retrieval-feature-design-research/spec.md` with exit 0 and a `fallback :` line; with `--no-stale-fallback` it exits 1) and pass/fail, and add its row to section 7.8 (`manual-testing-playbook/retrieval/stale-index-fallback.md`, `manual-testing-playbook.md`). Verify: `validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` exits 0. Done: validator exit 0; reseeded to a synthetic packet after alignment finding B1.
+- [x] T022 Update every README that describes the changed tool (`.skilled/skills/system-spec-kit/README.md`, `.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`, `README.md` (root, Gate 1 paragraph at line 521), `.skilled/commands/speckit/README.txt`). Verify: `rg -n` for each new flag or field finds it in each README that lists flags or fields. Done: plus SKILL.md after critic CR-1.
+- [x] T023 Write the changelog entry and bump the skill version (`changelog/v2.12.42.0.md`, `SKILL.md`), plus a line in the open root release notes. Verify: `check-release-coverage.cjs` reports no gap. Done: v2.12.42.0; root release notes v4.0.2.0 are tagged, so no line.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,13 +58,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T030 Run `/local-skilled-alignment :auto --base=<commit before this phase>` on the uncommitted change. Verify: `scope.json` lists only this phase's files and `report.md` exists.
-- [ ] T031 Fix every P0 and P1 finding, and fix or record each P2 (files named in `fix-plan.md`). Verify: each fix is in the diff or each skipped P2 has a reason in `implementation-summary.md`.
-- [ ] T032 Recheck with `/local-skilled-alignment --recheck=<run folder>` and copy `report.md` and `recheck.md` to `alignment/`. Verify: `recheck.md` shows 0 open P0 and P1 findings.
-- [ ] T033 Run the after benchmark and write the comparison (`benchmark/after.json`, `benchmark/results.md`). Verify: the index sha256 and git status count match `before.json`, and every metric row in `plan.md` has a measured value.
-- [ ] T008 Run the full retrieval suite before and after. Verify: no new failures versus the baseline.
-- [ ] T009 Run the measured command from this spec. Verify: exit 0 and the phase 3 spec path in the results.
-- [ ] T010 Validate this phase folder. Verify: `validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+- [x] T030 Run `/local-skilled-alignment :auto --base=<commit before this phase>` on the uncommitted change. Verify: `scope.json` lists only this phase's files and `report.md` exists. Done: 24 files in scope.
+- [x] T031 Fix every P0 and P1 finding, and fix or record each P2 (files named in `fix-plan.md`). Verify: each fix is in the diff or each skipped P2 has a reason in `implementation-summary.md`. Done: see implementation-summary.md.
+- [x] T032 Recheck with `/local-skilled-alignment --recheck=<run folder>` and copy `report.md` and `recheck.md` to `alignment/`. Verify: `recheck.md` shows 0 open P0 and P1 findings. Done: alignment/recheck.md.
+- [x] T033 Run the after benchmark and write the comparison (`benchmark/after.json`, `benchmark/results.md`). Verify: the index sha256 matches `before.json` (the git status count is recorded, not compared, because the build edits are uncommitted during the after run), and every metric row in `plan.md` has a measured value. Done: index sha256 equal; every row met.
+- [x] T008 Run the full retrieval suite before and after. Verify: no new failures versus the baseline. Done: see implementation-summary.md.
+- [x] T009 Run the measured command from this spec. Verify: exit 0 and the phase 3 spec path in the results. Done: exit 0, five 003 docs.
+- [x] T010 Validate this phase folder. Verify: `validate.sh <this folder> --strict` prints `RESULT: PASSED`. Done: RESULT: PASSED.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -72,10 +72,10 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Suite delta versus baseline reported in `implementation-summary.md`
-- [ ] Benchmark table and alignment result copied into `implementation-summary.md`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Suite delta versus baseline reported in `implementation-summary.md`
+- [x] Benchmark table and alignment result copied into `implementation-summary.md`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -109,55 +109,55 @@ contextType: "implementation"
 ## Pre-Implementation
 <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Every cited line range re-read and still matches the phase 3 design (T001)
-- [ ] CHK-002 [P0] `benchmark/before.json` exists with the index sha256 and git status count (T002b)
-- [ ] CHK-003 [P1] Executor preflight passed: `codex login status` and `devin auth status` both report signed in
+- [x] CHK-001 [P0] Every cited line range re-read and still matches the phase 3 design (T001)
+- [x] CHK-002 [P0] `benchmark/before.json` exists with the index sha256 (T002b)
+- [x] CHK-003 [P1] Executor preflight passed: `codex login status` and `devin auth status` both report signed in Done: every codex and devin dispatch completed.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format text --files <changed files>` exits 0
-- [ ] CHK-011 [P0] `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh -- <changed files>` passes: no spec, phase or task ids in comments
-- [ ] CHK-012 [P1] Every new error path exits 2 with a message on stderr, never a silent exit 1
-- [ ] CHK-013 [P1] `npm --prefix .skilled/skills/system-spec-kit run check` passes, run by the conductor outside the codex sandbox
+- [x] CHK-010 [P0] `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format text --files <changed files>` exits 0
+- [x] CHK-011 [P0] `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh -- <changed files>` passes: no spec, phase or task ids in comments
+- [x] CHK-012 [P1] Every new error path exits 2 with a message on stderr, never a silent exit 1 Done: no new error path; a fallback failure degrades to an index-only answer.
+- [x] CHK-013 [P1] `npm --prefix .skilled/skills/system-spec-kit run check` passes, run by the conductor outside the codex sandbox
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] Every row in `acceptance-criteria.md` is `Met` with evidence
-- [ ] CHK-021 [P0] Scenario 490 walked by the testing orchestrator and its PASS verdict recorded
-- [ ] CHK-022 [P1] Each edge case in `spec.md` has a passing test
-- [ ] CHK-023 [P1] Every guardrail row in `benchmark/results.md` meets its target
+- [x] CHK-020 [P0] Every row in `acceptance-criteria.md` is `Met` with evidence
+- [x] CHK-021 [P0] Scenario 490 walked by the testing orchestrator and its PASS verdict recorded
+- [x] CHK-022 [P1] Each edge case in `spec.md` has a passing test
+- [x] CHK-023 [P1] Every guardrail row in `benchmark/results.md` meets its target
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:security -->
 ## Security
 <!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] `benchmark/` and `alignment/` hold no tokens, keys or home-directory secrets
-- [ ] CHK-031 [P0] Every new flag or input is validated and rejects bad values with exit 2
-- [ ] CHK-032 [P1] N/A: the retrieval CLI has no auth surface
+- [x] CHK-030 [P0] `benchmark/` and `alignment/` hold no tokens, keys or home-directory secrets
+- [x] CHK-031 [P0] Every new flag or input is validated and rejects bad values with exit 2 Done: `--no-stale-fallback` takes no value; a scope outside `specs/` is refused, with tests.
+- [x] CHK-032 [P1] N/A: the retrieval CLI has no auth surface
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` name the same fields and flags
-- [ ] CHK-041 [P1] Alignment recheck shows no open S3, S4, S5 or S6 finding
-- [ ] CHK-042 [P2] The open root release notes carry a line for this change
+- [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` name the same fields and flags
+- [x] CHK-041 [P1] Alignment recheck shows no open S3, S4, S5 or S6 finding
+- [x] CHK-042 [P2] The open root release notes carry a line for this change N/A: v4.0.2.0 is tagged, not open.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Temp files live in `scratch/`; benchmark and alignment evidence live in `benchmark/` and `alignment/`
-- [ ] CHK-051 [P1] `scratch/` cleaned and no `.backup-*` folder left before completion
+- [x] CHK-050 [P1] Temp files live in `scratch/`; benchmark and alignment evidence live in `benchmark/` and `alignment/`
+- [x] CHK-051 [P1] `scratch/` cleaned and no `.backup-*` folder left before completion Done.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

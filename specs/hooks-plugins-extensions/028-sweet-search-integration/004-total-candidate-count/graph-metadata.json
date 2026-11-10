@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,16 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "runtime/cli/retrieval/lookup-trigger-index.mjs",
+      "references/retrieval/retrieval-conventions.md",
+      "runtime/cli/tests/trigger-index.vitest.ts",
+      ".skilled/commands/speckit/assets/search-presentation.txt",
+      "feature-catalog/retrieval/trigger-lookup-total-candidates.md",
+      "manual-testing-playbook/retrieval/trigger-lookup-total-candidates.md",
+      "changelog/v2.12.41.0.md",
+      "benchmark/run.mjs",
+      "benchmark/scenario-489/matrix.md",
+      "alignment/recheck.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
       ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts",
-      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/system-spec-kit/README.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
-      ".skilled/skills/system-spec-kit/runtime/data/README.md",
-      "runtime/cli/retrieval/fixtures/prompt-set.json"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts"
     ],
     "entities": [
       {
@@ -98,49 +102,61 @@
       {
         "name": "lookup-trigger-index.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
+        "path": "runtime/cli/retrieval/lookup-trigger-index.mjs",
         "source": "derived"
       },
       {
         "name": "retrieval-conventions.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "path": "references/retrieval/retrieval-conventions.md",
         "source": "derived"
       },
       {
         "name": "trigger-index.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+        "path": "runtime/cli/tests/trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/search-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-lookup-total-candidates.md",
+        "kind": "doc",
+        "path": "feature-catalog/retrieval/trigger-lookup-total-candidates.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.41.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.12.41.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "run.mjs",
+        "kind": "file",
+        "path": "benchmark/run.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "matrix.md",
+        "kind": "doc",
+        "path": "benchmark/scenario-489/matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "recheck.md",
+        "kind": "doc",
+        "path": "alignment/recheck.md",
         "source": "derived"
       },
       {
         "name": "retrieval-coverage-parity.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-set.json",
-        "kind": "config",
-        "path": "runtime/cli/retrieval/fixtures/prompt-set.json",
         "source": "derived"
       },
       {
@@ -190,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Add",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The trigger lookup reports only a `truncated` boolean when it cuts results to `--limit`, so a caller cannot tell 21 candidates from 20,000 or judge whether raising the limit is worth it",
     "created_at": "2026-11-09T16:18:06Z",
-    "last_save_at": "2026-11-09T17:09:37.365Z",
+    "last_save_at": "2026-11-10T06:08:52.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a07e62d2c35e826d57fa6bc8de2dcd5dc7d75cdc231f9877b7aa7e39446dd51f",
+    "source_fingerprint": "sha256:b74e1649ba52ecc0f4710ebdd7e5b3a7f13fc7a0d5eabac29539d920a4eaf5b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2f0f8021ec99514533387cea93dbf25b7579cd6e8c132ac996370f700b851e4",
-      "plan.md": "e2e22eb318769c5c7710352f2267745a6bcf5d3a8c3ff992275d85f34725085b",
-      "tasks.md": "0399b174126e9bae355732478f97633785bf447f91575e63afdad86d025ce760",
-      "implementation-summary.md": "fb56664a7a2308aa31191ec98340b89e1cc87dec2a456d1c279542f8dd1423e3"
+      "spec.md": "54e1f44bed5bde9096505e38cb515931629c436f26369cbfaaa07b1fae734acd",
+      "plan.md": "1ca243e01aa338c5bd4b2e81658d4b6c939ac506c516e8c798149926c53897d2",
+      "tasks.md": "88536be1d1866823b606529e9a7b13ac7ef90126dd7ff434bfa1ea74f235d8eb",
+      "implementation-summary.md": "502c66ea6bde86d72de6abe118e65b97c1d827cff45693cb8d7f9d16fabc3c3d"
     },
     "last_active_at": null
   }

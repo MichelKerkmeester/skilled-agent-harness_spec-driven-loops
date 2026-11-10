@@ -485,7 +485,7 @@ function buildBaseline(input) {
       exitCode: record.exitCode,
       outcome: record.outcome,
       recipe,
-      resultCount: record.results?.length ?? record.paths?.length ?? record.counts?.length ?? 0,
+      resultCount: record.matchCount ?? record.results?.length ?? record.paths?.length ?? record.counts?.length ?? 0,
       stderr: record.stderr.trim(),
     };
   });

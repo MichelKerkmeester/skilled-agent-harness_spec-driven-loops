@@ -1,0 +1,51 @@
+⠀⣴⣾⣶⡄⠀⠀⠀⠀
+⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI
+⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.12.32
+⠀⠻⢿⠿⠃⠀⠀⠀⠀
+
+ Pro · 30% remaining (resets in 5d 13h)
+
+❭ Search the trigger index for spec folder validation strict but only show me the top 2. How many matches did you leave out?
+
+ ✓ Ran hook: bash -c 'cd "${DEVIN_PROJECT_DIR:-$PWD}" && python3 .skilled/skills/sk-code/sk-c… (session_start)
+ ✗ Hook failed: bash -c 'cd "${DEVIN_PROJECT_DIR:-$PWD}" && bash .skilled/bin/git-live-follow.sh… (session_start): Command exited with code 1 Failed
+
+ I'll load the spec-kit skill to find the trigger index mechanics.
+
+ ✓ Invoked skill system-spec-kit
+ ✓ Searched for trigger in ./.skilled/skills/system-spec-kit
+
+ Let me look at the skill's structure to find the trigger index file.
+
+ ✓ fd -i 'trigger' /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-489b/devin/.devin/skills/system-spec-kit --type f | h…
+
+ Found the trigger index at  runtime/data/trigger-index.json  and a lookup script. Let me check the documented usage in SKILL.md.
+
+ ✓ Searched for trigger-index|lookup-trigger|trigger index in ./.skilled/skills/system-spec-kit/SKILL.md
+ ✓ Read lines 1-100 in ./.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs
+
+ The lookup script supports  --limit  and  --json . I'll run it twice — once for the top 2, once uncapped to count total matches.
+
+ ✓ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-489b/devin && node .devin/skills/system-spec-kit/runtime/cli/retri…
+
+ The uncapped run shows  totalCandidates: 1936 . Let me verify how many have a non-zero score and what the capped  --limit 2  output looks like.
+
+ ✓ rg -c '"score": 0' /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/devin-overflows-501/shell-10a67b-c5b7f5abf6bf3dbd/content.txt; rg -n '"score": [^0]' /var/folders/3c/zfqcqsts0kn19cgblj82gqhm000…
+ ✓ cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-489b/devin && node .devin/skills/system-spec-kit/runtime/cli/retri…
+
+ Top 2 matches (of 1,936 total candidates):
+
+   1.  .skilled/skills/system-spec-kit/README.md  — score 0.88 ( query-containment ; phrases: "spec folder", "spec folder workflow", "spec kit")
+   2.  .skilled/changelog/skilled/v1+/v1.2.5.0.md  — score 0 ( partial ; phrase: "folder alignment scoring")
+
+ Left out: 1,934 matches.
+
+ Worth noting: the README hit is the only candidate scoring above zero — everything else in the list is a score-0  partial  admitted by the substring gate. If you ran with  --scoring-only , only that
+ single result would survive.
+
+ ⏺ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-489b/devin
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Find top 2 trigger index matches for st… ─
+❭ Ask Devin to build features, fix bugs, or work on your code
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SWE-2 High · bypass                                                                                                                                                     Context: 36k / 262k tokens (13%)
+

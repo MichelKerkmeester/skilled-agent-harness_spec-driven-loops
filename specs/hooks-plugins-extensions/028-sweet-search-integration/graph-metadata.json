@@ -54,7 +54,10 @@
       "004-total-candidate-count/goal.md",
       "005-stale-index-fallback/goal.md",
       "006-rg-flood-control/goal.md",
-      "runtime/cli/retrieval/fixtures/prompt-set.json"
+      "004-total-candidate-count/scratch/baseline.txt",
+      "runtime/cli/retrieval/fixtures/prompt-set.json",
+      "006-rg-flood-control/benchmark/summary.md",
+      "006-rg-flood-control/alignment/final-recheck.md"
     ],
     "entities": [
       {
@@ -70,9 +73,27 @@
         "source": "derived"
       },
       {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "004-total-candidate-count/scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
         "name": "prompt-set.json",
         "kind": "config",
         "path": "runtime/cli/retrieval/fixtures/prompt-set.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary.md",
+        "kind": "doc",
+        "path": "006-rg-flood-control/benchmark/summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-recheck.md",
+        "kind": "doc",
+        "path": "006-rg-flood-control/alignment/final-recheck.md",
         "source": "derived"
       },
       {
@@ -150,17 +171,17 @@
     ],
     "causal_summary": "Agents working in Skilled and in the project repos Skilled is installed into find code with grep and file reads",
     "created_at": "2026-11-09T11:30:04Z",
-    "last_save_at": "2026-11-09T17:09:27.512Z",
+    "last_save_at": "2026-11-10T06:34:49.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7e843247c0d586f87308589c49b68bd1185a2a03614ec9ff986cb2fc53947d84",
+    "source_fingerprint": "sha256:10bd2323268b8bf27de4bdbe662d6ef4337da0d23eaeddf53834ffbfeed30409",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "74b3d97a4865a6212d18899804c063ec0115c34488e8ccc532777f214b7a84ae"
+      "spec.md": "b4d7e23c547ab50bb9a4b22fc2282a4e2c7dd6b12a07bc27d3976c9f7ccd9987"
     },
     "last_active_child_id": "hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research",
     "last_active_at": "2026-11-09T15:25:53.754Z"

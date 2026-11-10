@@ -6,21 +6,30 @@
 // candidate gate, score classes and scope filter the retired substring trigger
 // lane used, so its recorded results still diff against this lookup.
 //
-// Everything here is synchronous and the import list is deliberately short:
-// the whole point is a single answer from a cold Node process, and every extra
-// module is paid for on every lookup. Parsing the artifact dominates that cost,
-// which is why the partial-substring candidates are scanned out of the phrase
-// keys rather than read from a stored posting list: scanning tens of thousands
-// of short keys costs single-digit milliseconds, while the postings that would
-// answer the same question cost far more to parse on every single lookup.
+// Everything on the index path is synchronous and the import list is
+// deliberately short: the whole point is a single answer from a cold Node
+// process, and every extra module is paid for on every lookup. Parsing the
+// artifact dominates that cost, which is why the partial-substring candidates
+// are scanned out of the phrase keys rather than read from a stored posting
+// list: scanning tens of thousands of short keys costs single-digit
+// milliseconds, while the postings that would answer the same question cost far
+// more to parse on every single lookup. The zero-hit fallback is the one
+// asynchronous path, and it awaits a lazily imported scanner only after the
+// index has failed to score anything.
 //
 // Usage:
 //   node lookup-trigger-index.mjs "<prompt>" [--index <path>] [--spec-folder <scope>]
-//                                 [--limit <n>] [--no-index-hash] [--scoring-only] [--json]
+//                                 [--limit <n>] [--no-index-hash] [--scoring-only]
+//                                 [--no-stale-fallback] [--json]
 //
 // --limit 0 lifts the cap and returns every candidate; the default is 20.
 // --scoring-only drops score-0 partial candidates before the cap. Without it
 // the output keeps them, matching the retired lane's recorded results.
+//
+// On a zero-hit the lookup also scores the declared trigger_phrases of spec
+// docs under specs/ that the index does not list yet (a packet written since
+// the last rebuild); exit 1 then means neither source matched.
+// --no-stale-fallback or an explicit --index keeps the answer index-only.
 //
 // With no --index, an index the caller's own repository carries at
 // <root>/.speckit-index/trigger-index.json, or in the `indexDir` its
@@ -205,6 +214,21 @@ export function specFolderMatches(documentPath, specFolder) {
 }
 
 /**
+ * Orders candidates best score first, then better match class, then path. The
+ * path tiebreak is what keeps the answer stable across runs, since the phrase
+ * scan visits keys in object order.
+ *
+ * @param {{ matchClass: string, path: string, score: number }} a First candidate.
+ * @param {{ matchClass: string, path: string, score: number }} b Second candidate.
+ * @returns {number} Sort comparator result.
+ */
+function compareRanked(a, b) {
+  return (b.score - a.score)
+    || (matchClassRank(a.matchClass) - matchClassRank(b.matchClass))
+    || compareCodeUnits(a.path, b.path);
+}
+
+/**
  * Resolves a prompt against a loaded index.
  *
  * @param {ReturnType<typeof loadIndex>} loaded Result of loadIndex.
@@ -219,6 +243,7 @@ export function specFolderMatches(documentPath, specFolder) {
  *   manifestHash: string,
  *   schemaVersion: number,
  *   candidatePhraseCount: number,
+ *   totalCandidates: number,
  *   truncated: boolean,
  *   results: Array<{ matchClass: string, path: string, phrases: string[], score: number }>
  * }} Candidates ordered best class first, ties broken by path.
@@ -240,6 +265,7 @@ export function lookup(loaded, prompt, options = {}) {
     schemaVersion: loaded.schemaVersion,
     specFolder,
     tokens,
+    totalCandidates: 0,
     truncated: false,
   };
 
@@ -296,13 +322,112 @@ export function lookup(loaded, prompt, options = {}) {
   }));
   // Filtered before the cap so score-0 rows never take a slot and then vanish.
   const ordered = (options.scoringOnly ? ranked.filter((result) => result.score > 0) : ranked)
-    .sort((a, b) => (b.score - a.score)
-    || (matchClassRank(a.matchClass) - matchClassRank(b.matchClass))
-    || compareCodeUnits(a.path, b.path));
+    .sort(compareRanked);
 
+  answer.totalCandidates = ordered.length;
   answer.truncated = limit > 0 && ordered.length > limit;
   answer.results = limit > 0 ? ordered.slice(0, limit) : ordered;
   return answer;
+}
+
+/**
+ * Resolves a prompt against the loaded index, then, only when that finds no
+ * scored candidate, against spec documents the index does not list yet.
+ *
+ * A packet written since the last index rebuild is invisible to the committed
+ * artifact, so a fresh document reads as a clean miss. The fallback is the
+ * answer to that gap, and it stays off the hot path: a hit never imports the
+ * scanner, and a caller that wants index-only behaviour keeps `lookup()`.
+ *
+ * @param {ReturnType<typeof loadIndex>} loaded Result of loadIndex.
+ * @param {string} prompt Raw prompt text.
+ * @param {{
+ *   specFolder?: string | null,
+ *   limit?: number,
+ *   scoringOnly?: boolean,
+ *   staleFallback?: boolean,
+ *   cwd?: string,
+ *   repoRoot?: string,
+ *   indexPath?: string
+ * }} [options] Query options; `staleFallback` enables the unindexed scan,
+ *   `cwd` names the directory whose repository root is searched and `repoRoot`
+ *   names that root directly, for an index whose paths belong to another tree.
+ *   `indexPath` names the artifact `loaded` came from; the scan is skipped when
+ *   that file lies outside the root it would walk.
+ * @returns {Promise<{
+ *   normalizedQuery: string,
+ *   tokens: string[],
+ *   discardedTokens: Array<{ reason: string, token: string }>,
+ *   specFolder: string | null,
+ *   indexHash: string | null,
+ *   manifestHash: string,
+ *   schemaVersion: number,
+ *   candidatePhraseCount: number,
+ *   totalCandidates: number,
+ *   truncated: boolean,
+ *   results: Array<{ matchClass: string, path: string, phrases: string[], score: number }>,
+ *   staleFallback?: { available: boolean, files: number, matches: number, paths: string[], truncated: boolean }
+ * }>} The plain lookup answer when the fallback does not apply, otherwise that
+ *   answer with unindexed matches merged in and `staleFallback` describing the scan.
+ */
+export async function lookupWithFallback(loaded, prompt, options = {}) {
+  const answer = lookup(loaded, prompt, options);
+  if (options.staleFallback !== true) return answer;
+  if (answer.tokens.length === 0) return answer;
+  if (answer.results.some((result) => result.score > 0)) return answer;
+
+  const repoRoot = options.repoRoot ?? callerRepoRoot(options.cwd ?? process.cwd());
+  if (repoRoot === null) {
+    answer.staleFallback = { available: false, files: 0, matches: 0, paths: [], truncated: false };
+    return answer;
+  }
+
+  // An index spells its paths against the tree it lives in. One read from
+  // outside the walked root, such as the packaged index of a linked install,
+  // describes other documents, and every packet of the walked tree would pass
+  // for unindexed.
+  if (options.indexPath !== undefined && !isInsideRoot(options.indexPath, repoRoot)) return answer;
+
+  // Re-run uncapped: the merged set has to be ranked and capped as a whole, or
+  // a fallback row could displace nothing and the cap would be applied twice.
+  const full = lookup(loaded, prompt, { ...options, limit: 0 });
+  const { findStaleFallback } = await import('./lib/unindexed-docs.mjs');
+  const fallback = await findStaleFallback({
+    repoRoot,
+    indexedPaths: new Set(loaded.index.paths),
+    normalizedQuery: full.normalizedQuery,
+    tokens: full.tokens,
+    specFolder: full.specFolder,
+  });
+
+  const merged = new Map(full.results.map((result) => [result.path, result]));
+  for (const result of fallback.results) merged.set(result.path, result);
+  const ranked = Array.from(merged.values()).sort(compareRanked);
+
+  const limit = options.limit === undefined ? DEFAULT_LIMIT : options.limit;
+  full.totalCandidates = ranked.length;
+  full.truncated = limit > 0 && ranked.length > limit;
+  full.results = limit > 0 ? ranked.slice(0, limit) : ranked;
+  full.staleFallback = fallback.staleFallback;
+  return full;
+}
+
+/**
+ * @param {string} filePath File to place.
+ * @param {string} root Directory it should sit under.
+ * @returns {boolean} Whether the file resolves inside the root, links followed.
+ */
+function isInsideRoot(filePath, root) {
+  let realFile;
+  let realRoot;
+  try {
+    realFile = fs.realpathSync(filePath);
+    realRoot = fs.realpathSync(root);
+  } catch {
+    return false;
+  }
+  const relative = path.relative(realRoot, realFile);
+  return relative !== '' && !relative.startsWith('..') && !path.isAbsolute(relative);
 }
 
 /**
@@ -324,7 +449,7 @@ function normalizeSpecFolder(specFolder) {
  * dash is never read as a flag.
  *
  * @param {string[]} argv Arguments after the script name.
- * @returns {{ prompt: string, indexPath: string | undefined, specFolder: string | null | undefined, limit: number, json: boolean, hashIndex: boolean, scoringOnly: boolean }} Parsed invocation.
+ * @returns {{ prompt: string, indexPath: string | undefined, specFolder: string | null | undefined, limit: number, json: boolean, hashIndex: boolean, scoringOnly: boolean, staleFallback: boolean }} Parsed invocation.
  */
 export function parseArgs(argv) {
   const prompts = [];
@@ -335,6 +460,7 @@ export function parseArgs(argv) {
   let json = false;
   let hashIndex = true;
   let scoringOnly = false;
+  let staleFallback = true;
   let literal = false;
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -359,6 +485,10 @@ export function parseArgs(argv) {
       scoringOnly = true;
       continue;
     }
+    if (arg === '--no-stale-fallback') {
+      staleFallback = false;
+      continue;
+    }
     if (arg === '--index' || arg === '--spec-folder' || arg === '--limit') {
       const value = argv[i + 1];
       if (value === undefined) throw new Error(`${arg} requires a value`);
@@ -381,11 +511,11 @@ export function parseArgs(argv) {
   }
 
   if (prompts.length === 0) throw new Error('a prompt is required');
-  return { hashIndex, indexPath, json, limit, prompt: prompts.join(' '), scoringOnly, specFolder };
+  return { hashIndex, indexPath, json, limit, prompt: prompts.join(' '), scoringOnly, specFolder, staleFallback };
 }
 
 /**
- * @param {ReturnType<typeof lookup>} answer Lookup answer.
+ * @param {Awaited<ReturnType<typeof lookupWithFallback>>} answer Lookup answer.
  * @param {string} indexPath Artifact the answer was read from.
  * @param {string | null} ownerRoot Host the artifact belongs to, or null.
  * @returns {string} Human-readable summary.
@@ -402,8 +532,14 @@ function formatAnswer(answer, indexPath, ownerRoot) {
     ...(ownerRoot === null ? [] : [`paths      : relative to ${displayIndexPath(ownerRoot)}`]),
     `index      : ${answer.indexHash ?? '(hash skipped)'}`,
     `manifest   : ${answer.manifestHash || '(none)'}`,
-    `candidates : ${answer.results.length}${answer.truncated ? ' (truncated)' : ''} from ${answer.candidatePhraseCount} phrase(s)`,
+    `candidates : ${answer.results.length}${answer.truncated ? ` of ${answer.totalCandidates} (truncated)` : ''} from ${answer.candidatePhraseCount} phrase(s)`,
   ];
+  const fallback = answer.staleFallback;
+  if (fallback) {
+    lines.push(fallback.available
+      ? `fallback   : ${fallback.files} unindexed doc(s) read, ${fallback.matches} match(es)${fallback.truncated ? ` (capped at the first ${fallback.files} by path)` : ''}`
+      : 'fallback   : unavailable (not a git work tree)');
+  }
   for (const result of answer.results) {
     lines.push(`  ${result.score.toFixed(3)}  ${result.matchClass.padEnd(18)} ${result.path}`);
   }
@@ -438,9 +574,9 @@ export function disownedIndexHint(cwd = process.cwd()) {
 }
 
 /**
- * @returns {number} Process exit code.
+ * @returns {Promise<number>} Process exit code.
  */
-function main() {
+async function main() {
   let args;
   try {
     args = parseArgs(process.argv.slice(2));
@@ -477,10 +613,17 @@ function main() {
     return 2;
   }
 
-  const answer = lookup(loaded, args.prompt, {
+  // An explicit --index pins a specific artifact, so the answer describes that
+  // artifact alone and the unindexed scan would contradict the pin.
+  const answer = await lookupWithFallback(loaded, args.prompt, {
     limit: args.limit,
     scoringOnly: args.scoringOnly,
     specFolder: args.specFolder === undefined ? selection.specFolder : args.specFolder,
+    staleFallback: args.staleFallback && args.indexPath === undefined,
+    // A host's index spells its paths relative to the host, so the unindexed
+    // scan has to walk that same tree for its paths to be comparable.
+    repoRoot: selection.ownerRoot ?? undefined,
+    indexPath: selection.indexPath,
   });
   const displayed = args.json
     ? `${JSON.stringify(answer, null, 2)}\n`
@@ -490,5 +633,7 @@ function main() {
 }
 
 if (isMainModule(import.meta.url)) {
-  process.exitCode = main();
+  main().then((code) => {
+    process.exitCode = code;
+  });
 }

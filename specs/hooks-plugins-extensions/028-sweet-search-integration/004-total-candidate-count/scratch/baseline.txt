@@ -1,0 +1,6 @@
+baseline: system-spec-kit full vitest suite, worktree 335 at 3378c36a06, 2026-11-09
+command: npx vitest run --reporter=dot (cwd .skilled/skills/system-spec-kit)
+Test Files 327 passed | 6 skipped (333)
+Tests 4071 passed | 33 skipped (4104)
+failures: none
+exit 0

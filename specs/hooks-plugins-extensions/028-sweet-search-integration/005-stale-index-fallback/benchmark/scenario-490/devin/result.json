@@ -1,0 +1,44 @@
+{
+  "runtime": "devin",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1247361201,
+  "socket": "conv-97925-devin",
+  "session_id": "00fd3841-d32d-4bf5-94c1-e5a0fdbbc27b",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-490c/devin",
+  "started_at": "2026-11-09T20:23:40.386Z",
+  "finished_at": "2026-11-09T20:24:33.443Z",
+  "adapter": {
+    "bin": "devin",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "stale-index-fallback",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "spec.md (file:///private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/57bcd03f-32c4-439a-a610-ec91a7c3d3ba/scratchpad/conv-490c/devin/specs/demo/001-zr7-ledger/spec.md)",
+      "evidence": "turns/stale-index-fallback"
+    }
+  ]
+}

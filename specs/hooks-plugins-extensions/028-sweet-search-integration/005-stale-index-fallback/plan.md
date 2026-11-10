@@ -1,13 +1,13 @@
 ---
-title: "Implementation Plan: Phase 5: zero-hit fallback to git-changed spec docs"
-description: "When the committed trigger index returns no scored candidate, score the declared trigger phrases of spec docs that git reports as changed, so a newly created or edited packet is findable before the next index rebuild."
+title: "Implementation Plan: Phase 5: zero-hit fallback to unindexed spec docs"
+description: "When the committed trigger index returns no scored candidate, score the declared trigger phrases of spec docs the index does not list yet, so a newly created or edited packet is findable before the next index rebuild."
 trigger_phrases:
   - "stale index fallback plan"
 importance_tier: "normal"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 5: zero-hit fallback to git-changed spec docs
+# Implementation Plan: Phase 5: zero-hit fallback to unindexed spec docs
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -20,13 +20,13 @@ contextType: "implementation"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Node ESM (`.mjs`), git CLI, Vitest |
+| **Language/Stack** | Node ESM (`.mjs`), Vitest |
 | **Framework** | system-spec-kit retrieval CLI |
 | **Storage** | None (reads the committed trigger index and the worktree only) |
 | **Testing** | Vitest under `.skilled/skills/system-spec-kit/runtime/cli/tests/` |
 
 ### Overview
-When the committed trigger index returns no scored candidate, score the declared trigger phrases of spec docs that git reports as changed, so a newly created or edited packet is findable before the next index rebuild. The exact edits, output strings and test cases come from the phase 3 design. About 420-530 lines: a 110-140 line module, about 40 lines of wiring, 26 lines of docs, 250-320 lines of tests.
+When the committed trigger index returns no scored candidate, score the declared trigger phrases of spec docs the index does not list yet, so a newly created or edited packet is findable before the next index rebuild. The output strings and answer shape come from the phase 3 design; discovery changed from `git status` to an index-paths diff to fit the 200 ms budget (see `spec.md` section 10). About 420-530 lines: a 110-140 line module, about 40 lines of wiring, 26 lines of docs, 250-320 lines of tests.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -58,11 +58,11 @@ When the committed trigger index returns no scored candidate, score the declared
 Zero-hit-only fallback behind a wrapper function.
 
 ### Key Components
-- **`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/changed-docs.mjs`**: Git candidate list, frontmatter phrase read, scoring, `MAX_FALLBACK_FILES = 200`
+- **`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs`**: Async `specs/` walk with the generator's pruning, index-paths diff, frontmatter phrase read, scoring, `MAX_FALLBACK_FILES = 500`
 - **`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`**: Usage (17-31), JSDoc (148-159), comparator extraction and `lookupWithFallback()` (before 242), `parseArgs` (264-316), `formatAnswer` (323-338), async `main` (354-384)
 
 ### Data Flow
-`main` calls `lookupWithFallback`; on no scored result it dynamically imports `changed-docs.mjs`, lists changed docs via git, scores their declared phrases, merges by path under the existing rank tuple, then applies `--limit`.
+`main` calls `lookupWithFallback`; on no scored result it dynamically imports `unindexed-docs.mjs`, lists the spec docs the index does not hold, scores their declared phrases, merges by path under the existing rank tuple, then applies `--limit`.
 <!-- /ANCHOR:architecture -->
 
 
@@ -115,9 +115,9 @@ The default lane preset is `opencode-go`. Pass `--lanes=` only if that preset is
 
 **Benchmark (before versus after).** One fixed query set, run on the code before the change and again after it, on the same worktree and index state.
 
-- **Queries:** 25 lookup queries: 10 phrases declared only by docs changed since the last index build, 10 phrases the index already matches, 5 phrases nobody declared. Stored in `benchmark/queries.txt` before the first run, and never edited after.
-- **Runner:** `benchmark/run.sh <before|after>` runs each query 5 times with `--json`, keeps the median wall time, and writes one JSON row per query: query, exit code, result count, the new fields, and time.
-- **Fixed state:** both JSON files record the `trigger-index.json` sha256 and the `git status --porcelain | wc -l` count. If either differs between runs, rerun before.
+- **Queries:** 25 lookup queries: 10 phrases declared only by spec docs the index does not list yet, 10 phrases the index already matches, 5 phrases nobody declared. Stored in `benchmark/queries.txt` before the first run, and never edited after.
+- **Runner:** `node benchmark/run.mjs <before|after>` runs each query 5 times with `--json`, keeps the median wall time, and writes one JSON row per query: query, exit code, result count, the new fields, and time.
+- **Fixed state:** both JSON files record the `trigger-index.json` sha256 and the `git status --porcelain | wc -l` count. The sha256 must match between runs; the count is a record only, since the build edits are uncommitted during the after run.
 - **Display:** `benchmark/results.md` holds this table, filled with measured values, plus the per-query rows:
 
 | Metric | Before | After target |
@@ -134,7 +134,7 @@ The default lane preset is `opencode-go`. Pass `--lanes=` only if that preset is
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-No new package or dependency. Uses Node, ripgrep and git that the retrieval CLI already requires.
+No new package or dependency. Uses Node and the git call the lookup already makes.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -147,7 +147,7 @@ The conductor is the session running the goal. It writes briefs, reviews diffs a
 | Role | Executor | Use for |
 |------|----------|---------|
 | Worker (default) | cli-codex `gpt-6-luna`, `model_reasoning_effort="xhigh"`, `service_tier="fast"`, `--sandbox workspace-write` | Code, test, doc and README edits, one change per brief |
-| Complex worker | cli-devin `deepseek-v4-1-flash-max`, `--permission-mode dangerous` | T003 (`changed-docs.mjs`) and T004 (`lookupWithFallback()` merge), and any task Luna failed twice |
+| Complex worker | cli-devin `deepseek-v4-1-flash-max`, `--permission-mode dangerous` | T003 (`unindexed-docs.mjs`) and T004 (`lookupWithFallback()` merge), and any task Luna failed twice |
 | Testing orchestrator | cli-devin `deepseek-v4-1-flash-max` | T002 baseline, both benchmark runs, scenario walk-through, suite reruns |
 | Fallback 1 | cli-devin `deepseek-v4-1-flash-max` | Any Luna task when codex is down or out of quota |
 | Fallback 2 | cli-pi `opencode-go/deepseek-v4.1-flash`, `--thinking max`, `</dev/null`, `AI_SESSION_CHILD=1` | Any DeepSeek task when devin is down |
@@ -177,10 +177,11 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `lookup-trigger-index.mjs` `main` and the new `lookupWithFallback()` | Producer of the CLI answer and exit code | update | `stale-fallback.vitest.ts` 18-case matrix |
-| `lib/changed-docs.mjs` | New git and frontmatter reader | update (new) | Unit tests on temp git repos |
+| `lookup-trigger-index.mjs` `main` and the new `lookupWithFallback()` | Producer of the CLI answer and exit code | update | `stale-fallback.vitest.ts` matrix |
+| `lib/unindexed-docs.mjs` | New walk and frontmatter reader | update (new) | Unit tests on temp git repos |
+| `lib/corpus.mjs` `isExcludedResearchPath` | Generator's research-file rule | update: exported, body unchanged | `retrieval-coverage-parity.vitest.ts` and generator tests pass unchanged |
 | `runtime/cli/core/workflow.ts:287` | Imports `lookup()` directly | unchanged: `lookup()` keeps its behavior; the fallback lives only in the CLI path | Existing `lookup` tests pass unchanged |
-| `doctor-speckit-retrieval.yaml` (exit-class probe and 200 ms p95 budget) | Runs the CLI over `fixtures/prompt-set.json` | unchanged if the budget holds; stop and ask if it does not | Benchmark p95 row and the doctor probe |
+| `doctor-speckit-retrieval.yaml` (exit-class probe and 200 ms p95 budget) | Runs the CLI over `fixtures/prompt-set.json`; `measure-cold-lookup.mjs` passes `--index`, so the fallback never runs inside the doctor's own budget probe | unchanged if the budget holds; stop and ask if it does not | Benchmark p95 row and the doctor probe |
 | AGENTS.md Gate 1, `/speckit:search`, `/speckit:resume` YAMLs | Read exit 1 as a clean no-hit | unchanged: exit 1 still means nothing found in either source | Grep each for `exit 1` |
 
 Required inventories:

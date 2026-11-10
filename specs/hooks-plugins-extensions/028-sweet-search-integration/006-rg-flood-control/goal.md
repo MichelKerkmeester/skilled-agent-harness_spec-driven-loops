@@ -56,12 +56,12 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `npx vitest run` from `.skilled/skills/system-spec-kit` on `rg-wrapper-recipes.vitest.ts` and `retrofit-convention-pipeline.vitest.ts` exits 0
-- [ ] The spec's measured query returns 14 rows, one per file, with `schemaVersion: 2`, and `rg -n structuredCappedRecipe .skilled` prints nothing
-- [ ] `benchmark/results.md` shows at most 1 row per file and hidden counts on 8/8 queries that hid anything
-- [ ] Both package validators exit 0 with scenario 491 present, and the `/local-skilled-alignment` recheck shows 0 open P0 and P1 findings
-- [ ] `benchmark/summary.md` holds the before and after tables of phases 004, 005 and 006 with measured values
-- [ ] `validate.sh` on this phase prints `RESULT: PASSED` and every `acceptance-criteria.md` row is `Met`
+- [x] `npx vitest run` from `.skilled/skills/system-spec-kit` on `rg-wrapper-recipes.vitest.ts` and `retrofit-convention-pipeline.vitest.ts` exits 0
+- [x] The spec's measured query returns 14 rows, one per file, with `schemaVersion: 2`, and `rg -n structuredCappedRecipe .skilled` prints nothing
+- [x] `benchmark/results.md` shows at most 1 row per file and hidden counts on 8/8 queries that hid anything
+- [x] Both package validators exit 0 with scenario 491 present, and the `/local-skilled-alignment` recheck shows 0 open P0 and P1 findings
+- [x] `benchmark/summary.md` holds the before and after tables of phases 004, 005 and 006 with measured values
+- [x] `validate.sh` on this phase prints `RESULT: PASSED` and every `acceptance-criteria.md` row is `Met`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,11 +79,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning docs | Done | Level 2 spec, plan, tasks, acceptance criteria |
-| Build | Pending |  |
+| Build | Done | Shaping, `--limit`, schema 2, tests; suite, validators and recheck in implementation-summary.md |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Human view | Still cut at 20 rows after shaping; fixed with a test proven by mutation |
+| Alignment | 11 findings; presentation, scenario check, safe-integer limit and README fixes; C-002 and BAT-01 kept as P2 |
+| Benchmark | 14 files shown on the measured query, 8/8 queries report what they hid, median -1.4% |
 <!-- /ANCHOR:log -->

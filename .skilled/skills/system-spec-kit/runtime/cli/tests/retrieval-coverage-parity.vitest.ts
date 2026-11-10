@@ -98,6 +98,14 @@ const SCOPED_DIVERGENCES: ReadonlyArray<{
     ripgrepExcludes: false,
     triggerIndexExcludes: true,
   },
+  {
+    name: 'specs/**/research/** (except a numbered packet\'s or phase\'s research/research.md)',
+    reason:
+      'the trigger index indexes only the synthesis document and prunes the rest of that research tree because it is run output, '
+      + 'not authored content; ripgrep is a raw evidence lane and must still reach iteration logs and prompt renders',
+    ripgrepExcludes: false,
+    triggerIndexExcludes: true,
+  },
 ]);
 
 // ───────────────────────────────────────────────────────────────────
@@ -143,6 +151,8 @@ describe('exclusion coverage parity', () => {
       'specs/t/001-p/research/iterations/x.md',
       'specs/t/001-p/research/research.md',
       'specs/t/001-p/002-c/research/x.md',
+      'specs/t/001-p/002-c/research/research.md',
+      'specs/t/001-p/research/prompts/x.md',
     ];
 
     try {
@@ -157,6 +167,8 @@ describe('exclusion coverage parity', () => {
       expect(files).not.toContain(expectedFiles[1]);
       expect(files).toContain(expectedFiles[2]);
       expect(files).not.toContain(expectedFiles[3]);
+      expect(files).toContain(expectedFiles[4]);
+      expect(files).not.toContain(expectedFiles[5]);
     } finally {
       fs.rmSync(repoRoot, { recursive: true, force: true });
     }
@@ -184,7 +196,7 @@ describe('exclusion coverage parity', () => {
     }
   });
 
-  it('keeps the two named scoped divergences exactly as documented, no more and no fewer', () => {
+  it('keeps the three named scoped divergences exactly as documented, no more and no fewer', () => {
     // lineages: excluded by the trigger index under a research parent anywhere, and
     // under specs/ whatever artifact directory the fan-out runner wrote it into.
     expect(isExcludedDirectory('lineages', 'research', 'track/research/lineages')).toBe(true);
@@ -197,7 +209,7 @@ describe('exclusion coverage parity', () => {
     expect(isExcludedDirectory('fixtures', 'x', 'other/track/fixtures')).toBe(true);
     expect(isExcludedDirectory('fixtures', 'x', 'specs/track/fixtures')).toBe(false);
 
-    // Neither scoped exclusion is a flat directory name ripgrep's glob set
+    // None of the scoped exclusions is a flat directory name ripgrep's glob set
     // negates - that is exactly the divergence SCOPED_DIVERGENCES records.
     const ripgrepFlatNames = ripgrepUniversalExclusions(GLOBS);
     expect(ripgrepFlatNames, 'ripgrep must not have converged the research/lineages divergence silently')

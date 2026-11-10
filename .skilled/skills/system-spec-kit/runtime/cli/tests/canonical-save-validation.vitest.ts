@@ -19,7 +19,8 @@ const ROOT_026 = path.join(
   '..',
   'specs',
   'system-speckit',
-  '026-graph-and-context-optimization',
+  'memory-search-and-knowledge',
+  '001-graph-and-context-optimization',
 );
 const createdRoots = new Set<string>();
 
