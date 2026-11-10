@@ -142,7 +142,7 @@ and findings belong here.
 | 008 git-setup-check | Phase 002's `dualPlugin(...)` wrapper hid the git adapter from `/doctor:git`; fixed in 008 (decision 12) |
 | 008 Q1 held | `/doctor:opencode` stays a script: a command file needs its route entry and catalog rows, which wait for the operator (008 decisions 4 and 15) |
 | 009 model call | The live v2 `/vision` check ran one unapproved llmgateway turn, USD 0.0037, because the private server's config was not isolated; the fixture probes may have run four more (009 decision 9). Later probes isolate XDG_CONFIG_HOME |
-| 009 cross-packet edit | One census row in `specs/system-deep-loop/036-deep-loop-innovation/` changed so a projection test matches the moved manifest path (009 decision 7) |
+| 009 cross-packet edit | One census row in `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/` changed so a projection test matches the moved manifest path (009 decision 7) |
 | 010 SKILL.md word limit | Phase 006 had taken SKILL.md past its 5,000-word limit; 010 cut it to 4,899, so phase 011's verification line has about 100 words of room (010 decision 11) |
 | 010 routing manifest | SKILL.md bytes feed the hub's compiled routing policy, so 010 re-minted the live manifest and its authored copy under `specs/sk-doc/z_archive/` (010 decision 14); any later SKILL.md edit, phase 011's included, needs the same re-mint |
 | 010 v2 twins unrun | The OpenCode 2 doc twins come from saved help; none was dispatched in 010. v2 `--agent` routing was later verified live in 011 (011 decision 10) |

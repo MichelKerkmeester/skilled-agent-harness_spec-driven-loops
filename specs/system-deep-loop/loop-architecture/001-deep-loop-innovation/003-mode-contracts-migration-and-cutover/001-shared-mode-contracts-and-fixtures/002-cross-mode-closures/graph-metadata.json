@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-mode closures",
+      "shared deep-loop mode closures",
+      "phase 012 closure modules",
+      "deep-loop shared behavior hoisting",
+      "cross-mode closures implementation plan",
+      "deep-loop shared closure plan",
+      "phase 012 closure implementation",
+      "cross-mode closures tasks",
+      "deep-loop shared closure tasks",
+      "phase 012 closure fixtures",
+      "cross-mode closures implementation",
+      "shared closure verification evidence"
+    ],
+    "key_topics": [
+      "cross-mode",
+      "closures",
+      "shared",
+      "deep-loop",
+      "mode",
+      "phase",
+      "closure",
+      "modules",
+      "behavior",
+      "hoisting",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Closures",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "service",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "shipped",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "raw",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "unreduced",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Shared Owners",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-013 mode migrations share one implementation while retaining explicit mode-owned policies and state reducers.",
+    "created_at": "2026-07-16T03:43:54.270Z",
+    "last_save_at": "2026-11-10T05:40:32.870Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a92cf81c8ee1613213841208f386a680718241d5afefab88210452bc7f042d96",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c6e26d478306f52534eb68793a180b438f8e049586b85c458670847ce1af939e",
+      "plan.md": "03710031db0e10e56d6e6e2ebc7388ff708717054441d1bfee3d17dbddc1318b",
+      "tasks.md": "8c80c454d991a213518f46210899a6fe2ea02004c877cd3fbfdde4888546715f",
+      "implementation-summary.md": "0251ff5a22a91a897fc8b8ed9da507d7662d28f5348020b6af15c37124fdb96b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

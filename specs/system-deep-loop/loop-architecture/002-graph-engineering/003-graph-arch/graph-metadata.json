@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/002-graph-engineering/003-graph-arch",
+  "spec_folder": "system-deep-loop/loop-architecture/002-graph-engineering/003-graph-arch",
+  "parent_id": "system-deep-loop/loop-architecture/002-graph-engineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "graph-arch grapharc governance",
+      "graph-based deep loop admission policy",
+      "organization policy deep loop",
+      "grapharc repo study",
+      "grapharc governance plan",
+      "graph-based deep loop plan 3",
+      "repo study 3 plan",
+      "grapharc governance tasks",
+      "graph-based deep loop tasks 3",
+      "repo study 3 tasks",
+      "grapharc governance summary",
+      "graph-based deep loop summary 3"
+    ],
+    "key_topics": [
+      "graph-arch",
+      "grapharc",
+      "governance",
+      "graph-based",
+      "deep",
+      "loop",
+      "admission",
+      "policy",
+      "organization",
+      "repo",
+      "study",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "orientation.md",
+      "research/verification-deepseek-v4-pro.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-plain-language.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orientation.md",
+        "kind": "doc",
+        "path": "orientation.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-deepseek-v4-pro.md",
+        "kind": "doc",
+        "path": "research/verification-deepseek-v4-pro.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-plain-language.md",
+        "kind": "doc",
+        "path": "research/findings-plain-language.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Deep",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Study",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Previous Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Studies 1 (agent-swarms) and 2 (graphene-main) produced the graph-based deep-loop design and its executable contracts, but neither deeply studied the GOVERNANCE plane — admission, organization policy, approvals, and audit",
+    "created_at": "2026-08-13T23:26:39.806Z",
+    "last_save_at": "2026-11-10T05:41:01.370Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:409d7806d290f16f9d9e4bb9955a8d2065b9b9364822b5d5f65278591e9ac6f1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cfc7ebb313adf3af171f433666e49b432c78182459e280ad78d7f925169e3a67",
+      "plan.md": "0bc96ce9af53e9fbd9b25967f79907cbd2407db405bc842420a24961d07cf309",
+      "tasks.md": "02171684a62ce4877e74f6089edc4edbb6564932ab453552422026da5b04547e",
+      "implementation-summary.md": "989e4b892024c8de33a8a74b15acb74011c83e1b8a9f3fc96e628c65e6288eb6",
+      "research/research.md": "7907e1d78ac23108f8614c8224b3f8ce1baea6671659311db73b8e529ec3a0a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

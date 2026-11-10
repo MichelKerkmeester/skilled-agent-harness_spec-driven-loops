@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research resume adapter",
+      "deep-research ledger resume",
+      "deep research idempotent re-entry",
+      "deep research continuity ladder",
+      "deep research resume adapter implementation plan",
+      "deep-research idempotent resume plan",
+      "deep research resume adapter tasks",
+      "deep-research idempotent resume tasks",
+      "deep research effect confirmation binding",
+      "resume adapter forged confirmation",
+      "deep research effect compensation reachability",
+      "deep research resume adapter implementation"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "resume",
+      "adapter",
+      "deep-research",
+      "ledger",
+      "idempotent",
+      "re-entry",
+      "continuity",
+      "ladder",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fifth Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deep Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-driven",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Resume Effect Evidence",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Trusted Effect Outcomes",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Intent Event",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Deep Research resume adapter rebuilds interrupted live state from the sealed typed ledger through the frozen reducers, maps continuity to typed lifecycle state, and re-enters idempotently without replaying semantic work.",
+    "created_at": "2026-07-16T03:43:31.450Z",
+    "last_save_at": "2026-11-10T05:40:33.040Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9b81eb296baf38194bcf9015944ac1fac6a901384dabc971decceeab1ffd95e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f9acd28a94659d7c804056cb3c9e319619e3c5877e6eaf11e07be0a2d618072c",
+      "plan.md": "39b78fe356e34fc8b02064a925f6887cca164a35968c85f279b7c4ecf924169e",
+      "tasks.md": "fdab54139bb35ab617cd83292e7c0da88454a5f64f7a531c7e17dba585563228",
+      "decision-record.md": "2d5002c9d01a40216d90c5a5f0f1a9598991fb91a4c770384187c649ee3e9e56",
+      "implementation-summary.md": "2fc822bf15cb1a846799c604ab179d65a1c8700bea16dbc15607b40a71981304"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

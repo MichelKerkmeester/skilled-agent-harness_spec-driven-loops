@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/015-gateway-contract-remediation",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/015-gateway-contract-remediation",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gateway contract remediation",
+      "state-write contract contradiction fix",
+      "prompt-pack direct append fix",
+      "review alignment projection refresh",
+      "check-agent-gateway fail closed",
+      "gateway contract remediation plan",
+      "gateway contract remediation tasks",
+      "gateway contract remediation adr",
+      "single canonical state-write path decision",
+      "projection refresh vs gateway receipt decision",
+      "gateway contract remediation implementation summary"
+    ],
+    "key_topics": [
+      "gateway",
+      "contract",
+      "remediation",
+      "state-write",
+      "contradiction",
+      "prompt-pack",
+      "direct",
+      "append",
+      "review",
+      "alignment",
+      "projection",
+      "refresh"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".pi/mcp.json",
+      ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+      ".opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+      ".opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".pi/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gateway State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Contract Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Format Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
+    "created_at": "2026-08-25T17:42:50.623Z",
+    "last_save_at": "2026-11-10T05:40:58.744Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:09ec30b95eb175991b985138becabc1d09e8d45e012cef307636480b6ea28a15",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c48bfcd89853e0fb8a9afe002645e68f8aa761c7ef0d2ce155043c912d2c4b2e",
+      "plan.md": "290f63e3cf68891a1421aee1f93ea2bcc076fd3417b83dcc549991b1cb228c10",
+      "tasks.md": "d35513514076cda2bb3ac0340829720b74aa7e1dad69bb44f2f77ce0f9a04d7f",
+      "decision-record.md": "50ec1e7962299a5a5718852e98f40d4ccbb687cd665497e86dd15c34f5d2d5e9",
+      "implementation-summary.md": "85708f36e40abe1ce6fd609f4a20410598f9049c985f424f50e96e4a240c6bcf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

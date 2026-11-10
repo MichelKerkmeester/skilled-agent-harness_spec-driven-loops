@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "write containment deletes untracked files",
+      "deep-loop containment data loss",
+      "run research on dirty tree",
+      "write containment plan",
+      "preserve untracked containment fix",
+      "fatal advisory split fanout",
+      "write containment tasks",
+      "preserve untracked task list",
+      "write containment fix shipped",
+      "preserve untracked implementation summary",
+      "fatal advisory split delivered"
+    ],
+    "key_topics": [
+      "write",
+      "containment",
+      "deletes",
+      "untracked",
+      "files",
+      "deep-loop",
+      "data",
+      "loss",
+      "run",
+      "research",
+      "dirty",
+      "tree"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Containment Concurrent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Writer Safety",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Closeout",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop codex write-containment guard (`write-containment.ts`) confines a `cli-codex` leaf's writes to its artifact directory by diffing the git working tree after each dispatch: any out-of-scope path that is dirty after the dispatch but was not in the pre-dispatch baseline is treated as a leaf violation, reverted, and used to fail the iteration fail-closed",
+    "created_at": "2026-08-06T07:57:25.961Z",
+    "last_save_at": "2026-11-10T05:40:49.550Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a3e4b57221e3659b80f727e64474244334a10e77f8ea5c65178594460e572b6d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cfb8e6022619a71c64788f8ae6ccb3ed4c11ce23a13a8b072df72e85cba0ae8d",
+      "plan.md": "ec5b987f9a53345d7d4a33b230e5095dbf873e30be04854bf4732658ae618cc2",
+      "tasks.md": "4df577e9a5b6b8f886d1ce8c2718c459c6106e8ee5a595826ee26ef1e6e52086",
+      "implementation-summary.md": "b550f7504db071ff8603d9370778b253eff91a47886a4f0f31087b09bd3f20b3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

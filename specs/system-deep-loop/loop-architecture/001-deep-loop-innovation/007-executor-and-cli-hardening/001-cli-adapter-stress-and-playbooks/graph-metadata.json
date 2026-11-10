@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli adapter stress tests",
+      "deep-loop executor adapter coverage",
+      "fan-out stress testing",
+      "external CLI manual testing playbook",
+      "stdin hang adapter regression"
+    ],
+    "key_topics": [
+      "cli",
+      "adapter",
+      "stress",
+      "tests",
+      "deep-loop",
+      "executor",
+      "coverage",
+      "fan-out",
+      "testing",
+      "external",
+      "manual",
+      "playbook"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      "runtime/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex-dispatch.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Six External",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Adapters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Orchestration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seven Vitest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The adapter family has a wide failure surface that is not safely covered by one green unit suite",
+    "created_at": "2026-08-07T07:50:32Z",
+    "last_save_at": "2026-11-10T05:40:48.604Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6b9a07524a5e5a3db0ede0fc089973c29bee22bb8960c3d27e58f69cc56d2f72",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "52dd7f2060e247368e9b56412b9a0777805728b6ac5291ea001e6b2b36c7a10f",
+      "plan.md": "858d7d267cbaa16ebf3547f74bfb1381520a5437cf905fbbaa372541673de382",
+      "tasks.md": "5195babf71aeaa8880070922545c609d5467a842f791c425e088d4772030c014",
+      "decision-record.md": "c19037261ffd7b5c5db4fde488df00dd9f8a8d880693d88bf4870f24fe9e3ebc",
+      "implementation-summary.md": "d42d981e104c55bedfab5bba8a50e5f88f069c1dddc2070bed751e4823309bd5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

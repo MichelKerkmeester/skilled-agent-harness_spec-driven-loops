@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "semantic communities",
+      "concept-level novelty",
+      "semantic claim deduplication",
+      "semantic communities implementation plan",
+      "concept-level novelty implementation",
+      "semantic communities tasks",
+      "concept-level novelty tasks",
+      "semantic communities architecture",
+      "semantic projection decision",
+      "semantic communities implementation",
+      "semantic communities verification"
+    ],
+    "key_topics": [
+      "semantic",
+      "communities",
+      "concept-level",
+      "novelty",
+      "claim",
+      "deduplication",
+      "implementation",
+      "plan",
+      "tasks",
+      "architecture",
+      "projection",
+      "decision"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-communities.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Communities",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept while legacy graph novelty remains authoritative.",
+    "created_at": "2026-07-16T03:43:51.399Z",
+    "last_save_at": "2026-11-10T05:40:29.653Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e90b2a3f8eb0b80fe0a78191dea1cc1b6b14530fe129e37d1d65e7643108d9a6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0a3ba0c7d7eeebfc698a6c10923c94e7aeed216947e90ae338f5165d9beeaaae",
+      "plan.md": "c5682fc98d9c9f264fedc7903a433ee3cef924b0011ccd653ccfc721c31d3ef0",
+      "tasks.md": "b631c3a997c937455dc7d550b41f6d04526dbf57b9c5e4d4392b031f5207f08f",
+      "decision-record.md": "9bb7a4bc0f0c9bf8035528815bbe893722d8f9192316daa4b721f721b8f1c5f1",
+      "implementation-summary.md": "d25795743e0b645c7740e704b33d145041f10ea296fcd819336dc3ded345dc4c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

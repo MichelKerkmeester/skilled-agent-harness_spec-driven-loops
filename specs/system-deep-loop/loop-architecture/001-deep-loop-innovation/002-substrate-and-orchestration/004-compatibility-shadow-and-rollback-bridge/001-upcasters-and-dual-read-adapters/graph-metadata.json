@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop upcasters and dual-read adapters",
+      "legacy and dark ledger reconciliation",
+      "single-authoritative-write shadow adapter",
+      "upcaster and dual-read adapter implementation plan",
+      "deep-loop shadow compatibility implementation",
+      "upcaster and dual-read adapter tasks",
+      "deep-loop compatibility shadow tasks",
+      "upcaster dual read adapter implementation",
+      "compatibility shadow runtime evidence"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "upcasters",
+      "dual-read",
+      "adapters",
+      "legacy",
+      "dark",
+      "ledger",
+      "reconciliation",
+      "single-authoritative-write",
+      "shadow",
+      "adapter",
+      "upcaster"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Adapters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "input",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frozen Inputs",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan deterministic event and state upcaster chains plus dual-read/single-authoritative-write adapters that reconcile legacy state with the dark ledger while legacy remains canonical and every compatibility action stays reversible.",
+    "created_at": "2026-07-16T03:43:48.404Z",
+    "last_save_at": "2026-11-10T05:40:29.262Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1d556e2a31c2e9e69667c8a8c9ca4bd8c7c1288ee798561fb02ab7f66a9f11a0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ac97c73324d164b9b42c5a7a5df22561120b1305db97d1f5f92008705fba8520",
+      "plan.md": "592777cf49597f2a9ec85ea9f40aea913fb36984eb9cc535dc9065b0046ff0f3",
+      "tasks.md": "f36b5bf26610a548819ae5b261df0ccbcfd1e0c2f22ae8f4642bd603194a6a6f",
+      "implementation-summary.md": "4afc9ef74c4f684d23b37b40074cf49aec5680e4bfa1df55c91ab032f78dbc8e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

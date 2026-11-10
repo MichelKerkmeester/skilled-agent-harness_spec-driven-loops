@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Skill Benchmark certificates and receipts",
+      "skill effect certificate",
+      "skill benchmark receipt verification",
+      "Skill Benchmark certificates and receipts implementation plan",
+      "skill benchmark effect certificate plan",
+      "skill benchmark offline verifier plan",
+      "Skill Benchmark certificates and receipts tasks",
+      "skill effect certificate tasks",
+      "skill benchmark receipt tasks",
+      "skill benchmark certificates implementation",
+      "skill-benchmark receipt issuer",
+      "skill benchmark offline certificate verification"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "certificates",
+      "receipts",
+      "effect",
+      "certificate",
+      "receipt",
+      "verification",
+      "implementation",
+      "plan",
+      "offline",
+      "verifier"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Certificates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pin Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "task",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay inputs, validity domains, and transition outcomes while leaving shared services single-sourced and independently verifiable offline.",
+    "created_at": "2026-07-16T03:43:41.856Z",
+    "last_save_at": "2026-11-10T05:40:39.241Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a4bb80202ccac01ffb4310d623ae5b5e669eaff34ca09dc4be0c60c015e366f8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "38597fc6aa5cbb52f0cb8b258e97702e7f329d4e20b06d2eaff2980ca15325a5",
+      "plan.md": "eaf949d3a47dd810ab9c5b61e665a9a545bfae9770b3c585d3fdb30e7794dc83",
+      "tasks.md": "28b89dd4f8d9c93d6268976079f5aedcda5d6f14d8df7d56b7b5a302cd6d69c1",
+      "implementation-summary.md": "42ddba102938c83ea36249a75dde2631af41dbe0accd7e7684228a276d45e149"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

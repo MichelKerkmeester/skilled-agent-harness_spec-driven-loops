@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment multi executor",
+      "alignment cli opencode",
+      "alignment convergence mode off",
+      "deep alignment implementation plan",
+      "alignment cli opencode plan",
+      "forced alignment iterations",
+      "deep alignment tasks",
+      "alignment executor implementation",
+      "alignment convergence tasks",
+      "deep alignment implementation summary",
+      "alignment cli opencode result",
+      "alignment convergence mode result"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "multi",
+      "executor",
+      "cli",
+      "opencode",
+      "convergence",
+      "mode",
+      "implementation",
+      "plan",
+      "forced",
+      "iterations"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-review-auto.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Multi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Allow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Adapt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Autonomous",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:alignment` had a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supported cli-opencode",
+    "created_at": "2026-07-23T04:55:05.803Z",
+    "last_save_at": "2026-11-10T05:40:50.918Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c82f0108f98e576323dc12fd3128465185172461491397c2c8f36181d4bba7a2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83aa1e03b2a7963ffe4af89939f065544917eea2c86c875af55210c9c2f18772",
+      "plan.md": "88210469485cb22d5e44e772943c7e207905ac2466eb61482785b8b9c3e9d815",
+      "tasks.md": "43b0ae523a17a4ab4ebe1a9e1274bacedd4883ed5eeb857fb15a9c077b53cc21",
+      "implementation-summary.md": "c26ceb79017ba1f0d6ec0df670e8d47b2ccae77732e97a15f68646a1e774490c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

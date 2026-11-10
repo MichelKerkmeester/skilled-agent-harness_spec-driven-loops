@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Skill Benchmark resume adapter",
+      "skill-benchmark sealed-ledger resume",
+      "idempotent skill benchmark re-entry",
+      "skill scenario scoring resume",
+      "Skill Benchmark resume adapter implementation plan",
+      "sealed ledger skill benchmark resume plan",
+      "skill scenario idempotent re-entry plan",
+      "Skill Benchmark resume adapter tasks",
+      "sealed ledger skill benchmark resume tasks",
+      "skill scenario re-entry task set",
+      "Skill Benchmark resume adapter implementation",
+      "skill benchmark resume decision"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "resume",
+      "adapter",
+      "skill-benchmark",
+      "sealed-ledger",
+      "idempotent",
+      "re-entry",
+      "scenario",
+      "scoring",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Contribution Certificate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-004",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "filesystem",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "version",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Resume Adapter",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and adds only Skill Benchmark scenario and scoring logic.",
+    "created_at": "2026-07-16T03:43:42.100Z",
+    "last_save_at": "2026-11-10T05:40:39.311Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:37c2193754bbf31b57ae26919e48aee76cf2230342e8b1f1078dff077ebd5ee2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "603d49c2e0544c79f2a4984ee3ff4593fe21c3b27eb275bc7cd78ff060e6044b",
+      "plan.md": "662859cf0251eb672fc53a57426162f2daf41c4a6cd3d581b2a9b2cd6f553840",
+      "tasks.md": "3183e5c17f7e827e1076de971eed2f3ca7d4fd946ec0bd4bc59fbc3b480a9cfb",
+      "implementation-summary.md": "90592736b49d868ca1849d5a7b4437214b87d5b7927b3272e0ae9e940fa524dc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -27,7 +27,7 @@ The run's most valuable output is not a Ponytail idea. Checking sk-code against 
 2. A change touching only Codex agent files passes the mirror check in CI and at commit time. Reproduced.
 3. The stack-folder scenario's index row and expected output are stale. The validator is right.
 4. The shared hook stdin reader, and the post-edit hooks' own copy of it, have no deadline.
-5. The deep-research reducer wrote to the wrong folder inside fan-out lineages. Fixed in `specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path`.
+5. The deep-research reducer wrote to the wrong folder inside fan-out lineages. Fixed in `specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/006-research-lineage-reducer-path`.
 
 The surface precedence contradiction matters more than the first synthesis said. Two files that load on every sk-code route state different precedence orders.
 
@@ -317,7 +317,7 @@ Phase numbers continue the parent packet. Each phase is a child of `specs/sk-cod
 - Lineage reports: `research/lineages/luna-max-fast/research.md`, `research/lineages/deepseek-flash-cline/research.md`
 - Merge attribution: `research/fanout-attribution.md`
 - Earlier refinement: `specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md`
-- Reducer fix: `specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path/`
+- Reducer fix: `specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/006-research-lineage-reducer-path/`
 - Ponytail source: `specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/context/`
 
 ---

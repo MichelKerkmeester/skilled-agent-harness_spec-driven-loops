@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research enablement",
+      "pilot mode authority move",
+      "protocol migration to gateway",
+      "deep-research enablement plan",
+      "pilot flip plan",
+      "deep-research enablement tasks",
+      "pilot flip tasks",
+      "deep-research enablement summary",
+      "pilot flip blocked",
+      "authority flip edge missing"
+    ],
+    "key_topics": [
+      "deep-research",
+      "enablement",
+      "pilot",
+      "mode",
+      "authority",
+      "move",
+      "protocol",
+      "migration",
+      "gateway",
+      "plan",
+      "flip",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-postflip-fanout.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Enablement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "bindings",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "negative",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "empty",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep-research state is produced by agents following prose",
+    "created_at": "2026-08-19T06:57:07.880Z",
+    "last_save_at": "2026-11-10T05:40:55.758Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df0434910949f5cf376bcdee8ed376ac37d1230ee558b0f9d8e71b4cb35724e5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3d1827c32e66899e468e49c59089686b2a2d1074b41cc07d70504f3aaff95da9",
+      "plan.md": "f3e9b8aeba932808de78b9de07fcbc8fcef34c79f789f6f26aff9970c5664754",
+      "tasks.md": "883bfcea850012043d8cc368eaacf2a6e6dea855c0ecb4e0eae2ecb677b37780",
+      "implementation-summary.md": "7723f77c240651d5330abd2f649e1909cb0ff59cdabd8a20fea6dfc8ea072f8a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

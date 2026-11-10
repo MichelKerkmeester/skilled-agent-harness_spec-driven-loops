@@ -85,7 +85,7 @@ The verification tasks in `tasks.md` carry the runs. The new test is proven twic
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-Rows 1, 19, 21 and 22 of `../014-post-merge-deep-research/research/research.md` supply every claim this phase makes, and the installed Pi 1.3.0 supplies the loader lines the cause rests on: `dist/core/resource-loader.js:560-570` for the pre-trust preload, `584-590` and around `975-1007` for the two-real-path conflict. `specs/system-deep-loop/040-cli-pi-worktree-extension-clash/spec.md:35` records that print mode fails on that conflict, which is why the research's first suggestion was rejected.
+Rows 1, 19, 21 and 22 of `../014-post-merge-deep-research/research/research.md` supply every claim this phase makes, and the installed Pi 1.3.0 supplies the loader lines the cause rests on: `dist/core/resource-loader.js:560-570` for the pre-trust preload, `584-590` and around `975-1007` for the two-real-path conflict. `specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/spec.md:35` records that print mode fails on that conflict, which is why the research's first suggestion was rejected.
 <!-- /ANCHOR:dependencies -->
 
 ---

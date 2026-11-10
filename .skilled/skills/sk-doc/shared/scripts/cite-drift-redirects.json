@@ -1870,7 +1870,7 @@
     },
     {
       "from": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/",
-      "to": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/",
+      "to": ".opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/",
       "records": 844,
       "agreement": 1
     },
@@ -3981,116 +3981,116 @@
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/",
       "records": 64,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/",
       "records": 88,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/",
       "records": 52,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/",
       "records": 54,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
       "records": 436,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/",
       "records": 146,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/",
       "records": 76,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/",
       "records": 80,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-shared-evidence-and-control-services/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
       "records": 52,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/009-fanout-fanin-durable-orchestration/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
       "records": 54,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
       "records": 435,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/016-whole-system-gate/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
       "records": 146,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/018-drift-census-and-plan-revalidation/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
       "records": 76,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/047-executor-wiring-and-parity/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
       "records": 80,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/057-phase-consolidation-research/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/009-phase-consolidation-research/",
       "records": 95,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/036-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
+      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
       "records": 64,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/",
-      "to": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/",
+      "from": "specs/system-deep-loop/loop-architecture/002-graph-engineering/context/GraphARC-main/",
+      "to": "specs/system-deep-loop/loop-architecture/002-graph-engineering/context/graph-arch/",
       "records": 204,
       "agreement": 1
     },
     {
       "from": "specs/system-deep-loop/045-fanout-write-containment-hardening/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/",
       "records": 764,
       "agreement": 0.9986
     },
     {
       "from": "specs/system-deep-loop/049-deep-loop-alignment-review/",
-      "to": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/",
       "records": 314,
       "agreement": 1
     },

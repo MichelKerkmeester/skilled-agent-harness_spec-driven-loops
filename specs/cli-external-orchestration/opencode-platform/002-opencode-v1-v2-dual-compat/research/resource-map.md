@@ -164,7 +164,7 @@ description: "Auto-generated research resource map from convergence evidence."
 | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/scratch/cli-help/v2-uninstall-help.txt | Cited | OK | Citations=1; Iterations=1 |
 | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/scratch/cli-help/v2-upgrade-help.txt | Cited | OK | Citations=1; Iterations=1 |
 | specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/scratch/cli-help/v2-version.txt | Cited | OK | Citations=2; Iterations=2 |
-| specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/research/lineages/deepseek/logs/fanout-lineage.out | Cited | OK | Citations=1; Iterations=1 |
+| specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/research/lineages/deepseek/logs/fanout-lineage.out | Cited | OK | Citations=1; Iterations=1 |
 
 ---
 

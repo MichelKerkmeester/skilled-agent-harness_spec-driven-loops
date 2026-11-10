@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface sk-code task down to only its detected surface's resources, so the benchmark can measure route-time loading discipline (the D3 efficiency dimension)",
     "created_at": "2026-07-05T18:13:11.174Z",
-    "last_save_at": "2026-10-07T18:15:15.416Z",
+    "last_save_at": "2026-11-10T05:41:57.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b899e518c419cd87a1122475ee897ef5934cc34c6784ba31e2f9cfc87a91395",
+    "source_fingerprint": "sha256:eccb59efcdc270ca9a037eae0bb9fcf038614ae2085b9e29ba5c2ab80f26a960",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "169b8a0ffffc65a4d995a19c83a55cb84eecabd6ceadaae6dc4b7483cefa5dbe",
-      "plan.md": "1efbd5c10182c5a087e6f5490710d7a22f89cfabc393e6249a0c118b9ac8d9e3",
-      "tasks.md": "057d5b10a6e5298eaa8f64a342f3ee2b9a2519cadcfd17d5026947fcd6781e2d",
-      "implementation-summary.md": "57162be35e0e202b733843cdf11ead04059b2e8f384d5ff14b143bc1cb6e1f79"
+      "spec.md": "9f2321bcde300d06214ea00ac8071f295fc711822e488fbecce2a561803fe51f",
+      "plan.md": "37105f727d8ba496ee696decf1bf2385119e7a5c6d575755eec52b9b7319c0fc",
+      "tasks.md": "8f4d09eca748e3c9e001e319752ae39ba063ceb5c15b26644d8d2e7dc1514346",
+      "implementation-summary.md": "66f4e81b35ae087380a190b6995cf2289a4a68ab9536a51c7e96a2368b855d90"
     },
     "last_active_child_id": null,
     "last_active_at": null

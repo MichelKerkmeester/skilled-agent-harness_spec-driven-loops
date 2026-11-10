@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout convergence mode",
+      "convergence-mode flag dropped",
+      "fanout convergence mode plan",
+      "fanout convergence mode tasks",
+      "fanout convergence mode flag implementation summary"
+    ],
+    "key_topics": [
+      "fanout",
+      "convergence",
+      "mode",
+      "convergence-mode",
+      "flag",
+      "dropped",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "fan-out",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documented Flag That Reached Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "four",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Following",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fan-out path never read --convergence-mode, so every lineage silently took the default while the caller believed convergence was disabled.",
+    "created_at": "2026-09-20T08:33:40.225Z",
+    "last_save_at": "2026-11-10T05:40:32.571Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:150eea8dc94047087bf3676e75e642d0e316b8cc2d69b0a560bd23509f6920a4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d827cd0887d0b5deb358b2ae74f944c30c93173c223743c078a15d0e6b67104",
+      "plan.md": "342505fe4acee6d32ff2f9ff4e0a9d5fb3413e0c12f86282282dedc854c1faae",
+      "tasks.md": "7c93a67c87fbe29aa8edd238e91202e06ee87bb1af770463c2fbe14dd60cb3a7",
+      "implementation-summary.md": "cb92bfea2d85b828e0ee2a431eb91344aeac2e5e4072af06041f622498f83f68"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

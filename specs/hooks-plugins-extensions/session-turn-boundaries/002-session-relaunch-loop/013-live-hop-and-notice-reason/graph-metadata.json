@@ -204,7 +204,7 @@
     ],
     "causal_summary": "When `SKILLEDLOOPMANUALTEMPLATE` held no note placeholder or more than one, the killer logged `killer-manual-template` but its macOS notice showed only the plain command",
     "created_at": "2026-10-20T04:14:54Z",
-    "last_save_at": "2026-11-10T05:10:29.260Z",
+    "last_save_at": "2026-11-10T05:43:29.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb75c73e4f8666624b78e541bb2be1f255fdabce0da831783631e5d5f97c895c",
+    "source_fingerprint": "sha256:adcad5700d00e72ca9803f70b3959c6a5fd8e363b5c031240af8ad0ba3a294e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7e3b70341d3ce9fde234e7cdc3653f78cf68647c36ffc9cbf13b457aa41777b5",
+      "spec.md": "ea69845337a74393ca4c8d515f1c352c3642793c8c2e80b598e256f4b55ff434",
       "plan.md": "790cf773a06576106725da06914908cd6c9b638904374bdad3586ed184fbaa3a",
       "tasks.md": "c3453a37511a53f9f6053d26e6e130a9a51b75faceebeb4257b270e06dd7484b",
       "implementation-summary.md": "882b1353d918c80c5e76448dd6a5e56d450e30a3cfe3c6aabb357e60af443dde"

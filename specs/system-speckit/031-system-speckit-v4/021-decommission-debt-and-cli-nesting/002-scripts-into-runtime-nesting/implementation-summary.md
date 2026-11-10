@@ -378,7 +378,7 @@ Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass at `be8c4712b9`,
      `templates/manifest/` path that no longer exists under *either* topology
      — the real templates live at `templates/core/` and `templates/packet-types/`,
      a reorganization this phase did not touch. `recursive-child-manifest.vitest.ts`
-     targets `system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research`,
+     targets `system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research`,
      a path a *different*, unrelated packet's restructuring moved one level
      deeper; the test's own `repoRoot` computation was fixed (it had the same
      doubled-`.opencode` bug this move introduced), but the target packet path

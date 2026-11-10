@@ -49,9 +49,7 @@
       "implementation-summary.md",
       "graph-metadata.json",
       ".claude/settings.json",
-      ".claude/settings.local.json",
-      ".codex/config.toml",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".codex/config.toml"
     ],
     "entities": [
       {
@@ -91,21 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Render Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
     "created_at": "2026-05-05T19:30:00Z",
-    "last_save_at": "2026-08-30T15:39:24.135Z",
+    "last_save_at": "2026-11-10T05:41:27.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:45:00Z",
     "source_docs": [

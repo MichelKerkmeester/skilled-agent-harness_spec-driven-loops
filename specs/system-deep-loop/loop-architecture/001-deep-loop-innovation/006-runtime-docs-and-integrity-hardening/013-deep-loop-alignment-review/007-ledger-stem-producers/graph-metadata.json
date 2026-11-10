@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ledger stem producers",
+      "the registered ledger vocabulary and the spellings producers",
+      "ledger stem producers plan",
+      "ledger stem producers tasks",
+      "ledger stem producers acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "ledger stem producers implementation summary"
+    ],
+    "key_topics": [
+      "ledger",
+      "stem",
+      "producers",
+      "registered",
+      "vocabulary",
+      "spellings",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-errors.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-errors.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-errors.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-projection-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-ledger-stem-producers.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-ledger-stem-producers.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-projections-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projections.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-authority-cli.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at all",
+    "created_at": "2026-09-20T08:33:44.721Z",
+    "last_save_at": "2026-11-10T05:40:45.975Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:011ee6259d09c2eb23fc0601ce4c9d3d8fd154d928c126c311a7b1a9b06884c7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bd4d085524ac6378808cf276bf0138b7cf5f521a026b1efb5880404372f75624",
+      "plan.md": "f610dc2aa09422f7dca629c2ef74048958f2c64323b8c6b26c7d8abccf721fe7",
+      "tasks.md": "5b61aa02f6527fd5a2ba72b77ff8232f20bacc2a00f9cb941b29f2257c629d87",
+      "implementation-summary.md": "25bc62394659c7af4c7d09159f6f4da8b3d185e558ab5ff142df535fa864988d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

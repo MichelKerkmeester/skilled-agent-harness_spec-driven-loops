@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fleet enablement",
+      "remaining mode cutover",
+      "serial authority loop",
+      "fleet enablement plan",
+      "serial enablement driver",
+      "fleet enablement tasks",
+      "enablement driver tasks",
+      "fleet enablement summary",
+      "enablement driver built",
+      "fleet flip complete"
+    ],
+    "key_topics": [
+      "fleet",
+      "enablement",
+      "remaining",
+      "mode",
+      "cutover",
+      "serial",
+      "authority",
+      "loop",
+      "plan",
+      "driver",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/negative-controls.md",
+      "scratch/finding-improvement-mode-unroutable.md",
+      "scratch/adversarial-review.md",
+      "scratch/dryrun.json",
+      "scratch/authority-prerun-capture.md",
+      "scratch/realrun.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "negative-controls.md",
+        "kind": "doc",
+        "path": "scratch/negative-controls.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding-improvement-mode-unroutable.md",
+        "kind": "doc",
+        "path": "scratch/finding-improvement-mode-unroutable.md",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-review.md",
+        "kind": "doc",
+        "path": "scratch/adversarial-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "dryrun.json",
+        "kind": "config",
+        "path": "scratch/dryrun.json",
+        "source": "derived"
+      },
+      {
+        "name": "authority-prerun-capture.md",
+        "kind": "doc",
+        "path": "scratch/authority-prerun-capture.md",
+        "source": "derived"
+      },
+      {
+        "name": "realrun.json",
+        "kind": "config",
+        "path": "scratch/realrun.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fleet Enablement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Turn",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-mode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "nothing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "external",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mode registry names seven canonical modes",
+    "created_at": "2026-08-19T06:57:08.040Z",
+    "last_save_at": "2026-11-10T05:40:56.142Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1eada7d4924c373e31a6588263752c3b6dff15fa9558bba5dff154ee56a9cdde",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0189f44987d8a667782f2d23c3a325618495ee32ee6b7b9c4d6cc22be95b7038",
+      "plan.md": "e0bdf2d531492dea2f431f31d170cdf0a9795fd2ec2861e0a2e13af14da469df",
+      "tasks.md": "002d7cce0fdafd7ec072a5a87a9e924759766934df5d14ee8d648afa8f709ae5",
+      "implementation-summary.md": "21d4e1fc0079fdaeca6142535c0aae454ec12c7277febe97183e08386c33c1dc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -50,12 +50,12 @@ import type {
 // ───────────────────────────────────────────────────────────────────
 
 export const GRAPH_CONTRACT_SOURCE_PATHS = [
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/'
+  '.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/'
     + '012-shared-mode-contracts-and-fixtures/spec.md',
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/'
+  '.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/'
     + '012-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph/spec.md',
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md',
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json',
+  '.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/execution-sequencing-strategy.md',
+  '.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/manifest/phase-tree.json',
   '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/canonicalize.ts',
   '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts',
   '.skilled/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts',

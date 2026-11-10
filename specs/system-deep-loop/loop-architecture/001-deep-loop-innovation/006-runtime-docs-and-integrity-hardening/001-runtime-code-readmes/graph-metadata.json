@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/001-runtime-code-readmes",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/001-runtime-code-readmes",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop runtime code readmes",
+      "missing code readme runtime modules",
+      "add readme to runtime lib modules",
+      "code readme coverage system-deep-loop",
+      "runtime README coverage plan",
+      "deep-loop code README repairs",
+      "runtime README coverage tasks",
+      "deep-loop README verification",
+      "runtime code README implementation",
+      "deep-loop README coverage complete",
+      "skd036-019 implementation summary"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "runtime",
+      "code",
+      "readmes",
+      "missing",
+      "readme",
+      "modules",
+      "lib",
+      "coverage",
+      "system-deep-loop",
+      "plan",
+      "repairs"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "runtime/README.md",
+      "runtime/scripts/README.md",
+      "runtime/tests/README.md",
+      "runtime/tests/fixtures/README.md",
+      "runtime/tests/helpers/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Most",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Directory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "none",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standard Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repair Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Complete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Most folders that hold code in the system-deep-loop runtime have no README",
+    "created_at": "2026-07-29T06:45:11.617Z",
+    "last_save_at": "2026-11-10T05:40:43.156Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:33a23660a3e9f4db78f223fac515ebce1f96b0141fb8cbc4ec96021782782cb8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b2d0ec451a9c6684b19e25ef3b72ab0376e5a3dbd4e9d4cbfe2622311a65fd7",
+      "plan.md": "3eba262e6c94c40460999310b9fd2da6a6abe4188f649a55db140e12f2a70314",
+      "tasks.md": "b2083dca178f4bea550f6fe238319576ef4180bfb78cea98b7abd8a93fb7b57e",
+      "implementation-summary.md": "c7197ace44eb3c04bc49801ab9bfc0b7e1077930a2ac4ed4c3856682685b01c6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

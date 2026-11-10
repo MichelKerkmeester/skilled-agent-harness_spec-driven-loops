@@ -124,7 +124,7 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 | `.opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | Scan-root change per Q5 |
 | `.opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modify | Opt-in exact-header flag per Q4 |
 | `.opencode/scripts/run-node-tests.mjs` | Modify | Canonical discovery contract; include `.opencode/hooks`; recognise `.test.cjs` |
-| `.opencode/specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md` | Modify | Border amendment per `020-amendment.md` |
+| `.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md` | Modify | Border amendment per `020-amendment.md` |
 | `decision-record.md` | Create | Six rulings, the two-lane doctrine, the Q4/Q5 decisions, the generic-label semantic boundary |
 
 ### Findings Covered (14)

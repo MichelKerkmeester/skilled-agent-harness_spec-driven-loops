@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment registry sealing",
+      "alignment seed stranded verdict",
+      "overall.sealed preliminary authoritative",
+      "alignment registry sealing plan",
+      "alignment registry sealing tasks",
+      "alignment registry sealing implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "registry",
+      "sealing",
+      "seed",
+      "stranded",
+      "verdict",
+      "overall",
+      "sealed",
+      "preliminary",
+      "authoritative",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reducer Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-alignment loop seeds its findings registry FAIL-closed before the first LEAF dispatch (a non-empty-but-unaudited corpus reduces to `incompleteCoverage` FAIL, so a failed or empty first pass can never terminate as a false PASS)",
+    "created_at": "2026-07-19T17:16:27.443Z",
+    "last_save_at": "2026-11-10T05:40:49.738Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b6819cddbd0c9a1eb13e9ece3f2b854c9bb58e1a5a55b9faecdd18cb3903d0c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9ffe332343d5373e6cdc614aeae4234ff8e53f0a70d691e9b9ad65497e6367d1",
+      "plan.md": "3a04532d6a454a0aec4ee329d1afda7a40886ccefc338ba207296d3d725dd20d",
+      "tasks.md": "0278bd701b53e20b3c59fa67c4e00461f7fc603ec3824d8d350b1ffa1d7c3e1a",
+      "implementation-summary.md": "aa4653e006ab8e27c0d2e22f35ba57464d8fd93c57baa213ee13978e6cebd78c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

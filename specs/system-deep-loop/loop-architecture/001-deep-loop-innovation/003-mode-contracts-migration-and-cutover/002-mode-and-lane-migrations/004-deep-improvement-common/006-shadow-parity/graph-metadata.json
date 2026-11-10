@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement common shadow parity",
+      "deep improvement ledger parity",
+      "evaluator canary promotion shadow",
+      "shared service event parity",
+      "deep improvement shadow parity implementation plan",
+      "common service projection parity plan",
+      "typed ledger legacy emitter comparison",
+      "deep improvement shadow parity tasks",
+      "common service parity tasks",
+      "legacy typed projection diff tasks",
+      "deep improvement common shadow parity implementation",
+      "deep improvement common shared parity contract"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "common",
+      "shadow",
+      "parity",
+      "ledger",
+      "evaluator",
+      "canary",
+      "promotion",
+      "shared",
+      "service",
+      "event"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "logical",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "source",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Shadow Parity",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Successor Contract The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implemented the shared Deep Improvement Common Services shadow-parity harness with logical event pairing, independent projections, fault injection, and manifest-bound receipts.",
+    "created_at": "2026-07-16T03:43:37.046Z",
+    "last_save_at": "2026-11-10T05:40:36.284Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8cf7f836ffbe48dd9c01c8ba36d438f70a41fc0530acc0fe39f33f1a76565a1d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c13725402528ea0e96f517e629ef4bb2d0ecf544e6e5930ef210aaac6f2906a7",
+      "plan.md": "a311a80dafc55d1d950ef841065747a34c0ae497963f1e3073ac846c161980ec",
+      "tasks.md": "37ea0822c8724ac3643553b99ab22f98e610f7ee7aa5377eb2ac850e3fe127c6",
+      "implementation-summary.md": "dd0967e5b6a4a20c5fc8e67d2c9238b0d1d10cf0e5e785efb05c336e851d7053"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

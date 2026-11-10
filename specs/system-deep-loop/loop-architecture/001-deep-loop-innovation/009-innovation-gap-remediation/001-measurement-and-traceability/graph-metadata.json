@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "measurement and traceability",
+      "recommendation implementation traceability",
+      "deep-loop consolidation alias manifest",
+      "measurement traceability implementation plan",
+      "recommendation status join plan",
+      "measurement traceability tasks",
+      "recommendation status join tasks",
+      "measurement traceability implementation summary",
+      "recommendation status join evidence"
+    ],
+    "key_topics": [
+      "measurement",
+      "traceability",
+      "recommendation",
+      "implementation",
+      "deep-loop",
+      "consolidation",
+      "alias",
+      "manifest",
+      "plan",
+      "status",
+      "join",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "recommendation-traceability.json",
+      "consolidation-alias-manifest.json",
+      "traceability-validation.json",
+      "build-traceability.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommendation-traceability.json",
+        "kind": "config",
+        "path": "recommendation-traceability.json",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation-alias-manifest.json",
+        "kind": "config",
+        "path": "consolidation-alias-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "traceability-validation.json",
+        "kind": "config",
+        "path": "traceability-validation.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-traceability.ts",
+        "kind": "code",
+        "path": "build-traceability.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "closed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "existence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "relation",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the derived recommendation-to-runtime traceability join, three-field composition status schema, and consolidation alias manifest without rewriting the frozen recommendation ledger.",
+    "created_at": "2026-08-14T12:47:55.592Z",
+    "last_save_at": "2026-11-10T05:40:55.314Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9e24a7abe8b4ad7a2b179eff47992cc4e61c1b86e2a185650a11e7ff130ee3ad",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f9d5aa44658949a39150dbaaa5d2484da158d7f34b81a9a32a1388dc2c7b7d45",
+      "plan.md": "9a29a37c2d830173fd6331f85c22075241a8801c0e2801ecd5bcb60ca7be9d3a",
+      "tasks.md": "1f53ace8f1ca244c897b69d4ba6a163c03c8ae9d54cebc02b878d0a69ec3cab8",
+      "implementation-summary.md": "4b6859af750129571123a53588996a7cf14122d382130ca36a43e9f797beab4f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

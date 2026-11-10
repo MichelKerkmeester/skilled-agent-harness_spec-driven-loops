@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement common typed ledger schema",
+      "deep improvement event vocabulary",
+      "evaluator canary promotion events",
+      "deep improvement append-only ledger",
+      "deep improvement typed ledger implementation plan",
+      "common evaluator canary promotion schema plan",
+      "deep improvement envelope upcaster plan",
+      "deep improvement typed ledger schema tasks",
+      "common evaluator event vocabulary tasks",
+      "deep improvement upcaster tasks",
+      "deep improvement common promotion reference",
+      "external authorization authenticity"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "common",
+      "typed",
+      "ledger",
+      "schema",
+      "event",
+      "vocabulary",
+      "evaluator",
+      "canary",
+      "promotion",
+      "events"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed Ledger Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "required",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Promotion Reference Boundary",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Promotion Decision Authentication Outside",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Leaf",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Defines the additive-dark typed append-only event vocabulary for shared Deep Improvement services: candidate generation, evaluator observations, score normalization, canary analysis, and guarded promotion.",
+    "created_at": "2026-07-16T03:43:35.741Z",
+    "last_save_at": "2026-11-10T05:40:36.210Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:21b9a6e66e6a249873061c4386dfe417a5789ba7e5129a45ba546211ab4e651e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ef48abee7a2b094b569807001c2d820de4a4fd637bc3aba947f55ed93e6a3bdb",
+      "plan.md": "710276213036db96986076c9aa81f781cf6dcf8ca03e97858c8701ab304c0b08",
+      "tasks.md": "fb7ffe3688e3ca7da546b2e77a888e9341bbcc32f45dea926bfaecdfc7e9c50a",
+      "decision-record.md": "231d6a70b30cc148f17719037b82d6e3f0dc7d9715b92f588c827ba44beed8c3",
+      "implementation-summary.md": "c1429c14d3f00a213f53e5dbec07b46f2e5c7ca9a20679e74eb5216758957fb1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

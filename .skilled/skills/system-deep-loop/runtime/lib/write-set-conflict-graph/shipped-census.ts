@@ -24,10 +24,10 @@ import type {
 export const SHIPPED_MODE_CENSUS_VERSION = 'shipped-mode-census/v1' as const;
 
 const MODE_INTERFACE_CONTRACT =
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/'
+  '.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/'
   + '012-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces/spec.md';
 const CLOSURE_CONTRACT =
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation/'
+  '.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/'
   + '012-shared-mode-contracts-and-fixtures/002-cross-mode-closures/spec.md';
 
 // ───────────────────────────────────────────────────────────────────

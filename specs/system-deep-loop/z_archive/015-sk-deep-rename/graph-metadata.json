@@ -2,18 +2,8 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/015-sk-deep-rename",
   "spec_folder": "system-deep-loop/z_archive/015-sk-deep-rename",
-  "parent_id": "system-deep-loop/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
-    "system-deep-loop/z_archive/016-sk-deep-rename/001-discovery-impact-map",
-    "system-deep-loop/z_archive/016-sk-deep-rename/002-skill-folder-rename",
-    "system-deep-loop/z_archive/016-sk-deep-rename/003-opencode-internals",
-    "system-deep-loop/z_archive/016-sk-deep-rename/004-runtime-mirrors",
-    "system-deep-loop/z_archive/016-sk-deep-rename/005-root-and-config",
-    "system-deep-loop/z_archive/016-sk-deep-rename/006-advisor-and-validate",
-    "system-deep-loop/z_archive/016-sk-deep-rename/007-deep-review-remediation",
-    "system-deep-loop/z_archive/016-sk-deep-rename/008-final-cleanup",
-    "system-deep-loop/z_archive/016-sk-deep-rename/009-family-schema-migration",
     "system-deep-loop/z_archive/015-sk-deep-rename/001-discovery-impact-map",
     "system-deep-loop/z_archive/015-sk-deep-rename/002-skill-folder-rename",
     "system-deep-loop/z_archive/015-sk-deep-rename/003-opencode-internals",
@@ -69,8 +59,7 @@
       ".opencode/agents/deep-review.md",
       ".opencode/agents/orchestrate.md",
       ".claude/agents/README.txt",
-      ".claude/settings.json",
-      ".claude/settings.local.json"
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -119,12 +108,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -196,7 +179,7 @@
     ],
     "causal_summary": "The two deep- skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it",
     "created_at": "2026-05-05T18:00:00Z",
-    "last_save_at": "2026-08-30T15:39:24.088Z",
+    "last_save_at": "2026-11-10T05:41:27.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

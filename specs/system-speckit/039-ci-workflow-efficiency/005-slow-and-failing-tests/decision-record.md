@@ -749,7 +749,7 @@ The research phase found no flake signature: the failures correlate across indep
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted 2026-10-25: AC-006 is Met through the filed row for deep-loop-runtime, the only red workflow (the writer-lock race goes to `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`) |
+| **Status** | Accepted 2026-10-25: AC-006 is Met through the filed row for deep-loop-runtime, the only red workflow (the writer-lock race goes to `specs/system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race`) |
 | **Date** | 2026-10-23 |
 | **Deciders** | Plan author; no operator decision |
 

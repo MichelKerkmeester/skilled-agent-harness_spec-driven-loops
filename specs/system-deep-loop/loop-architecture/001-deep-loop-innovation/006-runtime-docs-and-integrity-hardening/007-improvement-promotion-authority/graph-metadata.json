@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "improvement promotion authority",
+      "promotion acceptance receipt binding",
+      "council persistence packet root",
+      "stale score authorizes promotion",
+      "deep loop 029 promotion",
+      "improvement promotion authority implementation",
+      "acceptance receipt binding evidence",
+      "deep loop promotion integrity"
+    ],
+    "key_topics": [
+      "improvement",
+      "promotion",
+      "authority",
+      "acceptance",
+      "receipt",
+      "binding",
+      "council",
+      "persistence",
+      "packet",
+      "root",
+      "stale",
+      "score"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+      "scratch/improvement-project-baseline.md",
+      "scratch/chk-111-promotion-receipt-cost.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "persist-artifacts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-topic.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-session.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "improvement-project-baseline.md",
+        "kind": "doc",
+        "path": "scratch/improvement-project-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "chk-111-promotion-receipt-cost.md",
+        "kind": "doc",
+        "path": "scratch/chk-111-promotion-receipt-cost.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Promotion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Persistence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authenticated Receipts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authorized Roots",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Eight",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
+    "created_at": "2026-07-31T01:25:21.136Z",
+    "last_save_at": "2026-11-10T05:40:45.332Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:e5b357b3965cc2b63d65f8d31f90c938eeb9b7213931ea4f166b5c98899da2d4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3c25f957fcce70eb27e182f347403e08884869e4c9d7ca65d14f86b1041d78da",
+      "plan.md": "ba6a667a566cbd3331f1d10d9d88b642eae870cc39cde37d56c77f55e2fcd2ee",
+      "tasks.md": "6fa085df4343bd3838aa66624826939cc32b80beea72e8409bdb4e34a036ad4a",
+      "decision-record.md": "ff357cbfe775f8f9fb688e87d475ac30bb668051426011b0143d2d0f5e78763a",
+      "implementation-summary.md": "8aac509bbd34f0b80aa3933010ae51845b0502b79f1d4e048e17bf1004855a63",
+      "handover.md": "b321d1d7fe34186ad90e1fb51fe10b7fce6330da4210a357d2f9c5f7b10c74a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

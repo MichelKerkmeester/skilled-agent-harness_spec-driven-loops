@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "forced depth empty records",
+      "forced depth validation fails a lane whose state",
+      "forced depth empty records plan",
+      "forced depth empty records tasks",
+      "forced depth empty records acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "forced depth empty records implementation summary"
+    ],
+    "key_topics": [
+      "forced",
+      "depth",
+      "empty",
+      "records",
+      "validation",
+      "fails",
+      "lane",
+      "whose",
+      "state",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "append-state-record.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/append-state-record.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trustworthy-state-records.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Leaf",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`",
+    "created_at": "2026-09-20T08:33:43.475Z",
+    "last_save_at": "2026-11-10T05:40:54.736Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:74a49dc9bec0e609ad35b47905864055c4bdedb4e889965e3ac241386042d181",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ea5c8a9d37151c3ec46e25af6aebf353be5fd9348ef65787d07273a64c9cab28",
+      "plan.md": "3213aebd3778388aaca5b0b9333c9188b4c9430c01b78bc1bce0c7726fc618e0",
+      "tasks.md": "aa32442dd9596233a4ae489eb54d57b0ef73a5fe3c66ad4e6b0d49464acd3f57",
+      "implementation-summary.md": "4bc3dfce35efaca361cd05b6da6890fc9474ee9dab0a4da4cdc673a5d6b63336"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

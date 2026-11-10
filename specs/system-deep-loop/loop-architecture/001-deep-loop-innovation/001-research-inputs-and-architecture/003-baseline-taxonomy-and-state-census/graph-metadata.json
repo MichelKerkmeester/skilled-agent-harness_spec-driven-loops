@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "baseline taxonomy and state census",
+      "deep-loop recommendations phase 003",
+      "deep-loop immutable BASE census",
+      "baseline taxonomy and state census implementation plan",
+      "deep-loop recommendations phase 003 plan",
+      "baseline taxonomy and state census tasks",
+      "deep-loop recommendations phase 003 tasks",
+      "baseline taxonomy state census implementation",
+      "deep-loop baseline evidence bundle",
+      "phase 004 census handoff"
+    ],
+    "key_topics": [
+      "baseline",
+      "taxonomy",
+      "state",
+      "census",
+      "deep-loop",
+      "recommendations",
+      "phase",
+      "immutable",
+      "base",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "base-manifest.json",
+      "phase-004-handoff-manifest.json",
+      "fixtures/event-streams.json",
+      "fixtures/expected-projections.json",
+      ".opencode/skills/system-deep-loop/runtime/references/state-format.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "base-manifest.json",
+        "kind": "config",
+        "path": "base-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "phase-004-handoff-manifest.json",
+        "kind": "config",
+        "path": "phase-004-handoff-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "event-streams.json",
+        "kind": "config",
+        "path": "fixtures/event-streams.json",
+        "source": "derived"
+      },
+      {
+        "name": "expected-projections.json",
+        "kind": "config",
+        "path": "fixtures/expected-projections.json",
+        "source": "derived"
+      },
+      {
+        "name": "state-format.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/references/state-format.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "live",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "entry",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "executable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "owners",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve.",
+    "created_at": "2026-07-16T03:43:57.879Z",
+    "last_save_at": "2026-11-10T05:40:26.478Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d23f8edec26b9a3f1b08e0dcee0131ad04d315ffc306f0eb760c7d4329c92384",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2b244dae057bf92cfb34d524ff9f078c331550afa6e3e1af847fafa26dbf60cc",
+      "plan.md": "7147e6350316cb755d5b27fa04c8527203e4ad476f66dc3c4469e776f48581f5",
+      "tasks.md": "d4c5075453d03615f2c2be60d5404557a507aae7cb1915b372420cbd7591bd51",
+      "implementation-summary.md": "8f125a91084b515edb45f6aad7b26ee117877aa4500e4462834f467c6d2f657f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -262,10 +262,10 @@ specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit
 specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled/graph-metadata.json
 specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/description.json
 specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/graph-metadata.json
-specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/description.json
-specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/graph-metadata.json
-specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/description.json
-specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/graph-metadata.json
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/description.json
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/graph-metadata.json
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/description.json
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/graph-metadata.json
 specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-skilled-language-gate/description.json
 specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-skilled-language-gate/graph-metadata.json
 specs/system-skill-advisor/031-align-runtime-code-with-sk-code-skilled/description.json

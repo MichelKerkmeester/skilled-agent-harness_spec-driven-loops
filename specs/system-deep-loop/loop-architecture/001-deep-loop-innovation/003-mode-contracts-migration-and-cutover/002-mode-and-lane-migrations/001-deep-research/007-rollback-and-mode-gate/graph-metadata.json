@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Research rollback and mode gate",
+      "deep-research authority rollback switch",
+      "deep-research migration gate",
+      "mode 010 rollback window",
+      "Deep Research rollback and mode gate implementation plan",
+      "deep-research authority switch plan",
+      "deep-research migration certificate plan",
+      "Deep Research rollback and mode gate tasks",
+      "deep-research rollback switch tasks",
+      "deep-research migration gate tasks",
+      "Deep Research retained count boundary",
+      "rollback count authorization binding"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "rollback",
+      "mode",
+      "gate",
+      "deep-research",
+      "authority",
+      "switch",
+      "migration",
+      "window",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flipping Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authenticated Certificate Boundaries",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implements the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate while keeping authority with the legacy path until phase 014.",
+    "created_at": "2026-07-16T03:43:31.931Z",
+    "last_save_at": "2026-11-10T05:40:33.257Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70a4d7bfbdb304dba2eb9715f346b3b5920d97e2a8c25d026a0c61c2af7f81c0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8c92a8f0a092f8d7082dfeff26a28698e06bc0c31d67dd71b4b7720b438d4579",
+      "plan.md": "d73fa2cd089ffe09a979d0c9e34d8fe7f63360b60b5418d59979a6ca0a2e699e",
+      "tasks.md": "370e16e454c10385e9ee873a480555f22eef1d8d670fa40249f7e74b0059cd52",
+      "decision-record.md": "0ec27b80c4fcfec97f3feeceaf4dc23f9751e07e1bd72049e43d4abd1c28f4cd",
+      "implementation-summary.md": "42c5a961a4e549607c089d50fd3da179b7c44ac52b683f7726de01e0cc58dddd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

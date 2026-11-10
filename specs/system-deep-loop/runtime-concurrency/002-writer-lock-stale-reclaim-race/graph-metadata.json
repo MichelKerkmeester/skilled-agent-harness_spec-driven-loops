@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race",
+  "spec_folder": "system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race",
+  "parent_id": "system-deep-loop/runtime-concurrency",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "writer lock stale reclaim race",
+      "fix the stale lock reclaim race",
+      "expected 9 records got 8",
+      "jsonl repair intermittent failure",
+      "isWriterLockStale ENOENT",
+      "two writers hold the lock",
+      "writer lock stale reclaim race plan",
+      "reproduce the writer lock race",
+      "reclaim removes only the file it judged stale",
+      "writer lock stale reclaim race tasks",
+      "writer lock reproduction tasks",
+      "writer lock stale reclaim race acceptance criteria"
+    ],
+    "key_topics": [
+      "writer",
+      "lock",
+      "stale",
+      "reclaim",
+      "race",
+      "expected",
+      "records",
+      "got",
+      "jsonl",
+      "repair",
+      "intermittent",
+      "failure"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts",
+      "scratch/lock-stress.cjs",
+      "specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+      ".github/workflows/deep-loop-runtime.yml",
+      "assets/level-decision-matrix.md",
+      "scratch/repro-before.txt",
+      "scratch/stress-before-direct.txt",
+      "scratch/stress-before-widened.txt",
+      "scratch/stress-before.txt",
+      "scratch/base-lock-files.txt",
+      "scratch/base-suite.txt",
+      "scratch/base-typecheck.txt",
+      "scratch/inventory.txt",
+      "scratch/repro-after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-guards-writer-lock.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/cli-guards-writer-lock.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lock-stress.cjs",
+        "kind": "file",
+        "path": "scratch/lock-stress.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "r21-recheck.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/deep-loop-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "level-decision-matrix.md",
+        "kind": "doc",
+        "path": "assets/level-decision-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stress-before-direct.txt",
+        "kind": "file",
+        "path": "scratch/stress-before-direct.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stress-before-widened.txt",
+        "kind": "file",
+        "path": "scratch/stress-before-widened.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stress-before.txt",
+        "kind": "file",
+        "path": "scratch/stress-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-lock-files.txt",
+        "kind": "file",
+        "path": "scratch/base-lock-files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-suite.txt",
+        "kind": "file",
+        "path": "scratch/base-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-typecheck.txt",
+        "kind": "file",
+        "path": "scratch/base-typecheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.txt",
+        "kind": "file",
+        "path": "scratch/inventory.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Runtime Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Trail Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Deep-Loop Runtime Tests workflow failed once on main",
+    "created_at": "2026-10-25T07:12:28Z",
+    "last_save_at": "2026-11-10T05:41:07.416Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c4f99ba4dcaf33bea1372391ce3b684900389cd62c866b5c351c8818b522a1c0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "73721650fc53236fa01491ab4b587b7ed5b0b8af2752d747e9a011983932a9be",
+      "plan.md": "95f6a4a301eaa5e0c4b719145e43471c59e1bbdccf5c0333bf4d900bdd68a508",
+      "tasks.md": "597aff6e2df98a7e4d1dcb351d629ac161603a20528c1ebd3aba10dae0850e66",
+      "implementation-summary.md": "e7c00f48b9ca5363738443f00559889250534a2932c08b0da1688e3a53bdd2bc"
+    },
+    "last_active_at": null
+  }
+}

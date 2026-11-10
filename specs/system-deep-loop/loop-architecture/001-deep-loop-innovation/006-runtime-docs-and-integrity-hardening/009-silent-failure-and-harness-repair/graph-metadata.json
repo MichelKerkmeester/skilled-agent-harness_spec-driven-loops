@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/009-silent-failure-and-harness-repair",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/009-silent-failure-and-harness-repair",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "silent failure harness repair",
+      "input validation exit code deep loop",
+      "aggregate suite double registration",
+      "manual playbook dead runtime path",
+      "deep loop 031 silent failure",
+      "silent failure harness repair implementation",
+      "aggregate suite double registration fix",
+      "deep loop 031 implementation summary"
+    ],
+    "key_topics": [
+      "silent",
+      "failure",
+      "harness",
+      "repair",
+      "input",
+      "validation",
+      "exit",
+      "code",
+      "deep",
+      "loop",
+      "aggregate",
+      "suite"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
+      "runtime/vitest.config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spawn-cjs.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-contract-snapshot.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Invalid Input Fail Loudly",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harnesses That Produce Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Twenty",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty-three findings in three lanes share one shape",
+    "created_at": "2026-07-31T01:25:21.556Z",
+    "last_save_at": "2026-11-10T05:40:45.335Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6ba10d0e31f5d6c2459550616501a349a8ac2ed3ef026b6453817a79ce3cc95f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7cad844af1c491f97f9696c201bc4307ecad7cc46513ab6d038b20b34a25aa0a",
+      "plan.md": "b081c5e1167e799c8aa2fc246a80f36a2e79ed2e56ebfb441ca32d6c0dec7baf",
+      "tasks.md": "fc87dcb484390f48df1be630b5de5b043701beb8de2b7d65957dfc92cffb1856",
+      "decision-record.md": "0e1099d1db4fe91990bdffb3f970ca9d293c85f57f333c2c06a65a5164747665",
+      "implementation-summary.md": "06cc0949cc97d64b59f24c2886dec60064f5f36b94422841ced84a566fee6ddc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

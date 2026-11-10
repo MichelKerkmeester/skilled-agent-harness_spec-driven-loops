@@ -42,7 +42,7 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh",
+      "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh",
       "scratch/review.md",
       "scratch/test/reprepare-harness.sh",
       "scratch/briefs/brief-A.txt",
@@ -82,7 +82,7 @@
       {
         "name": "check-goal-file-manifest.sh",
         "kind": "script",
-        "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh",
+        "path": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`recursive-child-manifest.vitest.ts` runs `check-goal-file-manifest.sh`, whose bare `git ls-files` hung on fsmonitor for 853305 ms in a full CLI suite run (block below); it had timed out batch runs twice earlier the same day and failed in phase 013's suite baseline",
     "created_at": "2026-10-26T18:10:21Z",
-    "last_save_at": "2026-10-31T15:28:43.887Z",
+    "last_save_at": "2026-11-10T05:44:09.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1931bdd095b5bb784894e777bbd2678f00bb9d6671af93a631ea6933cc9aa54c",
+    "source_fingerprint": "sha256:b2579ffa4398b2eae28ed879e0ef23720f4946e5f09f4d878af1882bd47f2ea3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f50e1091640cb793ba1f159ada8d06bcdadb7f443fbf3841ccd02f3e9264f86",
+      "spec.md": "ca875983b67b363f35f834d0cb767b611c8d373ed31ab8e8f30b71bdacd30200",
       "plan.md": "e8ed67e0ff973246484cbcc5f6cd79bb4a84116823a7129da595c3b5f829a958",
-      "tasks.md": "8197a0e06f5cdd7327338791ee84230617cc1f7abf76e0fde6cad542fdb65e24",
-      "implementation-summary.md": "eb9a53046e5b5418aaf0fcb0f690bbf13c9c51e6ed1f0e0628a580c0a81cb062"
+      "tasks.md": "b440eade154469acbf6fefa0a8c8c9a1be90d0809bd476c6b58efef3151491dc",
+      "implementation-summary.md": "00403aef6d0573d0d009189fedcb9de6b5c1e89301b0c3c727e7cde535cd4da2"
     },
     "last_active_at": null
   }

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/002-sealed-reference-artifacts",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/003-blinded-adjudication-service",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/005-stream-fold-gauges",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared evidence and control services",
+      "deep-loop phase 007 shared services",
+      "receipts seals adjudication budgets gauges locks continuity"
+    ],
+    "key_topics": [
+      "shared",
+      "evidence",
+      "control",
+      "services",
+      "deep-loop",
+      "phase",
+      "receipts",
+      "seals",
+      "adjudication",
+      "budgets",
+      "gauges",
+      "locks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Control Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the seven shared evidence and control services that make the transition-authorized ledger usable by the compatibility bridge and every deep-loop mode.",
+    "created_at": "2026-07-16T03:43:58.919Z",
+    "last_save_at": "2026-11-10T05:40:26.299Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9331aa4704927dea631e78979d12f345cb0ee477711d7424f093b1dc987a73c8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d0c49d28cf04cc13a2ebc6e1327dc7d5a6c8fe1d3141d466b3d7f47fab3c4af4"
+    },
+    "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+    "last_active_at": null
+  }
+}

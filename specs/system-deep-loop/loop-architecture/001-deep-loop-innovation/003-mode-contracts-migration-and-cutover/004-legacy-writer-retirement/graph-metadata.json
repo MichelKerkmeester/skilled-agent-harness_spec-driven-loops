@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy writer retirement",
+      "deep-loop zero-use telemetry",
+      "retire legacy emitters",
+      "legacy writer retirement implementation plan",
+      "deep-loop legacy emitter deletion",
+      "legacy writer retirement tasks",
+      "deep-loop legacy emitter deletion tasks"
+    ],
+    "key_topics": [
+      "legacy",
+      "writer",
+      "retirement",
+      "deep-loop",
+      "zero-use",
+      "telemetry",
+      "retire",
+      "emitters",
+      "implementation",
+      "plan",
+      "emitter",
+      "deletion"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Writer Retirement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "positive",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "archival",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "retained",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. Retain archival readers required for historical legacy packets.",
+    "created_at": "2026-07-16T03:44:00.951Z",
+    "last_save_at": "2026-11-10T05:40:41.830Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:abd5817dfa8d04048e1e770e4c05085c49922e0fc4a5e287f1bf51d840eaa146",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "19e2dcfa5430c3eed90d188ee68d4128ba2f679dea1a0ad5f8b912f13d4636e3",
+      "plan.md": "b340a43fd73f8058e502da3d6b166e3d6db53bb6bd9e18af34e3d50c638c26ee",
+      "tasks.md": "4f74680b1bf0dc9f80e6f17d8e22352fee2cb4b0602a1314a2480483db574734"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop rollback drills",
+      "legacy authority rollback rehearsal",
+      "rollback evidence before cutover",
+      "rollback drills implementation plan",
+      "deep-loop rollback rehearsal runner",
+      "rollback drills tasks",
+      "deep-loop rollback evidence tasks",
+      "rollback drills implementation",
+      "rollback drill verification evidence"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "rollback",
+      "drills",
+      "legacy",
+      "authority",
+      "rehearsal",
+      "evidence",
+      "cutover",
+      "implementation",
+      "plan",
+      "runner",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Drills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "verified",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "intact",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within the phase-004 rollback window, and prove state integrity before phase 014 may attempt a real cutover.",
+    "created_at": "2026-07-16T03:43:49.540Z",
+    "last_save_at": "2026-11-10T05:40:29.522Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38a1dd6de92623e6518793c5bcf69758971a7ea0bb26dfcb5af878e150f8e279",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "49293537b4a17e5b30a4919cc6b8a2f795b7180340d68bcecfdd0b4fce8dd3b9",
+      "plan.md": "6adde3707a277a53b68ee1a8d23f170b6d17e49b02072db5f9b67cded5419247",
+      "tasks.md": "470e113bf0c20a929870118b00212de64be04d7e00eb30b5711483caa31006ab",
+      "implementation-summary.md": "cd9d5c2038d60b25c63526fbc6a1b1bd7e06a41f6957602756d703816060eb28"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

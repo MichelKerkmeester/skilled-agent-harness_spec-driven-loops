@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement rollback and mode gate",
+      "agent improvement authority rollback switch",
+      "agent loop migration gate",
+      "agent improvement phase 014 readiness",
+      "agent improvement rollback and mode gate implementation plan",
+      "agent loop authority switch plan",
+      "agent improvement migration certificate plan",
+      "agent improvement rollback and mode gate tasks",
+      "agent loop rollback switch tasks",
+      "agent improvement migration gate tasks",
+      "Agent Improvement rollback gate implementation",
+      "agent improvement mode migration gate"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "rollback",
+      "mode",
+      "gate",
+      "authority",
+      "switch",
+      "loop",
+      "migration",
+      "phase",
+      "readiness",
+      "implementation"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementing Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Agent Improvement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Agent Improvement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Agent Improvement",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Agent Improvement",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement Rollback",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant. Reuse the deep-improvement-common evaluator, canary, and promotion services; certify this mode only after shadow parity, sealed evidence, replay/resume integrity, and rollback readiness pass.",
+    "created_at": "2026-07-16T03:43:39.029Z",
+    "last_save_at": "2026-11-10T05:40:38.999Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f41c815a571c7ad6f611895df4489fb10743a6a0f87c774c7ad164bd432e16e1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e9695aad552c56edbaabc964f5ae4750a6a2f66623aba9270362092c2af3638d",
+      "plan.md": "237403eaff23172d521bb4ca6558315b45a913dfef1e51cb47bc2463af441429",
+      "tasks.md": "7d99b2246fc5e935e6f44fdea04a6f3bd6145412a30a43f795ae80cce81475f1",
+      "implementation-summary.md": "ddf69061053fc2b5abc9dcedf4bb6e05c88003cd5fa2f5a15bc0ca33ca01b78b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode projection contracts",
+      "legacy projection coverage",
+      "projection contract build",
+      "mode projection contracts plan",
+      "projection contract build plan",
+      "mode projection contracts tasks",
+      "projection contract decisions",
+      "surface projection composition",
+      "mode projection contracts summary",
+      "projection surface contracts",
+      "ledger-fold projection coverage"
+    ],
+    "key_topics": [
+      "mode",
+      "projection",
+      "contracts",
+      "legacy",
+      "coverage",
+      "contract",
+      "plan",
+      "tasks",
+      "decisions",
+      "surface",
+      "composition",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-surface-fold.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-surface-fold.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-surface-fold.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state-contract.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-projection-coverage.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Projection Contracts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Each",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. CONTEXT",
+        "kind": "heading",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fleet flip moved all eight modes to ledger authority, but the projection library ships exactly one",
+    "created_at": "2026-08-23T06:30:00.000Z",
+    "last_save_at": "2026-11-10T05:40:57.934Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:750c51f4141ca873d89ab0f3763b4a462ebbbf082504748282661819ccc7e826",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8066e9c601930125dfdb6b6eac9d68f1e34e71a1f370af0eb437d573707d617c",
+      "plan.md": "8e1a493076060a87775d5c5dd1801d7ab8f7c1b76a79dae75b990505504c3099",
+      "tasks.md": "031bd3fff9af695888715ff032e874e61a4aa5984ec004d5565b8e4eea5865e7",
+      "decision-record.md": "3d65ae55394aba5106d659051f74dde7d5452b9559857c9addadece0e788d33c",
+      "implementation-summary.md": "529ef405358edd5aa6b3603be042c240f08c66562b6f3c5fbdfa2ce971afeb11"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

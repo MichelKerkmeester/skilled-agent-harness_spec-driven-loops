@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep AI Council migration",
+      "deep ai council event ledger",
+      "deep ai council mode gate",
+      "multi-seat council deliberation migration"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "migration",
+      "event",
+      "ledger",
+      "mode",
+      "gate",
+      "multi-seat",
+      "deliberation",
+      "migrate",
+      "onto",
+      "shared"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate the multi-seat Deep AI Council deliberation onto the shared typed event-ledger substrate through seven concern children, preserving replayable run state, sealed artifacts, independent verification, resumability, shadow parity, and a rollback-guarded mode gate.",
+    "created_at": "2026-07-16T03:43:55.503Z",
+    "last_save_at": "2026-11-10T05:40:35.507Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:46540c64b64ef33c531f4f08b7226aa52e5073e32f00ef5bf89f0559c8949bdd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f5e44321cb336595babf027d58ef131ae08725ab1757a04658d0b47f5150e464"
+    },
+    "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
+    "last_active_at": null
+  }
+}

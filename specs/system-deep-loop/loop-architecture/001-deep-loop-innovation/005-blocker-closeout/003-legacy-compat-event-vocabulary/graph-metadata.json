@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy compat event vocabulary",
+      "blocker 2 upcaster coverage",
+      "unknown legacy record migration",
+      "live event vocabulary upcaster",
+      "deep loop 023 compat",
+      "legacy compat event vocabulary implementation",
+      "deep loop 023 implementation summary",
+      "zero blocked legacy replay"
+    ],
+    "key_topics": [
+      "legacy",
+      "compat",
+      "event",
+      "vocabulary",
+      "blocker",
+      "upcaster",
+      "coverage",
+      "unknown",
+      "record",
+      "migration",
+      "live",
+      "deep"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
+      "runtime/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-compatibility.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compatibility Upcasters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Six Live Event Vocabularies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Five",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Census",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five per-mode upcasters plus skill-benchmark reject ordinary lifecycle records",
+    "created_at": "2026-07-31T01:25:19.803Z",
+    "last_save_at": "2026-11-10T05:40:42.617Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de27538e9f964dba41a374136f852ef06945355fd97d592454c6e4a0440b90bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b4f5e9358236f9ed65918ffe83e0bad8a90f066cf356b4534f689d29860ed077",
+      "plan.md": "f2887453f09e532412aade123baa31a6334ae299c57fb91d7ff125c99e6531b8",
+      "tasks.md": "36a25c7df3db7d04a63d1acaf4125e27616f6ab6256f4435e00551d087023673",
+      "decision-record.md": "93194adad7b6e346197a0dcdc775a63ed29b131de0c5ac30a49559a24a2a6a26",
+      "implementation-summary.md": "ff9a3bb53ce916caa82e62ec1df946defc99014eca64d38d4cd6d8a4b8a6e0b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

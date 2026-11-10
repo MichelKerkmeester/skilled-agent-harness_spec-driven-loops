@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/024-executor-kind-routing",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/024-executor-kind-routing",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "executor kind routing cli-cursor cli-devin cli-pi",
+      "single executor silent native fallback deep loop",
+      "phase_main_loop branch buildLineageCommand",
+      "executor kind routing plan",
+      "executor kind routing tasks",
+      "executor kind routing summary cli-cursor devin pi",
+      "single executor silent native fix deep loop",
+      "phase_main_loop cli branches buildLineageCommand"
+    ],
+    "key_topics": [
+      "executor",
+      "kind",
+      "routing",
+      "cli-cursor",
+      "cli-devin",
+      "cli-pi",
+      "single",
+      "silent",
+      "native",
+      "fallback",
+      "deep",
+      "loop"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deterministic Single",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executor Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Closed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The single-executor path of the auto loop YAMLs (`deep-review-auto`, `deep-research-auto`, `deep-alignment-auto`) dispatches per iteration via `phasemainloop`'s `branchon: config.executor.kind` (research uses `config.executor.type`)",
+    "created_at": "2026-08-27T06:39:36.883Z",
+    "last_save_at": "2026-11-10T05:41:01.068Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:885f7dcceb7dbaad0d1fc6dade6ac70fdffba7ea4a0d5489f479026e4854831e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7fc4d24550ed10e007d6f304a40f666249ab62d545b407fe0732dcdc0e56cce2",
+      "plan.md": "263db6a5b0823fa6435796643594c752087073ccec28906e89610e859d7cd73d",
+      "tasks.md": "83396537ceee28bca4a6b6076ba7325d30fcaedb28e4f2336232b414d22310be",
+      "implementation-summary.md": "f8d267d7d1a8a7a612be84386ebe014d4b692594d2b34d103ea316ca4bdbffa1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

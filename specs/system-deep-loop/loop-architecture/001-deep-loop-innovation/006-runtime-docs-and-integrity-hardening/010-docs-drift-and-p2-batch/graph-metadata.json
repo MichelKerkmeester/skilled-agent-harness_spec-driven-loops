@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "docs drift p2 batch",
+      "registry roster drift readme",
+      "derive counts from registry",
+      "p2 backlog deep loop",
+      "deep loop 032 docs",
+      "032 implementation summary"
+    ],
+    "key_topics": [
+      "docs",
+      "drift",
+      "batch",
+      "registry",
+      "roster",
+      "readme",
+      "derive",
+      "counts",
+      "backlog",
+      "deep",
+      "loop",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/skills/system-deep-loop/README.md",
+      ".opencode/skills/system-deep-loop/deep-research/README.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/README.md",
+      ".opencode/skills/system-deep-loop/runtime/README.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/README.md",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+      ".opencode/skills/system-deep-loop/benchmark/reports/README.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
+      "runtime/vitest.config.ts",
+      "benchmark/reports/README.md",
+      "scratch/t014-verification-evidence.md",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      "scratch/t014-red-before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "script-interface-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "advise-council-completion.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "transition-policy-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "t014-verification-evidence.md",
+        "kind": "doc",
+        "path": "scratch/t014-verification-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "t014-red-before.txt",
+        "kind": "file",
+        "path": "scratch/t014-red-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Doc",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Clear",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Collapse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Then Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The roster drift is one fact repeated in five places: three READMEs advertise a pre-alignment four-family roster and four improvement lanes against a registry with five families and three lanes",
+    "created_at": "2026-07-31T01:25:21.765Z",
+    "last_save_at": "2026-11-10T05:40:45.541Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:9ab1c05930d7489f2d7781c000a6f7b10836b76a2c83b83806422f9eca0651fe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "07ddb4fdbfb466c977f060714aa3d43ee631ef3014ef72a4abf977bd2f641e0c",
+      "plan.md": "83d1e58ce2a18ea6cd42f9a5fe2fb9ee73a4ef6f4766c7f0697de214dc62b65b",
+      "tasks.md": "803ffd1a7907f770407ccb842cb04f4698c1f04671b7cea5817e75f4691acd01",
+      "implementation-summary.md": "03aaaa3752863dcf3d9f2ad13e575995e0e2bb689e5c5b75e94e8497ef744180",
+      "handover.md": "0a97de823e3177d94720bef27ba1cb5b21a160353f616bceb35e889dc9e9c212"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

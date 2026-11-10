@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/002-graph-engineering/001-agent-swarms",
+  "spec_folder": "system-deep-loop/loop-architecture/002-graph-engineering/001-agent-swarms",
+  "parent_id": "system-deep-loop/loop-architecture/002-graph-engineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent-swarms graph engineering",
+      "graph-based deep loop agent-swarms",
+      "agent swarms deep loop study",
+      "graph engineering repo study",
+      "agent-swarms graph plan",
+      "graph-based deep loop plan",
+      "repo study 1 plan",
+      "agent-swarms graph tasks",
+      "graph-based deep loop tasks",
+      "repo study 1 tasks",
+      "agent-swarms graph summary",
+      "graph-based deep loop summary"
+    ],
+    "key_topics": [
+      "agent-swarms",
+      "graph",
+      "engineering",
+      "graph-based",
+      "deep",
+      "loop",
+      "agent",
+      "swarms",
+      "study",
+      "repo",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "orientation.md",
+      "research/resource-map.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orientation.md",
+        "kind": "doc",
+        "path": "orientation.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Deep",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Study",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 037 corpus grew well past what the gen-1 research studied",
+    "created_at": "2026-08-13T18:42:57.524Z",
+    "last_save_at": "2026-11-10T05:41:01.346Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:7b17f0e055d1310f66c80b14159bd35004e5d3d5fb6ec04dce350aaea3bc4505",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "025f691db5d3f78644dfbe1c2b5a70fdcb8a1281589585f8c5ec0a4c8e4e1e4a",
+      "plan.md": "e12ee49a46de391c246c643f4ebb55c08f891147b40c19c6ec03a0affbec88bd",
+      "tasks.md": "9ba65721bc20386a7ffe0dc7ea3aac6d7118e8dcb0876667a301a289225acd18",
+      "implementation-summary.md": "f68c25177add5017cc147e6792ef7fd9375f25d4a4d454cd10b83a2978a55f4f",
+      "research/research.md": "0a3d5b11006d9fe86d3c3ddecc57da0397864fa7b7f7919f3ee63f446171ceea"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

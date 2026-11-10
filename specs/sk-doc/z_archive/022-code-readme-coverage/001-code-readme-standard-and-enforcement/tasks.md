@@ -161,5 +161,5 @@ Status: Planned — no task is started.
 - **Checklist**: See `checklist.md`
 - **Decisions**: See `decision-record.md`
 - **Parent**: `sk-doc/022-code-readme-coverage`
-- **Downstream consumers**: `002` class (c), `003` (hard gate), `system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes` (hard gate)
+- **Downstream consumers**: `002` class (c), `003` (hard gate), `system-deep-loop/loop-architecture/001-deep-loop-innovation/019-runtime-code-readmes` (hard gate)
 <!-- /ANCHOR:cross-refs -->

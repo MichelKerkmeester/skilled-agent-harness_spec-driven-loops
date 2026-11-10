@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Two suites failed before this program and stayed red through it",
     "created_at": "2026-09-07T04:03:53.305Z",
-    "last_save_at": "2026-10-31T13:58:55.888Z",
+    "last_save_at": "2026-11-10T05:44:08.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a09866e53103dc29e7b575ed6cf2b6576171185ede60ea6d528d12f306c8808",
+    "source_fingerprint": "sha256:359fc7381f3796e33ab1c29cbf9d45a2d67e20949de001b112b15bdeffd50340",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13ccfeba75879b706e3d4aa38e0e255b51996567a9fbf36979f8469ac2b02511",
       "plan.md": "8591e2c3e9ee5e5d2bd602620634c6e1dbafa0ecf87bb1976ad546bd86abf4e7",
-      "tasks.md": "5b7de88a2681ab18de94644161eff100f46d16dcc1c727eaaac5cd57bc33e900",
+      "tasks.md": "5e8acb986444d5c32074aaf6195b5081d42f312fc2ef8e9774245990cdc26b4a",
       "implementation-summary.md": "a50172f1df2369eb5d83fffd9fed236611232a144526a3da3af580b4dd862bf2"
     },
     "last_active_child_id": null,

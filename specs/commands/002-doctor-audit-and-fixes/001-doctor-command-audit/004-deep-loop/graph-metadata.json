@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`/doctor:speckit deep-loop` checks deep-loop state, coverage graphs and convergence",
     "created_at": "2026-10-02T16:10:14Z",
-    "last_save_at": "2026-10-31T15:23:40.784Z",
+    "last_save_at": "2026-11-10T05:43:29.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9e490f43f41806ba6cd7f0aa7d7170afabb0c78af6dc436734b79cdbe04c912",
+    "source_fingerprint": "sha256:da0eae62ae20fbc32bca001e24d292ca71a3a29c93846557e97a388a6f4648ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7c395975483b9232b44bf5905b8f3c7b789354fc9872a50dd4067b971bef612",
       "plan.md": "8be52c6692b873ad5aae34a05a014330fe9ecb1bffc81530e7b792aecdd5cba2",
       "tasks.md": "4bb5e41abe2fafcb7563cfc40d4fa8a63a5501d26919f9e57b44509dc2d86150",
-      "implementation-summary.md": "4f42d13bdb4104a7d5c1b8a09eec66f4288390c10f091eac4a96cb5a64fea23f"
+      "implementation-summary.md": "0a94d618742f0d97ebd7ff793d0f37d87b34f848af8fd9cff5800169bfbb1f8a"
     },
     "last_active_at": null
   }

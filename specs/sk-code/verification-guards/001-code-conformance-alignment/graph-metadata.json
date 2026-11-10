@@ -158,16 +158,16 @@
     ],
     "causal_summary": "The sk-code `code-skilled` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical path-containment pattern for every authored code file in this repository",
     "created_at": "2026-07-30T19:25:15.551Z",
-    "last_save_at": "2026-11-10T05:20:47.132Z",
+    "last_save_at": "2026-11-10T05:43:28.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7f7ef556e1caede18161b85cab2c21bcd0334542c2bdc203efa90c4c873629ef",
+    "source_fingerprint": "sha256:571623c26956702f2943b72ba8f2a32250e4b5065c25ed8da5276dd0d5db7317",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf8abb97be1354a740c983fd73aeb66c838eccfc6ae5037e761a8ffd68862f86"
+      "spec.md": "7f29a81203a7cf0f8320d64b68a8f2c76f9bf84ff9dab98ca3069afcbb6b72d8"
     },
     "last_active_child_id": "sk-code/verification-guards/001-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
     "last_active_at": "2026-07-31T03:19:37.545Z"

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill benchmark rollback mode gate",
+      "skill-benchmark authority cutover rollback",
+      "skill benchmark migration gate",
+      "skill benchmark rollback mode gate implementation plan",
+      "skill-benchmark authority cutover implementation plan",
+      "skill benchmark migration gate plan",
+      "skill benchmark rollback mode gate tasks",
+      "skill-benchmark authority cutover tasks",
+      "skill benchmark migration gate tasks",
+      "Skill Benchmark rollback gate implementation",
+      "skill benchmark mode migration gate",
+      "skill benchmark rollback switch"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "rollback",
+      "mode",
+      "gate",
+      "skill-benchmark",
+      "authority",
+      "cutover",
+      "migration",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "This Planned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bounded Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-closed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Rollback",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate. The mode owns skill scenario runs and scoring over the deep-improvement-common backbone, with fail-closed authority-cutover controls, a bounded rollback window, sealed artifacts, and a certificate that permits the mode to exit into phase 014.",
+    "created_at": "2026-07-16T03:43:42.643Z",
+    "last_save_at": "2026-11-10T05:40:39.352Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:93e9f46a0364567435f3bce6a906b372a503a04184fea7a6b0dc81b305c26081",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "836d5926a3994376d6afcb39bf9fdc0fda6912ae3c9119e97402362f769444ef",
+      "plan.md": "93c87533a419ffcd8705d8e437fb1c08371e8c764a5554b2c272ab92a14e1018",
+      "tasks.md": "af0b38bae5ae6d506e22938a5c58047ea194f2777288c0e85f6b1260c6d19fed",
+      "implementation-summary.md": "ced08cfe620347474beb439949d9dea21491c689e6b31d5de80e8fbe973cc710"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

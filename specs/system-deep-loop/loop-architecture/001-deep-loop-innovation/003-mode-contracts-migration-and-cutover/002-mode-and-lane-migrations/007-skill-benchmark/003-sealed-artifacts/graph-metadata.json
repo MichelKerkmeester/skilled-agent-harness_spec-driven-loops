@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Skill Benchmark sealed reference artifacts",
+      "skill benchmark artifact sealing",
+      "skill contribution evidence artifacts",
+      "Skill Benchmark sealed artifacts implementation plan",
+      "skill benchmark tamper evident read plan",
+      "Skill Benchmark sealed artifacts tasks",
+      "skill benchmark reference sealing tasks",
+      "Skill Benchmark cross-artifact digest closure",
+      "skill benchmark plain digest backing",
+      "skill benchmark certificates closure boundary",
+      "skill benchmark canary freshness",
+      "Skill Benchmark sealed artifact implementation"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "sealed",
+      "reference",
+      "artifacts",
+      "artifact",
+      "sealing",
+      "contribution",
+      "evidence",
+      "implementation",
+      "plan",
+      "tamper"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "seed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Sealed",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Artifact Boundaries",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context This",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
+    "created_at": "2026-07-16T03:43:41.603Z",
+    "last_save_at": "2026-11-10T05:40:39.343Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:187f60cc364a39bf4855904f212011061cba478562996dd0bf2ac522e427281e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "53e4fd1905fb9200a98ffb6c55cad6350b5ede7e794bb2f1bb3ab96d304e4b37",
+      "plan.md": "3a0f2ee254263cc1a374ddf26426c202ce073c2071c9979591124b2f8f0c4c0e",
+      "tasks.md": "2bb00951ebe338fb7b52a951df568938db6399c9e7dba51fe669d5fedc8fdad6",
+      "decision-record.md": "9cc7e088794f099e356012c56ab1032329f4dba96bfbfed3bd033be2d6bfd13e",
+      "implementation-summary.md": "1ae60a38759e4e1ea33e0232e5b6a0d4960e0864c5560a3fca9f90a8578b9118"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

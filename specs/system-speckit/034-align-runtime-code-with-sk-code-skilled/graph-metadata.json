@@ -49,9 +49,7 @@
       ".opencode/plugins/system-completion-sentinel.js",
       "scratch/investigation/devin-swe2max-merge-factcheck.md",
       "tests/README.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/hermes/README.md",
       ".skilled/skills/system-spec-kit/ARCHITECTURE.md",
-      "cli/tests/sync-skills-hermes.test.mjs",
       "cli/tests/README.md",
       "hooks/lib/completion-evidence-sentinel.cjs",
       "tests/completion-evidence-sentinel.vitest.ts",
@@ -127,12 +125,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-skills-hermes.test.mjs",
-        "kind": "file",
-        "path": "cli/tests/sync-skills-hermes.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "completion-evidence-sentinel.cjs",
         "kind": "file",
         "path": "hooks/lib/completion-evidence-sentinel.cjs",
@@ -203,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Code under `.skilled/skills/system-spec-kit/runtime/` does not follow the sk-code-skilled comment and structure rules in `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-10-31T13:27:10.284Z",
+    "last_save_at": "2026-11-10T05:44:09.523Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +215,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ae8d0169c09b0a7c2db81c949591b36c3a0d7fe5da9b6730bdda3461e71b21a",
+    "source_fingerprint": "sha256:63c76c3b3a3c2d85b226371f78fd735bd9c5e2bbcce97baa25d521d4e861c442",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c02874952f1d1632edd47eb8f8ce08a741ad6b85f723c3ec8e66998e0af7ce5",
+      "spec.md": "6b61b624940e7286be48aa5da6e62cf795e1d972358e2ffa17b75de08a413833",
       "plan.md": "fb51fbf8d364b3e9949145a3fc78e10f27c21d589945a479a5ae3cdc08eaae57",
-      "tasks.md": "b0e61b2aaae0e7464a4a71a761fb80c166c185d6488080726dc7cac4c85e4f4a",
+      "tasks.md": "6026e130a60fcc9e880be49c07d89fbc1be12b532566951b76949f6a6e987e5a",
       "implementation-summary.md": "66e94a739c34d9c3380746db0e2fcb3011b1ee7acd067d87e6c9d4c3493ee7b1"
     },
     "last_active_at": null

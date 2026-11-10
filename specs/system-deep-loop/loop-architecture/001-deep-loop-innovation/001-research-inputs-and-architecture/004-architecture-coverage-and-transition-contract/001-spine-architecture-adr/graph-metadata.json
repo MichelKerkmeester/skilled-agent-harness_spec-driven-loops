@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spine architecture ADR",
+      "cross-mode deep-loop spine",
+      "six-primitive runtime architecture",
+      "spine architecture ADR implementation plan",
+      "cross-mode spine decision rationale",
+      "spine architecture ADR tasks",
+      "cross-mode spine ratification tasks",
+      "six-primitive cross-mode spine decision",
+      "deep-loop spine architecture ADR",
+      "transition-authorized ledger architecture",
+      "spine architecture ADR completion",
+      "six-primitive spine ratification evidence"
+    ],
+    "key_topics": [
+      "spine",
+      "architecture",
+      "adr",
+      "cross-mode",
+      "deep-loop",
+      "six-primitive",
+      "runtime",
+      "implementation",
+      "plan",
+      "decision",
+      "rationale",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spine Architecture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Adopt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consumer Contract",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primitive Cross",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Spine",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adopt One Six",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ratify the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases.",
+    "created_at": "2026-07-16T03:43:44.661Z",
+    "last_save_at": "2026-11-10T05:40:26.470Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b2360ca25d3ce3e3e51a37f45f78b744d84aec5ff19f1d6a7e33044a13a78b58",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c564e3402dbc88de159809dedef55c6443a9a7b3aa75a96905ea2ba832aeec84",
+      "plan.md": "b601b9f2a5daf3150e2e07e2ad0e3046ea51648f89d07d2c8bbb18badc668712",
+      "tasks.md": "597b69c639a598dffd28d09f811672d8872de553806e8afea20dfd966b18f41b",
+      "decision-record.md": "4074533d30d3f5aafbd247c69fd82421b8676724d81f3d0f3b88b67be0e28ee2",
+      "implementation-summary.md": "e1959b962069169c3b9bcdb1afc9f49bf3a31455421b2b21bd496be8d8aa35d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

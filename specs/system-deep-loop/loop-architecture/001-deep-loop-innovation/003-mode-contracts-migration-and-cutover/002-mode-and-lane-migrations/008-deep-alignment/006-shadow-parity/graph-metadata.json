@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Alignment shadow parity",
+      "deep-alignment ledger migration parity",
+      "event-for-event shadow harness",
+      "Deep Alignment shadow parity implementation plan",
+      "deep-alignment event parity plan",
+      "typed ledger shadow comparator plan",
+      "Deep Alignment shadow parity tasks",
+      "deep-alignment parity harness tasks",
+      "ledger event comparison tasks",
+      "Deep Alignment shadow parity implementation",
+      "deep alignment parity receipt",
+      "deep alignment mode gate input"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "shadow",
+      "parity",
+      "deep-alignment",
+      "ledger",
+      "migration",
+      "event-for-event",
+      "harness",
+      "implementation",
+      "plan",
+      "event"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolved Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012.",
+    "created_at": "2026-07-16T03:43:44.129Z",
+    "last_save_at": "2026-11-10T05:40:42.060Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0be856606903c156e6305ba577b11eec8930bf486b3cadf75069b75f65be94f4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "be162021210ccbbee17a87f8a95046ecc4ce14c51c353fc5f65dc7a5ab5902c7",
+      "plan.md": "e6c044315d2f8a45a62cf5624e11eb7f88972adc8133d2dd0ce1206422fb0f23",
+      "tasks.md": "e5ebbe9c217645b51b3cb52fceabd067d8ac30f5d03a23d95e206760ac659a3c",
+      "implementation-summary.md": "2b6ee128da9ae0e11fb1cf5a456474f9ceb36c49c86ff4c372e22e9e7309a6d8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

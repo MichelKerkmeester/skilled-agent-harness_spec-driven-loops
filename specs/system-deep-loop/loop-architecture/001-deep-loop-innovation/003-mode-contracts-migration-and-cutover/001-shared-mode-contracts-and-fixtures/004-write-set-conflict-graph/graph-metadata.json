@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "write-set conflict graph",
+      "phase-013 migration scheduling",
+      "deep-loop mode write ownership",
+      "parallel-safe mode migrations",
+      "write-set conflict graph implementation plan",
+      "phase-013 dependency graph plan",
+      "deep-loop lane scheduling plan",
+      "write-set conflict graph tasks",
+      "phase-013 scheduling tasks",
+      "deep-loop write ownership tasks",
+      "write-set path case handling",
+      "unicode-normalized resource path"
+    ],
+    "key_topics": [
+      "write-set",
+      "conflict",
+      "graph",
+      "phase-013",
+      "migration",
+      "scheduling",
+      "deep-loop",
+      "mode",
+      "write",
+      "ownership",
+      "parallel-safe",
+      "migrations"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Set Conflict Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "kind",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Filesystem Path Identity Handling",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Canonical",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
+    "created_at": "2026-07-16T03:43:54.781Z",
+    "last_save_at": "2026-11-10T05:40:32.953Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:57f9e2dd95263dc5ffcf288bc4c184b72858f16db47e44a2a57ac2b84591b834",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3ec165f5acda86879649addd264ef424c0f644d00e5d91255d54ca7cf742d383",
+      "plan.md": "da2c4b0820e4cba73d84210b033562ffac78d12eda6ec9e3361bfaba51ea251a",
+      "tasks.md": "2557cb000b39ca09ad75a72d7b804d881ee0aa33cc5583beab86ae5dd031a25d",
+      "decision-record.md": "3084a6c751e90f6e975f0642019e7beaf7a862fad5c366f20cd0b9ed3d1eece6",
+      "implementation-summary.md": "cecd53c010dfb8ecd2ce5a610a51346158710c2e484a6213a94f5a0f5c3c3e67"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

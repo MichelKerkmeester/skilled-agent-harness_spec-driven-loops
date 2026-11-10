@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-devin executor wiring",
+      "devin deep loop executor",
+      "add devin executor kind",
+      "devin fanout lineage",
+      "041 cli devin executor",
+      "cli-devin wiring plan",
+      "devin executor implementation",
+      "devin adapter plan",
+      "041 plan",
+      "cli-devin executor tasks",
+      "devin executor task list",
+      "tasks core"
+    ],
+    "key_topics": [
+      "cli-devin",
+      "executor",
+      "wiring",
+      "devin",
+      "deep",
+      "loop",
+      "kind",
+      "fanout",
+      "lineage",
+      "cli",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md",
+      "scratch/t011-live-smoke-evidence.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "t011-live-smoke-evidence.md",
+        "kind": "doc",
+        "path": "scratch/t011-live-smoke-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "binary",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds — `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor` — with no `cli-devin`",
+    "created_at": "2026-07-27T16:55:59Z",
+    "last_save_at": "2026-11-10T05:40:48.555Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:5bf22001f1c7f70a90cb43cf0f09cf57e2a4cc337251217f6ad30705538f7d66",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a481c96dd3a7d9c2bca6c1527eae36917d8f05e26c8f1cdabc2fb9fd0afd4f72",
+      "plan.md": "43948e541828d6504fef355875f3348350a25dcac0ca51c5cf6c6a422759b49c",
+      "tasks.md": "8025516a71ea9f9ba82dcc8976d5840fd62f18ec0861745343b3f8b02e5b5603",
+      "implementation-summary.md": "6a35e394d6434e03541eaffa9afbe6102582047584828ed961e69ab743d004ec",
+      "handover.md": "7a475b630d8412395beee30adcbc5992724821984687e51ee63b0a1596b4b7a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

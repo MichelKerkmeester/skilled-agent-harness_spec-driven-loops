@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Model Benchmark typed ledger schema",
+      "model-benchmark event vocabulary",
+      "typed ledger model benchmark migration",
+      "Model Benchmark typed ledger schema implementation plan",
+      "model-benchmark event schema plan",
+      "typed ledger phase 009 model benchmark",
+      "Model Benchmark typed ledger schema tasks",
+      "model-benchmark event vocabulary tasks",
+      "typed ledger model benchmark task set",
+      "model benchmark scoring prerequisite",
+      "normalized evaluation append confirmation",
+      "phase 014 model benchmark promotion"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "typed",
+      "ledger",
+      "schema",
+      "model-benchmark",
+      "event",
+      "vocabulary",
+      "migration",
+      "implementation",
+      "plan",
+      "phase"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Typed Ledger Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Model Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extract Model Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Scoring Prerequisite Boundary",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Durable Scoring",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prerequisite Proof Outside",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Leaf",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implements the Model Benchmark variant's additive-dark typed append-only event vocabulary over the shared deep-improvement-common backbone. The module extends 35 common events with 32 model-benchmark events and stops before reducer, projection, or authority-cutover work.",
+    "created_at": "2026-07-16T03:43:39.273Z",
+    "last_save_at": "2026-11-10T05:40:39.032Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ae18c937e403d0271866a3589de9eee0ee3bf0c2bc7e80bfb422c3adfe1ac987",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "490b047b14d2242cb983e38ec01e6690a3729903dd1eedf01acb546c2a44969d",
+      "plan.md": "e20044206d9cd597351c8eaaf3b2acc1181d5374f8d461cdb7bfcf7cae00576d",
+      "tasks.md": "345575cf65be13053c2b2bd4f839c2ed01932f31a600d960aae28b55285b50ae",
+      "decision-record.md": "58f661b15f15d7448dac24d1fc84102fec73f5b645c3f56a6d7435c6fa9060c0",
+      "implementation-summary.md": "d08e419db1213a2dbfef7ab389291ac63b76e64c2c17fc1f29b855a4f3179a3d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

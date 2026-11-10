@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy writer retirement",
+      "direct append removal",
+      "legacy writer retirement plan",
+      "direct append removal plan",
+      "legacy writer retirement tasks",
+      "direct append removal tasks",
+      "legacy writer retirement summary",
+      "direct append guard",
+      "direct append retirement complete"
+    ],
+    "key_topics": [
+      "legacy",
+      "writer",
+      "retirement",
+      "direct",
+      "append",
+      "removal",
+      "plan",
+      "tasks",
+      "summary",
+      "guard",
+      "complete",
+      "fleet"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs",
+      "scratch/inventory.md",
+      "scratch/authority-unchanged.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-direct-append.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-unchanged.md",
+        "kind": "doc",
+        "path": "scratch/authority-unchanged.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Writer Retirement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "pinned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "append",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
+    "created_at": "2026-08-19T06:57:08.198Z",
+    "last_save_at": "2026-11-10T05:40:56.046Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6d513d4b3643ba0fb16e353a1ae200a0558d298c7e24304965e1837b261de9a6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "96ddcdb7589bdce2cf6bc5c309a13494ab88ad9960f197f1ecea1b147427e8df",
+      "plan.md": "a29d2900f06e7c3455efcc067397003c24fce28ec811062016e2add5e4153508",
+      "tasks.md": "3984b22d00341a7dc4c3bd77082557de02eb2a1065bc58a1ee04acf5d615d6ea",
+      "implementation-summary.md": "cc8375252f993dd09e77cfdcc42c8e32d8d7c60912ce5ab70c81015e1eb62f53"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Review reducers and projections",
+      "deep-review typed event ledger fold",
+      "deep-review projection migration",
+      "Deep Review reducers and projections implementation plan",
+      "deep-review projection fold plan",
+      "Deep Review reducers and projections tasks",
+      "deep-review projection reducer tasks",
+      "deep review shared reducer backbone",
+      "deep review projection boundary",
+      "deep alignment reducer reuse",
+      "deep review reducer implementation",
+      "deep review projection contract"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "reducers",
+      "projections",
+      "deep-review",
+      "typed",
+      "event",
+      "ledger",
+      "fold",
+      "projection",
+      "migration",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Second Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "valid",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Review",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Backbone",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Projection Boundary",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence state, an artifact index, and per-mode status while preserving factored finding evidence and the shared review-loop contract used by Deep Alignment.",
+    "created_at": "2026-07-16T03:43:32.465Z",
+    "last_save_at": "2026-11-10T05:40:33.655Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d8637be5045ad08802f69e06acc338bf52a69cd3c64421381c703c06f0fbd7b7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a970c970f17417d0dc98eb21c7af8f0254218c67950e9edd72e4f8d8cb2bf796",
+      "plan.md": "922cbb2993c9b22a984ee8fea1792f8cccd0ba64a2bc56a76bcf298d751898bf",
+      "tasks.md": "9c5d8c9bfd15529885cfac2dae3768bd4281c40152cd04af51c1ea846d040a0c",
+      "decision-record.md": "ce2b1dc7e087dcb47b83525d72eef9f9e60c49b19cbcc7d56221864d6e4bfed4",
+      "implementation-summary.md": "117391d7ff7ab5fbff416df347d1448c1697029ab3163db9cb298783beaa1e12"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

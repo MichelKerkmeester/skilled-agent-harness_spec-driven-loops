@@ -78,7 +78,7 @@ In a plain run (no `-a`) of `pi --offline --help` in the trusted main checkout, 
 
 ### Out of Scope
 - Pi's loader behaviour — the pre-trust listeners and bus subscriptions that survive the trusted load are upstream (row 21). They are recorded here as an upstream issue in Pi 1.3.0. The fix belongs in Pi and has not shipped; this repo changes nothing for it.
-- The "register the flag before the claim gate" approach the research first suggested, because Pi reports a flag registered at two different real paths as a conflict (`resource-loader.js:584-590`, around `975-1007`), and print mode fails on it (`specs/system-deep-loop/040-cli-pi-worktree-extension-clash/spec.md:35`), so a worktree layout would exit 1 again.
+- The "register the flag before the claim gate" approach the research first suggested, because Pi reports a flag registered at two different real paths as a conflict (`resource-loader.js:584-590`, around `975-1007`), and print mode fails on it (`specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/spec.md:35`), so a worktree layout would exit 1 again.
 - Any global install, `opencode upgrade`, or Pi service command.
 
 ### Files to Change

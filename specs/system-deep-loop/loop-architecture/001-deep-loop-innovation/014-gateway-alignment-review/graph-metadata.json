@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/014-gateway-alignment-review",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/014-gateway-alignment-review",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gateway alignment deep review",
+      "deep-loop leaf gateway review",
+      "append gateway missing things review",
+      "runtime agent gateway audit review"
+    ],
+    "key_topics": [
+      "gateway",
+      "alignment",
+      "deep",
+      "review",
+      "deep-loop",
+      "leaf",
+      "append",
+      "missing",
+      "things",
+      "runtime",
+      "agent",
+      "audit"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "review/review-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gateway Alignment Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `013-runtime-agent-gateway-alignment` packet migrated the four affected deep-loop leaf agent prompts (`deep-research`, `deep-review`, `deep-alignment`, `ai-council`) across all six runtimes from a direct `-state.jsonl` bash-append to the authoritative append gateway (`append-mode-event.cjs`)",
+    "created_at": "2026-08-25T12:38:56.819Z",
+    "last_save_at": "2026-11-10T05:40:58.455Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bc865c115aa6525115fffcbdd0ef985f5aadbd0e20b323de8a96b297fb88e3fe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "989a3d6a34437a7b369765bbb1554b913b589506a0199f040aaa616e76163c85"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

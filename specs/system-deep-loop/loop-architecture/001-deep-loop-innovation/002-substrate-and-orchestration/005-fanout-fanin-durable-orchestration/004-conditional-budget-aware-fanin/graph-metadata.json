@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conditional budget-aware fan-in",
+      "dynamic fan-in sufficiency",
+      "fan-in budget floor",
+      "conditional budget-aware fan-in implementation plan",
+      "dynamic fan-in implementation plan",
+      "conditional budget-aware fan-in tasks",
+      "dynamic fan-in tasks",
+      "conditional fan-in implementation",
+      "budget-aware fan-in evidence"
+    ],
+    "key_topics": [
+      "conditional",
+      "budget-aware",
+      "fan-in",
+      "dynamic",
+      "sufficiency",
+      "budget",
+      "floor",
+      "implementation",
+      "plan",
+      "tasks",
+      "evidence",
+      "replay-stable"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conditional Budget",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aware Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "minimum",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "provenance-aware",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leaf Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "immutable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Conditional",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes outstanding leaves safely, and records the exact reducer input decision.",
+    "created_at": "2026-07-16T03:43:50.574Z",
+    "last_save_at": "2026-11-10T05:40:29.593Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fa3be37566803f6f904814f840fd2692c4362cc154940d9ca602940f5a6fd8a5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e6bac6046f38dfbce49c4f71f33f1d2010588b8a1a353ab95afe042d41568dc1",
+      "plan.md": "0e32953075b10767adc1613098940b833e0033462e548f244f917c8aa506ce32",
+      "tasks.md": "b24287b2b7383defed67eb372daa45b6bc0d62a1e21e9aee06b0e15d236d34c6",
+      "implementation-summary.md": "ba769611b91f728414afb4e2299cee7d140ec1117e7d5a2f1090a3e25b98d946"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

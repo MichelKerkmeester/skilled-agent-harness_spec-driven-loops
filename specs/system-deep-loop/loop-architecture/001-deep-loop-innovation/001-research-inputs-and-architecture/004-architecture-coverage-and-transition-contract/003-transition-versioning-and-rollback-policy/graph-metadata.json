@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "transition versioning rollback policy",
+      "deep-loop event envelope upcaster rules",
+      "per-mode authority cutover contract",
+      "transition versioning rollback implementation plan",
+      "authority cutover policy plan",
+      "transition versioning rollback policy tasks",
+      "event upcaster cutover contract tasks",
+      "transition policy implementation summary",
+      "typed event policy ratification evidence",
+      "rollback policy completion receipt"
+    ],
+    "key_topics": [
+      "transition",
+      "versioning",
+      "rollback",
+      "policy",
+      "deep-loop",
+      "event",
+      "envelope",
+      "upcaster",
+      "rules",
+      "per-mode",
+      "authority",
+      "cutover"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "transition-versioning-and-rollback-policy.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "transition-versioning-and-rollback-policy.md",
+        "kind": "doc",
+        "path": "transition-versioning-and-rollback-policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Policy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequencing Invariants",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Program",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ratified Policy Contract",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Freeze the event-envelope versioning and upcaster contract, deny-by-default transition authorization, per-mode authority cutover, and rollback-window policy before any typed event writer exists.",
+    "created_at": "2026-07-16T03:43:45.134Z",
+    "last_save_at": "2026-11-10T05:40:26.431Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:66efa503be0abc907714fdd1f65a638eebe7c2617909bebd7fb635758bded63e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "590d600942449717aaa2aecdaf2f56da22e031097083b5446f23ef177f29ab80",
+      "plan.md": "7baa9180ee064e3438f3117dc8c9f45c3bbc180bfd61a14dba706680387e10b6",
+      "tasks.md": "a6d05a93e5347d1b6a0b449a803725e0f9ca4bf326effe2fdda1a1d414e26690",
+      "implementation-summary.md": "bcca94c6073b2b708e52846ad95a043d49fe70091515fa2052f3c88be0aea905"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout synthesis lineage aggregation",
+      "deep research empty registry reconstruction",
+      "lineage delta resource map",
+      "fanout synthesis implementation plan",
+      "lineage registry merge plan",
+      "deep research resource map fanout",
+      "fanout synthesis tasks",
+      "lineage aggregation implementation",
+      "lineage artifact synthesis decision",
+      "fanout registry projection",
+      "fanout synthesis implementation summary",
+      "lineage aggregation delivery"
+    ],
+    "key_topics": [
+      "fanout",
+      "synthesis",
+      "lineage",
+      "aggregation",
+      "deep",
+      "research",
+      "empty",
+      "registry",
+      "reconstruction",
+      "delta",
+      "resource",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-contract-drift.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-now-yaml-control.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-depth-convergence.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Synthesis Lineage Aggregation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fan-out writes iterations and deltas under `research/lineages/<label>/`, while synthesis reads `research/iterations/`, `research/deltas/`, and `research/findings-registry.json`",
+    "created_at": "2026-07-25T07:41:55Z",
+    "last_save_at": "2026-11-10T05:40:29.685Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5e21e1736f2fdf8f12c71bc2f682e3524bc56cbdb90c0d58dc3f37fcd3272d72",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "05e29b6a14cff92ee99f7deedd71d4eb1228b4de0d75643bde571e6a9af1f6da",
+      "plan.md": "48de0e72bd2adbadfcda15de507fe575261e87f6a23dbe29f4f2d187e60aa06b",
+      "tasks.md": "c10defb643f87953f612d84449dabf7e420d638b617ef54ff1a2ba2f070563c1",
+      "decision-record.md": "5e498190437e3a8623332d291a377df787ed56fbcfefc500a01fb894fdd54bad",
+      "implementation-summary.md": "0fcb18d6cf97283aeb722edac79362f330146e4d1f83d66fd695969b5fe57d3c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-deep-loop/review-lineage",
+  "description": "Deep-review and deep-research lineage behavior: the shared gateway for state dispatch and findings, the fan-out review focus input and the fan-out resume and containment fixes.",
+  "keywords": [
+    "review",
+    "lineage"
+  ],
+  "lastUpdated": "2026-11-10T05:40:22.477Z",
+  "specId": "system-deep-loop/review-lineage",
+  "folderSlug": "review-lineage",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

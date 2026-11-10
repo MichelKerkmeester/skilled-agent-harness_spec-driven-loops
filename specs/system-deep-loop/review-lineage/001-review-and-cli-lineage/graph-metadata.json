@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/review-lineage/001-review-and-cli-lineage",
+  "spec_folder": "system-deep-loop/review-lineage/001-review-and-cli-lineage",
+  "parent_id": "system-deep-loop/review-lineage",
+  "children_ids": [
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/002-review-state-init-and-dispatch",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/003-cli-pi-opencode-go-route",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/004-read-only-and-research-bookkeeping",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/005-cli-lineage-findings-contract",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/006-research-lineage-reducer-path",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/007-lineage-reducer-compliance",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/008-lineage-proof-enforcement",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/009-findings-summary-integrity",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/010-config-row-projection-refusal",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/011-gateway-enforcement-and-projection-hygiene",
+    "system-deep-loop/review-lineage/001-review-and-cli-lineage/012-legacy-row-migration"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop review gateway",
+      "review state init and dispatch",
+      "cli pi opencode go route",
+      "read only research bookkeeping",
+      "cli lineage findings contract"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "review",
+      "gateway",
+      "state",
+      "init",
+      "dispatch",
+      "cli",
+      "opencode",
+      "route",
+      "read",
+      "only"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review and deep-research loops disagreed with their own gateway",
+    "created_at": "2026-10-02T00:00:00Z",
+    "last_save_at": "2026-11-10T05:41:04.172Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:e4cd8606029451b3a13690b9a4b6305465acbed0226910404f703d01b0131e13",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eb8970b41c2f056f824c9ad81facacf532ad5c11441fae89110a766515ea9e86"
+    },
+    "last_active_child_id": "system-deep-loop/review-lineage/001-review-and-cli-lineage/009-findings-summary-integrity",
+    "last_active_at": "2026-10-18T18:26:37.474Z"
+  }
+}

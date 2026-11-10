@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/022-phase0-dispatch-anchor",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/022-phase0-dispatch-anchor",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 0 dispatch anchor deep review",
+      "DIRECT INVOCATION REQUIRED false block",
+      "ARGS_PRESENT dispatch-context authorization",
+      "phase0 dispatch anchor plan",
+      "phase0 dispatch anchor tasks",
+      "phase 0 dispatch anchor summary",
+      "DISPATCH-CONTEXT authorization prefix",
+      "deep review direct invocation false block fix"
+    ],
+    "key_topics": [
+      "phase",
+      "dispatch",
+      "anchor",
+      "deep",
+      "review",
+      "direct",
+      "invocation",
+      "required",
+      "false",
+      "block",
+      "dispatch-context",
+      "authorization"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Objective Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Anchor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Ended",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION REQUIRED — no review iteration executed\"",
+    "created_at": "2026-08-27T03:18:13.515Z",
+    "last_save_at": "2026-11-10T05:40:59.647Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1b46faeef1f4bd23bd4814c9be9eda70bd2b207ea2bd64be2a13fc666d60a28b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5e33227c96d49a00087bf3b444bc8c7284ea78f2ef6075f51dd5e0eb25c23559",
+      "plan.md": "f11c3c2e09271090280079fd1c295c3dc620037e09f32681eb7b1d5977124e7b",
+      "tasks.md": "add4c25f27953582a4826a7ebc054f8b31516d587b100826f156bfc2fd6f5386",
+      "implementation-summary.md": "ae74c2d33ebe1de6dec3a8dfe7a968c68fd96aae65787eb6846d222bef0e46a7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

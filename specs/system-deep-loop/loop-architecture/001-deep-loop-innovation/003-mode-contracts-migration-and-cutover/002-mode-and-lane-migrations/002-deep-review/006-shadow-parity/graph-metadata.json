@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Review shadow parity",
+      "deep-review event ledger migration",
+      "deep-review legacy emitter parity",
+      "Deep Review shadow parity implementation plan",
+      "deep-review ledger projection parity",
+      "Deep Review shadow parity tasks",
+      "deep-review event parity tasks",
+      "Deep Review shadow parity implementation",
+      "deep-review parity receipt handoff"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "shadow",
+      "parity",
+      "deep-review",
+      "event",
+      "ledger",
+      "migration",
+      "legacy",
+      "emitter",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flipping Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed event-ledger substrate. The new path runs in shadow beside the legacy emitter, compares normalized projections event-for-event, and remains non-authoritative until every parity and fail-closed cutover criterion is green.",
+    "created_at": "2026-07-16T03:43:33.437Z",
+    "last_save_at": "2026-11-10T05:40:35.758Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f222658d596dad3cbe44b8cbb4d3bf3fea9becd74f82745eae48a60c6d70416a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dfe2fa62e1245c383e4ed01083d33dcc2597b4c30aae26cce4704ffc4f68c653",
+      "plan.md": "1dd953d6827c598da4a1c00a9da6de1545f718b7c4653313d4dd5966af621cc0",
+      "tasks.md": "1ac619b1e4dfc403a63620791d8c05e32df88c1758f26fce19f4066090ae6d00",
+      "implementation-summary.md": "d35c257391fa02e346f422520b7b8994ee2016423c4b9b705c19a4f05f2f9f4d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

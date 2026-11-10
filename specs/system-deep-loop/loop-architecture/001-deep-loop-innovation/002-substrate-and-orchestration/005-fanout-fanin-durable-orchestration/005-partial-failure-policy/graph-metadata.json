@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "partial-failure policy",
+      "durable fan-in failure threshold",
+      "degraded fanout result",
+      "partial-failure policy implementation plan",
+      "durable fan-in failure plan",
+      "partial-failure policy tasks",
+      "durable fan-in failure tasks",
+      "partial-failure policy implementation",
+      "durable fan-in verdict evidence",
+      "degraded fanout result implementation"
+    ],
+    "key_topics": [
+      "partial-failure",
+      "policy",
+      "durable",
+      "fan-in",
+      "failure",
+      "threshold",
+      "degraded",
+      "fanout",
+      "result",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "partial-failure-policy.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Policy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "orthogonal",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "child",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "counts",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Durable",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in proceeds or aborts after leaf failures.",
+    "created_at": "2026-07-16T03:43:50.882Z",
+    "last_save_at": "2026-11-10T05:40:29.618Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:83aa5a9702ee5ad82e348c597b9e2ce2dd5bcab3a4a16a2ee0da740c38487d8d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "808b6c2bafd3cdc0606f7ec9f84ea95e1fc8ad4d091e3e281f0aacec70e0355e",
+      "plan.md": "98cc8c0bcef5ba9a0b3792423523f6d07aa182346060e5e83fefd69a2ac62983",
+      "tasks.md": "9aa9c3b6070e8c18d19a766accf15d76bce92b7fb04ee9aad2b15b7ee8ec41fa",
+      "implementation-summary.md": "9b399c270dc65cd08f4a180f3db19ee8d133ebd3a0ab2a0a2d9e14231dd15608"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

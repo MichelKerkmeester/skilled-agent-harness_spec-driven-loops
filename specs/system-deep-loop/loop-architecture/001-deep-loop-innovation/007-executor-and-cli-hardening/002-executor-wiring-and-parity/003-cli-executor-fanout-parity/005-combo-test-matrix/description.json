@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix",
+  "description": "Two things needed to close the fan-out parity packet",
+  "keywords": [
+    "two",
+    "things",
+    "needed",
+    "close",
+    "fan-out",
+    "parity",
+    "packet"
+  ],
+  "lastUpdated": "2026-08-19T19:14:44.808Z",
+  "specId": "005",
+  "folderSlug": "combo-test-matrix",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "002-executor-wiring-and-parity",
+    "003-cli-executor-fanout-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

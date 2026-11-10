@@ -31213,7 +31213,7 @@
       "lastUpdated": "2026-08-15T14:41:03.207Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
       "description": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
       "keywords": [
         "packet",
@@ -31230,7 +31230,7 @@
       "lastUpdated": "2026-09-05T08:41:16.719Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture",
       "description": "Market and effectiveness research, baseline taxonomy and state census, and the architecture coverage and transition contract.",
       "keywords": [
         "market",
@@ -31248,7 +31248,7 @@
       "lastUpdated": "2026-08-19T19:14:43.604Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research",
       "description": "`system-deep-loop` improvements are currently sourced only from local incident experience; the repo has no systematic map of what the wider ecosystem",
       "keywords": [
         "system-deep-loop",
@@ -31268,7 +31268,7 @@
       "lastUpdated": "2026-08-19T19:14:43.537Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout",
       "description": "001 produced a broad landscape and 8 ranked recommendations, but at survey depth: one-line lessons per repo, not mechanisms or reference",
       "keywords": [
         "produced",
@@ -31288,7 +31288,7 @@
       "lastUpdated": "2026-08-19T19:14:43.538Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census",
       "description": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture,",
       "keywords": [
         "freeze",
@@ -31307,7 +31307,7 @@
       "lastUpdated": "2026-08-19T19:14:43.559Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract",
       "description": "The last planning gate before implementation ratifies the cross-mode spine, freezes all 178 recommendations into a bijective single-disposition",
       "keywords": [
         "last",
@@ -31325,7 +31325,7 @@
       "lastUpdated": "2026-08-19T19:14:43.596Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr",
       "description": "Ratify the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases.",
       "keywords": [
         "ratify",
@@ -31342,7 +31342,7 @@
       "lastUpdated": "2026-08-19T19:14:43.568Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
       "description": "Freeze the 178 deep-loop recommendations into one immutable classified ledger with stable IDs, normalized taxonomy targets, exactly one disposition",
       "keywords": [
         "freeze",
@@ -31363,7 +31363,7 @@
       "lastUpdated": "2026-08-19T19:14:43.582Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy",
       "description": "Freeze the event-envelope versioning and upcaster contract, deny-by-default transition authorization, per-mode authority cutover, and rollback-window",
       "keywords": [
         "freeze",
@@ -31382,7 +31382,7 @@
       "lastUpdated": "2026-08-19T19:14:43.588Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration",
       "description": "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration,",
       "keywords": [
         "live-tools",
@@ -31402,7 +31402,7 @@
       "lastUpdated": "2026-08-19T19:14:43.854Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/001-fanout-live-tools-unblock",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/001-fanout-live-tools-unblock",
       "description": "Ship the early, backward-compatible fan-out live-tools unblock on fanout-run.cjs: a typed liveTools.webSearch policy, a fail-closed executor",
       "keywords": [
         "ship",
@@ -31423,7 +31423,7 @@
       "lastUpdated": "2026-08-19T19:14:43.614Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core",
       "description": "The versioned event envelope, typed append-only ledger, replay fingerprints, and fail-closed transition-authorization gateway must co-land as one dark",
       "keywords": [
         "versioned",
@@ -31445,7 +31445,7 @@
       "lastUpdated": "2026-08-19T19:14:43.638Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/001-versioned-event-envelope",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/001-versioned-event-envelope",
       "description": "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that",
       "keywords": [
         "define",
@@ -31467,7 +31467,7 @@
       "lastUpdated": "2026-08-19T19:14:43.615Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/002-typed-append-only-ledger",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/002-typed-append-only-ledger",
       "description": "Define the immutable typed ledger writer and reader over versioned envelope events, including monotonic ordering, idempotent append, hash-chain",
       "keywords": [
         "define",
@@ -31489,7 +31489,7 @@
       "lastUpdated": "2026-08-19T19:14:43.620Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints",
       "description": "Define independently versioned replay fingerprints over closed typed-ledger ranges, canonical replay dependencies, and byte-stable outputs, with",
       "keywords": [
         "define",
@@ -31508,7 +31508,7 @@
       "lastUpdated": "2026-08-19T19:14:43.621Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/004-transition-authorization-gateway",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/004-transition-authorization-gateway",
       "description": "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable",
       "keywords": [
         "define",
@@ -31530,7 +31530,7 @@
       "lastUpdated": "2026-08-19T19:14:43.630Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
       "description": "Plan the seven shared evidence and control services that make the transition-authorized ledger usable by the compatibility bridge and every deep-loop",
       "keywords": [
         "plan",
@@ -31550,7 +31550,7 @@
       "lastUpdated": "2026-08-19T19:14:43.681Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
       "description": "Plan durable boundary receipts and an effect-recovery gateway that records intent before execution, confirms observed outcomes, and reconciles",
       "keywords": [
         "plan",
@@ -31570,7 +31570,7 @@
       "lastUpdated": "2026-08-19T19:14:43.647Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/002-sealed-reference-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/002-sealed-reference-artifacts",
       "description": "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and",
       "keywords": [
         "plan",
@@ -31592,7 +31592,7 @@
       "lastUpdated": "2026-08-19T19:14:43.657Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/003-blinded-adjudication-service",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/003-blinded-adjudication-service",
       "description": "Plan a shared blinded and counterfactual adjudication service that controls identity and position bias while preserving replayable raw scoring",
       "keywords": [
         "plan",
@@ -31614,7 +31614,7 @@
       "lastUpdated": "2026-08-19T19:14:43.664Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/004-hierarchical-typed-budgets",
       "description": "Plan token, cost, iteration, and wall-time budgets that nest from program to iteration, reserve atomically, settle against ledgered spend, and fail",
       "keywords": [
         "plan",
@@ -31636,7 +31636,7 @@
       "lastUpdated": "2026-08-19T19:14:43.665Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/005-stream-fold-gauges",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/005-stream-fold-gauges",
       "description": "Plan versioned observability gauges as deterministic folds over the transition-authorized ledger, with reproducible progress, novelty, cost, and",
       "keywords": [
         "plan",
@@ -31655,7 +31655,7 @@
       "lastUpdated": "2026-08-19T19:14:43.671Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing",
       "description": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing",
       "keywords": [
         "plan",
@@ -31677,7 +31677,7 @@
       "lastUpdated": "2026-08-19T19:14:43.672Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities",
       "description": "Plan stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries and are",
       "keywords": [
         "plan",
@@ -31698,7 +31698,7 @@
       "lastUpdated": "2026-08-19T19:14:43.677Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge",
       "description": "Define the five compatibility, shadow-parity, in-flight-state, and rollback child contracts that make the dark deep-loop substrate provably safe for a",
       "keywords": [
         "define",
@@ -31718,7 +31718,7 @@
       "lastUpdated": "2026-08-19T19:14:43.708Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/001-upcasters-and-dual-read-adapters",
       "description": "Plan deterministic event and state upcaster chains plus dual-read/single-authoritative-write adapters that reconcile legacy state with the dark ledger",
       "keywords": [
         "plan",
@@ -31739,7 +31739,7 @@
       "lastUpdated": "2026-08-19T19:14:43.692Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
       "description": "Plan deterministic folds from the verified dark ledger into byte-identical legacy JSONL and JSON artifacts, preserving every existing reader while",
       "keywords": [
         "plan",
@@ -31762,7 +31762,7 @@
       "lastUpdated": "2026-08-19T19:25:36.640Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness",
       "description": "Plan the fail-closed harness that runs legacy and dark deep-loop paths on identical sealed inputs, compares verified replay-fingerprint components and",
       "keywords": [
         "plan",
@@ -31784,7 +31784,7 @@
       "lastUpdated": "2026-08-19T19:14:43.701Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/004-inflight-state-classification",
       "description": "Implement a total, fail-closed classification of every frozen phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any",
       "keywords": [
         "implement",
@@ -31806,7 +31806,7 @@
       "lastUpdated": "2026-08-19T19:14:43.703Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/005-rollback-drills",
       "description": "Plan executable, mode-scoped rollback drills that simulate a test-lane authority flip, detect a controlled regression, restore legacy authority within",
       "keywords": [
         "plan",
@@ -31828,7 +31828,7 @@
       "lastUpdated": "2026-08-19T19:14:43.708Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
       "description": "Make fan-out and fan-in durable over the canonical ledger through dispatch receipts, result envelopes, resumable branch orchestration, budget-aware",
       "keywords": [
         "fan-out",
@@ -31848,7 +31848,7 @@
       "lastUpdated": "2026-08-19T19:14:43.777Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
       "description": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch",
       "keywords": [
         "promote",
@@ -31870,7 +31870,7 @@
       "lastUpdated": "2026-08-19T19:14:43.721Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage",
       "description": "Plan typed per-leaf result envelopes and ledger-fold resume/salvage that preserves completed work, recovers partial evidence, and never re-runs a",
       "keywords": [
         "plan",
@@ -31893,7 +31893,7 @@
       "lastUpdated": "2026-08-19T19:14:43.722Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
       "description": "Stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that",
       "keywords": [
         "stable",
@@ -31916,7 +31916,7 @@
       "lastUpdated": "2026-08-19T19:14:43.728Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
       "description": "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes",
       "keywords": [
         "plan",
@@ -31938,7 +31938,7 @@
       "lastUpdated": "2026-08-19T19:14:43.743Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/005-partial-failure-policy",
       "description": "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in",
       "keywords": [
         "define",
@@ -31960,7 +31960,7 @@
       "lastUpdated": "2026-08-19T19:14:43.755Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
       "description": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every",
       "keywords": [
         "plan",
@@ -31983,7 +31983,7 @@
       "lastUpdated": "2026-08-19T19:14:43.763Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
       "description": "Fan-out writes iterations and deltas under `research/lineages/<label>/`, while synthesis reads `research/iterations/`, `research/deltas/`, and",
       "keywords": [
         "fan-out",
@@ -32000,7 +32000,7 @@
       "lastUpdated": "2026-08-19T19:14:43.772Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
       "description": "This phase defines the intelligence layer over the durable deep-loop substrate: concept-level novelty, typed contradiction and supersession, stable",
       "keywords": [
         "phase",
@@ -32020,7 +32020,7 @@
       "lastUpdated": "2026-08-19T19:14:43.812Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities",
       "description": "Deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept while legacy graph novelty remains authoritative.",
       "keywords": [
         "deterministic",
@@ -32042,7 +32042,7 @@
       "lastUpdated": "2026-08-19T19:14:43.794Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
       "description": "Plan first-class contradiction and supersession ledger events that preserve evidence, history, deterministic claim status, and replayable audit",
       "keywords": [
         "plan",
@@ -32063,7 +32063,7 @@
       "lastUpdated": "2026-08-19T19:14:43.799Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity",
       "description": "Implements one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate through",
       "keywords": [
         "implements",
@@ -32084,7 +32084,7 @@
       "lastUpdated": "2026-08-19T19:14:43.801Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics",
       "description": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from",
       "keywords": [
         "plan",
@@ -32104,7 +32104,7 @@
       "lastUpdated": "2026-08-19T19:14:43.805Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges",
       "description": "Plan deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and",
       "keywords": [
         "plan",
@@ -32125,7 +32125,7 @@
       "lastUpdated": "2026-08-19T19:14:43.811Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health",
       "description": "The current convergence anchor is council-specific and threshold-based.",
       "keywords": [
         "current",
@@ -32137,7 +32137,7 @@
       "lastUpdated": "2026-08-19T19:14:43.849Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/001-path-covering-termination",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/001-path-covering-termination",
       "description": "Plan replay-stable termination on proven, mode-specific search-space coverage: every major path or semantic community is addressed, required",
       "keywords": [
         "plan",
@@ -32158,7 +32158,7 @@
       "lastUpdated": "2026-08-19T19:14:43.825Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/002-cycle-detection",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/002-cycle-detection",
       "description": "Deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated health evidence and no stop",
       "keywords": [
         "deterministic",
@@ -32179,7 +32179,7 @@
       "lastUpdated": "2026-08-19T19:14:43.837Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/003-stopping-clocks",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/003-stopping-clocks",
       "description": "Plan independent budget, novelty-decay, coverage, wall-time, and cycle clocks whose deterministic earliest firing terminates the loop and records a",
       "keywords": [
         "plan",
@@ -32201,7 +32201,7 @@
       "lastUpdated": "2026-08-19T19:14:43.838Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation",
       "description": "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure.",
       "keywords": [
         "replay-stable",
@@ -32217,7 +32217,7 @@
       "lastUpdated": "2026-08-19T19:14:43.844Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/005-health-and-degeneration-harness",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/005-health-and-degeneration-harness",
       "description": "Defines the delivered mode-agnostic health harness that turns degeneration and unusable telemetry into typed signals and bounded requests without",
       "keywords": [
         "defines",
@@ -32238,7 +32238,7 @@
       "lastUpdated": "2026-08-19T19:14:43.845Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
       "description": "The fan-out path never read --convergence-mode, so every lineage silently took the default while the caller believed convergence was disabled.",
       "keywords": [
         "fan-out",
@@ -32260,7 +32260,7 @@
       "lastUpdated": "2026-09-20T08:32:53.576Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events",
       "description": "The spec-check protocol (`system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` \u00a76) requires every spec write a research run",
       "keywords": [
         "spec-check",
@@ -32279,7 +32279,7 @@
       "lastUpdated": "2026-09-20T08:32:53.620Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
       "description": "Shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, and legacy-writer retirement.",
       "keywords": [
         "shared",
@@ -32299,7 +32299,7 @@
       "lastUpdated": "2026-08-19T19:14:44.392Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures",
       "description": "Freeze the shared mode boundary before the eight phase-013 migrations: common interfaces, hoisted cross-mode closures, mixed-version fixtures, and an",
       "keywords": [
         "freeze",
@@ -32320,7 +32320,7 @@
       "lastUpdated": "2026-08-19T19:14:43.893Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/001-shared-mode-interfaces",
       "description": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence",
       "keywords": [
         "freeze",
@@ -32343,7 +32343,7 @@
       "lastUpdated": "2026-08-19T19:14:43.861Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/002-cross-mode-closures",
       "description": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-013 mode migrations share one",
       "keywords": [
         "hoist",
@@ -32365,7 +32365,7 @@
       "lastUpdated": "2026-08-19T19:14:43.862Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures",
       "description": "Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay,",
       "keywords": [
         "plan",
@@ -32391,7 +32391,7 @@
       "lastUpdated": "2026-08-19T19:14:43.879Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph",
       "description": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived",
       "keywords": [
         "plan",
@@ -32414,7 +32414,7 @@
       "lastUpdated": "2026-08-19T19:14:43.893Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations",
       "description": "The per-mode fan-out of the recommendations-implementation program: eight deep-loop modes each migrate their full run behavior onto the shared typed",
       "keywords": [
         "per-mode",
@@ -32435,7 +32435,7 @@
       "lastUpdated": "2026-08-19T19:14:44.339Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
       "description": "Migrate the autonomous Deep Research loop from initialization through iterative evidence gathering, convergence, synthesis, and memory-save handoff",
       "keywords": [
         "migrate",
@@ -32455,7 +32455,7 @@
       "lastUpdated": "2026-08-19T19:14:43.993Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema",
       "description": "Plan the Deep Research mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed run lifecycle,",
       "keywords": [
         "plan",
@@ -32477,7 +32477,7 @@
       "lastUpdated": "2026-08-19T19:14:43.900Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
       "description": "Plan the pure reducers and live projections for the deep-research migration: replay the typed event ledger into deterministic iteration/convergence",
       "keywords": [
         "plan",
@@ -32498,7 +32498,7 @@
       "lastUpdated": "2026-08-19T19:14:43.906Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
       "description": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume,",
       "keywords": [
         "plan",
@@ -32521,7 +32521,7 @@
       "lastUpdated": "2026-08-19T19:14:43.913Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
       "description": "Plan the Deep Research mode certificate and receipt binding over the typed event-ledger substrate: one per-run certificate, per-transition receipts",
       "keywords": [
         "plan",
@@ -32542,7 +32542,7 @@
       "lastUpdated": "2026-08-19T19:14:43.920Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
       "description": "The Deep Research resume adapter rebuilds interrupted live state from the sealed typed ledger through the frozen reducers, maps continuity to typed",
       "keywords": [
         "deep",
@@ -32564,7 +32564,7 @@
       "lastUpdated": "2026-08-19T19:14:43.926Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
       "description": "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and",
       "keywords": [
         "implemented",
@@ -32585,7 +32585,7 @@
       "lastUpdated": "2026-08-19T19:14:43.957Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
       "description": "Implements the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate while keeping",
       "keywords": [
         "implements",
@@ -32607,7 +32607,7 @@
       "lastUpdated": "2026-08-19T19:14:43.993Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
       "description": "Migrate Deep Review from its legacy scope, dimension-pass, convergence, and review-report loop to the shared typed event-ledger substrate through",
       "keywords": [
         "migrate",
@@ -32627,7 +32627,7 @@
       "lastUpdated": "2026-08-19T19:14:44.060Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
       "description": "Plan the Deep Review mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed review lifecycle,",
       "keywords": [
         "plan",
@@ -32648,7 +32648,7 @@
       "lastUpdated": "2026-08-19T19:14:44.018Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
       "description": "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence",
       "keywords": [
         "plan",
@@ -32670,7 +32670,7 @@
       "lastUpdated": "2026-08-19T19:14:44.038Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
       "description": "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report",
       "keywords": [
         "plan",
@@ -32692,7 +32692,7 @@
       "lastUpdated": "2026-08-19T19:14:44.043Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
       "description": "Plan the Deep Review per-run certificate and per-transition receipt contract over the typed event-ledger substrate.",
       "keywords": [
         "plan",
@@ -32710,7 +32710,7 @@
       "lastUpdated": "2026-08-19T19:14:44.045Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
       "description": "Plan the Deep Review resume adapter for interruption-safe recovery from the sealed typed event ledger.",
       "keywords": [
         "plan",
@@ -32728,7 +32728,7 @@
       "lastUpdated": "2026-08-19T19:14:44.050Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/006-shadow-parity",
       "description": "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed",
       "keywords": [
         "plan",
@@ -32748,7 +32748,7 @@
       "lastUpdated": "2026-08-19T19:14:44.052Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
       "description": "Plan the Deep Review rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded",
       "keywords": [
         "plan",
@@ -32770,7 +32770,7 @@
       "lastUpdated": "2026-08-19T19:14:44.056Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council",
       "description": "Migrate the multi-seat Deep AI Council deliberation onto the shared typed event-ledger substrate through seven concern children, preserving replayable",
       "keywords": [
         "migrate",
@@ -32792,7 +32792,7 @@
       "lastUpdated": "2026-08-19T19:14:44.102Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/001-typed-ledger-schema",
       "description": "Plan the Deep AI Council event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed multi-seat",
       "keywords": [
         "plan",
@@ -32812,7 +32812,7 @@
       "lastUpdated": "2026-08-19T19:14:44.069Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/002-reducers-and-projections",
       "description": "Plan the pure deterministic reducers and live projections for the Deep AI Council migration: replay the typed deliberation ledger into",
       "keywords": [
         "plan",
@@ -32832,7 +32832,7 @@
       "lastUpdated": "2026-08-19T19:14:44.081Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
       "description": "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council",
       "keywords": [
         "plan",
@@ -32854,7 +32854,7 @@
       "lastUpdated": "2026-08-19T19:14:44.087Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts",
       "description": "Plan the Deep AI Council per-run certificate and per-transition receipt profiles over the typed event-ledger substrate: attestation boundaries,",
       "keywords": [
         "plan",
@@ -32874,7 +32874,7 @@
       "lastUpdated": "2026-08-19T19:14:44.094Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
       "description": "Plan the Deep AI Council resume adapter for the typed event-ledger migration.",
       "keywords": [
         "plan",
@@ -32889,7 +32889,7 @@
       "lastUpdated": "2026-08-19T19:14:44.095Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity",
       "description": "Implemented the dark shadow-parity harness for the Deep AI Council migration.",
       "keywords": [
         "implemented",
@@ -32903,7 +32903,7 @@
       "lastUpdated": "2026-08-19T19:14:44.096Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
       "description": "Implements the additive-dark Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate.",
       "keywords": [
         "implements",
@@ -32923,7 +32923,7 @@
       "lastUpdated": "2026-08-19T19:14:44.101Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
       "description": "Migrate the shared deep-improvement evaluator-first loop, candidate generation, scoring, canary, and guarded promotion services onto the typed",
       "keywords": [
         "migrate",
@@ -32944,7 +32944,7 @@
       "lastUpdated": "2026-08-19T19:14:44.143Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
       "description": "Defines the additive-dark typed append-only event vocabulary for shared Deep Improvement services: candidate generation, evaluator observations, score",
       "keywords": [
         "defines",
@@ -32966,7 +32966,7 @@
       "lastUpdated": "2026-08-19T19:14:44.104Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
       "description": "Define the pure reducers and projections for Deep Improvement Common Services",
       "keywords": [
         "define",
@@ -32981,7 +32981,7 @@
       "lastUpdated": "2026-08-19T19:14:44.109Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
       "description": "Define the sealed reference-artifact contract for Deep Improvement Common Services",
       "keywords": [
         "define",
@@ -32996,7 +32996,7 @@
       "lastUpdated": "2026-08-19T19:14:44.123Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
       "description": "Plan the shared Deep Improvement Common Services certificate and receipt contract over the typed event-ledger substrate: per-run certificates,",
       "keywords": [
         "plan",
@@ -33017,7 +33017,7 @@
       "lastUpdated": "2026-08-19T19:14:44.135Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
       "description": "Define the Deep Improvement Common Services resume adapter over the sealed typed event ledger: deterministic reducer reconstruction, continuity-ladder",
       "keywords": [
         "define",
@@ -33039,7 +33039,7 @@
       "lastUpdated": "2026-08-19T19:14:44.136Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
       "description": "Implemented the shared Deep Improvement Common Services shadow-parity harness with logical event pairing, independent projections, fault injection,",
       "keywords": [
         "implemented",
@@ -33061,7 +33061,7 @@
       "lastUpdated": "2026-08-19T19:14:44.137Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
       "description": "Delivered the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving",
       "keywords": [
         "delivered",
@@ -33083,7 +33083,7 @@
       "lastUpdated": "2026-08-19T19:14:44.142Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement",
       "description": "Migrate the agent-improvement variant of the deep-improvement evaluator loop onto the typed event-ledger substrate through seven concern children,",
       "keywords": [
         "migrate",
@@ -33103,7 +33103,7 @@
       "lastUpdated": "2026-08-19T19:14:44.179Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
       "description": "The additive-dark Agent Improvement typed ledger extends the shared Deep Improvement Common Services schema with typed AgentIR, change-contract,",
       "keywords": [
         "additive-dark",
@@ -33123,7 +33123,7 @@
       "lastUpdated": "2026-08-19T19:14:44.144Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/002-reducers-and-projections",
       "description": "Define the pure Agent Improvement fold and its three live projection families: iteration/convergence state, a",
       "keywords": [
         "define",
@@ -33142,7 +33142,7 @@
       "lastUpdated": "2026-08-19T19:14:44.149Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
       "description": "Plan the sealed reference artifacts for the agent-improvement variant: immutable AgentIR and change inputs, frozen improver and evaluator references,",
       "keywords": [
         "plan",
@@ -33163,7 +33163,7 @@
       "lastUpdated": "2026-08-19T19:14:44.157Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
       "description": "Provide a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, preserves",
       "keywords": [
         "provide",
@@ -33183,7 +33183,7 @@
       "lastUpdated": "2026-08-19T19:14:44.159Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter",
       "description": "Plan the Agent Improvement resume adapter over the sealed typed event ledger: rebuild agent-loop proposal and scoring state through deterministic",
       "keywords": [
         "plan",
@@ -33205,7 +33205,7 @@
       "lastUpdated": "2026-08-19T19:14:44.161Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity",
       "description": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate.",
       "keywords": [
         "plan",
@@ -33221,7 +33221,7 @@
       "lastUpdated": "2026-08-19T19:14:44.166Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate",
       "description": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant.",
       "keywords": [
         "plan",
@@ -33241,7 +33241,7 @@
       "lastUpdated": "2026-08-19T19:14:44.177Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark",
       "description": "Migrate the model-benchmark variant's multi-model runs and scoring matrix onto the typed event-ledger substrate through seven concern children,",
       "keywords": [
         "migrate",
@@ -33262,7 +33262,7 @@
       "lastUpdated": "2026-08-19T19:14:44.250Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
       "description": "Implements the Model Benchmark variant's additive-dark typed append-only event vocabulary over the shared deep-improvement-common backbone.",
       "keywords": [
         "implements",
@@ -33281,7 +33281,7 @@
       "lastUpdated": "2026-08-19T19:14:44.194Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
       "description": "Define the model-benchmark reducers and projections on top of the deep-improvement-common services from mode 004",
       "keywords": [
         "define",
@@ -33296,7 +33296,7 @@
       "lastUpdated": "2026-08-19T19:14:44.203Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts",
       "description": "Define how Model Benchmark seals its reference artifacts over the typed event-ledger substrate",
       "keywords": [
         "define",
@@ -33312,7 +33312,7 @@
       "lastUpdated": "2026-08-19T19:14:44.213Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts",
       "description": "Plan the model-benchmark variant certificate and receipt contract over the typed event-ledger substrate: per-run multi-model benchmark attestations,",
       "keywords": [
         "plan",
@@ -33332,7 +33332,7 @@
       "lastUpdated": "2026-08-19T19:14:44.227Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter",
       "description": "Plan the Model Benchmark resume adapter for the typed event-ledger substrate",
       "keywords": [
         "plan",
@@ -33347,7 +33347,7 @@
       "lastUpdated": "2026-08-19T19:14:44.241Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
       "description": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and",
       "keywords": [
         "plan",
@@ -33366,7 +33366,7 @@
       "lastUpdated": "2026-08-19T19:14:44.244Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
       "description": "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed",
       "keywords": [
         "plan",
@@ -33388,7 +33388,7 @@
       "lastUpdated": "2026-08-19T19:14:44.249Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
       "description": "Migrate the skill-benchmark variant's scenario runs and scoring onto the typed event-ledger substrate while reusing the deep-improvement-common",
       "keywords": [
         "migrate",
@@ -33408,7 +33408,7 @@
       "lastUpdated": "2026-08-19T19:14:44.293Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
       "description": "Plan the Skill Benchmark event vocabulary over the deep-improvement-common backbone: a typed append-only envelope for paired scenario treatments,",
       "keywords": [
         "plan",
@@ -33428,7 +33428,7 @@
       "lastUpdated": "2026-08-19T19:14:44.264Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
       "description": "Plan the pure reducers and live projections for the skill-benchmark migration: replay the typed skill event ledger into deterministic",
       "keywords": [
         "plan",
@@ -33448,7 +33448,7 @@
       "lastUpdated": "2026-08-19T19:14:44.280Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
       "description": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
       "keywords": [
         "define",
@@ -33466,7 +33466,7 @@
       "lastUpdated": "2026-08-19T19:14:44.281Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
       "description": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay",
       "keywords": [
         "plan",
@@ -33486,7 +33486,7 @@
       "lastUpdated": "2026-08-19T19:14:44.283Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
       "description": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger.",
       "keywords": [
         "plan",
@@ -33502,7 +33502,7 @@
       "lastUpdated": "2026-08-19T19:14:44.288Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
       "description": "Plan the Skill Benchmark shadow-parity harness for paired skill scenarios and scoring: run the typed ledger path beside the legacy emitter, compare",
       "keywords": [
         "plan",
@@ -33525,7 +33525,7 @@
       "lastUpdated": "2026-08-19T19:14:44.288Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
       "description": "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate.",
       "keywords": [
         "plan",
@@ -33544,7 +33544,7 @@
       "lastUpdated": "2026-08-19T19:14:44.293Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment",
       "description": "Migrate Deep Alignment's verify-first, named-authority conformance loop to the shared typed event-ledger substrate through seven independently gated",
       "keywords": [
         "migrate",
@@ -33565,7 +33565,7 @@
       "lastUpdated": "2026-08-19T19:14:44.338Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/001-typed-ledger-schema",
       "description": "The typed append-only event vocabulary for Deep Alignment: per-lane conformance checks against a named authority, verify-first findings, authority",
       "keywords": [
         "typed",
@@ -33586,7 +33586,7 @@
       "lastUpdated": "2026-08-19T19:14:44.299Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/002-reducers-and-projections",
       "description": "Plan the pure deterministic reducers and live projections for the Deep Alignment migration: replay the typed event ledger into lane, authority,",
       "keywords": [
         "plan",
@@ -33608,7 +33608,7 @@
       "lastUpdated": "2026-08-19T19:14:44.312Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
       "description": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first",
       "keywords": [
         "plan",
@@ -33630,7 +33630,7 @@
       "lastUpdated": "2026-08-19T19:14:44.321Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts",
       "description": "Plan the Deep Alignment per-run certificate and per-transition receipt contract over the typed event-ledger substrate.",
       "keywords": [
         "plan",
@@ -33648,7 +33648,7 @@
       "lastUpdated": "2026-08-19T19:14:44.321Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
       "description": "Plan the Deep Alignment resume adapter for interruption-safe recovery from the sealed typed event ledger.",
       "keywords": [
         "plan",
@@ -33666,7 +33666,7 @@
       "lastUpdated": "2026-08-19T19:14:44.327Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
       "description": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate.",
       "keywords": [
         "plan",
@@ -33682,7 +33682,7 @@
       "lastUpdated": "2026-08-19T19:14:44.330Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate",
       "description": "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded",
       "keywords": [
         "plan",
@@ -33704,7 +33704,7 @@
       "lastUpdated": "2026-08-19T19:14:44.337Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
       "description": "Classify and migrate eligible in-flight state, then cut authority per mode under shadow-parity, rollback, and certificate gates.",
       "keywords": [
         "classify",
@@ -33724,7 +33724,7 @@
       "lastUpdated": "2026-08-19T19:25:36.642Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/001-inflight-state-migration",
       "description": "Plan the guarded migration of eligible in-flight deep-loop state at staged cutover: logically upcast safe rows, fork isolated dark copies, migrate",
       "keywords": [
         "plan",
@@ -33749,7 +33749,7 @@
       "lastUpdated": "2026-08-19T19:14:44.345Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
       "description": "Plan the fail-closed switch that makes the dark spine canonical for one mode at a time, after current shadow-parity and rollback-drill evidence pass,",
       "keywords": [
         "plan",
@@ -33770,7 +33770,7 @@
       "lastUpdated": "2026-08-19T19:14:44.359Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
       "description": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean",
       "keywords": [
         "plan",
@@ -33792,7 +33792,7 @@
       "lastUpdated": "2026-08-19T19:25:36.641Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
       "description": "Repair seven stale state-census path references that made five runtime test files ENOENT-uncollectable, and close a fan-out config schema gap that let",
       "keywords": [
         "repair",
@@ -33816,7 +33816,7 @@
       "lastUpdated": "2026-08-19T19:25:36.641Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement",
       "description": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed",
       "keywords": [
         "remove",
@@ -33839,7 +33839,7 @@
       "lastUpdated": "2026-08-19T19:14:44.385Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation",
       "description": "A run could spend twenty minutes producing a ranked set of findings and then report an iteration count, four file paths and a status token",
       "keywords": [
         "run",
@@ -33862,7 +33862,7 @@
       "lastUpdated": "2026-09-20T08:32:53.574Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/006-deprecate-skill-benchmark",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/006-deprecate-skill-benchmark",
       "description": "The `skill-benchmark` lane is carried by the `system-deep-loop` hub as a sixth workflow mode, with a command in five runtime trees, a 56-file script",
       "keywords": [
         "skill-benchmark",
@@ -33883,7 +33883,7 @@
       "lastUpdated": "2026-09-20T08:32:53.575Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift",
       "description": "Whole-system gate, integrate-latest closeout, and drift census and plan revalidation.",
       "keywords": [
         "whole-system",
@@ -33898,7 +33898,7 @@
       "lastUpdated": "2026-08-19T19:14:44.603Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate",
       "description": "Plan the final whole-system acceptance gate for the 006 recommendations-implementation program: freeze an exact candidate SHA, run every mode and",
       "keywords": [
         "plan",
@@ -33919,7 +33919,7 @@
       "lastUpdated": "2026-08-19T19:14:44.511Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/002-integrate-latest-and-closeout",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/002-integrate-latest-and-closeout",
       "description": "Phase 017 lands the system-deep-loop recommendations program on the moving mainline: integrate the latest origin in a clean worktree, re-census",
       "keywords": [
         "phase",
@@ -33939,7 +33939,7 @@
       "lastUpdated": "2026-08-19T19:14:44.512Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation",
       "description": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
       "keywords": [
         "packet",
@@ -33956,7 +33956,7 @@
       "lastUpdated": "2026-08-19T04:44:01.759Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout",
       "description": "The cutover blocker closeouts: completion-evidence reconcile, shadow-parity independent derivation, legacy-compat event vocabulary, and durable write",
       "keywords": [
         "cutover",
@@ -33976,7 +33976,7 @@
       "lastUpdated": "2026-08-19T19:14:44.671Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile",
       "description": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
       "keywords": [
         "checked",
@@ -33993,7 +33993,7 @@
       "lastUpdated": "2026-08-19T19:14:44.620Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation",
       "description": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
       "keywords": [
         "six",
@@ -34008,7 +34008,7 @@
       "lastUpdated": "2026-08-19T05:49:19.744Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary",
       "description": "Five per-mode upcasters plus skill-benchmark reject ordinary lifecycle records",
       "keywords": [
         "five",
@@ -34024,7 +34024,7 @@
       "lastUpdated": "2026-08-19T19:14:44.647Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries",
       "description": "(Resolved \u2014 historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
       "keywords": [
         "resolved",
@@ -34043,7 +34043,7 @@
       "lastUpdated": "2026-08-19T19:25:36.646Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
       "description": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority,",
       "keywords": [
         "runtime",
@@ -34061,7 +34061,7 @@
       "lastUpdated": "2026-08-19T19:14:44.764Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/001-runtime-code-readmes",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/001-runtime-code-readmes",
       "description": "Most folders that hold code in the system-deep-loop runtime have no README",
       "keywords": [
         "folders",
@@ -34074,7 +34074,7 @@
       "lastUpdated": "2026-08-19T19:14:44.685Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment",
       "description": "A large share of the system-deep-loop runtime was authored across many independent fan-out build sessions, and that code",
       "keywords": [
         "large",
@@ -34092,7 +34092,7 @@
       "lastUpdated": "2026-08-29T15:04:24.244Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding",
       "description": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
       "keywords": [
         "evidence",
@@ -34106,7 +34106,7 @@
       "lastUpdated": "2026-08-19T19:14:44.692Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity",
       "description": "Three mechanisms invalidate alignment coverage",
       "keywords": [
         "three",
@@ -34118,7 +34118,7 @@
       "lastUpdated": "2026-08-19T19:14:44.694Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding",
       "description": "Standalone readiness gates verify sealed bindings and certificates on two independent paths and never compare the sealed digest set with the",
       "keywords": [
         "standalone",
@@ -34139,7 +34139,7 @@
       "lastUpdated": "2026-08-19T19:14:44.707Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity",
       "description": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings",
       "keywords": [
         "fulfillment",
@@ -34161,7 +34161,7 @@
       "lastUpdated": "2026-08-19T19:14:44.708Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority",
       "description": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier",
       "keywords": [
         "promotion",
@@ -34179,7 +34179,7 @@
       "lastUpdated": "2026-08-19T04:41:15.108Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity",
       "description": "The Codex `ai-council` conversion runs `sandboxmode = \"workspace-write\"` while the source agent denies Bash and promises never to write outside",
       "keywords": [
         "codex",
@@ -34201,7 +34201,7 @@
       "lastUpdated": "2026-08-19T19:14:44.719Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/009-silent-failure-and-harness-repair",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/009-silent-failure-and-harness-repair",
       "description": "Twenty-three findings in three lanes share one shape",
       "keywords": [
         "twenty-three",
@@ -34215,7 +34215,7 @@
       "lastUpdated": "2026-08-19T19:14:44.736Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch",
       "description": "The roster drift is one fact repeated in five places: three READMEs advertise a pre-alignment four-family roster and four improvement lanes against a",
       "keywords": [
         "roster",
@@ -34238,7 +34238,7 @@
       "lastUpdated": "2026-08-19T19:25:36.648Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening",
       "description": "The authorization gateway skipped identity comparisons when authority bindings and resolver output were absent, allowing caller-supplied identity",
       "keywords": [
         "authorization",
@@ -34257,7 +34257,7 @@
       "lastUpdated": "2026-08-19T19:14:44.763Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
       "description": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts",
       "keywords": [
         "pre-existing",
@@ -34276,7 +34276,7 @@
       "lastUpdated": "2026-09-20T08:32:53.490Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
       "description": "The containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs across twenty phases",
       "keywords": [
         "containment",
@@ -34296,7 +34296,7 @@
       "lastUpdated": "2026-09-20T08:32:53.620Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/001-angle-driven-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/001-angle-driven-review",
       "description": "Twenty phases of the containment packet changed the deep-loop runtime, its commands, protocols, catalogs, agents and packet docs",
       "keywords": [
         "twenty",
@@ -34315,7 +34315,7 @@
       "lastUpdated": "2026-09-20T08:32:53.577Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness",
       "description": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own",
       "keywords": [
         "external",
@@ -34337,7 +34337,7 @@
       "lastUpdated": "2026-09-20T08:32:53.596Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/003-version-authority",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/003-version-authority",
       "description": "The three hubs carried six disagreeing version values across their routing artifacts: system-deep-loop spanned 1.0.1.0 to 3.0.0.0 across five files,",
       "keywords": [
         "three",
@@ -34358,7 +34358,7 @@
       "lastUpdated": "2026-09-20T08:32:53.597Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability",
       "description": "The generator skipped any directory entry that was not a plain file, and a symlink never reports as one, so every symlinked reference was invisible",
       "keywords": [
         "generator",
@@ -34379,7 +34379,7 @@
       "lastUpdated": "2026-09-20T08:32:53.598Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/005-catalog-and-readme-truth",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/005-catalog-and-readme-truth",
       "description": "The review found ten classes of documentation that the tree contradicts: nine catalog references citing absent paths, a superseded runtime generation",
       "keywords": [
         "review",
@@ -34402,7 +34402,7 @@
       "lastUpdated": "2026-09-20T08:32:53.599Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity",
       "description": "The review measured seven divergences between the confirm and auto variants of the two deep commands",
       "keywords": [
         "review",
@@ -34420,7 +34420,7 @@
       "lastUpdated": "2026-09-20T08:32:53.600Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers",
       "description": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at",
       "keywords": [
         "ledger",
@@ -34441,7 +34441,7 @@
       "lastUpdated": "2026-09-20T08:32:53.602Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity",
       "description": "Six trees mirror the same twelve agents, and the translation between them was undocumented and partly lossy",
       "keywords": [
         "six",
@@ -34460,7 +34460,7 @@
       "lastUpdated": "2026-09-20T08:32:53.605Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/009-containment-promise-and-severity-scale",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/009-containment-promise-and-severity-scale",
       "description": "Two governed domains each had two authorities pronouncing and nothing reconciling them",
       "keywords": [
         "two",
@@ -34475,7 +34475,7 @@
       "lastUpdated": "2026-09-20T08:32:53.605Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion",
       "description": "Phase 003 gave three hubs one version authority and wrote the remaining two into its own out-of-scope list, so `sk-doc` and `mcp-tooling` still carry",
       "keywords": [
         "phase",
@@ -34499,7 +34499,7 @@
       "lastUpdated": "2026-09-20T08:32:53.607Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/011-routing-doctrine-and-discovery",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/011-routing-doctrine-and-discovery",
       "description": "Every hub that declared both an always-loaded policy and a stage-two preamble stated them",
       "keywords": [
         "every",
@@ -34515,7 +34515,7 @@
       "lastUpdated": "2026-09-20T08:32:53.608Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root",
       "description": "Review finding F044 records that `active-critic-overfit.md`, `proposal-only-boundary.md` and `skill-load-not-protocol.md` list",
       "keywords": [
         "review",
@@ -34530,7 +34530,7 @@
       "lastUpdated": "2026-09-20T08:32:53.609Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects",
       "description": "Four phases of this packet each ended by recording defects they had measured but not fixed, on the reasoning that the surface belonged to another",
       "keywords": [
         "four",
@@ -34548,7 +34548,7 @@
       "lastUpdated": "2026-09-20T08:32:53.610Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review",
       "description": "Thirteen phases changed one hundred and fifty files on the claim that each surface now says what the code does",
       "keywords": [
         "thirteen",
@@ -34567,7 +34567,7 @@
       "lastUpdated": "2026-09-20T08:32:53.615Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings",
       "description": "A ten-iteration review of the program found seven defects in work every phase had already called verified",
       "keywords": [
         "ten-iteration",
@@ -34586,7 +34586,7 @@
       "lastUpdated": "2026-09-20T08:32:53.616Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/016-iteration-state-record-contract",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/016-iteration-state-record-contract",
       "description": "Deep-loop iteration records name their iteration number two ways",
       "keywords": [
         "deep-loop",
@@ -34600,7 +34600,7 @@
       "lastUpdated": "2026-09-20T08:32:53.617Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/017-guard-index-and-parent-doc-fixes",
       "description": "Three checks were red or wrong for reasons unrelated to what they guard",
       "keywords": [
         "three",
@@ -34614,7 +34614,7 @@
       "lastUpdated": "2026-09-20T08:32:53.619Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening",
       "description": "CLI adapter stress and playbooks, executor wiring and parity, write-containment hardening, deep-alignment integrity, trustworthy state records,",
       "keywords": [
         "cli",
@@ -34635,7 +34635,7 @@
       "lastUpdated": "2026-08-19T19:14:44.934Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks",
       "description": "The adapter family has a wide failure surface that is not safely covered by one green unit suite",
       "keywords": [
         "adapter",
@@ -34653,7 +34653,7 @@
       "lastUpdated": "2026-08-19T19:14:44.765Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity",
       "description": "Group the deep-loop CLI fan-out executor work: wiring individual executor kinds and proving every cli/provider/model combination is reachable",
       "keywords": [
         "group",
@@ -34675,7 +34675,7 @@
       "lastUpdated": "2026-08-19T19:14:44.851Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
       "description": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write",
       "keywords": [
         "single-executor",
@@ -34693,7 +34693,7 @@
       "lastUpdated": "2026-08-19T19:14:44.766Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/002-cli-devin-executor-wiring",
       "description": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds \u2014 `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`,",
       "keywords": [
         "executorkinds",
@@ -34712,7 +34712,7 @@
       "lastUpdated": "2026-08-19T19:25:36.650Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity",
       "description": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
       "keywords": [
         "deep-loop",
@@ -34729,7 +34729,7 @@
       "lastUpdated": "2026-08-19T19:14:44.824Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit",
       "description": "The fan-out advertises seven executor kinds, but no single document states which (cli, provider, model, mode) combinations",
       "keywords": [
         "fan-out",
@@ -34749,7 +34749,7 @@
       "lastUpdated": "2026-08-19T19:14:44.769Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring",
       "description": "`buildPiLineageCommand` in `fanout-run.cjs` was a hard stub that threw (\"command construction is unavailable until its headless",
       "keywords": [
         "buildpilineagecommand",
@@ -34767,7 +34767,7 @@
       "lastUpdated": "2026-08-19T19:14:44.779Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening",
       "description": "The devin and cursor fan-out lineage builders mapped the generic sandbox modes (`read-only`, `workspace-write`, `danger-full-access`) to CLI flags",
       "keywords": [
         "devin",
@@ -34788,7 +34788,7 @@
       "lastUpdated": "2026-08-19T19:14:44.788Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity",
       "description": "An audit of every deep mode's executor coverage found that the fan-out modes (deep-research, deep-review, deep-alignment) already dispatch all seven",
       "keywords": [
         "audit",
@@ -34810,7 +34810,7 @@
       "lastUpdated": "2026-08-19T19:14:44.799Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix",
       "description": "Two things needed to close the fan-out parity packet",
       "keywords": [
         "two",
@@ -34824,7 +34824,7 @@
       "lastUpdated": "2026-08-19T19:14:44.808Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout",
       "description": "Phases 001-005 wired and proved executor parity for the deep-loop fan-out, but the packet was still open: the parent metadata read In Progress, and",
       "keywords": [
         "phases",
@@ -34845,7 +34845,7 @@
       "lastUpdated": "2026-08-19T19:14:44.819Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/004-devin-fanout-allowlist-parity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/004-devin-fanout-allowlist-parity",
       "description": "The cli-devin catalog was curated to four families (GLM-5.2, SWE-1.7, Grok 4.5, DeepSeek V4 Pro) with default `swe`, but the deep-loop runtime's",
       "keywords": [
         "cli-devin",
@@ -34866,7 +34866,7 @@
       "lastUpdated": "2026-08-19T19:14:44.835Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek",
       "description": "After the additive parity packet, three gaps remained: nine curated-out aliases (`adaptive`, `opus`, `sonnet`, `claude`, `haiku`, `gpt`, `gemini`,",
       "keywords": [
         "additive",
@@ -34889,7 +34889,7 @@
       "lastUpdated": "2026-08-19T19:14:44.847Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening",
       "description": "Group the deep-loop fan-out write-containment guard fixes so a dispatched leaf can never leave, delete, or misattribute out-of-scope writes.",
       "keywords": [
         "group",
@@ -34909,7 +34909,7 @@
       "lastUpdated": "2026-08-19T19:14:44.881Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/001-cli-codex-write-containment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/001-cli-codex-write-containment",
       "description": "The deep-loop runtime dispatches `codex exec` review/research/alignment iterations with `--sandbox workspace-write` and NO structural",
       "keywords": [
         "deep-loop",
@@ -34928,7 +34928,7 @@
       "lastUpdated": "2026-08-19T19:14:44.864Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/002-fanout-containment-sibling",
       "description": "The fan-out worker calls the write-containment guard with `artifactDir` set to the single lineage's own directory, so every sibling lineage's",
       "keywords": [
         "fan-out",
@@ -34948,7 +34948,7 @@
       "lastUpdated": "2026-08-19T19:14:44.865Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening/003-write-containment-concurrent-safety",
       "description": "The deep-loop codex write-containment guard (`write-containment.ts`) confines a `cli-codex` leaf's writes to its artifact directory by diffing the git",
       "keywords": [
         "deep-loop",
@@ -34967,7 +34967,7 @@
       "lastUpdated": "2026-08-19T19:14:44.877Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
       "description": "Group the deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path.",
       "keywords": [
         "group",
@@ -34985,7 +34985,7 @@
       "lastUpdated": "2026-08-19T19:14:44.917Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing",
       "description": "The deep-alignment loop seeds its findings registry FAIL-closed before the first LEAF dispatch (a non-empty-but-unaudited corpus reduces to",
       "keywords": [
         "deep-alignment",
@@ -35004,7 +35004,7 @@
       "lastUpdated": "2026-08-19T19:14:44.894Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
       "description": "`/deep:alignment` had a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supported cli-opencode",
       "keywords": [
         "deep",
@@ -35025,7 +35025,7 @@
       "lastUpdated": "2026-08-19T19:14:44.910Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/005-trustworthy-state-records",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/005-trustworthy-state-records",
       "description": "Two defects, both surfaced by fan-out runs during unrelated work, both costing completed analysis",
       "keywords": [
         "two",
@@ -35042,7 +35042,7 @@
       "lastUpdated": "2026-08-19T19:14:44.927Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts",
       "description": "Three sibling phases under `036-deep-loop-innovation` landed their primary deliverables but each left one small, explicitly-documented residual open",
       "keywords": [
         "three",
@@ -35062,7 +35062,7 @@
       "lastUpdated": "2026-08-18T10:12:06.530Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/007-cli-devin-executor-repair",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/007-cli-devin-executor-repair",
       "description": "Primary (systemic): the installed `devin 3000.4.16` added a workspace-trust gate",
       "keywords": [
         "primary",
@@ -35075,7 +35075,7 @@
       "lastUpdated": "2026-08-17T08:29:24.517Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/008-cli-pi-devpass-glm-route",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/008-cli-pi-devpass-glm-route",
       "description": "The operator asked for a deep-research run on GLM-5.3-Flash at `max` through cli-pi, billed to DevPass, their flat-price LLM Gateway plan",
       "keywords": [
         "operator",
@@ -35096,7 +35096,7 @@
       "lastUpdated": "2026-09-20T08:32:53.488Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/009-cli-pi-devpass-deepseek-route",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/009-cli-pi-devpass-deepseek-route",
       "description": "The operator asked for a second research round on DeepSeek V4 Flash at `max` through cli-pi",
       "keywords": [
         "operator",
@@ -35112,7 +35112,7 @@
       "lastUpdated": "2026-09-20T08:32:53.492Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
       "description": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed",
       "keywords": [
         "fan-out",
@@ -35134,7 +35134,7 @@
       "lastUpdated": "2026-09-20T08:32:53.535Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/001-never-fatal-untracked",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/001-never-fatal-untracked",
       "description": "The write-containment guard failed a fan-out iteration whenever an untracked file appeared outside the lane's packet tree, even under the preserve",
       "keywords": [
         "write-containment",
@@ -35156,7 +35156,7 @@
       "lastUpdated": "2026-09-20T08:32:53.493Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/002-iteration-record-dedupe",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/002-iteration-record-dedupe",
       "description": "Two of four research lanes, on two executor kinds, finished all three iterations and were still rejected with `duplicate state records for iterations:",
       "keywords": [
         "two",
@@ -35177,7 +35177,7 @@
       "lastUpdated": "2026-09-20T08:32:53.495Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/003-publish-manifest-provenance",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/003-publish-manifest-provenance",
       "description": "The attribution table printed `unknown` in the Kind and Model column for every lineage of a completed run",
       "keywords": [
         "attribution",
@@ -35195,7 +35195,7 @@
       "lastUpdated": "2026-09-20T08:32:53.497Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/004-index-lock-retry",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/004-index-lock-retry",
       "description": "Every git call in the containment guard returned an empty result on any non-zero exit and discarded stderr, and every caller read empty as a clean",
       "keywords": [
         "every",
@@ -35217,7 +35217,7 @@
       "lastUpdated": "2026-09-20T08:32:53.498Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/005-churn-cumulative-arm",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/005-churn-cumulative-arm",
       "description": "The churn detector compared each heartbeat's newly dirty out-of-lineage paths against a per-window threshold and forgot them immediately after",
       "keywords": [
         "churn",
@@ -35238,7 +35238,7 @@
       "lastUpdated": "2026-09-20T08:32:53.500Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/006-reducer-ordered-lists",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/006-reducer-ordered-lists",
       "description": "The retained SWE-2 lineage finished three iterations with 25 finding records in its deltas and numbered findings in its iteration files, yet its",
       "keywords": [
         "retained",
@@ -35258,7 +35258,7 @@
       "lastUpdated": "2026-09-20T08:32:53.501Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/007-worktree-removal",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/007-worktree-removal",
       "description": "The per-lineage worktree mechanism cost 1.6 GB and about 22 seconds per lane, existed only to make write attribution exact, and attribution is not a",
       "keywords": [
         "per-lineage",
@@ -35278,7 +35278,7 @@
       "lastUpdated": "2026-09-20T08:32:53.503Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/008-quarantine-destination-canonical",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/008-quarantine-destination-canonical",
       "description": "The quarantine writer created directories and wrote content copies, patches and the manifest under a path derived from the lane's own directory",
       "keywords": [
         "quarantine",
@@ -35298,7 +35298,7 @@
       "lastUpdated": "2026-09-20T08:32:53.509Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/009-baseline-deletion-detection",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/009-baseline-deletion-detection",
       "description": "The detector iterated the post-dispatch git status and subtracted the baseline, so an untracked file present at baseline and deleted by the lane was",
       "keywords": [
         "detector",
@@ -35317,7 +35317,7 @@
       "lastUpdated": "2026-09-20T08:32:53.510Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes",
       "description": "The containment block ran only after every verdict gate passed",
       "keywords": [
         "containment",
@@ -35332,7 +35332,7 @@
       "lastUpdated": "2026-09-20T08:32:53.511Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/011-restore-never-through-symlink",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/011-restore-never-through-symlink",
       "description": "Under restore, the baseline write used `writeFileSync` on the violated path",
       "keywords": [
         "restore",
@@ -35345,7 +35345,7 @@
       "lastUpdated": "2026-09-20T08:32:53.512Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/012-quarantine-retention-per-pass",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/012-quarantine-retention-per-pass",
       "description": "The quarantine writer targeted one fixed directory per lane and its docs said a later pass replaces the manifest and named files",
       "keywords": [
         "quarantine",
@@ -35367,7 +35367,7 @@
       "lastUpdated": "2026-09-20T08:32:53.513Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config",
       "description": "The empty-registry advisory checked `keyFindings` for every loop type, but a review registry carries `openFindings`, so both lanes of the",
       "keywords": [
         "empty-registry",
@@ -35386,7 +35386,7 @@
       "lastUpdated": "2026-09-20T08:32:53.515Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review",
       "description": "The fan-out containment packet changed the deep-loop runtime, its command YAMLs, the deep-research references and compiled contract, and the skill",
       "keywords": [
         "fan-out",
@@ -35406,7 +35406,7 @@
       "lastUpdated": "2026-09-20T08:32:53.516Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths",
       "description": "The fresh review found three residual gaps in one class: the restore guard checked only the final component, so a symlinked parent directory still",
       "keywords": [
         "fresh",
@@ -35431,7 +35431,7 @@
       "lastUpdated": "2026-09-20T08:32:53.525Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/016-command-yaml-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/016-command-yaml-alignment",
       "description": "The four command YAMLs drove the fan-out runner with different loop flags: none passed the convergence mode the runner reads, and the confirm review",
       "keywords": [
         "four",
@@ -35454,7 +35454,7 @@
       "lastUpdated": "2026-09-20T08:32:53.526Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/017-protocol-and-catalog-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/017-protocol-and-catalog-alignment",
       "description": "The parent required both loop protocols to describe the containment model, but only the deep-research protocol did; the deep-review protocol's only",
       "keywords": [
         "parent",
@@ -35472,7 +35472,7 @@
       "lastUpdated": "2026-09-20T08:32:53.527Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment",
       "description": "The orchestrate agent said it orchestrates through the delegation tool, but its OpenCode permission block did not grant it and its Pi mirror did not",
       "keywords": [
         "orchestrate",
@@ -35490,7 +35490,7 @@
       "lastUpdated": "2026-09-20T08:32:53.528Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records",
       "description": "One alignment-review lane wrote its five iteration records numbered under `run` instead of `iteration`",
       "keywords": [
         "one",
@@ -35507,7 +35507,7 @@
       "lastUpdated": "2026-09-20T08:32:53.529Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway",
       "description": "The projection store appends only when the current state log is a durable prefix of the folded projection and otherwise replaces the file, so any row",
       "keywords": [
         "projection",
@@ -35528,7 +35528,7 @@
       "lastUpdated": "2026-09-20T08:32:53.531Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup",
       "description": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
       "keywords": [
         "runtime",
@@ -35546,7 +35546,7 @@
       "lastUpdated": "2026-08-19T19:14:44.938Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/001-runtime-code-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/001-runtime-code-review",
       "description": "The `system-deep-loop` runtime (CLIs, fan-out executors, ledger/gateway/cutover logic) had no code-targeted deep-review since the 036 innovation",
       "keywords": [
         "system-deep-loop",
@@ -35566,7 +35566,7 @@
       "lastUpdated": "2026-08-17T08:29:24.519Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/002-review-drift-remediation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/002-review-drift-remediation",
       "description": "The `001-runtime-code-review` deep-review's traceability protocols found parent-level documentation/metadata drift in `036-deep-loop-innovation`:",
       "keywords": [
         "001-runtime-code-review",
@@ -35583,7 +35583,7 @@
       "lastUpdated": "2026-08-17T08:29:24.520Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/003-rollback-candidate-hash-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/003-rollback-candidate-hash-hardening",
       "description": "`assertRollbackHashGuard` in `rollback-candidate.cjs` accepted either the pre-acceptance target hash OR the promoted-candidate hash as a valid",
       "keywords": [
         "assertrollbackhashguard",
@@ -35599,7 +35599,7 @@
       "lastUpdated": "2026-08-17T08:29:24.521Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption",
       "description": "Fan-out review lineages died because the runtime writes its own git-tracked generated state during a contained lineage: telemetry under",
       "keywords": [
         "fan-out",
@@ -35619,7 +35619,7 @@
       "lastUpdated": "2026-08-17T08:29:24.523Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol",
       "description": "Two review lineages were rejected because the leaf retyped its artifact directory's track segment, one because it reached the iteration cap without",
       "keywords": [
         "two",
@@ -35642,7 +35642,7 @@
       "lastUpdated": "2026-09-20T08:32:53.491Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation",
       "description": "Close the deep-loop-innovation (036) gap-analysis findings: substrate identity fail-closed, per-mode authority cutover, production-boundary",
       "keywords": [
         "close",
@@ -35660,7 +35660,7 @@
       "lastUpdated": "2026-08-14T14:30:40.210Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability",
       "description": "Plan the derived recommendation-to-runtime traceability join, three-field composition status schema, and consolidation alias manifest without",
       "keywords": [
         "plan",
@@ -35680,7 +35680,7 @@
       "lastUpdated": "2026-08-17T08:29:24.526Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed",
       "description": "Plan shared-gateway fail-closed identity resolution and rollback-certificate identity verification before any pilot mode cutover.",
       "keywords": [
         "plan",
@@ -35697,7 +35697,7 @@
       "lastUpdated": "2026-08-28T18:20:36.835Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover",
       "description": "Plan the deep-research pilot that wires the authority-flip coordinator into its production composition root behind a rollback window, requires shadow",
       "keywords": [
         "plan",
@@ -35718,7 +35718,7 @@
       "lastUpdated": "2026-08-19T19:25:36.650Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/004-fleet-authority-cutover",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/004-fleet-authority-cutover",
       "description": "Plan the serial cutover of the seven remaining mode roots onto the typed ledger, prove five production boundaries per mode, preserve rollback windows,",
       "keywords": [
         "plan",
@@ -35743,7 +35743,7 @@
       "lastUpdated": "2026-08-17T08:29:24.531Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile",
       "description": "Plan the final documentation and evidence reconciliation that separates library, shadow, and authority status, joins measured composition into the",
       "keywords": [
         "plan",
@@ -35763,7 +35763,7 @@
       "lastUpdated": "2026-08-17T08:29:24.533Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/010-weak-model-loop-adherence",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/010-weak-model-loop-adherence",
       "description": "Weak models do not obey the deep-loop's observation-only leaf contract, and today the runtime can only catch the breach after the fact \u2014 it cannot let",
       "keywords": [
         "weak",
@@ -35785,7 +35785,7 @@
       "lastUpdated": "2026-08-17T08:29:24.536Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/011-cli-pi-fanout-execution",
       "description": "Amendment (from Phase-1 reproduction)",
       "keywords": [
         "amendment",
@@ -35795,7 +35795,7 @@
       "lastUpdated": "2026-08-17T08:29:24.538Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
       "description": "Turn the dark deep-loop substrate on: build the append gateway and legacy projection the modes lack, migrate each mode's write protocol onto it, flip",
       "keywords": [
         "turn",
@@ -35818,7 +35818,7 @@
       "lastUpdated": "2026-08-24T14:33:24.515Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
       "description": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
       "keywords": [
         "authority",
@@ -35835,7 +35835,7 @@
       "lastUpdated": "2026-08-20T01:26:51.008Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement",
       "description": "Deep-research state is produced by agents following prose",
       "keywords": [
         "deep-research",
@@ -35848,7 +35848,7 @@
       "lastUpdated": "2026-08-24T14:33:24.484Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
       "description": "The mode registry names seven canonical modes",
       "keywords": [
         "mode",
@@ -35861,7 +35861,7 @@
       "lastUpdated": "2026-08-24T14:33:24.488Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
       "description": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
       "keywords": [
         "fleet",
@@ -35878,7 +35878,7 @@
       "lastUpdated": "2026-08-24T14:33:24.492Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate",
       "description": "Each preceding phase verified its own surface",
       "keywords": [
         "preceding",
@@ -35890,7 +35890,7 @@
       "lastUpdated": "2026-08-24T14:33:24.499Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
       "description": "After enablement, the epic's documentation describes a system that no longer exists",
       "keywords": [
         "enablement",
@@ -35904,7 +35904,7 @@
       "lastUpdated": "2026-08-24T14:33:24.502Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
       "description": "A cutover certificate attests that a run's external effects were recorded and confirmed, deriving that from an effect",
       "keywords": [
         "cutover",
@@ -35921,7 +35921,7 @@
       "lastUpdated": "2026-08-24T14:33:24.503Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
       "description": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
       "keywords": [
         "routing",
@@ -35940,7 +35940,7 @@
       "lastUpdated": "2026-08-24T14:33:24.505Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
       "description": "The fleet flip moved all eight modes to ledger authority, but the projection library ships exactly one",
       "keywords": [
         "fleet",
@@ -35959,7 +35959,7 @@
       "lastUpdated": "2026-08-24T14:33:24.508Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
       "description": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
       "keywords": [
         "reversible",
@@ -35975,7 +35975,7 @@
       "lastUpdated": "2026-08-24T14:33:24.510Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
       "description": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to",
       "keywords": [
         "phase",
@@ -35994,7 +35994,7 @@
       "lastUpdated": "2026-08-24T20:21:50.490Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/001-leaf-removals",
       "description": "Wave 1 of the over-engineering removal program: delete the three lowest-risk, zero-caller leaves (F5 hierarchical-budgets shadow-adapters, F6 receipts",
       "keywords": [
         "wave",
@@ -36013,7 +36013,7 @@
       "lastUpdated": "2026-08-24T19:07:02.561Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters",
       "description": "Wave 2 of the over-engineering removal program: delete the seven per-mode legacy-format converters (F1) \u2014 decide<Mode>Compatibility +",
       "keywords": [
         "wave",
@@ -36032,7 +36032,7 @@
       "lastUpdated": "2026-08-24T19:07:02.562Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer",
       "description": "Wave 3 of the over-engineering removal program: delete the F2 mode-contracts VALUE engine (conformance.ts, strict-gate-validator.ts,",
       "keywords": [
         "wave",
@@ -36049,7 +36049,7 @@
       "lastUpdated": "2026-08-24T19:07:02.563Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
       "description": "Wave 4 of the over-engineering removal program: delete the one-time fleet-enablement stack (F3) \u2014 enable-modes.cjs plus lib/fleet-enablement/ \u2014 and",
       "keywords": [
         "wave",
@@ -36068,7 +36068,7 @@
       "lastUpdated": "2026-08-24T19:45:46.152Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/005-authority-registry-cas-reduction",
       "description": "Wave 5 (final) of the over-engineering removal program: remove the CAS-mutator methods (prepareCutover, compareAndSwap, compareAndSwapRollback,",
       "keywords": [
         "wave",
@@ -36086,7 +36086,7 @@
       "lastUpdated": "2026-08-24T20:21:50.490Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/013-runtime-agent-gateway-alignment",
       "description": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure",
       "keywords": [
         "012-runtime-enablement",
@@ -36106,7 +36106,7 @@
       "lastUpdated": "2026-08-27T19:20:26.512Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/014-gateway-alignment-review",
       "description": "The `013-runtime-agent-gateway-alignment` packet migrated the four affected deep-loop leaf agent prompts (`deep-research`, `deep-review`,",
       "keywords": [
         "013-runtime-agent-gateway-alignment",
@@ -36124,7 +36124,7 @@
       "lastUpdated": "2026-08-30T09:33:39.477Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/015-gateway-contract-remediation",
       "description": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
       "keywords": [
         "ten",
@@ -36138,7 +36138,7 @@
       "lastUpdated": "2026-08-30T07:16:23.672Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/016-system-deep-loop-review",
       "description": "The 014 review was scoped narrowly to the gateway-alignment surface and surfaced ten real findings; the 015 remediation just landed a P0 fix plus five",
       "keywords": [
         "review",
@@ -36159,7 +36159,7 @@
       "lastUpdated": "2026-08-26T05:20:47.711Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/017-runtime-latent-issue-remediation",
       "description": "The 016 broad audit surfaced one confirmed P0 and roughly nineteen P1 findings across the shipped system-deep-loop runtime",
       "keywords": [
         "broad",
@@ -36178,7 +36178,7 @@
       "lastUpdated": "2026-08-27T19:20:26.518Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/018-pre-existing-test-triage",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/018-pre-existing-test-triage",
       "description": "The 017 remediation established a clean whole-suite gate but left 10 pre-existing test failures untouched \u2014 they were failing before any of that work",
       "keywords": [
         "remediation",
@@ -36197,7 +36197,7 @@
       "lastUpdated": "2026-08-27T19:20:26.518Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/019-risky-followup-remediation",
       "description": "Packet 018 triaged the ten pre-existing runtime test failures and fixed the one that was cleanly correct",
       "keywords": [
         "packet",
@@ -36214,7 +36214,7 @@
       "lastUpdated": "2026-08-27T19:20:26.530Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment",
       "description": "`dependency-seams` had two assertions failing \u2014 that `better-sqlite3`/`zod`/`tsx` resolve from the runtime's own `nodemodules`, and that the `tsx`",
       "keywords": [
         "dependency-seams",
@@ -36232,7 +36232,7 @@
       "lastUpdated": "2026-08-27T19:20:26.522Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution",
       "description": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale \u2014 their source digest no longer matches the",
       "keywords": [
         "compiled",
@@ -36251,7 +36251,7 @@
       "lastUpdated": "2026-08-27T19:20:26.527Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
       "description": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which",
       "keywords": [
         "deep-loop",
@@ -36269,7 +36269,7 @@
       "lastUpdated": "2026-08-27T19:20:26.533Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/021-containment-symlink-autoscope",
       "description": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
       "keywords": [
         "packet",
@@ -36287,7 +36287,7 @@
       "lastUpdated": "2026-08-30T07:16:24.106Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/022-phase0-dispatch-anchor",
       "description": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"\u26d4 DIRECT INVOCATION",
       "keywords": [
         "deep",
@@ -36309,7 +36309,7 @@
       "lastUpdated": "2026-08-27T19:20:26.541Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/023-cross-runtime-dispatch",
       "description": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`)",
       "keywords": [
         "every",
@@ -36327,7 +36327,7 @@
       "lastUpdated": "2026-08-27T19:20:26.548Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/024-executor-kind-routing",
       "description": "The single-executor path of the auto loop YAMLs (`deep-review-auto`, `deep-research-auto`, `deep-alignment-auto`) dispatches per iteration via",
       "keywords": [
         "single-executor",
@@ -36346,7 +36346,7 @@
       "lastUpdated": "2026-08-27T19:20:26.553Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/025-deprecate-deep-alignment",
       "description": "The operator asked to fully deprecate the `deep-alignment` deep-loop mode \u2014 command, agent, code, and README references",
       "keywords": [
         "operator",
@@ -36365,7 +36365,7 @@
       "lastUpdated": "2026-08-27T22:04:02.106Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/026-codex-lineage-auth-isolation",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/026-codex-lineage-auth-isolation",
       "description": "A per-lineage CODEX_HOME isolates the credential file along with the session state, so every codex fan-out lineage authenticates as nobody and burns",
       "keywords": [
         "per-lineage",
@@ -36386,7 +36386,7 @@
       "lastUpdated": "2026-09-05T09:53:06.268Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/027-executor-availability-docs",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/027-executor-availability-docs",
       "description": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
       "keywords": [
         "every",
@@ -36403,7 +36403,7 @@
       "lastUpdated": "2026-09-05T09:53:06.268Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard",
+      "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard",
       "description": "A cli-codex fan-out lineage spawned a nested `codex exec` on every iteration and returned zero findings, and write containment reverted a concurrent",
       "keywords": [
         "cli-codex",
@@ -36426,7 +36426,7 @@
       "lastUpdated": "2026-09-05T09:53:06.268Z"
     },
     {
-      "specFolder": "system-deep-loop/037-graph-engineering",
+      "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering",
       "description": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
       "keywords": [
         "system-deep-loop",
@@ -36444,7 +36444,7 @@
       "lastUpdated": "2026-08-15T14:41:05.293Z"
     },
     {
-      "specFolder": "system-deep-loop/037-graph-engineering/001-agent-swarms",
+      "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/001-agent-swarms",
       "description": "The 037 corpus grew well past what the gen-1 research studied",
       "keywords": [
         "corpus",
@@ -36458,7 +36458,7 @@
       "lastUpdated": "2026-08-15T14:41:04.446Z"
     },
     {
-      "specFolder": "system-deep-loop/037-graph-engineering/002-graphene-main",
+      "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/002-graphene-main",
       "description": "Repo study 1 (agent-swarms) produced a graph-based deep-loop design but studied a TypeScript product runtime whose weak spots (self-declared loops,",
       "keywords": [
         "repo",
@@ -36481,7 +36481,7 @@
       "lastUpdated": "2026-08-15T14:41:04.461Z"
     },
     {
-      "specFolder": "system-deep-loop/037-graph-engineering/003-graph-arch",
+      "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/003-graph-arch",
       "description": "Studies 1 (agent-swarms) and 2 (graphene-main) produced the graph-based deep-loop design and its executable contracts, but neither deeply studied the",
       "keywords": [
         "studies",
@@ -36499,7 +36499,7 @@
       "lastUpdated": "2026-08-15T14:41:04.530Z"
     },
     {
-      "specFolder": "system-deep-loop/037-graph-engineering/004-graph-engineering-master",
+      "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/004-graph-engineering-master",
       "description": "Studies 1\u20133 (agent-swarms, graphene-main, graph-arch) built and hardened the graph-based deep-loop design from executable code",
       "keywords": [
         "studies",
@@ -36516,7 +36516,7 @@
       "lastUpdated": "2026-08-15T14:41:04.593Z"
     },
     {
-      "specFolder": "system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory",
+      "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/005-noaa-paper-and-blog-theory",
       "description": "Studies 1\u20134 covered the GRAPH layer (orchestration, event-sourcing/belief, governance, knowledge doctrine)",
       "keywords": [
         "studies",
@@ -36533,7 +36533,7 @@
       "lastUpdated": "2026-08-15T14:41:04.622Z"
     },
     {
-      "specFolder": "system-deep-loop/037-graph-engineering/006-cross-study-integration",
+      "specFolder": "system-deep-loop/loop-architecture/002-graph-engineering/006-cross-study-integration",
       "description": "Studies 1\u20135 each produced a 20-iteration synthesis, but each stands alone",
       "keywords": [
         "studies",

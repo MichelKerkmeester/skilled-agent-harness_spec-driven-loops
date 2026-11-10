@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "transactional projections and gauges",
+      "atomic ledger-derived views",
+      "rebuild projections from ledger",
+      "transactional projections implementation plan",
+      "atomic projection bundle plan",
+      "transactional projections tasks",
+      "atomic gauges tasks",
+      "transactional projections implementation",
+      "atomic projection verifier evidence",
+      "projection generation rebuild summary"
+    ],
+    "key_topics": [
+      "transactional",
+      "projections",
+      "gauges",
+      "atomic",
+      "ledger-derived",
+      "views",
+      "rebuild",
+      "ledger",
+      "implementation",
+      "plan",
+      "projection",
+      "bundle"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transactional-projections.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Transactional Projections",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "idempotent",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ledger-derived",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automated Requirement Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected-watermark",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence Evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and stream-fold gauges, with idempotent resume and isolated replay rebuilds.",
+    "created_at": "2026-07-16T03:43:52.461Z",
+    "last_save_at": "2026-11-10T05:40:29.853Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d6a677163e641e16cad56df972a7a11956ca2a70e0a4c731e54d06e5c6b7ee5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aadae26943eea3336bf6cdc9707d6f401bd1ac5921498dc28e2de4d39f57c90f",
+      "plan.md": "9299969112b480e7b0b993640fa0ab664168c58d78f1ff1931eff2ecb208f494",
+      "tasks.md": "c931526206cf5864af189869ed6fc24510273b81264c78baa4f24fd14105091e",
+      "implementation-summary.md": "70787dfc1de8eeade2af27caab2fa5f2b14da5dbcf15882209231dc0b366631c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

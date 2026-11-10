@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/005-synthesis-chat-presentation",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "synthesis chat presentation",
+      "give each deep loop mode a required content",
+      "synthesis chat presentation plan",
+      "synthesis chat presentation tasks",
+      "synthesis chat presentation acceptance criteria",
+      "synthesis chat presentation implementation summary"
+    ],
+    "key_topics": [
+      "synthesis",
+      "chat",
+      "presentation",
+      "give",
+      "deep",
+      "loop",
+      "mode",
+      "required",
+      "content",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-research-presentation.txt",
+      ".opencode/commands/deep/assets/deep-review-presentation.txt",
+      ".opencode/commands/deep/assets/deep-ai-council-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Results Display",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Put",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A run could spend twenty minutes producing a ranked set of findings and then report an iteration count, four file paths and a status token",
+    "created_at": "2026-09-20T08:33:39.910Z",
+    "last_save_at": "2026-11-10T05:40:42.166Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:027b88973e45ef3d363eb7760a822fe9d64a5416d5378e8ebc090dc0f717be3f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a765c9dfbcd54b5af1a208d4e1eba7e2c3d0e39082b371d65c59cc7e4b951185",
+      "plan.md": "02a82fadb781b7d7c45f788d49c73a2fe58bd0eaabccc774213e8c35ae5a94f1",
+      "tasks.md": "a8d281c8a02e8fe86dc0a2d22ea0f554610ef6fdd4fb89a673262918def26b86",
+      "implementation-summary.md": "d8dd1cac05ea19e40ce3f0d2277397605ee0e9748040cfaf9e80b48c7f6890f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

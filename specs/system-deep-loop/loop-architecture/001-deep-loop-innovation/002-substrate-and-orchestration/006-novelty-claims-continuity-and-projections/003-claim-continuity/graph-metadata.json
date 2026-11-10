@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claim continuity",
+      "stable claim lifecycle",
+      "replayable claim status",
+      "claim continuity implementation plan",
+      "stable claim lifecycle implementation",
+      "claim continuity tasks",
+      "stable claim lifecycle tasks",
+      "claim continuity implementation",
+      "claim continuity verification"
+    ],
+    "key_topics": [
+      "claim",
+      "continuity",
+      "stable",
+      "lifecycle",
+      "replayable",
+      "status",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "implements",
+      "one"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/claim-continuity/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claim-continuity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/claim-continuity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claim Continuity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "provenance",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "collision",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Claims",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implements one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate through replay and resume.",
+    "created_at": "2026-07-16T03:43:51.906Z",
+    "last_save_at": "2026-11-10T05:40:29.532Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f28f56b57059bb0658053a8f6c3ecb2d855472203eb64faf49d189c085e374f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fb41f555590eaa91e3fc664cd2bc4c1bc3c87d456d28bcd601e285193cf3ffcd",
+      "plan.md": "14d7c00f191edfb44b495ad4405704067d8314b68c5a16a43b8d523688d87e31",
+      "tasks.md": "dc6583e3fb0ac7360564a114bc08e2c28b42a168ed57972ba51f154b0f5e0a6e",
+      "implementation-summary.md": "10dcd93c5154b3628a21e81f3a44ade75d441e13f2c69833ca01cd0aa510611a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

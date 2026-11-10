@@ -131,7 +131,7 @@ A fan-out run merges every finding a lineage writes, fails fast on a refusal tha
 
 | Type | Item | Impact | Mitigation |
 | ------ | ------ | -------- | ------------ |
-| Dependency | `system-deep-loop/038-review-and-cli-lineage/003-cli-pi-opencode-go-route` has uncommitted edits to `fanout-run.cjs` and its test in the primary checkout | Merge conflict | Build after that packet lands on main, or rebase onto it |
+| Dependency | `system-deep-loop/review-lineage/001-review-and-cli-lineage/003-cli-pi-opencode-go-route` has uncommitted edits to `fanout-run.cjs` and its test in the primary checkout | Merge conflict | Build after that packet lands on main, or rebase onto it |
 <!-- /ANCHOR:risks -->
 
 ---

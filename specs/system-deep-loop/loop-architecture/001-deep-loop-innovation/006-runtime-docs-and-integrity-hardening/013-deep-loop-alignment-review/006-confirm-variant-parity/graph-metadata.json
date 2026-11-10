@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "confirm variant parity",
+      "the confirm variants of deep research and deep",
+      "confirm variant parity plan",
+      "confirm variant parity tasks",
+      "confirm variant parity acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "confirm variant parity implementation summary"
+    ],
+    "key_topics": [
+      "confirm",
+      "variant",
+      "parity",
+      "variants",
+      "deep",
+      "research",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Restore",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review measured seven divergences between the confirm and auto variants of the two deep commands",
+    "created_at": "2026-09-20T08:33:44.564Z",
+    "last_save_at": "2026-11-10T05:40:45.898Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6e087bf87732981f2066c3838020234194506acde77f65a39b139519c7ecd2a6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "da88576f71cf5e69f4356829a0a87b509f25a752a88fe58fc2c68e04726a2146",
+      "plan.md": "dcd3c6dffb5a325f51a9ddaeabc05ea714e6ead0acaf90fb53140b0ec90441ce",
+      "tasks.md": "6f55eb00dcb024597cb66109b7f3e84d63de23b15919e01aa6deb6690ca49711",
+      "implementation-summary.md": "4af79a6af175b884d7311f78aac286ef768b10a7f4f8460b0ab997c2241ce54f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -71,7 +71,7 @@ Every runtime file carries the sk-code-skilled header and, when it is a non-test
 ### Out of Scope
 - Behavior changes of any kind. The loop edits comments only; merges move files and rewrite import paths only.
 - Numbered sections inside test files, by operator decision on 2026-09-30.
-- Extending the checker and adding the ARCHITECTURE template. Both are owned by `specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled`, which this packet depends on.
+- Extending the checker and adding the ARCHITECTURE template. Both are owned by `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled`, which this packet depends on.
 
 ### Folder merges (DeepSeek proposal, SWE-2 MAX fact-check 2026-09-30)
 

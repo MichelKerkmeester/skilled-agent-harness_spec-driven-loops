@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/002-graph-engineering/005-noaa-paper-and-blog-theory",
+  "spec_folder": "system-deep-loop/loop-architecture/002-graph-engineering/005-noaa-paper-and-blog-theory",
+  "parent_id": "system-deep-loop/loop-architecture/002-graph-engineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "noaa paper loop harness",
+      "validated iteration returns deep loop",
+      "agent curated memory deep loop",
+      "loop harness layer system-deep-loop",
+      "noaa loop harness plan",
+      "loop harness deep loop plan",
+      "repo study 5 plan",
+      "noaa loop harness tasks",
+      "loop harness deep loop tasks",
+      "repo study 5 tasks",
+      "noaa loop harness summary",
+      "loop harness deep loop summary"
+    ],
+    "key_topics": [
+      "noaa",
+      "paper",
+      "loop",
+      "harness",
+      "validated",
+      "iteration",
+      "returns",
+      "deep",
+      "agent",
+      "curated",
+      "memory",
+      "layer"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "orientation.md",
+      "research/verification-deepseek-v4-pro.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-plain-language.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      ".opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md",
+      ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
+      ".opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orientation.md",
+        "kind": "doc",
+        "path": "orientation.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-deepseek-v4-pro.md",
+        "kind": "doc",
+        "path": "research/verification-deepseek-v4-pro.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-plain-language.md",
+        "kind": "doc",
+        "path": "research/findings-plain-language.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "state-jsonl.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "artifact-root.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/artifact-root.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Study",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Oriented Agents",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Previous Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Studies 1–4 covered the GRAPH layer (orchestration, event-sourcing/belief, governance, knowledge doctrine)",
+    "created_at": "2026-08-14T04:58:30.034Z",
+    "last_save_at": "2026-11-10T05:41:01.549Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:54c5b193f1f421314fe3a19cfb697134551fdd526cd95a0c9ba6fb1298e37280",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a7c7031c798a0d9fbd8aeeace401956b62a198dc158c0e28293dc7812be1fe67",
+      "plan.md": "e0662c3c7060b5e6ea708716c7592cec0216f60cfb2b939b95157f72e53f2779",
+      "tasks.md": "74cf34b18eea131b9e7124063077ad220de2056af457acc7039a1d52efabaa0b",
+      "implementation-summary.md": "1af0662c1622940e2dc43f1a7c951776f8d8f83953a17f4847cd42c5aa513b2a",
+      "research/research.md": "ab17a9e11ae394377acd5ec0b0d89cea769dcda2032ffbc771f70219a90dc0ec"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

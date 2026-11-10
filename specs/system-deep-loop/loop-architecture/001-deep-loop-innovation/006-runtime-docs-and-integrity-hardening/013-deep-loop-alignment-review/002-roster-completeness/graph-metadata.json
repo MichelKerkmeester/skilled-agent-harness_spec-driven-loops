@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "roster completeness",
+      "every prose roster in the three hubs names",
+      "roster completeness plan",
+      "roster completeness tasks",
+      "roster completeness acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "roster completeness implementation summary"
+    ],
+    "key_topics": [
+      "roster",
+      "completeness",
+      "every",
+      "prose",
+      "three",
+      "hubs",
+      "names",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/ROUTER.md",
+      ".opencode/skills/cli-external-orchestration/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Executor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own machine block and the registry carried seven; its skill file said six modes in one line and seven in four others",
+    "created_at": "2026-09-20T08:33:43.947Z",
+    "last_save_at": "2026-11-10T05:40:45.564Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0fbd81ce4ba99d4a7934cf7cae9564790eb97b3f63eb218ae5ecdc1810f23925",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9e6366a7ac3b5c4a823123e8a301221f0440af641f2b705ef4e324517cc93f2e",
+      "plan.md": "36ad4598fd31c2b9611f7a3fed592641783b67410e95030e5306c22476100559",
+      "tasks.md": "5f361dd032ea1eb45f144aefcbd58708beba0aff14d9e36589b3559c6e15e4fa",
+      "implementation-summary.md": "7ea7356d4e563ef329f1e9500bbdac297340170676a920d9802f6ba73be6cc2f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

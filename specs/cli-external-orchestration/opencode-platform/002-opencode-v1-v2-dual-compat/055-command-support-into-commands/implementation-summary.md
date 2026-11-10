@@ -87,7 +87,7 @@ Three checks had to learn the suffix, or the moved files would have quietly lost
 | `.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py` | Modified | Recognises `readme.markdown` in either case |
 | `.skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py` | Modified | Recognises `README.markdown` |
 | `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Modified | Classifies `readme.markdown` before the commands-folder rule |
-| `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Modified | The census row `legacy-projections.test.ts` compares with the projection manifest |
+| `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Modified | The census row `legacy-projections.test.ts` compares with the projection manifest |
 | `scratch/commands-before.json`, `scratch/commands-after.json` | Created | The two versions' command lists, before and after |
 | `scratch/suites-before.txt`, `scratch/suites-after.txt` | Created | The suite numbers, before and after |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Created | This phase's packet, filled from the scaffold |

@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-deep-loop/loop-architecture",
+  "description": "The design and lifecycle of the deep-loop modes: the innovation migration, the graph-engineering evolution research and the removal of the improvement and benchmark modes.",
+  "keywords": [
+    "loop",
+    "architecture"
+  ],
+  "lastUpdated": "2026-11-10T05:40:22.477Z",
+  "specId": "system-deep-loop/loop-architecture",
+  "folderSlug": "loop-architecture",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

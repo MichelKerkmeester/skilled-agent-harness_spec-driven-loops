@@ -49,7 +49,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Only the `title:` frontmatter field is stripped. Prose that quotes the token while describing this exact defect stays as written |
-| D2 | The four other-session groups (`sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness`, `system-deep-loop/036-deep-loop-innovation`, `sk-design/*`, `sk-doc/051-*`) stay untouched and are named as left for their owners |
+| D2 | The four other-session groups (`sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness`, `system-deep-loop/loop-architecture/001-deep-loop-innovation`, `sk-design/*`, `sk-doc/051-*`) stay untouched and are named as left for their owners |
 | D3 | The sweep and the third rule class ship in the same change, since either one alone leaves the corpus and the validator disagreeing |
 | D4 | Fixtures that model an untouched scaffold on purpose (`072-scaffold-never-touched-violation`) keep their token. Only fixtures that stand for "valid, fully authored" are swept |
 

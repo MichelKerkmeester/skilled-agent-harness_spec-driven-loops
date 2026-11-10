@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/005-stream-fold-gauges",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/005-stream-fold-gauges",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stream-fold gauges",
+      "deterministic ledger gauge reducers",
+      "replayable deep-loop observability",
+      "stream-fold gauges implementation plan",
+      "deterministic gauge reducer plan",
+      "stream-fold gauges tasks",
+      "deterministic gauge reducer tasks",
+      "stream-fold gauges implementation summary",
+      "stream-fold gauge verification evidence"
+    ],
+    "key_topics": [
+      "stream-fold",
+      "gauges",
+      "deterministic",
+      "ledger",
+      "gauge",
+      "reducers",
+      "replayable",
+      "deep-loop",
+      "observability",
+      "implementation",
+      "plan",
+      "reducer"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stream-fold-gauges.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fold Gauges",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "reproducible",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "accepted",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validated",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ledger",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan versioned observability gauges as deterministic folds over the transition-authorized ledger, with reproducible progress, novelty, cost, and health values; disposable incremental checkpoints; and byte-identical full-replay verification.",
+    "created_at": "2026-07-16T03:43:47.442Z",
+    "last_save_at": "2026-11-10T05:40:26.473Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9129e6348f0849e01f9a0d2708d115a71e080df8c428a74149ce8920e1f25145",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "41ddb7dd6eeab3b14d12f1c70b38363aeb3636fed715749611e4e0bde592da27",
+      "plan.md": "5925d62274f9b791e2b100f7429d214ac0ec3282ef518e0d261bd08bdecbb373",
+      "tasks.md": "3f8a50e4add32a1f9b65ae654024f9085e57684417c7e32bdb34c0b543454417",
+      "implementation-summary.md": "049c79080dd967e0ead54c1e46bfe78599baed249dddb38565a8655e117aaf41"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement common rollback and mode gate",
+      "deep improvement authority rollback switch",
+      "shared evaluator canary promotion migration gate",
+      "deep improvement phase 014 readiness certificate",
+      "deep improvement common rollback and mode gate implementation plan",
+      "shared evaluator promotion authority switch plan",
+      "deep improvement migration certificate plan",
+      "deep improvement common rollback and mode gate tasks",
+      "shared evaluator rollback switch tasks",
+      "deep improvement migration gate tasks",
+      "deep improvement common rollback boundaries",
+      "deep improvement common evidence source map"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "common",
+      "rollback",
+      "mode",
+      "gate",
+      "authority",
+      "switch",
+      "shared",
+      "evaluator",
+      "canary",
+      "promotion"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Definition",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Integration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Authenticated Evidence Boundaries",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Delivered the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving authority.",
+    "created_at": "2026-07-16T03:43:37.283Z",
+    "last_save_at": "2026-11-10T05:40:36.651Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba0db8e72c7ceff622f6349feadaed8f3859262536d8f6fec16dc815399af3ec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5608cde33d73bcf4043d1bc03d0db72bcf8db1cf65456d1efcc6447444afc023",
+      "plan.md": "be796579f7d218954198d1420398c8773998ccaac4e842616603aeaebd08331c",
+      "tasks.md": "8f7f3d45e989de446dbbf5c5417af621d242509cb7ca4f42f0bef134060b700e",
+      "decision-record.md": "16e47f091d534c33b691eb383432fbc8b4d78f2432168a2ab8533fdc10abebfc",
+      "implementation-summary.md": "f9837a1895eb8f8c56952bf617c082397cfdd1469e1d02c9a041b4000e6ae569"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

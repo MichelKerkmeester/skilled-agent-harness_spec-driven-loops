@@ -191,7 +191,7 @@
     ],
     "causal_summary": "After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates",
     "created_at": "2026-04-12T09:02:50.187Z",
-    "last_save_at": "2026-10-07T18:14:19.435Z",
+    "last_save_at": "2026-11-10T05:41:07.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41b25d063aba85220c88cb6c0adeeef2b7a8d4be1ea1acca9239029aade4feb3",
+    "source_fingerprint": "sha256:ac5f1958a70364d812950f1f03aa2b5a449d40f807f3a40dfa585d8c733d47b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f7aff53e159a295f4535ba6d8f78b34ded00217bd3fa2cf399cc2040114b8fb",
-      "plan.md": "ca9106789dacd2e7435a63aa1d1d58cd3ea1e690e2c79893ed7c8a56a30bf907",
+      "spec.md": "1750c3143c6b43b94edfe5cf70fab080fe5c3e04d0f86571bb9c2613535ab46d",
+      "plan.md": "6f6fada2f1638f28968999113779807aa65789f750ce7b1ad68ed18b9bfb9596",
       "tasks.md": "9d14cdfa71860d086303e58cf455ed190e965e8904fec270c111ad12bed21630",
       "implementation-summary.md": "974dd733d2bf749e2d0780b3218931649c9b008b303d0e33ab71680333361d27"
     },

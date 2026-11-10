@@ -41,7 +41,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Scope is all twenty findings, "Plus bug" and "all open items", as the operator asked on 2026-10-19. The deep-loop open items live in `system-deep-loop/038-review-and-cli-lineage`. |
+| D1 | Scope is all twenty findings, "Plus bug" and "all open items", as the operator asked on 2026-10-19. The deep-loop open items live in `system-deep-loop/review-lineage/001-review-and-cli-lineage`. |
 | D2 | Work stays in `worktrees/156-session-relaunch-post-fix-remediation`, merged to main without a push, then removed. |
 
 <!-- /ANCHOR:directive -->

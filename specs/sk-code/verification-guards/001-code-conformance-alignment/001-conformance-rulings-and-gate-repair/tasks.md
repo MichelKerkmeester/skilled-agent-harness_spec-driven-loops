@@ -71,7 +71,7 @@ _memory:
 - [ ] T015 [B] Implement the opt-in exact-header check per **[OPERATOR-DECISION: Q4 — exact-header automated check]**, with the documented exception list for plugins, fixtures, assets and examples derived from the verifier's existing advisory-downgrade behaviour. If Q4 is answered "leave manual", record why instead and notify child 003 that its gate falls back to a scripted per-file header assertion (`.opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py`).
 - [ ] T016 Record the six binding rulings with their evidence and their consequence for named children: vendored and generated code out of scope; runtime mirrors limited to authored non-symlink files; benchmark fixture subjects permanently exempt while harnesses stay in scope; test naming amended not migrated; generic labels bounded by the T005 boundary; pattern and example assets are authored code under a manual gate (`decision-record.md`).
 - [ ] T017 Record the two-lane worklist doctrine: a mechanical verifier `PASS` never clears a manual gate, so every child carries both a machine work list and a manual work list (`decision-record.md`).
-- [ ] T018 [B] Apply the 020 border amendment exactly as specified in the package's `020-amendment.md`, per **[OPERATOR-DECISION: Q2 — the non-runtime deep-loop border]** (`.opencode/specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md`).
+- [ ] T018 [B] Apply the 020 border amendment exactly as specified in the package's `020-amendment.md`, per **[OPERATOR-DECISION: Q2 — the non-runtime deep-loop border]** (`.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md`).
 <!-- /ANCHOR:phase-2 -->
 
 ---

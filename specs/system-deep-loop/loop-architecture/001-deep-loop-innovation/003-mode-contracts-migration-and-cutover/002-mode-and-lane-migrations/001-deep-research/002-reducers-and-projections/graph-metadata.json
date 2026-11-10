@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research reducers",
+      "deep research projections",
+      "deep research event ledger replay",
+      "deterministic research state fold",
+      "deep research reducers implementation plan",
+      "deep research projection plan",
+      "typed research event fold",
+      "deep research reducers tasks",
+      "deep research projection tasks",
+      "deep research replay fold tasks",
+      "deep research quarantined evidence",
+      "deep research convergence cursor"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "reducers",
+      "projections",
+      "event",
+      "ledger",
+      "replay",
+      "deterministic",
+      "state",
+      "fold",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Focus",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "identical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no I",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "independent-event",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Projection Ownership",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the pure reducers and live projections for the deep-research migration: replay the typed event ledger into deterministic iteration/convergence state, an artifact index, and per-mode status without side effects or authority cutover.",
+    "created_at": "2026-07-16T03:43:30.675Z",
+    "last_save_at": "2026-11-10T05:40:33.013Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dfd4346952ae2179662aa2deee8761d955437eeed9e2c9cc19c890f60d06e41e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b5ac3b5d77a69c9d579836bddd7e94dbab91d490fc3431f2c4a8d61ecdd8c852",
+      "plan.md": "d6eef6437dc1f4c3bd3840f97f01d0edf684e6f591674280611cc4494e128070",
+      "tasks.md": "bde455e1fa1a58e09991f648af5cfd566174b51518cee992719f6f1a506f6b74",
+      "decision-record.md": "d4308b313d7a04d4fb15962bac1cd224da3b6b71b85a29f9f306a5cb683955bb",
+      "implementation-summary.md": "ceec083efde5fb7d48b0435e988965ab5c55949e87e858f211c8f11ddce6bde5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

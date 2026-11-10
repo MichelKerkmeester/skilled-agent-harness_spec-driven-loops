@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "036 drift census",
+      "deep-loop plan revalidation",
+      "has the deep-loop plan decayed",
+      "commits since 036 was published",
+      "revalidate deep-loop phases against HEAD",
+      "036 drift census plan",
+      "deep-loop revalidation plan",
+      "drift census execution",
+      "036 drift census tasks",
+      "drift census task list",
+      "drift census summary",
+      "036 revalidation status"
+    ],
+    "key_topics": [
+      "drift",
+      "census",
+      "deep-loop",
+      "plan",
+      "revalidation",
+      "decayed",
+      "commits",
+      "since",
+      "published",
+      "revalidate",
+      "phases",
+      "against"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Census",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plan Revalidation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Pull",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "respect",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "output",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merged Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
+    "created_at": "2026-07-19T12:13:37.963Z",
+    "last_save_at": "2026-11-10T05:40:42.502Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:af2116980d186faafdb3d3aa557f977b872e12e837b7613f7044c25f06adfd68",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ed8240dd9585e29961990992dd5b1c6239f1ba7e0ec8dd9729a772d4c5f6b230",
+      "plan.md": "3b7ba0e456313b33aebaf67bfb0a83ffe10a704a6c7339f65cbb453f5f2a9a56",
+      "tasks.md": "ff71ef3491647cb42f883b06a731dac2e10b3faf99a45ea4608623c94e646380",
+      "implementation-summary.md": "f4b2d04d41f982d0546232afb9e5bd4cd81acc8793bc8466d874d26769f33e52",
+      "research/research.md": "fe950e183c3c64edcca2255acd2680a4697eedbcf762b88913b1306463fa59b8",
+      "handover.md": "2377ac2e148613d39fbe7e8b3528e36d4cb960d84b800f7ee299361892bc5a0d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

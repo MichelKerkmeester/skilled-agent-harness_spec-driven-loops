@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep AI Council sealed reference artifacts",
+      "deep-ai-council seal-on-write",
+      "deep-ai-council tamper-evident artifact reads",
+      "content-addressed council artifacts",
+      "Deep AI Council sealed artifacts implementation plan",
+      "deep-ai-council content-addressed seal plan",
+      "deep-ai-council artifact verification plan",
+      "Deep AI Council sealed artifacts tasks",
+      "deep-ai-council seal-on-write tasks",
+      "deep ai council sealed artifacts implementation",
+      "deep-ai-council artifact bindings",
+      "deep ai council verified sealed reads"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "sealed",
+      "reference",
+      "artifacts",
+      "deep-ai-council",
+      "seal-on-write",
+      "tamper-evident",
+      "artifact",
+      "reads",
+      "content-addressed",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/deep-ai-council-artifact-set.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-sealed-artifacts.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-artifact-set.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/deep-ai-council-artifact-set.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-sealed-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-sealed-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Sealed Artifacts",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Deep",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep AI Council sealing boundary for immutable inputs and outputs across seats deliberate, critique rounds, convergence, ai-council artifacts, and the council test gate. Reuse the phase-007 sealing primitives and phase-012 shared contracts for content-addressed digests, seal-on-write, replay identity, and tamper-evident reads; do not create a second sealing scheme.",
+    "created_at": "2026-07-16T03:43:34.470Z",
+    "last_save_at": "2026-11-10T05:40:35.921Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9aee68c53910779371cbe0cee9e7159820769cf65d1dd200f60e3f1fe6f23dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bddd0e7afb3e0f056cc769a59e385a4ac1d46a17eeec6892b99b93c63e71808b",
+      "plan.md": "d42fd933e00bfd313ea8e7dc2d5d7dec5666c17ed5626ab0da2f87033690bedc",
+      "tasks.md": "6d57765ade8be14232e18b3bd8170eb0a12193635dc9de807dd1b9f242aa6440",
+      "implementation-summary.md": "e0f5f85bf7fde709a7eacd0245fea99a41103da1fe1df3f2ec946bbdfef0f2f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

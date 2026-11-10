@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/025-deprecate-deep-alignment",
+  "description": "The operator asked to fully deprecate the `deep-alignment` deep-loop mode — command, agent, code, and README references",
+  "keywords": [
+    "operator",
+    "asked",
+    "fully",
+    "deprecate",
+    "deep-alignment",
+    "deep-loop",
+    "mode",
+    "command",
+    "agent",
+    "code",
+    "readme",
+    "references"
+  ],
+  "lastUpdated": "2026-08-27T22:04:02.106Z",
+  "specId": "025",
+  "folderSlug": "deprecate-deep-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_23-04__deep-review-of-the-seven-skilled-v4-0-0-0-commits.md"
+  ]
+}

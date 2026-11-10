@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rollout flip tooling delete",
+      "fleet enablement removal",
+      "enable-modes removal",
+      "rollout flip tooling plan",
+      "rollout flip tooling tasks",
+      "phase 004 rollout tooling",
+      "fleet enablement removed",
+      "enable-modes removed"
+    ],
+    "key_topics": [
+      "rollout",
+      "flip",
+      "tooling",
+      "delete",
+      "fleet",
+      "enablement",
+      "removal",
+      "enable-modes",
+      "plan",
+      "tasks",
+      "phase",
+      "removed"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/README.md",
+      "lib/README.md",
+      "runtime/scripts/README.md",
+      "runtime/lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollout Tooling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enablement Removal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequencing Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flip Tooling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deletion",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components Unaffected",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T1 — Re-confirm zero callers (read-only)",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Wave 4 of the over-engineering removal program: delete the one-time fleet-enablement stack (F3) — enable-modes.cjs plus lib/fleet-enablement/ — and its two tests. It drove modes from legacy to new_authoritative_final; all 8 modes are already there, so it has zero operational callers. F4 (flip-authority.cjs) was resequenced into phase 005 because it shares the authority-finalize.vitest.ts test file with the phase-005 CAS mutators, so the two remove together as one whole-file test deletion.",
+    "created_at": "2026-08-24T17:06:19.731Z",
+    "last_save_at": "2026-11-10T05:40:58.174Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6e8e71a4602220f2d809ace789865c10f1394bf464def36a70a2a9ff0b843b6c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "06e0b5e272298719b93ac3fb4163a2edbe5bce32f52eb1682f8ce528882f4ef1",
+      "plan.md": "9d62a88b7257b8678515f7e351aa4776aea9e6577b662c99437c34971a0ee0fc",
+      "tasks.md": "1518871a7f968c4af7d394c41ce4b33927e2c000c2584b0fb5731d51033d6088",
+      "implementation-summary.md": "8a65f326e0252421a44a7fa67924ba766bfd17b90baad83dc16d5958d16fd2f8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

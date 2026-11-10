@@ -156,6 +156,6 @@ Evidence-table-first. T013 through T016 are independent of the adjudication and 
 - **Rulings**: `../001-catalog-enforcement-and-coverage/decision-record.md`
 - **Parent**: `sk-doc/023-feature-catalog-integrity`
 - **Parallel sibling**: `002-hub-catalog-truth-repair` (disjoint files)
-- **Coordination**: `system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch` (same facts, different
+- **Coordination**: `system-deep-loop/loop-architecture/001-deep-loop-innovation/032-docs-drift-and-p2-batch` (same facts, different
   files) and `036/019-runtime-code-readmes` (adjacent directory, disjoint files)
 <!-- /ANCHOR:cross-refs -->

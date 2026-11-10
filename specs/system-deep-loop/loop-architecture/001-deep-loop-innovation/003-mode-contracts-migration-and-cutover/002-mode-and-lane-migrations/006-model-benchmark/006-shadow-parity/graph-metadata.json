@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Model Benchmark shadow parity",
+      "model-benchmark ledger migration",
+      "multi-model scoring matrix parity",
+      "model benchmark legacy projection diff",
+      "Model Benchmark shadow parity implementation plan",
+      "model benchmark scoring matrix parity plan",
+      "typed ledger legacy benchmark comparison",
+      "Model Benchmark shadow parity tasks",
+      "model benchmark scoring matrix parity tasks",
+      "model benchmark phase 009 tasks",
+      "Model Benchmark shadow parity implementation",
+      "model benchmark parity receipt"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "shadow",
+      "parity",
+      "model-benchmark",
+      "ledger",
+      "migration",
+      "multi-model",
+      "scoring",
+      "matrix",
+      "legacy",
+      "projection"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Model Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "focused",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Shadow Parity",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and scoring-matrix reductions beside the legacy emitter, compare projections event-for-event, and block authority cutover on any unexplained semantic difference while reusing deep-improvement-common services.",
+    "created_at": "2026-07-16T03:43:40.543Z",
+    "last_save_at": "2026-11-10T05:40:39.310Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ce1eb9005f2b3148427b2da5fed2ed1433f5fc2fdf8f27d2b3ff3ced0964d5bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "caeea2fc1dc8c6bf8dd7911d4268d0a9badd0817fe49dd23bc1a57fe161a3522",
+      "plan.md": "fc83127f0b36adf1b0e25ba8b1b95d6c84a0c8123d94c3f32f5c88278c295add",
+      "tasks.md": "c61f919d6dc128acea9c47f2eb74ef99894ce8f4cbae98bc1ba23c7d47a88ac1",
+      "implementation-summary.md": "327044968fe4ee92a2cbf29aaafc846e37d05abe1f2ea5f101c842fe49d67576"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

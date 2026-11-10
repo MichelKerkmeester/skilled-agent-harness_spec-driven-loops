@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cutover certificate rollback window",
+      "deep-loop authority flip certificate",
+      "per-mode rollback window enforcement",
+      "cutover certificate implementation plan",
+      "rollback window monitoring plan",
+      "deep-loop certificate verification",
+      "cutover certificate rollback tasks",
+      "rollback window enforcement tasks",
+      "deep-loop authority evidence tasks",
+      "cutover certificate implementation summary",
+      "rollback window implementation summary",
+      "deep-loop 003 cutover certificate build"
+    ],
+    "key_topics": [
+      "cutover",
+      "certificate",
+      "rollback",
+      "window",
+      "deep-loop",
+      "authority",
+      "flip",
+      "per-mode",
+      "enforcement",
+      "implementation",
+      "plan",
+      "monitoring"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cutover Certificate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Window",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "missing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "traceable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder Path",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean closure. The certificate is a ledger event binding parity, rollback, migration, and policy evidence.",
+    "created_at": "2026-07-16T03:43:57.641Z",
+    "last_save_at": "2026-11-10T05:40:42.111Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6fb3dd5e1b7b6b72d9d89d6280ffab204d1a5fbb690f20388e05ba1e61c22f5b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f84b1a88c07db5460ed2fce2c5a3bd11141506273eac346b8a0b4a4650172b87",
+      "plan.md": "1ef2fd04e7bc0f256d26a507702363db871f5eddf6a2515410384e040da402d1",
+      "tasks.md": "e7c08cc68a3376b7cd4e996a86d7e26aed672ca802fa3d968f5407d80e2f7492",
+      "implementation-summary.md": "6c29921ee92d89e2dda7c6a60a694381104109558788ff1436b3f18bb8d08b93"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

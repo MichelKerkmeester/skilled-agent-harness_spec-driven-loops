@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Alignment rollback and mode gate",
+      "deep-alignment authority rollback switch",
+      "deep-alignment migration gate",
+      "deep-alignment shadow parity cutover readiness",
+      "Deep Alignment rollback and mode gate implementation plan",
+      "deep-alignment authority control plan",
+      "deep-alignment migration certificate plan",
+      "Deep Alignment rollback and mode gate tasks",
+      "deep-alignment rollback switch tasks",
+      "deep-alignment mode gate tasks",
+      "Deep Alignment rollback gate implementation",
+      "deep alignment mode migration gate"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "rollback",
+      "mode",
+      "gate",
+      "deep-alignment",
+      "authority",
+      "switch",
+      "migration",
+      "shadow",
+      "parity",
+      "cutover"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mapped Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Deep Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Rollback",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, per-lane shadow parity, sealed conformance evidence, certificate closure, and the phase-014 handoff without moving runtime authority.",
+    "created_at": "2026-07-16T03:43:44.407Z",
+    "last_save_at": "2026-11-10T05:40:42.126Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dc37c6c09e3996fcbbefc554f2e339864d740b0b8ca5446749653116d8558d62",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eba2cf0eeb337a16b8ed366f7ed89f7011f9c8fb58d65aa17295f35ee28492f1",
+      "plan.md": "39dbf61da9bb99b26dffbb1ecebf2ad207d3226a1aeeed01654b54718f23226f",
+      "tasks.md": "f95de7bf44c72dc7917b73667a0973387b42eed56f703d7baa3c9c72877f5658",
+      "implementation-summary.md": "add8ee2699e33c53fab9c707d13d603ff2e9fe7dc9e6a22cfd38d72a118a9112"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

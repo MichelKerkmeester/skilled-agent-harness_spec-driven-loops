@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/019-risky-followup-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "better-sqlite3 version alignment",
+      "dependency-seams abi safety",
+      "node abi rebuild strategy",
+      "dependency and node abi alignment plan",
+      "dependency and node abi alignment tasks",
+      "dependency seams worktree symlink fix",
+      "realpath node_modules resolution test",
+      "better-sqlite3 drift deferred"
+    ],
+    "key_topics": [
+      "better-sqlite3",
+      "version",
+      "alignment",
+      "dependency-seams",
+      "abi",
+      "safety",
+      "node",
+      "rebuild",
+      "strategy",
+      "dependency",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/dependency-seams.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependency-seams.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/dependency-seams.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Any Node",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Symlink Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Compare",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`dependency-seams` had two assertions failing — that `better-sqlite3`/`zod`/`tsx` resolve from the runtime's own `nodemodules`, and that the `tsx` loader bare-resolves there",
+    "created_at": "2026-08-26T11:00:42.689Z",
+    "last_save_at": "2026-11-10T05:40:59.065Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:67f15b88e994b2e9be06c2233c721387652e31765b51aa37562aadc4d0d219b7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7585efe7ca95acb8a3110be01c9e2ebf661a53a31540c1eaf0d565fb45c92670",
+      "plan.md": "22e67c3ddd9d9a59225ecd503b665f85c7313a15232e791a97f9d7def73f7ad7",
+      "tasks.md": "cdc864de1d3b037fd0e9cf47ed0c202a9e9c22c94afddc5888a34c133eca0a99",
+      "implementation-summary.md": "114e4379d94b973f4c5d52bbf5847c070f1605de64466182198d9e341ed7ee52"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

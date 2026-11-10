@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/004-per-mode-executor-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per-mode executor parity",
+      "model-benchmark cursor devin pi dispatch",
+      "reuse buildLineageCommand in benchmark modes",
+      "skill-benchmark ai-council executor parity",
+      "per-mode executor parity plan",
+      "model-benchmark cursor devin pi plan",
+      "buildLineageCommand delegation plan",
+      "per-mode executor parity tasks",
+      "model-benchmark cursor devin pi tasks",
+      "buildLineageCommand delegation tasks",
+      "per-mode executor parity progress",
+      "model-benchmark shared builder delegation"
+    ],
+    "key_topics": [
+      "per-mode",
+      "executor",
+      "parity",
+      "model-benchmark",
+      "cursor",
+      "devin",
+      "dispatch",
+      "reuse",
+      "buildlineagecommand",
+      "benchmark",
+      "modes",
+      "skill-benchmark"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+      ".cursor/hooks.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-session.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Executor Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "hardened",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An audit of every deep mode's executor coverage found that the fan-out modes (deep-research, deep-review, deep-alignment) already dispatch all seven executor kinds through the shared `fanout-run.cjs` builders, but three modes run their OWN dispatch scripts and cover only a subset:",
+    "created_at": "2026-07-29T14:09:11.129Z",
+    "last_save_at": "2026-11-10T05:40:48.680Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:66e40f97837bbbc6f523e024a1f04fd94f98bfeeee55ad8b4cead9c7ff15a083",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ed4c24f0280784739e04e76223f8e7406b40b98a7c402cce06c083bb6c670e15",
+      "plan.md": "f6e36933932f86ab2b1e1dbbf7eba8749a7f75fc25a63d2c13c7c60ff8156ccf",
+      "tasks.md": "4608afd9f4dcbcff401960b319ea3719f5b1ba3ab543d0c3508df8ac9c1843cd",
+      "implementation-summary.md": "06493f67da3b8ab356e0b80b7f7246ffaf593d9656e7ccf2b13aacad91591a67"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

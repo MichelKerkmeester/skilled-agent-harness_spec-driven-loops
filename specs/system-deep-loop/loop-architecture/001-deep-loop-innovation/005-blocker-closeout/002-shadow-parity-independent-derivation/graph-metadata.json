@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shadow parity independent derivation",
+      "blocker 1 parity harness",
+      "harness adapter legacy oracle",
+      "divergence injection test parity",
+      "deep loop 022 parity",
+      "shadow parity independent derivation implementation",
+      "blocker 1 parity harness not built",
+      "divergence injection test missing"
+    ],
+    "key_topics": [
+      "shadow",
+      "parity",
+      "independent",
+      "derivation",
+      "blocker",
+      "harness",
+      "adapter",
+      "legacy",
+      "oracle",
+      "divergence",
+      "injection",
+      "test"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "scratch/independent-adversarial-verification.md",
+      "runtime/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "independent-adversarial-verification.md",
+        "kind": "doc",
+        "path": "scratch/independent-adversarial-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rebuild Shadow Parity So Both Sides Derive Independently",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Enumerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Landing Readiness",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
+    "created_at": "2026-07-31T01:25:19.594Z",
+    "last_save_at": "2026-11-10T05:40:42.470Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:de79db424a27fea0feff36d6ff61cb79f20fc5c978dc159e6b916741bbd42d05",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "17e30f93e3550f2c74574b57611f3f5602d2f46db1b9fe763da6b8ceea61959c",
+      "plan.md": "4213cd3e40539a31c51f6d4fc3199fe6d4f34eb26f8cf797ad188bfbd86e6712",
+      "tasks.md": "6abfcc2b823c1c66c6779f5be10aa176a76aa17a72fb578aa71d944958822d6c",
+      "decision-record.md": "e27416e00acba957db2e40d1cf9a9d17203de0058da70e7d065418f6da1ffd19",
+      "implementation-summary.md": "a9bbb8b05211fc36d89bac5646d03cddb585de50e002c8b2d31aab223bb68ddf",
+      "handover.md": "214009ef1c94ce1dca3fe9a135f1d0ef92c16f9e6e9c68f82a0a900d61f0996d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -79,7 +79,7 @@ The committed titles this session owns read like the feature they describe inste
 
 ### Out of Scope
 - `specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness` (2 title matches) - staged by another session. The brief names it as left for its owner
-- `specs/system-deep-loop/036-deep-loop-innovation` (1 title match) - same reason
+- `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation` (1 title match) - same reason
 - every packet under `specs/sk-design/` (15 title matches) - same reason
 - `specs/sk-doc/051-*` - named in the brief as excluded. The live corpus carries zero matches under this prefix, so there is nothing to skip and nothing to verify skipped
 - non-`.md` artifacts that merely quote the token (173 files: `.out` fanout logs, `.jsonl` deltas, `.json` results, `.prompt` files) - not spec-document titles, and rewriting them would corrupt a captured record

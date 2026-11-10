@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture",
+  "spec_folder": "system-deep-loop/loop-architecture",
+  "parent_id": "system-deep-loop",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+    "system-deep-loop/loop-architecture/002-graph-engineering",
+    "system-deep-loop/loop-architecture/003-deprecate-improvement-modes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-deep-loop/loop-architecture"
+    ],
+    "causal_summary": "Container folder for system-deep-loop/loop-architecture."
+  }
+}

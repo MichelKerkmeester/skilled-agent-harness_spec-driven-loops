@@ -106,7 +106,7 @@ Keep the 12 files where the operator wants them, under `.skilled/commands/`, and
 | `.skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py` | Modify | Recognises `readme.markdown`, lowercase included |
 | `.skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py` | Modify | Recognises `README.markdown` |
 | `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Modify | Classifies `readme.markdown` as `readme` before the commands-folder rule |
-| `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Modify | The census row that `legacy-projections.test.ts` compares with the projection manifest |
+| `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Modify | The census row that `legacy-projections.test.ts` compares with the projection manifest |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Modify | This phase's packet, filled from the scaffold |
 | `../spec.md` | Modify | The phase map row for 055 and the 054 to 055 handoff row |
 <!-- /ANCHOR:scope -->

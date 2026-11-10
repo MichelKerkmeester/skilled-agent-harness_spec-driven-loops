@@ -35,7 +35,7 @@ contextType: "implementation"
 
 - [x] T001 Reproduce both failures and record the assertion output (.opencode/skills/system-spec-kit/runtime)
 - [x] T002 Read what the freshness rule hashes and which document it binds a claim to (.opencode/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts)
-- [x] T003 [P] Run the manifest checker by hand and count the entries it calls untracked (specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh)
+- [x] T003 [P] Run the manifest checker by hand and count the entries it calls untracked (specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh)
 <!-- /ANCHOR:phase-1 -->
 
 ---

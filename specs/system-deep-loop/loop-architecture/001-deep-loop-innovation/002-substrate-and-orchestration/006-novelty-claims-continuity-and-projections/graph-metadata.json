@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/003-claim-continuity",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/005-transactional-projections-and-gauges"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "novelty claims continuity projections",
+      "deep-loop intelligence layer phase 010",
+      "semantic communities and claim continuity"
+    ],
+    "key_topics": [
+      "novelty",
+      "claims",
+      "continuity",
+      "projections",
+      "deep-loop",
+      "intelligence",
+      "layer",
+      "phase",
+      "semantic",
+      "communities",
+      "claim",
+      "defines"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase defines the intelligence layer over the durable deep-loop substrate: concept-level novelty, typed contradiction and supersession, stable claim continuity, next-focus semantics, and deterministic transactional projections and gauges for convergence to consume.",
+    "created_at": "2026-07-16T03:43:59.653Z",
+    "last_save_at": "2026-11-10T05:40:29.305Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:de6d255fe40582186ed34a65bf17664b28775ad8c3d74292c8ee144d5881b7e8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a9a26754105f5ed760059a805c4c2bcee11d235bca9e6c3187eb1b8144dc5922"
+    },
+    "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/001-semantic-communities",
+    "last_active_at": null
+  }
+}

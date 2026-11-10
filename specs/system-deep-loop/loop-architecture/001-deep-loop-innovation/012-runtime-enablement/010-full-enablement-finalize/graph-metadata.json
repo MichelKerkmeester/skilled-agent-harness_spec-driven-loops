@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "full enablement finalize",
+      "authority finalize",
+      "reader contract enablement",
+      "full enablement finalize plan",
+      "authority finalize plan",
+      "full enablement finalize tasks",
+      "full enablement finalize summary",
+      "authority finalize executed",
+      "whole-system gate literal pass"
+    ],
+    "key_topics": [
+      "full",
+      "enablement",
+      "finalize",
+      "authority",
+      "reader",
+      "contract",
+      "plan",
+      "tasks",
+      "summary",
+      "executed",
+      "whole-system",
+      "gate"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-authority.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-authority.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-authority.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Enablement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Advance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "integrity",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Finalize",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Execute",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "assert-on-disk",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
+    "created_at": "2026-08-23T17:06:54.597Z",
+    "last_save_at": "2026-11-10T05:40:58.194Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e61740a7afeb2c43e741033949c3d6fb99492a06b7f1811b61c44aa26f243b5e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d34cdf196c80486084aeb330a95bc19033c0bc4bdbc51c6ab18fcaff7ba8a51a",
+      "plan.md": "38c303a380948da528a764ff081a57f27268f71160ae937d9516af1d627fb3e0",
+      "tasks.md": "f032e301b487660cbcd6e121ecaff71ad8ae4a3fb30edbaf71cb3b2755219eb1",
+      "implementation-summary.md": "0b8752e98b79dbda2fa486a1ede2ac4ae422be32d119fe080a3d1f5dd0a3cd15"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Skill Benchmark typed ledger schema",
+      "skill benchmark event vocabulary",
+      "skill contribution certificate events",
+      "Skill Benchmark typed ledger schema implementation plan",
+      "skill benchmark event schema plan",
+      "skill effect certificate event plan",
+      "Skill Benchmark typed ledger schema tasks",
+      "skill benchmark event vocabulary tasks",
+      "skill benchmark upcaster tasks",
+      "Skill Benchmark prevEventHash boundary",
+      "skill benchmark ledger head linkage",
+      "schema payload digest boundary"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "typed",
+      "ledger",
+      "schema",
+      "event",
+      "vocabulary",
+      "contribution",
+      "certificate",
+      "events",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Typed Ledger Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "references",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "paired",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Ledger Head Boundary",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Actual",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Head Validation Outside",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Leaf",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Skill Benchmark event vocabulary over the deep-improvement-common backbone: a typed append-only envelope for paired scenario treatments, progressive skill exposure, trajectory evidence, gold integrity, raw scoring observations, and versioned contribution-certificate lifecycle facts. This phase defines event types and upcaster hooks only; reducers and projections belong to the next sibling.",
+    "created_at": "2026-07-16T03:43:41.092Z",
+    "last_save_at": "2026-11-10T05:40:39.238Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b051c3acd8e851f69cee37af825aa72256466c784564d5524c35e754fff3e24b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "db5fd316e826cf958f0df542b857b59ff5e9b6e933e0e83aad149595a0255bed",
+      "plan.md": "118dfb5920f37ed6660a01a345f9e0cd75442c05117e4469578d7e104702f4c0",
+      "tasks.md": "3006034fb2664c827333cd6a6b65ef89acb6604bffe84fedb740332f85378367",
+      "decision-record.md": "d617786b75d22de62eb0270fc36ba844e8767148796e39d6c18ff30c09ce6ac4",
+      "implementation-summary.md": "b1fe7334414b3a7884a6115637794c2fe88fa6fcf43e82f34014811c88d0ee05"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

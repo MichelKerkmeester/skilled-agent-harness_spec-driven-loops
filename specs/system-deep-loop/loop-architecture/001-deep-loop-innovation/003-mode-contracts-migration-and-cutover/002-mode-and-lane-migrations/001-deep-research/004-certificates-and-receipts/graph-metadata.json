@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research certificates and receipts",
+      "deep-research run certificate",
+      "deep-research transition receipts",
+      "offline replay certificate verifier",
+      "deep research certificates and receipts implementation plan",
+      "deep-research transition receipt plan",
+      "deep research certificates and receipts tasks",
+      "deep-research run certificate tasks",
+      "deep research prior receipt digest",
+      "deep research receipt chain durability",
+      "shared receipt evidence digest",
+      "deep research projection ledger equality"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "certificates",
+      "receipts",
+      "deep-research",
+      "run",
+      "certificate",
+      "transition",
+      "offline",
+      "replay",
+      "verifier",
+      "implementation"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Deep Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Certificate Trust Boundaries",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Prior",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Link Verification Inside",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Signed Evidence Digest",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Research mode certificate and receipt binding over the typed event-ledger substrate: one per-run certificate, per-transition receipts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff, versioned replay-fingerprint inputs, and an independent offline verifier.",
+    "created_at": "2026-07-16T03:43:31.211Z",
+    "last_save_at": "2026-11-10T05:40:33.415Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4adaa4fb18fa7f6b76d2334491bf74693411dee2bd363db24933a354fe916df7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fc8a565078440bc56afeb2cf5137de3afae78ff3bd00fcfc33ea005848bb8df0",
+      "plan.md": "4d94992e27a90c54543d67fc069a6f61a71c48654b0bec4362c8569c17c5d776",
+      "tasks.md": "ba8ea3a6bfb0cc491a85625a66dd47668cc754ce744284b78fe56b362606389e",
+      "decision-record.md": "264eed412f453c163f1fbce27017a4a91978b1c79906f94c2fee8f13eb6b039b",
+      "implementation-summary.md": "54636b44b2f11da0bc5467f50140a16d0e4053fd089f1b55d057cfda9206ca5b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

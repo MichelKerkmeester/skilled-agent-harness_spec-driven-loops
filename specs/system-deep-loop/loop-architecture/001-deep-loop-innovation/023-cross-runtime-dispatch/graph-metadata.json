@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/023-cross-runtime-dispatch",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/023-cross-runtime-dispatch",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 0 gate retire deep loop",
+      "DIRECT INVOCATION REQUIRED false block",
+      "dispatch-context self-classification gate removal",
+      "cross runtime dispatch plan",
+      "cross runtime dispatch tasks",
+      "phase 0 gate retirement summary",
+      "deep loop dispatch-context gate removed",
+      "DIRECT INVOCATION REQUIRED false block fixed"
+    ],
+    "key_topics": [
+      "phase",
+      "gate",
+      "retire",
+      "deep",
+      "loop",
+      "direct",
+      "invocation",
+      "required",
+      "false",
+      "block",
+      "dispatch-context",
+      "self-classification"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/review.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".opencode/plugins/system-deep-loop-guard.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Retire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`) and `prompt/improve` opened with a Phase-0 dispatch-context gate",
+    "created_at": "2026-08-27T05:27:55.303Z",
+    "last_save_at": "2026-11-10T05:40:59.729Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:701af1388445e2a9934dd331a22450785f33a3b5597a0b36d089cd50ce82fb2b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2d6d3f5611e04c9c47228663ce26838ece8a192644b64b759dc8b0f238b42f3a",
+      "plan.md": "4f2f889a0d4e2e9f94bc4fed58352b8c88268a02a85475603af58484497e3fb3",
+      "tasks.md": "d78831eed89d2482ffa3cad8367cc1320c55d7f2be414e58dcf86b546bf3accf",
+      "implementation-summary.md": "63e525612b4a81e1726a69fde834c312eecabc4c2fefac3c49859e803b197b3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

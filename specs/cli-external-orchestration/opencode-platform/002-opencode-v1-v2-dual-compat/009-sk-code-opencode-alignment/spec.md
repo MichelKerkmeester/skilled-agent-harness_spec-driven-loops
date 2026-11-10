@@ -124,7 +124,7 @@ Reconciled with the 002 to 008 diffs: `findings.md` lists all 75 changed code fi
 | `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs` and `tests/unit/render-command-contract.vitest.ts` | Fix | F-02: the manifest path. |
 | `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts` | Fix (amendment) | F-02: the same path in the projection manifest. |
 | `.gitignore` | Fix (amendment) | F-02: ignore the manifest at its new path. |
-| `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Fix (amendment) | F-02: the census row a projection test compares with the manifest. |
+| `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Fix (amendment) | F-02: the census row a projection test compares with the manifest. |
 | `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts` and `plugin.test.ts` | Fix | F-04, F-05, F-22, F-24 and F-25: the v2 `/vision` prompt hook. |
 <!-- /ANCHOR:scope -->
 

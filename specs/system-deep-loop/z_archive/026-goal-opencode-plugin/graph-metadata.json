@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/026-goal-opencode-plugin",
   "spec_folder": "system-deep-loop/z_archive/026-goal-opencode-plugin",
-  "parent_id": "system-deep-loop",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-deep-loop/z_archive/026-goal-opencode-plugin/001-state-store",
     "system-deep-loop/z_archive/026-goal-opencode-plugin/002-injection-plugin",

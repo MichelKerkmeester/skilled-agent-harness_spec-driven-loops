@@ -106,5 +106,5 @@ document is malformed. The rule says which property is missing and why it matter
 
 1. **The pre-existing drift was absorbed, not reviewed.** Deliberate, measured, and recorded in the decision record.
 2. **240 files carry a digest without a marker.** They are track roots and archived folders that the walk does not treat as packets, and the rule does not reach them either. If either ever becomes a validated packet, it will need a refresh first.
-3. **`system-deep-loop/037-graph-engineering` fails validation** on a missing template-source header. Pre-existing and unrelated: the refresh writes only graph metadata.
+3. **`system-deep-loop/loop-architecture/002-graph-engineering` fails validation** on a missing template-source header. Pre-existing and unrelated: the refresh writes only graph metadata.
 <!-- /ANCHOR:limitations -->

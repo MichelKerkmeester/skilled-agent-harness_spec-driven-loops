@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/004-census-path-and-config-drift-repair",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "census path and config drift repair",
+      "deep-loop stale state census path",
+      "fan-out stop policy smuggled config",
+      "census path and config drift repair implementation plan",
+      "deep-loop stale census path fix plan",
+      "fan-out stop policy schema fix plan",
+      "census path and config drift repair tasks",
+      "deep-loop stale census path fix tasks",
+      "fan-out stop policy schema fix tasks",
+      "census path and config drift repair implementation",
+      "deep-loop stale census path fix",
+      "fan-out stop policy schema fix"
+    ],
+    "key_topics": [
+      "census",
+      "path",
+      "config",
+      "drift",
+      "repair",
+      "deep-loop",
+      "stale",
+      "state",
+      "fan-out",
+      "stop",
+      "policy",
+      "smuggled"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projections.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Census Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Config Drift Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "that",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "measured",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Repair seven stale state-census path references that made five runtime test files ENOENT-uncollectable, and close a fan-out config schema gap that let a stopPolicy value be silently dropped instead of read.",
+    "created_at": "2026-08-19T04:17:23.144Z",
+    "last_save_at": "2026-11-10T05:40:42.206Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8ada67aeb9b0beb20fefdcedc0862114bdd00d1ccf46f5fb258fef4ca8bf8dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c171b8bcbc4f2d19525f74f0ad57448674ccc70a0d5d87d952eb03841c011ecb",
+      "plan.md": "904d10958ab7398fb2fb826c3e6810313b2a6c66ea537f2b5eb5e01c21ba1b11",
+      "tasks.md": "3c6c2ee939211a74dc0690d5b471f9cb5f86924b3eec9641214ffe27ca22ff42",
+      "implementation-summary.md": "539c1d5f9fd963d03a429f144faff45c350cc995ca4c7721deb481e0f378e28b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

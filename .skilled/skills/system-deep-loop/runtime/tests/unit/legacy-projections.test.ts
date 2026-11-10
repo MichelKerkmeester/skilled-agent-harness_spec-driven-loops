@@ -133,7 +133,7 @@ const GENESIS_HASH = '0'.repeat(64);
 const FILE_MODE = 0o600;
 const CENSUS_ROOT = resolve(
   import.meta.dirname,
-  '../../../../../specs/system-deep-loop/036-deep-loop-innovation',
+  '../../../../../specs/system-deep-loop/loop-architecture/001-deep-loop-innovation',
   '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census',
 );
 // The census is a frozen research record, so it still lists the surfaces of the

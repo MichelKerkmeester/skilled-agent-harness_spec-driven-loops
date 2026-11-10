@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 048 hit four more fan-out faults",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-31T14:04:00.028Z",
+    "last_save_at": "2026-11-10T05:43:28.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf99b02c1fc4b7313ce1534b6d95b87ff6bda87b94f37ab53b35decf4bde8806",
+    "source_fingerprint": "sha256:dc9fe822396bdf3f87ace09b09aadaa4255764d9d877055c517b9a662f526e1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76414ed85a7cc04c9c26fad3ec0abd3e07a95a7b8b442f49b3014bdef5de948c",
-      "plan.md": "50bcbab9139f7e2c46f9ce76d30d8d89f772e05fe511391e5f1880976ea7672b",
-      "tasks.md": "c1fa4aa34032d13f58a6369e7f3181ba44c81dd8cb6802881ba8cf90cb50daad",
+      "spec.md": "ab8457c259a11a144b088934d3e92c2c9142e3901f7ffb059f5e316261984bb2",
+      "plan.md": "492e33409c077212c9fc8f3a0d89c7eda3922320d3bfe0da0c6a270b4413a7d4",
+      "tasks.md": "bd4f0c2661aacff09a48294eafc8ffcd5d0939e5615a5bd865b5d180a6557bc2",
       "implementation-summary.md": "15e56d6704824bde834335db39a0f45b8e361e0c693db20de42179f8efe84497"
     },
     "last_active_at": null

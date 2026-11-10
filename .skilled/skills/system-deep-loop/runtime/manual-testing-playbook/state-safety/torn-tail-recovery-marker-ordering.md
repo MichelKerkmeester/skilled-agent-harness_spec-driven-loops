@@ -1,7 +1,7 @@
 ---
 title: "DLR-054 -- Torn-tail recovery marker ordering"
 description: "Manual validation scenario for Torn-tail recovery marker ordering in the runtime/ skill."
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # DLR-054 -- Torn-tail recovery marker ordering
@@ -95,6 +95,6 @@ Torn-tail recovery marker ordering matches the documented current reality, the s
 - Feature catalog entry: `feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md`
 - Scenario file path: `manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md`
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
-- Source phase: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries`
+- Source phase: `.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

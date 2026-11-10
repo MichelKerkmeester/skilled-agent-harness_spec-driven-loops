@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures",
+  "description": "Freeze the shared mode boundary before the eight phase-013 migrations: common interfaces, hoisted cross-mode closures, mixed-version fixtures, and an",
+  "keywords": [
+    "freeze",
+    "shared",
+    "mode",
+    "boundary",
+    "eight",
+    "phase-013",
+    "migrations",
+    "common",
+    "interfaces",
+    "hoisted",
+    "cross-mode",
+    "closures",
+    "mixed-version",
+    "fixtures"
+  ],
+  "lastUpdated": "2026-08-19T19:14:43.893Z",
+  "specId": "001",
+  "folderSlug": "shared-mode-contracts-and-fixtures",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

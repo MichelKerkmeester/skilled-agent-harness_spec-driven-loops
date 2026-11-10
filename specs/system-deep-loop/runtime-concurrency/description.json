@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-deep-loop/runtime-concurrency",
+  "description": "Guards that keep one owner of a shared resource when runs overlap or share a worktree: the writer lock, the loop-lock race test and the Pi fast-mode extension stand-down.",
+  "keywords": [
+    "runtime",
+    "concurrency"
+  ],
+  "lastUpdated": "2026-11-10T05:40:22.478Z",
+  "specId": "system-deep-loop/runtime-concurrency",
+  "folderSlug": "runtime-concurrency",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

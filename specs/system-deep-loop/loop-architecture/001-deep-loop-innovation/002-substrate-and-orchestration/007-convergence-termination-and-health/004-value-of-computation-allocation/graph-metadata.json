@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "value of computation allocation",
+      "adaptive deep-loop allocation",
+      "marginal evidence value",
+      "value of computation allocation implementation plan",
+      "adaptive deep-loop allocation implementation plan",
+      "value of computation allocation tasks",
+      "adaptive deep-loop allocation tasks",
+      "value of computation allocation implementation",
+      "voc allocation shadow evidence",
+      "rank-only fan-in usefulness"
+    ],
+    "key_topics": [
+      "value",
+      "computation",
+      "allocation",
+      "adaptive",
+      "deep-loop",
+      "marginal",
+      "evidence",
+      "implementation",
+      "plan",
+      "tasks",
+      "voc",
+      "shadow"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "voc-allocation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Computation Allocation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "pricing",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "bounded",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cost",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "largest-remainder",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure.",
+    "created_at": "2026-07-16T03:43:53.514Z",
+    "last_save_at": "2026-11-10T05:40:32.102Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f7ca25a1dd080882fe80ded36a83ecf588eef4411f762cda3b00cb95af213f58",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ea0e20d9e4f49273910abd14a53a38dae91b5de5ec10c2773feb3af9bc804465",
+      "plan.md": "dc9abaa1ea7c435ea57b14750491fc1d3a20159ecd4f650d4b945bf7a69369f2",
+      "tasks.md": "32a13793200001f155ceca02726f647a548a0f7b8a4e630ae1b54d6136638f24",
+      "implementation-summary.md": "9d96324e065d59a54161ad816f36eedf299b665a626b9cad3360b0b0b846d47c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

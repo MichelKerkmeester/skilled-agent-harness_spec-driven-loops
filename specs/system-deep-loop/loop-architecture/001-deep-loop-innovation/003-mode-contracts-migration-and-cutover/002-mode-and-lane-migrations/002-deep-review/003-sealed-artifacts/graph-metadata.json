@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review sealed artifacts",
+      "deep-review reference sealing",
+      "deep review tamper-evident read",
+      "deep review sealed artifacts implementation plan",
+      "deep-review seal-on-write plan",
+      "deep review sealed artifacts tasks",
+      "deep-review verified read tasks",
+      "deep review material reference integrity",
+      "deep-review store-backed material digest",
+      "deep review fabricated reference rejection",
+      "deep review sealed artifacts implementation",
+      "deep-review artifact bindings"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "sealed",
+      "artifacts",
+      "deep-review",
+      "reference",
+      "sealing",
+      "tamper-evident",
+      "read",
+      "implementation",
+      "plan",
+      "seal-on-write"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-set.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-artifact-set.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-set.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-sealed-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Third Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-local",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Review",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Backed Deep Review Material References",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Referenced Material Against Actually Sealed Store Content",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Scope",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report synthesis, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
+    "created_at": "2026-07-16T03:43:32.713Z",
+    "last_save_at": "2026-11-10T05:40:33.958Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3fe886da8d3e46dd888fa50ea046b63b066d0b91aa47fa2e580d4f88742efe79",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4c967ae6b8817f76add5640a9618917ed0bf9d1aa460d69b2bbf13fa01940754",
+      "plan.md": "614e32369801f1e61e265d499c345525e4d7793da4efe024e602d68930a46fcf",
+      "tasks.md": "3f72d3897b82d613e163e4b215115a53c868b1cc5ff97ab88c6a640da642753b",
+      "decision-record.md": "4b57b016b28f56f7ee491ad673afa2c8a36f60af6b4d62f116aa2336a59f42a0",
+      "implementation-summary.md": "f2e80a14998701b1354781224ec4bf8691619a96c446dafee9995c3a779454eb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

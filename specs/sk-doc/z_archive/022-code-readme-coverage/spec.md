@@ -104,7 +104,7 @@ Settle the standard, make it mechanically checkable, repair the READMEs that mis
 
 ### Out of Scope
 
-- `.opencode/skills/system-deep-loop/runtime/**` — owned by `system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes`. This packet contributes an amendment (14 defects in existing runtime READMEs plus a dependency edge) and nothing more. **[OPERATOR-DECISION: Q4 — 019 scope width]**
+- `.opencode/skills/system-deep-loop/runtime/**` — owned by `system-deep-loop/loop-architecture/001-deep-loop-innovation/019-runtime-code-readmes`. This packet contributes an amendment (14 defects in existing runtime READMEs plus a dependency edge) and nothing more. **[OPERATOR-DECISION: Q4 — 019 scope width]**
 - `.opencode/specs/**` (4,494 scratch dirs) — excluded from the frozen manifest; no categorical README obligation.
 - Content drift in `system-deep-loop` mode-root READMEs — owned by WS1 child `032-docs-drift-and-p2-batch`. Two coordination points are recorded per child; WS1's facts are never re-derived here.
 - A repo-wide HVR sweep. Child `001` removes only the `hvr-rules.md` contradiction that affects README audits.
@@ -179,7 +179,7 @@ Twenty-three finding IDs are recorded at parent level so nothing is silently dro
 | 2 | `002-code-readme-truth-and-missing-orientation` | READMEs that are false, non-runnable, or genuinely absent. Level 2, 20 findings (8 P1) | Planned |
 | 3 | `003-code-readme-structure-and-durability-sweep` | Four-lane structural conformance and durability strip. Level 3, 88 findings | Planned |
 
-External sibling, amended not created: `system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes` gains 14 findings, one requirement (R5), and a hard dependency on `001`.
+External sibling, amended not created: `system-deep-loop/loop-architecture/001-deep-loop-innovation/019-runtime-code-readmes` gains 14 findings, one requirement (R5), and a hard dependency on `001`.
 
 ### Phase Transition Rules
 
@@ -217,6 +217,6 @@ External sibling, amended not created: `system-deep-loop/036-deep-loop-innovatio
 ## RELATED DOCUMENTS
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
-- **Amended sibling**: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes/`
+- **Amended sibling**: `.opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/019-runtime-code-readmes/`
 - **Coordinating packet**: WS1 child `032-docs-drift-and-p2-batch` (system-deep-loop mode-root README content drift)
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

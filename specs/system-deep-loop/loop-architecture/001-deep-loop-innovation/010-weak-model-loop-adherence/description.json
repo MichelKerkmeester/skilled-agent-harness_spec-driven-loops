@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/010-weak-model-loop-adherence",
+  "description": "Weak models do not obey the deep-loop's observation-only leaf contract, and today the runtime can only catch the breach after the fact — it cannot let",
+  "keywords": [
+    "weak",
+    "models",
+    "obey",
+    "deep-loop",
+    "observation-only",
+    "leaf",
+    "contract",
+    "today",
+    "runtime",
+    "only",
+    "catch",
+    "breach",
+    "fact",
+    "cannot",
+    "let"
+  ],
+  "lastUpdated": "2026-08-17T08:29:24.536Z",
+  "specId": "010",
+  "folderSlug": "weak-model-loop-adherence",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

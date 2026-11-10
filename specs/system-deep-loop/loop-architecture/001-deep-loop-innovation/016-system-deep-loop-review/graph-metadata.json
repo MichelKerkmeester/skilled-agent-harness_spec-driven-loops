@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/016-system-deep-loop-review",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/016-system-deep-loop-review",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop broad review",
+      "deep-loop drift and bugs review",
+      "deep-loop commands agents review",
+      "system-deep-loop broad review plan",
+      "deep-loop audit plan",
+      "review research expansion plan",
+      "system-deep-loop review tasks",
+      "deep-loop audit tasks",
+      "review research expansion tasks",
+      "system deep loop review implementation summary"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "broad",
+      "review",
+      "deep-loop",
+      "drift",
+      "bugs",
+      "commands",
+      "agents",
+      "plan",
+      "audit",
+      "research",
+      "expansion"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "review/review-report.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Broad Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Expansion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Reconciliation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 014 review was scoped narrowly to the gateway-alignment surface and surfaced ten real findings; the 015 remediation just landed a P0 fix plus five P1s across the runtime, prompt-packs, SKILLs, YAMLs, and the guard",
+    "created_at": "2026-08-26T03:00:56.608Z",
+    "last_save_at": "2026-11-10T05:40:58.735Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:99488853bc3fe550d54249f3a2127a8a861b0f3b4e4bdcc260419d911ceca072",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5c380c488bd7eccf169a2c583a9335ae48c9b5dcb546da8dcff2f0bb95411f6b",
+      "plan.md": "6b085dda292cd96e670371e6b72a30c33814ddbdca8e3804e18a6e89b4726f46",
+      "tasks.md": "792e4b5fc8ba82c63800a9075d0de1cb758bc4b137a33c68296423208763b0b5",
+      "implementation-summary.md": "07694a38f6ae3f07e2b66f7c0befea8500e539f0dcbcf34968adc726cd31735b",
+      "research/research.md": "80dc5e1abaaa7e5ebe432f5b915e1c7face2049f491d1529968b2c4bd0c73278"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

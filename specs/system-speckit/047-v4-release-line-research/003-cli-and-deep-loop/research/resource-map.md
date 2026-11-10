@@ -197,7 +197,7 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/system-deep-loop/043-fanout-resume-and-containment/implementation-summary.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/implementation-summary.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/research/deep-research-config.json | Cited | OK | Citations=2; Iterations=2 |
 | specs/system-speckit/047-v4-release-line-research/003-cli-and-deep-loop/research/deep-research-state.jsonl | Cited | OK | Citations=4; Iterations=4 |
 

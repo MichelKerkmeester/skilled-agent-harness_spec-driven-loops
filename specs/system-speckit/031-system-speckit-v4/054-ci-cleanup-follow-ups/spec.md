@@ -86,7 +86,7 @@ A repository under /tmp is gated like any other, the CI workaround that existed 
 - The packet docs and the parent rows record the outcome.
 
 ### Out of Scope
-- The containment capture fix and the capture untrack. They live in packet specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot.
+- The containment capture fix and the capture untrack. They live in packet specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot.
 - The phase 030 goal trim. It is recorded in the log of specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research/goal.md and its brief is wu8 in this packet's evidence/dispatch/.
 - Building the gitignored dists in a fresh worktree. Their tests fail to load until built, and this is a known limitation recorded here and not repaired.
 

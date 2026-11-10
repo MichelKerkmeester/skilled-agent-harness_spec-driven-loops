@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
     "created_at": "2026-09-02T11:04:52Z",
-    "last_save_at": "2026-10-31T13:58:44.685Z",
+    "last_save_at": "2026-11-10T05:44:08.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bdbb738046d2949a9ce03f93fd341c8cdf6d68bbe3fd108c3c5e3cd41e877cb",
+    "source_fingerprint": "sha256:c8aaa1bb7d5b40d1573e05b939445d4070fab7a539528b7e0883bff32177ebda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2b64434d8c15cb78176510b5d4a07df7c576d316d58e1a3447c587d99885768",
       "plan.md": "5c65c9d6274971be1eeb600ee54f9372ad88bfd3cbcce5ed0308fcfbf027cd01",
-      "tasks.md": "a66a451ea6a7fff3c300aca104b55ed11124047262e87bc306576d0dde645d89",
-      "implementation-summary.md": "c734cf5c8ea6c56a121801b103e9157c57ec83a461ab28d42e2e5d637f7e95cc"
+      "tasks.md": "6c43f512b6c0524a4f94be7a60390787222db767dc8a25b1b23903cb78b0dc9e",
+      "implementation-summary.md": "01328b1851dd027f4f577227fcfc2c89b9499ff4ee11a460d77c52e031b11221"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -154,5 +154,5 @@ Status: Planned — no task is started.
 - **Decisions**: See `decision-record.md`
 - **Parent**: `sk-doc/022-code-readme-coverage`
 - **Upstream**: `001` (hard gate), `002` (soft gate, and the escalation target)
-- **Adjacent**: `system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes`; WS1 `032-docs-drift-and-p2-batch`
+- **Adjacent**: `system-deep-loop/loop-architecture/001-deep-loop-innovation/019-runtime-code-readmes`; WS1 `032-docs-drift-and-p2-batch`
 <!-- /ANCHOR:cross-refs -->

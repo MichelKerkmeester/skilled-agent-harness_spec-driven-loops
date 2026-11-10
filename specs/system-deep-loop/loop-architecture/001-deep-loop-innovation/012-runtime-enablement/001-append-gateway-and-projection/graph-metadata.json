@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "append gateway",
+      "mode event gateway",
+      "legacy projection service",
+      "append gateway plan",
+      "legacy projection plan",
+      "append gateway tasks",
+      "reader contract tasks",
+      "append gateway implementation summary",
+      "gateway build result"
+    ],
+    "key_topics": [
+      "append",
+      "gateway",
+      "mode",
+      "event",
+      "legacy",
+      "projection",
+      "service",
+      "plan",
+      "tasks",
+      "reader",
+      "contract",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-ledger-writer.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-engine.ts",
+      "scratch/suite-baseline-and-delta.md",
+      "scratch/unroutable-mode.md",
+      ".opencode/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fenced-ledger-writer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-ledger-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-engine.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-engine.ts",
+        "source": "derived"
+      },
+      {
+        "name": "suite-baseline-and-delta.md",
+        "kind": "doc",
+        "path": "scratch/suite-baseline-and-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "unroutable-mode.md",
+        "kind": "doc",
+        "path": "scratch/unroutable-mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Append Gateway",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Projection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "two",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
+    "created_at": "2026-08-19T06:57:07.715Z",
+    "last_save_at": "2026-11-10T05:40:55.784Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6686dffecf51a56c8c22382b44df34deefb30ea3e83b4a60038a8d51cd58cf3e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "244b411c8ec06c231d1b1b36eb980969fd6445b691178f6b53877487c9688c12",
+      "plan.md": "b2da25c817cf554ed4107014c934bfb638f411718c7f754d77cf1c413e977e86",
+      "tasks.md": "a4ff2bb5fccbf466e95fbfe10264a41f2f93a35203cd914cae5927ba8f0ce975",
+      "implementation-summary.md": "7e2ba39e7214700334e7c44080cf57bb50dd68e33869929351a69e42f8b15531"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

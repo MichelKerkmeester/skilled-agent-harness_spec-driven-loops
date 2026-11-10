@@ -72,7 +72,7 @@ Every runtime file carries the sk-code-skilled header and, when it is a non-test
 ### Out of Scope
 - Behavior changes of any kind.
 - Numbered sections inside test files, by operator decision on 2026-09-30.
-- Extending the checker and adding the ARCHITECTURE template, owned by `specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled`.
+- Extending the checker and adding the ARCHITECTURE template, owned by `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled`.
 - `runtime/cli/runtime/` and `runtime/cli/runtime-mirrors/`, which are generated mirrors.
 
 ### Folder merges (DeepSeek proposal, SWE-2 MAX fact-check 2026-09-30)

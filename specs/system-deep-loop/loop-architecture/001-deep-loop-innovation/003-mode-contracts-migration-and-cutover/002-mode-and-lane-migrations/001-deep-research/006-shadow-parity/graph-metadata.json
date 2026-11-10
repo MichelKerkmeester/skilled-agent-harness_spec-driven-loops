@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep Research shadow parity",
+      "deep-research ledger migration",
+      "deep-research event parity",
+      "mode 010 shadow harness",
+      "Deep Research shadow parity implementation plan",
+      "deep-research event parity implementation",
+      "mode 010 phase 009 implementation plan",
+      "Deep Research shadow parity tasks",
+      "deep-research event parity tasks",
+      "mode 010 phase 009 tasks",
+      "Deep Research legacy resume oracle",
+      "resume parity non-vacuity"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "shadow",
+      "parity",
+      "deep-research",
+      "ledger",
+      "migration",
+      "event",
+      "mode",
+      "harness",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Shadow Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flipping Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the Deep Research",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Oracle",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Receipt Certificate Trust",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Independent Legacy Resume Oracle",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compare Modeled Legacy Resume Semantics",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and projection comparison, reproducible receipts, and a fail-closed successor gate input. The legacy path remains authoritative.",
+    "created_at": "2026-07-16T03:43:31.690Z",
+    "last_save_at": "2026-11-10T05:40:33.450Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2c2a6b76824db899d783671d51da823e4ccad05f68bede1d05c6eda94b316e3f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e6501a673b8fa459bb28cf3fe268d7e55a0543339d1436f0f69786daa5ccffce",
+      "plan.md": "f5bcb5f3c98ceae9c85ef967e978aef67cf3a0013a72393e82338e71d1620d8d",
+      "tasks.md": "71e24881c3d51447576eb743c390dad76c7b48935624f30068fbd950993de5f3",
+      "decision-record.md": "0e29d86c54791e7824ea02823b8429c6c1b88121cedd4d73287fb408e454d9e6",
+      "implementation-summary.md": "2f436e777c4e45cf78393a97194c61aa6b086e43df7b6007c538c336978ff9b7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

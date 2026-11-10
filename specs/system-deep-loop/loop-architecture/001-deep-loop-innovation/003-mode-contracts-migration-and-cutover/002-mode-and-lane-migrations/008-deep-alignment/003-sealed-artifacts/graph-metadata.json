@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment sealed artifacts",
+      "deep-alignment reference sealing",
+      "deep alignment tamper-evident read",
+      "deep alignment authority capsule seal",
+      "deep alignment sealed artifacts implementation plan",
+      "deep-alignment seal-on-write plan",
+      "deep alignment verified read plan",
+      "deep alignment sealed artifacts tasks",
+      "deep-alignment verified read tasks",
+      "deep alignment authority capsule tasks",
+      "deep alignment named dependency ownership",
+      "finding authority digest binding"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "sealed",
+      "artifacts",
+      "deep-alignment",
+      "reference",
+      "sealing",
+      "tamper-evident",
+      "read",
+      "authority",
+      "capsule",
+      "seal"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Third Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Deep Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Ownership",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Named Artifact Claims",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Named Claims",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Verified Dependency Owners",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first findings, conformance convergence, alignment reports, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
+    "created_at": "2026-07-16T03:43:43.383Z",
+    "last_save_at": "2026-11-10T05:40:39.924Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:25aa03ac758d60367d631dc126bd5d9df04943179765b5079795d5b7b6d8b140",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a964129dba4389635a55f326f0354ffad65c456a523cf73b609a6f9bfaa28371",
+      "plan.md": "4d2ca6ef6e8017fb2fdda584b812ac97ff04a252438881c95d36396325a6db55",
+      "tasks.md": "d3db55f4a618aa47fc2df54a47b0f805fc548fc9283a45f75ce8452cb10fa3fc",
+      "decision-record.md": "1b5e4d2fc2f91f7eb150477ee3356c2eb02590af98b0b40a89a9246c4630d1c3",
+      "implementation-summary.md": "d7ded7174c010a4d2c920a24ed8fa18e7446553102050ee01df7181ba0d53146"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

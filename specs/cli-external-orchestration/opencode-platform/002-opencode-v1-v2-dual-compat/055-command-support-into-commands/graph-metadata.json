@@ -53,7 +53,7 @@
       ".skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
       ".skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py",
       ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
-      "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json"
+      "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json"
     ],
     "entities": [
       {
@@ -173,7 +173,7 @@
       {
         "name": "state-backend-census.json",
         "kind": "config",
-        "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+        "path": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 004 solved a real problem: both OpenCode versions scan `{command,commands}//.md` and registered all 12 non-command markdown files as commands",
     "created_at": "2026-10-22T10:42:28Z",
-    "last_save_at": "2026-11-10T05:38:31.461Z",
+    "last_save_at": "2026-11-10T05:43:28.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7e3c2ab81d4d6a9532e78dfbbf07eb018afe1597ca851e5477b0bad4e5902aa",
+    "source_fingerprint": "sha256:dbaa61949037228ce7c37ff5616ec8499d70800d5ce9c28229fd5fe63fabacaa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ad06c21378ae480c810dc0c8ed4a75f130b70714a983c078f27970dd34bea90f",
+      "spec.md": "93a23408babed59e1f381ce4cbddc036b14d696ae2bd0fa54abaa1b9e02a9367",
       "plan.md": "0bcdaeae0472e7131e3e574f821064cd6d622823c97090d2f28dae1321b08d7a",
-      "tasks.md": "f2c9a7952c91133b580af0d9318875f9791054587d2cd38a55ec76888a288f92",
-      "implementation-summary.md": "7ab03f919edb0ca29e09ba84cf93b253353e6af1e666e70a0dfd71983315d8d3"
+      "tasks.md": "45c014e7e99d567d26ea05274ba14103e47ba44015c4a50daac9e23779b7fa9e",
+      "implementation-summary.md": "40112a9301a7e7dde3c642567d0a6cbd5970160be543a5a1adfd7919f7bb2f20"
     },
     "last_active_at": null
   }

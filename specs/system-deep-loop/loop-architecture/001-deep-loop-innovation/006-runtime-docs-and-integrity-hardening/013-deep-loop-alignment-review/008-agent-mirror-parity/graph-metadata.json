@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent mirror parity",
+      "six runtime trees ship the same twelve agents",
+      "agent mirror parity plan",
+      "agent mirror parity tasks",
+      "agent mirror parity acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "agent mirror parity implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "mirror",
+      "parity",
+      "six",
+      "runtime",
+      "trees",
+      "ship",
+      "same",
+      "twelve",
+      "agents",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".pi/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".opencode/skills/sk-doc/leaf-scopes.json",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/README.md",
+      ".opencode/skills/system-deep-loop/leaf-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-scopes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-scopes.json",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "root-router-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest-scopes.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six trees mirror the same twelve agents, and the translation between them was undocumented and partly lossy",
+    "created_at": "2026-09-20T08:33:44.884Z",
+    "last_save_at": "2026-11-10T05:40:46.109Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a80dc72b02a569c9f95817de3ff2843639ee07ece9752a8399e4df3ca396aa99",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "12196a41ab1c2a58dcce194fa3c07b435b3241bdf8f52dcebfdf3eff8968e51f",
+      "plan.md": "3b7927a0345d5e3b303b4477c387316fdff7b696426fd8ee981fdd64a38e62c8",
+      "tasks.md": "53c4ff2b76e3453bd382fde8cf091551487127fd1dcb40638d78fdbf6c91d203",
+      "implementation-summary.md": "b706e49301573dd58fdcb2e6c4910f5f3f5746b128d6213a7166a58b8d07061d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/003-mixed-version-fixtures",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mixed-version deep-loop fixtures",
+      "old and new state replay fixtures",
+      "version-change shadow parity",
+      "interrupted migration fixtures",
+      "mixed-version fixtures implementation plan",
+      "deep-loop version drift fixture plan",
+      "interrupted migration replay plan",
+      "mixed-version fixtures tasks",
+      "deep-loop version drift fixture tasks",
+      "interrupted migration fixture tasks",
+      "mixed-version fixture evidence boundary",
+      "authored case digest guarantee"
+    ],
+    "key_topics": [
+      "mixed-version",
+      "deep-loop",
+      "fixtures",
+      "old",
+      "new",
+      "state",
+      "replay",
+      "version-change",
+      "shadow",
+      "parity",
+      "interrupted",
+      "migration"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Version Fixtures",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Define",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "case",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "authored",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "old",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Version Fixture Evidence Boundaries",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Resume Classification",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Restart Evidence",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay, and shadow parity across realistic version drift.",
+    "created_at": "2026-07-16T03:43:54.525Z",
+    "last_save_at": "2026-11-10T05:40:32.847Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ef8fef0c6d789b544009363d4eff1c65c509f06e9bb712d969dd48ca91bcc9fa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "efba563a1b7a236309a3bbf9a1dbce945d8d2a9bdacc6e8ce77c890b23bd403b",
+      "plan.md": "c9c97b144cffebb23ff32b6edbcdb2023758eec9fdb7886fb3151e62e23fffe7",
+      "tasks.md": "7244db6a30c3c3a36983c17e9d0cf8700e0f637b8317c6d0e5e3aeee72208c61",
+      "decision-record.md": "29c9326e3e44af30af7a17b7bed0fbaa3c4479d53b332ad972e1278ebd160332",
+      "implementation-summary.md": "35327de7371945e4ad4e8ba1790c275b33058ee8d01b129a377a821b54bef683"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

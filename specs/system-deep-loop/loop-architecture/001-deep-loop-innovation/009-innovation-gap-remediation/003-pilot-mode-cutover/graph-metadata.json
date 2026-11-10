@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pilot mode authority cutover",
+      "deep-research production authority flip",
+      "five-boundary cutover test",
+      "pilot mode cutover implementation plan",
+      "deep-research authority composition plan",
+      "five-boundary rollback plan",
+      "pilot mode authority cutover tasks",
+      "deep-research cutover implementation tasks",
+      "five-boundary production test tasks"
+    ],
+    "key_topics": [
+      "pilot",
+      "mode",
+      "authority",
+      "cutover",
+      "deep-research",
+      "production",
+      "flip",
+      "five-boundary",
+      "test",
+      "implementation",
+      "plan",
+      "composition"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-selector.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-selector.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-selector.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pilot Mode Authority Cutover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deployment-resolved",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Inventory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "empty",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the deep-research pilot that wires the authority-flip coordinator into its production composition root behind a rollback window, requires shadow parity before cutover, and proves five production boundaries.",
+    "created_at": "2026-08-14T12:47:56.429Z",
+    "last_save_at": "2026-11-10T05:40:55.210Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:78ce267dc9d337cb446a3fe5fd3fc4713f6e52456ed9eb756842b346a3486229",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d586df8ece357bfdc9ed461da339fd8e816f8e54dad33f88ac1a1e1f5d63cb95",
+      "plan.md": "c245222b684fa876e408d24e72ac663b8ce7e053d912c4ab7b3944f26d0590da",
+      "tasks.md": "f3bb84fe274ec085e6185948354e718b41632d20f7a8b29f247008d2cacc7719"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

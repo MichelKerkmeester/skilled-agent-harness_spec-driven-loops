@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/027-executor-availability-docs",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/027-executor-availability-docs",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec core",
+      "plan core",
+      "tasks core",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "spec",
+      "core",
+      "plan",
+      "tasks",
+      "impl",
+      "summary",
+      "every",
+      "deep",
+      "presentation",
+      "contract",
+      "documented",
+      "executor"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-research-presentation.txt",
+      ".opencode/commands/deep/assets/deep-review-presentation.txt",
+      ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+      ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
+      ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
+    "created_at": "2026-08-31T08:33:25Z",
+    "last_save_at": "2026-11-10T05:41:01.308Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:21eb4bd8a2cc47da0006df9ee03df32ec866ef7264178e33d0ac92dd45d8f7aa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8c54268a41d94cfa576e1c50481e81a51b3219a5885495dc17c0c3315090b0e5",
+      "plan.md": "dd8e730048465ab5ed9aafe385375ba91557324021e4f661f29ac30c2a253522",
+      "tasks.md": "0942240474093e7faf48027942737a4c1ecf1f1f2de228ff3bb3d076790b60ad",
+      "implementation-summary.md": "74b6106e217808bf1e8f2822541407ee9ebaabc4793c5a55fffc66176d3a1ac6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

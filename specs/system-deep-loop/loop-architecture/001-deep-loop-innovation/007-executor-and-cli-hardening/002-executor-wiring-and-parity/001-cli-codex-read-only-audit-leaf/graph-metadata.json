@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-codex read-only leaf",
+      "codex apply_patch alignment halt",
+      "deep-alignment executor contract violation",
+      "read-only audit leaf",
+      "wrapper writes iteration artifacts"
+    ],
+    "key_topics": [
+      "cli-codex",
+      "read-only",
+      "leaf",
+      "codex",
+      "alignment",
+      "halt",
+      "deep-alignment",
+      "executor",
+      "contract",
+      "violation",
+      "audit",
+      "wrapper"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alignment Audit Leaf",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "wrapper-authored",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write its three per-iteration artifacts (the iteration narrative, the appended `deep-alignment-state.jsonl` record, and the write-once delta file) — the native `@deep-alignment` agent deliberately has no Write/Edit tool",
+    "created_at": "2026-07-23T12:49:06.629Z",
+    "last_save_at": "2026-11-10T05:40:48.586Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5480e471845909e84db174463d83d623efbdc78473f6b1727dd1804844ab3ffb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1a3689c922ecba38617520ffd21c19119a7830da6a0ff42db805d72d8946a02e",
+      "plan.md": "1c5342f7e4cf9b1be4652e08ef29b1b69adc998e79db43492ae7d0c8c4c2e8a6",
+      "tasks.md": "b45224dfa4d59398758443f7bc56bd4680445d1ec44ab84480d0bf375fa6e07b",
+      "decision-record.md": "26ffa4acfc2849045830580a7abb5d66523518f74a311ec1e267c0d86ca011a3",
+      "implementation-summary.md": "9b47686fc676abaaee001257595b78ce642456471706f507020abb455b88c368"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

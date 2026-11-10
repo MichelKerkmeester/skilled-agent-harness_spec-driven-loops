@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/002-deep-research-enablement",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/007-effect-enablement",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/009-mode-projection-contracts",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime enablement",
+      "deep-loop turn on",
+      "activate authorized ledger",
+      "runtime enablement handover",
+      "012 runtime enablement resume",
+      "authority flip blocked",
+      "effect producer missing"
+    ],
+    "key_topics": [
+      "runtime",
+      "enablement",
+      "deep-loop",
+      "turn",
+      "activate",
+      "authorized",
+      "ledger",
+      "handover",
+      "resume",
+      "authority",
+      "flip",
+      "blocked"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "handover.md",
+      "002-deep-research-enablement/implementation-summary.md",
+      "003-fleet-enablement/plan.md",
+      "002-deep-research-enablement/scratch/directive-census-remeasured.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-census-remeasured.md",
+        "kind": "doc",
+        "path": "002-deep-research-enablement/scratch/directive-census-remeasured.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Enablement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done Enablement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Enablement Blocked",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Chain",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "From Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Turn the dark deep-loop substrate on: build the append gateway and legacy projection the modes lack, migrate each mode's write protocol onto it, flip authority serially across all seven modes, retire the legacy writers, gate the whole system, and document the result.",
+    "created_at": "2026-08-19T06:57:07.539Z",
+    "last_save_at": "2026-11-10T05:40:55.592Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:f5412d54a354abd6cc5f1ede8b33e9a6fe476e3f57e0e7088277e07082d8aa4e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9b33d4123dd6427ea6302fe306ac2e73ad00bb3a8790776d8667e6142da77de4",
+      "handover.md": "57ca54b50b624a506a152b6fcf9f73717ce151a73bc6a5a191ff0e43d3162ed2"
+    },
+    "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
+    "last_active_at": null
+  }
+}

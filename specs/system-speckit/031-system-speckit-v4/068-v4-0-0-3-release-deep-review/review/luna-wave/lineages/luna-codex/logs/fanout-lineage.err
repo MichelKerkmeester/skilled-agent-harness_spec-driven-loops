@@ -2262,8 +2262,8 @@ REPO RULES.md
 .skilled/commands/deep/assets/deep-review-auto.yaml
 .skilled/commands/deep/assets/deep-review-confirm.yaml
 .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl
-specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review/review/lineages/swe2/scratch/stem-fixture/.opencode/commands/deep/assets/deep-review-auto.yaml
-specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review/review/lineages/swe2/scratch/stem-fixture/.opencode/commands/deep/assets/deep-review-confirm.yaml
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review/review/lineages/swe2/scratch/stem-fixture/.opencode/commands/deep/assets/deep-review-auto.yaml
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review/review/lineages/swe2/scratch/stem-fixture/.opencode/commands/deep/assets/deep-review-confirm.yaml
 .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl
 specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/drafts/communication.md
 specs/system-speckit/033-system-speckit-v4/035-v4-changelog-draft-update/scratch/changelog-digests/deep-review.md

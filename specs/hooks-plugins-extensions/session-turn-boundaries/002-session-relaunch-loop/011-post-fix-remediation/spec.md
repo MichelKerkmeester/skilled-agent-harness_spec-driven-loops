@@ -75,7 +75,7 @@ Every finding is fixed or made explicit with a test that fails without the chang
 - Docs: P2-16, P2-17, P2-18, P3-11 and the behaviour changes above.
 
 ### Out of Scope
-- The deep-loop open items, which are phase 011 of `system-deep-loop/038-review-and-cli-lineage`.
+- The deep-loop open items, which are phase 011 of `system-deep-loop/review-lineage/001-review-and-cli-lineage`.
 - Live relaunch runs. Every change narrows a path the unit, adapter and wrapper tests reach.
 
 ### Files to Change

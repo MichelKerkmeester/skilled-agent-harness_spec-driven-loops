@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/013-runtime-agent-gateway-alignment",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/013-runtime-agent-gateway-alignment",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime agent gateway alignment",
+      "leaf agent direct append",
+      "deep-loop agent state jsonl bypass",
+      "append gateway agent prompt",
+      "runtime agent gateway alignment plan",
+      "runtime agent gateway alignment tasks",
+      "gateway alignment decision record",
+      "runtime agent gateway alignment implementation summary"
+    ],
+    "key_topics": [
+      "runtime",
+      "agent",
+      "gateway",
+      "alignment",
+      "leaf",
+      "direct",
+      "append",
+      "deep-loop",
+      "state",
+      "jsonl",
+      "bypass",
+      "prompt"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/check-agent-gateway.sh",
+      ".claude/agents/deep-research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-gateway.sh",
+        "kind": "script",
+        "path": "scripts/check-agent-gateway.sh",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Agent Gateway Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reason",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "siblings",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "symlink",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure projection of the ledger",
+    "created_at": "2026-08-25T07:11:26.953Z",
+    "last_save_at": "2026-11-10T05:40:58.611Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eba442272201d7dfb3e29977bd7de7dcae327e603a0815d84bd5694a1a84c52e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6d3503cb504b63c12d37837c651b4fdae6498474c2e47f470b037867d50d3e72",
+      "plan.md": "727d03d6d3589a8c14d16042307f9391f1e06bf7b03ef9f5a47e82fea0da284f",
+      "tasks.md": "1fc5a69be1aa929d1c12607e1377d261500466a77b04c3b1301695943aa54bc8",
+      "decision-record.md": "7a14022f8d8276a494e1a73734d162222697f08f7e3694c975a7a07a486f797b",
+      "implementation-summary.md": "6db829e95d6cd3f9fba0eaae167b708ad48d58eff2263e331e6111876983b177"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

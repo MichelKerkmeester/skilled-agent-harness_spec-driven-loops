@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "enablement closeout",
+      "epic status reconcile",
+      "document the enabled system",
+      "enablement closeout plan",
+      "enablement closeout tasks",
+      "enablement closeout summary",
+      "claim sweep results",
+      "unreachable authority flip"
+    ],
+    "key_topics": [
+      "enablement",
+      "closeout",
+      "epic",
+      "status",
+      "reconcile",
+      "document",
+      "enabled",
+      "system",
+      "plan",
+      "tasks",
+      "summary",
+      "claim"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/probe-reachability.mjs",
+      "scratch/probe-pending-transition.mjs",
+      "scratch/adversarial-refutation.md",
+      "scratch/validator-exit-vs-summary.md",
+      "scratch/claim-sweep.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-reachability.mjs",
+        "kind": "file",
+        "path": "scratch/probe-reachability.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "probe-pending-transition.mjs",
+        "kind": "file",
+        "path": "scratch/probe-pending-transition.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-refutation.md",
+        "kind": "doc",
+        "path": "scratch/adversarial-refutation.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-exit-vs-summary.md",
+        "kind": "doc",
+        "path": "scratch/validator-exit-vs-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "claim-sweep.md",
+        "kind": "doc",
+        "path": "scratch/claim-sweep.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enablement Closeout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "confident",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
+    "created_at": "2026-08-19T06:57:08.525Z",
+    "last_save_at": "2026-11-10T05:40:57.700Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:483913677271f0fb5fb098e01973f5da6b4e6d8d4140a7be4867b7fb5c3a7f5f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "426c1c65008f72e97610c001b4d398461eb8f53a68bc0940205c286b23fdea52",
+      "plan.md": "cb2d0baf189427c180bb414bb856b6eacc7050d533f573de40beb87c6a8c8eba",
+      "tasks.md": "f3397e7689fa85dbd964006bca604be185c852c20689cf545b7eb44ecdd77326",
+      "implementation-summary.md": "ec201b1caeef8bdb0d0f3843bde2c43bf53e2d424b857ba1975310bf4d212108"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

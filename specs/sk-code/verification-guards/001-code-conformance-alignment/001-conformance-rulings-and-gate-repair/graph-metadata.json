@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Three enforcement mechanisms for the `code-skilled` standard failed independently and simultaneously, and nothing noticed",
     "created_at": "2026-07-30T19:25:14.337Z",
-    "last_save_at": "2026-11-10T05:20:47.496Z",
+    "last_save_at": "2026-11-10T05:43:28.987Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e30a5b5c3e8ee9a31645f39a56006f85c8651da89ce5bc10bef8093cbd553217",
+    "source_fingerprint": "sha256:f7472011aa714b6e36e509e61278c7b5289fd118270e7501a6fdcb07d81015c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1e1de19d2d3f18e6139f0fa6e88057298bf3da913accaa7707217e9dbe88c20",
+      "spec.md": "0869bb87a37ad18505c217aa283d09be93c8cacfac07f626e1990cbc7987f257",
       "plan.md": "6b899d04f35d57942c307813788be00409bbbf87d4bd1fc372e647021e289657",
-      "tasks.md": "6a84331dc6fb92d1f466773fb123889c5cc3fe996442b05487b9687265528b90",
+      "tasks.md": "beeca262fff8c6b12cce67536423606c9e0a2999c3ba519aab32eb2e83aa769c",
       "decision-record.md": "029d418b3af225b8b842c3837b4754006bb381182ea3b9a8d2dca1f2e78e34af",
       "implementation-summary.md": "429867606014b9c25342d8bc538681dce765218e60de4c6125839b102c777b96"
     },

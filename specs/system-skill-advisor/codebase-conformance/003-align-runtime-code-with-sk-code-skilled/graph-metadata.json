@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Code under `.skilled/skills/system-skill-advisor/runtime/` does not follow the sk-code-skilled comment and structure rules in `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:45Z",
-    "last_save_at": "2026-11-10T05:35:39.196Z",
+    "last_save_at": "2026-11-10T05:44:08.240Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:821f8ee1e38e1844682c78cc1b0f60599c947f3ef26e1fd9e254753c558e56dc",
+    "source_fingerprint": "sha256:7856bfef3f1b636265c3aa702fa9e8aa18e18c9c3b54a2a49aa367231e0765fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1645779f771a8d54587a4585b607c3a28d9f3e717858e998e40ef1de0e85477",
+      "spec.md": "3fd7ffee1992749cce5f01fe7c3793f9ed6cea813f89880b92f39d93e79984cf",
       "plan.md": "dc2fb319c9c0d9889b3a7dc52a8b9e5aa91fd84d6eebcbebdb8682b23b2baf95",
-      "tasks.md": "a75bc7ba5c465b5032f8ebc131ff08f8e324ee9489484ff4d731e44efa1a5171",
+      "tasks.md": "deba91dea8a51d73bf0bd85224fad3dc67e0459bb7dd2278498db8744d1b2c58",
       "implementation-summary.md": "11b924cc4655a8a3e0c3243cc892ee7f0dedc1547e65061123dfea200b672fe3"
     },
     "last_active_at": null

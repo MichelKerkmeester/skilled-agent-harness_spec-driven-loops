@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "residual finding closeouts",
+      "REQ-005 full-surface fixtures closeout",
+      "F-011-01 restore authorization under-binding",
+      "028 open QA items closeout",
+      "shadow-parity surface coverage closeout",
+      "residual finding closeouts plan",
+      "REQ-005 fixture closeout plan",
+      "F-011-01 sameReference fix plan",
+      "028 open QA closeout plan",
+      "residual finding closeouts tasks",
+      "REQ-005 fixture tasks",
+      "F-011-01 binding tasks"
+    ],
+    "key_topics": [
+      "residual",
+      "finding",
+      "closeouts",
+      "req-005",
+      "full-surface",
+      "fixtures",
+      "closeout",
+      "f-011-01",
+      "restore",
+      "authorization",
+      "under-binding",
+      "open"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/observability-events.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sealed-artifact-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sealed-reference-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/observability-events.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Residual Finding Closeouts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Workstreams",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three sibling phases under `036-deep-loop-innovation` landed their primary deliverables but each left one small, explicitly-documented residual open",
+    "created_at": "2026-08-12T16:44:22.542Z",
+    "last_save_at": "2026-11-10T05:40:51.597Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b0805a59da98e67062119191aca705c307eb633126045870410650c2a830b695",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2e463111a48d48fbc259529dfa50e887a0705c5f0883159c3a137c005e531420",
+      "plan.md": "b97ad85dbb35458945a07a4087c9f2646fe72c44ec51285b6556584acdfd4c0e",
+      "tasks.md": "c0d78ce66ea858972d1d5e196dbeba98f84f3faafb4593a5896605457cbeeec5",
+      "implementation-summary.md": "7b4099384f84b915a5e8d78daa30bb49c26042b3201d1f02a6a5fd8e84816bd8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

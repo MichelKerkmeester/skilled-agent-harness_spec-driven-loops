@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/001-runtime-code-review",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/001-runtime-code-review",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime code review",
+      "deep-review artifact host",
+      "system-deep-loop runtime audit",
+      "write-containment P0 findings",
+      "runtime code review plan",
+      "sol-high sol-max fanout review",
+      "deep-review merge strongest-restriction",
+      "runtime code review tasks",
+      "deep-review fanout dispatch task",
+      "runtime code review implementation summary",
+      "write-containment P0 findings shipped",
+      "deep-review FAIL release-blocking"
+    ],
+    "key_topics": [
+      "runtime",
+      "code",
+      "review",
+      "deep-review",
+      "artifact",
+      "host",
+      "system-deep-loop",
+      "audit",
+      "write-containment",
+      "findings",
+      "plan",
+      "sol-high"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Code Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Host",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Ledger",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Required Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-deep-loop` runtime (CLIs, fan-out executors, ledger/gateway/cutover logic) had no code-targeted deep-review since the 036 innovation packet's implementation phases landed",
+    "created_at": "2026-08-13T05:43:08.924Z",
+    "last_save_at": "2026-11-10T05:40:55.052Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac33c7bff1dd97d878dcb9e99c3fed9f85d05a980948c0cf9485b897992e5bb1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "988c7c0ad38cce7c54a194cb4ad5593b442a2679d6c5a5a4e224340754b0bede",
+      "plan.md": "a234ae7f5ce2cf7ddf590f90887a6fd7589d0efc346e9c934c459f44c68000fb",
+      "tasks.md": "c6116ea9622211d2a8a043bee39eab2fce26c1c3f8bbf07ad964d5bd7b7dfd1d",
+      "implementation-summary.md": "55b3637f33b79e919d23d9d604771134bd940f552b577410eda34b4550e21015"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

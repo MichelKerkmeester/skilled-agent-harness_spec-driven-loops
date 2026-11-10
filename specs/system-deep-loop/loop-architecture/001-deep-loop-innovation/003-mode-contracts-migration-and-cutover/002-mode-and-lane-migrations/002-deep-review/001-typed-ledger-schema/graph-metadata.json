@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/001-typed-ledger-schema",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review typed ledger schema",
+      "deep-review event vocabulary",
+      "deep review append-only events",
+      "deep review ledger migration",
+      "deep review typed ledger implementation plan",
+      "deep-review schema migration plan",
+      "deep review event contract plan",
+      "deep review typed ledger schema tasks",
+      "deep-review event vocabulary tasks",
+      "deep review migration schema tasks",
+      "deep review candidate adjudication boundary",
+      "deep review severity activation"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "typed",
+      "ledger",
+      "schema",
+      "deep-review",
+      "event",
+      "vocabulary",
+      "append-only",
+      "events",
+      "migration",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed Ledger Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "impact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Candidate",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adjudication Boundary",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Candidate Observations Separate",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bearing Adjudication",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Review mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed review lifecycle, scope and dimension passes, candidate findings, adjudication, convergence, and review-report handoff. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
+    "created_at": "2026-07-16T03:43:32.178Z",
+    "last_save_at": "2026-11-10T05:40:33.540Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4f97449d14f0a0bf32b54ba77fd0469d3be0b578ab20d45852060413a70aeb51",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "76a37b237fcfe2c060bcfb5bedd0053e9839f1126c9fcd9f0ad9d7e20691f1a2",
+      "plan.md": "554df6222b05ab02dfaecb6c3c010838c52879815967e31bbd7d519f33a1c53d",
+      "tasks.md": "d914ae12aeea40165d3cc3424900783f4a3b29d079ca5da971ad3a161c6beb3c",
+      "decision-record.md": "799afa6dc8ce57787f7cb09775b9d8841058bd0d8a98187aa52badd99adc0fd4",
+      "implementation-summary.md": "e7f68f67c5e4eab2df1efb6a3f6e5768667cec1bdde83bc1457d3aa0c359ca74"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

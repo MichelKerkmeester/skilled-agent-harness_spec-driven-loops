@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
     "created_at": "2026-07-05T18:53:23.765Z",
-    "last_save_at": "2026-10-07T18:15:14.720Z",
+    "last_save_at": "2026-11-10T05:41:58.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bc140ebd18ab0ac55b1a39a6f4c48eb3fa3ad991cd5a15e774b9555a6040c76",
+    "source_fingerprint": "sha256:afd9c792aedf89d04633741a88ae3a506fa8fedf0ff7e902493ea42ff3840e04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e2476a58e5dfe384b7386d360bafa324b29184d6545e9c3ec97b2f178d0367f",
-      "plan.md": "a5cbd5489475469a7189eae126c01f0d96fd027d4fe98009aed1a3ba00b42431",
-      "tasks.md": "d739cfcabd10c02da75b35fa9683fbd2d2d2bbc0b5bf506c6b9c094c72070b72",
-      "implementation-summary.md": "1df03f3c0f8f07704d85929a1b90411b593148c71e9ed3aa37deae7a718b3cc6"
+      "spec.md": "f31e4c4a2dd90284320862c9376ac5561411849a309dadfab34368aa4b85151f",
+      "plan.md": "e97bc425b6275da191b91c00f1f441fa6e689d46dfef22b36f37fc54920da1c1",
+      "tasks.md": "1449baff095c93a83f7ba72db845483efeda61616f05f2d8d04be43dafd29ea2",
+      "implementation-summary.md": "16f4a99738bb6c23893628c911f9128eb9b788571969e96e965d0d4276cc2ccf"
     },
     "last_active_child_id": null,
     "last_active_at": null

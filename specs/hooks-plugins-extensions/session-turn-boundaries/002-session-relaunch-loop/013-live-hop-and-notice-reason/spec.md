@@ -89,7 +89,7 @@ The notice says on its face why it fired and why the template was ignored, and o
 - Live hops through the shim in a symlinked repository, run by the orchestrator.
 
 ### Out of Scope
-- The deep-loop legacy-row work in the same worktree, which belongs to `system-deep-loop/038-review-and-cli-lineage`.
+- The deep-loop legacy-row work in the same worktree, which belongs to `system-deep-loop/review-lineage/001-review-and-cli-lineage`.
 - The CLI's and the wrapper's template warnings, which already reach stderr.
 - The manual `/speckit:handoff` path and prepare's exit 3, which stay as they are.
 - Changing the wrapper's own argument handling.

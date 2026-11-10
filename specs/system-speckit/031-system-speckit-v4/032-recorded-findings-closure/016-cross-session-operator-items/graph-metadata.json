@@ -46,7 +46,7 @@
       ".codex/prompts/design-diagram.md",
       ".opencode/commands/design/chart.md",
       ".opencode/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
-      "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt"
+      "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt"
     ],
     "entities": [
       {
@@ -124,7 +124,7 @@
       {
         "name": "goal-file-manifest.txt",
         "kind": "file",
-        "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt",
+        "path": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/goal-file-manifest.txt",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over, because another session or another packet owns them",
     "created_at": "2026-09-07T15:05:57Z",
-    "last_save_at": "2026-10-31T13:59:02.987Z",
+    "last_save_at": "2026-11-10T05:44:08.865Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75c5cd985e7dff5629112e80e8ec70b63d1589cb2c6c5830ba81dd0cc7e40529",
+    "source_fingerprint": "sha256:388795f33d160f53d78c85616ff85a1bb2349fd0e4bb7b0453ab96207db7d89f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4fe540140c9fb4dae4e5cde37e799677918e89f3f16e84722baa468569b5c44c",
-      "plan.md": "58ba4f5b738716938b36547e60cf17190277bf9efaf2ab3ca955e8387c429ec8",
-      "tasks.md": "1adb959aba969b842b5294c2abf09d8f07a4858e4a16a11d9786e2886c5f6fd0",
+      "plan.md": "ba2d014f9d0875f6c99eb559666b0917ad8b21332a433722f03d3a70aea14f95",
+      "tasks.md": "ebc90014ef39f7d2d15cd817f4efe75d45a39b56cba109f37fd0302578ce4468",
       "implementation-summary.md": "4f238db99bcb83afc60ed072bfc6eda6a0b4201fa74fd259c0fa7368ef0bb855"
     },
     "last_active_at": null

@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/004-rollout-flip-tooling",
+  "description": "Wave 4 of the over-engineering removal program: delete the one-time fleet-enablement stack (F3) — enable-modes.cjs plus lib/fleet-enablement/ — and",
+  "keywords": [
+    "wave",
+    "over-engineering",
+    "removal",
+    "program",
+    "delete",
+    "one-time",
+    "fleet-enablement",
+    "stack",
+    "enable-modes",
+    "cjs",
+    "plus",
+    "lib"
+  ],
+  "lastUpdated": "2026-08-24T19:45:46.152Z",
+  "specId": "004",
+  "folderSlug": "rollout-flip-tooling",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "012-runtime-enablement",
+    "011-delete-overengineering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": 2
+}

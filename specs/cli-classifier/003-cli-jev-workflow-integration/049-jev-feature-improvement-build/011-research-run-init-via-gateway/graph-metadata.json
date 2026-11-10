@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Both deep-research workflows open a run by writing a 15-key config row straight into `deep-research-state.jsonl`",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-31T14:04:00.068Z",
+    "last_save_at": "2026-11-10T05:43:28.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c69b9604f9200f3a2c1eb194a80e1f23f04d57d88e8919f7923c65e1d7850da6",
+    "source_fingerprint": "sha256:bf713d9299b320645a0dd88f89e48c6df8c77bd40d88ac39a2c78e0893609e28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92df25fc26783c5e43a37da2f28578329bcdad51712c1401ec397e8badda76c0",
-      "plan.md": "7147ce2d3d3d3c81bfa4025f3bfbacf278cc39610ec30e7ada7382316cc7b56e",
+      "spec.md": "890bb58e1807c64950755c9acf4d88baa8ebacff6ceab1ef87da4a22832ded8c",
+      "plan.md": "3d948a39f1aa477b3ea6b2fae91e89f1fa3774df3bc17c5f01b67475b9864f56",
       "tasks.md": "09338ab4dcd6949435de94d9ecf0d13e3db8fc4d5326abdda2d397a394bfb46c",
-      "implementation-summary.md": "c662074dbb16572560e142309c463dfefe2692bf6f8c3c8ee3a270839202acb9"
+      "implementation-summary.md": "7e7ba8246e9909be97c27fc16c7fdfe50153ac1e8c38a30812301d85173104f0"
     },
     "last_active_at": null
   }

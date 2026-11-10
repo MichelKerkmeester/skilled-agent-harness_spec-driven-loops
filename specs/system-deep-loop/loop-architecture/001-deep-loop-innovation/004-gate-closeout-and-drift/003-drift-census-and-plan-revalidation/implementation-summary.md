@@ -1,0 +1,160 @@
+---
+title: "Implementation Summary: drift census and plan revalidation"
+description: "Running record of the two-lineage drift census over the 036 implementation program: what has been built and verified so far, and what remains before a per-phase verdict table exists."
+trigger_phrases:
+  - "drift census summary"
+  - "036 revalidation status"
+importance_tier: "high"
+contextType: "general"
+parent: "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-drift-census-and-plan-revalidation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation"
+    last_updated_at: "2026-08-18T23:59:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded the 009-vs-004 supersession verdict and reconciled the census to Complete"
+    next_safe_action: "Commit the reconciled packet and run 016 whole-system gate fed by the 009 path"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "checklist.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Baseline = 60b9ed8bc2 (2026-07-16)"
+      - "Forced depth is expressed as stop-policy max-iterations, not a lowered threshold"
+      - "009 cutover path supersedes abstract phases 015 and 017; 016 whole-system gate kept"
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+
+# Implementation Summary: Drift Census and Plan Revalidation
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete |
+| **Stage** | Census done; Tier-1 + Tier-2 reference repairs applied (2026-07-19, 380 audited); Q-C supersession verdict recorded (009 track supersedes abstract phases 015/017, 016 kept); Tier-3 plan amendments recorded as an out-of-scope deferral to a scoped operator planning pass |
+| **Level** | 2 |
+| **Started** | 2026-07-19 |
+| **Baseline** | `60b9ed8bc2` (2026-07-16) |
+| **Range under census** | supplied as 204/22; both lineages corrected it independently — sol 211/27, glm 205/25 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Complete:**
+- The census phase scaffold: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and this summary, registered as
+  child 018 of the 036 phase parent.
+- Baseline determination: `60b9ed8bc2` identified as the merge that landed the normalized 036 packet on v4, with
+  204 commits since — 183 AI-co-authored by concurrent sessions, 22 inside the `system-deep-loop` runtime.
+- Executor verification: both dispatch paths confirmed working before any budget was spent.
+
+- The census loop: two independent lineages, 7 iterations each, 0 failed, merged via `fanout-merge.cjs`
+  (2 lineages, 14 key findings) into `research/research.md`.
+- **Tier-1 repairs applied** (operator instruction 2026-07-19, superseding this packet's census-only scope):
+
+| Repair | Sites | Basis |
+|--------|-------|-------|
+| `003` dead runtime paths → kebab-case | 3 (`plan.md`, `spec.md`) | First-order drift, both lineages + prior analysis |
+| `003` benchmark provenance → archive path, with a warning that the bare number now names an unrelated packet | 2 (`spec.md:57,119`) | Open question B |
+| `004/002` ledger phase-ID space `000..014` → `003..017`; "15 manifest phases" → "15 implementation phases" | 6 across 4 docs | Validator targeted a phase space the manifest does not have |
+| `mode_workstreams_phase_010` → `_phase_013` | 17 refs / 15 files | Manifest key did not exist; `012` P0 validators derived from it |
+| `manifest/phase-tree.json` packet identity `065` → `036` | 1 | 116 docs treat this manifest as authority |
+
+- **Cross-program coupling analysis folded in** (operator instruction 2026-07-20): a 35-agent adversarially-verified
+  impact analysis of the `020-router-unification-program` against 036, recorded as `research/research.md` §9. Net:
+  020 affects 036 one-directionally, bounded, non-blocking; two CONFIRMED actions (BASE captures 020's three
+  shipped commits as pre-existing; 020's compiled-router live-activation registered as an external drift dependency
+  for 017) were written into `003/spec.md` §6. The analysis also refuted three plausible couplings — most notably
+  the `executor-config.ts` path (nonexistent), clearing 036/005 and 009.
+
+- **Q-C supersession verdict recorded** (operator decision, this reconciliation): the
+  `009-innovation-gap-remediation` cutover track (`009/003-pilot-mode-cutover` → `009/004-fleet-authority-cutover`
+  → `009/005-closeout-and-drift-reconcile`) is the chosen execution path for the live authority cutover,
+  legacy-writer retirement, and final closeout. It supersedes abstract phase 015
+  (`003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement`, via `009/004`) and phase 017
+  (`004-gate-closeout-and-drift/002-integrate-latest-and-closeout`, via `009/005`); phase 016
+  (`004-gate-closeout-and-drift/001-whole-system-gate`) is kept as the terminal gate the 009 track feeds. Full
+  mapping and reasoning in `spec.md` §11.
+
+**Deferred (out of scope — follow-on work, not this census):**
+- Tier-3 plan amendments below — deliberately not attempted. They change what the phases *do* and belong to a
+  scoped operator planning pass, which `spec.md` §3 Out of Scope assigns to follow-on work.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The loop is command-owned. `/deep:research` owns setup, per-iteration dispatch, reducer sync, convergence
+telemetry, and synthesis; the census is expressed as two independent lineages so two models investigate the same
+charter without one being able to stop the other. Forced depth is expressed through the stop policy rather than by
+lowering the convergence threshold, so convergence data is still recorded as telemetry and remains readable
+afterward.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Additive phase 018 rather than renumbering | Additive numbering cannot re-trigger the reference-corruption class that a prior renumber introduced across this packet |
+| Census the full commit range, not a runtime-path subset | The one confirmed drift hit to date originated outside the runtime, in a repo-wide rename |
+| Two independent lineages instead of one longer loop | Disagreement between models is itself signal; a single loop cannot produce it |
+| Forced depth via stop policy, not a lowered threshold | Keeps convergence as readable telemetry instead of destroying the signal |
+| Verdicts only during the census; Tier-1 repairs applied afterwards on operator instruction | Keeping them sequential preserves the guarantee that every phase was assessed against an unmodified tree before anything was edited |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Both executors dispatch | Confirmed — both returned their expected sentinel |
+| Fan-out spec-gate injection present | Confirmed at `fanout-run.cjs:1789-1790` |
+| Folder validates strict | PASS — reconciliation `validate.sh --strict` Errors: 0 |
+| Parent validates after registration | PASS at census (full-tree 125/125); reconciliation re-run of `036` Errors: 0, only the benign uncommitted `dirty_tree` residual on dirty siblings |
+| Per-phase verdicts complete | PASS — 15/15, no "unknown"; both controls passed |
+| Q-C supersession verdict recorded | PASS — `spec.md` §11; 6/6 cited packet paths verified on disk |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- GLM's `--variant max` is confirmed to dispatch but its forwarding of native `reasoning_effort` is unverified
+  upstream; effort should be treated as best-effort rather than guaranteed.
+- The shared branch continues to move during the census, so verdicts are valid against the pinned SHA only.
+- **Tier 2 — COMPLETED 2026-07-19 semantically, not mechanically.** 380 cross-phase reference repairs across
+  199 files by 17 agents on disjoint file batches, every change adversarially audited by an independent agent
+  (380/380 audited, 2 rejected as regressions and corrected by hand). Breakdown: C1 006/007 service
+  misattribution 214, C2 leaf self-description index+3 107, C5 nav-line wrong parent 32, C7 broken `../`
+  depth 27. Plus 80 `065` packet-identity fossils resolved and the 004/003 ownership matrix corrected.
+  The audit caught exactly the failure mode predicted: one agent mechanically rewrote "the 006 parent spec"
+  to "the 010 parent spec" when that phrase is a fossil of the DELETED 006 wrapper meaning the packet root
+  (036), and another let a `phase-007` label distribute over the 006-owned transition gateway.
+  Deliberately preserved: `013/006-model-benchmark/002-*/spec.md` "under the 006 parent" is CORRECT — its
+  parent directory really is `006-model-benchmark`, a mode, not program phase 006. Residual by design:
+  `002-deep-loop-effectiveness-and-fanout` keeps its stale refs as a frozen read-only research input.
+
+- **Tier 3 — [Deferred: out-of-scope follow-on; scoped operator planning pass].** The `016` exact-SHA gate
+  redesign, the `007`/`010`/`011` amendments to start from shipped substrate, and the `012`/`013` scope
+  extensions. These change what the phases *do*, and belong in a scoped planning pass with the operator, not in a
+  repair sweep. Out of scope for this census per `spec.md` §3; the phase-016 gate is the KEPT successor of the §11
+  supersession verdict and its redesign is tracked there, not blocked here.
+- Five phases (`006`, `007`, `010`, `011`, `016`) rest on an adjudicated reading rather than unanimous agreement;
+  a corrected-depth GLM re-run would settle them on evidence.
+<!-- /ANCHOR:limitations -->

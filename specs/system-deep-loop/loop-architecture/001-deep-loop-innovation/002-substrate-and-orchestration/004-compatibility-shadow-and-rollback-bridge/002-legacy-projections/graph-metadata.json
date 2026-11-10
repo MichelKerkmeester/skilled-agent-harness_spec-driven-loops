@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy projections",
+      "dark ledger legacy shapes",
+      "byte-identical JSONL projection",
+      "legacy projections implementation plan",
+      "dark ledger projection plan",
+      "legacy projections tasks",
+      "dark ledger projection tasks",
+      "legacy projections implementation",
+      "legacy projection verification evidence"
+    ],
+    "key_topics": [
+      "legacy",
+      "projections",
+      "dark",
+      "ledger",
+      "shapes",
+      "byte-identical",
+      "jsonl",
+      "projection",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projections.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Projections",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "artifact",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "expected-head",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan deterministic folds from the verified dark ledger into byte-identical legacy JSONL and JSON artifacts, preserving every existing reader while legacy authority remains unchanged.",
+    "created_at": "2026-07-16T03:43:48.679Z",
+    "last_save_at": "2026-11-10T05:40:29.519Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:afc6103919853f8cef2cd72a3dd77aaf891006814f80c7253d28c3023e7b649c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "624f262c7b211ae589a25187cea9796e52666f22eed64c8915bc08baea88b45f",
+      "plan.md": "5d3b520ee3beec59526817539d40016f0c364f8c6e88090eeb83b39dae144424",
+      "tasks.md": "d7285584cb9a484c0ddadfac92466946384fc30b0bfacd548d11b9856c625854",
+      "implementation-summary.md": "a091fd8bd50d6941307c1d0a4a8d6ea1764510d1237554c6a083cfa8a52704f4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

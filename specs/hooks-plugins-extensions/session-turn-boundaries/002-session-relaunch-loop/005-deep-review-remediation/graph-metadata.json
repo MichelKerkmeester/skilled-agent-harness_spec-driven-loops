@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The deep review passed the loop but left twelve advisories",
     "created_at": "2026-10-18T13:25:35Z",
-    "last_save_at": "2026-11-10T05:10:27.956Z",
+    "last_save_at": "2026-11-10T05:43:29.239Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0335fab36c95c2df83e663735c99eb9cde98b345f138d34355a1927f696e932b",
+    "source_fingerprint": "sha256:51f5f47a77f9651db553d1464757417943c5077a8f1cea087da1c5d0a8a6bd9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed483385504ba8d3584d32d473daac22735a475facd9bd221d4a166612e5b7e9",
+      "spec.md": "520a5cf81c368a17b1ca6e48f77e841b0f76f30f094c043c2c8e8f23c0427ae7",
       "plan.md": "21c072bf443d54720b660b93910875565e20eb0d4c64d21558d3a6d31d8cc930",
-      "tasks.md": "75b157d3ff9eb8640b2a8fb9aa030c21f1ac50c7dd918a3d1a8b5e4ccf7edbab",
-      "implementation-summary.md": "13fcb128c0877e7c40dc924b54b88cae941ff256266642999f2df3ffa55da98c"
+      "tasks.md": "25035ff3e25f81c5541aa8921144a45b91ea37b3c13f265d7f488e107a9a11a4",
+      "implementation-summary.md": "0a3fbf63699964625ca7c8e7ebc832dc0cca36cb92a2f859f8f64fd46b29eb90"
     },
     "last_active_at": null
   }

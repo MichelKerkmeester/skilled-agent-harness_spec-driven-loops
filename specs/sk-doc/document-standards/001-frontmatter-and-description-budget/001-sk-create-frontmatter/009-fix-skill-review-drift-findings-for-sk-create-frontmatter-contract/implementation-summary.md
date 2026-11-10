@@ -239,7 +239,7 @@ first `RESULT:` line of the parent run is the parent's own verdict, since a phas
    migration instead: 1,586 folders reported migrated, 1,907 `description.json` and
    `graph-metadata.json` files rewritten with derived fields replaced by generic placeholders and
    statuses flipped. Every tracked file among them, 1,895 including this packet's, was restored to
-   HEAD with `git checkout`. Six files under `specs/system-deep-loop/036-deep-loop-innovation/`
+   HEAD with `git checkout`. Six files under `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/`
    were modified before the run by another session and were not touched. Thirty untracked
    `description.json` and `graph-metadata.json` files remain in place because a delete is not
    reversible and some sit inside other sessions' untracked packets:

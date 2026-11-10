@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per-mode authority flip",
+      "deep-loop staged cutover",
+      "dark spine canonical authority",
+      "per-mode authority flip implementation plan",
+      "deep-loop staged cutover plan",
+      "per-mode authority flip tasks",
+      "deep-loop staged cutover tasks",
+      "per-mode authority flip implementation",
+      "deep-loop authority selector coordinator",
+      "authority compare-and-swap ledger event"
+    ],
+    "key_topics": [
+      "per-mode",
+      "authority",
+      "flip",
+      "deep-loop",
+      "staged",
+      "cutover",
+      "dark",
+      "spine",
+      "canonical",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/per-mode-authority-flip.vitest.ts",
+      "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/claim-sweep.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-mode-authority-flip.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/per-mode-authority-flip.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claim-sweep.md",
+        "kind": "doc",
+        "path": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/006-enablement-closeout/scratch/claim-sweep.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Authority Flip",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-closed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "monotonic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Sibling",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the fail-closed switch that makes the dark spine canonical for one mode at a time, after current shadow-parity and rollback-drill evidence pass, while all other modes remain legacy-authoritative.",
+    "created_at": "2026-07-16T03:43:57.391Z",
+    "last_save_at": "2026-11-10T05:40:42.204Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e2a8e8d3b7868951a45d783857a2cdedec00479c9fd8b0c6a6456d99e8ae2567",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f4444cd566ada50071df19891f4908e60d71893cf8ed176b32173148f57d47de",
+      "plan.md": "ccf3dd74b1a608ecbeb883e9c0eb1dff1b50750dde351a679b80012ce570374f",
+      "tasks.md": "e7bdb939263698b3a6a6d78e7f8f09c464f403654ab731c1022a017ac270100c",
+      "implementation-summary.md": "6c6486289c21b5458aa24ce031275dafe8879e4bc91466ac7403d49cca6d2e82"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

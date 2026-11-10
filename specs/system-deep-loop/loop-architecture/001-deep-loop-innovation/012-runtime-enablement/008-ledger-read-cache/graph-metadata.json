@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/008-ledger-read-cache",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ledger read cache",
+      "verified events cache",
+      "append-only ledger read floor",
+      "opt-in single-writer read cache",
+      "ledger read cache plan",
+      "read cache implementation plan",
+      "ledger read cache tasks",
+      "read cache tasks",
+      "ledger read cache summary",
+      "read cache planned"
+    ],
+    "key_topics": [
+      "ledger",
+      "read",
+      "cache",
+      "verified",
+      "events",
+      "append-only",
+      "floor",
+      "opt-in",
+      "single-writer",
+      "plan",
+      "implementation",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "append-only-ledger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "authorized-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-effect-dispatch.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ledger Read Cache",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Single",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proof Cache",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
+    "created_at": "2026-08-22T04:10:32.128Z",
+    "last_save_at": "2026-11-10T05:40:58.086Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b03c07998c34c93f47536b5fd5c897a4f64af3c333aa04cea6e02da1c6e558c7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a01e7f74fd895f9c309b36939c7af9dcdaa07d071786a052ae19fd57440658bd",
+      "plan.md": "93a67bfdc91b32c00c8a788e1c0ca175056a126073ed0d1c13ce6d402a73a85a",
+      "tasks.md": "83fa1b2e2e6d9638fec801d5825ba7837466819f81f7312bc5eadaf2a7766b45",
+      "implementation-summary.md": "2e696185143a08af165ca979636cdf67c8b0fc1d866f45f1fdb14eeae1eaf900"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

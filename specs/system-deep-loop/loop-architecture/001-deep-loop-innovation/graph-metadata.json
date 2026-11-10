@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "parent_id": "system-deep-loop/loop-architecture",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/010-weak-model-loop-adherence",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/011-cli-pi-fanout-execution",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/013-runtime-agent-gateway-alignment",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/014-gateway-alignment-review",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/015-gateway-contract-remediation",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/016-system-deep-loop-review",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/017-runtime-latent-issue-remediation",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/018-pre-existing-test-triage",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/019-risky-followup-remediation",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/021-containment-symlink-autoscope",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/022-phase0-dispatch-anchor",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/023-cross-runtime-dispatch",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/024-executor-kind-routing",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/025-deprecate-deep-alignment",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/026-codex-lineage-auth-isolation",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/027-executor-availability-docs",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop recommendations implementation",
+      "implement the 178 deep-loop recs",
+      "evidence-ledger runtime for system-deep-loop",
+      "per-mode migration deep-loop",
+      "transition-authorized ledger core"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "recommendations",
+      "implementation",
+      "implement",
+      "recs",
+      "evidence-ledger",
+      "runtime",
+      "system-deep-loop",
+      "per-mode",
+      "migration",
+      "transition-authorized",
+      "ledger"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommendations Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
+    "created_at": "2026-09-20T08:33:47.300Z",
+    "last_save_at": "2026-11-10T05:40:26.516Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a0a31e2cb522a7d4e0f5f2ebd4c983c0fe7b1141261d118c624f36f5bc519090",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "165900390f521e278542d6394f569cc01da61a345a6c6a1e50e3ce6e67aa91b0"
+    },
+    "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled",
+    "last_active_at": "2026-09-30T22:06:48.517Z"
+  }
+}

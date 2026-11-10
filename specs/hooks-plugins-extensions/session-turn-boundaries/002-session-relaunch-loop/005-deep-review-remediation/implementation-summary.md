@@ -130,7 +130,7 @@ SWE (cli-devin `swe-2-max`) built every code lane, tests first, and a fresh SWE 
 - **Pi Fast Mode duplicate guard.** The extension yields to a global install at a different real path, and it compares paths lexically. The agent dir comes from `PI_CODING_AGENT_DIR` through Pi's `getAgentDir()`. Without this, the main checkout registered `/fast` twice. Tests cover the main checkout, a global install, no global install and an agent dir override (`.pi/extensions/pi-fast-mode-w-subagent-support/tests/extension.test.ts:266`).
 - **sk-doc README checklist.** The key `has_toc` became `no_toc`, so the check name states the rule it enforces (`.skilled/skills/sk-doc/shared/scripts/extract_structure.py:682`).
 - **Session-relaunch tests README and manifest.** The tests folder has a README, and the durable directory manifest lists the session-relaunch folder and its tests folder (`.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json:61`).
-- **Deep-loop reducer and verifier fixes.** These belong to `specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/`, which is Complete and validates `RESULT: PASSED`.
+- **Deep-loop reducer and verifier fixes.** These belong to `specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/009-findings-summary-integrity/`, which is Complete and validates `RESULT: PASSED`.
 <!-- /ANCHOR:final-review-wave -->
 
 ---

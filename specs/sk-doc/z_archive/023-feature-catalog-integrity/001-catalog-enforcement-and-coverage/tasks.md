@@ -146,6 +146,6 @@ Status: Planned. No task is started.
 - **Decision Records**: See `decision-record.md`
 - **Parent**: `sk-doc/023-feature-catalog-integrity`
 - **Successors**: `002-hub-catalog-truth-repair` (Lanes B-D), `003-large-surface-catalog-reconciliation`
-- **Coordination**: `system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch` (count derivation),
+- **Coordination**: `system-deep-loop/loop-architecture/001-deep-loop-innovation/032-docs-drift-and-p2-batch` (count derivation),
   `sk-doc/022-code-readme-coverage/001` (manifest walker)
 <!-- /ANCHOR:cross-refs -->

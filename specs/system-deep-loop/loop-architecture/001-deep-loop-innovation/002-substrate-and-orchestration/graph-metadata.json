@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/001-fanout-live-tools-unblock",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
+    "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ledger substrate orchestration",
+      "fan-out convergence health"
+    ],
+    "key_topics": [
+      "ledger",
+      "substrate",
+      "orchestration",
+      "fan-out",
+      "convergence",
+      "health",
+      "live-tools",
+      "unblock",
+      "authorized-ledger",
+      "evidence",
+      "control",
+      "services"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orchestration Live",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration, novelty projections, convergence and health, plus the fan-out convergence-mode flag and the spec-protocol ledger events.",
+    "created_at": "2026-09-20T08:33:46.461Z",
+    "last_save_at": "2026-11-10T05:40:26.431Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:df1dccc6cac13317b8ce6fd4d81c3ad85337119b3d4d526660bf3a4a75c99015",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "62eb10fd60d807fb5892c2de46a8e44ffac930c4235b22a6a11e5cb008a436f5"
+    },
+    "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events",
+    "last_active_at": null
+  }
+}

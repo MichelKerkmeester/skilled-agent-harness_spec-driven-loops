@@ -17,7 +17,7 @@ const repoRoot = path.resolve(scriptsRoot, '..', '..', '..', '..', '..');
 const validateScript = path.join(scriptsRoot, 'spec', 'validate.sh');
 const manifestCheck = path.resolve(
   repoRoot,
-  'specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh',
+  'specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh',
 );
 // Entries the checker must find in `git ls-files`: this test and the script
 // it exercises, so the tracked case never depends on another packet's manifest.
@@ -27,7 +27,7 @@ const trackedEntries = [
 ];
 const sourcePacket = path.resolve(
   repoRoot,
-  'specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research',
+  'specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research',
 );
 const temporaryRoots = new Set<string>();
 

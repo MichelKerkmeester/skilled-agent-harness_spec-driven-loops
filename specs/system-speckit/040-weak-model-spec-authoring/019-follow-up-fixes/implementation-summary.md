@@ -59,7 +59,7 @@ Before each round after the first, the loop runs `prepare.sh` for any sandbox ma
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh` | Modified | fsmonitor off on `rev-parse` and `ls-files`, one comment line |
+| `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh` | Modified | fsmonitor off on `rev-parse` and `ls-files`, one comment line |
 | `../011-authoring-speed-research/scratch/speed-loop/loop.sh` | Modified | `ready_field` and `reprepare` helpers, the start-of-run head record, `PREPPED`, `REFUSED`, and the round-start call |
 | `../011-authoring-speed-research/scratch/speed-loop/README.md` | Modified | "Re-prepare between rounds" section |
 | `scratch/review.md` | Created | Review verdict, findings and remediation status |

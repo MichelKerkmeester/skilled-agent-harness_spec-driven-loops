@@ -203,7 +203,7 @@
     ],
     "causal_summary": "In a plain run (no `-a`) of `pi --offline --help` in the trusted main checkout, `--fast` was missing",
     "created_at": "2026-10-20T07:08:55Z",
-    "last_save_at": "2026-11-10T05:38:25.234Z",
+    "last_save_at": "2026-11-10T05:43:28.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b69e9121c382e61da96efb39610c3eadf4826ca628cc0476b70d3b3c1698a059",
+    "source_fingerprint": "sha256:8d82bbe87175921a8b4bca7bac84b04c3127be24718379bd296586fab762afc0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17bc0f5c086d9c80269d1a35b16fb2c0b46fac942ea1235d736b664455c7fb77",
-      "plan.md": "ff49268eaeb6e4a0f522680ed4571645bd0d1b8f4915939b58124168d7f3642a",
+      "spec.md": "1f1dee989371ae0cd56c33db6aecf907e20e79ea2340fe2d09488184a65ff82a",
+      "plan.md": "a27c3e9eaca588a569bcd36fb807eda8d8cd0a6660ca541f3356eed1ad1436fc",
       "tasks.md": "dd63d9d3b1c8eb62f4923ef01876bbc87f526d0ff60a6d687d7b86907b4de5cc",
-      "implementation-summary.md": "f58971c35506ecd9f1e213a52234eaf696131eaf72a36f578451c8112d4c8a9f"
+      "implementation-summary.md": "5d7184e279dc342ed9bcfe3fba3019fcf91d6db435d69f4806cb6e21350d7d95"
     },
     "last_active_at": null
   }

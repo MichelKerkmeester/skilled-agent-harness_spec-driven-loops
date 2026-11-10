@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The spec gate exempted every write under /tmp and /private/tmp by location, and any path outside the repository is already exempt, so the extra rule only switched the gate off for a repository that itself lives under /tmp",
     "created_at": "2026-09-23T18:35:11Z",
-    "last_save_at": "2026-10-31T13:59:16.747Z",
+    "last_save_at": "2026-11-10T05:44:09.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab9e84a9659796752c1e4e2eb2bd4a740956eb086216434cbc78bf8f711195d9",
+    "source_fingerprint": "sha256:786899430ee3570d44c6cb93999c25c9e4d24ccd29d1431ea0668575df1476a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "11e92e2b306a8e16383ff9d53df3b9c636717aa75d05036bacb813e56d028261",
+      "spec.md": "2a34532bb403a994f8716b3ad9fe972fbb671543bcc36b07278c067c1f50ba48",
       "plan.md": "d5a6729ef04f88798715b9aad6831997846532cd73e2cecf771f13ef682f302a",
       "tasks.md": "da8a908080d33294647e6f19863473e78b6111ee1cc22c2a2e495c5bb47f1c75",
-      "implementation-summary.md": "111ff00af877ce88359eeeebc7ddaaa5aecf05632a7c687fff5af65ee4ef0994"
+      "implementation-summary.md": "3f164fb38626ac4c888449d3447cfb39b6dd8e8f633c4b72b0a164f621182457"
     },
     "last_active_at": null
   }

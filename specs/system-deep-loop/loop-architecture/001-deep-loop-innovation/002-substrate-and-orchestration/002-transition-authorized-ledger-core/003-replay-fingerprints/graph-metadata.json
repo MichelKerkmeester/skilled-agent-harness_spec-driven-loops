@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/002-transition-authorized-ledger-core",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "replay fingerprints",
+      "deep-loop deterministic replay digest",
+      "ledger fingerprint mismatch",
+      "replay fingerprints implementation plan",
+      "deep-loop replay digest implementation",
+      "replay fingerprints tasks",
+      "deep-loop replay digest tasks",
+      "replay fingerprints implementation summary",
+      "replay fingerprint verification receipts"
+    ],
+    "key_topics": [
+      "replay",
+      "fingerprints",
+      "deep-loop",
+      "deterministic",
+      "digest",
+      "ledger",
+      "fingerprint",
+      "mismatch",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "replay-fingerprint.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replay Fingerprints",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "immutable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "bounded",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "self-exclusion",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define independently versioned replay fingerprints over closed typed-ledger ranges, canonical replay dependencies, and byte-stable outputs, with immutable attestation storage and fail-closed mismatch detection for shadow parity and whole-system verification.",
+    "created_at": "2026-07-16T03:43:45.873Z",
+    "last_save_at": "2026-11-10T05:40:26.406Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:456a7d66edfdeed8be88656f5843b61a79f0c896995f316f31eb63dafa6ece16",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d444a2d1ce58f4ce4f99dc40ec31e2b7b07522d1ce39cc3c0c6b888d4d5492ce",
+      "plan.md": "240a7ba91764a337dee6cb04e34d17e9117dde5f772066285e357d2102f6a955",
+      "tasks.md": "308bacaf146e3a337d591ba36021686dcd70046dba7d07b7f0cb465adfa8daab",
+      "implementation-summary.md": "2458a2a2a7c1ff7794afc27333d68d148c94d1336e3d8946a55a2093795cfb81"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

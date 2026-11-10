@@ -94,7 +94,7 @@ Repair the enforcement mechanism, settle the scope rulings once so no later chil
 - A codemod sweep of the file-opening contract — boxed `MODULE:` headers, `COMPONENT:` headers, `'use strict'`, portable shebangs, section numbering, import grouping — across every governed language, run in three independently gated blast-radius lanes.
 - Repair of the findings where code is not merely inconsistent but is non-portable or falsely reports itself as verified.
 - Judgment-tier repairs: path containment, module and package boundaries, exported-symbol naming, and file organisation.
-- A one-task amendment to `system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment` fixing the shared border between the two programs.
+- A one-task amendment to `system-deep-loop/loop-architecture/001-deep-loop-innovation/020-sk-code-skilled-alignment` fixing the shared border between the two programs.
 
 ### Out of Scope
 
@@ -129,7 +129,7 @@ Summary across all phases — per-phase detail lives in each child's `plan.md`.
 | `skill-graph-db.ts` · `cwd-check.cjs` · `extract-files-from-markdown.cjs` · `archive-compiled-routing.cjs` | Modify | 005 | Canonical realpath containment replacing lexical prefix checks |
 | `system-spec-kit/mcp-server/**` · `system-skill-advisor/**` · md-generator backend | Modify | 005 | `node:` specifier normalisation with per-package rebuild |
 | `vector-index-store.ts` · `wait-patterns.js` · `context-server.ts` · compiled-routing authored source | Modify | 005 | Naming, organisation and authority decisions |
-| `system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md` | Modify | 001 | Border amendment (see `020-amendment.md`) |
+| `system-deep-loop/loop-architecture/001-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md` | Modify | 001 | Border amendment (see `020-amendment.md`) |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -86,7 +86,7 @@ Opus, one at a time, tests after each:
 ## Cross-References
 
 - **Specification**: See `spec.md`
-- **Prerequisites and loop driver**: `specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled`
+- **Prerequisites and loop driver**: `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled`
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -108,7 +108,7 @@ Opus, one at a time, tests after each:
 
 - [x] CHK-001 [P0] Requirements documented in spec.md [EVIDENCE: spec.md states the measured drift, scope and REQ rows; validate --strict passes]
 - [x] CHK-002 [P0] Technical approach defined in plan.md [EVIDENCE: plan.md names the driver, the gates and the per-merge verification]
-- [x] CHK-003 [P1] Baselines recorded before the first code edit [EVIDENCE: `specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/scratch/baseline/speckit-test.log` (2847 passed, 32 skipped) and `speckit-typecheck.log` were captured before the first edit]
+- [x] CHK-003 [P1] Baselines recorded before the first code edit [EVIDENCE: `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/scratch/baseline/speckit-test.log` (2847 passed, 32 skipped) and `speckit-typecheck.log` were captured before the first edit]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -136,7 +136,7 @@ Opus, one at a time, tests after each:
 - [x] CHK-FIX-002 [P0] Same-class inventory done by the census and the new checker flags [EVIDENCE: the census counted every header, section and README gap before the build, and the checker flags re-find the same class on every run; the final run from main reports Findings 0 across all three skills]
 - [x] CHK-FIX-003 [P0] Consumer inventory for each moved folder recorded in `scratch/investigation/devin-swe2max-merge-factcheck.md` [EVIDENCE: `scratch/investigation/devin-swe2max-merge-factcheck.md` lists the importers behind each merge proposal]
 - [x] CHK-FIX-004 [P2] Adversarial path tests: not applicable, no path, parser or security logic changes [EVIDENCE: not applicable: no path, parser or security logic changed; the moves only rewrote import specifiers]
-- [x] CHK-FIX-005 [P1] Matrix: 3 runtimes x 3 loop modes listed in tasks T004-T006 [EVIDENCE: nine loop logs in `specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/scratch/loop-state/`: header, sections and readme for each of the three skills]
+- [x] CHK-FIX-005 [P1] Matrix: 3 runtimes x 3 loop modes listed in tasks T004-T006 [EVIDENCE: nine loop logs in `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/scratch/loop-state/`: header, sections and readme for each of the three skills]
 - [x] CHK-FIX-006 [P2] Hostile env variant: not applicable, no process-wide state read by changed code [EVIDENCE: not applicable: the changed code reads no new process-wide state]
 - [x] CHK-FIX-007 [P1] Evidence pinned to the worktree commit SHA [EVIDENCE: merged to main as 46fc86c8e8 (branch `worktrees/070-runtime-code-alignment`, merge commit 170afa5519)]
 <!-- /ANCHOR:fix-completeness -->

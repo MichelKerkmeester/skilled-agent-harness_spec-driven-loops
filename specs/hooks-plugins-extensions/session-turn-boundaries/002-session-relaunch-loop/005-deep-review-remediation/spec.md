@@ -77,7 +77,7 @@ Every advisory is fixed and tested, the code reads as sk-code-opencode code, and
 - An sk-code-opencode alignment review of the packet's code and a fix for each finding it confirms.
 - Doc updates through the matching sk-doc mode wherever a fix changes documented behavior.
 - Final review wave open items (`specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:459`): the 001 plan halts heading and its cross-references, the 004 AC-005 citation split, the Pi Fast Mode duplicate guard, the sk-doc README checklist `no_toc` rule, the session-relaunch tests README, and the refreshed durable directory manifest.
-- Deep-loop reducer and verifier fixes from the same wave, owned by `specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/`, which carries their evidence (`specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:464`).
+- Deep-loop reducer and verifier fixes from the same wave, owned by `specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/009-findings-summary-integrity/`, which carries their evidence (`specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:464`).
 
 ### Out of Scope
 - The frozen parent decisions D2 (80% trigger), D3 (seed carry) and D4 (command-only runtimes) - they are not findings.
@@ -102,7 +102,7 @@ Every advisory is fixed and tested, the code reads as sk-code-opencode code, and
 | `.skilled/hooks/session-relaunch/tests/README.md` | Create | Tests folder README for the durable session-relaunch folder |
 | `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | Modify | Refreshed to list the session-relaunch folder and its tests folder |
 | `../001-claude-relaunch-loop/plan.md`, `../004-integration-review-and-docs-closure/plan.md`, `../004-integration-review-and-docs-closure/acceptance-criteria.md` | Modify | Halts heading and cross-references in 001 and 004, and the AC-005 citation split in 004 |
-| `specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/` | Owned elsewhere | Deep-loop reducer and verifier fixes, with their evidence |
+| `specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/009-findings-summary-integrity/` | Owned elsewhere | Deep-loop reducer and verifier fixes, with their evidence |
 <!-- /ANCHOR:scope -->
 
 ---

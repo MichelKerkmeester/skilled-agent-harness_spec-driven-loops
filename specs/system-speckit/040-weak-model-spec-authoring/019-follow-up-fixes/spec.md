@@ -112,7 +112,7 @@ $ awk -F'\t' '$2=="main-no054"{print $1,$3,$5,$7}' ../011-authoring-speed-resear
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh` | Modify | `-c core.fsmonitor=false` on both git calls and one comment line; mode stays 100755 |
+| `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh` | Modify | `-c core.fsmonitor=false` on both git calls and one comment line; mode stays 100755 |
 | `../011-authoring-speed-research/scratch/speed-loop/loop.sh` | Modify | `ready_field` and `reprepare` helpers, the start-of-run head record, `PREPPED`, `REFUSED`, and one call at the top of the round loop |
 | `../011-authoring-speed-research/scratch/speed-loop/README.md` | Modify | "Re-prepare between rounds" section |
 <!-- /ANCHOR:scope -->

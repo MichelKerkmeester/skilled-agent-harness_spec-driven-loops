@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/007-continuity-identities",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "continuity identities",
+      "stable deep-loop identity",
+      "resume handover identity threading",
+      "continuity identities implementation plan",
+      "stable deep-loop identity plan",
+      "continuity identities tasks",
+      "stable deep-loop identity tasks",
+      "continuity identities implementation",
+      "stable deep-loop identity evidence",
+      "continuity identity verification"
+    ],
+    "key_topics": [
+      "continuity",
+      "identities",
+      "stable",
+      "deep-loop",
+      "identity",
+      "resume",
+      "handover",
+      "threading",
+      "implementation",
+      "plan",
+      "tasks",
+      "evidence"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/council/session-state-hierarchy.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-identities.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-thread.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-state-hierarchy.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/council/session-state-hierarchy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "jsonl-repair.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Continuity Identities",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fixtures",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "different",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "source",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan stable lineage, claim, candidate, and mode-session identities that persist across resume, handover, replay, and cross-mode boundaries and are recorded on the typed event ledger.",
+    "created_at": "2026-07-16T03:43:48.003Z",
+    "last_save_at": "2026-11-10T05:40:26.462Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5718aab5e5d43cf952e04d288f24150a737949f0f2d77b83ac5ce3dd4c02e3fb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3ad646ecc7b19ce55f489488930224f5d7779be06f74c52628df04d93e846191",
+      "plan.md": "fd33d2ef1580a4f3b03b433d92f0e2c3b457f984813794629e40975257a10f2c",
+      "tasks.md": "fe3d12d3402ec21e84c17327280277f2ccce43f0d0020db10d1f9af63a5c0757",
+      "implementation-summary.md": "e3a14ee74bcd236bc08ffcbe82979d54f0bb0a4c0fb504ea723125919cedfe1a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

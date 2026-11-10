@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an advisor-invisible surface like code-skilled reports two 'unscored' dimensions that read as gaps rather than structural N/A.",
     "created_at": "2026-07-11T14:10:05.865Z",
-    "last_save_at": "2026-10-08T20:05:18.888Z",
+    "last_save_at": "2026-11-10T05:41:58.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4eeee3d04d05840c765f0b33cd6d0e6d58602853899edab390f2fe9a629497d",
+    "source_fingerprint": "sha256:8ba1aa72dfa95e3b76e0c295cefe45db7e833d0e34c30747d4a228b5db59a10e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf6379b085eb4eec1fc0daf9cf65348a2fe0186e19a607b742611b0d8697878e",
-      "plan.md": "7f04cbfb428dec5ccee074b5f0af77d5bc7d5234effe3a9f4c763d565e8817bc",
-      "tasks.md": "65ed9417f17f54c80e272b7e000647e78df1bcf0f7af3b09f9d6bf8cced988bb",
-      "implementation-summary.md": "3eca20a0a0527a52d7778ef9a5723d74789c062c4291c4028e39d891be484e02"
+      "spec.md": "d269a742c3ec3a8bb6b32475258902cdf3e1f76caecae52a4b43ca02aa3f9ad0",
+      "plan.md": "91211eba0c0d2cd0fed517af1eb38b9f89845d294a94d7ebd0cd014edaac77ae",
+      "tasks.md": "e64ef7973b9f0a71d6b81dea445b46a5857ac5e4aced6aa9cf89e972e7c66d90",
+      "implementation-summary.md": "3f2dcd71402160ceb66471c1a14076d91caf9a8316b63fcd33329584b91e1665"
     },
     "last_active_child_id": null,
     "last_active_at": null

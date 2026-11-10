@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/review-lineage/001-review-and-cli-lineage/007-lineage-reducer-compliance",
+  "spec_folder": "system-deep-loop/review-lineage/001-review-and-cli-lineage/007-lineage-reducer-compliance",
+  "parent_id": "system-deep-loop/review-lineage/001-review-and-cli-lineage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "lineage reducer compliance",
+      "phase 7 lineage reducer compliance",
+      "lineage reducer compliance plan",
+      "lineage reducer compliance tasks",
+      "lineage reducer compliance implementation summary"
+    ],
+    "key_topics": [
+      "lineage",
+      "reducer",
+      "compliance",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "live",
+      "two-lineage",
+      "proof",
+      "run"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/evidence/lane-review-fixes-merge.txt",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts",
+      "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/007-lineage-reducer-compliance/scratch/evidence/lane-review-fixes-merge.txt",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "scratch/evidence/lane-01-reducer-provenance.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-review-fixes-merge.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-review-fixes-merge.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge-reducer-provenance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge-reducer-provenance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lane-01-reducer-provenance.txt",
+        "kind": "file",
+        "path": "scratch/evidence/lane-01-reducer-provenance.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Diagnosis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In a live two-lineage proof run on 2026-10-09, both cli-pi DeepSeek V4.1 Flash lineages exited 0 and the runner reported 2 of 2 fulfilled",
+    "created_at": "2026-10-09T16:05:59Z",
+    "last_save_at": "2026-11-10T05:41:04.481Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6bbbd5b42cfcdc16bca3f7da7f4041596b0fc81f84917b17c8001e5b71d0eb63",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b406c12ee9e8df13f6e65beef7f221f6236e17d406bb83ce089ec17093526868",
+      "plan.md": "9cd9a485b1f047e5fc75ba443a1eb885308cb60c4d78617b582bcce47ba47601",
+      "tasks.md": "39389890e7f3d8bed76c17c06003af8bf22878937beb6098b429768c42b2b777",
+      "implementation-summary.md": "74ba18ca0257de9a489224a438b4b820eba6c35745142e855e580896f1eb1e60"
+    },
+    "last_active_at": null
+  }
+}

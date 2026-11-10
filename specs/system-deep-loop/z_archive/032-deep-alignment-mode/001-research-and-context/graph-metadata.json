@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 002's architecture freeze (adapter contract, state machine, reuse boundary) depends on accurate, current facts about the `deep-review` engine's real shape, the standards surfaces of four parent skills, and the one manual precedent (`130`/`131`) the whole mode-packet productizes",
     "created_at": "2026-07-11T10:39:13.368Z",
-    "last_save_at": "2026-10-07T18:15:15.289Z",
+    "last_save_at": "2026-11-10T05:41:59.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c44959c6704d0216c874a289202a92519ee756c44c944495f5dc04f3f2707a9",
+    "source_fingerprint": "sha256:b80cc5af2cbc3248f95c2ac0cc6380c9cff8c8696a2502ac826a81c2cabe4671",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "08c8ef45541da1d6385ecebc4474602f71a97d9c8772f261b749ada8d128a105",
+      "spec.md": "06398f16bdfe301617f84420bc6e4c388b17a1e9c676b4ba84e374189514fdfe",
       "plan.md": "51e164a59d603531bbdf57b56c2ab86ea34d3676442b9a1f527621953045af21",
       "tasks.md": "9ddbd457e272e8fa3e375955d688272928780c561a4139e486c913b9776fabb8",
       "implementation-summary.md": "1c1aedb89b379d7b23520b8239dcfec4cfcdf4d3a486f242b3242f8f597b28a9"

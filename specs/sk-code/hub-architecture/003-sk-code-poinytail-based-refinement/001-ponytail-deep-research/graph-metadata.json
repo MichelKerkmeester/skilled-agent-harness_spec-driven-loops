@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The earlier refinement studied an older Ponytail and adopted a design restraint ladder, a `ceiling:` comment convention, an anti-stall rule, review checklist rows and a rule-copy canary",
     "created_at": "2026-10-09T13:20:17Z",
-    "last_save_at": "2026-11-10T05:20:22.155Z",
+    "last_save_at": "2026-11-10T05:43:31.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0fc75d6af4772fbc83a29a267bfcff04e47b6c7a339fbff77270b1deb532dd5c",
+    "source_fingerprint": "sha256:bae3d0898b47ecb1d74ec867af29c97c6b3bc5673c7194ad639bd3e74659e405",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "878665a57795ee765f40bb07ae32ffa7a14629290a73a5dc5377423715c59d67",
       "plan.md": "a5549259c91bcb00ca92168904ed8291cb5e7af20c9493dc7afb6e16b408983b",
       "tasks.md": "99df52ffaf4987c0ab1fad56133463933a19ad7fd9646ccf59caf846fc76a665",
-      "implementation-summary.md": "f07f619d94bc5cbf315fd61125164ef208b3613efe6430d9ea07a08ca7a98bfd",
-      "research/research.md": "5ac77bb90c9766af0d9d4928ef84525c35d90924d6ec2caede0ea9470b085ed3"
+      "implementation-summary.md": "cc3b47f692e01b82fd35b693ddcbf5916ca24b89a2252c69e0320aea0edc123a",
+      "research/research.md": "110e2f9a36315f1dd4b665937de984313621240d1031a7ced24eaa63ca5bf779"
     },
     "last_active_at": null
   }

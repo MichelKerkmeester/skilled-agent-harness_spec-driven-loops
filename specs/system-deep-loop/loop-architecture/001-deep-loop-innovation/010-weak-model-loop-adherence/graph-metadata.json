@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/010-weak-model-loop-adherence",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/010-weak-model-loop-adherence",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek loop adherence",
+      "weak model write boundary",
+      "write containment",
+      "cli-pi deepseek",
+      "observation-only leaf",
+      "loop adherence",
+      "weak model loop adherence plan",
+      "weak model loop adherence tasks",
+      "weak model loop adherence implementation summary"
+    ],
+    "key_topics": [
+      "deepseek",
+      "loop",
+      "adherence",
+      "weak",
+      "model",
+      "write",
+      "boundary",
+      "containment",
+      "cli-pi",
+      "observation-only",
+      "leaf",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Loop Adherence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Weak",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Harden",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "reason",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "siblings",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Weak models do not obey the deep-loop's observation-only leaf contract, and today the runtime can only catch the breach after the fact — it cannot let such a model succeed",
+    "created_at": "2026-08-16T09:11:48.617Z",
+    "last_save_at": "2026-11-10T05:40:55.721Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e85449df15a564aef1a1ac24570849db3aa5ae4c65050a8e5c9a2f1bdafe685d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ba1dad220adf80d0838a925a265bae387b91c67233b704b36450f5f6ba154d6d",
+      "plan.md": "871c849691414dfb0be4df345dbe63e44c2045d1343ca8df602fb6528c5ac41c",
+      "tasks.md": "c001051883228ec2cd36c3f025bf5b2c312d3dd188f0668affdfc9d4a426c783",
+      "implementation-summary.md": "994456d2aae9d34d7ebd75cca90f87c663db791156f9344d53f62c2eb2aa5dd1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

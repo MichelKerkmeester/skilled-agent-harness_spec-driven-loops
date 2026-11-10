@@ -1,6 +1,6 @@
 {
   "title": "Feature Specification: restructure SKILL.md for two-lane workflow",
-  "level": "1",
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane",
   "description": "SKILL.md frames the model-benchmark lane as \"Mode 4: Model-Benchmark\" appended inside the agent-improvement lane section (§3), even though §1 already",
   "keywords": [

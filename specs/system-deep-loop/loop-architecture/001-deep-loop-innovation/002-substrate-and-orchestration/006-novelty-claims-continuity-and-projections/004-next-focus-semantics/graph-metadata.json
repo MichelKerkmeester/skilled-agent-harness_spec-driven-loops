@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/004-next-focus-semantics",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "next-focus semantics",
+      "where to look next",
+      "deep-loop focus candidate selection",
+      "next-focus semantics implementation plan",
+      "deep-loop focus selection plan",
+      "next-focus semantics tasks",
+      "deep-loop focus selection tasks",
+      "next-focus architecture",
+      "next-focus selector decision",
+      "next-focus implementation",
+      "next-focus verification"
+    ],
+    "key_topics": [
+      "next-focus",
+      "semantics",
+      "look",
+      "next",
+      "deep-loop",
+      "focus",
+      "candidate",
+      "selection",
+      "implementation",
+      "plan",
+      "tasks",
+      "architecture"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "next-focus.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pivot-candidates.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focus Semantics",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Generalize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals, then record the selected region and complete decision basis for replay.",
+    "created_at": "2026-07-16T03:43:52.164Z",
+    "last_save_at": "2026-11-10T05:40:29.660Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4b0647612b7810390b7579599672e39ca96f9aab839eca8f2a10a066211f780c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "57d7ba67ad571e50261b273a0fa719b47ee01d778f013aabbce7ebbb05983c0b",
+      "plan.md": "f7850f621bf0ea4549f7144e87d24ad0912674df813a67c3a1f07fef32c8ed4c",
+      "tasks.md": "67d8a8722cbee4ac7c47c28d0404000f22c14c71a517ff185f1197688d3078e9",
+      "decision-record.md": "7dbcb15d45ced24e602e845084747520ebcba4f0055c67b8b6c932e6935228be",
+      "implementation-summary.md": "184797c4e233a4cce6620e062ac66f82cffd6defed1f20b2ad80226c8b272a97"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

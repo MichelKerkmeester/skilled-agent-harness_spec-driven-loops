@@ -108,7 +108,7 @@ repairs land on a corpus that can no longer silently re-rot.
   HEAD. **Do not resurrect it.** It is excluded from the 42 and must not appear in any child scope table. If a future
   reader finds it in an older register, the disposition is "already fixed, verified, closed".
 - Deep-loop **READMEs, SKILL.md, script contracts, and registry rosters** — owned by
-  `system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch`. Zero file overlap with this packet, which
+  `system-deep-loop/loop-architecture/001-deep-loop-innovation/032-docs-drift-and-p2-batch`. Zero file overlap with this packet, which
   owns `feature-catalog/**` only.
 - Code **READMEs** under `system-deep-loop/runtime/**` — owned by `036/019-runtime-code-readmes`. Adjacent directory,
   disjoint files.

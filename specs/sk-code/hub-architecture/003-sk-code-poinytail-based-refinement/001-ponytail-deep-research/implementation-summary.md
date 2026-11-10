@@ -66,7 +66,7 @@ Two ten-iteration research lineages read the vendored Ponytail source and the sk
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The run used `/deep:research:auto` with two fan-out lineages and the default convergence policy. Both stopped at the ten-iteration cap. The orchestrator checked each iteration as it landed and logged its verdicts. During the run it found that the research reducer wrote outside fan-out lineages. That was fixed as its own packet, `specs/system-deep-loop/038-review-and-cli-lineage/006-research-lineage-reducer-path`, and the fixed reducer then refreshed the stale lineage before the merge.
+The run used `/deep:research:auto` with two fan-out lineages and the default convergence policy. Both stopped at the ten-iteration cap. The orchestrator checked each iteration as it landed and logged its verdicts. During the run it found that the research reducer wrote outside fan-out lineages. That was fixed as its own packet, `specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/006-research-lineage-reducer-path`, and the fixed reducer then refreshed the stale lineage before the merge.
 <!-- /ANCHOR:how-delivered -->
 
 ---

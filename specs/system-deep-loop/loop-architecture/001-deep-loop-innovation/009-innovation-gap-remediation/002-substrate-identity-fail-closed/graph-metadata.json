@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "substrate identity fail closed",
+      "transition authorization identity resolver",
+      "rollback certificate verified identity",
+      "substrate identity fail closed implementation plan",
+      "rollback certificate identity verification plan",
+      "substrate identity fail closed tasks",
+      "rollback identity verification tasks",
+      "substrate identity fail closed implementation summary",
+      "transition authorization fail closed evidence"
+    ],
+    "key_topics": [
+      "substrate",
+      "identity",
+      "fail",
+      "closed",
+      "transition",
+      "authorization",
+      "resolver",
+      "rollback",
+      "certificate",
+      "verified",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Substrate Identity Fail",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Shared",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan shared-gateway fail-closed identity resolution and rollback-certificate identity verification before any pilot mode cutover.",
+    "created_at": "2026-08-14T12:47:55.987Z",
+    "last_save_at": "2026-11-10T05:40:55.507Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e7a107b62682a0a30268f12a8b7c3a5d69cc72a3764c3f8c15efe9cc351eb6ab",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a0229652bf5999fa1fb3edeb810839af29adb948abf956e027285a2b8a967aa9",
+      "plan.md": "e49a2a7ffb61ae8fb2306559d2198bd6b2c93c37cb7ac2b222c361be8bf2e720",
+      "tasks.md": "380c3df5b0d40ca276b462445ba0fa5e41e6ff27c4129ad817a2a6633f3eb8be",
+      "implementation-summary.md": "765f4635e953d65209df90a6600c84a8ca793ce22d5e4c48304cf3bca435a6e0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

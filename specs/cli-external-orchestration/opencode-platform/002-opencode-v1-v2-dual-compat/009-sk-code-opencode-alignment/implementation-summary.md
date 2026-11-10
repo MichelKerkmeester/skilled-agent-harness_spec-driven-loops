@@ -76,7 +76,7 @@ Three smaller defects are also fixed. The deep-loop renderer wrote its manifest 
 | `.skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs` and its test | Modified | Manifest path in the moved folder (F-02) |
 | `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts` | Modified | The same path (amendment) |
 | `.gitignore` | Modified | Ignore the manifest at its new path (amendment) |
-| `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Modified | The census row a projection test compares with the manifest (amendment) |
+| `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json` | Modified | The census row a projection test compares with the manifest (amendment) |
 <!-- /ANCHOR:what-built -->
 
 ---

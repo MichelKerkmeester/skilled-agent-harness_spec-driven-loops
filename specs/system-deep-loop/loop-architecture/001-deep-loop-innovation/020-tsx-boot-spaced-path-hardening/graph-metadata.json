@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tsx boot spaced path hardening",
+      "loop-lock.js ERR_MODULE_NOT_FOUND deep-loop",
+      "NODE_PRESERVE_SYMLINKS tsx loader",
+      "DEEP_LOOP_REPO_ROOT containment override",
+      "tsx boot spaced path hardening plan",
+      "tsx boot spaced path hardening tasks",
+      "tsx boot spaced path hardening summary",
+      "runtime-bootstrap tsxChildEnv",
+      "DEEP_LOOP_REPO_ROOT override"
+    ],
+    "key_topics": [
+      "tsx",
+      "boot",
+      "spaced",
+      "path",
+      "hardening",
+      "loop-lock",
+      "deep-loop",
+      "loader",
+      "containment",
+      "override",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-bootstrap.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spaced Paths",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which remaps `.js` import specifiers to their `.ts` source",
+    "created_at": "2026-08-26T14:47:30.655Z",
+    "last_save_at": "2026-11-10T05:40:59.116Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:420b5d900149bc417f02e6683fe92e3ae6a9752362aada5125242d9829af6cbd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "01761604269005b18b2e34532680062c31953fdd7096ed28d3eb78bd24014778",
+      "plan.md": "2a761cff3cb24ecffc9c14399ab7ec3b3748a766cc6a4da141356fbb85178649",
+      "tasks.md": "df003819bad9dfeb506b26f453c9b612f08b81422f73b342367b1b993e94d9a9",
+      "implementation-summary.md": "1eecce6003e1d4b1049ba1077d232f08eb1d679ee7d6ab585ec97df2fba530a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "canonical dispatch receipts",
+      "fanout pre-spawn receipt",
+      "durable invocation fingerprint",
+      "canonical dispatch receipts implementation plan",
+      "pre-spawn receipt implementation",
+      "canonical dispatch receipts tasks",
+      "pre-spawn receipt tasks",
+      "canonical dispatch receipts implementation",
+      "durable pre-spawn receipt complete",
+      "dispatch receipt resume projection"
+    ],
+    "key_topics": [
+      "canonical",
+      "dispatch",
+      "receipts",
+      "fanout",
+      "pre-spawn",
+      "receipt",
+      "durable",
+      "invocation",
+      "fingerprint",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-barrier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-receipts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "receipt-crypto.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Dispatch Receipts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Promote",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "different",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "successor",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "version",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch intent without duplicating work.",
+    "created_at": "2026-07-16T03:43:49.798Z",
+    "last_save_at": "2026-11-10T05:40:29.581Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:239c8314f2d358502dcdc10a933356ed8c9da910bf6f2277b06942046b26c8b6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f4f36f15d2da3754adb3c3d0a4b01280881746537d5dd5dc229a80bbe25b86c2",
+      "plan.md": "d6553108a7f63ee37f9d3ee1053dad217a614a46356d21d35887e8b08bf2393c",
+      "tasks.md": "cc2514d8a46de22daeed1ffeb0475268d5720f6b4f4d33e0bd3cfd03a1789ff5",
+      "implementation-summary.md": "d9947a448b1ca40ed1142e01b4a50fc37fedf5e704ce8d93eec9c66c8604face"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

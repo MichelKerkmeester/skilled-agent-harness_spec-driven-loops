@@ -39,7 +39,7 @@ contextType: "general"
 | **Phase** | 5 of 9 |
 | **Predecessor** | 002-rebuild-fanout-removal (baseline only) |
 | **Successor** | 006-sk-code-ci-surface |
-| **Handoff Criteria** | The `CLI vitest project` step is under 400 s on CI with 5 consecutive green `Spec-Kit Check` runs; deep-loop-runtime, diagram-corpus and skill-advisor-stress each show 10 consecutive green runs or a filed root cause in `scratch/r21-recheck.md`; the five single old failures are recorded closed; `bash .github/scripts/check-gate-inputs.sh` and `validate.sh --strict` both print `RESULT: PASSED`. At closure on 2026-10-25 the step median over five green runs is 451 s, so the 400 s bar is not met and AC-003 is waived by the operator's ruling (ADR-011) and deep-loop-runtime carries a filed root cause, `specs/system-deep-loop/041-writer-lock-stale-reclaim-race` |
+| **Handoff Criteria** | The `CLI vitest project` step is under 400 s on CI with 5 consecutive green `Spec-Kit Check` runs; deep-loop-runtime, diagram-corpus and skill-advisor-stress each show 10 consecutive green runs or a filed root cause in `scratch/r21-recheck.md`; the five single old failures are recorded closed; `bash .github/scripts/check-gate-inputs.sh` and `validate.sh --strict` both print `RESULT: PASSED`. At closure on 2026-10-25 the step median over five green runs is 451 s, so the 400 s bar is not met and AC-003 is waived by the operator's ruling (ADR-011) and deep-loop-runtime carries a filed root cause, `specs/system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -176,7 +176,7 @@ R19's saving is 0: it is the probe that decides R20. R20's saving is ~460 runner
   - Read on 2026-10-25: five green runs read 459, 299, 313, 451 and 467 s, a median of 451 s and a 43 percent cut against the 791 s reference. The 400 s bar is not met, and the operator waived AC-003 on 2026-10-25 (`decision-record.md`, ADR-011).
 - **SC-002**: The probe is recorded and the decision is explicit: three green parallel runs choose the config flip, and any collision chooses the two-way shard.
 - **SC-003**: Each of deep-loop-runtime, diagram-corpus and skill-advisor-stress shows 10 consecutive green runs, or a filed root cause that names the test, the error class and the SHA.
-  - Read on 2026-10-25: diagram-corpus and skill-advisor-stress show ten `success` each, and deep-loop-runtime, the only red workflow, carries a filed root cause for `tests/unit/jsonl-repair.vitest.ts` (`AssertionError: expected 9 records, got 8`, first failing SHA e00fef3) in `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`.
+  - Read on 2026-10-25: diagram-corpus and skill-advisor-stress show ten `success` each, and deep-loop-runtime, the only red workflow, carries a filed root cause for `tests/unit/jsonl-repair.vitest.ts` (`AssertionError: expected 9 records, got 8`, first failing SHA e00fef3) in `specs/system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race`.
 - **SC-004**: The five single old failures are recorded closed with their date, SHA and the later green run that proves them stale.
 - **SC-005**: No retry, rerun or `continue-on-error` is added to any of the three workflows.
 <!-- /ANCHOR:success-criteria -->

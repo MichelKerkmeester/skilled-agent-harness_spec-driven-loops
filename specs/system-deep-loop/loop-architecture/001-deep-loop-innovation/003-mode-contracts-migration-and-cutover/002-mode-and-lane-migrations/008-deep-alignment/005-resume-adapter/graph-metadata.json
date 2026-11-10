@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment resume adapter",
+      "deep-alignment sealed-ledger resume",
+      "verify-first alignment recovery",
+      "idempotent conformance re-entry",
+      "deep alignment resume adapter implementation plan",
+      "sealed ledger alignment recovery plan",
+      "deep-alignment idempotent re-entry",
+      "deep alignment resume adapter tasks",
+      "sealed ledger alignment recovery tasks",
+      "deep-alignment replay idempotency tasks",
+      "deep alignment resume adapter implementation",
+      "deep-alignment resume decision"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "resume",
+      "adapter",
+      "deep-alignment",
+      "sealed-ledger",
+      "verify-first",
+      "recovery",
+      "idempotent",
+      "conformance",
+      "re-entry",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "separate",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Resume Adapter",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Alignment resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds shared reducers, rebuilds the continuity ladder for authority-bound per-lane conformance, and defines idempotent re-entry without double-applying, losing, or replaying events.",
+    "created_at": "2026-07-16T03:43:43.893Z",
+    "last_save_at": "2026-11-10T05:40:41.791Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6a3ff10d0457a58b565a433b8dc77f6868214970f91a0f8900de71c3922e108",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7ff66515aec8e71f9b99b29ca79740e68a52da70de25f19efe77930978cd76d7",
+      "plan.md": "e1926900fc5b3b01ce3d019c3953971521fe1aecc138e562816ed010d9f43f05",
+      "tasks.md": "192edb1e1a52ba3c8bcff89c820e79b44aecd815681d0529fc469503670f9831",
+      "implementation-summary.md": "67dee51a28f51df162cb313d261e6cf3f9c30d1b89f2c1c809ee1541b80deb47"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

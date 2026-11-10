@@ -49,7 +49,7 @@
       ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
       ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
-      "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+      "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
       "scratch/gates/hygiene-after.txt",
       "scratch/gates/hostile-env.txt",
       "scratch/gates/battery-both.json",
@@ -139,7 +139,7 @@
       {
         "name": "state-backend-census.json",
         "kind": "config",
-        "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+        "path": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phases 002 to 008 add and change plugin, guard, runtime and install code for two OpenCode versions",
     "created_at": "2026-10-18T12:45:08Z",
-    "last_save_at": "2026-11-10T05:38:22.295Z",
+    "last_save_at": "2026-11-10T05:43:29.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a630883f4de0d0d5e73d2e3f375db3b4ad17e750e10442996b359eed576a4a63",
+    "source_fingerprint": "sha256:de506f76d2b60ce4f95393d783e424a4bcb86fab765deedc5d2e2f6307de2ca3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "748afb5fc71f2bdf449492f7ba6a433065546568aeb85b21cb8824e6f96f66cb",
+      "spec.md": "4c87b1103763e789a5b99b8feb0d650dfd3ce96c5f329b76f21621d4fafbea32",
       "plan.md": "fe2c6e4936922ad5e095e1cc12500ea22e5d34bc46f9058d39a5295dfc82339e",
       "tasks.md": "63ba49495e667eca40b7ec196d66caaad217c9372fa20ef53e9aed207c429db1",
-      "implementation-summary.md": "7bd59a82d8c076c04ef17fd8ebe648c0d3b2dd00aa88ed106b5fa682dc0b7aba"
+      "implementation-summary.md": "65443552da21c5428af3faae00c7ea7e74d6d21655412b190e11a75d2754bb49"
     },
     "last_active_at": null
   }

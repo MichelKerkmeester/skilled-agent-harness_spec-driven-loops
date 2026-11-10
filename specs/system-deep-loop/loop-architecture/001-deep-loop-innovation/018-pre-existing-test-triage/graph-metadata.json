@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/018-pre-existing-test-triage",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/018-pre-existing-test-triage",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-existing test failures triage",
+      "deep-loop baseline test failures",
+      "sk-prompt census path fix",
+      "pre existing test triage plan",
+      "pre existing test triage tasks",
+      "pre existing test triage implementation summary"
+    ],
+    "key_topics": [
+      "pre-existing",
+      "test",
+      "failures",
+      "triage",
+      "deep-loop",
+      "baseline",
+      "sk-prompt",
+      "census",
+      "path",
+      "pre",
+      "existing",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Runtime Test",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Failure Triage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Investigate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "disk",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommendations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built One",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Each",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 017 remediation established a clean whole-suite gate but left 10 pre-existing test failures untouched — they were failing before any of that work and are independent of it",
+    "created_at": "2026-08-26T10:02:59.278Z",
+    "last_save_at": "2026-11-10T05:40:58.957Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e7764e6f8f8d10b01d1482c6c2ab9ed6be0c8065db2302f005cd452cede3c1b8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9be1cc855ac6b086521542587e223683998d3480d5542b1cda642252f3ae7287",
+      "plan.md": "071f6cb3025810e812dd4799606b598737c00c8bf549d3709e3370e5374656cb",
+      "tasks.md": "d4b8de458316fca371910345984b8ffc1a5e4b0eb34d918cc7c1a7ddd46de193",
+      "implementation-summary.md": "06df05556df9438c7aac6dd7beb8536cd074729ab293888249621af5cef9c20f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recommendation ledger bijective map",
+      "178 recommendation classified ledger",
+      "deep-loop recommendation coverage",
+      "recommendation ledger implementation plan",
+      "178 row ledger construction",
+      "recommendation ledger tasks",
+      "bijective map verification tasks",
+      "recommendation ledger implementation summary",
+      "178 row ledger evidence"
+    ],
+    "key_topics": [
+      "recommendation",
+      "ledger",
+      "bijective",
+      "map",
+      "classified",
+      "deep-loop",
+      "coverage",
+      "implementation",
+      "plan",
+      "row",
+      "construction",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "recommendation-ledger.json",
+      "recommendation-ledger-validation.json",
+      "validate-ledger.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommendation-ledger.json",
+        "kind": "config",
+        "path": "recommendation-ledger.json",
+        "source": "derived"
+      },
+      {
+        "name": "recommendation-ledger-validation.json",
+        "kind": "config",
+        "path": "recommendation-ledger-validation.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate-ledger.cjs",
+        "kind": "file",
+        "path": "validate-ledger.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommendation Ledger",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bijective Classified Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable IDs",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "required",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Errors",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommendation Ledger Bijective Map",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Freeze the 178 deep-loop recommendations into one immutable classified ledger with stable IDs, normalized taxonomy targets, exactly one disposition per source recommendation, and machine-verifiable corpus and phase coverage.",
+    "created_at": "2026-07-16T03:43:44.897Z",
+    "last_save_at": "2026-11-10T05:40:26.453Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:af3fdd5e50d42146da7c438afa06629459656f611be22da684fde745278c983c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7ab7269288f2ab65501c00436bd713c37e4e916af0da69573056999019a9befb",
+      "plan.md": "02e76f0fec1bc4f7ecedbc273f6a0e692f85e59d7832986df538f8303ee12bfa",
+      "tasks.md": "9726752270dd212e345880f38079ed69eefe7788a181b1137719a04d2d5a632a",
+      "implementation-summary.md": "5e6d711ee0056b2b5316dc421810225e7e8111815f40537d4f3dd9522846c635"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

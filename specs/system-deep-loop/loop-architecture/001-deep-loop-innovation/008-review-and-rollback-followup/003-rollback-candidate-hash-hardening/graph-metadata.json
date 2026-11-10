@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/003-rollback-candidate-hash-hardening",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup/003-rollback-candidate-hash-hardening",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rollback candidate hash hardening",
+      "promoted-candidate-only rollback authority",
+      "assertRollbackHashGuard fix",
+      "pre-ship rollback removed",
+      "rollback candidate hash hardening plan",
+      "assertRollbackHashGuard plan",
+      "promoted-candidate-only rollback plan",
+      "rollback candidate hash hardening tasks",
+      "assertRollbackHashGuard task",
+      "rollback candidate hash hardening implementation summary",
+      "promoted-candidate-only rollback shipped",
+      "promoted-candidate-only guard"
+    ],
+    "key_topics": [
+      "rollback",
+      "candidate",
+      "hash",
+      "hardening",
+      "promoted-candidate-only",
+      "authority",
+      "assertrollbackhashguard",
+      "pre-ship",
+      "removed",
+      "plan",
+      "tasks",
+      "task"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Candidate Hash Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Require",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`assertRollbackHashGuard` in `rollback-candidate.cjs` accepted either the pre-acceptance target hash OR the promoted-candidate hash as a valid current-target state before authorizing rollback",
+    "created_at": "2026-08-13T06:44:37.411Z",
+    "last_save_at": "2026-11-10T05:40:55.232Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6868c2ae4f771396d84b2c642d90d2ea96ef98ee5b8eb9245dbaf4d58a047ef3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3a05e4431dceeee21e86fd40bcdfb1fede3b33b8b40c7e157d33e5eda0a91d6f",
+      "plan.md": "b2891866624597ebd05188e2e48e551b76ea72bf96ea572cec23047c9d56f421",
+      "tasks.md": "5311c8425b6c2a919c39404ca7e55a616d525a86f92d746feadcc26cfe5052d5",
+      "implementation-summary.md": "ff465eeda61ba995e473e29db126e18b9b7dc51776d2d9f7d6f037c754c65cb5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

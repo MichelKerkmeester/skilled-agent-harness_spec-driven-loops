@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "receipts and effect recovery",
+      "deep-loop boundary receipts",
+      "idempotent external effect recovery",
+      "receipts and effect recovery implementation plan",
+      "boundary receipt implementation",
+      "receipts and effect recovery tasks",
+      "effect recovery gateway tasks",
+      "receipts and effect recovery implementation",
+      "receipt effect candidate report"
+    ],
+    "key_topics": [
+      "receipts",
+      "effect",
+      "recovery",
+      "deep-loop",
+      "boundary",
+      "idempotent",
+      "external",
+      "implementation",
+      "plan",
+      "receipt",
+      "tasks",
+      "gateway"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "receipts-and-effect-recovery.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Effect Recovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "auditable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "secret-safe",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan durable boundary receipts and an effect-recovery gateway that records intent before execution, confirms observed outcomes, and reconciles interrupted external effects without unsafe replay.",
+    "created_at": "2026-07-16T03:43:46.431Z",
+    "last_save_at": "2026-11-10T05:40:26.486Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:27ecdebfd9691d26a45fbf74abb5f1d9f2b344d85eb64584280b9ab1a023b9dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "13d5f691e5d42492368d35a8f1c1e76b5ea239d5d5ee3810fa8075f0004ac4ae",
+      "plan.md": "56793a2bbd059d3cd20f3cac1dedfda0c85cf813ab4562a88b73d3d194725cc9",
+      "tasks.md": "c30c10eec51b6ff838783b49572dae4e51166e9d4757b932f0fbe9dfef0bce50",
+      "implementation-summary.md": "daf7fe3462af38d498c02ab87e6bb091fe92608a5aeccb12508f7384e39222fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

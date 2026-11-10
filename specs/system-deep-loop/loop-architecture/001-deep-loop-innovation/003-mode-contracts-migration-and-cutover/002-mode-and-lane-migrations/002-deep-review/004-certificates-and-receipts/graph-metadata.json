@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
+  "spec_folder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts",
+  "parent_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review certificates and receipts",
+      "deep-review run certificate",
+      "deep-review transition receipts",
+      "offline review certificate verification",
+      "deep review certificates implementation plan",
+      "deep-review receipt contract plan",
+      "offline review verifier plan",
+      "deep review certificates and receipts tasks",
+      "deep-review transition receipt tasks",
+      "offline certificate verifier tasks",
+      "deep review certificates implementation",
+      "deep-review receipt issuer"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "certificates",
+      "receipts",
+      "deep-review",
+      "run",
+      "certificate",
+      "transition",
+      "offline",
+      "verification",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".cursor/hooks/completion-evidence-response.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-response.mjs",
+        "kind": "file",
+        "path": ".cursor/hooks/completion-evidence-response.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Because Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compare Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Certificates",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Review per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines attestation boundaries, replay-fingerprint inputs, receipt coverage, and independent offline verification for scope, per-dimension review passes, P0/P1/P2 finding adjudication, convergence, synthesis, and review-report publication.",
+    "created_at": "2026-07-16T03:43:32.955Z",
+    "last_save_at": "2026-11-10T05:40:33.621Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8629527124b600807d2af483523fc656f4b5e5c88f879edce15b54b7f6d62ad",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "404fab868f71d9ce999a3e68cd9e79f40a733de45a0e896a7d89818a62d47ace",
+      "plan.md": "19b3c0ecbdd1642eb6aa0b6c32b7558b0d82eb94ad5884749c3e2bae329d1363",
+      "tasks.md": "fda61d47584a3740130a876712ca2ddc56f3873a43d0cda2102475a0f3dc6f82",
+      "implementation-summary.md": "7bb6e468c86b74d3a1185fa49c85af31841187c75a39705d0611b63bb8a24e85"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

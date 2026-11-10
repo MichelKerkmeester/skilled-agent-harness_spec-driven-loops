@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A re-arm of an armed record kept its first `armedAt`, so after a killer died and the session idled past ten minutes, the wrapper printed the manual command instead of relaunching",
     "created_at": "2026-10-19T19:56:36Z",
-    "last_save_at": "2026-11-10T05:10:28.979Z",
+    "last_save_at": "2026-11-10T05:43:29.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90f5b50e52cc6cc783608b5d47a29729ee7aad78e9e8a7a7135e34782251f127",
+    "source_fingerprint": "sha256:165cde7cad6bf07a4576dbff80b78fef3b4c346fca533ccff76617013bad3ec6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "498acf03b61b7eb9ff76c534cc2e66a9bf6fd258046d492630a5c73adb158108",
+      "spec.md": "3b3f006a60167b3881a2d1217a5566412edc958a35e19611a347715fa03dcad3",
       "plan.md": "cbdfa9e3207532f9370767673ff6deb3ad25314c07a061b4dddacc54a589b609",
       "tasks.md": "9227c70607014ed009215d7a9a756326671b59cbedf448e71fc3b7e9e61f3951",
       "implementation-summary.md": "09a37209d83a571571ba5fa57dced72523fd2b20f34c797c4acd2df89fc80915"
