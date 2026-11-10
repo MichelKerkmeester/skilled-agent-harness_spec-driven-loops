@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The host trigger index folder is fixed at `.speckit-index/`",
     "created_at": "2026-11-09T18:06:54Z",
-    "last_save_at": "2026-11-09T20:37:59.151Z",
+    "last_save_at": "2026-11-10T05:13:12.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7df70e949bb29223d19437963e3d0b0042f68a61b63c9df50f37ce939a195e38",
+    "source_fingerprint": "sha256:2c9433bf688eae61aeca67f985f1f3ba30525fb33576ca8cf28e762451a2536b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b3047aa3660c4ec28def591d33e80da64f03e416f1fe7e2dcf15e71d6375ae53",
+      "spec.md": "1ef7d978a2ad84ef8a6b493457aeee2c5466f588d1f94ceb41ce6c8b986a7ae2",
       "plan.md": "72c4bb0f1fa1c9c135bce186e3745375a35c79a49eb0318bc0a987b58b6279b9",
-      "tasks.md": "03cb2778a614ee34af3438c66a89d824e3fa4defc20d610a09ed377d21a74385",
+      "tasks.md": "8708c5965a2e7205d86cf17a7232ffdb4b2ecf76b6f72aefc49327e77bcd1116",
       "implementation-summary.md": "f996fc0ba3c118d0994c4bd561c0a52e516c5e3089babe230e83bafa92ab659d"
     },
     "last_active_at": null
