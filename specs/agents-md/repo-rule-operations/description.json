@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "agents-md/repo-rule-operations",
+  "description": "Covers how repo rules are authored, surfaced, consolidated, and routed to the right trigger.",
+  "keywords": [
+    "repo",
+    "rule",
+    "operations"
+  ],
+  "lastUpdated": "2026-11-10T05:37:13.346Z",
+  "specId": "agents-md/repo-rule-operations",
+  "folderSlug": "repo-rule-operations",
+  "parentChain": [
+    "agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

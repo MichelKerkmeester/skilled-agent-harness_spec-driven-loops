@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh",
+  "description": "Check whether the v4.0.1.0 release means AGENTS.md or the repo rules need updating",
+  "keywords": [
+    "check",
+    "whether",
+    "release",
+    "means",
+    "agents",
+    "repo",
+    "rules",
+    "need"
+  ],
+  "lastUpdated": "2026-11-05T20:33:38.732Z",
+  "specId": "017",
+  "folderSlug": "v4-0-1-0-rules-refresh",
+  "parentChain": [
+    "agents-md"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-11-26_21-33__deep-research-completed-5-5-iterations-cli-pi.md"
+  ]
+}

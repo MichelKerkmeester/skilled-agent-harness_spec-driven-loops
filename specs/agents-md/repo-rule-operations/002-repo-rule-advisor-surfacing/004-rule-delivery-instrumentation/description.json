@@ -1,0 +1,51 @@
+{
+  "level": "2",
+  "specFolder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation",
+  "description": "The evidence pack counts a rule as read only when the `Read` tool named its path, so shell reads and hook injections are missed and the counts",
+  "keywords": [
+    "evidence",
+    "pack",
+    "counts",
+    "rule",
+    "read",
+    "only",
+    "tool",
+    "named",
+    "path",
+    "shell",
+    "reads",
+    "hook",
+    "injections",
+    "missed"
+  ],
+  "lastUpdated": "2026-10-05T07:20:16.358Z",
+  "specId": "004",
+  "folderSlug": "rule-delivery-instrumentation",
+  "parentChain": [
+    "agents-md",
+    "012-repo-rule-advisor-surfacing"
+  ],
+  "memorySequence": 27,
+  "memoryNameHistory": [
+    "04-10-26_21-49__it-s-the-same-loop-and-the-same-answer-5-of-7.md",
+    "04-10-26_21-49__the-status-is-unchanged-5-of-7-criteria-are-met.md",
+    "04-10-26_22-00__same-result-5-of-7-criteria-met-and-the-last-two.md",
+    "04-10-26_22-00__the-status-hasn-t-changed-5-of-7-criteria-are-met.md",
+    "04-10-26_22-01__nothing-has-changed-five-of-7-criteria-are-met.md",
+    "04-10-26_22-01__the-status-hasn-t-changed-5-of-7-criteria-are-met.md",
+    "04-10-26_22-01__the-status-is-unchanged-5-of-7-criteria-are-met.md",
+    "04-10-26_22-01__the-status-is-unchanged-5-of-7-criteria-are-met.md",
+    "04-10-26_22-03__the-status-is-unchanged-5-of-7-criteria-are-met.md",
+    "04-10-26_22-03__the-status-is-the-same-5-of-7-criteria-are-met.md",
+    "04-10-26_22-03__nothing-has-changed-5-of-7-criteria-are-met-and.md",
+    "04-10-26_22-03__i-m-still-blocked-on-the-same-two-criteria-and.md",
+    "04-10-26_22-03__the-status-is-unchanged-5-of-7-criteria-are-met.md",
+    "04-10-26_22-03__the-status-is-unchanged-5-of-7-criteria-are-met.md",
+    "04-10-26_22-03__the-status-is-unchanged-5-of-7-criteria-are-met.md",
+    "04-10-26_22-04__the-status-hasn-t-changed-5-of-7-criteria-are-met.md",
+    "05-10-26_06-50__it-s-progressing-nothing-has-stalled-swe-2-is-at.md",
+    "05-10-26_08-19__all-seven-criteria-have-fresh-evidence-from-this.md",
+    "05-10-26_08-20__nothing-about-this-has-changed-since-my-last.md",
+    "05-10-26_08-20__the-same-blocker-still-stands-so-there-s-nothing.md"
+  ]
+}

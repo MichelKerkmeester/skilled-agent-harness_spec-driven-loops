@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh",
+  "spec_folder": "agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh",
+  "parent_id": "agents-md/instruction-surface-integrity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 0 1 0 rules refresh",
+      "check whether the v4 0 1 0 release",
+      "v4 0 1 0 rules refresh plan",
+      "v4 0 1 0 rules refresh tasks",
+      "v4 0 1 0 rules refresh implementation summary",
+      "v4.0.1.0 rules refresh research",
+      "agents md router md gate 2"
+    ],
+    "key_topics": [
+      "rules",
+      "refresh",
+      "check",
+      "whether",
+      "release",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "research",
+      "agents",
+      "router"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/hooks/goal/bin/goal.cjs",
+      ".codex/config.toml",
+      ".skilled/commands/doctor/agents-md.md",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
+      ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/agents-md.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-readme-verdicts.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v4.0.1.0 release renamed, added and changed skills, commands, scripts and workflows",
+    "created_at": "2026-11-05T20:06:52Z",
+    "last_save_at": "2026-11-10T05:37:21.943Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:31d266c01bac6f26707898c426138c9f622651cfd8157263e1fa020dc6c3ab9c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "601d864a6b3c1813e0ab1364c66c1e72f466e5c8518ce33cc08cd1105a83afd8",
+      "plan.md": "9d8685a3ee0c0cab29f9b8644919cd1142f34a65b21bf2a6d661d176db642175",
+      "tasks.md": "905583e4c9df21c09c837a47af148145a3fc471d78e089df3dcd3bbc1a076b60",
+      "implementation-summary.md": "b2581b6e50ccc2ed7663a1fe1688f198eed706df7f7bd0f92311ee5f11161e18",
+      "research/research.md": "0c3a0bcd34bd6d32b9d929580f234bc025d43479d8b9b8abd709fd1d71d8133b"
+    },
+    "last_active_at": null
+  }
+}

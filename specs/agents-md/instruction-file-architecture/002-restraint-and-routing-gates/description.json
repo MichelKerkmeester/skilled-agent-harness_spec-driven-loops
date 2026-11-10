@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "agents-md/instruction-file-architecture/002-restraint-and-routing-gates",
+  "description": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
+  "keywords": [
+    "every",
+    "restraint",
+    "rule",
+    "framework",
+    "needs",
+    "already",
+    "exists",
+    "somewhere",
+    "fires"
+  ],
+  "lastUpdated": "2026-08-29T14:08:52.376Z",
+  "specId": "006",
+  "folderSlug": "restraint-and-routing-gates",
+  "parentChain": [
+    "agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

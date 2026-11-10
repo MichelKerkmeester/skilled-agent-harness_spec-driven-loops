@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/instruction-surface-integrity/004-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs",
+  "spec_folder": "agents-md/instruction-surface-integrity/004-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs",
+  "parent_id": "agents-md/instruction-surface-integrity/004-doctor-agents-md/001-doctor-agents-md",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents md verification and docs",
+      "end to end fixture pass",
+      "doctor manual playbook rows",
+      "agents md verification plan",
+      "agents md verification tasks",
+      "agents md verification acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "agents md verification implementation summary"
+    ],
+    "key_topics": [
+      "agents",
+      "verification",
+      "docs",
+      "end",
+      "fixture",
+      "pass",
+      "doctor",
+      "manual",
+      "playbook",
+      "rows",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/run-e2e.sh",
+      ".skilled/commands/doctor/scripts/README.markdown",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
+      ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
+      "scratch/baseline.txt",
+      "scratch/doc-locations.txt",
+      "scratch/router-answers.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-e2e.sh",
+        "kind": "script",
+        "path": "scratch/run-e2e.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/README.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.12.27.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.28.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.28.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.3.34.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doc-locations.txt",
+        "kind": "file",
+        "path": "scratch/doc-locations.txt",
+        "source": "derived"
+      },
+      {
+        "name": "router-answers.txt",
+        "kind": "file",
+        "path": "scratch/router-answers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The engines can each pass their own suite and still fail together: a check that classifies correctly and an embed that composes correctly can still disagree about the same tree",
+    "created_at": "2026-10-30T11:22:45Z",
+    "last_save_at": "2026-11-10T05:37:18.059Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b39f2e9f8b8b83d9efd6084a2504704c2d6b0cf0d015b878d820dadd1026489a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "92c49a12d3df5360cbb9f9739739944d321ec4e33cd51931e8c62caf0f72173b",
+      "plan.md": "25d46d910ba069290b93161568158349e65b08dc902b8e683544ca0bb55f10cd",
+      "tasks.md": "307fbbc223fb6f7d04248aefb6240dba8e45baf63cf60157a95385b0aace6f24",
+      "implementation-summary.md": "024934701d7043fe2651cc60aa0d0c319bb4c9273784156fd6f92689edd3f645"
+    },
+    "last_active_at": null
+  }
+}

@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Implemented by cli-codex dispatch (gpt-5.6-luna max fast, exit 0, ~63k tokens). Pi row added at `AGENTS.md:479`. to AGENTS.md §8 (Pi → `.pi/agents/`), coordinated with `agents-md/002-runtime-surface-coverage` which owns the full six-runtime table.
+Implemented by cli-codex dispatch (gpt-5.6-luna max fast, exit 0, ~63k tokens). Pi row added at `AGENTS.md:479`. to AGENTS.md §8 (Pi → `.pi/agents/`), coordinated with `agents-md/instruction-surface-integrity/001-runtime-surface-coverage` which owns the full six-runtime table.
 
 <!-- /ANCHOR:what-built -->
 
@@ -92,5 +92,5 @@ Implemented the single Pi runtime-directory row after confirming the coordinated
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The full six-runtime table remains coordinated with `agents-md/002-runtime-surface-coverage`; this phase records only the verified Pi row.
+1. The full six-runtime table remains coordinated with `agents-md/instruction-surface-integrity/001-runtime-surface-coverage`; this phase records only the verified Pi row.
 <!-- /ANCHOR:limitations -->

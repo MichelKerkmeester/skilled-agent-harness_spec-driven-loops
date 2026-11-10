@@ -4,23 +4,10 @@
   "spec_folder": "agents-md",
   "parent_id": null,
   "children_ids": [
-    "agents-md/001-terminal-proof-discipline",
-    "agents-md/002-runtime-surface-coverage",
-    "agents-md/003-communication-quality",
-    "agents-md/004-agents-md-bloat-audit",
-    "agents-md/005-git-workspace-repo-agnostic",
-    "agents-md/006-restraint-and-routing-gates",
-    "agents-md/007-turn-closeout-next-steps",
-    "agents-md/008-repo-rule-system-integration",
-    "agents-md/009-agent-avoidance-anti-patterns",
-    "agents-md/010-prompting-guide-alignment",
-    "agents-md/011-global-claude-md-agents-symlink",
-    "agents-md/012-repo-rule-advisor-surfacing",
-    "agents-md/013-thinking-discipline",
-    "agents-md/014-communication-rules-consolidation",
-    "agents-md/015-router-file-rule-alignment",
-    "agents-md/016-doctor-agents-md",
-    "agents-md/017-v4-0-1-0-rules-refresh"
+    "agents-md/agent-behavior",
+    "agents-md/instruction-file-architecture",
+    "agents-md/instruction-surface-integrity",
+    "agents-md/repo-rule-operations"
   ],
   "manual": {
     "depends_on": [],
@@ -47,7 +34,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "agents-md/008-repo-rule-system-integration",
+    "last_active_child_id": "agents-md/instruction-file-architecture/003-repo-rule-system-integration",
     "last_active_at": "2026-09-11T20:59:38.392Z"
   }
 }

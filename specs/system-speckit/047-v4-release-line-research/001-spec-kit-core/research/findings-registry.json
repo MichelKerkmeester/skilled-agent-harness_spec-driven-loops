@@ -2321,7 +2321,7 @@
     },
     {
       "id": "finding-14-3-verify-cp-r-specs-agents-md-016-doctor-agents-md-tmp-pp-bash-skilled-skills-syst",
-      "text": "Verify: `cp -R specs/agents-md/016-doctor-agents-md /tmp/pp && bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/pp --strict | tail -4` → warning above `RESULT: PASSED`.",
+      "text": "Verify: `cp -R specs/agents-md/instruction-surface-integrity/004-doctor-agents-md /tmp/pp && bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh /tmp/pp --strict | tail -4` → warning above `RESULT: PASSED`.",
       "addedAtIteration": 14,
       "sources": []
     },

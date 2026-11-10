@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/001-advisor-surfacing",
+  "spec_folder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/001-advisor-surfacing",
+  "parent_id": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rule advisor",
+      "suggest repo rules",
+      "surface repo rules",
+      "advisor repo rule pointer",
+      "repo rules trigger index",
+      "action keyed rule nudge",
+      "repo rule advisor research plan",
+      "two lineage devin research",
+      "repo rule advisor research tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "repo",
+      "rule",
+      "advisor",
+      "suggest",
+      "rules",
+      "surface",
+      "pointer",
+      "trigger",
+      "index",
+      "action",
+      "keyed",
+      "nudge"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "specs/agents/graph-metadata.json",
+      "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/001-advisor-surfacing/spec.md",
+      "research/resource-map.md",
+      "research/deep-research-config.json",
+      "research/findings-registry.json",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/001-advisor-surfacing/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/agents/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Repo",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Brief",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model through one door: Gate 5, which fires on the first write of a session and asks the model to match its action against the `REPO RULES.md` trigger table",
+    "created_at": "2026-10-04T12:05:58Z",
+    "last_save_at": "2026-11-10T05:37:20.919Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e745ae3bad646690064456b8fe9e3bbb3abc150a848c1a63047b5de34ad807d9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b670c18eb3ec4e26e57645afca8176233cfb43676c1418a55d521748fb491f20",
+      "plan.md": "ff71c880ca269192ef2e1396513d941b52bc9f849f54ca3f6ea63253b1ca4ce9",
+      "tasks.md": "38f77f131d0af21a57f2bb46716d612c20bbd02bc029bd74ac3f8410335f5cc3",
+      "implementation-summary.md": "e29aa9502e25b6accbf6cd4000d203c3d15c3952e12697083f644d8c884d8170",
+      "research/research.md": "70729c906eca66d9a3be2a498ba81ed5fd0275188d1d571e69090de201ea44e8"
+    },
+    "last_active_at": null
+  }
+}

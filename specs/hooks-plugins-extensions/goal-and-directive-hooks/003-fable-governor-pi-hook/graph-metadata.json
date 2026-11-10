@@ -98,16 +98,16 @@
     ],
     "causal_summary": "The fable governor per-turn hook re-states a compact disposition capsule every turn, but AGENTS.md now embeds richer governor and proof-over-appearance logic",
     "created_at": "2026-08-04T08:24:58Z",
-    "last_save_at": "2026-11-10T05:10:12.060Z",
+    "last_save_at": "2026-11-10T05:38:03.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:862a8795a76e481b173184e8816b4953a0523686b38f2971193b736cd3e09458",
+    "source_fingerprint": "sha256:6394e58283131c12f8adf917b02d9200fed6066663ae5cf30fc8d5e2b9d4e180",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b93c8b200fa7611d07055e00fd4a624bb459482fcc426fd3415695a58eecb7e3"
+      "spec.md": "3866fc3684b2dd74cf03d1e82bf438e361395e78654c10aefbf01d18172357f4"
     },
     "last_active_child_id": "hooks/007-fable-governor-pi-hook/009-injection-contract-directive-sync",
     "last_active_at": "2026-08-05T00:35:21.499Z"

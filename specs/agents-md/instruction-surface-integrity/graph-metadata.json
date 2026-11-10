@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/instruction-surface-integrity",
+  "spec_folder": "agents-md/instruction-surface-integrity",
+  "parent_id": "agents-md",
+  "children_ids": [
+    "agents-md/instruction-surface-integrity/001-runtime-surface-coverage",
+    "agents-md/instruction-surface-integrity/002-git-workspace-repo-agnostic",
+    "agents-md/instruction-surface-integrity/003-global-claude-md-agents-symlink",
+    "agents-md/instruction-surface-integrity/004-doctor-agents-md",
+    "agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "agents-md/instruction-surface-integrity"
+    ],
+    "causal_summary": "Container folder for agents-md/instruction-surface-integrity."
+  }
+}

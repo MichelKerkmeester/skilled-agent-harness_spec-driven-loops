@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/instruction-file-architecture",
+  "spec_folder": "agents-md/instruction-file-architecture",
+  "parent_id": "agents-md",
+  "children_ids": [
+    "agents-md/instruction-file-architecture/001-agents-md-bloat-audit",
+    "agents-md/instruction-file-architecture/002-restraint-and-routing-gates",
+    "agents-md/instruction-file-architecture/003-repo-rule-system-integration",
+    "agents-md/instruction-file-architecture/004-prompting-guide-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "agents-md/instruction-file-architecture"
+    ],
+    "causal_summary": "Container folder for agents-md/instruction-file-architecture."
+  }
+}

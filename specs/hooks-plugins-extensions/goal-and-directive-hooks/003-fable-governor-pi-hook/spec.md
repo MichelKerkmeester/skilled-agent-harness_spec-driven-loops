@@ -112,7 +112,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 2 | 002-governor-parity/ | Bridge fallback parity fix (proof directive) + injection-contract label sync | Complete (2026-08-04, cli-codex) |
 | 3 | 003-pi-directive-capsule/ | Pi-only per-turn directive line (native pi-subagents default, explicit cli-* override) | Complete (2026-08-04, cli-codex) |
 | 4 | 004-pi-directive-enforcement/ | tool_call deny reusing DISPATCH_SHAPES (pi-default; user-text override token; deep-loop exempt) | Complete (2026-08-04, cli-codex) |
-| 5 | 005-agents-md-pi-row/ | AGENTS.md §8 Pi row (coordinated with agents-md/002-runtime-surface-coverage) | Complete (2026-08-04, cli-codex) |
+| 5 | 005-agents-md-pi-row/ | AGENTS.md §8 Pi row (coordinated with agents-md/instruction-surface-integrity/001-runtime-surface-coverage) | Complete (2026-08-04, cli-codex) |
 | 6 | 006-dispatch-authorization-hardening/ | P0/P1 dispatch-boundary remediation: unconditional cli-pi self-deny, exact executor authorization, bounded direct/ambiguous/none command inspector, raw-user capture, factory-level Pi tool_call matrix | Complete (2026-08-04; focused implementation evidence recorded) |
 | 7 | 007-dispatch-validation-evidence/ | P2 evidence remediation: four-class evidence ledger, registered Pi factory evidence, claim correction, full-corpus baseline with bounded deferral | Complete (2026-08-04; focused gates pass; full corpus remains exit 1) |
 | 8 | 008-phase-state-reconciliation/ | P2 state remediation: status/completion reconciliation across 001-009, parent map + handoff repair, generated metadata refresh, resume pointer | Complete (2026-08-05; metadata and state reconciliation verified) |

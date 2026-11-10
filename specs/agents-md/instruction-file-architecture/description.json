@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "agents-md/instruction-file-architecture",
+  "description": "Shapes what the always-loaded AGENTS.md contains, how its gates work, and how its instruction text aligns with vendor guidance.",
+  "keywords": [
+    "instruction",
+    "file",
+    "architecture"
+  ],
+  "lastUpdated": "2026-11-10T05:37:13.346Z",
+  "specId": "agents-md/instruction-file-architecture",
+  "folderSlug": "instruction-file-architecture",
+  "parentChain": [
+    "agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

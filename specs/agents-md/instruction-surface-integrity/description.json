@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "agents-md/instruction-surface-integrity",
+  "description": "Keeps root and globally linked instruction files accurate and portable across runtimes, repositories, and releases.",
+  "keywords": [
+    "instruction",
+    "surface",
+    "integrity"
+  ],
+  "lastUpdated": "2026-11-10T05:37:13.346Z",
+  "specId": "agents-md/instruction-surface-integrity",
+  "folderSlug": "instruction-surface-integrity",
+  "parentChain": [
+    "agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

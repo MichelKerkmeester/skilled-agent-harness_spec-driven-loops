@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/agent-behavior",
+  "spec_folder": "agents-md/agent-behavior",
+  "parent_id": "agents-md",
+  "children_ids": [
+    "agents-md/agent-behavior/001-terminal-proof-discipline",
+    "agents-md/agent-behavior/002-communication-quality",
+    "agents-md/agent-behavior/003-agent-avoidance-anti-patterns",
+    "agents-md/agent-behavior/004-thinking-discipline"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "agents-md/agent-behavior"
+    ],
+    "causal_summary": "Container folder for agents-md/agent-behavior."
+  }
+}

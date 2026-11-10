@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Check agents-md/002-runtime-surface-coverage T001 state (six-runtime table)
+- [x] T001 Check agents-md/instruction-surface-integrity/001-runtime-surface-coverage T001 state (six-runtime table)
   - [evidence: `grep -n ".pi/agents" AGENTS.md` returned 0 before the change — 002 packet T001 not yet executed; coordination noted]
 <!-- /ANCHOR:phase-1 -->
 

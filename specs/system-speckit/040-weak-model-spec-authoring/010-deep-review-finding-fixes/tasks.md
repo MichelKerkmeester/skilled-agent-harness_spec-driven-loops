@@ -68,7 +68,7 @@ Two shell variables shorten the paths below. `S` is `.skilled/skills/system-spec
 - [x] T026 [P] Add the fsmonitor case, which fails on the unchanged walker (`$S/runtime/cli/tests/trigger-index.vitest.ts`). Verify: its run prints the fsmonitor case failing before T027.
 - [x] T027 Pass `core.fsmonitor=false` to the corpus walker's one git call (`$S/runtime/cli/retrieval/lib/corpus.mjs`). Verify: the T026 file prints `Test Files  1 passed`.
 - [x] T028 Scope the parity sentence to the shapes the parity test pins (`$S/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md`). Verify: `rg -n 'parity' $S/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md` prints the scoped sentence.
-- [x] T029 Rebuild the runtime and the CLI (`$S/runtime/dist`). Verify: `bash $S/runtime/cli/spec/validate.sh specs/agents-md/001-terminal-proof-discipline --strict --no-recursive | tail -1` prints `RESULT: PASSED`.
+- [x] T029 Rebuild the runtime and the CLI (`$S/runtime/dist`). Verify: `bash $S/runtime/cli/spec/validate.sh specs/agents-md/agent-behavior/001-terminal-proof-discipline --strict --no-recursive | tail -1` prints `RESULT: PASSED`.
 - [x] T030 Rerun the six-rule census on the lane A tree (`$P/scratch/baseline/rules-after.tsv`). Verify: `diff $P/scratch/baseline/rules-before.tsv $P/scratch/baseline/rules-after.tsv` prints nothing.
 
 ### Lane B: guidance and guards
@@ -143,7 +143,7 @@ Two shell variables shorten the paths below. `S` is `.skilled/skills/system-spec
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T110 Rebuild the runtime and the CLI from the final tree (`$S/runtime/dist`). Verify: `bash $S/runtime/cli/spec/validate.sh specs/agents-md/001-terminal-proof-discipline --strict --no-recursive | tail -1` prints `RESULT: PASSED`.
+- [x] T110 Rebuild the runtime and the CLI from the final tree (`$S/runtime/dist`). Verify: `bash $S/runtime/cli/spec/validate.sh specs/agents-md/agent-behavior/001-terminal-proof-discipline --strict --no-recursive | tail -1` prints `RESULT: PASSED`.
 - [x] T111 Run the runtime suite on the final tree (`$P/scratch/baseline/suite-runtime-after.txt`). Verify: no test file fails that passed in `suite-runtime-before.txt`. Result (`SPECKIT_TEST_RUN_TIMEOUT_MS=1800000`, as the baseline ran): 1 failed, 276 passed, 3 skipped (280 files) against 1 failed, 275 passed, 3 skipped (279); the one failing file, `resource-map-extractor.vitest.ts` (2 tests), failed in the baseline too. Two earlier attempts at the 600 s default bound were stopped by the runner.
 - [x] T112 Run the CLI suite on the final tree (`$P/scratch/baseline/suite-cli-after.txt`). Verify: no test file fails that passed in `suite-cli-before.txt`. Result: every part exits 0; vitest 187 passed and 3 skipped (190 files, was 184 and 3), 0 failed; validation 84/84.
 - [x] T113 Rerun the strict census on the final tree (`$P/scratch/baseline/b-after.tsv`). Verify: `diff <(cut -f1,2 $P/scratch/baseline/b-before.tsv) <(cut -f1,2 $P/scratch/baseline/b-after.tsv)` prints nothing. Result: sorted by folder, `diff` of path and verdict prints nothing; every full row (errors, warnings, placeholder status) is identical across 4,719 folders.

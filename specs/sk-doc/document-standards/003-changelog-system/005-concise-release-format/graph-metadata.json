@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The changelog template told the writer to copy the 535-line v4.0.0.0 entry and set every ceiling at or above what that entry did, so the expanded format had no file total and no item count",
     "created_at": "2026-11-05T20:05:13Z",
-    "last_save_at": "2026-11-10T05:26:32.857Z",
+    "last_save_at": "2026-11-10T05:38:05.187Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1ecaaa60d5686ddeb678adde8399a0584c78b1e5778f55dbefd664af3182b7bb",
+    "source_fingerprint": "sha256:8e605b2566c5b8cd6d5965412df0e5c4dbff6d2ae26c0df2cfdbecea6bbd67f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fdd452a5c54ac581f3da885d56eeb663072c45854f21ddeb3d91fbcf74441af9",
@@ -229,7 +229,7 @@
       "tasks.md": "1c0e6b3d2992b3019f233e738118043f7e7ad46fa968cd68f6491769d8dd6ecb",
       "decision-record.md": "3bea155840c8797d2798c7ba3610b27e25a9875b28927ba1148eb789bd0686b1",
       "implementation-summary.md": "077985dca3d09ad2574a09b8cc889291ff9d1ebe5859054ace896161fb88662c",
-      "research/research.md": "693b3d22716b4de8310271b314e1e7cf69a0268d180d6b0c66dd1407c59ebb80"
+      "research/research.md": "a29ea03ca170144d18f300986ad59c59cdff79b3fcf43674ca245cc0b93f0a5b"
     },
     "last_active_at": null
   }

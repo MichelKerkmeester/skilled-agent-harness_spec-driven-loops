@@ -229,7 +229,7 @@ Take D1 option A: two exemplars by scale, v4.0.1.0 for many-change releases and 
 
 - Executor: cli-pi, `deepseek-v4.1-flash-1017` via llmgateway, `--thinking max`, 900 s timeout. Each prompt carried the child-dispatch preamble and the inlined `deep-research` persona, with `AI_SESSION_CHILD=1`, `SYSTEM_SPEC_GATE_ENFORCE=0` and `PI_BLACKHOLE_PASSIVE=true` in the environment.
 - Route proof: every delta iteration record carries `target_agent`, `agent_definition_loaded`, `resolved_route` and `mode`. The gateway's projected state log does not, which `verify-iteration.cjs` reports as a warning.
-- Write containment reported paths from a concurrent session: the `specs/agents-md/017-v4-0-1-0-rules-refresh/research/` run, and a 37-file ROUTER.md version bump stamped 21:18:13. None of them came from this run's leaf.
+- Write containment reported paths from a concurrent session: the `specs/agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh/research/` run, and a 37-file ROUTER.md version bump stamped 21:18:13. None of them came from this run's leaf.
 <!-- /ANCHOR:run-notes -->
 
 <!-- ANCHOR:artifact-index -->

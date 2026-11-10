@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/agent-behavior/002-communication-quality",
+  "spec_folder": "agents-md/agent-behavior/002-communication-quality",
+  "parent_id": "agents-md/agent-behavior",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "communication quality",
+      "agents.md",
+      "agents.md plan",
+      "voice reconciliation"
+    ],
+    "key_topics": [
+      "communication",
+      "quality",
+      "agents",
+      "plan",
+      "voice",
+      "reconciliation",
+      "guidance",
+      "root",
+      "scattered",
+      "compressed",
+      "across",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "AGENTS.md",
+      "specs/agents-md/agent-behavior/002-communication-quality/spec.md",
+      "specs/agents-md/agent-behavior/002-communication-quality/plan.md",
+      "specs/agents-md/agent-behavior/002-communication-quality/tasks.md",
+      "specs/agents-md/agent-behavior/002-communication-quality/implementation-summary.md",
+      "specs/agents-md/agent-behavior/002-communication-quality/description.json",
+      "specs/agents-md/agent-behavior/002-communication-quality/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/agents-md/agent-behavior/002-communication-quality/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/agents-md/agent-behavior/002-communication-quality/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/agents-md/agent-behavior/002-communication-quality/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/agents-md/agent-behavior/002-communication-quality/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/agents-md/agent-behavior/002-communication-quality/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/agents-md/agent-behavior/002-communication-quality/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Communication Quality Section",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Communication Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Communication",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Renumber Agent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Routing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Renumber Quick Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Communication guidance in the root `AGENTS.md` is scattered and compressed across §1 (Two registers, Communication, Documentation & Honesty), §4, and §7, with no single home",
+    "created_at": "2026-08-07T07:39:47.413Z",
+    "last_save_at": "2026-11-10T05:37:18.017Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dbd6a08af32c3bf9ccd79a2a7171e341acff7d1e93e034aaad484af6189cabbc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e33c6ed4ff713b0c28fd3afc33d1e7f79a1ed1b72137d9afcd47205ce55387f4",
+      "plan.md": "11e7183cde5d00b428c9ab75c84540a3df11c103926a280af5bf5821c66b31f9",
+      "tasks.md": "db8cabeaa1c5bfb5a1f5f92a39a4135d048e50c66d791320c41123aca6ffa15f",
+      "implementation-summary.md": "15ec8b01b4cfd46d9a9f5376a277a1a29020ad4b70e570ddd5ffdf2764578f8c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

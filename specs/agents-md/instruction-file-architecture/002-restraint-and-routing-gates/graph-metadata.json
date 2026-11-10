@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/instruction-file-architecture/002-restraint-and-routing-gates",
+  "spec_folder": "agents-md/instruction-file-architecture/002-restraint-and-routing-gates",
+  "parent_id": "agents-md/instruction-file-architecture",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-write restraint",
+      "artifact routing gate",
+      "over-engineering",
+      "test bloat",
+      "doctrine amendment",
+      "agents.md",
+      "restraint routing plan",
+      "agents.md plan",
+      "gate 2 artifact trigger",
+      "restraint routing",
+      "restraint and routing gates acceptance criteria",
+      "scope amendment"
+    ],
+    "key_topics": [
+      "pre-write",
+      "restraint",
+      "artifact",
+      "routing",
+      "gate",
+      "over-engineering",
+      "test",
+      "bloat",
+      "doctrine",
+      "amendment",
+      "agents",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "AGENTS.md",
+      ".opencode/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      ".opencode/skills/sk-code/sk-code-review/assets/test-quality-checklist.md",
+      ".opencode/skills/sk-doc/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-standards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-quality-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-review/assets/test-quality-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Restraint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Artifact Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Restraint Ladder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Principles",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
+    "created_at": "2026-08-29T11:13:34.480Z",
+    "last_save_at": "2026-11-10T05:37:18.173Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:78b0db28704c99ce45b1d7285ae05e863072d052d39f55bcf7aa62931bdb0d7a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3b5c982dbfc07d635321f7ee0977449ca2e1a36c8df54a9f6660eeef6a3bd07f",
+      "plan.md": "eee26aba3234ea4263bce25082a7942f095e8f7ea22b361c2fac1a445d4dfaba",
+      "tasks.md": "447e399994c842042f370e3f08b21d5ae580c8f58fcaa0f30f33f6fe8ac07611",
+      "decision-record.md": "7e6816ff8d7bcd20cc6b34d62f218b8d8d4bc20e5b05e5180fafa550430bc8a7",
+      "implementation-summary.md": "9e7bc2757e0b265e96d79ae8b6e5e15be7d9527f8e69311af315b051113a9b61"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

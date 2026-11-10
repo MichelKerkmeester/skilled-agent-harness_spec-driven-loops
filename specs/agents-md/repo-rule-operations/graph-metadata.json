@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/repo-rule-operations",
+  "spec_folder": "agents-md/repo-rule-operations",
+  "parent_id": "agents-md",
+  "children_ids": [
+    "agents-md/repo-rule-operations/001-turn-closeout-next-steps",
+    "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing",
+    "agents-md/repo-rule-operations/003-communication-rules-consolidation",
+    "agents-md/repo-rule-operations/004-router-file-rule-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "agents-md/repo-rule-operations"
+    ],
+    "causal_summary": "Container folder for agents-md/repo-rule-operations."
+  }
+}

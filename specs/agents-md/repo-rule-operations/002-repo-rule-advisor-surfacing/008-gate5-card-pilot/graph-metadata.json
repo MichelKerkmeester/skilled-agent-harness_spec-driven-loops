@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/008-gate5-card-pilot",
+  "spec_folder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/008-gate5-card-pilot",
+  "parent_id": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gate 5 card pilot",
+      "card plus self-check",
+      "resident reply rule cards",
+      "rule card generator",
+      "gate 5 card pilot plan",
+      "card plus self-check plan",
+      "gate 5 card pilot tasks",
+      "gate5 card pilot acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "gate",
+      "card",
+      "pilot",
+      "plus",
+      "self-check",
+      "resident",
+      "reply",
+      "rule",
+      "cards",
+      "generator",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "experiment/arms.json",
+      "experiment/prompts.json",
+      "results/final-scores.txt",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+      "results/deviations.md",
+      "results/decision.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "arms.json",
+        "kind": "config",
+        "path": "experiment/arms.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompts.json",
+        "kind": "config",
+        "path": "experiment/prompts.json",
+        "source": "derived"
+      },
+      {
+        "name": "final-scores.txt",
+        "kind": "file",
+        "path": "results/final-scores.txt",
+        "source": "derived"
+      },
+      {
+        "name": "build-rule-cards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-repo-rules.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deviations.md",
+        "kind": "doc",
+        "path": "results/deviations.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision.md",
+        "kind": "doc",
+        "path": "results/decision.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pilot Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Generate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Generated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A plain card drops the operative bans in 6 of 13 rules",
+    "created_at": "2026-10-04T14:40:01Z",
+    "last_save_at": "2026-11-10T05:37:21.063Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5eb1582d6b1b07ed47251549e81ceff2ba817275326e8a21f884de512bd90377",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bd0e3859f151c11bf8cfa0576c9a3652acb2580c9bdb550feb6c77248c60d771",
+      "plan.md": "4221202ace47c62fe74a6bbc7a6abf7488cc5a623878ec30e69a94fd4ed295ee",
+      "tasks.md": "1517acc572e4c283dcae817d0f459a7e68e44888db11f591cec53a0649603535",
+      "decision-record.md": "eb976e4d3f03bc796b08e82264ccd15bf6f5339d8b46d6f7f1a03d78d9d53a82",
+      "implementation-summary.md": "de99697b358795779db38b5f3d4eb7f57736476bc0e984a21972330ca3c9d622"
+    },
+    "last_active_at": null
+  }
+}

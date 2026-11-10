@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/agent-behavior/001-terminal-proof-discipline",
+  "spec_folder": "agents-md/agent-behavior/001-terminal-proof-discipline",
+  "parent_id": "agents-md/agent-behavior",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "terminal proof discipline",
+      "governor directive injection",
+      "AGENTS.md improvement",
+      "hidden test final state",
+      "proof over appearance",
+      "terminal proof plan",
+      "AGENTS.md plan",
+      "directive capsule plan",
+      "terminal proof tasks",
+      "directive capsule tasks",
+      "terminal proof decisions",
+      "governor hook finding"
+    ],
+    "key_topics": [
+      "terminal",
+      "proof",
+      "discipline",
+      "governor",
+      "directive",
+      "injection",
+      "agents",
+      "improvement",
+      "hidden",
+      "test",
+      "final",
+      "state"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "dist/hooks/claude/user-prompt-submit.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proof Discipline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Directive Injection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Integrate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Placement Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Terminal Discipline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A terminal-engineer benchmark prompt encodes a verification protocol that AGENTS.md did not express: encode every requirement as an objective pass-or-fail command, watch the check fail before fixing, fix the root cause once, and close with a clean re-run plus a stray-file sweep",
+    "created_at": "2026-08-05T00:00:00Z",
+    "last_save_at": "2026-11-10T05:37:18.089Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0024077969cbe56b17bee96e9688e012cf94de4359e162c46fb3cfaf11176f33",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ade2b2a835958d523688c264ca4d6dafb85224d47cf4107d286dade2ed5065c1",
+      "plan.md": "8a5fd392d835e8c4f3be4b98567277da0d2c09a71424f56b9272c1cefe69ea98",
+      "tasks.md": "f4fd74afc2631c076a6fa48f003279f0294ec0a982f13ac46b440259f450d4fa",
+      "decision-record.md": "b97464abbf3768f753f0899e01944ce08a150f24a9e573b6fef939da5563f71e",
+      "implementation-summary.md": "df7199b1c34e0fe8a2886bf8b58965fb4b99e45fca2594c03ef31d651e1bff1c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "agents-md/agent-behavior",
+  "description": "Defines how the agent reasons, communicates, and reports proof, including the avoidance patterns that erode trust.",
+  "keywords": [
+    "agent",
+    "behavior"
+  ],
+  "lastUpdated": "2026-11-10T05:37:13.346Z",
+  "specId": "agents-md/agent-behavior",
+  "folderSlug": "agent-behavior",
+  "parentChain": [
+    "agents-md"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

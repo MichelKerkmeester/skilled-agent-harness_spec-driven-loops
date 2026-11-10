@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "agents-md/instruction-surface-integrity/002-git-workspace-repo-agnostic",
+  "description": "`AGENTS.md` (and its `CLAUDE.md` symlink) is a portable framework doc, yet its Git Workspace Safety rows hardcode this repo's sk-git implementation:",
+  "keywords": [
+    "agents",
+    "claude",
+    "symlink",
+    "portable",
+    "framework",
+    "doc",
+    "git",
+    "workspace",
+    "safety",
+    "rows",
+    "hardcode",
+    "repo",
+    "sk-git",
+    "implementation"
+  ],
+  "lastUpdated": "2026-08-16T09:05:15.011Z",
+  "specId": "005",
+  "folderSlug": "git-workspace-repo-agnostic",
+  "parentChain": [
+    "agents-md"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "16-08-26_09-23__agents-md-git-rows-rewritten-repo-agnostic.md",
+    "16-08-26_10-05__agents-md-git-rows-rewritten-repo-agnostic.md"
+  ]
+}

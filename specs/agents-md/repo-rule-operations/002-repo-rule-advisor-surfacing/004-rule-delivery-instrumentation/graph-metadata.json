@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation",
+  "spec_folder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation",
+  "parent_id": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rule delivery instrumentation",
+      "gate 5 miss rate",
+      "reply rule miss rate",
+      "rule compliance analyzer",
+      "rule delivery instrumentation plan",
+      "gate 5 miss rate plan",
+      "rule delivery instrumentation tasks",
+      "rule delivery instrumentation acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "rule",
+      "delivery",
+      "instrumentation",
+      "gate",
+      "miss",
+      "rate",
+      "reply",
+      "compliance",
+      "analyzer",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "baselines/2026-10-04-baseline.txt",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2026-10-04-baseline.txt",
+        "kind": "file",
+        "path": "baselines/2026-10-04-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "measure-rule-compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_measure_rule_compliance.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Offline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compute Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The evidence pack counts a rule as read only when the `Read` tool named its path, so shell reads and hook injections are missed and the counts undercount (`002-rule-concision-and-loading/prep/evidence-pack.md` §2)",
+    "created_at": "2026-10-04T14:39:56Z",
+    "last_save_at": "2026-11-10T05:37:20.933Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8028c3a30b164c7835ebb3b4c6a61ef21fc2967fdac608a3a294c61700ce9467",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "37ed34ca6597d0e5368495e632af195650a5e2185d0a6c993748909208fa29d8",
+      "plan.md": "590512ee495958679e5ddb89e019fdcbb4695d4627bb6241d71a4427977923e7",
+      "tasks.md": "102ddade8862c1040001c0134affbf049be13f3a1fa7c15dc7eb4e24b2f4d512",
+      "implementation-summary.md": "093333dfea10148d2615b07cff399e40e43147761dc3070b63d7aa0c00458513"
+    },
+    "last_active_at": null
+  }
+}

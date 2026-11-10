@@ -48,9 +48,8 @@
       ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
       "codex/sync-agents.cjs",
       "pi/sync-agents-pi.cjs",
-      "hermes/sync-skills-hermes.cjs",
       ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.2.0.md",
-      "specs/agents-md/010-prompting-guide-alignment/research/synthesis.md"
+      "specs/agents-md/instruction-file-architecture/004-prompting-guide-alignment/research/synthesis.md"
     ],
     "entities": [
       {
@@ -96,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "sync-skills-hermes.cjs",
-        "kind": "file",
-        "path": "hermes/sync-skills-hermes.cjs",
-        "source": "derived"
-      },
-      {
         "name": "v1.0.2.0.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.2.0.md",
@@ -110,7 +103,7 @@
       {
         "name": "synthesis.md",
         "kind": "doc",
-        "path": "specs/agents-md/010-prompting-guide-alignment/research/synthesis.md",
+        "path": "specs/agents-md/instruction-file-architecture/004-prompting-guide-alignment/research/synthesis.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The agent template tells every agent to open with a `CRITICAL:` and an `IMPORTANT:` statement and to head its verification checklists `(MANDATORY)`",
     "created_at": "2026-09-24T12:40:08Z",
-    "last_save_at": "2026-10-31T15:23:29.731Z",
+    "last_save_at": "2026-11-10T05:38:03.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc2ec330184de8f854d09257b4e5eb250045872675ad30d91a561e09d946cfbc",
+    "source_fingerprint": "sha256:f15e9a93b20654ee048620aae7e8d1fb93a461a30ca03341e912547fe48dd19c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1f58e7a86daedbd096e700867e34dec7a00ce5ef6ab45abcdf939b60e20e05a6",
       "plan.md": "29b3ee77dcbed9409128486a03d2dd615002a05186f7561ad93208f83186385e",
-      "tasks.md": "dedadb67af8c375ff0c63747a8567995ce6a9595ada656dd027a7b27639e401a",
+      "tasks.md": "bd07dd55044f39d4d6c6c4518dc8d925850c64e8cf091208180cf362410bec30",
       "implementation-summary.md": "0b06605aadb8157f197cc059a9fa1674e4602138862318853624ee9c4a149f17"
     },
     "last_active_at": null

@@ -128,7 +128,7 @@ A later handoff sweep, run by the parent build orchestrator once every packet ha
 | `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | PASS, exit 0 |
 | `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` | PASS, 67 passed, 0 failed |
 | `node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree` | PASS, exit 0, OK |
-| `node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir specs/agents-md/008-repo-rule-system-integration/research` | PASS, exit 0, metric rows printed |
+| `node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir specs/agents-md/instruction-file-architecture/003-repo-rule-system-integration/research` | PASS, exit 0, metric rows printed |
 | `validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict` | PASS, 15 of 15 `RESULT: PASSED` |
 | Handoff sweep: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` | PASS, 69 passed, 0 failed, exit 0; against the HEAD hook the new case fails (68 passed, 1 failed) |
 | Handoff sweep: `bash -n .skilled/scripts/git-hooks/pre-commit` | PASS, exit 0 |
