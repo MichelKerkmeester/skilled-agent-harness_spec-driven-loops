@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ed45ebef820a16f2b6bc0cd39ba9e861a2befc8324c80c5bcedfed767ca25321",
+  "manifestHash": "72ded7df0f636b3cc9d45bfaac3bc8e6fdf504b3847c16ecc65f11f87784e025",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -80861,6 +80861,9 @@
     "phase 8 surface hint hub root": [
       "phase 8 surface hint hub root"
     ],
+    "phase 8 track subtrack regrouping": [
+      "phase 8 track subtrack regrouping"
+    ],
     "phase 8 write containment scoping": [
       "phase 8 write containment scoping"
     ],
@@ -120774,6 +120777,21 @@
     ],
     "track roots sweep script": [
       "track roots sweep script"
+    ],
+    "track subtrack regrouping": [
+      "track subtrack regrouping"
+    ],
+    "track subtrack regrouping acceptance criteria": [
+      "track subtrack regrouping acceptance criteria"
+    ],
+    "track subtrack regrouping implementation summary": [
+      "track subtrack regrouping implementation summary"
+    ],
+    "track subtrack regrouping plan": [
+      "track subtrack regrouping plan"
+    ],
+    "track subtrack regrouping tasks": [
+      "track subtrack regrouping tasks"
     ],
     "track the never committed code mode server manifest": [
       "track the never committed code mode server manifest"
