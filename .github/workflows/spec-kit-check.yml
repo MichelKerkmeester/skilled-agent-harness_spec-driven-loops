@@ -140,24 +140,13 @@ jobs:
       - name: Install ripgrep
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ripgrep
 
-      # One file, upgrade-legacy, takes about half of the project's serial time,
-      # so the project runs as two processes: that file alone, and every other
-      # file. Splitting by file count instead left the heavy file's half several
-      # times slower than the other. If the heavy file is renamed, the first
-      # process finds no test file and fails, so the split cannot silently drop it.
+      # No single file dominates the cli project's run time, so the project
+      # runs as one process.
       - name: CLI vitest project
         run: |
-          # -e is off so the first wait cannot exit before the second process is reaped. Each wait records its failure in status instead.
           set -uo pipefail
           cd .opencode/skills/system-spec-kit/runtime/cli
-          npx vitest run --config ../../vitest.config.ts --project cli tests/upgrade-legacy.vitest.ts &
-          first=$!
-          npx vitest run --config ../../vitest.config.ts --project cli --exclude tests/upgrade-legacy.vitest.ts &
-          second=$!
-          status=0
-          wait "$first" || status=1
-          wait "$second" || status=1
-          exit "$status"
+          npx vitest run --config ../../vitest.config.ts --project cli
 
       - name: Legacy module lanes and the bash validation suites
         # These lanes are what `npm test` runs after the vitest project, and they

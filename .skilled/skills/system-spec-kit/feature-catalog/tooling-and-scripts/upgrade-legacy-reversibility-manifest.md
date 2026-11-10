@@ -6,7 +6,7 @@ trigger_phrases:
   - "upgrade-legacy manifest"
   - "upgrade-legacy.manifest.json"
   - "upgrade-legacy apply refusal"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Upgrade-legacy reversibility manifest and refusals (upgrade-legacy.mjs)
@@ -51,7 +51,7 @@ A tree whose packets still live under the legacy `.opencode` spec root is refuse
 
 | File | Type | Role |
 |------|------|------|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts` | Vitest | Covers the dry run and apply paths, including the unwritable manifest case |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy-core-a.vitest.ts` | Vitest | Covers the dry run and apply paths, including the unwritable manifest case |
 | `.skilled/skills/system-spec-kit/runtime/tests/upgrade-baseline.vitest.ts` | Vitest | Covers how the baseline the run records is read back on a later dry run |
 
 ---
