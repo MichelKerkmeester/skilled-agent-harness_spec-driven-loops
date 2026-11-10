@@ -33,7 +33,7 @@
     {
       "id": "question-3-q3-which-fixes-from-the-hook-hardening-in-specs-sk-git-032-template-driven-messa",
       "inboxId": null,
-      "text": "Q3: Which fixes from the hook hardening in specs/sk-git/032-template-driven-message-enforcement children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a) does the Repository Checks section already cover, and which are missing or described differently from what shipped?",
+      "text": "Q3: Which fixes from the hook hardening in specs/sk-git/commit-standards/004-template-driven-message-enforcement children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a) does the Repository Checks section already cover, and which are missing or described differently from what shipped?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -82,7 +82,7 @@
     {
       "id": "question-3-q3-which-fixes-from-the-hook-hardening-in-specs-sk-git-032-template-driven-messa",
       "inboxId": null,
-      "text": "Q3: Which fixes from the hook hardening in specs/sk-git/032-template-driven-message-enforcement children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a) does the Repository Checks section already cover, and which are missing or described differently from what shipped?",
+      "text": "Q3: Which fixes from the hook hardening in specs/sk-git/commit-standards/004-template-driven-message-enforcement children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a) does the Repository Checks section already cover, and which are missing or described differently from what shipped?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,

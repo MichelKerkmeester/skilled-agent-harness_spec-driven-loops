@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards",
+  "spec_folder": "sk-git/commit-standards",
+  "parent_id": "sk-git",
+  "children_ids": [
+    "sk-git/commit-standards/001-crawlable-commit-history",
+    "sk-git/commit-standards/002-commit-body-always-required",
+    "sk-git/commit-standards/003-fix-broad-staging-in-examples",
+    "sk-git/commit-standards/004-template-driven-message-enforcement",
+    "sk-git/commit-standards/005-git-setup-customization",
+    "sk-git/commit-standards/006-standards-template-round-trip",
+    "sk-git/commit-standards/007-advisory-cd-prefix-env-steps"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-git/commit-standards"
+    ],
+    "causal_summary": "Container folder for sk-git/commit-standards."
+  }
+}

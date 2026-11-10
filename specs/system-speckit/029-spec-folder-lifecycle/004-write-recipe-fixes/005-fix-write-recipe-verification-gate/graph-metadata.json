@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The last line of Step 7 in the spec folder write recipe said to confirm that `git status --short` only includes the intended packet files before commit",
     "created_at": "2026-09-29T07:19:57Z",
-    "last_save_at": "2026-10-31T13:26:30.111Z",
+    "last_save_at": "2026-11-10T05:09:24.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76abf9d49b7f50ef7dd3394ebccf852206417936c0c636390c253eb0c20e4da4",
+    "source_fingerprint": "sha256:5e28dc373eb3e1f678419c8b2fb8edc550cfc4b8c7dcb9fe37daf755f0877af3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e50d01c4d2cda7ab3bf30d495625a4b9d8b1febb5235fb18511d0480892ceb9",
+      "spec.md": "3fe9a8012147e9a35adf8c704dad946c441e656bc08f22ade6e01bb9bc328bec",
       "plan.md": "d759f71cb9e3a99543b2707280795071cf286559d6ecae02042fae81e61a84b8",
       "tasks.md": "5186ef5dbd6834d8e2efe41cc60d579905862262c2b150c5f142a2fda94d9915",
       "implementation-summary.md": "45b742ac1bee6baad6a71119553869ebeec7b5af66ce8fac71c8962d3b273161"

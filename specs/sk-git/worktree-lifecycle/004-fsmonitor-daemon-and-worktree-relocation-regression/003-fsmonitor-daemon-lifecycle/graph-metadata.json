@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
+  "spec_folder": "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/003-fsmonitor-daemon-lifecycle",
+  "parent_id": "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fsmonitor daemon lifecycle",
+      "phase 3 fsmonitor daemon lifecycle",
+      "fsmonitor daemon lifecycle plan",
+      "fsmonitor daemon lifecycle tasks",
+      "fsmonitor daemon lifecycle acceptance criteria",
+      "fsmonitor daemon lifecycle implementation summary"
+    ],
+    "key_topics": [
+      "fsmonitor",
+      "daemon",
+      "lifecycle",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "git",
+      "worktree"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/fsmonitor-daemon-reaper.sh",
+      ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
+      ".skilled/bin/worktree-session.sh",
+      ".skilled/bin/tests/worktree-session.test.sh",
+      ".skilled/bin/worktree-reaper.sh",
+      ".skilled/bin/tests/worktree-reaper.test.sh",
+      ".skilled/bin/README.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/skills/sk-git/references/finish-workflows.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs",
+      "scratch/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/fsmonitor-daemon-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "fsmonitor-daemon-reaper.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/fsmonitor-daemon-reaper.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-session.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".skilled/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.test.sh",
+        "kind": "script",
+        "path": ".skilled/bin/tests/worktree-reaper.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-gate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each git worktree that reads its index starts its own `git fsmonitor--daemon`, and macOS never retires one on its own",
+    "created_at": "2026-10-27T08:12:32Z",
+    "last_save_at": "2026-11-10T05:07:16.901Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8418f10048f091bd107765daf3223ae83b02ced2cdd08f5de043b9efc31ae8c6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b252bed805a0a848cbee8668a51d0d43aa47e558561634064862c33b1ae363ae",
+      "plan.md": "10b4389353ceb97cccce4f99e6af530a6c13869a3e3321ba5623fbeda7841bd7",
+      "tasks.md": "0ed86f77c1d699a6014a873db67320f471532b6e9c68a1359f0a4d75a9004de7",
+      "implementation-summary.md": "f31b4e96cc728696b8febb4ad9340fb1002405aa77d83dc8f5a5e0331da95147"
+    },
+    "last_active_at": null
+  }
+}

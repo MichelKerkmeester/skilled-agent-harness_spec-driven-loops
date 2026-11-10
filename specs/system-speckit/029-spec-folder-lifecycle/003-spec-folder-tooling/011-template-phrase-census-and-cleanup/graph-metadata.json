@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A packet that keeps a template's default trigger phrases is indexed under words that describe the template, not the work",
     "created_at": "2026-10-07T09:58:46Z",
-    "last_save_at": "2026-10-31T13:58:16.717Z",
+    "last_save_at": "2026-11-10T05:09:24.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ac356f8eaace57a2f617b27c79e895fd1e374a5060b465447638dca0ae3283d",
+    "source_fingerprint": "sha256:6ffbd8b748c0156354a090d702c82bcbabbcd1e7b736d4ed2f299c7fdbb78501",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5565d95f7a13a949100c8abc73994eca4ae38a72fe9aa0cb98e5a307afc939a1",
       "plan.md": "e50994c97f2480b5a90aa15d6e799b55f7596e50773d88798b52b961f55f21aa",
-      "tasks.md": "63135921306694f4cde131ad3182847166cb06c88980f13f4cbf397616798e33",
+      "tasks.md": "9e2b0eccd1fc9f451cd4a7ff1aacc88a8981c60556415e38c4df1ca0bc79cfa1",
       "implementation-summary.md": "6f9ea02c5013493db514f65cd39429cd4cc9119d4ae2388bfde84f94d584301a"
     },
     "last_active_at": null

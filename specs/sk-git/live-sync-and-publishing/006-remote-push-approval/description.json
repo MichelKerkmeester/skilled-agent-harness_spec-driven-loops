@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/live-sync-and-publishing/006-remote-push-approval",
+  "description": "Only approved branches reach origin, and no session can create a remote branch on its own.",
+  "keywords": [
+    "only",
+    "approved",
+    "branches",
+    "reach",
+    "origin",
+    "session",
+    "remote",
+    "branch",
+    "own"
+  ],
+  "lastUpdated": "2026-08-29T20:38:30.259Z",
+  "specId": "027",
+  "folderSlug": "remote-push-approval",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

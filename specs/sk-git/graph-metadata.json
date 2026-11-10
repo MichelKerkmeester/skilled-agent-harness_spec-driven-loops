@@ -4,25 +4,9 @@
   "spec_folder": "sk-git",
   "parent_id": null,
   "children_ids": [
-    "sk-git/020-live-sync-harden-default-on",
-    "sk-git/021-hook-gate-hardening",
-    "sk-git/022-worktree-branch-naming-overhaul",
-    "sk-git/023-live-follow-disjoint-ff",
-    "sk-git/024-rebase-abort-head-preservation",
-    "sk-git/025-main-protection-ruleset-relax",
-    "sk-git/026-worktree-hygiene-and-relocation",
-    "sk-git/027-remote-push-approval",
-    "sk-git/028-crawlable-commit-history",
-    "sk-git/029-worktree-dependency-provisioning",
-    "sk-git/030-commit-body-always-required",
-    "sk-git/031-fix-broad-staging-in-examples",
-    "sk-git/032-template-driven-message-enforcement",
-    "sk-git/033-git-setup-customization",
-    "sk-git/034-standards-template-round-trip",
-    "sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression",
-    "sk-git/036-personal-name-scrub",
-    "sk-git/037-advisory-cd-prefix-env-steps",
-    "sk-git/038-provision-private-command-links"
+    "sk-git/commit-standards",
+    "sk-git/live-sync-and-publishing",
+    "sk-git/worktree-lifecycle"
   ],
   "manual": {
     "depends_on": [],
@@ -50,7 +34,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "sk-git/026-worktree-hygiene-and-relocation",
+    "last_active_child_id": "sk-git/worktree-lifecycle/002-worktree-hygiene-and-relocation",
     "last_active_at": "2026-08-21T14:16:48.448Z"
   }
 }

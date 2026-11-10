@@ -29,7 +29,7 @@ The answer both lineages converge on: generate doctor command bridges from `_rou
 
 ## 2. Scope and Boundary
 
-Research only. Both lineages wrote under their own `research/lineages/<label>/` roots; the orchestrator wrote only under `research/`. No advisor, command, hook, test or skill file was modified. The two other deep loops running in `specs/sk-git/033-git-setup-customization/` were not touched; the fan-out runner's `shared_checkout_detected` warnings during the run reflect their concurrent writes, and `git status` after the run showed no change outside this packet beyond the two pre-existing `033` modifications.
+Research only. Both lineages wrote under their own `research/lineages/<label>/` roots; the orchestrator wrote only under `research/`. No advisor, command, hook, test or skill file was modified. The two other deep loops running in `specs/sk-git/commit-standards/005-git-setup-customization/` were not touched; the fan-out runner's `shared_checkout_detected` warnings during the run reflect their concurrent writes, and `git status` after the run showed no change outside this packet beyond the two pre-existing `033` modifications.
 
 ---
 

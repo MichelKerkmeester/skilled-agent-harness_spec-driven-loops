@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards/004-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
+  "spec_folder": "sk-git/commit-standards/004-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
+  "parent_id": "sk-git/commit-standards/004-template-driven-message-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook docs alignment",
+      "env reference hook switches",
+      "spec trailer containment",
+      "staged blob read failure",
+      "hook docs alignment plan",
+      "env reference switch plan",
+      "hook docs alignment tasks",
+      "hook docs alignment acceptance",
+      "env reference switch acceptance",
+      "hook docs alignment summary"
+    ],
+    "key_topics": [
+      "hook",
+      "docs",
+      "alignment",
+      "env",
+      "reference",
+      "switches",
+      "spec",
+      "trailer",
+      "containment",
+      "staged",
+      "blob",
+      "read"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/scripts/install-git-hooks.sh",
+      "scratch/audit-report.md",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      ".skilled/scripts/git-hooks/README.md",
+      ".skilled/hooks/git/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+      ".skilled/bin/lib/README.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "audit-report.md",
+        "kind": "doc",
+        "path": "scratch/audit-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hook changes in phases 1 and 2 left their docs behind",
+    "created_at": "2026-10-02T16:34:18Z",
+    "last_save_at": "2026-11-10T05:07:12.630Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:efe33a7c5c3f12c8a1ae729840f55a870293de6bb5a45428467d5aa82f857fc3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f7a939abe9869121942aef282f41b4e1f02762402a036f82bb183ffcd75ea369",
+      "plan.md": "1f8ab0f7b59110f79f2b73ab0a95affe6c1a348df62afc353d3da7b2146fb669",
+      "tasks.md": "a54895892800602920ffc4b817af11c75fd31f3af733d8c243fa1f8300178639",
+      "implementation-summary.md": "b20ae8abe544baf780367a2e250c1ed381b0b6bb2a9f0c962b1faf87752f1c2d"
+    },
+    "last_active_at": null
+  }
+}

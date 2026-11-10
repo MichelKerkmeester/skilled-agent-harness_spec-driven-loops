@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/worktree-lifecycle/001-worktree-branch-naming-overhaul",
+  "spec_folder": "sk-git/worktree-lifecycle/001-worktree-branch-naming-overhaul",
+  "parent_id": "sk-git/worktree-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree branch naming overhaul spec",
+      "worktree branch naming overhaul plan",
+      "worktree branch naming overhaul tasks",
+      "worktree branch naming overhaul decision record",
+      "worktree branch naming overhaul implementation summary"
+    ],
+    "key_topics": [
+      "worktree",
+      "branch",
+      "naming",
+      "overhaul",
+      "spec",
+      "plan",
+      "tasks",
+      "decision",
+      "record",
+      "implementation",
+      "summary",
+      "owner-first"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+      ".opencode/skills/sk-git/scripts/migrate-legacy-branch-names.sh",
+      ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".opencode/skills/sk-git/SKILL.md",
+      "scripts/README.md",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+      ".opencode/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-legacy-branch-names.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/migrate-legacy-branch-names.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Branch Naming Overhaul",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Replace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The owner-first grammar scatters the Git-UI branch tree into a per-skill pile and couples every branch to a single clone-wide 4-digit counter that cannot be scoped per namespace",
+    "created_at": "2026-08-16T06:45:24.918Z",
+    "last_save_at": "2026-11-10T05:07:16.241Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:566d5e50feb7688b3a593d50c5a5aac5c182c1676f31368b227fdd416976e3cf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c58ee0ed1ed00016f72d2a50e2f4ac33c3b2039d2b5712285b03683c53b535de",
+      "plan.md": "95647a599457c8d28042bf66d3a771e2c7bd583bf157fb7850782297439411ea",
+      "tasks.md": "6c7bc723a5b1752cacf573cd86028e56bf07ce99ecf420c5d90cc2c20b03f49e",
+      "decision-record.md": "90a1f0dc5738131d0bbf59a03a9265414ded6674b64c5e224dc24c2af35928bc",
+      "implementation-summary.md": "15192bddef20513d6e670c8218e857706dece99517eed6068061c6f2cd7463f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

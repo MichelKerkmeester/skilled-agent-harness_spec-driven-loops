@@ -60,7 +60,7 @@ This is **Phase 3** of the Create the sk-create-goal sk-doc mode that authors pa
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Goal files can retain a template objective, include criteria that require checking other files or state a child count that conflicts with the binding table (specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43; specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90; specs/sk-git/028-crawlable-commit-history/goal.md:81-90,111). The goal template defines the objective, frozen-decision, criteria and volatile-log sections, but it does not decide whether their content is clear and checkable (.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:49,53,96-115; specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:39-45).
+Goal files can retain a template objective, include criteria that require checking other files or state a child count that conflicts with the binding table (specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43; specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90; specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:81-90,111). The goal template defines the objective, frozen-decision, criteria and volatile-log sections, but it does not decide whether their content is clear and checkable (.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:49,53,96-115; specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:39-45).
 
 ### Purpose
 Give sk-create-goal a reader-checkable standard for goal content, with corpus examples that show where the standard passes and fails.
@@ -106,7 +106,7 @@ Give sk-create-goal a reader-checkable standard for goal content, with corpus ex
 | REQ-001 | Define five standards for objective, decisions, criteria, log and voice. Each standard names the failure it prevents, gives a reader check and cites at least one real goal example. |
 | REQ-002 | Require one purpose-led objective sentence, recognisable frozen decisions that change only by amendment, and three to seven criteria whose answers are an exit code, a count or a named artifact without relying on another file. |
 | REQ-003 | Keep progress, evidence, deviations and findings in the volatile log, outside the durable directive, and apply the Human Voice Rules to authored goal prose (.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:110-128; .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:39-97). |
-| REQ-004 | Include and classify all three known-bad examples as failures and the known-good phase-child objective as a pass, with verified path:line citations (specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:41-45). Use real goal excerpts to demonstrate the decision, criteria, log and voice checks as well (specs/sk-git/028-crawlable-commit-history/001-research/goal.md:43,45-53,75-100). |
+| REQ-004 | Include and classify all three known-bad examples as failures and the known-good phase-child objective as a pass, with verified path:line citations (specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:41-45). Use real goal excerpts to demonstrate the decision, criteria, log and voice checks as well (specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:43,45-53,75-100). |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -171,11 +171,11 @@ Give sk-create-goal a reader-checkable standard for goal content, with corpus ex
 
 ### Objective Boundaries
 - A goal keeps the template's sample objective unchanged; the rubric must flag it as placeholder text (specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43).
-- A phase objective names a deliverable but its purpose is still clear; the good child example must pass (specs/sk-git/028-crawlable-commit-history/001-research/goal.md:43).
+- A phase objective names a deliverable but its purpose is still clear; the good child example must pass (specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:43).
 
 ### Criterion Boundaries
 - A criterion needs another file to decide whether it passed; the rubric must flag the dependency (specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90).
-- A criterion names a child count that disagrees with the binding rows; the rubric must flag the mismatch (specs/sk-git/028-crawlable-commit-history/goal.md:81-90,111).
+- A criterion names a child count that disagrees with the binding rows; the rubric must flag the mismatch (specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:81-90,111).
 <!-- /ANCHOR:edge-cases -->
 
 ---

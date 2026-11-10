@@ -27485,7 +27485,7 @@
       "lastUpdated": "2026-08-15T14:41:02.224Z"
     },
     {
-      "specFolder": "sk-git/020-live-sync-harden-default-on",
+      "specFolder": "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
       "description": "The continuous-integration model built by `007-continuous-integration-workflow` publishes every launch-wrapper session commit to a shared live branch",
       "keywords": [
         "continuous-integration",
@@ -27503,7 +27503,7 @@
       "lastUpdated": "2026-08-15T14:41:02.228Z"
     },
     {
-      "specFolder": "sk-git/021-hook-gate-hardening",
+      "specFolder": "sk-git/live-sync-and-publishing/002-hook-gate-hardening",
       "description": "Work Item 1 addressed silent live-sync gate failures: the publisher discarded `git push` stderr, misreported policy rejections as races, and lacked a",
       "keywords": [
         "work",
@@ -27527,7 +27527,7 @@
       "lastUpdated": "2026-08-15T17:20:26.027Z"
     },
     {
-      "specFolder": "sk-git/022-worktree-branch-naming-overhaul",
+      "specFolder": "sk-git/worktree-lifecycle/001-worktree-branch-naming-overhaul",
       "description": "The owner-first grammar scatters the Git-UI branch tree into a per-skill pile and couples every branch to a single clone-wide 4-digit counter that",
       "keywords": [
         "owner-first",
@@ -27548,7 +27548,7 @@
       "lastUpdated": "2026-09-07T16:15:00.656Z"
     },
     {
-      "specFolder": "sk-git/023-live-follow-disjoint-ff",
+      "specFolder": "sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff",
       "description": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated",
       "keywords": [
         "relax",
@@ -27569,7 +27569,7 @@
       "lastUpdated": "2026-08-18T10:12:06.484Z"
     },
     {
-      "specFolder": "sk-git/024-rebase-abort-head-preservation",
+      "specFolder": "sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation",
       "description": "The live-sync reconcilers publish a session's commits onto the shared live branch",
       "keywords": [
         "live-sync",
@@ -27585,7 +27585,7 @@
       "lastUpdated": "2026-08-20T08:39:48.828Z"
     },
     {
-      "specFolder": "sk-git/025-main-protection-ruleset-relax",
+      "specFolder": "sk-git/live-sync-and-publishing/005-main-protection-ruleset-relax",
       "description": "Every direct push to `main` records a bypass entry under the repository's Rule Insights, surfaced to the operator as \"1 violation (unsigned / no-PR)\"",
       "keywords": [
         "every",
@@ -27607,7 +27607,7 @@
       "lastUpdated": "2026-08-21T08:55:50.739Z"
     },
     {
-      "specFolder": "sk-git/026-worktree-hygiene-and-relocation",
+      "specFolder": "sk-git/worktree-lifecycle/002-worktree-hygiene-and-relocation",
       "description": "The repo carried 24 git worktrees nested inside the primary checkout at",
       "keywords": [
         "repo",
@@ -27622,7 +27622,7 @@
       "lastUpdated": "2026-08-21T14:16:44.595Z"
     },
     {
-      "specFolder": "sk-git/027-remote-push-approval",
+      "specFolder": "sk-git/live-sync-and-publishing/006-remote-push-approval",
       "description": "Only approved branches reach origin, and no session can create a remote branch on its own.",
       "keywords": [
         "only",

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/worktree-lifecycle",
+  "spec_folder": "sk-git/worktree-lifecycle",
+  "parent_id": "sk-git",
+  "children_ids": [
+    "sk-git/worktree-lifecycle/001-worktree-branch-naming-overhaul",
+    "sk-git/worktree-lifecycle/002-worktree-hygiene-and-relocation",
+    "sk-git/worktree-lifecycle/003-worktree-dependency-provisioning",
+    "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression",
+    "sk-git/worktree-lifecycle/005-personal-name-scrub",
+    "sk-git/worktree-lifecycle/006-provision-private-command-links"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-git/worktree-lifecycle"
+    ],
+    "causal_summary": "Container folder for sk-git/worktree-lifecycle."
+  }
+}

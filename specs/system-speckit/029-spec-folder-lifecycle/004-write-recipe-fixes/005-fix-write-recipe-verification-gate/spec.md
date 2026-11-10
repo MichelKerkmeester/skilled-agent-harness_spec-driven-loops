@@ -49,7 +49,7 @@ The gate checks what is actually staged, which is the one thing that decides wha
 - Bring the recipe's `version:` to the derived value with the versioning engine, plus one for the commit that carries this change.
 
 ### Out of Scope
-- The sk-git example fixes that share this defect class, which live in packet `sk-git/031-fix-broad-staging-in-examples` and ship in the next commit.
+- The sk-git example fixes that share this defect class, which live in packet `sk-git/commit-standards/003-fix-broad-staging-in-examples` and ship in the next commit.
 - Any change to the hook or to the sk-git contract itself.
 
 ### Files to Change

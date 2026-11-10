@@ -54,13 +54,13 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
       "scripts/README.md",
       ".skilled/skills/sk-code/SKILL.md",
-      ".hermes/skills/sk-code/SKILL.md",
-      ".hermes/skills/sk-code-quality/SKILL.md",
       "specs/sk-code/015-quality-agnostic-gate/001-honest-checker/implementation-summary.md",
       "specs/sk-code/015-quality-agnostic-gate/spec.md",
       "specs/sk-code/015-quality-agnostic-gate/changelog/changelog-015-007-checker-debt-closeout.md",
       ".github/workflows/comment-hygiene.yml",
-      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json"
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      "specs/system-speckit/026-graph-and-context-optimization/scratch/reorg-2026-04-25/rewrite_relative_refs.py",
+      "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases/scratch/diag-lag-read.sh"
     ],
     "entities": [
       {
@@ -154,6 +154,18 @@
         "source": "derived"
       },
       {
+        "name": "rewrite_relative_refs.py",
+        "kind": "file",
+        "path": "specs/system-speckit/026-graph-and-context-optimization/scratch/reorg-2026-04-25/rewrite_relative_refs.py",
+        "source": "derived"
+      },
+      {
+        "name": "diag-lag-read.sh",
+        "kind": "script",
+        "path": "specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases/scratch/diag-lag-read.sh",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 closed with four checker limitations open",
     "created_at": "2026-10-26T06:05:50Z",
-    "last_save_at": "2026-10-31T15:29:46.714Z",
+    "last_save_at": "2026-11-10T05:09:19.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +222,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24a5027ae0e7c0b4220e49416ccdaa43aa6942b120c9fe54599cd38a8fae8480",
+    "source_fingerprint": "sha256:2ac4a06d1f5c8c866604242b247d2986d904f9a6ae430c5460270ae0d5104f5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fef00f2695dad8b8cfb13b1b84c73f7e9b2b6d35d14a408f279610a51e68f064",
+      "spec.md": "45db1bba750108f5988b33b9687a7f938cbbd181d7d1a653f415358ba890e504",
       "plan.md": "8c32931376f546e3523ff8429adf6b78fc439693d18de0f6ba4f0d58190662d6",
       "tasks.md": "12ebe658fa9c3c8cd59eb0b5588bbcede0737b94373fb592001439c481c65331",
       "decision-record.md": "628d3d605c9eda15305b611eb43365f526f204e6e1cc0e018c4f4d6b3419ff94",

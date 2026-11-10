@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The doctor releases left six advisor defects open",
     "created_at": "2026-10-17T06:02:46Z",
-    "last_save_at": "2026-10-31T13:41:29.628Z",
+    "last_save_at": "2026-11-10T05:09:24.478Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfb94acbd98e7b484b77d33e65efc3df8ed6dea4bf593589cca85d0f1d1fd2ba",
+    "source_fingerprint": "sha256:71b08cb7bf6b2f39cfae64171d7b0bb3d6b161bcbdeb872a1f860689bfb9cbad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6d08a4e873b9c0823905c007a6a7af9e7ebfdb86c757241bee777b876f5b914",
+      "spec.md": "c1b2b0c7a7852e0b6f52385dbdb3303cb222128ebc26ec99377b9847ee4e3deb",
       "plan.md": "e57d7eec0286dd619e6efc4177e1659f85b5ea2c676c05d13fccf2f527d2206e",
       "tasks.md": "6dad8c5692f56c1b86afe4376d9f8d884a3ce48cf7c6c785da234f17a5c88f08",
       "implementation-summary.md": "3fb185d852daa99885864b1a5f94947d4b600455b6469b8adc8173ef052b9e5e"

@@ -38,7 +38,7 @@ _memory:
 | Q002 | Open a follow-up packet for the OpenCode worker that wrote into the main checkout. | Not stated. | None | specs/cli-external-orchestration/087-opencode-worktree-confinement |
 | Q003 | Add a changelog entry and a system-skilled-doctor version bump for the overlay work. | Not stated. | None | system-skilled-doctor changelog v1.1.0.0 |
 | Q004 | Fix every CI failure main already had before merging. | Not stated. | None | 005-barter-parity tasks.md T023 |
-| Q005 | Document the two outside defects in two new packets. | Not stated. | None | specs/system-speckit/045-upgrade-level-anchor-insert, specs/sk-git/038-provision-private-command-links |
+| Q005 | Document the two outside defects in two new packets. | Not stated. | None | specs/system-speckit/045-upgrade-level-anchor-insert, specs/sk-git/worktree-lifecycle/006-provision-private-command-links |
 | Q006 | Add changelog entries for the follow-up fixes before pushing. | Not stated. | None | sk-git v1.11.11.0, system-spec-kit v2.12.36.0, cli-opencode v1.5.9.0, deep-loop runtime v1.9.16.0 |
 | Q007 | Write the setup guide as a root SETUP.md and trim the README's setup sections. | Not stated. | None | 006-setup-guide spec.md §3, INSTALL-SKILLED.md (renamed from SETUP.md) |
 | Q008 | Fix the two first-link problems in a new packet. | Not stated. | None | specs/system-skilled-doctor/002-symlink-first-link |

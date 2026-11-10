@@ -28,7 +28,7 @@ Four goals measured over budget. The scan recorded `packet_budget=over` and thes
 - `specs/sk-code/007-sk-code-obsidian-surface` — 4,734 characters.
 - `specs/sk-design/018-sk-design-parent-v2` — 5,013 characters.
 - `specs/sk-design/019-sk-design-diagram-upgrade` — 5,513 characters.
-- `specs/sk-git/028-crawlable-commit-history` — 5,758 characters.
+- `specs/sk-git/commit-standards/001-crawlable-commit-history` — 5,758 characters.
 
 The `goal.cjs packet` reproductions returned those same character counts and `packet_budget=over` for all four paths; each command exited 0. (`node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"`; see the recorded runs in section 11.)
 
@@ -104,7 +104,7 @@ The scan counted 36 goals with fewer than three or more than seven checked compl
 - `specs/sk-design/018-sk-design-parent-v2/012-template-screenshots` — 0.
 - `specs/sk-design/018-sk-design-parent-v2` — 0.
 - `specs/sk-design/019-sk-design-diagram-upgrade` — 11.
-- `specs/sk-git/028-crawlable-commit-history` — 10.
+- `specs/sk-git/commit-standards/001-crawlable-commit-history` — 10.
 - `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening` — 10.
 - `specs/system-deep-loop/036-deep-loop-innovation/scratch` — 0.
 - `specs/system-skill-advisor/024-mcp-decommission-cli-front-door` — 8.
@@ -140,7 +140,7 @@ The 16 exact per-child-row packets are:
 - `specs/sk-doc/051-hub-routing-quality/001-routing-completeness`
 - `specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit`
 - `specs/sk-doc/056-create-goal-mode`
-- `specs/sk-git/028-crawlable-commit-history`
+- `specs/sk-git/commit-standards/001-crawlable-commit-history`
 - `specs/system-skill-advisor/022-semantic-lane-enablement`
 - `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria`
 - `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon`
@@ -291,7 +291,7 @@ Section 4 of `wave1-goal-system-audit.md` cites four defect examples: a child pl
 
 **Criterion requiring another file to judge.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-speckit/031-system-speckit-v4/010-goal-file-addon --workspace "$PWD"`. Relevant output: the `objective_slice` includes `- Every phase reports its acceptance criteria closeable`, while the goal's completion anchor says criteria should be checkable without opening another file. Exit status: 0. Calling that criterion dependent on other files is a human judgment, not a scan count. (`scratch/wave1-goal-system-audit.md:42`; `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90`; observed CLI output.)
 
-**Criterion says six children while the binding rows name eight.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-git/028-crawlable-commit-history --workspace "$PWD"`. Relevant output: `packet_durable_chars=5758`, `packet_budget=over`, the objective slice includes `all six children`, and the `chat_slice` binding table contains rows 001 through 008. Exit status: 0. (`scratch/wave1-goal-system-audit.md:43`; `specs/sk-git/028-crawlable-commit-history/goal.md:81-90,100-115`; observed CLI output.)
+**Criterion says six children while the binding rows name eight.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-git/commit-standards/001-crawlable-commit-history --workspace "$PWD"`. Relevant output: `packet_durable_chars=5758`, `packet_budget=over`, the objective slice includes `all six children`, and the `chat_slice` binding table contains rows 001 through 008. Exit status: 0. (`scratch/wave1-goal-system-audit.md:43`; `specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:81-90,100-115`; observed CLI output.)
 
 **Phase 007 exists in the phase map but has no child goal or binding row.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission --workspace "$PWD"`. Relevant output: the `chat_slice` binding rows end at `006-legacy-memory-surface-inventory`; the parent criterion text is also printed. Exit status: 0. The phase map names `007-deep-review-remediation` at `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/spec.md:164`. Command: `ls -l specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-deep-review-remediation/goal.md`. Relevant output: `No such file or directory`. Exit status: 1. Command: `find specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission -mindepth 2 -maxdepth 2 -type f -name goal.md -print | sort`. Relevant output: six child `goal.md` paths for phases 001 through 006, with no phase-007 path. Exit status: 0. (`scratch/wave1-goal-system-audit.md:44`; parent goal: `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md:66-73`; observed command outputs.)
 
@@ -304,5 +304,5 @@ Section 4 of `wave1-goal-system-audit.md` cites four defect examples: a child pl
 Criterion self-checkability is a human-review list, not a corpus count. The scan counts checkbox bullets but does not determine whether another file is needed to judge a criterion. (`scratch/goal-corpus-scan.cjs:46-47,69-70`; `.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:99-105`.)
 
 - In `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:89`, “Every phase reports its acceptance criteria closeable” depends on knowing the acceptance state of each phase; judging it self-contained requires reviewing the referenced phase evidence. This is a human judgment.
-- In `specs/sk-git/028-crawlable-commit-history/goal.md:111`, the criterion says “all six children,” while the same goal lists eight binding rows at `specs/sk-git/028-crawlable-commit-history/goal.md:83-90`. The mismatch is observable in the document; deciding its intended meaning is human review.
-- The audit describes child objectives in `specs/sk-git/028-crawlable-commit-history/001-research/goal.md:43`, `specs/sk-git/028-crawlable-commit-history/002-format-decision/goal.md:43` and `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/goal.md:43` as phase-specific rather than progress reports. That qualitative distinction is judgment, not a measured scan field. (`scratch/wave1-goal-system-audit.md:45`; the three cited goal lines.)
+- In `specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:111`, the criterion says “all six children,” while the same goal lists eight binding rows at `specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:83-90`. The mismatch is observable in the document; deciding its intended meaning is human review.
+- The audit describes child objectives in `specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:43`, `specs/sk-git/commit-standards/001-crawlable-commit-history/002-format-decision/goal.md:43` and `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/goal.md:43` as phase-specific rather than progress reports. That qualitative distinction is judgment, not a measured scan field. (`scratch/wave1-goal-system-audit.md:45`; the three cited goal lines.)

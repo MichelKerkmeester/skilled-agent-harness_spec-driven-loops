@@ -31,7 +31,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A deep-research fan-out lane that was interrupted (the network dropped mid-run) could not be resumed: two resume attempts exited 1 before the executor ran, and the lane had to be rerun as a new lineage. Separately, the fan-out's write-containment guard filed a file that another session was editing in the same checkout under the lane, quarantining a copy of it and listing it as the lane's out-of-scope write. Both were seen on 2026-10-27 while running the fan-out for `specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research`.
+A deep-research fan-out lane that was interrupted (the network dropped mid-run) could not be resumed: two resume attempts exited 1 before the executor ran, and the lane had to be rerun as a new lineage. Separately, the fan-out's write-containment guard filed a file that another session was editing in the same checkout under the lane, quarantining a copy of it and listing it as the lane's out-of-scope write. Both were seen on 2026-10-27 while running the fan-out for `specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research`.
 
 ### Purpose
 An interrupted lineage resumes from its last completed iteration, and the containment guard stops attributing a concurrent operator's edits to the lane while it still catches the lane's own stray writes.

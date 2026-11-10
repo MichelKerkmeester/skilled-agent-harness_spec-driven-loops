@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/worktree-lifecycle/006-provision-private-command-links",
+  "spec_folder": "sk-git/worktree-lifecycle/006-provision-private-command-links",
+  "parent_id": "sk-git/worktree-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "provision private command links",
+      "provision private commands by form",
+      "new worktree cannot commit local commands",
+      "provision private command links plan",
+      "provision private command links tasks",
+      "provision private command links implementation summary"
+    ],
+    "key_topics": [
+      "provision",
+      "private",
+      "command",
+      "links",
+      "commands",
+      "form",
+      "new",
+      "worktree",
+      "cannot",
+      "commit",
+      "local",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-git/SKILL.md",
+      "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch/morning-decisions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "morning-decisions.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity/scratch/morning-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow For",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`worktree-naming.sh provision` linked each private `local-` command into a new worktree as an absolute link to the primary checkout",
+    "created_at": "2026-11-08T08:54:40Z",
+    "last_save_at": "2026-11-10T05:07:19.428Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:78fbcd61e8b40f00d4ea3caddedca17a0d5b247386031938eb68e4ee5ba85b9f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5f70c75cb5d73df87c65ce7c7ad243c26c25c7ba852c6dc77f3a6c87069e5631",
+      "plan.md": "2994adec9ab362ae6608d98f6f6a19dbe592192078bd04744eb9640a3dc2d1f3",
+      "tasks.md": "e67e162fb5dfccd88f32f3e64ec23fe29ba9a8af51a0d4330cac965b5985b121",
+      "implementation-summary.md": "20d3fcf348546d48ec18ecb85dc6187186c242352edb92385d57760d6ce19d55"
+    },
+    "last_active_at": null
+  }
+}

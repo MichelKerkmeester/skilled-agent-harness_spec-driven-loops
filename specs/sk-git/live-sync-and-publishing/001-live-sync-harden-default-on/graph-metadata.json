@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
+  "spec_folder": "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
+  "parent_id": "sk-git/live-sync-and-publishing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live sync harden",
+      "live branch default on",
+      "MK_LIVE_SYNC_DISABLED",
+      "autosync self heal",
+      "follower auto start"
+    ],
+    "key_topics": [
+      "live",
+      "sync",
+      "harden",
+      "branch",
+      "default",
+      "autosync",
+      "self",
+      "heal",
+      "follower",
+      "auto",
+      "start",
+      "continuous-integration"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/git-live-follow.sh",
+      ".opencode/bin/git-sync.sh",
+      ".opencode/bin/check-git-hooks.sh",
+      ".opencode/plugins/session-cleanup.js",
+      ".opencode/plugins/tests/session-cleanup.test.cjs",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".opencode/hooks/hook-flags.env.example",
+      ".opencode/hooks/README.md",
+      ".opencode/hooks/shared/README.md",
+      ".opencode/package.json",
+      ".opencode/package-lock.json",
+      ".opencode/scripts/install-git-hooks.sh",
+      ".opencode/hooks/shared/hook-flags.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-live-follow.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-live-follow.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/bin/check-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-cleanup.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".opencode/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.sh",
+        "kind": "script",
+        "path": ".opencode/hooks/shared/hook-flags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Harden",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The continuous-integration model built by `007-continuous-integration-workflow` publishes every launch-wrapper session commit to a shared live branch and fast-forwards the IDE checkout to follow it",
+    "created_at": "2026-08-15T13:02:56.482Z",
+    "last_save_at": "2026-11-10T05:07:16.092Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41f43d001252ec3aaf615dc049612d2f23f71f89723c59a86cbb3eef1d3ef472",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0a19cdaa4832af2cec545388cb04560b40a1acdb12f79a7fa916fd8c86250870",
+      "plan.md": "e9ef7db3fe406a24c9245174ede8eef3a4c7c3f4b956336c89ca04462ba3fc90",
+      "tasks.md": "a7d49016a39577c41654d4c7ea372a3b7b6b466c5a2a2825b773f5c32b77fd88",
+      "implementation-summary.md": "e1732b7898bf51420b58ad118ddd1addf38141d4c4cc89ac2d9f8fe7f9bee555"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

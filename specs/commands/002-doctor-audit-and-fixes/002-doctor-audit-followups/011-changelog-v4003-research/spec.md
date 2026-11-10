@@ -40,7 +40,7 @@ This is **Phase 11** of the doctor audit follow-ups. The doctor phases and the g
 **Scope Boundary**: Research only. The changelog itself is not edited in this phase.
 
 **Dependencies**:
-- Phases 001-010 of this packet and the `sk-git/032-template-driven-message-enforcement` packet, as the record of what changed
+- Phases 001-010 of this packet and the `sk-git/commit-standards/004-template-driven-message-enforcement` packet, as the record of what changed
 
 **Deliverables**:
 - `research/research.md`: what to add to or correct in `.skilled/changelog/skilled/v4.0.0.3.md`, with evidence
@@ -69,7 +69,7 @@ An evidence-backed list of what the entry should add or correct, ready for a lat
 ### In Scope
 - The doctor command changes in phases 001-010 of this packet
 - The git hook gate settings, `/doctor:git` and `.sk-git/` rule editing
-- The hook hardening in `sk-git/032-template-driven-message-enforcement` and its children
+- The hook hardening in `sk-git/commit-standards/004-template-driven-message-enforcement` and its children
 - A comparison against what the v4.0.0.3 entry already says
 
 ### Out of Scope
@@ -127,7 +127,7 @@ An evidence-backed list of what the entry should add or correct, ready for a lat
 ## 7. OPEN QUESTIONS
 
 - None.
-- Deep-research topic: what must be added to or corrected in .skilled/changelog/skilled/v4.0.0.3.md so it covers (a) the doctor command changes in specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups phases 001-010: trigger-index freshness, release/update customization signals, doctor gates and drift, doctor script conformance, the /doctor:update research and fixes, the speckit router contract drift, the ownership split of /doctor:speckit into /doctor:skill-advisor, /doctor:deep-loop and /doctor:runtime-mirrors with /doctor:rebuild and the fable-mode target deleted, the new /doctor:git <hooks|standards> command, and the mandatory input gates added to /doctor:skill-advisor and /doctor:mcp; and (b) the git workflow and hook changes: the speckit.hooks.<key> gate settings read by .skilled/scripts/git-hooks/lib/gate-config.sh from lib/gates.tsv, .sk-git/ rule overrides edited by .skilled/commands/doctor/scripts/git-standards.cjs, and the earlier hook hardening in specs/sk-git/032-template-driven-message-enforcement and its children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a). compare against what the v4.0.0.3 entry already says, separate missing items from items it states wrongly or that later work made stale (for example references to /doctor:rebuild or /doctor:speckit), and cite a commit, file or spec for each item. research only; do not edit the changelog.
+- Deep-research topic: what must be added to or corrected in .skilled/changelog/skilled/v4.0.0.3.md so it covers (a) the doctor command changes in specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups phases 001-010: trigger-index freshness, release/update customization signals, doctor gates and drift, doctor script conformance, the /doctor:update research and fixes, the speckit router contract drift, the ownership split of /doctor:speckit into /doctor:skill-advisor, /doctor:deep-loop and /doctor:runtime-mirrors with /doctor:rebuild and the fable-mode target deleted, the new /doctor:git <hooks|standards> command, and the mandatory input gates added to /doctor:skill-advisor and /doctor:mcp; and (b) the git workflow and hook changes: the speckit.hooks.<key> gate settings read by .skilled/scripts/git-hooks/lib/gate-config.sh from lib/gates.tsv, .sk-git/ rule overrides edited by .skilled/commands/doctor/scripts/git-standards.cjs, and the earlier hook hardening in specs/sk-git/commit-standards/004-template-driven-message-enforcement and its children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a). compare against what the v4.0.0.3 entry already says, separate missing items from items it states wrongly or that later work made stale (for example references to /doctor:rebuild or /doctor:speckit), and cite a commit, file or spec for each item. research only; do not edit the changelog.
 
 Research context: deep-research is active for this topic; `research/research.md` remains canonical.
 

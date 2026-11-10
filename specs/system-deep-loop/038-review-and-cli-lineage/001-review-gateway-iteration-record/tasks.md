@@ -73,7 +73,7 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Found by**: `specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md` (worktree 075)
+- **Found by**: `specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md` (worktree 075)
 <!-- /ANCHOR:cross-refs -->
 
 ---

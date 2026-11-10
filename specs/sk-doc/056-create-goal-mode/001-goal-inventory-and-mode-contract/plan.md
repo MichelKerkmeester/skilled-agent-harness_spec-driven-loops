@@ -117,11 +117,11 @@ done
 Reproduce the cited examples with exact text searches and packet measurements:
 
 ```bash
-node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-git/028-crawlable-commit-history --workspace "$PWD"
+node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-git/commit-standards/001-crawlable-commit-history --workspace "$PWD"
 node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-design/019-sk-design-diagram-upgrade --workspace "$PWD"
 rg -n 'Objective:.*One sentence.*Not how.*progress' specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md
 rg -nF 'Every phase reports its acceptance criteria closeable' specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md
-rg -n 'all six children|^\| 00[1-8] \|' specs/sk-git/028-crawlable-commit-history/goal.md
+rg -n 'all six children|^\| 00[1-8] \|' specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md
 rg -n '007' specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/spec.md specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md
 find specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission -type f -path '*/007-*/goal.md' -print
 ```

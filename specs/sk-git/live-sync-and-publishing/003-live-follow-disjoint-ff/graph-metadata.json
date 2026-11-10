@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff",
+  "spec_folder": "sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff",
+  "parent_id": "sk-git/live-sync-and-publishing",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live sync dirty checkout",
+      "primary reconcile disjoint fast forward",
+      "checkout not following live branch",
+      "auto follow skips dirty tree",
+      "live sync disjoint ff plan",
+      "live sync disjoint ff tasks",
+      "live sync disjoint ff summary"
+    ],
+    "key_topics": [
+      "live",
+      "sync",
+      "dirty",
+      "checkout",
+      "primary",
+      "reconcile",
+      "disjoint",
+      "fast",
+      "forward",
+      "following",
+      "branch",
+      "auto"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/git-primary-reconcile.sh",
+      ".opencode/bin/git-live-follow.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-primary-reconcile.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-primary-reconcile.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-live-follow.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-live-follow.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sync Disjoint Fast",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "unrelated WIP",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "unpublished",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Insight The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Risk Blast",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Insight",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: Live-Sync Disjoint Fast-Forward",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Landing Shipped",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final state — shipped",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated work-in-progress, instead of hard-skipping on any tracked change; only the rebase/publish path keeps the clean-tree boundary.",
+    "created_at": "2026-08-28T22:36:51.848Z",
+    "last_save_at": "2026-11-10T05:07:16.296Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0a675a51166d769e0e20972e32288426780c1e612f188efb2fbf9d34bc12feb6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3c4a68d7b84a9da2e1190ab918363bf1e82b4df07cece1436dd8db3deb3e254b",
+      "plan.md": "f3f0f2e698c967ac85ca43692d726ba377402dc4988b63917b8a223c70276c65",
+      "tasks.md": "e6abda0c23a9bd5e279a9ccff4a241eb42176f91895f9253db12a57552efb94a",
+      "implementation-summary.md": "a27ad42889f7f0d8065d3db953fb463ef787878371e02190cedc1a0de42eb75e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

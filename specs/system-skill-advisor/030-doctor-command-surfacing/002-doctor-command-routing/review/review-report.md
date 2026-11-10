@@ -226,7 +226,7 @@ Review target: the shipped v4.0.0.12 work (advisor routing to the doctor command
 
 **Route proof:** all 10 iteration state records carry `mode: review`, `target_agent: deep-review`, `agent_definition_loaded: true` and `resolved_route: "Resolved route: mode=review target_agent=deep-review"`.
 
-**Containment:** both lineages ended `completed` with a containment advisory. Every flagged path belongs to the parallel review in `specs/sk-git/033-git-setup-customization/006-release-conformance-review/`; preserve mode copied them to quarantine and left them in place.
+**Containment:** both lineages ended `completed` with a containment advisory. Every flagged path belongs to the parallel review in `specs/sk-git/commit-standards/005-git-setup-customization/006-release-conformance-review/`; preserve mode copied them to quarantine and left them in place.
 
 **Synthesis closeout:** `synthesis-closeout.cjs` exited 0 and the gateway recorded `synthesis_incomplete` (reason `synthesis_artifact_invariant_failed`, invariant `structured_state_findings_partially_reflected_in_registry`). Cause: the iteration records carry earlier findings forward, so 28 finding groups across 10 records map onto 10 deduplicated registry entries. `missingStructuredFindingCount` is 0, so every finding in the state records is in the registry. The count check compares group totals rather than distinct keys, which fails on any lineage that re-lists carried findings.
 

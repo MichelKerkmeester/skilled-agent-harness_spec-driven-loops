@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-git/commit-standards",
+  "description": "Define and enforce the commit message contract and the template, hook, advisory and doctor surface that keeps it portable across repositories.",
+  "keywords": [
+    "commit",
+    "standards"
+  ],
+  "lastUpdated": "2026-11-10T05:07:06.872Z",
+  "specId": "sk-git/commit-standards",
+  "folderSlug": "commit-standards",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -9,7 +9,7 @@ trigger_phrases:
   - "essential git commands"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Git Workflows - Quick Reference
@@ -112,7 +112,7 @@ git diff --cached
 git commit -m "type(scope): description" -m "Body explaining why"
 
 # Commit packet work: the hook stamps Spec: and Commit-Id:
-SPECKIT_COMMIT_SPEC=sk-git/028-crawlable-commit-history/003-contract-and-hook \
+SPECKIT_COMMIT_SPEC=sk-git/commit-standards/001-crawlable-commit-history/003-contract-and-hook \
   git commit -m "type(scope): description" -m "Body explaining why"
 ```
 

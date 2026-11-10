@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards/005-git-setup-customization/010-open-ends-cleanup",
+  "spec_folder": "sk-git/commit-standards/005-git-setup-customization/010-open-ends-cleanup",
+  "parent_id": "sk-git/commit-standards/005-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open ends cleanup",
+      "phase 10 open ends cleanup",
+      "open ends cleanup plan",
+      "open ends cleanup tasks",
+      "open ends cleanup implementation summary"
+    ],
+    "key_topics": [
+      "open",
+      "ends",
+      "cleanup",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "doctor",
+      "git",
+      "setup",
+      "battery"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-latest-record.vitest.ts",
+      ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+      "specs/sk-git/commit-standards/005-git-setup-customization/spec.md",
+      ".skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md",
+      ".skilled/skills/sk-doc/sk-create-command/references/worked-example.md",
+      ".skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check-invariants.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-closeout.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-closeout-latest-record.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/synthesis-closeout-latest-record.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "common-pitfalls.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-example.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-command/references/worked-example.md",
+        "source": "derived"
+      },
+      {
+        "name": "argument-hints-and-modes.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/doctor:git setup` battery accepts an OpenCode or Pi adapter when the event name and a function sit anywhere in the file, so an unused object or an uncalled helper reads as a registered advisory",
+    "created_at": "2026-10-17T06:02:25Z",
+    "last_save_at": "2026-11-10T05:07:16.161Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6153d6842f1e2bf2d641f516986649b7ac9222006ee8cbffca0fe6b8c54fd404",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "76e1011317646331734f5c20e3f748a5ec5bb4e9e375122e25782b1a55489c62",
+      "plan.md": "acb536cdb451063b7478d0ff38e2bedbde024da67838a59243b5a4b00a1615c0",
+      "tasks.md": "0b4edea52a8bc1d8fbe73dafd016251a9b9e7ae30085d01153f38df3481ce026",
+      "implementation-summary.md": "3780554290d41e9be8cacc51fbe52e95cc92f8e3f64ba94bd658b4aa5ae267d4"
+    },
+    "last_active_at": null
+  }
+}

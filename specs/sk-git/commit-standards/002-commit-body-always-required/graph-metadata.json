@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards/002-commit-body-always-required",
+  "spec_folder": "sk-git/commit-standards/002-commit-body-always-required",
+  "parent_id": "sk-git/commit-standards",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk git required a commit body only",
+      "commit body always required",
+      "commit-msg body gate",
+      "commit body always required plan",
+      "commit body always required tasks",
+      "commit body always required acceptance criteria",
+      "commit body always required implementation summary"
+    ],
+    "key_topics": [
+      "git",
+      "required",
+      "commit",
+      "body",
+      "only",
+      "always",
+      "commit-msg",
+      "gate",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+      ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+      ".skilled/scripts/git-hooks/tests/README.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/changelog/v1.7.0.0.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      ".skilled/scripts/install-git-hooks.sh",
+      ".skilled/hooks/git/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-msg.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "prepare-commit-msg.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.7.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.7.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-root-alias-retirement-runbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/references/spec-root-alias-retirement-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "destructive-scope-violations.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Sync Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`SKILL.md` section 6 asked for a commit body only when a commit staged four or more paths, and the `commit-msg` hook enforced exactly that by counting staged files",
+    "created_at": "2026-09-28T20:37:18Z",
+    "last_save_at": "2026-11-10T05:07:12.758Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:af6018e1007e6808c54799b606a8fc57b4f6d496f1b5b5cdaef700ce8ee53148",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4c3a9969bb9c889157bba4dd4326ea104961878c8dc83dda3c0cf3d48ddbbffb",
+      "plan.md": "9da42848bbaf2de7a5618099a31cd085f9387b7d788e632efa3f43a2ca66af9d",
+      "tasks.md": "301ed5797d568ee8ed8892686ae0f6a0ee8c5058b15886427cbc56be8780b5b9",
+      "implementation-summary.md": "bd75bf7070984c5af5c028e35307d9b460e2175c6359563552fb56cea5918d98"
+    },
+    "last_active_at": null
+  }
+}

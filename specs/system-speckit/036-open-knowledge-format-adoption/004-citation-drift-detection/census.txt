@@ -466,11 +466,11 @@ cite dead: specs/sk-doc/053-governance-doc-alignment/research/root-doc-staleness
 cite dead: specs/sk-doc/053-governance-doc-alignment/research/root-doc-staleness/lineages/1789357391666-zngraa-staleness/resource-map.md:9 -> AGENTS.md:315
 cite dead: specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/goal-corpus-audit.md:20 -> scratch/goal-corpus-scan.json:23
 cite dead: specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/goal-corpus-audit.md:231 -> scratch/goal-corpus-scan.json:23
-cite dead: specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-003.md:30 -> AGENTS.md:343
-cite dead: specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-003.md:30 -> AGENTS.md:343
-cite dead: specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-003.md:38 -> AGENTS.md:343
-cite dead: specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/review-report.md:46 -> AGENTS.md:343
-cite dead: specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/review-report.md:65 -> AGENTS.md:343
+cite dead: specs/sk-git/commit-standards/001-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-003.md:30 -> AGENTS.md:343
+cite dead: specs/sk-git/commit-standards/001-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-003.md:30 -> AGENTS.md:343
+cite dead: specs/sk-git/commit-standards/001-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-003.md:38 -> AGENTS.md:343
+cite dead: specs/sk-git/commit-standards/001-crawlable-commit-history/review/lineages/deepseek/review-report.md:46 -> AGENTS.md:343
+cite dead: specs/sk-git/commit-standards/001-crawlable-commit-history/review/lineages/deepseek/review-report.md:65 -> AGENTS.md:343
 cite dead: specs/sk-vision/001-sk-vision-fork-of-opencode-senses/004-opencode-adapter/002-readme-and-proof/tasks.md:72 -> .opencode/plugins/sk-vision.js:3
 cite dead: specs/system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review/review/lineages/cline/review-report.md:46 -> AGENTS.md:391
 cite dead: specs/system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review/review/review-report.md:88 -> AGENTS.md:391

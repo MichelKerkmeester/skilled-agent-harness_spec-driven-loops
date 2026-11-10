@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The owner-first worktree tooling passed its own harnesses (31/9/8) but the harnesses never exercised adversarial inputs",
     "created_at": "2026-07-15T04:22:48.313Z",
-    "last_save_at": "2026-10-07T18:14:10.441Z",
+    "last_save_at": "2026-11-10T05:07:19.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:778f4248095e1fac36a76878cb7267a906a842e39255bf9bd44f596dda09cfb5",
+    "source_fingerprint": "sha256:9f8a1b579a864d56916666b976b3544613353ad4025c4054168f44b7b1bc2d10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4587f99e9801c4f78612fff77a9cf719a3cf2afdabfbab30634537f9c61683d3",
-      "plan.md": "c733864f1f2943f3bbc8979c19823bec14730dfecd77c0eb72cfd2361802bd0e",
+      "spec.md": "b9b5b2a7cddf665aaf170592ba642876eb8f39057e6c2da1898f4698b6a82057",
+      "plan.md": "9947d56b02a532cc88c8b42476162d915a5c68fd655db0e7a417a6d41b8e4ca9",
       "tasks.md": "279df83c12a89308f577ec636d7fa5f578c401a5893c4bc2812ecea5b52d14f9",
-      "decision-record.md": "745f6fe89cbcfa55ae5ad739b828dfd46591804afaedb39515530b875dddd64e",
+      "decision-record.md": "b54132c92e939629d7c91c1c5b8e5ab1aae4738cddbf1a0a5cb235d2318e7b8f",
       "implementation-summary.md": "b5647a89ccb033f96495f7eddf97217cf1b59611703c4b1c7d0bac1a9a7b3c77"
     },
     "last_active_child_id": null,

@@ -62,7 +62,7 @@ Close each open end with a verified fix, or record with evidence why it cannot c
 
 ### Out of Scope
 - Changelog entries. The coordinator writes them.
-- Files owned by `specs/sk-git/033-git-setup-customization/010-open-ends-cleanup`: `git-setup-check.cjs`, the sk-create-command docs, sk-prompt hub files, `synthesis-closeout.cjs` and the 033 `spec.md`.
+- Files owned by `specs/sk-git/commit-standards/005-git-setup-customization/010-open-ends-cleanup`: `git-setup-check.cjs`, the sk-create-command docs, sk-prompt hub files, `synthesis-closeout.cjs` and the 033 `spec.md`.
 - Commits, pushes, the trigger index and track roots.
 
 ### Files to Change

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/worktree-lifecycle/002-worktree-hygiene-and-relocation",
+  "spec_folder": "sk-git/worktree-lifecycle/002-worktree-hygiene-and-relocation",
+  "parent_id": "sk-git/worktree-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "worktree base relocation",
+      "move worktrees out of checkout",
+      "gitkraken high cpu worktrees",
+      "speckit worktreeBase config",
+      "worktree relocation plan",
+      "worktree relocation tasks",
+      "worktree relocation summary"
+    ],
+    "key_topics": [
+      "worktree",
+      "base",
+      "relocation",
+      "move",
+      "worktrees",
+      "checkout",
+      "gitkraken",
+      "high",
+      "cpu",
+      "speckit",
+      "worktreebase",
+      "config"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+      ".opencode/bin/worktree-session.sh",
+      ".opencode/bin/worktree-reaper.sh",
+      ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/scripts/README.md",
+      ".opencode/skills/sk-git/changelog/v1.5.2.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/changelog/v1.5.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Worktree Hygiene",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reduce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target State New",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo carried 24 git worktrees nested inside the primary checkout at",
+    "created_at": "2026-08-21T13:13:55.971Z",
+    "last_save_at": "2026-11-10T05:07:16.475Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2065af7caf9cc241b5acc267f5389601f7e62795c4238d573de3bae26216ca6c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "88e9134d4a79725388257181bad223239465d3100c1f787f763f504ae698072b",
+      "plan.md": "329d21802bed38622ce15c1690f959039f3a2ade066e4207240687354a1ed094",
+      "tasks.md": "38a715ffe7f874eea00a527b04fb11c694cc8fb1454244c20a13a17e2e77fadd",
+      "implementation-summary.md": "cb378b307e69092346a4461a96207160be8bc35781e73869943384d8e3d5a2bf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

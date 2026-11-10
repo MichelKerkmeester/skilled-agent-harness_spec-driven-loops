@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-Shell variables: `RT` is `.skilled/skills/system-deep-loop/runtime`. `LIN` is `specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/lineages/llmgateway-flash-undated`.
+Shell variables: `RT` is `.skilled/skills/system-deep-loop/runtime`. `LIN` is `specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/001-deep-research/research/lineages/llmgateway-flash-undated`.
 <!-- /ANCHOR:notation -->
 
 ---

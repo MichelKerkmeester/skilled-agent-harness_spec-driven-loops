@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards/004-template-driven-message-enforcement",
+  "spec_folder": "sk-git/commit-standards/004-template-driven-message-enforcement",
+  "parent_id": "sk-git/commit-standards",
+  "children_ids": [
+    "sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes",
+    "sk-git/commit-standards/004-template-driven-message-enforcement/002-git-hook-review-residuals",
+    "sk-git/commit-standards/004-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
+    "sk-git/commit-standards/004-template-driven-message-enforcement/004-commit-id-in-every-toolchain-repo"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template-driven commit enforcement",
+      "repo-agnostic commit message hook",
+      "pr description validation",
+      "commit message contract json",
+      "block misaligned commit messages",
+      "message contract implementation plan",
+      "commit-msg validator port",
+      "pr body ci check",
+      "template driven message enforcement tasks",
+      "template driven message enforcement acceptance criteria",
+      "message contract decision record",
+      "template carries the contract"
+    ],
+    "key_topics": [
+      "template-driven",
+      "commit",
+      "enforcement",
+      "repo-agnostic",
+      "message",
+      "hook",
+      "description",
+      "validation",
+      "contract",
+      "json",
+      "block",
+      "misaligned"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      ".skilled/skills/sk-git/scripts/validate-message.mjs",
+      ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      ".skilled/scripts/git-hooks/lib/message-contract-gate.sh",
+      ".github/workflows/message-contract.yml",
+      ".opencode/plugins/sk-git-message-gate.js",
+      "tests/README.md",
+      "review/review-report.md",
+      ".skilled/skills/sk-git/assets/commit-message-template.md",
+      ".skilled/skills/sk-git/assets/pr-template.md",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+      ".skilled/skills/sk-git/assets/worktree-checklist.md",
+      ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+      ".skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-message.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/validate-message.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-message-gate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract-gate.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/message-contract-gate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.yml",
+        "kind": "config",
+        "path": ".github/workflows/message-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-message-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-git-message-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/assets/commit-message-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "pr-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/assets/pr-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/assets/worktree-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-msg.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push-message-contract.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in `.skilled/scripts/git-hooks/commit-msg`",
+    "created_at": "2026-10-01T17:03:25Z",
+    "last_save_at": "2026-11-10T05:07:12.416Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f303400ea766d3ebb113d498e7a0b5ad88ff1a49013fa57add3af487f71e3b93",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e0765a028d0f7ddd1ce9868c5eda68472a725d91bd8437914e8b6669513d728d",
+      "plan.md": "62c80afabf43cec0b245a19c218a27a166a952217dc8d003803cafec711e87e3",
+      "tasks.md": "b4607b1969dc1873bff358db00b50cadd9b853c8b8d36c87f239557e66e22279",
+      "decision-record.md": "ef321f8aa736aede6e3351af3c0012eeebfa41411a83f8a02a8b3832d8869ddb",
+      "implementation-summary.md": "830fe54dc8804b9a9810e6a04b64b6159ba447036d8882f4008f74eff6a694ac"
+    },
+    "last_active_at": null
+  }
+}

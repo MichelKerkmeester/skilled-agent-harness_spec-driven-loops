@@ -25,7 +25,7 @@ contextType: research
 
 ## 2. BACKGROUND & CONTEXT
 
-The operator asked what v4.0.0.3 must add about the doctor command changes and the git workflow and hook changes, including the hook hardening in `specs/sk-git/032-template-driven-message-enforcement`. The run was research only and did not edit the changelog. Before work began, the entry's spec line named three packets: `sk-communication/007`, `sk-git/032` and `system-deep-loop/039`.
+The operator asked what v4.0.0.3 must add about the doctor command changes and the git workflow and hook changes, including the hook hardening in `specs/sk-git/commit-standards/004-template-driven-message-enforcement`. The run was research only and did not edit the changelog. Before work began, the entry's spec line named three packets: `sk-communication/007`, `sk-git/032` and `system-deep-loop/039`.
 
 ## 3. RESEARCH QUESTIONS
 
@@ -115,7 +115,7 @@ Already covered, no action: `38b21354722`, `61e0054010a`, `0b2730da909`, `ecf289
   - **Save hook switches in git config.** Set `speckit.hooks.<key>` to `off`, or use `/doctor:git hooks`.
   - **Write a body on every commit.** A subject with trailers alone is refused.
   - **Trust another repository's hooks explicitly.** Run `git config --local skilled.trustRepoHooks true` in it.
-- **Header.** Add the doctor and hook theme to the title, description and opening paragraph. The description must stay within its 250-character guard. Add `specs/system-speckit/048-doctor-command-audit`, `specs/system-speckit/049-doctor-audit-followups` and `specs/sk-git/030-commit-body-always-required` to the spec line.
+- **Header.** Add the doctor and hook theme to the title, description and opening paragraph. The description must stay within its 250-character guard. Add `specs/system-speckit/048-doctor-command-audit`, `specs/system-speckit/049-doctor-audit-followups` and `specs/sk-git/commit-standards/002-commit-body-always-required` to the spec line.
 - **Glance list.** Merge to at most 12 bullets while adding the doctor bullets. The Jev hub and Pi transport bullets (lines 36-37) and the two plain-language bullets (lines 43-44) merge without losing a fact.
 
 ## 10. FINDINGS: PLACEMENT

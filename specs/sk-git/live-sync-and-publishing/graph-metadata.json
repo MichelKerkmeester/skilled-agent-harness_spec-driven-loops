@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/live-sync-and-publishing",
+  "spec_folder": "sk-git/live-sync-and-publishing",
+  "parent_id": "sk-git",
+  "children_ids": [
+    "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
+    "sk-git/live-sync-and-publishing/002-hook-gate-hardening",
+    "sk-git/live-sync-and-publishing/003-live-follow-disjoint-ff",
+    "sk-git/live-sync-and-publishing/004-rebase-abort-head-preservation",
+    "sk-git/live-sync-and-publishing/005-main-protection-ruleset-relax",
+    "sk-git/live-sync-and-publishing/006-remote-push-approval"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-git/live-sync-and-publishing"
+    ],
+    "causal_summary": "Container folder for sk-git/live-sync-and-publishing."
+  }
+}

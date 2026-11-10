@@ -59,8 +59,8 @@
       ".opencode/SYNC.md",
       ".opencode/README.md",
       ".skilled/changelog/skilled/v4.0.0.2.md",
-      ".hermes/skills/sk-doc/SKILL.md",
-      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json"
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "references/workflows/nested-changelog.md"
     ],
     "entities": [
       {
@@ -166,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "nested-changelog.md",
+        "kind": "doc",
+        "path": "references/workflows/nested-changelog.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 1 and 2 changed what a changelog is, and several surfaces next to them still describe or perform the old behavior",
     "created_at": "2026-09-27T17:18:04Z",
-    "last_save_at": "2026-10-31T15:24:02.538Z",
+    "last_save_at": "2026-11-10T05:09:19.372Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +220,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5650406769bce5187f13755a364b7918571b9981242975cf0d6378aacff96b2d",
+    "source_fingerprint": "sha256:d6c77d1ff7b12a9ee40faf466bdbfb1d5f5677ea374b274549a0636f1be339ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "868db56276875d10ecab8883fa20ac0ae3f4eb62ebbf7ccee018b320823d9ac2",
+      "spec.md": "02ce6cca964d416cb19e0528e792b9706ef12f1133ee1a0208d4ec1af20f966f",
       "plan.md": "a2cbc09d7f1e2d3c33667c52c35279701d05405dd19a2865d25c6e8e24a48de7",
       "tasks.md": "151b5eb2482ffd2e16b08f634fb05ba15fa89f4e9593b526eba919e34618dd8a",
       "implementation-summary.md": "61620a111c48fd642f07afda608e8070dca7396a0cd97e310e56343934c33888"

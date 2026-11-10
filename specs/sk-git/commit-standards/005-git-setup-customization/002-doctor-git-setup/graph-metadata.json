@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards/005-git-setup-customization/002-doctor-git-setup",
+  "spec_folder": "sk-git/commit-standards/005-git-setup-customization/002-doctor-git-setup",
+  "parent_id": "sk-git/commit-standards/005-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor git setup",
+      "phase 2 doctor git setup",
+      "doctor git setup plan",
+      "doctor git setup tasks",
+      "doctor git setup acceptance criteria",
+      "doctor git setup implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "git",
+      "setup",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "sk-git",
+      "twelve"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/scripts/route-validate.py",
+      ".skilled/skills/sk-git/README.md",
+      ".skilled/commands/doctor/sk-code.md",
+      ".skilled/commands/doctor/git.md",
+      ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/commands/README.txt",
+      "feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "git.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/git.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": "feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-git has twelve surfaces a repository can change, and several of them fail open",
+    "created_at": "2026-10-15T06:52:15Z",
+    "last_save_at": "2026-11-10T05:07:12.943Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:be8ade52ca0df9593b5a02188bea760061118c9fc4d4b992a41246912167c3f2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4f6a6f74868ae4575f0d61e38bac84c33714a50cb220fb07c52b07edfa00b2d8",
+      "plan.md": "0e715f73eee2dd669dccc4a3ac5c92131c37a0e3a5ef14e242aa057ef1bd4496",
+      "tasks.md": "4f387286d79b354abf6630f0a8534d9775875dd631fb086ec13cd2b712f6246d",
+      "implementation-summary.md": "2956e480c31c99774b59b11104e7073366ad13d2cbbdd0f2122c71c47e95cfc0"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-git/live-sync-and-publishing",
+  "description": "Keep the primary checkout current through the live-sync loop and govern which commits and branches may reach origin.",
+  "keywords": [
+    "live",
+    "sync",
+    "and",
+    "publishing"
+  ],
+  "lastUpdated": "2026-11-10T05:07:06.872Z",
+  "specId": "sk-git/live-sync-and-publishing",
+  "folderSlug": "live-sync-and-publishing",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

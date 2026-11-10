@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/commit-standards/001-crawlable-commit-history",
+  "description": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
+  "keywords": [
+    "sk-git",
+    "commit",
+    "contract",
+    "produces",
+    "readable",
+    "conventional",
+    "commits",
+    "nothing",
+    "addressable",
+    "way",
+    "spec",
+    "packet"
+  ],
+  "lastUpdated": "2026-09-11T17:47:37.211Z",
+  "specId": "028",
+  "folderSlug": "crawlable-commit-history",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-09-26_18-47__all-three-runs-are-progressing-normally-the-clock.md"
+  ]
+}

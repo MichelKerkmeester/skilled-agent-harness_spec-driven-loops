@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-git/worktree-lifecycle",
+  "description": "Name, provision, relocate and clean up git worktrees, including dependency installs, private command links, fsmonitor daemons and owner-specific leftovers.",
+  "keywords": [
+    "worktree",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-11-10T05:07:06.872Z",
+  "specId": "sk-git/worktree-lifecycle",
+  "folderSlug": "worktree-lifecycle",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

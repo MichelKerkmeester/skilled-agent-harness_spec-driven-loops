@@ -7,7 +7,7 @@ trigger_phrases:
   - "goal objective failures"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Goal Exemplars
@@ -50,9 +50,9 @@ Rubric outcome: FAIL. A reader must inspect phase evidence elsewhere to decide w
 
 ## 4. CHILD COUNT DISAGREES WITH THE BINDING TABLE
 
-Excerpt: "for the parent and all six children" (`specs/sk-git/028-crawlable-commit-history/goal.md:111`)
+Excerpt: "for the parent and all six children" (`specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:111`)
 
-The same goal has eight binding rows, covering child paths from `001-research` through `008-second-pass-subjects-and-attribution` (`specs/sk-git/028-crawlable-commit-history/goal.md:83-90`).
+The same goal has eight binding rows, covering child paths from `001-research` through `008-second-pass-subjects-and-attribution` (`specs/sk-git/commit-standards/001-crawlable-commit-history/goal.md:83-90`).
 
 Standard: Completion criteria.
 
@@ -62,7 +62,7 @@ Rubric outcome: FAIL. The criterion names six children while the binding table n
 
 ## 5. PHASE-CHILD OBJECTIVE STATES ITS PURPOSE
 
-Excerpt: "Produce ten iterations of evidence-cited research on a numbered, searchable commit grammar for sk-git, on how a per-commit identifier is minted without collisions across branches, and on how 9,106 commits are rewritten and their citations remapped safely." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:43`)
+Excerpt: "Produce ten iterations of evidence-cited research on a numbered, searchable commit grammar for sk-git, on how a per-commit identifier is minted without collisions across branches, and on how 9,106 commits are rewritten and their citations remapped safely." (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:43`)
 
 Standard: Objective.
 
@@ -74,7 +74,7 @@ Rubric outcome: PASS for the objective check. The sentence names the work this p
 
 These excerpts illustrate the other standards. They are not a full-goal pass.
 
-- Decisions: "Frozen choices. Changing one is an amendment." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:47`) The decision table states choices a reader can test. One example is "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:53`).
-- Criteria: "research/lineages/deepseek/deep-research-state.jsonl holds 10 iteration records" (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:75`) names an artifact and a count.
-- Log: "## 4. LOG" (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:84`) and the excerpt "| Phase opened | Pending | |" (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:94`) show the volatile log heading and its progress row.
-- Voice: "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:53`) uses direct wording and states a specific boundary.
+- Decisions: "Frozen choices. Changing one is an amendment." (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:47`) The decision table states choices a reader can test. One example is "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:53`).
+- Criteria: "research/lineages/deepseek/deep-research-state.jsonl holds 10 iteration records" (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:75`) names an artifact and a count.
+- Log: "## 4. LOG" (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:84`) and the excerpt "| Phase opened | Pending | |" (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:94`) show the volatile log heading and its progress row.
+- Voice: "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:53`) uses direct wording and states a specific boundary.

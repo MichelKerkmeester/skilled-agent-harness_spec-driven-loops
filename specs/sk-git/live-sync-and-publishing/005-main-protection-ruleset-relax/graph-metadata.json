@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/live-sync-and-publishing/005-main-protection-ruleset-relax",
+  "spec_folder": "sk-git/live-sync-and-publishing/005-main-protection-ruleset-relax",
+  "parent_id": "sk-git/live-sync-and-publishing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "make branch protection less strict",
+      "stop main-protection violation logging",
+      "disable github ruleset admin push",
+      "main-protection ruleset relax plan",
+      "main-protection ruleset relax tasks",
+      "main-protection ruleset relax summary"
+    ],
+    "key_topics": [
+      "branch",
+      "protection",
+      "less",
+      "strict",
+      "stop",
+      "main-protection",
+      "violation",
+      "logging",
+      "disable",
+      "github",
+      "ruleset",
+      "admin"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Protection Ruleset Relaxation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rule Insights",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Disable",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target State",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every direct push to `main` records a bypass entry under the repository's Rule Insights, surfaced to the operator as \"1 violation (unsigned / no-PR)\"",
+    "created_at": "2026-08-21T07:58:56.034Z",
+    "last_save_at": "2026-11-10T05:07:16.241Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2714829b8c78bc159aca0389f8768dcb68eb24d5eac363e4450d4fa85b583790",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ecd6d8128e52a206218a88cff952d5c105282c7d493de33fcb67b10af14b09cb",
+      "plan.md": "75a67725e35f4fcc11ebc6b582c3ab8f108acffd6c5c415e54b5a76438792db1",
+      "tasks.md": "e4dda4087173414dedb600b20c22cc022d5388d74a6d71c01a812642c7da96bb",
+      "implementation-summary.md": "f25d413fc85d56565c5b463cd30eedcc591b93868550cf584e976219b662ea76"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

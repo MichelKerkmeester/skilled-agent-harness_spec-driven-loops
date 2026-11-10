@@ -176,7 +176,7 @@ Known-stale locations, each read and confirmed:
 
 **Change.** `AGENTS.md:182` says `REPO RULES.md` carries "verification commands and local contracts" alongside the posture rules. Nothing does.
 
-**Evidence.** `AGENTS.md:182` read and confirmed. `REPO RULES.md:77-83` lists what is In and names no verification commands. `decision-tests.md:59-61` lists the same In set without them. The router template has no slot for them, and `repo-rules-router-template.md:97-99` states the doctrine that the moment a router explains how rather than where, it has stopped being a router. A prior decision record reached the same conclusion at `specs/sk-git/028-crawlable-commit-history/002-format-decision/decision-record.md:452` and `:481` (reported by iteration 5, not re-verified by me).
+**Evidence.** `AGENTS.md:182` read and confirmed. `REPO RULES.md:77-83` lists what is In and names no verification commands. `decision-tests.md:59-61` lists the same In set without them. The router template has no slot for them, and `repo-rules-router-template.md:97-99` states the doctrine that the moment a router explains how rather than where, it has stopped being a router. A prior decision record reached the same conclusion at `specs/sk-git/commit-standards/001-crawlable-commit-history/002-format-decision/decision-record.md:452` and `:481` (reported by iteration 5, not re-verified by me).
 
 **Files.** Either `AGENTS.md:182` (scope the sentence down) or a deliberate new slot in the template and references, which the current doctrine forbids.
 

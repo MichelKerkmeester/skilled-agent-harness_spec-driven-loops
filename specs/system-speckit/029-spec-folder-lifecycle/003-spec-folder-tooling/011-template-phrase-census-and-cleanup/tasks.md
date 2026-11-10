@@ -135,7 +135,7 @@ contextType: "general"
 
 - [x] CHK-FIX-001 [P0] Each actionable finding has a finding class - the duplicate seeded phrase is class-of-bug: the tool now drops any seeded phrase that duplicates an existing one, not just the three packets found
 - [x] CHK-FIX-002 [P0] Same-class producer inventory partly completed - `seededPhrases` in the cleanup tool is the only producer of seeded phrases, and the duplicate suppression test covers it
-- [x] CHK-FIX-003 [P0] Consumer inventory completed - the three affected packets (`cli-jev/002/004-compiled-fleet-onboarding`, `sk-code/009-sk-code-mobile-cli-deprecation`, `sk-git/030-commit-body-always-required`) were fixed by the orchestrator and now pass strict validation
+- [x] CHK-FIX-003 [P0] Consumer inventory completed - the three affected packets (`cli-jev/002/004-compiled-fleet-onboarding`, `sk-code/009-sk-code-mobile-cli-deprecation`, `sk-git/commit-standards/002-commit-body-always-required`) were fixed by the orchestrator and now pass strict validation
 - [x] CHK-FIX-004 [P0] Adversarial cases - malformed frontmatter, non-sequence `trigger_phrases`, scratch and containment outside scope, a no-op run, and a second apply
 - [x] CHK-FIX-005 [P1] Matrix axes - document kind (spec, acceptance criteria) by run mode (dry run, apply, second apply) by skipped location (scratch, containment), exercised in `template-phrase-cleanup.vitest.ts`
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant - not applicable, both tools take arguments and the working directory only

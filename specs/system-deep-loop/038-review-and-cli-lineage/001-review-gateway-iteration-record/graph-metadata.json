@@ -46,7 +46,7 @@
       "implementation-summary.md",
       "runtime/scripts/README.md",
       ".skilled/agents/deep-review.md",
-      "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md"
+      "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md"
     ],
     "entities": [
       {
@@ -94,7 +94,7 @@
       {
         "name": "review-report.md",
         "kind": "doc",
-        "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md",
+        "path": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`.skilled/agents/deep-review.md` (Step 9), `deep-review/assets/prompt-pack-iteration.md.tmpl` and `deep-review-auto.yaml` all tell the iteration worker to hand `append-mode-event.cjs --mode review` one canonical `{\"type\":\"iteration\", ...}` record",
     "created_at": "2026-10-02T13:18:42Z",
-    "last_save_at": "2026-10-06T18:48:33.202Z",
+    "last_save_at": "2026-11-10T05:09:24.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e228671baf568ca9713683bc36ddb73dd44e0a5b2234761e9fd657b4f9a1fc3",
+    "source_fingerprint": "sha256:61a09218cbdba4886cbd30f9cc91f3a752a3c2dbb15e57bced333e5f78ab3731",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fb0c6d5f96576cf34a1ec7def6f6bdb7cc59e77b738f48a532840f8e07783090",
       "plan.md": "1812ce2d3e08701e5e3f9148f2658aef7732684320cddb67ed257392d42f0bd8",
-      "tasks.md": "4d264acdf2fbeba5ead1b126d33768d4d72ad240b514482ea1d1d30583b625c3",
+      "tasks.md": "f8737dc7fdddb95e9d40f648d7c386a6a637a844275b5f8de6d0c51bf2d9a9fd",
       "implementation-summary.md": "7e9eb192c97ec58c345eca27fa55fc8cd90fc0289dcb5996d1048447ee94027a"
     },
     "last_active_at": null

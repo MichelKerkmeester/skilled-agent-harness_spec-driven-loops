@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal log and voice"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Goal Authoring Standards
@@ -39,7 +39,7 @@ Failure it prevents: A template placeholder or work update does not tell the rea
 
 Reader check: Can you tell what the packet exists to accomplish from this sentence alone, without reading a method or progress report? Yes or no.
 
-Example: "Produce ten iterations of evidence-cited research on a numbered, searchable commit grammar for sk-git, on how a per-commit identifier is minted without collisions across branches, and on how 9,106 commits are rewritten and their citations remapped safely." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:43`)
+Example: "Produce ten iterations of evidence-cited research on a numbered, searchable commit grammar for sk-git, on how a per-commit identifier is minted without collisions across branches, and on how 9,106 commits are rewritten and their citations remapped safely." (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:43`)
 
 ---
 
@@ -51,7 +51,7 @@ Failure it prevents: Unstated or movable choices let later work drift without a 
 
 Reader check: Can you test later work against each listed choice, and would changing one require an amendment? Yes or no.
 
-Example: "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:53`)
+Example: "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:53`)
 
 ---
 
@@ -63,7 +63,7 @@ Failure it prevents: A vague criterion or a check that depends on another file l
 
 Reader check: Does the goal contain three to seven self-contained criteria with an explicit result, and does the objective repeat them verbatim? Yes or no.
 
-Example: "research/lineages/deepseek/deep-research-state.jsonl holds 10 iteration records" (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:75`). This criterion names an artifact and a count.
+Example: "research/lineages/deepseek/deep-research-state.jsonl holds 10 iteration records" (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:75`). This criterion names an artifact and a count.
 
 ---
 
@@ -75,7 +75,7 @@ Failure it prevents: Progress in the durable directive becomes stale as the work
 
 Reader check: Are all progress updates, evidence, deviations and findings below the log heading, with none in the durable directive? Yes or no.
 
-Example: The progress row "| Phase opened | Pending | |" appears in the log (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:94`).
+Example: The progress row "| Phase opened | Pending | |" appears in the log (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:94`).
 
 ---
 
@@ -87,7 +87,7 @@ Failure it prevents: Vague or inflated prose hides what the packet requires and 
 
 Reader check: Does each authored sentence read plainly under the Human Voice Rules, with claims backed by specific evidence? Yes or no.
 
-Example: "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:53`)
+Example: "This phase produces findings only. No file outside research/ changes." (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:53`)
 
 ---
 
@@ -99,4 +99,4 @@ Failure it prevents: The frontmatter closes at its first `---` line after the op
 
 Reader check: Does the file hold exactly two `---` lines above its first heading, the opener and the closer? Yes or no. `check-goal.cjs` reports a break as a `frontmatter-fence` finding.
 
-Example: The frontmatter opens at line 1 and closes at line 27, with no fence line between them (`specs/sk-git/028-crawlable-commit-history/001-research/goal.md:1-27`).
+Example: The frontmatter opens at line 1 and closes at line 27, with no fence line between them (`specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md:1-27`).

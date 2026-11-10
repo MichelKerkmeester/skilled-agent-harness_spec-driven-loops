@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards/005-git-setup-customization/005-setup-check-hardening",
+  "spec_folder": "sk-git/commit-standards/005-git-setup-customization/005-setup-check-hardening",
+  "parent_id": "sk-git/commit-standards/005-git-setup-customization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "setup check hardening",
+      "phase 5 setup check hardening",
+      "git-setup-check degraded status",
+      "doctor git setup hardening",
+      "setup check hardening plan",
+      "git-setup-check hardening plan",
+      "setup check hardening tasks",
+      "setup check hardening acceptance criteria",
+      "setup check hardening implementation summary"
+    ],
+    "key_topics": [
+      "setup",
+      "check",
+      "hardening",
+      "phase",
+      "git-setup-check",
+      "degraded",
+      "status",
+      "doctor",
+      "git",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+      ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+      ".skilled/skills/sk-git/scripts/hooks/README.md",
+      ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+      ".github/workflows/gate-inputs.yml",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "specs/sk-git/commit-standards/005-git-setup-customization/002-doctor-git-setup/acceptance-criteria.md",
+      "specs/sk-git/commit-standards/006-standards-template-round-trip/tasks.md",
+      ".skilled/commands/doctor/scripts/tests/run-all.sh",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".devin/hooks.v1.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/git-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-git-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-git-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/scripts/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-settings.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/doctor-git-settings.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-inputs.yml",
+        "kind": "config",
+        "path": ".github/workflows/gate-inputs.yml",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-all.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/tests/run-all.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Inputs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Script Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The battery promises that a PASS row means the sk-git surface works, yet several rows pass on evidence they never checked",
+    "created_at": "2026-10-15T15:37:22Z",
+    "last_save_at": "2026-11-10T05:07:13.538Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:48c2439d8dbc81c9e4d6e95917a70b7d4018c5aff848833c9382efa1603d8366",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4021eb112e2213a6de6ac32b118174715518f0f34b0697ce29885f750f8127af",
+      "plan.md": "db59a908a6ad988d87eaf77e3f0bb95f673371febda7e7766857264cf3627a00",
+      "tasks.md": "3ff3f1153fa09f8b60821da348c0af4a8497cb2f8a8c97a8b5b01775ece09588",
+      "implementation-summary.md": "8d7f4a22cb85c2339b5d3a7aea61cc00ea333289cc5169275baf8e2985b483de"
+    },
+    "last_active_at": null
+  }
+}

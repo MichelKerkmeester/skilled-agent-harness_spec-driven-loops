@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/commit-standards/001-crawlable-commit-history/001-research",
+  "spec_folder": "sk-git/commit-standards/001-crawlable-commit-history/001-research",
+  "parent_id": "sk-git/commit-standards/001-crawlable-commit-history",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "commit format research",
+      "crawlable commit research",
+      "commit identifier minting",
+      "history rewrite research",
+      "research lineage plan",
+      "fanout research run",
+      "research tasks",
+      "research acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "commit",
+      "format",
+      "research",
+      "crawlable",
+      "identifier",
+      "minting",
+      "history",
+      "rewrite",
+      "lineage",
+      "plan",
+      "fanout",
+      "run"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/dispatch-prompt.md",
+      ".opencode/skills/sk-git/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-prompt.md",
+        "kind": "doc",
+        "path": "research/dispatch-prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Conductor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing in a commit today can be looked up the way `sk-git/028` can",
+    "created_at": "2026-09-11T07:16:23Z",
+    "last_save_at": "2026-11-10T05:07:12.764Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ec6aed286ffb8c43dafd987de6f58756ab5293d5bfe3e1967231964d7cc0f0c4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "81a20d013ef6e1338accc8732cd7fa8b8ec558d629c1e9c1a58e128c83338cbc",
+      "plan.md": "4a51db249c4470111915a22e6e586b725edfff790f40cb00f5c1e65bcb068912",
+      "tasks.md": "a3504388d46b9edf9ac9f8403e15aa7bd4aecb6abe1bc6ad435da3d65a380744",
+      "implementation-summary.md": "79b73f6115a3cdc743f847f7a7ef9512265cb69250ffb48f878e755cb807cdc8",
+      "research/research.md": "723f99d692a314dbb18899dacdf8dee8b2797727fe76c3cb4f2ea7693a9febb3"
+    },
+    "last_active_at": null
+  }
+}
