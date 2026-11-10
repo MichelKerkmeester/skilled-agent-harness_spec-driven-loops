@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a45ef05da3638d27ce07257b392bce39cf47fb9ec76f7b2f2fb9e7328d598590",
+  "corpusHash": "93f5acdfe5d90d9719081c51e8939d1e1210203e1db17dc942321933658500e9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26018,
+  "includedPathCount": 26021,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8649,6 +8649,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.45.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.46.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.47.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.48.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
@@ -11463,10 +11464,12 @@
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/plan.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/spec.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/decision-record.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/implementation-summary.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/plan.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/spec.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/decision-record.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/goal.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise/handover.md",
@@ -26050,7 +26053,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6e8578822e80d928933e60c115c5be3e1e5eafe109f980ea483dcb06a8dae6bf",
+  "manifestHash": "03e3bd645f3bb78fd3f9e865d82999bcf51279c858a0c21dd1477e2b79a1d63e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

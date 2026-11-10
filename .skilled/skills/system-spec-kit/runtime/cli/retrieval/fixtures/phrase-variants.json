@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6e8578822e80d928933e60c115c5be3e1e5eafe109f980ea483dcb06a8dae6bf",
+  "manifestHash": "03e3bd645f3bb78fd3f9e865d82999bcf51279c858a0c21dd1477e2b79a1d63e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -250,6 +250,9 @@
     ],
     "001 spec memory cli complete": [
       "001 spec-memory cli complete"
+    ],
+    "001 sweet search integration operator decisions": [
+      "001-sweet-search-integration operator decisions"
     ],
     "001 tasks flag routing": [
       "001 tasks flag routing"
@@ -2131,6 +2134,9 @@
     ],
     "008 review 002 verdict": [
       "008 review-002 verdict"
+    ],
+    "008 routing and release alignment operator decisions": [
+      "008-routing-and-release-alignment operator decisions"
     ],
     "008 runtime defect fixes changelog": [
       "008 runtime defect fixes changelog"
@@ -77773,6 +77779,9 @@
     "patch a notion page s properties": [
       "patch a Notion page's properties"
     ],
+    "path and count recipes take the limit": [
+      "path and count recipes take the limit"
+    ],
     "path catalog 000 release cleanup": [
       "path catalog 000-release-cleanup"
     ],
@@ -117908,6 +117917,9 @@
     "system spec kit 2 12 47 0": [
       "system-spec-kit 2.12.47.0"
     ],
+    "system spec kit 2 12 48 0": [
+      "system-spec-kit 2.12.48.0"
+    ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
     ],
@@ -118516,6 +118528,9 @@
     ],
     "system spec kit v2 12 47 0": [
       "system-spec-kit v2.12.47.0"
+    ],
+    "system spec kit v2 12 48 0": [
+      "system-spec-kit v2.12.48.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"
