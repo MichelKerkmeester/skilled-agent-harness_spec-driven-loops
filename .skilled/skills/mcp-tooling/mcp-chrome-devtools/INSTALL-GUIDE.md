@@ -1,7 +1,7 @@
 ---
 title: "Chrome DevTools Installation Guide"
 description: "Installation and configuration for Chrome DevTools browser debugging through the bdg CLI and the MCP fallback."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Chrome DevTools Installation Guide
@@ -1046,7 +1046,7 @@ bdg stop                      # Stop session
 ```bash
 bdg screenshot <path>         # Capture screenshot
 bdg console logs              # Get console messages
-bdg network cookies           # Get all cookies
+bdg network cookies | jq 'map({name, domain})'  # List cookie names and domains, never values
 bdg dom query "<selector>"    # Query DOM
 bdg js "<expression>"         # Execute JavaScript
 bdg har export <path>         # Export HAR file

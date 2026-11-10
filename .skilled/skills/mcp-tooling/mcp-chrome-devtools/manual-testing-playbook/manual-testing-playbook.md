@@ -1,7 +1,7 @@
 ---
 title: "MCP Chrome DevTools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-chrome-devtools skill."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # MCP Chrome DevTools: Manual Testing Playbook
@@ -262,7 +262,7 @@ Verify `bdg network getCookies` returns cookie array from the active page.
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, retrieve cookies from the active page through the bdg CLI against an active session. Verify output is JSON array (may be empty for example.com). Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bdg network getCookies 2>&1 | jq '.'` succeeds; Step 2: result is an array (length >= 0; empty is valid for example.com).
+Expected signals: Step 1: `bdg network getCookies 2>&1 | jq 'map({name, domain})'` succeeds; Step 2: result is an array (length >= 0; empty is valid for example.com).
 
 #### Test Execution
 > **Feature File:** [BDG-012](../manual-testing-playbook/console-and-network/cookies-retrieval.md)
