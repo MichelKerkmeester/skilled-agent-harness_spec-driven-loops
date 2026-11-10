@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fa30041429da9d75eec9006be899e10f52a75c210897e9d202079f1f158ef8d1",
+  "manifestHash": "d5b064d04042c6895a58bbb3183e0c5cccfb5d4527482e6f01181976a43b4dc6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -64049,6 +64049,9 @@
     "look up user": [
       "look up user"
     ],
+    "lookup reports total candidates": [
+      "lookup reports total candidates"
+    ],
     "lookup trigger index mjs": [
       "lookup-trigger-index.mjs"
     ],
@@ -80789,6 +80792,9 @@
     "phase 7 review remediation": [
       "phase 7 review remediation"
     ],
+    "phase 7 routing and release alignment": [
+      "phase 7 routing and release alignment"
+    ],
     "phase 7 search routing followups": [
       "phase 7 search routing followups"
     ],
@@ -95959,6 +95965,18 @@
     ],
     "routing and launcher hardening tasks": [
       "routing and launcher hardening tasks"
+    ],
+    "routing and release alignment": [
+      "routing and release alignment"
+    ],
+    "routing and release alignment implementation summary": [
+      "routing and release alignment implementation summary"
+    ],
+    "routing and release alignment plan": [
+      "routing and release alignment plan"
+    ],
+    "routing and release alignment tasks": [
+      "routing and release alignment tasks"
     ],
     "routing baseline recapture": [
       "routing-baseline-recapture"
@@ -117116,6 +117134,9 @@
     "system skill advisor 0 18 5 0": [
       "system-skill-advisor 0.18.5.0"
     ],
+    "system skill advisor 0 18 6 0": [
+      "system-skill-advisor 0.18.6.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -117430,6 +117451,9 @@
     ],
     "system skill advisor v0 18 5 0": [
       "system-skill-advisor v0.18.5.0"
+    ],
+    "system skill advisor v0 18 6 0": [
+      "system-skill-advisor v0.18.6.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -117874,6 +117898,9 @@
     ],
     "system spec kit 2 12 46 0": [
       "system-spec-kit 2.12.46.0"
+    ],
+    "system spec kit 2 12 47 0": [
+      "system-spec-kit 2.12.47.0"
     ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
@@ -118480,6 +118507,9 @@
     ],
     "system spec kit v2 12 46 0": [
       "system-spec-kit v2.12.46.0"
+    ],
+    "system spec kit v2 12 47 0": [
+      "system-spec-kit v2.12.47.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"
@@ -121498,6 +121528,9 @@
     ],
     "trigger index plan": [
       "trigger index plan"
+    ],
+    "trigger index prompts route to spec kit": [
+      "trigger-index prompts route to spec-kit"
     ],
     "trigger index reader fails closed": [
       "trigger index reader fails closed"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f2e0fb445b27ef95b939b168d96cb766145eb32912cd8722d33a26f4c6edd224",
+  "corpusHash": "c0c6eacfc56b619bc6cb4352d08fe47254120f81aacdf9666cfcf2289d6a35cd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26011,
+  "includedPathCount": 26017,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8164,6 +8164,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.18.3.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.18.4.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.18.5.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.18.6.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8646,6 +8647,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.44.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.45.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.46.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.47.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
@@ -11460,6 +11462,10 @@
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/plan.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/spec.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/tasks.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/implementation-summary.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/plan.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/spec.md",
+    "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/tasks.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/goal.md",
     "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/001-spec-gate-question-noise/handover.md",
@@ -26043,7 +26049,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fa30041429da9d75eec9006be899e10f52a75c210897e9d202079f1f158ef8d1",
+  "manifestHash": "d5b064d04042c6895a58bbb3183e0c5cccfb5d4527482e6f01181976a43b4dc6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29135,6 +29141,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/scratch",
       "reason": "excluded directory"
     },
     {

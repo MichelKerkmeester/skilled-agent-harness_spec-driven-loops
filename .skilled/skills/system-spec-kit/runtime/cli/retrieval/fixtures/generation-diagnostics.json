@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6683,
-    "ok": 17699,
+    "ok": 17705,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26011,
+  "documentsScanned": 26017,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fa30041429da9d75eec9006be899e10f52a75c210897e9d202079f1f158ef8d1",
+  "manifestHash": "d5b064d04042c6895a58bbb3183e0c5cccfb5d4527482e6f01181976a43b4dc6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42098,
+      "ok": 42109,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -54638,6 +54638,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/007-search-routing-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment/scratch",
       "reason": "excluded directory"
     },
     {
