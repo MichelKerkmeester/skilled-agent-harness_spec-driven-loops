@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs",
+  "spec_folder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs",
+  "parent_id": "sk-code/code-surfaces/003-sk-code-obsidian-surface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "obsidian banners and folder docs",
+      "styles.css numbered sections box drawing",
+      "readme code md folder documentation plugin",
+      "phase 009 banners folder docs",
+      "obsidian banners folder docs plan",
+      "styles.css sectioning transform plan",
+      "manifest re-fingerprint screenshots verify",
+      "obsidian banners folder docs tasks",
+      "phase 009 tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "obsidian",
+      "banners",
+      "folder",
+      "docs",
+      "styles",
+      "css",
+      "numbered",
+      "sections",
+      "box",
+      "drawing",
+      "readme",
+      "code"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folder Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Explicitly Not In This Phase The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "an English",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 built `scan-folder-docs.mjs`, which reported 19 violations against the tree: every source",
+    "created_at": "2026-08-28T18:17:40Z",
+    "last_save_at": "2026-11-10T08:36:41.039Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8552390c80ea64006011cf045f56941524e12708e168f07722f0307e19bc8367",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3e504b36fb7ed594c82b0d5a5cce6a2c3d4a952a229ad21e941f3517f88f1b6a",
+      "plan.md": "deca8d22c30864f3c5c42e06f491a718b4ec8ac018ccdd7286b08d07a1b16c9f",
+      "tasks.md": "aa26291676026f71661b4b08446de19ad6e4e7ed929b75ae10a8276e3a57d647",
+      "implementation-summary.md": "0e723283eb62bd7d450a1e4b164a6e5e9f1c0125e9275245d0592104955984b5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

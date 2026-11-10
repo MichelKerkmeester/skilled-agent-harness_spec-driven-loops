@@ -152,7 +152,7 @@ The question this phase answers is whether the two surfaces left the artifact ot
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-The committed trigger index carries 200 matching lines at `42b41dd286`: 131 are `.skilled/` paths under the two surface folders phase 002 deletes, and 69 are `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/` paths that stay. The 69 survive because `specs` is a corpus root (`corpus.mjs:31`) and the packet's folder name carries the token. A whole-file zero check therefore fails on retained audit specifications, and the failure says nothing about a live routing source. The same measurement repeated on the four artifacts gives 200 index lines, 260 manifest lines, 60 diagnostics lines and 59 variant lines, all from the same two populations.
+The committed trigger index carries 200 matching lines at `42b41dd286`: 131 are `.skilled/` paths under the two surface folders phase 002 deletes, and 69 are `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/` paths that stay. The 69 survive because `specs` is a corpus root (`corpus.mjs:31`) and the packet's folder name carries the token. A whole-file zero check therefore fails on retained audit specifications, and the failure says nothing about a live routing source. The same measurement repeated on the four artifacts gives 200 index lines, 260 manifest lines, 60 diagnostics lines and 59 variant lines, all from the same two populations.
 
 ### Constraints
 

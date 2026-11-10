@@ -76,7 +76,7 @@ Verification-only phase. Read the artifacts four producers leave behind - the tr
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs` | `CORPUS_ROOTS` at line 31; `gitIgnoredPaths` at line 200, body 200-210 | Why the index needs no code change (it shells out to `git ls-files --others --ignored --exclude-per-directory=.gitignore`) and why `specs` is a corpus root, which is what retains the 69 audit paths |
 | `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` | `resolveSkillGraphDbDir` at line 270, `SYSTEM_SKILL_ADVISOR_DB_DIR` at 271; the discovery walk's `readdirSync` at 733 | The throwaway database override, and the walk that follows a `local-*` symlink |
 | `.skilled/skills/system-skill-advisor/runtime/database/.gitignore` | `*.sqlite` | The graph database is local only, so a leak there is invisible to the tracked sweep and needs its own check |
-| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | whole file - 200 matching lines at `42b41dd286`, of which 131 are `.skilled/` paths and 69 are `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/` paths | The numbers the CI rebuild must drive to zero for the live population and to 69 for the allowlist |
+| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | whole file - 200 matching lines at `42b41dd286`, of which 131 are `.skilled/` paths and 69 are `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/` paths | The numbers the CI rebuild must drive to zero for the live population and to 69 for the allowlist |
 | `.github/workflows/trigger-index-rebuild.yml` | `FILES` array at lines 80-83 | The four artifacts that are regenerated together; counting one leaves three unproven |
 | `.github/workflows/routing-registry-drift.yml` | the three commands at lines 198-200 | The drift scripts that scan every direct child of `.skilled/skills`, `local-*` included |
 | `.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | `listSkillFiles` at line 51, walk at 54-66 | D5 producer: if it ever mirrors a private skill, `.hermes/skills/local-*` becomes a tracked path and step 3 catches it |
@@ -102,7 +102,7 @@ This phase is verification-only, so the table records what each surface's *produ
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `corpus.mjs` `gitIgnoredPaths` (200-210) | producer of the trigger-index ignore set | unchanged | step 6: `.skilled/` path count is 0 in all four artifacts |
-| `corpus.mjs` `CORPUS_ROOTS` (31) | decides which trees are indexed | unchanged | step 6: the 69 `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/` paths are counted against the allowlist |
+| `corpus.mjs` `CORPUS_ROOTS` (31) | decides which trees are indexed | unchanged | step 6: the 69 `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/` paths are counted against the allowlist |
 | `trigger-index.json` plus its three sidecars | tracked retrieval data, CI-rebuilt | unchanged | step 6: eight counts across four artifacts |
 | `skill_graph_compiler.py:200` | producer of the tracked fallback graph | unchanged (phase 003 added the `local-` skip) | step 4: clone `git grep` finds no private name in `runtime/scripts/skill-graph.json`; step 11: the export to `/tmp` is checked for `local-` ids |
 | `sync-skills-hermes.cjs` `listSkillFiles` (51-66) | producer of `.hermes/skills/` | unchanged (phase 003) | steps 3 and 4: `git ls-files` finds no `.hermes/skills/local-*` |
@@ -151,7 +151,7 @@ Record the baselines measured on disk at `583316d083`, which prove the later che
 | Tracked content lines naming either, outside the excluded paths | 1528 | 1529 |
 | Trigger-index lines naming either | 200 | 200 |
 | of which `.skilled/` paths | 131 | 131 |
-| of which `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/` paths | 69 | 69 |
+| of which `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/` paths | 69 | 69 |
 | Trigger-index phrase keys naming either, in space-normalized form | 59 | 59 |
 | `corpus-manifest.json` matching lines (254 included, 6 skipped) | not measured | 260 |
 | `generation-diagnostics.json` matching lines | not measured | 60 |
@@ -213,7 +213,7 @@ git -C "$CLONE" ls-files -- ':!specs/**' | grep -c -E "local-(webflow|obsidian)|
 git -C "$CLONE" ls-files | grep -E "local-(webflow|obsidian)|sk-code-(webflow|obsidian)" | grep -c -E '^specs/' || echo 0   # expect 108 retained
 ```
 
-The `specs/` exclusion is deliberate: 108 tracked paths under `specs/` carry one of the four names - 98 under `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/`, 6 under `specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/` and 4 under `specs/system-speckit/runtime-and-release/001-system-speckit-v4/` - and D6 keeps those dated audit records. They are counted separately so they never stand in for a live leak.
+The `specs/` exclusion is deliberate: 108 tracked paths under `specs/` carry one of the four names - 98 under `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/`, 6 under `specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/` and 4 under `specs/system-speckit/runtime-and-release/001-system-speckit-v4/` - and D6 keeps those dated audit records. They are counted separately so they never stand in for a live leak.
 
 Section B, tracked content:
 
@@ -227,7 +227,7 @@ Section C classifies every printed path. Two prefixes are the complete D6 allowl
 - `.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/` - the playbooks that name units of the past v4.0.0.2 release
 - `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/anchor-repair-sample/` - the anchor-repair test fixture
 
-The retained population is 8 paths at the planning tip and must stay 8. Amended 2026-10-24 (operator ruling): the sweep prints 17 paths in all, the 8 retained plus 6 test files that use the skill names as fixture directory names (`pre-commit.test.sh`, `skill-root-metadata-contract.test.cjs`, `skill-graph-freshness-panel.vitest.ts`, `advisor-status.vitest.ts`, `private-skill-target.vitest.ts`, `sync-skills-hermes.test.mjs`) and 3 retrieval artifacts (`trigger-index.json`, `corpus-manifest.json`, `phrase-variants.json`) that carry allowlisted retained-record paths and phrase keys. A path in those two extra classes passes only when its hit lines are fixture directory names, `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/` path strings or phrase keys. Any other path is an active leak: record it, leave REQ-002 `Unmet`, and name the owning phase. The evidence prints the two counts separately, so a retained hit never stands in for an active one.
+The retained population is 8 paths at the planning tip and must stay 8. Amended 2026-10-24 (operator ruling): the sweep prints 17 paths in all, the 8 retained plus 6 test files that use the skill names as fixture directory names (`pre-commit.test.sh`, `skill-root-metadata-contract.test.cjs`, `skill-graph-freshness-panel.vitest.ts`, `advisor-status.vitest.ts`, `private-skill-target.vitest.ts`, `sync-skills-hermes.test.mjs`) and 3 retrieval artifacts (`trigger-index.json`, `corpus-manifest.json`, `phrase-variants.json`) that carry allowlisted retained-record paths and phrase keys. A path in those two extra classes passes only when its hit lines are fixture directory names, `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/` path strings or phrase keys. Any other path is an active leak: record it, leave REQ-002 `Unmet`, and name the owning phase. The evidence prints the two counts separately, so a retained hit never stands in for an active one.
 
 Section D, the bare-token sweep inside the clone, with the same kept list and the same line-level caveat as step 1:
 
@@ -325,14 +325,14 @@ Then count, with the index scoped to live routing sources:
 IDX="$CLONE/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
 FIX="$CLONE/.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures"
 grep -E '^ *"\.skilled/' "$IDX" | grep -c -E 'sk-code-(webflow|obsidian)|local-(webflow|obsidian)' || echo 0   # expect 0
-grep -E '^ *"specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/' "$IDX" | wc -l                                       # expect 69
+grep -E '^ *"specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/' "$IDX" | wc -l                                       # expect 69
 grep -E '^ *"' "$IDX" | grep -E 'sk-code-(webflow|obsidian)|local-(webflow|obsidian)' \
-  | grep -v -E '^ *"\.skilled/|^ *"specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/' | wc -l                        # expect 0
+  | grep -v -E '^ *"\.skilled/|^ *"specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/' | wc -l                        # expect 0
 grep -c -E '^ *"(local webflow|local obsidian|sk code webflow|sk code obsidian)": \[' "$IDX" || echo 0          # expect 0
 grep -c -E '"(sk code obsidian|local webflow)[ "]' "$IDX" || echo 0                                            # expect 38
 ```
 
-The allowlist is written out rather than implied: the 69 paths are `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/` documents, retained by D6, indexed because `specs` is a corpus root (`corpus.mjs:31`) and named by the folder, not by a live routing source. The 38 retained phrase keys come from the same 007 packet plus `specs/sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills/spec.md`; the 11 keys that came from the deleted surface folders disappear with them (21 under the broad pattern that also counts `sk code webflow`).
+The allowlist is written out rather than implied: the 69 paths are `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/` documents, retained by D6, indexed because `specs` is a corpus root (`corpus.mjs:31`) and named by the folder, not by a live routing source. The 38 retained phrase keys come from the same 007 packet plus `specs/sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills/spec.md`; the 11 keys that came from the deleted surface folders disappear with them (21 under the broad pattern that also counts `sk code webflow`).
 
 The three sidecars, counted in the same step because the workflow stages all four together:
 

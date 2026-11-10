@@ -25,7 +25,7 @@ The corpus scan emits one row per goal. Its rows retain the packet path, command
 
 Four goals measured over budget. The scan recorded `packet_budget=over` and these durable lengths. (`scratch/goal-corpus-scan.json:11,23-5510`; the scanner compares the CLI budget field at `scratch/goal-corpus-scan.cjs:41-42,67-68,87`.)
 
-- `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface` — 4,734 characters.
+- `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface` — 4,734 characters.
 - `specs/sk-design/018-sk-design-parent-v2` — 5,013 characters.
 - `specs/sk-design/019-sk-design-diagram-upgrade` — 5,513 characters.
 - `specs/sk-git/commit-standards/001-crawlable-commit-history` — 5,758 characters.
@@ -89,7 +89,7 @@ The scan counted 36 goals with fewer than three or more than seven checked compl
 - `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation` — 11.
 - `specs/cli-classifier/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout` — 10.
 - `specs/hooks/011-pi-fast-mode-w-subagent-support` — 0.
-- `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface` — 0.
+- `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface` — 0.
 - `specs/sk-communication/006-sk-communication-clarity` — 9.
 - `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment` — 2.
 - `specs/sk-design/018-sk-design-parent-v2/003-md-generator-as-mode` — 0.
@@ -200,7 +200,7 @@ Twelve packets have one or more detected phase children without a `goal.md`. The
 
 - `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation` — 6 child folders lack a goal.
 - `specs/hooks/011-pi-fast-mode-w-subagent-support` — 3 lack a goal; this packet also has no binding section.
-- `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface` — 13 lack a goal; this packet also has no binding section.
+- `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface` — 13 lack a goal; this packet also has no binding section.
 - `specs/sk-communication/006-sk-communication-clarity` — 16 lack a goal.
 - `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart` — 14 deeper child folders lack a goal; this row is itself a phase-child goal.
 - `specs/sk-design/018-sk-design-parent-v2` — 2 lack a goal.
@@ -220,7 +220,7 @@ The scan's `parentsWithUnboundChildren` count is 0, but its algorithm only compa
 The summary counts two non-child parent packets with detected children and no binding anchor. (`scratch/goal-corpus-scan.json:16,23-5510`; `scratch/goal-corpus-scan.cjs:53,72-78,92`.)
 
 - `specs/hooks/011-pi-fast-mode-w-subagent-support`
-- `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface`
+- `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface`
 
 The count is based on the scan's `parentWithoutBinding` predicate, which excludes rows classified as phase-child. (`scratch/goal-corpus-scan.cjs:44,53,77`.)
 

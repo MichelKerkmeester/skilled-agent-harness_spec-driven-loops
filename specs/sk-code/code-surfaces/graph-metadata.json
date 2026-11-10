@@ -4,12 +4,12 @@
   "spec_folder": "sk-code/code-surfaces",
   "parent_id": "sk-code",
   "children_ids": [
-    "sk-code/code-surfaces/001-content-quality-remediation",
-    "sk-code/code-surfaces/002-sk-code-obsidian-surface",
-    "sk-code/code-surfaces/003-sk-code-mobile-cli-mode",
-    "sk-code/code-surfaces/004-sk-code-mobile-cli-deprecation",
-    "sk-code/code-surfaces/005-frontend-upstream-proposals",
-    "sk-code/code-surfaces/006-surface-consistency-research"
+    "sk-code/code-surfaces/001-surface-consistency-research",
+    "sk-code/code-surfaces/002-content-quality-remediation",
+    "sk-code/code-surfaces/003-sk-code-obsidian-surface",
+    "sk-code/code-surfaces/004-sk-code-mobile-cli-mode",
+    "sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation",
+    "sk-code/code-surfaces/006-frontend-upstream-proposals"
   ],
   "manual": {
     "depends_on": [],

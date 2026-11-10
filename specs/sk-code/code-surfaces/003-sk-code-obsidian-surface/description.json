@@ -1,0 +1,22 @@
+{
+  "level": "phase",
+  "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface",
+  "description": "Code work on this plugin resolves to the `UNKNOWN` surface",
+  "keywords": [
+    "code",
+    "work",
+    "plugin",
+    "resolves",
+    "unknown",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.727Z",
+  "specId": "003",
+  "folderSlug": "sk-code-obsidian-surface",
+  "parentChain": [
+    "sk-code",
+    "code-surfaces"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

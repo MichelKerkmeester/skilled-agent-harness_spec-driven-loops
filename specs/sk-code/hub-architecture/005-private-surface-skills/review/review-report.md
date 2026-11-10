@@ -366,7 +366,7 @@ Resource map: absent, so the Resource Map Coverage Gate does not apply.
 ## 9. Search Ledger
 
 - **searchCoverage:** graphless in both lineages. This pass used exact `rg` over the tracked tree (excluding `specs/`, `changelog/`, `benchmark/reports/` and symlinked runtime roots), git ancestry checks, and the packet's own handoff commands.
-- **candidateCoverage:** removed-surface residue in the hub, advisor, commands and mirrors (covered; three hits). Generated retrieval data (covered; the 69, 69 and 38 mentions all come from `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/`, which phase 5 allowlisted under AC-003). Skill-root enumerators (covered; four outside the inventory). Doc mode validators (covered; all pass).
+- **candidateCoverage:** removed-surface residue in the hub, advisor, commands and mirrors (covered; three hits). Generated retrieval data (covered; the 69, 69 and 38 mentions all come from `specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/`, which phase 5 allowlisted under AC-003). Skill-root enumerators (covered; four outside the inventory). Doc mode validators (covered; all pass).
 - **ruledOutCandidates:** a private path in the trigger index or the compiled graph (the graph's only `obsidian` signals belong to `mcp-tooling`); Hermes mirror drift; agent mirror drift; ephemeral labels in added comments; command `.md` drift; `create-skill-parent` "webflow" examples (generic D6 vocabulary).
 - **searchDebt:** none. `hasSearchDebt: false`.
 

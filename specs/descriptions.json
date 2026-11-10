@@ -9034,7 +9034,7 @@
       "lastUpdated": "2026-08-29T15:04:31.364Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/001-content-quality-remediation",
+      "specFolder": "sk-code/code-surfaces/002-content-quality-remediation",
       "description": "Fix the pre-existing content-quality issues in sk-code code-webflow references surfaced by the 019 xHigh verification review \u2014 issues outside 019's",
       "keywords": [
         "pre-existing",
@@ -9214,7 +9214,7 @@
       "lastUpdated": "2026-08-29T15:12:05.972Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface",
       "description": "Code work on this plugin resolves to the `UNKNOWN` surface",
       "keywords": [
         "code",
@@ -9227,7 +9227,7 @@
       "lastUpdated": "2026-08-29T15:04:31.727Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/001-surface-design-plan",
       "description": "`sk-code-obsidian` cannot be authored correctly on the first attempt without first grounding every",
       "keywords": [
         "sk-code-obsidian",
@@ -9243,7 +9243,7 @@
       "lastUpdated": "2026-08-29T15:04:31.740Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/002-repo-convention-audit",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/002-repo-convention-audit",
       "description": "A surface packet that describes conventions the tree does not have is worse than none: it reads as",
       "keywords": [
         "surface",
@@ -9258,7 +9258,7 @@
       "lastUpdated": "2026-08-29T15:04:31.738Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/003-hub-wiring",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/003-hub-wiring",
       "description": "Before this phase, `sk-code`'s router had no `OBSIDIAN` surface",
       "keywords": [
         "phase",
@@ -9270,7 +9270,7 @@
       "lastUpdated": "2026-08-29T15:04:31.738Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/004-skill-core",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/004-skill-core",
       "description": "`sk-code-obsidian/` exists only as a `.gitkeep`",
       "keywords": [
         "sk-code-obsidian",
@@ -9281,7 +9281,7 @@
       "lastUpdated": "2026-08-29T15:04:31.732Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/005-references-stack",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/005-references-stack",
       "description": "`sk-code-obsidian/SKILL.md` (phase `004-skill-core`) names twelve references in its \u00a72 REFERENCE",
       "keywords": [
         "sk-code-obsidian",
@@ -9296,7 +9296,7 @@
       "lastUpdated": "2026-08-29T15:04:31.743Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/006-assets-checklists",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/006-assets-checklists",
       "description": "`sk-code-obsidian/SKILL.md` \u00a74 already advertises on-demand checklists (`assets/.md`), and",
       "keywords": [
         "sk-code-obsidian",
@@ -9310,7 +9310,7 @@
       "lastUpdated": "2026-08-29T15:04:31.742Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/007-manual-testing-playbook",
       "description": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all \u2014 `../goal.md` \u00a76",
       "keywords": [
         "phase",
@@ -9321,7 +9321,7 @@
       "lastUpdated": "2026-08-29T15:04:31.736Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/008-scanners-and-gates",
       "description": "`002-repo-convention-audit/audit.json` measured the plugin's target conventions as entirely",
       "keywords": [
         "002-repo-convention-audit",
@@ -9336,7 +9336,7 @@
       "lastUpdated": "2026-08-29T15:04:31.741Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/009-banners-and-folder-docs",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/009-banners-and-folder-docs",
       "description": "Phase 008 built `scan-folder-docs.mjs`, which reported 19 violations against the tree: every source",
       "keywords": [
         "phase",
@@ -9352,7 +9352,7 @@
       "lastUpdated": "2026-08-29T15:04:31.729Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/010-kebab-rename",
       "description": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
       "keywords": [
         "phase",
@@ -9367,7 +9367,7 @@
       "lastUpdated": "2026-08-29T15:04:31.735Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/011-changelog-and-verification",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/011-changelog-and-verification",
       "description": "Ten phases landed a new surface packet, its hub wiring, and a set of source conventions applied to",
       "keywords": [
         "ten",
@@ -9386,7 +9386,7 @@
       "lastUpdated": "2026-08-29T15:04:31.733Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/012-doc-template-conformance",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/012-doc-template-conformance",
       "description": "Phase 011 closed the packet's first ten phases with a live gate re-run, but named two phases still",
       "keywords": [
         "phase",
@@ -9405,7 +9405,7 @@
       "lastUpdated": "2026-08-29T15:04:31.731Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/013-surface-reality-conformance",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-obsidian-surface/013-surface-reality-conformance",
       "description": "Phase 010 renamed 235 files across the plugin tree to enforce kebab-case, and every plugin-side gate",
       "keywords": [
         "phase",
@@ -9423,7 +9423,7 @@
       "lastUpdated": "2026-08-29T15:04:31.745Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode",
+      "specFolder": "sk-code/code-surfaces/004-sk-code-mobile-cli-mode",
       "description": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
       "keywords": [
         "code",
@@ -9439,7 +9439,7 @@
       "lastUpdated": "2026-08-29T15:04:31.747Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan",
+      "specFolder": "sk-code/code-surfaces/004-sk-code-mobile-cli-mode/001-mode-design-plan",
       "description": "This phase plans, but does not build, a new mode under the sk-code parent hub, purely for Mobile-CLI app work (apps/pi-remote-web/ and its siblings),",
       "keywords": [
         "phase",
@@ -9460,7 +9460,7 @@
       "lastUpdated": "2026-08-30T07:14:53.621Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/002-scripts-ownership",
+      "specFolder": "sk-code/code-surfaces/004-sk-code-mobile-cli-mode/002-scripts-ownership",
       "description": "Decision packet answering whether the Mobile CLI verification tooling in scripts/ (token-identity, the *-cdp render gates, naming/scan-*,",
       "keywords": [
         "decision",
@@ -9482,7 +9482,7 @@
       "lastUpdated": "2026-09-04T17:50:16.991Z"
     },
     {
-      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/003-skill-doc-alignment",
+      "specFolder": "sk-code/code-surfaces/004-sk-code-mobile-cli-mode/003-skill-doc-alignment",
       "description": "Seven docs in the `sk-code-mobile-cli` skill lag the `sk-create-skill` v4 asset, reference, and readme",
       "keywords": [
         "seven",

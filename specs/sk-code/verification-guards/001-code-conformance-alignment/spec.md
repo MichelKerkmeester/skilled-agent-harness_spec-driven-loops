@@ -57,7 +57,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `sk-code` |
-| **Predecessor** | `sk-code/code-surfaces/001-content-quality-remediation` |
+| **Predecessor** | `sk-code/code-surfaces/002-content-quality-remediation` |
 | **Successor** | None |
 | **Handoff Criteria** | Gate repair lands in child 001 before any code batch runs; each subsequent child reports a captured-baseline drift delta, not a bare PASS |
 <!-- /ANCHOR:metadata -->

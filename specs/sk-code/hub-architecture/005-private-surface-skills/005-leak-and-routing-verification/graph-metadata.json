@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored `local-` symlinks, but nothing yet proves the result",
     "created_at": "2026-10-23T07:03:41Z",
-    "last_save_at": "2026-11-10T06:05:57.234Z",
+    "last_save_at": "2026-11-10T08:37:12.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f91ba311a8a0bdf84d9327eba1077285d1b3662f4ef58f64e7b588229748a9d",
+    "source_fingerprint": "sha256:6deebf91870ca0c2cb5719afca4d125b553d473f6ecef99ead1f89d9fe9facbd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f7bb350046feabb81345be3fc5ba7a5a1dde7580146b668368de96589ae321e",
-      "plan.md": "0a2cd020bf55873fb0d4bacacfd8455099106a9eed42d00ff558a2ff3d075ee7",
-      "tasks.md": "68e2c5fa3800ee7fea376c263b4f9230608e6b520b55396786d0be4f1ac7cb65",
-      "decision-record.md": "eff8cfa54f1ffd828741fbf953fee2f568d62c2a04033e57407509d56fc2fd7c",
+      "spec.md": "f41c98672a148cba7c0bddf6062e9c1f5db260b4ea1badf809dd4c28680b90c6",
+      "plan.md": "d07c03e42621b80633673535ba75ee9718976d3355c970fec15f8b9a08ed3063",
+      "tasks.md": "67e94210a5ffe3c5ba98750fe6bd4bd9a862d16925182ac0e829dfcb596465b0",
+      "decision-record.md": "46f00bcaa3b0221e816a95ae4d2ade99769965e2e8d5a11637fe590775aa3449",
       "implementation-summary.md": "5a372862179323b9f8bb7141b8001c1f4402c48b5fd7db50d11b7f4dc20e073c"
     },
     "last_active_at": null

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend",
+  "spec_folder": "sk-code/code-surfaces/006-frontend-upstream-proposals/007-web-only-frontend",
+  "parent_id": "sk-code/code-surfaces/006-frontend-upstream-proposals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "web only frontend",
+      "phase 7 web only frontend",
+      "remove react native from sk-code",
+      "web only frontend plan",
+      "web only frontend tasks",
+      "web only frontend acceptance criteria",
+      "web only frontend decision record",
+      "remove react native decision",
+      "web only frontend implementation summary"
+    ],
+    "key_topics": [
+      "web",
+      "only",
+      "frontend",
+      "phase",
+      "remove",
+      "react",
+      "native",
+      "sk-code",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/alignment-fixes.md",
+      ".skilled/skills/README.txt",
+      "scratch/final-suites.txt",
+      "scratch/reach-final.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-fixes.md",
+        "kind": "doc",
+        "path": "scratch/alignment-fixes.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suites.txt",
+        "kind": "file",
+        "path": "scratch/final-suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reach-final.txt",
+        "kind": "file",
+        "path": "scratch/reach-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Native",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No React Native",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Removal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restore React Native",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 shipped a React Native stack layer and five native topic files in `sk-code-frontend` and changed the sk-code router to say canonical sk-code owns React Native practice",
+    "created_at": "2026-11-03T18:25:27Z",
+    "last_save_at": "2026-11-10T08:36:44.752Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1d709c4ee2010aab06431119747cd474246efaee47c5010cfa6470b18844f5f9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dbfcac97551353d9f87da47cf8f79fcc62d221a1603a6ae8fe813212b10e4008",
+      "plan.md": "1bb0d7b6bf99092e76ef5db80f005f7f615e883dc1174c60b79c6e627c0ee701",
+      "tasks.md": "e9740857179fb260e39cf55f4bd720f11d17300205aca1d0f667b572e5cac17a",
+      "decision-record.md": "b9c0a8b59e13297b3c5d941bfa2765c1db8cb6456f054b66c119afc475cb8e4c",
+      "implementation-summary.md": "0d84381198ab60f613697eb570f86bb0c0aeed71690879d27f84cd9ed74e647f"
+    },
+    "last_active_at": null
+  }
+}

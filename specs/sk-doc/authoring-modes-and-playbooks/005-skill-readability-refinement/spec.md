@@ -50,7 +50,7 @@ _memory:
 | **Branch** | `worktrees/315-frontend-reference-restructure` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement |
-| **Predecessor** | `specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research` |
+| **Predecessor** | `specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research` |
 | **Successor** | None |
 | **Handoff Criteria** | Every leaf phase records its audit, fix, review and gates, and every skill is committed |
 <!-- /ANCHOR:metadata -->

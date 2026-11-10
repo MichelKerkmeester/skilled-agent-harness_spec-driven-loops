@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/code-surfaces/006-frontend-upstream-proposals/001-frontend-surface-mode",
+  "description": "Phase 1: frontend-surface-mode",
+  "keywords": [
+    "phase",
+    "frontend-surface-mode"
+  ],
+  "lastUpdated": "2026-11-03T08:33:53.561Z",
+  "specId": "001",
+  "folderSlug": "frontend-surface-mode",
+  "parentChain": [
+    "sk-code",
+    "code-surfaces",
+    "006-frontend-upstream-proposals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
