@@ -1,0 +1,1549 @@
+{
+  "sessionId": "fanout-deepseek-flash-max-1794329077802-xnltbi",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-10T16:55:02.381Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-of-the-12-serial-deep-loop-files-actually-need-serial-execution-and-what-w",
+      "inboxId": null,
+      "text": "Which of the 12 serial deep-loop files actually need serial execution, and what would shrink that group?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-sets-the-time-of-the-cli-lane-s-tests-upgrade-legacy-vitest-ts-and-can-it-b",
+      "inboxId": null,
+      "text": "What sets the time of the cli lane's tests/upgrade-legacy.vitest.ts, and can it be cut without dropping assertions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-3-where-do-the-roughly-300-s-of-import-time-in-the-spec-kit-core-lane-come-from-an",
+      "inboxId": null,
+      "text": "Where do the roughly 300 s of import time in the spec-kit core lane come from, and which parts can be cut?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-do-the-ledger-read-caching-ideas-singlewriterreadcache-gateway-rescans-buy-measu",
+      "inboxId": null,
+      "text": "Do the ledger read-caching ideas (singleWriterReadCache, gateway rescans) buy measurable time, and what runtime risk do they carry?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-remaining-cuts-still-pay-off-on-a-smaller-ci-runner-and-how-should-each-be",
+      "inboxId": null,
+      "text": "Which remaining cuts still pay off on a smaller CI runner, and how should each be measured before it is claimed as a win?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-of-the-12-serial-deep-loop-files-actually-need-serial-execution-and-what-w",
+      "inboxId": null,
+      "text": "Which of the 12 serial deep-loop files actually need serial execution, and what would shrink that group?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-2-what-sets-the-time-of-the-cli-lane-s-tests-upgrade-legacy-vitest-ts-and-can-it-b",
+      "inboxId": null,
+      "text": "What sets the time of the cli lane's tests/upgrade-legacy.vitest.ts, and can it be cut without dropping assertions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-3-where-do-the-roughly-300-s-of-import-time-in-the-spec-kit-core-lane-come-from-an",
+      "inboxId": null,
+      "text": "Where do the roughly 300 s of import time in the spec-kit core lane come from, and which parts can be cut?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-do-the-ledger-read-caching-ideas-singlewriterreadcache-gateway-rescans-buy-measu",
+      "inboxId": null,
+      "text": "Do the ledger read-caching ideas (singleWriterReadCache, gateway rescans) buy measurable time, and what runtime risk do they carry?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-which-remaining-cuts-still-pay-off-on-a-smaller-ci-runner-and-how-should-each-be",
+      "inboxId": null,
+      "text": "Which remaining cuts still pay off on a smaller CI runner, and how should each be measured before it is claimed as a win?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "5 of 5 key questions remain open; Q2 is the one this iteration advanced.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "4 of 5 key questions remain open.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "3 of 5 key questions remain open.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "2 of 5 key questions remain open.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "1 of 5 key questions remains open (Q2, the cli lane's `upgrade-legacy` file).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None of the five key questions remains open.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-bare-process-startup-is-not-the-cost-node-e-measures-0-020-s-and-bash-c-true-and",
+      "text": "Bare process startup is not the cost: `node -e \"\"` measures 0.020 s and `bash -c true` and `git rev-parse` measure under 0.005 s on this machine, so 74 node starts are about 1.5 s. The seconds are inside each child's module load and its own work, not in the spawn itself. `[SOURCE: measured: /usr/bin/time -p node -e \"\" x3 = 0.020 s each]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-double-validation-is-by-design-not-waste-validateall-validates-every-packet-",
+      "text": "The double validation is by design, not waste: `validateAll` validates every packet in scope before any repair, and a repaired packet is validated again to prove the repair worked. Removing either pass would change what the command guarantees, so it is not a speed lever. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-file-s-dominant-work-is-process-creation-not-computation-74-runupgrade-call-",
+      "text": "The file's dominant work is process creation, not computation: 74 `runUpgrade` call sites each spawn `node .../upgrade-legacy.mjs`, and every packet validation inside that CLI spawns `bash validate.sh`, which spawns two more node processes — one for the dist-freshness check and one for the validation orchestrator. One assertion can therefore cost three or four process starts. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-freshness-check-that-validate-sh-runs-before-every-validation-is-cheap-in-it",
+      "text": "The freshness check that `validate.sh` runs before every validation is cheap in itself: the watched source set for the `validation-orchestrator` entry is 16 files / 344 KB, so the extra node process costs startup plus a small hash, not a tree walk. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89]` `[SOURCE: measured: watched source files = 16, bytes = 343682]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-one-structural-lever-this-file-offers-is-sharding-not-trimming-58-self-reset",
+      "text": "The one structural lever this file offers is sharding, not trimming: 58 self-resetting tests can move into separate files, each with its own sandbox, and Vitest already runs cli files in parallel. The copy cost is paid once per shard (about 35.8 MB), while the per-test process work parallelises. A 4-shard split is an estimate of roughly 400 s down to 120-150 s wall on this machine, and it must be measured, not claimed. `[INFERENCE: from findings 2, 4 and 6 plus the cli project's fileParallelism: true at .skilled/skills/system-spec-kit/vitest.config.ts:57]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-reset-itself-is-not-free-and-is-paid-once-per-test-git-reset-hard-rm-rf-of-s",
+      "text": "The reset itself is not free and is paid once per test: `git reset --hard`, `rm -rf` of six paths, then `refreshCopiedDistMtimes`, which walks the copied `runtime` tree and calls `utimesSync` on every file under a `dist/` path — 734 such files in the real tree. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132]` `[SOURCE: measured: find .skilled/skills/system-spec-kit/runtime -path '*/dist/*' -type f | wc -l = 734]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-suite-is-a-single-2370-line-file-with-65-tests-over-one-shared-sandbox-befor",
+      "text": "The suite is a single 2370-line file with 65 tests over one shared sandbox: `beforeAll` copies the whole skill tree (3115 files, 35.8 MB excluding `node_modules`) into a temp dir, symlinks three `node_modules` back, runs `git init` and commits the entire copy as the baseline. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-6-three-of-the-five-describe-blocks-reset-the-sandbox-after-every-test-aftereach-r",
+      "text": "Three of the five `describe` blocks reset the sandbox after every test (`afterEach(resetSandbox)`), and two do not. That makes 58 of the 65 tests provably order-independent and shardable, and leaves 7 (`planLayoutMove`'s 6 and `layout links`' 1) without a proven independence guarantee. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-1-8-vitest-s-reported-import-time-is-a-sum-over-files-not-wall-time-the-summary-line",
+      "text": "Vitest's reported `import` time is a sum over files, not wall time: the summary line computes `collectTime = sum(files, file => file.collectDuration)` and prints it beside the wall `executionTime`. A 300 s import figure therefore cannot be read as 300 s of wall clock, which matters for the packet's framing of the core lane. `[SOURCE: .skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465]` `[SOURCE: .skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2474]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:33`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:194`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:231`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1932`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:2272`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:988`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs:89`",
+        "`.skilled/skills/system-spec-kit/vitest.config.ts:57`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts`",
+        "measured: `/usr/bin/time -p node -e \"\"` x3 = 0.020 s each; `bash -c true` and `git rev-parse` under 0.005 s",
+        "measured: `find ... -path '*/dist/*' -type f | wc -l` = 734; copy payload 35.8 MB / 3115 files"
+      ]
+    },
+    {
+      "id": "finding-2-3-db-open-close-is-the-one-file-whose-purpose-is-contention-its-second-test-holds-",
+      "text": "`db-open-close` is the one file whose *purpose* is contention: its second test holds the graph writer lock for 500 ms in one child and starts a second child with `DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS=0`, then asserts the second exits 2 with `DB_ERROR`. That test needs the lock to itself, and cut 5 already gave each file its own coverage database and lock path, so the requirement is exclusivity on one file's lock rather than on the machine. `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts` (SERIAL_FILES and project wiring)",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83`"
+      ]
+    },
+    {
+      "id": "finding-2-4-fanout-run-has-no-assertion-that-bounds-elapsed-wall-time-its-timing-flavoured-a",
+      "text": "`fanout-run` has no assertion that bounds elapsed wall time. Its timing-flavoured assertions are string ordering (`indexOf` comparisons), lower bounds (`slotDurationMs > 0`, `completedSlotMs >= 4_200`) and a `waitForFile` poll cap of 5000 ms; the only child bound is one spawn at 30 000 ms. Lower bounds cannot fail under load, so this file's 171 tests do not need a quiet machine to stay green. `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts` (SERIAL_FILES and project wiring)",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83`"
+      ]
+    },
+    {
+      "id": "finding-2-5-postflip-fanout-carries-no-timing-bound-at-all-it-drives-the-ledger-and-gateway-",
+      "text": "`postflip-fanout` carries no timing bound at all: it drives the ledger and gateway through `execFileSync` and asserts state transitions. Its serial placement is not backed by any assertion this iteration could find. `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts` (SERIAL_FILES and project wiring)",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83`"
+      ]
+    },
+    {
+      "id": "finding-2-2-only-four-files-carry-a-load-sensitive-upper-bound-on-a-child-process-and-those-",
+      "text": "Only four files carry a load-sensitive upper bound on a child process, and those are the ones whose serial placement a timing assertion justifies: `cli-codex` bounds a spawned shim at 1000 ms, `stress/fanout` bounds its runs at 12 000 ms, `lineage-timestamp-window` bounds a child at 60 000 ms (raised from 15 s by cut 5), and `db-open-close` waits at most 1000 ms for the writer lock to appear. `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts` (SERIAL_FILES and project wiring)",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83`"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-arithmetic-of-moving-the-two-unbound-files-into-the-parallel-project-is-favo",
+      "text": "The arithmetic of moving the two unbound files into the parallel project is favourable and testable: the serial group falls from about 265 s to about 108 s, while `fanout-run` and `postflip-fanout` join a parallel group already near 240 s, so the suite's floor becomes roughly 240 s plus 108 s, near 348 s instead of 504-511 s. This is an estimate and must be measured, because the parallel group may stretch when 157 s of spawning work joins it. `[INFERENCE: from findings 1, 4, 5 and 6 plus the 504-511 s and 265 s figures in the research topic]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts` (SERIAL_FILES and project wiring)",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83`"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-packet-s-own-pre-cut-profile-measured-fanout-run-at-157-s-the-slowest-file-i",
+      "text": "The packet's own pre-cut profile measured `fanout-run` at 157 s, the slowest file in the suite, which makes it the single largest block inside the 265 s serial group. `[SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts` (SERIAL_FILES and project wiring)",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-twelve-files-are-six-real-test-surfaces-not-twelve-seven-of-them-cli-cursor-",
+      "text": "The twelve files are six real test surfaces, not twelve: seven of them (`cli-cursor`, `cli-devin`, `cli-pi`, `cli-deepseek-harness`, `cli-opencode`, `cli-claude-code`, and the shared factory's callers) are 7-line wrappers that each call `defineAdapterStressSuite('<kind>')` from one fixture module. The real code is `fanout-run.vitest.ts` (5925 lines, 171 tests), `stress/cli-adapter/fanout.vitest.ts` (843 lines, 19 tests), `stress/cli-adapter/cli-codex.vitest.ts` (520 lines, 26 tests), `integration/deep-research-postflip-fanout.vitest.ts` (612 lines, 4 tests), `unit/lineage-timestamp-window.vitest.ts` (257 lines, 5 tests) and `lifecycle/db-open-close.vitest.ts` (97 lines, 2 tests). `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1]`",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts` (SERIAL_FILES and project wiring)",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts:6`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures/adapter-suite.ts:1`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts:112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts:118`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:31`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:472`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:2540`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:5112`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/integration/deep-research-postflip-fanout.vitest.ts:1`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83`"
+      ]
+    },
+    {
+      "id": "finding-3-3-at-18-workers-a-summed-import-figure-of-302-s-contributes-about-17-s-of-wall-tim",
+      "text": "At 18 workers, a summed import figure of 302 s contributes about 17 s of wall time even if the work balanced perfectly. It therefore cannot be the largest share of a 348-399 s lane, which settles iteration 1's finding 8 in the concrete case: the metric measures total work, not elapsed time. `[SOURCE: .skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465]` `[SOURCE: measured: os.availableParallelism() = 18]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/cli-api.B0Pz1_R7.js:2355`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2490`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:550`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`",
+        "measured: static import-graph walk over 129 core test files → 1087 module instances, 15 417 KB, median 46 KB, max 747 KB / 38 modules",
+        "measured: `os.availableParallelism()` = 18"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-config-already-carries-the-instrument-for-a-per-file-answer-vitest-s-experim",
+      "text": "The config already carries the instrument for a per-file answer: Vitest's `experimental.importDurations` prints a per-module import breakdown, and `--reporter=json` reports per-file collect and test durations, so the split can be obtained in one run with no code change. `[SOURCE: .skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2490]` `[SOURCE: .skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:550]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/cli-api.B0Pz1_R7.js:2355`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2490`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:550`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`",
+        "measured: static import-graph walk over 129 core test files → 1087 module instances, 15 417 KB, median 46 KB, max 747 KB / 38 modules",
+        "measured: `os.availableParallelism()` = 18"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-core-lane-is-one-project-collecting-129-files-with-fileparallelism-true-and-",
+      "text": "The core lane is one project collecting 129 files with `fileParallelism: true` and no `maxWorkers` setting, so Vitest's default decides the pool size. That default is `os.availableParallelism()`, which is 18 on this machine. `[SOURCE: .skilled/skills/system-spec-kit/runtime/vitest.config.ts:26]` `[SOURCE: .skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/cli-api.B0Pz1_R7.js:2355]` `[SOURCE: measured: os.availableParallelism() = 18]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/cli-api.B0Pz1_R7.js:2355`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2490`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:550`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`",
+        "measured: static import-graph walk over 129 core test files → 1087 module instances, 15 417 KB, median 46 KB, max 747 KB / 38 modules",
+        "measured: `os.availableParallelism()` = 18"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-core-lane-s-wall-time-is-explained-by-a-heavy-tail-not-by-a-sum-the-packet-s",
+      "text": "The core lane's wall time is explained by a heavy tail, not by a sum: the packet's own profile names three files at 151 s, 85 s and 84 s. Those three alone exceed 300 s of work, and with 18 workers they can land on one worker in sequence, which is enough to set a 348-399 s lane. `[SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/cli-api.B0Pz1_R7.js:2355`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2490`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:550`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`",
+        "measured: static import-graph walk over 129 core test files → 1087 module instances, 15 417 KB, median 46 KB, max 747 KB / 38 modules",
+        "measured: `os.availableParallelism()` = 18"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-packet-s-two-import-numbers-are-not-comparable-with-each-other-spec-md-recor",
+      "text": "The packet's two import numbers are not comparable with each other. `spec.md` records 338 s of import for 299 files, and the implementation summary records import \"still 302 s\" after cut 1 removed 173 of those files. Per file that is 1.1 s before the cut and 2.4 s after it, so at least one of the two is a different measurement rather than the same metric on a smaller set. `[SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49]` `[SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/cli-api.B0Pz1_R7.js:2355`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2490`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:550`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`",
+        "measured: static import-graph walk over 129 core test files → 1087 module instances, 15 417 KB, median 46 KB, max 747 KB / 38 modules",
+        "measured: `os.availableParallelism()` = 18"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-static-graph-measurement-across-all-129-core-test-files-totals-1087-module-i",
+      "text": "The static graph measurement across all 129 core test files totals 1087 module instances and 15.4 MB of TypeScript source: median 46 KB per file, and the largest is `graph-metadata-schema.vitest.ts` at 747 KB over 38 modules. No single test file imports an enormous graph, so the import cost is spread thin rather than concentrated in one outlier. `[SOURCE: measured: static import-graph walk over 129 files → 1087 modules, 15417 KB, median 46 KB]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/cli-api.B0Pz1_R7.js:2355`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2465`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/index.UpGiHP7g.js:2490`",
+        "`.skilled/skills/system-spec-kit/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:550`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`",
+        "measured: static import-graph walk over 129 core test files → 1087 module instances, 15 417 KB, median 46 KB, max 747 KB / 38 modules",
+        "measured: `os.availableParallelism()` = 18"
+      ]
+    },
+    {
+      "id": "finding-4-1-append-mode-event-cjs-is-a-tsx-bootstrap-when-deep-loop-tsx-loaded-is-unset-it-r",
+      "text": "`append-mode-event.cjs` is a TSX bootstrap: when `DEEP_LOOP_TSX_LOADED` is unset it re-executes itself as a child process with `--import tsx`, because every real module it needs is a `.ts` source. One gateway append therefore costs two node processes before any ledger work starts. `[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:15]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:20]`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:15`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:20`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:389`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts:420`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts:71`",
+        "measured: static import-graph walk of `append-mode-event.cjs` → 79 modules, 77 `.ts` files, 1089 KB",
+        "measured: `ls .skilled/skills/system-deep-loop/runtime/dist` → absent",
+        "measured: `grep -rc append-mode-event` over `runtime/tests` → 13 files, max 4 references each"
+      ]
+    },
+    {
+      "id": "finding-4-3-singlewriterreadcache-is-a-per-process-memo-of-one-verified-scan-a-hit-returns-t",
+      "text": "`singleWriterReadCache` is a per-process memo of one verified scan. A hit returns the memoized head and events without re-taking the lock; a miss takes the lock, scans, and memoizes. Every append nulls the memo, because the append changed the verified head. `[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:389]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516]`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:15`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:20`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:389`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts:420`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts:71`",
+        "measured: static import-graph walk of `append-mode-event.cjs` → 79 modules, 77 `.ts` files, 1089 KB",
+        "measured: `ls .skilled/skills/system-deep-loop/runtime/dist` → absent",
+        "measured: `grep -rc append-mode-event` over `runtime/tests` → 13 files, max 4 references each"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-cache-is-already-adopted-where-it-does-pay-fanout-effect-dispatch-ts-constru",
+      "text": "The cache is already adopted where it does pay: `fanout-effect-dispatch.ts` constructs its ledger with `singleWriterReadCache: true`, which is the long-lived-reader shape the memo was built for, and `ledger-read-cache.vitest.ts` already asserts that the domain read lock is taken once rather than once per read. So the proposal in the packet is not an unbuilt idea; it is built, tested, and enabled at its one useful call site. `[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts:420]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts:71]`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:15`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:20`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:389`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts:420`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts:71`",
+        "measured: static import-graph walk of `append-mode-event.cjs` → 79 modules, 77 `.ts` files, 1089 KB",
+        "measured: `ls .skilled/skills/system-deep-loop/runtime/dist` → absent",
+        "measured: `grep -rc append-mode-event` over `runtime/tests` → 13 files, max 4 references each"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-gateway-never-enables-the-cache-and-enabling-it-there-would-not-help-one-gat",
+      "text": "The gateway never enables the cache, and enabling it there would not help: one gateway invocation is one process that performs one append, and the append is exactly what invalidates the memo. The only saving would be the second read before the append, not the rescans the packet's note implies. `[SOURCE: measured: grep singleWriterReadCache over scripts/append-mode-event.cjs and lib/mode-append-gateway → no matches]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516]`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:15`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:20`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:389`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts:420`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts:71`",
+        "measured: static import-graph walk of `append-mode-event.cjs` → 79 modules, 77 `.ts` files, 1089 KB",
+        "measured: `ls .skilled/skills/system-deep-loop/runtime/dist` → absent",
+        "measured: `grep -rc append-mode-event` over `runtime/tests` → 13 files, max 4 references each"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-gateway-path-is-tens-of-spawns-not-hundreds-13-test-files-reference-append-m",
+      "text": "The gateway path is tens of spawns, not hundreds: 13 test files reference `append-mode-event`, at most four references each. Its cost is bounded, but every one of those spawns pays finding 1's double process and finding 2's 79-module load. `[SOURCE: measured: grep -rc append-mode-event over runtime/tests → 13 files, max 4 per file]`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:15`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:20`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:389`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts:420`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts:71`",
+        "measured: static import-graph walk of `append-mode-event.cjs` → 79 modules, 77 `.ts` files, 1089 KB",
+        "measured: `ls .skilled/skills/system-deep-loop/runtime/dist` → absent",
+        "measured: `grep -rc append-mode-event` over `runtime/tests` → 13 files, max 4 references each"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-gateway-s-dynamic-import-graph-is-79-modules-and-1-09-mb-of-typescript-all-o",
+      "text": "The gateway's dynamic import graph is 79 modules and 1.09 MB of TypeScript, all of it loaded through tsx because the deep-loop runtime has no `dist/` directory at all — there is no compiled path to fall back on. `[SOURCE: measured: static import-graph walk of append-mode-event.cjs → 79 modules, 77 .ts files, 1089 KB]` `[SOURCE: measured: ls .skilled/skills/system-deep-loop/runtime/dist → No such file or directory]`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:15`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:20`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:389`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516`",
+        "`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts:420`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/ledger-read-cache.vitest.ts:71`",
+        "measured: static import-graph walk of `append-mode-event.cjs` → 79 modules, 77 `.ts` files, 1089 KB",
+        "measured: `ls .skilled/skills/system-deep-loop/runtime/dist` → absent",
+        "measured: `grep -rc append-mode-event` over `runtime/tests` → 13 files, max 4 references each"
+      ]
+    },
+    {
+      "id": "finding-5-5-maxworkers-4-is-the-cheap-ci-proxy-neither-config-pins-maxworkers-and-vitest-acc",
+      "text": "`--maxWorkers=4` is the cheap CI proxy. Neither config pins `maxWorkers`, and Vitest accepts it as a CLI flag, so one four-worker run on this Mac predicts the `ubuntu-latest` wall without provisioning a runner. `[SOURCE: .skilled/skills/system-spec-kit/runtime/vitest.config.ts:26]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:45]`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.github/workflows/spec-kit-check.yml:95`",
+        "`.github/workflows/spec-kit-check.yml:98`",
+        "`.github/workflows/spec-kit-check.yml:148`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.github/workflows/deep-loop-runtime.yml:45`",
+        "`.github/workflows/deep-loop-runtime.yml:47`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:45`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`"
+      ]
+    },
+    {
+      "id": "finding-5-1-both-suites-run-on-ubuntu-latest-not-on-a-self-hosted-runner-spec-kit-check-has-",
+      "text": "Both suites run on `ubuntu-latest`, not on a self-hosted runner: `spec-kit-check` has a 51-minute job timeout and `deep-loop-runtime` a 34-minute one, and neither declares a shard matrix. `[SOURCE: .github/workflows/spec-kit-check.yml:95]` `[SOURCE: .github/workflows/spec-kit-check.yml:98]` `[SOURCE: .github/workflows/deep-loop-runtime.yml:45]` `[SOURCE: .github/workflows/deep-loop-runtime.yml:47]`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.github/workflows/spec-kit-check.yml:95`",
+        "`.github/workflows/spec-kit-check.yml:98`",
+        "`.github/workflows/spec-kit-check.yml:148`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.github/workflows/deep-loop-runtime.yml:45`",
+        "`.github/workflows/deep-loop-runtime.yml:47`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:45`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`"
+      ]
+    },
+    {
+      "id": "finding-5-2-ci-already-runs-the-cli-lane-the-way-run-cli-tests-sh-does-upgrade-legacy-vitest",
+      "text": "CI already runs the `cli` lane the way `run-cli-tests.sh` does — `upgrade-legacy.vitest.ts` in one background process and every other cli file in a second, joined with `wait`. So splitting that file into shards is a test-file change inside the existing process, not a CI workflow change. `[SOURCE: .github/workflows/spec-kit-check.yml:148]` `[SOURCE: .github/workflows/spec-kit-check.yml:153]` `[SOURCE: .github/workflows/spec-kit-check.yml:155]`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.github/workflows/spec-kit-check.yml:95`",
+        "`.github/workflows/spec-kit-check.yml:98`",
+        "`.github/workflows/spec-kit-check.yml:148`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.github/workflows/deep-loop-runtime.yml:45`",
+        "`.github/workflows/deep-loop-runtime.yml:47`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:45`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-core-lane-s-parallel-efficiency-is-poor-its-summed-work-is-roughly-302-s-of-",
+      "text": "The core lane's parallel efficiency is poor: its summed work is roughly 302 s of import plus its test time against a 348-399 s wall, which is about 1.3-1.4× even counting the test time generously, and close to 1.0× if the import figure and the wall belong to the same run. At that efficiency a four-core runner would cost about the same wall time, not more. This is an inference and needs one instrumented run, because iteration 3 found the packet's two import figures are not comparable. `[INFERENCE: from spec.md's 338 s import and implementation-summary's 302 s import, the 348-399 s core-lane wall, and the 18-worker default]`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.github/workflows/spec-kit-check.yml:95`",
+        "`.github/workflows/spec-kit-check.yml:98`",
+        "`.github/workflows/spec-kit-check.yml:148`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.github/workflows/deep-loop-runtime.yml:45`",
+        "`.github/workflows/deep-loop-runtime.yml:47`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:45`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-deep-loop-suite-s-265-s-serial-group-is-the-one-cost-that-is-identical-on-ei",
+      "text": "The deep-loop suite's 265 s serial group is the one cost that is identical on eighteen cores and on four, because it never uses more than one worker. That makes shrinking it the highest-value cut for a smaller runner, and it is the same cut iteration 2 identified from the assertion side. `[SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:13]`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.github/workflows/spec-kit-check.yml:95`",
+        "`.github/workflows/spec-kit-check.yml:98`",
+        "`.github/workflows/spec-kit-check.yml:148`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.github/workflows/deep-loop-runtime.yml:45`",
+        "`.github/workflows/deep-loop-runtime.yml:47`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:45`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`"
+      ]
+    },
+    {
+      "id": "finding-5-6-the-ranking-that-follows-is-first-shrink-the-serial-group-because-it-is-core-cou",
+      "text": "The ranking that follows is: first shrink the serial group, because it is core-count independent; second split the heavy files, because it shortens the critical path on every runner; third cut summed import work, which is worth about 17 s on eighteen cores and only becomes material when cores are scarce; fourth the ledger caching, which iteration 4 showed buys nothing on the append path. `[INFERENCE: from findings 1-5 and iteration 4's finding 4]`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.github/workflows/spec-kit-check.yml:95`",
+        "`.github/workflows/spec-kit-check.yml:98`",
+        "`.github/workflows/spec-kit-check.yml:148`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.github/workflows/deep-loop-runtime.yml:45`",
+        "`.github/workflows/deep-loop-runtime.yml:47`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:45`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:49`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:71`"
+      ]
+    },
+    {
+      "id": "finding-6-5-because-both-components-scale-with-the-number-of-tests-rather-than-with-a-few-he",
+      "text": "Because both components scale with the number of tests rather than with a few heavy ones, sharding divides them both: N shards, each with its own sandbox, put roughly 1/N of the calls and 1/N of the resets on each worker, and the only new cost is N sandbox copies instead of one. `[INFERENCE: from findings 1-4 and the 35.8 MB copy measured in iteration 1]`",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1004`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1394`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "measured: static per-test call count → 65 tests, 105 calls, top-10 share 36%, 9 tests with zero calls",
+        "measured: 734 files under a `dist` path; 35.8 MB / 3115 files in the copy (iteration 1)"
+      ]
+    },
+    {
+      "id": "finding-6-3-each-of-those-105-calls-is-not-one-process-but-a-chain-node-upgrade-legacy-mjs-t",
+      "text": "Each of those 105 calls is not one process but a chain: `node upgrade-legacy.mjs`, then `bash validate.sh` per packet in scope, then two node processes per validation. At one to three packets per call that is roughly four to ten processes per call, or several hundred processes for the file. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421]`",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1004`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1394`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "measured: static per-test call count → 65 tests, 105 calls, top-10 share 36%, 9 tests with zero calls",
+        "measured: 734 files under a `dist` path; 35.8 MB / 3115 files in the copy (iteration 1)"
+      ]
+    },
+    {
+      "id": "finding-6-6-the-estimated-result-is-about-400-s-down-to-roughly-100-140-s-at-four-shards-dom",
+      "text": "The estimated result is about 400 s down to roughly 100-140 s at four shards, dominated by the per-shard `beforeAll` copy plus a quarter of the test work. That is an estimate and the file's own profile is still the missing evidence; the four-shard figure must be measured before it is claimed. `[INFERENCE: from findings 1-5]`",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1004`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1394`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "measured: static per-test call count → 65 tests, 105 calls, top-10 share 36%, 9 tests with zero calls",
+        "measured: 734 files under a `dist` path; 35.8 MB / 3115 files in the copy (iteration 1)"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-heaviest-single-test-is-dirty-tree-writes-manifest-with-six-calls-two-spawns",
+      "text": "The heaviest single test is `dirty-tree-writes-manifest` with six calls (two spawns and four git operations), followed by `stale-manifest-head-refuses-apply` with six (three spawns, two git operations and the dirty-manifest fixture). No test dominates the file. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1004]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1394]`",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1004`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1394`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "measured: static per-test call count → 65 tests, 105 calls, top-10 share 36%, 9 tests with zero calls",
+        "measured: 734 files under a `dist` path; 35.8 MB / 3115 files in the copy (iteration 1)"
+      ]
+    },
+    {
+      "id": "finding-6-4-the-second-cost-component-is-the-reset-paid-58-times-because-three-of-five-descr",
+      "text": "The second cost component is the reset, paid 58 times because three of five describes reset after every test: `git reset --hard` over a 3115-file repository, six path removals, and a `utimesSync` pass over 734 `dist` files. That is a smaller share than the process chains but not a rounding error. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132]` `[SOURCE: measured: 734 files under a dist path]`",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1004`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1394`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "measured: static per-test call count → 65 tests, 105 calls, top-10 share 36%, 9 tests with zero calls",
+        "measured: 734 files under a `dist` path; 35.8 MB / 3115 files in the copy (iteration 1)"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-work-is-spread-not-concentrated-65-tests-make-105-process-shaped-calls-betwe",
+      "text": "The work is spread, not concentrated: 65 tests make 105 process-shaped calls between them, and the ten heaviest tests account for only 36% of those calls. Nine tests make none at all. `[SOURCE: measured: static per-test count over .skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts → 65 tests, 105 calls, top-10 share 36%, 9 tests with zero]`",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:90`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:132`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1004`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/upgrade-legacy.vitest.ts:1394`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:951`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:405`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:421`",
+        "measured: static per-test call count → 65 tests, 105 calls, top-10 share 36%, 9 tests with zero calls",
+        "measured: 734 files under a `dist` path; 35.8 MB / 3115 files in the copy (iteration 1)"
+      ]
+    },
+    {
+      "id": "finding-7-5-a-split-has-to-preserve-the-guarantee-run-cli-tests-sh-s-header-states-the-first",
+      "text": "A split has to preserve the guarantee `run-cli-tests.sh`'s header states: the first process names the exact path, so a rename fails instead of silently passing. A glob replacement would lose that unless the command asserts a non-empty match. `[SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:3]`",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:3`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:7`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:15`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:31`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json` (`test:cli`, `test:sharded`)"
+      ]
+    },
+    {
+      "id": "finding-7-1-four-live-lines-hardcode-the-file-run-cli-tests-sh-runs-it-as-the-first-backgrou",
+      "text": "Four live lines hardcode the file: `run-cli-tests.sh` runs it as the first background process and excludes it from the second, and `spec-kit-check.yml` repeats both lines. Two feature-catalog documents also name it, but they are prose. A rename or split must update the exclude, or the second process would collect the shards and run them a second time. `[SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:7]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9]` `[SOURCE: .github/workflows/spec-kit-check.yml:153]` `[SOURCE: .github/workflows/spec-kit-check.yml:155]`",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:3`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:7`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:15`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:31`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json` (`test:cli`, `test:sharded`)"
+      ]
+    },
+    {
+      "id": "finding-7-4-native-shard-distributes-test-files-not-tests-so-it-cannot-divide-a-single-400-s",
+      "text": "Native `--shard` distributes test files, not tests, so it cannot divide a single 400 s file. Sharding the cli lane with it would spread the other 202 files while the one heavy file stayed whole on one shard. `[INFERENCE: from run-tests-sharded.mjs passing --shard through to run-tests.mjs, which forwards to vitest run]`",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:3`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:7`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:15`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:31`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json` (`test:cli`, `test:sharded`)"
+      ]
+    },
+    {
+      "id": "finding-7-3-that-runner-runs-its-shards-one-at-a-time-on-purpose-and-its-header-says-why-run",
+      "text": "That runner runs its shards one at a time on purpose, and its header says why: running them together contends for the same temporary directories and databases and produces failures that belong to the harness. That is a recorded precedent for this repository, and it is the same hazard the deep-loop serial group exists to avoid. `[SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:9]`",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:3`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:7`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:15`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:31`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json` (`test:cli`, `test:sharded`)"
+      ]
+    },
+    {
+      "id": "finding-7-2-the-repository-already-ships-a-sharded-runner-npm-run-test-sharded-calls-scripts",
+      "text": "The repository already ships a sharded runner: `npm run test:sharded` calls `scripts/run-tests-sharded.mjs`, which defaults to twelve shards and passes Vitest's native `--shard=N/M`. `[SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:15]` `[SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:31]`",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:3`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:7`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:9`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:15`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-tests-sharded.mjs:31`",
+        "`.github/workflows/spec-kit-check.yml:153`",
+        "`.github/workflows/spec-kit-check.yml:155`",
+        "`.skilled/skills/system-spec-kit/runtime/package.json` (`test:cli`, `test:sharded`)"
+      ]
+    },
+    {
+      "id": "finding-8-1-fanout-run-vitest-ts-is-44-top-level-describe-blocks-holding-171-tests-with-exac",
+      "text": "`fanout-run.vitest.ts` is 44 top-level `describe` blocks holding 171 tests, with exactly one hook: an `afterEach` that clears two module-level arrays of temp directories and hermetic environments. There is no `beforeAll`, no shared fixture, no `require.cache` manipulation, no global stubbing and no `process.env` mutation. `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:49]` `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:519]`",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:49`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:519`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:57`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "measured: per-describe test counts → 18, 13, 8, 8, 8, 7, 7, 7 across 44 describes"
+      ]
+    },
+    {
+      "id": "finding-8-3-a-split-alone-would-not-help-because-the-serial-project-sets-fileparallelism-fal",
+      "text": "A split alone would not help, because the serial project sets `fileParallelism: false` and would still run the pieces one at a time. The split pays only together with the move into the parallel project. `[SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:57]`",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:49`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:519`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:57`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "measured: per-describe test counts → 18, 13, 8, 8, 8, 7, 7, 7 across 44 describes"
+      ]
+    },
+    {
+      "id": "finding-8-4-combined-the-two-moves-divide-the-suite-s-largest-block-157-s-on-one-worker-beco",
+      "text": "Combined, the two moves divide the suite's largest block: 157 s on one worker becomes roughly 40 s on four workers if the file is split four ways, which is larger than the entire serial-group saving iteration 2 estimated from moving two files. `[INFERENCE: from finding 2, finding 3 and the 157 s figure at spec.md:59]`",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:49`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:519`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:57`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "measured: per-describe test counts → 18, 13, 8, 8, 8, 7, 7, 7 across 44 describes"
+      ]
+    },
+    {
+      "id": "finding-8-5-the-blocks-are-already-sized-for-it-max-iterations-stop-reason-tolerance-holds-1",
+      "text": "The blocks are already sized for it: `max-iterations stop-reason tolerance` holds 18 tests, `cli-pi adapter` 13, and four more hold eight or seven each, so a four-way split can be balanced without cutting a describe in half. `[SOURCE: measured: per-describe test counts over fanout-run.vitest.ts → 18, 13, 8, 8, 8, 7, 7, 7]`",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:49`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:519`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:57`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "measured: per-describe test counts → 18, 13, 8, 8, 8, 7, 7, 7 across 44 describes"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-file-therefore-splits-cleanly-by-describe-block-each-new-file-needs-the-same",
+      "text": "The file therefore splits cleanly by describe block: each new file needs the same imports and the same `afterEach` cleanup, and nothing else carries across tests. The only shared state is the cleanup list itself, which each file would own separately. `[INFERENCE: from finding 1]`",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:49`",
+        "`.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts:519`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:57`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "measured: per-describe test counts → 18, 13, 8, 8, 8, 7, 7, 7 across 44 describes"
+      ]
+    },
+    {
+      "id": "finding-9-4-both-cuts-need-the-same-small-runner-check-repeat-the-measurement-with-maxworker",
+      "text": "Both cuts need the same small-runner check: repeat the measurement with `--maxWorkers=4`, because a saving that only exists at eighteen workers does not help the machine that gates merges. `[SOURCE: .skilled/skills/system-spec-kit/runtime/vitest.config.ts:26]`",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md:93`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`"
+      ]
+    },
+    {
+      "id": "finding-9-2-cut-a-move-fanout-run-and-postflip-fanout-into-the-parallel-project-and-split-fa",
+      "text": "Cut A — move `fanout-run` and `postflip-fanout` into the parallel project and split `fanout-run` four ways — is proven by the deep-loop suite's wall time falling while `vitest list` still reports the same file set. Its falsifier is a timing test failing under load, and the response is to raise the poll cap or return that one test to the serial project, never to loosen an elapsed assertion. `[SOURCE: .skilled/skills/system-deep-loop/runtime/vitest.config.ts:13]`",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md:93`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`"
+      ]
+    },
+    {
+      "id": "finding-9-3-cut-b-split-upgrade-legacy-into-four-shards-with-a-shared-harness-is-proven-by-t",
+      "text": "Cut B — split `upgrade-legacy` into four shards with a shared harness — is proven by the cli lane's wall time falling while the `cli` project still reports 203 files and 2518 tests. Its falsifier is the shard running twice, which happens if the `--exclude` line is not updated, so the proof must include a file count from each of the two processes. `[SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9]`",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md:93`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`"
+      ]
+    },
+    {
+      "id": "finding-9-1-every-cut-needs-the-same-three-part-proof-a-per-file-baseline-from-reporter-json",
+      "text": "Every cut needs the same three-part proof: a per-file baseline from `--reporter=json`, the same run repeated after the change, and a file-and-test count from `vitest list` to show nothing left the suite. The packet already used the count guard for cut 1, where the config went from 302 collected files to 129. `[SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md:93]`",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md:93`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`"
+      ]
+    },
+    {
+      "id": "finding-9-5-the-protocol-s-rejection-rule-is-the-important-part-a-cut-is-rejected-if-the-wal",
+      "text": "The protocol's rejection rule is the important part: a cut is rejected if the wall does not fall by at least 10%, if any file or test count changes, or if a timing-sensitive test fails once under load. A 10% floor is above the run-to-run spread the packet already recorded — the deep-loop suite varied by 7 s across three runs, about 1.4%. `[INFERENCE: from the 504, 511 and 504 s deep-loop runs recorded in implementation-summary.md:145]`",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md:93`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`.skilled/skills/system-deep-loop/runtime/vitest.config.ts:13`",
+        "`.skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh:9`",
+        "`.skilled/skills/system-spec-kit/runtime/vitest.config.ts:26`"
+      ]
+    },
+    {
+      "id": "finding-10-5-added-together-the-two-cuts-take-the-deep-loop-suite-from-504-511-s-to-roughly-3",
+      "text": "Added together, the two cuts take the deep-loop suite from 504-511 s to roughly 350-360 s and the spec-kit `npm test` from 841-911 s to roughly 570-640 s. Neither touches the import sum or the ledger cache, which iterations 3 and 4 showed are not on either critical path. `[INFERENCE: from findings 3-4 and the packet's measured baselines]`",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "the research topic's 504-511 s suite and 265 s serial-group figures",
+        "`iterations/iteration-002.md`, `iterations/iteration-006.md`, `iterations/iteration-008.md`, `iterations/iteration-009.md`"
+      ]
+    },
+    {
+      "id": "finding-10-3-cut-a-s-saving-is-therefore-the-serial-group-s-fall-from-about-265-s-to-about-10",
+      "text": "Cut A's saving is therefore the serial group's fall from about 265 s to about 108 s, roughly 150 s off the deep-loop suite, with the parallel group unchanged. `[INFERENCE: from findings 1-2 and iteration 2's 108 s estimate]`",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "the research topic's 504-511 s suite and 265 s serial-group figures",
+        "`iterations/iteration-002.md`, `iterations/iteration-006.md`, `iterations/iteration-008.md`, `iterations/iteration-009.md`"
+      ]
+    },
+    {
+      "id": "finding-10-4-cut-b-s-saving-is-the-cli-lane-s-fall-from-about-400-s-to-roughly-100-140-s-at-f",
+      "text": "Cut B's saving is the cli lane's fall from about 400 s to roughly 100-140 s at four shards, roughly 270 s off the spec-kit `npm test`, and it changes no assertion. `[INFERENCE: from iteration 6's estimate]`",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "the research topic's 504-511 s suite and 265 s serial-group figures",
+        "`iterations/iteration-002.md`, `iterations/iteration-006.md`, `iterations/iteration-008.md`, `iterations/iteration-009.md`"
+      ]
+    },
+    {
+      "id": "finding-10-2-split-four-ways-the-moved-block-is-about-40-s-per-worker-which-is-far-inside-the",
+      "text": "Split four ways, the moved block is about 40 s per worker, which is far inside the 239-246 s wall and leaves the group's critical path unchanged. `[INFERENCE: from finding 1 and iteration 8's four-way estimate]`",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "the research topic's 504-511 s suite and 265 s serial-group figures",
+        "`iterations/iteration-002.md`, `iterations/iteration-006.md`, `iterations/iteration-008.md`, `iterations/iteration-009.md`"
+      ]
+    },
+    {
+      "id": "finding-10-1-the-parallel-group-s-wall-is-about-239-246-s-for-161-files-which-is-larger-than-",
+      "text": "The parallel group's wall is about 239-246 s for 161 files, which is larger than the 157 s block that would join it, so moving `fanout-run` in does not extend the group's wall. The assumption behind Cut A holds. `[INFERENCE: 504-511 s suite minus 265 s serial group from the research topic]`",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "the research topic's 504-511 s suite and 265 s serial-group figures",
+        "`iterations/iteration-002.md`, `iterations/iteration-006.md`, `iterations/iteration-008.md`, `iterations/iteration-009.md`"
+      ]
+    },
+    {
+      "id": "finding-10-6-the-residual-risk-is-uniform-and-stated-every-number-in-findings-1-5-is-arithmet",
+      "text": "The residual risk is uniform and stated: every number in findings 1-5 is arithmetic over the packet's own measurements, and iteration 9's protocol — per-file baseline, repeat run, count guard, 10% floor, four-worker check — is the gate each cut must pass before any of it is claimed. `[SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145]`",
+      "addedAtIteration": 10,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:145`",
+        "`specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md:59`",
+        "the research topic's 504-511 s suite and 265 s serial-group figures",
+        "`iterations/iteration-002.md`, `iterations/iteration-006.md`, `iterations/iteration-008.md`, `iterations/iteration-009.md`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-20f0b332bfe5",
+      "text": "**Cutting node startup.** Measured at 0.020 s per start, so even eliminating every spawn saves seconds, not minutes. `[SOURCE: measured: /usr/bin/time -p node -e \"\"]`",
+      "contentHash": "20f0b332bfe5",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c840ff239c17",
+      "text": "**Merging `validate.sh`'s freshness check into the orchestrator.** It would save one 20 ms process per validation while changing a guard that fails closed on a stale build; not worth the risk for seconds.",
+      "contentHash": "c840ff239c17",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-2076a3db4184",
+      "text": "**Removing the second validation pass.** It is the proof that a repair worked; removing it would drop an assertion the file exists to make. `[SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs:1190]`",
+      "contentHash": "2076a3db4184",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-cdbd09be4edc",
+      "text": "**Shrinking the sandbox copy.** The payload is 35.8 MB of 3115 files, paid once in `beforeAll`, so it cannot explain a 400 s file.",
+      "contentHash": "cdbd09be4edc",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-33105e45b21a",
+      "text": "No checked-in timing profile for the cli lane was found in the packet or the skill tree, so the per-test split of the 400 s is not yet known. A profile is the next evidence needed before any saving is claimed. `[SOURCE: fd -e json 'profile|timing|slow' .skilled/skills/system-deep-loop/runtime → no results]`",
+      "contentHash": "33105e45b21a",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f21ab11f8435",
+      "text": "**Merging the seven 7-line stress wrappers into one file.** It would change which `describe` a failure is reported under and save no measurable time; the wrappers are cheap.",
+      "contentHash": "f21ab11f8435",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9812c91e8709",
+      "text": "**Removing `db-open-close` from the serial set.** Its second test exists to make two writers contend for one lock; parallel neighbours would make the race uncontrolled rather than asserted. `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts:70]`",
+      "contentHash": "9812c91e8709",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-91e38feb4015",
+      "text": "**Removing `lineage-timestamp-window` from the serial set.** It bounds a child at 60 s and was already raised once for load; it is the clearest genuine timing dependency in the group. `[SOURCE: .skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts:128]`",
+      "contentHash": "91e38feb4015",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-14e402a85343",
+      "text": "**Treating \"it spawns children\" as a reason to stay serial.** Parallel workers spawn children normally; only an upper bound on the child's duration is threatened by load, and three of the six files have none.",
+      "contentHash": "14e402a85343",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e0a695bf8db0",
+      "text": "No record exists of *which* files failed when every file ran in parallel, so the current twelve-file set cannot be justified file by file from the packet. The blanket set was a precaution taken before the per-file evidence existed. `[SOURCE: specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md:83]`",
+      "contentHash": "e0a695bf8db0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ab2111759a4a",
+      "text": "**Blaming one pathological import graph.** The largest graph is 747 KB over 38 modules, and the median file is 46 KB, so there is no outlier to fix.",
+      "contentHash": "ab2111759a4a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5691ffbef7b2",
+      "text": "**Cutting import time as a wall-clock lever.** At 18 workers the summed figure is a small fraction of the lane's wall; the critical path is the heavy tail. `[SOURCE: measured: os.availableParallelism() = 18]`",
+      "contentHash": "5691ffbef7b2",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-42b9e8ced03d",
+      "text": "**Raising `maxWorkers`.** It is already unbounded and resolves to the core count; raising it past 18 would oversubscribe a machine that also runs child processes.",
+      "contentHash": "42b9e8ced03d",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-605bc94d4312",
+      "text": "**Turning on `isolate: false` to make imports free.** It would cut the summed import figure but share module state across 129 files, which trades a measured metric for unmeasured flakiness and changes what each test proves.",
+      "contentHash": "605bc94d4312",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-fef26558386b",
+      "text": "No per-file timing exists for the core lane in the packet, so finding 5 rests on the pre-cut profile's three numbers plus worker arithmetic rather than a current measurement.",
+      "contentHash": "fef26558386b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-b73844b830f6",
+      "text": "**Blaming fsync for the ledger tests' time.** The fsync is one `appendFileSync` per event; the double process and the 79-module load happen once per invocation and dominate a short test.",
+      "contentHash": "b73844b830f6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ba44ccc18aa4",
+      "text": "**Enabling `singleWriterReadCache` in the gateway.** One append per process plus a nulled memo on append leaves nothing to reuse. `[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:516]`",
+      "contentHash": "ba44ccc18aa4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-18b86d375e8f",
+      "text": "**Extending the cache across appends.** A memo that survives an append would let a reader return a head another writer already advanced, which is the durability contract the ledger exists to enforce.",
+      "contentHash": "18b86d375e8f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e6fec7a36e7f",
+      "text": "**Treating the caching idea as unbuilt work.** It is built, has its own test, and is enabled where a process reads repeatedly.",
+      "contentHash": "e6fec7a36e7f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d8c3da767597",
+      "text": "No compiled `dist/` exists for the deep-loop runtime, so there is no cheap alternative to tsx loading today; building one is a packaging change, not a test change, and is out of this packet's scope.",
+      "contentHash": "d8c3da767597",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-7e7cf510218c",
+      "text": "**A CI shard matrix as the first move.** Both jobs already fit inside their timeouts, and sharding multiplies setup and build cost before any file gets faster.",
+      "contentHash": "7e7cf510218c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-84105855bf00",
+      "text": "**Optimising for the 18-core Mac.** The measured machine is not the machine that gates merges; a cut that only pays at 18 workers is a local convenience.",
+      "contentHash": "84105855bf00",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b7481dbef0c2",
+      "text": "**Treating summed import work as the small-runner lever.** It becomes material only below a handful of cores, and the serial group dominates before that point.",
+      "contentHash": "b7481dbef0c2",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-5039625417cf",
+      "text": "No CI timing history is checked in, so the `ubuntu-latest` wall for either suite is unknown; the four-worker proxy is the only way to estimate it from this repository.",
+      "contentHash": "5039625417cf",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-51c0a9f2471e",
+      "text": "**`describe.concurrent` inside one file.** The tests share one sandbox by construction, so concurrency inside the file would make the shared baseline the assertion.",
+      "contentHash": "51c0a9f2471e",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e85d76c1cc0e",
+      "text": "**Cutting individual heavy tests.** The top ten are 36% of the calls, so even removing them entirely would not halve the file, and removing tests is out of scope.",
+      "contentHash": "e85d76c1cc0e",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-d710691e1492",
+      "text": "**Raising the 180 s per-test timeouts.** No test is timing out; the file is slow in aggregate, not blocked on a cap.",
+      "contentHash": "d710691e1492",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-9a0704a5776c",
+      "text": "**Trimming the sandbox copy to fund more shards.** At 35.8 MB the copy is affordable once per shard; the cost that multiplies is small next to the work it parallelises.",
+      "contentHash": "9a0704a5776c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a3f8ab9b4dbd",
+      "text": "The file's own per-test timing still does not exist in the packet, so the split between process chains and resets in finding 4 is inferred from counts rather than measured seconds.",
+      "contentHash": "a3f8ab9b4dbd",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a02db2e35ba5",
+      "text": "**Renaming the file to a glob match.** It would break the loud-failure guarantee that the exact path provides.",
+      "contentHash": "a02db2e35ba5",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-9e209f2cd0d5",
+      "text": "**Sharding the cli lane in parallel with native `--shard`.** It would leave the heavy file whole and, per the existing runner's header, risks harness-owned failures from shared temp roots.",
+      "contentHash": "9e209f2cd0d5",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-86006123ef09",
+      "text": "**Using `npm run test:sharded` for the cli lane.** It shards by file and runs shards serially, so it neither splits the heavy file nor shortens the lane's critical path.",
+      "contentHash": "86006123ef09",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-89926669025b",
+      "text": "No Vitest option splits one file's tests across workers; `describe.concurrent` is the only test-level concurrency, and iteration 6 ruled it out because the tests share a sandbox.",
+      "contentHash": "89926669025b",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-e358e4fd87e5",
+      "text": "**`describe.concurrent` inside the file.** It would run 171 tests at once inside one worker against shared temp-dir bookkeeping, which is more concurrency than the file was written for and gains nothing over separate files.",
+      "contentHash": "e358e4fd87e5",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-021849f1925b",
+      "text": "**Moving the file without splitting it.** It would shorten the serial group but leave a 157 s block on one worker, which caps the suite's floor.",
+      "contentHash": "021849f1925b",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-2db4dcb1444c",
+      "text": "**Splitting fanout-run without moving it to the parallel project.** The serial project runs one file at a time, so four files would take the same wall time as one.",
+      "contentHash": "2db4dcb1444c",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-644acbfa4536",
+      "text": "No per-describe timing exists, so the four-way split's balance is inferred from test counts rather than measured seconds.",
+      "contentHash": "644acbfa4536",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-7a9e5c707c02",
+      "text": "**Claiming a saving from a summed metric.** Iterations 1 and 3 showed import is a sum over files, so the wall is the only number that proves a cut.",
+      "contentHash": "7a9e5c707c02",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-437f9d9ab689",
+      "text": "**Measuring under load.** The packet already recorded a false failure from a run under load; the baseline has to be quiet.",
+      "contentHash": "437f9d9ab689",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-054b7d734cc3",
+      "text": "**One run as proof.** The packet's own three-run spread is 1.4%, so a single before/after pair cannot separate a real saving from noise without the 10% floor.",
+      "contentHash": "054b7d734cc3",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-11348c63c071",
+      "text": "No CI wall-clock history exists, so the four-worker check is a proxy for `ubuntu-latest` rather than the real thing; a follow-up could record the first CI run's timing as the real baseline.",
+      "contentHash": "11348c63c071",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-8a73600713de",
+      "text": "**Adding a third cut to the set.** Import sums and ledger caching are both off the critical path, and no other candidate survived eight iterations of checks.",
+      "contentHash": "8a73600713de",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-e9bd8e61d9fe",
+      "text": "**Presenting the totals as measured.** They are estimates built from measured baselines, and the protocol exists because that distinction matters.",
+      "contentHash": "e9bd8e61d9fe",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-bd3d51a514fd",
+      "text": "**Reordering the cuts.** Cut A is smaller but cheaper to prove; Cut B is larger but needs a harness extraction. Either order works; Cut A first costs less if the operator stops after one.",
+      "contentHash": "bd3d51a514fd",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-327316fc99df",
+      "text": "No measurement can be taken inside this lineage's write surface, so the estimates cannot be upgraded to measurements here.",
+      "contentHash": "327316fc99df",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 61,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.25,
+    "coverageBySources": {
+      "code": 133,
+      "other": 13
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/340-local-test-scope/specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/lineages/deepseek-flash-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

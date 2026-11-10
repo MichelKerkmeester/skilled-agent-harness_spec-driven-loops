@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "test cycle speed",
+      "test cycle speed cut the spec kit suite",
+      "test cycle speed plan",
+      "test cycle speed tasks",
+      "005-test-cycle-speed operator decisions",
+      "test cycle speed implementation summary"
+    ],
+    "key_topics": [
+      "test",
+      "cycle",
+      "speed",
+      "cut",
+      "spec",
+      "kit",
+      "suite",
+      "plan",
+      "tasks",
+      "005-test-cycle-speed",
+      "operator",
+      "decisions"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+      ".skilled/skills/system-spec-kit/runtime/package.json",
+      ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs",
+      ".skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+      "cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md",
+      "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "integration-points.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-cli-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-guardrails.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+        "source": "derived"
+      },
+      {
+        "name": "spawn-cjs.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-open-close.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-timestamp-window.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-persist-artifacts.vitest.ts",
+        "kind": "test",
+        "path": "cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A local `npm test` in `system-spec-kit/runtime` took 1767 seconds on the v4.0.2.1 work",
+    "created_at": "2026-11-10T12:07:38Z",
+    "last_save_at": "2026-11-10T18:28:12.544Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:93d036064dc07582c16c571c4c833bf368cf09263dba65d884764bb70ab1c3c8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "884ea36cbd6ec9cf5faee9d17a7b57dc544a305d1e26f906b9f432ee92993e1f",
+      "plan.md": "aff80d8a0de6a7bc54a1145d938cfceafa71ddcc376b2e3d0950656d29a14af4",
+      "tasks.md": "14f110b519593c21c347b1cc380156788819c060ba8b8f584f9e6a31680b72b6",
+      "decision-record.md": "cf2cc12352a6249f81943bfd260fb8a161ed10503d907fb454becaeb58c88f0d",
+      "implementation-summary.md": "7583abbf4bbc76444b7a59dbae223b2bfee1b15f5e9a659700be3e54243d3b6a",
+      "research/research.md": "1e980f461b8e1de7c1327ca4a2af32d7fb5c49de32d6d1681493874c68d0e98a"
+    },
+    "last_active_at": null
+  }
+}

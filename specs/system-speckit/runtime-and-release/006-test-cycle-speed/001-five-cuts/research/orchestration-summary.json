@@ -1,0 +1,76 @@
+{
+  "run_id": "1794329077802-xnltbi",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/runtime-and-release/005-test-cycle-speed",
+  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/340-local-test-scope/specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-flash-max",
+      "state_log": "/Users/michelkerkmeester/worktrees/public/340-local-test-scope/specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/lineages/deepseek-flash-max/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-10T16:44:38.073Z",
+        "end_at_iso": "2026-11-10T16:55:38.154Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 10,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 12
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-11-10T16:58:00Z",
+          "deltaMs": 21846
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-11-10T17:08:00Z",
+          "deltaMs": 621846
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-11-10T17:18:00Z",
+          "deltaMs": 1221846
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-11-10T17:28:00Z",
+          "deltaMs": 1821846
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-11-10T17:38:00Z",
+          "deltaMs": 2421846
+        }
+      ]
+    }
+  ]
+}

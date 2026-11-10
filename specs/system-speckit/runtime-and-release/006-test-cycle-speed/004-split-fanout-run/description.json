@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run",
+  "description": "Phase 4: split-fanout-run",
+  "keywords": [
+    "phase",
+    "split-fanout-run"
+  ],
+  "lastUpdated": "2026-11-10T20:34:46.706Z",
+  "specId": "004",
+  "folderSlug": "split-fanout-run",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_21-34__tried-the-fanout-run-split-three-ways-stable.md"
+  ]
+}

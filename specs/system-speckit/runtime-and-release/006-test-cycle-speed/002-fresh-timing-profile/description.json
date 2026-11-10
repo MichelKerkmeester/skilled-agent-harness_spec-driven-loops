@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile",
+  "description": "Phase 2: fresh-timing-profile",
+  "keywords": [
+    "phase",
+    "fresh-timing-profile"
+  ],
+  "lastUpdated": "2026-11-10T20:34:42.137Z",
+  "specId": "002",
+  "folderSlug": "fresh-timing-profile",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_21-34__profiled-all-three-lanes-phases-3-and-4-judged-go.md"
+  ]
+}
