@@ -1,0 +1,1411 @@
+{
+  "sessionId": "2026-11-09T11:31:26Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-what-does-sweet-search-actually-do-tools-index-runtime-mcp-cli-surface-and-wh",
+      "inboxId": null,
+      "text": "Q1: What does sweet-search actually do (tools, index, runtime, MCP/CLI surface), and what are its hard requirements (Node >=22, macOS/Linux only, native build, GPU, model downloads, disk, index time)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-how-credible-are-its-usefulness-claims-5-33-cheaper-runs-up-to-34-less-model-",
+      "inboxId": null,
+      "text": "Q2: How credible are its usefulness claims (5-33% cheaper runs, up to 34% less model time)? What do its eval code and data show, and where would the gain be largest or zero for Skilled-style work (large markdown/skill trees, spec folders, TypeScript runtime)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-how-does-it-overlap-with-or-complement-what-skilled-already-has-the-committed",
+      "inboxId": null,
+      "text": "Q3: How does it overlap with or complement what Skilled already has: the committed trigger index, the ripgrep retrieval recipes, the code-search decision tree in AGENTS.md, Code Mode/UTCP MCP registration, and the doctor install commands?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-which-integration-surfaces-are-candidates-nothing-a-docs-pointer-a-code-mode-",
+      "inboxId": null,
+      "text": "Q4: Which integration surfaces are candidates (nothing; a docs pointer; a Code Mode/UTCP manual entry; a new mcp-tooling mode; a doctor install/setup step; an sk-code or system-spec-kit retrieval hook), and what does each cost the user in this repo and in external repos that install Skilled?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-what-is-the-smallest-integration-that-delivers-most-of-the-value-which-option",
+      "inboxId": null,
+      "text": "Q5: What is the smallest integration that delivers most of the value, which options are over-engineering, and what are the opt-in, failure and uninstall paths (licence, maintenance, staleness, platform gaps)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-q6-what-is-the-strongest-case-against-the-iteration-5-recommendation-one-optiona",
+      "inboxId": "inbox-q6",
+      "text": "Q6: What is the strongest case against the iteration-5 recommendation (one optional sk-code pointer), and does any evidence from iterations 1-5 contradict it? Consider whether the right answer is no integration at all, or a slightly bigger one.",
+      "origin": "operator",
+      "source": "operator note: 10 iterations requested; Q2 rests on a single interested source",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-7-q7-independent-evidence-outside-sweet-search-s-own-eval-data-what-confirms-or-un",
+      "inboxId": "inbox-q7",
+      "text": "Q7: Independent evidence: outside sweet-search's own eval data, what confirms or undercuts its claimed gains? Compare with comparable agent code-search tools and with the built-in search Claude Code, Codex and OpenCode already ship.",
+      "origin": "operator",
+      "source": "quality guard: single weak-source dominance on Q2",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-8-q8-external-repo-ux-walkthrough-following-the-recommended-path-what-exactly-does",
+      "inboxId": "inbox-q8",
+      "text": "Q8: External-repo UX walkthrough: following the recommended path, what exactly does a user in a fresh project repo with Skilled installed see and do, step by step, including when sweet-search is absent, half-installed, stale, or on an unsupported platform (Windows without WSL2, Node below 22)?",
+      "origin": "operator",
+      "source": "operator priority: external-repo UX",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    },
+    {
+      "id": "question-9-q9-where-exactly-would-the-pointer-live-and-how-would-agents-act-on-it-which-sk-",
+      "inboxId": "inbox-q9",
+      "text": "Q9: Where exactly would the pointer live and how would agents act on it: which sk-code file and section, the precise wording, how an agent detects that sweet-search is installed without a new script, and how it interacts with the AGENTS.md code-search decision tree?",
+      "origin": "operator",
+      "source": "operator priority: UX in this repo",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 9,
+      "resolved": true
+    },
+    {
+      "id": "question-10-q10-what-should-phase-2-of-this-packet-contain-the-file-list-the-acceptance-chec",
+      "inboxId": "inbox-q10",
+      "text": "Q10: What should phase 2 of this packet contain: the file list, the acceptance checks, and the measurement (if any) that would justify growing the integration later?",
+      "origin": "operator",
+      "source": "packet is multi-phased; phase 2 follows this research",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-what-does-sweet-search-actually-do-tools-index-runtime-mcp-cli-surface-and-wh",
+      "inboxId": null,
+      "text": "Q1: What does sweet-search actually do (tools, index, runtime, MCP/CLI surface), and what are its hard requirements (Node >=22, macOS/Linux only, native build, GPU, model downloads, disk, index time)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-how-credible-are-its-usefulness-claims-5-33-cheaper-runs-up-to-34-less-model-",
+      "inboxId": null,
+      "text": "Q2: How credible are its usefulness claims (5-33% cheaper runs, up to 34% less model time)? What do its eval code and data show, and where would the gain be largest or zero for Skilled-style work (large markdown/skill trees, spec folders, TypeScript runtime)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-how-does-it-overlap-with-or-complement-what-skilled-already-has-the-committed",
+      "inboxId": null,
+      "text": "Q3: How does it overlap with or complement what Skilled already has: the committed trigger index, the ripgrep retrieval recipes, the code-search decision tree in AGENTS.md, Code Mode/UTCP MCP registration, and the doctor install commands?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-4-q4-which-integration-surfaces-are-candidates-nothing-a-docs-pointer-a-code-mode-",
+      "inboxId": null,
+      "text": "Q4: Which integration surfaces are candidates (nothing; a docs pointer; a Code Mode/UTCP manual entry; a new mcp-tooling mode; a doctor install/setup step; an sk-code or system-spec-kit retrieval hook), and what does each cost the user in this repo and in external repos that install Skilled?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-q5-what-is-the-smallest-integration-that-delivers-most-of-the-value-which-option",
+      "inboxId": null,
+      "text": "Q5: What is the smallest integration that delivers most of the value, which options are over-engineering, and what are the opt-in, failure and uninstall paths (licence, maintenance, staleness, platform gaps)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-q6-what-is-the-strongest-case-against-the-iteration-5-recommendation-one-optiona",
+      "inboxId": "inbox-q6",
+      "text": "Q6: What is the strongest case against the iteration-5 recommendation (one optional sk-code pointer), and does any evidence from iterations 1-5 contradict it? Consider whether the right answer is no integration at all, or a slightly bigger one.",
+      "origin": "operator",
+      "source": "operator note: 10 iterations requested; Q2 rests on a single interested source",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-7-q7-independent-evidence-outside-sweet-search-s-own-eval-data-what-confirms-or-un",
+      "inboxId": "inbox-q7",
+      "text": "Q7: Independent evidence: outside sweet-search's own eval data, what confirms or undercuts its claimed gains? Compare with comparable agent code-search tools and with the built-in search Claude Code, Codex and OpenCode already ship.",
+      "origin": "operator",
+      "source": "quality guard: single weak-source dominance on Q2",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-8-q8-external-repo-ux-walkthrough-following-the-recommended-path-what-exactly-does",
+      "inboxId": "inbox-q8",
+      "text": "Q8: External-repo UX walkthrough: following the recommended path, what exactly does a user in a fresh project repo with Skilled installed see and do, step by step, including when sweet-search is absent, half-installed, stale, or on an unsupported platform (Windows without WSL2, Node below 22)?",
+      "origin": "operator",
+      "source": "operator priority: external-repo UX",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 8
+    },
+    {
+      "id": "question-9-q9-where-exactly-would-the-pointer-live-and-how-would-agents-act-on-it-which-sk-",
+      "inboxId": "inbox-q9",
+      "text": "Q9: Where exactly would the pointer live and how would agents act on it: which sk-code file and section, the precise wording, how an agent detects that sweet-search is installed without a new script, and how it interacts with the AGENTS.md code-search decision tree?",
+      "origin": "operator",
+      "source": "operator priority: UX in this repo",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 9
+    },
+    {
+      "id": "question-10-q10-what-should-phase-2-of-this-packet-contain-the-file-list-the-acceptance-chec",
+      "inboxId": "inbox-q10",
+      "text": "Q10: What should phase 2 of this packet contain: the file list, the acceptance checks, and the measurement (if any) that would justify growing the integration later?",
+      "origin": "operator",
+      "source": "packet is multi-phased; phase 2 follows this research",
+      "injectedAtIteration": 6,
+      "promotedQuestionId": null,
+      "addedAtIteration": 6,
+      "resolvedAtIteration": 10
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q4: Which integration surfaces are candidates (nothing; a docs pointer; a Code Mode/UTCP manual entry; a new mcp-tooling mode; a doctor install/setup step; an sk-code or system-spec-kit retrieval hook), and what does each cost the user in this repo and in external repos that install Skilled?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: What is the smallest integration that delivers most of the value, which options are over-engineering, and what are the opt-in, failure and uninstall paths (licence, maintenance, staleness, platform gaps)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: How credible are its usefulness claims (5-33% cheaper runs, up to 34% less model time)? What do its eval code and data show, and where would the gain be largest or zero for Skilled-style work (large markdown/skill trees, spec folders, TypeScript runtime)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: How does it overlap with or complement what Skilled already has: the committed trigger index, the ripgrep retrieval recipes, the code-search decision tree in AGENTS.md, Code Mode/UTCP MCP registration, and the doctor install commands?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 and Q3 are carried forward by the dispatch summary but remain checked in the current strategy. This iteration did not revisit them.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Upstream maintenance cadence and the latest published npm version remain UNKNOWN. The exact registry version and latest commit timestamp would resolve those points if they become decision-critical.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No unchecked strategy question remains after Q5. Q2 and Q3 are marked answered in the strategy; the dispatch carried them forward as context, and this iteration did not reopen them.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q9: Where exactly would the pointer live and how would agents act on it: which sk-code file and section, the precise wording, how an agent detects that sweet-search is installed without a new script, and how it interacts with the AGENTS.md code-search decision tree?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: What should phase 2 of this packet contain: the file list, the acceptance checks, and the measurement (if any) that would justify growing the integration later?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8: External-repo UX walkthrough: following the recommended path, what exactly does a user in a fresh project repo with Skilled installed see and do, step by step, including when sweet-search is absent, half-installed, stale, or on an unsupported platform (Windows without WSL2, Node below 22)?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7: Independent evidence: outside sweet-search's own eval data, what confirms or undercuts its claimed gains? Compare with comparable agent code-search tools and with the built-in search Claude Code, Codex and OpenCode already ship.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7: Independent evidence: outside sweet-search's own eval data, what confirms or undercuts its claimed gains?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q10: What phase 2 of this packet should contain: file list, acceptance checks and the measurement that would justify growing the integration later.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q8: External-repo UX walkthrough, including absent, half-installed, stale and unsupported-platform states.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`research/research.md` is still absent; it is the phase 2 entry gate.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q7, Q8 and Q9 are with the parallel sibling iterations.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-a-gpu-is-optional-the-readme-identifies-an-onnx-int8-cpu-path-setup-downloads-ab",
+      "text": "A GPU is optional. The README identifies an ONNX INT8 CPU path. Setup downloads about 523 MB of models once per machine, needs network access to Hugging Face and needs a writable model cache. `--skip-models` postpones the download until indexing, while search still requires the models. The README estimates a few hundred MB for CPU models, about 1.2 GB extra for GPU and about 3.2 GB for an optional M3+ CoreML cascade. The init help instead estimates about 1.8 GB for that cascade. The source snapshot does not give a total index-size estimate or a full initial-index duration. Incremental-update figures do not establish either value. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/cli.js:135] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/cli.js:143] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js:1722] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:160] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:162] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:163] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1294] [INFERENCE: the inspected CLI and README publish incremental timings but no full initial-build duration or total index footprint; measuring the target repository on its supported hardware would resolve both.]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/cli.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/native-resolver.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js`"
+      ]
+    },
+    {
+      "id": "finding-1-3-node-22-2-0-or-later-is-the-package-s-declared-minimum-the-prebuilt-native-packa",
+      "text": "Node 22.2.0 or later is the package's declared minimum. The prebuilt native packages cover macOS x64/arm64 and GNU Linux x64/arm64. Native Windows is unsupported, with WSL2 documented as the route. The README describes a slower WASM/JavaScript fallback on other supported platforms. Consumers do not need to compile Rust themselves for the listed native targets because npm installs the platform-specific optional packages. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:190] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:199] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/native-resolver.js:33] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:263] [INFERENCE: package.json declares platform-specific optional binaries and the README says npm installs precompiled binaries; the source-build scripts are not part of the consumer quickstart.]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/cli.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/native-resolver.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js`"
+      ]
+    },
+    {
+      "id": "finding-1-1-sweet-search-is-a-local-code-navigation-package-with-six-ss-commands-hybrid-sear",
+      "text": "sweet-search is a local code-navigation package with six `ss-*` commands: hybrid search, exact grep, semantically ranked pattern search, semantic spans within one file, symbol tracing and exact file reads. Its `sweet-search` CLI also handles setup, indexing, daemon control, status, updates and uninstall. The optional stdio MCP server registers eight tools: `search`, `trace`, `index`, `health`, `repo-map`, `vocab-prewarm`, `read` and `read-semantic`. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:36] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:666] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:208] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:505]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/cli.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/native-resolver.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-index-combines-ast-aware-chunks-and-code-graph-context-with-six-retrieval-st",
+      "text": "The index combines AST-aware chunks and code-graph context with six retrieval structures: word search, sparse n-grams, binary HNSW, dense vectors, late-interaction vectors and a code graph. The default index path rebuilds the graph and updates vectors for changed files. A watcher then applies edits incrementally and publishes index changes atomically. The README says saved edits are usually searchable within seconds, with a documented budget of at most 50 files and 10 CPU seconds per update. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1203] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1281] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1294] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js:4] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js:204]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/cli.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/native-resolver.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-readme-says-code-never-leaves-the-machine-but-that-statement-is-not-uncondit",
+      "text": "The README says code never leaves the machine, but that statement is not unconditional in the implementation. During graph-summary generation, the provider selector prefers Groq or Cerebras when their API keys are configured, and the summary prompt can include up to 2,000 characters of source code. Without those remote keys, the provider chain falls back to local Ollama, local Transformers.js or static summaries. Therefore a deployment with Groq or Cerebras credentials can send code snippets to the corresponding service during indexing. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:51] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js:185] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:472] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:528] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:686] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js:147]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/cli.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/native-resolver.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js`"
+      ]
+    },
+    {
+      "id": "finding-2-4-remote-graph-summaries-can-send-source-derived-metadata-full-source-body-transfe",
+      "text": "**Remote graph summaries can send source-derived metadata; full source-body transfer is not established on the active HCGS path.** With Groq or Cerebras credentials configured, provider selection prioritizes those remote services by default, and HCGS calls the selected provider during full or incremental summary generation. The active HCGS prompt includes the symbol name, signature, up to 200 or 500 characters of documentation, and child summaries. It sends that prompt through the provider API. The separate exported createSummaryPrompt helper can include up to 2,000 characters from entity.code, but the repository-wide call-site search found no in-repo caller; HCGS instead uses buildSummaryPrompt. I therefore narrow the prior iteration’s claim: source-derived metadata can leave when a remote provider is selected, but this snapshot does not establish that full function bodies leave through the normal graph-summary path. An explicit caller of the separate helper would be a different path. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/indexing/index-codebase-v21.js:185] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:472] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:528] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:543] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:593] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js:92] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js:119] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/graph/hcgs-generator.js:147] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:673] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/llm-provider.js:685] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:51] [INFERENCE: a repository-wide createSummaryPrompt() call-site search found only its definition and tests, while the active HCGS route calls buildSummaryPrompt.]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-the-34-model-time-figure-is-a-setup-specific-maximum-and-its-largest-result-is-s",
+      "text": "**The 34% model-time figure is a setup-specific maximum, and its largest result is subagent-sensitive.** The held-out code-retrieval benchmark has 200 questions over 11 mid-size repositories, with three repetitions per arm. The largest modeled reduction is 34.4% for opencode with Sol 6.1 high; other cells range from 8.4% to 13.6% lower, while Codex is 8.0% slower. The model-time script fits one coefficient set per setup across both arms and bootstraps by question; it does not model tool time. In the opencode report, native ran subagents in 109 rollouts: the modeled reduction falls to 4.3% without those runs, despite the reported 34.4% aggregate. Treat 34% as an outcome for that benchmark configuration, not a portable expectation. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:318] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:371] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:375] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:379] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:385] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/prompt-optimization/data/final-run/latency-model.mjs:21] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/prompt-optimization/data/final-run/latency-model.mjs:29] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/prompt-optimization/data/final-run/LATENCY-HO1005.md:112] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/prompt-optimization/data/final-run/LATENCY-HO1005.md:123] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/prompt-optimization/data/final-run/LATENCY-HO1005.md:128]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-the-5-33-cost-claim-is-credible-for-the-reported-task-benchmark-with-a-narrow-sc",
+      "text": "**The 5–33% cost claim is credible for the reported task benchmark, with a narrow scope.** The held-out comparison covers 200 SWE-rebench tasks across 16 languages, one rollout per arm, and five harness/model setups. Billed-cost reductions range from 5.4% to 33.3%, with the reported 95% intervals excluding zero in all five setups. The pooled arms each solve 481 of 1,000 runs, with no significant solve-rate change; the dollar figures are list-price equivalents for subscription runs, not actual invoices. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:428] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:435] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:444] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:452] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:458]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-the-closest-evidence-backed-fit-for-skilled-is-repeated-multi-file-code-navigati",
+      "text": "**The closest evidence-backed fit for Skilled is repeated multi-file code navigation, especially in TypeScript; the markdown/spec benefit is unknown.** The benchmark’s TypeScript slice has 29 questions: Claude Code’s cost is 9–13% lower with accuracy changes of +0.5 to +3.6 points; opencode is 41% cheaper with a −0.3-point accuracy change; Codex is 12% cheaper with a −0.8-point change. In the task benchmark, Codex savings grow from 15% below 21k lines to 43% above 58k lines, while Claude Code is reported near zero above 58k lines. The separate retrieval benchmark explicitly says its 11 repositories were only 540–1,433 files, so it does not validate scale effects for very large trees. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:349] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:351] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:369] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:474] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:475] Skilled’s retrieval contract already uses a generated trigger index for author-declared trigger phrases and ripgrep for free-text evidence and exact identifiers; both cover specs and skill docs. **Inference:** sweet-search is most likely to add value on frequent code-navigation questions in a TypeScript-heavy project. Its benefit for markdown, skill trees, and spec folders is unmeasured and likely small for exact phrase or identifier lookups already answered by ripgrep; any gain for semantic cross-document discovery remains unknown. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:44] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:45] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:49] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:292] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:293] [INFERENCE: based on the benchmark slices and the current literal-search contract; no markdown/spec retrieval benchmark was present in the inspected reports.]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-code-mode-utcp-is-a-possible-delivery-surface-not-a-second-retrieval-index-its-m",
+      "text": "Code Mode/UTCP is a possible delivery surface, not a second retrieval index. Its `manual_call_templates[]` entries describe configured MCP server commands, and its discovery methods expose only configured Code Mode manuals. Native MCP servers are registered separately. An optional sweet-search manual could reuse this surface, but project setup would still need the server configuration and runtime registration. [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:132] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:142] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:175]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`AGENTS.md`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`",
+        "`.utcp_config.json`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/commands/doctor/assets/doctor-mcp-install.yaml`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-3-1-skilled-s-trigger-index-matches-prompt-text-against-author-declared-trigger-phra",
+      "text": "Skilled’s trigger index matches prompt text against author-declared `trigger_phrases`, while ripgrep scans literal text and leaves relevance judgment to the caller. Neither ranks by meaning. sweet-search adds hybrid semantic, lexical and structural code search with ranked code blocks, so it fills a code-discovery gap while exact identifier search and curated documentation lookup keep their existing roles. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:36] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:44] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:49] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:208]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`AGENTS.md`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`",
+        "`.utcp_config.json`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/commands/doctor/assets/doctor-mcp-install.yaml`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-agents-md-decision-tree-sends-exact-symbols-and-known-paths-to-literal-searc",
+      "text": "The AGENTS.md decision tree sends exact symbols and known paths to literal search. For unfamiliar code, it asks agents to search likely vocabulary, map paths and read to confirm. sweet-search’s `search`, `trace` and `repo-map` can combine those code-navigation steps and add caller/callee impact context. The existing document retrieval path remains the relevant surface for spec and skill text. [SOURCE: AGENTS.md:223] [SOURCE: AGENTS.md:226] [SOURCE: AGENTS.md:228] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:208] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:236] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:306]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`AGENTS.md`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`",
+        "`.utcp_config.json`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/commands/doctor/assets/doctor-mcp-install.yaml`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-doctor-routes-separate-skilled-setup-from-code-mode-mcp-setup-doctor-install",
+      "text": "The doctor routes separate Skilled setup from Code Mode MCP setup. `/doctor:install` is a read-only guide; `/doctor:mcp install` is scoped to Code Mode build output, `.utcp_config.json` and runtime MCP configs. This offers a possible documentation or optional manual-configuration touchpoint, but the inspected contract does not define a sweet-search-specific install, health or removal lifecycle. [SOURCE: .skilled/commands/doctor/_routes.yaml:603] [SOURCE: .skilled/commands/doctor/_routes.yaml:609] [SOURCE: .skilled/commands/doctor/_routes.yaml:695] [SOURCE: .skilled/commands/doctor/_routes.yaml:700] [SOURCE: .skilled/commands/doctor/assets/doctor-mcp-install.yaml:12] [SOURCE: .skilled/commands/doctor/assets/doctor-mcp-install.yaml:44]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`AGENTS.md`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/mcp-code-mode/SKILL.md`",
+        "`.utcp_config.json`",
+        "`.skilled/commands/doctor/_routes.yaml`",
+        "`.skilled/commands/doctor/assets/doctor-mcp-install.yaml`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-4-2-a-code-mode-manual-is-possible-but-sweet-search-s-documented-mcp-setup-does-not-",
+      "text": "**A Code Mode manual is possible, but Sweet Search's documented MCP setup does not create one.** Code Mode discovers manuals from .utcp_config.json and treats native MCP registration as a separate system. Sweet Search's init --mcp path documents a native .mcp.json entry instead. A Code Mode route therefore needs a separate UTCP manual and the host runtime registration. In an external project, the user must also include or create .utcp_config.json. [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:117] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:124] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:132] [SOURCE: .skilled/skills/mcp-code-mode/SKILL.md:175] [SOURCE: .utcp_config.json:14] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:186] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:191]",
+      "addedAtIteration": 4,
+      "sources": [
+        "AGENTS.md",
+        "INSTALL-SKILLED.md",
+        ".utcp_config.json",
+        ".skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/skills/mcp-tooling/SKILL.md and mode-registry.json",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        ".skilled/commands/doctor/_routes.yaml and assets/doctor-mcp-install.yaml",
+        "Sweet Search README.md and package.json",
+        "deep-research-strategy.md and deep-research-state.jsonl"
+      ]
+    },
+    {
+      "id": "finding-4-4-a-doctor-install-step-would-extend-a-lifecycle-that-both-tools-already-own-separ",
+      "text": "**A doctor install step would extend a lifecycle that both tools already own separately.** /doctor:install is a read-only guide that prints commands for the operator. /doctor:mcp install is scoped to Code Mode's build, UTCP file and runtime configs. Sweet Search already provides init and per-repository or global uninstall commands. A doctor integration would need its own platform checks, project mutations, health reporting and cleanup behavior, while keeping those rules aligned with Sweet Search's own installer. [SOURCE: .skilled/commands/doctor/_routes.yaml:603] [SOURCE: .skilled/commands/doctor/_routes.yaml:609] [SOURCE: .skilled/commands/doctor/_routes.yaml:695] [SOURCE: .skilled/commands/doctor/_routes.yaml:700] [SOURCE: .skilled/commands/doctor/assets/doctor-mcp-install.yaml:12] [SOURCE: .skilled/commands/doctor/assets/doctor-mcp-install.yaml:44] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:125] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:139] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:140]",
+      "addedAtIteration": 4,
+      "sources": [
+        "AGENTS.md",
+        "INSTALL-SKILLED.md",
+        ".utcp_config.json",
+        ".skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/skills/mcp-tooling/SKILL.md and mode-registry.json",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        ".skilled/commands/doctor/_routes.yaml and assets/doctor-mcp-install.yaml",
+        "Sweet Search README.md and package.json",
+        "deep-research-strategy.md and deep-research-state.jsonl"
+      ]
+    },
+    {
+      "id": "finding-4-3-a-new-mcp-tooling-mode-has-a-larger-routing-cost-than-this-local-search-service-",
+      "text": "**A new mcp-tooling mode has a larger routing cost than this local search service appears to earn.** The hub currently owns eight modes through a two-stage router, mode registry and packet-local resource map. Adding a member requires aligned registry and router entries, a packet and regenerated leaf metadata, then routing replay. The shared Code Mode substrate is already outside the hub. A system-spec-kit hook is also a poor fit because its retrieval lanes target spec and skill documents, and exact identifiers already go to ripgrep. A passive code-search note is smaller than adding a new sk-code mode or routing a code index through document retrieval. [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:14] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:15] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:18] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:50] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:107] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:123] [SOURCE: .skilled/skills/mcp-tooling/SKILL.md:128] [SOURCE: .skilled/skills/sk-code/SKILL.md:14] [SOURCE: .skilled/skills/sk-code/SKILL.md:39] [SOURCE: .skilled/skills/sk-code/SKILL.md:161] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:44] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:47] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:49]",
+      "addedAtIteration": 4,
+      "sources": [
+        "AGENTS.md",
+        "INSTALL-SKILLED.md",
+        ".utcp_config.json",
+        ".skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/skills/mcp-tooling/SKILL.md and mode-registry.json",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        ".skilled/commands/doctor/_routes.yaml and assets/doctor-mcp-install.yaml",
+        "Sweet Search README.md and package.json",
+        "deep-research-strategy.md and deep-research-state.jsonl"
+      ]
+    },
+    {
+      "id": "finding-4-6-iteration-control-state-is-inconsistent-but-the-dispatch-pins-this-run-to-iterat",
+      "text": "**Iteration control state is inconsistent, but the dispatch pins this run to iteration 4.** The strategy marks Q3 answered and Q4 remaining while its generated Next Focus still names Q3. The state projection also has two completed rows numbered 3, followed by iteration_start 4. I use the dispatch-provided Q4 focus and iteration-004 path. I did not edit reducer-owned strategy or state files directly. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md:50] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md:51] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md:142] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl:6] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl:7] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl:8]",
+      "addedAtIteration": 4,
+      "sources": [
+        "AGENTS.md",
+        "INSTALL-SKILLED.md",
+        ".utcp_config.json",
+        ".skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/skills/mcp-tooling/SKILL.md and mode-registry.json",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        ".skilled/commands/doctor/_routes.yaml and assets/doctor-mcp-install.yaml",
+        "Sweet Search README.md and package.json",
+        "deep-research-strategy.md and deep-research-state.jsonl"
+      ]
+    },
+    {
+      "id": "finding-4-1-nothing-is-the-zero-maintenance-option-a-passive-pointer-is-the-smallest-discove",
+      "text": "**Nothing is the zero-maintenance option; a passive pointer is the smallest discoverability change.** The existing code-search decision tree already sends exact symbols to literal search and unfamiliar code to vocabulary search, path mapping and a confirming read. A pointer there could make Sweet Search opt-in without changing search behavior. The external install guide links .skilled and runtime folders by default, but links .utcp_config.json only when requested. Copy installs require a later re-pin to receive upstream guidance. Users who follow a pointer still install Sweet Search and initialize each project themselves. [SOURCE: AGENTS.md:223] [SOURCE: AGENTS.md:226] [SOURCE: AGENTS.md:228] [SOURCE: INSTALL-SKILLED.md:16] [SOURCE: INSTALL-SKILLED.md:112] [SOURCE: INSTALL-SKILLED.md:132] [SOURCE: INSTALL-SKILLED.md:134]",
+      "addedAtIteration": 4,
+      "sources": [
+        "AGENTS.md",
+        "INSTALL-SKILLED.md",
+        ".utcp_config.json",
+        ".skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/skills/mcp-tooling/SKILL.md and mode-registry.json",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        ".skilled/commands/doctor/_routes.yaml and assets/doctor-mcp-install.yaml",
+        "Sweet Search README.md and package.json",
+        "deep-research-strategy.md and deep-research-state.jsonl"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-user-cost-applies-whichever-surface-exposes-sweet-search-its-quickstart-requ",
+      "text": "**The user cost applies whichever surface exposes Sweet Search.** Its quickstart requires a global npm install, a project init and an initial index. The package requires Node 22.2 or later. First-class native builds cover macOS and GNU/Linux, while native Windows uses WSL2; the README describes a slower WASM or JavaScript fallback on other supported platforms. CPU models occupy a few hundred MB, with larger optional GPU and CoreML downloads. The daemon usually makes saved edits searchable within seconds, but an index from an older Sweet Search version must be rebuilt. The project uninstall removes that repository's integration and index while keeping the shared model cache; --all also removes every initialized repository, the cache and the CLI. Each project is indexed separately. The inspected sources give incremental update limits but no full first-index duration or total index size. A measured run on this repository would resolve those unknowns. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:117] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:122] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:125] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:129] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:139] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:140] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:160] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:161] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:162] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:163] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:263] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1287] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1294] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1302] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1363] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:190] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:199] [INFERENCE: the inspected source documents incremental update work but not full initial-index duration or total index storage; a measured run of this repository would resolve both.]",
+      "addedAtIteration": 4,
+      "sources": [
+        "AGENTS.md",
+        "INSTALL-SKILLED.md",
+        ".utcp_config.json",
+        ".skilled/skills/mcp-code-mode/SKILL.md",
+        ".skilled/skills/mcp-tooling/SKILL.md and mode-registry.json",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        ".skilled/commands/doctor/_routes.yaml and assets/doctor-mcp-install.yaml",
+        "Sweet Search README.md and package.json",
+        "deep-research-strategy.md and deep-research-state.jsonl"
+      ]
+    },
+    {
+      "id": "finding-5-2-a-new-mcp-mode-code-mode-manual-doctor-installer-or-system-spec-kit-hook-costs-m",
+      "text": "**A new MCP mode, Code Mode manual, doctor installer or system-spec-kit hook costs more than the demonstrated need.** Sweet Search already has an optional native MCP registration. A Code Mode manual would add a second registration surface; a doctor flow would duplicate upstream install, health and removal behavior; a new mode would add hub routing and packet upkeep; a retrieval hook would mix code search into document retrieval. No cited failure shows that the single shared-skill pointer is insufficient. Under the restraint rule, the more expensive options have no present requirement to climb to them. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md:18] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md:20] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md:22] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:290] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:60] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:64] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:66]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CONTRIBUTING.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CLA.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/THIRD_PARTY_LICENSES",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js",
+        "https://github.com/mrsladoje/sweet-search",
+        "https://github.com/mrsladoje/sweet-search/releases"
+      ]
+    },
+    {
+      "id": "finding-5-4-a-passive-pointer-keeps-licensing-and-upkeep-outside-skilled-s-runtime-the-packa",
+      "text": "**A passive pointer keeps licensing and upkeep outside Skilled's runtime.** The package declares Apache-2.0 and ships a generated third-party license notice. The CLA applies when contributing upstream; it lets project owners license contributions under other terms, while already released Apache-2.0 versions remain under that license. Skilled's pointer would neither bundle code nor submit contributions. The fetched GitHub Releases page has no release entries, and this pass could not verify the latest npm version or commit date, so upstream maintenance cadence is UNKNOWN. Link to the canonical README instead of mirroring flags or pinning a version. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:12] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:100] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/THIRD_PARTY_LICENSES:1] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CONTRIBUTING.md:8] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CONTRIBUTING.md:16] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CONTRIBUTING.md:19] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CLA.md:10] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CLA.md:14] [SOURCE: https://github.com/mrsladoje/sweet-search] [SOURCE: https://github.com/mrsladoje/sweet-search/releases]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CONTRIBUTING.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CLA.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/THIRD_PARTY_LICENSES",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js",
+        "https://github.com/mrsladoje/sweet-search",
+        "https://github.com/mrsladoje/sweet-search/releases"
+      ]
+    },
+    {
+      "id": "finding-5-1-recommend-one-optional-pointer-in-the-shared-sk-code-guidance-linking-to-sweet-s",
+      "text": "**Recommend one optional pointer in the shared sk-code guidance, linking to Sweet Search's current setup guide.** The sk-code advisor receives every code query, and external installs always link `.skilled`; a copy install receives upstream `.skilled` changes on re-pin. A root `AGENTS.md` pointer would not travel with a re-pin. Keep the pointer conditional on the user having installed Sweet Search, with the existing Grep/`rg` route as fallback. This gives external adopters discoverability without making Sweet Search a dependency or changing runtime configuration. The trade-off is that each adopter still chooses, installs and initializes Sweet Search. [SOURCE: .skilled/skills/sk-code/SKILL.md:72] [SOURCE: INSTALL-SKILLED.md:114] [SOURCE: INSTALL-SKILLED.md:132] [SOURCE: INSTALL-SKILLED.md:134] [SOURCE: INSTALL-SKILLED.md:280] [SOURCE: AGENTS.md:223] [SOURCE: AGENTS.md:228] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:45] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:55] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md:16]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CONTRIBUTING.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CLA.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/THIRD_PARTY_LICENSES",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js",
+        "https://github.com/mrsladoje/sweet-search",
+        "https://github.com/mrsladoje/sweet-search/releases"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-opt-in-path-is-simple-but-has-real-per-repo-cost-and-a-clear-recovery-path-t",
+      "text": "**The opt-in path is simple but has real per-repo cost and a clear recovery path.** The upstream quickstart is global npm install, project init, then a first index; models use hundreds of MB on CPU, with larger optional GPU/CoreML downloads. The package snapshot requires Node `>=22.2.0`; first-class native support is macOS and Linux, Windows runs through WSL2, and other platforms use slower WASM/JavaScript fallbacks. The background updater handles working-tree edits, but it does not build the first index. If an index format is outdated, status reports that a full rebuild is needed. When Sweet Search is absent or fails, agents can continue using the existing literal search path. Per-repo uninstall removes its integration and index while keeping shared models; `uninstall --all` removes every initialized repo, models and the CLI. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:119] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:122] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:125] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:129] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:139] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:140] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:160] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:163] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:263] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:199] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1302] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:205] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:207] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js:4] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js:7] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js:10] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md:24]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CONTRIBUTING.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/CLA.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/THIRD_PARTY_LICENSES",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js",
+        "https://github.com/mrsladoje/sweet-search",
+        "https://github.com/mrsladoje/sweet-search/releases"
+      ]
+    },
+    {
+      "id": "finding-6-3-a-slightly-larger-integration-has-no-present-failure-to-fix-a-code-mode-manual-w",
+      "text": "**A slightly larger integration has no present failure to fix.** A Code Mode manual would require separate UTCP configuration in addition to Sweet Search's native MCP setup; a doctor flow would duplicate upstream initialization, health, and removal behavior. Neither option has evidence of a current user failure that the passive pointer or existing search path cannot handle. Under the repository restraint rule, there is no climbing sentence for that added setup and maintenance today. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md:19] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md:18] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md:22] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:45]",
+      "addedAtIteration": 6,
+      "sources": [
+        "AGENTS.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        "INSTALL-SKILLED.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json"
+      ]
+    },
+    {
+      "id": "finding-6-1-no-integration-is-the-strongest-current-decision-if-the-bar-is-demonstrated-user",
+      "text": "**No integration is the strongest current decision if the bar is demonstrated user need.** The existing code-search tree already covers exact identifiers, known paths, and unfamiliar code through search, path mapping, and confirmation. Prior evidence says Sweet Search adds hybrid ranked code navigation, but the benefit for markdown, skills, and spec folders is unmeasured, while exact phrase lookups already have a literal-search path. The checked-in evaluation does not establish that Skilled users need this extra discovery route, and iteration 5 did not install or measure it. This supports deferring a Skilled change until an adopter reports a concrete retrieval gap. That decision is an inference from the stated scope and available measurements; an observed Skilled task where the existing route failed and Sweet Search succeeded would change it. [SOURCE: AGENTS.md:226] [SOURCE: AGENTS.md:228] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md:20] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md:40]",
+      "addedAtIteration": 6,
+      "sources": [
+        "AGENTS.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        "INSTALL-SKILLED.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json"
+      ]
+    },
+    {
+      "id": "finding-6-2-the-optional-pointer-has-low-implementation-cost-but-it-does-not-lower-adoption-",
+      "text": "**The optional pointer has low implementation cost, but it does not lower adoption cost and may spend attention on every code query.** The sk-code advisor receives every code query, and external installs always link the shared .skilled tree, so this is a real distribution point. However, the user still has to install the CLI, initialize each project, build its first index, and meet the Node and platform requirements. A note in the shared query path can therefore advertise a tool without removing the main friction. The attention cost is an inference from the shared routing location, not a measured distraction. [SOURCE: .skilled/skills/sk-code/SKILL.md:72] [SOURCE: INSTALL-SKILLED.md:132] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md:19]",
+      "addedAtIteration": 6,
+      "sources": [
+        "AGENTS.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        "INSTALL-SKILLED.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-004.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json"
+      ]
+    },
+    {
+      "id": "finding-7-2-all-three-named-agents-already-ship-lexical-search-and-two-of-them-ship-symbol-l",
+      "text": "**All three named agents already ship lexical search, and two of them ship symbol-level navigation; none ships a semantic index, so sweet-search's differentiator is hybrid ranking rather than search capability itself.** Codex bundles ripgrep as a first-class `rg` tool beside `glob_file_search`, and its separate `codex_file_search` crate does fuzzy filename matching over the `ignore` walker with `nucleo-matcher`. OpenCode documents `grep` (ripgrep-backed, regex or literal), `glob`, and an `lsp` tool exposing `goToDefinition`, `findReferences`, `workspaceSymbol`, and incoming/outgoing call hierarchy. Claude Code's documented design is agentic search over the filesystem with `grep` and similar tools. The practical consequence for Q7 is that sweet-search's `trace` and repo-map claims overlap functionality that OpenCode already exposes through LSP, while its genuinely additive capability is ranked semantic-plus-lexical retrieval over natural-language queries. [SOURCE: https://codex.danielvaughan.com/2026/06/03/codex-cli-built-in-tool-surface-complete-reference-shell-file-search-image-multi-agent/] [SOURCE: https://github.com/openai/codex/blob/main/codex-rs/file-search/README.md] [SOURCE: https://opencode.ai/docs/tools/] [SOURCE: https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/lsp.ts] [SOURCE: https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk]",
+      "addedAtIteration": 7,
+      "sources": [
+        "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+        "https://officechai.com/ai/claude-researcher-explains-how-agentic-search-performed-better-than-rag-for-code-generation/",
+        "https://codex.danielvaughan.com/2026/06/03/codex-cli-built-in-tool-surface-complete-reference-shell-file-search-image-multi-agent/",
+        "https://github.com/openai/codex/blob/main/codex-rs/file-search/README.md",
+        "https://opencode.ai/docs/tools/",
+        "https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/lsp.ts",
+        "https://cursor.com/blog/semsearch",
+        "https://cursor.com/blog/secure-codebase-indexing",
+        "https://cursor.com/help/customization/indexing.md",
+        "https://code-rag-bench.github.io/",
+        "https://www.sota2.com/research/sota/retrieval-on-coderag-bench",
+        "https://arxiv.org/html/2606.22417",
+        "https://github.com/Poytr1/lsp-vs-grep-token-study",
+        "https://jxnl.co/writing/2025/09/11/why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment/",
+        "https://semlith.com/docs/guides/claude-code-grep-vs-semantic-search",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-7-4-independent-evidence-undercuts-an-accuracy-thesis-and-supports-only-a-cost-or-la",
+      "text": "**Independent evidence undercuts an accuracy thesis and supports only a cost or latency thesis, which is the shape sweet-search actually claims.** An Augment engineer building a top SWE-bench Verified agent reports that \"for SweeBench tasks this was not the bottleneck — grep and find were sufficient\", with embedding retrieval failing to add value because agent persistence compensated for simple tools. A vendor that sells a semantic index publishes its own comparison showing 92.0% correct answers with grep alone and 92.0% with its index installed, while the index cuts the tokens needed to reach the first right file from a median of 15,491 to 224 and raises top-10 file hit rate from 47.0% to 76.8%. That is accuracy parity with a large token-efficiency gain, and it matches the shape of sweet-search's own reported result (5–33% cheaper runs with no significant solve-rate change). The mechanism is therefore credible while the accuracy upside is not. The same pilot study also records the counter-case: on symbol-named localization the semantic tool cost tokens (+6% on one model, +118% on another), and on multi-file renames grep solved 100% of cases against 67% for a location-only semantic tool. [SOURCE: https://jxnl.co/writing/2025/09/11/why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment/] [SOURCE: https://semlith.com/docs/guides/claude-code-grep-vs-semantic-search] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md:16] [SOURCE: https://github.com/Poytr1/lsp-vs-grep-token-study]",
+      "addedAtIteration": 7,
+      "sources": [
+        "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+        "https://officechai.com/ai/claude-researcher-explains-how-agentic-search-performed-better-than-rag-for-code-generation/",
+        "https://codex.danielvaughan.com/2026/06/03/codex-cli-built-in-tool-surface-complete-reference-shell-file-search-image-multi-agent/",
+        "https://github.com/openai/codex/blob/main/codex-rs/file-search/README.md",
+        "https://opencode.ai/docs/tools/",
+        "https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/lsp.ts",
+        "https://cursor.com/blog/semsearch",
+        "https://cursor.com/blog/secure-codebase-indexing",
+        "https://cursor.com/help/customization/indexing.md",
+        "https://code-rag-bench.github.io/",
+        "https://www.sota2.com/research/sota/retrieval-on-coderag-bench",
+        "https://arxiv.org/html/2606.22417",
+        "https://github.com/Poytr1/lsp-vs-grep-token-study",
+        "https://jxnl.co/writing/2025/09/11/why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment/",
+        "https://semlith.com/docs/guides/claude-code-grep-vs-semantic-search",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-7-3-independent-measurements-support-a-real-but-conditional-retrieval-gain-concentra",
+      "text": "**Independent measurements support a real but conditional retrieval gain, concentrated where the codebase is large or lexically noisy; none of them reproduces sweet-search's magnitude.** Four separate sources point the same direction with different mechanisms: Cursor reports that its semantic search adds on average 12.5% accuracy (6.5%–23.5% depending on model) over grep alone, with the gain growing as the codebase grows, using an embedding model it trained on agent traces; CodeRAG-Bench shows dense retrieval clearly ahead of BM25 on repository-level retrieval (SWE-Bench-L 46.4–67.4 versus 43) while both sit near ceiling on function-level tasks; a structural-index ablation reports resolve moving from 41.9% to 50.4% and acc@5 from 44.3% to 84.5% with no per-cell cost penalty and lower cost per solve against an agentic-grep comparator; and a pilot LSP-versus-grep study finds the verdict flips with lexical noise, with ΔF1 of +0.000 on a clean TypeScript repo versus +0.246 on a noisy one, where the semantic tool was also 12% cheaper. The common value condition is a large tree plus a natural-language query whose identifier the asker does not know plus noisy vocabulary. That is the code surface of a large repository, not Skilled's markdown, skill, and spec trees. [SOURCE: https://cursor.com/blog/semsearch] [SOURCE: https://www.sota2.com/research/sota/retrieval-on-coderag-bench] [SOURCE: https://code-rag-bench.github.io/] [SOURCE: https://arxiv.org/html/2606.22417] [SOURCE: https://github.com/Poytr1/lsp-vs-grep-token-study]",
+      "addedAtIteration": 7,
+      "sources": [
+        "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+        "https://officechai.com/ai/claude-researcher-explains-how-agentic-search-performed-better-than-rag-for-code-generation/",
+        "https://codex.danielvaughan.com/2026/06/03/codex-cli-built-in-tool-surface-complete-reference-shell-file-search-image-multi-agent/",
+        "https://github.com/openai/codex/blob/main/codex-rs/file-search/README.md",
+        "https://opencode.ai/docs/tools/",
+        "https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/lsp.ts",
+        "https://cursor.com/blog/semsearch",
+        "https://cursor.com/blog/secure-codebase-indexing",
+        "https://cursor.com/help/customization/indexing.md",
+        "https://code-rag-bench.github.io/",
+        "https://www.sota2.com/research/sota/retrieval-on-coderag-bench",
+        "https://arxiv.org/html/2606.22417",
+        "https://github.com/Poytr1/lsp-vs-grep-token-study",
+        "https://jxnl.co/writing/2025/09/11/why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment/",
+        "https://semlith.com/docs/guides/claude-code-grep-vs-semantic-search",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-7-5-no-independent-party-has-measured-sweet-search-and-the-closest-analogues-differ-",
+      "text": "**No independent party has measured sweet-search, and the closest analogues differ in exactly the two variables that drive the gain: embedding quality and index lifecycle.** Cursor's advantage comes from an embedding model trained on its own agent traces, not a generic local model, and its documented lifecycle is the cost side Anthropic named: the index syncs roughly every five minutes, semantic search is unavailable until at least 80% of indexing completes, and a large repository can take hours to first query. Sweet-search avoids the remote-hosting and privacy liability by keeping the index local, but it inherits the staleness and cold-start costs. **Inference:** the defensible reading of the independent record is that sweet-search's direction is plausible and its magnitude is unverified, and that its value is bounded by the same noise-and-scale condition that decides every other semantic retrieval tool. An independent measurement of sweet-search on a large noisy repository, compared with the built-in agent path on the same tasks, would confirm or refute this; nothing in the collected record substitutes for it. [SOURCE: https://cursor.com/blog/semsearch] [SOURCE: https://cursor.com/blog/secure-codebase-indexing] [SOURCE: https://cursor.com/help/customization/indexing.md] [SOURCE: https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk]",
+      "addedAtIteration": 7,
+      "sources": [
+        "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+        "https://officechai.com/ai/claude-researcher-explains-how-agentic-search-performed-better-than-rag-for-code-generation/",
+        "https://codex.danielvaughan.com/2026/06/03/codex-cli-built-in-tool-surface-complete-reference-shell-file-search-image-multi-agent/",
+        "https://github.com/openai/codex/blob/main/codex-rs/file-search/README.md",
+        "https://opencode.ai/docs/tools/",
+        "https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/lsp.ts",
+        "https://cursor.com/blog/semsearch",
+        "https://cursor.com/blog/secure-codebase-indexing",
+        "https://cursor.com/help/customization/indexing.md",
+        "https://code-rag-bench.github.io/",
+        "https://www.sota2.com/research/sota/retrieval-on-coderag-bench",
+        "https://arxiv.org/html/2606.22417",
+        "https://github.com/Poytr1/lsp-vs-grep-token-study",
+        "https://jxnl.co/writing/2025/09/11/why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment/",
+        "https://semlith.com/docs/guides/claude-code-grep-vs-semantic-search",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-maker-of-claude-code-tried-semantic-indexing-for-code-search-rejected-it-and",
+      "text": "**The maker of Claude Code tried semantic indexing for code search, rejected it, and still recommends agentic search first.** Boris Cherny, who created Claude Code, states that early Claude versions indexed the codebase with Voyage embeddings, and that the team \"eventually landed on just agentic search\" because it \"outperformed everything else by a lot\", with index drift and the security liability of hosting the index as the other reasons. Anthropic's own Agent SDK guidance keeps that position: semantic search \"is usually faster than agentic search, but less accurate, more difficult to maintain, and less transparent\", and it recommends \"starting with agentic search, and only adding semantic search if you need faster results or more variations\". This undercuts any claim that adding an index is a general upgrade for the harness sweet-search benchmarks most heavily. [SOURCE: https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk] [SOURCE: https://officechai.com/ai/claude-researcher-explains-how-agentic-search-performed-better-than-rag-for-code-generation/]",
+      "addedAtIteration": 7,
+      "sources": [
+        "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+        "https://officechai.com/ai/claude-researcher-explains-how-agentic-search-performed-better-than-rag-for-code-generation/",
+        "https://codex.danielvaughan.com/2026/06/03/codex-cli-built-in-tool-surface-complete-reference-shell-file-search-image-multi-agent/",
+        "https://github.com/openai/codex/blob/main/codex-rs/file-search/README.md",
+        "https://opencode.ai/docs/tools/",
+        "https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/tool/lsp.ts",
+        "https://cursor.com/blog/semsearch",
+        "https://cursor.com/blog/secure-codebase-indexing",
+        "https://cursor.com/help/customization/indexing.md",
+        "https://code-rag-bench.github.io/",
+        "https://www.sota2.com/research/sota/retrieval-on-coderag-bench",
+        "https://arxiv.org/html/2606.22417",
+        "https://github.com/Poytr1/lsp-vs-grep-token-study",
+        "https://jxnl.co/writing/2025/09/11/why-grep-beat-embeddings-in-our-swe-bench-agent-lessons-from-augment/",
+        "https://semlith.com/docs/guides/claude-code-grep-vs-semantic-search",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-002.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-8-4-stale-splits-into-two-shapes-edits-since-the-index-self-heal-an-older-index-form",
+      "text": "**\"Stale\" splits into two shapes: edits since the index self-heal, an older index format needs one explicit full rebuild, and the first index is never automatic.** After a first index exists, the index updates itself as the user works. An index built by an older sweet-search is never patched — updates pause and search tells the user to rebuild; `status` names the reason and `nextStep` returns `sweet-search index --full`. The daemon never builds the first index; it waits until one exists. So the user runs `index` once per repo, plus `--full` only when the format ages. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1302] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:134] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:205] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:126]",
+      "addedAtIteration": 8,
+      "sources": [
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        ".skilled/skills/sk-code/SKILL.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-8-2-absent-is-the-default-external-state-and-it-is-a-clean-no-op-on-both-sides-skill",
+      "text": "**Absent is the default external state, and it is a clean no-op on both sides.** Skilled never installs sweet-search. The pointer is conditional, so the user reads one optional sentence and does nothing; the agent keeps the existing tree: exact text, token or symbol → content search; known file or path → path match; concept or unfamiliar code → widen the content search, map the tree, read to confirm. There is no install prompt, no error and no new command on either side. [SOURCE: AGENTS.md:226] [SOURCE: AGENTS.md:227] [SOURCE: AGENTS.md:228] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md:15]",
+      "addedAtIteration": 8,
+      "sources": [
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        ".skilled/skills/sk-code/SKILL.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-8-3-half-installed-has-one-diagnostic-and-a-four-rung-repair-ladder-sweet-search-sta",
+      "text": "**Half-installed has one diagnostic and a four-rung repair ladder.** `sweet-search status` prints Package, Init, Models with per-model present or missing MB, the Index parts, the Server state, and one final `Next step:` line. `nextStep` walks four rungs in failure order: skipped postinstall scripts → their own fix; missing models → the cache-writability message or `sweet-search index` / `init`; index not ready → `index` or `index --full` for a fingerprint or format mismatch; server failed → `sweet-search daemon restart`. The user's half-installed loop is one status command, read one line, run one command. No Skilled command participates. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:113] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:115] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:126] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:129] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:231] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:286]",
+      "addedAtIteration": 8,
+      "sources": [
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        ".skilled/skills/sk-code/SKILL.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-8-6-sweet-search-s-own-init-changes-the-same-instruction-surface-and-in-link-instruc",
+      "text": "**sweet-search's own `init` changes the same instruction surface, and in link-instruction mode it can write through `AGENTS.md` into the shared checkout.** `sweet-search init --agents` writes its verbatim guide into `AGENTS.md`, marker-delimited and reversible. That guide says to use `ss-*` for all code search, never re-run an `ss-*` hit as raw grep, and treat two empty probes as proof of absence — a different search policy from Skilled's \"widen the pattern rather than trusting a single hit\". In link-instruction mode, Skilled \"points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at the checkout's copies\", and `--link-instructions` routes those manifest entries through the same linking machinery. If the project's `AGENTS.md` is a link, appending a block writes through to the checkout's copy and affects every linked project. [INFERENCE: link mode resolves `AGENTS.md` to the checkout's file, so an append through that path edits the shared target. Confirmed by running `init --agents` in a link-instruction project and checking the checkout file.] In embed mode the file is project-owned, so the two guides coexist but can still disagree about search policy. The pointer itself should never run `init`; the walkthrough should tell link-mode users to choose `embed` or accept the collision. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:220] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:203] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:1113] [SOURCE: INSTALL-SKILLED.md:102] [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:455]",
+      "addedAtIteration": 8,
+      "sources": [
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        ".skilled/skills/sk-code/SKILL.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-8-5-the-node-below-22-branch-cannot-occur-in-a-repo-that-met-skilled-s-own-prerequis",
+      "text": "**The Node-below-22 branch cannot occur in a repo that met Skilled's own prerequisites; the real unsupported state is native Windows without WSL2.** Skilled requires Node 24, \"the one version every part of the framework accepts\", plus a POSIX shell; sweet-search requires Node 22+ and its package declares `>=22.2.0`. Any external repo that successfully installed Skilled has already cleared sweet-search's Node floor, so the pointer never needs to handle Node below 22 in that population. Native Windows is different: sweet-search's first-class platforms are macOS, Linux and Windows via WSL2, and native Windows is \"not yet\". Git Bash supplies the POSIX shell Skilled needs, so a Skilled project can exist where sweet-search cannot run. [SOURCE: INSTALL-SKILLED.md:29] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:119] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json:199] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md:263]",
+      "addedAtIteration": 8,
+      "sources": [
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        ".skilled/skills/sk-code/SKILL.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-pointer-adds-no-step-to-the-external-install-path-it-changes-only-what-the-a",
+      "text": "**The pointer adds no step to the external install path; it changes only what the agent reads on a code query.** Link mode: `/doctor:install` asks four questions (target repo, runtimes, link shape, instruction file), writes nothing, and prints five steps — `symlink link`, optional `agents-md embed`, `/doctor:mcp install`, `/doctor:git setup`, `/doctor:setup`. `.skilled` is always linked. Copy mode exports `.skilled` with `git archive`, adds an overlay manifest, and ends `/doctor:overlay apply` at `RESULT: PASSED`. The pointer lives inside `.skilled/skills/sk-code/SKILL.md`, so a linked project sees it on the next `git pull` and a copied project sees it on the next re-pin, which copies `.skilled`. Neither path gains an install step or a new command. [SOURCE: INSTALL-SKILLED.md:97] [SOURCE: INSTALL-SKILLED.md:102] [SOURCE: INSTALL-SKILLED.md:112] [SOURCE: INSTALL-SKILLED.md:132] [SOURCE: INSTALL-SKILLED.md:184] [SOURCE: INSTALL-SKILLED.md:251] [SOURCE: INSTALL-SKILLED.md:16] [SOURCE: INSTALL-SKILLED.md:280]",
+      "addedAtIteration": 8,
+      "sources": [
+        "INSTALL-SKILLED.md",
+        "AGENTS.md",
+        ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        ".skilled/skills/sk-code/SKILL.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/README.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/package.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md"
+      ]
+    },
+    {
+      "id": "finding-9-5-a-load-caveat-and-a-cost-finding-qualify-the-recommendation-workflow-implement-m",
+      "text": "**A load caveat and a cost finding qualify the recommendation.** `workflow-implement.md` is a declared leaf in every surface packet, but it is not an entry in the router's `IMPLEMENTATION` resource map or in the shared-control list, so it is reached through the surface packet's workflow instruction rather than auto-loaded by the router. If Q10 wants a guaranteed load, the smallest follow-up is adding it to `RESOURCE_MAP` under `IMPLEMENTATION`, which is a router change with its own sync guards and should not be assumed in phase 2. The cost side also strengthens iteration 6: the clause is paid on every code task that loads the doctrine, whether or not Sweet Search is installed, so the pointer still needs a demonstrated discoverability gap to earn its place. [SOURCE: .skilled/skills/sk-code/ROUTER.md:267] [SOURCE: .skilled/skills/sk-code/ROUTER.md:432] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md:15] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:45]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-code/SKILL.md`",
+        "`.skilled/skills/sk-code/ROUTER.md`",
+        "`.skilled/skills/sk-code/leaf-manifest.json`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md`",
+        "`.skilled/skills/sk-code/shared/references/workflow-debug.md`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md`",
+        "`AGENTS.md`",
+        "`INSTALL-SKILLED.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/config-gen.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/init-config.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-9-3-detection-needs-no-new-skilled-script-a-three-rung-ladder-over-existing-surfaces",
+      "text": "**Detection needs no new Skilled script: a three-rung ladder over existing surfaces is enough.** First rung, zero cost: the runtime's MCP tool roster. A registered Sweet Search server exposes `search`, `trace`, `index`, `health`, `repo-map`, `read` and `read-semantic`; if those tools are present, the agent can call them directly. Second rung, one Glob/Read: `.sweet-search/config.json` proves this project was initialized; init writes that file, adds `.sweet-search/` to an existing `.gitignore` (so the marker is local-only and does not travel with the repo), and `init --mcp` optionally writes `mcpServers.sweet-search` into the project `.mcp.json`. Third rung, only when a call fails or looks stale: `sweet-search status --json`, an existing CLI command that exits `0` when search is ready and `1` when a setup step is missing, and whose `nextStep` names the fix. Absence at any rung means the existing widen-pattern-then-read route, never an install attempt. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:208] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:236] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:282] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:306] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:352] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js:371] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/init-config.js:17] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/init-config.js:25] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js:72] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js:371] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js:2285] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:291] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js:301] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js:616]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-code/SKILL.md`",
+        "`.skilled/skills/sk-code/ROUTER.md`",
+        "`.skilled/skills/sk-code/leaf-manifest.json`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md`",
+        "`.skilled/skills/sk-code/shared/references/workflow-debug.md`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md`",
+        "`AGENTS.md`",
+        "`INSTALL-SKILLED.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/config-gen.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/init-config.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-9-1-the-pointer-belongs-in-shared-references-workflow-implement-md-2-research-step-5",
+      "text": "**The pointer belongs in `shared/references/workflow-implement.md` §2 \"Research\", step 5 — not in the sk-code hub `SKILL.md`.** The hub states it holds no per-mode logic and must never carry per-mode workflow logic, while the shared doctrine is the single source that each surface packet links and applies. Step 5 is the bounded read-only research sweep before editing, which is exactly the moment an agent searches unfamiliar code. The file is a declared leaf in all three surface packets, so one edit reaches the CI, frontend and Skilled surfaces through the existing symlinks. The hub `SKILL.md` is the file that receives every code query, but adding search behavior there would break its routing-only contract. [SOURCE: .skilled/skills/sk-code/SKILL.md:18] [SOURCE: .skilled/skills/sk-code/SKILL.md:72] [SOURCE: .skilled/skills/sk-code/SKILL.md:133] [SOURCE: .skilled/skills/sk-code/SKILL.md:157] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:50] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:58] [SOURCE: .skilled/skills/sk-code/leaf-manifest.json:13] [SOURCE: .skilled/skills/sk-code/leaf-manifest.json:35] [SOURCE: .skilled/skills/sk-code/leaf-manifest.json:146] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:121]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-code/SKILL.md`",
+        "`.skilled/skills/sk-code/ROUTER.md`",
+        "`.skilled/skills/sk-code/leaf-manifest.json`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md`",
+        "`.skilled/skills/sk-code/shared/references/workflow-debug.md`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md`",
+        "`AGENTS.md`",
+        "`INSTALL-SKILLED.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/config-gen.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/init-config.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-9-4-the-pointer-must-not-edit-agents-md-and-it-slots-into-the-decision-tree-s-third-",
+      "text": "**The pointer must not edit AGENTS.md, and it slots into the decision tree's third branch only.** The tree is capability-framed (\"Tool names differ per runtime. Use whatever the runtime exposes for the capability\"), so a Sweet Search MCP tool is another runtime-exposed content-search capability rather than a new branch. Exact text and symbols stay on literal search; known paths stay on path match; ranked search, `trace` and `repo-map` belong to \"concept, intent or unfamiliar code\". An AGENTS.md pointer would also fail distribution: external installs always link `.skilled`, while the root `AGENTS.md` is not in that always-linked set, so an edit there would not reach external repos on a re-pin. Keeping the pointer in the shared doctrine therefore preserves both the tree's precedence and the external delivery path. [SOURCE: AGENTS.md:223] [SOURCE: AGENTS.md:225] [SOURCE: AGENTS.md:226] [SOURCE: AGENTS.md:227] [SOURCE: AGENTS.md:228] [SOURCE: INSTALL-SKILLED.md:132]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-code/SKILL.md`",
+        "`.skilled/skills/sk-code/ROUTER.md`",
+        "`.skilled/skills/sk-code/leaf-manifest.json`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md`",
+        "`.skilled/skills/sk-code/shared/references/workflow-debug.md`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md`",
+        "`AGENTS.md`",
+        "`INSTALL-SKILLED.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/config-gen.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/init-config.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-9-2-the-precise-wording-is-one-appended-clause-to-the-existing-step-5-not-a-new-sect",
+      "text": "**The precise wording is one appended clause to the existing step 5, not a new section.** Proposed text: \"5. For broad or risky work, run a bounded read-only research sweep before editing. When the runtime exposes a code-search tool and the project carries `.sweet-search/config.json`, use its ranked `search`, `trace` and `repo-map` for the concept-and-unfamiliar branch, keeping literal search for exact text and symbols and path match for known paths. If the tool is absent, uninitialized or reports a missing index, widen the pattern and read as before; it is never a prerequisite.\" This keeps the existing imperative, names the marker, names only the three tools that change behavior, restates the decision-tree precedence, and states the fallback and the non-dependency in the same step. It adds roughly 75 words to a doctrine file loaded for code work. [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:58] [SOURCE: AGENTS.md:226] [SOURCE: AGENTS.md:227] [SOURCE: AGENTS.md:228]",
+      "addedAtIteration": 9,
+      "sources": [
+        "`.skilled/skills/sk-code/SKILL.md`",
+        "`.skilled/skills/sk-code/ROUTER.md`",
+        "`.skilled/skills/sk-code/leaf-manifest.json`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md`",
+        "`.skilled/skills/sk-code/shared/references/workflow-debug.md`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md`",
+        "`AGENTS.md`",
+        "`INSTALL-SKILLED.md`",
+        "`.skilled/repo-rules/prevent-overengineering.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/server-main.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/mcp/config-gen.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/infrastructure/init-config.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/setup-status.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/init.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/scripts/uninstall.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-003.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-10-5-phase-1-s-own-handoff-is-not-met-yet-research-research-md-is-absent-the-phase-1-",
+      "text": "**Phase 1's own handoff is not met yet: `research/research.md` is absent.** The phase-1 spec requires that synthesis to state a verdict with source tags, and the parent handoff requires a named verdict and one recommended surface before a build phase is planned. Phase 2's entry check must include that file and a passing phase-1 validation. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md:30] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md:112] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md:49]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md",
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/spec.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/description.json",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/changelog/ (release names)",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+      ]
+    },
+    {
+      "id": "finding-10-1-phase-2-should-be-decision-only-record-no-integration-now-plus-a-pre-registered-",
+      "text": "**Phase 2 should be decision-only: record \"no integration now\" plus a pre-registered growth gate, and change no runtime file.** The restraint rule starts at \"build nothing\" and permits a costlier move only when a failure exists today; iteration 6 found no demonstrated Skilled user need and no measured gain for markdown, skill or spec work. The optional pointer fixes no current failure, so it is not phase 2 — it is the pre-approved phase 3 move if the gate fires. [SOURCE: .skilled/repo-rules/prevent-overengineering.md:45] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:48] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:60] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md:15]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md",
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/spec.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/description.json",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/changelog/ (release names)",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+      ]
+    },
+    {
+      "id": "finding-10-3-the-one-paragraph-pointer-is-a-five-file-sk-code-hub-release-not-a-one-line-edit",
+      "text": "**The \"one-paragraph pointer\" is a five-file sk-code hub release, not a one-line edit.** The hub's version authority ties `SKILL.md`'s frontmatter to the newest changelog entry, and the same version sits in `description.json`, `mode-registry.json` and `hub-router.json`. A pointer in `SKILL.md` §2 therefore also needs a new `changelog/v3.11.5.0.md` entry and a version bump in all four files. That is still cheap and reversible, but phase 3 must budget for it and check consistency. [SOURCE: .skilled/skills/sk-code/SKILL.md:20] [SOURCE: .skilled/skills/sk-code/SKILL.md:5] [SOURCE: .skilled/skills/sk-code/description.json:4] [SOURCE: .skilled/skills/sk-code/mode-registry.json:3] [SOURCE: .skilled/skills/sk-code/hub-router.json:3] [SOURCE: .skilled/skills/sk-code/SKILL.md:72]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md",
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/spec.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/description.json",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/changelog/ (release names)",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+      ]
+    },
+    {
+      "id": "finding-10-4-the-growth-gate-should-be-two-falsifiable-triggers-plus-a-measurement-protocol-n",
+      "text": "**The growth gate should be two falsifiable triggers plus a measurement protocol, not a date or a hunch.** Trigger A is an observed failure of the existing search path in a real task: a recorded query where `rg`/Grep plus the committed trigger index missed a code location that Sweet Search finds, with the repo and both outcomes. Two independent occurrences in two repos, or one that blocks an external-repo task, open phase 3. Trigger B is an independent, reproducible benchmark on Skilled-style corpora showing a pre-registered reduction in search tool calls or tokens with no correctness drop; vendor eval data alone does not count. Phase 3 is the conditional pointer; phase 4 (doctor install, Code Mode mirror, or a new mcp-tooling mode) opens only if the pointer demonstrably fails to close the measured gap. [SOURCE: .skilled/repo-rules/prevent-overengineering.md:48] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:134] [SOURCE: .skilled/repo-rules/prevent-overengineering.md:167] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md:19] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md:17] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md:19]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md",
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/spec.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/description.json",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/changelog/ (release names)",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+      ]
+    },
+    {
+      "id": "finding-10-2-the-phase-2-file-list-is-the-standard-level-2-child-shape-plus-the-parent-map-up",
+      "text": "**The phase 2 file list is the standard Level 2 child shape plus the parent map update; no `.skilled/` file changes.** The child carries `spec.md`, `description.json`, `graph-metadata.json`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md` and a `decision-record.md`. The decision record is the phase's core artifact; a Level 2 packet with one is already precedented in `027-ask-surface-enforcement`, though the structure reference lists `decision-record.md` as Level 3+. The parent needs its Phase Documentation Map and handoff row updated, plus the derived child pointer in its `graph-metadata.json`. [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:145] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:162] [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:163] [SOURCE: specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/spec.md:13] [SOURCE: specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/acceptance-criteria.md:54] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md:95]",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-config.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-state.jsonl",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-strategy.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/findings-registry.json",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-005.md",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations/iteration-006.md",
+        "specs/hooks-plugins-extensions/hook-injection-pipeline/006-dispatch-adapter-test-repair/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/spec.md",
+        ".skilled/repo-rules/prevent-overengineering.md",
+        ".skilled/skills/sk-code/SKILL.md",
+        ".skilled/skills/sk-code/description.json",
+        ".skilled/skills/sk-code/mode-registry.json",
+        ".skilled/skills/sk-code/hub-router.json",
+        ".skilled/skills/sk-code/changelog/ (release names)",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-5a0416832a5d",
+      "text": "Code Mode/UTCP mirror: it adds a second registration path beside Sweet Search's native `init --mcp`.",
+      "contentHash": "5a0416832a5d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c0bb6a4de832",
+      "text": "Doctor-owned install/setup: it duplicates Sweet Search's own project initialization and uninstall lifecycle.",
+      "contentHash": "c0bb6a4de832",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-58e7f85d8993",
+      "text": "New mcp-tooling mode: it adds routing and packet maintenance for an optional external search tool.",
+      "contentHash": "58e7f85d8993",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-20d3d95cc013",
+      "text": "system-spec-kit retrieval hook: code navigation belongs on the code-search surface, not document retrieval.",
+      "contentHash": "20d3d95cc013",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e8e9135174c7",
+      "text": "The npm package page returned 403 and the GitHub commits page did not expose a latest commit date. Upstream maintenance cadence stays UNKNOWN; the canonical README and release page were still available.",
+      "contentHash": "e8e9135174c7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-cb11059e2856",
+      "text": "The web search snippet was stale for the Node requirement; the current opened README and local package metadata agree on Node 22+.",
+      "contentHash": "cb11059e2856",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7981f7467e53",
+      "text": "Searching for an independent third-party evaluation of sweet-search itself produced none; every quantitative claim about it still traces to its own checked-in eval data, consistent with iteration 2.",
+      "contentHash": "7981f7467e53",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-13d9465b03a8",
+      "text": "The public evidence base on \"semantic retrieval for coding agents\" is dominated by vendors measuring their own product (Cursor, Zilliz's claude-context, Semlith) or by small pilots; there is no neutral, large-scale, cross-tool benchmark of the kind Q7 would ideally cite.",
+      "contentHash": "13d9465b03a8",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-1b0a35e46fdb",
+      "text": "Treating Anthropic's reversal as proof that no code index can help. The published reasons are maintenance, transparency, accuracy, and index-hosting liability for their own product; they do not measure third-party indexes against their harness. [SOURCE: https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk]",
+      "contentHash": "1b0a35e46fdb",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-b4073655765c",
+      "text": "Treating Cursor's 12.5% accuracy figure as transferable to sweet-search. Cursor's gain is attributed to a custom embedding model trained on agent traces, so the number describes that model, not local embeddings in general. [SOURCE: https://cursor.com/blog/semsearch]",
+      "contentHash": "b4073655765c",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-c8dbfa72ca22",
+      "text": "Using the CodeRAG-Bench and structural-index results as direct support for sweet-search. Both evaluate retrieval or localisation components, not sweet-search's specific tool contract, and CodeRAG-Bench's repository slice is document retrieval for generation rather than agentic tool use. [SOURCE: https://code-rag-bench.github.io/] [SOURCE: https://arxiv.org/html/2606.22417]",
+      "contentHash": "c8dbfa72ca22",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-d491d4e439a8",
+      "text": "Adding a Skilled-side health check or doctor step for sweet-search. The status command already returns one next step per failure, and iteration 5 blocked doctor-owned install/setup.",
+      "contentHash": "d491d4e439a8",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-af12b9de3937",
+      "text": "Making the pointer unconditional or install-prompting. Absent is the default; an unconditional note would advertise a tool most repos do not have.",
+      "contentHash": "af12b9de3937",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-38c5b17de1e5",
+      "text": "None new. The platform matrix resolved cleanly from the compatibility table and Skilled's own prerequisites.",
+      "contentHash": "38c5b17de1e5",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-5404fce238e9",
+      "text": "Treating Node below 22 as a live failure state for a Skilled-installed repo. Skilled's Node 24 prerequisite makes it unreachable.",
+      "contentHash": "5404fce238e9",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-fc02d1e4ffba",
+      "text": "Adding a detector script or doctor check: the MCP roster, the `.sweet-search/config.json` marker and `status --json` already answer the question with no new maintenance surface.",
+      "contentHash": "fc02d1e4ffba",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-02b90d1893ba",
+      "text": "Editing `AGENTS.md`: the root file is not part of the always-linked `.skilled` set, so the pointer would not travel to external repos, and a vendor name would make a capability-framed tree tool-specific.",
+      "contentHash": "02b90d1893ba",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-d2522cb209d1",
+      "text": "Mirroring the pointer into `workflow-debug.md` as well: one doctrine file is enough to test the idea; a second edit doubles the cost before any evidence of need.",
+      "contentHash": "d2522cb209d1",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-21e706662e94",
+      "text": "None. The exact locations, tool names and status contract were all present in the checked-in sources.",
+      "contentHash": "21e706662e94",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-e70cb9950858",
+      "text": "Placing the pointer in `sk-code/SKILL.md`: the hub is routing-only by its own contract, and search behavior is workflow logic, not routing.",
+      "contentHash": "e70cb9950858",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-8ac80f9906b5",
+      "text": "Making the pointer phase 2 without a demonstrated need: it fixes no current failure and spends attention on every code query.",
+      "contentHash": "8ac80f9906b5",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-c29a7811d483",
+      "text": "No new dead ends. The Q5/Q6 surface rulings still hold.",
+      "contentHash": "c29a7811d483",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-9a524b20bfa7",
+      "text": "Running a paid agent benchmark inside phase 2: research non-goals exclude it; the measurement is a protocol for a later phase.",
+      "contentHash": "9a524b20bfa7",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-e161f92df14a",
+      "text": "Treating the pointer as a one-line change: the hub release cost is five files.",
+      "contentHash": "e161f92df14a",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "carriedForwardOpenQuestions": 16,
+    "keyFindings": 47,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "arxiv.org": 1,
+      "code": 20,
+      "code-rag-bench.github.io": 1,
+      "codex.danielvaughan.com": 1,
+      "cursor.com": 3,
+      "github.com": 5,
+      "jxnl.co": 1,
+      "officechai.com": 1,
+      "opencode.ai": 1,
+      "other": 91,
+      "semlith.com": 1,
+      "www.anthropic.com": 1,
+      "www.sota2.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

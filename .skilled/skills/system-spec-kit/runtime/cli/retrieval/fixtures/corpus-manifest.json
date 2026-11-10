@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5234b715e1078490634d20100dce626f97f190ec8748b23399ba615fafebd05b",
+  "corpusHash": "7abf538ec944df018658ed0f9dad9dd1bd2d7d8aad995b522c211f4c93c237eb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25928,
+  "includedPathCount": 25970,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8639,6 +8639,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.38.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.39.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.40.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
@@ -10863,6 +10864,47 @@
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/spec.md",
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/tasks.md",
     "specs/commands/005-doctor-symlink-install/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/goal.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/implementation-summary.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/plan.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/research.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/tasks.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/goal.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/implementation-summary.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/plan.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/research.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/tasks.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/goal.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/implementation-summary.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/plan.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/research.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/tasks.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/goal.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/implementation-summary.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/plan.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/tasks.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/goal.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/implementation-summary.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/plan.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/tasks.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/goal.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/implementation-summary.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/plan.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/spec.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/tasks.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/goal.md",
+    "specs/hooks-plugins-extensions/028-sweet-search-integration/spec.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/implementation-summary.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/plan.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/spec.md",
@@ -25960,7 +26002,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "72ded7df0f636b3cc9d45bfaac3bc8e6fdf504b3847c16ecc65f11f87784e025",
+  "manifestHash": "5183d50c45efafd13fc6f01b11fcf9e9623798f3447d1c466567c8ef934eb15a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28628,6 +28670,114 @@
     },
     {
       "path": "specs/commands/005-doctor-symlink-install/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/001-sweet-search-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/003-retrieval-feature-design-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/004-total-candidate-count/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/005-stale-index-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/028-sweet-search-integration/006-rg-flood-control/scratch",
       "reason": "excluded directory"
     },
     {

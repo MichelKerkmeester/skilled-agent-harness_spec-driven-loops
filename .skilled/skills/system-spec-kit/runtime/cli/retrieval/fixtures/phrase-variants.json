@@ -1,5 +1,5 @@
 {
-  "manifestHash": "72ded7df0f636b3cc9d45bfaac3bc8e6fdf504b3847c16ecc65f11f87784e025",
+  "manifestHash": "5183d50c45efafd13fc6f01b11fcf9e9623798f3447d1c466567c8ef934eb15a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49092,6 +49092,9 @@
     "feature decision matrix": [
       "feature decision matrix"
     ],
+    "feature design criteria": [
+      "feature design criteria"
+    ],
     "feature dir resolution release branch": [
       "feature dir resolution release branch"
     ],
@@ -57641,6 +57644,9 @@
     "hop notice": [
       "hop notice"
     ],
+    "host index folder setting": [
+      "host index folder setting"
+    ],
     "host lifecycle epoch": [
       "host lifecycle epoch"
     ],
@@ -59119,6 +59125,9 @@
     ],
     "indexable content sources": [
       "indexable content sources"
+    ],
+    "indexdir in skilled host json": [
+      "indexDir in skilled-host.json"
     ],
     "indexed but not routed": [
       "indexed but not routed"
@@ -79010,6 +79019,9 @@
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
     ],
+    "phase 1 sweet search research": [
+      "phase 1 sweet search research"
+    ],
     "phase 1 symlink engine and command": [
       "phase 1 symlink engine and command"
     ],
@@ -79637,6 +79649,9 @@
     "phase 2 removal plan": [
       "phase 2 removal plan"
     ],
+    "phase 2 retrieval lessons research": [
+      "phase 2 retrieval lessons research"
+    ],
     "phase 2 retroactive removal": [
       "phase 2 retroactive removal"
     ],
@@ -79997,6 +80012,9 @@
     "phase 3 repin": [
       "phase 3 repin"
     ],
+    "phase 3 retrieval feature design research": [
+      "phase 3 retrieval feature design research"
+    ],
     "phase 3 review remediation": [
       "phase 3 review remediation"
     ],
@@ -80249,6 +80267,9 @@
     "phase 4 template section fill guidance": [
       "phase 4 template section fill guidance"
     ],
+    "phase 4 total candidate count": [
+      "phase 4 total candidate count"
+    ],
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
     ],
@@ -80432,6 +80453,9 @@
     "phase 5 stale audit task list": [
       "phase 5 stale audit task list"
     ],
+    "phase 5 stale index fallback": [
+      "phase 5 stale index fallback"
+    ],
     "phase 5 stdin late write coverage": [
       "phase 5 stdin late write coverage"
     ],
@@ -80587,6 +80611,9 @@
     ],
     "phase 6 review remediation": [
       "phase 6 review remediation"
+    ],
+    "phase 6 rg flood control": [
+      "phase 6 rg flood control"
     ],
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
@@ -93539,6 +93566,21 @@
     "retrieval exit status mapping": [
       "retrieval exit status mapping"
     ],
+    "retrieval feature design acceptance": [
+      "retrieval feature design acceptance"
+    ],
+    "retrieval feature design research": [
+      "retrieval feature design research"
+    ],
+    "retrieval feature design research implementation summary": [
+      "retrieval feature design research implementation summary"
+    ],
+    "retrieval feature design research plan": [
+      "retrieval feature design research plan"
+    ],
+    "retrieval feature design research tasks": [
+      "retrieval feature design research tasks"
+    ],
     "retrieval feedback edge": [
       "retrieval feedback edge"
     ],
@@ -93583,6 +93625,24 @@
     ],
     "retrieval hardening arc": [
       "retrieval hardening arc"
+    ],
+    "retrieval lessons acceptance": [
+      "retrieval lessons acceptance"
+    ],
+    "retrieval lessons research": [
+      "retrieval lessons research"
+    ],
+    "retrieval lessons research implementation summary": [
+      "retrieval lessons research implementation summary"
+    ],
+    "retrieval lessons research plan": [
+      "retrieval lessons research plan"
+    ],
+    "retrieval lessons research tasks": [
+      "retrieval lessons research tasks"
+    ],
+    "retrieval lessons verdict criteria": [
+      "retrieval lessons verdict criteria"
     ],
     "retrieval lib primitives": [
       "retrieval lib primitives"
@@ -94833,6 +94893,21 @@
     "rg fallback handler parity": [
       "rg fallback handler parity"
     ],
+    "rg flood control": [
+      "rg flood control"
+    ],
+    "rg flood control acceptance": [
+      "rg flood control acceptance"
+    ],
+    "rg flood control implementation summary": [
+      "rg flood control implementation summary"
+    ],
+    "rg flood control plan": [
+      "rg flood control plan"
+    ],
+    "rg flood control tasks": [
+      "rg flood control tasks"
+    ],
     "rg printf fallback chains": [
       "rg printf fallback chains"
     ],
@@ -94842,6 +94917,9 @@
     "rg system spec kit scripts": [
       "rg system-spec-kit scripts"
     ],
+    "rg wrapper flood control design": [
+      "rg wrapper flood control design"
+    ],
     "right hooks honest reverts": [
       "Right Hooks, Honest Reverts"
     ],
@@ -94850,6 +94928,12 @@
     ],
     "ripgrep json scan": [
       "ripgrep json scan"
+    ],
+    "ripgrep one row per file": [
+      "ripgrep one row per file"
+    ],
+    "ripgrep one row per file criteria": [
+      "ripgrep one row per file criteria"
     ],
     "ripgrep recipe contract": [
       "ripgrep recipe contract"
@@ -114128,6 +114212,21 @@
     "stale identifier regeneration plan": [
       "stale identifier regeneration plan"
     ],
+    "stale index fallback": [
+      "stale index fallback"
+    ],
+    "stale index fallback acceptance": [
+      "stale index fallback acceptance"
+    ],
+    "stale index fallback implementation summary": [
+      "stale index fallback implementation summary"
+    ],
+    "stale index fallback plan": [
+      "stale index fallback plan"
+    ],
+    "stale index fallback tasks": [
+      "stale index fallback tasks"
+    ],
     "stale jev canary": [
       "stale jev canary"
     ],
@@ -116087,6 +116186,43 @@
     "sweep verification checklist": [
       "sweep verification checklist"
     ],
+    "sweet search code search": [
+      "sweet search code search"
+    ],
+    "sweet search integration": [
+      "sweet-search integration"
+    ],
+    "sweet search integration decision": [
+      "sweet search integration decision"
+    ],
+    "sweet search integration phase parent spec": [
+      "sweet search integration phase parent spec"
+    ],
+    "sweet search research": [
+      "sweet search research"
+    ],
+    "sweet search research acceptance": [
+      "sweet search research acceptance"
+    ],
+    "sweet search research implementation summary": [
+      "sweet search research implementation summary"
+    ],
+    "sweet search research plan": [
+      "sweet search research plan"
+    ],
+    "sweet search research tasks": [
+      "sweet search research tasks"
+    ],
+    "sweet search retrieval lessons": [
+      "sweet search retrieval lessons",
+      "sweet-search retrieval lessons"
+    ],
+    "sweet search verdict": [
+      "sweet-search verdict"
+    ],
+    "sweet search verdict criteria": [
+      "sweet search verdict criteria"
+    ],
     "swimlane architecture diagram": [
       "swimlane architecture diagram"
     ],
@@ -117641,6 +117777,9 @@
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
+    "system spec kit 2 12 40 0": [
+      "system-spec-kit 2.12.40.0"
+    ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
     ],
@@ -118225,6 +118364,9 @@
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
+    ],
+    "system spec kit v2 12 40 0": [
+      "system-spec-kit v2.12.40.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"
@@ -120588,6 +120730,21 @@
     "torn tail recovery marker ordering runtime": [
       "torn-tail recovery marker ordering runtime"
     ],
+    "total candidate count": [
+      "total candidate count"
+    ],
+    "total candidate count acceptance": [
+      "total candidate count acceptance"
+    ],
+    "total candidate count implementation summary": [
+      "total candidate count implementation summary"
+    ],
+    "total candidate count plan": [
+      "total candidate count plan"
+    ],
+    "total candidate count tasks": [
+      "total candidate count tasks"
+    ],
     "touch target size": [
       "touch target size"
     ],
@@ -121309,6 +121466,21 @@
     ],
     "trigger index tasks": [
       "trigger index tasks"
+    ],
+    "trigger index zero hit fallback": [
+      "trigger index zero-hit fallback"
+    ],
+    "trigger index zero hit fallback design": [
+      "trigger index zero hit fallback design"
+    ],
+    "trigger lookup total candidates": [
+      "trigger lookup total candidates"
+    ],
+    "trigger lookup totalcandidates criteria": [
+      "trigger lookup totalCandidates criteria"
+    ],
+    "trigger lookup zero hit fallback": [
+      "trigger lookup zero hit fallback"
     ],
     "trigger matcher guard decision": [
       "trigger matcher guard decision"
@@ -126905,6 +127077,9 @@
     ],
     "zero finding comment hygiene tree": [
       "zero finding comment hygiene tree"
+    ],
+    "zero hit fallback criteria": [
+      "zero hit fallback criteria"
     ],
     "zero javascript diff report": [
       "zero javascript diff report",

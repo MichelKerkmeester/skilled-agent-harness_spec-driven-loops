@@ -68,9 +68,10 @@ The command ran against HEAD, the commit before this change, and exited 0. The f
 - Name the setting in the root `README.md`, the spec-kit `README.md` and the `speckit` command README.
 - Make `upgrade-legacy.mjs` exit 2 on a setting it cannot honor, the way the generator and the lookup do.
 - Correct `.skilled/commands/speckit/search.md`, which still told a host to pass the default index path by hand, and name the exit-2 setting error there.
+- Name the setting in `.skilled/changelog/skilled/v4.0.2.0.md`, on the operator's direction after the change landed, so the republished release describes the code its tag holds.
+- Give the change its own `system-spec-kit` changelog entry, `v2.12.40.0`, and raise the version in the skill's `SKILL.md` to match.
 
 ### Out of Scope
-- `.skilled/changelog/skilled/v4.0.2.0.md` - a historical release record, which stays as it was written.
 - Barter-side steps - the re-pin through `/doctor:overlay repin`, adding `.skilled-host.json`, regenerating and removing `.speckit-index/` belong to Barter.
 
 ### Files to Change

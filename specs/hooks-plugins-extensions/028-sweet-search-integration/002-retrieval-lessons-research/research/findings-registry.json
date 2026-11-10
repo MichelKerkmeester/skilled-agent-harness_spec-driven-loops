@@ -1,0 +1,962 @@
+{
+  "sessionId": "2026-11-09T14:31:51Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-zero-hit-fallback-sweet-search-core-search-grep-unindexed-fallback-js-when-th",
+      "inboxId": null,
+      "text": "Q1: Zero-hit fallback (sweet-search core/search/grep-unindexed-fallback.js): when the committed trigger index misses because a packet is new or edited since the last index build, should the lookup re-check only git's modified and untracked spec docs? Does Skilled's lookup already do anything like this, how often is the index stale in practice, and what is the cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-per-file-caps-with-an-elision-line-core-search-grep-output-shaping-js-grep-al",
+      "inboxId": null,
+      "text": "Q2: Per-file caps with an elision line (core/search/grep-output-shaping.js, grep-allocation-rules.js): does one large file (a research.md, an iteration log, a changelog) flood Skilled's ranked results today, and would a per-file cap, a one-line-per-file guarantee and a \"N more hits in M files not shown\" line help? Show real queries.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-meaningful-line-preference-core-search-grep-line-classes-js-beyond-the-existi",
+      "inboxId": null,
+      "text": "Q3: Meaningful-line preference (core/search/grep-line-classes.js): beyond the existing evidence-field order (trigger_phrases, title/description, anchor, body), would demoting template boilerplate (FILL comments, stock template sentences repeated in every packet) improve results? Show real queries where boilerplate matches crowd out real content.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-out-of-scope-hint-core-search-grep-outside-probe-js-when-a-track-or-packet-sc",
+      "inboxId": null,
+      "text": "Q4: Out-of-scope hint (core/search/grep-outside-probe.js): when a track- or packet-scoped search returns little, would a one-line \"also N hits in other tracks: X, Y\" help, and what does it cost on this repo?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-dedup-plus-final-k-core-search-span-dedupe-js-final-k-js-do-runtime-mirror-fo",
+      "inboxId": null,
+      "text": "Q5: Dedup plus final-k (core/search/span-dedupe.js, final-k.js): do runtime mirror folders (.claude/, .opencode/, .codex/ and others) or z_archive copies return the same text more than once today, given the coverage and exclusion policy in retrieval-conventions.md section 9? Would dedup and a strict final-k cut help?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-zero-hit-fallback-sweet-search-core-search-grep-unindexed-fallback-js-when-th",
+      "inboxId": null,
+      "text": "Q1: Zero-hit fallback (sweet-search core/search/grep-unindexed-fallback.js): when the committed trigger index misses because a packet is new or edited since the last index build, should the lookup re-check only git's modified and untracked spec docs? Does Skilled's lookup already do anything like this, how often is the index stale in practice, and what is the cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-per-file-caps-with-an-elision-line-core-search-grep-output-shaping-js-grep-al",
+      "inboxId": null,
+      "text": "Q2: Per-file caps with an elision line (core/search/grep-output-shaping.js, grep-allocation-rules.js): does one large file (a research.md, an iteration log, a changelog) flood Skilled's ranked results today, and would a per-file cap, a one-line-per-file guarantee and a \"N more hits in M files not shown\" line help? Show real queries.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-meaningful-line-preference-core-search-grep-line-classes-js-beyond-the-existi",
+      "inboxId": null,
+      "text": "Q3: Meaningful-line preference (core/search/grep-line-classes.js): beyond the existing evidence-field order (trigger_phrases, title/description, anchor, body), would demoting template boilerplate (FILL comments, stock template sentences repeated in every packet) improve results? Show real queries where boilerplate matches crowd out real content.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-q4-out-of-scope-hint-core-search-grep-outside-probe-js-when-a-track-or-packet-sc",
+      "inboxId": null,
+      "text": "Q4: Out-of-scope hint (core/search/grep-outside-probe.js): when a track- or packet-scoped search returns little, would a one-line \"also N hits in other tracks: X, Y\" help, and what does it cost on this repo?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-q5-dedup-plus-final-k-core-search-span-dedupe-js-final-k-js-do-runtime-mirror-fo",
+      "inboxId": null,
+      "text": "Q5: Dedup plus final-k (core/search/span-dedupe.js, final-k.js): do runtime mirror folders (.claude/, .opencode/, .codex/ and others) or z_archive copies return the same text more than once today, given the coverage and exclusion policy in retrieval-conventions.md section 9? Would dedup and a strict final-k cut help?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Carried forward from this iteration: does the 3,142-match iteration log (`.../research/iterations-modes/iteration-038.md`) have a mirror copy that Q5's dedup would collapse, and does that change the cap arithmetic? Measured here only as a count, not as a duplicate.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1, Q3, Q4, Q5 remain (each owned by a sibling iteration in this fan-out).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Out-of-scope hit hint (sibling iteration).",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Dedup plus final-k cut (sibling iteration).",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: Zero-hit fallback to git-changed files (sibling iteration).",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Per-file caps with an elision line (sibling iteration).",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-10-check-is-not-a-substitute-it-already-reports-exactly-this-staleness-but-it-costs",
+      "text": "**`--check` is not a substitute.** It already reports exactly this staleness, but it \"costs one full corpus walk, so it runs as the report-only `advisory-checks.yml` step and by hand, never per lookup\". The fallback is a zero-hit-only partial approximation of `--check`, and should be described that way rather than as a replacement. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md:84]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-7-git-ls-files-modified-others-is-the-wrong-candidate-source-it-misses-staged-addi",
+      "text": "**`git ls-files --modified --others` is the wrong candidate source; it misses staged additions.** On this checkout it returned 42 paths (15 `.md`) while `git status --porcelain -- specs` returned 109 entries (29 `.md`). The difference is staged-but-uncommitted `A ` entries, which are neither worktree-modified nor untracked. A packet created and `git add`ed before the next index build is exactly the case Q1 exists to cover, and `ls-files -m -o` would silently omit it. [INFERENCE: based on `git status --porcelain -- specs` returning 109 entries / 29 md and `git ls-files --modified --others --exclude-standard -- specs` returning 42 / 15 in this iteration]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-2-a-definition-of-staleness-already-exists-in-skilled-and-the-lookup-is-the-one-co",
+      "text": "**A definition of staleness already exists in Skilled, and the lookup is the one consumer that does not use it.** `lib/freshness.mjs` states the single definition: a document is stale when the phrases it declares differ from the phrases the index attributes to its path. Its two consumers are `generate-trigger-index.mjs --check` over the whole corpus and the canonical save path's `checkTriggerIndexFreshness` over one packet. Neither feeds the lookup, so the lookup can return a stale answer with no signal. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs:4-8] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs:74-80] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:58] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:286-300]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-9-a-git-aware-fallback-creates-a-contract-tension-the-convention-would-have-to-res",
+      "text": "**A git-aware fallback creates a contract tension the convention would have to resolve.** Section 5 promises that \"two runs over an unchanged corpus therefore produce the same ordering\". A fallback that adds results from the worktree makes the answer depend on uncommitted state, so two runs on the same corpus can differ. That is arguably still deterministic for a fixed worktree, but the document's claim and the lookup's exit-code contract both need an explicit amendment plus a marker field, not a silent behavior change. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:204-212]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-4-corpus-wide-staleness-is-tiny-new-packet-staleness-is-total-the-committed-index-",
+      "text": "**Corpus-wide staleness is tiny; new-packet staleness is total.** The committed index was built at `Nov 9 11:58:23 2026`. At measurement time 39 of 67,595 spec `.md` files were newer than it (0.06%), and `git status --porcelain -- specs` listed 109 changed or untracked entries, 29 of them `.md`. Staleness is therefore rare by file count but concentrated exactly on the newest packets, which are the most likely subject of a fresh session's first prompt. [INFERENCE: based on the measured newer-file count, the changed-file count, and finding 3's absent packet]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-1-skilled-s-keyed-lookup-performs-no-staleness-check-of-any-kind-loadindex-reads-a",
+      "text": "**Skilled's keyed lookup performs no staleness check of any kind.** `loadIndex` reads and parses one artifact and returns its `indexHash` and `manifestHash`; `lookup` scores candidate phrases and sorts; the process exits `1` when no result scores above zero. There is no git call, no mtime comparison, no freshness import, and no field in the JSON answer that distinguishes \"the corpus does not contain this phrase\" from \"the index predates this document\". [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:106-122] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:232-241] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:379]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-3-the-failure-is-live-and-reproducible-in-this-repository-not-hypothetical-the-com",
+      "text": "**The failure is live and reproducible in this repository, not hypothetical.** The committed index holds 17,653 paths and 42,211 phrases, and **zero** of those paths match `002-retrieval-lessons-research` - the packet this iteration is writing into. The unscoped query `sweet-search retrieval lessons zero-hit fallback to git changed files` exited `1` with `\"results\": []`; the same topic scoped with `--spec-folder specs/hooks-plugins-extensions/028-sweet-search-integration` also exited `1` with zero results. The strategy's Known Context already records a save reporting \"Trigger index: STALE for spec.md\" for a newly created packet. [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/deep-research-strategy.md:147]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-6-the-fallback-is-cheap-when-scoped-and-expensive-when-repo-wide-measured-on-this-",
+      "text": "**The fallback is cheap when scoped and expensive when repo-wide.** Measured on this checkout: cold lookup `0.07s` without the index hash (`0.12s` with it); `git status --porcelain -- specs` `0.88-0.90s`; `git ls-files --modified --others --exclude-standard -- specs` `0.90s`; the same git call scoped to one packet `0.02-0.03s`; `git rev-parse --is-inside-work-tree` `0.01s`; reading the frontmatter of all 15 changed `.md` files and matching the block `0.02s`. A repo-wide fallback costs roughly thirteen times the lookup it is rescuing; a packet-scoped one is close to free. [INFERENCE: based on `/usr/bin/time -p` measurements taken in this iteration against this checkout]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-5-the-index-carries-no-build-timestamp-so-sweet-search-s-freshness-rule-cannot-be-",
+      "text": "**The index carries no build timestamp, so sweet-search's freshness rule cannot be ported as written.** Its `indexFreshness` compares a source file's `mtimeMs` against the reconcile manifest's `publishedAt`, and returns `known: false` when that timestamp is absent. Skilled's index top-level keys are exactly `manifestHash`, `normalization`, `paths`, `phrases`, `schemaVersion` - no publish time. The file's own mtime is also untrustworthy here: the same sweet-search file records that a worktree clone gives every file the checkout's mtime, which is why it keeps a separate pending-reindex queue rather than trusting mtimes alone. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js:17-23] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js:37-42] [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-8-the-lesson-s-scan-target-does-not-transfer-unchanged-sweet-search-s-fallback-gre",
+      "text": "**The lesson's scan target does not transfer unchanged.** Sweet-search's fallback greps file *contents*, because its sparse-gram index answers content questions. Skilled's keyed lane answers a different question: which document *declared* this phrase in `trigger_phrases`. The convention is explicit that the two lanes \"answer different questions\" and that an exact identifier goes to ripgrep first. A body-text grep over changed files would therefore return prose mentions, which belong to the free-text lane, not candidates for a keyed hit. To answer Gate 1's question for a changed document the fallback must read that document's frontmatter phrases and score them with the existing `scorePhrase`/`normalizeTriggerText` pair. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:40-49] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js:60-79]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-1-11-zero-hits-are-the-minority-of-ordinary-prompts-but-the-norm-for-genuinely-new-to",
+      "text": "**Zero-hits are the minority of ordinary prompts but the norm for genuinely new topics.** A five-prompt probe returned exit `0` for `save context`, `deep research iteration`, `trigger index lookup path` and `spec folder validation strict`, and exit `1` for `add dark mode toggle to settings`. Adding the two topic queries from finding 3, that is 2 of 7 zero-hits. This is a probe, not a rate: the sample is too small and too self-selected to support a percentage. [INFERENCE: based on a seven-prompt probe run in this iteration against the committed index]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-unindexed-fallback.js`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/index-freshness.js`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/freshness.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`",
+        "`.skilled/skills/system-spec-kit/runtime/data/README.md`",
+        "Measured command output: two lookup runs (exit `1`, zero results each), five-prompt hit probe, `git status` and `git ls-files` counts, `/usr/bin/time -p` timings, `jq keys` on the index."
+      ]
+    },
+    {
+      "id": "finding-2-8-a-per-file-cap-alone-is-not-the-fix-it-is-cap-plus-final-k-plus-the-elision-line",
+      "text": "**A per-file cap alone is not the fix; it is cap plus final-k plus the elision line.** Capping at one line per file still yields 13,113 rows corpus-wide for `research`, so a k cut is still required; and a k cut without the guarantee pass would simply re-introduce path-order bias, taking one line each from the alphabetically first k files. sweet-search's guarantee pass exists precisely so a k cut is breadth-fair. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:53-65] [INFERENCE: 13,113 files is the corpus-wide file count for `research` measured with the count recipe]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-2-4-at-corpus-scale-the-flood-is-an-order-of-magnitude-worse-and-the-row-count-is-un",
+      "text": "**At corpus scale the flood is an order of magnitude worse and the row count is unusable.** The Section 2.3 count recipe over `specs .skilled` reports 13,113 matching files and 111,342 matches for `research`, with a single iteration log holding **3,142** of them; `deep research` gives 1,588 files with a maximum of 33 per file. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:109-117] [INFERENCE: counts observed from the documented count recipe run against this repo]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-2-5-skilled-already-contains-a-fetch-side-per-file-cap-in-one-of-two-recipe-builders",
+      "text": "**Skilled already contains a fetch-side per-file cap, in one of two recipe builders for the same lane.** `structuredCappedRecipe` passes `--max-count 1`, justified as \"the caller ranks by file and field, and the second match in a file never changes that\". [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:100-112] The wrapper that actually serves the structured recipe has no `--max-count` at all, and ranks the full output. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:115-117] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:232] This is a live contradiction inside the codebase, and the capped builder's stated rationale is wrong on its own terms: the second match in a file is the only evidence that the file has more than one, so it changes both hit density and the elision count.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-2-6-sweet-search-solves-it-with-three-coupled-parts-not-one-cap-a-a-streaming-per-fi",
+      "text": "**sweet-search solves it with three coupled parts, not one cap.** (a) A streaming per-file cap that still counts what it drops: `applyGrepFileDiversity` keeps at most `perFileCap` per file and at most `maxFiles` files, returning `hiddenFileCount`, `hiddenMatchCount` and a `hiddenSample`. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261] (b) A one-line-per-file guarantee before any file gets a second line, then a weighted allocation of the remaining budget, with weight `sqrt(hits) x prior` so source outranks test outranks generated. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:9-10] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:53-96] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:265-272] (c) Elision that is never silent: an inline `(+N more in this file)` appended to the last shown line of every truncated file, and a tail line `# +N more file(s) with M match(es) — e.g. …; narrow the regex, raise -k, or drill in with --in <file>`. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:705-710] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:760-763] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:791-800]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-free-text-lane-does-flood-and-only-for-some-query-shapes-running-the-real-ra",
+      "text": "**The free-text lane does flood, and only for some query shapes.** Running the real ranker over one packet's `research/` folder (34 matching files, 594 matches for `deep research`) gave: `deep research` → 594 rows, top-20 spread over 15 files, max 2 per file; `research` → 16,566 rows, top-20 over 8 files, **max 12 per file**; `iteration` → 10,078 rows, top-20 over 6 files, **max 14 per file**; `research iteration` → 94 rows, top-20 over 6 files, max 6 per file. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:230-234] [INFERENCE: measured by calling `search('structured', q, { roots })` and counting distinct `path` values in `results.slice(0,20)`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-keyed-lane-cannot-be-flooded-by-one-large-document-it-is-document-deduped-by",
+      "text": "**The keyed lane cannot be flooded by one large document; it is document-deduped by construction.** `lookup()` keys its accumulator on the document path (`byPath`), keeps one row per document scored by that document's best phrase, sorts, then slices to `--limit` (default 20) and sets a `truncated` boolean. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:200-239] Real query `\"trigger index lookup\"`: 9 results, 9 unique paths, `truncated: false`, 1,054 candidate phrases. A per-file cap is a no-op on this lane. [INFERENCE: based on the byPath accumulator and the observed 9/9 unique-path result]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-mechanism-behind-finding-2-is-the-rank-tuple-not-the-file-size-rankmatches-s",
+      "text": "**The mechanism behind finding 2 is the rank tuple, not the file size.** `rankMatches` sorts by evidence field, then match class, then path, then line. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:408-411] Match class is a per-line property, so a multi-token prose query scatters classes across files and keeps the top-k diverse; a single-token query makes nearly every line the same class (`phrase-containment`), after which the path tie-break groups one file's lines contiguously and a k cut takes that file's block first. [INFERENCE: derived from the four measured query shapes and the sort key order at rg-lane.mjs:408-411]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-totals-pass-the-elision-line-needs-already-exists-and-is-exact-the-count-rec",
+      "text": "**The totals pass the elision line needs already exists and is exact.** The count recipe returned 594 matches across 34 files for `deep research` in the same folder where the structured recipe returned 594 ranked rows across 34 files — identical totals, one extra invocation, no index and no daemon. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:109-117] Today the rank tuple carries no `more` and no hidden-files field, so that count is thrown away. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:202-212]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-allocation-rules.js:1-97",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:188-261",
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-output-shaping.js:690-909",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:140-249",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:88-132",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:355-412",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:100-159",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:196-250",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:1-294",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"trigger index lookup\"` (9 results, 9 unique paths, truncated false, 1054 candidate phrases)",
+        "Query: `rg-wrapper.search('structured', …)` over `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research` for `deep research` (594 rows / 34 files / 15 files in top 20), `research` (16,566 / 8 / max 12), `iteration` (10,078 / 6 / max 14), `research iteration` (94 / 6 / max 6)",
+        "Query: Section 2.3 count recipe corpus-wide for `research` (13,113 files, 111,342 matches, max 3,142 in one file) and `deep research` (1,588 files, max 33)"
+      ]
+    },
+    {
+      "id": "finding-3-7-feasibility-in-the-free-text-lane-is-unusually-cheap-rankmatches-already-reads-t",
+      "text": "**Feasibility in the free-text lane is unusually cheap.** `rankMatches` already reads the whole file per path to compute frontmatter line ranges. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:387] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:418] A Markdown line class — heading or table row or list item versus blockquote guidance, HTML template marker, or prose — is computable from that same string: no new I/O, no index, no dependency, deterministic by construction.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6-26, :144, :198",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:190, :226, :335",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:318, :387, :396, :408, :418",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146, :160",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91, :108, :121",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172, :196",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206, :263",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5, :14, :17",
+        "Committed index: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (42,211 phrases, 17,653 paths)",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"acceptance criteria closure gate\"`",
+        "Query: `rg-wrapper.mjs count|structured \"This document decides whether the packet may close\"`"
+      ]
+    },
+    {
+      "id": "finding-3-3-real-keyed-query-template-copies-take-three-of-six-slots-and-outrank-a-real-pack",
+      "text": "**Real keyed query: template copies take three of six slots and outrank a real packet.** Query `acceptance criteria closure gate` returned two real packets at `exact` 1.0, then the level-2, level-3 and level-3+ acceptance-criteria template copies at `query-containment` 0.88, then a real packet at `token-overlap` 0.75. The three template copies are indexed by their own placeholder phrases (`acceptance criteria`, `closure gate`, `ac traceability`, `waiver adr`). [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5] The judge names those same phrases `template-default` and only warns — a warning never deletes an author's phrase. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:121] Because the class is not persisted in the index, the lookup cannot distinguish a template copy from an authored declaration, and path order decides inside the tie.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6-26, :144, :198",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:190, :226, :335",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:318, :387, :396, :408, :418",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146, :160",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91, :108, :121",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172, :196",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206, :263",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5, :14, :17",
+        "Committed index: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (42,211 phrases, 17,653 paths)",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"acceptance criteria closure gate\"`",
+        "Query: `rg-wrapper.mjs count|structured \"This document decides whether the packet may close\"`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-free-text-lane-is-where-boilerplate-genuinely-floods-the-stock-sentence-this",
+      "text": "**The free-text lane is where boilerplate genuinely floods.** The stock sentence `This document decides whether the packet may close` returned 784 matches across 784 paths at exit 0, and the structured recipe ranked all 784 as `body`. [SOURCE: .skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:17] The same sentence is stock in all three template levels, and it is copied into real packets' acceptance-criteria files. In contrast, the literal `FILL` marker is not a packet-wide pollutant: the count recipe found it once per template example file, not across authored packets. [INFERENCE: `rg --count -- 'FILL' .skilled/skills/system-spec-kit` returned 1 per template example file]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6-26, :144, :198",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:190, :226, :335",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:318, :387, :396, :408, :418",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146, :160",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91, :108, :121",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172, :196",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206, :263",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5, :14, :17",
+        "Committed index: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (42,211 phrases, 17,653 paths)",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"acceptance criteria closure gate\"`",
+        "Query: `rg-wrapper.mjs count|structured \"This document decides whether the packet may close\"`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-keyed-lane-has-no-lines-to-classify-a-lookup-result-is-matchclass-path-phras",
+      "text": "**The keyed lane has no lines to classify.** A lookup result is `{matchClass, path, phrases, score}` and the human format prints score, class and path only; nothing in the answer is a line. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:226] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:335] So sweet-search's line-class mechanism has no surface in the Gate 1 lane at all — the lesson can only apply to the free-text lane.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6-26, :144, :198",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:190, :226, :335",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:318, :387, :396, :408, :418",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146, :160",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91, :108, :121",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172, :196",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206, :263",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5, :14, :17",
+        "Committed index: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (42,211 phrases, 17,653 paths)",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"acceptance criteria closure gate\"`",
+        "Query: `rg-wrapper.mjs count|structured \"This document decides whether the packet may close\"`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-keyed-lane-s-boilerplate-enters-only-as-declared-phrases-and-its-volume-is-s",
+      "text": "**The keyed lane's boilerplate enters only as declared phrases, and its volume is small but its rank effect is real.** The generator reads `trigger_phrases` out of frontmatter and interns phrase keys; the artifact stores only `paths` and `phrases` at schema version 2, so no per-phrase quality class is carried into the lookup. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:160] Judging all 42,211 committed phrases with the repo's own judge: 230 are negative-class (0.54%) — 187 single-token, 27 numeric-only, 19 prose-sentence, 19 template-default, 3 generic-workflow-word, 1 stop-word-only, 1 editor-fallback. 409 of 17,653 documents own at least one such phrase; 30 documents own *only* negative-class phrases, so the keyed lane can reach them only through boilerplate (mostly `summary`, which owns 39 documents, and `feature`, 30). [INFERENCE: judge sweep over `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` using `judgeTriggerPhrase`, `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:108`]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6-26, :144, :198",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:190, :226, :335",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:318, :387, :396, :408, :418",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146, :160",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91, :108, :121",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172, :196",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206, :263",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5, :14, :17",
+        "Committed index: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (42,211 phrases, 17,653 paths)",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"acceptance criteria closure gate\"`",
+        "Query: `rg-wrapper.mjs count|structured \"This document decides whether the packet may close\"`"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-match-class-component-is-degenerate-for-fixed-string-matches-rankmatches-sco",
+      "text": "**The match-class component is degenerate for fixed-string matches.** `rankMatches` scores the matched *line text* against the query, and a fixed-string hit always contains the query, so every hit lands in the same containment class. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:396] The sort then falls through to evidence field, path and line. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:408] Observed directly: 784 `body` rows ordered by path. Inside `body` the tuple carries no content signal, which is exactly the gap a line class would fill.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6-26, :144, :198",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:190, :226, :335",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:318, :387, :396, :408, :418",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146, :160",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91, :108, :121",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172, :196",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206, :263",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5, :14, :17",
+        "Committed index: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (42,211 phrases, 17,653 paths)",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"acceptance criteria closure gate\"`",
+        "Query: `rg-wrapper.mjs count|structured \"This document decides whether the packet may close\"`"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-sweet-search-mechanism-does-not-transfer-its-principle-does-its-classes-come",
+      "text": "**The sweet-search mechanism does not transfer; its principle does.** Its classes come from code-graph entities — class 0 declaration, class 1 inside a symbol span, class 2 outside — and are gated on the file being no newer than the published index. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:21] `stampGrepLineClasses` requires `entitiesInFile` and `isFresh`, i.e. a persistent per-file symbol index — banned by this topic's constraint and meaningless for Markdown, which has no symbols. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:144] What transfers is the selection rule: prefer structural lines, demote boilerplate shapes, and take one line per section before filling the rest so one section cannot flood the answer. [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:198]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-line-classes.js:6-26, :144, :198",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:190, :226, :335",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:318, :387, :396, :408, :418",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/artifact.mjs:146, :160",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91, :108, :121",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:172, :196",
+        ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206, :263",
+        ".skilled/skills/system-spec-kit/templates/examples/level-2/acceptance-criteria.md:5, :14, :17",
+        "Committed index: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (42,211 phrases, 17,653 paths)",
+        "Query: `lookup-trigger-index.mjs --json --scoring-only -- \"acceptance criteria closure gate\"`",
+        "Query: `rg-wrapper.mjs count|structured \"This document decides whether the packet may close\"`"
+      ]
+    },
+    {
+      "id": "finding-4-3-measured-on-this-repo-the-hint-is-free-on-the-keyed-lane-and-64x-on-the-ripgrep-",
+      "text": "**Measured on this repo: the hint is free on the keyed lane and 64x on the ripgrep lane.** Phrase `trigger index generator`, scoped to this packet: 0 documents from 1,136 candidate phrases, 0.101 s. The same phrase unscoped: 3 documents in 2 other tracks (`specs/system-speckit/runtime-and-release/001-system-speckit-v4` ×2, `.skilled/skills/system-spec-kit` ×1), 0.107 s — the hint's data costs +6 ms, inside the 4.6 MB index parse already paid. Ripgrep lane, phrase `goal posture rule`: scoped 0.012 s / 0 files, unscoped 0.772 s / 31 files — 64x, because there it is a second whole-corpus pass. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:106-122]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js` (all 109 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (all 384 lines)",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` (all 333 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` (header and argument surface)",
+        "Live queries, this checkout, 2026-11-09: keyed scoped/unscoped for `trigger index generator`; ripgrep scoped/unscoped for `goal posture rule`"
+      ]
+    },
+    {
+      "id": "finding-4-4-no-lane-emits-any-out-of-scope-signal-today-and-no-live-caller-passes-a-scope-to",
+      "text": "**No lane emits any out-of-scope signal today, and no live caller passes a scope to the keyed lane.** The answer object carries `truncated` (a limit fact) and nothing about scope, so the scoped run printed `results: []` beside `candidatePhraseCount: 1136` — indistinguishable from \"this packet knows nothing about the topic\" when 1,136 phrases matched tokens. A repository-wide search for `lookup-trigger-index.mjs … --spec-folder` returns only the script's own usage comment and archived transcripts, so the Gate 1 form mandated by `AGENTS.md` is unscoped and the scoped keyed lane has no consumer. `rg-wrapper.mjs` has no scope concept at all: its surface is `--search-root` repeats, so a caller narrows the roots and the wrapper has no way to know anything was left out. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:168-179] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:18] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:29-33]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js` (all 109 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (all 384 lines)",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` (all 333 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` (header and argument surface)",
+        "Live queries, this checkout, 2026-11-09: keyed scoped/unscoped for `trigger index generator`; ripgrep scoped/unscoped for `goal posture rule`"
+      ]
+    },
+    {
+      "id": "finding-4-2-skilled-s-keyed-lane-already-computes-the-out-of-scope-answer-and-throws-it-away",
+      "text": "**Skilled's keyed lane already computes the out-of-scope answer and throws it away.** In `lookup()`, the posting loop resolves `documentPath` and the scored match class/score *before* the scope test, and the scope test is a bare `continue`. Counting the rejected documents, and tallying their top-level path segment, is one `Map` increment at that exact point — no second read, no subprocess, no index beyond the one already parsed. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:202-224]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js` (all 109 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (all 384 lines)",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` (all 333 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` (header and argument surface)",
+        "Live queries, this checkout, 2026-11-09: keyed scoped/unscoped for `trigger index generator`; ripgrep scoped/unscoped for `goal posture rule`"
+      ]
+    },
+    {
+      "id": "finding-4-1-sweet-search-s-probe-is-conditional-on-a-persistent-index-so-its-mechanism-canno",
+      "text": "**sweet-search's probe is conditional on a persistent index, so its mechanism cannot transfer.** `probeOutsideScope` returns `null` — meaning \"run the exact search instead\" — unless a sparse gram index exists and answers `queryLiterals`, and it declines again when the candidate pool is at or under the exact threshold. Past that threshold it reads at most 512 candidate files (2048 when the scope itself answered nothing) and reports `N+ files` when the pool was capped. Every constant in that file exists to bound a whole-repo grep: the header states the cost model directly, \"~11 us a file on kubernetes … 33 ms for 3,023 … 300-800 ms for a license header in 26,000\". [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js:57-67] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js:24-30] [SOURCE: specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js:1-14]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js` (all 109 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (all 384 lines)",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` (all 333 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` (header and argument surface)",
+        "Live queries, this checkout, 2026-11-09: keyed scoped/unscoped for `trigger index generator`; ripgrep scoped/unscoped for `goal posture rule`"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-two-lanes-disagree-about-what-a-miss-means-and-that-decides-who-needs-the-li",
+      "text": "**The two lanes disagree about what a miss means, and that decides who needs the line.** For `goal posture rule` the keyed lane returns 0 documents even unscoped — a *phrase* miss, since no author declared it — while ripgrep returns 31 files unscoped and 0 in scope: a genuine in-scope absence with presence outside. A hint fired on the keyed lane's zero would therefore be misleading, while on the ripgrep lane it is exactly the missing fact. Scoping is a documented live practice only for the ripgrep lane, where Section 3 makes the positional path the whole mechanism. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:149-168] [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:206-212]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/grep-outside-probe.js` (all 109 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (all 384 lines)",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` (all 333 lines)",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs` (header and argument surface)",
+        "Live queries, this checkout, 2026-11-09: keyed scoped/unscoped for `trigger index generator`; ripgrep scoped/unscoped for `goal posture rule`"
+      ]
+    },
+    {
+      "id": "finding-5-2-final-k-js-drop-as-a-mechanism-adopt-its-contract-the-trigger-index-already-impl",
+      "text": "**`final-k.js` — DROP as a mechanism, ADOPT its contract.** The trigger index already implements it at `DEFAULT_LIMIT = 20` with `--limit 0` as the escape (F2). The only portable piece is the observability half: report `ordered.length` next to `truncated` so the caller can size the cut.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/span-dedupe.js:45-47,99-126`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/final-k.js:9-13,56-60`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:21,83,201,210-239,301-306`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:83,95,204-208,297,300,306,312`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:66-68,106,193`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts:139-145,203-204`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` (measured: 17,653 paths, 42,211 phrases, 4.6 MB)",
+        "Live recipe 2.2 runs for `trigger_phrases`, `zero-hit fallback`, `dedupe identical spans`, and `span-dedupe`",
+        "Live trigger lookup for `dedup plus final-k cut for retrieval results` (exit 1, 0 scored candidates, 1,831 phrase candidates)"
+      ]
+    },
+    {
+      "id": "finding-5-1-span-dedupe-js-drop-its-key-is-a-display-span-the-trigger-index-has-no-spans-and",
+      "text": "**`span-dedupe.js` — DROP.** Its key is a display span; the trigger index has no spans and already dedups by path (F1), and the two duplication sources it might have addressed (mirrors, `z_archive`) cannot enter either lane (F3, F4).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/span-dedupe.js:45-47,99-126`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/final-k.js:9-13,56-60`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:21,83,201,210-239,301-306`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:83,95,204-208,297,300,306,312`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:66-68,106,193`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts:139-145,203-204`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` (measured: 17,653 paths, 42,211 phrases, 4.6 MB)",
+        "Live recipe 2.2 runs for `trigger_phrases`, `zero-hit fallback`, `dedupe identical spans`, and `span-dedupe`",
+        "Live trigger lookup for `dedup plus final-k cut for retrieval results` (exit 1, 0 scored candidates, 1,831 phrase candidates)"
+      ]
+    },
+    {
+      "id": "finding-5-3-what-a-build-phase-would-change-and-rough-size",
+      "text": "**What a build phase would change, and rough size:**",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/span-dedupe.js:45-47,99-126`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/final-k.js:9-13,56-60`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:21,83,201,210-239,301-306`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:83,95,204-208,297,300,306,312`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:66-68,106,193`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts:139-145,203-204`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` (measured: 17,653 paths, 42,211 phrases, 4.6 MB)",
+        "Live recipe 2.2 runs for `trigger_phrases`, `zero-hit fallback`, `dedupe identical spans`, and `span-dedupe`",
+        "Live trigger lookup for `dedup plus final-k cut for retrieval results` (exit 1, 0 scored candidates, 1,831 phrase candidates)"
+      ]
+    },
+    {
+      "id": "finding-5-5-skilled-skills-system-spec-kit-references-retrieval-retrieval-conventions-md-sec",
+      "text": "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` section 9 — one Exclusion-coverage row for `specs/**/research/**` (trigger index: yes; ripgrep: no) plus one clause naming `research/prompts/`, roughly **2-4 lines**.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/span-dedupe.js:45-47,99-126`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/final-k.js:9-13,56-60`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:21,83,201,210-239,301-306`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:83,95,204-208,297,300,306,312`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:66-68,106,193`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts:139-145,203-204`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` (measured: 17,653 paths, 42,211 phrases, 4.6 MB)",
+        "Live recipe 2.2 runs for `trigger_phrases`, `zero-hit fallback`, `dedupe identical spans`, and `span-dedupe`",
+        "Live trigger lookup for `dedup plus final-k cut for retrieval results` (exit 1, 0 scored candidates, 1,831 phrase candidates)"
+      ]
+    },
+    {
+      "id": "finding-5-4-skilled-skills-system-spec-kit-runtime-cli-retrieval-lookup-trigger-index-mjs-ad",
+      "text": "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` — add a total-candidate count to the answer object and one line to `formatAnswer`, roughly **3-5 lines**, no new dependency, no state, no second pass (the value is already computed at `:238`).",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/span-dedupe.js:45-47,99-126`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/final-k.js:9-13,56-60`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:21,83,201,210-239,301-306`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:83,95,204-208,297,300,306,312`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:66-68,106,193`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts:139-145,203-204`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` (measured: 17,653 paths, 42,211 phrases, 4.6 MB)",
+        "Live recipe 2.2 runs for `trigger_phrases`, `zero-hit fallback`, `dedupe identical spans`, and `span-dedupe`",
+        "Live trigger lookup for `dedup plus final-k cut for retrieval results` (exit 1, 0 scored candidates, 1,831 phrase candidates)"
+      ]
+    },
+    {
+      "id": "finding-5-6-skilled-skills-system-spec-kit-runtime-cli-tests-retrieval-coverage-parity-vites",
+      "text": "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts` — only if a `prompts/` glob is actually adopted, roughly **2 lines**; the `research/**` behaviour is already covered at `:139-145`.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/span-dedupe.js:45-47,99-126`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/final-k.js:9-13,56-60`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:21,83,201,210-239,301-306`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:83,95,204-208,297,300,306,312`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:66-68,106,193`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts:139-145,203-204`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` (measured: 17,653 paths, 42,211 phrases, 4.6 MB)",
+        "Live recipe 2.2 runs for `trigger_phrases`, `zero-hit fallback`, `dedupe identical spans`, and `span-dedupe`",
+        "Live trigger lookup for `dedup plus final-k cut for retrieval results` (exit 1, 0 scored candidates, 1,831 phrase candidates)"
+      ]
+    },
+    {
+      "id": "finding-5-7-lib-corpus-mjs-no-change-the-exclusion-is-already-correct-only-undocumented-in-t",
+      "text": "`lib/corpus.mjs` — **no change**; the exclusion is already correct, only undocumented in the table.",
+      "addedAtIteration": 5,
+      "sources": [
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/span-dedupe.js:45-47,99-126`",
+        "`specs/hooks-plugins-extensions/028-sweet-search-integration/context/sweet-search-main/core/search/final-k.js:9-13,56-60`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:21,83,201,210-239,301-306`",
+        "`.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:83,95,204-208,297,300,306,312`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:66-68,106,193`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts:139-145,203-204`",
+        "`.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` (measured: 17,653 paths, 42,211 phrases, 4.6 MB)",
+        "Live recipe 2.2 runs for `trigger_phrases`, `zero-hit fallback`, `dedupe identical spans`, and `span-dedupe`",
+        "Live trigger lookup for `dedup plus final-k cut for retrieval results` (exit 1, 0 scored candidates, 1,831 phrase candidates)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-5ab67b68d93e",
+      "text": "**`git ls-files --modified --others` as the candidate source.** Rejected on measured coverage: it loses 14 of 29 changed `.md` files, all staged additions.",
+      "contentHash": "5ab67b68d93e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-2af453fb56d2",
+      "text": "**Body-text grep over changed files as the fallback mechanism.** Rejected on contract: the keyed lane matches declared phrases, not prose.",
+      "contentHash": "2af453fb56d2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9f625d8cd341",
+      "text": "**Porting `indexFreshness` verbatim.** Rejected on evidence: Skilled's index has no `publishedAt`, and checkout mtimes are not a build-time proxy.",
+      "contentHash": "9f625d8cd341",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b2013e92d7c1",
+      "text": "**Running `--check` on zero-hit.** Rejected on documented cost: a full corpus walk, explicitly never per lookup.",
+      "contentHash": "b2013e92d7c1",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-1206b277d208",
+      "text": "**Adopting `perFileCap` alone.** One line per file still returns 13,113 rows corpus-wide for a single common token, so it does not bound output on its own. [INFERENCE: corpus-wide file count measured with the count recipe]",
+      "contentHash": "1206b277d208",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-37342b66b816",
+      "text": "**Copying sweet-search's weighted allocation (Sainte-Laguë / `sat2`) into Skilled.** Would create a second relevance ranker beside the evidence-field/match-class tuple; the tuple already breaks the tie the allocation would be guessing at. [SOURCE: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md:202-212]",
+      "contentHash": "37342b66b816",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-689568aad814",
+      "text": "**Measuring the flood with a shell sort.** A `sort -t: -k1,1 -k2,2n | head -20` emulation of the rank tuple reported 20 of 20 top lines from a single file for `deep research`, which the real ranker contradicts (15 distinct files in the same top 20). The emulation dropped the match-class component that precedes the path tie-break, so it manufactured a flood that the shipped ranker does not produce for that query. Re-measured by calling `search('structured', …)` directly; only the real-ranker numbers are used above. Candidate for \"exhausted approaches\": do not emulate the rank tuple with `sort`.",
+      "contentHash": "689568aad814",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-42aa4f9cc634",
+      "text": "**Per-file cap on the trigger-index lane.** Structurally impossible to need: one row per document already. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:226-239]",
+      "contentHash": "42aa4f9cc634",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f4d790f4734c",
+      "text": "**Applying line classes to the keyed lane.** It returns documents, not lines (Finding 1). No code change there can express the lesson.",
+      "contentHash": "f4d790f4734c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-be793c23451a",
+      "text": "**Demoting `template-default` phrases by deleting them.** The convention explicitly refuses to delete an author's phrase, so any fix must demote at rank time, not remove at generation time. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/phrase-judge.mjs:91]",
+      "contentHash": "be793c23451a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6c05a833658f",
+      "text": "**Porting `classifyGrepLines` / `selectGrepLinesByClass` as written.** Both need a symbol entity list and an index-freshness predicate (Finding 6); adopting them would require the persistent index the topic forbids.",
+      "contentHash": "6c05a833658f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-cbb75873964b",
+      "text": "**Treating `FILL` as the boilerplate to demote.** It survives once per template example file and not across authored packets, so demoting it would buy almost nothing (Finding 4). The stock prose sentences are the real pollutant.",
+      "contentHash": "cbb75873964b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5085468cef5a",
+      "text": "**A literal port of `probeOutsideScope`.** It requires `ensureSparseGramIndex` and a queryable gram index; the hard constraint forbids a persistent index and `retrieval-conventions.md` names vector/BM25/stateful retrieval as a declared loss. A port would return `null` on every call here.",
+      "contentHash": "5085468cef5a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8d4b81687391",
+      "text": "**Firing the hint on every scoped ripgrep query.** 0.77 s against 0.012 s is a 64x tax on the common path to help the rare one.",
+      "contentHash": "8d4b81687391",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e49c1f586f7e",
+      "text": "**Firing the hint on the keyed lane's unscoped zero.** With no scope supplied there is nothing out of scope, and the observed zero was a phrase miss (0 unscoped) rather than a scope miss.",
+      "contentHash": "e49c1f586f7e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ed1986a4219e",
+      "text": "**Treating `truncated` as the existing hint.** It reports the result cap, not the scope boundary; the scoped run above had `truncated: false` and still hid 3 documents in other tracks.",
+      "contentHash": "ed1986a4219e",
+      "addedAtIteration": 4
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 38,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {
+      "code": 56,
+      "other": 35
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/hooks-plugins-extensions/028-sweet-search-integration/002-retrieval-lessons-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
