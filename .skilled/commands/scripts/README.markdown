@@ -78,6 +78,7 @@ The checker skips references that cannot be resolved safely from static text:
 - Bare directory references
 - Supported `.codex` runtime-mirror tokens
 - Skill paths that do not identify a file
+- The gitignored deep-loop graph databases under `system-deep-loop/runtime/database/`, which are built on first use and absent from a clean checkout
 
 The fixture intentionally contains unresolved references. Do not repair those fixture values because they prove the failing path.
 

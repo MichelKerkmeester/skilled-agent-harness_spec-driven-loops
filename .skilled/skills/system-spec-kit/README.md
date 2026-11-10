@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.32.0
+version: 2.7.33.0
 ---
 
 # System Spec Kit
@@ -709,4 +709,6 @@ The manual testing playbook runs every scenario behind these checks.
 
 <!-- readme-check
 allow-ref .opencode/specs | a legacy specs root the spec-folder resolvers also accept; absent from this checkout
+allow-ref .speckit-index/ | the index folder a host repository builds for its own packets; this repository keeps none
+allow-ref .skilled-host.json | the settings file a host repository writes; this repository keeps none
 -->

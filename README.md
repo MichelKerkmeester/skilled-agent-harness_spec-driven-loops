@@ -354,6 +354,8 @@ A different packet shape, not a level. All live in `packet-types/`.
 allow-ref phase-parent.spec.md | a packet-type template, shipped as a .tmpl file under the spec-kit templates' packet-types/ folder
 allow-ref research.spec.md | a packet-type template, shipped as a .tmpl file under the spec-kit templates' packet-types/ folder
 allow-ref review.spec.md | a packet-type template, shipped as a .tmpl file under the spec-kit templates' packet-types/ folder
+allow-ref .speckit-index/ | the index folder a host repository builds for its own packets; this repository keeps none
+allow-ref .skilled-host.json | the settings file a host repository writes; this repository keeps none
 -->
 
 &nbsp;
