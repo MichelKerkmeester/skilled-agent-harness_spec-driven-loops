@@ -18,7 +18,12 @@ import {
 } from '../helpers/spawn-cjs';
 
 const namespaces: ScriptNamespace[] = [];
-const writerLockPath = resolve(runtimeRoot, 'database', '.deep-loop-graph-writer.lock');
+// The graph scripts put the writer lock beside the coverage database, which the
+// test helper moves to a scratch directory for each test file.
+const writerLockPath = resolve(
+  process.env.DEEP_LOOP_COVERAGE_DB_DIR ?? resolve(runtimeRoot, 'database'),
+  '.deep-loop-graph-writer.lock',
+);
 
 /**
  * Waits for the writer lock file to appear within the given timeout.

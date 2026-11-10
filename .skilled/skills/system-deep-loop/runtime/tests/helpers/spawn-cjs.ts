@@ -27,6 +27,20 @@ if (!process.env.DEEP_LOOP_COUNCIL_DB_DIR) {
     }
   });
 }
+
+// The coverage graph scripts write to their own database the same way, and test
+// files run side by side, so each file gets its own directory here too.
+if (!process.env.DEEP_LOOP_COVERAGE_DB_DIR) {
+  const coverageDbDir = mkdtempSync(join(tmpdir(), 'dlr-coverage-db-'));
+  process.env.DEEP_LOOP_COVERAGE_DB_DIR = coverageDbDir;
+  afterAll(() => {
+    rmSync(coverageDbDir, { recursive: true, force: true });
+    if (process.env.DEEP_LOOP_COVERAGE_DB_DIR === coverageDbDir) {
+      delete process.env.DEEP_LOOP_COVERAGE_DB_DIR;
+    }
+  });
+}
+
 const CASSETTE_SCHEMA_VERSION = 1;
 const DEFAULT_CASSETTE_DIR = join(runtimeRoot, 'tests', 'fixtures', 'cassettes');
 const FORCE_KILL_DELAY_MS = 100;

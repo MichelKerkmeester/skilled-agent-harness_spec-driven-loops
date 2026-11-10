@@ -72,13 +72,15 @@ Follow the ordered tasks in `tasks.md`. Setup records the baseline. Implementati
 
 | Cut | Change | File | Saving | Workflow change |
 |-----|--------|------|--------|-----------------|
-| 1 | Drop the deep-loop include and its setup file from the local config | `system-spec-kit/runtime/vitest.config.ts` | 1199 s of test time measured. About 29 min to about 4 min estimated | None |
-| 2 | Make `npm test` run the `root` and `cli` projects CI runs | `system-spec-kit/runtime/package.json`, `scripts/run-tests.mjs` | No saving. Adds about 10 min measured and closes a coverage gap | None |
-| 3 | Write the rerun rule: the touched project locally, the full matrix in CI, no full rerun after a rebase that moved only generated files | `system-spec-kit/references/` and `sk-code-skilled` verify doctrine | One full run saved per rebase, 29 min measured | None |
-| 4 | Profile the ten slowest deep-loop files, then cut fixed waits and repeated setup | `system-deep-loop/runtime/tests/` | Up to 54% of test time is in ten files, measured. The share that can go is unknown until profiled | None |
-| 5 | Turn on file parallelism after each file has its own temp root | Both `vitest.config.ts` files | Estimated at half or better. Not measured | None |
+| 1 | Drop the deep-loop include and its setup file from the local config | `system-spec-kit/runtime/vitest.config.ts` | Built. The Vitest lane went from 1767 s to 523 s, measured. Import time, 302 s, was not cut | None |
+| 2 | Make `npm test` run the `root` and `cli` projects CI runs | `system-spec-kit/runtime/package.json`, `scripts/run-tests.mjs`, `scripts/run-cli-tests.sh` | Built. Adds the 205-file `cli` lane, about 400 s, and closes the coverage gap | None |
+| 3 | Write the rerun rule: the touched project locally, the full matrix in CI, no full rerun after a rebase that moved only generated files | `system-spec-kit/references/` and `sk-code-skilled` verify doctrine | Built. One full run saved per rebase that brings only generated files | None |
+| 4 | Profile the ten slowest deep-loop files, then cut fixed waits and repeated setup | `system-deep-loop/runtime/tests/` | Built. Profiled: the ten slowest files are 51% of 1,110 s. Three ledger files now share one fixture across tests | None |
+| 5 | Turn on file parallelism after each file has its own temp root | Both `vitest.config.ts` files | Built. Deep-loop 1,130 s to 504-511 s. Spec-kit core 523 s to 348-399 s | None |
 
-Cut 2 costs time and still comes second, because a local green that skips 203 files CI runs is the larger risk. Cuts 1 and 2 together give one command of about 14 minutes that matches CI for spec-kit. The `cli` project can be split the way CI splits it, with `upgrade-legacy` alone, when that is too slow.
+Cut 2 costs time and still comes second, because a local green that skips the files CI runs is the larger risk. It runs the `cli` project the way CI does, with `upgrade-legacy` in its own process.
+
+Cut 5 found real shared state. The deep-loop graph scripts all wrote to the checked-in coverage database, so two files contended for its writer lock. The test helper now gives each file its own coverage database. Twelve deep-loop files measure elapsed time, kill child processes or race for that lock. They run in a second group after the rest, one at a time. The test time caps rose from 30 s to 120 s in every config, because heavy ledger and save tests take longer when files share the disk.
 
 Three process habits cost more than any file did. The full suite ran after each rebase. Gates were stacked, so one change paid for the suite, the alignment battery and the doctor checks even when it touched one of them. Nine docs restate the schema version, so a version bump fans out into nine edits and their checks. Cut 3 covers the first two. The third is noted here and belongs to a docs packet.
 <!-- /ANCHOR:phases -->
@@ -88,7 +90,7 @@ Three process habits cost more than any file did. The full suite ran after each 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Each cut measures before and after with the same command and reports both numbers. Cut 1 is proven by the file count: `npm test` in `system-spec-kit/runtime` must report 133 files, which is 299 less the 166 deep-loop files, and `npm test` in `system-deep-loop/runtime` must still report 166.
+Each cut measures before and after with the same command and reports both numbers. Cut 1 is proven by the file count. Before it, `vitest list` in `system-spec-kit/runtime` collected 302 files, 173 of them from deep-loop. After it, that list holds 129 files and none from deep-loop. The deep-loop config still collects the same 173.
 <!-- /ANCHOR:testing -->
 
 ---

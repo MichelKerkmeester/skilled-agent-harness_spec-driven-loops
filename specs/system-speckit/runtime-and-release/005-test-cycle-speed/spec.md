@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-10 |
 | **Branch** | `worktrees/339-release-writing-defaults` |
 <!-- /ANCHOR:metadata -->
@@ -67,9 +67,11 @@ The four slowest files are `fanout-run.vitest.ts` at 157 s, `progressive-validat
 ### In Scope
 - An ordered plan of five cuts, each with its expected saving and the check that proves it.
 - The process rules that go with them: which suite to run for which change, and when a rerun is owed.
+- Building all five cuts, at the operator's choice, with as much parallel work as the tests allow.
 
 ### Out of Scope
-- Any change to a config, test or workflow - this packet is the plan, and each cut is built in its own packet.
+- Changes to production code that a profile suggested, such as ledger read caches - they change runtime behavior, not test speed.
+- CI workflow files - every cut works through the configs and scripts CI already calls.
 - Deleting tests - no file is removed on speed grounds without a profile that shows it re-proves something another test already covers.
 - The sk-doc script suite and `test_readme_verdict_parity.py` - they belong to a different skill.
 
@@ -79,6 +81,14 @@ The four slowest files are `fanout-run.vitest.ts` at 157 s, `progressive-validat
 |-----------|-------------|-------------|
 | `specs/system-speckit/runtime-and-release/005-test-cycle-speed/plan.md` | Create | The five cuts in order |
 | `specs/system-speckit/runtime-and-release/005-test-cycle-speed/tasks.md` | Create | One task per cut, each with its check |
+| `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` | Modify | Cut 1: no deep-loop include or setup file |
+| `.skilled/skills/system-spec-kit/runtime/package.json` | Modify | `test:council` runs its two deep-loop files under deep-loop's config |
+| `.skilled/skills/system-deep-loop/runtime/vitest.config.ts` | Modify | Header comment names it as the only collector |
+| `.skilled/skills/system-deep-loop/runtime/references/integration-points.md` | Modify | Section 6 no longer says spec-kit collects these tests |
+| `.skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs`, `scripts/run-cli-tests.sh` | Modify, Create | Cut 2: `npm test` runs the `cli` project |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md` | Modify | Cut 3: which suite a change owes, and when a rebase owes a rerun |
+| `.skilled/skills/system-deep-loop/runtime/tests/` (five files) | Modify | Cuts 4 and 5: shared fixtures, a per-file coverage database and the lock path |
+| `.skilled/skills/system-spec-kit/vitest.config.ts` | Modify | Cut 5: parallel files and a 120 s cap |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -129,7 +139,7 @@ REQ ids run in one sequence across the P0 and P1 tables.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Q1: Should cut 1 also drop the `test:council` script's two deep-loop paths, or leave that script as it is?
+- None open. Q1 is answered: `test:council` keeps its two deep-loop files and runs them under deep-loop's own config.
 <!-- /ANCHOR:questions -->
 
 ---

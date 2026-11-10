@@ -6,7 +6,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it } from 'vitest';
 
 import { AuthorizedLedgerErrorCodes } from '../../lib/authorized-ledger/index.js';
 import {
@@ -76,14 +76,15 @@ import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-help
 
 const FIXED_TIMESTAMP = '2026-07-21T12:00:00.000Z';
 const temporaryRoots: string[] = [];
+const sharedRoots: string[] = [];
 
 function digest(label: string): string {
   return sha256Bytes(canonicalBytes({ label }));
 }
 
-function temporaryRoot(label: string): string {
+function temporaryRoot(label: string, roots: string[] = temporaryRoots): string {
   const root = mkdtempSync(join(tmpdir(), `blinded-adjudication-${label}-`));
-  temporaryRoots.push(root);
+  roots.push(root);
   return root;
 }
 
@@ -209,9 +210,10 @@ function createService(
     capabilityId: 'deblinding-capability',
     authenticationMethod: 'signed-service-token',
   }),
+  rootDirectory = temporaryRoot(label),
 ): BlindedAdjudicationService {
   return new BlindedAdjudicationService({
-    rootDirectory: temporaryRoot(label),
+    rootDirectory,
     authorityProvider: () => ({ state: 'shadowing', epoch: 1 }),
     deblindingAuthorizer,
     now: () => new Date(FIXED_TIMESTAMP),
@@ -253,6 +255,7 @@ async function acceptedHarness(
   label: string,
   authorizer?: () => AuthenticatedDeblindingAuthorization | null
   | Promise<AuthenticatedDeblindingAuthorization | null>,
+  rootDirectory = temporaryRoot(label),
 ): Promise<AcceptedHarness> {
   const replay = createVerifiedReplay();
   const candidates = [candidate('Alpha answer', 'producer-alpha', 1), candidate(
@@ -261,7 +264,7 @@ async function acceptedHarness(
     2,
   )] as const;
   const adjudicationRequest = request(replay, candidates);
-  const service = createService(label, authorizer);
+  const service = createService(label, authorizer, rootDirectory);
   await service.acceptRequest('adjudication-one', adjudicationRequest, candidates, replay);
   return {
     service,
@@ -318,9 +321,43 @@ async function stableVerdict(harness: AcceptedHarness): Promise<AdjudicationVerd
   return harness.service.finalize('adjudication-one');
 }
 
+let sharedAccepted: Promise<AcceptedHarness> | undefined;
+let sharedStable: Promise<{ harness: AcceptedHarness; verdict: AdjudicationVerdict }> | undefined;
+
+function sharedAcceptedHarness(): Promise<AcceptedHarness> {
+  sharedAccepted ??= acceptedHarness(
+    'shared-accepted',
+    undefined,
+    temporaryRoot('shared-accepted', sharedRoots),
+  );
+  return sharedAccepted;
+}
+
+function sharedStableFixture(): Promise<{
+  harness: AcceptedHarness;
+  verdict: AdjudicationVerdict;
+}> {
+  sharedStable ??= (async () => {
+    const harness = await acceptedHarness(
+      'shared-stable',
+      undefined,
+      temporaryRoot('shared-stable', sharedRoots),
+    );
+    return { harness, verdict: await stableVerdict(harness) };
+  })();
+  return sharedStable;
+}
+
 afterEach(() => {
   while (temporaryRoots.length > 0) {
     const root = temporaryRoots.pop();
+    if (root) rmSync(root, { recursive: true, force: true });
+  }
+});
+
+afterAll(() => {
+  while (sharedRoots.length > 0) {
+    const root = sharedRoots.pop();
     if (root) rmSync(root, { recursive: true, force: true });
   }
 });
@@ -485,7 +522,7 @@ describe('request, registry, and blinding boundaries', () => {
   });
 
   it('rejects producer-equivalent self-scoring before a raw event is appended', async () => {
-    const harness = await acceptedHarness('self-scoring');
+    const harness = await sharedAcceptedHarness();
     const producerJudge = judge('producer-alpha');
     await expect(harness.service.planMirroredAssignments(
       'adjudication-one',
@@ -537,7 +574,7 @@ describe('request, registry, and blinding boundaries', () => {
   });
 
   it('exposes no proof-free append path for adjudication evidence', async () => {
-    const harness = await acceptedHarness('gateway-only');
+    const harness = await sharedAcceptedHarness();
     const payload = createAdjudicationEventPayload(
       'adjudication-one',
       harness.request,
@@ -577,8 +614,7 @@ describe('request, registry, and blinding boundaries', () => {
 
 describe('judging, reduction, and replay', () => {
   it('records mirrored raw evidence, reaches a stable verdict, and replays exactly', async () => {
-    const harness = await acceptedHarness('stable');
-    const verdict = await stableVerdict(harness);
+    const { harness, verdict } = await sharedStableFixture();
     expect(verdict).toMatchObject({
       status: AdjudicationStatuses.STABLE,
       preferredCandidateDigest: harness.candidates[0].candidateDigest,
@@ -605,8 +641,7 @@ describe('judging, reduction, and replay', () => {
   });
 
   it('rejects forged complete-verdict evidence, graph, and authority fields', async () => {
-    const harness = await acceptedHarness('forged-verdict-replay');
-    await stableVerdict(harness);
+    const { harness } = await sharedStableFixture();
     const verifiedEvents = await harness.service.ledger.readVerifiedEvents();
     const mutations: readonly ((data: Record<string, unknown>) => void)[] = [
       (data) => { data.raw_score_evidence_ids = ['raw-score-forged']; },
@@ -1096,8 +1131,7 @@ describe('independence, adapters, and dark authority', () => {
   });
 
   it('keeps both request adapters typed and preserves verdict status without re-reduction', async () => {
-    const harness = await acceptedHarness('adapters');
-    const verdict = await stableVerdict(harness);
+    const { harness, verdict } = await sharedStableFixture();
     const common = {
       candidateDigests: harness.request.candidateDigests,
       rubricDigest: harness.request.rubricDigest,

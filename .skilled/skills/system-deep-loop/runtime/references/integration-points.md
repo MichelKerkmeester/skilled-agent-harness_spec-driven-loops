@@ -7,7 +7,7 @@ trigger_phrases:
   - "doctor deep-loop"
 importance_tier: normal
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # Deep Loop Runtime Integration Points
@@ -92,14 +92,9 @@ Relevant references:
 
 ---
 
-## 6. SYSTEM-SPEC-KIT TEST DISCOVERY
+## 6. TEST DISCOVERY
 
-The runtime tests are discovered from the system-spec-kit runtime Vitest config:
-
-```text
-.skilled/skills/system-spec-kit/runtime/vitest.config.ts
-  '../runtime//tests/**/*.{vitest,test}.ts'
-```
+The runtime tests are collected by this skill's own config, `runtime/vitest.config.ts`. It is the only config that collects them. Locally, `npm test` in `runtime/` runs it. In CI, `deep-loop-runtime.yml` runs the same command. The system-spec-kit config does not collect these tests.
 
 Production imports resolve from this skill's own `node_modules` via bare specifiers — no reach-in to a sibling skill's installed packages:
 
@@ -107,7 +102,7 @@ Production imports resolve from this skill's own `node_modules` via bare specifi
 - `coverage-graph-db.ts`, `coverage-graph-signals.ts`, and `council/council-graph-db.ts` import `better-sqlite3` (declared here; pinned to the same version `system-spec-kit` uses so the native binding stays ABI-compatible).
 - The `*.cjs` scripts boot the tsx loader through `require.resolve('tsx')`, which resolves from this skill's own `node_modules`.
 
-The dependency versions are kept in lockstep with `system-spec-kit` (see `package.json`), which is why graph metadata still lists `system-spec-kit` under `depends_on`. The standalone suite runs via `npm test` (local `vitest.config.ts`); the combined CI run still discovers these tests through the `system-spec-kit` MCP server config above.
+The dependency versions are kept in lockstep with `system-spec-kit` (see `package.json`), which is why graph metadata still lists `system-spec-kit` under `depends_on`. The suite runs via `npm test` (local `vitest.config.ts`).
 
 ---
 

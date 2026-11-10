@@ -8,7 +8,7 @@ trigger_phrases:
   - "rebuild dist before verifying"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # OpenCode Workflow Guardrails
@@ -54,6 +54,10 @@ Use the package script for the package you changed:
 - **Spec-kit root and project-reference workspaces**: `tsc --build`.
 - **Satellite packages with their own package boundary**: `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
 - **TypeScript tests**: run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.
+
+**Which suite a change owes.** Run the full suite of every package the change touches, and only those. A change under `system-spec-kit/runtime` owes `npm test` there. A change under `system-deep-loop/runtime` owes `npm test` there. CI runs the whole matrix after a push, so a local run of a package you did not touch proves nothing new.
+
+**When a rebase owes a rerun.** List what the rebase brought in with `git diff --stat <old base> <new base>`. When it brought only generated files, such as the trigger index or a packet's `description.json` and `graph-metadata.json`, the earlier run still stands. When it brought source changes to a package you touched, run that package's suite again.
 
 When verification discovers missing build output, stale generated runtime files, or a wrong package boundary, hand back to [Workflow Reference - Implementation](../workflow-implement.md) before making any completion claim.
 

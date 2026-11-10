@@ -33,18 +33,28 @@
       "decisions"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+      ".skilled/skills/system-spec-kit/runtime/package.json",
+      ".skilled/skills/system-deep-loop/runtime/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs",
+      ".skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/system-spec-kit/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+      "cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
       "specs/system-speckit/runtime-and-release/005-test-cycle-speed/plan.md",
       "specs/system-speckit/runtime-and-release/005-test-cycle-speed/tasks.md",
-      "runtime/vitest.config.ts",
-      "scripts/run-tests.mjs",
-      ".github/workflows/spec-kit-check.yml"
+      "scripts/run-cli-tests.sh"
     ],
     "entities": [
       {
@@ -80,19 +90,61 @@
       {
         "name": "vitest.config.ts",
         "kind": "code",
-        "path": "runtime/vitest.config.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "integration-points.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
         "source": "derived"
       },
       {
         "name": "run-tests.mjs",
         "kind": "file",
-        "path": "scripts/run-tests.mjs",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/run-tests.mjs",
         "source": "derived"
       },
       {
-        "name": "spec-kit-check.yml",
-        "kind": "config",
-        "path": ".github/workflows/spec-kit-check.yml",
+        "name": "run-cli-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/run-cli-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-guardrails.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+        "source": "derived"
+      },
+      {
+        "name": "spawn-cjs.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/helpers/spawn-cjs.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-open-close.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-timestamp-window.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/lineage-timestamp-window.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-persist-artifacts.vitest.ts",
+        "kind": "test",
+        "path": "cli/tests/multi-ai-council-persist-artifacts.vitest.ts",
         "source": "derived"
       },
       {
@@ -148,53 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A local `npm test` in `system-spec-kit/runtime` took 1767 seconds on the v4.0.2.1 work",
     "created_at": "2026-11-10T12:07:38Z",
-    "last_save_at": "2026-11-10T12:21:55.662Z",
+    "last_save_at": "2026-11-10T16:37:20.285Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92f0827dcbd527ccebe02e5f34dae2a957b084fad96d461edd6cc051f3fab574",
+    "source_fingerprint": "sha256:8b5e7b3caf7bbca88bbb85b8eb975f5facb4490bfc62df117f980caffd4b7837",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9fe5e8aa70015903990e6f331a32703bd0d372e947aa1acffa77d514f981704",
-      "plan.md": "aee3ac4387dcaa3e2ccbcbdb277e2381100000ff39fbae05252c7e6ec5836c3f",
-      "tasks.md": "cc1a35157d10dfc48523013bde3a40891364810a2b39284337da2874b7df77e3",
-      "decision-record.md": "da3f4357f1051a1c91563f27a18da068af2b13629ff389be458a9aff092ebfb9",
-      "implementation-summary.md": "1f573a1e18d62e5fa36578204c64a491ca9f16e5876eb5ed91e94a48208635a9"
+      "spec.md": "f266394a10b1571e841c7f736d0b43e7764593dec4fa15b16286a48bb7771e80",
+      "plan.md": "fd8dc4ebce840fe7604a9f54ee80ac5fadd68ec0c6e09d0c36b29e4f56d37ad2",
+      "tasks.md": "14f110b519593c21c347b1cc380156788819c060ba8b8f584f9e6a31680b72b6",
+      "decision-record.md": "cf2cc12352a6249f81943bfd260fb8a161ed10503d907fb454becaeb58c88f0d",
+      "implementation-summary.md": "bf214f41360bf87fdef10e7527afb65f892a5e67c71315697413e178f9fbe50e"
     },
     "last_active_at": null
   }

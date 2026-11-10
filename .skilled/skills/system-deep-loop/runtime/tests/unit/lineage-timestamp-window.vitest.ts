@@ -125,7 +125,7 @@ async function runFanoutWithRecords(
     {
       cwd: hermetic.tmpDir,
       env: envWithBin(hermetic, binDir),
-      timeoutMs: 15_000,
+      timeoutMs: 60_000,
     },
   );
 

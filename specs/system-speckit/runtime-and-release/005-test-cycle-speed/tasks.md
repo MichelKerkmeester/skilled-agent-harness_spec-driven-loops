@@ -43,11 +43,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Cut 1: drop the deep-loop include and setup file (`S/runtime/vitest.config.ts`). Verify: `npm test` in `S/runtime` reports 133 files, and `npm test` in `D` reports 166.
-- [ ] T005 Cut 2: make `npm test` run the `root` and `cli` projects (`S/runtime/package.json`). Verify: one `npm test` reports both project names and 2518 `cli` tests.
-- [ ] T006 Cut 3: write the rerun rule (`S/references/`). Verify: `rg -n "generated files" S/references` prints the rule.
-- [ ] T007 Cut 4: profile the ten slowest deep-loop files (`D/tests`). Verify: a table names each file's time in setup, waits and assertions.
-- [ ] T008 Cut 5: per-file temp roots, then file parallelism (`S/runtime/vitest.config.ts`, `D/vitest.config.ts`). Verify: three runs in a row pass with `fileParallelism: true`.
+- [x] T004 Cut 1: drop the deep-loop include and setup file (`S/runtime/vitest.config.ts`). Verify: `npx vitest list --filesOnly` in `S/runtime` prints 129 files and none under deep-loop, and in `D` still prints 173.
+- [x] T011 Keep `test:council` covering its two deep-loop files (`S/runtime/package.json`). Verify: `npm run --prefix S/runtime test:council` reports 6 files and 10 tests, then 2 files and 16 tests, exit 0.
+- [x] T012 Correct the docs that described a combined run (`D/vitest.config.ts`, `D/references/integration-points.md`). Verify: `validate_document.py` on the reference prints `Total issues: 0`.
+- [x] T005 Cut 2: make `npm test` run the `root` and `cli` projects (`S/runtime/package.json`, `S/runtime/scripts/run-tests.mjs`, `S/runtime/scripts/run-cli-tests.sh`). Verify: one `npm test` reports the core lane, then `cli` with 202 files passed and 2452 tests, exit 0.
+- [x] T006 Cut 3: write the rerun rule (`.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md`). Verify: `rg -n "generated files"` on that file prints the rule.
+- [x] T007 Cut 4: profile the deep-loop suite and share repeated fixtures (`D/tests/unit/`). Verify: the JSON profile ranks all 173 files, and the three edited files keep every `it` and `expect` line.
+- [x] T008 Cut 5: per-file coverage database, then file parallelism (`S/runtime/vitest.config.ts`, `S/vitest.config.ts`, `D/vitest.config.ts`, `D/tests/helpers/spawn-cjs.ts`). Verify: `npm test` in `D` passes 173 files three runs in a row, and in `S/runtime` passes three runs.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,7 +58,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T009 Validate this packet. Verify: `validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
-- [ ] T010 Rerun the baseline command after cuts 1 and 2. Verify: `npm test` in `S/runtime` finishes in under 900 s.
+- [x] T010 Rerun the baseline commands after all cuts. Verify: `npm test` in `S/runtime` finishes in 841 and 911 s with the `cli` lane included, and in `D` in 504 to 511 s.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] The plan itself is complete. T004 to T008 and T010 are the build, and each waits for its own packet
+- [x] All five cuts are built and measured
 <!-- /ANCHOR:completion -->
 
 ---
