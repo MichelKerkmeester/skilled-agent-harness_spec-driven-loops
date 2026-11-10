@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6683,
-    "ok": 17734,
+    "missing-frontmatter": 6684,
+    "ok": 17756,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26046,
+  "documentsScanned": 26069,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "76fac3cfdaa722fb990717a9d0c6327767c4b8d5b3580a522d35e302cfa0ded5",
+  "manifestHash": "f9d5d77d0ce6a95b21bf52c45fdf28ceeace1be4cdee337becd42134b10a0286",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42165,
+      "ok": 42194,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -51206,6 +51206,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -61781,7 +61787,35 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/runtime-and-release/005-test-cycle-speed/scratch",
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/scratch",
       "reason": "excluded directory"
     },
     {

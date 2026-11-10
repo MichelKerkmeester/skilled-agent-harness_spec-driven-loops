@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6ad9024d780007aca060d0ae1ad819af79bd24aef8715247c35278627eb823d6",
+  "corpusHash": "0e065b85e148dc426dc070cf0eff7b1643b9f420cb9f61aa5ca044078f97cd60",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26046,
+  "includedPathCount": 26069,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8357,6 +8357,7 @@
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.1.0.md",
     ".skilled/skills/system-skilled-doctor/changelog/v1.1.2.0.md",
+    ".skilled/skills/system-skilled-doctor/changelog/v1.1.3.0.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/adopt-with-protected-file.md",
     ".skilled/skills/system-skilled-doctor/manual-testing-playbook/overlays/status-without-overlays.md",
@@ -25393,11 +25394,33 @@
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/goal.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/research.md",
     "specs/system-speckit/runtime-and-release/004-v4-release-line-research/spec.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/decision-record.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/implementation-summary.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/plan.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/spec.md",
-    "specs/system-speckit/runtime-and-release/005-test-cycle-speed/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/decision-record.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/research.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/spec.md",
@@ -26078,7 +26101,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "76fac3cfdaa722fb990717a9d0c6327767c4b8d5b3580a522d35e302cfa0ded5",
+  "manifestHash": "f9d5d77d0ce6a95b21bf52c45fdf28ceeace1be4cdee337becd42134b10a0286",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36313,7 +36336,35 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/runtime-and-release/005-test-cycle-speed/scratch",
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/001-five-cuts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/002-fresh-timing-profile/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/003-split-upgrade-legacy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/004-split-fanout-run/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/scratch",
       "reason": "excluded directory"
     },
     {
