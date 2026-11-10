@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping",
   "description": "Phase 8: track-subtrack-regrouping",
   "keywords": [
     "phase",
     "track-subtrack-regrouping"
   ],
-  "lastUpdated": "2026-11-10T05:05:28.587Z",
+  "lastUpdated": "2026-11-10T07:36:52.344Z",
   "specId": "008",
   "folderSlug": "track-subtrack-regrouping",
   "parentChain": [
@@ -13,7 +14,8 @@
     "spec-folder-tooling",
     "002-named-subtracks-and-host-repos"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_08-36__ten-tracks-regrouped-into-39-sub-tracks-174.md"
+  ]
 }

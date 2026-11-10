@@ -190,8 +190,8 @@
     ],
     "causal_summary": "Skilled's large spec tracks keep active packets in one flat folder list, so readers scan every folder name to find work on one subsystem",
     "created_at": "2026-11-10T05:05:27Z",
-    "last_save_at": "2026-11-10T06:50:59.701Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-10T07:36:52.344Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -200,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c92d2f2f5fefcaacb9f7c25259089e99e1e4711a60c9092e58cca8603307e340",
+    "source_fingerprint": "sha256:c5ca3e7c1b09ba25c9019307b630db5a1e361acdf6998a7abd9175ad969f1162",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f78b9e7c1cb4f6bf20a1bbbf9b1d5d424aa984ecbef9495adf44beaf267a437",
       "plan.md": "9c0f1be3736ff709460400f9d7fd78ffbc98a49dc588ddf6dfe88ddddd7c5814",
       "tasks.md": "66a2173364d902c2c6b0f892fa764fe4162f4733fbbc880c1ce1002e2d8bc425",
-      "implementation-summary.md": "0c94875d77087781646cef6da7be348bbcbed1ab723daec08aa6f5a2a8a17a26"
+      "implementation-summary.md": "21aa9ff26efe1446d790e4dca682b5759d88bea90d49b9d4a448e08fcf9d21bf"
     },
     "last_active_at": null
   }

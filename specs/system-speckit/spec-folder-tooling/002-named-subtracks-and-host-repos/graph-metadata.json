@@ -219,7 +219,7 @@
     ],
     "causal_summary": "A repository built on Skilled can file packets as `specs/<track>/<sub-track>/<NNN>-<slug>/`, and such a packet works on its own, but every tool that treats a track as a unit looks only one level below `specs/`",
     "created_at": "2026-11-07T12:11:59Z",
-    "last_save_at": "2026-11-10T05:48:51.337Z",
+    "last_save_at": "2026-11-10T07:36:52.363Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -241,7 +241,7 @@
       "implementation-summary.md": "a4e5d3961d112bebd71a4d0a8186deb648580df992aa3131e6d568e66f261228",
       "research/research.md": "ce37a5d6e51b8279dd28b78133c5802fc4365ad77aee78184250cffabe59fb71"
     },
-    "last_active_child_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/007-children-list-duplicates",
-    "last_active_at": "2026-11-09T20:38:20.641Z"
+    "last_active_child_id": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping",
+    "last_active_at": "2026-11-10T07:36:52.363Z"
   }
 }

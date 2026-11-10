@@ -8,16 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping"
-    last_updated_at: "2026-11-10T06:31:28Z"
-    last_updated_by: "codex"
-    recent_action: "Recorded regrouping, metadata alignment and final gates"
-    next_safe_action: "Review the closed phase record"
+    last_updated_at: "2026-11-10T07:36:52Z"
+    last_updated_by: "generate-context"
+    recent_action: "Regrouped ten tracks into 39 sub-tracks and pushed to origin/main"
+    next_safe_action: "Sync the primary checkout after settling its one modified description.json"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/008-track-subtrack-regrouping/implementation-summary.md"
+      - "specs/system-speckit/graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:9154ee77e2c9e5094dc92869850babb5880f6e9faaeb3b584f4472eaf12beb09"
       session_id: "scaffold-008-track-subtrack-regrouping"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "1dd4a9a8-36db-41ed-a4d5-da599d436310"
+      workspace: "/Users/michelkerkmeester/worktrees/public/336-subtrack-gap-fixes"
+      savedAt: "2026-11-10T07:36:52Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []
