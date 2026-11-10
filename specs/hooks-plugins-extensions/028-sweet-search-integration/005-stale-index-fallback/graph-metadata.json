@@ -55,7 +55,7 @@
       ".skilled/commands/speckit/README.txt",
       "feature-catalog/retrieval/stale-index-fallback.md",
       "manual-testing-playbook/retrieval/stale-index-fallback.md",
-      "changelog/v2.12.41.0.md",
+      "changelog/v2.12.42.0.md",
       "alignment/recheck.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
@@ -142,9 +142,9 @@
         "source": "derived"
       },
       {
-        "name": "v2.12.41.0.md",
+        "name": "v2.12.42.0.md",
         "kind": "doc",
-        "path": "changelog/v2.12.41.0.md",
+        "path": "changelog/v2.12.42.0.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The trigger index is committed and rebuilt by hand, so a packet created or edited since the last build is invisible to the Gate 1 lookup",
     "created_at": "2026-11-09T16:18:07Z",
-    "last_save_at": "2026-11-09T20:57:45.531Z",
+    "last_save_at": "2026-11-10T04:32:28.900Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1ad0066bf7c014ca7f6ddada17ec65c55f5389a406c6513e06cc185ffc7376b",
+    "source_fingerprint": "sha256:703c2e4e1fe9f484348b9a3e4c78f78926a472f1e230a34cf8b93db3199600dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d568e18ab5170b883d3e67bcdf75cf0c0d14808b1989cb714668c9990bf4839",
+      "spec.md": "a821165b5321a3b4b6d6264352073f1d06ad81e56b4c8c36c464e7d93602ca98",
       "plan.md": "795f2f341859abef60ada54bed530e56ca7cf87bc495a861194c4918778772b1",
-      "tasks.md": "2037d9e5aeda174d9f6357bb4e935b2073a41e97544bef47c4599ce9406e2d70",
-      "implementation-summary.md": "64466ba90a04e13f376623fc635781508362cce2f9999d84fcedaf77c3c15aa8"
+      "tasks.md": "fe2c26bcba0bae88c54e5b47949ec2f576a527b81402a0cd9505acd581d3b8e7",
+      "implementation-summary.md": "cc06ea116dbcb04a6ed52dfebc64566c9a3a60e6da9668e2f2b7b607ff434790"
     },
     "last_active_at": null
   }

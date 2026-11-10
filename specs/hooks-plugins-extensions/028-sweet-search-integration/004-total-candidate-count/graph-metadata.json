@@ -53,7 +53,7 @@
       ".skilled/commands/speckit/assets/search-presentation.txt",
       "feature-catalog/retrieval/trigger-lookup-total-candidates.md",
       "manual-testing-playbook/retrieval/trigger-lookup-total-candidates.md",
-      "changelog/v2.12.39.0.md",
+      "changelog/v2.12.41.0.md",
       "benchmark/run.mjs",
       "benchmark/scenario-489/matrix.md",
       "alignment/recheck.md",
@@ -130,9 +130,9 @@
         "source": "derived"
       },
       {
-        "name": "v2.12.39.0.md",
+        "name": "v2.12.41.0.md",
         "kind": "doc",
-        "path": "changelog/v2.12.39.0.md",
+        "path": "changelog/v2.12.41.0.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The trigger lookup reports only a `truncated` boolean when it cuts results to `--limit`, so a caller cannot tell 21 candidates from 20,000 or judge whether raising the limit is worth it",
     "created_at": "2026-11-09T16:18:06Z",
-    "last_save_at": "2026-11-09T19:05:16.619Z",
+    "last_save_at": "2026-11-10T04:32:27.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aebe570fcfa2ab6443ad114051f5158c41d9e6d3a7cd2d3b25ed4be7b36d9fbc",
+    "source_fingerprint": "sha256:b2db712a50b1f157e3f0b37a6a7da63a2aeba8ba9b37caf887dee4d4ab02fdc6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ba5f1f125a794e7d18b8f1177891fa52db698edb6d6da170b2cfe262f831444",
+      "spec.md": "aa0c36102c3fc25d698ec0203f18ed2d7d360a0c5f5a943761f25a1ff7e42a18",
       "plan.md": "1ca243e01aa338c5bd4b2e81658d4b6c939ac506c516e8c798149926c53897d2",
-      "tasks.md": "98f99c25e1a014a9de8b0a8a681bc0ae82c5c49104c24b911cdbf942ab6f437a",
-      "implementation-summary.md": "5259a3c572897a7729469ccfb986a7a6db41f8ea38206712ba8e7cbabad41e99"
+      "tasks.md": "6ad7e637d2e543f8ec5d09dfb21d9663578f83d5c97c42eb80f8b31321643da4",
+      "implementation-summary.md": "25f6f41f6fb9e484129e0629e4eb7b9b631280e974600e7d6b56a357b81e6c46"
     },
     "last_active_at": null
   }

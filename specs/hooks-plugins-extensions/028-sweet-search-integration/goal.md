@@ -110,9 +110,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phases 001-003 | Done | Research committed in `24fef5fdf5` |
-| Phase 004 | Done | `fcab2a3c33` in worktree 335 |
-| Phase 005 | Done | `214ad8b5cb` in worktree 335 |
-| Phase 006 | Done | `0b783907d3` in worktree 335 |
+| Phase 004 | Done | `fa41f8070f` in worktree 335 |
+| Phase 005 | Done | `f6b6f04a96` in worktree 335 |
+| Phase 006 | Done | `2c6d99b8d6` in worktree 335 |
 | Criterion: recursive validate | Met | Parent and six children each print `RESULT: PASSED` |
 | Criterion: suite | Met | 4110 passed, 0 failed (baseline 4071 passed, 0 failed) |
 | Criterion: lookup and wrapper | Met | `--limit 2` on "trigger index": `totalCandidates` 801; an untracked temp spec doc's phrase found via `staleFallback` without a rebuild; "iteration" over the phase 2 research folder: 14 rows, 14 files, schema 2 |
