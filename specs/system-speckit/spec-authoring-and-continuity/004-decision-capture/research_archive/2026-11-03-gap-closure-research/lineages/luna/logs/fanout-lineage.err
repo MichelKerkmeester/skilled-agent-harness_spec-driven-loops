@@ -12,7 +12,7 @@ session id: 01a19d45-d163-72f0-b357-89f0d3b5d66c
 user
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 You are a non-interactive dispatched worker: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.
-Your write authority is already bound to specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna. The dispatcher's answer to every other stop-and-ask rule (Halt Conditions, Logic-Sync, stop-for-yes): follow the workflow within this prompt's write limits, record the conflict in the current iteration, and continue. Never end a turn with a question or A/B/C/D options.
+Your write authority is already bound to specs/system-speckit/043-decision-capture/research/lineages/luna. The dispatcher's answer to every other stop-and-ask rule (Halt Conditions, Logic-Sync, stop-for-yes): follow the workflow within this prompt's write limits, record the conflict in the current iteration, and continue. Never end a turn with a question or A/B/C/D options.
 A failed call means re-check the path and retry; halt only after three failures on the same call. The lineage is complete only when its files exist on disk and the completion line below is printed.
 
 You are orchestrating the deep-research workflow YAML as a detached fan-out lineage.
@@ -26,7 +26,7 @@ config row (step_create_state_log) to the terminal synthesis record, to
 Never create, append to, or rewrite deep-research-state.jsonl yourself: a row written there beside the
 ledger makes the gateway refuse every later projection, and the lineage fails.
 After each iteration's gateway append, run the workflow's step_reduce_state reducer exactly as the YAML runs it:
-node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs specs/system-speckit/spec-authoring-and-continuity/004-decision-capture --artifact-dir specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna
+node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs specs/system-speckit/043-decision-capture --artifact-dir specs/system-speckit/043-decision-capture/research/lineages/luna
 It writes the lineage registry, dashboard, and strategy the merge reads; skipping it leaves the lineage merged with unverified provenance.
 NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no
 'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.
@@ -42,8 +42,8 @@ Before iteration 1, read .skilled/skills/system-deep-loop/deep-research/assets/p
 - Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.
 
 Read .skilled/skills/system-deep-loop/deep-research/SKILL.md and execute the research loop with these parameters:
-  spec_folder: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture
-  config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna
+  spec_folder: specs/system-speckit/043-decision-capture
+  config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/043-decision-capture/research/lineages/luna
   session_id: fanout-luna-1793639912371-mz7z8d
   executor: cli-codex model=gpt-6-luna
   loop_type: research
@@ -52,23 +52,23 @@ Read .skilled/skills/system-deep-loop/deep-research/SKILL.md and execute the res
   config.maxIterations: 2
   config.convergenceThreshold: 0.05
   config.convergenceMode: default
-The step_resolve_artifact_root step will bind artifact_dir to /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna via the
+The step_resolve_artifact_root step will bind artifact_dir to /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/043-decision-capture/research/lineages/luna via the
 config.fanout_lineage_artifact_dir override — do NOT run the resolveArtifactRoot node
 command; bind artifact_dir directly to the override value.
 
 Run phase_init, phase_main_loop (until config.maxIterations is reached; treat convergence before that as telemetry only and broaden review angles instead of synthesizing early), and phase_synthesis.
-Write EVERY file you create or modify inside specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna and nowhere else — that directory is
-your entire write surface. Its absolute path is /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna; the
+Write EVERY file you create or modify inside specs/system-speckit/043-decision-capture/research/lineages/luna and nowhere else — that directory is
+your entire write surface. Its absolute path is /Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/043-decision-capture/research/lineages/luna; the
 relative form is resolved from the repository root, so a path that drops the leading
 directories (for example one starting with review/ or research/) lands OUTSIDE the lineage and
 fails it. You may read anywhere, but do NOT modify, create, or delete any file
-outside specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna, and do NOT run any command that writes outside it: in particular do NOT
+outside specs/system-speckit/043-decision-capture/research/lineages/luna, and do NOT run any command that writes outside it: in particular do NOT
 run generate-context.js, validate.sh (especially --recursive), or any git write/checkout/commit
 command. Producing findings does not mean running the repo's tooling — a single out-of-scope
 write fails this whole lineage.
-Use the repository-relative form specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna in every tool call, copied character for character; never type the absolute home prefix or rebuild the path from the packet or track name.
-A "file not found" on a path you just wrote means the path was mistyped: re-copy specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna and retry.
-Before init, before each iteration, and before resolving any conflict, read specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md when it exists.
+Use the repository-relative form specs/system-speckit/043-decision-capture/research/lineages/luna in every tool call, copied character for character; never type the absolute home prefix or rebuild the path from the packet or track name.
+A "file not found" on a path you just wrote means the path was mistyped: re-copy specs/system-speckit/043-decision-capture/research/lineages/luna and retry.
+Before init, before each iteration, and before resolving any conflict, read specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md when it exists.
 It is the lead's channel: its rulings are the dispatcher's answers to questions this lineage would otherwise ask, and they bind inside the lineage directory.
 It grants no write outside the lineage. When you read it, list it among that iteration's sources.
 The terminal synthesis record must carry stopReason "maxIterationsReached"; the runner
@@ -374,7 +374,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
       "phrases": [
         "conformance rulings and gate repair decisions",
         "decision record"
@@ -383,7 +383,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
       "phrases": [
         "decision record",
         "header directive and structure sweep decisions"
@@ -392,7 +392,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
       "phrases": [
         "decision record",
         "portability and false green repair decisions"
@@ -401,7 +401,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
       "phrases": [
         "boundaries containment and naming decisions",
         "decision record"
@@ -410,7 +410,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/decision-record.md",
+      "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/007-spec-kit-residue/decision-record.md",
       "phrases": [
         "decision record"
       ],
@@ -418,7 +418,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/001-routing-completeness/008-drift-after-closure/decision-record.md",
+      "path": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/008-drift-after-closure/decision-record.md",
       "phrases": [
         "decision record",
         "drift after closure decisions",
@@ -428,7 +428,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-skill-advisor/routing-and-scoring/002-routing-perfection-research/decision-record.md",
+      "path": "specs/system-skill-advisor/023-routing-perfection-research/decision-record.md",
       "phrases": [
         "decision record",
         "routing decisions"
@@ -437,7 +437,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit/decision-record.md",
       "phrases": [
         "026 changelog decisions",
         "decision record"
@@ -446,7 +446,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation/decision-record.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation/decision-record.md",
       "phrases": [
         "decision",
         "decision record"
@@ -455,7 +455,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold/decision-record.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold/decision-record.md",
       "phrases": [
         "decision",
         "decision record"
@@ -464,7 +464,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite/decision-record.md",
       "phrases": [
         "decision record"
       ],
@@ -472,7 +472,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record.md",
       "phrases": [
         "decision record"
       ],
@@ -480,7 +480,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/decision-record.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/decision-record.md",
       "phrases": [
         "decision record"
       ],
@@ -488,7 +488,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md",
       "phrases": [
         "decision record"
       ],
@@ -496,7 +496,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline/decision-record.md",
+      "path": "specs/system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline/decision-record.md",
       "phrases": [
         "decision",
         "decision record"
@@ -2734,14 +2734,14 @@ hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 exec
-/bin/zsh -lc 'find specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna -maxdepth 3 -type f -print' in /Users/michelkerkmeester/MEGA/Development/Skilled
+/bin/zsh -lc 'find specs/system-speckit/043-decision-capture/research/lineages/luna -maxdepth 3 -type f -print' in /Users/michelkerkmeester/MEGA/Development/Skilled
  succeeded in 0ms:
-specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/containment/baseline/.env.example
-specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/deep-research-audit-ledger/frames/0000000000000001.frame
-specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl
-specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json
-specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/deep-research-effect-ledger/frames/0000000000000001.frame
-specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/invocation-metadata.json
+specs/system-speckit/043-decision-capture/research/lineages/luna/containment/baseline/.env.example
+specs/system-speckit/043-decision-capture/research/lineages/luna/deep-research-audit-ledger/frames/0000000000000001.frame
+specs/system-speckit/043-decision-capture/research/lineages/luna/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl
+specs/system-speckit/043-decision-capture/research/lineages/luna/locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json
+specs/system-speckit/043-decision-capture/research/lineages/luna/deep-research-effect-ledger/frames/0000000000000001.frame
+specs/system-speckit/043-decision-capture/research/lineages/luna/invocation-metadata.json
 
 hook: PostToolUse
 hook: PostToolUse
@@ -2756,7 +2756,7 @@ hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 exec
-/bin/zsh -lc "if test -f specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md; then cat specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md; else printf 'NO_STEER_FILE\\n'; fi" in /Users/michelkerkmeester/MEGA/Development/Skilled
+/bin/zsh -lc "if test -f specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md; then cat specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md; else printf 'NO_STEER_FILE\\n'; fi" in /Users/michelkerkmeester/MEGA/Development/Skilled
  succeeded in 0ms:
 NO_STEER_FILE
 

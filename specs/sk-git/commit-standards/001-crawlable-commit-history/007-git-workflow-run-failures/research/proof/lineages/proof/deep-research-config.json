@@ -13,7 +13,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 20,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/sk-git/commit-standards/001-crawlable-commit-history/007-git-workflow-run-failures",
+  "specFolder": ".opencode/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures",
   "createdAt": "2026-09-11T10:39:10Z",
   "status": "initialized",
   "executionMode": "auto",
@@ -42,7 +42,7 @@
     "continuedFromRun": null,
     "fanoutLabel": "proof"
   },
-  "artifactDir": ".opencode/specs/sk-git/commit-standards/001-crawlable-commit-history/007-git-workflow-run-failures/research/proof/lineages/proof",
+  "artifactDir": ".opencode/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/proof/lineages/proof",
   "reducer": {
     "enabled": false,
     "version": "1.0",

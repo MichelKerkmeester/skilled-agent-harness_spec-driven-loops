@@ -23,8 +23,8 @@ Traceability: `spec_code`, `checklist_evidence`, strict packet validation, and c
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment/tasks.md:23-61`
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:23-95`
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:37-93`
-- `.opencode/specs/sk-code/code-surfaces/001-content-quality-remediation/spec.md:35-82`
-- `.opencode/specs/sk-code/code-surfaces/001-content-quality-remediation/implementation-summary.md:37-90`
+- `.opencode/specs/sk-code/003-content-quality-remediation/spec.md:35-82`
+- `.opencode/specs/sk-code/003-content-quality-remediation/implementation-summary.md:37-90`
 - Fresh `validate.sh --strict --verbose` output for packet 019.
 
 ## Findings - New
@@ -47,7 +47,7 @@ None.
 
 ### P2 Findings
 
-1. **F003: Packet 019 still recommends a content-quality pass that sibling packet 020 has completed** -- `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:91-93` -- The follow-up describes the cookie, CDN-loader, and generic When-to-Use defects as work to perform. Packet 020 is Complete and records all three classes fixed, including 20/20 edited files validating and zero generic boilerplate [SOURCE: `.opencode/specs/sk-code/code-surfaces/001-content-quality-remediation/implementation-summary.md:37-77`].
+1. **F003: Packet 019 still recommends a content-quality pass that sibling packet 020 has completed** -- `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:91-93` -- The follow-up describes the cookie, CDN-loader, and generic When-to-Use defects as work to perform. Packet 020 is Complete and records all three classes fixed, including 20/20 edited files validating and zero generic boilerplate [SOURCE: `.opencode/specs/sk-code/003-content-quality-remediation/implementation-summary.md:37-77`].
    - Finding class: `cross-consumer`
    - Scope proof: packet 020 names 019 as its predecessor and closes exactly the three follow-up classes listed by 019.
    - Affected surface hints: `019 implementation summary`, `020 sibling packet`, `resume continuity`

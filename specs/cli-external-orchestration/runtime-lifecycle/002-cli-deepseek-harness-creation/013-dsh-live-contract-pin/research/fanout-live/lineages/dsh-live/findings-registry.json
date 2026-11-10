@@ -120,8 +120,8 @@
         "`.dsh/patches/route-opencode-go-deepseek.patch.yml`",
         "`.dsh/README.md`",
         "`.dsh/SYNC.md`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
       ]
     },
     {
@@ -133,8 +133,8 @@
         "`.dsh/patches/route-opencode-go-deepseek.patch.yml`",
         "`.dsh/README.md`",
         "`.dsh/SYNC.md`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
       ]
     },
     {
@@ -146,21 +146,21 @@
         "`.dsh/patches/route-opencode-go-deepseek.patch.yml`",
         "`.dsh/README.md`",
         "`.dsh/SYNC.md`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
       ]
     },
     {
       "id": "finding-1-5-the-two-are-alternative-pins-not-additive-both-target-the-same-llm-pi-ai-and-age",
-      "text": "The two are alternative pins, not additive: both target the same `llm-pi-ai` and `agent-default-model` rows, and the repository says a dispatch passes exactly one route patch. Prior `--dump-config` evidence shows each patch composing its own provider and model separately. [SOURCE: .dsh/README.md:17] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt:60] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt:60]",
+      "text": "The two are alternative pins, not additive: both target the same `llm-pi-ai` and `agent-default-model` rows, and the repository says a dispatch passes exactly one route patch. Prior `--dump-config` evidence shows each patch composing its own provider and model separately. [SOURCE: .dsh/README.md:17] [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt:60] [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt:60]",
       "addedAtIteration": 1,
       "sources": [
         "`.dsh/patches/route-llmgateway-deepseek.patch.yml`",
         "`.dsh/patches/route-opencode-go-deepseek.patch.yml`",
         "`.dsh/README.md`",
         "`.dsh/SYNC.md`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
       ]
     },
     {
@@ -172,8 +172,8 @@
         "`.dsh/patches/route-opencode-go-deepseek.patch.yml`",
         "`.dsh/README.md`",
         "`.dsh/SYNC.md`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
-        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`",
+        "`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`"
       ]
     }
   ],
@@ -225,7 +225,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/research/fanout-live/lineages/dsh-live/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/research/fanout-live/lineages/dsh-live/inbox.jsonl",
   "inboxWarnings": [],
   "status": "COMPLETE",
   "advisoryEvents": [],

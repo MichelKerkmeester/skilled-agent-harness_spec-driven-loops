@@ -17,7 +17,7 @@ Read the two checked-in DeepSeek Harness route patches under `.dsh/patches/`, re
 2. `route-opencode-go-deepseek.patch.yml` declares provider `opencode-go` at `https://opencode.ai/zen/go/v1` with `api: openai-completions`, `apiKeyEnv: OPENCODE_API_KEY`, model id `deepseek-v4.1-flash`, and default `reasoningEffort: max`. [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:6] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:10] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:15] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:25]
 3. Both patches declare the same compat block, `thinkingFormat: deepseek` and `supportsDeveloperRole: false`, and the same effort ladder `off` / `high: high` / `max: max` with `max` selected by default. [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:11] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:12] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:16] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:12] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:13] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:17]
 4. They disagree on provider id, endpoint, key variable, and exact model id (`deepseek-v4.1-flash-1017` vs `deepseek-v4.1-flash`); the OpenCode Go patch itself says its endpoint is "unverified until a keyed run proves it". [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:1] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:2] [SOURCE: .dsh/README.md:28]
-5. The two are alternative pins, not additive: both target the same `llm-pi-ai` and `agent-default-model` rows, and the repository says a dispatch passes exactly one route patch. Prior `--dump-config` evidence shows each patch composing its own provider and model separately. [SOURCE: .dsh/README.md:17] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt:60] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt:60]
+5. The two are alternative pins, not additive: both target the same `llm-pi-ai` and `agent-default-model` rows, and the repository says a dispatch passes exactly one route patch. Prior `--dump-config` evidence shows each patch composing its own provider and model separately. [SOURCE: .dsh/README.md:17] [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt:60] [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt:60]
 
 ## Questions Answered
 
@@ -52,8 +52,8 @@ None.
 - `.dsh/patches/route-opencode-go-deepseek.patch.yml`
 - `.dsh/README.md`
 - `.dsh/SYNC.md`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
 
 ## Assessment
 

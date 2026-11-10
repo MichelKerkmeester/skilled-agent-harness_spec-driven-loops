@@ -66,8 +66,8 @@ The repository documents both patches as hand-authored route patches. `.dsh/READ
 - `.dsh/patches/route-opencode-go-deepseek.patch.yml`
 - `.dsh/README.md`
 - `.dsh/SYNC.md`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
 
 ## 8. Implications
 

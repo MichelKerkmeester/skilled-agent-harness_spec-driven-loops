@@ -12,7 +12,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture",
+  "specFolder": "specs/system-speckit/043-decision-capture",
   "createdAt": "2026-11-02T17:22:08Z",
   "status": "complete",
   "executionMode": "auto",

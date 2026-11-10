@@ -100,7 +100,7 @@
       ],
       "evidenceRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:91-93",
-        ".opencode/specs/sk-code/code-surfaces/001-content-quality-remediation/implementation-summary.md:37-77"
+        ".opencode/specs/sk-code/003-content-quality-remediation/implementation-summary.md:37-77"
       ],
       "transitions": [
         {

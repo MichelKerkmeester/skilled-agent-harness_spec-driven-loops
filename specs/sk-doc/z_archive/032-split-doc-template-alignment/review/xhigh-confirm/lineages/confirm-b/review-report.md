@@ -49,7 +49,7 @@ Route to `/speckit:plan` because a required hard protocol fails. The smallest re
 
 - Dimension: traceability
 - File: `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:91-93`
-- Evidence: packet 019 still recommends fixing the cookie, CDN loader, and generic When-to-Use classes; packet 020 records those exact classes complete and validated [SOURCE: `.opencode/specs/sk-code/code-surfaces/001-content-quality-remediation/implementation-summary.md:37-77`].
+- Evidence: packet 019 still recommends fixing the cookie, CDN loader, and generic When-to-Use classes; packet 020 records those exact classes complete and validated [SOURCE: `.opencode/specs/sk-code/003-content-quality-remediation/implementation-summary.md:37-77`].
 - Impact: stale resume/continuity guidance, not a current resource defect.
 - Finding class: `cross-consumer`
 - Recommendation: mark the follow-up closed by sibling packet 020 while preserving the history.

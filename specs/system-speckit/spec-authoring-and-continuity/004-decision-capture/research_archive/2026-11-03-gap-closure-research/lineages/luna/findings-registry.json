@@ -157,7 +157,7 @@
   "keyFindings": [
     {
       "id": "finding-1-4-chat-candidates-already-pair-ordered-assistant-and-user-turns-and-carry-both-tur",
-      "text": "Chat candidates already pair ordered assistant and user turns and carry both turn IDs, but save.md still asks the saving model to decide whether a candidate clearly replies, and several candidates may share one reply. The process filter also reads option labels and question context, so “keyword-only” overstates the implementation. Inference: use existing turn IDs for a unique candidate and leave a shared or ambiguous reply pending; keep the current filter and do not add a second classifier. A multi-question live case would confirm the remaining edge. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:158] [SOURCE: .skilled/commands/speckit/save.md:70] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:99] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md:103]",
+      "text": "Chat candidates already pair ordered assistant and user turns and carry both turn IDs, but save.md still asks the saving model to decide whether a candidate clearly replies, and several candidates may share one reply. The process filter also reads option labels and question context, so “keyword-only” overstates the implementation. Inference: use existing turn IDs for a unique candidate and leave a shared or ambiguous reply pending; keep the current filter and do not add a second classifier. A multi-question live case would confirm the remaining edge. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:158] [SOURCE: .skilled/commands/speckit/save.md:70] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:99] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:103]",
       "addedAtIteration": 1,
       "sources": [
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
@@ -171,10 +171,10 @@
         ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
         ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
         ".opencode/plugins/decision-capture.js",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/decision-record.md",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
         ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/handover.md"
+        "specs/system-speckit/043-decision-capture/handover.md"
       ]
     },
     {
@@ -193,15 +193,15 @@
         ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
         ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
         ".opencode/plugins/decision-capture.js",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/decision-record.md",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
         ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/handover.md"
+        "specs/system-speckit/043-decision-capture/handover.md"
       ]
     },
     {
       "id": "finding-1-3-codex-s-save-time-rollout-reader-is-an-intentional-trust-boundary-and-the-006-re",
-      "text": "Codex's save-time rollout reader is an intentional trust boundary, and the 006 results prove it captured and saved answers without a live project hook. Cursor remains explicitly unverified, and the six-runtime coverage table has no Hermes column. Do not add another Codex capture path. Add a Hermes status row and probe Cursor or Hermes only when an answered question-tool event can be observed; do not register an adapter on a guessed surface. [SOURCE: .skilled/hooks/README.md:271] [SOURCE: .skilled/commands/speckit/save.md:67] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv:7] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md:106]",
+      "text": "Codex's save-time rollout reader is an intentional trust boundary, and the 006 results prove it captured and saved answers without a live project hook. Cursor remains explicitly unverified, and the six-runtime coverage table has no Hermes column. Do not add another Codex capture path. Add a Hermes status row and probe Cursor or Hermes only when an answered question-tool event can be observed; do not register an adapter on a guessed surface. [SOURCE: .skilled/hooks/README.md:271] [SOURCE: .skilled/commands/speckit/save.md:67] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv:7] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:106]",
       "addedAtIteration": 1,
       "sources": [
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
@@ -215,10 +215,10 @@
         ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
         ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
         ".opencode/plugins/decision-capture.js",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/decision-record.md",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
         ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/handover.md"
+        "specs/system-speckit/043-decision-capture/handover.md"
       ]
     },
     {
@@ -237,15 +237,15 @@
         ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
         ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
         ".opencode/plugins/decision-capture.js",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/decision-record.md",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
         ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/handover.md"
+        "specs/system-speckit/043-decision-capture/handover.md"
       ]
     },
     {
       "id": "finding-1-6-the-handover-says-the-codex-pi-opencode-devin-chat-detection-and-live-run-work-h",
-      "text": "The handover says the Codex/Pi, OpenCode/Devin, chat-detection, and live-run work had not started, while the 006 implementation summary and current results record all five runtime runs as passing. This is a documentation conflict, not a missing implementation. Use the current run artifacts as evidence and refresh the stale handover through its normal owner later; do not repeat completed runtime work. [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/handover.md:22] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md:43] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv:7]",
+      "text": "The handover says the Codex/Pi, OpenCode/Devin, chat-detection, and live-run work had not started, while the 006 implementation summary and current results record all five runtime runs as passing. This is a documentation conflict, not a missing implementation. Use the current run artifacts as evidence and refresh the stale handover through its normal owner later; do not repeat completed runtime work. [SOURCE: specs/system-speckit/043-decision-capture/handover.md:22] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:43] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv:7]",
       "addedAtIteration": 1,
       "sources": [
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
@@ -259,15 +259,15 @@
         ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
         ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
         ".opencode/plugins/decision-capture.js",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/decision-record.md",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
         ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/handover.md"
+        "specs/system-speckit/043-decision-capture/handover.md"
       ]
     },
     {
       "id": "finding-1-2-the-pending-nudge-is-delivered-by-claude-stop-and-the-opencode-plugin-while-devi",
-      "text": "The pending nudge is delivered by Claude Stop and the OpenCode plugin, while Devin and Pi have capture adapters without that nudge surface. The 006 record also confirms that Claude's async Stop message can be dropped when a session restarts before the next prompt, although the answer remains queued and a later Stop recounts it. Closing this is worthwhile. Reuse the existing pending-count helper at the next user-visible lifecycle point instead of adding another queue. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:101] [SOURCE: .opencode/plugins/decision-capture.js:105] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:361] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/decision-record.md:148]",
+      "text": "The pending nudge is delivered by Claude Stop and the OpenCode plugin, while Devin and Pi have capture adapters without that nudge surface. The 006 record also confirms that Claude's async Stop message can be dropped when a session restarts before the next prompt, although the answer remains queued and a later Stop recounts it. Closing this is worthwhile. Reuse the existing pending-count helper at the next user-visible lifecycle point instead of adding another queue. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:101] [SOURCE: .opencode/plugins/decision-capture.js:105] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:361] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md:148]",
       "addedAtIteration": 1,
       "sources": [
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
@@ -281,18 +281,18 @@
         ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
         ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
         ".opencode/plugins/decision-capture.js",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/decision-record.md",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
         ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/handover.md"
+        "specs/system-speckit/043-decision-capture/handover.md"
       ]
     },
     {
       "id": "finding-2-2-a-codex-live-adapter-is-not-worth-adding-while-hook-trust-is-a-precondition-its-",
-      "text": "A Codex live adapter is not worth adding while hook trust is a precondition; its save-time rollout sweep is the smallest safe path. Closing matrix coverage is worthwhile as documentation: add Hermes to the existing matrix with an explicit unknown/unverified status, and keep Cursor unverified until an answered question-tool event is observed. Do not add adapters or a second runtime inventory. [SOURCE: .skilled/hooks/README.md:267] [SOURCE: .skilled/hooks/README.md:271] [SOURCE: .skilled/commands/speckit/save.md:67] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/006-live-conversation-test/implementation-summary.md:106]",
+      "text": "A Codex live adapter is not worth adding while hook trust is a precondition; its save-time rollout sweep is the smallest safe path. Closing matrix coverage is worthwhile as documentation: add Hermes to the existing matrix with an explicit unknown/unverified status, and keep Cursor unverified until an answered question-tool event is observed. Do not add adapters or a second runtime inventory. [SOURCE: .skilled/hooks/README.md:267] [SOURCE: .skilled/hooks/README.md:271] [SOURCE: .skilled/commands/speckit/save.md:67] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:106]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
         ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
         ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
@@ -319,7 +319,7 @@
       "text": "Consolidating runtime storage readers is not worthwhile: OpenCode SQLite, Codex rollouts, Devin sessions, Pi sessions, and Claude transcripts have distinct host-owned formats. The shared normalization, append queue, and chat detector already form the common boundary, and Pi live capture already imports the save reader's recoveredRecords. Keep the decision writer as the sole record upsert, the matcher library as the sole table parser/scorer, and the CLI as queue and consumed-key orchestration. Merge only duplicated policy/error behavior; add no cross-runtime parser or parallel writer/matcher. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:129] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:305] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/pi/decision-capture.ts:5] [SOURCE: .skilled/hooks/decision-capture/pi/decision-capture.ts:85] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:667] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts:78] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:283] [SOURCE: .skilled/skills/system-spec-kit/runtime/api/index.ts:124]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
         ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
         ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
@@ -346,7 +346,7 @@
       "text": "Fixing the silent unreadable-transcript path is worthwhile. Codex and Pi should reuse the visible error and nonzero-exit convention in Claude and Devin, while readable empty transcripts remain quiet. Remove only the current null-to-success behavior; two aligned branches do not justify a new generic error framework. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:276] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:323] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:198] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:265] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-transcript.mjs:284] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-devin.mjs:285]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
         ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
         ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
@@ -373,7 +373,7 @@
       "text": "Reducing chat-pairing judgment is worthwhile because a wrong pair pollutes the decision record. The smallest candidate rule is to use the detector's existing ordered-turn IDs only for a unique direct reply and leave shared or ambiguous replies pending; a multi-question live case should confirm it before the save instructions change. The process-question concern is overstated: isProcessQuestion evaluates header, option shape, direct permission wording, and the question text. Keep that filter; add only a narrow rule after a demonstrated false positive or negative, and do not add a second classifier. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:158] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:87] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:109] [SOURCE: .skilled/commands/speckit/save.md:70]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
         ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
         ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
@@ -400,7 +400,7 @@
       "text": "The decision record should remain save-bound because only save has selected and validated the destination packet. Closing this as an automatic live write is not worthwhile. Pending-answer delivery is worthwhile: Claude can reuse takeNudge at the next visible lifecycle point, while runtimes without a trusted notification hook can use the existing save-time pending output. Merge with the shared counter; do not add a record writer, queue, or nudge cursor. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:305] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:361] [SOURCE: .skilled/commands/speckit/save.md:64] [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md:43]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
         ".skilled/hooks/decision-capture/lib/capture-core.mjs",
         ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
         ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
@@ -471,7 +471,7 @@
     "pivotOverrides": 0
   },
   "corruptionWarnings": [],
-  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/luna/inbox.jsonl",
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/043-decision-capture/research/lineages/luna/inbox.jsonl",
   "inboxWarnings": [],
   "status": "COMPLETE",
   "advisoryEvents": [],

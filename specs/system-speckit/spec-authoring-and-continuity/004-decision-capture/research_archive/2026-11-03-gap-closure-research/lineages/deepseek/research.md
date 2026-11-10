@@ -13,14 +13,14 @@ version: 1.0.0
 
 # Operator decision capture: gap closure and maintainability
 
-Read-only research lineage `deepseek` over `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture`. Three iterations, 31 findings, five key questions resolved. Stop reason: `maxIterationsReached`.
+Read-only research lineage `deepseek` over `specs/system-speckit/043-decision-capture`. Three iterations, 31 findings, five key questions resolved. Stop reason: `maxIterationsReached`.
 
 ## 1. METADATA
 
 | Field | Value |
 |---|---|
-| Spec folder | `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture` |
-| Lineage artifact dir | `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/deepseek` |
+| Spec folder | `specs/system-speckit/043-decision-capture` |
+| Lineage artifact dir | `specs/system-speckit/043-decision-capture/research/lineages/deepseek` |
 | Session | `fanout-deepseek-1793639912371-mz7z8d` |
 | Executor | `cli-pi`, model `deepseek-v4.1-flash-1017` |
 | Iterations | 3 of 3 (`stopPolicy: max-iterations`) |
@@ -218,7 +218,7 @@ None tracked by this lineage's strategy remain open. Two boundaries are named ab
 - `.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts` - the matcher CLI.
 - `.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts` - the Claude nudge and the autosave.
 - `.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md` - the catalog entry.
-- Resource map: `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/deepseek/resource-map.md`.
+- Resource map: `specs/system-speckit/043-decision-capture/research/lineages/deepseek/resource-map.md`.
 - Iteration trail: `iterations/iteration-001.md`, `iteration-002.md`, `iteration-003.md`; deltas in `deltas/`.
 
 ## Convergence Report

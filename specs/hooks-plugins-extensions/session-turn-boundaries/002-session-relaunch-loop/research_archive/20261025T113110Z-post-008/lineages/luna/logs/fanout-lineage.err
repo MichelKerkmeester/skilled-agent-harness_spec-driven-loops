@@ -249,7 +249,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-git/commit-standards/005-git-setup-customization/001-deep-research/spec.md",
+      "path": "specs/sk-git/033-git-setup-customization/001-deep-research/spec.md",
       "phrases": [
         "deep research",
         "phase 1 deep research"

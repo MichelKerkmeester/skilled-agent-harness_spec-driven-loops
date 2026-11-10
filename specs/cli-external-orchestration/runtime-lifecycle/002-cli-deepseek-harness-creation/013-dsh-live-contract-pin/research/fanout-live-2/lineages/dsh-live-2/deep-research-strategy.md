@@ -125,8 +125,8 @@ The two route patches and the repository route inventory are the primary inputs:
 - `.dsh/patches/route-opencode-go-deepseek.patch.yml`
 - `.dsh/README.md` (exactly one route patch per dispatch; OpenCode Go endpoint unverified)
 - `.dsh/SYNC.md` (both patches hand-authored; OpenCode Go endpoint unverified until a keyed run proves it)
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
 
 ### Bounded Context Snapshot
 

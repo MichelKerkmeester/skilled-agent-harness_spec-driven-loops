@@ -60,7 +60,7 @@ Direct file reading of both patches, then cross-checking the repository's route 
 
 The repository documents both patches as hand-authored route patches. `.dsh/README.md` says a dispatch passes exactly one route patch and labels the OpenCode Go endpoint unverified. `.dsh/SYNC.md` repeats that the OpenCode Go endpoint is unverified until a keyed run proves it, and records that each provider also sets `supportsDeveloperRole: false` because the gateway upstream refuses the `developer` role. The prior 004 packet's `--dump-config` evidence shows each patch composing its own provider, model and default effort.
 
-[SOURCE: .dsh/README.md:17] [SOURCE: .dsh/README.md:28] [SOURCE: .dsh/SYNC.md:25] [SOURCE: .dsh/SYNC.md:66] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt:60] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt:60]
+[SOURCE: .dsh/README.md:17] [SOURCE: .dsh/README.md:28] [SOURCE: .dsh/SYNC.md:25] [SOURCE: .dsh/SYNC.md:66] [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt:60] [SOURCE: specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt:60]
 
 ## 7. Evidence
 
@@ -68,8 +68,8 @@ The repository documents both patches as hand-authored route patches. `.dsh/READ
 - `.dsh/patches/route-opencode-go-deepseek.patch.yml`
 - `.dsh/README.md`
 - `.dsh/SYNC.md`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
 
 ## 8. Implications
 
@@ -94,8 +94,8 @@ The two patches are mutually exclusive route choices. A dispatch that needs LLM 
 - `.dsh/patches/route-opencode-go-deepseek.patch.yml`
 - `.dsh/README.md`
 - `.dsh/SYNC.md`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
-- `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt`
+- `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt`
 - `resource-map.md` (this lineage; generated from the cited deltas)
 
 ## Eliminated Alternatives

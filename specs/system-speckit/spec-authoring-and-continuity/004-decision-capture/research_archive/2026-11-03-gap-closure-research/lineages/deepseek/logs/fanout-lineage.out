@@ -1,6 +1,6 @@
 Lineage `deepseek` is complete: 3 iterations at the cap, all state written through the append gateway, reducer run after each iteration.
 
-**Artifacts** (all under `specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/research/lineages/deepseek/`): `deep-research-config.json` (status complete), `deep-research-state.jsonl` (config + 3 iterations + terminal `maxIterationsReached`), `deep-research-strategy.md`, `findings-registry.json` (31 findings, 5/5 questions resolved), `deep-research-dashboard.md` (reducer-stamped, COMPLETE), `research.md`, `resource-map.md`, `iterations/iteration-00{1,2,3}.md`, `deltas/iter-00{1,2,3}.jsonl`.
+**Artifacts** (all under `specs/system-speckit/043-decision-capture/research/lineages/deepseek/`): `deep-research-config.json` (status complete), `deep-research-state.jsonl` (config + 3 iterations + terminal `maxIterationsReached`), `deep-research-strategy.md`, `findings-registry.json` (31 findings, 5/5 questions resolved), `deep-research-dashboard.md` (reducer-stamped, COMPLETE), `research.md`, `resource-map.md`, `iterations/iteration-00{1,2,3}.md`, `deltas/iter-00{1,2,3}.jsonl`.
 
 **What the research found**
 

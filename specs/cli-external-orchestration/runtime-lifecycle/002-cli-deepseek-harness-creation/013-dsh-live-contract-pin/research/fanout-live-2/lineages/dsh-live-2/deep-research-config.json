@@ -15,7 +15,7 @@
   "maxToolCallsPerIteration": 24,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin",
+  "specFolder": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin",
   "resource_map_present": false,
   "resource_map": {
     "emit": true

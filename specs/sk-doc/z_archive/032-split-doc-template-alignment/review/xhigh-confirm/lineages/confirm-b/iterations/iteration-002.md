@@ -21,7 +21,7 @@ Security: documentation-only delivery boundary, copy-paste security examples, cr
 
 - Delivery range `b932569d73^..f9977d915c` restricted to packet 019 and the five resource roots: 39 changed paths, all Markdown or JSON.
 - xHigh remediation commit `f9977d915c`: no executable source file under the scoped surfaces.
-- Sibling content remediation commit `32df12d5ca` and `.opencode/specs/sk-code/code-surfaces/001-content-quality-remediation/implementation-summary.md:37-77`.
+- Sibling content remediation commit `32df12d5ca` and `.opencode/specs/sk-code/003-content-quality-remediation/implementation-summary.md:37-77`.
 - Cookie guidance: `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-100` and `:249-260`.
 - CDN loader guidance: `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:34-61`.
 
