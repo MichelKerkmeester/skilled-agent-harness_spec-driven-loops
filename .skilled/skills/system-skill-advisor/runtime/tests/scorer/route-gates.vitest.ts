@@ -90,6 +90,24 @@ describe('read-only prompt about captured decisions', () => {
   });
 });
 
+describe('read-only prompt about the trigger index', () => {
+  it('lets spec-kit answer an explain prompt about a trigger-index lookup', () => {
+    expect(readOnlyRouteAllowed('explain which run-output files the trigger index omits.', skill('system-spec-kit'))).toBe(true);
+  });
+
+  it('keeps another skill gated on the same prompt', () => {
+    expect(readOnlyRouteAllowed('explain which run-output files the trigger index omits.', skill('sk-doc'))).toBe(false);
+  });
+
+  it('leaves a drift question to the doctor hand-off', () => {
+    expect(readOnlyRouteAllowed('explain trigger index drift and repair it.', skill('system-spec-kit'))).toBe(false);
+  });
+
+  it('keeps spec-kit gated on an explain prompt with no index noun', () => {
+    expect(readOnlyRouteAllowed('explain which run-output files the lookup omits.', skill('system-spec-kit'))).toBe(false);
+  });
+});
+
 describe('review-loop verb', () => {
   const projection = createFixtureProjection([skill('system-deep-loop'), skill('sk-code')]);
 

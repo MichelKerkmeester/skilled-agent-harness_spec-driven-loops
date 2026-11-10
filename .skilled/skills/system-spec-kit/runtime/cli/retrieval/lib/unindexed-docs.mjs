@@ -24,7 +24,7 @@ import { compareCodeUnits, matchClassRank, scorePhrase } from './normalize.mjs';
  * every markdown file, because a packet's context and lineage transcripts are
  * working material and do not declare triggers of their own.
  */
-export const SPEC_DOC_NAMES = Object.freeze(new Set([
+const SPEC_DOC_NAMES = Object.freeze(new Set([
   'acceptance-criteria.md',
   'checklist.md',
   'decision-record.md',
@@ -45,7 +45,7 @@ export const SPEC_DOC_NAMES = Object.freeze(new Set([
  * prompt can afford to read; the cap keeps the walk bounded and reports when it
  * cut the candidate list short.
  */
-export const MAX_FALLBACK_FILES = 500;
+const MAX_FALLBACK_FILES = 500;
 
 // ───────────────────────────────────────────────────────────────────
 // 2. WALK
@@ -64,7 +64,7 @@ export const MAX_FALLBACK_FILES = 500;
  * @param {{ specFolder?: string | null }} [options] Packet folder to narrow the walk to.
  * @returns {Promise<string[]>} Kept repo-relative POSIX paths, sorted.
  */
-export async function listUnindexedDocs(repoRoot, indexedPaths, options = {}) {
+async function listUnindexedDocs(repoRoot, indexedPaths, options = {}) {
   const start = await resolveWalkStart(repoRoot, options.specFolder ?? null);
   if (start === null) return [];
 
@@ -84,13 +84,12 @@ export async function listUnindexedDocs(repoRoot, indexedPaths, options = {}) {
  * never covers.
  *
  * @param {string} repoRoot Absolute repository root.
- * @param {unknown} requested Scope argument, or null for the whole spec tree.
+ * @param {string | null} requested Scope argument, or null for the whole spec tree.
  * @returns {Promise<string | null>} Normalized repo-relative start, or null.
  */
 async function resolveWalkStart(repoRoot, requested) {
   let start = 'specs';
   if (requested !== null) {
-    if (typeof requested !== 'string') return null;
     start = path.posix.normalize(requested);
     if (start !== 'specs' && !start.startsWith('specs/')) return null;
   }
@@ -175,7 +174,7 @@ async function walkSpecDocs(directory, relativeDirectory, parentName, indexedPat
  * @returns {Promise<{
  *   results: Array<{ matchClass: string, path: string, phrases: string[], score: number }>,
  *   staleFallback: { available: true, files: number, matches: number, paths: string[], truncated: boolean },
- * }>} Matched documents ranked best first, plus what the fallback did.
+ * }>} Matched documents in path order, plus what the fallback did.
  */
 export async function findStaleFallback({
   repoRoot,
@@ -228,15 +227,11 @@ export async function findStaleFallback({
     });
   }
 
-  results.sort((a, b) => b.score - a.score
-    || matchClassRank(a.matchClass) - matchClassRank(b.matchClass)
-    || compareCodeUnits(a.path, b.path));
-
   return {
     results,
     staleFallback: {
       available: true,
-      files: read.length,
+      files: loaded.filter((document) => document !== null).length,
       matches: results.length,
       paths: results.map((result) => result.path).sort(compareCodeUnits),
       truncated,

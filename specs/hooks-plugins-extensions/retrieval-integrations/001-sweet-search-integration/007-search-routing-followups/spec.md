@@ -25,9 +25,9 @@ contextType: "general"
 | **Created** | 2026-11-10 |
 | **Branch** | `hooks-plugins-extensions/0335-sweet-search-retrieval-build` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 7 of 7 |
+| **Phase** | 7 of 8 |
 | **Predecessor** | 006-rg-flood-control |
-| **Successor** | None |
+| **Successor** | 008-routing-and-release-alignment |
 | **Handoff Criteria** | Advisor probe P01 routes to `system-spec-kit`, the default `/speckit:search` lane runs the wrapper, and the alignment battery reports 0 failures |
 <!-- /ANCHOR:metadata -->
 

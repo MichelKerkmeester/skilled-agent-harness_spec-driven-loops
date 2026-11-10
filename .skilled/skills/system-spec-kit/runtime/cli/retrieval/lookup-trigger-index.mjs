@@ -635,5 +635,9 @@ async function main() {
 if (isMainModule(import.meta.url)) {
   main().then((code) => {
     process.exitCode = code;
+  }, (error) => {
+    // An unhandled rejection exits 1, which this script reserves for a clean no-hit.
+    process.stderr.write(`lookup-trigger-index: ${error instanceof Error ? error.message : String(error)}\n`);
+    process.exitCode = 2;
   });
 }

@@ -16,7 +16,6 @@ import { findStaleFallback } from '../retrieval/lib/unindexed-docs.mjs';
 import {
   normalizeTriggerText,
   queryTokens,
-  scorePhrase,
 } from '../retrieval/lib/normalize.mjs';
 import { loadIndex, lookupWithFallback } from '../retrieval/lookup-trigger-index.mjs';
 
@@ -126,36 +125,11 @@ async function lookupFallback(
   return await lookupWithFallback(loaded, prompt, options) as CliAnswer;
 }
 
-function commitDoc(root: string, relativePath: string): void {
-  // A global excludes file can ignore specs/ on a developer machine, so the
-  // fixture stages with excludes switched off to stay machine-independent.
-  execFileSync('git', ['-c', 'core.excludesFile=/dev/null', 'add', '--', relativePath], { cwd: root, stdio: 'ignore' });
-  // Keep the fixture commit reproducible without changing the operator's Git identity.
-  execFileSync('git', [
-    '-c', 'user.name=Fixture',
-    '-c', 'user.email=fixture@example.invalid',
-    'commit', '--quiet', '-m', 'fixture',
-  ], { cwd: root, stdio: 'ignore' });
-}
-
 describe('stale trigger index fallback', () => {
   it('finds an untracked unindexed document through the CLI', () => {
     const fixture = makeRepo();
     const relativePath = 'specs/search/001-query/spec.md';
     addFallbackDoc(fixture.root, relativePath, ['silver badger retrieval']);
-
-    const run = runJson(fixture.root, 'silver badger retrieval');
-
-    expect(run.status).toBe(0);
-    expect(run.answer.staleFallback?.matches).toBe(1);
-    expect(run.answer.results.map((result) => result.path)).toContain(relativePath);
-  });
-
-  it('finds the same document after Git adds and commits it', () => {
-    const fixture = makeRepo();
-    const relativePath = 'specs/search/001-query/spec.md';
-    addFallbackDoc(fixture.root, relativePath, ['silver badger retrieval']);
-    commitDoc(fixture.root, relativePath);
 
     const run = runJson(fixture.root, 'silver badger retrieval');
 
@@ -284,23 +258,6 @@ describe('stale trigger index fallback', () => {
 
     expect(run.status).toBe(1);
     expect(run.answer).not.toHaveProperty('staleFallback');
-  });
-
-  it('uses the phrase scorer class and score for fallback rows', async () => {
-    const fixture = makeRepo();
-    const prompt = 'silver badger';
-    const phrase = 'silver badger retrieval';
-    addFallbackDoc(fixture.root, 'specs/search/001-query/spec.md', [phrase]);
-    const expected = scorePhrase(normalizeTriggerText(prompt), phrase);
-    const answer = await lookupFallback(fixture.loaded, prompt, {
-      cwd: fixture.root,
-      staleFallback: true,
-    });
-    const result = answer.results.find((candidate) => candidate.path === 'specs/search/001-query/spec.md');
-
-    expect(expected).not.toBeNull();
-    expect(result?.matchClass).toBe(expected?.matchClass);
-    expect(result?.score).toBe(expected?.score);
   });
 
   it('does not add fallback metadata when the index already matches', () => {

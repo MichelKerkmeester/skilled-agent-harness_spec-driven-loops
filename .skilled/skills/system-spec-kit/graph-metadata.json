@@ -88,10 +88,12 @@
     "before this compaction",
     "earlier turns",
     "history entry",
-    "spec docs",
     "spec and skill docs",
     "ripgrep retrieval",
-    "ripgrep wrapper"
+    "ripgrep wrapper",
+    "trigger index",
+    "trigger phrase",
+    "unindexed spec"
   ],
   "derived": {
     "trigger_phrases": [

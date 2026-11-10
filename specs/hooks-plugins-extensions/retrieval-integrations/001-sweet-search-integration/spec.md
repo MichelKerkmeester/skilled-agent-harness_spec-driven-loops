@@ -102,6 +102,7 @@ Decide from evidence whether sweet-search is worth adopting, and if so, integrat
 | 5 | 005-stale-index-fallback/ | Build: zero-hit fallback that scores trigger phrases of spec docs the index does not list yet | Complete |
 | 6 | 006-rg-flood-control/ | Build: one row per file plus `+N more` lines in the ripgrep wrapper | Complete |
 | 7 | 007-search-routing-followups/ | Follow-up: `/speckit:search` runs its default lane through the wrapper, and spec-search prompts route to `system-spec-kit` | Complete |
+| 8 | 008-routing-and-release-alignment/ | Follow-up: read-only questions about the trigger index route to `system-spec-kit`, review trims on the retrieval lane, and the retrieval work in the v4.0.2.0 notes | Complete |
 
 ### Phase Transition Rules
 
@@ -120,6 +121,7 @@ Decide from evidence whether sweet-search is worth adopting, and if so, integrat
 | 004-total-candidate-count | 005-stale-index-fallback | `totalCandidates` shipped, because phase 5 recomputes it after its merge | Phase 4 tests pass and phase 4 validates |
 | 005-stale-index-fallback | 006-rg-flood-control | Keyed-lane changes complete; phase 6 touches only the ripgrep lane | Phase 5 tests pass and phase 5 validates |
 | 006-rg-flood-control | 007-search-routing-followups | Wrapper record with `schemaVersion: 2` shipped, because phase 7 puts it in front of the command | Phase 6 tests pass and phase 6 validates |
+| 007-search-routing-followups | 008-routing-and-release-alignment | Phases 4 to 7 on `origin/main`, because phase 8 reviews that code and describes it in the release notes | Phase 7 validates and both suites exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

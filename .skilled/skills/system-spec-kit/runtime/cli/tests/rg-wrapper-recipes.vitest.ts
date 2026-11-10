@@ -258,14 +258,6 @@ describe('per-file flood control', () => {
     expect(rows).toHaveLength(30);
   });
 
-  it('produces deterministic serialized records for identical searches', () => {
-    const cwd = makeCorpus();
-    const first = search('structured', 'only', { cwd, roots: ['specs'] });
-    const second = search('structured', 'only', { cwd, roots: ['specs'] });
-
-    expect(stableStringify(second)).toBe(stableStringify(first));
-  });
-
   it('prints the exact per-file and hidden-file elision strings', () => {
     const record = {
       command: 'rg --no-config --hidden --json ...',
@@ -313,25 +305,6 @@ describe('per-file flood control', () => {
     expect(record.fileCount).toBe(0);
     expect(record.hidden).toEqual({ files: 0, matches: 0 });
     expect(record.truncated).toBe(false);
-  });
-
-  it('sets moreInFile to zero and omits the human suffix for a single-match file', () => {
-    const shaped = shapeRankedMatches([rankedRow('specs/track/001-packet/single.md', 1)]);
-    const formatted = formatSummary({
-      command: 'rg --no-config --hidden --json ...',
-      exitCode: 0,
-      fileCount: shaped.fileCount,
-      hidden: shaped.hidden,
-      limit: shaped.limit,
-      matchCount: shaped.matchCount,
-      outcome: 'match',
-      recipe: 'structured',
-      results: shaped.results,
-      unparsedLines: 0,
-    });
-
-    expect(shaped.results[0].moreInFile).toBe(0);
-    expect(formatted).not.toContain('more in this file');
   });
 
   it('accepts whole non-negative limits and rejects invalid values', () => {

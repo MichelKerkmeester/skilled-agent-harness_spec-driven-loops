@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 6 gave `rg-wrapper.mjs` one row per file and a 20-file cap, but `/speckit:search` kept running the raw Section 2.1 recipe, so a person using the command still got every matching line",
     "created_at": "2026-11-10T07:13:04Z",
-    "last_save_at": "2026-11-10T08:30:19.313Z",
+    "last_save_at": "2026-11-10T10:05:30.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edf1f324976c20ee3885b66be961e6b9cf042124794e18bcf0a5fda03620a2b6",
+    "source_fingerprint": "sha256:2ad1d61559901ee6d337e731264bd0c663f7959cbd9de5174c2cb2d03117ce94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "73b504319342f44df8766b08a6de5b8eb56c4bd5835ac12c762a69c81f6fed41",
+      "spec.md": "f0471f109e79ff4a0e606d40eab4a690893d7fa05b48ea2cea6be8f2c63ae3ff",
       "plan.md": "72ae1f39a1ba1c564192020639bbe1756f790f29d5c61a672420ecbfbc96ccb6",
       "tasks.md": "f6c528a527fb99e9909588216b625f542b7df559323e5771e9f6b796f8cadd83",
       "implementation-summary.md": "c686d79e8a0ab97f9a5b9f3bc6b024ba4332b541b0a0bf49e7163df5bb524b05"

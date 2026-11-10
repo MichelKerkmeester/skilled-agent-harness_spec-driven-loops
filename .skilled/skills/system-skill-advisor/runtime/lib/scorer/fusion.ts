@@ -708,6 +708,14 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
     && /\b(decision capture|decision record|chat candidates?|operator decisions?|recorded as decisions?)\b/.test(promptLower)) {
     return true;
   }
+  // The trigger index is spec-kit's own lookup surface, so a question about what a lookup
+  // returned, counted or left out is answered there. Without the lift no skill passes on such a
+  // question, and the doctor hand-off claims it on the index noun alone. Drift is the doctor's
+  // own diagnosis, so a drift question stays with the hand-off.
+  if (skillId === 'system-spec-kit' && isReadOnlyExplainer(promptLower)
+    && /\btrigger[- ]index\b/.test(promptLower) && !/\bdrift\b/.test(promptLower)) {
+    return true;
+  }
   if (skillId === 'system-deep-loop' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }
