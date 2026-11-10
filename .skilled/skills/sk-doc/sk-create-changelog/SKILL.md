@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.3.0
+version: 1.5.0.0
 ---
 
 # create-changelog
@@ -97,15 +97,17 @@ Existing packet-local files such as `changelog-<packet>-root.md` stay where they
 
 ## 5. CHANGELOG FORMAT CONTRACT
 
-Read `assets/changelog-template.md` before generating global content. It owns the compact and expanded shapes (section 2), what to leave out and the say-it-once rule (section 3), voice and length (section 4) and format selection (section 5). Every entry must read in the voice and section shape of the two model entries, at whatever length the template's ceilings allow. `.skilled/changelog/skilled/v4.0.1.0.md` models length, selection and a release with many changes, and `.skilled/changelog/skilled/v4.0.0.0.md` models voice and how a major release opens.
+Read `assets/changelog-template.md` before generating global content. It owns the compact and expanded shapes (section 2), what to leave out and the say-it-once rule (section 3), voice and length (section 4) and format selection (section 5). Every entry must read in the voice and section shape of the three model entries, at whatever length the template's ceilings allow. `.skilled/changelog/skilled/v4.0.2.1.md` models sentence length, plain words, feature detail and the testing section. `.skilled/changelog/skilled/v4.0.1.0.md` models selection and a release with many changes, and `.skilled/changelog/skilled/v4.0.0.0.md` models voice and how a major release opens.
 
 The contract in one pass:
 
 1. Frontmatter first, then an optional editorial title H1, then the summary narrative. No version header, backlink or version-date line.
 2. Compact under 10 reader-visible changes when the release is neither major nor breaking: summary, `## What's New at a Glance` and `## Upgrade`, with `## Why This Release` only when the summary does not say why.
-3. Expanded for 10 or more changes, a major bump or any breaking change: opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with benefit-led H4 items and `## Upgrade Notes`.
+3. Expanded for 10 or more changes, a major bump or any breaking change: opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with benefit-led H4 items, `## How It Was Checked` and `## Upgrade Notes`.
 4. A spec-folder blockquote, ``> Spec folder: `{path}` ``, when the release has a spec folder. It carries the path only, and the level stays in the packet.
-5. Content chosen by reader impact and each fact said once. No file, test or schema tables unless the numbers are the story.
+5. Content chosen by reader impact and each fact said once. No file or schema tables unless the numbers are the story.
+6. Detail by default, with no request needed. Each new feature says how it works and shows a real line of output. Every fix a reader could run into is named. `## How It Was Checked` gives the before and after, the cost and the tests that ran.
+7. Short sentences in plain words: about 8 words each, none past 22 and 10 at most on average.
 
 When a source such as an older command snippet conflicts with the template, follow the template, write the narrative format and record the mismatch rather than inventing a hybrid.
 
@@ -198,7 +200,10 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
    - Choose the content before writing it (template section 3). Start from what the reader would notice, act on or decide differently about, confirm each against the source, merge items with the same effect and drop the housekeeping.
    - Select compact or expanded from the changes that survive (template section 5).
    - Write each section to its one job, so a fact appears once: themes in the opening, the gap in Why This Release, one payoff line per theme at a glance, the detail in the H4 items and only actions in the upgrade notes.
-   - Lead with why the release matters, and add a table only when its numbers are the story.
+   - Explain how each new feature works, step by step, and quote one real line of its output. Name every fix a reader could run into.
+   - Write `## How It Was Checked` from evidence the source records: the before and after of a real command, the measured cost and each suite's result. Run the command when the source lacks its output. Never write a number that no run produced, and say so when something was not measured.
+   - Write short sentences in everyday words (template section 4). Split a long sentence rather than cut its fact.
+   - Lead with why the release matters. Outside How It Was Checked, add a table only when its numbers are the story.
    - Order the opening, the glance list, the topical sections and the upgrade notes by what matters most to the reader, never by when the work landed.
    - When extending an open release, read the entry first and fold the new work into it.
      Add its section or H4 items, a glance bullet in section order, its spec folder on the spec-folder line and any upgrade action.
@@ -209,7 +214,7 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
    Set `next_version` in every version carrier the component's skill root already has (`SKILL.md`, `description.json`, `hub-router.json` and `mode-registry.json`), never in `README.md` or a hub `ROUTER.md`, whose versions are each document's own.
    For a hub, run `node .skilled/commands/doctor/scripts/parent-skill-check.cjs` on the hub and stop on a non-zero exit.
    Report secondary components as candidates rather than writing extra files.
-7. **Report and preserve context.** Report the path, component, version, whether the entry is new or extended, bump type, summary, section count and H4 item count. A spec-folder source can preserve context through the normal memory save workflow. Do not claim completion before the written file is verified.
+7. **Report and preserve context.** Report the path, component, version, whether the entry is new or extended, bump type, summary, section count and H4 item count. For a `skilled` entry, also report the release: its URL when one is published, or that none is and the `--release` run that publishes it. When the entry belongs to a published release, bring the release in step first (section 8). A spec-folder source can preserve context through the normal memory save workflow. Do not claim completion before the written file is verified.
 
 Pause when confidence drops below 40 percent, component resolution stays ambiguous, the calculated version looks wrong or a required section would be empty.
 
@@ -220,10 +225,11 @@ Pause when confidence drops below 40 percent, component resolution stays ambiguo
 The voice, structure, omission and length rules live in `assets/changelog-template.md` sections 3 and 4. The non-negotiables are:
 
 1. Write for a smart person who is not a developer, and lead with why the release matters.
-2. Keep what the reader would notice or act on. Drop file inventories, test counts, internal labels, process detail and follow-on housekeeping, and compress reverted work to one story sentence or nothing.
+2. Keep what the reader would notice or act on, how each feature works, every fix and the evidence in How It Was Checked. Drop file inventories, test counts outside that section, internal labels, process detail and follow-on housekeeping, and compress reverted work to one story sentence or nothing.
 3. Say each fact once, in the section whose job it is.
 4. Bold lead-in sentences on glance bullets, a trailing `<!-- section: {Topical Domain} -->` comment on each one in an expanded entry, H4 item headings of 2-7 words (10 at most), an `&nbsp;` line before every H2 (the opening, Why This Release, What's New at a Glance and every later section), nothing between H4 items, no `---` rule in the body and inline `**Breaking:**` markers.
 5. No Oxford commas, em dashes or semicolons, per the Human Voice Rules.
+6. Short sentences in everyday words. No sentence runs past 22 words and the entry averages 10 at most.
 
 ### Release Notes
 
@@ -242,9 +248,28 @@ The tag is `v{next_version}`, and the release title is the tag followed by the e
 The step checks for a tag collision and an authenticated `gh`, then runs `git tag -a`, `git push origin {release_tag}` and `gh release create {release_tag} --title {release_title} --notes-file {notes_file}`, which publishes at once with no draft stage.
 `:confirm` shows the exact commands and runs them only after approval.
 
-#### Amend a Published Release
+#### Keep a Published Release in Step
 
-An entry can change after its release is published, for a correction or a reordering. Rebuild the body with `build_release_notes.py`, then run `gh release edit {release_tag} --notes-file {notes_file}`, adding `--title {release_title}` when the editorial title changed. The tag stays where it is. Moving a published tag deletes and recreates a public ref, so it needs the operator's explicit go-ahead. Leave it in place when the later commits change only the notes.
+A published release must always show its entry as it reads now. Whenever an entry changes after its release is published, bring the release in step in the same run, without waiting to be asked:
+
+1. Rebuild the body with `build_release_notes.py`.
+2. Run `gh release edit {release_tag} --notes-file {notes_file}`, adding `--title {release_title}` when the editorial title changed.
+3. Check the tag: `git show {release_tag}:{entry_path}` must match the entry on the default branch.
+4. Report the release URL from `gh release view {release_tag} --json url`.
+
+When step 3 shows a difference, the tag points at a commit that holds older text or older code. Recommend a republish, so the tag, the entry and the release agree.
+
+Republishing deletes and recreates a public ref, so it needs the operator's yes each time. Never run it as a default or in an unattended run. Ask once, in the same reply as the report, with republish as the recommended answer. Name the old tag object and say it can be pushed back. Only a request that names the tag move counts as the yes, such as "republish the tag" or "move the tag". A request to publish or edit the notes does not. The body edit in step 2 needs no such wait.
+
+After the yes, run these commands in order. The local tag goes too, or `git tag -a` fails because it still exists:
+
+```bash
+gh release delete {release_tag} --cleanup-tag --yes
+git tag -d {release_tag}
+git tag -a {release_tag} -m "{tag_message}"
+git push origin {release_tag}
+gh release create {release_tag} --title "{release_title}" --notes-file {notes_file} --latest --verify-tag
+```
 
 ---
 
@@ -258,13 +283,13 @@ Global changelog checks:
 2. The version follows `vX.Y.Z.B` and is strictly greater than the latest one in the folder, counting its generation folders. An extension keeps the open release's version.
 3. The frontmatter carries `title`, `description`, `trigger_phrases`, `importance_tier` and `contextType` in contract order, with both identity phrases for the target path and at least one topic phrase. `validate_document.py` blocks an entry whose block, keys or phrases are missing.
 4. The prose opens with the summary narrative, and the spec-folder blockquote is present when the source is a spec folder.
-5. The tier's sections are present: compact carries the summary, `## What's New at a Glance` and `## Upgrade`. Expanded carries the opening narrative, `## Why This Release`, `## What's New at a Glance`, at least one topical H2 with H4 items and `## Upgrade Notes`.
-6. No Files Changed, Test Impact or Schema Changes section. Any table passes the earned-evidence rule.
-7. Omission applied: no file inventories, test counts, process detail or housekeeping items. No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) appear outside the spec-folder line.
+5. The tier's sections are present: compact carries the summary, `## What's New at a Glance` and `## Upgrade`. Expanded carries the opening narrative, `## Why This Release`, `## What's New at a Glance`, at least one topical H2 with H4 items, `## How It Was Checked` and `## Upgrade Notes`.
+6. No Files Changed, Test Impact or Schema Changes section. Any table outside How It Was Checked passes the earned-evidence rule.
+7. Omission applied: no file inventories, process detail or housekeeping items, and no test counts outside How It Was Checked. No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) appear outside the spec-folder line.
 8. Each fact appears once: no sentence restates one from another section, and each glance bullet adds something the summary did not.
 9. The template's ceilings hold: opening within 5 paragraphs, prose near its word budgets (guidance, counted in words, never sentences), at most 12 glance bullets, H4 headings within 10 words, compact files within 40 prose lines, expanded files within 240 lines below the frontmatter and expanded entries within 26 H4 items.
 10. H4 headings are benefit-led and never numbered or sentence-length, and no H3 sits inside a topical section.
-11. `scripts/check_changelog_shape.py` passes the draft. It fails an expanded entry past 240 lines or 26 H4 items, more than 12 glance bullets, tagged glance bullets out of section order and a spec-folder line with a level label.
+11. `scripts/check_changelog_shape.py` passes the draft. It fails an expanded entry past 240 lines or 26 H4 items, more than 12 glance bullets, tagged glance bullets out of section order and a spec-folder line with a level label. It also fails a sentence past 22 words, an average past 10 words a sentence and an expanded entry with no `## How It Was Checked`.
 
 Voice gate, run on the draft before writing:
 
@@ -317,6 +342,8 @@ Packet-local files are deprecated, so no new one is validated here. `validate_do
 7. List secondary affected components.
 8. Verify the written file before claiming completion.
 9. Keep this packet self-contained, with the advisor identity at the `sk-doc` hub root.
+10. Write the feature detail, the fixes and How It Was Checked without being asked for them.
+11. Bring a published release in step with its entry in the same run, and end the report with the release URL.
 
 ### ⛔ NEVER
 
@@ -343,7 +370,7 @@ Packet-local files are deprecated, so no new one is validated here. `validate_do
 
 1. `assets/changelog-template.md`: the canonical format, selection, voice and length rules.
 2. `scripts/check_changelog_shape.py`: the shape gate that enforces the expanded ceilings, the glance order and the spec-folder line.
-   `scripts/build_release_notes.py`: builds the GitHub release body from an entry, for a publish and for an amend.
+   `scripts/build_release_notes.py`: builds the GitHub release body from an entry, for a publish and for keeping a published release in step.
 3. `references/README.md`: the route map to `worked-examples.md` (filled-in entries), `version-bump-rules.md` (concrete version choices) and `topology-edge-cases.md` (placement, back-dating, source conflicts and the release flow).
 4. `.skilled/commands/create/changelog.md`: the thin `/create:changelog` router.
 5. `.skilled/commands/create/assets/create-changelog-auto.yaml` and `create-changelog-confirm.yaml`: the `:auto` and `:confirm` workflows, which resolve to this same contract.
@@ -356,7 +383,7 @@ The workflow succeeds when:
 
 1. The file lands at its global component path, and a `--nested` request is refused with a global entry offered instead.
 2. Global versioning is sequential, unique and four-part, and an untagged `skilled` release is extended rather than followed by a second untagged entry.
-3. The entry follows the template's compact or expanded shape and reads in the v4 style: why first, benefit-led headings, only what the reader needs and each fact said once.
-4. A release body, when requested, uses the entry and appends the full changelog path.
+3. The entry follows the template's compact or expanded shape and reads in the v4 style: why first, benefit-led headings, short plain sentences, how each feature works, every fix, the evidence in How It Was Checked and each fact said once.
+4. A release body uses the entry and appends the full changelog path, and a published release never shows older text than its entry.
 5. Validation passes, or the remaining issue is escalated with exact evidence.
 6. No other file changes unless the user asked for it.

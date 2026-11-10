@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/005-test-cycle-speed",
+  "description": "Test cycle speed: cut the spec-kit suite time and the gate stacking",
+  "keywords": [
+    "test",
+    "cycle",
+    "speed",
+    "cut",
+    "spec-kit",
+    "suite",
+    "time",
+    "gate",
+    "stacking"
+  ],
+  "lastUpdated": "2026-11-10T12:21:55.662Z",
+  "specId": "005",
+  "folderSlug": "test-cycle-speed",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_13-21__plan-a-faster-simpler-test-cycle.md"
+  ]
+}

@@ -7,7 +7,8 @@
     "system-speckit/runtime-and-release/001-system-speckit-v4",
     "system-speckit/runtime-and-release/002-align-runtime-code-with-sk-code-skilled",
     "system-speckit/runtime-and-release/003-symlinked-runtime-root",
-    "system-speckit/runtime-and-release/004-v4-release-line-research"
+    "system-speckit/runtime-and-release/004-v4-release-line-research",
+    "system-speckit/runtime-and-release/005-test-cycle-speed"
   ],
   "manual": {
     "depends_on": [],

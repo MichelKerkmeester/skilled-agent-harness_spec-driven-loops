@@ -532,7 +532,7 @@ workflow:
       - |
         SELECT CONTENT before writing (template section 3): start from what the reader would
         notice, act on or decide differently about, then confirm each against the source. Merge
-        changes with the same effect, rank the rest by impact and drop test and scenario lists,
+        changes with the same effect, rank the rest by impact and drop lists of test names,
         internal labels, how the work was done, the order a router or scorer breaks ties in and
         follow-on housekeeping. Read tasks.md only to confirm what shipped. To get under a ceiling,
         cut at the H4 level into a sibling item or the section's Smaller Fixes list, never by
@@ -550,11 +550,19 @@ workflow:
                     sentences and a trailing <!-- section: {Topical Domain} --> comment, in section order + topical H2 sections
                     with H4 benefit-led story items of one paragraph each (two for a breaking
                     change) + an optional Smaller Fixes H4 list last in its section + one sentence
-                    in the last body section naming every component with its own entry + Upgrade Notes
+                    in the last body section naming every component with its own entry
+                    + How It Was Checked (a before-and-after table of real commands, the measured
+                    cost and each suite's result) + Upgrade Notes
           Expanded ceilings (template section 4, enforced by shape_check in Step 5):
-            240 lines below the frontmatter, 26 H4 items, 12 glance bullets
-        Omission rules apply: no Files Changed tables, no test metrics, no schema
-        tables. A table appears only when the numbers themselves are the story.
+            240 lines below the frontmatter, 26 H4 items, 12 glance bullets, 22 words a sentence,
+            10 words a sentence on average
+        Detail and readability apply to every format (template sections 2 and 4), with no request needed:
+          - Each new feature says how it works, step by step, and quotes one real line of output
+          - Every fix a reader could run into is named, one bullet each
+          - Short sentences in everyday words: about 8 words, none past 22, 10 at most on average
+          - Numbers in How It Was Checked come from a run the source records or one made now, never from memory
+        Omission rules apply: no Files Changed tables, no schema tables and no test results
+        outside How It Was Checked. Elsewhere a table appears only when the numbers are the story.
         No internal labels outside the spec-folder line.
         Say each fact once: themes in the opening, the gap in Why This Release, one payoff
         line per theme at a glance, the detail in H4 items and only actions in the upgrade notes.
@@ -653,6 +661,7 @@ workflow:
         IF publish_release != true:
           Set release_published = false, release_tag = null, release_url = null
           Set release_published_display = "Not requested"
+          IF primary_component == skilled: Set release_published_display = "Not requested -- add --release to publish v{next_version}"
           Skip the remaining activities in this step and continue to step_8_save_context
       - |
         IF publish_release == true AND primary_component != skilled:
@@ -663,7 +672,7 @@ workflow:
       - "Derive release_tag: \"v{next_version}\" -- the same version already written to {output_path}"
       - "Derive release_title: \"{release_tag} — {editorial_title}\", where editorial_title is the entry's H1 without its leading version and the comma after it. The H1 `# v4.0.0.1, The Foundation Hardened: Old Specs Forward and Quieter Sessions` gives `v4.0.0.1 — The Foundation Hardened: Old Specs Forward and Quieter Sessions`"
       - "Derive tag_message: \"{release_tag}: {editorial_title}\" with the first colon in editorial_title, if it has one, turned into a comma. The H1 above gives `v4.0.0.1: The Foundation Hardened, Old Specs Forward and Quieter Sessions`. The title is used instead of the summary's first sentence, which often opens with the version and would repeat it"
-      - "Check for tag collision: run `git tag --list {release_tag}`. IF the tag already exists -> STOP, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
+      - "Check for an existing tag: run `git tag --list {release_tag}`. IF the tag exists AND `gh release view {release_tag} --json url` returns a release, the entry changed after its release was published: follow SKILL.md section 8, Keep a Published Release in Step. Rebuild the body, run `gh release edit {release_tag} --notes-file {notes_file_path}`, compare `git show {release_tag}:{output_path}` with the entry, set release_url, set release_published = true, set release_published_display = \"Updated -- {release_tag} ({release_url})\" and skip the tag and release creation below. When the comparison differs, add the republish question to the report and never move the tag without the operator's yes. IF the tag exists with no release -> STOP, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
       - "Check working tree state: run `git status --porcelain -- {output_path}`. IF the changelog file (or other pending work) is not yet committed, surface this at the checkpoint below -- the tag will point at current HEAD, which may not include {output_path}"
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> STOP, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\"; do not attempt tag/release"
       - "Build the release notes body: run `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/build_release_notes.py {output_path} --out /tmp/release-notes-{release_tag}.md` and use that file as {notes_file_path}. It drops the YAML frontmatter and the editorial title H1, keeps the entry's spacing and appends the &nbsp; line and the Full changelog pointer. Exit 2 means the entry could not be read: PAUSE and report it"
@@ -682,7 +691,7 @@ workflow:
     outputs:
       - release_published: "true/false"
       - release_tag: "The tag name created (e.g., v2.1.0.0) or null"
-      - release_url: "GitHub release URL returned by gh release create, or null"
+      - release_url: "GitHub release URL from gh release create or gh release view, or null. The completion report always states it when it is set"
       - release_published_display: "Human-readable summary for the completion report"
     validation: release_decision_recorded
     checkpoint:

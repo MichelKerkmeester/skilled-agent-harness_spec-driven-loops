@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.3.0.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -28,9 +28,10 @@ The `/create:changelog` workflow reads this template at step 4. Section 5 picks 
 
 ### The Model Entries
 
-Two published entries show the house style, and each one teaches something different, so read both before writing.
+Three published entries show the house style. Each one teaches something different, so read all three before writing. Only v4.0.2.1 passes the sentence rules in section 4. The other two were written before them.
 
 - `.skilled/changelog/skilled/v4.0.1.0.md` is the model for length and selection. It keeps what a reader would notice, gives each item one paragraph and cuts items rather than sections. It also collects small fixes into a Smaller Fixes list, orders its upgrade notes by section and names the components with their own entry in one sentence. Model a release with many changes on it.
+- `.skilled/changelog/skilled/v4.0.2.1.md` is the model for readability and depth. Its sentences are short and its words are plain. Each feature item says how the feature works and shows a real line of output. Its fixes are listed one by one. Its How It Was Checked section shows what was measured before and after, what the change costs and which tests ran. Copy its sentence length, its level of detail and that section.
 - `.skilled/changelog/skilled/v4.0.0.0.md` is the model for voice and for how a major release opens. Its opening narrative and Why This Release frame a large change for a reader who was not there. Copy that voice and framing, never its length, because it records one unusually large release and runs past this template's ceilings.
 
 When this template and a model entry disagree on how a section reads, the model entry wins. When they disagree on how long an entry runs, this template's ceilings win (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
@@ -115,6 +116,20 @@ Include the spec-folder line only when the release has a spec folder. Add a shor
 
 &nbsp;
 
+## How It Was Checked
+
+#### Before and After
+
+| Check | Before | After |
+|---|---|---|
+| {A real command or question a reader could run} | {What it returned} | {What it returns now} |
+
+#### Tests and Scenarios
+
+- **{The suite, as a short sentence that it passes.}** {How many tests passed and how many failed.}
+
+&nbsp;
+
 ## Upgrade Notes
 
 - **{The reader's situation, such as "Skills you wrote yourself"}:** {The action, as a short instruction.}
@@ -123,6 +138,10 @@ Include the spec-folder line only when the release has a spec folder. Add a shor
 Include the spec-folder line only when the release has a spec folder.
 
 **Field guidelines**:
+
+- **`## How It Was Checked` (required in an expanded entry).** It is the last section before Upgrade Notes. It shows the reader why they can trust the release. Give a before-and-after table of real commands or questions, one row per change. Add what the change costs when it was measured, such as a lookup time against its budget. Then list each test suite and scenario that ran, with how many passed and failed. Say plainly when a check was left failing or undecided. This is the one section where test results belong. A compact entry may carry it as one short paragraph.
+- **How a feature works.** An item for a new feature says what it does step by step, in the order it happens. It shows one real line of output or one command, in code. It names the flag that turns the feature off when one exists. It names the gap that remains when one does. A reader should be able to predict the new output from the item alone.
+- **Fixes.** Every fix a reader could run into gets its own bold-led bullet: what went wrong and what happens now. Fixes found during the work sit in their own section or in Smaller Fixes, apart from the features.
 
 - **`{Topical Domain}` (H2).** Name the section for the domain it changes, the way the model entries name `Spec Kit` and `Doctor Commands`, never for a change type such as `New Features` or `Bug Fixes`. Most releases need three to six domains, and eight is the most. Add one past six only when a reader would look for it by name.
 - **`<!-- section: {Topical Domain} -->` tag.** Each glance bullet ends with a comment naming the topical section it summarizes, spelled as that section's H2, and the bullets follow the order of those sections. The comment does not show on a rendered page or in the release notes, so the bullet reads as plain text while the shape check can still test the order. A section may go without a glance bullet, but the tagged bullets never run out of order. A compact entry has no topical sections, so its bullets carry no tag.
@@ -153,11 +172,14 @@ When an entry runs past a ceiling, cut at the H4 level. A cut item leaves in one
 - Anything the reader must do, adopt, repoint or stop using.
 - Honest corrections of a claim a previous release got wrong.
 - Numbers that are the claim itself, such as a measured cost or a limit the reader must stay under.
+- How each new feature works, in enough detail that a reader can predict its output.
+- Every fix a reader could run into, one by one.
+- What was measured before and after and which tests ran, in How It Was Checked.
 
 ### Drop by Default
 
 - File inventories and Files Changed tables.
-- Test counts, test tables and lists of new tests or playbook scenarios.
+- Test counts and test results anywhere outside How It Was Checked. Lists of new test names stay out everywhere.
 - Schema internals, index churn and machinery names the reader never touches.
 - Internal labels such as task or requirement IDs, scenario IDs and packet or phase numbers. The spec-folder line is the one pointer an entry needs.
 - How the work was done: review rounds, models, agents, research phases and the order the work landed in, unless it changes how far the reader can trust the result.
@@ -176,13 +198,14 @@ Each section has one job, and a fact lives in the section whose job it is.
 | Why This Release | The gap the release closes or the gain it buys | The list of changes, which the glance section carries |
 | What's New at a Glance | One line per theme, stating the payoff | The full mechanism or a sentence that restates the bold one |
 | Topical H4 items | The detail: before, mechanism and after | The glance bullet's sentence, said again |
+| How It Was Checked | The evidence: before and after, the cost and the tests that ran | A new claim about behavior, which a topical item carries |
 | Upgrade Notes | The actions, one line each | Why the change was made |
 
 When a sentence would repeat an earlier one, cut it or replace it with something the reader does not know yet. In a compact entry, each glance bullet must add something the summary did not say.
 
 ### When a Table Earns Its Place
 
-A table appears only when the numbers are the claim. The v4.0.0.0 entry carries one in more than five hundred lines, the measured cached-input cost per model, because the dollar difference was the finding. A table that restates prose, lists files or counts tests does not earn its place, and most entries carry none.
+A table appears only when the numbers are the claim. The v4.0.0.0 entry carries one in more than five hundred lines, the measured cached-input cost per model, because the dollar difference was the finding. The before-and-after table in How It Was Checked earns its place the same way, because each row is a result a reader can reproduce. A table that restates prose or lists files does not, and most entries carry no other table.
 
 ### The Cut Test
 
@@ -200,7 +223,8 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 - Lead with why the release matters, never with technical stats.
 - Explain each change as what was broken, what changed and why it matters.
 - One idea per sentence, active voice, no hedging.
-- Prefer short sentences, about 10-15 words. When a sentence runs long, split it rather than cut a fact.
+- Write short sentences, about 8 words each. None runs past 22 words, and the entry averages 10 at most. More sentences are always fine. When a sentence runs long, split it rather than cut a fact.
+- Use the everyday word: "cut" before "truncate", "shows" before "surfaces", "runs" before "executes". Keep a technical word only when it is the literal name the reader will see, and put it in code.
 - Define a technical term on first use, such as "BM25 (exact word matching)".
 - Name an identifier (a skill, a path or a command) only where the reader acts on it, the way the v4.0.0.0 entry names `mode-registry.json` where it explains dispatch.
 - No Oxford commas, em dashes or semicolons, per `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`.
@@ -223,11 +247,13 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 | Glance bullet | A bold sentence and one short plain sentence | A bold sentence and about 30 words |
 | H4 item narrative | 1 paragraph, about 60 words | 2 paragraphs, about 120 words |
 | H4 heading | 2-7 words | 10 words |
+| Sentence | About 8 words | 22 words |
+| Sentence average | About 8 words | 10 words |
 | Compact file total | 10-25 lines of prose | 40 lines of prose |
 | Expanded file total | 120-180 lines below the frontmatter | 240 lines below the frontmatter |
 | Expanded H4 items | 12-22 | 26 |
 
-Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the expanded file total, the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. The usual column is the target. A release with one fix reads short. Word counts are guidance, not gates: count words, never sentences, so more short sentences are always fine. Go past a word budget when a reader needs the fact, and record why.
+Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the expanded file total, the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. It also fails a sentence past its ceiling, an average past its ceiling and an expanded entry with no How It Was Checked section. The usual column is the target. A release with one fix reads short. Paragraph and section word counts are guidance, not gates, so more short sentences are always fine. The two sentence ceilings are gates. Go past a word budget when a reader needs the fact, and record why.
 
 ---
 
@@ -276,6 +302,7 @@ Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md`
 ## 8. RELATED RESOURCES
 
 - `.skilled/changelog/skilled/v4.0.1.0.md` - the model for length, selection and the shape of a release with many changes
+- `.skilled/changelog/skilled/v4.0.2.1.md` - the model for sentence length, plain words, feature detail and the How It Was Checked section
 - `.skilled/changelog/skilled/v4.0.0.0.md` - the model for voice and for how a major release opens
 - [check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape check that enforces the expanded ceilings
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)

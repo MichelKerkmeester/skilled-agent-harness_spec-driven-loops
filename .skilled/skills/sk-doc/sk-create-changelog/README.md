@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.5.0
+version: 1.3.6.0
 ---
 
 # create-changelog
@@ -44,7 +44,7 @@ A changelog entry can go wrong in three ways. It lands in the wrong place, as wh
 cat .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
 ```
 
-It holds the compact and expanded shapes, the rules for what to leave out and the length ceilings. Two published entries model them: `.skilled/changelog/skilled/v4.0.1.0.md` for length and selection, and `.skilled/changelog/skilled/v4.0.0.0.md` for the voice and opening of a major release.
+It holds the compact and expanded shapes, the rules for what to leave out and the length ceilings. Three published entries model them: `.skilled/changelog/skilled/v4.0.1.0.md` for length and selection, `.skilled/changelog/skilled/v4.0.2.1.md` for short plain sentences, feature detail and the How It Was Checked section, and `.skilled/changelog/skilled/v4.0.0.0.md` for the voice and opening of a major release.
 
 **Step 3: Check voice, shape and structure.**
 
@@ -125,7 +125,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 |---|---|---|
 | Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`: the required frontmatter keys are present, at least one trigger phrase is declared and a version file names its version in a phrase. The summary-first order, the tier sections, the spec-folder line when sourced from a spec and the upgrade guidance are checked by hand against `SKILL.md` section 9 |
 | Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <changelog-file>` | Zero hard blockers |
-| Shape | `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py <changelog-file>` | `PASS` and exit 0: an expanded entry within 240 lines and 26 H4 items, at most 12 glance bullets, tagged glance bullets in section order and no level label on the spec-folder line |
+| Shape | `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py <changelog-file>` | `PASS` and exit 0: an expanded entry within 240 lines and 26 H4 items, at most 12 glance bullets, tagged glance bullets in section order, no level label on the spec-folder line, a How It Was Checked section, no sentence past 22 words and 10 words a sentence at most on average |
 | Version sequencing | List the target folder and its generation folders, then compare against the calculated version | The new version is strictly greater than the latest, and no file exists at that path. An extended `skilled` entry keeps its version |
 
 ---

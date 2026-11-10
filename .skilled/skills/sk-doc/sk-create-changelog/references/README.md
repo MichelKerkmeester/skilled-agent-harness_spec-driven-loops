@@ -9,7 +9,7 @@ trigger_phrases:
   - "github release changelog option"
 importance_tier: normal
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # create-changelog References. Overflow Map
@@ -39,7 +39,7 @@ Open a reference here when the workflow is clear but you need a filled-in exampl
 ### Packet contract
 - [../SKILL.md](../SKILL.md) - authoritative workflow, versioning, topology, validation and rules
 - [../README.md](../README.md) - packet overview and quick start
-- [../scripts/check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape gate for the expanded ceilings, the glance order and the spec-folder line
+- [../scripts/check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape gate for the expanded ceilings, the glance order, the spec-folder line, the How It Was Checked section and the sentence length
 
 ### Command surface
 - `.skilled/commands/create/changelog.md` - thin router for `/create:changelog`

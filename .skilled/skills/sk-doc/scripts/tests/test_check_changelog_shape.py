@@ -4,8 +4,9 @@
 # ---------------------------------------------------------------------------
 """Each shape rule passes at its ceiling and fails one past it.
 
-The published v4.0.1.0 release entry is the model for a many-change release, so
-it must pass every rule as it stands. A ceiling it breaks is the wrong ceiling.
+The published v4.0.2.1 release entry is the model for readability and for the
+testing section, so it must pass every rule as it stands. A ceiling it breaks
+is the wrong ceiling.
 
 Run: python3 -m pytest -q test_check_changelog_shape.py
 """
@@ -17,7 +18,7 @@ from pathlib import Path
 SK_DOC = Path(__file__).resolve().parents[2]
 REPO_ROOT = Path(__file__).resolve().parents[5]
 CHECKER = SK_DOC / "sk-create-changelog" / "scripts" / "check_changelog_shape.py"
-MODEL_ENTRY = REPO_ROOT / ".skilled" / "changelog" / "skilled" / "v4.0.1.0.md"
+MODEL_ENTRY = REPO_ROOT / ".skilled" / "changelog" / "skilled" / "v4.0.2.1.md"
 
 sys.path.insert(0, str(CHECKER.parent))
 from check_changelog_shape import check_entry  # type: ignore  # noqa: E402
@@ -25,7 +26,7 @@ from check_changelog_shape import check_entry  # type: ignore  # noqa: E402
 FRONTMATTER = '---\ntitle: "demo v1.0.0.0"\n---\n'
 
 
-def expanded(glance=None, sections=None, spec="> Spec folder: `specs/demo/001-demo`", padding=0):
+def expanded(glance=None, sections=None, spec="> Spec folder: `specs/demo/001-demo`", padding=0, checked=True):
     """Build an expanded entry: glance bullets, then one topical H2 per (name, h4_count)."""
     glance = glance if glance is not None else ["- **One gain.** It helps."]
     sections = sections if sections is not None else [("Alpha", 2)]
@@ -34,6 +35,8 @@ def expanded(glance=None, sections=None, spec="> Spec folder: `specs/demo/001-de
     for name, count in sections:
         parts += ["&nbsp;\n", f"## {name}\n"]
         parts += [f"#### Item {name} {n}\n\nOne paragraph.\n" for n in range(count)]
+    if checked:
+        parts += ["&nbsp;\n", "## How It Was Checked\n", "The suite passes.\n"]
     parts += ["&nbsp;\n", "## Upgrade Notes\n", "- **Anyone:** nothing to do.\n"]
     text = "\n".join(parts)
     return text + "\nFiller line.\n" * padding
@@ -153,3 +156,51 @@ def test_the_template_ceilings_match_the_checker():
     assert ceiling("Expanded file total") == shape.EXPANDED_MAX_BODY_LINES
     assert ceiling("Expanded H4 items") == shape.EXPANDED_MAX_H4_ITEMS
     assert ceiling("What's New at a Glance") == shape.GLANCE_MAX_BULLETS
+    assert ceiling("Sentence") == shape.SENTENCE_MAX_WORDS
+    assert ceiling("Sentence average") == shape.SENTENCE_MEAN_WORDS
+
+
+def test_an_expanded_entry_needs_the_checked_section():
+    assert rules(expanded(checked=False)) == ["checked-section"]
+    compact = FRONTMATTER + "Summary.\n\n&nbsp;\n\n## What's New at a Glance\n\n- **One gain.** It helps.\n"
+    assert rules(compact) == []
+
+
+def test_a_sentence_fails_one_word_past_22():
+    at_ceiling = " ".join(["word"] * 22) + "."
+    assert rules(expanded() + at_ceiling + "\n") == []
+    assert rules(expanded() + "word " + at_ceiling + "\n") == ["sentence-max"]
+
+
+def test_the_average_sentence_fails_past_10_words():
+    # Long enough to pull the average up, short enough to stay under the single-sentence ceiling.
+    long_run = (" ".join(["word"] * 20) + ".\n\n") * 40
+    assert rules(expanded() + long_run) == ["sentence-mean"]
+
+
+def test_code_tables_and_quotes_are_not_prose():
+    long_line = " ".join(["word"] * 30)
+    not_prose = f"| {long_line} |\n\n> {long_line}\n\n```\n{long_line}\n```\n\nRun `{long_line}` now.\n"
+    assert rules(expanded() + not_prose) == []
+
+
+def test_a_hard_wrapped_sentence_counts_as_one():
+    words = ["word"] * 30
+    wrapped = " ".join(words[:15]) + "\n" + " ".join(words[15:]) + ".\n"
+    assert rules(expanded() + wrapped) == ["sentence-max"]
+
+
+def test_a_colon_does_not_end_a_sentence():
+    long_tail = "Run this: " + " ".join(["word"] * 22) + ".\n"
+    assert rules(expanded() + long_tail) == ["sentence-max"]
+
+
+def test_a_closing_quote_ends_the_sentence_it_closes():
+    fifteen = " ".join(["word"] * 14)
+    quoted = f'{fifteen} "PASS." {fifteen} end.\n'
+    assert rules(expanded() + quoted) == []
+
+
+def test_an_ordered_list_number_is_not_a_sentence():
+    items = "\n".join(f"{n}. " + " ".join(["word"] * 15) + "." for n in range(1, 21)) + "\n"
+    assert rules(expanded() + items) == ["sentence-mean"]

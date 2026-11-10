@@ -119,6 +119,16 @@ def test_prose_with_internal_id_and_test_count_is_warned(tmp_path: Path) -> None
     assert _blocking(entry) == []
 
 
+def test_a_test_count_in_the_checked_section_is_not_warned(tmp_path: Path) -> None:
+    text = COMPLETE_ENTRY + "\n## How It Was Checked\n\nThe suite passes. 95 tests passed.\n\n## Upgrade Notes\n\nNothing to do.\n"
+    entry = _entry(tmp_path, "v1.2.0.0.md", text)
+
+    assert "changelog_test_count" not in _warnings(entry)
+
+    after = _entry(tmp_path, "v1.3.0.0.md", text + "\nIt runs 95 tests.\n")
+    assert "changelog_test_count" in _warnings(after)
+
+
 def test_spec_folder_blockquote_and_clean_prose_are_not_warned(tmp_path: Path) -> None:
     text = COMPLETE_ENTRY + "\n> Spec folder: specs/x/TH-002-example\n\nThe checker now rejects stale tokens.\n"
     entry = _entry(tmp_path, "v1.2.0.0.md", text)
@@ -151,3 +161,17 @@ def test_install_guides_and_fixture_trees_keep_their_handling() -> None:
     assert detect_document_type(".skilled/skills/example-skill/INSTALL-GUIDE.md", "", load_rules()) == "install_guide"
     assert should_exclude_path(".skilled/skills/example-skill/tests/fixtures/sample.md")[0] is True
     assert should_exclude_path(".skilled/skills/example-skill/tests/test-fixtures/sample.md")[0] is True
+
+
+def test_a_checked_heading_inside_a_fence_opens_no_section(tmp_path: Path) -> None:
+    sample = "\n## Upgrade Notes\n\n```markdown\n## How It Was Checked\n```\n\nIt runs 95 tests.\n"
+    entry = _entry(tmp_path, "v1.2.0.0.md", COMPLETE_ENTRY + sample)
+
+    assert "changelog_test_count" in _warnings(entry)
+
+
+def test_a_checked_heading_with_closing_hashes_still_opens_the_section(tmp_path: Path) -> None:
+    text = COMPLETE_ENTRY + "\n## How It Was Checked ##\n\n95 tests passed.\n"
+    entry = _entry(tmp_path, "v1.2.0.0.md", text)
+
+    assert "changelog_test_count" not in _warnings(entry)

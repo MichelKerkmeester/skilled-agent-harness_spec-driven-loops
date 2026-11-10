@@ -2680,12 +2680,17 @@ CHANGELOG_INTERNAL_ID = re.compile(
     r'\b(?!(?:SHA|AES|RSA|CRC|DES)-)(?:[A-Z]{2,4}-\d{3}|T\d{3})\b'
 )
 CHANGELOG_TEST_COUNT = re.compile(r'\b\d+\s+(?:cases|tests|PASS lines)\b')
+# The one section where test results belong, so a reader can see what was run.
+CHANGELOG_CHECKED_SECTION = 'how it was checked'
+CHANGELOG_FENCE = re.compile(r'^\s*(`{3,}|~{3,})')
+# The same heading grammar as check_changelog_shape.py, closing hashes included.
+CHANGELOG_H2 = re.compile(r'^##\s+(.+?)\s*#*\s*$')
 # An inline code span quotes a literal, such as the comment a fix stopped accepting.
 CHANGELOG_CODE_SPAN = re.compile(r'`[^`\n]*`')
 
 
 def validate_changelog_omissions(content: str, file_path: str) -> List[Dict[str, Any]]:
-    """Flag internal ids and test counts in the prose of a changelog entry.
+    """Flag internal ids, and test counts outside How It Was Checked, in a changelog entry.
 
     The frontmatter block and the spec-folder blockquote are exempt: the quoted
     line is where the contract allows packet labels to live.
@@ -2702,12 +2707,25 @@ def validate_changelog_omissions(content: str, file_path: str) -> List[Dict[str,
 
     ids: List[str] = []
     counts: List[str] = []
+    in_checked_section = False
+    fence = None
     for line in body.split('\n'):
         if line.lstrip().startswith('>'):
             continue
+        marker = CHANGELOG_FENCE.match(line)
+        if marker:
+            if fence is None:
+                fence = marker.group(1)[0]
+            elif marker.group(1)[0] == fence:
+                fence = None
+        # A heading shown inside a fenced example does not open a section.
+        heading = None if fence or marker else CHANGELOG_H2.match(line)
+        if heading:
+            in_checked_section = heading.group(1).strip().lower() == CHANGELOG_CHECKED_SECTION
         prose = CHANGELOG_CODE_SPAN.sub('', line)
         ids.extend(CHANGELOG_INTERNAL_ID.findall(prose))
-        counts.extend(CHANGELOG_TEST_COUNT.findall(prose))
+        if not in_checked_section:
+            counts.extend(CHANGELOG_TEST_COUNT.findall(prose))
 
     errors: List[Dict[str, Any]] = []
     if ids:
@@ -2721,8 +2739,8 @@ def validate_changelog_omissions(content: str, file_path: str) -> List[Dict[str,
         errors.append({
             'type': 'changelog_test_count',
             'severity': 'warning',
-            'message': f"Changelog prose carries a test count ({', '.join(sorted(set(counts)))}); the omission rule drops test counts",
-            'fix_hint': 'State what the release now guarantees, not how many checks run',
+            'message': f"Changelog prose carries a test count ({', '.join(sorted(set(counts)))}); test results belong in the How It Was Checked section",
+            'fix_hint': 'Move the count into How It Was Checked, or state what the release now guarantees',
         })
     return errors
 

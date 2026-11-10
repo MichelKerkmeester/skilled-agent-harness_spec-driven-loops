@@ -7,13 +7,20 @@
 The template in ../assets/changelog-template.md sets the ceilings. This script
 holds the same numbers, so a change to one is a change to both.
 
-Five rules, each an error:
+Eight rules, each an error:
 
   file-total    an expanded entry runs at most 240 lines below its frontmatter
   h4-items      an expanded entry carries at most 26 H4 items
   glance-bullets  What's New at a Glance holds at most 12 bullets
   glance-order  tagged glance bullets follow the order of the sections they name
   spec-line     the spec-folder line carries paths only, never a "(Level N)" label
+  checked-section  an expanded entry carries a "How It Was Checked" section
+  sentence-max  no prose sentence runs past 22 words
+  sentence-mean the prose averages at most 10 words a sentence
+
+The sentence rules read prose only: paragraphs and bullets, with headings,
+tables, quoted lines and fenced code left out. An inline code span counts as
+one word, because a reader takes a command or a path in as one thing.
 
 The order check reads the section each glance bullet names, from a trailing
 "<!-- section: Topical Domain -->" comment or a visible "(Topical Domain)" tag
@@ -35,6 +42,10 @@ from pathlib import Path
 EXPANDED_MAX_BODY_LINES = 240
 EXPANDED_MAX_H4_ITEMS = 26
 GLANCE_MAX_BULLETS = 12
+SENTENCE_MAX_WORDS = 22
+SENTENCE_MEAN_WORDS = 10
+# The section that holds the before-and-after evidence and the test results.
+CHECKED_SECTION = "how it was checked"
 
 # H2 sections every expanded entry carries. Every other H2 is a topical section.
 FIXED_SECTIONS = {"why this release", "what's new at a glance", "upgrade notes", "upgrade"}
@@ -55,6 +66,14 @@ def glance_tag(line):
     return match.group(1).strip() if match else None
 SPEC_LINE = re.compile(r"^>\s*Spec folders?:", re.IGNORECASE)
 LEVEL_LABEL = re.compile(r"\(\s*Level\b[^)]*\)", re.IGNORECASE)
+NOT_PROSE = re.compile(r"^\s*(#|>|\||&nbsp;\s*$)")
+COMMENT = re.compile(r"<!--.*?-->")
+CODE_SPAN = re.compile(r"`[^`\n]*`")
+# A closing quote or bracket after the stop belongs to the sentence it ends.
+# A colon does not end a sentence, or "Do this: then a long tail" would pass as two.
+SENTENCE_END = re.compile(r"(?<=[.!?])[\"')\]]*\s+")
+# An ordered-list number is a marker, not a word, so it is stripped like a bullet.
+LIST_MARKER = re.compile(r"^(?:[-*]|\d+[.)])\s+")
 
 
 # ---------------------------------------------------------------------------
@@ -104,6 +123,40 @@ def read_shape(lines, offset):
         if SPEC_LINE.match(line):
             shape["spec"].append((number, line))
     return shape
+
+
+def prose_paragraphs(lines, offset):
+    """Yield (first_line_number, text) for each prose paragraph or list item.
+
+    A sentence hard-wrapped across lines is joined back first, so a wrap
+    cannot split one long sentence into two short ones.
+    """
+    start, parts = None, []
+    for number, line in outside_fences(lines, offset):
+        if not line.strip() or NOT_PROSE.match(line):
+            if parts:
+                yield start, " ".join(parts)
+            start, parts = None, []
+            continue
+        text = COMMENT.sub("", line).strip()
+        if LIST_MARKER.match(text) and parts:
+            yield start, " ".join(parts)
+            start, parts = None, []
+        if not parts:
+            start = number
+        parts.append(LIST_MARKER.sub("", text))
+    if parts:
+        yield start, " ".join(parts)
+
+
+def prose_sentences(lines, offset):
+    """Yield (file_line_number, word_count) for each sentence of prose."""
+    for number, text in prose_paragraphs(lines, offset):
+        text = CODE_SPAN.sub("code", text).replace("**", "")
+        for sentence in SENTENCE_END.split(text):
+            words = len(sentence.split())
+            if words:
+                yield number, words
 
 
 def is_expanded(shape):
@@ -170,6 +223,24 @@ def check_entry(text):
         label = LEVEL_LABEL.search(line)
         if label:
             violations.append(("spec-line", f"line {number}: drop the {label.group(0)} label, the line carries paths only"))
+
+    if expanded and CHECKED_SECTION not in {name.lower() for name in shape["h2"]}:
+        violations.append(
+            ("checked-section", "no \"How It Was Checked\" section: say what was measured before and after, and which tests ran")
+        )
+
+    sentences = list(prose_sentences(lines, offset))
+    for number, words in sentences:
+        if words > SENTENCE_MAX_WORDS:
+            violations.append(
+                ("sentence-max", f"line {number}: a sentence of {words} words, ceiling {SENTENCE_MAX_WORDS}. Split it")
+            )
+    if sentences:
+        mean = sum(words for _, words in sentences) / len(sentences)
+        if mean > SENTENCE_MEAN_WORDS:
+            violations.append(
+                ("sentence-mean", f"{mean:.1f} words a sentence on average, ceiling {SENTENCE_MEAN_WORDS}. Use more, shorter sentences")
+            )
 
     return violations, notes
 

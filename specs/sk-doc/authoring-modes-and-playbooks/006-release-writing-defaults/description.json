@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults",
+  "description": "Release writing defaults: changelog detail, short sentences and release sync without being asked",
+  "keywords": [
+    "release",
+    "writing",
+    "defaults",
+    "changelog",
+    "detail",
+    "short",
+    "sentences",
+    "sync",
+    "without",
+    "asked"
+  ],
+  "lastUpdated": "2026-11-10T12:22:28.868Z",
+  "specId": "006",
+  "folderSlug": "release-writing-defaults",
+  "parentChain": [
+    "sk-doc",
+    "authoring-modes-and-playbooks"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_13-22__hardened-the-changelog-skill-so-a-release-entry.md"
+  ]
+}

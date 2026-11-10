@@ -8,7 +8,8 @@
     "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode",
     "sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation",
     "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios",
-    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement"
+    "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement",
+    "sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults"
   ],
   "manual": {
     "depends_on": [],

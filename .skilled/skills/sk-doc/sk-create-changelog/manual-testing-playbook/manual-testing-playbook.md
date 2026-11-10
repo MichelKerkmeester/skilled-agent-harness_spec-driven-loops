@@ -1,7 +1,7 @@
 ---
 title: "create-changelog: Manual Testing Playbook"
 description: "Operator playbook for the create-changelog workflow across global component entries, the deprecated packet-local route, version bumps, format selection and release-note preparation."
-version: 1.3.4.0
+version: 1.3.5.0
 ---
 
 # create-changelog: Manual Testing Playbook
@@ -183,7 +183,7 @@ Verify that the deprecated nested generator still names an existing packet-local
 | Check | Coverage | Playbook overlap |
 |---|---|---|
 | `validate_document.py` | Changelog structure and required prose sections | Direct on CHG-005 |
-| `check_changelog_shape.py` | Expanded entry ceilings, glance order and the spec line | Direct on CHG-015 |
+| `check_changelog_shape.py` | Expanded entry ceilings, glance order, the spec line, the How It Was Checked section and sentence length | Direct on CHG-015 |
 | `check_authored_name_kebab.py` | Component and phase slug shape | Direct on CHG-001 and CHG-002 |
 | `nested-changelog.js` | Deprecated generator that renders existing packet-local files | Direct on CHG-012 |
 | Existing global changelog folders | Version sequencing and collision review | Direct on CHG-001, CHG-004 and CHG-008 |

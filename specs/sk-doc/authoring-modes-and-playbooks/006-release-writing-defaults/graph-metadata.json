@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults",
+  "spec_folder": "sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults",
+  "parent_id": "sk-doc/authoring-modes-and-playbooks",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "release writing defaults",
+      "release writing defaults changelog detail short sentences",
+      "release writing defaults plan",
+      "release writing defaults tasks",
+      "release writing defaults implementation summary"
+    ],
+    "key_topics": [
+      "release",
+      "writing",
+      "defaults",
+      "changelog",
+      "detail",
+      "short",
+      "sentences",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "notes"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/README.md",
+      ".skilled/commands/create/assets/create-changelog-auto.yaml",
+      ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
+      ".skilled/skills/sk-doc/changelog/v2.9.8.0.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check_changelog_shape.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_check_changelog_shape.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_check_changelog_shape.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-changelog-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-changelog-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.9.8.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.9.8.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Checked",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v4.0.2.1 release notes needed four operator requests",
+    "created_at": "2026-11-10T12:07:37Z",
+    "last_save_at": "2026-11-10T12:29:48.785Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ebee1a6fd116bf0b65c2de2826f486706dbbe71807d94ecfa82176cce1c08e1a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ae3bf3b1f4f1c296e0adf5db1b55dfa03b6dcdee7d73d8a9c279386c2ff9aba4",
+      "plan.md": "8324eb75e6743f19537d9aed562799c6dcc187afe93493a6c6a1d4fdb7748f31",
+      "tasks.md": "cea20f3041e29de45674028beb57765dcbfc2bc39546960efc018536d3fd2d53",
+      "implementation-summary.md": "515132616a249d6cca10dedc9936e2c247f376adbf2e0280e8db8dd67059fd00"
+    },
+    "last_active_at": null
+  }
+}
