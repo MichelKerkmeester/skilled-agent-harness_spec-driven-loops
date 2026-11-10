@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c182ed7c2ad26a933aa7075966a1e795b19e377eb00d7fa2f05b5fe5d01e3305",
+  "manifestHash": "b0032a819c76cfa61f39f6bd028915d3a85eafb847b37413bce18dc3c4b0f6a0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -23759,6 +23759,9 @@
     ],
     "clickup cli": [
       "clickup cli"
+    ],
+    "clickup columns": [
+      "clickup columns"
     ],
     "clickup create comment": [
       "clickup_create_comment"
@@ -65421,6 +65424,9 @@
     "mcp click up 1 2 17 0": [
       "mcp-click-up 1.2.17.0"
     ],
+    "mcp click up 1 2 18 0": [
+      "mcp-click-up 1.2.18.0"
+    ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
     ],
@@ -65516,6 +65522,9 @@
     ],
     "mcp click up v1 2 17 0": [
       "mcp-click-up v1.2.17.0"
+    ],
+    "mcp click up v1 2 18 0": [
+      "mcp-click-up v1.2.18.0"
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
@@ -66999,6 +67008,9 @@
     "mcp tooling 1 9 1 0": [
       "mcp-tooling 1.9.1.0"
     ],
+    "mcp tooling 1 9 10 0": [
+      "mcp-tooling 1.9.10.0"
+    ],
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
@@ -67166,6 +67178,9 @@
     ],
     "mcp tooling v1 9 1 0": [
       "mcp-tooling v1.9.1.0"
+    ],
+    "mcp tooling v1 9 10 0": [
+      "mcp-tooling v1.9.10.0"
     ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
