@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The trigger index is committed and rebuilt by hand, so a packet created or edited since the last build is invisible to the Gate 1 lookup",
     "created_at": "2026-11-09T16:18:07Z",
-    "last_save_at": "2026-11-10T04:53:17.739Z",
+    "last_save_at": "2026-11-10T06:08:54.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4dc755b4e3d9d283d30b5003b75ca47834878d0b08fead84dbb64ec2b7e1f8aa",
+    "source_fingerprint": "sha256:b02acc3093214a3476fc22a4001e1650e3df45f9fda28e75632ddd0e97621187",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a821165b5321a3b4b6d6264352073f1d06ad81e56b4c8c36c464e7d93602ca98",
+      "spec.md": "49e6971279f87c021e3ce2ee33dff823b1fdb0300759682918887c401fe6d122",
       "plan.md": "795f2f341859abef60ada54bed530e56ca7cf87bc495a861194c4918778772b1",
-      "tasks.md": "fe2c26bcba0bae88c54e5b47949ec2f576a527b81402a0cd9505acd581d3b8e7",
-      "implementation-summary.md": "340d1b417b2c418af5cd061ece9e0438a0ba725a721888932380478ec5c3bf5a"
+      "tasks.md": "e61aa8aecb821ce4e0208fa319b6498e3e7d197443896b146e65526fd755afe9",
+      "implementation-summary.md": "628a2db66050defed22df882ceecb1b924de8300015973df41434e6f78584f97"
     },
     "last_active_at": null
   }

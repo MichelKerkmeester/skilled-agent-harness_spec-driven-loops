@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The trigger lookup reports only a `truncated` boolean when it cuts results to `--limit`, so a caller cannot tell 21 candidates from 20,000 or judge whether raising the limit is worth it",
     "created_at": "2026-11-09T16:18:06Z",
-    "last_save_at": "2026-11-10T04:32:27.488Z",
+    "last_save_at": "2026-11-10T06:08:52.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2db712a50b1f157e3f0b37a6a7da63a2aeba8ba9b37caf887dee4d4ab02fdc6",
+    "source_fingerprint": "sha256:b74e1649ba52ecc0f4710ebdd7e5b3a7f13fc7a0d5eabac29539d920a4eaf5b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa0c36102c3fc25d698ec0203f18ed2d7d360a0c5f5a943761f25a1ff7e42a18",
+      "spec.md": "54e1f44bed5bde9096505e38cb515931629c436f26369cbfaaa07b1fae734acd",
       "plan.md": "1ca243e01aa338c5bd4b2e81658d4b6c939ac506c516e8c798149926c53897d2",
-      "tasks.md": "6ad7e637d2e543f8ec5d09dfb21d9663578f83d5c97c42eb80f8b31321643da4",
-      "implementation-summary.md": "25f6f41f6fb9e484129e0629e4eb7b9b631280e974600e7d6b56a357b81e6c46"
+      "tasks.md": "88536be1d1866823b606529e9a7b13ac7ef90126dd7ff434bfa1ea74f235d8eb",
+      "implementation-summary.md": "502c66ea6bde86d72de6abe118e65b97c1d827cff45693cb8d7f9d16fabc3c3d"
     },
     "last_active_at": null
   }

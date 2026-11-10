@@ -110,15 +110,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phases 001-003 | Done | Research committed in `24fef5fdf5` |
-| Phase 004 | Done | `fa41f8070f` in worktree 335 |
-| Phase 005 | Done | `f6b6f04a96` in worktree 335 |
-| Phase 006 | Done | `2c6d99b8d6` in worktree 335 |
+| Phase 004 | Done | `aed771daa9` in worktree 335 |
+| Phase 005 | Done | `98fe345072` in worktree 335 |
+| Phase 006 | Done | `78825b05e6` in worktree 335 |
 | Criterion: recursive validate | Met | Parent and six children each print `RESULT: PASSED` |
 | Criterion: suite | Met | 4157 passed, 0 failed on the tree rebased onto main (baseline 4071 passed, 0 failed) |
-| Criterion: lookup and wrapper | Met | `--limit 2` on "trigger index": `totalCandidates` 812; an untracked temp spec doc's phrase found via `staleFallback` without a rebuild; "iteration" over the phase 2 research folder: 14 rows, 14 files, schema 2 |
-| Criterion: latency | Met | After the rebase `measure-cold-lookup.mjs` exit 0, p95 71.2 ms. Phase 5 prompt-set benchmark p95 164.4, 170.0, 183.8 and 193.8 ms on undisturbed runs, 224 ms and up while other sessions held the load average above 13 (151.7 ms before the rebase) |
+| Criterion: lookup and wrapper | Met | `--limit 2` on "trigger index": `totalCandidates` 823; an untracked temp spec doc's phrase found via `staleFallback` without a rebuild; "iteration" over the phase 2 research folder: 14 rows, 14 files, schema 2 |
+| Criterion: latency | Met | After the rebase `measure-cold-lookup.mjs` exit 0, p95 69.6 ms. Phase 5 prompt-set benchmark p95 160.4, 160.9 and 161.1 ms on a quiet machine (load average 3), 151.7 ms before the rebase; runs taken while other sessions held the load average above 13 read 224 ms and up |
 | Criterion: scenarios and catalog | Met | 489, 490, 491 and three retrieval catalog entries; both validators exit 0 |
-| Criterion: alignment | Met | Battery over `46dd6c985d..HEAD` (110 files) after the rebase: 75 pass, 0 fail; final rechecks of all three phase runs: 0 open P0 and P1 (`006-rg-flood-control/alignment/final-recheck.md`) |
+| Criterion: alignment | Met | Battery over `c82a5b31de..HEAD` (110 files) after the rebase: 75 pass, 0 fail; final rechecks of all three phase runs: 0 open P0 and P1 (`006-rg-flood-control/alignment/final-recheck.md`) |
 | Criterion: benchmark summary | Met | `006-rg-flood-control/benchmark/summary.md` |
 
 ### Deviations and findings

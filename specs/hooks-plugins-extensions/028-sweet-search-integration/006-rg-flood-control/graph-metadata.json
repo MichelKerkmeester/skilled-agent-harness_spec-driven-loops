@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The ripgrep wrapper ranks every match and only slices the first 20 for display, so one file with many matches fills the whole view and hides every other file with no sign anything was hidden",
     "created_at": "2026-11-09T16:18:07Z",
-    "last_save_at": "2026-11-10T04:32:30.327Z",
+    "last_save_at": "2026-11-10T06:08:55.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e744a019ef8b733239c150180622df1e5bf93ce7d4885debb82bfe5df283391",
+    "source_fingerprint": "sha256:287852001c691e919412559f50c612b2f024bea1e64e21255289239ec12671bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46f0380eb974d74e2471ce908af7ecab5a3c4991d6ae01b305894b1d6049b660",
+      "spec.md": "08257da37715054b56ced099a33f0c5012768e34e93ce0d8968fe4bb8b2e1fd4",
       "plan.md": "1a0cabc81f51fa7133df8b9e406a6d3fafb41df2be372e280a266dcd9941b79f",
-      "tasks.md": "df6d935c3dd11240ddfe10a234d2b38ce055e91f21e5adac99fa10b4535026bb",
-      "implementation-summary.md": "f5cf077c8d400d3c0b439019e8dbeeddea0e48a185dbc09a761ca5d703187a83"
+      "tasks.md": "1ba1ec96b8865ca5f5de6cf73529049a9d3225c0519c25ea23c1c0851f75eb48",
+      "implementation-summary.md": "d8a141dfd8d63a9cc4bc167edc9376ce153f0551b3cc0ed0daef25f8f87f3c68"
     },
     "last_active_at": null
   }
