@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.16.0
+version: 1.2.17.0
 ---
 
 # mcp-click-up Skill
@@ -23,7 +23,7 @@ ClickUp shows plain text literally. Markdown sent through a plain-text path show
 
 On the raw ClickUp v2 REST API, `markdown_content` is also accepted on task update and `include_markdown_description=true` returns markdown, both live-verified 2026-07-15. The claude.ai ClickUp connector was not re-checked on 2026-10-08.
 
-**Push shape for a markdown artifact:** the document's H1 becomes the task `name` (drop it from the body); strip internal HTML comments and processing metadata; everything else travels verbatim.
+**Push shape for a markdown artifact:** the document's H1 becomes the task `name` (drop it from the body); strip internal HTML comments and processing metadata; everything else travels verbatim, with two spellings fixed on the way to a document page. An empty checkbox written `- []` imports as literal `\[\]` text, so send it as `- [ ]`, which imports as a checklist item. A line that opens with a number, a full stop and a bold title, such as `2.  **Header**`, imports as a one-item numbered list, and because the divider after it ends that list every title reads `1.`, so send it as `2\. **Header**`.
 
 **Failure symptom:** literal `###` or `**` visible in a ClickUp task means someone used the plain `description` field. That is the defect, not a rendering bug.
 

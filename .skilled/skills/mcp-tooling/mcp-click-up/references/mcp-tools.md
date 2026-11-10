@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.11.0
+version: 1.1.12.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -288,7 +288,7 @@ ClickUp shows plain text literally, so markdown sent through a plain-text path a
 - Document pages: set `content_format: "text/md"` on `clickup_create_document_page`, `clickup_update_document_page` and `clickup_get_document_pages`. The only other value is `"text/plain"`.
 - Comments and chat: `clickup_create_comment` and `clickup_send_chat_message` accept markdown in their text.
 
-Push shape for a markdown artifact: the document's H1 becomes the task or page `name`, so drop it from the body. Strip internal HTML comments and processing metadata. Everything else travels verbatim.
+Push shape for a markdown artifact: the document's H1 becomes the task or page `name`, so drop it from the body. Strip internal HTML comments and processing metadata. Everything else travels verbatim. Two spellings change on the way to a document page, both seen on 2026-11-10. An empty checkbox `- []` imports as literal `\[\]` text, while `- [ ]` imports as a checklist item. A numbered bold title such as `2.  **Header**` imports as a one-item numbered list, and the divider after it ends the list, so every title on the page reads `1.`. Send it as `2\. **Header**`, which imports as a plain paragraph and reads back exactly as sent.
 
 ClickUp's markdown import has three traps, all observed on 2026-10-08:
 - A file name ending in `.md` in running text becomes a link, and the link can start mid-name at a space. Wrap every file path in backticks.
@@ -387,7 +387,7 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
    When no browser tool is available, or a page opens on ClickUp's login screen (`login: true`), stop and tell the user the gap count per page and which browser needs the ClickUp login. Run the program again once they confirm.
 4. **Report per page:** import diff lines, gaps before, gaps left and whether the text is unchanged. A page with gaps left or changed text is not delivered. Say which, and why.
 
-**Aside program.** It runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. The read-backs run in Code Mode and the editor pass runs in one `aside.aside_repl` call per page. That tool needs a `title`, and its REPL keeps one shared scope between calls, so the pass runs inside its own function. Each call stops after about 12 seconds of work, under Code Mode's 30-second limit per tool call, and keeps its tab for the next call, so a page with many dividers takes several calls. Give the `call_tool_chain` call a `timeout` of about 60 seconds per page. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change. Verified on 2026-11-06 on eleven scratch pages, including two with 74 dividers and runs with Aside minimized: every gap removed, text unchanged, no login prompt, the user's active tabs unchanged. A long page that needed two calls finished on the same tab and left no tab open.
+**Aside program.** It runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. The read-backs run in Code Mode and the editor pass runs in one `aside.aside_repl` call per page. That tool needs a `title`, and its REPL keeps one shared scope between calls, so the pass runs inside its own function. Each call stops after about 12 seconds of work, under Code Mode's 30-second limit per tool call, and keeps its tab for the next call, so a page with many dividers takes several calls. Give the `call_tool_chain` call a `timeout` of about 60 seconds per page. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change. On 2026-11-10 a doc page carried a second `.ql-editor` for its title, which made the pass report no gaps while the plain-text read-back still counted 60. Picking the editor with the most blocks removed all 60, with the text unchanged. Verified on 2026-11-06 on eleven scratch pages, including two with 74 dividers and runs with Aside minimized: every gap removed, text unchanged, no login prompt, the user's active tabs unchanged. A long page that needed two calls finished on the same tab and left no tab open.
 
 ```javascript
 (async () => {
@@ -403,7 +403,9 @@ Every `clickup_create_document_page` or `clickup_update_document_page` call ends
   // -1 means no editor on the page, -2 means ClickUp showed its login screen.
   const PICK = `() => {
     if (location.pathname.includes("/login")) return -2;
-    const ed = document.querySelector(".ql-editor"); if (!ed) return -1; ed.focus();
+    // A doc page has two editors, the page title and the body, so take the one with the most blocks.
+    const ed = [...document.querySelectorAll(".ql-editor")].sort((a, b) => b.children.length - a.children.length)[0];
+    if (!ed) return -1; ed.focus();
     const empty = [...ed.querySelectorAll(":scope > hr.ql-divider")].map((h) => h.nextElementSibling)
       .filter((n) => n && n.classList.contains("ql-block") && n.textContent === ""
         && n.children.length === 1 && n.firstElementChild.tagName === "BR");
@@ -492,7 +494,9 @@ A report with an `error` field means the Aside call failed before the editor pas
   // -1 means no editor on the page, -2 means ClickUp showed its login screen.
   const PICK = `() => {
     if (location.pathname.includes("/login")) return -2;
-    const ed = document.querySelector(".ql-editor"); if (!ed) return -1; ed.focus();
+    // A doc page has two editors, the page title and the body, so take the one with the most blocks.
+    const ed = [...document.querySelectorAll(".ql-editor")].sort((a, b) => b.children.length - a.children.length)[0];
+    if (!ed) return -1; ed.focus();
     const empty = [...ed.querySelectorAll(":scope > hr.ql-divider")].map((h) => h.nextElementSibling)
       .filter((n) => n && n.classList.contains("ql-block") && n.textContent === ""
         && n.children.length === 1 && n.firstElementChild.tagName === "BR");
