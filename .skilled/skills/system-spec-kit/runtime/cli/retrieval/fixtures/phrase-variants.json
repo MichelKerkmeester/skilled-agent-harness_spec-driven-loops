@@ -1,5 +1,5 @@
 {
-  "manifestHash": "75af57299756fd34d79b2dcd389d17a7478f61aa900e296d6905029dc50f76a4",
+  "manifestHash": "1dcd6492c2718845aa5c7243bd6576d1bd2edf4398f4cee8d371724346e04ad3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15350,6 +15350,9 @@
     ],
     "browser developer tools workflows": [
       "browser developer tools workflows"
+    ],
+    "browser first page write": [
+      "browser-first page write"
     ],
     "browser launch fails": [
       "browser launch fails"
@@ -65427,6 +65430,9 @@
     "mcp click up 1 2 18 0": [
       "mcp-click-up 1.2.18.0"
     ],
+    "mcp click up 1 2 19 0": [
+      "mcp-click-up 1.2.19.0"
+    ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
     ],
@@ -65525,6 +65531,9 @@
     ],
     "mcp click up v1 2 18 0": [
       "mcp-click-up v1.2.18.0"
+    ],
+    "mcp click up v1 2 19 0": [
+      "mcp-click-up v1.2.19.0"
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
@@ -67011,6 +67020,9 @@
     "mcp tooling 1 9 10 0": [
       "mcp-tooling 1.9.10.0"
     ],
+    "mcp tooling 1 9 11 0": [
+      "mcp-tooling 1.9.11.0"
+    ],
     "mcp tooling 1 9 2 0": [
       "mcp-tooling 1.9.2.0"
     ],
@@ -67181,6 +67193,9 @@
     ],
     "mcp tooling v1 9 10 0": [
       "mcp-tooling v1.9.10.0"
+    ],
+    "mcp tooling v1 9 11 0": [
+      "mcp-tooling v1.9.11.0"
     ],
     "mcp tooling v1 9 2 0": [
       "mcp-tooling v1.9.2.0"
