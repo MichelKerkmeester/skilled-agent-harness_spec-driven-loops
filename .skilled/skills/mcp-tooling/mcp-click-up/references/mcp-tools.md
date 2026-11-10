@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.12.0
+version: 1.1.13.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -562,7 +562,129 @@ A report with an `error` field means the Aside call failed before the editor pas
 
 `gapsLeft` comes from the editor whenever the pass reached it, and the editor counts only dividers. `plainHits` is the plain-text count after the pass, which also counts an image at the end of a block, so `gapsLeft: 0` with `plainHits: 1` on a page with an image is a clean page. When the pass never reached the editor, `gapsLeft` falls back to `plainHits`.
 
-**Prefer `replace` on an existing page.** A page that already has editor-made dividers keeps them tight under `replace`, so the routine finds nothing to remove.
+**Prefer `replace` on an existing page.** A page that already has editor-made dividers keeps them tight under `replace`, so the routine finds nothing to remove. The one exception is a page that holds columns: the markdown read-back flattens a columns block into stacked lines, so a `replace` built from it deletes every column on the page. Use `append` or `prepend` there, or edit in the ClickUp editor.
+
+### Side-by-side columns on a doc page
+
+ClickUp's `/Columns` block puts two screenshots next to each other, such as the built screen beside its Figma frame. No MCP call writes one, because a page takes only `"text/md"` and `"text/plain"`, and neither format has a column. The editor writes it, so the routine below builds it there after the page write, the same way the gap pass removes divider gaps. Measured on 2026-11-10 on three scratch pages and one live page:
+- **A column is a line attribute.** Each block inside a columns row carries `data-layout="<row id>_<column id>"` and `data-layout-width="0.50"`, inside a `.ql-layout-row-container` holding one `.ql-layout-col-container` per column.
+- **A paste builds it.** Pasting HTML in that shape into the editor creates a real columns row that survives a reload. ClickUp keeps no editor instance on `window`, so a paste is the only way in.
+- **A pasted file is uploaded.** A local PNG pasted as a file lands in its column as a `clickup-attachments` image, and a hosted image URL in the pasted HTML renders as it is. ClickUp inserts the pasted image beside the selected text instead of replacing it, so the routine removes each marker afterwards with a real Backspace.
+- **The markdown read-back cannot see it.** `"text/md"` returns the labels and images as stacked lines, so the check reads the editor after a reload instead.
+
+**Write placeholders, then run the routine.** In the markdown you send, put a line such as `[[COLS-1]]` on its own where each pair belongs, then write the page and run the gap pass as usual. Run the routine below last, because any later `replace` would remove the columns again. A local screenshot has to sit in the Aside session folder, which the REPL reads as `pwd`, so copy it there first. Each pair sets a label for each side, with an optional link such as the Figma frame, and an image given as `file` or `url`. The approved push covers this pass, as it covers the gap pass. Give the `call_tool_chain` call a `timeout` of about 30 seconds per image plus 30. Verified on 2026-11-10: two pairs, one from local files and one from hosted URLs, each read back after a reload as two columns holding their label and one image, with no placeholder or marker left.
+
+```javascript
+(async () => {
+  const WORKSPACE = "WORKSPACE_ID";
+  const DOC = "DOCUMENT_ID";
+  const PAGE = "PAGE_ID";
+  // One entry per placeholder line the page write left, such as [[COLS-1]] on a line of its own.
+  // An image is { file: "dev.png" }, a file in the Aside session folder, or { url: "https://..." }.
+  const PAIRS = [
+    { marker: "[[COLS-1]]",
+      left: { label: "DEV", image: { file: "dev.png" } },
+      right: { label: "FIGMA", link: "https://www.figma.com/design/FILE?node-id=1-2", image: { file: "figma.png" } } },
+  ];
+  // Each Aside call stays under Code Mode's 30-second limit per tool call, and the tab lives in the REPL between calls.
+  const call = async (title, code) => {
+    const raw = JSON.stringify(await aside.aside_repl({ title, code }));
+    const m = /RESULT ([A-Za-z0-9\-_.!~*'()%]+)/.exec(raw);
+    return m ? JSON.parse(decodeURIComponent(m[1])) : { error: raw.slice(0, 300) };
+  };
+  const out = (expr) => `console.log("RESULT " + encodeURIComponent(JSON.stringify(${expr})));`;
+  const EDITOR = `[...document.querySelectorAll(".ql-editor")].sort((a, b) => b.children.length - a.children.length)[0]`;
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const url = `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${PAGE}`;
+  const report = { page: PAGE, rows: [] };
+
+  report.open = await call("Open the ClickUp page", `await (async () => {
+    globalThis.__colTab = await openTab(${JSON.stringify(url)});
+    await sleep(9000);
+    const r = await __colTab.evaluate(() => ({ login: location.pathname.includes("/login"), editor: !!document.querySelector(".ql-editor") }));
+    ${out("r")}
+  })();`);
+  if (report.open.error || report.open.login || !report.open.editor) { console.log(JSON.stringify(report)); return; }
+
+  const uploads = [];
+  for (const [n, pair] of PAIRS.entries()) {
+    const stamp = Date.now() + "" + n;
+    const row = "row" + stamp, cols = ["l" + stamp, "r" + stamp];
+    const html = [pair.left, pair.right].map((side, i) => {
+      const block = (inner) => `<div class="ql-block" data-layout="${row}_${cols[i]}" data-layout-width="0.50">${inner}</div>`;
+      const label = side.link ? `<a href="${esc(side.link)}">${esc(side.label)}</a>` : esc(side.label);
+      let image = "";
+      if (side.image && side.image.url) image = block(`<img src="${esc(side.image.url)}">`);
+      if (side.image && side.image.file) { const marker = `[[IMG-${n + 1}-${i ? "R" : "L"}]]`; uploads.push({ marker, file: side.image.file }); image = block(marker); }
+      return `<div class="ql-layout-col-container" data-layout-row="${row}" data-layout-col="${cols[i]}">${block(label)}${image}</div>`;
+    }).join("");
+    const rowHtml = `<div class="ql-layout-row-container" data-layout-row="${row}">${html}</div>`;
+    // Pasting over the selected placeholder keeps the lines around it as they are.
+    report.rows.push(await call("Turn a placeholder into columns", `await (async () => {
+      const r = await __colTab.evaluate(({ marker, rowHtml }) => {
+        const ed = ${EDITOR};
+        const ph = [...ed.children].find((e) => e.textContent.trim() === marker);
+        if (!ph) return { marker, pasted: false };
+        ed.focus(); const s = window.getSelection(); s.removeAllRanges();
+        const range = document.createRange(); range.selectNodeContents(ph); s.addRange(range);
+        const dt = new DataTransfer(); dt.setData("text/html", rowHtml); dt.setData("text/plain", marker);
+        ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
+        return { marker, pasted: true };
+      }, ${JSON.stringify({ marker: pair.marker, rowHtml })});
+      await sleep(3000);
+      ${out("r")}
+    })();`));
+  }
+
+  // A pasted file is uploaded by ClickUp itself and lands beside the marker, so the marker is removed with a real key press.
+  report.uploads = [];
+  for (const u of uploads) {
+    report.uploads.push(await call("Upload a screenshot into its column", `await (async () => {
+      const b64 = (await fs.readFile(path.join(pwd, ${JSON.stringify(u.file)}))).toString("base64");
+      const found = await __colTab.evaluate(({ marker, b64, name }) => {
+        const ed = ${EDITOR};
+        const blk = [...ed.querySelectorAll(".ql-block")].find((e) => e.textContent.trim() === marker);
+        if (!blk) return false;
+        ed.focus(); const s = window.getSelection(); s.removeAllRanges();
+        const range = document.createRange(); range.selectNodeContents(blk); s.addRange(range);
+        const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+        const dt = new DataTransfer(); dt.items.add(new File([bytes], name, { type: "image/png" }));
+        ed.dispatchEvent(new ClipboardEvent("paste", { clipboardData: dt, bubbles: true, cancelable: true }));
+        return true;
+      }, { marker: ${JSON.stringify(u.marker)}, b64, name: ${JSON.stringify(u.file)} });
+      await sleep(6000);
+      const sel = await __colTab.evaluate((marker) => {
+        const ed = ${EDITOR};
+        const w = document.createTreeWalker(ed, NodeFilter.SHOW_TEXT); let t;
+        while ((t = w.nextNode())) { const i = t.data.indexOf(marker); if (i >= 0) { ed.focus(); const s = window.getSelection(); s.removeAllRanges(); const r = document.createRange(); r.setStart(t, i); r.setEnd(t, i + marker.length); s.addRange(r); return true; } }
+        return false;
+      }, ${JSON.stringify(u.marker)});
+      if (sel) { await __colTab.keyboard.press("Backspace"); await sleep(1000); }
+      ${out(`{ marker: ${JSON.stringify(u.marker)}, found, markerRemoved: sel }`)}
+    })();`));
+  }
+
+  // Read the page again from the server, so the result describes what was saved, not what the tab still shows.
+  report.verify = await call("Check the saved columns", `await (async () => {
+    await sleep(3000);
+    await __colTab.goto(${JSON.stringify(url)});
+    await sleep(9000);
+    const r = await __colTab.evaluate((markers) => {
+      const ed = ${EDITOR};
+      const text = ed.textContent;
+      return {
+        rows: [...ed.querySelectorAll(".ql-layout-row-container")].map((row) => [...row.children].map((col) => ({ text: col.textContent.trim().slice(0, 40), images: col.querySelectorAll("img").length }))),
+        leftovers: markers.filter((m) => text.includes(m)).concat((text.match(/\\[\\[IMG-[^\\]]*\\]\\]/g) || [])),
+      };
+    }, ${JSON.stringify(PAIRS.map((p) => p.marker))});
+    await closeTab(__colTab); delete globalThis.__colTab;
+    ${out("r")}
+  })();`);
+  console.log(JSON.stringify(report));
+})();
+```
+
+The report has one `rows` entry per placeholder and one `uploads` entry per local file. `verify.rows` lists each saved row with its two columns. A placeholder or `[[IMG-...]]` marker under `verify.leftovers` means a paste missed: the page still holds that text, so write it again or finish it by hand.
 
 ---
 
