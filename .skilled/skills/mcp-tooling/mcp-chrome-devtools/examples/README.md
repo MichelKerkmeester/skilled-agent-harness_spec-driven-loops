@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools examples"
   - "bdg example scripts"
   - "browser automation scripts"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CLI Chrome DevTools - Example Scripts
@@ -238,17 +238,20 @@ echo "After: $(jq '.result.metrics[] | select(.name=="TaskDuration") | .value' "
 ### Visual Diff Workflow
 
 ```bash
-# Keep a baseline in the repository only for a public page with no session data
+# The screenshots stay in the scratch folder. Copy a baseline into the repository
+# only for a public page with no session data
+SCRATCH="${TMPDIR:-/tmp}"
+
 # Capture baseline
 ./multi-viewport-test.sh https://production.example.com "" "none"
-mv "${TMPDIR:-/tmp}"/viewport-tests/*/desktop-initial.png baseline-desktop.png
+mv "$SCRATCH"/viewport-tests/*/desktop-initial.png "$SCRATCH/baseline-desktop.png"
 
 # Capture current state
 ./multi-viewport-test.sh https://staging.example.com "" "none"
-mv "${TMPDIR:-/tmp}"/viewport-tests/*/desktop-initial.png current-desktop.png
+mv "$SCRATCH"/viewport-tests/*/desktop-initial.png "$SCRATCH/current-desktop.png"
 
 # Visual diff (requires ImageMagick)
-compare baseline-desktop.png current-desktop.png diff.png
+compare "$SCRATCH/baseline-desktop.png" "$SCRATCH/current-desktop.png" "$SCRATCH/diff.png"
 ```
 
 ---

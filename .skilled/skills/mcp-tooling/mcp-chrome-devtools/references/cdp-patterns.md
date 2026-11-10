@@ -10,7 +10,7 @@ trigger_phrases:
   - "pipe bdg output to jq"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CDP Patterns & Command Examples
@@ -549,8 +549,8 @@ bdg cdp DOM.querySelectorAll '{"nodeId":1,"selector":"div"}' 2>&1 | \
 # Find errors in logs
 bdg console --list 2>&1 | grep -i "error"
 
-# Filter by URL pattern
-bdg network har - 2>&1 | grep "api.example.com"
+# Filter by URL pattern (print the URLs only, because a HAR entry also carries Cookie and Authorization headers)
+bdg network har - 2>&1 | jq -r '.log.entries[].request.url' | grep "api.example.com"
 
 # Case-insensitive search
 bdg cdp DOM.getDocument 2>&1 | grep -i "title"

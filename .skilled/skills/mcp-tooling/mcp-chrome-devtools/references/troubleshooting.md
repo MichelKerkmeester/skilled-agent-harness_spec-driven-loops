@@ -10,7 +10,7 @@ trigger_phrases:
   - "jq parse error bdg output"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Troubleshooting Guide
@@ -353,8 +353,8 @@ $ bdg status
 
 **Diagnosis**:
 ```bash
-# Check stderr output
-bdg https://example.com 2>&1 | tee debug.log
+# Check stderr output (debug output can include request headers, so the log stays outside the repository)
+bdg https://example.com 2>&1 | tee "${TMPDIR:-/tmp}/debug.log"
 
 # Check system resources
 free -h  # Linux
