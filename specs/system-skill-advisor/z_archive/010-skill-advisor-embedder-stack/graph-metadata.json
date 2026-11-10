@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack",
   "spec_folder": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/001-pluggable-architecture",
     "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/002-jina-swap-and-reindex",

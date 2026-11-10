@@ -164,7 +164,7 @@ The baseline audit, the routing baseline and every gate's exit code were recorde
 5. **Claude Code built-in size is unknown.** The 1,600 of headroom under 8,000 assumes built-ins fit; nobody has measured them, so the real margin may be smaller.
 6. **Other operators' plugins are not counted.** This machine's plugins add 0 description characters and user-level skills 384. An operator with skill-heavy plugins has less headroom and could cross 8,000 while this audit still reads OK.
 7. **Other runtimes' limits are unmeasured.** The ceiling is sized against Claude Code's 8,000 default only; OpenCode, Codex, Pi, Hermes and the rest were not measured.
-8. **The native-advisor routing check missed a local-scorer regression, now fixed.** The 127-character `sk-code` wording dropped the Python reference from 107 to 105 correct and lost `rr-iter3-077`, which the daemon-based check could not see. A follow-up in `specs/system-skill-advisor/029-advisor-status-truthfulness` rewrote it to 128 characters (project total 6,331) and restored 107 with `tests/parity` green.
+8. **The native-advisor routing check missed a local-scorer regression, now fixed.** The 127-character `sk-code` wording dropped the Python reference from 107 to 105 correct and lost `rr-iter3-077`, which the daemon-based check could not see. A follow-up in `specs/system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness` rewrote it to 128 characters (project total 6,331) and restored 107 with `tests/parity` green.
 <!-- /ANCHOR:limitations -->
 
 ---

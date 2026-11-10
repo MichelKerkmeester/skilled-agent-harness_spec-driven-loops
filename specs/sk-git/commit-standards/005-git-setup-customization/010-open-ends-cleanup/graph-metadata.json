@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `/doctor:git setup` battery accepts an OpenCode or Pi adapter when the event name and a function sit anywhere in the file, so an unused object or an uncalled helper reads as a registered advisory",
     "created_at": "2026-10-17T06:02:25Z",
-    "last_save_at": "2026-11-10T05:07:16.161Z",
+    "last_save_at": "2026-11-10T05:36:49.859Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6153d6842f1e2bf2d641f516986649b7ac9222006ee8cbffca0fe6b8c54fd404",
+    "source_fingerprint": "sha256:49b43db1a55b31a64aff01f0dba6871629b5f08faeaee6db79f1dde72c24b8e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76e1011317646331734f5c20e3f748a5ec5bb4e9e375122e25782b1a55489c62",
+      "spec.md": "dcac036722d40950b8802d7f8d90499c331fc06284230b89a356e3ca2d6c1d7c",
       "plan.md": "acb536cdb451063b7478d0ff38e2bedbde024da67838a59243b5a4b00a1615c0",
       "tasks.md": "0b4edea52a8bc1d8fbe73dafd016251a9b9e7ae30085d01153f38df3481ce026",
       "implementation-summary.md": "3780554290d41e9be8cacc51fbe52e95cc92f8e3f64ba94bd658b4aa5ae267d4"

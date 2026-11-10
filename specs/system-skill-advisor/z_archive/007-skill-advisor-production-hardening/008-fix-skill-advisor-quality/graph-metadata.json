@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Eight advisor-quality findings sit across the skill-advisor surface",
     "created_at": "2026-05-01T05:18:47Z",
-    "last_save_at": "2026-10-07T18:16:08.688Z",
+    "last_save_at": "2026-11-10T05:35:57.179Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b260264520853ab8eb7e46fe80faaf46e794b4516f79a45fb2051537959b2a49",
+    "source_fingerprint": "sha256:747a58672d246859bf26eff2c247e28ffb7d8080d0a2d720adc6c0b08c642e73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a1258bddced1f8e04880c02d3ea0124121836c4cd87f4f2a51c85badbbcfb9ca",
+      "spec.md": "fc0c5deae93eea16143b793a5f93f14341b94368e49426bb24b0266b86c83d6c",
       "plan.md": "626aeee246d6e190afe772abf47e982eea16da9dc3447932bf23f9e3da45bf20",
       "tasks.md": "f8762467e4153e801be10627cc400241a1c643fab36ae2d5500702a22cb7f62a",
       "implementation-summary.md": "e91b97ea0c2e9400f88cd16db83b8910c5932296e9cfba409851e9a5bf628cac"

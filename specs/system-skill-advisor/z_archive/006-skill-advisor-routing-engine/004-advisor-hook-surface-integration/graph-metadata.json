@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Current state — skill-advisor invocation and context cost:",
     "created_at": "2026-04-19T05:20:26.002Z",
-    "last_save_at": "2026-10-07T22:12:49.852Z",
+    "last_save_at": "2026-11-10T05:35:55.578Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +215,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e798fd8dd794548d9f518daa4cfd25cad13b87167ff5dc497e921ccf8a79ac9c",
+    "source_fingerprint": "sha256:8b2aff5688c94d694e33ee9831099b6c2b495d39d7097e37ae39151a88f4ca50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "168c8cc7938d298dd27970873ba3aa63bb6fa6b9b6da0df28a5f70b0e4fd1f69",
+      "spec.md": "ee242fbe216e99d535e816d6b9b547131936078023ae1ba4fc30f22a7622571d",
       "plan.md": "502524a3389b4d8a7dda1efd8007ce78b4d787f235265aadd45a2197998125f2",
       "tasks.md": "2e6b0924b97668a19b4529900069127bf390909a0cf182e32a46a1f96244404c",
       "decision-record.md": "900d133d7a230fd233afd44b49621e3c1c9f7b459189fe6d16fef46a32d9b401",

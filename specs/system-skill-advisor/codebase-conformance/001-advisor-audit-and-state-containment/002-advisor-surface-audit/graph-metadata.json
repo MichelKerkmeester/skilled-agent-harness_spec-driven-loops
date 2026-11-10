@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/002-advisor-surface-audit",
+  "spec_folder": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/002-advisor-surface-audit",
+  "parent_id": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor surface audit",
+      "skill advisor dead code",
+      "advisor architecture audit",
+      "advisor-018-002"
+    ],
+    "key_topics": [
+      "advisor",
+      "surface",
+      "audit",
+      "skill",
+      "dead",
+      "code",
+      "architecture",
+      "advisor-018-002",
+      "skill-advisor",
+      "subsystem",
+      "never",
+      "systematic"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Surface Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Surface Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Disposition",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Verify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill-advisor subsystem has never had a systematic sweep of its own code and structure surface",
+    "created_at": "2026-07-27T15:47:30Z",
+    "last_save_at": "2026-11-10T05:35:39.030Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:87242d299f1e3a071480ea86efbd53d526437b424f7a570ff4a9750bd8f8eecf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "275bfaf3cf1e22f195c9c08b3f51490b9de7b8035587780a756401dec239e8f2",
+      "plan.md": "84ad9ce1295c80e17a6e1cd89265b2f5738267e837d641ca316e8f8a57791b9e",
+      "tasks.md": "b72750d629a4aa52fb09150571eb705b787482c58a10ea6cfe9f85b6e0ff1663"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

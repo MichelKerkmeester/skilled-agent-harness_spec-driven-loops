@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/host-integrations",
+  "spec_folder": "system-skill-advisor/host-integrations",
+  "parent_id": "system-skill-advisor",
+  "children_ids": [
+    "system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door",
+    "system-skill-advisor/host-integrations/002-pi-advisor-bridge",
+    "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-skill-advisor/host-integrations"
+    ],
+    "causal_summary": "Container folder for system-skill-advisor/host-integrations."
+  }
+}

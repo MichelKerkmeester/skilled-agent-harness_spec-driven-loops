@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes",
+  "description": "Advisor defect and hardening fixes: suite failures, diagnostics, bootstrap, daemon recycle and stress suite",
+  "keywords": [
+    "advisor",
+    "defect",
+    "hardening",
+    "fixes",
+    "suite",
+    "failures",
+    "diagnostics",
+    "bootstrap",
+    "daemon",
+    "recycle",
+    "stress",
+    "small",
+    "defects",
+    "gaps"
+  ],
+  "lastUpdated": "2026-10-06T19:00:00.000Z",
+  "specId": "025",
+  "folderSlug": "defect-and-hardening-fixes",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

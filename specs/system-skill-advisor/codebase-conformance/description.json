@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-skill-advisor/codebase-conformance",
+  "description": "Keeping the advisor's code, tests and operator-facing reports aligned with their sources of truth and with sk-code conventions.",
+  "keywords": [
+    "codebase",
+    "conformance"
+  ],
+  "lastUpdated": "2026-11-10T05:35:34.576Z",
+  "specId": "system-skill-advisor/codebase-conformance",
+  "folderSlug": "codebase-conformance",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

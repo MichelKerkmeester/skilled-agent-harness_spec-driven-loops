@@ -140,7 +140,7 @@ were then closed from the audit evidence in `scratch/`.
 3. **Live provider and model-server health is UNKNOWN.** The workflow-shaped `advisor_status` call was blocked by a sandbox IPC `EPERM`, exit 75. This is not evidence that the provider or server is unhealthy. Evidence: `scratch/doctor-run.log`. Recorded, not fixed.
 4. **The presentation's generic `/doctor` forms have no matching root command files** in either checked command tree; the nested router exists and is the one in use. This is a separate doctor-surface observation, not part of the retirement. Evidence: `scratch/reality-check.md` and `scratch/proposal.md`.
 
-**Follow-up status.** Item 1 is resolved in part by `specs/system-skill-advisor/029-advisor-status-truthfulness`: `advisor_status` takes an opt-in `includeEmbeddingsHealth`. Item 4 is resolved by `specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003's invocation sweep. Items 2 and 3 stand with the retired route: no workflow reads that payload now.
+**Follow-up status.** Item 1 is resolved in part by `specs/system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness`: `advisor_status` takes an opt-in `includeEmbeddingsHealth`. Item 4 is resolved by `specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003's invocation sweep. Items 2 and 3 stand with the retired route: no workflow reads that payload now.
 <!-- /ANCHOR:limitations -->
 
 ---

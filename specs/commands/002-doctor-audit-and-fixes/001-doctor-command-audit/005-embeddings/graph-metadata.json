@@ -51,7 +51,6 @@
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
       ".skilled/commands/doctor/scripts/route-validate.sh",
       ".skilled/commands/speckit/README.txt",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
       ".skilled/commands/README.txt",
       "scratch/reality-check.md",
       "scratch/proposal.md"
@@ -121,12 +120,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".skilled/commands/speckit/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit embeddings` reports the embedding provider and the shared model-server status",
     "created_at": "2026-10-02T16:10:16Z",
-    "last_save_at": "2026-10-31T15:23:40.923Z",
+    "last_save_at": "2026-11-10T05:36:50.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2503acce695ee581431944a3db8a6d9f740b26006c57ebaef9ff479d58ff368",
+    "source_fingerprint": "sha256:1500af2a42eb76f077e753051aec0e57e4eeb91bb6c57329222f25edddfdd28b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df8200d5a1df2115b9ba1491fa434a1ae1fe8b826b989d6d6ae53550830be276",
       "plan.md": "bd1b0b6399c92927c8400a98916aa41da44741d5d7bb41c0ea8299b663b0e008",
       "tasks.md": "33c805fa26a4aaa6475c7f0d5ce613e559fb53589a1d45c52d92a66f5fa06ade",
-      "implementation-summary.md": "a32e37b3c7eb30062e6e575e8fe6811554c3e4b99c349581ca81fbbde3e86f9b"
+      "implementation-summary.md": "34432e1dae41a7458d527c014277d5bdaf5928ffedd3ccfb74b0686be777f0bf"
     },
     "last_active_at": null
   }

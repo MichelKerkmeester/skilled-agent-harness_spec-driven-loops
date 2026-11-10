@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` exits 1 with `refused: 2 document(s) carry an untrusted trigger declaration` (reproduced 2026-09-27, 22,968 documents scanned)",
     "created_at": "2026-09-27T11:50:16Z",
-    "last_save_at": "2026-11-10T05:34:42.126Z",
+    "last_save_at": "2026-11-10T05:36:50.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f684620b515757ef39634726259090f2fd30f105c95d0b3bcdde802d8891f040",
+    "source_fingerprint": "sha256:d7d1283b377a86594fe372d2550e5e59c8a8f1648f4c6977cfe101fccad5f8d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab8389615be622b57a546df2c009b229abd6f5e907fd3139228cdcbe018ea821",
+      "spec.md": "61a123ae94d4f0d211544b7777e585a94095e866850fbc9259cf99adf4782ab8",
       "plan.md": "1e89772d16b54d19fa8ee03d4fdbce1466f7f18c08e00c7d66c4317c34abe6cd",
       "tasks.md": "bcc9539f7ee3efcc87ae9bb0a9643a8b0bc72bd9c7b6a2e7963656fcf8ce2565",
       "implementation-summary.md": "6c875e0e6374db9bca7dc7ae07ca5721080d43f1fa7f16d8e02028a84e875aa9"

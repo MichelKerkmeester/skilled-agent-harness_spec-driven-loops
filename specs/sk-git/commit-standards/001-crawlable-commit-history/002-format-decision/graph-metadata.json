@@ -198,7 +198,7 @@
     ],
     "causal_summary": "One model's design is one opinion",
     "created_at": "2026-09-11T07:16:25Z",
-    "last_save_at": "2026-11-10T05:07:13.076Z",
+    "last_save_at": "2026-11-10T05:36:50.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f73bcd2b4d79b673721594ed40f1fdaa3ce9ba0acd2628409dd2cf49db025925",
+    "source_fingerprint": "sha256:408777ff004aebd514d78ac54f2ab166875c9e55ffe478ac42bde8d1ccc75817",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23232e1466c1054b0f4faee8c5919fe9463a8251e071692bf1e698941e3b3ab8",
       "plan.md": "8a74ce9717e7588f4c87be0bb172bb64faf423e3103bb8c2116418fe30bfe69c",
       "tasks.md": "b689aaa82aef04c6b0809eab4e319f49293195c4a4de2beb239ec3defb917345",
-      "decision-record.md": "f4606370061d066dba99e675de92cc81135a4f16449779ed13bafd7847768713",
+      "decision-record.md": "880d5fc2f0de584f128f60e12912d0aad4d7a14b96c349faadad343b01c3e45a",
       "implementation-summary.md": "526e78100bcdc7ba82c3eb28283db3ddeeac41a1e26a941ff7505e85656b999e"
     },
     "last_active_at": null

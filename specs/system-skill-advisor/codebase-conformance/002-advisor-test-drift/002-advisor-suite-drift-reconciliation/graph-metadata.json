@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/002-advisor-suite-drift-reconciliation",
+  "spec_folder": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/002-advisor-suite-drift-reconciliation",
+  "parent_id": "system-skill-advisor/codebase-conformance/002-advisor-test-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor suite drift reconciliation",
+      "advisor parity baseline regen",
+      "advisor corpus expectation update",
+      "advisor suite drift plan",
+      "advisor suite drift tasks",
+      "advisor suite drift summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "suite",
+      "drift",
+      "reconciliation",
+      "parity",
+      "baseline",
+      "regen",
+      "corpus",
+      "expectation",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Suite Drift Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Concurrent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delegate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Delegate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TS",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Reconciled",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Concurrent work — retiring the code-graph skill, renaming skills, adding hubs (Figma, mcp-tooling, CLI-hub, sk-communication), and rewiring hooks — legitimately shifted advisor behavior but left ~32 tests red across six clusters: frozen output baselines, routing-corpus expectations, cross-language skill-list agreement, hook-settings shape, launcher env fixtures, and stress simulations",
+    "created_at": "2026-08-15T15:40:30.895Z",
+    "last_save_at": "2026-11-10T05:35:39.286Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eab9d27feb24e7a71e5316e96cfd94d6365e39021bfea7bc6724cbb8d70a9a68",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "35cdab17737305b319fb34730e9be40f46dcabaca8502926ea94a3502bfb8811",
+      "plan.md": "1ef8ec6bbb7263a70e78a12bd5562280114b4059ba3256b745dcde526e063853",
+      "tasks.md": "1ce8870cd571569c8a50ebd9b0ddf8f3a306e5349d008ba71880516b2be95f5b",
+      "implementation-summary.md": "b90445c345d94d16edef469cb389b942633b70d24d9ad026cb3c54e4bb94baab"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

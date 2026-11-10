@@ -111,7 +111,7 @@ Four DeepSeek V4.1 Flash workers, dispatched one at a time through `cli-opencode
 1. **The listing cannot stop an agent that ignores it.** Only the rule does that. The census baseline is 17 recent packets in 6 same-track clusters, so rerun it in two to three weeks to see whether new singletons still appear.
 2. **Existing specs keep the template phrases.** About 195 specs still carry them, and they now warn under `template-default` without failing.
 3. **The operator's global `~/.claude/CLAUDE.md` still has the old Gate 3 Option C wording.** It is outside this repository.
-4. **The four parents grouped on 2026-10-06 predate the rule.** `system-skill-advisor/025-defect-and-hardening-fixes` groups by outcome, not by artifact, so it would not qualify as a series parent today.
+4. **The four parents grouped on 2026-10-06 predate the rule.** `system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes` groups by outcome, not by artifact, so it would not qualify as a series parent today.
 <!-- /ANCHOR:limitations -->
 
 ---

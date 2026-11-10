@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/codebase-conformance",
+  "spec_folder": "system-skill-advisor/codebase-conformance",
+  "parent_id": "system-skill-advisor",
+  "children_ids": [
+    "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment",
+    "system-skill-advisor/codebase-conformance/002-advisor-test-drift",
+    "system-skill-advisor/codebase-conformance/003-align-runtime-code-with-sk-code-skilled",
+    "system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-skill-advisor/codebase-conformance"
+    ],
+    "causal_summary": "Container folder for system-skill-advisor/codebase-conformance."
+  }
+}

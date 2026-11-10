@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/002-doctor-command-routing",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/002-doctor-command-routing",
+  "parent_id": "system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/001-doctor-command-guidance",
+        "reason": "Implements the ranked recommendations of the 034 two-lineage research on guiding users to the doctor commands",
+        "source": "manual",
+        "spec_folder": "system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/001-doctor-command-guidance"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor command routing",
+      "advisor doctor bridges",
+      "runnable doctor command line",
+      "doctor setup umbrella",
+      "doctor command routing plan",
+      "doctor command routing tasks",
+      "doctor command routing acceptance criteria",
+      "doctor command routing implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "command",
+      "routing",
+      "advisor",
+      "bridges",
+      "runnable",
+      "line",
+      "setup",
+      "umbrella",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/setup.md",
+      ".claude/commands/doctor/setup.md",
+      ".cursor/commands/doctor-setup.md",
+      ".codex/prompts/doctor-setup.md",
+      ".pi/prompts/doctor-setup.md",
+      ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+      ".skilled/commands/README.txt",
+      "hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".opencode/plugins/lib/skill-advisor-render.js",
+      "feature-catalog/feature-catalog.md",
+      "scratch/short-prompts.json",
+      ".opencode/plugins/system-skill-advisor.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "setup.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.md",
+        "kind": "doc",
+        "path": ".cursor/commands/doctor-setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-phrase-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-render.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/skill-advisor-render.js",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "short-prompts.json",
+        "kind": "config",
+        "path": "scratch/short-prompts.json",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor has no path to the `/doctor:` commands",
+    "created_at": "2026-10-15T15:39:09Z",
+    "last_save_at": "2026-11-10T05:35:51.183Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6d9427f0dafbab8b8f4a128c1a922f3c9cee3a25fba5001c32ebf2f933bd8e0a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2f998c902f11790bd9c237567b48ecbb77a78801e74d2dacb93b250bac83f3b1",
+      "plan.md": "ff8c40927c60b0dceff388de42023d27fede14b0909b695c04858bd674a0ad53",
+      "tasks.md": "da4776e2f5d7b727e2ee02132e96c60ca79bf157a1507fbc1cd1782e8e565d1c",
+      "implementation-summary.md": "0050ef3e19601c908ed09af9f552a3b1ba7278a5fd4315d91b51bc28f9a7c818"
+    },
+    "last_active_at": null
+  }
+}

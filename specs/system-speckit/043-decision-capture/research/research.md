@@ -66,7 +66,7 @@ The collision result is structural: a prompt that contains "as a decision" gives
 
 ### 3.4 Owner
 
-A new packet in `specs/system-skill-advisor/` (next free 034), not a 043 child. Packet 031 fixed "the bare prompt `environment variables` routes to nothing" by adding `environment variables` to `.skilled/skills/system-spec-kit/graph-metadata.json`, re-exporting the skill graph, and filing under `specs/system-skill-advisor/`. [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md:40] [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md:73] [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md:81]
+A new packet in `specs/system-skill-advisor/` (next free 034), not a 043 child. Packet 031 fixed "the bare prompt `environment variables` routes to nothing" by adding `environment variables` to `.skilled/skills/system-spec-kit/graph-metadata.json`, re-exporting the skill graph, and filing under `specs/system-skill-advisor/`. [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md:40] [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md:73] [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md:81]
 
 043's goal D1 says every child changes the decision-capture pipeline: `.skilled/hooks/decision-capture/`, the decision-record writer or the save step. Routing metadata is none of those, and 007's Known Limitations already calls the advisor metadata "another artifact (parent goal D1)". [SOURCE: specs/system-speckit/043-decision-capture/goal.md:44] [SOURCE: specs/system-speckit/043-decision-capture/007-gap-closure/implementation-summary.md:143]
 
@@ -227,7 +227,7 @@ No divergent pivots ran (`convergenceMode` default, stop policy `convergence`). 
 - Series goal and phase map: `specs/system-speckit/043-decision-capture/goal.md`, `spec.md`
 - 007 gap closure: `specs/system-speckit/043-decision-capture/007-gap-closure/implementation-summary.md`, `decision-record.md`
 - Deep review: `specs/system-speckit/043-decision-capture/review/review-report.md`
-- Routing precedent: `specs/system-skill-advisor/031-routing-and-launcher-hardening/`
+- Routing precedent: `specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/`
 
 ## 12. Convergence Report
 

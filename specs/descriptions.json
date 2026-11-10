@@ -43847,7 +43847,7 @@
       "lastUpdated": "2026-08-15T14:41:07.718Z"
     },
     {
-      "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment",
+      "specFolder": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment",
       "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
       "keywords": [
         "broken",
@@ -43862,7 +43862,7 @@
       "lastUpdated": "2026-08-15T14:41:07.723Z"
     },
     {
-      "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment",
+      "specFolder": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/001-state-directory-containment",
       "description": "The advisor's state writers resolved their root from the current working directory instead of the repository root",
       "keywords": [
         "advisor",
@@ -43879,7 +43879,7 @@
       "lastUpdated": "2026-08-15T14:50:25.066Z"
     },
     {
-      "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit",
+      "specFolder": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/002-advisor-surface-audit",
       "description": "The skill-advisor subsystem has never had a systematic sweep of its own code and structure surface",
       "keywords": [
         "skill-advisor",
@@ -43895,7 +43895,7 @@
       "lastUpdated": "2026-08-15T14:41:07.723Z"
     },
     {
-      "specFolder": "system-skill-advisor/018-codex-node-runtime-alignment",
+      "specFolder": "system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment",
       "description": "Codex launches `mkskilladvisor` with Node 22, whose module ABI is 127",
       "keywords": [
         "codex",
@@ -43909,7 +43909,7 @@
       "lastUpdated": "2026-08-15T14:41:07.725Z"
     },
     {
-      "specFolder": "system-skill-advisor/019-advisor-test-drift/001-code-graph-retirement-drift",
+      "specFolder": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/001-code-graph-retirement-drift",
       "description": "A concurrent refactor retired the code-graph skill (`5a2aab0d37b`, \"stop routing to the retired code-graph skill\", on origin)",
       "keywords": [
         "concurrent",
@@ -43925,7 +43925,7 @@
       "lastUpdated": "2026-08-15T14:50:25.069Z"
     },
     {
-      "specFolder": "system-skill-advisor/020-launcher-test-bootstrap-guard",
+      "specFolder": "system-skill-advisor/runtime-lifecycle/002-launcher-test-bootstrap-guard",
       "description": "`mk-skill-advisor-launcher.cjs buildIfNeeded()` runs `npm ci` when advisor build artifacts look stale",
       "keywords": [
         "mk-skill-advisor-launcher",
@@ -43941,7 +43941,7 @@
       "lastUpdated": "2026-08-15T17:21:35.530Z"
     },
     {
-      "specFolder": "system-skill-advisor/019-advisor-test-drift/002-advisor-suite-drift-reconciliation",
+      "specFolder": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/002-advisor-suite-drift-reconciliation",
       "description": "Concurrent work \u2014 retiring the code-graph skill, renaming skills, adding hubs (Figma, mcp-tooling, CLI-hub, sk-communication), and rewiring hooks \u2014",
       "keywords": [
         "concurrent",
@@ -43962,7 +43962,7 @@
       "lastUpdated": "2026-09-07T19:42:24.812Z"
     },
     {
-      "specFolder": "system-skill-advisor/019-advisor-test-drift/003-playbook-inventory-reconciliation",
+      "specFolder": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/003-playbook-inventory-reconciliation",
       "description": "`tests/manual-testing-playbook.vitest.ts` guards that the root playbook table matches the live scenario corpus",
       "keywords": [
         "tests",
@@ -43980,7 +43980,7 @@
       "lastUpdated": "2026-08-16T04:21:01.296Z"
     },
     {
-      "specFolder": "system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn",
+      "specFolder": "system-skill-advisor/runtime-lifecycle/003-model-server-lifecycle/001-model-server-default-spawn",
       "description": "The memory server's launcher used to start the shared HF model server on first embed demand",
       "keywords": [
         "memory",
@@ -43996,7 +43996,7 @@
       "lastUpdated": "2026-09-04T17:50:18.641Z"
     },
     {
-      "specFolder": "system-skill-advisor/022-semantic-lane-enablement",
+      "specFolder": "system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement",
       "description": "Eight of 172 realistic phrasings reach the mode they were written for",
       "keywords": [
         "eight",
@@ -44009,7 +44009,7 @@
       "lastUpdated": "2026-09-02T22:20:19.857Z"
     },
     {
-      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/001-baseline-and-instrumentation",
+      "specFolder": "system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement/001-baseline-and-instrumentation",
       "description": "Three numbers this packet is built on are either unmeasured or wrong",
       "keywords": [
         "three",
@@ -44021,7 +44021,7 @@
       "lastUpdated": "2026-09-02T22:23:43.644Z"
     },
     {
-      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/002-embedding-population",
+      "specFolder": "system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement/002-embedding-population",
       "description": "Nine of fourteen skill nodes carry a vector",
       "keywords": [
         "nine",
@@ -44034,7 +44034,7 @@
       "lastUpdated": "2026-09-02T22:29:06.256Z"
     },
     {
-      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/003-weight-and-fusion-research",
+      "specFolder": "system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement/003-weight-and-fusion-research",
       "description": "The lane weight is 0.05 because that is what the registry has always said",
       "keywords": [
         "lane",
@@ -44047,7 +44047,7 @@
       "lastUpdated": "2026-09-02T22:31:54.247Z"
     },
     {
-      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/004-gated-enable",
+      "specFolder": "system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement/004-gated-enable",
       "description": "Raising a lane weight changes every routing decision the advisor makes",
       "keywords": [
         "raising",
@@ -44062,7 +44062,7 @@
       "lastUpdated": "2026-09-02T22:36:30.072Z"
     },
     {
-      "specFolder": "system-skill-advisor/022-semantic-lane-enablement/005-verification-and-closeout",
+      "specFolder": "system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement/005-verification-and-closeout",
       "description": "A packet that measured well during its work can still leave a repository that disagrees with",
       "keywords": [
         "packet",
@@ -44077,7 +44077,7 @@
       "lastUpdated": "2026-09-02T22:38:35.452Z"
     },
     {
-      "specFolder": "system-skill-advisor/023-routing-perfection-research",
+      "specFolder": "system-skill-advisor/routing-and-scoring/002-routing-perfection-research",
       "description": "A hub's `ROUTER.md` advertises the phrases that reach it, and for 173 of 439 such phrases across six hubs that claim was false",
       "keywords": [
         "hub",

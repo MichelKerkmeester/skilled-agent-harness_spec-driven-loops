@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-skill-advisor/host-integrations",
+  "description": "How the advisor attaches to its hosts and entry points: the Pi hook bridge, transport removal in favor of the daemon-backed CLI, and the shared hook refinements mined from pi-skill-orchestrator.",
+  "keywords": [
+    "host",
+    "integrations"
+  ],
+  "lastUpdated": "2026-11-10T05:35:34.576Z",
+  "specId": "system-skill-advisor/host-integrations",
+  "folderSlug": "host-integrations",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

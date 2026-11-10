@@ -1582,7 +1582,7 @@
     },
     {
       "id": "finding-10-3-sources-skilled-skills-sk-code-sk-code-skilled-assets-scripts-verify-alignment-d",
-      "text": "Sources: `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py`, `specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/containment/quarantine/1/content/.hermes/skills/system-spec-kit/SKILL.md`",
+      "text": "Sources: `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py`, `specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/containment/quarantine/1/content/.hermes/skills/system-spec-kit/SKILL.md`",
       "addedAtIteration": 10,
       "sources": []
     },

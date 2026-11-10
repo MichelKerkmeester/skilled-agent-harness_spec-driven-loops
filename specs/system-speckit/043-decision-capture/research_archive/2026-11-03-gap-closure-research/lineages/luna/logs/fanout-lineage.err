@@ -428,7 +428,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/system-skill-advisor/023-routing-perfection-research/decision-record.md",
+      "path": "specs/system-skill-advisor/routing-and-scoring/002-routing-perfection-research/decision-record.md",
       "phrases": [
         "decision record",
         "routing decisions"

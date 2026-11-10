@@ -210,7 +210,7 @@
     ],
     "causal_summary": "On 2026-09-29 five Level 1 packets were opened in one day, each fixing one line of the same write recipe, and 21 packets across three tracks had to be grouped by hand on 2026-10-06",
     "created_at": "2026-10-06T20:29:10Z",
-    "last_save_at": "2026-10-31T13:58:16.853Z",
+    "last_save_at": "2026-11-10T05:36:58.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d70f8ea229dae3a173ab379dd194c963ad99cb26c82533c9ac0f89fde0e80fdd",
+    "source_fingerprint": "sha256:242007e7a6541ecd48054d56c0d0b12467e2028e950b0b16a13b06383eb5d7af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8dd943bfff5fd68d696c67c68cad76edf73e32de57843933363545b6c2ef2fe3",
       "plan.md": "63873224ae39c496e59683c7cca377fbd1a6265c861c7aadd10e8e4a4d4563de",
       "tasks.md": "982f81ce97a4eb71fc45c45ac27ace573bffec5cbb058f549a5526fb98f897af",
-      "implementation-summary.md": "7e9f0c68197a66a8f3e089484b25b72a4d2019944b616616ab691e33d5b266a4"
+      "implementation-summary.md": "06ba07a46d7b14985f93720c3300ed58c23a54852e53bdb7c538e45f0c044918"
     },
     "last_active_at": null
   }

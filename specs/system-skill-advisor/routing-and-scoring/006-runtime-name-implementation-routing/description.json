@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/routing-and-scoring/006-runtime-name-implementation-routing",
+  "description": "Route implementation prompts that name a runtime surface to the code skill, not the CLI executor",
+  "keywords": [
+    "route",
+    "implementation",
+    "prompts",
+    "name",
+    "runtime",
+    "surface",
+    "code",
+    "skill",
+    "cli",
+    "executor"
+  ],
+  "lastUpdated": "2026-11-08T16:43:36.975Z",
+  "specId": "034",
+  "folderSlug": "runtime-name-implementation-routing",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-11-26_17-43__masked-runtime-surface-mentions-in-the-executor.md"
+  ]
+}

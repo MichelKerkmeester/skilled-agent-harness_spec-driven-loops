@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine",
   "spec_folder": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements",
     "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/002-semantic-routing-lane",

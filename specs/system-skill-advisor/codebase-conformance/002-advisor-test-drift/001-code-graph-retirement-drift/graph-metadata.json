@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/001-code-graph-retirement-drift",
+  "spec_folder": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/001-code-graph-retirement-drift",
+  "parent_id": "system-skill-advisor/codebase-conformance/002-advisor-test-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-graph retirement drift",
+      "advisor scorer null id crash",
+      "skillNameVariants undefined crash",
+      "advisor suite triage",
+      "code-graph retirement drift plan",
+      "code-graph retirement drift tasks",
+      "code-graph retirement drift summary"
+    ],
+    "key_topics": [
+      "code-graph",
+      "retirement",
+      "drift",
+      "advisor",
+      "scorer",
+      "null",
+      "crash",
+      "skillnamevariants",
+      "undefined",
+      "suite",
+      "triage",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Retirement Test Drift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Harden",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delegate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Delegate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SOL-HIGH",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A concurrent refactor retired the code-graph skill (`af2d543bf1d`, \"stop routing to the retired code-graph skill\", on origin)",
+    "created_at": "2026-08-15T13:46:11.095Z",
+    "last_save_at": "2026-11-10T05:35:39.156Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e40528b2f463e40db53151bbae8c62271357b75356ac91fd4fd45199b7f8aee1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "211ea155cf64722dde08ddd374b4b72fbdc91992e6fb59f22d1eb5e34f05cde3",
+      "plan.md": "88b016be1a5900b8ea131d3d4131a5e4f33cc02da5841aa1817eb94975341c13",
+      "tasks.md": "d13d9f0eeb58a7745d538bbb8761f81c0599d8ffa008cfd96a90a005017c9b81",
+      "implementation-summary.md": "8ab2399858386a5a44fb0bf05213caa5356c2a0f9782057c95b8ca192139b164"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

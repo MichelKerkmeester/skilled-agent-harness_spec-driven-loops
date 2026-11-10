@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The release-conformance review of `/doctor:git setup` returned CONDITIONAL",
     "created_at": "2026-10-16T05:45:15Z",
-    "last_save_at": "2026-11-10T05:07:12.547Z",
+    "last_save_at": "2026-11-10T05:36:49.825Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +213,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a97d9a98cfd93015771a77acc6eefd8f79e1be836d71589d9428308b02376cc0",
+    "source_fingerprint": "sha256:64d141475f2501cc7fa6e9c9fffe4c049061c4a01418cf3d51d3ca9b8bbe42fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89eaef55e9e0193994229ab0038f8be93e79c0b684f5e494d24afb10389dfa72",
+      "spec.md": "b8a9d104785cb186c7e86d18539a92670b0c8a36f391187582f6acb7a951fb79",
       "plan.md": "ffb3268e395ec695b42f95db29acc1bc7a0d5ac5625bf6e8c6eda5d64f7e797a",
       "tasks.md": "7a6ea7b23320015b95bba77e0e38e000b805bbbdac9e0ac67c63657a7e449df6",
       "implementation-summary.md": "9f6d9c306d05ada0ec6cc0b4ec028555761dbea5f9a63698907403ef16bbaf3a"

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/codebase-conformance/002-advisor-test-drift/001-code-graph-retirement-drift",
+  "description": "A concurrent refactor retired the code-graph skill (`af2d543bf1d`, \"stop routing to the retired code-graph skill\", on origin)",
+  "keywords": [
+    "concurrent",
+    "refactor",
+    "retired",
+    "code-graph",
+    "skill",
+    "af2d543bf1d",
+    "stop",
+    "routing",
+    "origin"
+  ],
+  "lastUpdated": "2026-09-11T16:49:41.312Z",
+  "specId": "001",
+  "folderSlug": "code-graph-retirement-drift",
+  "parentChain": [
+    "system-skill-advisor",
+    "019-advisor-test-drift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

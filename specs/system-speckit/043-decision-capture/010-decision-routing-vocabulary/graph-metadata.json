@@ -47,7 +47,6 @@
       "references/validation/decision-format.md",
       ".skilled/skills/system-spec-kit/graph-metadata.json",
       ".skilled/skills/system-spec-kit/ROUTER.md",
-      ".hermes/skills/system-spec-kit/ROUTER.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "An operator who types \"record this as a decision\" or \"Record my chat reply as a decision\" gets no skill recommendation, so the session never loads the save workflow that writes operator decisions",
     "created_at": "2026-11-03T09:15:10Z",
-    "last_save_at": "2026-11-03T14:25:17.429Z",
+    "last_save_at": "2026-11-10T05:36:59.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c97dd4864f025c253cb710e1abb2df5ffe433ef65fe1774d7c95293520b3bab3",
+    "source_fingerprint": "sha256:84bb8da07827cc42b6375445cec3bbef8631e34aafef9c6104417bedf46d55e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab852422fcafea154a977a46c135bb2f92c65e2303b9cbdfd7f96c282e531381",
+      "spec.md": "58903330036c7e765797b80af9bf3fe858eeec72b77db3b810e5a4130ad209ef",
       "plan.md": "631264fc479c428455ffde4a0fe34ceea6dfe98d00257c6d22b0fa8f9a9b83b8",
       "tasks.md": "3c20bce4de070af242d2a967e16feaed9f7dc5fd3ca8050a32f126b635576f73",
       "implementation-summary.md": "2deb939a7b4ed6bda10e928b31b9c69c3c43e68ac3a0ed957b5dabbb3117e970"

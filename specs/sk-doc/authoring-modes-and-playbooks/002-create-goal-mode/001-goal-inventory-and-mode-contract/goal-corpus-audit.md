@@ -49,8 +49,8 @@ The scan flagged placeholder objectives in 15 goals. Its objective test matches 
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects`
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review`
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings`
-- `specs/system-skill-advisor/024-mcp-decommission-cli-front-door/009-deep-review-decommission`
-- `specs/system-skill-advisor/024-mcp-decommission-cli-front-door/010-deep-research-residue`
+- `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/009-deep-review-decommission`
+- `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/010-deep-research-residue`
 - `specs/system-speckit/031-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research`
 - `specs/system-speckit/031-system-speckit-v4/038-goal-unification/012-open-items-research`
 
@@ -73,8 +73,8 @@ The scan flagged placeholder decision text in 17 goals and placeholder criterion
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/013-recorded-adjacent-defects`
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/014-post-work-review`
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/015-review-confirmed-findings`
-- `specs/system-skill-advisor/024-mcp-decommission-cli-front-door/009-deep-review-decommission`
-- `specs/system-skill-advisor/024-mcp-decommission-cli-front-door/010-deep-research-residue`
+- `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/009-deep-review-decommission`
+- `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/010-deep-research-residue`
 - `specs/system-speckit/031-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research`
 - `specs/system-speckit/031-system-speckit-v4/038-goal-unification/012-open-items-research`
 
@@ -107,7 +107,7 @@ The scan counted 36 goals with fewer than three or more than seven checked compl
 - `specs/sk-git/commit-standards/001-crawlable-commit-history` — 10.
 - `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening` — 10.
 - `specs/system-deep-loop/036-deep-loop-innovation/scratch` — 0.
-- `specs/system-skill-advisor/024-mcp-decommission-cli-front-door` — 8.
+- `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door` — 8.
 - `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance` — 2.
 - `specs/system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing` — 8.
 - `specs/system-speckit/031-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/anchor-inject/ws/specs/t/001-fixture` — 1.
@@ -141,7 +141,7 @@ The 16 exact per-child-row packets are:
 - `specs/sk-doc/document-standards/003-changelog-system/002-skill-changelog-retrofit`
 - `specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode`
 - `specs/sk-git/commit-standards/001-crawlable-commit-history`
-- `specs/system-skill-advisor/022-semantic-lane-enablement`
+- `specs/system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement`
 - `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria`
 - `specs/system-speckit/031-system-speckit-v4/010-goal-file-addon`
 - `specs/system-speckit/031-system-speckit-v4/014-daemon-and-test-harness-hardening`
@@ -188,7 +188,7 @@ The 39 range, glob or prose-style packets are:
 - `specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing`
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review`
 - `specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening`
-- `specs/system-skill-advisor/024-mcp-decommission-cli-front-door`
+- `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door`
 - `specs/system-speckit/031-system-speckit-v4/019-memory-decommission-branch-landing`
 - `specs/system-speckit/031-system-speckit-v4/030-spec-kit-simplification-research`
 
@@ -207,7 +207,7 @@ Twelve packets have one or more detected phase children without a `goal.md`. The
 - `specs/sk-design/019-sk-design-diagram-upgrade` — 1 lacks a goal.
 - `specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter` — 7 lack a goal.
 - `specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review` — 2 deeper child folders lack a goal; this row is itself a phase-child goal.
-- `specs/system-skill-advisor/024-mcp-decommission-cli-front-door` — 3 lack a goal.
+- `specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door` — 3 lack a goal.
 - `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission` — 1 lacks a goal; this row is itself a phase-child goal.
 - `specs/system-speckit/031-system-speckit-v4/041-skilled-source-root-migration` — 10 deeper child folders lack a goal; this row is itself a phase-child goal.
 

@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-skill-advisor/routing-and-scoring",
+  "description": "How the advisor decides which skill a prompt reaches: scorer behavior, phrase coverage, semantic-lane scoring, and the ranking rules between workflow skills and executor hubs.",
+  "keywords": [
+    "routing",
+    "and",
+    "scoring"
+  ],
+  "lastUpdated": "2026-11-10T05:35:34.576Z",
+  "specId": "system-skill-advisor/routing-and-scoring",
+  "folderSlug": "routing-and-scoring",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

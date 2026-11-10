@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "system-skill-advisor/runtime-lifecycle",
+  "description": "The advisor's own runtime: Node/ABI alignment, launcher bootstrapping, model-server spawn and daemon memory, build freshness records, and the defect sweep over suite, daemon and bootstrap behavior.",
+  "keywords": [
+    "runtime",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-11-10T05:35:34.576Z",
+  "specId": "system-skill-advisor/runtime-lifecycle",
+  "folderSlug": "runtime-lifecycle",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

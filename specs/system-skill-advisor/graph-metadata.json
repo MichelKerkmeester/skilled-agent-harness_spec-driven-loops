@@ -4,24 +4,10 @@
   "spec_folder": "system-skill-advisor",
   "parent_id": null,
   "children_ids": [
-    "system-skill-advisor/017-advisor-audit-and-state-containment",
-    "system-skill-advisor/018-codex-node-runtime-alignment",
-    "system-skill-advisor/019-advisor-test-drift",
-    "system-skill-advisor/020-launcher-test-bootstrap-guard",
-    "system-skill-advisor/021-model-server-lifecycle",
-    "system-skill-advisor/022-semantic-lane-enablement",
-    "system-skill-advisor/023-routing-perfection-research",
-    "system-skill-advisor/024-mcp-decommission-cli-front-door",
-    "system-skill-advisor/025-defect-and-hardening-fixes",
-    "system-skill-advisor/026-pi-advisor-bridge",
-    "system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement",
-    "system-skill-advisor/028-align-runtime-code-with-sk-code-skilled",
-    "system-skill-advisor/029-advisor-status-truthfulness",
-    "system-skill-advisor/030-doctor-command-surfacing",
-    "system-skill-advisor/031-routing-and-launcher-hardening",
-    "system-skill-advisor/032-executor-workflow-owner-guard",
-    "system-skill-advisor/033-build-freshness-record",
-    "system-skill-advisor/034-runtime-name-implementation-routing"
+    "system-skill-advisor/codebase-conformance",
+    "system-skill-advisor/host-integrations",
+    "system-skill-advisor/routing-and-scoring",
+    "system-skill-advisor/runtime-lifecycle"
   ],
   "manual": {
     "depends_on": [],
@@ -110,7 +96,7 @@
     "source_doc_hashes": {
       "spec.md": "b5b81543e503403b3fccb37caa3f9edc04305f2900d64c697bb442717f5ae880"
     },
-    "last_active_child_id": "system-skill-advisor/018-codex-node-runtime-alignment",
+    "last_active_child_id": "system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment",
     "last_active_at": null
   }
 }

@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening",
   "spec_folder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/001-deferred-remediation-telemetry-run",
     "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/002-advisor-plugin-hardening",

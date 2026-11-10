@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Completed baseline phase preserving the original 065 reindex, live MCP replay, and router stress-test evidence.",
     "created_at": "2026-05-18T07:49:27.126Z",
-    "last_save_at": "2026-10-07T18:15:26.594Z",
+    "last_save_at": "2026-11-10T05:35:48.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2f94260c4b92317658e2f1495017f9e69d504e3c112ee23d5959073a1b2a0a68",
+    "source_fingerprint": "sha256:dd86d5e64f119649bfc858c40c9b65bf15418b99bde41aa24602c2527ed1e0d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a31373ba048bedcad0ae62549e2bb6b7e7eaa3115e5c1b6099450377a6d1ec1c",
       "plan.md": "1be288a79d8e1434c6ceaf1a2e145f96f7d8d65bf83522688157ff6aa71ed0be",
       "tasks.md": "3cd807e072f879669d51b101a306eec180f4ec1e92fcf505f2cab5edc124ec48",
       "implementation-summary.md": "ec0237af4359760b3b32d3f87917ced1cdff43fcc5623547d6a21b6acfdca170",
-      "handover.md": "020ab8b193c9ce35b0b74165837bc97684f03efc0a4f90cba3b5fb8d07c4e776",
+      "handover.md": "e28d408387a51a979c932882b54a275cb5e7806703ed2dde52ce4e3c30343c57",
       "resource-map.md": "a80ee0be1ff93fa437d27f029b76c615190b5bfab321258875be37570e87c8ef"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",

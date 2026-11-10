@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two research packets just shipped with 10+ concrete recommendations:",
     "created_at": "2026-04-19T00:00:00.000Z",
-    "last_save_at": "2026-10-07T18:15:41.320Z",
+    "last_save_at": "2026-11-10T05:35:55.205Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T00:00:00.000Z",
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:357f82535e3a6cd30b454b676a8b12d122d9b5eac3a7996c6d81a66e6a93bf38",
+    "source_fingerprint": "sha256:3a4f10ba2fa2fa3cc7933819bb40d65a2539eba1449d12c853bd473b9d56a2cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c7f57ea3147edfa9226bac27f5b0687460674206584257aefc713d7668c74f8",
       "plan.md": "f45861f9fc8acc9366a660ca94a2fa28bb1916b3954cd76f2305a5b604ab4fe4",
       "tasks.md": "5119539af12f9f3a321583990025598f593b0ad612125867a62f670dc65aaeaa",
-      "implementation-summary.md": "75648d9a71eb8cc549872e0dae83a036c41b274aa3c7cf83772696c8a469db61"
+      "implementation-summary.md": "187a4b4227570c53664889523cd2bc774554a2e20951de43be2c8a20f31760ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

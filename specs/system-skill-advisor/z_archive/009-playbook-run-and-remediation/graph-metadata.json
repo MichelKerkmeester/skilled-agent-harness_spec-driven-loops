@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
   "spec_folder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/001-preconditions-and-build",
     "system-skill-advisor/z_archive/009-playbook-run-and-remediation/002-mcp-native-scenarios",

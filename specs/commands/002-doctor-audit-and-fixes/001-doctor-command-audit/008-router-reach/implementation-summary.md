@@ -109,7 +109,7 @@ Audit first: the phase inventoried every named path, flag and script, then ran t
 3. **Only one hub was rerun live after the fix.** The post-fix live check used `--hub sk-doc --limit 5`; the full fleet has not been rerun against the live advisor.
 4. **Three doctor test fixtures fail in this worktree, as before the batch.** `parent-skill-check-*.test.cjs` cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` inside a temporary fixture; this matches the pre-batch baseline and is not a regression.
 
-**Follow-up status.** Items 1 to 3 are resolved by `specs/system-skill-advisor/029-advisor-status-truthfulness` phase 002: the full fleet, rerun against the live advisor, reports 0 wrong-hub and 0 outranked, and a rerun after merging main agrees. Item 4 is resolved by `specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003.
+**Follow-up status.** Items 1 to 3 are resolved by `specs/system-skill-advisor/codebase-conformance/004-advisor-status-truthfulness` phase 002: the full fleet, rerun against the live advisor, reports 0 wrong-hub and 0 outranked, and a rerun after merging main agrees. Item 4 is resolved by `specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003.
 <!-- /ANCHOR:limitations -->
 
 ---

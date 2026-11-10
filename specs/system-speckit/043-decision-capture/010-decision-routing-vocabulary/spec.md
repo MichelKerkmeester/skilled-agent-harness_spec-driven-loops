@@ -44,7 +44,7 @@ This is **Phase 10** of the decision-capture series. It acts on gap 1 in `../res
 - `../research/research.md` §3 and §13. Where they disagree, §13 wins.
 - `../research/synthesis-review.md` P2-1 to P2-4.
 - 008-project-scoped-state ships first. Routing more decision requests to the save step before 008 lands would lead users into the shared-state bug (`../research/research.md` §6).
-- Precedent: packet 031 added `environment variables` to the same metadata file (`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md:81`).
+- Precedent: packet 031 added `environment variables` to the same metadata file (`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md:81`).
 
 **Deliverables**:
 - Four new intent signals on system-spec-kit.

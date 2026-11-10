@@ -497,8 +497,8 @@ cite dead: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-ma
 cite dead: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-019.md:24 -> specs/system-deep-loop/036-deep-loop-innovation/spec.md:207
 cite dead: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-019.md:30 -> specs/system-deep-loop/036-deep-loop-innovation/spec.md:250
 cite dead: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-019.md:62 -> specs/system-deep-loop/036-deep-loop-innovation/spec.md:207
-cite dead: specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md:1785 -> opencode.json:55
-cite dead: specs/system-skill-advisor/024-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/review-report.md:227 -> .opencode/plugins/system-skill-advisor.js:1457
+cite dead: specs/system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md:1785 -> opencode.json:55
+cite dead: specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/review-report.md:227 -> .opencode/plugins/system-skill-advisor.js:1457
 cite dead: specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit/research/iterations/iteration-002.md:48 -> .claude/mcp.json:19
 cite dead: specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit/research/iterations/iteration-011.md:43 -> .claude/mcp.json:31
 cite dead: specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit/research/iterations/iteration-011.md:43 -> .claude/mcp.json:43

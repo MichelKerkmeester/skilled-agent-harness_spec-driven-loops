@@ -126,7 +126,7 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/containment/quarantine/1/content/.hermes/skills/system-spec-kit/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/review/lineages/deepseek/containment/quarantine/1/content/.hermes/skills/system-spec-kit/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 
 ---
 

@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/004-skill-graph",
   "spec_folder": "system-skill-advisor/z_archive/004-skill-graph",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-skill-advisor/z_archive/004-skill-graph/001-skill-graph-metadata-routing-boosts",
     "system-skill-advisor/z_archive/004-skill-graph/002-skill-graph-daemon-native-advisor-tools",

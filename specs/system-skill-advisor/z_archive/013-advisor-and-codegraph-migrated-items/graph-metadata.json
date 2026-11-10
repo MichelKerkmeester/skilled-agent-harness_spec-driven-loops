@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items",
   "spec_folder": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/001-skill-advisor-cross-session-reconnect",
     "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/002-skill-advisor-suite-repair",

@@ -48,6 +48,7 @@
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
       "scratch/reality-check.md",
       "scratch/proposal.md",
       ".skilled/skills/cli-classifier/graph-metadata.json",
@@ -104,6 +105,12 @@
         "name": "skill-graph.json",
         "kind": "config",
         "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -195,17 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Audit",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit skill-graph-freshness` checks whether the skill graph is current",
     "created_at": "2026-10-02T16:10:25Z",
-    "last_save_at": "2026-10-31T15:23:40.893Z",
+    "last_save_at": "2026-11-10T05:36:49.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07fea8e2914766f0d05436938c2451bd90c76f1e39a20074390bcdb37233b013",
+    "source_fingerprint": "sha256:681f9d739c3933eb5f054a75b122829fd90c1d4b2485481d720135c89f45e0a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4bb01f6d62387278c90cd027fd14d6f7f2e17ef5642fa48c6b031152275b5b3",
       "plan.md": "139f85e4b3d66736972e525773453934dd555501b33da20fcdb63c15d7ecbc69",
       "tasks.md": "c258111fdfb6fe853bc6fe1366ee1da0658df457487412e4cbf63127ad9bb682",
-      "implementation-summary.md": "de2d749b957b96fcedd84c5873189a7296309b7b77e6a2b7cab3343c58a5aa5f"
+      "implementation-summary.md": "2586a0709e62c9770e77304c74ee507deab07ba63fb79eb992331c15931f7129"
     },
     "last_active_at": null
   }

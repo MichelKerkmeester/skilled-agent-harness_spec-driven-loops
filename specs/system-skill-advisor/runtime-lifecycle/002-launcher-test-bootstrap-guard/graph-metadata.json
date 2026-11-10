@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/runtime-lifecycle/002-launcher-test-bootstrap-guard",
+  "spec_folder": "system-skill-advisor/runtime-lifecycle/002-launcher-test-bootstrap-guard",
+  "parent_id": "system-skill-advisor/runtime-lifecycle",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "launcher npm ci wipes node_modules",
+      "advisor suite teardown hang",
+      "launcher bootstrap test guard",
+      "launcher bootstrap guard plan",
+      "launcher bootstrap guard tasks",
+      "launcher bootstrap guard summary"
+    ],
+    "key_topics": [
+      "launcher",
+      "npm",
+      "wipes",
+      "advisor",
+      "suite",
+      "teardown",
+      "hang",
+      "bootstrap",
+      "test",
+      "guard",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launcher Test",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bootstrap Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mk-skill-advisor-launcher.cjs buildIfNeeded()` runs `npm ci` when advisor build artifacts look stale",
+    "created_at": "2026-08-15T15:18:56.799Z",
+    "last_save_at": "2026-11-10T05:35:45.373Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0c2cf596415a0ded7621b90d2099d827ae1a24bb34a8fd1714d2c634a410b60f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fe5fadf54d3c238ed694dd99e5e7fec284ebcc8c63af96a8fb0391e88419ee9b",
+      "plan.md": "2d26900ed69ce3b4f7b5bf9e0cf542f20292ecea5cd2b29eda6768f0b29610ca",
+      "tasks.md": "2fd06328df8aba288324f4bb28f32872c69ffe746bfdbd60f14591107755a410",
+      "implementation-summary.md": "43214067c9d9b070f0153e109d0df73b3d847012319d1f843a7a9730ba7708ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

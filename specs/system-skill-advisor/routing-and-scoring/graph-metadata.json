@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring",
+  "spec_folder": "system-skill-advisor/routing-and-scoring",
+  "parent_id": "system-skill-advisor",
+  "children_ids": [
+    "system-skill-advisor/routing-and-scoring/001-semantic-lane-enablement",
+    "system-skill-advisor/routing-and-scoring/002-routing-perfection-research",
+    "system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing",
+    "system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening",
+    "system-skill-advisor/routing-and-scoring/005-executor-workflow-owner-guard",
+    "system-skill-advisor/routing-and-scoring/006-runtime-name-implementation-routing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-skill-advisor/routing-and-scoring"
+    ],
+    "causal_summary": "Container folder for system-skill-advisor/routing-and-scoring."
+  }
+}

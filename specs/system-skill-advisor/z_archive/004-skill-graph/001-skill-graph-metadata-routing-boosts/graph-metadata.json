@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Add structured graph metadata to all 20 skill folders, compile into a lightweight skill-graph.json, and integrate graph-derived boosts into skill_advisor.py routing.",
     "created_at": "2026-04-13T12:00:00.000Z",
-    "last_save_at": "2026-10-07T21:54:09.267Z",
+    "last_save_at": "2026-11-10T05:35:49.132Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c4972ba2b5e2366e581b7631cd4e098dc28007941d77201e1256b5f5e508d03b",
+    "source_fingerprint": "sha256:d0cbfe7f263d3dd372455a4d7a205d34bf653fcb56133e90d8993becec8c00ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5625b8c4f3c76d0e7a48178d424b573f8d9008410642d049a5738675e4e1a80f",
+      "spec.md": "7751096b1246e67241913e2ccce31f60afa4fc1f19203fdd23892a9207d72538",
       "plan.md": "e9230c03290c3cd75cd5ff0ce5a218b18686089aeb810864e148e77fb709b419",
       "tasks.md": "188fa2754ff143aeecdbcfe8750189608c122db5eba631ee987f2eea92f21474",
-      "implementation-summary.md": "9dfd244f2c1471e97ec6de49ef6155bf156a31d4b3a3dbe0a597590a57854b79",
+      "implementation-summary.md": "d19feff06fe00979e72093f296fcde070ed219a9357f06f8d8e79703e2ad98a1",
       "handover.md": "290887c5ca29c8a272e7ce580e7ad3612164b1c4b0d8f7735aa57ec26fdddaf7"
     },
     "last_active_child_id": null,

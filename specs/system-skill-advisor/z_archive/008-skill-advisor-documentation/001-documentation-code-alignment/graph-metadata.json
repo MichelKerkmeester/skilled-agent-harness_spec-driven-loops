@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemini/Copilot/Codex) with 11 new lib files, 4 hook adapters, 11 test files, and full reference documentation at `.opencode/skills/system-spec-kit/references/hooks/`",
     "created_at": "2026-04-19T18:10:00Z",
-    "last_save_at": "2026-10-07T18:16:09.248Z",
+    "last_save_at": "2026-11-10T05:35:57.180Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b101847bf9611abc8c7a886a5df63aa14547d9d54dc96e9b6fc56a46ee16e4d",
+    "source_fingerprint": "sha256:4e9b0d0f22cc449b837bea472589f64f1ec27be8975cbfd0b5c5e1bc700b80ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a96f718216ed900042bca51d85586ee8b9da13c22d37df84ca3b3823f4f2a72a",
-      "plan.md": "410d90181e1a8faf979a1ba82cb95b8a65e0927a269a5d72227fa6950c39f25e",
-      "tasks.md": "feeb0a6e762c97a91e5dd456e9cdb0c69e933c781755ae20964a927df4763abd",
-      "implementation-summary.md": "8704175c231477950469bd6852d6bf0f2ddc9fd2ec1f10f1876404f8f86c29f9"
+      "spec.md": "05a702206b66908f6e7c475b4ac4262a024bf2ac0087a4005b05323ff9ae858b",
+      "plan.md": "da07eae0dcbc9fc27a90345b220090d0c91b598a448c4bccb4603501617b9375",
+      "tasks.md": "d77f78e9670f61348e47cd4656e3cc1060623b52d695f3fe298c3bdd7c831cce",
+      "implementation-summary.md": "af93f67e8f8c3bdc795ffdfed705a6dd5172c26eb63212c071df180b75971b2c"
     },
     "last_active_child_id": null,
     "last_active_at": null

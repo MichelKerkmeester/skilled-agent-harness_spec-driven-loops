@@ -94,9 +94,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -113,9 +113,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -132,9 +132,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -151,9 +151,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -170,9 +170,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -189,9 +189,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -199,7 +199,7 @@
     },
     {
       "id": "finding-1-7-a-routing-vocabulary-gap-of-this-exact-kind-has-a-precedent-owner-and-recipe-pac",
-      "text": "A routing-vocabulary gap of this exact kind has a precedent owner and recipe. Packet 031 fixed \"the bare prompt `environment variables` routes to nothing\" by adding `environment variables` to `.skilled/skills/system-spec-kit/graph-metadata.json`, re-exporting the skill graph, and proving the route with a short-prompt probe; the packet is filed under `specs/system-skill-advisor/`, not under the skill whose metadata changed. [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md:40] [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md:73] [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md:81] [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md:77]",
+      "text": "A routing-vocabulary gap of this exact kind has a precedent owner and recipe. Packet 031 fixed \"the bare prompt `environment variables` routes to nothing\" by adding `environment variables` to `.skilled/skills/system-spec-kit/graph-metadata.json`, re-exporting the skill graph, and proving the route with a short-prompt probe; the packet is filed under `specs/system-skill-advisor/`, not under the skill whose metadata changed. [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md:40] [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md:73] [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md:81] [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md:77]",
       "addedAtIteration": 1,
       "sources": [
         "`.skilled/skills/system-spec-kit/graph-metadata.json`",
@@ -208,9 +208,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -227,9 +227,9 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`",
         "`.skilled/skills/sk-design/SKILL.md`",
         "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` (executed twice, read-only)",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/plan.md`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/implementation-summary.md`"
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/implementation-summary.md`"
       ],
       "_lineages": [
         "devin-deepseek"
@@ -685,7 +685,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -704,7 +704,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -723,7 +723,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -734,7 +734,7 @@
     },
     {
       "id": "finding-4-3-gap-1-belongs-to-a-new-packet-in-specs-system-skill-advisor-next-free-number-034",
-      "text": "Gap 1 belongs to a new packet in `specs/system-skill-advisor/` (next free number 034), not to a 043 child. Packet 031 fixed the same class of gap (\"`environment variables` routes to nothing\") by editing `.skilled/skills/system-spec-kit/graph-metadata.json` and filing under the advisor track, and 043's goal D1 freezes its children to the decision-capture pipeline, the writer or the save step. [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md:40] [SOURCE: specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md:73] [SOURCE: specs/system-speckit/043-decision-capture/goal.md:44]",
+      "text": "Gap 1 belongs to a new packet in `specs/system-skill-advisor/` (next free number 034), not to a 043 child. Packet 031 fixed the same class of gap (\"`environment variables` routes to nothing\") by editing `.skilled/skills/system-spec-kit/graph-metadata.json` and filing under the advisor track, and 043's goal D1 freezes its children to the decision-capture pipeline, the writer or the save step. [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md:40] [SOURCE: specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md:73] [SOURCE: specs/system-speckit/043-decision-capture/goal.md:44]",
       "addedAtIteration": 4,
       "sources": [
         "All `.skilled/skills/*/graph-metadata.json` files (scripted read)",
@@ -742,7 +742,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -761,7 +761,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -780,7 +780,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -799,7 +799,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -818,7 +818,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -837,7 +837,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"
@@ -856,7 +856,7 @@
         "`.skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py`",
         "`.skilled/commands/doctor/scripts/skill-graph-freshness.cjs`",
         "`.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl`",
-        "`specs/system-skill-advisor/031-routing-and-launcher-hardening/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/004-routing-and-launcher-hardening/spec.md`",
         "`specs/system-speckit/043-decision-capture/goal.md`",
         "`specs/system-speckit/043-decision-capture/spec.md`",
         "`specs/system-speckit/043-decision-capture/review/review-report.md`"

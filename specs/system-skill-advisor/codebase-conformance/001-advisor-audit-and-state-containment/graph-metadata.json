@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment",
+  "spec_folder": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment",
+  "parent_id": "system-skill-advisor/codebase-conformance",
+  "children_ids": [
+    "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/001-state-directory-containment",
+    "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/002-advisor-surface-audit"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec core"
+    ],
+    "key_topics": [
+      "spec",
+      "core",
+      "broken",
+      "missing",
+      "inefficient",
+      "sentences",
+      "describing",
+      "specific",
+      "pain",
+      "point",
+      "feature",
+      "specification"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Containment Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-07-27T15:47:28Z",
+    "last_save_at": "2026-11-10T05:35:38.943Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7863e3a9be53ba925ba8b01a4978917a43361747302be0e8ed5e653018cb5b4a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d9a48f7fdab6f757afbc1c2a9b5874c65eeea3bb34155febdb32e4d5961d401"
+    },
+    "last_active_child_id": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/001-state-directory-containment",
+    "last_active_at": null
+  }
+}

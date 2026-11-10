@@ -46,7 +46,7 @@
       ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py",
       ".skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs",
       "tests/README.md",
-      "specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing/review/lineages/deepseek-max/evidence/pre/SKILL.md",
+      "specs/system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/002-doctor-command-routing/review/lineages/deepseek-max/evidence/pre/SKILL.md",
       "scripts/README.md",
       ".skilled/commands/doctor/git.md"
     ],
@@ -102,7 +102,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": "specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing/review/lineages/deepseek-max/evidence/pre/SKILL.md",
+        "path": "specs/system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/002-doctor-command-routing/review/lineages/deepseek-max/evidence/pre/SKILL.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The phase 7 build left four defects it found outside its scope",
     "created_at": "2026-10-16T07:28:31Z",
-    "last_save_at": "2026-11-10T05:07:15.993Z",
+    "last_save_at": "2026-11-10T05:36:49.808Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a8a3ae75934c05aa51d42a09751d08ffcb444fc741dd933a9f45290afe1b079",
+    "source_fingerprint": "sha256:70ab0cde48992f2a97f00b4df771429d9d68cfcece248a18d3655298da9ba233",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f6d7e226d61ded6de094d62caca54bd283c549398790cd65f0da9961c7ab03d1",
-      "plan.md": "b698911bc3e2086592702ad2af427c9959541a754f50f54df522a45df5de9550",
+      "plan.md": "3b7bb77848cce18f7e32bbf99c273cb11de0161e37da46735e6c96b5c02042c6",
       "tasks.md": "458e00d9f9de8e71c75e931349abea6c9974b1ea61a82bdfaeeaf5ed452ee5f5",
       "implementation-summary.md": "a1c4f767e5861884b33720caef116c21cb8b2d8fbf12e8e8269fa4b483731689"
     },

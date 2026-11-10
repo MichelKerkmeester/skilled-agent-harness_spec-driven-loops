@@ -54,7 +54,7 @@ Two lenses fed this record. DeepSeek V4.1 Flash ran ten research iterations and 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The operator wants commits addressable "almost like spec folders with numbers". The research proposed `Commit-Id: sk-git-028-0003`, a packet-derived key. The review showed that `<track>-<number>` is not unique in this repository: 15 prefixes name two packets each, seven of them live against live (for example `system-skill-advisor/021-model-server-lifecycle/001-model-server-default-spawn` and `023-semantic-lane-enablement`). It also showed that three of the last five commits touch no packet at all and would fall into the `misc` namespace, which is one third of history. A key that is ambiguous for some commits and absent for a third of them is two schemes.
+The operator wants commits addressable "almost like spec folders with numbers". The research proposed `Commit-Id: sk-git-028-0003`, a packet-derived key. The review showed that `<track>-<number>` is not unique in this repository: 15 prefixes name two packets each, seven of them live against live (for example `system-skill-advisor/runtime-lifecycle/003-model-server-lifecycle/001-model-server-default-spawn` and `023-semantic-lane-enablement`). It also showed that three of the last five commits touch no packet at all and would fall into the `misc` namespace, which is one third of history. A key that is ambiguous for some commits and absent for a third of them is two schemes.
 
 ### Constraints
 

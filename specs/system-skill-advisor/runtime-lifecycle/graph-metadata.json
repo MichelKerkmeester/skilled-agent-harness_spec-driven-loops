@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/runtime-lifecycle",
+  "spec_folder": "system-skill-advisor/runtime-lifecycle",
+  "parent_id": "system-skill-advisor",
+  "children_ids": [
+    "system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment",
+    "system-skill-advisor/runtime-lifecycle/002-launcher-test-bootstrap-guard",
+    "system-skill-advisor/runtime-lifecycle/003-model-server-lifecycle",
+    "system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes",
+    "system-skill-advisor/runtime-lifecycle/005-build-freshness-record"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "system-skill-advisor/runtime-lifecycle"
+    ],
+    "causal_summary": "Container folder for system-skill-advisor/runtime-lifecycle."
+  }
+}

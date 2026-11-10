@@ -95,7 +95,7 @@ system-deep-loop alignment:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Siblings waiting on T004-T010**: `specs/system-skill-advisor/028-align-runtime-code-with-sk-code-skilled`, `specs/system-speckit/034-align-runtime-code-with-sk-code-skilled`
+- **Siblings waiting on T004-T010**: `specs/system-skill-advisor/codebase-conformance/003-align-runtime-code-with-sk-code-skilled`, `specs/system-speckit/034-align-runtime-code-with-sk-code-skilled`
 <!-- /ANCHOR:cross-refs -->
 
 ---

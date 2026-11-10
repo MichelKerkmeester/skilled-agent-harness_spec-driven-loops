@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-skill-advisor/z_archive/011-skill-advisor-cli",
   "spec_folder": "system-skill-advisor/z_archive/011-skill-advisor-cli",
-  "parent_id": "system-skill-advisor",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
     "system-skill-advisor/z_archive/011-skill-advisor-cli/000-skill-advisor-cli-research",
     "system-skill-advisor/z_archive/011-skill-advisor-cli/001-cli-core",
