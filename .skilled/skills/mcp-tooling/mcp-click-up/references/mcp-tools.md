@@ -13,7 +13,7 @@ trigger_phrases:
   - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.15.0
+version: 1.1.16.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -376,7 +376,7 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
 - `* * *`, `- - -`, `---`, `***` or `___` becomes a divider
 - `- []`, `- [ ]` and `- [x]` become checklist items, `- ` and `* ` bullets, `1. ` numbered items, and four leading spaces indent one level
 - `2\. **Title**` and `2 ) **Title**` keep their number as plain text, gray and regular weight, before the bold title
-- A checklist item reading `_Mark as done, if the criteria are met_` becomes gray italic text
+- A checklist item that opens with `Mark as done`, such as `_Mark as done, if the criteria are met_` or `_Mark as done_`, becomes gray italic text, checked or not
 - `[[COLS]]` opens a side-by-side pair, `[[|]]` starts the right column and `[[/COLS]]` closes it. Each line between them, such as a `Code` label, a `[Figma](link)` label or an image, becomes one block in its column
 - An image with an `https` source renders from that URL. An image with any other source must be a bare png, jpg, gif or webp file name in the Aside session folder, which the program pastes as a file so ClickUp uploads it. A path or any other file is refused
 
@@ -431,7 +431,8 @@ The default way to write a new doc page. The MCP creates the page, the editor wr
       else if ((m = /^(#{1,4})\s+(.*)$/.exec(line))) push({ k: "h", h: `<h${m[1].length}>${inline(m[2])}</h${m[1].length}>` });
       else if ((m = /^(\s*)[-*]\s+\[( |x|X)?\]\s+(.*)$/.exec(line))) {
         const done = /x/i.test(m[2] || ""), body = m[3];
-        const mark = /^_?Mark as done\b/.test(body);
+        // Any line that opens with "Mark as done" counts, whatever follows, such as "_Mark as done_" or "Mark as done, if ...".
+        const mark = /^_?Mark as done(?![A-Za-z0-9])/i.test(body);
         const html = mark && STYLE.grayMarkAsDone ? `<em>${GRAY(esc(body.replace(/^_|_$/g, "")))}</em>` : inline(body);
         push({ k: "li", list: done ? "checked" : "unchecked", indent: Math.floor(m[1].length / 4), h: html });
       }
