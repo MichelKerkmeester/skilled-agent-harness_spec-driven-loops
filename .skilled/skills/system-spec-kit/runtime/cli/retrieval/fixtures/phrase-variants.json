@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b051fc2f06725407f06f47a67b5b81919e3ad284c018dcbf2fe27188a5afe72d",
+  "manifestHash": "452a5db909ff9d4931844fab6f43f40c394ba288b99f466ce823ba57378116d7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -73392,6 +73392,9 @@
     "numbered commit format": [
       "numbered commit format"
     ],
+    "numbered folder without spec md": [
+      "numbered folder without spec.md"
+    ],
     "numbered h2 dividers": [
       "numbered h2 dividers"
     ],
@@ -117944,6 +117947,9 @@
     "system spec kit 2 12 48 0": [
       "system-spec-kit 2.12.48.0"
     ],
+    "system spec kit 2 12 49 0": [
+      "system-spec-kit 2.12.49.0"
+    ],
     "system spec kit 2 12 5 0": [
       "system-spec-kit 2.12.5.0"
     ],
@@ -118555,6 +118561,9 @@
     ],
     "system spec kit v2 12 48 0": [
       "system-spec-kit v2.12.48.0"
+    ],
+    "system spec kit v2 12 49 0": [
+      "system-spec-kit v2.12.49.0"
     ],
     "system spec kit v2 12 5 0": [
       "system-spec-kit v2.12.5.0"
