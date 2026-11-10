@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.18.0
+version: 1.2.19.0
 ---
 
 # mcp-click-up Skill
@@ -27,9 +27,11 @@ On the raw ClickUp v2 REST API, `markdown_content` is also accepted on task upda
 
 **Failure symptom:** literal `###` or `**` visible in a ClickUp task means someone used the plain `description` field. That is the defect, not a rendering bug.
 
-**After every doc page write, check the import and remove the divider gaps.** A page the server creates or rewrites shows an empty line under every divider, and no MCP call removes it. Compare the `"text/md"` read-back with what you sent, count the gaps in the `"text/plain"` read-back, then remove them in the ClickUp editor with the program in `references/mcp-tools.md` section 8, "Required after every page write". The approved push covers this, so it needs no second yes. Never report a page delivered while it has gaps or an import diff.
+**Write a new doc page browser-first.** Create the page through the MCP with the single line `[[BODY]]`, then run the page writer in `references/mcp-tools.md` section 8, "Browser-first page write". It turns the markdown into editor HTML and pastes it over the placeholder in one change, in the user's logged-in browser. The page lands with tight dividers, real checklists, gray lead numbers on `1\. **Title**` and `1 ) **Title**` lines, a gray italic Mark-as-done line and `[[COLS]]` pairs as side-by-side columns. It then checks the saved page after a reload and the markdown read-back. The approved push covers the browser pass, so it needs no second yes.
 
-**Side-by-side screenshots go in ClickUp columns, built in the editor.** No MCP call writes a columns block. Write a `[[COLS-n]]` placeholder line where each pair belongs, then run the columns routine in `references/mcp-tools.md` section 8, "Side-by-side columns on a doc page", after the gap pass. A page that holds columns must never be rewritten with `replace`, because the markdown read-back drops the columns.
+**Fall back to the markdown write and the gap pass.** When no browser tool is available, or the user picks it, write the page body as markdown and then check the import and remove the divider gaps. A page the server creates or rewrites shows an empty line under every divider, and no MCP call removes it. Compare the `"text/md"` read-back with what you sent, count the gaps in the `"text/plain"` read-back, then remove them in the ClickUp editor with the program in `references/mcp-tools.md` section 8, "Required after every page write". This path keeps no colour, and it builds columns only through the columns routine in the same section. Never report a page delivered while it has gaps or an import diff.
+
+**Side-by-side screenshots go in ClickUp columns, built in the editor.** No MCP call writes a columns block. The page writer builds them from `[[COLS]]` blocks. On the fallback path, write a `[[COLS-n]]` placeholder line where each pair belongs and run the columns routine in section 8, "Side-by-side columns on a doc page", after the gap pass. A page that holds columns must never be rewritten with `replace`, because the markdown read-back drops the columns.
 
 **Before the first ClickUp MCP write of a session, run the first-use readiness check.** A new user has to approve the ClickUp MCP once in the browser, and a doc page push also needs ClickUp logged in, in the browser the gap pass uses. The agent cannot do either. The check in `references/mcp-tools.md` section 3, "First-Use Readiness Check", finds what is missing, asks the user with the runtime's structured question tool, waits, rechecks and only then writes. MCP task writes need only the MCP part. A `cupt` write needs neither, because `cupt` signs in with its own API token.
 
