@@ -1,5 +1,5 @@
 {
-  "manifestHash": "03e3bd645f3bb78fd3f9e865d82999bcf51279c858a0c21dd1477e2b79a1d63e",
+  "manifestHash": "43d5938c2e3eae400e0bf4f837aaf041b9a221296cc134d8775620f97f412fd8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71640,6 +71640,9 @@
     "move design tokens into sk code": [
       "move design tokens into sk-code"
     ],
+    "move every node js pin ci job": [
+      "move every node js pin ci job"
+    ],
     "move frontmatter templates into mode": [
       "move frontmatter templates into mode"
     ],
@@ -72801,6 +72804,21 @@
     ],
     "node scripts dependency location": [
       "node scripts dependency location"
+    ],
+    "node security patch update": [
+      "node security patch update"
+    ],
+    "node security patch update acceptance criteria": [
+      "node security patch update acceptance criteria"
+    ],
+    "node security patch update implementation summary": [
+      "node security patch update implementation summary"
+    ],
+    "node security patch update plan": [
+      "node security patch update plan"
+    ],
+    "node security patch update tasks": [
+      "node security patch update tasks"
     ],
     "node specifier normalisation plan": [
       "node specifier normalisation plan"

@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Run the dispatch rule engine suite
         # This gate exists because the failure it guards is silence. A check with no
         # implementation, an implementation no packet declares, a predicate that only
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Install the hooks test runner
         run: npm --prefix .skilled ci
       # The runtime adapter suites, Pi's preflight lint and directive dedup and the

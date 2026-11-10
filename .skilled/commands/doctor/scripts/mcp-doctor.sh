@@ -98,12 +98,12 @@ _log log_header "Prerequisites"
 
 if check_command_exists node; then
   HAS_NODE=true
-  if node_version_at_least "20.11.0"; then
+  if node_version_at_least "22.23.4"; then
     _log log_pass "Node.js $(node --version)"
     record_pass "prerequisites" "node" "$(node --version)"
   else
-    _log log_fail "Node.js $(node --version) is below required >=20.11.0 for diagnostics"
-    record_fail "prerequisites" "node" "$(node --version) < 20.11.0 for diagnostics"
+    _log log_fail "Node.js $(node --version) is below required >=22.23.4 for diagnostics"
+    record_fail "prerequisites" "node" "$(node --version) < 22.23.4 for diagnostics"
   fi
 else
   _log log_fail "Node.js not found — Code Mode requires Node 24"

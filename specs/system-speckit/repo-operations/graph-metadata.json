@@ -6,7 +6,8 @@
   "children_ids": [
     "system-speckit/repo-operations/001-plugin-scanner-readiness",
     "system-speckit/repo-operations/002-ci-workflow-efficiency",
-    "system-speckit/repo-operations/003-orphan-sweep-temp-processes"
+    "system-speckit/repo-operations/003-orphan-sweep-temp-processes",
+    "system-speckit/repo-operations/004-node-security-patch-update"
   ],
   "manual": {
     "depends_on": [],

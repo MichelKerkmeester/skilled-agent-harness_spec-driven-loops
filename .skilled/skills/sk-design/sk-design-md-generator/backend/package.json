@@ -8,7 +8,7 @@
     "design-system-extractor": "dist/cli.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

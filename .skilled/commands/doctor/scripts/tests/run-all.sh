@@ -69,7 +69,7 @@ run_freshness_panel() {
 # 3. MAIN
 # ───────────────────────────────────────────────────────────────
 
-require_tool node "Install Node.js 20 or later."
+require_tool node "Install Node.js 22.23.4 or later."
 require_tool python3 "Install Python 3."
 if [[ ! -x "$ADVISOR_RUNTIME/node_modules/.bin/vitest" ]]; then
     printf '[run-all] ERROR: the advisor runtime has no vitest. Run: npm --prefix %s ci\n' \

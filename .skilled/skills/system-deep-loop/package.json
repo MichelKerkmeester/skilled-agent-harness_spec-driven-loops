@@ -5,7 +5,7 @@
   "description": "Skill-root manifest for the deep-loop skill; it exists so the mode packets' scripts outside runtime/ can depend on the spec-kit shared package instead of carrying their own parsers.",
   "type": "module",
   "engines": {
-    "node": ">=20.11"
+    "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
   },
   "dependencies": {
     "@spec-kit/shared": "file:../system-spec-kit/shared"

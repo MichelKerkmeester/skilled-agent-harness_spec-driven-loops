@@ -28,7 +28,7 @@ const { resolveNodeInterpreter } = require('./lib/node-engine-resolver.cjs');
 
 const REPOSITORY_ROOT = path.resolve(__dirname, '..', '..');
 const LAUNCHER_PATH = path.join(__dirname, 'mcp-code-mode-launcher.cjs');
-const REQUIRED_NODE_RANGE = '>=24.0.0 <25.0.0';
+const REQUIRED_NODE_RANGE = '>=24.22.1 <25.0.0';
 const INITIALIZE_REQUEST = JSON.stringify({
   jsonrpc: '2.0',
   id: 1,

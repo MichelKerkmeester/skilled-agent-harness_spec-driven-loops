@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/repo-operations/004-node-security-patch-update",
+  "description": "Move every Node.js pin, CI job and declared minimum to the patched October 2026 releases",
+  "keywords": [
+    "move",
+    "every",
+    "node",
+    "pin",
+    "job",
+    "declared",
+    "minimum",
+    "patched",
+    "october",
+    "releases"
+  ],
+  "lastUpdated": "2026-11-10T11:45:54.518Z",
+  "specId": "004",
+  "folderSlug": "node-security-patch-update",
+  "parentChain": [
+    "system-speckit",
+    "repo-operations"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-11-26_12-45__operator-decisions-on-2026-11-10-pin-to-the.md"
+  ]
+}

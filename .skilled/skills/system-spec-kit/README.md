@@ -54,7 +54,7 @@ Manual documentation is ad hoc and inconsistent. Basic RAG offers vector similar
 
 ### Requirements
 
-- Node.js 22.12 or newer (Node 24 for a full install)
+- Node.js 22.23.4, 24.22.1, 26.12.1 or a newer release on one of those lines (Node 24 for a full install)
 - TypeScript 5.0 or newer
 - Bash 4.0 or newer
 

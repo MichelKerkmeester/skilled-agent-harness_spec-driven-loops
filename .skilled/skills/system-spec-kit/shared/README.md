@@ -6,7 +6,7 @@ trigger_phrases:
   - "spec kit shared package"
   - "shared TypeScript modules"
   - "embedding provider stack"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Shared Library Modules
@@ -49,7 +49,7 @@ The package used to carry a second half that nothing imported once the memory da
 
 | Requirement | Minimum |
 | --- | --- |
-| Node.js | >=20.11.0 |
+| Node.js | 22.23.4, 24.22.1, 26.12.1 or newer on those lines |
 
 The embedding stack talks to Ollama, the local HF model server under `.skilled/bin`, OpenAI or Voyage over HTTP; it does not load a model in-process, so this package declares no ML dependency.
 

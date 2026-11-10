@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6683,
-    "ok": 17709,
+    "ok": 17714,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26021,
+  "documentsScanned": 26026,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "03e3bd645f3bb78fd3f9e865d82999bcf51279c858a0c21dd1477e2b79a1d63e",
+  "manifestHash": "43d5938c2e3eae400e0bf4f837aaf041b9a221296cc134d8775620f97f412fd8",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42117,
+      "ok": 42123,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -60694,6 +60694,10 @@
     },
     {
       "path": "specs/system-speckit/repo-operations/003-orphan-sweep-temp-processes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/repo-operations/004-node-security-patch-update/scratch",
       "reason": "excluded directory"
     },
     {
