@@ -236,6 +236,23 @@ describe('stale trigger index fallback', () => {
     expect(answer.results.map((result) => result.path)).toEqual([relativePath]);
   });
 
+  it('skips the scan when the index read lives outside the walked root', async () => {
+    const fixture = makeRepo();
+    addFallbackDoc(fixture.root, 'specs/search/001-query/spec.md', ['silver badger retrieval']);
+    const elsewhere = makeTempDir('speckit-stale-foreign-index-');
+    const foreignIndex = path.join(elsewhere, 'trigger-index.json');
+    fs.copyFileSync(fixture.indexPath, foreignIndex);
+
+    const answer = await lookupWithFallback(fixture.loaded, 'silver badger retrieval', {
+      cwd: fixture.root,
+      indexPath: foreignIndex,
+      staleFallback: true,
+    }) as CliAnswer;
+
+    expect(answer.staleFallback).toBeUndefined();
+    expect(answer.results).toEqual([]);
+  });
+
   it('does not count an indexed document among stale fallback files', async () => {
     const fixture = makeRepo();
 

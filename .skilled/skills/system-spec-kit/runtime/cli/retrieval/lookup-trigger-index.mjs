@@ -347,10 +347,13 @@ export function lookup(loaded, prompt, options = {}) {
  *   scoringOnly?: boolean,
  *   staleFallback?: boolean,
  *   cwd?: string,
- *   repoRoot?: string
+ *   repoRoot?: string,
+ *   indexPath?: string
  * }} [options] Query options; `staleFallback` enables the unindexed scan,
  *   `cwd` names the directory whose repository root is searched and `repoRoot`
  *   names that root directly, for an index whose paths belong to another tree.
+ *   `indexPath` names the artifact `loaded` came from; the scan is skipped when
+ *   that file lies outside the root it would walk.
  * @returns {Promise<{
  *   normalizedQuery: string,
  *   tokens: string[],
@@ -379,6 +382,12 @@ export async function lookupWithFallback(loaded, prompt, options = {}) {
     return answer;
   }
 
+  // An index spells its paths against the tree it lives in. One read from
+  // outside the walked root, such as the packaged index of a linked install,
+  // describes other documents, and every packet of the walked tree would pass
+  // for unindexed.
+  if (options.indexPath !== undefined && !isInsideRoot(options.indexPath, repoRoot)) return answer;
+
   // Re-run uncapped: the merged set has to be ranked and capped as a whole, or
   // a fallback row could displace nothing and the cap would be applied twice.
   const full = lookup(loaded, prompt, { ...options, limit: 0 });
@@ -401,6 +410,24 @@ export async function lookupWithFallback(loaded, prompt, options = {}) {
   full.results = limit > 0 ? ranked.slice(0, limit) : ranked;
   full.staleFallback = fallback.staleFallback;
   return full;
+}
+
+/**
+ * @param {string} filePath File to place.
+ * @param {string} root Directory it should sit under.
+ * @returns {boolean} Whether the file resolves inside the root, links followed.
+ */
+function isInsideRoot(filePath, root) {
+  let realFile;
+  let realRoot;
+  try {
+    realFile = fs.realpathSync(filePath);
+    realRoot = fs.realpathSync(root);
+  } catch {
+    return false;
+  }
+  const relative = path.relative(realRoot, realFile);
+  return relative !== '' && !relative.startsWith('..') && !path.isAbsolute(relative);
 }
 
 /**
@@ -596,6 +623,7 @@ async function main() {
     // A host's index spells its paths relative to the host, so the unindexed
     // scan has to walk that same tree for its paths to be comparable.
     repoRoot: selection.ownerRoot ?? undefined,
+    indexPath: selection.indexPath,
   });
   const displayed = args.json
     ? `${JSON.stringify(answer, null, 2)}\n`

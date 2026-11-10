@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -183,7 +183,7 @@ Three outcomes, and a wrapper must branch on all three. Treating a non-zero exit
 | `1` | No match | An empty result, not an error. Return it as such |
 | `2` or higher | Execution or configuration error | Fail loudly with stderr attached. Never report it as no-hit |
 
-**Keyed-lane zero-hit fallback.** `lookup-trigger-index.mjs` adds candidates from spec documents the committed index does not list yet when the index returns no scored candidate. With the fallback on (the default), exit `1` means neither the index nor the fallback found a scored candidate, and a fallback hit exits `0` like any other match. It runs only on a zero-hit and only inside a git work tree, and it reads each unindexed document's declared `trigger_phrases`, never its body text. `--no-stale-fallback` turns it off, and so does an explicit `--index`, which restores index-only exit semantics.
+**Keyed-lane zero-hit fallback.** `lookup-trigger-index.mjs` adds candidates from spec documents the committed index does not list yet when the index returns no scored candidate. With the fallback on (the default), exit `1` means neither the index nor the fallback found a scored candidate, and a fallback hit exits `0` like any other match. It runs only on a zero-hit and only inside a git work tree, and it reads each unindexed document's declared `trigger_phrases`, never its body text. `--no-stale-fallback` turns it off, and so does an explicit `--index`, which restores index-only exit semantics. It walks the tree the index read belongs to: the host's own tree when a linked project reads its host's index, and no tree at all when the index lives outside the caller's repository, as the packaged index of a linked install does, because that index's paths name other documents.
 
 ### Worked Example
 

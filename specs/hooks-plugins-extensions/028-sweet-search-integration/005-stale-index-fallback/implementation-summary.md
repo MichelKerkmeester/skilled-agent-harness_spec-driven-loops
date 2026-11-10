@@ -90,6 +90,7 @@ In worktree 335 on top of the phase 4 commit `fa41f8070f`. The designed `git sta
 | Read only packet document names (`SPEC_DOC_NAMES`) | All 41 unindexed docs that declare phrases had one of these names; filtering by name cut reads from 2,631 files to 197 |
 | Hold the scope's real path inside the real `specs/` path | A prefix test let `specs/../.skilled/skills` read 372 files outside the tree; normalize plus realpath closes both the `..` and the link route |
 | Seed scenario 490 with a synthetic packet in a scratch git work tree | The scratch copy could not see `specs/`, so the first version proved the fallback only against the source checkout; a made-up phrase also never goes stale after a rebuild |
+| Walk the tree the index belongs to, and skip the scan when the index lives outside it | Main gained host-repo index selection while this phase was in review. On the rebase, a host's index spells its paths against the host, so the scan walks the host; the packaged index of a linked install names other documents, and a host-repo test showed the scan would otherwise pass every host packet off as a match |
 | Leave `AGENTS.md` Gate 1 wording unchanged (CR-3, P2) | It is the cross-repo framework contract and outside this phase's file list; "it reads the committed index" stays true, since the fallback adds to that read |
 <!-- /ANCHOR:decisions -->
 

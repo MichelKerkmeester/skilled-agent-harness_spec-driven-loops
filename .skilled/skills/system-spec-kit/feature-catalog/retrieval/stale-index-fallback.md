@@ -6,7 +6,7 @@ trigger_phrases:
   - "unindexed spec packet search"
   - "lookup-trigger-index.mjs stale fallback"
   - "find a packet before the trigger index is rebuilt"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Stale index fallback (lookup-trigger-index.mjs)
@@ -21,7 +21,7 @@ That keeps a packet findable after it is written and before the committed trigge
 
 ## 2. HOW IT WORKS
 
-When the index has no scored candidate, `lookup-trigger-index.mjs` checks whether the caller is inside a Git work tree and then scans eligible docs under `specs/`. It skips the scan when the index already has a scored hit, `--no-stale-fallback` is set or the caller passes `--index`.
+When the index has no scored candidate, `lookup-trigger-index.mjs` checks whether the caller is inside a Git work tree and then scans eligible docs under `specs/`. It skips the scan when the index already has a scored hit, `--no-stale-fallback` is set, the caller passes `--index` or the index read lives outside the tree it would walk. A linked project that reads its host's index has the host's tree walked.
 
 The scanner follows the index generator's directory-pruning rules. It considers recognized packet filenames that the index does not list and scores only their declared frontmatter `trigger_phrases`. The read is capped at 500 docs, and packet body text does not affect matching.
 
