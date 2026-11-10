@@ -1,7 +1,7 @@
 ---
 title: "MCP Chrome DevTools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-chrome-devtools skill."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # MCP Chrome DevTools: Manual Testing Playbook
@@ -52,6 +52,7 @@ This playbook provides 22 deterministic scenarios across 6 categories validating
 - Full command transcript for CLI scenarios (including `bdg` exit codes).
 - Tool-call transcript for MCP scenarios.
 - Captured artifacts: screenshot file paths, HAR file paths, console message transcripts.
+- Captures stay in scratch paths outside the repository and are never committed. Redact cookie and authorization values before any output is quoted (SKILL.md ALWAYS rule 7).
 - The user request that triggered the orchestration flow.
 - The orchestrator prompt (verbatim).
 - Final user-facing outcome and PASS / FAIL / SKIP verdict (SKIP requires a specific, documented sandbox blocker).

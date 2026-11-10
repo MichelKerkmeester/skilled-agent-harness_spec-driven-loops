@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg network cookies"
   - "get browser cookies cli"
   - "set cookie cdp"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Cookie Management
@@ -16,11 +16,13 @@ version: 1.0.0.0
 
 `bdg network getCookies 2>&1` returns the cookie array (empty is valid); `bdg cdp Network.setCookie '{"name":"auth_token","value":"...","domain":"example.com","secure":true,"httpOnly":true}' 2>&1` injects one. Delete via `Network.deleteCookies`, clear all via `Network.clearBrowserCookies`.
 
+Cookie values are live session secrets (SKILL.md ALWAYS rule 7). Print names and domains, not values, with `jq 'map({name, domain})'`. Inject a throwaway value, never a real session token. Redact cookie values before quoting any output in a reply, report or file.
+
 ---
 
 ## 2. HOW IT WORKS
 
-Enable the Network domain first (`bdg cdp Network.enable`). The cookie-session workflow exports current cookies to JSON, injects an auth token, reloads, and screenshots the authenticated state — the standard way to test authenticated flows from the terminal.
+Enable the Network domain first (`bdg cdp Network.enable`). The cookie-session workflow exports current cookies to JSON in a scratch folder outside the repository, injects a throwaway auth token, reloads, and screenshots the authenticated state. This is the standard way to test authenticated flows from the terminal. Delete the dump when the test is done and never commit it.
 
 ---
 

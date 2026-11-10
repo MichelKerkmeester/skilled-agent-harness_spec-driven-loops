@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg screenshot"
   - "capture page screenshot cli"
   - "screenshot without puppeteer"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Screenshot Capture
@@ -21,6 +21,8 @@ version: 1.0.0.0
 ## 2. HOW IT WORKS
 
 The performance target is capture in under 2 seconds. The graceful-degradation pattern tries the helper first and falls back to `bdg cdp Page.captureScreenshot | jq -r '.result.data' | base64 -d` when the helper fails. On the MCP path the equivalent is `take_screenshot`.
+
+A screenshot of a logged-in page can show session data. Keep it in a scratch folder outside the repository or in a path the repository ignores. Never commit it (SKILL.md ALWAYS rule 7).
 
 ---
 

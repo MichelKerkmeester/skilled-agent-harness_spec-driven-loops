@@ -9,12 +9,12 @@ trigger_phrases:
   - "chrome devtools code mode snapshot"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Chrome DevTools Code Mode Manuals - registered-state snapshot
 
-Registered-state snapshot of all three Chrome DevTools manual entries in this repo's Code Mode config. **These manuals are ALREADY registered in `.utcp_config.json` — verify them, do not re-add them.**
+Registered-state snapshot of all three Chrome DevTools manual entries in the Skilled repository's Code Mode config. **In the Skilled repository the three entries are already registered, so verify them there and do not re-add them. A project that vendors this packet checks its own `.utcp_config.json` first and adds only the entries it lacks.**
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "BDG-013 -- HAR export"
 description: "This scenario validates HAR network archive export for `BDG-013`. It focuses on confirming `bdg network har` writes a valid HAR-format JSON file to disk."
-version: 1.0.0.7
+version: 1.0.1.0
 ---
 
 # BDG-013 -- HAR export
@@ -48,6 +48,7 @@ Operators run the exact prompt and command sequence for `BDG-013` and confirm th
 4. `bash: ls -la /tmp/bdg.har`
 5. `bash: cat /tmp/bdg.har | jq '.log.version'`
 6. `bash: cat /tmp/bdg.har | jq '.log.entries | length'`
+7. `bash: rm -f /tmp/bdg.har` (delete the capture once the checks are recorded)
 
 ### Expected
 
@@ -55,10 +56,11 @@ Operators run the exact prompt and command sequence for `BDG-013` and confirm th
 - Step 4: lists file with size > 0
 - Step 5: returns a quoted version string (e.g., `"1.2"`)
 - Step 6: returns an integer >= 0 (count of captured network entries)
+- Step 7: the file is gone
 
 ### Evidence
 
-Capture all command outputs, file size, parsed HAR version, and entry count.
+Capture the file path, size, parsed HAR version and entry count. A HAR file carries `Cookie` and `Authorization` headers verbatim, so never quote an entry without redacting those values (SKILL.md ALWAYS rule 7).
 
 ### Pass / Fail
 

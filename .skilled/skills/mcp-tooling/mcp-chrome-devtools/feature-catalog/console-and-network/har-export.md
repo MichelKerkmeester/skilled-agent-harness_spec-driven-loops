@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg har export"
   - "export network trace"
   - "har file analysis"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HAR Export
@@ -16,11 +16,13 @@ version: 1.0.0.0
 
 `bdg network har /tmp/trace.har 2>&1` writes the session's network activity as a HAR file (validate with `jq '.log.version'`). Export target is under 3 seconds.
 
+A HAR file carries `Cookie` and `Authorization` headers verbatim, so it can hold live session cookies and bearer tokens. Write it to a scratch folder outside the repository or to a path the repository ignores. Never commit it. Redact those values before quoting any entry (SKILL.md ALWAYS rule 7).
+
 ---
 
 ## 2. HOW IT WORKS
 
-Enable network tracking first (`bdg cdp Network.enable`), let the page load (`sleep 5`), then export. Analyze with `jq`: slow requests via `select(.time > 1000)`, failures via `select(.response.status >= 400)`. The performance-baseline script captures a HAR alongside metrics and screenshots.
+Enable network tracking first (`bdg cdp Network.enable`), let the page load (`sleep 5`), then export. Analyze with `jq`: slow requests via `select(.time > 1000)`, failures via `select(.response.status >= 400)`. Delete the file when the analysis is done. The performance-baseline script captures a HAR alongside metrics and screenshots and writes them under the temp folder by default.
 
 ---
 

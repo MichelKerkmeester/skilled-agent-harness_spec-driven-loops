@@ -5,7 +5,7 @@ trigger_phrases:
   - "performance baseline script"
   - "performance regression capture"
   - "bdg performance metrics"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Performance Baseline
@@ -21,6 +21,8 @@ version: 1.0.0.0
 ## 2. HOW IT WORKS
 
 Built on `bdg cdp Performance.enable` / `Performance.getMetrics` plus HAR export and screenshot capture. Use before/after an optimization and diff the `TaskDuration` metric with `jq`, or run in CI for pre-deployment validation.
+
+The script writes under the temp folder by default, because the HAR file and screenshot can hold session secrets (SKILL.md ALWAYS rule 7). Pass an output folder that the repository ignores to keep the results.
 
 ---
 

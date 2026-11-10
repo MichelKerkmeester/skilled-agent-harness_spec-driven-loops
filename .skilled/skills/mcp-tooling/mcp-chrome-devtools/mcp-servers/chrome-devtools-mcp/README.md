@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools mcp server"
   - "chrome_devtools_1 server"
   - "chrome devtools code mode"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # chrome-devtools-mcp
@@ -31,7 +31,7 @@ mcp-chrome-devtools routes multi-tool and parallel-browser work, the surfaces th
 
 ### What It Does
 
-Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) each launch the server over stdio via `npx` with `--isolated=true`, so each instance owns an independent browser process with isolated cookie/storage state. That is what enables parallel browser testing (e.g. production vs staging simultaneously) with no session conflicts. A third manual, `chrome_devtools_live`, launches the same server with `--autoConnect` and attaches to the user's own Chrome for signed-in work, as `../../feature-catalog/mcp-parallel-instances/live-instance.md` describes. Your AI client sees only the 4 Code Mode tools instead of the 26 Chrome DevTools tools natively (~78k tokens avoided).
+Two manuals, `chrome_devtools_1` and `chrome_devtools_2`, as registered in `.utcp_config.json`, each launch the server over stdio via `npx` with `--isolated=true`, so each instance owns an independent browser process with isolated cookie/storage state. That is what enables parallel browser testing (e.g. production vs staging simultaneously) with no session conflicts. A third manual, `chrome_devtools_live`, launches the same server with `--autoConnect` and attaches to the user's own Chrome for signed-in work, as `../../feature-catalog/mcp-parallel-instances/live-instance.md` describes. Your AI client sees only the 4 Code Mode tools instead of the 26 Chrome DevTools tools natively (~78k tokens avoided).
 
 ---
 
@@ -43,7 +43,7 @@ Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) ea
 cat .utcp_config.json | jq '.manual_call_templates[] | select(.name | startswith("chrome_devtools"))'
 ```
 
-Expected: all three entries, matching the snapshot in [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md). Verify, don't re-add.
+Expected in the Skilled repository: all three entries, matching the snapshot in [`../../assets/utcp-chrome-devtools-manuals.md`](../../assets/utcp-chrome-devtools-manuals.md). A project that vendors this packet adds only the entries it lacks.
 
 **Step 2: Confirm tools through Code Mode.**
 
