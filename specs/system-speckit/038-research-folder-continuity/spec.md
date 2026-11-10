@@ -62,11 +62,11 @@ A full-auto save writes a research record's continuity into its spec.md, so the 
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts` | Modify | Adds the research-record spec.md write case and the non-research refusal case. |
 | `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` | Modify | The --help text names a research record's spec.md as the other continuity host. |
 | `.skilled/skills/system-spec-kit/references/memory/save-workflow.md` | Modify | The planner-mode table names a research record's spec.md as the other continuity host. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md` | Modify | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md` | Modify | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md` | Modify | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md` | Modify | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md` | Modify | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md` | Modify | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md` | Modify | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md` | Modify | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md` | Modify | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md` | Modify | Continuity block only. |
 <!-- /ANCHOR:scope -->
 
 ---

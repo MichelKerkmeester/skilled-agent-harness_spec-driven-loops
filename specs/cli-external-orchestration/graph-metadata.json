@@ -4,22 +4,10 @@
   "spec_folder": "cli-external-orchestration",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/071-cli-hermes-creation",
-    "cli-external-orchestration/072-union-alpha-dual-provider-roster",
-    "cli-external-orchestration/073-cli-pi-build-brief-and-blackhole",
-    "cli-external-orchestration/075-cli-runtime-readme-refresh",
-    "cli-external-orchestration/076-mimo-v2-6-cutover",
-    "cli-external-orchestration/077-gpt-6-luna-sol-cutover",
-    "cli-external-orchestration/078-layer-3-own-paths-baseline",
-    "cli-external-orchestration/079-claude-code-native-dispatch",
-    "cli-external-orchestration/080-pi-extension-brace-expansion",
-    "cli-external-orchestration/081-claude-5-5-roster-and-effort-levels",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
-    "cli-external-orchestration/083-gpt-6-1-terra-roster",
-    "cli-external-orchestration/084-remove-llmgateway-luna-route",
-    "cli-external-orchestration/085-cli-deepseek-harness-creation",
-    "cli-external-orchestration/086-cli-hermes-deprecation",
-    "cli-external-orchestration/087-opencode-worktree-confinement"
+    "cli-external-orchestration/dispatch-surface-maintenance",
+    "cli-external-orchestration/model-rosters",
+    "cli-external-orchestration/opencode-platform",
+    "cli-external-orchestration/runtime-lifecycle"
   ],
   "manual": {
     "depends_on": [],

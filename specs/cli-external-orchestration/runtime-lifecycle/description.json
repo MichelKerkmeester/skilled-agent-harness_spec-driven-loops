@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle",
+  "description": "Create, integrate and retire whole cli runtimes, from Hermes onboarding through DeepSeek Harness to Hermes removal.",
+  "keywords": [
+    "runtime",
+    "lifecycle"
+  ],
+  "lastUpdated": "2026-11-10T05:38:17.644Z",
+  "specId": "cli-external-orchestration/runtime-lifecycle",
+  "folderSlug": "runtime-lifecycle",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

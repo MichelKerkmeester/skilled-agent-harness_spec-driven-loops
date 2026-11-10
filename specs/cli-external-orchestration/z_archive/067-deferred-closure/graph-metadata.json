@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Packet 066 shipped its carve-out and recorded six adjacent findings it was not scoped to fix",
     "created_at": "2026-09-08T14:46:31.603Z",
-    "last_save_at": "2026-10-07T18:11:37.955Z",
+    "last_save_at": "2026-11-10T05:39:02.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1996c386c119f7d07bb5ee551919d26d31bc6d8e568cdc6e223dbc0c755faabe",
+    "source_fingerprint": "sha256:324028dcd18b6ab9786d3635ab6694e247e051f2b6090e2f27c63a83a51802ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d7c29d1cc83ef632f0ab44bf343755e3937eaa4c2c50db3b545d688b0edbaa5",
-      "plan.md": "411386d982bf27498f7893828c53870d33a877f08e314427ffdb3b1bfd86cce1",
-      "tasks.md": "39e41d607b90f7ed79be28eed792cbf89d6ac9c7135e6fcc890b4a054a0568d2",
-      "implementation-summary.md": "727bae1e31597e38b179f3f20ba8bb419aaaa17ffcb21ff5a9f43ebe4511c5ab"
+      "spec.md": "ed5eee87e94176aced92b8a40602a63d2896cb43d8b376b33093860e8f616fda",
+      "plan.md": "2da22f8f956cd5c79e8104329f1a3ae2274899f8c864dc10fbfedb25a6e47316",
+      "tasks.md": "ce2b02637c41eb9c9e85e7ed9d87151619ed2bb4e350f8b567f311d5d90997e9",
+      "implementation-summary.md": "3418dd8a4a02ccc83ee779e53a243d4f50cd3a89ddf1ca04cf3821c6a0a784d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

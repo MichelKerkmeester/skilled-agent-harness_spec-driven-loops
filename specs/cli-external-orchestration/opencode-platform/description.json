@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "cli-external-orchestration/opencode-platform",
+  "description": "Keep OpenCode workers correct across v1/v2 and confined to their own worktree and paths.",
+  "keywords": [
+    "opencode",
+    "platform"
+  ],
+  "lastUpdated": "2026-11-10T05:38:17.645Z",
+  "specId": "cli-external-orchestration/opencode-platform",
+  "folderSlug": "opencode-platform",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,7 +1,7 @@
 ---
 title: "CO-056 -- system-speckit-completion live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-speckit-completion plugin for CO-056. It focuses on the read-only completion tool that returns a spec folder's level and checklist evidence."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-056 -- system-speckit-completion live utilization on OpenCode 1 and 2
@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `CO-056` and confirm the
 
 - Objective: Confirm the `system_speckit_completion` tool returns JSON with the packet path and level on both OpenCode versions.
 - Real user request: `Can I ask the session how complete an existing spec packet is and get its real level and checklist state back, on both OpenCode versions?`
-- Prompt: `Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE.`
+- Prompt: `Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE.`
 - Expected execution process: run the scenario on v1, read the tool result from the events file, then repeat on v2 and read the result reached through the Code Mode `execute` tool.
 - Expected signals: the tool result is JSON holding `"specFolder"` (the absolute packet path) and `"level"`.
 - Evidence requirements: the tool call and its result from each version's events file, with the JSON fields present and the packet path resolved.
@@ -40,7 +40,7 @@ Operators run the exact prompt and command sequence for `CO-056` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Setup: confirm the plugin at `.opencode/plugins/system-speckit-completion.js` exists and that `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast` is present. Export `AI_SESSION_CHILD=1`.
+1. Setup: confirm the plugin at `.opencode/plugins/system-speckit-completion.js` exists and that `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/031-plugin-scanner-ast` is present. Export `AI_SESSION_CHILD=1`.
 2. v1 run: run the runner with `v1`, the name `speckit-completion`, and the prompt.
 3. v1 check: read the tool call and result from the events file and confirm the JSON fields.
 4. v2 run: run the runner with `v2`, the same name and prompt.
@@ -53,12 +53,12 @@ Operators run the exact prompt and command sequence for `CO-056` and confirm the
 export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 export AI_SESSION_CHILD=1
 
-bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 speckit-completion "Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE."
+bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 speckit-completion "Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE."
 
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/speckit-completion.v1.events.jsonl"
 jq -r 'select(.type=="tool_use") | .part.state.output' "$EVIDENCE_DIR/speckit-completion.v1.events.jsonl" | grep -E '"specFolder"|"level"'
 
-bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 speckit-completion "Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE."
+bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 speckit-completion "Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE."
 
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/speckit-completion.v2.events.jsonl"
 jq -r 'select(.type=="tool_use") | .part.state.output' "$EVIDENCE_DIR/speckit-completion.v2.events.jsonl" | grep -E '"specFolder"|"level"'
@@ -66,7 +66,7 @@ jq -r 'select(.type=="tool_use") | .part.state.output' "$EVIDENCE_DIR/speckit-co
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-056 | system-speckit-completion | Confirm the read-only completion tool returns the packet path and level on both versions | `Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE.` | Runner on v1 and v2, then the `jq` tool-call read and a `grep` for `"specFolder"` and `"level"` on each events file | Tool result is JSON holding `"specFolder"` (the absolute packet path) and `"level"` | `speckit-completion.v1.events.jsonl`, `speckit-completion.v2.events.jsonl` | PASS only when both JSON fields are present on both versions | On v2 the call arrives through `execute`; read the result payload, and confirm the packet path exists first |
+| CO-056 | system-speckit-completion | Confirm the read-only completion tool returns the packet path and level on both versions | `Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE.` | Runner on v1 and v2, then the `jq` tool-call read and a `grep` for `"specFolder"` and `"level"` on each events file | Tool result is JSON holding `"specFolder"` (the absolute packet path) and `"level"` | `speckit-completion.v1.events.jsonl`, `speckit-completion.v2.events.jsonl` | PASS only when both JSON fields are present on both versions | On v2 the call arrives through `execute`; read the result payload, and confirm the packet path exists first |
 
 ---
 

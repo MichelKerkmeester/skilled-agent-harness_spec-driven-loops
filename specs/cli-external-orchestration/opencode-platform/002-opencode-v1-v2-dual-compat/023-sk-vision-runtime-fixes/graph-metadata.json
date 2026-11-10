@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk vision runtime fixes",
+      "sk vision runtime fixes from the post merge",
+      "sk vision fix list rows",
+      "sk vision runtime fixes plan",
+      "sk vision runtime fixes tasks",
+      "sk vision runtime fixes implementation summary"
+    ],
+    "key_topics": [
+      "vision",
+      "runtime",
+      "post",
+      "merge",
+      "list",
+      "rows",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "post-merge",
+      "research"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/mutation/row04-old-code.txt",
+      "scratch/mutation/row05-old-code.txt",
+      "scratch/mutation/row13-guard-old-layout.txt",
+      "scratch/mutation/row15-wiring-mutations.txt",
+      "scratch/final/ci-like.txt",
+      "scratch/mutation/row20-old-code.txt",
+      "scratch/mutation/row23-old-code.txt",
+      "scratch/mutation/row24-old-code.txt",
+      "scratch/mutation/row25-old-code.txt",
+      "scratch/mutation/row26-old-code.txt",
+      ".github/workflows/opencode-dual-version.yml",
+      "scratch/final/luna-review-1.txt",
+      "scratch/final/luna-review-2.txt",
+      "scratch/baseline/skvision.txt",
+      "scratch/baseline/tsc.txt",
+      "scratch/baseline/plugins-tail.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "row04-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row04-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row05-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row05-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row13-guard-old-layout.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row13-guard-old-layout.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row15-wiring-mutations.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row15-wiring-mutations.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ci-like.txt",
+        "kind": "file",
+        "path": "scratch/final/ci-like.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row20-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row20-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row23-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row23-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row24-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row24-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row25-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row25-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row26-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row26-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "luna-review-1.txt",
+        "kind": "file",
+        "path": "scratch/final/luna-review-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "luna-review-2.txt",
+        "kind": "file",
+        "path": "scratch/final/luna-review-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skvision.txt",
+        "kind": "file",
+        "path": "scratch/baseline/skvision.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tsc.txt",
+        "kind": "file",
+        "path": "scratch/baseline/tsc.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugins-tail.txt",
+        "kind": "file",
+        "path": "scratch/baseline/plugins-tail.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The post-merge research fix list in `../014-post-merge-deep-research/research/research.md` §9 names nine sk-vision defects, two of them P1: setup disposal released only some of the handles it held, and a `ctx.session.get` that threw silently downgraded the automatic image check to the 2 s grace instead of waiting for the evidence",
+    "created_at": "2026-10-20T07:11:21Z",
+    "last_save_at": "2026-11-10T05:38:25.210Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c3fb7b8aedbba896d5760144ca2795cabc912879796429f942f1bdc2e16c41a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d41b93ddf26b71db3a1265a241ed89ff1d2a95658b9aab8d0ca26e2c5cb7e1e9",
+      "plan.md": "2d09d975719d90ee7a21e4a6026067c60488fc692baae7ec2ec2d9efdd3768c8",
+      "tasks.md": "b7a7d2d89c34a720cb69bd631f1c17bcb117e2a3590d62658dc137ea513397e2",
+      "implementation-summary.md": "585f44011c8862cb2b20847b5529623ef347ee35fb250f779d131d7f69857a93"
+    },
+    "last_active_at": null
+  }
+}

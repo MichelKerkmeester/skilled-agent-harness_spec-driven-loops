@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The root README held about 160 lines of setup detail written as reference",
     "created_at": "2026-11-08T10:47:42Z",
-    "last_save_at": "2026-11-10T05:35:12.317Z",
+    "last_save_at": "2026-11-10T05:40:08.783Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1edb7033257a95246fd57465e95d43f57192f1c6008ace76567288ac517a271c",
+    "source_fingerprint": "sha256:64c40c28ae731da33098462578948bea155995dbb82b24b0bf874383e956032c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02a7619d4eebe06ec5ffb2a9b955c79bcea8c8b1ce34c4517fb319561b8ea9f2",
       "plan.md": "7b855a9d94c853f78dff8540657e6bed85b41a7f864aa6782026893f29049829",
       "tasks.md": "d8a419a085c2e96cf598c489d2780208d8dd1c08cd5175dee92637923da7b4c4",
-      "decision-record.md": "83b5166eb52466fdf10d033a6fdba3eabcd032ed41cea54fd507b415c8ccb797",
+      "decision-record.md": "b8552bc1083ac35586a73e1bcc01a0fe85c888366ca63633e08183393cebea02",
       "implementation-summary.md": "78590480272ba92ba1b00ba26664cb457e29e2d304de84105ebb7f6bcdb39dfe"
     },
     "last_active_at": null

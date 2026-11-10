@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle",
+  "parent_id": "cli-external-orchestration",
+  "children_ids": [
+    "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation",
+    "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+    "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "cli-external-orchestration/runtime-lifecycle"
+    ],
+    "causal_summary": "Container folder for cli-external-orchestration/runtime-lifecycle."
+  }
+}

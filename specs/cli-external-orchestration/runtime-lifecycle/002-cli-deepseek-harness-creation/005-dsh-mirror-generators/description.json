@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/005-dsh-mirror-generators",
+  "description": "The harness discovers skills only at `<root>/<name>/SKILL.md` and never walks nested `/SKILL.md`",
+  "keywords": [
+    "harness",
+    "discovers",
+    "skills",
+    "only",
+    "root",
+    "name",
+    "skill",
+    "never",
+    "walks",
+    "nested"
+  ],
+  "lastUpdated": "2026-11-06T21:07:30.493Z",
+  "specId": "005",
+  "folderSlug": "dsh-mirror-generators",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

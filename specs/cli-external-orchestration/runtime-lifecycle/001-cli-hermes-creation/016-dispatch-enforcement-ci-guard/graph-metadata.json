@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/016-dispatch-enforcement-ci-guard",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/016-dispatch-enforcement-ci-guard",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch enforcement ci guard",
+      "every defect the earlier phases closed shares one",
+      "dispatch enforcement ci guard plan",
+      "dispatch enforcement ci guard tasks",
+      "dispatch enforcement ci guard acceptance criteria",
+      "dispatch enforcement ci guard implementation summary"
+    ],
+    "key_topics": [
+      "dispatch",
+      "enforcement",
+      "guard",
+      "every",
+      "defect",
+      "earlier",
+      "phases",
+      "closed",
+      "shares",
+      "one",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".github/workflows/dispatch-enforcement-guard.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-enforcement-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/dispatch-enforcement-guard.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every defect the earlier phases closed shares one shape: something looked enforced and enforced nothing",
+    "created_at": "2026-09-15T16:29:33Z",
+    "last_save_at": "2026-11-10T05:38:35.014Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:48483a2f04d7adc5b7fcfd4c3c0c857f078928e118bea7ee0f382f37ce314a59",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bcf8c88bc141fcb07b483719b6ed5300d2813fe103d1fdcb6a58b970fc7fc0c5",
+      "plan.md": "57fa93cb0184652cbfc9736e544a8363c8b69cfeb42e0178bccb11eada4a9f86",
+      "tasks.md": "3c53670a22e2f6937818253eebe22c14c5b53f5358c4fc78c1317d81cbaa6cc4",
+      "implementation-summary.md": "c943dfed9b9516ce6ce9fa2b68e2ad8b3070631a58321590363e8ee123b572f8"
+    },
+    "last_active_at": null
+  }
+}

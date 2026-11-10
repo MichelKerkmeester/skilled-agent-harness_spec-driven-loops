@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/dispatch-surface-maintenance",
+  "spec_folder": "cli-external-orchestration/dispatch-surface-maintenance",
+  "parent_id": "cli-external-orchestration",
+  "children_ids": [
+    "cli-external-orchestration/dispatch-surface-maintenance/001-cli-pi-build-brief-and-blackhole",
+    "cli-external-orchestration/dispatch-surface-maintenance/002-cli-runtime-readme-refresh",
+    "cli-external-orchestration/dispatch-surface-maintenance/003-claude-code-native-dispatch",
+    "cli-external-orchestration/dispatch-surface-maintenance/004-pi-extension-brace-expansion"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "cli-external-orchestration/dispatch-surface-maintenance"
+    ],
+    "causal_summary": "Container folder for cli-external-orchestration/dispatch-surface-maintenance."
+  }
+}

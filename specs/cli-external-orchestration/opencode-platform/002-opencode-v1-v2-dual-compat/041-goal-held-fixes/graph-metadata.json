@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/041-goal-held-fixes",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/041-goal-held-fixes",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal held fixes",
+      "phase 41 goal held fixes",
+      "goal archive on replace and clear",
+      "goal core parse error fallback",
+      "goal cli workspace required",
+      "goal held fixes plan",
+      "goal held fixes tasks",
+      "goal held fixes implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "held",
+      "phase",
+      "archive",
+      "replace",
+      "clear",
+      "core",
+      "parse",
+      "error",
+      "fallback",
+      "cli",
+      "workspace"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/mutations/summary.txt",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/lib/goal-core.cjs",
+      ".skilled/hooks/goal/bin/goal.cjs",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
+      ".skilled/hooks/goal/lib/goal-core.test.cjs",
+      ".skilled/hooks/goal/bin/goal.test.cjs",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/mutations/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/bin/goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Plugin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The OpenCode goal plugin deletes a goal whenever a mutator returns `null`, although several event mutators return `null` only to mean that no goal exists, so a goal another process just wrote can be removed",
+    "created_at": "2026-10-21T04:56:30Z",
+    "last_save_at": "2026-11-10T05:38:28.325Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4fe5b50fd04297bdb758b72229d9d81e711d0bd17270ca8498e1107a5ea89168",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8fa99bb845c61cdda22d788ffe70e7fc1530ed2a6d98b7dd29237be1c0be8caa",
+      "plan.md": "0c75debe5cf1dd79e2865d35a26aa9eb12ad1d0556b9cc4daf7580c68f551207",
+      "tasks.md": "af82f395072874a5d09343932c438aa567cbed4005c6f3a0da2bd46ed73ad288",
+      "implementation-summary.md": "2bbac3905d5c50b837a0b4c22b44c01da1d6bb02fd0127a108d0612f5356496b"
+    },
+    "last_active_at": null
+  }
+}

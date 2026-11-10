@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v2 default model and follow ups",
+      "phase 43 v2 default model",
+      "llmgateway v2 default",
+      "hooks node test ci",
+      "v2 default model and follow ups plan",
+      "v2 default model and follow ups tasks",
+      "v2 default model and follow ups implementation summary"
+    ],
+    "key_topics": [
+      "default",
+      "model",
+      "follow",
+      "ups",
+      "phase",
+      "llmgateway",
+      "hooks",
+      "node",
+      "test",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/plugins/tests/v2-bridge.test.cjs",
+      ".opencode/plugins/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".github/workflows/trigger-index-rebuild.yml",
+      ".github/workflows/README.md",
+      "scratch/after/v2-bridge-timeout-mutation.txt",
+      "scratch/after/checks-2.txt",
+      "scratch/live/v2-unpinned.txt",
+      "scratch/live/v1-unpinned.txt",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      ".skilled/hooks/spec-gate/README.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/v2-bridge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index-rebuild.yml",
+        "kind": "config",
+        "path": ".github/workflows/trigger-index-rebuild.yml",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge-timeout-mutation.txt",
+        "kind": "file",
+        "path": "scratch/after/v2-bridge-timeout-mutation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "checks-2.txt",
+        "kind": "file",
+        "path": "scratch/after/checks-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-unpinned.txt",
+        "kind": "file",
+        "path": "scratch/live/v2-unpinned.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v1-unpinned.txt",
+        "kind": "file",
+        "path": "scratch/live/v1-unpinned.txt",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode names `opencode-go/deepseek-v4.1-flash` as its default on both versions, but OpenCode 2 on this machine lists no `opencode-go` provider, so a v2 example or an unpinned v2 fan-out lineage fails as written",
+    "created_at": "2026-10-21T07:17:06Z",
+    "last_save_at": "2026-11-10T05:38:28.257Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:899e45ea7cab3a3f4c71145c1e4678dea9389db06c1e026a5263e305c88bca81",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "14fc065906adb67984ffd1d5d6c276fbee70502245ed501dfebf89f30e54e345",
+      "plan.md": "384d6e44f9817f8906b86a7a38961ff87414ea3eddfff8da6ce35032abdd8bb8",
+      "tasks.md": "33e92718e71218f64b7039c06bfc96c4b07eff4cf13b891c740728326235148d",
+      "implementation-summary.md": "1b82f7e0352c7e7c384cfe574f3db84c3f8f5df2050813512cc29d872cd1d383"
+    },
+    "last_active_at": null
+  }
+}

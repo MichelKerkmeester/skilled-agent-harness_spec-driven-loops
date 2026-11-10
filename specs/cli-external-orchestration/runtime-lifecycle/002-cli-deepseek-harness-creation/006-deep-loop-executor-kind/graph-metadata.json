@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/006-deep-loop-executor-kind",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/006-deep-loop-executor-kind",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop executor kind",
+      "phase 6 deep loop executor kind",
+      "deep loop executor kind plan",
+      "deep loop executor kind tasks",
+      "deep loop executor kind acceptance criteria",
+      "deep loop executor kind goal",
+      "deep loop executor kind implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "executor",
+      "kind",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "evidence/baseline-unit.txt",
+      "evidence/focused-suites-after.txt",
+      "evidence/full-unit-current.txt",
+      "evidence/tsc-noemit.txt",
+      "evidence/task-verify-outputs.txt",
+      "evidence/after-unit.txt",
+      "evidence/closeout-validation.txt",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-unit.txt",
+        "kind": "file",
+        "path": "evidence/baseline-unit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "focused-suites-after.txt",
+        "kind": "file",
+        "path": "evidence/focused-suites-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "full-unit-current.txt",
+        "kind": "file",
+        "path": "evidence/full-unit-current.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tsc-noemit.txt",
+        "kind": "file",
+        "path": "evidence/tsc-noemit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "task-verify-outputs.txt",
+        "kind": "file",
+        "path": "evidence/task-verify-outputs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-unit.txt",
+        "kind": "file",
+        "path": "evidence/after-unit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "closeout-validation.txt",
+        "kind": "file",
+        "path": "evidence/closeout-validation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "combo-matrix.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fan-out has no `cli-deepseek-harness` executor kind, so a deep-loop lineage cannot dispatch dsh at all",
+    "created_at": "2026-11-05T23:21:55Z",
+    "last_save_at": "2026-11-10T05:38:35.346Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1652d957ffb0349eff3afbd97bc84bc80812757a55c2c7c0c60cf441b26f35f9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2b53e03468d59b6f61ed4dabbd35ca25f38ce921bb6e238269c6c79bc147339d",
+      "plan.md": "1e2da3af6ededdc6ce59064b0e6bee2077a5788b4cb2de398ff22f7d7eafe74a",
+      "tasks.md": "c721603aadfe27431056604d34c4759a6f4aa08f429b84891f370947c2a65d93",
+      "implementation-summary.md": "228725493f1c57f6ccc6dd1fef03b581e3dfdd6de095f94f75961b529c221c98"
+    },
+    "last_active_at": null
+  }
+}

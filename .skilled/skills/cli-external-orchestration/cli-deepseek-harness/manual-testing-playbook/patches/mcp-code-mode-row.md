@@ -1,7 +1,7 @@
 ---
 title: "PAT-003 -- MCP Code Mode row"
 description: "This scenario validates that the MCP patch adds exactly one code_mode client row to the composed config and leaves the default composition without one for `PAT-003`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # PAT-003 -- MCP Code Mode row
@@ -59,15 +59,15 @@ wc -c without-mcp.stderr.txt with-mcp.stderr.txt
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Basis: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt`.
+- Basis: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt`.
 - Observed without the patch: exit `0`, `dsh-mcp-client` rows `0`, `code_mode` names `0`, stderr `0` bytes.
 - Observed with the patch: exit `0`, `dsh-mcp-client` rows `1`, `code_mode` names `1`, stderr `0` bytes.
 - The composed row names `transport: stdio`, `command: node`, the launcher at `.skilled/bin/mcp-code-mode-launcher.cjs`, `UTCP_CONFIG_FILE` in `env` and `startupTimeoutMs: 60000`.
-- Support: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/keyless-mcp-boot.txt` records a keyless boot that started Code Mode, shut it down when the run ended and left no launcher process behind.
+- Support: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/keyless-mcp-boot.txt` records a keyless boot that started Code Mode, shut it down when the run ended and left no launcher process behind.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PAT-003 | MCP Code Mode row | Prove MCP is opt-in and adds one row | `Compose headless twice, first without the MCP patch and then with it, and confirm the MCP patch adds exactly one code_mode client row. Keep the run keyless and do not call a model.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. compose route, lineage and guards without the MCP patch -> 3. compose again with `mcp-code-mode.patch.yml` -> 4. count `dsh-mcp-client` rows and `serverName: code_mode` in both files | Step 2: counts `0` and `0`, stderr `0` bytes. Step 3: counts `1` and `1`, stderr `0` bytes. Step 4: the row names `stdio`, `node` and `startupTimeoutMs: 60000` | `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt` and `keyless-mcp-boot.txt` | PASS if the counts move from `0` and `0` to `1` and `1` with empty stderr. FAIL if the base holds a row, the patch adds more than one or stderr carries a warning | 1. Confirm the MCP patch came after the guards patch in argv. 2. Confirm the base composition names no client row. 3. Read the MCP row and check that only `UTCP_CONFIG_FILE` is named in `env` |
+| PAT-003 | MCP Code Mode row | Prove MCP is opt-in and adds one row | `Compose headless twice, first without the MCP patch and then with it, and confirm the MCP patch adds exactly one code_mode client row. Keep the run keyless and do not call a model.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. compose route, lineage and guards without the MCP patch -> 3. compose again with `mcp-code-mode.patch.yml` -> 4. count `dsh-mcp-client` rows and `serverName: code_mode` in both files | Step 2: counts `0` and `0`, stderr `0` bytes. Step 3: counts `1` and `1`, stderr `0` bytes. Step 4: the row names `stdio`, `node` and `startupTimeoutMs: 60000` | `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt` and `keyless-mcp-boot.txt` | PASS if the counts move from `0` and `0` to `1` and `1` with empty stderr. FAIL if the base holds a row, the patch adds more than one or stderr carries a warning | 1. Confirm the MCP patch came after the guards patch in argv. 2. Confirm the base composition names no client row. 3. Read the MCP row and check that only `UTCP_CONFIG_FILE` is named in `env` |
 
 ---
 
@@ -90,7 +90,7 @@ wc -c without-mcp.stderr.txt with-mcp.stderr.txt
 | `.dsh/patches/mcp-code-mode.patch.yml` | One `code_mode` stdio client row |
 | `.skilled/bin/mcp-code-mode-launcher.cjs` | Launcher the row starts |
 | `.dsh/plugins/repo-guards/adapters/mcp-route-guard.mjs` | Denies a `code_mode` tool outside the four-tool allowlist |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt` | Recorded row counts with and without the patch |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/dump-config-mcp.txt` | Recorded row counts with and without the patch |
 
 ---
 

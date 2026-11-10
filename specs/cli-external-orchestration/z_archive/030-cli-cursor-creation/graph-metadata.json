@@ -178,18 +178,18 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this machine in phase 001) that has never existed in this repo — no standalone skill, no hub mode, no archived packet (a `zarchive` grep for \"cursor\" returns nothing)",
     "created_at": "2026-07-24T05:00:33.109Z",
-    "last_save_at": "2026-10-07T18:10:58.017Z",
+    "last_save_at": "2026-11-10T05:38:50.908Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:48e43a8301062e5fc21e8830762558e52c4e98b2edb524987491c5cd1a174507",
+    "source_fingerprint": "sha256:9fee4ba2d6f61596dd4ee146fa54906da0c87d6f9cbee51c633d2045327a2ea6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89bb69c8749c3e91154d1b6a217818c8f3c39d7a4301acb68b72caad9f18516a",
-      "handover.md": "a2353b0e8bee04a0df4b9e1511943eea1dd9adc594195c16d91695e710dc561d"
+      "spec.md": "3e67fd79d4c7798a831588fbd53d00528b79f6e6ceedb60d9fa808222732e6c2",
+      "handover.md": "c4b98a5ef053ff75a0f157710fd44bb63b355507ce0a3fa03e1f0845150cb71c"
     },
     "last_active_child_id": "cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind",
     "last_active_at": "2026-07-26T08:17:57.744Z"

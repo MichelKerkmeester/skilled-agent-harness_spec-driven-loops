@@ -65,12 +65,12 @@ You gain a research record that shows the stop state, the fix backlog pointer an
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts` | Modified | Adds the research-record spec.md write case and the non-research refusal case. |
 | `.skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts` | Modified | The --help text names a research record's spec.md as the other continuity host. |
 | `.skilled/skills/system-spec-kit/references/memory/save-workflow.md` | Modified | The planner-mode table names a research record's spec.md as the other continuity host. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md` | Modified | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md` | Modified | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md` | Modified | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md` | Modified | Continuity block only. |
-| `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md` | Modified | Continuity block only. |
-| specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-018 description.json and graph-metadata.json, and the 082 parent graph-metadata.json | Regenerated | Written by the same saves, which refresh each child's description and graph metadata and the parent's last-active pointer |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md` | Modified | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md` | Modified | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md` | Modified | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md` | Modified | Continuity block only. |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md` | Modified | Continuity block only. |
+| specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/014-018 description.json and graph-metadata.json, and the 082 parent graph-metadata.json | Regenerated | Written by the same saves, which refresh each child's description and graph metadata and the parent's last-active pointer |
 <!-- /ANCHOR:what-built -->
 
 ---

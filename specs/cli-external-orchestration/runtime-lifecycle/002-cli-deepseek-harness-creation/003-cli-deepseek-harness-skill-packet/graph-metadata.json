@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/003-cli-deepseek-harness-skill-packet",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/003-cli-deepseek-harness-skill-packet",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli deepseek harness skill packet",
+      "phase 3 cli deepseek harness skill packet",
+      "cli-deepseek-harness hard rules",
+      "dsh skill packet references",
+      "cli deepseek harness skill packet plan",
+      "cli deepseek harness skill packet tasks",
+      "cli deepseek harness skill packet acceptance criteria",
+      "cli deepseek harness skill packet goal",
+      "cli deepseek harness skill packet implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "deepseek",
+      "harness",
+      "skill",
+      "packet",
+      "phase",
+      "cli-deepseek-harness",
+      "hard",
+      "rules",
+      "dsh",
+      "references",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No skill packet tells a caller how to compose a dsh dispatch or which rules a dispatch must obey",
+    "created_at": "2026-11-05T23:21:52Z",
+    "last_save_at": "2026-11-10T05:38:35.291Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:77be0a7212be9864224bb444954d372a168659971afca64647206cb5de790731",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "52a0ebe556ab524e518a47771fd057ab6fbc7e173ab788326bc8f6175781687c",
+      "plan.md": "85ac5128ed7c7c6dd6026a71ec4080c861bc8f03f6c96d74b19dd4c8a7a88192",
+      "tasks.md": "639551ea16bcd2d31b7e958e4d99a7c7856c17746fb9356fa8aeda8718fd6fe2",
+      "implementation-summary.md": "4d9c77f6cba091fb9bc218f2806bc051f655ad4196962d4f43283b1441ef8db3"
+    },
+    "last_active_at": null
+  }
+}

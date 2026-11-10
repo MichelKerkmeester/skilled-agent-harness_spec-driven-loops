@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh offline contract pin",
+      "phase 2 dsh offline contract pin",
+      "credential-free dsh contract",
+      "dsh dump-config evidence",
+      "dsh offline contract pin plan",
+      "dsh offline contract pin tasks",
+      "dsh offline contract pin acceptance criteria",
+      "dsh offline contract pin goal",
+      "dsh offline contract pin implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "offline",
+      "contract",
+      "pin",
+      "phase",
+      "credential-free",
+      "dump-config",
+      "evidence",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "evidence/version.txt",
+      "evidence/dist-tags.json",
+      "evidence/headless-help.txt",
+      "evidence/dump-config-llmgateway.txt",
+      "evidence/dump-config-opencode-go.txt",
+      "evidence/missing-credential.stdout.jsonl",
+      "evidence/exit.txt",
+      "evidence/plugin-boot.txt",
+      "evidence/dsh-home-diff.txt",
+      "scratch/stub-plugin.mjs",
+      "scratch/dsh-home-before.txt",
+      "evidence/missing-credential.parse.txt",
+      "scratch/dsh-home-after.txt",
+      "evidence/commands.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "version.txt",
+        "kind": "file",
+        "path": "evidence/version.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dist-tags.json",
+        "kind": "config",
+        "path": "evidence/dist-tags.json",
+        "source": "derived"
+      },
+      {
+        "name": "headless-help.txt",
+        "kind": "file",
+        "path": "evidence/headless-help.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dump-config-llmgateway.txt",
+        "kind": "file",
+        "path": "evidence/dump-config-llmgateway.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dump-config-opencode-go.txt",
+        "kind": "file",
+        "path": "evidence/dump-config-opencode-go.txt",
+        "source": "derived"
+      },
+      {
+        "name": "missing-credential.stdout.jsonl",
+        "kind": "file",
+        "path": "evidence/missing-credential.stdout.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "exit.txt",
+        "kind": "file",
+        "path": "evidence/exit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-boot.txt",
+        "kind": "file",
+        "path": "evidence/plugin-boot.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-home-diff.txt",
+        "kind": "file",
+        "path": "evidence/dsh-home-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "stub-plugin.mjs",
+        "kind": "file",
+        "path": "scratch/stub-plugin.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-home-before.txt",
+        "kind": "file",
+        "path": "scratch/dsh-home-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "missing-credential.parse.txt",
+        "kind": "file",
+        "path": "evidence/missing-credential.parse.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-home-after.txt",
+        "kind": "file",
+        "path": "scratch/dsh-home-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "commands.txt",
+        "kind": "file",
+        "path": "evidence/commands.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Later phases write dsh patches, hard rules and an executor builder against a headless contract that no run has observed yet",
+    "created_at": "2026-11-05T23:21:52Z",
+    "last_save_at": "2026-11-10T05:38:35.423Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fe26020d01a8386ced8d94fea34b2ec8025d0a65d727747f64b33b531e439501",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "321ebb955d01369337848b6a3678709252fc303982b832e657f3e356385ae310",
+      "plan.md": "db9c9d73e250290c654fb7ce8aa03b8a3f5e2d73dead622bcd1da6f72cc410fc",
+      "tasks.md": "d55e00ae97aa7a3d51e438661dc706c3cb767e9ab3bcaacaa8f36dd17346637d",
+      "implementation-summary.md": "3b771680cffa98699544b73ec46aef895105cc5c63ced36d4420448ab7d4444e"
+    },
+    "last_active_at": null
+  }
+}

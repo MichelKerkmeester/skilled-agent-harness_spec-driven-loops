@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity",
+  "description": "An operator running `dsh web` with the guards patch got no skill-advisor brief, no way to bind or log a goal",
+  "keywords": [
+    "operator",
+    "running",
+    "dsh",
+    "web",
+    "guards",
+    "patch",
+    "got",
+    "skill-advisor",
+    "brief",
+    "way",
+    "bind",
+    "log",
+    "goal"
+  ],
+  "lastUpdated": "2026-11-07T05:12:37.723Z",
+  "specId": "015",
+  "folderSlug": "dsh-hook-parity",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-11-26_23-15__closed-the-dsh-release-hook-parity-with-the.md",
+    "07-11-26_06-12__routed-the-remaining-operator-answers-to-their.md"
+  ]
+}

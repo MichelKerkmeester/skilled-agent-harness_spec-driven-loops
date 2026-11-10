@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/dispatch-surface-maintenance/002-cli-runtime-readme-refresh",
+  "spec_folder": "cli-external-orchestration/dispatch-surface-maintenance/002-cli-runtime-readme-refresh",
+  "parent_id": "cli-external-orchestration/dispatch-surface-maintenance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli runtime readme refresh",
+      "runtime readme folder map",
+      "cli-pi stale contract pin",
+      "cli runtime readme approach",
+      "delegated readme refresh",
+      "cli runtime readme refresh tasks",
+      "cli runtime readme refresh implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "runtime",
+      "readme",
+      "refresh",
+      "folder",
+      "map",
+      "cli-pi",
+      "stale",
+      "contract",
+      "pin",
+      "approach",
+      "delegated"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-claude-code/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md",
+      "specs/cli-external-orchestration/dispatch-surface-maintenance/002-cli-runtime-readme-refresh/scratch/verify.sh",
+      "scratch/verify.sh",
+      "scratch/verify-run.txt",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/devin/README.md",
+      ".skilled/skills/sk-doc/scripts/validate_document.py",
+      ".skilled/skills/cli-external-orchestration/cli-codex/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/README.md",
+      "scratch/build-prompts.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify.sh",
+        "kind": "script",
+        "path": "specs/cli-external-orchestration/dispatch-surface-maintenance/002-cli-runtime-readme-refresh/scratch/verify.sh",
+        "source": "derived"
+      },
+      {
+        "name": "verify-run.txt",
+        "kind": "file",
+        "path": "scratch/verify-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-architecture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "build-prompts.cjs",
+        "kind": "file",
+        "path": "scratch/build-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Eight",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Disk",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every runtime packet under `.skilled/skills/cli-external-orchestration/` ships a `README.md`, and they",
+    "created_at": "2026-09-20T10:58:00Z",
+    "last_save_at": "2026-11-10T05:38:22.116Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:65515bea718520d94cfe31c68e3ecadd867a696d28c1c3db32496107bea218b8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9f10cc55254458c3a4940d185e18ebac1f1114a234708403f43224043a2f2929",
+      "plan.md": "5821161dc3453759a8a3b454baf056609c7928754fa93db31e7651b8f18b8ee1",
+      "tasks.md": "a93e7559d3f148931b329a9f67a39850517669a43e5d070104539c03360c27ab",
+      "implementation-summary.md": "b7ad2d2fcd958bb034f3485b2022c9928c155cfefef7257ed6b98a5d6c5f7d15"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/dispatch-surface-maintenance/003-claude-code-native-dispatch",
+  "spec_folder": "cli-external-orchestration/dispatch-surface-maintenance/003-claude-code-native-dispatch",
+  "parent_id": "cli-external-orchestration/dispatch-surface-maintenance",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude code native dispatch",
+      "the cli claude code self invocation guard said",
+      "claude code native dispatch plan",
+      "claude code native dispatch tasks",
+      "claude code native dispatch implementation summary"
+    ],
+    "key_topics": [
+      "claude",
+      "code",
+      "native",
+      "dispatch",
+      "cli",
+      "self",
+      "invocation",
+      "guard",
+      "said",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/claude-code-native-dispatch-docs.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "claude-code-native-dispatch-docs.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/claude-code-native-dispatch-docs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tell Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The guard in `.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md` refuses self-invocation and says only \"use native capabilities\"",
+    "created_at": "2026-10-03T21:11:45Z",
+    "last_save_at": "2026-11-10T05:38:22.207Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ade99abe0e26c54a8e95e87f832fe22b6e2412ea0238cff580e4cd7b42fd75e3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "89601cbea041bf900625ec183c7eeddb3233584efaa8d4ea1e73eabc1b6501fd",
+      "plan.md": "430deafd00d04c221b9878dd8a70e23e0c64641a3f5f3b88e1ba5346f3a9d6b1",
+      "tasks.md": "9031661bdc12d3d1422c7e46cef91a415e4b530067b45b74384485654f2bf246",
+      "implementation-summary.md": "df67949dcc01d8330eb30d71a162ac89cd3fbb551ee519f2ef0b435d4799f826"
+    },
+    "last_active_at": null
+  }
+}

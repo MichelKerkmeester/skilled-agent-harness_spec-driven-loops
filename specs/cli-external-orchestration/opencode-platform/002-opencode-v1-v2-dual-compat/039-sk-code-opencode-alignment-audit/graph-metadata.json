@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code opencode alignment audit",
+      "phase 39 sk code opencode alignment audit",
+      "opencode plugin hook sk-code review",
+      "plugin hook standards alignment",
+      "sk code opencode alignment audit plan",
+      "sk code opencode alignment audit tasks",
+      "sk code opencode alignment audit implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "opencode",
+      "alignment",
+      "audit",
+      "phase",
+      "plugin",
+      "hook",
+      "sk-code",
+      "review",
+      "standards",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/lib/goal-slice.cjs",
+      ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
+      "scratch/suites/battery-v1-v2.txt",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "battery-v1-v2.txt",
+        "kind": "file",
+        "path": "scratch/suites/battery-v1-v2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow File",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 009 reviewed 75 changed files",
+    "created_at": "2026-10-20T23:08:25Z",
+    "last_save_at": "2026-11-10T05:38:28.309Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4fd649993b81f7226a59e11e246d242e4d5b930023911f61c78ec844e9fd4524",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f4f5cc331cccc42c3200b85263b04918b72be8158e8bbfe2a180c4a5c91f898b",
+      "plan.md": "685864cac31979a4ed2a07118fd2144da932f4e7eaa24106fd3c243a1a3f9e52",
+      "tasks.md": "f5ddba40daf88a3bf3924815f239f720ae8f1874e209966c82fb91a8047465be",
+      "implementation-summary.md": "bce5b700f072f4221fdfedc65bd7f61717ca9421dafe99bf89488ac84187c84b"
+    },
+    "last_active_at": null
+  }
+}

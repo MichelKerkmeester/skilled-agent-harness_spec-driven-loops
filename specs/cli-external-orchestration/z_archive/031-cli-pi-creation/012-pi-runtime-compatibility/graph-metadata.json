@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot actually run this repo's 36 commands, 13 agents, or governance hooks the way Claude Code/OpenCode/Codex/Cursor/Devin already can — phases 005/006/008 designed HOW each would translate but explicitly stopped short of writing the files (`.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` all do not exist in this worktree today; only `.pi/mcp.json`/`.pi/settings.json`/`.pi/npm/` exist, from phase 007)",
     "created_at": "2026-07-27T15:52:18.832Z",
-    "last_save_at": "2026-10-07T18:11:20.408Z",
+    "last_save_at": "2026-11-10T05:38:54.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc203f1377a8e51ab9461207d527d64c1ead3e885704998ffc20e9c6492f293a",
+    "source_fingerprint": "sha256:144e03aaa48ed9a95d8d70617da4422ea7291a25850dcb4c0c20c802ce346da6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f549f7bccfd61de09addd68b3cba8df5942db06ee24448713fa3da7b9c4e93f9",
       "plan.md": "9df3587fba2ca4063d22ba9a5bc6a4e22822717c358baca58423d4b09e1b5e24",
       "tasks.md": "02e0efc89636761bc29a23cdfda03f9b0aeef31e79547f8b574b84a9d3efa23b",
-      "implementation-summary.md": "205498efad812975e51126daace1735cb62027ad52022739a8e874452438dc81"
+      "implementation-summary.md": "67abebfc924577e0edb9b3051279596ef4cb1ad2cbcda74421264d5b138eb49b"
     },
     "last_active_child_id": null,
     "last_active_at": null

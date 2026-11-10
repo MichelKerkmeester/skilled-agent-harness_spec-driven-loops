@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/008-dsh-repo-guards-safety-wave",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh repo guards safety wave",
+      "phase 8 dsh repo guards safety wave",
+      "dsh repo-guards plugin",
+      "dsh guards patch",
+      "dsh repo guards safety wave plan",
+      "dsh repo guards safety wave tasks",
+      "dsh repo guards safety wave acceptance criteria",
+      "dsh repo guards safety wave goal",
+      "dsh repo guards safety wave implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "repo",
+      "guards",
+      "safety",
+      "wave",
+      "phase",
+      "repo-guards",
+      "plugin",
+      "patch",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
+      ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+      ".dsh/patches/guards.patch.yml",
+      ".dsh/plugins/repo-guards/index.mjs",
+      ".dsh/SYNC.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+      "evidence/bundle-node-test-run.txt",
+      "evidence/keyless-guards.stderr.txt",
+      "evidence/keyless-guards.stdout.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "classifier-injection-advisory.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "guards.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/guards.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "guards-and-hooks.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "bundle-node-test-run.txt",
+        "kind": "file",
+        "path": "evidence/bundle-node-test-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "keyless-guards.stderr.txt",
+        "kind": "file",
+        "path": "evidence/keyless-guards.stderr.txt",
+        "source": "derived"
+      },
+      {
+        "name": "keyless-guards.stdout.jsonl",
+        "kind": "file",
+        "path": "evidence/keyless-guards.stdout.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo's safety policy (spec gate, dispatch preflight, completion evidence, subagent dispatch checks, post-edit quality and the classifier injection screen) reaches Pi through 19 hand-authored extensions in `.pi/extensions/`, and nothing reaches dsh",
+    "created_at": "2026-11-05T23:21:56Z",
+    "last_save_at": "2026-11-10T05:38:35.430Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0d71551ef19502defda25d1fc8ffa73773be682c5915a6c42a5a6f0802984249",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0ba2a2c28a224d9ab63300c903a8a3bc44c5d846e8cdce4ff6d4cbed90a656a6",
+      "plan.md": "a9bb5866a34900eff246b418854190d1425741162de7057d5a785b74623c4b2a",
+      "tasks.md": "4ea235d63c54f482b77a38415229c7cff6f7a7ef547a00e60e7128e0ec20ed16",
+      "implementation-summary.md": "9091a84629e205a8ac7bd572148c16e167e61c5ecdba803cb9fd92fe35bdfc68"
+    },
+    "last_active_at": null
+  }
+}

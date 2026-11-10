@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "cli-external-orchestration/model-rosters",
+  "description": "Add, cut over and remove model ids and provider routes across the cli and deep-loop rosters.",
+  "keywords": [
+    "model",
+    "rosters"
+  ],
+  "lastUpdated": "2026-11-10T05:38:17.645Z",
+  "specId": "cli-external-orchestration/model-rosters",
+  "folderSlug": "model-rosters",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code opencode alignment",
+      "phase 9 sk code opencode alignment",
+      "sk code opencode alignment plan",
+      "sk code opencode alignment tasks",
+      "sk code opencode alignment acceptance criteria",
+      "sk code opencode alignment goal",
+      "sk code opencode alignment implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "opencode",
+      "alignment",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "phases"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/cli-dispatch-audit.js",
+      ".opencode/plugins/tests/source-root-consumers.test.cjs",
+      ".opencode/plugins/system-dist-freshness-guard.js",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+      "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+      "scratch/gates/hygiene-after.txt",
+      "scratch/gates/hostile-env.txt",
+      "scratch/gates/battery-both.json",
+      "scratch/probes/v2-vision-live.txt",
+      "scratch/gates/render-manifest-live.txt",
+      "scratch/review-fix-verify-luna.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "source-root-consumers.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/source-root-consumers.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-dist-freshness-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-dist-freshness-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "state-backend-census.json",
+        "kind": "config",
+        "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json",
+        "source": "derived"
+      },
+      {
+        "name": "hygiene-after.txt",
+        "kind": "file",
+        "path": "scratch/gates/hygiene-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hostile-env.txt",
+        "kind": "file",
+        "path": "scratch/gates/hostile-env.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery-both.json",
+        "kind": "config",
+        "path": "scratch/gates/battery-both.json",
+        "source": "derived"
+      },
+      {
+        "name": "v2-vision-live.txt",
+        "kind": "file",
+        "path": "scratch/probes/v2-vision-live.txt",
+        "source": "derived"
+      },
+      {
+        "name": "render-manifest-live.txt",
+        "kind": "file",
+        "path": "scratch/gates/render-manifest-live.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-fix-verify-luna.txt",
+        "kind": "file",
+        "path": "scratch/review-fix-verify-luna.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002 to 008 add and change plugin, guard, runtime and install code for two OpenCode versions",
+    "created_at": "2026-10-18T12:45:08Z",
+    "last_save_at": "2026-11-10T05:38:22.295Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a630883f4de0d0d5e73d2e3f375db3b4ad17e750e10442996b359eed576a4a63",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "748afb5fc71f2bdf449492f7ba6a433065546568aeb85b21cb8824e6f96f66cb",
+      "plan.md": "fe2c6e4936922ad5e095e1cc12500ea22e5d34bc46f9058d39a5295dfc82339e",
+      "tasks.md": "63ba49495e667eca40b7ec196d66caaad217c9372fa20ef53e9aed207c429db1",
+      "implementation-summary.md": "7bd59a82d8c076c04ef17fd8ebe648c0d3b2dd00aa88ed106b5fa682dc0b7aba"
+    },
+    "last_active_at": null
+  }
+}

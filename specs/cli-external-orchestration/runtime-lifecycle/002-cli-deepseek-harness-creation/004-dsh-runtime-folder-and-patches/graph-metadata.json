@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh runtime folder and patches",
+      "phase 4 dsh runtime folder and patches",
+      "dsh route patch",
+      "dsh lineage patch",
+      "dsh runtime folder and patches plan",
+      "dsh runtime folder and patches tasks",
+      "dsh runtime folder and patches acceptance criteria",
+      "dsh runtime folder and patches goal",
+      "dsh runtime folder and patches implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "runtime",
+      "folder",
+      "patches",
+      "phase",
+      "route",
+      "patch",
+      "lineage",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".dsh/patches/route-llmgateway-deepseek.patch.yml",
+      ".dsh/patches/route-opencode-go-deepseek.patch.yml",
+      ".dsh/patches/lineage.patch.yml",
+      ".dsh/SYNC.md",
+      ".dsh/README.md",
+      "evidence/checks.txt",
+      "evidence/commands.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-llmgateway-deepseek.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/route-llmgateway-deepseek.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "route-opencode-go-deepseek.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/route-opencode-go-deepseek.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "lineage.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/lineage.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".dsh/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "checks.txt",
+        "kind": "file",
+        "path": "evidence/checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "commands.txt",
+        "kind": "file",
+        "path": "evidence/commands.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No checked-in patch selects a roster route for dsh today",
+    "created_at": "2026-11-05T23:21:53Z",
+    "last_save_at": "2026-11-10T05:38:35.240Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1fed16367c2c1e97f2e0aac134aae2e10f1342b917ec3786b3b82ab0bb3dbc04",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "714d472e83bd19a4669511621ef649236f63bd1ce7bac73b6d43fdd840edcfb4",
+      "plan.md": "c4645f542e7439903591bf7732bcbd55937a364dc4242b840814a189fa4fffe0",
+      "tasks.md": "17c7124b32a8cc2cf0f48cd76345e53b9908d1fd5b9c69045fe97326925c4b54",
+      "implementation-summary.md": "2a17139f6843ace2111f55474a173152ef4882d9cbc518ad8e48d3fe084446d2"
+    },
+    "last_active_at": null
+  }
+}

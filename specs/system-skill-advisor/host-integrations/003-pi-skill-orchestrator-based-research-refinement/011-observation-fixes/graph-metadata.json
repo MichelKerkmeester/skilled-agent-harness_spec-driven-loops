@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 10's close-out listed seven small problems it had seen outside its own scope",
     "created_at": "2026-09-27T11:43:49Z",
-    "last_save_at": "2026-11-10T05:35:42.397Z",
+    "last_save_at": "2026-11-10T05:40:08.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:079e53213e9b3504305f7f1b41c14a27f92bcbaafeb7799100d70a5826748fb3",
+    "source_fingerprint": "sha256:56176990be4ffb45ce0746292fc7fdfa0625b5a448e7ca5e6abbd7ed19d02691",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c2d273de2152e857e8867be72ffed4e7529b347f039e5fefec70c86bb8cb59e",
       "plan.md": "e1a569a75e323ee2141ce62e420ce06aca7e61a8ff0d38031012645b66a1cd36",
       "tasks.md": "8a428054ded7ad22d0947adc3e5ad32820b8bc3dda4c7809558f89a192a25039",
-      "implementation-summary.md": "77c0f569f85e166de4c3c0c7228aab2b7e8fccca9d43a8a241a7cacbdea8f9f1"
+      "implementation-summary.md": "a06e8e694becb305a776f068fe8110d31fea8128da205170ae3099a4bc8e0543"
     },
     "last_active_at": null
   }

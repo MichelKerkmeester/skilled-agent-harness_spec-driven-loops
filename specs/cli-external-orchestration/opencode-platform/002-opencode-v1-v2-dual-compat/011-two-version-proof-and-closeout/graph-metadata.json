@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "two version proof and closeout",
+      "phase 11 two version proof and closeout",
+      "two version proof and closeout plan",
+      "two version proof and closeout tasks",
+      "two version proof and closeout acceptance criteria",
+      "two version proof and closeout goal",
+      "two version proof and closeout implementation summary"
+    ],
+    "key_topics": [
+      "two",
+      "version",
+      "proof",
+      "closeout",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/proof/battery-exits.txt",
+      "scratch/remediation/suites-before.txt",
+      "scratch/remediation/adapter-suites-owning-runner.txt",
+      "scratch/validate-recursive.txt",
+      "scratch/ci-fix/repro.txt",
+      "scratch/ci-fix/provision.txt",
+      "scratch/ci-fix/green-run.txt",
+      "scratch/ci-fix/gate-inputs.txt",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      "scratch/decisions.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "battery-exits.txt",
+        "kind": "file",
+        "path": "scratch/proof/battery-exits.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suites-before.txt",
+        "kind": "file",
+        "path": "scratch/remediation/suites-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-suites-owning-runner.txt",
+        "kind": "file",
+        "path": "scratch/remediation/adapter-suites-owning-runner.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-recursive.txt",
+        "kind": "file",
+        "path": "scratch/validate-recursive.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/repro.txt",
+        "source": "derived"
+      },
+      {
+        "name": "provision.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/provision.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-run.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/green-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-inputs.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/gate-inputs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.txt",
+        "kind": "file",
+        "path": "scratch/decisions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The build spans eleven phase children",
+    "created_at": "2026-10-18T12:45:10Z",
+    "last_save_at": "2026-11-10T05:38:22.626Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6ce514cfa4d350c0a4c08a86476d0701428ca08ce15282b1648ad7e50d24bd77",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d36915a8f8cb8139f80c20c1bdced6ec1bd953a189d5fc2f38aff403930368c5",
+      "plan.md": "3b3520898f8b1402419fdb16bcd26894f3cf05cd21bd4c88d14bc4b2512f3976",
+      "tasks.md": "c82fe21f8d4076a3e8aeb9b65d599e3bc5f6aaf82ef55e07dff81e1289a51037",
+      "implementation-summary.md": "61851d72f9b5fa5dfbe2d00811c7b5d144adb56c7b33531e99cd64cdcd48cff8"
+    },
+    "last_active_at": null
+  }
+}

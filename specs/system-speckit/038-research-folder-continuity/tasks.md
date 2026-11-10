@@ -55,7 +55,7 @@ contextType: "general"
 - [x] T008 [P] Typecheck with `tsc --noEmit` and rebuild dist with `npm run build`, both exit 0 (`.skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js`)
 - [x] T009 [P] Save the five 082 research children 014 through 018 through the writer with composed continuity payloads, all exit 0 with no refusal logged (`specs/system-speckit/038-research-folder-continuity/scratch/after/save-runs.txt`)
 - [x] T010 Compare the five continuity blocks before and after so every scaffold string is gone (`specs/system-speckit/038-research-folder-continuity/scratch/after/research-continuity-blocks.txt`)
-- [x] T011 [P] Validate the 082 packet recursively and strictly, 19 of 19 RESULT PASSED (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat`)
+- [x] T011 [P] Validate the 082 packet recursively and strictly, 19 of 19 RESULT PASSED (`specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat`)
 - [x] T012 Fill spec.md, plan.md, tasks.md and implementation-summary.md (`specs/system-speckit/038-research-folder-continuity`)
 <!-- /ANCHOR:phase-3 -->
 

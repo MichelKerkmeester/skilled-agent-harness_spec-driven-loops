@@ -43,11 +43,11 @@
       ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
       ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md",
       "specs/system-speckit/038-research-folder-continuity/scratch/before/vitest-baseline.txt",
       "specs/system-speckit/038-research-folder-continuity/scratch/before/vitest-new-test-on-old-code.txt",
       "specs/system-speckit/038-research-folder-continuity/scratch/after/vitest.txt",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A full-auto save with continuity fields refused every research record and left its continuity block scaffolded",
     "created_at": "2026-10-19T21:44:00Z",
-    "last_save_at": "2026-10-31T15:28:37.488Z",
+    "last_save_at": "2026-11-10T05:40:09.142Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cde427eef2af89f6b9f6d8437389157a328cbdf2f9cc517ceb59559d7b18cb2",
+    "source_fingerprint": "sha256:9853028436509bec3daccccdff32787fd5fc33c97c56d841fd244a5130b79dcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b41887b995ba3d98ee4b51b231be0a2f68ccb26237d6f227cf4af22aa047792e",
+      "spec.md": "1940101c80e8d0e9f6f21d22c59add1718f486492519281294d29fc547bcae7e",
       "plan.md": "3827ca07147f477626d4d717b4ebb2e9fa4d7379d969a9e9cf971e1e9b735e39",
-      "tasks.md": "6b82a7d9e912671deaf8add46d00b6d6c09add15deff807a4b1fed6cc28ab200",
-      "implementation-summary.md": "7616fa554f43f0a7a44927bb639305f945beffa34d3e377a2b535c2099c19b89"
+      "tasks.md": "f3057e42c99a2a16cb2489e27b21ae1212f5e4e47a6c8368a3041e37d0359508",
+      "implementation-summary.md": "695f5ee14bbb88f0da6676155ea1723109b1ce629c69f54219f9f9586dded45a"
     },
     "last_active_at": null
   }

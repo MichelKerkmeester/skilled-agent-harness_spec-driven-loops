@@ -91,8 +91,8 @@ Paths in the first eight rows sit under `.skilled/skills/` unless they start wit
 
 The 18 folders, under `specs/`:
 
-- `cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes`
-- `cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard`, found at final state
+- `cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/013-close-silent-preflight-holes`
+- `cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/016-dispatch-enforcement-ci-guard`, found at final state
 - `cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin`
 - `sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit`
 - `system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions`

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/003-hard-plugins",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/003-hard-plugins",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hard plugins",
+      "phase 3 hard plugins",
+      "hard plugins plan",
+      "hard plugins tasks",
+      "hard plugins acceptance criteria",
+      "hard plugins goal",
+      "hard plugins implementation summary"
+    ],
+    "key_topics": [
+      "hard",
+      "plugins",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "five",
+      "need"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/system-completion-sentinel.js",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".opencode/plugins/lib/completion-sentinel-core.js",
+      ".opencode/plugins/lib/opencode-goal-core.js",
+      ".opencode/plugins/tests/v2-hard-plugins.test.cjs",
+      "scratch/drift-after-fix.txt",
+      ".opencode/plugins/lib/tool-identity.js",
+      ".opencode/plugins/system-spec-gate.js",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/opencode-goal.js",
+      ".opencode/plugins/tests/system-completion-sentinel.test.cjs",
+      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+      ".opencode/plugins/tests/opencode-goal-export-contract.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-completion-sentinel.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-completion-sentinel.js",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "completion-sentinel-core.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/completion-sentinel-core.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-core.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/opencode-goal-core.js",
+        "source": "derived"
+      },
+      {
+        "name": "v2-hard-plugins.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/v2-hard-plugins.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "drift-after-fix.txt",
+        "kind": "file",
+        "path": "scratch/drift-after-fix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tool-identity.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/tool-identity.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-gate.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-spec-gate.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-completion-sentinel.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-completion-sentinel.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-capabilities.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-capabilities.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-export-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-export-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five plugins need more than a wrapper to run on v2",
+    "created_at": "2026-10-18T12:45:02Z",
+    "last_save_at": "2026-11-10T05:38:22.385Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d5dba5924a8c8c4d1c2adfd1a7ac2cf1bd6cddedfb694cee592be64035482e2b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4278263ed77beed94815e431bacafff6a3716cef8f59e627c32a9a4647799369",
+      "plan.md": "b11f5e6530d0ad35b589573ad8cda8bcc6c1333d6ffe491af90826c236e8905a",
+      "tasks.md": "ad8270e8174cce0d6b4fbe4e1b2954cb397c36f9d0e2d77569e867414f01a3d2",
+      "implementation-summary.md": "6523eeb50a5eec2249de1f8247a12bb63d2de16771f1a10d4ee07d83bcc29641"
+    },
+    "last_active_at": null
+  }
+}

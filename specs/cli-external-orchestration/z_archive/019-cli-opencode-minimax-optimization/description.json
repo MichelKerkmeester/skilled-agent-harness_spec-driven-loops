@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization",
   "description": "cli-opencode currently supports two providers (`opencode-go` default, `deepseek` direct-API) and the shared small-model registry",
   "keywords": [

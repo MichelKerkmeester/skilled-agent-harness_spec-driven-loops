@@ -70,7 +70,7 @@ contextType: "implementation"
 - [x] T021 Rerun the doctor suite and the alignment recheck. Verify: `tests 1069`, `pass 1063`, `fail 6` (the same six agents-md tests). Recheck resolved the frontmatter row and found no new failure.
 - [x] T022 Add the `system-skilled-doctor` v1.1.0.0 changelog entry and raise `SKILL.md` to 1.1.0.0 (`.skilled/skills/system-skilled-doctor/changelog/v1.1.0.0.md`). Verify: `check_changelog_shape.py` prints `pass=1 fail=0` and `validate_document.py` reports 0 issues.
 - [x] T023 Fix the failures main already had: regenerate the stale agents-md manifest history after the `v4.0.2.0` tag, name the SKIP blocker in two playbook scenarios, add the result-persistence marker, and give the doctor README a full path to `ENV-REFERENCE.md`. Verify: the doctor suite prints `tests 1069`, `pass 1069`, `fail 0`. The playbook validator prints `violations=0 warnings=0`. `check_readme_references.py` prints `unresolved=0`.
-- [x] T024 Open the follow-up packet for the OpenCode worktree leak (`specs/cli-external-orchestration/087-opencode-worktree-confinement`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
+- [x] T024 Open the follow-up packet for the OpenCode worktree leak (`specs/cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

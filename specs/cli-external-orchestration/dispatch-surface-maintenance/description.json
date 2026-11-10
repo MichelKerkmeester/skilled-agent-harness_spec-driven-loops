@@ -1,0 +1,18 @@
+{
+  "level": "sub-track",
+  "specFolder": "cli-external-orchestration/dispatch-surface-maintenance",
+  "description": "Keep the dispatch surfaces accurate and safe: runtime READMEs, skill guidance for dispatchers and Pi extension dependencies.",
+  "keywords": [
+    "dispatch",
+    "surface",
+    "maintenance"
+  ],
+  "lastUpdated": "2026-11-10T05:38:17.645Z",
+  "specId": "cli-external-orchestration/dispatch-surface-maintenance",
+  "folderSlug": "dispatch-surface-maintenance",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

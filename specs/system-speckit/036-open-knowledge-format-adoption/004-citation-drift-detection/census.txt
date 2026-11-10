@@ -227,10 +227,10 @@ cite dead: specs/agents-md/instruction-file-architecture/003-repo-rule-system-in
 cite dead: specs/agents-md/instruction-file-architecture/003-repo-rule-system-integration/research/synthesis.md:439 -> AGENTS.md:493
 cite dead: specs/agents-md/instruction-file-architecture/003-repo-rule-system-integration/research/synthesis.md:537 -> AGENTS.md:474
 cite dead: specs/agents-md/instruction-file-architecture/003-repo-rule-system-integration/research/synthesis.md:587 -> AGENTS.md:474
-cite dead: specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/research/lineages/deepseek/iterations/iteration-007.md:56 -> .hermes/SYNC.md:88
-cite dead: specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/research/lineages/deepseek/iterations/iteration-007.md:108 -> .hermes/SYNC.md:75
-cite dead: specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/research/lineages/deepseek/iterations/iteration-007.md:133 -> .hermes/SYNC.md:75
-cite dead: specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/research/research.md:138 -> .hermes/SYNC.md:88
+cite dead: specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/012-runtime-surface-parity-research/research/lineages/deepseek/iterations/iteration-007.md:56 -> .hermes/SYNC.md:88
+cite dead: specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/012-runtime-surface-parity-research/research/lineages/deepseek/iterations/iteration-007.md:108 -> .hermes/SYNC.md:75
+cite dead: specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/012-runtime-surface-parity-research/research/lineages/deepseek/iterations/iteration-007.md:133 -> .hermes/SYNC.md:75
+cite dead: specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/012-runtime-surface-parity-research/research/research.md:138 -> .hermes/SYNC.md:88
 cite dead: specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:15 -> .skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts:1
 cite dead: specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/research/lineages/deepseek/iterations/iteration-002.md:17 -> .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:1
 cite dead: specs/cli-classifier/003-cli-jev-workflow-integration/001-deep-research/research/lineages/deepseek/iterations/iteration-004.md:20 -> .skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-shadow.ts:1

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/dispatch-surface-maintenance/002-cli-runtime-readme-refresh",
+  "description": "Every runtime packet under `.skilled/skills/cli-external-orchestration/` ships a `README.md`, and they",
+  "keywords": [
+    "every",
+    "runtime",
+    "packet",
+    "skilled",
+    "skills",
+    "cli-external-orchestration",
+    "ships",
+    "readme"
+  ],
+  "lastUpdated": "2026-09-20T12:18:48.538Z",
+  "specId": "075",
+  "folderSlug": "cli-runtime-readme-refresh",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

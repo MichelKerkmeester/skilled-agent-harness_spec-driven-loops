@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/060-v4-0-0-13-changelog-rewrite",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/060-v4-0-0-13-changelog-rewrite",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 0 0 13 changelog rewrite",
+      "phase 60 v4 0 0 13 changelog rewrite",
+      "v4 0 0 13 changelog rewrite plan",
+      "v4 0 0 13 changelog rewrite tasks",
+      "v4 0 0 13 changelog rewrite implementation summary"
+    ],
+    "key_topics": [
+      "changelog",
+      "rewrite",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "described",
+      "release",
+      "mostly",
+      "handover",
+      "imbalance"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/spec.md",
+      ".skilled/changelog/skilled/v4.0.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reliability Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sessions That Never Run Out",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Index Rebuild",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v4.0.0.13 changelog described the release mostly as the handover, and the imbalance started at the top",
+    "created_at": "2026-10-22T20:01:06.264Z",
+    "last_save_at": "2026-11-10T05:38:31.628Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d12de8b27c49f9c2190f2228fe04f1278e1ba24472e02af60e24d02d142ed64",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e2df8f706c28e699b80a4a2b2354ae7041747deb8bcec962bbf6315f474d06a5",
+      "plan.md": "0334eb44135acc1425580162067082a543f7b39c6a436834011b01d40c774bec",
+      "tasks.md": "ba78dcd305ccff8b11b35cc77a1fc3918b795a13bfbdcdf728fb45bdb93c8343",
+      "implementation-summary.md": "d26b325ec0740a94e75b7707de316f322a962fd858dd8a0efabc2faa52b2b16e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

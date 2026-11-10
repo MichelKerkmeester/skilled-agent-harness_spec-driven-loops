@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "parent_id": "cli-external-orchestration/opencode-platform",
+  "children_ids": [
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/001-unknowns-and-baseline",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/002-pins-imports-dual-export",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/003-hard-plugins",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/004-agents-commands-config",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/005-version-aware-guards",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/008-doctor-and-ci",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/010-documentation-sweep",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/014-post-merge-deep-research",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/022-worktree-provision-completeness",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/024-plugin-inventory-guards",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/030-nested-worktree-battery",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/034-live-plugin-playbook",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/041-goal-held-fixes",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/046-final-two-version-proof",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/047-diagram-corpus-ci",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/049-review-rows-reconciliation",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/052-v1-default-llmgateway",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/053-final-commit-live-proof",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/055-command-support-into-commands",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/059-cross-cli-map-refresh",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/060-v4-0-0-13-changelog-rewrite",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/061-v4-0-0-13-changelog-trim-and-simplify",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/062-opencode-2-primary-v1-fallback",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/065-drop-old-deepseek-from-pi",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/066-opencode-v2-default-name",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/068-retire-opencode2-name",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/069-opencode-v1-pin-1-19-4"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode v1 v2 dual compat research spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "opencode v1 v2 dual compat research",
+      "opencode v2 plugin migration",
+      "opencode side by side install",
+      "cli-opencode version detection"
+    ],
+    "key_topics": [
+      "opencode",
+      "dual",
+      "compat",
+      "research",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "research/research.md",
+      ".skilled/CROSS-CLI.md",
+      ".pi/models.json",
+      "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
+      "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
+      "014-post-merge-deep-research/research/research.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      "001-unknowns-and-baseline/goal.md",
+      "002-pins-imports-dual-export/goal.md",
+      "003-hard-plugins/goal.md",
+      "004-agents-commands-config/goal.md",
+      "005-version-aware-guards/goal.md",
+      "006-cli-opencode-dual-dispatch/goal.md",
+      "007-install-guidance-and-setup-helper/goal.md",
+      "008-doctor-and-ci/goal.md",
+      "009-sk-code-opencode-alignment/goal.md",
+      "010-documentation-sweep/goal.md",
+      "011-two-version-proof-and-closeout/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "new-code-run.txt",
+        "kind": "file",
+        "path": "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fresh-clone.txt",
+        "kind": "file",
+        "path": "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Research Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "reasons",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Answer Yes",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Shape",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Set",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
+    "created_at": "2026-10-18T09:21:48Z",
+    "last_save_at": "2026-11-10T05:38:27.336Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:0b43ebe2433477badc4f9636eb7f18401c75d281f6aff92b1b8e5934fcccbe30",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "623bec7ac1754403c0e4e8851b091feec17f53bfbbd8f8c5b3d7975a1872a25b",
+      "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
+    },
+    "last_active_at": null
+  }
+}

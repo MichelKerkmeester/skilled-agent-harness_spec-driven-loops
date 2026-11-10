@@ -1,7 +1,7 @@
 ---
 title: "PAT-002 -- Guards patch boot"
 description: "This scenario validates that the guards patch loads the repo-guards bundle with no failed plugin entry and reaches the provider call for `PAT-002`."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # PAT-002 -- Guards patch boot
@@ -56,15 +56,15 @@ tail -n 1 stdout.jsonl
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Basis: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt`.
+- Basis: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt`.
 - Observed: exit `1`, stderr names `LLMGATEWAY_API_KEY` with `MISSING_CREDENTIAL`, `grep -c "did not activate"` returns `0`, and the last event is a `final` event with `reason.kind` `error`.
 - The same capture records the plugin suite run in that packet, but this scenario grades the boot only. The current suite count lives in `GRD-001`.
 - Note: the saved capture omits `--permission-mode`. The command above adds the read-only preset for a dispatch that could reach a tool.
-- Rerun after hook parity: both compositions exit `1` with `MISSING_CREDENTIAL` and print no `did not activate` line. The interactive boot, with the route and guards patches only, also carried the skill-advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context. Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`.
+- Rerun after hook parity: both compositions exit `1` with `MISSING_CREDENTIAL` and print no `did not activate` line. The interactive boot, with the route and guards patches only, also carried the skill-advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context. Evidence: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PAT-002 | Guards patch boot | Prove the bundle activates before the provider call | `Boot headless with the guards patch on the LLM Gateway route and confirm the repo-guards bundle loads. I want the exit code and a zero count for "did not activate". A missing key is expected.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. run the dispatch shape from section 3 with the route, lineage and guards patches -> 3. `grep -c "did not activate" stderr.txt` -> 4. `tail -n 1 stdout.jsonl` | Step 2: exit `1`, stderr names `LLMGATEWAY_API_KEY`. Step 3: `0`. Step 4: last event is `final` with `reason.kind` `error` | `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt` | PASS if the run reaches `MISSING_CREDENTIAL` and the failed-entry count is `0`. FAIL if a `did not activate` line appears or the run stops before the provider call | 1. Read stderr in full and search for `did not activate`. 2. Confirm the guards patch path resolves by relative plugin name. 3. Run the plugin suite in `GRD-001` before changing the patch |
+| PAT-002 | Guards patch boot | Prove the bundle activates before the provider call | `Boot headless with the guards patch on the LLM Gateway route and confirm the repo-guards bundle loads. I want the exit code and a zero count for "did not activate". A missing key is expected.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. run the dispatch shape from section 3 with the route, lineage and guards patches -> 3. `grep -c "did not activate" stderr.txt` -> 4. `tail -n 1 stdout.jsonl` | Step 2: exit `1`, stderr names `LLMGATEWAY_API_KEY`. Step 3: `0`. Step 4: last event is `final` with `reason.kind` `error` | `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt` | PASS if the run reaches `MISSING_CREDENTIAL` and the failed-entry count is `0`. FAIL if a `did not activate` line appears or the run stops before the provider call | 1. Read stderr in full and search for `did not activate`. 2. Confirm the guards patch path resolves by relative plugin name. 3. Run the plugin suite in `GRD-001` before changing the patch |
 
 ---
 
@@ -88,7 +88,7 @@ tail -n 1 stdout.jsonl
 | `.dsh/plugins/repo-guards/index.mjs` | Registers the 20 adapters |
 | `.dsh/plugins/repo-guards/lineage-leaf.mjs` | The marker row the lineage patch inserts, which keeps the four interactive-only adapters off |
 | `.dsh/plugins/repo-guards/README.md` | Adapter policies and the failed-entry behavior |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt` | Recorded guards boot with a zero failed-entry count |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/009-dsh-context-guards-and-goal-bridge/evidence/keyless-guards-boot.txt` | Recorded guards boot with a zero failed-entry count |
 
 ---
 

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli opencode dual dispatch",
+      "phase 6 cli opencode dual dispatch",
+      "cli opencode dual dispatch plan",
+      "cli opencode dual dispatch tasks",
+      "cli opencode dual dispatch acceptance criteria",
+      "cli opencode dual dispatch goal",
+      "cli opencode dual dispatch implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "opencode",
+      "dual",
+      "dispatch",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      "scratch/deep-loop-suite-before.txt",
+      "scratch/red-first-failures.txt",
+      "scratch/green-run.txt",
+      "scratch/deep-loop-suite-after.txt",
+      "scratch/smoke/v2/smoke-v2-plugin.jsonl",
+      "scratch/real-binary-watch.txt",
+      "scratch/static-checks.txt",
+      "scratch/decisions.txt",
+      "scratch/green-run-after-fix.txt",
+      "scratch/smoke/v1/summary.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-suite-before.txt",
+        "kind": "file",
+        "path": "scratch/deep-loop-suite-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-first-failures.txt",
+        "kind": "file",
+        "path": "scratch/red-first-failures.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-run.txt",
+        "kind": "file",
+        "path": "scratch/green-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-suite-after.txt",
+        "kind": "file",
+        "path": "scratch/deep-loop-suite-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-v2-plugin.jsonl",
+        "kind": "file",
+        "path": "scratch/smoke/v2/smoke-v2-plugin.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "real-binary-watch.txt",
+        "kind": "file",
+        "path": "scratch/real-binary-watch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "static-checks.txt",
+        "kind": "file",
+        "path": "scratch/static-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.txt",
+        "kind": "file",
+        "path": "scratch/decisions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-run-after-fix.txt",
+        "kind": "file",
+        "path": "scratch/green-run-after-fix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary.json",
+        "kind": "config",
+        "path": "scratch/smoke/v1/summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-opencode guard in `SKILL.md` line 134 runs `opencode --version | grep -q '^1\\.'`",
+    "created_at": "2026-10-18T12:45:05Z",
+    "last_save_at": "2026-11-10T05:38:22.390Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:43ee5cffe27f15e3076582e97fec18085698855c3894fce3df1ea10e028e0073",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5c04558a5abf4b90f713e08d75c633433c76f78a7a5cc02503c9614a100b1e73",
+      "plan.md": "b7a44557b222658356d00a19e802fb83dafd67e1ae1d59acdc1c69dea62c0a6f",
+      "tasks.md": "4c427aba950b8d16c6136c6815ab6e038c5ca32c375c65bac937b76d57cd2c7d",
+      "implementation-summary.md": "b66d2b6632d845d4f5eca347aab34d7699c982807b99d1b407667cc886e3c27f"
+    },
+    "last_active_at": null
+  }
+}

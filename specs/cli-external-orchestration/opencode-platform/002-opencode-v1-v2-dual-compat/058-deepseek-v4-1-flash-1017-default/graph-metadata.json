@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/058-deepseek-v4-1-flash-1017-default",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek v4 1 flash 1017 default",
+      "phase 58 deepseek v4 1 flash 1017 default",
+      "deepseek v4 1 flash 1017 default plan",
+      "deepseek v4 1 flash 1017 default tasks",
+      "deepseek v4 1 flash 1017 default implementation summary"
+    ],
+    "key_topics": [
+      "deepseek",
+      "flash",
+      "default",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "llm",
+      "gateway",
+      "lists",
+      "deepseek-v4"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".pi/pi-blackhole-config.json",
+      ".pi/custom-providers.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/cli-external-orchestration/README.md",
+      ".skilled/agents/prompt-improver.md",
+      ".pi/agents/prompt-improver.md",
+      ".claude/agents/prompt-improver.md",
+      ".codex/agents/prompt-improver.toml",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-blackhole-config.json",
+        "kind": "config",
+        "path": ".pi/pi-blackhole-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.toml",
+        "kind": "file",
+        "path": ".codex/agents/prompt-improver.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "seat-diversity-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "LLM Gateway lists `deepseek-v4.1-flash-1017` (created 2026-10-17) as its newest DeepSeek flash, after `deepseek-v4.1-flash` (2026-09-10), `deepseek-v4-flash` and `deepseek-v4-pro` (2026-04-24) and `deepseek-v3.2` (2025-09-29)",
+    "created_at": "2026-10-22T18:50:31Z",
+    "last_save_at": "2026-11-10T05:38:31.712Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df4ee3826bdae233e3a607e6156e7e1c128f5d4d806286c027454ea04136e8c0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "52fc878838846ea111475018e833669b63da003051abf30bddc563711cfeba95",
+      "plan.md": "be1ea007dbcf51d222fecd75a6576798ec50cde76b26289620bbdf10a478d225",
+      "tasks.md": "3012a41645e4b365501bcdf9b11741cc8ad0769783b2a9bfe001dad80eb112a2",
+      "implementation-summary.md": "f46da7368c6d9b209a052e3f994d14dbb33a6113fb086f453a9efb1d0533fce5"
+    },
+    "last_active_at": null
+  }
+}

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The cli-codex skill documented a single-model contract — \"the skill dispatches `gpt-5.5` for every task\" — even though the `fast` service tier exposes three additional GPT-5.6 models (`luna`, `terra`, `sol`) that reach reasoning-effort levels (`max`, `ultra`) the docs never named",
     "created_at": "2026-07-13T16:41:33.164Z",
-    "last_save_at": "2026-10-07T18:11:40.057Z",
+    "last_save_at": "2026-11-10T05:38:48.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77173c4d6e4c6f662a3cefbe3d3d1afcf9fc9f3f41d8e09391b194d6804a2b2a",
+    "source_fingerprint": "sha256:4147ecbe1d628fbd7d1815b610c3142bf7a3967d7f8ae51828ff2d6cf5af3d75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07349e79bfcc94ae45067490a6f14f53176b49f4bc471e06cd0ce858795bf620",
-      "plan.md": "2f34668affeab92ed0a0d38210102850d0b8fe1038e8e405c8f3847350af6c6b",
-      "tasks.md": "d09d5b7f59fdd93a905645752df2bed7f82aece72977c5383efdd35affdd40da",
+      "spec.md": "3c069b4dc06012b2d010c63d8b62701dd03476e63721850d14dd2b87f469a9dc",
+      "plan.md": "cb44481c35ecf8e76d156a69fdceb9fb796496927f87ea8723234b1f22d3b569",
+      "tasks.md": "c12b9b9e540925aac9ffdbcf5af97acf01734c334fd889c3dd0632e69bfc25f0",
       "decision-record.md": "00224e2fc5d61efd08a60cff99119127792e23f93b1084a1e96639d5fe619f7b",
-      "implementation-summary.md": "57715e4193fa413a94d2f141bfe7ed2bcfd50920e535f2df0df6195431593fd4"
+      "implementation-summary.md": "24bac1111ab11897649e869def902294b17c423560e60f05b59e62d3094a52b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/001-deep-research",
+  "description": "Nobody had mapped how DeepSeek Harness could become a governed runtime mode in this repository",
+  "keywords": [
+    "nobody",
+    "mapped",
+    "deepseek",
+    "harness",
+    "become",
+    "governed",
+    "runtime",
+    "mode",
+    "repository"
+  ],
+  "lastUpdated": "2026-11-06T21:07:30.341Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-11-26_00-36__deep-research-completed-20-iterations-across-two.md"
+  ]
+}

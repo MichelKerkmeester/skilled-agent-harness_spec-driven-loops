@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/049-review-rows-reconciliation",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/049-review-rows-reconciliation",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review rows reconciliation",
+      "phase 49 review rows reconciliation",
+      "review rows reconciliation plan",
+      "review rows reconciliation tasks",
+      "review rows reconciliation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "rows",
+      "reconciliation",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "main",
+      "039-sk-code-opencode-alignment-audit",
+      "still",
+      "marked"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs",
+      ".skilled/hooks/git/install-hooks.test.sh",
+      ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+      "scratch/review-new-files.md",
+      "scratch/check-review-rows.mjs",
+      "scratch/check-review-rows.txt",
+      "scratch/briefs/b01-review-rows.task"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "install-hooks.test.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/git/install-hooks.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-new-files.md",
+        "kind": "doc",
+        "path": "scratch/review-new-files.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-rows.mjs",
+        "kind": "file",
+        "path": "scratch/check-review-rows.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-rows.txt",
+        "kind": "file",
+        "path": "scratch/check-review-rows.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b01-review-rows.task",
+        "kind": "file",
+        "path": "scratch/briefs/b01-review-rows.task",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Since Fixed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On main, `039-sk-code-opencode-alignment-audit/review.md` still marked the 35 findings fixed by phases 040, 041 and 042 as \"held: behaviour change awaiting the operator\", in §3, in §2 Totals and in the §5 rows, and 039's implementation summary still said 35 wait on the operator",
+    "created_at": "2026-10-21T15:24:01Z",
+    "last_save_at": "2026-11-10T05:38:28.481Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ca4e844caca05aca5fed5bd2a2eefdb2c5504659a572167eeb4ff4e4258af9b7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8c76387926e6e27b35278b65b4f9a2cea1c5a9a4b206ff2884bfd168642f76fb",
+      "plan.md": "4eb8a348b3bb2403e22d5a257623cb0da50b0363700c55b0a1440518c1d761b9",
+      "tasks.md": "24be57433ca4546d53b4f34ff27dd5effc62a6b815d5fe535335b5a44e556fec",
+      "implementation-summary.md": "3999ada665392d90f3e3332bdbf8fc2a9fb045bd23883e174ed8d77c5b22bd5a"
+    },
+    "last_active_at": null
+  }
+}

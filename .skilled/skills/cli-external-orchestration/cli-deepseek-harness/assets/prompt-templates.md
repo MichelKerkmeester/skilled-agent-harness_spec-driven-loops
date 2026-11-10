@@ -8,7 +8,7 @@ trigger_phrases:
   - "dsh dispatch template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DeepSeek Harness CLI Prompt Templates
@@ -160,4 +160,4 @@ Ask every child for this shape, and check each claim against the diff and the st
 
 ## 8. SOURCE AND CONFIDENCE
 
-The argv, the option set, the stream order and the keyless failure come from the offline contract pin under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/`. The LLM Gateway `deepseek-v4.1-flash-1017` answer and completed-run path are observed from 2026-11-06. OpenCode Go was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`. The sandbox boundary remains documented, unconfirmed.
+The argv, the option set, the stream order and the keyless failure come from the offline contract pin under `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/`. The LLM Gateway `deepseek-v4.1-flash-1017` answer and completed-run path are observed from 2026-11-06. OpenCode Go was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`. The sandbox boundary remains documented, unconfirmed.

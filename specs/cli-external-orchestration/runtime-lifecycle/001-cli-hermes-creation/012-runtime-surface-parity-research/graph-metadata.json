@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/012-runtime-surface-parity-research",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/012-runtime-surface-parity-research",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime surface parity research",
+      "runtime surface parity research plan",
+      "runtime surface parity research tasks",
+      "runtime surface parity research acceptance criteria",
+      "runtime surface parity research implementation summary",
+      "devin commands gap",
+      "command mirror matrix",
+      "runtime mirror drift detection"
+    ],
+    "key_topics": [
+      "runtime",
+      "surface",
+      "parity",
+      "research",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "devin",
+      "commands"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "runtime-mirrors/sync-runtime-mirrors.cjs",
+      "codex/sync-prompts.cjs",
+      "pi/sync-prompts-pi.cjs",
+      ".opencode/plugins/opencode-goal.js",
+      ".pi/extensions/goal-context.ts",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".devin/mcp_config.json",
+      ".github/workflows/spec-kit-check.yml",
+      ".github/workflows/agent-mirror-sync.yml",
+      ".github/workflows/command-tree-parity.yml",
+      "pi/sync-agents-pi.cjs",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": "runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": "codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-prompts-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".pi/extensions/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_config.json",
+        "kind": "config",
+        "path": ".devin/mcp_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/agent-mirror-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-09-15T15:52:44Z",
+    "last_save_at": "2026-11-10T05:38:35.163Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5b3c05e435b087fda9239b9031481a58d507cefdda75285b1324ab6e1f894307",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "50b93497e90aac84605c02c547c9c2363307c30d0f08f24a43ed2effcc4a41c7",
+      "plan.md": "e99ce9d926683e815fedc7ff60d7fc64ef25deed8957948d7b0be0ed9b8dfb1b",
+      "tasks.md": "bc32cfabfe9eef85f2aa1dfba4cfd944b47350f4152d2510b1f6291985415b54",
+      "implementation-summary.md": "b63a7e15e82a6ef498119997ff0465662129177f9a797fcaf4ca7643bcff90e7",
+      "research/research.md": "c751425d10e1ae1c3c948b7c884d9c30f076108aa0a3ef62547d272b9fd5e3d7"
+    },
+    "last_active_at": null
+  }
+}

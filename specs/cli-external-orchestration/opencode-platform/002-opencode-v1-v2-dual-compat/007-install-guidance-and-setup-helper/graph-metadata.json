@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "install guidance and setup helper",
+      "phase 7 install guidance and setup helper",
+      "install guidance and setup helper plan",
+      "install guidance and setup helper tasks",
+      "install guidance and setup helper acceptance criteria",
+      "install guidance and setup helper goal",
+      "install guidance and setup helper implementation summary"
+    ],
+    "key_topics": [
+      "install",
+      "guidance",
+      "setup",
+      "helper",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+      "scratch/bracket/before-after.diff",
+      "scratch/final/both-1.txt",
+      "scratch/final/launcher-trace.txt",
+      "scratch/final/idempotence.txt",
+      "scratch/final/check.txt",
+      "scratch/final/adversarial.txt",
+      "scratch/final/validator.txt",
+      "scratch/final/static-checks.txt",
+      "scratch/interrupt-probe-dir.txt",
+      "scratch/review-verify7-luna.txt",
+      "scratch/decisions.txt",
+      "scratch/snapshot-before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-setup.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-and-versions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+        "source": "derived"
+      },
+      {
+        "name": "before-after.diff",
+        "kind": "file",
+        "path": "scratch/bracket/before-after.diff",
+        "source": "derived"
+      },
+      {
+        "name": "both-1.txt",
+        "kind": "file",
+        "path": "scratch/final/both-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-trace.txt",
+        "kind": "file",
+        "path": "scratch/final/launcher-trace.txt",
+        "source": "derived"
+      },
+      {
+        "name": "idempotence.txt",
+        "kind": "file",
+        "path": "scratch/final/idempotence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check.txt",
+        "kind": "file",
+        "path": "scratch/final/check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial.txt",
+        "kind": "file",
+        "path": "scratch/final/adversarial.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validator.txt",
+        "kind": "file",
+        "path": "scratch/final/validator.txt",
+        "source": "derived"
+      },
+      {
+        "name": "static-checks.txt",
+        "kind": "file",
+        "path": "scratch/final/static-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "interrupt-probe-dir.txt",
+        "kind": "file",
+        "path": "scratch/interrupt-probe-dir.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-verify7-luna.txt",
+        "kind": "file",
+        "path": "scratch/review-verify7-luna.txt",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.txt",
+        "kind": "file",
+        "path": "scratch/decisions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "snapshot-before.txt",
+        "kind": "file",
+        "path": "scratch/snapshot-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-opencode skill has no install guidance",
+    "created_at": "2026-10-18T12:45:06Z",
+    "last_save_at": "2026-11-10T05:38:22.311Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bede2dadfff41c237b1041e62743f1918c4ecf90c5713220a8138aa9f3272778",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "076ac3a0544d9758f7f7e3560c071e45c0e5690788390adb9ade79a2dad5c548",
+      "plan.md": "893737a8dcf31cc7120f36219d31a1b1c6458f3e69df28f95e91df5032ccaafe",
+      "tasks.md": "b583fb9aac7a3eef65926350dfb9a134927ece5ad808c22148d4dada63cb8980",
+      "implementation-summary.md": "a62ec381d33757af001c17343214f668ca36cde204e3ed17f6a35e29855035a4"
+    },
+    "last_active_at": null
+  }
+}

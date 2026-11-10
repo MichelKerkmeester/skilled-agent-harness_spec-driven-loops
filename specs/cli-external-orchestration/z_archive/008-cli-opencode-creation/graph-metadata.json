@@ -48,7 +48,9 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/commands/create/changelog.md"
+      ".opencode/README.md",
+      ".opencode/commands/create/changelog.md",
+      ".opencode/commands/doctor/skill-advisor.md"
     ],
     "entities": [
       {
@@ -82,9 +84,21 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/README.md",
+        "source": "derived"
+      },
+      {
         "name": "changelog.md",
         "kind": "doc",
         "path": ".opencode/commands/create/changelog.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/skill-advisor.md",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Five Architecture Decision Records",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Invocation Guard Detection Signal",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant delegate work to an external AI binary",
     "created_at": "2026-04-26T05:00:00Z",
-    "last_save_at": "2026-08-30T15:39:08.349Z",
+    "last_save_at": "2026-11-10T05:38:38.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +210,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1dad515a57b5db057d5747c95336b93c45f5b5a741e3bdf579b80b0cfbecf2f",
+    "source_fingerprint": "sha256:cb40001630f9f264457d1d202a93e476eab549403ff366dde708a173fa967358",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "350f66c9d75f6b4f0cf715bd4d1b76f43815c5607a65c83134fa34f139deca10",
       "plan.md": "872e1525ea2528e12c8215ea310821b512744f973669487b36ab1ed0aa27ff3c",
-      "tasks.md": "860a71b5dce4006602a52a55401a889b6298f8f982596950f0f14114143119cb",
+      "tasks.md": "ff9ed7daab07086e19264b5b75c62909a06315440a58f3dd294bbfc45f825306",
       "decision-record.md": "cfc29dd8cbde3eecf9201725682dc10790c72c8e716594af5068c83c0fdc3d0c",
       "implementation-summary.md": "3816be6960488ff50dfd3eb76e6f001236955a06c5d2b9809706e07359f5d81c"
     },

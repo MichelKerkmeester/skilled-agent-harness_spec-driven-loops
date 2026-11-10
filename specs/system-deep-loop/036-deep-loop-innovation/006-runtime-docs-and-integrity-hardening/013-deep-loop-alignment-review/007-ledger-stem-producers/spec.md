@@ -84,7 +84,7 @@ Make the registry and the producers agree about every stem, record which stems h
 ### Out of Scope
 - Changing what any workflow step decides, or making a producer emit a stem whose payload it does not already carry - the producers write the flat gate summary because that is the content they hold
 - Changing the nine producer surfaces themselves - the census records what they write today
-- The `cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders` executor-transport preflight and the stress assertion it invalidates - a different track's in-flight work, reported in `tasks.md` and `acceptance-criteria.md` rather than repaired here
+- The `cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/015-wire-executor-builders` executor-transport preflight and the stress assertion it invalidates - a different track's in-flight work, reported in `tasks.md` and `acceptance-criteria.md` rather than repaired here
 - The pre-existing `lib/deep-loop/executor-config.ts` typecheck error - another session's committed failure
 
 ### Files to Change

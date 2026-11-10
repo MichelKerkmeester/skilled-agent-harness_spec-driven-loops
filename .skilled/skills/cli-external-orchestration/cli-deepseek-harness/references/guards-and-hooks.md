@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh hook bridge"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # DeepSeek Harness - Guards and Hooks
@@ -34,11 +34,11 @@ Explains how the repository's guard cores reach a dsh run, which seams they atta
 
 Twenty adapters are registered by `.dsh/plugins/repo-guards/index.mjs`, and `.dsh/patches/guards.patch.yml` inserts the bundle into every dsh lineage the deep-loop runner builds and into an operator's interactive session. Four of them are interactive-only: the lineage patch inserts a marker row, `repo-guards-lineage-leaf`, and those four check it at event time (section 4).
 
-Keyless boots of both compositions reached `MISSING_CREDENTIAL` with no `did not activate` or `patch: entry not found` line. The interactive boot carried the advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`). The 2026-11-06 Gateway run and the clean second lineage completed without a `did not activate` line. These runs confirm loading and composition, not every guard decision on real model tool calls. See `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stderr.txt` and `fanout-lineage.md`.
+Keyless boots of both compositions reached `MISSING_CREDENTIAL` with no `did not activate` or `patch: entry not found` line. The interactive boot carried the advisor brief, the worktree advisory and the `dsh_goal` tool. The lineage boot carried none of them and kept the session-prime context (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/keyless-boot-interactive.txt` and `keyless-boot-lineage.txt`). The 2026-11-06 Gateway run and the clean second lineage completed without a `did not activate` line. These runs confirm loading and composition, not every guard decision on real model tool calls. See `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stderr.txt` and `fanout-lineage.md`.
 
 ### Workspace confinement
 
-The saved `workspace-write` probe denied a write under `$HOME` outside the cwd, but allowed a sibling path under the OS temp directory. A lineage can therefore write inside another lineage's disposable `DSH_HOME` when both homes are under that temp directory. Keep the observed preventive boundary qualified by this exception, and do not treat separate temp homes as an enforced boundary between lineages. Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/confinement.md`.
+The saved `workspace-write` probe denied a write under `$HOME` outside the cwd, but allowed a sibling path under the OS temp directory. A lineage can therefore write inside another lineage's disposable `DSH_HOME` when both homes are under that temp directory. Keep the observed preventive boundary qualified by this exception, and do not treat separate temp homes as an enforced boundary between lineages. Evidence: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/confinement.md`.
 
 ---
 
@@ -68,7 +68,7 @@ Guards ship as one hand-authored Cordis bundle under `.dsh/plugins/repo-guards/`
 
 The bundle uses Pi's layout. Each file in `.dsh/plugins/repo-guards/adapters/` is a relative link to the real adapter in `.skilled/hooks/<concern>/dsh/`, or in the owning skill's `hooks/dsh/` folder with an index link in the hook library. Node resolves the link before it resolves the adapter's imports, so each adapter's imports are written for its real folder. `/doctor:runtime-mirrors` checks the links through `sync-runtime-mirrors.cjs --check`.
 
-**Observed:** relative plugin loading works before any provider call. A stub plugin inserted by relative path wrote its marker file in the temp cwd during the keyless run that then failed on the missing key (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/plugin-boot.txt`). The real bundle loads the same way: the keyless guards boot reached `MISSING_CREDENTIAL` with zero `did not activate` lines, so a guard loaded by this patch is active before the model is asked anything.
+**Observed:** relative plugin loading works before any provider call. A stub plugin inserted by relative path wrote its marker file in the temp cwd during the keyless run that then failed on the missing key (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/plugin-boot.txt`). The real bundle loads the same way: the keyless guards boot reached `MISSING_CREDENTIAL` with zero `did not activate` lines, so a guard loaded by this patch is active before the model is asked anything.
 
 **Not proven by that boot:** that any adapter's verdict on a live tool call is right. The bundle suite exercises the adapters against fixtures, and no keyed dispatch has run a model against them.
 
@@ -138,7 +138,7 @@ The leaf keeps every guard and context adapter. The runner's `SYSTEM_SPEC_GATE_D
 - **Plan mode.** Its exit tool fails closed when no review channel exists, and headless has none. The lineage patch disables `plan-mode`.
 - **Ask-user tools.** Headless has no answer channel, so a question to the user cannot be answered. Write prompts that need no answer. In an interactive session, `decision-capture` queues each answer for the next `/speckit:save`.
 
-The composed config shows `goal-round-driver`, `command-goal` and `plan-mode` disabled under the lineage patch (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt`), and `tool-goal` disabled with a 20-tool lineage boot (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/leaf-goal-tools-off.txt`).
+The composed config shows `goal-round-driver`, `command-goal` and `plan-mode` disabled under the lineage patch (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt`), and `tool-goal` disabled with a 20-tool lineage boot (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/015-dsh-hook-parity/evidence/leaf-goal-tools-off.txt`).
 
 ---
 

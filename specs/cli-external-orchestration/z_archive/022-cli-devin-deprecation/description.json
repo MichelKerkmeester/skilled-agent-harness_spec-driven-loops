@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
   "description": "The `.opencode/skills/cli-devin` skill (and the broader Devin surface — the cli-devin executor plus the Devin IDE-runtime hooks) is being retired",
   "keywords": [

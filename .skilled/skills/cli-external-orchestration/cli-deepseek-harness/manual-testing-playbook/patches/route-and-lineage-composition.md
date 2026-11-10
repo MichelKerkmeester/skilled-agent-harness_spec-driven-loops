@@ -1,7 +1,7 @@
 ---
 title: "PAT-001 -- Route and lineage composition"
 description: "This scenario validates that each roster route composes with the lineage patch through --dump-config, with no loader warning and the expected default model row for `PAT-001`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # PAT-001 -- Route and lineage composition
@@ -58,14 +58,14 @@ grep -A3 "id: session-telemetry-otel" dump-llmgateway.txt dump-opencode-go.txt
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Basis: the packet capture at `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/` holds `dump-config-llmgateway.txt`, `dump-config-opencode-go.txt` and their stderr captures.
+- Basis: the packet capture at `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/` holds `dump-config-llmgateway.txt`, `dump-config-opencode-go.txt` and their stderr captures.
 - Both runs exited `0`. Each stderr capture holds only the recorded `exit=0` marker, with no unmatched-target or loader warning.
 - `agent-default-model` names `provider: llmgateway` and `model: deepseek-v4.1-flash-1017`, then `provider: opencode-go` and `model: deepseek-v4.1-flash`.
 - `session-telemetry-otel` shows `mode: DISABLED` in both composed files.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PAT-001 | Route and lineage composition | Prove both route patches compose with the lineage patch | `Compose each roster route with the lineage patch using --dump-config from a scratch folder and a disposable DSH_HOME. Confirm exit 0, no loader warning on stderr, and the route's provider and model in agent-default-model. Do not call a model.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. compose `route-llmgateway-deepseek.patch.yml` with `lineage.patch.yml` and `--dump-config` -> 3. repeat with `route-opencode-go-deepseek.patch.yml` -> 4. read both `agent-default-model` and `session-telemetry-otel` rows | Step 2: exit `0`, stderr has no loader warning, model is `deepseek-v4.1-flash-1017`. Step 3: exit `0`, stderr has no loader warning, model is `deepseek-v4.1-flash`. Both: telemetry is `DISABLED` | The composed files and stderr captures under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/`, plus `commands.txt` for the literal command | PASS if both routes exit `0` with no loader warning and the expected rows. FAIL if any stderr line appears, the row is wrong or telemetry is not `DISABLED` | 1. Read stderr before the composed output. 2. Confirm both patch paths resolve and their basenames match the roster. 3. Re-run after a dsh version change, because a renamed base row turns a patch into a no-op |
+| PAT-001 | Route and lineage composition | Prove both route patches compose with the lineage patch | `Compose each roster route with the lineage patch using --dump-config from a scratch folder and a disposable DSH_HOME. Confirm exit 0, no loader warning on stderr, and the route's provider and model in agent-default-model. Do not call a model.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. compose `route-llmgateway-deepseek.patch.yml` with `lineage.patch.yml` and `--dump-config` -> 3. repeat with `route-opencode-go-deepseek.patch.yml` -> 4. read both `agent-default-model` and `session-telemetry-otel` rows | Step 2: exit `0`, stderr has no loader warning, model is `deepseek-v4.1-flash-1017`. Step 3: exit `0`, stderr has no loader warning, model is `deepseek-v4.1-flash`. Both: telemetry is `DISABLED` | The composed files and stderr captures under `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/`, plus `commands.txt` for the literal command | PASS if both routes exit `0` with no loader warning and the expected rows. FAIL if any stderr line appears, the row is wrong or telemetry is not `DISABLED` | 1. Read stderr before the composed output. 2. Confirm both patch paths resolve and their basenames match the roster. 3. Re-run after a dsh version change, because a renamed base row turns a patch into a no-op |
 
 ---
 
@@ -89,7 +89,7 @@ grep -A3 "id: session-telemetry-otel" dump-llmgateway.txt dump-opencode-go.txt
 | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | OpenCode Go provider and default model rows |
 | `.dsh/patches/lineage.patch.yml` | Telemetry and lineage row changes |
 | `.dsh/SYNC.md` | The compose check and the expected result |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt` | Recorded composed config for LLM Gateway |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt` | Recorded composed config for LLM Gateway |
 
 ---
 

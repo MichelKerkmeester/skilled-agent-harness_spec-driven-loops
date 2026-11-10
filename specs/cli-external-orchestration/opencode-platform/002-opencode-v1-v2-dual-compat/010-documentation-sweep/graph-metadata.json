@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/010-documentation-sweep",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/010-documentation-sweep",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "documentation sweep",
+      "phase 10 documentation sweep",
+      "documentation sweep plan",
+      "documentation sweep tasks",
+      "documentation sweep acceptance criteria",
+      "documentation sweep goal",
+      "documentation sweep implementation summary"
+    ],
+    "key_topics": [
+      "documentation",
+      "sweep",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "changes",
+      "cli-opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/README.md",
+      ".opencode/plugins/tests/README.md",
+      "runtime/scripts/README.md",
+      "scratch/checks/after.tsv",
+      "scratch/checks/v1-hits-context.txt",
+      "scratch/checks/review-docs-final.tsv",
+      ".claude/agents/markdown.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.tsv",
+        "kind": "file",
+        "path": "scratch/checks/after.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "v1-hits-context.txt",
+        "kind": "file",
+        "path": "scratch/checks/v1-hits-context.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-docs-final.tsv",
+        "kind": "file",
+        "path": "scratch/checks/review-docs-final.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".claude/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-and-versions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The build changes the cli-opencode dispatch shape, the install steps, the plugin layout and the agent and command trees",
+    "created_at": "2026-10-18T12:45:09Z",
+    "last_save_at": "2026-11-10T05:38:22.354Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b180e4881d9b1e840386a61a56b2d47984c44a9297cf84c496bbbb0d39f73b2c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c7a62af819ce7bf7f2198b16ca28abce973f4f45eaccbb8c4c07c8d50e89fc18",
+      "plan.md": "546d308320a5d56ccca0ae4b533e039cd64db4f4423adfe06cfd612cd2c5b8ca",
+      "tasks.md": "8eb3d3acec01d1a6638cbb2fd3a4910d479349c1450c45feeb87a55adbfb4b18",
+      "implementation-summary.md": "316ae02da181b9e8f886168b6f782d4494cb10b2d81ba625092dff82ea913426"
+    },
+    "last_active_at": null
+  }
+}

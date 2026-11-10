@@ -1,7 +1,7 @@
 ---
 title: "MDL-002 -- OpenCode Go route"
 description: "This scenario validates that a keyed request over the OpenCode Go route exits 0 and ends on a completed final event for `MDL-002`, and records the endpoint it answers on."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MDL-002 -- OpenCode Go route
@@ -88,8 +88,8 @@ tail -n 1 stdout.jsonl
 | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | OpenCode Go provider and default model rows |
 | `.dsh/patches/lineage.patch.yml` | Telemetry, session log, goal and plan off |
 | `.dsh/patches/guards.patch.yml` | Loads the repo-guards plugin for the dispatch |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt` | Composed config that names the provider and model |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-opencode-go.stderr.txt` | Keyless proof that the route patch was selected |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-opencode-go.txt` | Composed config that names the provider and model |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-opencode-go.stderr.txt` | Keyless proof that the route patch was selected |
 
 ---
 

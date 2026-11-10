@@ -86,7 +86,7 @@ The 15 objective-placeholder paths in section 3 are a subset of these 17; the tw
 
 The scan counted 36 goals with fewer than three or more than seven checked completion bullets. The count is mechanical: it extracts checkbox bullets from the completion anchor and flags counts below 3 or above 7. (`scratch/goal-corpus-scan.json:14,23-5510`; `scratch/goal-corpus-scan.cjs:46-47,69-70,90`.)
 
-- `specs/cli-external-orchestration/071-cli-hermes-creation` — 11.
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation` — 11.
 - `specs/cli-classifier/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout` — 10.
 - `specs/hooks/011-pi-fast-mode-w-subagent-support` — 0.
 - `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface` — 0.
@@ -152,16 +152,16 @@ The 16 exact per-child-row packets are:
 
 The 39 range, glob or prose-style packets are:
 
-- `specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout`
-- `specs/cli-external-orchestration/071-cli-hermes-creation`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/001-deep-research`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/002-hermes-contract-pin`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/003-deep-loop-executor-support`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/004-cli-hermes-skill-packet`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/005-hermes-runtime-folder`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/006-hermes-hook-and-plugin-layer`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/007-hermes-model-registry-and-routing`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/008-hermes-playbook-and-catalog`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/009-docs-governance-and-closeout`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation`
 - `specs/cli-classifier/001-cli-jev-creation`
 - `specs/cli-classifier/002-cli-jev-hub-migration`
 - `specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership`
@@ -198,7 +198,7 @@ The 39 range, glob or prose-style packets are:
 
 Twelve packets have one or more detected phase children without a `goal.md`. The scan summary's `parentsWithGoallessChildren: 10` counts rows that both have a binding section and missing child goals. Two additional parent packets have missing child goals but no binding section, so the union is 12. Four of the 12 are phase-child packets that themselves contain deeper children; the scan's role field is based on whether the goal's own folder sits inside a packet. (`scratch/goal-corpus-scan.json:15-21,23-5510`; `scratch/goal-corpus-scan.cjs:29-35,44,53-57,63,77,91-95`.)
 
-- `specs/cli-external-orchestration/071-cli-hermes-creation` — 6 child folders lack a goal.
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation` — 6 child folders lack a goal.
 - `specs/hooks/011-pi-fast-mode-w-subagent-support` — 3 lack a goal; this packet also has no binding section.
 - `specs/sk-code/code-surfaces/002-sk-code-obsidian-surface` — 13 lack a goal; this packet also has no binding section.
 - `specs/sk-communication/006-sk-communication-clarity` — 16 lack a goal.
@@ -230,15 +230,15 @@ The count is based on the scan's `parentWithoutBinding` predicate, which exclude
 
 Forty goals classified as phase children also carry a binding section. This count is derived from the corpus rows' `role` and `hasBinding` fields; the scan classifies a child by the presence of a parent `spec.md`, then records the binding anchor separately. (`scratch/goal-corpus-scan.cjs:44,48,61-78`; `scratch/goal-corpus-scan.json:23-5510`.)
 
-- `specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog`
-- `specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/001-deep-research`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/002-hermes-contract-pin`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/003-deep-loop-executor-support`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/004-cli-hermes-skill-packet`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/005-hermes-runtime-folder`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/006-hermes-hook-and-plugin-layer`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/007-hermes-model-registry-and-routing`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/008-hermes-playbook-and-catalog`
+- `specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/009-docs-governance-and-closeout`
 - `specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership`
 - `specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics`
 - `specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard`

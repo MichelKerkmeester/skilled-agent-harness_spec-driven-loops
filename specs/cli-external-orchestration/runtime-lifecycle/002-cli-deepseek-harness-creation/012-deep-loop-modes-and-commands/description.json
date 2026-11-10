@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/012-deep-loop-modes-and-commands",
+  "description": "After phase 006 the fan-out runtime accepts `cli-deepseek-harness`, but none of the files `/deep:research` and `/deep:review` read name it",
+  "keywords": [
+    "phase",
+    "fan-out",
+    "runtime",
+    "accepts",
+    "cli-deepseek-harness",
+    "none",
+    "files",
+    "deep",
+    "research",
+    "review",
+    "read",
+    "name"
+  ],
+  "lastUpdated": "2026-11-06T21:07:30.668Z",
+  "specId": "012",
+  "folderSlug": "deep-loop-modes-and-commands",
+  "parentChain": [
+    "cli-external-orchestration",
+    "085-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

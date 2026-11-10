@@ -1,7 +1,7 @@
 ---
 title: "MDL-001 -- LLM Gateway route"
 description: "This scenario validates that a keyed request over the LLM Gateway route exits 0 and ends on a completed final event for `MDL-001`."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # MDL-001 -- LLM Gateway route
@@ -56,11 +56,11 @@ tail -n 1 stdout.jsonl
 
 - Verdict: `PASS`.
 - Observed: the keyed request exited `0` and ended with `final.reason.kind` `completed`. stderr is empty.
-- Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stdout.jsonl`, `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.exit.txt` and the empty `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stderr.txt`.
+- Evidence: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stdout.jsonl`, `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.exit.txt` and the empty `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stderr.txt`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MDL-001 | LLM Gateway route | Prove a keyed request completes | `Send one harmless keyed request through the LLM Gateway route and tell me whether it completed. Keep the run in a scratch folder with a disposable DSH_HOME and do not modify files.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. run the dispatch shape with the route, lineage and guards patches -> 3. read `exit.txt` and `tail -n 1 stdout.jsonl` -> 4. check the `session` cwd | Step 2: run starts in the scratch folder. Step 3: exit `0`, last event is `final` with `reason.kind` `completed`. Step 4: cwd is not the checkout | `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stdout.jsonl`; `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.exit.txt`; empty `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stderr.txt` | PASS if exit `0` and the last event is `completed`. FAIL if the exit is non-zero, the last line is not `final`, the reason is not `completed` or the cwd is the checkout. SKIP while the key is absent | 1. Read the last JSONL line first. 2. Confirm the route patch basename and the provider in the composed config. 3. Confirm the key is in the environment and not in argv or a file |
+| MDL-001 | LLM Gateway route | Prove a keyed request completes | `Send one harmless keyed request through the LLM Gateway route and tell me whether it completed. Keep the run in a scratch folder with a disposable DSH_HOME and do not modify files.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. run the dispatch shape with the route, lineage and guards patches -> 3. read `exit.txt` and `tail -n 1 stdout.jsonl` -> 4. check the `session` cwd | Step 2: run starts in the scratch folder. Step 3: exit `0`, last event is `final` with `reason.kind` `completed`. Step 4: cwd is not the checkout | `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stdout.jsonl`; `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.exit.txt`; empty `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/route-llmgateway.stderr.txt` | PASS if exit `0` and the last event is `completed`. FAIL if the exit is non-zero, the last line is not `final`, the reason is not `completed` or the cwd is the checkout. SKIP while the key is absent | 1. Read the last JSONL line first. 2. Confirm the route patch basename and the provider in the composed config. 3. Confirm the key is in the environment and not in argv or a file |
 
 ---
 
@@ -83,8 +83,8 @@ tail -n 1 stdout.jsonl
 | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | LLM Gateway provider and default model rows |
 | `.dsh/patches/lineage.patch.yml` | Telemetry, session log, goal and plan off |
 | `.dsh/patches/guards.patch.yml` | Loads the repo-guards plugin for the dispatch |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt` | Composed config that names the provider and model |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-llmgateway.stderr.txt` | Keyless proof that the route patch was selected |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/dump-config-llmgateway.txt` | Composed config that names the provider and model |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-llmgateway.stderr.txt` | Keyless proof that the route patch was selected |
 
 ---
 

@@ -13,7 +13,7 @@ version: 1.0.0.0
 > of defaults.
 
 Orchestrate DeepSeek Harness (`dsh`, npm `@deepseek-ai/dsh`) for one-task headless runs: a read-only review, a single scoped implementation or an independent second opinion, with the model fixed by a checked-in route patch.
-The offline contract pin is the source for every flag and failure shape: [contract pin evidence](../../../../specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/headless-help.txt).
+The offline contract pin is the source for every flag and failure shape: [contract pin evidence](../../../../specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/headless-help.txt).
 Each live result applies only to the route and behavior the saved probe exercised. Keep every behavior outside the saved probes marked UNKNOWN with the reason.
 
 **Core principle**: the harness owns model selection, so the caller owns composition. Every dispatch names exactly one roster route patch, the lineage patch and the guards patch, runs from a scratch cwd with a disposable `DSH_HOME`, and counts as complete only on exit 0 plus a `completed` final event.
@@ -152,8 +152,8 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 
 ### External Sources
 
-- [Offline contract pin evidence](../../../../specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/headless-help.txt) - The captured headless help, with version, dump-config and keyless captures beside it
-- [Research synthesis](../../../../specs/cli-external-orchestration/085-cli-deepseek-harness-creation/001-deep-research/research/research.md) - The source-backed design behind every rule
+- [Offline contract pin evidence](../../../../specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/headless-help.txt) - The captured headless help, with version, dump-config and keyless captures beside it
+- [Research synthesis](../../../../specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/001-deep-research/research/research.md) - The source-backed design behind every rule
 
 ---
 

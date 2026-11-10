@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/001-runtime-code-and-tests",
+  "description": "Phase 1: runtime-code-and-tests",
+  "keywords": [
+    "phase",
+    "runtime-code-and-tests"
+  ],
+  "lastUpdated": "2026-11-07T10:34:39.618Z",
+  "specId": "001",
+  "folderSlug": "runtime-code-and-tests",
+  "parentChain": [
+    "cli-external-orchestration",
+    "086-cli-hermes-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

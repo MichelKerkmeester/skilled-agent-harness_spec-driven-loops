@@ -1,7 +1,7 @@
 ---
 title: "CLI-001 -- Keyless boot per route"
 description: "This scenario validates that each roster route stops at its own key variable with MISSING_CREDENTIAL and never reports a completed run for `CLI-001`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CLI-001 -- Keyless boot per route
@@ -58,14 +58,14 @@ tail -n 1 stdout-opencode-go.jsonl
 ### Recorded Result
 
 - Verdict: `PASS`.
-- Basis: the packet capture at `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/` holds the keyless run for both routes.
+- Basis: the packet capture at `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/` holds the keyless run for both routes.
 - LLM Gateway: exit `1`, stderr `dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "llmgateway"` naming `LLMGATEWAY_API_KEY`, and a last `final` event with `reason.kind` `error` and `error.code` `MISSING_CREDENTIAL`.
 - OpenCode Go: exit `1`, stderr `dsh: MISSING_CREDENTIAL: llm-pi-ai: no credential for provider route "opencode-go"` naming `OPENCODE_API_KEY`, with the same `final` shape.
 - Note: the saved capture omits `--permission-mode`. The command above adds the read-only preset for a dispatch that could reach a tool.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CLI-001 | Keyless boot per route | Prove each route fails on its own key variable | `Run the keyless headless probe on both roster routes from a scratch folder with a disposable DSH_HOME. Capture stdout, stderr and the exit code for each route, then tell me whether each run failed on its own route key: LLMGATEWAY_API_KEY for LLM Gateway and OPENCODE_API_KEY for OpenCode Go. Do not modify the repository.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. run the dispatch shape from section 3 with `route-llmgateway-deepseek.patch.yml` -> 3. repeat with `route-opencode-go-deepseek.patch.yml` -> 4. read `exit-*.txt`, `stderr-*.txt` and `tail -n 1 stdout-*.jsonl` | Step 2: exit `1`, stderr names `LLMGATEWAY_API_KEY`, last event is `MISSING_CREDENTIAL`. Step 3: exit `1`, stderr names `OPENCODE_API_KEY`, last event is `MISSING_CREDENTIAL` | The four capture files under `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/`: `keyless-llmgateway.stderr.txt`, `keyless-llmgateway.stdout.jsonl`, `keyless-opencode-go.stderr.txt`, `keyless-opencode-go.stdout.jsonl` | PASS if each route exits `1`, names its own key and ends on a `final` event with `MISSING_CREDENTIAL`. FAIL if a route names the other route's key, exits `0` or reports `completed` | 1. Read stderr and the last JSONL line before the exit code. 2. Confirm the route patch basename matches the route in stderr. 3. Confirm the `session` event `cwd` is the scratch folder and not the checkout |
+| CLI-001 | Keyless boot per route | Prove each route fails on its own key variable | `Run the keyless headless probe on both roster routes from a scratch folder with a disposable DSH_HOME. Capture stdout, stderr and the exit code for each route, then tell me whether each run failed on its own route key: LLMGATEWAY_API_KEY for LLM Gateway and OPENCODE_API_KEY for OpenCode Go. Do not modify the repository.` | 1. `REPO="$(pwd -P)"; RUN_DIR="$(mktemp -d)"` -> 2. run the dispatch shape from section 3 with `route-llmgateway-deepseek.patch.yml` -> 3. repeat with `route-opencode-go-deepseek.patch.yml` -> 4. read `exit-*.txt`, `stderr-*.txt` and `tail -n 1 stdout-*.jsonl` | Step 2: exit `1`, stderr names `LLMGATEWAY_API_KEY`, last event is `MISSING_CREDENTIAL`. Step 3: exit `1`, stderr names `OPENCODE_API_KEY`, last event is `MISSING_CREDENTIAL` | The four capture files under `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/`: `keyless-llmgateway.stderr.txt`, `keyless-llmgateway.stdout.jsonl`, `keyless-opencode-go.stderr.txt`, `keyless-opencode-go.stdout.jsonl` | PASS if each route exits `1`, names its own key and ends on a `final` event with `MISSING_CREDENTIAL`. FAIL if a route names the other route's key, exits `0` or reports `completed` | 1. Read stderr and the last JSONL line before the exit code. 2. Confirm the route patch basename matches the route in stderr. 3. Confirm the `session` event `cwd` is the scratch folder and not the checkout |
 
 ---
 
@@ -89,8 +89,8 @@ tail -n 1 stdout-opencode-go.jsonl
 | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | OpenCode Go provider row and default model row |
 | `.dsh/patches/lineage.patch.yml` | Telemetry off, session log off, goal and plan off |
 | `.dsh/patches/guards.patch.yml` | Loads the repo-guards plugin for the dispatch |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-llmgateway.stderr.txt` | Recorded LLM Gateway keyless failure |
-| `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-opencode-go.stderr.txt` | Recorded OpenCode Go keyless failure |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-llmgateway.stderr.txt` | Recorded LLM Gateway keyless failure |
+| `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/evidence/keyless-opencode-go.stderr.txt` | Recorded OpenCode Go keyless failure |
 
 ---
 

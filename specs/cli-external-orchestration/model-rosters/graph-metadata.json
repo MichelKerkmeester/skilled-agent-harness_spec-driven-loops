@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/model-rosters",
+  "spec_folder": "cli-external-orchestration/model-rosters",
+  "parent_id": "cli-external-orchestration",
+  "children_ids": [
+    "cli-external-orchestration/model-rosters/001-union-alpha-dual-provider-roster",
+    "cli-external-orchestration/model-rosters/002-mimo-v2-6-cutover",
+    "cli-external-orchestration/model-rosters/003-gpt-6-luna-sol-cutover",
+    "cli-external-orchestration/model-rosters/004-claude-5-5-roster-and-effort-levels",
+    "cli-external-orchestration/model-rosters/005-gpt-6-1-terra-roster",
+    "cli-external-orchestration/model-rosters/006-remove-llmgateway-luna-route"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "cli-external-orchestration/model-rosters"
+    ],
+    "causal_summary": "Container folder for cli-external-orchestration/model-rosters."
+  }
+}

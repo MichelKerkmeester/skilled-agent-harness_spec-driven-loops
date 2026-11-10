@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The operator asked directly: \"make sure all hook code aligns with sk-code code-skilled standards.\" `sk-code`'s `code-skilled` surface packet is the canonical evidence base for `.opencode/` system code (TypeScript/JavaScript/Python/shell/config standards, and — specifically relevant here — a dedicated `references/shared/hooks.md` covering \"runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability.\"",
     "created_at": "2026-07-24T17:25:17.654Z",
-    "last_save_at": "2026-10-08T19:29:18.730Z",
+    "last_save_at": "2026-11-10T05:38:52.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69a3485cd9b8edb242b120be140805ef4cf3f9fc805ba2d1fcab7cdd4670f557",
+    "source_fingerprint": "sha256:debd2b85a13cbbf934566ad5aa2baa5cf4c4f3850d43bac6569ccc75cbfb1507",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "11c7eaa683293588c687e5efaecd944d98fea1a83d656cbd36d61af7b67d3dad",
-      "plan.md": "9a8384f78fa7efa2e7f808be59ce7f9d7ee7436def7a2ae769a164f4aa7e6ec6",
-      "tasks.md": "100f3d5eb5ce07c36df2bb54ed05750dccce139ef319b4005dfc6eec1591f195",
-      "implementation-summary.md": "f7fc45c7c536d2a9f4a58e73b276c1be2500aad9fa4afa70ab31adcff827d576"
+      "spec.md": "110e093c04557ea6536ea532952eccdf257d594f5c1208271f520b9a5d9aa58c",
+      "plan.md": "d63806b6d73e3838335c7c5ddccf2a465adc99086d0208e94758e5673760423e",
+      "tasks.md": "40a4fafd3cb41f60b44dab42e91c1fe236b0f4c661da92e02b552f94f176e46f",
+      "implementation-summary.md": "c2c14e667c72c1ddc7870d67c8057d54058f9ca304842b4a681123d0ca2353f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

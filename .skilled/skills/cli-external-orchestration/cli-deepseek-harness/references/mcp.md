@@ -8,7 +8,7 @@ trigger_phrases:
   - "dsh mcp client row"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DeepSeek Harness - MCP
@@ -30,7 +30,7 @@ States how MCP reaches a dsh run, why it is opt-in per dispatch and what the opt
 
 ### Status
 
-Observed: without the opt-in patch the composed config has no MCP client row. The only MCP-related row is `mcp-resources` (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt`). With `.dsh/patches/mcp-code-mode.patch.yml` added, a keyless run started Code Mode, shut it down when the run ended and left no launcher process behind (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/keyless-mcp-boot.txt`).
+Observed: without the opt-in patch the composed config has no MCP client row. The only MCP-related row is `mcp-resources` (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt`). With `.dsh/patches/mcp-code-mode.patch.yml` added, a keyless run started Code Mode, shut it down when the run ended and left no launcher process behind (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/010-dsh-mcp-code-mode/evidence/keyless-mcp-boot.txt`).
 
 ---
 

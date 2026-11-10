@@ -4,10 +4,6 @@
   "spec_folder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation",
   "parent_id": null,
   "children_ids": [
-    "cli-external-orchestration/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
-    "cli-external-orchestration/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
-    "cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
-    "cli-external-orchestration/021-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication",
     "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
     "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
     "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
@@ -89,7 +85,7 @@
     ],
     "causal_summary": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and skill, and the command-layer YAMLs that still carry Gemini executor branches and references",
     "created_at": "2026-06-08T16:11:50.603Z",
-    "last_save_at": "2026-08-30T15:39:08.636Z",
+    "last_save_at": "2026-11-10T05:38:42.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -35,7 +35,7 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | Fix the gaps in both Skilled's engine and docs and in Barter's overlay manifest. | Not stated. | None | specs/system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity spec.md §3 |
-| Q002 | Open a follow-up packet for the OpenCode worker that wrote into the main checkout. | Not stated. | None | specs/cli-external-orchestration/087-opencode-worktree-confinement |
+| Q002 | Open a follow-up packet for the OpenCode worker that wrote into the main checkout. | Not stated. | None | specs/cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement |
 | Q003 | Add a changelog entry and a system-skilled-doctor version bump for the overlay work. | Not stated. | None | system-skilled-doctor changelog v1.1.0.0 |
 | Q004 | Fix every CI failure main already had before merging. | Not stated. | None | 005-barter-parity tasks.md T023 |
 | Q005 | Document the two outside defects in two new packets. | Not stated. | None | specs/system-speckit/045-upgrade-level-anchor-insert, specs/sk-git/worktree-lifecycle/006-provision-private-command-links |

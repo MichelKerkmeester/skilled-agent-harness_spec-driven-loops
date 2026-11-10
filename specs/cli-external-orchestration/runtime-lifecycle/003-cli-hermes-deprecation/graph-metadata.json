@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle",
+  "children_ids": [
+    "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/001-runtime-code-and-tests",
+    "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/002-docs-and-registries",
+    "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation/003-regeneration-and-alignment-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli hermes deprecation phase parent spec"
+    ],
+    "key_topics": [
+      "cli",
+      "hermes",
+      "deprecation",
+      "phase",
+      "parent",
+      "spec",
+      "agent",
+      "wired",
+      "seventh",
+      "runtime",
+      "cli-hermes",
+      "executor"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Hermes Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove Hermes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Hermes Agent was wired in as a seventh CLI runtime: the `cli-hermes` executor mode, a `.hermes/` folder of 67 generated skill copies, 44 prompt stubs and a repo-guards plugin, session-relaunch adapters, dispatch rules and deep-loop executor support",
+    "created_at": "2026-11-07T10:34:38Z",
+    "last_save_at": "2026-11-10T05:38:37.640Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:5ff6c60e37ec51967c1e3ee8a620e2281d36f2d94fea5730cfe6cd4c514cc456",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b11747004351becd57ccbee91d7c82293b0ec38271755da583e155cf78b2b634"
+    },
+    "last_active_at": null
+  }
+}

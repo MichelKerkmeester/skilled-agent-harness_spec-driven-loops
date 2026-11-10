@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/034-live-plugin-playbook",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/034-live-plugin-playbook",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live plugin playbook",
+      "live plugin utilization playbook on opencode v1",
+      "plugin utilization matrix",
+      "live plugin playbook plan",
+      "live plugin playbook tasks",
+      "live plugin playbook acceptance criteria",
+      "live plugin playbook implementation summary"
+    ],
+    "key_topics": [
+      "live",
+      "plugin",
+      "playbook",
+      "utilization",
+      "opencode",
+      "matrix",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "benchmark/reports/README.md",
+      "scratch/live-runs/results-matrix.md",
+      "scratch/live-runs/round4-rerun.txt",
+      "scratch/live-runs/local-checks.txt",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/live-runs/event-probe-summary.txt",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "results-matrix.md",
+        "kind": "doc",
+        "path": "scratch/live-runs/results-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "round4-rerun.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/round4-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "local-checks.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/local-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "event-probe-summary.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/event-probe-summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Record",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor's version battery reports all 17 files in `.opencode/plugins/` as loaded on OpenCode 1.19.3 and active on OpenCode 2.0.32",
+    "created_at": "2026-10-20T16:42:45Z",
+    "last_save_at": "2026-11-10T05:38:25.737Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5f1f25137704805cb9c228c08c886277bc7f8e4e23ea3bf997cfbf634ef5a6f9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3521ff34ce73ea2a08e74d59359f5eafb589baea5db6bf8ac53e550c8c44821d",
+      "plan.md": "b2546105775b004565738dbd16bc9578d0cbde99062d9a523300cce46e78a9bb",
+      "tasks.md": "a31ab170de719c75c49502b7b9746bfc7662439d589e2cc98cc34257cd912857",
+      "implementation-summary.md": "5c3128e34700f55d265f6fe8520a1b6cac404e8dda6c18180fe592680ae37406"
+    },
+    "last_active_at": null
+  }
+}

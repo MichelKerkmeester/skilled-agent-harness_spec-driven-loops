@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform",
+  "spec_folder": "cli-external-orchestration/opencode-platform",
+  "parent_id": "cli-external-orchestration",
+  "children_ids": [
+    "cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline",
+    "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+    "cli-external-orchestration/opencode-platform/003-opencode-worktree-confinement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "cli-external-orchestration/opencode-platform"
+    ],
+    "causal_summary": "Container folder for cli-external-orchestration/opencode-platform."
+  }
+}

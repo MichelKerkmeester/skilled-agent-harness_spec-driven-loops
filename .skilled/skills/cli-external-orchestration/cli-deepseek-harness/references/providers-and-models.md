@@ -9,7 +9,7 @@ trigger_phrases:
   - "deepseek harness providers"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DeepSeek Harness - Providers and Models
@@ -45,7 +45,7 @@ Exactly two routes. Anything else is refused before launch.
 | LLM Gateway | `llmgateway` | `deepseek-v4.1-flash-1017` | `openai-completions` | `https://api.llmgateway.io/v1` | `LLMGATEWAY_API_KEY` | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | Verified 2026-11-06 on dsh 0.2.2-rc.1: exit 0 and `completed` |
 | OpenCode Go | `opencode-go` | `deepseek-v4.1-flash` | `openai-completions` | `https://opencode.ai/zen/go/v1` | `OPENCODE_API_KEY` | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | Proven 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` |
 
-Composition observed means `--dump-config` with the draft route patch and the lineage patch, from a disposable home, showed `agent-default-model` naming that provider and model, and the `llm-pi-ai` row carrying that provider with `apiKeyEnv` naming its key variable (`specs/cli-external-orchestration/085-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt` and `dump-config-opencode-go.txt`). It does not show that a request reaches the provider, which needs a key.
+Composition observed means `--dump-config` with the draft route patch and the lineage patch, from a disposable home, showed `agent-default-model` naming that provider and model, and the `llm-pi-ai` row carrying that provider with `apiKeyEnv` naming its key variable (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt` and `dump-config-opencode-go.txt`). It does not show that a request reaches the provider, which needs a key.
 
 ### The OpenCode Go Endpoint Is `https://opencode.ai/zen/go/v1`
 
@@ -54,7 +54,7 @@ Two endpoints are documented for OpenCode Go:
 - `https://opencode.ai/inference/go/openai/v1`, from Models.dev.
 - `https://opencode.ai/zen/go/v1`, from the OpenCode Go documentation.
 
-The draft route patch used for the offline pin carries the second one, which proves only that the patch composes. A keyed run on 2026-11-07 answered on that endpoint, so `https://opencode.ai/zen/go/v1` is the one this harness uses. Evidence: `specs/cli-external-orchestration/085-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/latency-and-tokens.md`.
+The draft route patch used for the offline pin carries the second one, which proves only that the patch composes. A keyed run on 2026-11-07 answered on that endpoint, so `https://opencode.ai/zen/go/v1` is the one this harness uses. Evidence: `specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin/evidence/latency-and-tokens.md`.
 
 ### LLM Gateway
 

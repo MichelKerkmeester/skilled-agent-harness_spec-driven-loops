@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/004-agents-commands-config",
+  "spec_folder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/004-agents-commands-config",
+  "parent_id": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agents commands config",
+      "phase 4 agents commands config",
+      "agents commands config plan",
+      "agents commands config tasks",
+      "agents commands config acceptance criteria",
+      "agents commands config goal",
+      "agents commands config implementation summary"
+    ],
+    "key_topics": [
+      "agents",
+      "commands",
+      "config",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "carry"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/tests/opencode-config-shape.test.cjs",
+      ".skilled/agents/debug.md",
+      ".skilled/agents/ai-council.md",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/ai-council.md",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".opencode/bin/tests/opencode-config-shape.test.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+      "runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-config-shape.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/opencode-config-shape.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".skilled/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".skilled/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-menu-parity.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The agents and commands carry wording and file layout that only one host understands",
+    "created_at": "2026-10-18T12:45:03Z",
+    "last_save_at": "2026-11-10T05:38:22.353Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:901f8c88097c4dc9d0af426ce8af5c35e22b965114fa4a38a2b572b84e94d08a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f113c90f71c7208b07ebc2789d4450f8a50c315fe9f5c79ce43acc707305663e",
+      "plan.md": "d572a5df0caf8aa0e4157b52420c21a04471261415b7bc5e30104e4c0820e1a4",
+      "tasks.md": "17030cc69377865ab9c7a8314aa2ace65b433ed473d236dcc53dbf7bf673fef1",
+      "implementation-summary.md": "2452f0d67e25c08429e394db3a546d88bbc23dac4af97ee772b52d6bd1f9ceff"
+    },
+    "last_active_at": null
+  }
+}

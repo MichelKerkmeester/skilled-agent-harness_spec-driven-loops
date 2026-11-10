@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/model-rosters/003-gpt-6-luna-sol-cutover",
+  "spec_folder": "cli-external-orchestration/model-rosters/003-gpt-6-luna-sol-cutover",
+  "parent_id": "cli-external-orchestration/model-rosters",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gpt-6 luna cutover",
+      "gpt-6 sol cutover",
+      "luna 6 llmgateway",
+      "gpt-5.6 to gpt-6",
+      "opus 5.5 cli-claude-code",
+      "gpt-6 cutover plan",
+      "luna sol rename plan",
+      "llmgateway gpt-6-luna route",
+      "gpt-6 cutover tasks",
+      "luna sol rename checklist",
+      "gpt-6 cutover acceptance",
+      "luna sol closure gate"
+    ],
+    "key_topics": [
+      "gpt-6",
+      "luna",
+      "cutover",
+      "sol",
+      "llmgateway",
+      "gpt-5",
+      "opus",
+      "cli-claude-code",
+      "plan",
+      "rename",
+      "gpt-6-luna",
+      "route"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".pi/custom-providers.md",
+      ".pi/pi-blackhole-config.json",
+      ".codex/config.toml",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      "manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-blackhole-config.json",
+        "kind": "config",
+        "path": ".pi/pi-blackhole-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex-dispatch.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gateway Luna",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pro High",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenAI's GPT-6 Luna and Sol are live",
+    "created_at": "2026-09-23T04:51:35Z",
+    "last_save_at": "2026-11-10T05:38:22.624Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f596b85971328e9334483f27e14da3b0cc796f5c4719753648291f15a3701d6e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "af93a36f1c1608a9bedf2f6be7e8a56faf9173125ebfe299b97d4e1c56ea2fc6",
+      "plan.md": "d7c773ac639d7ac8b78e88b716e9a12e0359f98df70107dbf4ce79277e19ce47",
+      "tasks.md": "3f278882bfa80d65437d20d15a2dc33f95e94a25a3e96e5221b21af0fb920995",
+      "implementation-summary.md": "eaa9ef46b20aec472a5eb0b54ed518e762be604e82756870e7a9f6f89a25f182"
+    },
+    "last_active_at": null
+  }
+}

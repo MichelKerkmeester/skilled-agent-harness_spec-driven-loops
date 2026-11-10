@@ -48,8 +48,8 @@
 - [P1] SKILL.md:20 | 9 | The body carries a phase number ("the phase 001 research synthesis") and pending-work language ("once recorded", "await the pin"), and the contract pin exists at the linked path, so the sentence tells a reader a recorded artifact is still outstanding. | Replace lines 20-25 (keeping both citation targets and the v0.21.1 provenance) with:
   ```
   provider. The evidence base is the research synthesis and the contract pin:
-  [research synthesis](../../../specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md),
-  [contract pin](../../../specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/implementation-summary.md).
+  [research synthesis](../../../specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/001-deep-research/research/research.md),
+  [contract pin](../../../specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/002-hermes-contract-pin/implementation-summary.md).
   Claims marked **source-read, unconfirmed** come from the installed Hermes source (v0.21.1) and stay
   unconfirmed until a live run records otherwise.
   ```

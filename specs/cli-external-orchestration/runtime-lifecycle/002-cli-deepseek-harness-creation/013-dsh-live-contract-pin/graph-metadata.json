@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/013-dsh-live-contract-pin",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh live contract pin",
+      "phase 13 dsh live contract pin",
+      "keyed dsh pin",
+      "dsh route verification",
+      "promote cli-deepseek-harness",
+      "dsh live contract pin plan",
+      "dsh live contract pin tasks",
+      "dsh live contract pin acceptance criteria",
+      "dsh live contract pin goal",
+      "dsh live contract pin implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "live",
+      "contract",
+      "pin",
+      "phase",
+      "keyed",
+      "route",
+      "verification",
+      "promote",
+      "cli-deepseek-harness",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "evidence/phase-006-focused-vitest.txt",
+      "evidence/phase-006-typecheck.txt",
+      "evidence/live-contract-count.txt",
+      "evidence/validate-strict.txt",
+      "evidence/document-validation.txt",
+      "evidence/alignment-drift.txt",
+      ".dsh/patches/route-llmgateway-deepseek.patch.yml",
+      ".dsh/patches/route-opencode-go-deepseek.patch.yml",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/live-contracts.json",
+      "evidence/route-llmgateway.exit.txt",
+      "evidence/latency-and-tokens.md",
+      "evidence/dsh-home-before.txt",
+      "evidence/version.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-006-focused-vitest.txt",
+        "kind": "file",
+        "path": "evidence/phase-006-focused-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "phase-006-typecheck.txt",
+        "kind": "file",
+        "path": "evidence/phase-006-typecheck.txt",
+        "source": "derived"
+      },
+      {
+        "name": "live-contract-count.txt",
+        "kind": "file",
+        "path": "evidence/live-contract-count.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-strict.txt",
+        "kind": "file",
+        "path": "evidence/validate-strict.txt",
+        "source": "derived"
+      },
+      {
+        "name": "document-validation.txt",
+        "kind": "file",
+        "path": "evidence/document-validation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-drift.txt",
+        "kind": "file",
+        "path": "evidence/alignment-drift.txt",
+        "source": "derived"
+      },
+      {
+        "name": "route-llmgateway-deepseek.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/route-llmgateway-deepseek.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "route-opencode-go-deepseek.patch.yml",
+        "kind": "config",
+        "path": ".dsh/patches/route-opencode-go-deepseek.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "live-contracts.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/live-contracts.json",
+        "source": "derived"
+      },
+      {
+        "name": "route-llmgateway.exit.txt",
+        "kind": "file",
+        "path": "evidence/route-llmgateway.exit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "latency-and-tokens.md",
+        "kind": "doc",
+        "path": "evidence/latency-and-tokens.md",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-home-before.txt",
+        "kind": "file",
+        "path": "evidence/dsh-home-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "version.txt",
+        "kind": "file",
+        "path": "evidence/version.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The LLM Gateway route now has a saved completed turn",
+    "created_at": "2026-11-05T23:22:00Z",
+    "last_save_at": "2026-11-10T05:38:42.678Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7dd119db4f926c67c0e3a2c5bce8a64f6f46abd0f33bfadfeb109c7208b1e4b1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "697c880d9f5b561e9b262e74fb7a7a22d9d243195731422a927e7755fb2cded3",
+      "plan.md": "327f724b774acbe2c5f3b10c27848e57f7d46ded5545e136ac2c8c0d4109362b",
+      "tasks.md": "bdb43d05a4a709b3eed7053a055473c45cc50ff234879475cc29f6dd0bf983fc",
+      "implementation-summary.md": "dd7844286680a89c1712c621543c25a67c781ad2e314ac1f92da12fcd9046471"
+    },
+    "last_active_at": null
+  }
+}

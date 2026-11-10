@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at all",
     "created_at": "2026-09-20T08:33:44.721Z",
-    "last_save_at": "2026-10-07T15:56:50.971Z",
+    "last_save_at": "2026-11-10T05:40:08.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:824dc3f28c9d94cbceafdfc5423bf0dd05e7558a9137fa5df6335c3ef2b846c5",
+    "source_fingerprint": "sha256:e19de4b4404da9c084afe89614ef11904169c40434b33aa276c3029c8af20f10",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e7cf5cff978bdc28fa951bc72fc44c1d148fbc36eb6f1aa571a7a802215b9cd3",
+      "spec.md": "bd4d085524ac6378808cf276bf0138b7cf5f521a026b1efb5880404372f75624",
       "plan.md": "f610dc2aa09422f7dca629c2ef74048958f2c64323b8c6b26c7d8abccf721fe7",
       "tasks.md": "5b61aa02f6527fd5a2ba72b77ff8232f20bacc2a00f9cb941b29f2257c629d87",
       "implementation-summary.md": "5f8c74d74d08520f3a1ed93645cfa7984f37418bb8b944c024f6346c96de132c"
