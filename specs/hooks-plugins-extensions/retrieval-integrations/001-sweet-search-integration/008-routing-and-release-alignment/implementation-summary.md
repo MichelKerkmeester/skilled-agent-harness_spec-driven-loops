@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 8: routing-and-release-alignment"
-description: "A read-only question about the trigger index routes to system-spec-kit, the retrieval lane lost its unused code, and release v4.0.2.0 describes the retrieval work."
+description: "A read-only question about the trigger index routes to system-spec-kit, the retrieval lane lost its unused code, and release v4.0.2.1 describes the retrieval work."
 trigger_phrases:
   - "routing and release alignment implementation summary"
 importance_tier: "normal"
@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Ask the advisor to explain what the trigger index omits and it now names `system-spec-kit`, where it used to name the doctor helper. Six of the seven stored probes route to their expected skill, up from four, and the v4.0.2.0 release notes describe what a lookup returns.
+Ask the advisor to explain what the trigger index omits and it now names `system-spec-kit`, where it used to name the doctor helper. Six of the seven stored probes route to their expected skill, up from four, and release v4.0.2.1 describes what a lookup returns.
 
 ### Phase 8: routing-and-release-alignment
 
@@ -65,7 +65,8 @@ A review agent read the retrieval code of phases 4 to 7 against the overengineer
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs` | Modified | One export left, no second sort, `staleFallback.files` counts the docs it read |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Modified | A rejected `main()` prints one line to stderr and exits 2 |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/stale-fallback.vitest.ts`, `rg-wrapper-recipes.vitest.ts` | Modified | Four redundant tests removed |
-| `.skilled/changelog/skilled/v4.0.2.0.md` | Modified | One glance bullet, one paragraph and two Smaller Fixes bullets on the retrieval work |
+| `.skilled/changelog/skilled/v4.0.2.1.md` | Created | The retrieval work as its own release: five glance bullets |
+| `PUBLIC-RELEASE.md` | Modified | The current release is v4.0.2.1 |
 | `system-spec-kit` `SKILL.md`, `changelog/v2.12.47.0.md` | Modified, Created | Version 2.12.47.0 and its entry |
 | `system-skill-advisor` `SKILL.md`, `changelog/v0.18.6.0.md` | Modified, Created | Version 0.18.6.0 and its entry |
 <!-- /ANCHOR:what-built -->
@@ -91,7 +92,7 @@ In worktree 337, cut from `origin/main` after phase 7 landed. The conductor rera
 | Keep the wrapper's `truncated` field | The trigger lookup uses the same name, and three tests read it. `hidden` says how much, `truncated` says whether |
 | Keep the four `totalCandidates` tests | Each fails for a different reason: no limit, a limit below the pool, the search mode and the no-hit payload |
 | Leave probe P02 of phase 6 as a tie | Same reason as phase 7: it asks for a code edit and `sk-code` is a correct answer |
-| Fold the work into v4.0.2.0 and move the tag | The operator asked for the work in changelog 4.0.2.0 and for the tag to be republished. Asked how, they chose "New git worktree" and "Publish when gates pass" |
+| Release the work as v4.0.2.1 with its own tag | The operator first asked for the work in changelog 4.0.2.0 with the tag republished, then replaced that with a new v4.0.2.1 entry and a dedicated tag. The v4.0.2.0 entry is back to its tagged text and its tag never moved |
 <!-- /ANCHOR:decisions -->
 
 ---

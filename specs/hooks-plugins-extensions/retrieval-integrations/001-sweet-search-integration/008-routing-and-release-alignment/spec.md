@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 8: routing-and-release-alignment"
-description: "Two read-only questions about the trigger index routed to the doctor helper, a review found unused code in the retrieval lane, and release v4.0.2.0 did not mention the retrieval work."
+description: "Two read-only questions about the trigger index routed to the doctor helper, a review found unused code in the retrieval lane, and no release described the retrieval work."
 trigger_phrases:
   - "routing and release alignment"
   - "phase 7 routing and release alignment"
@@ -27,7 +27,7 @@ contextType: "general"
 | **Phase** | 8 of 8 |
 | **Predecessor** | 007-search-routing-followups |
 | **Successor** | None |
-| **Handoff Criteria** | Six of the seven stored advisor probes route to their expected skill, both suites exit 0 and the v4.0.2.0 entry passes the shape check |
+| **Handoff Criteria** | Six of the seven stored advisor probes route to their expected skill, both suites exit 0 and the v4.0.2.1 entry passes the shape check |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -45,7 +45,7 @@ This is **Phase 8** of the sweet-search integration specification.
 **Deliverables**:
 - Three more `intent_signals` and one read-only lift for a prompt that names the trigger index.
 - The review's verified trims applied to the fallback module, the lookup script and their tests.
-- The retrieval work in `.skilled/changelog/skilled/v4.0.2.0.md`, with a changelog entry per touched skill.
+- The retrieval work in its own release entry, `.skilled/changelog/skilled/v4.0.2.1.md`, with a changelog entry per touched skill.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -57,7 +57,7 @@ This is **Phase 8** of the sweet-search integration specification.
 Three of the seven prompts stored by the phase 4 to 6 alignment runs routed to the doctor helper instead of `system-spec-kit`. Two were read-only questions: the explainer floor held every skill at 0.25, and the doctor hand-off then claimed the prompt on the words "trigger index". Release v4.0.2.0 was tagged one commit before the retrieval work, so its notes said nothing about it.
 
 ### Purpose
-A question about a trigger-index lookup reaches the skill that owns the lookup, the retrieval lane carries no code or test without a use, and the v4.0.2.0 notes describe what a lookup now returns.
+A question about a trigger-index lookup reaches the skill that owns the lookup, the retrieval lane carries no code or test without a use, and release v4.0.2.1 describes what a lookup now returns.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -69,7 +69,7 @@ top skill: command-doctor-helper, confidence 0.8
 $ node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"Limit a trigger-index search to two results, then tell me how many total documents matched and whether the results were truncated."}' --format json
 top skill: command-doctor-helper, confidence 0.8
 
-$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/changelog/skilled/v4.0.2.0.md
+$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/changelog/skilled/v4.0.2.1.md
 PASS (235 lines below the frontmatter, 26 H4 items, both at or one under the ceiling)
 ```
 <!-- /ANCHOR:measured-behavior -->
@@ -83,7 +83,7 @@ PASS (235 lines below the frontmatter, 26 H4 items, both at or one under the cei
 - Add `trigger index`, `trigger phrase` and `unindexed spec` to the `system-spec-kit` `intent_signals`, and remove the duplicate `spec docs`.
 - Lift `system-spec-kit` off the read-only floor when a read-only prompt names the trigger index and not drift.
 - Apply the review findings that hold: one unused sort, three unused exports, one redundant type check, the read count, the missing rejection handler and four redundant tests.
-- Describe the retrieval work in the v4.0.2.0 release entry and write the two component entries.
+- Describe the retrieval work in a v4.0.2.1 release entry with its own tag, and write the two component entries.
 
 ### Out of Scope
 - Probe P02 of phase 6 - it asks for a code edit, `sk-code` is a correct answer, and every phrase that broke the tie moved an approved route.
@@ -102,7 +102,7 @@ PASS (235 lines below the frontmatter, 26 H4 items, both at or one under the cei
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs` | Modify | Review trims and the read count |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` | Modify | Rejection handler that exits 2 |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/stale-fallback.vitest.ts`, `rg-wrapper-recipes.vitest.ts` | Modify | Four redundant tests removed |
-| `.skilled/changelog/skilled/v4.0.2.0.md` | Modify | The retrieval work |
+| `.skilled/changelog/skilled/v4.0.2.1.md` | Create | The retrieval work |
 | `system-spec-kit` `SKILL.md`, `changelog/v2.12.47.0.md`; `system-skill-advisor` `SKILL.md`, `changelog/v0.18.6.0.md` | Modify, Create | Versions and entries |
 <!-- /ANCHOR:scope -->
 
@@ -123,7 +123,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | The review trims change no behavior a test covers | The `system-spec-kit` suite exits 0 |
-| REQ-003 | The v4.0.2.0 entry describes the retrieval work inside its limits | `check_changelog_shape.py` prints `PASS` for the release entry and both component entries |
+| REQ-003 | The v4.0.2.1 entry describes the retrieval work inside its limits | `check_changelog_shape.py` prints `PASS` for the release entry and both component entries |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -144,7 +144,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |------|------|--------|------------|
 | Dependency | The advisor reads the scorer from `dist` | The lift does nothing until a build | Run `npm run build` in `system-skill-advisor/runtime`, then `advisor_rebuild --trusted --force true` |
 | Risk | The lift takes a drift question from the doctor | Med | The lift skips a prompt that says `drift`, and a test holds "explain trigger index drift and repair it" at the floor |
-| Risk | Moving the release tag changes what `v4.0.2.0` points at | Med | The old tag object `5aae50857d` can be pushed back |
+| Risk | A published tag and release are public | Med | Delete the `v4.0.2.1` tag and its GitHub release. `v4.0.2.0` stays on its commit |
 <!-- /ANCHOR:risks -->
 
 ---

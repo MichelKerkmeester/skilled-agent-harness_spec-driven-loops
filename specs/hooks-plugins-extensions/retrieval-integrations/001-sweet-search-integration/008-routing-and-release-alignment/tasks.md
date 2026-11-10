@@ -44,7 +44,7 @@ contextType: "general"
 - [x] T003 Add three intent signals and remove the duplicate (`.skilled/skills/system-spec-kit/graph-metadata.json`). Verify: `rg -c '"trigger phrase"' .skilled/skills/system-spec-kit/graph-metadata.json` prints 1.
 - [x] T004 Add the read-only lift and its cases (`runtime/lib/scorer/fusion.ts`, `tests/scorer/route-gates.vitest.ts`). Verify: `npx vitest run tests/scorer/route-gates.vitest.ts` prints `Tests  19 passed (19)`.
 - [x] T005 Apply the verified trims (`retrieval/lib/unindexed-docs.mjs`, `retrieval/lookup-trigger-index.mjs`, two test files). Verify: `rg -c "^export" .skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs` prints 1.
-- [x] T006 Write the release and component entries (`.skilled/changelog/skilled/v4.0.2.0.md`, `v2.12.47.0.md`, `v0.18.6.0.md`). Verify: `check_changelog_shape.py` on the three files prints `pass=3 fail=0`.
+- [x] T006 Write the release and component entries (`.skilled/changelog/skilled/v4.0.2.1.md`, `v2.12.47.0.md`, `v0.18.6.0.md`). Verify: `check_changelog_shape.py` on the three files prints `pass=3 fail=0`.
 <!-- /ANCHOR:phase-2 -->
 
 ---

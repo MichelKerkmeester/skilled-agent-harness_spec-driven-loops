@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 8: routing-and-release-alignment"
-description: "Add three intent signals and one read-only lift, apply the review trims, and put the retrieval work in the v4.0.2.0 notes."
+description: "Add three intent signals and one read-only lift, apply the review trims, and give the retrieval work its own v4.0.2.1 release."
 trigger_phrases:
   - "routing and release alignment plan"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | Vitest (advisor and system-spec-kit suites), the alignment battery, the changelog shape check |
 
 ### Overview
-Rerun the seven stored probes to find which still miss. Fix vocabulary misses with intent signals, and the two read-only misses with one branch in `readOnlyRouteAllowed`. Have a review agent read the retrieval code against the overengineering rule, verify each finding in the source, and apply the ones that hold. Then write the changelog entries and move the release tag.
+Rerun the seven stored probes to find which still miss. Fix vocabulary misses with intent signals, and the two read-only misses with one branch in `readOnlyRouteAllowed`. Have a review agent read the retrieval code against the overengineering rule, verify each finding in the source, and apply the ones that hold. Then write the changelog entries and publish the work as release v4.0.2.1 with its own tag.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -94,7 +94,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert the one commit, run `npm run build` in `system-skill-advisor/runtime`, then `skill_graph_scan --trusted` and `advisor_rebuild --trusted --force true`. To restore the release tag, push the old tag object `5aae50857d` back to `v4.0.2.0`.
+Revert the one commit, run `npm run build` in `system-skill-advisor/runtime`, then `skill_graph_scan --trusted` and `advisor_rebuild --trusted --force true`. To withdraw the release, delete the `v4.0.2.1` tag and its GitHub release. The `v4.0.2.0` tag is never moved.
 <!-- /ANCHOR:rollback -->
 
 ---

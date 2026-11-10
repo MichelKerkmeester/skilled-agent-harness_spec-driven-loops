@@ -45,7 +45,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/unindexed-docs.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/stale-fallback.vitest.ts",
-      ".skilled/changelog/skilled/v4.0.2.0.md",
+      ".skilled/changelog/skilled/v4.0.2.1.md",
       "changelog/v2.12.47.0.md",
       ".skilled/bin/skill-advisor.cjs",
       "retrieval/lib/unindexed-docs.mjs",
@@ -119,9 +119,9 @@
         "source": "derived"
       },
       {
-        "name": "v4.0.2.0.md",
+        "name": "v4.0.2.1.md",
         "kind": "doc",
-        "path": ".skilled/changelog/skilled/v4.0.2.0.md",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Three of the seven prompts stored by the phase 4 to 6 alignment runs routed to the doctor helper instead of `system-spec-kit`",
     "created_at": "2026-11-10T09:11:21Z",
-    "last_save_at": "2026-11-10T10:05:29.550Z",
+    "last_save_at": "2026-11-10T10:20:39.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e7a4dae67815a9a4fc3ec780036ee672d4322bca756c374f08b2dd8bf808c81",
+    "source_fingerprint": "sha256:9cfb51144a89618cad41dd27733e79c434460b1e4b856e2ffce4110e7a5bba8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a9128759482936b7e34abadbcedc815b93f5305d4e69d1671d5d8e4c17b6e94a",
-      "plan.md": "2dd2026603df60cac7065d673a0b09ed55b8f17d69b96e44db64fbeef5894145",
-      "tasks.md": "19e52cc50c662c7f7efdef8c60b3b1a2a381724b74a20bbde44deaba13a7174d",
-      "implementation-summary.md": "aea2e84e0e412f40ebeb9d92452207c56567d12224ece5042cf9dbc20a07e66e"
+      "spec.md": "56d0edeacadd9b8bb02f68e71782b29581dcab3ed400e964c331443ec06c9792",
+      "plan.md": "a48f51cc1dd381f84263c06fba145e84d3477b684da03dc1f240fcad18501553",
+      "tasks.md": "182b03e546ac8377fed6a73e2edb23bb58fb984246d912b49d60882182f8db69",
+      "implementation-summary.md": "265101fdcaee3c20c45c3482d0d9211ef3284f650b6cb0f8bb5088190d72e6cd"
     },
     "last_active_at": null
   }

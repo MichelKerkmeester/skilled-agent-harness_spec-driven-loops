@@ -222,17 +222,17 @@ gh release create vX.X.X.X \
 
 | Field | Value |
 | --- | --- |
-| **Version** | v4.0.2.0, Skilled in Your Own Project |
-| **Release Date** | 2026-11-08 |
+| **Version** | v4.0.2.1, Search Says How Much It Found |
+| **Release Date** | 2026-11-10 |
 | **GitHub** | [Repository](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops) |
 | **Latest Release** | [releases/latest](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/latest) |
-| **Release Notes** | [releases/tag/v4.0.2.0](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/tag/v4.0.2.0) |
+| **Release Notes** | [releases/tag/v4.0.2.1](https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/tag/v4.0.2.1) |
 
 ### Release Notes
 
 Each release has one file, `.skilled/changelog/skilled/vX.X.X.X.md`, formatted per the template in Section 8. The 4.x entries sit at the top level of that folder. Older entries are grouped by generation in `v1+/`, `v2+/` and `v3+/`. The GitHub release body is the entry with its YAML frontmatter and H1 title removed.
 
-**Latest**: See `.skilled/changelog/skilled/v4.0.2.0.md`
+**Latest**: See `.skilled/changelog/skilled/v4.0.2.1.md`
 
 ---
 
@@ -326,7 +326,7 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`. The version
 | `3.6.0.x` | 3.6.0.0 | Harder core, longer reach |
 | `4.0.0.x` | 4.0.0.0-16 | The foundation rebuilt: Spec Kit, deep loops and parent skills |
 | `4.0.1.x` | 4.0.1.0 | Every skill routes from its own file |
-| `4.0.2.x` | 4.0.2.0 | Skilled in your own project |
+| `4.0.2.x` | 4.0.2.0-1 | Skilled in your own project |
 
 ---
 
