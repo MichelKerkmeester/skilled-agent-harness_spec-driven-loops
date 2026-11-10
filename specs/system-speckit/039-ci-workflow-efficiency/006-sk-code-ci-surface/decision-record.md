@@ -156,7 +156,7 @@ The CI rules are stack knowledge consumed by two acting modes: authoring under `
 <!-- ANCHOR:adr-002-context -->
 ### Context
 
-`specs/sk-code/013-private-surface-skills/002-hub-surface-removal` is a Draft phase that removes `sk-code-webflow` and `sk-code-obsidian` from `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md` and the canary fixture. Both phases edit the same five files, and either can land first. That phase's own spec states the removal is a rewrite of the same arrays.
+`specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` is a Draft phase that removes `sk-code-webflow` and `sk-code-obsidian` from `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md` and the canary fixture. Both phases edit the same five files, and either can land first. That phase's own spec states the removal is a rewrite of the same arrays.
 
 ### Constraints
 

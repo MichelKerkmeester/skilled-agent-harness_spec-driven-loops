@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/quality-and-review-modes/004-portable-code-modes",
+  "spec_folder": "sk-code/quality-and-review-modes/004-portable-code-modes",
+  "parent_id": "sk-code/quality-and-review-modes",
+  "children_ids": [
+    "sk-code/quality-and-review-modes/004-portable-code-modes/001-shared-rule-contract",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/011-node20-test-fixes",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/004-quality-resolver",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/008-ci-drift-flags",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/002-quality-hygiene-policy",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/003-quality-floor-and-style-split",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/013-router-reach-local-ties",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/014-advisor-phrase-calibration",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/005-review-floor-lens-overrides",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/006-review-agent-and-dispatch",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/009-integration-fixes",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/007-ci-repo-profile",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/016-repository-config-in-skill",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/010-docs-and-doctor-alignment",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/015-frontmatter-yaml-validity",
+    "sk-code/quality-and-review-modes/004-portable-code-modes/012-verification-and-release"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "portable code modes phase parent spec",
+      "sk-code portable quality review ci",
+      "rule overrides any repository",
+      "sk-code house style overrides"
+    ],
+    "key_topics": [
+      "portable",
+      "code",
+      "modes",
+      "phase",
+      "parent",
+      "spec",
+      "sk-code",
+      "quality",
+      "review",
+      "rule",
+      "overrides",
+      "repository"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "001-shared-rule-contract/spec.md",
+      ".skilled/skills/sk-code/sk-code-ci/repository/ci.json",
+      ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+      ".github/workflows/sk-code-script-tests.yml",
+      "specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/spec.md",
+      ".skilled/skills/sk-code/shared/references/universal/rule-overrides.json",
+      ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-ci/repository/ci.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/repository/quality.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-code-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "rule-overrides.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/shared/references/universal/rule-overrides.json",
+        "source": "derived"
+      },
+      {
+        "name": "rule-overrides.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose When",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three sk-code workflow modes carry this repository's house style into every repository they run in, and a repository has no way to say no",
+    "created_at": "2026-10-27T20:47:57Z",
+    "last_save_at": "2026-11-10T05:20:42.643Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a91fa584ed0c67b4be103a29e6b9e8d0626b6c5d7acc9d62761df9fb5a84d8c3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "75d6f096976611ee6ae26381996f6e47ab95bc625ff5431354a700af47f5d924"
+    },
+    "last_active_at": null
+  }
+}

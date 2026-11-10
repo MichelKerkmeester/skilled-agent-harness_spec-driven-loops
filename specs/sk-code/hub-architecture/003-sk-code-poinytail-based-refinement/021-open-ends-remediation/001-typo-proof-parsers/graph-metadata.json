@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/021-open-ends-remediation/001-typo-proof-parsers",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/021-open-ends-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "typo proof parsers",
+      "phase 1 typo proof parsers",
+      "reject unknown cli options",
+      "typo proof parsers plan",
+      "typo proof parsers tasks",
+      "typo proof parsers goal",
+      "typo proof parsers implementation summary"
+    ],
+    "key_topics": [
+      "typo",
+      "proof",
+      "parsers",
+      "phase",
+      "reject",
+      "unknown",
+      "cli",
+      "options",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/tests/typo-flags.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+      ".skilled/skills/sk-design/sk-design-chart/scripts/tests/typo-flags.test.cjs",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/typo-flags.test.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/typo-flags.test.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/typo-flags.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/typo-flags.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/typo-flags.vitest.ts",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-git/scripts/tests/migrate-legacy-branch-names.test.sh",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      "review/lineages/dsflash-llmgw/review-report.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/005-silent-input-sweep/review/review-report.md",
+      ".skilled/skills/sk-git/scripts/migrate-legacy-branch-names.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/typo-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/tests/typo-flags.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/typo-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-legacy-branch-names.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/migrate-legacy-branch-names.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/lineages/dsflash-llmgw/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-legacy-branch-names.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/migrate-legacy-branch-names.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "54 scripts accept an unknown or misspelled option and carry on",
+    "created_at": "2026-10-11T18:31:49Z",
+    "last_save_at": "2026-11-10T05:20:34.967Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0fb7c3b1ff013bbe2f14f96e3dd47d00aad974c10fa539998ba0270f3fbbf14b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a93c76e7a50f0c4fddaee2b9361b697f30b749fa18229f6db0b80817dbe55a82",
+      "plan.md": "60af3f35a441820d80bd6b55875cd8485dc16e2e07042a89e7f72560da6bb261",
+      "tasks.md": "13ebc6ad47c4cb6f458390fe565d5cfee24921f5f354392b93a265fdbfd3715f",
+      "implementation-summary.md": "3be79567b1cff46a12f3f7a973f976eeded3730f405ab1510ab32c9f2c65ade2"
+    },
+    "last_active_at": null
+  }
+}

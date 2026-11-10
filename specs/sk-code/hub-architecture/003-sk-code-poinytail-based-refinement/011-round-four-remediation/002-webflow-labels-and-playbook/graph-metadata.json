@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "webflow labels and playbook",
+      "phase 2 webflow labels and playbook",
+      "webflow labels and playbook plan",
+      "webflow labels and playbook tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "webflow labels and playbook implementation summary"
+    ],
+    "key_topics": [
+      "webflow",
+      "labels",
+      "playbook",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/label-rows.txt",
+      "scratch/units/webflow-changelog-v1.1.2.0.md",
+      "scratch/status-expected.txt",
+      "scratch/dispatch-units.json",
+      "scratch/label-files.txt",
+      "scratch/build-units.cjs",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/scratch/dispatch-units.json",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/scratch/units/webflow-changelog-v1.1.2.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "label-rows.txt",
+        "kind": "file",
+        "path": "scratch/label-rows.txt",
+        "source": "derived"
+      },
+      {
+        "name": "webflow-changelog-v1.1.2.0.md",
+        "kind": "doc",
+        "path": "scratch/units/webflow-changelog-v1.1.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "status-expected.txt",
+        "kind": "file",
+        "path": "scratch/status-expected.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "label-files.txt",
+        "kind": "file",
+        "path": "scratch/label-files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "build-units.cjs",
+        "kind": "file",
+        "path": "scratch/build-units.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`rg -n '\\[[a-z]+[a-z]+\\.md\\]' .skilled/skills/sk-code/sk-code-webflow --glob '!/changelog/'` lists 59 rows in 23 files",
+    "created_at": "2026-10-10T14:44:42Z",
+    "last_save_at": "2026-11-10T05:20:17.129Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c61606c184797e5dded61f2fae11749825f8d31e1ca84dcbad5b8b3e000cf67f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f84a96fbb3bd9c27166304dd15248f695555be4cedc4d0a8718638a089afa3e5",
+      "plan.md": "e1cebde8bfe348685df2843e2a44e383395aba13dbdf53136d08fae6403cc443",
+      "tasks.md": "b72e9fb7074551051a6035577171d306eaf4c92afb4ee9503be0a356337cd391",
+      "implementation-summary.md": "4ba3b1f1532a2d3f35bc4fb44b51df05d75420f66ca24bc5d03cad5ab270f4e2"
+    },
+    "last_active_at": null
+  }
+}

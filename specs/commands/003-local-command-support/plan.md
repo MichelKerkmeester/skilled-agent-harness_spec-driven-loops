@@ -27,7 +27,7 @@ contextType: "general"
 | **Testing** | `node --test` for the catalog check, `pre-commit.test.sh` for the hook, the mirror `--check` scripts |
 
 ### Overview
-Three tracked files gain `local-*` command support and two test files pin it, following the private-skill work in `specs/sk-code/013-private-surface-skills`. The generators need no change: they already walk `.skilled/commands`, skip `assets/` and keep only real files, so a git-ignored local command reaches every runtime and the new ignore rules keep every copy out of git. The proof is two green suites with a negative control each, all mirror checks at exit 0 with a local command present, and `git check-ignore` matching the probe paths but not the boundary paths.
+Three tracked files gain `local-*` command support and two test files pin it, following the private-skill work in `specs/sk-code/hub-architecture/005-private-surface-skills`. The generators need no change: they already walk `.skilled/commands`, skip `assets/` and keep only real files, so a git-ignored local command reaches every runtime and the new ignore rules keep every copy out of git. The proof is two green suites with a negative control each, all mirror checks at exit 0 with a local command present, and `git check-ignore` matching the probe paths but not the boundary paths.
 <!-- /ANCHOR:summary -->
 
 ---

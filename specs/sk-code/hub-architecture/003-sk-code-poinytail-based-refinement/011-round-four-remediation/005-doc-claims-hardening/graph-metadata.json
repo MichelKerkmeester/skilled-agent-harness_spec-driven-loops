@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doc claims hardening",
+      "phase 5 doc claims hardening",
+      "claim checker anchors",
+      "verify doc claims labels",
+      "doc claims hardening plan",
+      "doc claims hardening tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "doc claims hardening implementation summary"
+    ],
+    "key_topics": [
+      "doc",
+      "claims",
+      "hardening",
+      "phase",
+      "claim",
+      "checker",
+      "anchors",
+      "verify",
+      "labels",
+      "plan",
+      "tasks",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.1.0.md",
+      "scratch/hits-for-orchestrator.txt",
+      "scratch/status-before.txt",
+      "scratch/dispatch-units.json",
+      "scratch/plan-doc-claims-after.txt",
+      "scratch/check-units.cjs",
+      "scratch/plan-neg-test.txt",
+      "scratch/plan-pos-test.txt",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-guardrails.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "hits-for-orchestrator.txt",
+        "kind": "file",
+        "path": "scratch/hits-for-orchestrator.txt",
+        "source": "derived"
+      },
+      {
+        "name": "status-before.txt",
+        "kind": "file",
+        "path": "scratch/status-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan-doc-claims-after.txt",
+        "kind": "file",
+        "path": "scratch/plan-doc-claims-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-units.cjs",
+        "kind": "file",
+        "path": "scratch/check-units.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan-neg-test.txt",
+        "kind": "file",
+        "path": "scratch/plan-neg-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plan-pos-test.txt",
+        "kind": "file",
+        "path": "scratch/plan-pos-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Round three shipped `verifydocclaims.cjs` with five recorded gaps, and all five still reproduce",
+    "created_at": "2026-10-10T14:44:45Z",
+    "last_save_at": "2026-11-10T05:20:17.976Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:089af52c0429dda2635dd069dfef59b2e02799c392b9a9d599921a3e5f1bb0c5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fc8c7b0a07bc165367d87425ef7ec878255fbd67b7fb2bd976f42b6eecc52b4f",
+      "plan.md": "5c0eeddded0b83b2b58f9213f1fdd222c6da9bf1bffbd36e05cbbc81ea499c7b",
+      "tasks.md": "3ef74788de024f2c0cc8395c7902e790d2adc591c96d1b73886064bbe960e16f",
+      "implementation-summary.md": "a200afc2c5d8bb0754a419285526f6023209d967de5efe22b93a434eafb539ab"
+    },
+    "last_active_at": null
+  }
+}

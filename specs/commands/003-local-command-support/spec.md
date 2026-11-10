@@ -35,7 +35,7 @@ contextType: "general"
 <!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-An operator who keeps a private command under `.skilled/commands/` breaks this checkout in three ways. `command-catalog-mirror-check.cjs` reports the command as drift because `README.txt` does not list it, which turns `/doctor:runtime-mirrors` red. No ignore rule covers the command or the mirrors the generators derive from it. And the pre-commit guard refuses only `local-*` skills, so one forced add publishes the command. The private-skill work in `specs/sk-code/013-private-surface-skills` solved the same three problems for skills, but not for commands.
+An operator who keeps a private command under `.skilled/commands/` breaks this checkout in three ways. `command-catalog-mirror-check.cjs` reports the command as drift because `README.txt` does not list it, which turns `/doctor:runtime-mirrors` red. No ignore rule covers the command or the mirrors the generators derive from it. And the pre-commit guard refuses only `local-*` skills, so one forced add publishes the command. The private-skill work in `specs/sk-code/hub-architecture/005-private-surface-skills` solved the same three problems for skills, but not for commands.
 
 ### Purpose
 A command named `local-*` stays on the operator's machine. It reaches Claude, Cursor, Codex, Pi, Hermes and OpenCode through the generators that already exist, and none of its copies can be staged by accident.

@@ -1,0 +1,37 @@
+{
+  "researchTopic": "Audit every reference and asset under .skilled/skills/sk-code/ (hub shared/, sk-code-ci, sk-code-frontend, sk-code-quality, sk-code-review, sk-code-skilled, plus their SKILL.md and ROUTER.md) for readability, structure, layout and the sort order of sections and items inside each file, against the sk-doc reference and asset templates (.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md and skill-asset-template.md). Find rendering defects (consecutive bold-label lines that Markdown joins into one paragraph, a text line directly above --- that renders as a setext heading, 'OVERVIEW AND <topic>' sections with no overview, duplicated or misplaced content, bare URLs, items ordered by authoring history instead of reader task). Then trace why .skilled/skills/sk-doc/sk-create-skill (templates, authoring guidance, scripts) and .skilled/skills/sk-doc/scripts/validate_document.py let such defects pass (the pre-fix web-cascade-and-selectors.md at commit cd00629166 validated VALID with 0 issues), and propose template, guidance and validator changes that would catch each defect class, saying which are mechanically checkable. Read-only: write only under the research artifact directory. Cite file:line for every finding.",
+  "specFolder": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "concurrency": 2,
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "model": "opencode-go/deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "label": "deepseek",
+        "iterations": 8,
+        "timeoutSeconds": 2400
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "xhigh",
+        "serviceTier": "standard",
+        "label": "luna",
+        "iterations": 7,
+        "timeoutSeconds": 2400
+      }
+    ]
+  }
+}

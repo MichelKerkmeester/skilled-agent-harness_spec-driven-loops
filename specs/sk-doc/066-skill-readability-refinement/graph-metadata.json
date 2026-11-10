@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The render checks added to `validatedocument.py` catch the mechanical defects: joined labels, setext headings, bare URLs, empty overviews, repeated text, misnumbered or misplaced sections",
     "created_at": "2026-11-04T07:15:52Z",
-    "last_save_at": "2026-11-05T19:19:56.398Z",
+    "last_save_at": "2026-11-10T05:25:30.591Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a43bb4a76f9a139c1768fccb60efdfc739317f236450a68785cc3bc2db68f399",
+    "source_fingerprint": "sha256:e5795b65c79fd5021bdca411947470edfd6c2a1b2f67198b8768951dc95b2101",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7ff2eb607607e5baf282c9246bbb71dac407cda07db72cf5c2a74a518acaf405",
+      "spec.md": "559955f9bd0d92b21aa9f44bf0dccd8f4fb218a0bfe27731863aadeb691f4a65",
       "decision-record.md": "f8f58a7336b013b783f2b7900d4942ac89044be34750f6526887f7109462f9a9"
     },
     "last_active_child_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",

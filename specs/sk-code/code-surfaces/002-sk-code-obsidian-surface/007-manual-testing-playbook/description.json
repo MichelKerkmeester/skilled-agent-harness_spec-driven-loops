@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook",
+  "description": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all — `../goal.md` §6",
+  "keywords": [
+    "phase",
+    "sk-code-obsidian",
+    "manual-testing-playbook",
+    "goal"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.736Z",
+  "specId": "007",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-code",
+    "007-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

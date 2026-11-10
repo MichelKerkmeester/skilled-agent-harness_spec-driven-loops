@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/verification-guards/001-code-conformance-alignment/002-comment-hygiene-durable-why",
+  "spec_folder": "sk-code/verification-guards/001-code-conformance-alignment/002-comment-hygiene-durable-why",
+  "parent_id": "sk-code/verification-guards/001-code-conformance-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ephemeral artifact pointer in comment",
+      "comment hygiene durable why",
+      "replace requirement id comment",
+      "feature catalog comment",
+      "comment hygiene plan",
+      "durable why replacement",
+      "comment only diff assertion",
+      "comment hygiene tasks",
+      "durable why tasks"
+    ],
+    "key_topics": [
+      "ephemeral",
+      "artifact",
+      "pointer",
+      "comment",
+      "hygiene",
+      "durable",
+      "replace",
+      "requirement",
+      "feature",
+      "catalog",
+      "plan",
+      "replacement"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-doc/scripts/quick_validate.py",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comment Hygiene",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Replace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The governing standard states verbatim that ephemeral-artifact pointers in code comments are a HARD-BLOCK gate, naming spec paths and ADR, requirement, checklist, task, packet and phase identifiers",
+    "created_at": "2026-07-30T19:25:14.577Z",
+    "last_save_at": "2026-11-10T05:20:46.908Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:71c714451b6b98489cda6d7a77f03439ceaecf098840653f9b70c722455ef25b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "11f1c5262957bf4d83ffc4168e9de8aedce5f29da6067635fcb4e533d9bfa539",
+      "plan.md": "08543a289a3a7d4b0830b7bb754bbfa95616e5f7e79befdc720d421b89050e67",
+      "tasks.md": "d80e4aeebbdfaa80f634febea6ce9390cb5539820fa799ce80004dba0c57fea4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename",
+  "description": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
+  "keywords": [
+    "phase",
+    "scan-naming",
+    "mjs",
+    "measured",
+    "plugin",
+    "tree",
+    "scanned",
+    "files"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.735Z",
+  "specId": "010",
+  "folderSlug": "kebab-rename",
+  "parentChain": [
+    "sk-code",
+    "007-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

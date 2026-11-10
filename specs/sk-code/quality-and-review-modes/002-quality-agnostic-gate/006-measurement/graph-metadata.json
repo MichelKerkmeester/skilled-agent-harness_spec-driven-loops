@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/quality-and-review-modes/002-quality-agnostic-gate/006-measurement",
+  "spec_folder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate/006-measurement",
+  "parent_id": "sk-code/quality-and-review-modes/002-quality-agnostic-gate",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 6 measurement",
+      "quality gate measurement",
+      "catch rate and false positives",
+      "CQ-002 to CQ-008",
+      "measurement plan",
+      "quality gate measurement plan",
+      "measurement tasks",
+      "phase 6 task list",
+      "measurement acceptance criteria",
+      "phase 6 closure gate",
+      "measurement goal",
+      "quality gate measurement goal"
+    ],
+    "key_topics": [
+      "phase",
+      "measurement",
+      "quality",
+      "gate",
+      "catch",
+      "rate",
+      "false",
+      "positives",
+      "cq-002",
+      "cq-008",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "evidence/measurement.json",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md",
+      ".skilled/skills/sk-code/benchmark/scripts/render-report.cjs",
+      ".skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs",
+      ".skilled/skills/sk-code/benchmark/README.md",
+      ".skilled/bin/compiled-route.cjs",
+      "specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/changelog/changelog-015-006-measurement.md",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "measurement.json",
+        "kind": "config",
+        "path": "evidence/measurement.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-report.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/benchmark/scripts/render-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "render-report.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/benchmark/scripts/tests/render-report.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-015-006-measurement.md",
+        "kind": "doc",
+        "path": "specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/changelog/changelog-015-006-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The saved benchmark runs for `sk-code-quality` measure routing, not catching",
+    "created_at": "2026-10-25T23:21:53Z",
+    "last_save_at": "2026-11-10T05:20:42.510Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3e09dab444d5b08b5c095ac31978489e2fd0cce4c82b571a6c1421e710a40bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "563fbb27e8253b47be0810b804a270019604048a85c9ab4a5c5b1bf432c9d4b1",
+      "plan.md": "a9d4a7da2bfd0387b54bd1f97f329368a556bd47981c8e7c52478791da1bafd0",
+      "tasks.md": "b67477fa6487b98ae66b0851d4ef894b4c81b69d5f31ff3a99857a3e59da3780",
+      "decision-record.md": "e10e8ae03c5ff36367b251c33190113f9f942c1c1f626b4ff904a336bf8355be",
+      "implementation-summary.md": "3f38163513ccde83de3bb4d797d123a62cbbd8d5c99aeebefc3634cedfe7f3a0"
+    },
+    "last_active_at": null
+  }
+}

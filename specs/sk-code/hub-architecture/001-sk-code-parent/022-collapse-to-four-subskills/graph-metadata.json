@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/001-sk-code-parent/022-collapse-to-four-subskills",
+  "spec_folder": "sk-code/hub-architecture/001-sk-code-parent/022-collapse-to-four-subskills",
+  "parent_id": "sk-code/hub-architecture/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code collapse to four sub-skills",
+      "dissolve code-implement code-debug code-verify",
+      "fold code-animation into code-webflow",
+      "phase 22 collapse plan",
+      "sk-code four subskills plan",
+      "collapse code-implement code-debug code-verify",
+      "phase 22 tasks",
+      "sk-code four subskills tasks",
+      "collapse sk-code tasks",
+      "phase 22 implementation summary",
+      "sk-code four subskills summary",
+      "collapse sk-code summary"
+    ],
+    "key_topics": [
+      "sk-code",
+      "collapse",
+      "four",
+      "sub-skills",
+      "dissolve",
+      "code-implement",
+      "code-debug",
+      "code-verify",
+      "fold",
+      "code-animation",
+      "code-webflow",
+      "phase"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Collapse",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrospective Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iron Law",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-skilled`, `code-webflow`, `code-animation`) and five workflow-mode skills (`code-implement`, `code-debug`, `code-verify`, `code-quality`, `code-review`)",
+    "created_at": "2026-07-06T06:49:42.937Z",
+    "last_save_at": "2026-11-10T05:20:10.050Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df79542de24682924ce181ed263281b64a19cddc500ee99a85115b0d6e73befa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "17866337b3dbbfb8fd7f2367079ddbd2b82a7a8e4a3d74bd22c912332cd7a803",
+      "plan.md": "821b4ba86b46d93c65edf21330a3be15068f232cf0e47006974c3a69c3783430",
+      "tasks.md": "eff1e787f6a28fac9cd6f579ce7e1d9e94414a4c3b5af546d369df4c1baf66f0",
+      "implementation-summary.md": "c19b8b6cc116aed3f24b1fba348f5be9e5b2a48521758307325e67a95fff6be5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

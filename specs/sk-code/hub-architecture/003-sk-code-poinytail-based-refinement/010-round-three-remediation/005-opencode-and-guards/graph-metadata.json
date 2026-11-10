@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode and guards",
+      "phase 5 opencode and guards",
+      "documentation claim checker",
+      "verify doc claims",
+      "opencode and guards plan",
+      "opencode and guards tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "opencode and guards implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "guards",
+      "phase",
+      "documentation",
+      "claim",
+      "checker",
+      "verify",
+      "doc",
+      "claims",
+      "plan",
+      "tasks",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/README.md",
+      "scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      "scratch/plan-doc-claims.txt",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-guardrails.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan-doc-claims.txt",
+        "kind": "file",
+        "path": "scratch/plan-doc-claims.txt",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-verification-automation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "directory-and-test-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming-and-commenting.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every round-three drift cluster sits in prose that no guard reads: the routers and manifests were updated after each rename and all pass, while the docs that cite them kept dead paths, pre-rename packet names and two-surface wording (f-iter020-003)",
+    "created_at": "2026-10-10T10:07:21Z",
+    "last_save_at": "2026-11-10T05:20:17.058Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f464f25dfdfa3232c65c680530bfad2511b164b5eba3c0da83879ceec389924",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f724dced90487e3a69c07a893b889c13248a2746cceb1f6f87a62fa784ca29a2",
+      "plan.md": "0e6d94f804e46972cb4e813cd06a8412ed2c27a64354c822e653e500550722b4",
+      "tasks.md": "9899f68275e03645120cad07e80180d8615e72b59c3665fc3f572079fb868ee1",
+      "implementation-summary.md": "6895ba915443ee84c9ec871b873dd7aecfa735cf0e907680e27daf62009864e0"
+    },
+    "last_active_at": null
+  }
+}

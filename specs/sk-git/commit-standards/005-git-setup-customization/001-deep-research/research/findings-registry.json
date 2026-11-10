@@ -143,7 +143,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -159,8 +159,8 @@
         "`.skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58`",
         "`.skilled/commands/doctor/scripts/sk-code-setup-check.cjs:7-20,97-149,252-311`",
         "`.skilled/skills/sk-code/README.md:116-122`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
         "`.skilled/commands/deep/assets/deep-research-auto.yaml:477-508`",
         "`specs/sk-git/commit-standards/005-git-setup-customization/001-deep-research/research/lineages/luna-xhigh-fast/steer.md` (checked before iteration; absent)"
       ],
@@ -179,7 +179,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -196,7 +196,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -212,8 +212,8 @@
         "`.skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58`",
         "`.skilled/commands/doctor/scripts/sk-code-setup-check.cjs:7-20,97-149,252-311`",
         "`.skilled/skills/sk-code/README.md:116-122`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
         "`.skilled/commands/deep/assets/deep-research-auto.yaml:477-508`",
         "`specs/sk-git/commit-standards/005-git-setup-customization/001-deep-research/research/lineages/luna-xhigh-fast/steer.md` (checked before iteration; absent)"
       ],
@@ -231,8 +231,8 @@
         "`.skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58`",
         "`.skilled/commands/doctor/scripts/sk-code-setup-check.cjs:7-20,97-149,252-311`",
         "`.skilled/skills/sk-code/README.md:116-122`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
         "`.skilled/commands/deep/assets/deep-research-auto.yaml:477-508`",
         "`specs/sk-git/commit-standards/005-git-setup-customization/001-deep-research/research/lineages/luna-xhigh-fast/steer.md` (checked before iteration; absent)"
       ],
@@ -251,7 +251,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -259,7 +259,7 @@
     },
     {
       "id": "finding-1-4-the-adaptation-guide-and-diagnostic-have-separate-jobs-the-readme-block-tells-us",
-      "text": "The adaptation guide and diagnostic have separate jobs: the README block tells users how to add or remove surfaces and what to keep, while `/doctor:sk-code setup` checks the resulting tree and names repairs. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79; .skilled/skills/sk-code/README.md:116-122; specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50]",
+      "text": "The adaptation guide and diagnostic have separate jobs: the README block tells users how to add or remove surfaces and what to keep, while `/doctor:sk-code setup` checks the resulting tree and names repairs. [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79; .skilled/skills/sk-code/README.md:116-122; specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50]",
       "addedAtIteration": 1,
       "sources": [
         "`.skilled/commands/doctor/sk-code.md:8-61`",
@@ -267,8 +267,8 @@
         "`.skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58`",
         "`.skilled/commands/doctor/scripts/sk-code-setup-check.cjs:7-20,97-149,252-311`",
         "`.skilled/skills/sk-code/README.md:116-122`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
-        "`specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:71-79`",
+        "`specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:36-50`",
         "`.skilled/commands/deep/assets/deep-research-auto.yaml:477-508`",
         "`specs/sk-git/commit-standards/005-git-setup-customization/001-deep-research/research/lineages/luna-xhigh-fast/steer.md` (checked before iteration; absent)"
       ],
@@ -287,7 +287,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -304,7 +304,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -321,7 +321,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -338,7 +338,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -355,7 +355,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -372,7 +372,7 @@
         ".skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:1-58",
         ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs:1-369",
         "README.md:1447-1491",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95 (guide scope citation)"
       ],
       "_lineages": [
         "swe-2-max"
@@ -380,13 +380,13 @@
     },
     {
       "id": "finding-2-1-the-placement-decision-is-documented-explicitly-a-new-doctor-command-doctor-sk-c",
-      "text": "The placement decision is documented explicitly: \"a new doctor command, `/doctor:sk-code`, with one read-only target, `setup`\" — chosen because the family grammar is `/doctor:<owner> <target>` and the one-per-owner rule wants the sk-code hub as owner. A `sk-code-setup` hub mode was rejected because `packetKind` is only `workflow` or `surface` (setup is neither), no setup prompt would ever route to it, and it would cost 15+ files plus a contract change. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:97-111,135]",
+      "text": "The placement decision is documented explicitly: \"a new doctor command, `/doctor:sk-code`, with one read-only target, `setup`\" — chosen because the family grammar is `/doctor:<owner> <target>` and the one-per-owner rule wants the sk-code hub as owner. A `sk-code-setup` hub mode was rejected because `packetKind` is only `workflow` or `surface` (setup is neither), no setup prompt would ever route to it, and it would cost 15+ files plus a contract change. [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:97-111,135]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -403,13 +403,13 @@
     },
     {
       "id": "finding-2-2-the-rejection-catalogue-is-a-checklist-of-tempting-but-wrong-ideas-x1-hub-mode-c",
-      "text": "The rejection catalogue is a checklist of tempting-but-wrong ideas: X1 hub mode (contract mismatch + cost); X2 target under `/doctor:skill-advisor` (wrong owner, undiscoverable name); X3 extending the `parent-skill` route (its contract is a structural audit — routing/drift failures would corrupt what a pass means); X4 mutating repairs inside the doctor (a read-only route may not write; `route-validate.sh` enforces it); X6 terminal add/remove script (the registry scrub and ROUTER.md edits need judgment; a second mutation path serves one caller class); X7 minting manifests inside `update --surfaces`; X11 advisor surface-awareness (no failure exists). [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:131-145]",
+      "text": "The rejection catalogue is a checklist of tempting-but-wrong ideas: X1 hub mode (contract mismatch + cost); X2 target under `/doctor:skill-advisor` (wrong owner, undiscoverable name); X3 extending the `parent-skill` route (its contract is a structural audit — routing/drift failures would corrupt what a pass means); X4 mutating repairs inside the doctor (a read-only route may not write; `route-validate.sh` enforces it); X6 terminal add/remove script (the registry scrub and ROUTER.md edits need judgment; a second mutation path serves one caller class); X7 minting manifests inside `update --surfaces`; X11 advisor surface-awareness (no failure exists). [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:131-145]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -435,13 +435,13 @@
     },
     {
       "id": "finding-2-3-the-battery-s-leg-list-is-not-arbitrary-it-is-the-executable-form-of-the-readme-",
-      "text": "The battery's leg list is not arbitrary — it is the executable form of the README guide's Verify block: the six documented verify commands, plus a provisioning precheck (the missing step a fresh clone needs) and the derived-metadata freshness gate (CI ran it but the user's battery did not), plus a probe that must parse `action:\"route\"` because the last README leg exited 0 on the legacy stub. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:88-93,105,123; specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:35-44]",
+      "text": "The battery's leg list is not arbitrary — it is the executable form of the README guide's Verify block: the six documented verify commands, plus a provisioning precheck (the missing step a fresh clone needs) and the derived-metadata freshness gate (CI ran it but the user's battery did not), plus a probe that must parse `action:\"route\"` because the last README leg exited 0 on the legacy stub. [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:88-93,105,123; specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:35-44]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -458,13 +458,13 @@
     },
     {
       "id": "finding-2-4-the-motivating-failures-define-what-a-setup-check-is-for-the-guard-printed-re-mi",
-      "text": "The motivating failures define what a setup check is FOR: the guard printed `Re-mint: sk-code` with no command (F5), the route probe could not fail (F7), a CI gate was missing from the user battery (F16), and a fresh clone could not reach green following the guide (F1-F3). A doctor setup exists to make invisible/unactionable failures visible with named repairs. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:85-113]",
+      "text": "The motivating failures define what a setup check is FOR: the guard printed `Re-mint: sk-code` with no command (F5), the route probe could not fail (F7), a CI gate was missing from the user battery (F16), and a fresh clone could not reach green following the guide (F1-F3). A doctor setup exists to make invisible/unactionable failures visible with named repairs. [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:85-113]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -472,13 +472,13 @@
     },
     {
       "id": "finding-2-5-phase-ordering-was-deliberate-p1-029-001-fixed-the-hand-followed-path-first-read",
-      "text": "Phase ordering was deliberate: P1 (029/001) fixed the hand-followed path first — README before-you-start lines, guard stale-manifest message naming its commands, named failure instead of a stack — and only then P2 (029/002) built the battery that prints those same repair texts. The battery depends on P1 because it prints P1's repair strings. Lesson: the documented journey must be self-sufficient before a battery is worth running. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:85-118; specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:149-174]",
+      "text": "Phase ordering was deliberate: P1 (029/001) fixed the hand-followed path first — README before-you-start lines, guard stale-manifest message naming its commands, named failure instead of a stack — and only then P2 (029/002) built the battery that prints those same repair texts. The battery depends on P1 because it prints P1's repair strings. Lesson: the documented journey must be self-sufficient before a battery is worth running. [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:85-118; specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:149-174]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -486,13 +486,13 @@
     },
     {
       "id": "finding-2-6-naming-was-weighed-setup-was-chosen-over-surfaces-because-the-battery-also-cover",
-      "text": "Naming was weighed: `setup` was chosen over `surfaces` because the battery also covers provisioning — the target name must cover the whole check surface, not just the resource being adapted. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:111]",
+      "text": "Naming was weighed: `setup` was chosen over `surfaces` because the battery also covers provisioning — the target name must cover the whole check surface, not just the resource being adapted. [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:111]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -500,13 +500,13 @@
     },
     {
       "id": "finding-2-7-route-additions-have-a-fixed-recipe-and-a-validator-append-a-row-to-routes-yaml-",
-      "text": "Route additions have a fixed recipe and a validator: append a row to `_routes.yaml`, list it in the command's router and presentation, run `route-validate.sh`; every script the route runs is enumerated in `script_invocations`. The acceptance gate for the new route was `route-validate.sh` exit 0 plus pristine/stale/unprovisioned copy runs (S-1..S-3 ledger rows). [SOURCE: .skilled/commands/doctor/_routes.yaml:36-38; specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:80-95]",
+      "text": "Route additions have a fixed recipe and a validator: append a row to `_routes.yaml`, list it in the command's router and presentation, run `route-validate.sh`; every script the route runs is enumerated in `script_invocations`. The acceptance gate for the new route was `route-validate.sh` exit 0 plus pristine/stale/unprovisioned copy runs (S-1..S-3 ledger rows). [SOURCE: .skilled/commands/doctor/_routes.yaml:36-38; specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:80-95]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -514,13 +514,13 @@
     },
     {
       "id": "finding-2-8-the-026-packet-already-shipped-the-external-surface-semantics-this-research-buil",
-      "text": "The 026 packet already shipped the \"external surface\" semantics this research builds on: a user-added surface is scaffolded ahead of the native `sk-code-skilled` in `tieBreak` so it wins keyword ties (doctor check 5l fails a surface placed after it), OpenCode is marked native (keep), Webflow/Obsidian are optional examples (removable via the 9-step recipe). [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-83; README.md:1449,1472]",
+      "text": "The 026 packet already shipped the \"external surface\" semantics this research builds on: a user-added surface is scaffolded ahead of the native `sk-code-skilled` in `tieBreak` so it wins keyword ties (doctor check 5l fails a surface placed after it), OpenCode is marked native (keep), Webflow/Obsidian are optional examples (removable via the 9-step recipe). [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-83; README.md:1449,1472]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"
@@ -528,13 +528,13 @@
     },
     {
       "id": "finding-2-9-battery-cost-and-growth-were-considered-acceptable-15-s-measured-e6-one-pass-per",
-      "text": "Battery cost and growth were considered acceptable: ~15 s measured (E6), one pass per leg, and the drift-guards leg is the one that grows — a sk-git battery should likewise time-budget its legs. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:118]",
+      "text": "Battery cost and growth were considered acceptable: ~15 s measured (E6), one pass per leg, and the drift-guards leg is the one that grows — a sk-git battery should likewise time-budget its legs. [SOURCE: specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:118]",
       "addedAtIteration": 2,
       "sources": [
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
-        "specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md:1-120",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md:1-125",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md:81-208",
+        "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md:60-95"
       ],
       "_lineages": [
         "swe-2-max"

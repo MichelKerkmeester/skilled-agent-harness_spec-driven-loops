@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/021-open-ends-remediation/004-routing-parity-ci",
+  "description": "Phase 4: routing-parity-ci",
+  "keywords": [
+    "phase",
+    "routing-parity-ci"
+  ],
+  "lastUpdated": "2026-10-11T20:21:02.602Z",
+  "specId": "004",
+  "folderSlug": "routing-parity-ci",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "021-open-ends-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-10-26_21-21__deep-review-of-the-routing-parity-ci-change.md"
+  ]
+}

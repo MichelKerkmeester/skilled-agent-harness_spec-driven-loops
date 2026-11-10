@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/005-private-surface-skills/001-ignore-and-commit-guard",
+  "spec_folder": "sk-code/hub-architecture/005-private-surface-skills/001-ignore-and-commit-guard",
+  "parent_id": "sk-code/hub-architecture/005-private-surface-skills",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ignore and commit guard",
+      "phase 1 ignore and commit guard",
+      "ignore and commit guard plan",
+      "ignore and commit guard tasks",
+      "ignore and commit guard acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "ignore and commit guard decision record",
+      "private skill guard adr",
+      "ignore and commit guard implementation summary"
+    ],
+    "key_topics": [
+      "ignore",
+      "commit",
+      "guard",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/scripts/git-hooks/README.md",
+      ".skilled/scripts/git-hooks/lib/gates.tsv",
+      ".skilled/scripts/git-hooks/lib/gate-config.sh",
+      ".skilled/scripts/install-git-hooks.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "gates.tsv",
+        "kind": "file",
+        "path": ".skilled/scripts/git-hooks/lib/gates.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-config.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/gate-config.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two surfaces that are about to become private skills have no safe place to live yet",
+    "created_at": "2026-10-23T07:03:38Z",
+    "last_save_at": "2026-11-10T05:20:38.798Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6cdfbdbaee4510ca51ea03def44c747bf6ce7f9e364344748cd3c290bf6f1bed",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b2397c0d6be0e3b5fb223a88a9c3b4e099b9cc8c0cd1f05bb3ca03eca461925e",
+      "plan.md": "621b52808c83406b0966a9b9645e80e478bd3cbb60d1d4d675e059ba3c40e34c",
+      "tasks.md": "ac932780ee34dfeb31df3fff564aff5040b98eb61f3909c8fffd48285b7b0a9e",
+      "decision-record.md": "8e15af1c1939432e023635bdc951a121fd1d24d75103850decf150efef8ff4a6",
+      "implementation-summary.md": "948e232b39fd23825a863e70db48414adda8db603b9ed1e40de0d0c7e2e6a976"
+    },
+    "last_active_at": null
+  }
+}

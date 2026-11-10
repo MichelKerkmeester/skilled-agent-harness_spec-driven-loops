@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/quality-and-review-modes/004-portable-code-modes/001-shared-rule-contract",
+  "spec_folder": "sk-code/quality-and-review-modes/004-portable-code-modes/001-shared-rule-contract",
+  "parent_id": "sk-code/quality-and-review-modes/004-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared rule contract",
+      "phase 1 shared rule contract",
+      "rule overrides linter",
+      "shared rule contract plan",
+      "shared rule contract tasks",
+      "shared rule contract acceptance criteria",
+      "shared rule contract implementation summary"
+    ],
+    "key_topics": [
+      "shared",
+      "rule",
+      "contract",
+      "phase",
+      "overrides",
+      "linter",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md",
+      ".skilled/skills/sk-code/shared/references/universal/rule-overrides.json",
+      ".skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs",
+      ".skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs",
+      ".skilled/skills/sk-code/shared/README.md",
+      ".skilled/skills/sk-code/changelog/v3.9.7.0.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".github/workflows/sk-code-script-tests.yml",
+      "shared/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+      "specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rule-overrides.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md",
+        "source": "derived"
+      },
+      {
+        "name": "rule-overrides.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/shared/references/universal/rule-overrides.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-overrides.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/shared/scripts/check-rule-overrides.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-rule-overrides.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/shared/scripts/tests/check-rule-overrides.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.9.7.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.9.7.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-code-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "runner-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A repository cannot drop or replace any sk-code rule",
+    "created_at": "2026-10-27T20:47:57Z",
+    "last_save_at": "2026-11-10T05:20:44.564Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:48ac85996c6b41de2d5263260b1670e3ef5201646548ea76bdb4ca79c30a9fbc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "957aa411bd32f17cc0e40650f14c724d98e9a07e2ece0cb839da72e3029519d4",
+      "plan.md": "e065b1bf16cf939cb358533be2787be92501c635fc07876d37b4999d901e821e",
+      "tasks.md": "e762eacd9fd8a1bc8d532e26e8f28509eb7a42677c09d43e71ab9970d30b54f8",
+      "implementation-summary.md": "6bb264c15e7d47eaf3f57dfb232bbc8dc3d952a760b1c22f2ebb3cccc5e2ee66"
+    },
+    "last_active_at": null
+  }
+}

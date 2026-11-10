@@ -23,7 +23,7 @@ The 33 GitHub Actions workflows follow a set of rules that exist mostly in prose
 
 **Key Decisions**: a read-only surface packet rather than a workflow mode, because the packet supplies evidence and never writes; and the message-contract exception lives in rule data, because the workflow's YAML is correct as written.
 
-**Critical Dependencies**: `002-rebuild-fanout-removal` supplies D1's chosen rebuild-skip form and `004-setup-caching-provisioning` supplies the landed composite action and action scan; `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` edits the same hub registration files and creates the one ordering risk this phase carries.
+**Critical Dependencies**: `002-rebuild-fanout-removal` supplies D1's chosen rebuild-skip form and `004-setup-caching-provisioning` supplies the landed composite action and action scan; `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` edits the same hub registration files and creates the one ordering risk this phase carries.
 
 ---
 
@@ -65,7 +65,7 @@ The reasons and the one cost are in `decision-record.md` under the 2026-10-24 am
 **Dependencies**:
 - `002-rebuild-fanout-removal`: its D1 answer decides whether the rebuild-skip rule records a `[skip ci]` token or the 8-entry push-only `paths-ignore` form. R22 records the chosen form; it does not choose it.
 - `004-setup-caching-provisioning`: R12's action scan and R14's `.github/actions/setup/action.yml` must exist before the composite-action rule can cite a landed pattern rather than a proposal.
-- `specs/sk-code/013-private-surface-skills/002-hub-surface-removal`: it removes `sk-code-webflow` and `sk-code-obsidian` from `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md` and the canary fixture. Both phases edit the same files, so the ordering is named in §6 and handled by T003, T004, T020 to T052, T064 and T067.
+- `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal`: it removes `sk-code-webflow` and `sk-code-obsidian` from `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md` and the canary fixture. Both phases edit the same files, so the ordering is named in §6 and handled by T003, T004, T020 to T052, T064 and T067.
 - `gh` authenticated with `repo`, only for reading the ruleset that makes message-contract's context required; the phase itself makes no state-changing call.
 
 The concurrency template's main-branch value is not a phase dependency. It records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}` as D2's recorded PR-only answer (2026-10-23), and names `cancel-in-progress: true` on main as the alternative in one line.
@@ -108,7 +108,7 @@ One read-only `sk-code-ci` surface packet records the rules, the protected set, 
 - R30's fifth stack-detection value in `shared/references/stack-detection.md:37` and `sk-code-review/SKILL.md:234`: `009-doctor-ci-review-wiring` owns it, because it is the one change that can regress detection for the existing surfaces.
 - `/doctor:ci` and its `report`, `scaffold` and toggle routes: `009-doctor-ci-review-wiring` owns them. This phase supplies the templates and the protected set they read.
 - Any edit to `.github/workflows/*.yml`, `.github/scripts/*`, `.github/actions/*` or `.github/workflows/README.md`. The only workflow file this phase reads is `message-contract.yml`, and its diff must stay empty.
-- Rebuilding, removing or renaming an existing surface. `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` owns the removal of the two example surfaces; this phase only inserts `sk-code-ci` and preserves whatever entries are present.
+- Rebuilding, removing or renaming an existing surface. `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` owns the removal of the two example surfaces; this phase only inserts `sk-code-ci` and preserves whatever entries are present.
 - The parent `spec.md`, `description.json` and `graph-metadata.json`: the orchestrator owns them.
 - A new benchmark report: `benchmark/README.md` records that the Lane C harness is retired and no new run can start. The playbook scenario is the routing evidence this phase adds.
 
@@ -173,7 +173,7 @@ Each requirement names the R-id it serves. R22 owns the packet and its registrat
 | ID | R-id | Requirement |
 |----|------|-------------|
 | REQ-008 | R22 | **The hub release is coherent.** `SKILL.md`, `mode-registry.json`, `hub-router.json` and `description.json` all read the same new version (`2.4.0.0`, or `2.5.0.0` if that minor is already taken), a matching `changelog/v<version>.md` exists, and `SKILL.md`, `README.md`, `shared/README.md`, `feature-catalog/` and `phase-detection.md` name the new surface with a count that matches `mode-registry.json` |
-| REQ-009 | R22 | **The registration is additive.** Against `specs/sk-code/013-private-surface-skills/002-hub-surface-removal`, every mode and surface present before this phase still exists after it, no removed example surface is re-added, and `sk-code-ci` is present whether that phase has landed or not |
+| REQ-009 | R22 | **The registration is additive.** Against `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal`, every mode and surface present before this phase still exists after it, no removed example surface is re-added, and `sk-code-ci` is present whether that phase has landed or not |
 | REQ-010 | R22, R23 | **No ephemeral id reaches code.** No R-id, D-id or phase number is added to a code comment, a JSON description, a template comment or a test name. Spec documents may cite them; the packet's code and JSON may not |
 
 R22 saves 0 runner-minutes standalone and 0 after R1: it changes no workflow's trigger or job shape. R23 saves 0. Their value is that they keep R1's ~2,073 runner-min/day and R14's ~145 standalone and ~74 after R1 from regressing as new workflows are authored. `final-review.md:430-456` gives both as 0.
@@ -204,7 +204,7 @@ R22 saves 0 runner-minutes standalone and 0 after R1: it changes no workflow's t
 |------|------|------|--------|------------|
 | Dependency | R22 | `002-rebuild-fanout-removal` D1 answer | The rebuild-skip rule has no chosen form to record | T002 reads 002's `### Implementation Notes`; that note freezes Option A (`[skip ci]`) as the default, so the rule records A and names B in one line. No task blocks |
 | Dependency | R22 | `004-setup-caching-provisioning` R12 and R14 | The composite-action rule cites a pattern that does not exist | T002 records `.github/actions/setup/action.yml` as absent today and the action-scan count as 0; the rule is written as `status: proposed` with the `final-review.md:344-360` citation, and T012 rewrites that one paragraph to `status: landed` only when T002 found both |
-| Dependency | R22 | `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` | Both phases rewrite `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md` and the canary fixture; a wholesale rewrite by either phase drops the other's entry | T003 and T004 record the pre-phase arrays and the ordering state; every registration task inserts rather than rewrites; T064 re-runs the registration proof. Preferred order: 013/002 first, because its removal is a rewrite and this phase's insertion is additive |
+| Dependency | R22 | `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` | Both phases rewrite `mode-registry.json`, `hub-router.json`, `ROUTER.md`, `SKILL.md` and the canary fixture; a wholesale rewrite by either phase drops the other's entry | T003 and T004 record the pre-phase arrays and the ordering state; every registration task inserts rather than rewrites; T064 re-runs the registration proof. Preferred order: 013/002 first, because its removal is a rewrite and this phase's insertion is additive |
 | Dependency | R22, R23 | The worktree is not provisioned | `parent-skill-check` leg `12-lib` fails on `@spec-kit/shared/frontmatter/parse-frontmatter.js`, so the gate is red before this phase starts | T001 records the failure verbatim as pre-existing; T060 treats `12-lib` as the one allowed failure and requires the other legs to pass. `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` is the repair and is out of this phase's write scope |
 | Risk | R22 | `generate-leaf-manifest.cjs` stops with `MODE_LEAF_SET_COLLISION` if the new packet's leaf set hashes equal to another mode's | The phase cannot generate its manifest | The packet's four references and two assets are unique to it; if the collision fires, add a hub-root `leaf-scopes.json` entry for `sk-code-ci` as the README's add-surface step describes |
 | Risk | R22 | `verify-doc-claims.cjs` fails on stale surface counts | The hub gate goes red after the registration | T037, T044 and T048 read the count from the registry after T020 and write the matching word; `three surfaces` becomes `four surfaces` in every sentence that spells a count |
@@ -242,7 +242,7 @@ R22 saves 0 runner-minutes standalone and 0 after R1: it changes no workflow's t
 
 ### R22 - packet and registration boundaries
 
-- Empty surface list: if `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` has removed both example surfaces, `extensions.surface-axis.surfaces` is `["sk-code-skilled"]` before this phase and becomes `["sk-code-ci", "sk-code-skilled"]`; the task computes the array from the file rather than assuming its current length. The same rule holds for `routerPolicy.tieBreak`, `routerSignals`, `description.keywords` and the canary fixture.
+- Empty surface list: if `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` has removed both example surfaces, `extensions.surface-axis.surfaces` is `["sk-code-skilled"]` before this phase and becomes `["sk-code-ci", "sk-code-skilled"]`; the task computes the array from the file rather than assuming its current length. The same rule holds for `routerPolicy.tieBreak`, `routerSignals`, `description.keywords` and the canary fixture.
 - Maximum surface count wording: every sentence that spells a count must match `modes.filter(packetKind === 'surface').length`; `verify-doc-claims.cjs:330-340` fails a stale word, so T037, T044 and T048 read the number and write the matching word. `three surfaces` today, `four surfaces` after the registration.
 - Version ceiling: the hub version is four-part; the next minor after `2.3.0.0` is `2.4.0.0`, and a second in-flight `2.4.0.0` moves this phase to `2.5.0.0`.
 - Leaf-set collision: if `generate-leaf-manifest.cjs` reports `MODE_LEAF_SET_COLLISION`, the packet's four references and two assets do not give it a unique leaf set; add a hub-root `leaf-scopes.json` entry rather than renaming a leaf.

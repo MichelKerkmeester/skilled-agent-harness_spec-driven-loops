@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-code/verification-guards",
+  "description": "The automated gates that check code conformance, alignment drift and dist freshness, kept correct, narrowed where they overreach and self-healing where they can.",
+  "keywords": [
+    "verification",
+    "guards"
+  ],
+  "lastUpdated": "2026-11-10T05:19:58.673Z",
+  "specId": "sk-code/verification-guards",
+  "folderSlug": "verification-guards",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

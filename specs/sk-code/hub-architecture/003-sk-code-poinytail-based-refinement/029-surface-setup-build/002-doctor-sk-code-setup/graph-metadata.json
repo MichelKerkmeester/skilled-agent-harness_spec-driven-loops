@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor sk-code setup",
+      "phase 2 doctor sk-code setup",
+      "sk-code setup battery doctor",
+      "doctor sk-code setup plan",
+      "doctor sk-code setup tasks",
+      "doctor sk-code setup acceptance criteria",
+      "doctor sk-code setup goal",
+      "doctor sk-code setup implementation summary"
+    ],
+    "key_topics": [
+      "doctor",
+      "sk-code",
+      "setup",
+      "phase",
+      "battery",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/commands/doctor/sk-code.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+      ".skilled/commands/README.txt",
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "review/review-report.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-sk-code-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-sk-code-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/sk-code-setup-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The README battery is six commands to copy by hand",
+    "created_at": "2026-10-13T18:45:43Z",
+    "last_save_at": "2026-11-10T05:20:40.871Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b3081a645f9addbf98e2d6b5d84a26a6ea418a47f35a2b5fed12a8f0bb5c238",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c5cabfe3cd2de3675216a653057307de1c397ea4c7be04f1f4564e9ad9bce871",
+      "plan.md": "c9befb6707a0c87cd98a24b4fdfe9f66bb74dd921b1fdcd64f47930d36a90920",
+      "tasks.md": "128c3b335c03e69cf27d85ade640647b79b9d46fff8973a8d10fee9df67f8483",
+      "implementation-summary.md": "d35ab385efe03399fc9cb034fc12eb487b967baff7b7502f324033ce2a173edc"
+    },
+    "last_active_at": null
+  }
+}

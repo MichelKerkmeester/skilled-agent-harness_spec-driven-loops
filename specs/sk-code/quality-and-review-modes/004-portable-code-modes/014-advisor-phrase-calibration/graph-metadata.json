@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/quality-and-review-modes/004-portable-code-modes/014-advisor-phrase-calibration",
+  "spec_folder": "sk-code/quality-and-review-modes/004-portable-code-modes/014-advisor-phrase-calibration",
+  "parent_id": "sk-code/quality-and-review-modes/004-portable-code-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor phrase calibration",
+      "declared phrase specificity",
+      "explicit lane duplicate author phrase",
+      "advisor phrase calibration plan",
+      "advisor phrase calibration tasks",
+      "advisor phrase calibration acceptance criteria",
+      "advisor phrase calibration decision record",
+      "advisor phrase calibration implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "phrase",
+      "calibration",
+      "declared",
+      "specificity",
+      "explicit",
+      "lane",
+      "duplicate",
+      "author",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/fixtures/harder-intent-prompt-corpus.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+      ".skilled/skills/system-skill-advisor/changelog/v0.17.15.0.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "declared-phrase-specificity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/declared-phrase-specificity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test_skill_advisor.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "harder-intent-prompt-corpus.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/fixtures/harder-intent-prompt-corpus.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "v0.17.15.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.17.15.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bare",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor's explicit-author lane scores every declared phrase that the prompt mentions, reading a skill's graph-metadata `intentsignals` and its SKILL.md keyword list one after the other with no check for repeats",
+    "created_at": "2026-10-27T22:30:26Z",
+    "last_save_at": "2026-11-10T05:20:47.404Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2c305f4c2186bd1bcc2c9ad7e674d0cf2bca23c1ebce18771e6905874d1d2171",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "36614a4c09fb04b5ab05641dc4c65280b41c5e4476eddbfc687b09abe761cb01",
+      "plan.md": "a27a54671e79aa185746dcb3777238661b9711f408d1f62de85ad1537984afc1",
+      "tasks.md": "7bd23918d9a70512a9ab2cf6ac7aa0061501bcf35acddcf2926650f2599eea08",
+      "decision-record.md": "82e5f3dbf670cab01f9a75c282728d5a342c1786a5b99556ec5cad65846cc19b",
+      "implementation-summary.md": "6122ff9b29294e40e4d4a17445d1825fd72f1da4995d5f0a36a68a9a70e191e4"
+    },
+    "last_active_at": null
+  }
+}

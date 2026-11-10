@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-code/hub-architecture",
+  "description": "How the sk-code hub itself is built, named and owned: its founding as a parent hub, language standards and reference layout, surface roster and private-skill ownership.",
+  "keywords": [
+    "hub",
+    "architecture"
+  ],
+  "lastUpdated": "2026-11-10T05:19:58.672Z",
+  "specId": "sk-code/hub-architecture",
+  "folderSlug": "hub-architecture",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

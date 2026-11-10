@@ -1,0 +1,17 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-code/code-surfaces",
+  "description": "Per-stack sk-code surface work and the reference content behind it, covering the Obsidian, Mobile-CLI, frontend and Webflow surfaces.",
+  "keywords": [
+    "code",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-11-10T05:19:58.673Z",
+  "specId": "sk-code/code-surfaces",
+  "folderSlug": "code-surfaces",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

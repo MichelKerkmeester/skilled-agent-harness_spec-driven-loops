@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/005-private-surface-skills",
+  "spec_folder": "sk-code/hub-architecture/005-private-surface-skills",
+  "parent_id": "sk-code/hub-architecture",
+  "children_ids": [
+    "sk-code/hub-architecture/005-private-surface-skills/001-ignore-and-commit-guard",
+    "sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal",
+    "sk-code/hub-architecture/005-private-surface-skills/003-advisor-vocabulary-cleanup",
+    "sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills",
+    "sk-code/hub-architecture/005-private-surface-skills/005-leak-and-routing-verification",
+    "sk-code/hub-architecture/005-private-surface-skills/006-review-remediation",
+    "sk-code/hub-architecture/005-private-surface-skills/007-shared-references-and-detection-order",
+    "sk-code/hub-architecture/005-private-surface-skills/008-deferred-surface-items",
+    "sk-code/hub-architecture/005-private-surface-skills/009-alignment-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "private surface skills phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "private surface skills research",
+      "packet 013 coverage audit",
+      "local private skill leak proof",
+      "phase 005 fresh clone proof"
+    ],
+    "key_topics": [
+      "private",
+      "surface",
+      "skills",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "research/research.md",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      "review/review-report.md",
+      "004-private-local-skills/decision-record.md",
+      "001-ignore-and-commit-guard/goal.md",
+      "002-hub-surface-removal/goal.md",
+      "003-advisor-vocabulary-cleanup/goal.md",
+      "004-private-local-skills/goal.md",
+      "005-leak-and-routing-verification/goal.md",
+      ".skilled/skills/sk-code/mode-registry.json",
+      "004-private-local-skills/scratch/operator-approvals.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      "runtime/data/trigger-index.json",
+      "002-hub-surface-removal/acceptance-criteria.md",
+      "003-advisor-vocabulary-cleanup/acceptance-criteria.md",
+      "002-hub-surface-removal/tasks.md",
+      "003-advisor-vocabulary-cleanup/plan.md",
+      "003-advisor-vocabulary-cleanup/tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "operator-approvals.md",
+        "kind": "doc",
+        "path": "004-private-local-skills/scratch/operator-approvals.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Private Surface Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Obsidian Plugin",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frozen Decisions",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "nothing",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Provenance",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Leak Coverage",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Correctness",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped sk-code hub still carries two surface packets the operator alone uses: the Webflow surface (`.skilled/skills/sk-code/sk-code-webflow/`, 1.5M) and the Obsidian surface (`.skilled/skills/sk-code/sk-code-obsidian/`, 504K), 226 tracked files together",
+    "created_at": "2026-10-23T07:03:37Z",
+    "last_save_at": "2026-11-10T05:22:32.689Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:e7542057bf9f2e794a55bb886f3f341c784c8ab78fe11e9e5d65d41fc60ce9d6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2caf6ec4cbe0f32118a3b4e6a447dc6207958216c0a44525f67a444f9e2ad883",
+      "research/research.md": "b71cf8389ba4da511c39af80f3a03cbce42c6c44b01d0df34f91c0d4ccd6e76a"
+    },
+    "last_active_child_id": "sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal",
+    "last_active_at": "2026-10-24T09:24:08.689Z"
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills",
+  "spec_folder": "sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills",
+  "parent_id": "sk-code/hub-architecture/005-private-surface-skills",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "private local skills",
+      "phase 4 private local skills",
+      "local-webflow local-obsidian",
+      "private local skills plan",
+      "restore surfaces from history",
+      "private local skills tasks",
+      "restore local skills tasks",
+      "private local skills acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "private",
+      "local",
+      "skills",
+      "phase",
+      "local-webflow",
+      "local-obsidian",
+      "plan",
+      "restore",
+      "surfaces",
+      "history",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/orchestrator-steps.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+      "scratch/review-round-1.md",
+      "scratch/link-audit-logical.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+      ".skilled/skills/sk-git/graph-metadata.json",
+      "specs/sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills/decision-record.md",
+      "scratch/commit-message-webflow.txt",
+      "scratch/commit-message-obsidian.txt",
+      "specs/sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills/implementation-summary.md",
+      "specs/sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills/scratch/review-round-1.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/005-private-surface-skills/004-private-local-skills/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator-steps.md",
+        "kind": "doc",
+        "path": "scratch/orchestrator-steps.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-private-skill-roots.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/launcher-private-skill-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-round-1.md",
+        "kind": "doc",
+        "path": "scratch/review-round-1.md",
+        "source": "derived"
+      },
+      {
+        "name": "link-audit-logical.sh",
+        "kind": "script",
+        "path": "scratch/link-audit-logical.sh",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-guardrails.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message-webflow.txt",
+        "kind": "file",
+        "path": "scratch/commit-message-webflow.txt",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message-obsidian.txt",
+        "kind": "file",
+        "path": "scratch/commit-message-obsidian.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Webflow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shipped sk-code hub carried two large evidence surfaces, `.skilled/skills/sk-code/sk-code-webflow/` (1.5M) and `.skilled/skills/sk-code/sk-code-obsidian/` (504K), 226 tracked files together",
+    "created_at": "2026-10-23T07:03:40Z",
+    "last_save_at": "2026-11-10T05:20:39.493Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:462adbecd519b2acb1eac6af42f6311a0b3c3dff726bb2f99282ae9853e54142",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cef89be0a7fc3ec1e15d2abc604dced2040fd182ed9a9909e55ab00facaae605",
+      "plan.md": "8a5c49207ee0445c237093e65846ca3b4f32af666d898b426c279980e4544950",
+      "tasks.md": "f5d1cf865b9b6aa3d3d3bbac5f3f53184185f12ac30a3954ccd36c6d381792f9",
+      "decision-record.md": "a21069d7a9a1bcf43fe0990db74db8c5eb28a4f019bde70507c7188a61ca2c9d",
+      "implementation-summary.md": "97a3afba7718fcfa8c7448ce319d96f981f4e68bab04bdf024a0767b1f89b589"
+    },
+    "last_active_at": null
+  }
+}

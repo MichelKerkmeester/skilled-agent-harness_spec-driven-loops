@@ -374,7 +374,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
       "phrases": [
         "conformance rulings and gate repair decisions",
         "decision record"
@@ -383,7 +383,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
       "phrases": [
         "decision record",
         "header directive and structure sweep decisions"
@@ -392,7 +392,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
       "phrases": [
         "decision record",
         "portability and false green repair decisions"
@@ -401,7 +401,7 @@ exec
     },
     {
       "matchClass": "query-containment",
-      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "path": "specs/sk-code/verification-guards/001-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
       "phrases": [
         "boundaries containment and naming decisions",
         "decision record"

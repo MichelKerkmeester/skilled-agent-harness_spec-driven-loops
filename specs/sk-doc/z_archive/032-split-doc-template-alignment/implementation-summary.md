@@ -92,7 +92,7 @@ Commands: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folde
 
 ## Post-Completion Follow-Up
 - Sibling `sk-doc/017-smart-routing-mechanism-notes` completes Request 2.
-- **Content follow-ups surfaced by the xHigh verification review — ADDRESSED by sibling `sk-code/003-content-quality-remediation`.** The security-cookie contradiction, the unvalidated `script.src` loader, and the ~19 generic When-to-Use sections were content defects outside this packet's structural scope; they are now fixed in packet 020. A later xHigh confirmation round additionally cleaned 8 files with content before `## 1. OVERVIEW` and 6 over-long intros (structural, folded back into this packet).
+- **Content follow-ups surfaced by the xHigh verification review — ADDRESSED by sibling `sk-code/code-surfaces/001-content-quality-remediation`.** The security-cookie contradiction, the unvalidated `script.src` loader, and the ~19 generic When-to-Use sections were content defects outside this packet's structural scope; they are now fixed in packet 020. A later xHigh confirmation round additionally cleaned 8 files with content before `## 1. OVERVIEW` and 6 over-long intros (structural, folded back into this packet).
 
 ---
 

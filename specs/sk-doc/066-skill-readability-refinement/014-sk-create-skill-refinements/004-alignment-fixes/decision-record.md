@@ -34,19 +34,19 @@ _memory:
 
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
-| Q001 | Wait for the Codex usage limit to reset at 12:26 rather than switch executor. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals |
-| Q002 | Amend REQ-006 so native topic files cite their React Native check instead of a web-features Baseline status. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals REQ-006 |
-| Q003 | Make the orphan-signal check track only generated router signals, so hand-curated signals are never flagged. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes |
-| Q004 | Normalise hyphen and space in every routing matcher, not only the one that surfaced the bug. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations rank 11 |
-| Q005 | Make generate-trigger-index.mjs warn when the caller's git root differs from its own checkout, keeping the default root. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations rank 12 |
-| Q006 | Resolve the generated-file conflicts by re-minting the manifests and copies after the merge. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals |
-| Q007 | Regenerate both conflicted generated files from the merged tree instead of picking a side. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals |
-| Q008 | Remove the Angular-specific rules from the generic web layer. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals, sk-code-frontend web layer |
-| Q009 | Split the 15 research iterations into 8 on DeepSeek V4.1 Flash max and 7 on Luna 6 xhigh. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research |
-| Q010 | Run every research iteration instead of stopping at convergence. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research |
-| Q011 | After the research, write a plan and ask before building. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research |
-| Q012 | Approve the research findings and build every fix it proposed. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research |
-| Q013 | Accept SC-002 reworded so only the checks that can flag the old cascade file must do so. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals SC-002 |
+| Q001 | Wait for the Codex usage limit to reset at 12:26 rather than switch executor. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals |
+| Q002 | Amend REQ-006 so native topic files cite their React Native check instead of a web-features Baseline status. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals REQ-006 |
+| Q003 | Make the orphan-signal check track only generated router signals, so hand-curated signals are never flagged. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/002-tooling-fixes |
+| Q004 | Normalise hyphen and space in every routing matcher, not only the one that surfaced the bug. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations rank 11 |
+| Q005 | Make generate-trigger-index.mjs warn when the caller's git root differs from its own checkout, keeping the default root. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/005-inferred-confirmations rank 12 |
+| Q006 | Resolve the generated-file conflicts by re-minting the manifests and copies after the merge. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals |
+| Q007 | Regenerate both conflicted generated files from the merged tree instead of picking a side. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals |
+| Q008 | Remove the Angular-specific rules from the generic web layer. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals, sk-code-frontend web layer |
+| Q009 | Split the 15 research iterations into 8 on DeepSeek V4.1 Flash max and 7 on Luna 6 xhigh. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research |
+| Q010 | Run every research iteration instead of stopping at convergence. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research |
+| Q011 | After the research, write a plan and ask before building. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research |
+| Q012 | Approve the research findings and build every fix it proposed. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/010-reference-readability-research |
+| Q013 | Accept SC-002 reworded so only the checks that can flag the old cascade file must do so. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals SC-002 |
 | Q014 | Have Luna audit and DeepSeek fix in each skill or mode phase. | Not stated. | None | specs/sk-doc/066-skill-readability-refinement/plan.md |
 | Q015 | Finish and commit phase 010 before starting the per-skill phases. | Not stated. | None | specs/sk-doc/066-skill-readability-refinement/010-sk-prompt |
 | Q016 | Read the restriction as executors only: work runs on cli-pi, cli-opencode and cli-codex, never Devin. | Not stated. | None | specs/sk-doc/066-skill-readability-refinement/goal.md |
@@ -68,8 +68,8 @@ _memory:
 | Q032 | Move the v4.0.1.0 tag to the new main head and replace its release notes. | Not stated. | None | specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes, .skilled/changelog/skilled/v4.0.1.0.md |
 | Q033 | Add one short line naming every skill and mode with a changelog entry to the v4.0.1.0 notes. | Not stated. | None | .skilled/changelog/skilled/v4.0.1.0.md |
 | Q034 | Record the session's operator answers in the 014/004 decision record. | Not stated. | None | specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/decision-record.md |
-| Q035 | Bring both web and native guidance into canonical sk-code. | Not stated. | None | specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode |
-| Q036 | Remove React Native from canonical Skilled, reversing the earlier choice to carry web and native guidance. | Not stated. Evidence: alternative, option True, overlap 1, imperative False, shift False. | None | specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode |
+| Q035 | Bring both web and native guidance into canonical sk-code. | Not stated. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode |
+| Q036 | Remove React Native from canonical Skilled, reversing the earlier choice to carry web and native guidance. | Not stated. Evidence: alternative, option True, overlap 1, imperative False, shift False. | None | specs/sk-code/code-surfaces/005-frontend-upstream-proposals/001-frontend-surface-mode |
 | Q037 | Fold the frontend work into the v4.0.1.0 notes and widen the alignment check so a missed entry is caught. | Not stated. Evidence: open_value, option not_applicable, overlap 1, imperative False, shift False. | None | .skilled/changelog/skilled/v4.0.1.0.md |
 | Q038 | Fix every upheld alignment finding, using DeepSeek Flash on LLM Gateway where an executor is needed. | Not stated. Evidence: yes_no, option True, overlap 1, imperative False, shift False. | None | specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes |
 | Q039 | Fix the items first left unfixed, including the alignment command's repo-root resolution. | Not stated. Evidence: yes_no, option False, overlap 0, imperative True, shift False. | None | specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes REQ-007 to REQ-009 |

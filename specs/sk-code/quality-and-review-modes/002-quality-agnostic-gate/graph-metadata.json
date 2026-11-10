@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/quality-and-review-modes/002-quality-agnostic-gate",
+  "spec_folder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate",
+  "parent_id": "sk-code/quality-and-review-modes",
+  "children_ids": [
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/001-honest-checker",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/002-builtin-runner",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/003-config-and-doctor",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/004-doctrine",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/005-consumers-and-routing",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/006-measurement",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/008-runner-limit-closeout",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/007-checker-debt-closeout",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/009-review-closeout",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/010-alignment-audit",
+    "sk-code/quality-and-review-modes/002-quality-agnostic-gate/011-alignment-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality agnostic gate phase parent spec",
+      "sk-code quality codebase agnostic",
+      "executable author gate",
+      "sk-code quality runner",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "quality",
+      "agnostic",
+      "gate",
+      "phase",
+      "parent",
+      "spec",
+      "sk-code",
+      "codebase",
+      "executable",
+      "author",
+      "runner",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/agents/code.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".github/workflows/comment-hygiene.yml",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+      ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+      ".skilled/skills/sk-code/shared/references/phase-detection.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+      ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/run-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "quality-defaults.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/lib/quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-quality-config.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-quality-config.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "phase-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/phase-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "universal-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-verify.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "ceiling-report.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
+    "created_at": "2026-10-25T23:21:45Z",
+    "last_save_at": "2026-11-10T05:20:41.223Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:c72075080288db33f0f578e78659f7bc50d9cf2f1b601d9adab9b0d49da2ae57",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "98310afe9ebadb7f1cfbb9e4dd50d794cc60876867538d0dbd7627fe6fef2b5d"
+    },
+    "last_active_at": null
+  }
+}

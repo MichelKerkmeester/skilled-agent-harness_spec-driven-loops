@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent disclosure",
+      "phase 3 agent disclosure",
+      "agent disclosure plan",
+      "agent disclosure tasks",
+      "agent disclosure goal",
+      "agent disclosure implementation summary"
+    ],
+    "key_topics": [
+      "agent",
+      "disclosure",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "agents",
+      "code",
+      "work",
+      "lag"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/agents/code.md",
+      ".skilled/agents/debug.md",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/code.md",
+      ".claude/agents/debug.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/code.toml",
+      "codex/sync-agents.cjs",
+      ".pi/agents/code.md",
+      "pi/sync-agents-pi.cjs",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure/implementation-summary.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure/goal.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure/description.json",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".skilled/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/008-round-two-recommendations/003-agent-disclosure/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The agents that do code work lag their own hub",
+    "created_at": "2026-10-10T06:56:30Z",
+    "last_save_at": "2026-11-10T05:20:13.657Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fb96b0bc3a096d79822ac9740cd35442cdfa7646ab1fa7b82f21256508fb674e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "46ab6ac778d04df2d80db84c9e56f1e8353542222b28708ed91d190810530be1",
+      "plan.md": "e99afd3c11add1a73b187a63cb357dd5c21e47526eec7d62aee87d826d78a8c6",
+      "tasks.md": "48e3d20a0410c5927dd453f62afbabd02e89045813e0515d3e2977486264cb03",
+      "implementation-summary.md": "d66f9eedd14c0ac22122b440fb9891defb3b4985d46c6c92882ae72601549c89"
+    },
+    "last_active_at": null
+  }
+}

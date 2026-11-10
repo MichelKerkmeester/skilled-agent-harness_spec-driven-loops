@@ -8247,7 +8247,7 @@
       "lastUpdated": "2026-08-30T05:43:10.281Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent",
       "description": "Code capability is split across two mature-but-uncoordinated skills",
       "keywords": [
         "code",
@@ -8261,7 +8261,7 @@
       "lastUpdated": "2026-08-15T14:40:56.656Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/001-research-and-context",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/001-research-and-context",
       "description": "The sk-code family's mode composition and migration path are undecided",
       "keywords": [
         "sk-code",
@@ -8275,7 +8275,7 @@
       "lastUpdated": "2026-08-29T15:04:31.432Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/002-architecture-decision",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/002-architecture-decision",
       "description": "Phase 001 produced a decision-ready recommendation but nothing binds it; the build phases need a single authoritative contract for the taxonomy,",
       "keywords": [
         "phase",
@@ -8294,7 +8294,7 @@
       "lastUpdated": "2026-08-29T15:04:31.419Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/003-scaffold-hub",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/003-scaffold-hub",
       "description": "The accepted architecture needed a safe intermediate state before content relocation",
       "keywords": [
         "accepted",
@@ -8309,7 +8309,7 @@
       "lastUpdated": "2026-08-29T15:04:31.414Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/004-onboard-implement",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/004-onboard-implement",
       "description": "After the parent-hub scaffold existed, the flat top-level `references/`, `assets/`, and `scripts/` directories still held the prior monolithic sk-code",
       "keywords": [
         "parent-hub",
@@ -8330,7 +8330,7 @@
       "lastUpdated": "2026-08-29T15:04:31.421Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/005-foldin-review",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/005-foldin-review",
       "description": "After the review package moved under the `sk-code` parent hub, the runtime docs still carried standalone `sk-code-review` identity",
       "keywords": [
         "review",
@@ -8350,7 +8350,7 @@
       "lastUpdated": "2026-08-29T15:04:31.404Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/006-build-remaining-modes",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/006-build-remaining-modes",
       "description": "The hub is routing-only and the surface detection lives in `shared/`, but the four non-review mode packets were still 57-line placeholders",
       "keywords": [
         "hub",
@@ -8370,7 +8370,7 @@
       "lastUpdated": "2026-08-29T15:04:31.424Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/007-advisor-and-integration",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/007-advisor-and-integration",
       "description": "The relocation (004) and fold (005) moved or deleted files that external code and docs still referenced by their old paths",
       "keywords": [
         "relocation",
@@ -8389,7 +8389,7 @@
       "lastUpdated": "2026-08-29T15:04:31.408Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/008-routing-benchmark-and-review",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/008-routing-benchmark-and-review",
       "description": "The restructured hub had never been benchmarked or reviewed as a family",
       "keywords": [
         "restructured",
@@ -8402,7 +8402,7 @@
       "lastUpdated": "2026-08-29T15:04:31.391Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/009-cutover-and-rollout",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/009-cutover-and-rollout",
       "description": "The cutover removes `sk-code-review` as a routing identity and cuts the release",
       "keywords": [
         "cutover",
@@ -8416,7 +8416,7 @@
       "lastUpdated": "2026-08-29T15:04:31.448Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/010-plugin-tui-fix",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/010-plugin-tui-fix",
       "description": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during",
       "keywords": [
         "opencode",
@@ -8433,7 +8433,7 @@
       "lastUpdated": "2026-08-29T15:04:31.442Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/011-hub-canon",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/011-hub-canon",
       "description": "The repo had competing parent-hub shapes: deep-loop-workflows' 3-tier machinery and the sk-design/sk-code 2-tier shape",
       "keywords": [
         "repo",
@@ -8451,7 +8451,7 @@
       "lastUpdated": "2026-08-29T15:04:31.435Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/012-spec-kit-relocation",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/012-spec-kit-relocation",
       "description": "Two spec-folder authoring docs lived under sk-code, but spec-folder authoring is system-spec-kit's domain, not a code surface",
       "keywords": [
         "two",
@@ -8468,7 +8468,7 @@
       "lastUpdated": "2026-08-29T15:04:31.416Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/013-sk-code-two-axis-restructure",
       "description": "The 124 cutover merged the sk-code parent hub with a workflow-only decomposition: implement, quality, debug, verify, and review",
       "keywords": [
         "cutover",
@@ -8487,7 +8487,7 @@
       "lastUpdated": "2026-08-29T15:04:31.412Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/014-close-out-and-tail",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/014-close-out-and-tail",
       "description": "The sk-code parent program had shipped its two-axis restructure, but the tail still carried stale identity labels, scorer tests from the pre-fold",
       "keywords": [
         "sk-code",
@@ -8509,7 +8509,7 @@
       "lastUpdated": "2026-08-29T15:04:31.402Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/015-sk-design-canon-alignment",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/015-sk-design-canon-alignment",
       "description": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode",
       "keywords": [
         "master",
@@ -8530,7 +8530,7 @@
       "lastUpdated": "2026-08-29T15:04:31.441Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/016-sk-code-content-coherence",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/016-sk-code-content-coherence",
       "description": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
       "keywords": [
         "master",
@@ -8545,7 +8545,7 @@
       "lastUpdated": "2026-08-29T15:04:31.447Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/017-canon-hardening",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/017-canon-hardening",
       "description": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
       "keywords": [
         "parent-hub",
@@ -8565,7 +8565,7 @@
       "lastUpdated": "2026-08-29T15:04:31.426Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/018-deep-loop-canon-alignment",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/018-deep-loop-canon-alignment",
       "description": "The deep-loop parent hub fails the parent-hub canon with 8 P0 findings and 26 strict invariant failures",
       "keywords": [
         "deep-loop",
@@ -8582,7 +8582,7 @@
       "lastUpdated": "2026-08-29T15:04:31.437Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/019-benchmarks-and-promotion",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/019-benchmarks-and-promotion",
       "description": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check",
       "keywords": [
         "parent-hub",
@@ -8602,7 +8602,7 @@
       "lastUpdated": "2026-08-29T15:04:31.439Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/020-surface-packet-rename",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/020-surface-packet-rename",
       "description": "After the phase 013 two-axis restructure, four sk-code sub-skills kept bare folder names \u2014 `review`, `webflow`, `opencode`, `animation` \u2014 while the",
       "keywords": [
         "phase",
@@ -8624,7 +8624,7 @@
       "lastUpdated": "2026-08-29T15:04:31.406Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
       "description": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold \u2014 the references and assets a correct route should load for each prompt",
       "keywords": [
         "sk-code",
@@ -8643,7 +8643,7 @@
       "lastUpdated": "2026-08-29T15:04:31.410Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/022-collapse-to-four-subskills",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/022-collapse-to-four-subskills",
       "description": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-skilled`, `code-webflow`, `code-animation`) and",
       "keywords": [
         "sk-code",
@@ -8666,7 +8666,7 @@
       "lastUpdated": "2026-08-29T15:04:31.444Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/023-sk-code-workflow-subskill-research",
       "description": "The sk-code parent hub exposes four WORKFLOW sub-skills \u2014 `code-implement`, `code-quality`, `code-debug`, `code-verify` \u2014 that carry the day-to-day",
       "keywords": [
         "sk-code",
@@ -8686,7 +8686,7 @@
       "lastUpdated": "2026-08-29T15:04:31.395Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
       "description": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP,",
       "keywords": [
         "two",
@@ -8706,7 +8706,7 @@
       "lastUpdated": "2026-08-29T15:04:31.423Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/025-code-quality-and-shared-research",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/025-code-quality-and-shared-research",
       "description": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle \u2014 judging whether code is correct, clean, and",
       "keywords": [
         "sk-code",
@@ -8727,7 +8727,7 @@
       "lastUpdated": "2026-08-29T15:04:31.428Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/026-code-quality-and-shared-implementation",
       "description": "The sibling research packet `025-code-quality-and-shared-research` ran ten capped-converged deep-research iterations and produced a ranked,",
       "keywords": [
         "sibling",
@@ -8745,7 +8745,7 @@
       "lastUpdated": "2026-08-29T15:04:31.393Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/027-code-skilled-refinement-research",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/027-code-skilled-refinement-research",
       "description": "`code-skilled` is not a generic docs packet \u2014 it is the playbook for writing and modifying code in this repository's own `.opencode/` tree: skills,",
       "keywords": [
         "code-skilled",
@@ -8765,7 +8765,7 @@
       "lastUpdated": "2026-08-30T09:31:56.124Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation",
+      "specFolder": "sk-code/hub-architecture/001-sk-code-parent/028-code-skilled-refinement-implementation",
       "description": "Execute the Fable-5-validated refinement backlog for the sk-code code-skilled surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes",
       "keywords": [
         "execute",
@@ -8782,7 +8782,7 @@
       "lastUpdated": "2026-08-29T15:04:31.419Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled",
       "description": "WS1: `sk-code`'s `code-skilled` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio",
       "keywords": [
         "ws1",
@@ -8802,7 +8802,7 @@
       "lastUpdated": "2026-08-29T15:04:31.362Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/001-research",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/001-research",
       "description": "Adding a language to `code-skilled` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART",
       "keywords": [
         "language",
@@ -8820,7 +8820,7 @@
       "lastUpdated": "2026-08-29T15:12:05.992Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/002-standard-docs",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/002-standard-docs",
       "description": "The research produced a complete Rust standard (section skeletons, consolidated rules, the four repo non-negotiables) but nothing is authored yet",
       "keywords": [
         "research",
@@ -8841,7 +8841,7 @@
       "lastUpdated": "2026-08-29T15:04:31.385Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/003-surface-routing",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/003-surface-routing",
       "description": "The `code-skilled/SKILL.md` surface router does not detect Rust files or route a RUST intent, so even with the Rust docs authored (phase 002) nothing",
       "keywords": [
         "code-skilled",
@@ -8862,7 +8862,7 @@
       "lastUpdated": "2026-08-29T15:04:31.368Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/004-parent-union-drift-guard",
       "description": "The parent hub keeps a union projection of every child's routing map, enforced by a drift-guard vitest",
       "keywords": [
         "parent",
@@ -8881,7 +8881,7 @@
       "lastUpdated": "2026-08-29T15:04:31.365Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang",
       "description": "Beyond the surface router and parent union, several tools independently classify languages (stack detection, the hub router, two Python verifiers, and",
       "keywords": [
         "beyond",
@@ -8904,7 +8904,7 @@
       "lastUpdated": "2026-08-29T15:04:31.387Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/006-gate-verification-rollup",
       "description": "The Rust upgrade is not \"done\" until every gate is green",
       "keywords": [
         "rust",
@@ -8918,7 +8918,7 @@
       "lastUpdated": "2026-08-29T15:04:31.382Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/007-code-skilled-rust-references",
       "description": "Four `code-skilled` Rust docs exceed 500 lines \u2014 `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571),",
       "keywords": [
         "four",
@@ -8934,7 +8934,7 @@
       "lastUpdated": "2026-08-29T15:04:31.388Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/008-code-skilled-other-references",
       "description": "Nine `code-skilled` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and",
       "keywords": [
         "nine",
@@ -8951,7 +8951,7 @@
       "lastUpdated": "2026-08-29T15:04:31.389Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references",
       "description": "Eleven `code-webflow/references/implementation/` docs exceed 500 lines (largest 1109)",
       "keywords": [
         "eleven",
@@ -8966,7 +8966,7 @@
       "lastUpdated": "2026-08-29T15:04:31.383Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/010-code-webflow-other-references",
       "description": "Eight code-webflow non-implementation docs exceed 500 lines (largest: debuggingworkflows 1940)",
       "keywords": [
         "eight",
@@ -8981,7 +8981,7 @@
       "lastUpdated": "2026-08-29T15:04:31.369Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/011-code-quality-and-flagged",
       "description": "`code-quality/assets/codequalitychecklist.md` (542 lines) is the last oversized reference/asset in the hygiene scope",
       "keywords": [
         "code-quality",
@@ -8998,7 +8998,7 @@
       "lastUpdated": "2026-08-29T15:04:31.386Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/012-gate-verification-rollup",
       "description": "WS2 (007-011) split 33 oversized reference/asset docs into 104 parts and rewired the router contract",
       "keywords": [
         "ws2",
@@ -9015,7 +9015,7 @@
       "lastUpdated": "2026-08-29T15:04:31.367Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates",
+      "specFolder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates",
       "description": "Add first-class sk-doc authoring support for the behavior_benchmark family: three fillable templates (index, scenario contract, baseline), an",
       "keywords": [
         "first-class",
@@ -9034,7 +9034,7 @@
       "lastUpdated": "2026-08-29T15:04:31.364Z"
     },
     {
-      "specFolder": "sk-code/003-content-quality-remediation",
+      "specFolder": "sk-code/code-surfaces/001-content-quality-remediation",
       "description": "Fix the pre-existing content-quality issues in sk-code code-webflow references surfaced by the 019 xHigh verification review \u2014 issues outside 019's",
       "keywords": [
         "pre-existing",
@@ -9052,7 +9052,7 @@
       "lastUpdated": "2026-08-29T15:12:06.555Z"
     },
     {
-      "specFolder": "sk-code/004-code-conformance-alignment",
+      "specFolder": "sk-code/verification-guards/001-code-conformance-alignment",
       "description": "The sk-code `code-skilled` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical",
       "keywords": [
         "sk-code",
@@ -9071,7 +9071,7 @@
       "lastUpdated": "2026-08-29T15:04:31.717Z"
     },
     {
-      "specFolder": "sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
+      "specFolder": "sk-code/verification-guards/001-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
       "description": "Three enforcement mechanisms for the `code-skilled` standard failed independently and simultaneously, and nothing noticed",
       "keywords": [
         "three",
@@ -9088,7 +9088,7 @@
       "lastUpdated": "2026-09-07T16:14:46.538Z"
     },
     {
-      "specFolder": "sk-code/004-code-conformance-alignment/002-comment-hygiene-durable-why",
+      "specFolder": "sk-code/verification-guards/001-code-conformance-alignment/002-comment-hygiene-durable-why",
       "description": "The governing standard states verbatim that ephemeral-artifact pointers in code comments are a HARD-BLOCK gate, naming spec paths and ADR,",
       "keywords": [
         "governing",
@@ -9109,7 +9109,7 @@
       "lastUpdated": "2026-08-29T15:04:31.720Z"
     },
     {
-      "specFolder": "sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep",
+      "specFolder": "sk-code/verification-guards/001-code-conformance-alignment/003-header-directive-and-structure-sweep",
       "description": "The JavaScript style guide states that all JavaScript files MUST begin with a boxed header identifying the module, 78 characters wide, immediately",
       "keywords": [
         "javascript",
@@ -9130,7 +9130,7 @@
       "lastUpdated": "2026-09-07T16:14:46.545Z"
     },
     {
-      "specFolder": "sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair",
+      "specFolder": "sk-code/verification-guards/001-code-conformance-alignment/004-portability-and-false-green-repair",
       "description": "Four spec-kit audit helpers hard-code the same absolute developer checkout root \u2014 seven `/Users/\u2026` literals across four files \u2014 so they work on",
       "keywords": [
         "four",
@@ -9153,7 +9153,7 @@
       "lastUpdated": "2026-09-07T16:14:46.541Z"
     },
     {
-      "specFolder": "sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming",
+      "specFolder": "sk-code/verification-guards/001-code-conformance-alignment/005-boundaries-containment-and-naming",
       "description": "Four defect classes here share one property: the standard states what to do, and the code does something else that a machine cannot mechanically",
       "keywords": [
         "four",
@@ -9174,7 +9174,7 @@
       "lastUpdated": "2026-09-07T16:14:46.543Z"
     },
     {
-      "specFolder": "sk-code/005-dist-staleness-rebuild-on-drift",
+      "specFolder": "sk-code/verification-guards/002-dist-staleness-rebuild-on-drift",
       "description": "Make the dist-staleness guard self-heal a stale checked-out build at session start instead of only printing a warning that persists across sessions.",
       "keywords": [
         "dist-staleness",
@@ -9195,7 +9195,7 @@
       "lastUpdated": "2026-08-29T15:12:05.973Z"
     },
     {
-      "specFolder": "sk-code/006-dist-guard-skip-unprovisioned",
+      "specFolder": "sk-code/verification-guards/003-dist-guard-skip-unprovisioned",
       "description": "Teach the dist-staleness checker to report a package as unprovisioned (skip) instead of stale when it is not buildable in this checkout, so bare",
       "keywords": [
         "teach",
@@ -9214,7 +9214,7 @@
       "lastUpdated": "2026-08-29T15:12:05.972Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface",
       "description": "Code work on this plugin resolves to the `UNKNOWN` surface",
       "keywords": [
         "code",
@@ -9227,7 +9227,7 @@
       "lastUpdated": "2026-08-29T15:04:31.727Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/001-surface-design-plan",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/001-surface-design-plan",
       "description": "`sk-code-obsidian` cannot be authored correctly on the first attempt without first grounding every",
       "keywords": [
         "sk-code-obsidian",
@@ -9243,7 +9243,7 @@
       "lastUpdated": "2026-08-29T15:04:31.740Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/002-repo-convention-audit",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/002-repo-convention-audit",
       "description": "A surface packet that describes conventions the tree does not have is worse than none: it reads as",
       "keywords": [
         "surface",
@@ -9258,7 +9258,7 @@
       "lastUpdated": "2026-08-29T15:04:31.738Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/003-hub-wiring",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/003-hub-wiring",
       "description": "Before this phase, `sk-code`'s router had no `OBSIDIAN` surface",
       "keywords": [
         "phase",
@@ -9270,7 +9270,7 @@
       "lastUpdated": "2026-08-29T15:04:31.738Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/004-skill-core",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/004-skill-core",
       "description": "`sk-code-obsidian/` exists only as a `.gitkeep`",
       "keywords": [
         "sk-code-obsidian",
@@ -9281,7 +9281,7 @@
       "lastUpdated": "2026-08-29T15:04:31.732Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/005-references-stack",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/005-references-stack",
       "description": "`sk-code-obsidian/SKILL.md` (phase `004-skill-core`) names twelve references in its \u00a72 REFERENCE",
       "keywords": [
         "sk-code-obsidian",
@@ -9296,7 +9296,7 @@
       "lastUpdated": "2026-08-29T15:04:31.743Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/006-assets-checklists",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/006-assets-checklists",
       "description": "`sk-code-obsidian/SKILL.md` \u00a74 already advertises on-demand checklists (`assets/.md`), and",
       "keywords": [
         "sk-code-obsidian",
@@ -9310,7 +9310,7 @@
       "lastUpdated": "2026-08-29T15:04:31.742Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/007-manual-testing-playbook",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/007-manual-testing-playbook",
       "description": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all \u2014 `../goal.md` \u00a76",
       "keywords": [
         "phase",
@@ -9321,7 +9321,7 @@
       "lastUpdated": "2026-08-29T15:04:31.736Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/008-scanners-and-gates",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates",
       "description": "`002-repo-convention-audit/audit.json` measured the plugin's target conventions as entirely",
       "keywords": [
         "002-repo-convention-audit",
@@ -9336,7 +9336,7 @@
       "lastUpdated": "2026-08-29T15:04:31.741Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/009-banners-and-folder-docs",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/009-banners-and-folder-docs",
       "description": "Phase 008 built `scan-folder-docs.mjs`, which reported 19 violations against the tree: every source",
       "keywords": [
         "phase",
@@ -9352,7 +9352,7 @@
       "lastUpdated": "2026-08-29T15:04:31.729Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/010-kebab-rename",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/010-kebab-rename",
       "description": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
       "keywords": [
         "phase",
@@ -9367,7 +9367,7 @@
       "lastUpdated": "2026-08-29T15:04:31.735Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/011-changelog-and-verification",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/011-changelog-and-verification",
       "description": "Ten phases landed a new surface packet, its hub wiring, and a set of source conventions applied to",
       "keywords": [
         "ten",
@@ -9386,7 +9386,7 @@
       "lastUpdated": "2026-08-29T15:04:31.733Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/012-doc-template-conformance",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/012-doc-template-conformance",
       "description": "Phase 011 closed the packet's first ten phases with a live gate re-run, but named two phases still",
       "keywords": [
         "phase",
@@ -9405,7 +9405,7 @@
       "lastUpdated": "2026-08-29T15:04:31.731Z"
     },
     {
-      "specFolder": "sk-code/007-sk-code-obsidian-surface/013-surface-reality-conformance",
+      "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/013-surface-reality-conformance",
       "description": "Phase 010 renamed 235 files across the plugin tree to enforce kebab-case, and every plugin-side gate",
       "keywords": [
         "phase",
@@ -9423,7 +9423,7 @@
       "lastUpdated": "2026-08-29T15:04:31.745Z"
     },
     {
-      "specFolder": "sk-code/008-sk-code-mobile-cli-mode",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode",
       "description": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
       "keywords": [
         "code",
@@ -9439,7 +9439,7 @@
       "lastUpdated": "2026-08-29T15:04:31.747Z"
     },
     {
-      "specFolder": "sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan",
       "description": "This phase plans, but does not build, a new mode under the sk-code parent hub, purely for Mobile-CLI app work (apps/pi-remote-web/ and its siblings),",
       "keywords": [
         "phase",
@@ -9460,7 +9460,7 @@
       "lastUpdated": "2026-08-30T07:14:53.621Z"
     },
     {
-      "specFolder": "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/002-scripts-ownership",
       "description": "Decision packet answering whether the Mobile CLI verification tooling in scripts/ (token-identity, the *-cdp render gates, naming/scan-*,",
       "keywords": [
         "decision",
@@ -9482,7 +9482,7 @@
       "lastUpdated": "2026-09-04T17:50:16.991Z"
     },
     {
-      "specFolder": "sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment",
+      "specFolder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/003-skill-doc-alignment",
       "description": "Seven docs in the `sk-code-mobile-cli` skill lag the `sk-create-skill` v4 asset, reference, and readme",
       "keywords": [
         "seven",

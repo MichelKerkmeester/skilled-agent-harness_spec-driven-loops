@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quality mode",
+      "phase 3 quality mode",
+      "quality mode plan",
+      "quality mode tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "quality mode implementation summary"
+    ],
+    "key_topics": [
+      "quality",
+      "mode",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/scripts/install-git-hooks.sh",
+      ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+      ".claude/settings.json",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/README.md",
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/dispatch-units.json",
+      "scripts/README.md",
+      "scratch/fix-units.json",
+      "scratch/fix-units-applied.json",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+      ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.1.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units.json",
+        "kind": "config",
+        "path": "scratch/fix-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units-applied.json",
+        "kind": "config",
+        "path": "scratch/fix-units-applied.json",
+        "source": "derived"
+      },
+      {
+        "name": "examples-and-maintenance.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-quality-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The quality mode owns the comment-hygiene gate, yet its `SKILL.md` names `scripts/hooks/claude-posttooluse.sh` as the write-time warning and `.skilled/hooks/git/pre-commit` as the pre-commit block (lines 132, 133 and 136, plus lines 94, 112 and 322)",
+    "created_at": "2026-10-10T10:07:19Z",
+    "last_save_at": "2026-11-10T05:20:17.075Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:31eeb9592fad0450518416dba7822b9dae03382e15be1be709d0822d5a532a84",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2a44b563c67056c093fe991a65b9d8264e488bb35f4c1af29bf68ad222b1e1c9",
+      "plan.md": "604e26866c595695b632d951e5b2c3be6d01521b9efb77eabdc3ce94c70926e5",
+      "tasks.md": "aece17e7d854821b9ca56475a7482185c014f17e213d3c5399ebbe73fd591d24",
+      "implementation-summary.md": "c1594f341ff0f942f7cb1b71176c2cdd1e0ff423e2e05a704c6fc2b2a5f0ff27"
+    },
+    "last_active_at": null
+  }
+}

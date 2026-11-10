@@ -48,13 +48,13 @@
       ".skilled/skills/sk-code/description.json",
       ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
       ".skilled/skills/sk-code/hub-router.json",
-      ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/README.md",
-      ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md",
       ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/sk-code-ci/README.md",
       ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md"
+      ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.1.0.md"
     ],
     "entities": [
       {
@@ -136,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor-ci-report.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-code/manual-testing-playbook/doctor-commands/doctor-ci-report.md",
-        "source": "derived"
-      },
-      {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
@@ -157,6 +151,12 @@
         "name": "v1.1.0.0.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-quality/changelog/v1.4.1.0.md",
         "source": "derived"
       },
       {
@@ -202,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The CI workflow-efficiency program (`specs/system-speckit/039-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/013-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes",
+    "causal_summary": "The CI workflow-efficiency program (`specs/system-speckit/039-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/hub-architecture/005-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes",
     "created_at": "2026-10-25T21:51:38Z",
-    "last_save_at": "2026-10-31T15:28:39.842Z",
+    "last_save_at": "2026-11-10T05:25:31.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +214,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a980aa2cc0b64e5d47579d3ed102c5a543673bcd191523c429bc4038f6dc85bd",
+    "source_fingerprint": "sha256:e531f18de65b0c9b3a59e4173652c1d6c54308066e7cf9ab3cfa6a1fc353a301",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d911d32d796b773ea22aa19b0bfef67ad80b725d180963f71f38da03ec0fca6",
-      "plan.md": "19bf2ec86d9d2f4a0affc3b1de927241937f72c311dfaa34bf96629c7f5d8e86",
+      "spec.md": "9c17b8bcf7d62c47ca5134262cc3dc27215bd3fd57905b99a39dca1a3e66ea09",
+      "plan.md": "1b727ec0b53e163f3824229e93ee09067c85f27b05d410a58d1023544218e904",
       "tasks.md": "8fa4992e62c2bd7d00832b4c9f67967b5803c194dfced74a78802346e6398bdd",
       "implementation-summary.md": "bef405e2dc26dae0851dd3c5d4f9ebbe6cc62bc892fe9d561b46104e7f136d8a"
     },

@@ -963,14 +963,14 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/sk-code/001-sk-code-parent/",
+      "from": ".opencode/specs/sk-code/hub-architecture/001-sk-code-parent/",
       "to": ".opencode/specs/sk-code/017-sk-code-parent/",
       "records": 217,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/sk-code/999-sk-code-parent/",
-      "to": ".opencode/specs/sk-code/001-sk-code-parent/",
+      "to": ".opencode/specs/sk-code/hub-architecture/001-sk-code-parent/",
       "records": 208,
       "agreement": 1
     },
@@ -3922,13 +3922,13 @@
     },
     {
       "from": "specs/sk-code/017-sk-code-parent/",
-      "to": "specs/sk-code/001-sk-code-parent/",
+      "to": "specs/sk-code/hub-architecture/001-sk-code-parent/",
       "records": 239,
       "agreement": 1
     },
     {
       "from": "specs/sk-code/018-rust-standards-for-code-skilled/",
-      "to": "specs/sk-code/002-rust-standards-for-code-skilled/",
+      "to": "specs/sk-code/hub-architecture/002-rust-standards-for-code-skilled/",
       "records": 125,
       "agreement": 1
     },

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture",
+  "spec_folder": "sk-code/hub-architecture",
+  "parent_id": "sk-code",
+  "children_ids": [
+    "sk-code/hub-architecture/001-sk-code-parent",
+    "sk-code/hub-architecture/002-rust-standards-for-code-skilled",
+    "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement",
+    "sk-code/hub-architecture/004-sk-code-skilled-rename",
+    "sk-code/hub-architecture/005-private-surface-skills"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "sk-code/hub-architecture"
+    ],
+    "causal_summary": "Container folder for sk-code/hub-architecture."
+  }
+}

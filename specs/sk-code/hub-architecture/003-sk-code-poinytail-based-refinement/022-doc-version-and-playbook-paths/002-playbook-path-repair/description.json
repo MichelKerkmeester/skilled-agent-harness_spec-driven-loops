@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair",
+  "description": "Phase 2: playbook-path-repair",
+  "keywords": [
+    "phase",
+    "playbook-path-repair"
+  ],
+  "lastUpdated": "2026-10-12T07:16:11.011Z",
+  "specId": "002",
+  "folderSlug": "playbook-path-repair",
+  "parentChain": [
+    "sk-code",
+    "011-sk-code-poinytail-based-refinement",
+    "022-doc-version-and-playbook-paths"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-10-26_08-16__deep-review-completed-conditional-with-1-p1-and-6.md"
+  ]
+}

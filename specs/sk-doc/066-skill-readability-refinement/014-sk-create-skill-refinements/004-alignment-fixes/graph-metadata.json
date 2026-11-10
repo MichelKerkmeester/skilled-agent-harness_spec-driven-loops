@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Two doctor test suites failed in CI because their fixture routers did not open with OVERVIEW, and `/doctor:sk-skill` converted references whose description restated the intro, which the strict render check fails",
     "created_at": "2026-11-05T16:15:37Z",
-    "last_save_at": "2026-11-05T19:19:56.364Z",
+    "last_save_at": "2026-11-10T05:25:31.083Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9efab37f185368ebdaca5a07d49f6f7ddec71dd561f3ae425431c66924e3932",
+    "source_fingerprint": "sha256:39492a3c9f92681ee441ea4ecbf6a383fba32e914f03b1568a41844a28d4fa68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0d6cd390db62e7eab12a279cc702496cfe039599c5c8cabd2705b1a23251fe0",
       "plan.md": "d9e9a7bdf4ece31df84b2d23f315c0fe48d034beeb4cc4b06f5df5d7cdd67418",
       "tasks.md": "de0dd2ca1cbf4dba84faf213e93359fe1341f61db7cdf125f28523f3dd5be771",
-      "decision-record.md": "dd7b106e5989ca5300e77f19e801237f44722c73d2f103b7b5da7267ceb1e08b",
+      "decision-record.md": "612a3a0258f2e03b0cc129d172e89884accfe824e81b3bde2a2f487762bfa0eb",
       "implementation-summary.md": "68640cacc8bc196ff74f03a28bb8a375dabcb989cf9ffa95f07b3ffa63fe68ad"
     },
     "last_active_at": null

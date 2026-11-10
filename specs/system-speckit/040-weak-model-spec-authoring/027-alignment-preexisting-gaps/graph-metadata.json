@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Two alignment runs on the phase 25 commit exposed three gaps that predate phase 25",
     "created_at": "2026-10-27T18:51:31Z",
-    "last_save_at": "2026-11-10T05:09:24.595Z",
+    "last_save_at": "2026-11-10T05:25:31.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea491a43963ec557c8ae3eedb710e316fdfb94f1f840e32e13b709fa8aebcbc6",
+    "source_fingerprint": "sha256:50d1836640e4ef24848401b8fa3ea76fa35228b60354385198e8f6babc61eabc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "449144b2091870fa904f59d2b18a361568028a8ee9f9cc5f82dca59f58662337",
       "plan.md": "705b8411668883c02c2d46db215584c3bda6d5ca0a0c0e20b3aee020118cc68d",
       "tasks.md": "c5a3b63915e68d9c58917aae36fd9c9c3fc9366d53e421571b4ef8ff1cffcbad",
-      "implementation-summary.md": "0a9e8b9d9982b85db286a501829741bac3910b0de38e66fdacc48476afd3a6ec"
+      "implementation-summary.md": "01431e765c11afb09a70204138d04e5422ce35b1ae0a80a35c9cfd26254df2dc"
     },
     "last_active_at": null
   }

@@ -27,7 +27,7 @@ evidence_manifest_digest: a59b57286f96f3bbf170e8f52b7818a58d89555a611a946f5e4f54
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-10-26
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-code quality gate on a CI workflow edit routes the quality mode at stage one and adds the CI standards at stage two
@@ -113,7 +113,7 @@ run the quality gate on my edited .github/workflows/ci.yml
 - `.skilled/skills/sk-code/ROUTER.md` - Surface intent signals and the four-reference CI resource map.
 - `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` - Stage-two surface replay used by step 3.
 - `.skilled/bin/compiled-route.cjs` - Compiled route front door.
-- `specs/sk-code/015-quality-agnostic-gate/005-consumers-and-routing/decision-record.md` - ADR-006, which records the stage-one single-route decision and the CI waiver.
+- `specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/005-consumers-and-routing/decision-record.md` - ADR-006, which records the stage-one single-route decision and the CI waiver.
 
 ---
 

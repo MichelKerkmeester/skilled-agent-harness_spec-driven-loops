@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/quality-and-review-modes/003-review-mode-followups",
+  "spec_folder": "sk-code/quality-and-review-modes/003-review-mode-followups",
+  "parent_id": "sk-code/quality-and-review-modes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review mode followups",
+      "sk code review follow ups cache key fallback",
+      "overall assessment contradicts status line",
+      "path-only workflow review routing",
+      "review mode followups plan",
+      "review mode followups tasks",
+      "review mode followups acceptance criteria",
+      "review mode followups implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "mode",
+      "followups",
+      "code",
+      "follow",
+      "ups",
+      "cache",
+      "key",
+      "fallback",
+      "overall",
+      "assessment",
+      "contradicts"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/agents/review.md",
+      ".skilled/agents/deep-review.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+      ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+      "scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".github/workflows/sk-code-script-tests.yml",
+      "specs/sk-code/quality-and-review-modes/001-code-modes-research/002-review-mode-research/research/research.md",
+      ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+      ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/clean-control.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-surface-hint.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-review-final-line.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-code-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "pr-state-dedup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-core.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "source": "derived"
+      },
+      {
+        "name": "clean-control.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/manual-testing-playbook/finding-accuracy/clean-control.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code-review research left six recommendations open after the operator closed the repo review profile",
+    "created_at": "2026-10-27T06:26:55Z",
+    "last_save_at": "2026-11-10T05:20:43.858Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8e62b5cd9ea15868a4421a99ae34d763bf0d07c03ad5dfa136873423324ad86c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7f6072ff529000e1df077ef3d1949a43354b564573e626a8578d7984bf9ae057",
+      "plan.md": "42d253d0b512b00b2906560b66e04e3fa27d05bfe577b45bd8bf3aaad7201e2f",
+      "tasks.md": "ce9799e1b179d2dda7e00537220d7f430f46b32fa2aa750f1aaae041ed602928",
+      "implementation-summary.md": "8cbdcbc5a26774b7c22740d5e107455f3c26e93eadbb3370ef7a86432a9f8626"
+    },
+    "last_active_at": null
+  }
+}

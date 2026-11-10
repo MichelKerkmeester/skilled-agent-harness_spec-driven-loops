@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — Design a doctor-style setup path for sk-git that lets a repository user adapt sk-git to their own repository, the way /doctor:sk-code setup lets them adapt sk-code. Study the sk-code precedent first: .skilled/commands/doctor/sk-code.md, .skilled/commands/doctor/scripts/sk-code-setup-check.cjs, the sk-code adaptation guide and the packets under specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build and 029-surface-setup-build. Then map every customizable part of sk-git (.skilled/skills/sk-git/: SKILL.md, hard-rules.json, the commit message template and its per-repository rules, the remote branch allowlist, worktree naming and provisioning, the Commit-Id allocator and its opt-in config, hook trust and skilled.trustRepoHooks, the global hooks under .skilled/scripts/git-hooks/ and the preflight advisory) and the existing /doctor:git command (.skilled/commands/doctor/git.md). For each part state what a user would want to change, where it is set today, what breaks when it is changed or removed, and what a read-only setup check would need to prove. Decide whether the setup belongs in /doctor:git as a new action or in a separate command, and name ideas to reject with the reason. Cite path:line for every claim. End the synthesis with proposed implementation phases."
+title: "Resource Map — Design a doctor-style setup path for sk-git that lets a repository user adapt sk-git to their own repository, the way /doctor:sk-code setup lets them adapt sk-code. Study the sk-code precedent first: .skilled/commands/doctor/sk-code.md, .skilled/commands/doctor/scripts/sk-code-setup-check.cjs, the sk-code adaptation guide and the packets under specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build and 029-surface-setup-build. Then map every customizable part of sk-git (.skilled/skills/sk-git/: SKILL.md, hard-rules.json, the commit message template and its per-repository rules, the remote branch allowlist, worktree naming and provisioning, the Commit-Id allocator and its opt-in config, hook trust and skilled.trustRepoHooks, the global hooks under .skilled/scripts/git-hooks/ and the preflight advisory) and the existing /doctor:git command (.skilled/commands/doctor/git.md). For each part state what a user would want to change, where it is set today, what breaks when it is changed or removed, and what a read-only setup check would need to prove. Decide whether the setup belongs in /doctor:git as a new action or in a separate command, and name ideas to reject with the reason. Cite path:line for every claim. End the synthesis with proposed implementation phases."
 description: "Auto-generated research resource map from convergence evidence."
 ---
 # Resource Map
@@ -108,10 +108,10 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md | Cited | OK | Citations=2; Iterations=2 |
-| specs/sk-code/011-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md | Cited | OK | Citations=2; Iterations=2 |
-| specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/005-external-user-guide/spec.md | Cited | OK | Citations=2; Iterations=2 |
+| specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/028-surface-setup-hardening-research/research/research.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup/spec.md | Cited | OK | Citations=2; Iterations=2 |
+| specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/spec.md | Cited | OK | Citations=1; Iterations=1 |
 
 ---
 

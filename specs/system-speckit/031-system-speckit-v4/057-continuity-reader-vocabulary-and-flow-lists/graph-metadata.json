@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Of 2484 continuity blocks in tracked implementation summaries outside `zarchive`, only 180 passed the reader's checks",
     "created_at": "2026-09-24T04:52:36Z",
-    "last_save_at": "2026-10-31T13:27:06.563Z",
+    "last_save_at": "2026-11-10T05:25:31.365Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d3e55f49ad5294d9af8f5947c03bed2b7d3d108075b6ae1b58794eee22c3318",
+    "source_fingerprint": "sha256:fe9ea4095d77f8874bc70ee6571415f397bcbf50ae6b70e16ccb138d25631c54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df21ba116b88dcaf4c8a0daf9535601409407b8b87391f373bbec69d9b6476cd",
       "plan.md": "07e7d4b81fb9e13f63528e83f88f4d81a2cb87415f71e3c2a77177f586c75ee9",
       "tasks.md": "5b6cc60841e9b73cf845fba23923c62990e235accec3a456e3ba500c5098eeb9",
-      "implementation-summary.md": "73904c969f0831bc09841101a7ca585df8371d0e948fa41e5a4a86b2143b5d0a"
+      "implementation-summary.md": "0b5558c891416ec9cbc1ef6d3921e203bf4b1f776cca1e17f9c30470f46903e4"
     },
     "last_active_at": null
   }

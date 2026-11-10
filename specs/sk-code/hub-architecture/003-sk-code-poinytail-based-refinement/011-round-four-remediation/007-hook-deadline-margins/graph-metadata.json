@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/007-hook-deadline-margins",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook deadline margins",
+      "phase 7 hook deadline margins",
+      "hook deadline margins plan",
+      "hook deadline margins tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hook deadline margins implementation summary"
+    ],
+    "key_topics": [
+      "hook",
+      "deadline",
+      "margins",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/codex/shared.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/codex/session-start.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared-stdin.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-adapter-shared.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-adapter-shared.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/codex/session-start.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-classify.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`runtime/hooks/claude/user-prompt-submit.ts` reads stdin with a `readSync(0, ...)` loop, so a host that keeps stdin open holds it until the host kills it",
+    "created_at": "2026-10-10T14:44:47Z",
+    "last_save_at": "2026-11-10T05:20:19.854Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a4fdd8ad3e94582542cc46df4e1b3bcd6c2d6dbf43613b56c0103cb10ca3c9ba",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "52c69001816398bd07651e91ee85c315cd0728e73fcbcb6d79a96887745605eb",
+      "plan.md": "a6b5235ad01d5b2dccbbb9bfeca26848fa680a09a7b7db7f6eb79d548c50d8e4",
+      "tasks.md": "1f32078e1f47c3a87475d78e20a7aa93d7e6657b5a5b8130bee84bb57257c138",
+      "implementation-summary.md": "776fcf78c60f914e4c620f82634524120a1fd31c150a53944089a7c857092090"
+    },
+    "last_active_at": null
+  }
+}

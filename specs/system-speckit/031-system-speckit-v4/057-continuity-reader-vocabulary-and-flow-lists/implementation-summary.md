@@ -104,7 +104,7 @@ The reader was run over every tracked summary before and after the change, which
 ## Known Limitations
 
 1. **One more completion conflict is now visible.** Blocks reporting inconsistent completion rose from 9 to 10: a block that says 100 percent complete but lists a blocker in a flow list was invisible before, because its list failed first.
-2. **12 summaries still cannot be parsed.** Eleven sit under `specs/sk-code/001-sk-code-parent/` and one under a `026` packet; their YAML is broken in ways this phase does not address.
+2. **12 summaries still cannot be parsed.** Eleven sit under `specs/sk-code/hub-architecture/001-sk-code-parent/` and one under a `026` packet; their YAML is broken in ways this phase does not address.
 <!-- /ANCHOR:limitations -->
 
 ---

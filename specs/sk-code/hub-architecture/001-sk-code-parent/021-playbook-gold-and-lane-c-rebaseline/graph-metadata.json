@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+  "spec_folder": "sk-code/hub-architecture/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
+  "parent_id": "sk-code/hub-architecture/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code playbook gold rebaseline",
+      "lane-c router-final regenerate",
+      "playbook gold code-surface translation",
+      "phase 21 playbook gold plan",
+      "sk-code playbook gold rebaseline plan",
+      "lane-c router-final plan",
+      "phase 21 tasks",
+      "sk-code playbook gold tasks",
+      "lane-c router-final tasks",
+      "phase 21 implementation summary",
+      "sk-code playbook gold summary",
+      "lane-c router-final summary"
+    ],
+    "key_topics": [
+      "sk-code",
+      "playbook",
+      "gold",
+      "rebaseline",
+      "lane-c",
+      "router-final",
+      "regenerate",
+      "code-surface",
+      "translation",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md",
+      ".opencode/skills/sk-code/benchmark/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Translate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
+    "created_at": "2026-07-05T19:09:55.824Z",
+    "last_save_at": "2026-11-10T05:20:09.992Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f79c76ea32e6bcc03085eca15937b21802e4e7c1793fe01b86dbd540a31ee227",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "469bae7654e6baaa123c73fa9d0336ff5f64569b8c3ec6bb9a9d74f019d165e8",
+      "plan.md": "60f8c79efbcec186c1476bd085a1aac94788ee50ec73f911329973f5ddfd6704",
+      "tasks.md": "487bcd0ae7860453f437cfbc0c44ba4c46872be741b1fdcbf087a050818ec657",
+      "implementation-summary.md": "c8e5315dc2f5f6fe50fe8c5fcc729e15449991ade77165e3fe8e75e3eaec10df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

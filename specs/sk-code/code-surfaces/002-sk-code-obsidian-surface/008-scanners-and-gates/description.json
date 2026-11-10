@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/code-surfaces/002-sk-code-obsidian-surface/008-scanners-and-gates",
+  "description": "`002-repo-convention-audit/audit.json` measured the plugin's target conventions as entirely",
+  "keywords": [
+    "002-repo-convention-audit",
+    "audit",
+    "json",
+    "measured",
+    "plugin",
+    "target",
+    "conventions",
+    "entirely"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.741Z",
+  "specId": "008",
+  "folderSlug": "scanners-and-gates",
+  "parentChain": [
+    "sk-code",
+    "007-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

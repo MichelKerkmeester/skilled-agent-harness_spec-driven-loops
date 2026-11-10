@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode",
+  "spec_folder": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode",
+  "parent_id": "sk-code/code-surfaces",
+  "children_ids": [
+    "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan",
+    "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/002-scripts-ownership",
+    "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/003-skill-doc-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code mobile-cli mode",
+      "dedicated sk-code mode",
+      "mobile-cli app work"
+    ],
+    "key_topics": [
+      "sk-code",
+      "mobile-cli",
+      "mode",
+      "dedicated",
+      "app",
+      "work",
+      "code",
+      "apps",
+      "pi-remote-web",
+      "detects",
+      "generic",
+      "frontend"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-code/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "App Work",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
+    "created_at": "2026-08-17T05:11:33.008Z",
+    "last_save_at": "2026-11-10T05:20:03.478Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2bdbdc3755130f5c793ac0f13ec3d3b64e4e3c79f4e50fa6b979269e63386a57",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ddeca76c4a7dcf677c435c73080e13266312e5aca95597b28f6defb98a36299e"
+    },
+    "last_active_child_id": "sk-code/code-surfaces/003-sk-code-mobile-cli-mode/001-mode-design-plan",
+    "last_active_at": null
+  }
+}

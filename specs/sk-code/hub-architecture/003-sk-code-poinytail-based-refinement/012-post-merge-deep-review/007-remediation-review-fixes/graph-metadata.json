@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remediation review fixes",
+      "phase 7 remediation review fixes",
+      "remediation review fixes plan",
+      "remediation review fixes tasks",
+      "remediation review fixes goal",
+      "remediation review fixes implementation summary"
+    ],
+    "key_topics": [
+      "remediation",
+      "review",
+      "phase",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation",
+      "summary",
+      "sk-git",
+      "open-stdin",
+      "test",
+      "passed"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+      ".skilled/hooks/shared/README.md",
+      ".skilled/skills/sk-git/scripts/hooks/README.md",
+      ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections/implementation-summary.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections/spec.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/001-hook-stdin-deadlines/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-stdin-deadline.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-stdin-deadline.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.8.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.8.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-git open-stdin test passed against the unfixed preflight hook when a kill-switch was set, because the hook exits before reading stdin and the test kept the parent's environment and asserted only an upper bound",
+    "created_at": "2026-10-10T23:55:14Z",
+    "last_save_at": "2026-11-10T05:20:20.383Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13417dd3f822a82c5f1703362046399253e88372e9d1962f9c10b9843c7b913f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "45647f9953a361ee46fdaf50efadf04ce66f32c7a3bcf52d180390a23735aa5f",
+      "plan.md": "b8f4ed3364ff50702c47bfb3f6397d47b029572ddf357290d72e3261bcc2a4c8",
+      "tasks.md": "0c34b3bae7656ede540f4cd86a1c2ec8e26bd36e350b20bd8bbbc83c49567f21",
+      "implementation-summary.md": "c5373593b7d64bfdc87646d2d07778639a8b4de6128b9537067470754f884600"
+    },
+    "last_active_at": null
+  }
+}

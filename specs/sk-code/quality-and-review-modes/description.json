@@ -1,0 +1,19 @@
+{
+  "level": "sub-track",
+  "specFolder": "sk-code/quality-and-review-modes",
+  "description": "Make the sk-code quality, review and CI modes repo-agnostic, portable and evidence-driven, from research through executable gate and follow-up fixes.",
+  "keywords": [
+    "quality",
+    "and",
+    "review",
+    "modes"
+  ],
+  "lastUpdated": "2026-11-10T05:19:58.673Z",
+  "specId": "sk-code/quality-and-review-modes",
+  "folderSlug": "quality-and-review-modes",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

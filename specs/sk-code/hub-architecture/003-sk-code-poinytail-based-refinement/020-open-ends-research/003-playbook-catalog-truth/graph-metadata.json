@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research/003-playbook-catalog-truth",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/020-open-ends-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook catalog truth",
+      "playbook drift self check",
+      "feature catalog traceability",
+      "phase 3 playbook catalog truth",
+      "playbook catalog truth plan",
+      "playbook catalog truth tasks",
+      "playbook catalog truth goal",
+      "playbook catalog truth implementation summary",
+      "playbook catalog truth synthesis",
+      "playbook drift self check research",
+      "feature catalog anchor drift"
+    ],
+    "key_topics": [
+      "playbook",
+      "catalog",
+      "truth",
+      "drift",
+      "self",
+      "check",
+      "feature",
+      "traceability",
+      "phase",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      ".skilled/commands/design/diagram.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/018-create-sh-unknown-options/spec.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/003-admission-gold/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagram.md",
+        "kind": "doc",
+        "path": ".skilled/commands/design/diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Manual",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Manual-testing playbooks and feature catalogs drift from reality silently",
+    "created_at": "2026-10-11T15:54:54Z",
+    "last_save_at": "2026-11-10T05:20:34.696Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b15d969f35c328e7debcc8111d76db4d31a19553a52ab6279339115ec7188bed",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "789bb34181c1e03d8864690f49b395d827f32dc397f7e8c071cf4df1b8b94f0d",
+      "plan.md": "8fbb4e3e3765c160dbac0590823a6a10b8e382b8a942ee592f97093fd5b3a6e7",
+      "tasks.md": "ab2850416fdbfc950c2618ed2e5671a859ffb3a249cae1add1cdd366236ec926",
+      "implementation-summary.md": "6f15a0f6490eba22ec0998b5c3d8a8d993cb7957c4d15bac428c242fc95a58ba",
+      "research/research.md": "819250c1465d058864b998afc132f54521d9fccc4b20a3e11bcbe67cf2a0d460"
+    },
+    "last_active_at": null
+  }
+}

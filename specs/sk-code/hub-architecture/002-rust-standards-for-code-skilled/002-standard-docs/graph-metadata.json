@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/002-standard-docs",
+  "spec_folder": "sk-code/hub-architecture/002-rust-standards-for-code-skilled/002-standard-docs",
+  "parent_id": "sk-code/hub-architecture/002-rust-standards-for-code-skilled",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 002 rust standard docs",
+      "author rust trio code-skilled",
+      "rust checklist and playbook authoring",
+      "018 phase 002 plan",
+      "rust standard docs plan",
+      "018 phase 002 tasks",
+      "rust standard docs checklist",
+      "018 rust standard docs summary",
+      "rust trio checklist playbook outcome",
+      "rust standard docs complete"
+    ],
+    "key_topics": [
+      "phase",
+      "rust",
+      "standard",
+      "docs",
+      "author",
+      "trio",
+      "code-skilled",
+      "checklist",
+      "playbook",
+      "authoring",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Standard Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Author",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "authoring",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The research produced a complete Rust standard (section skeletons, consolidated rules, the four repo non-negotiables) but nothing is authored yet",
+    "created_at": "2026-07-11T08:49:16.490Z",
+    "last_save_at": "2026-11-10T05:20:10.272Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90d4b3cd03c99aac227183a6b4d14caeb497f141054fab7c2b9ec902a58b54b5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1191ca312074fd583d083712e327bbfc38d295aaf39d813521c9f5f3e569cbb8",
+      "plan.md": "f89972583dda07022fe77573475756b62219fdf9543116cd4b9b1b93e063628c",
+      "tasks.md": "1daf4b565ea0ff0e80cd6be24fe125d9b3d2776e905178951727795b5dad8b9a",
+      "implementation-summary.md": "cf826a0dabc11c3e73bc484e250e2aa567b07927af020d3e6c1824d80d2c27d0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

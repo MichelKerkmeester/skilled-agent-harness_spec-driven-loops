@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/verification-guards/001-code-conformance-alignment/003-header-directive-and-structure-sweep",
+  "spec_folder": "sk-code/verification-guards/001-code-conformance-alignment/003-header-directive-and-structure-sweep",
+  "parent_id": "sk-code/verification-guards/001-code-conformance-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "boxed header sweep",
+      "component header codemod",
+      "use strict directive sweep",
+      "portable shebang sweep",
+      "import group order sweep",
+      "header sweep plan",
+      "codemod lane gating",
+      "verify alignment drift baseline delta",
+      "behavior preservation header codemod",
+      "header sweep tasks",
+      "codemod lane tasks",
+      "census reconciliation tasks"
+    ],
+    "key_topics": [
+      "boxed",
+      "header",
+      "sweep",
+      "component",
+      "codemod",
+      "strict",
+      "directive",
+      "portable",
+      "shebang",
+      "import",
+      "group",
+      "order"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      ".claude/statusline-command.sh",
+      ".opencode/bin/git-sync.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "statusline-command.sh",
+        "kind": "script",
+        "path": ".claude/statusline-command.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structure Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The JavaScript style guide states that all JavaScript files MUST begin with a boxed header identifying the module, 78 characters wide, immediately followed by `'use strict';` for `.js` and `.cjs` files — and that `.mjs` and plugin ESM files do not take the directive",
+    "created_at": "2026-07-30T19:25:14.846Z",
+    "last_save_at": "2026-11-10T05:20:47.565Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:17ffb15d5d1deef897564e860f572b181792c37d8a9b67e48f04b7cff221625d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "61ff923f7a6e5a92e61d73955d8e8c2ac3a5319f8c40011e77a86e137183923c",
+      "plan.md": "b47669e3bbb8e95b6ff557501872858f21efe98be2fff81db402107913f94a84",
+      "tasks.md": "d83af480c2d72134205da9bda165e586fe1c8b46258a4a553cfe9440c35a08bd",
+      "decision-record.md": "8d89fdea2a53a12aefb6f844cd990bcd43a67d3e59b21d4e05df1f15e54d84c8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

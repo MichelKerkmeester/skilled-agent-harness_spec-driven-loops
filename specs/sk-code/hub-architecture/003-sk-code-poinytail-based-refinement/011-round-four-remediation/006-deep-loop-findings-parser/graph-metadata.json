@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop findings parser",
+      "phase 6 deep loop findings parser",
+      "deep loop findings parser plan",
+      "deep loop findings parser tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "deep loop findings parser implementation summary"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "findings",
+      "parser",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/iteration-findings.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
+      "scratch/dispatch-units.json",
+      "scratch/readers-after-review.txt",
+      "scratch/fix-units.json",
+      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/implementation-summary.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/goal.md",
+      "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/tasks.md",
+      "scratch/fixtures/iteration-indented.md",
+      "specs/system-speckit/z_archive/024-compact-code-graph/research/iterations/iteration-054.md",
+      "scratch/probe/survey-shapes.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-findings.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-findings.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/iteration-findings.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.4.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.4.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-units.json",
+        "kind": "config",
+        "path": "scratch/dispatch-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "readers-after-review.txt",
+        "kind": "file",
+        "path": "scratch/readers-after-review.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fix-units.json",
+        "kind": "config",
+        "path": "scratch/fix-units.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-indented.md",
+        "kind": "doc",
+        "path": "scratch/fixtures/iteration-indented.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-054.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/z_archive/024-compact-code-graph/research/iterations/iteration-054.md",
+        "source": "derived"
+      },
+      {
+        "name": "survey-shapes.cjs",
+        "kind": "file",
+        "path": "scratch/probe/survey-shapes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`parseIterationMarkdownFindings` (`iteration-findings.cjs` lines 5 to 32) trims every line of the `## Findings` section before matching `^\\d+\\.\\s+`, so a numbered sub-step indented under a finding counts as a finding of its own",
+    "created_at": "2026-10-10T14:44:46Z",
+    "last_save_at": "2026-11-10T05:20:17.476Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d542e66a551935eaf14a259160aa9cd39aae951e9d4fdd355fdb3ba3c3f18274",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fa56892dbb72a6a235784232d8f183201911f828387eb5b738569897f124f43d",
+      "plan.md": "06526518b6559f0705c2c6975f288887db9779a10215574ca30b05166dfb1caa",
+      "tasks.md": "bdc5b4ff56220e83bae189d26a8d5ea52d040591c503d9229c243ef158e58cb0",
+      "implementation-summary.md": "91030967a2e380676b2cb44d4fa6bdbfa44ecf8a47bb76819c1d7fd292aa3c01"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/025-external-surface-priority-research",
+  "spec_folder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/025-external-surface-priority-research",
+  "parent_id": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "external surface priority research",
+      "phase 25 external surface priority research",
+      "user surface outranks sk-code-skilled",
+      "obsidian and webflow are examples",
+      "sk-code surface order for external users",
+      "external surface priority research plan",
+      "external surface priority research tasks",
+      "external surface priority research goal",
+      "external surface priority research implementation summary",
+      "external surface priority research synthesis"
+    ],
+    "key_topics": [
+      "external",
+      "surface",
+      "priority",
+      "research",
+      "phase",
+      "user",
+      "outranks",
+      "sk-code-skilled",
+      "obsidian",
+      "webflow",
+      "examples",
+      "sk-code"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-config.json",
+      "research/findings-registry.json",
+      ".skilled/repo-rules/prevent-overengineering.md",
+      "research/lineages/dsflash-devin/iterations/iteration-001.md",
+      "research/lineages/luna-max-fast/iterations/iteration-001.md",
+      "research/lineages/swe2max-devin/iterations/iteration-001.md",
+      "research/lineages/luna-max-fast-r2/iterations/iteration-001.md",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/bin/compiled-route-sync.cjs",
+      "shared/README.md",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/bin/compiled-route.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/dsflash-devin/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v4.0.0.4 release note's \"One Surface Order Everywhere\" entry says every sk-code file that ranks the code surfaces lists OpenCode, then Obsidian, then Webflow, and that a keyword tie can be led by the session's surface through `compiled-route.cjs --surface-hint`",
+    "created_at": "2026-10-12T16:19:58Z",
+    "last_save_at": "2026-11-10T05:20:36.228Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8099545393fe81131719a8e0b011a4867b2a580cb84ad8ceb999a9a8e192aef3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3a560eb25e63a7eeebc49affea82959a7bf7887c3b77cc0984947475be2ec830",
+      "plan.md": "ccf0edf531b9b85069e63f7a2981fe841a6f980aee652e08d1a4b1988f3c5e4f",
+      "tasks.md": "40083cd0e6f235d8fbd2f9201967758a5266d29e5c80833ef9a6f5b0d477074e",
+      "implementation-summary.md": "17adb0e8c89cca4c617fbd12b3f08004cac90fc1c0d01a26174c9cc13a62b64d",
+      "research/research.md": "81a79937ab4937c8c10c779669aa2a2a4337204834addc07e4d25283ef180c3f"
+    },
+    "last_active_at": null
+  }
+}

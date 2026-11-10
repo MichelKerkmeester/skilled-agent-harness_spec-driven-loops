@@ -28,7 +28,7 @@ contextType: "general"
 | **Testing** | `parent-skill-check.cjs`, `verify-router-sync.cjs`, `node --test` compiled-route suites, the canary harness, the playbook router replay and `validate.sh --strict` |
 
 ### Overview
-The phase adds one read-only surface packet and then makes the hub aware of it in every place the hub records a packet. The packet is authored first, because `parent-skill-check` check 3c fails a registry entry whose folder is missing. Registration is additive: every task inserts `sk-code-ci` and preserves the entries already present, so the phase survives `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` landing before or after it. The proof is the hub's own battery, not a new test harness.
+The phase adds one read-only surface packet and then makes the hub aware of it in every place the hub records a packet. The packet is authored first, because `parent-skill-check` check 3c fails a registry entry whose folder is missing. Registration is additive: every task inserts `sk-code-ci` and preserves the entries already present, so the phase survives `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` landing before or after it. The proof is the hub's own battery, not a new test harness.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -174,7 +174,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Packet, Registration,
 |------------|------|--------|-------------------|
 | `002-rebuild-fanout-removal` (D1 answer) | Internal phase | Green | That phase freezes Option A as its default, so T002 records `d1: A` and T011 writes the token form; the rest of the packet is independent |
 | `004-setup-caching-provisioning` (R12 and R14) | Internal phase | Yellow | T002 records `composite_action: absent` and T012 writes `status: proposed`; AC-011 checks the status against the tree |
-| `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` | Sibling packet | Yellow | The registration tasks insert rather than rewrite; T003 and T004 record the pre-phase state; T064 re-runs the proof and T067 writes the follow-up |
+| `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` | Sibling packet | Yellow | The registration tasks insert rather than rewrite; T003 and T004 record the pre-phase state; T064 re-runs the proof and T067 writes the follow-up |
 | `gh` with `repo` | External CLI | Green | Only the ruleset read is lost; the required-context rationale is already in `research.md:94` |
 | Advisor daemon | Local runtime | Yellow | `ci-router-vocabulary-reach.cjs` is optional; the canary leg is the required reachability proof |
 <!-- /ANCHOR:dependencies -->
@@ -324,7 +324,7 @@ The formal records, with context, constraints, alternatives, five checks and the
 | ADR | Decision | Rationale |
 |-----|----------|-----------|
 | ADR-001 | A read-only surface packet, not a workflow mode | The rules are evidence two acting modes consume, and a surface's tool set is the only one that matches the job |
-| ADR-002 | Additive registration with a before and after snapshot | `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` edits the same five files, and insertion is the only order-independent operation |
+| ADR-002 | Additive registration with a before and after snapshot | `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` edits the same five files, and insertion is the only order-independent operation |
 | ADR-003 | The message-contract exception lives in rule data | The workflow is correct as written; the reader needs the standard, not a YAML comment |
 | ADR-004 | The playbook scenario lives in the packet, not the hub playbook | Router-sync leg 4 only walks packet-level playbooks, so a hub-level scenario would pass without being replayed |
 | ADR-005 | The rebuild-skip rule records the sibling default and names the alternative once | The form is `002-rebuild-fanout-removal`'s to choose; this phase records one actionable rule |

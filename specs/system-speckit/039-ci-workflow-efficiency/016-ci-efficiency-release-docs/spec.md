@@ -31,7 +31,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The CI workflow-efficiency program (`specs/system-speckit/039-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/013-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes. Several READMEs, feature catalogs, playbooks and the root README still describe the removed Webflow and Obsidian surfaces, or leave out `/doctor:ci`, the command that reports and toggles the CI switches.
+The CI workflow-efficiency program (`specs/system-speckit/039-ci-workflow-efficiency`), the private surface skill work (`specs/sk-code/hub-architecture/005-private-surface-skills`) and their companions reached main without changelog entries for eleven touched skills and modes. Several READMEs, feature catalogs, playbooks and the root README still describe the removed Webflow and Obsidian surfaces, or leave out `/doctor:ci`, the command that reports and toggles the CI switches.
 
 ### Purpose
 Each touched skill and mode gets a changelog entry at its decided version, and each doc that describes the changed surfaces matches main.

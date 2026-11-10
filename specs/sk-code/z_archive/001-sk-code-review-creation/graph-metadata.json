@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-code/z_archive/001-sk-code-review-creation",
   "spec_folder": "sk-code/z_archive/001-sk-code-review-creation",
-  "parent_id": "sk-code/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "Level 2 specification for converting the draft `legacy-single-hyphen-review` package into `sk-code-review`, aligning router behavior to `sk-doc` standards, and wiring `@review` workflows to a baseline+overlay model. ---",
     "created_at": "2026-04-12T09:02:50.217Z",
-    "last_save_at": "2026-10-07T19:23:52.141Z",
+    "last_save_at": "2026-11-10T05:20:48.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a38a7b5d47edb4f80a9c583ec8d59eb077e0c22424e4f69b63c3ffb3dbeccf87",
+    "source_fingerprint": "sha256:e3db37c06b64531660199c3798dd3e369d27da29371185e17553c427e88ec133",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95dd3eb79e9716d17450030104941a0c2512f4187986972c8d21e5a3baf6ecc8",
-      "plan.md": "370a6ab7f9f6b6e38ac9a40bd786cdde173690d2b50adcc20ac3db8522311cd7",
+      "spec.md": "0a6e3e6da2f8c2d59d03fb23baf47dc7d2c1ee8040154c1fed80a4bc627b7bf9",
+      "plan.md": "4e15989ba3dd6182cedbbb752754a5f59200df1098a490b6c8fb9710c40b021f",
       "tasks.md": "f4a4272e2eaafd5b4b6ab40cd66003700f78c11a1e435ee0d485d0d080bf84cb",
-      "implementation-summary.md": "fe4986fa3b4333ed20b0d5f84d0414813f664e9e1ca5c19a2f0e5057c897c7fa"
+      "implementation-summary.md": "fab766e1700c5a4cf5be086e9b69fe2eab20db11b926bbf0b7ae64d41ee5f4ef"
     },
     "last_active_child_id": null,
     "last_active_at": null

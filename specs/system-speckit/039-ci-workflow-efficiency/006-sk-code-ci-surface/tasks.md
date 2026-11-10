@@ -35,7 +35,7 @@ Line numbers are the values on disk when this plan was written. Read the file an
 
 **Comment hygiene.** No task adds an R-id, a D-id or a phase number to a code comment, a JSON description, a template comment or a test name. Spec documents may cite them; the packet's code and JSON may not.
 
-**Additive registration.** Every registration task inserts `sk-code-ci` and preserves the entries it finds. It never rewrites an array or object from a remembered shape, because `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` may have changed that shape. The packet and its registration name the CI surface only; they never name a removed example surface.
+**Additive registration.** Every registration task inserts `sk-code-ci` and preserves the entries it finds. It never rewrites an array or object from a remembered shape, because `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` may have changed that shape. The packet and its registration name the CI surface only; they never name a removed example surface.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -111,7 +111,7 @@ node -e "const fs=require('fs'); const r=require('./.skilled/skills/sk-code/mode
 node -e "const b=require('./specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json'); console.log(b.modes.length,b.surfaces.length,b.routerSignals.length,b.canaryCases)"
 ```
 
-Expected: `5 3 5 18`. When `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` has already landed, expect `3 1 3 18` instead; record whichever the command prints.
+Expected: `5 3 5 18`. When `specs/sk-code/hub-architecture/005-private-surface-skills/002-hub-surface-removal` has already landed, expect `3 1 3 18` instead; record whichever the command prints.
 
 Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json`.
 

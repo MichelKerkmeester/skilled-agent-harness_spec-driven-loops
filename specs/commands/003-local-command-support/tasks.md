@@ -84,7 +84,7 @@ Commands run from the repository root, and every git call passes `-c core.fsmoni
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Precedent**: `specs/sk-code/013-private-surface-skills`
+- **Precedent**: `specs/sk-code/hub-architecture/005-private-surface-skills`
 <!-- /ANCHOR:cross-refs -->
 
 ---

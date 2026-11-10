@@ -54,7 +54,7 @@ You can now keep a slash command that is yours alone. Name it `.skilled/commands
 
 ### Local commands, on the local-* skill precedent
 
-This follows the private-skill work in `specs/sk-code/013-private-surface-skills`, which made `local-*` skills ignorable, invisible to tracked catalogs and refused at commit. Commands get the same three layers. The generators needed no change, because they already walk `.skilled/commands`, skip `assets/` and keep only real files; the new ignore rules cover what they write. A forced add of the command, its assets folder or any mirror stops at the pre-commit guard, which names the path and the `git rm --cached -r` repair.
+This follows the private-skill work in `specs/sk-code/hub-architecture/005-private-surface-skills`, which made `local-*` skills ignorable, invisible to tracked catalogs and refused at commit. Commands get the same three layers. The generators needed no change, because they already walk `.skilled/commands`, skip `assets/` and keep only real files; the new ignore rules cover what they write. A forced add of the command, its assets folder or any mirror stops at the pre-commit guard, which names the path and the `git rm --cached -r` repair.
 
 ### Files Changed
 
